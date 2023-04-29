@@ -286,7 +286,12 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 
 ## Global Configuration
 
-Cumulus Linux provides three ways to modify the default basic global configuration. One way is to use profiles, the second is to modify the parameters directly using NVUE commands, and the third is to modify the Linux file. When a profile is in use, setting the global parameters with NVUE is disabled. Avoid editing the Linux file to modify the global parameters when a profile is in use.
+Cumulus Linux provides several ways to modify the default basic global configuration. You can:
+- Use profiles.
+- Modify the parameters directly with NVUE commands.
+- Modify the Linux file.
+
+When a profile is in use, you cannot set global parameters with NVUE. Avoid editing the Linux file to modify the global parameters when a profile is in use.
 
 ### Clock Domains
 
@@ -379,6 +384,8 @@ Use the local priority when you enable a Telecom profile. Modify the local prior
 
 ## Optional Global Configuration
 
+Optional global PTP configuration includes configuring the DiffServ code point (DSCP).
+
 ### DSCP
 
 You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
@@ -423,7 +430,12 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ## PTP Interface Configuration
 
-Cumulus Linux provides three ways to modify the default basic interface configuration. One way is to use profiles, the second is to modify the parameters directly with NVUE commands, and the third is modify the Linux configuration file. When a profile is set, setting the following configuration parameters with NVUE or editing Linux configuration file might make that interface to be out of profile.
+Cumulus Linux provides several ways to modify the default basic interface configuration. You can:
+- Use profiles
+- Modify the parameters directly with NVUE commands
+- Modify the Linux configuration file.
+
+When a profile is in use, avoid configuring the following interface configuration parameters with NVUE or in the Linux configuration file so that the interface retains its profile settings.
 
 ### Transport Mode
 
@@ -697,7 +709,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ## Unicast Mode
 
-Cumulus Linux supports unicast mode so that a unicast client can do a *Unicast Discover and Negotiation* with servers. Unlike the default multicast mode, where both the server(master) and client(slave) start sending out announce requests and discover each other, in unicast mode, the client starts by sending out requests for unicast transmission. The client sends this to every server address in its Unicast Master Table. The server responds with an accept or deny to the request.
+Cumulus Linux supports unicast mode so that a unicast client can perform a *Unicast Discover and Negotiation* with servers. Unlike the default multicast mode, where both the server(master) and client(slave) start sending out announce requests and discover each other, in unicast mode, the client starts by sending out requests for unicast transmission. The client sends this to every server address in its Unicast Master Table. The server responds with an accept or deny to the request.
 
 ### Global Unicast Configuration
 

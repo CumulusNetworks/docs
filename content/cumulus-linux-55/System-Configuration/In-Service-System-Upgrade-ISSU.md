@@ -93,11 +93,11 @@ cumulus@switch:~$ sudo csmgrctl -f
 {{< /tabs >}}
 
 The following command configures the switch to restart in warm mode.
-<!-->
+<!--
 {{< notice warning >}}
 Warm restart mode resets any manually configured FEC settings.
-{{< /notice >}}-->
-
+{{< /notice >}}
+-->
 {{< tabs "76 ">}}
 {{< tab "NVUE Command ">}}
 
@@ -135,10 +135,6 @@ If the switch is in warm restart mode, restarting the switch after an upgrade do
 Upgrade mode includes the following options:
 - **all** runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
 - **dry-run** provides information on the components you want to upgrade.
-
-{{%notice warning%}}
-Cumulus Linux 5.4 and later package upgrade (`apt-get upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
-{{%/notice%}}
 
 The following command upgrades all the system components:
 

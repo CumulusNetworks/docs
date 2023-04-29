@@ -214,7 +214,9 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast upd
 
 You can run NVUE commands to show route statistics for a BGP neighbor, such as the number of routes, and information about advertised and received routes.
 
-To show the route count, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast route-counters` command for IPv4 or the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast route-counters` command for IPv6.
+To show the route count, run the following NVUE commands:
+- `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast route-counters` for IPv4.
+- `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast route-counters` for IPv6.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast route-counters
@@ -442,7 +444,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10
 ...
 ```
 
-To through which address and interface BGP resolves a specific next hop, run these NVUE commands:
+To show through which address and interface BGP resolves a specific next hop, run these NVUE commands:
 - `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> resolved-via` for IPv4
 - `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> resolved-via` for IPv6
 

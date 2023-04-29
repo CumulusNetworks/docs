@@ -5,13 +5,17 @@ weight: 129
 toc: 3
 
 ---
-<span style="background-color:#F5F5DC">[SyncE](## "Synchronous Ethernet")</span> is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, (<span style="background-color:#F5F5DC">[ESMC](## "Ethernet Synchronization Messaging Channel")</span>), manages this synchronization.
+{{%notice note%}}
+SyncE is currently in Beta.
+{{%/notice%}}
+
+<span style="background-color:#F5F5DC">[SyncE](## "Synchronous Ethernet")</span> is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel manages this synchronization.
 
 The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 - The SyncE controller reads performance counters to calculate the differences between transmit and receive ethernet symbols on the physical layer to fine tune the clock frequency.
-- The SyncE daemon (`syncd`) manages:
-  - Transmitting and receiving <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
-  - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span> in the SSM.
+- The SyncE daemon (`synced`):
+  - Manages transmitting and receiving <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
+  - Manages the synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span> in the SSM.
 
 {{%notice note%}}
 Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
@@ -69,7 +73,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced/synced.conf` file to change the `twtr_seconds setting`, then restart the `syncd` service.
+Edit the `/etc/synced/synced.conf` file to change the `twtr_seconds setting`, then restart the `synced` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -87,7 +91,7 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 ### Priority
 
-You can set the priority for the clock source. The lowest priority is 1 and the the highest priority is 256. If two clock sources has the same priority, the switch uses the lowest clock source.
+You can set the priority for the clock source. The lowest priority is 1 and the the highest priority is 256. If two clock sources have the same priority, the switch uses the lowest clock source.
 
 The following example command sets the priority to 256:
 
@@ -102,7 +106,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced/synced.conf` file to change the `priority` setting, then restart the `syncd` service.
+Edit the `/etc/synced/synced.conf` file to change the `priority` setting, then restart the `synced` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -141,7 +145,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced.conf` file to change the `log-level` setting, then restart the `syncd` service.
+Edit the `/etc/synced.conf` file to change the `log-level` setting, then restart the `synced` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -165,22 +169,22 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 1.
 
-The following command example sets the priority on swp2 to 1, on swp2 to 10, and on swp3 to 1:
+The following command example sets the priority on swp2 to 10, on swp2 to 10, and on swp3 to 10:
 
 {{< tabs "TabID172 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 synce provider-priority 1
-cumulus@switch:~$ nv set interface swp2 synce provider-priority 10
-cumulus@switch:~$ nv set interface swp3 synce provider-priority 1
+cumulus@switch:~$ nv set interface swp1 synce provider-priority 10
+cumulus@switch:~$ nv set interface swp2 synce provider-priority 20
+cumulus@switch:~$ nv set interface swp3 synce provider-priority 10
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced.conf` file to change the `priority` setting for the interface, then restart the `syncd` service.
+Edit the `/etc/synced.conf` file to change the `priority` setting for the interface, then restart the `synced` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -191,13 +195,13 @@ priority=256
 log-level=debug
 
 [swp1]
-priority=1
- 
-[swp2]
 priority=10
  
+[swp2]
+priority=20
+ 
 [swp3]
-priority=1
+priority=10
 ```
 
 ```

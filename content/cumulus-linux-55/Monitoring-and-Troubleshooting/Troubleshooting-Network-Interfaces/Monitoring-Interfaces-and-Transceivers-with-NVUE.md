@@ -114,7 +114,7 @@ NVUE provides the following commands to show counters (statistics) for the inter
 | `nv show interface <interface> counters drops` | Shows the number of received and transmitted packet drops for a specific interface, such as ACL drops, buffer drops, queue drops, and non-queue drops.|
 | `nv show interface <interface> counters pktdist` | Shows the number of received and transmitted packets of a certain size for a specific interface. |
 | `nv show interface <interface> counters qos` | Shows QoS statistics for the specified interface. See {{<link url="Quality-of-Service/#show-qos-counters" text="Show Qos Counters">}}.|
-| `nv show interface <interface> counters ptp` | Shows PTP statistics for a specific interface. |
+| `nv show interface <interface> counters ptp` | Shows PTP statistics for a specific interface. See {{<link url="Precision-Time-Protocol-PTP/#show-ptp-counters" text="Show PTP Counters">}}.|
 
 The following example shows all statistics for all the interfaces configured on the switch:
 

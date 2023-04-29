@@ -46,7 +46,7 @@ The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Supp
   - New OSPF commands to {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="show interface and neighbor configuration and counters">}}, and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="clear OSPF interface counters">}}
   - New command to {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="clear matches against a route map">}}
   - New {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP commands">}} to clear BGP routes
-  - New commands to {{<link url="Precision-Time-Protocol-PTP/#ptp-configuration-and-status" text="show PTP counters">}}
+  - New commands to {{<link url="Precision-Time-Protocol-PTP/#show-ptp-counters" text="show PTP counters">}}
   - New EVPN commands to show {{<link url="EVPN-Multihoming/#troubleshooting" text="multihoming information">}}, {{<link url="Troubleshooting-EVPN/#examine-remote-router-mac-addresses" text="remote router MAC addresses">}}, {{<link url="Troubleshooting-EVPN/#examine-gateway-next-hops" text="nexthop VTEPs">}}, and {{<link url="Troubleshooting-EVPN/#show-access-vlans" text="access VLANs and their VNIs">}}
   - Updated {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#next-hop-groups" text="nv show router nexthop rib">}} and {{<link url="FRRouting/#next-hop-tracking" text="nv show vrf <vrf> router nexthop-tracking">}} commands show operational data
   - Updated {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data

@@ -44,7 +44,23 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Start the synce service:
+Edit the `/etc/synced/synced.conf` file to configure the interface, then enable and start the SyncE service:
+
+```
+cumulus@switch:~$ sudo nano /etc/synced/synced.conf
+...
+[global]
+twtr_seconds=10
+priority=1
+loglevel=info
+
+[swp1]
+
+[swp3]
+
+[swp4]
+priority=4
+```
 
 ```
 cumulus@switch:~$ sudo systemctl enable synced.service
@@ -145,7 +161,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced.conf` file to change the `log-level` setting, then restart the SyncE service.
+Edit the `/etc/synced.conf` file to change the `log-level` setting, then *reload* the SyncE service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -157,7 +173,7 @@ loglevel=debug
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart synced.service
+cumulus@switch:~$ sudo systemctl reload synced.service
 ```
 
 {{< /tab >}}
@@ -213,7 +229,11 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 ## Troubleshooting
 
-To show global SyncE configuration, run the `nv show service synce` command. To show SyncE configuration for a specific interface, run the `nv show interface <interface-id> synce` command.
+## Show SyncE Configuration and Counters
+
+To show global SyncE configuration, run the NVUE `nv show service synce` command or the Linux `syncectl show status` command.
+
+To show SyncE configuration for a specific interface, run the NVUE `nv show interface <interface-id> synce` command or the Linux  `syncectl show interface status <interface>` command.
 
 ```
 cumulus@switch:~$ nv show service synce
@@ -229,7 +249,7 @@ network-type               1
 summary                    Group #0: TRACKING holdover acquired on swp1. freq_diff: 77 (ppb)
 ```
 
-To show SyncE statistics for a specific interface, run the `nv show interface <interface-id> synce counters` command:
+To show SyncE statistics for a specific interface, run the NVUE `nv show interface <interface-id> synce counters` command or the Linux `syncectl show interface counters <interface` command:
 
 ```
 cumulus@switch:~$ nv show interface swp2 synce counters
@@ -260,6 +280,20 @@ tx-esmc-ssu-a    0
 tx-esmc-ssu-b    0
 tx-esmc-unknown  0
 ```
+
+### Clear SyncE Interface Counters
+
+To clear counters for a specific SyncE interface, run the NVUE `nv action clear interface <interface> synce counters` command or the Linux `syncectl clear interface counters <interface>` command.
+
+```
+cumulus@switch:~$ nv action clear interface swp1 synce counters
+swp1 counters cleared
+Action succeeded
+```
+
+To clear counters for all SyncE interfaces, run the `syncectl clear counters` command.
+
+To see all the `syncectl` commands, run `syncectl -h`.
 
 ## Related Information
 

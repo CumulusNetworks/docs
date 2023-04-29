@@ -1549,7 +1549,7 @@ You can drill down with the following `nv show service ptp <instance>` commands:
 
 ### Show PTP Interface Configuration
 
-To check configuration for a PTP interface, run the `nv show interface <interface> ptp` command. 
+To check configuration for a PTP interface, run the `nv show interface <interface> ptp` command.
 <!--This command also shows PTP counters (statistics, such as the number of announce messages received, the number of Sync messages received, and so on).-->
 
 ```

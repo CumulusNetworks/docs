@@ -624,7 +624,7 @@ When you configure a site ID, Cumulus Linux:
 
 The site ID is in the format `<IPv4 address>:<2-byte Value>`, where the IPv4 address is the anycast IP address (a virtual IP address for VXLAN data-path termination) and the 2-byte value is an integer between 0 and 65535. For example: 10.0.1.12:10
 
-There are no NVUE commands for this feature.
+NVUE does not provide commands for this feature.
 
 To configure a unique site ID, run the following vtysh commands:
 

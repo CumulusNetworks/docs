@@ -522,9 +522,9 @@ Run the `sudo ifreload -a` command to apply all the configuration changes:
 ```
 cumulus@leaf01:~$ sudo ifreload -a
 ```
-
+<!-- vale off -->
 ## Unconfigure MLAG
-
+<!-- vale on -->
 To unconfigure MLAG:
 
 {{< tabs "TabID532 ">}}

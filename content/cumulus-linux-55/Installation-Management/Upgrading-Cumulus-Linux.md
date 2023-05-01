@@ -305,7 +305,7 @@ You must upgrade both switches in the MLAG pair to the same release of Cumulus L
 
 Only during the upgrade process does Cumulus Linux supports different software versions between MLAG peer switches. After you upgrade the first MLAG switch in the pair, run the `clagctl showtimers` command to monitor the `init-delay` timer. When the timer expires, make the upgraded MLAG switch the primary, then upgrade the peer to the same version of Cumulus Linux.
 
-Running different versions of Cumulus Linux on MLAG peer switches outside of the upgrade time period is untested and might have unexpected results.
+NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer switches outside of the upgrade time period; you might see unexpected results.
 {{%/notice%}}
 
 1. Verify the switch is in the secondary role:

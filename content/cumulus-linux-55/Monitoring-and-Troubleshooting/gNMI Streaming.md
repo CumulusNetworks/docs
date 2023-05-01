@@ -8,7 +8,7 @@ You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Networ
 
 ### Configure the gNMI Agent
 
-The `netq-agent` package includes the gNMI agent, which is disabled by default. To enable the gNMI agent:
+The `netq-agent` package includes the gNMI agent, which it disables by default. To enable the gNMI agent:
 
 ```
  cumulus@switch:~$ sudo systemctl enable netq-agent.service
@@ -57,9 +57,9 @@ cumulus@switch:mgmt:~$ sudo systemctl start nvued.service
 
 {{%/notice%}}
 
-### Use the gNMI Agent Exclusively
+### Use the gNMI Agent Only
 
-NVIDIA recommends that you collect data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents or you are not streaming data to NetQ, you can disable the NetQ agent. Cumulus Linux then sents data exclusively to the gNMI agent.
+NVIDIA recommends that you collect data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents or you are not streaming data to NetQ, you can disable the NetQ agent. Cumulus Linux then sents data only to the gNMI agent.
 
 To disable the NetQ agent:
 
@@ -69,11 +69,11 @@ cumulus@switch:~$ netq config add agent opta-enable false
 
 {{%notice note%}}
 You cannot disable both the NetQ and gNMI agent. If you enable both agents on Cumulus Linux and a NetQ server is unreachable, the switch does not send the data to gNMI from the following models:
-- openconfig-interfaces
-- openconfig-if-ethernet
-- openconfig-if-ethernet-ext
-- openconfig-system
-- nvidia-if-ethernet-ext
+- `openconfig-interfaces`
+- `openconfig-if-ethernet`
+- `openconfig-if-ethernet-ext`
+- `openconfig-system`
+- `nvidia-if-ethernet-ext`
 
 WJH, `openconfig-platform`, and `openconfig-lldp` data continue streaming to gNMI in this state. If you are only using gNMI and a NetQ telemetry server does not exist, disable the NetQ agent by setting `opta-enable` to `false`.
 {{%/notice%}}

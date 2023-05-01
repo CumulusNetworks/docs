@@ -6,18 +6,19 @@ toc: 3
 ---
 *QinQ* is an amendment to the {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text="IEEE 802.1Q specification">}} that enables you to insert multiple VLAN tags into a single Ethernet frame.
 
-QinQ with VXLAN is typically used by a service provider who offers multi-tenant layer 2 connectivity between different customer data centers over a virtualized layer 3 provider network.  The customer VLANs are transparent to the provider network.
+QinQ with VXLAN is typically used by a service provider who offers multi-tenant layer 2 connectivity between different customer data centers over a virtualized layer 3 provider network. The customer VLANs are transparent to the provider network.
 
 Cumulus Linux supports the standard 802.1ad with a VLAN-aware bridge where you map a customer (S-tag) to a VNI and preserve the inner VLAN (C-tag) inside a VXLAN packet.
 
-Cumulus Linux also supports a special case with a VLAN-unaware bridge where you use both the S-tag, C-tag tuple for forwarding lookup and mapping to a VNI. Both the S-tag and C-tag are removed during VXLAN encapsulation; Cumulus Linux refers to this configuration as Double Tag Translation.
+Cumulus Linux also supports a special case with a VLAN-unaware bridge where you use both the S-tag, C-tag tuple for forwarding lookup and mapping to a VNI. Cumulus Linux removes both the S-tag and C-tag during VXLAN encapsulation; Cumulus Linux refers to this configuration as Double Tag Translation.
 
 {{%notice note%}}
 You must disable ARP and ND suppression on VXLAN bridges when using QinQ.
 {{%/notice%}}
 
+<!-- vale off -->
 ## 802.1ad with a VLAN-aware Bridge
-
+<!-- vale on -->
 In the standard 802.1ad QinQ model, the customer-facing interface is a QinQ access port and the outer S-tag is the PVID representing the customer. Cumulus Linux translates the S-tag to a VXLAN VNI. The inner C-tag is transparent to the provider. It is also possible that the provider has VLAN trunks connected to the same bridge, carrying traffic from different customers on the same port. In this case, the S-tag maps to a VNI. Cumulus Linux removes the S-tag during VXLAN encapsulation and adds it after decapsulation.
 
 An example configuration in VLAN-aware bridge mode looks like this:

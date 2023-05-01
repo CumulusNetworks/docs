@@ -109,7 +109,7 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 ### Priority
 
-You can set the priority for the clock source. The lowest priority is 1 and the the highest priority is 256. If two clock sources have the same priority, the switch uses the lowest clock source.
+You can set the priority for the clock source. The lowest priority is 1 and the highest priority is 256. If two clock sources have the same priority, the switch uses the lowest clock source.
 
 The following example command sets the priority to 256:
 
@@ -283,7 +283,7 @@ tx-esmc-ssu-b    0
 tx-esmc-unknown  0
 ```
 
-### Clear SyncE Interface Counters
+## Clear SyncE Interface Counters
 
 To clear counters for a specific SyncE interface, run the NVUE `nv action clear interface <interface> synce counters` command or the Linux `syncectl clear interface counters <interface>` command.
 

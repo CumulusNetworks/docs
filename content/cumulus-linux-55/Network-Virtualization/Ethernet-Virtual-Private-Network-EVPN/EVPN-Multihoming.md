@@ -138,7 +138,7 @@ To configure bond interfaces for EVPN-MH:
 {{<tabs "bond configuration">}}
 {{<tab "NVUE Commands">}}
 
-With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the Ethernet segment ID manually. Both options are shown below.
+With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the Ethernet segment ID manually. You can see both options below.
 
 The following example commands configure each bond interface with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
 
@@ -581,9 +581,9 @@ cumulus@switch:~$
 ## Troubleshooting
 
 Use the following commands to troubleshoot your EVPN multihoming configuration.
-
+<!-- vale off -->
 ### Show Global EVPN-MH Information
-
+<!-- vale on -->
 To show global EVPN-MH information, such as the uplink count, startup delay timer, neighbor hold time, and MAC entry hold time, run the NVUE `nv show evpn multihoming` command:
 
 ```

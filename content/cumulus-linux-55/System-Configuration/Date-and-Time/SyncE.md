@@ -283,7 +283,7 @@ tx-esmc-ssu-b    0
 tx-esmc-unknown  0
 ```
 
-### Clear SyncE Interface Counters
+## Clear SyncE Interface Counters
 
 To clear counters for a specific SyncE interface, run the NVUE `nv action clear interface <interface> synce counters` command or the Linux `syncectl clear interface counters <interface>` command.
 

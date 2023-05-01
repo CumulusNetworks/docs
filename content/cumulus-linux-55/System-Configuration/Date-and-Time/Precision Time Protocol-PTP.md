@@ -1594,6 +1594,13 @@ Signaling            0         0
 Sync                 0         20731  
 ```
 
+To clear PTP counters for an interface, run the `nv action clear interface <interface> counters ptp` command.
+
+```
+cumulus@switch:~$ nv action clear interface swp1 counters ptp
+Action succeeded
+```
+
 ### Show the Status of All PTP Interfaces
 
 To show the status of all PTP interfaces, run the `nv show service ptp <instance> status` command.
@@ -1618,12 +1625,12 @@ swp12  Ucast  PASSIVE  Initial State (WAIT)
 cumulus@switch:~$ nv list-commands service ptp
 nv show service ptp
 nv show service ptp <instance-id>
+nv show service ptp <instance-id> status
+nv show service ptp <instance-id> domain
+nv show service ptp <instance-id> priority1
+nv show service ptp <instance-id> priority2
+nv show service ptp <instance-id> ip-dscp
 nv show service ptp <instance-id> acceptable-master
-nv show service ptp <instance-id> acceptable-master <clock-id>
-nv show service ptp <instance-id> unicast-master
-nv show service ptp <instance-id> unicast-master <table-id>
-nv show service ptp <instance-id> unicast-master <table-id> address
-nv show service ptp <instance-id> unicast-master <table-id> address <ip-mac-address-id>
 ...
 ```
 
@@ -1632,7 +1639,7 @@ cumulus@switch:~$ nv list-commands interface
 ...
 nv show interface <interface-id> ptp
 nv show interface <interface-id> ptp timers
-nv show interface <interface-id> counters ptp 
+nv show interface <interface-id> ptp shaper
 ...
 ```
 

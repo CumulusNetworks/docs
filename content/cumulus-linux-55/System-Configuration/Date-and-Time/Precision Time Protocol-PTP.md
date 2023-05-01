@@ -9,7 +9,7 @@ Cumulus Linux supports IEEE 1588-2008 Precision Timing Protocol (PTPv2), which d
 PTP is capable of sub-microsecond accuracy. The clocks are in a master-slave hierarchy, where the slaves synchronize to their masters, which can be slaves to their own masters. The best master clock (BMC) algorithm, which runs on every clock, creates and updates the hierarchy automatically. The grandmaster clock is the top-level master. To provide a high-degree of accuracy, a Global Positioning System (GPS) time source typically synchronizes the grandmaster clock.
 
 In the following example:
-- Boundary clock 2 receives time from Master 1 (the grandmaster) on a PTP slave port, sets its clock and passes the time down from the PTP master port to Boundary clock 1. 
+- Boundary clock 2 receives time from Master 1 (the grandmaster) on a PTP slave port, sets its clock and passes the time down from the PTP master port to boundary clock 1. 
 - Boundary clock 1 receives the time on a PTP slave port, sets its clock and passes the time down the hierarchy through the PTP master ports to the hosts that receive the time.
 
 {{< img src = "/images/cumulus-linux/date-time-ptp-example.png" >}}
@@ -291,7 +291,7 @@ Cumulus Linux provides several ways to modify the default basic global configura
 - Modify the parameters directly with NVUE commands.
 - Modify the Linux `/etc/ptp4l.conf` file.
 
-When a profile is in use, you cannot set global parameters with NVUE. Avoid editing the Linux `/etc/ptp4l.conf` file to modify the global parameters when a profile is in use.
+When a profile is in use, NVUE does not allow you to set global parameters. Avoid editing the Linux `/etc/ptp4l.conf` file to modify the global parameters when a profile is in use.
 
 ### Clock Domains
 
@@ -384,11 +384,7 @@ Use the local priority when you enable a Telecom profile (ITU 8275-1 or ITU 8275
 
 ## Optional Global Configuration
 
-Optional global PTP configuration includes configuring the DiffServ code point (DSCP).
-
-### DSCP
-
-You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
+Optional global PTP configuration includes configuring the DiffServ code point (DSCP). You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
 
 {{< tabs "TabID320 ">}}
 {{< tab "NVUE Commands ">}}
@@ -433,13 +429,13 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 Cumulus Linux provides several ways to modify the default basic interface configuration. You can:
 - Use profiles
 - Modify the parameters directly with NVUE commands
-- Modify the Linux configuration file.
+- Modify the Linux `/etc/ptp4l.conf` configuration file.
 
 When a profile is in use, avoid configuring the following interface configuration parameters with NVUE or in the Linux configuration file so that the interface retains its profile settings.
 
 ### Transport Mode
 
-By default, Cumulus Linux encapsulates PTP messages in UDP/IPV4 frames. To encapsulate PTP messages on an interface in UDP/IPV6 frames:
+By default, Cumulus Linux encapsulates PTP messages in UDP IPV4 frames. To encapsulate PTP messages on an interface in UDP IPV6 frames:
 
 {{< tabs "TabID274 ">}}
 {{< tab "NVUE Commands ">}}
@@ -551,7 +547,7 @@ You can set the following timers for PTP messages.
 | Timer | Description |
 | ----- | ----------- |
 | `announce-interval` | The average interval between successive Announce messages. Specify the value as a power of two in seconds. |
-| `announce-timeout` | The number of announce intervals that have to occur without receiving an Announce message before a timeout occurs. <br>Make sure that this value is longer than the announce-interval in your network.|
+| `announce-timeout` | The number of announce intervals that have to occur without receiving an Announce message before a timeout occurs. Make sure that this value is longer than the announce-interval in your network.|
 | `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages. |
 | `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
 
@@ -709,7 +705,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ## Unicast Mode
 
-Cumulus Linux supports unicast mode so that a unicast client can perform a *Unicast Discover and Negotiation* with servers. Unlike the default multicast mode, where both the server(master) and client(slave) start sending out announce requests and discover each other, in unicast mode, the client starts by sending out requests for unicast transmission. The client sends this to every server address in its Unicast Master Table. The server responds with an accept or deny to the request.
+Cumulus Linux supports unicast mode so that a unicast client can perform *Unicast Discover and Negotiation* with servers. Unlike the default multicast mode, where both the server(master) and client(slave) start sending out announce requests and discover each other, in unicast mode, the client starts by sending out requests for unicast transmission. The client sends this to every server address in its Unicast Master Table. The server responds with an accept or deny to the request.
 
 ### Global Unicast Configuration
 
@@ -718,7 +714,7 @@ Unicast clients need a unicast master table for unicast negotiation; you must co
 To configure unicast globally:
 - Set the unicast table ID; a unique ID that identifies the unicast master table.
 - Set the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
-- Optional: Set the unicast master query interval, which is the mean interval between requests for announce messages. Specify this value as a power of two in seconds. You can specify a value between -3 and 4. The default value is -0 (2 power).
+- Optional: Set the unicast master query interval, which is the mean interval between requests for Announce messages. Specify this value as a power of two in seconds. You can specify a value between -3 and 4. The default value is -0 (2 power).
 {{< tabs "TabID668 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -908,9 +904,9 @@ Cumulus Linux supports the following predefined profiles:
 {{%notice note%}}
 - You cannot modify the predefined profiles. If you want to set a parameter to a different value in a predefined profile, you need to create a custom profile. You can modify a custom profile within the range applicable to the profile type.
 - You cannot set the current profile to a profile not yet created.
-- You cannot set global PTP parameters in the currently set profile.
-- PTP profiles do not support VLANs and bonds. You must configure profile settings individually for each bond or VLAN.
-- If you set a predefined or custom profile, do not change any global PTP settings, such as the DiffServ code point (DSCP) or the clock domain.
+- You cannot set global PTP parameters in a profile currently in use.
+- PTP profiles do not support VLANs or bonds.
+- If you set a predefined or custom profile, do not change any global PTP settings, such as the <span style="background-color:#F5F5DC">[DSCP](## "DiffServ code point")</span> or the clock domain.
 - For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp burst <value>` and `nv set system control-plane policer lldp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
 {{%/notice%}}
 
@@ -1184,9 +1180,9 @@ monitor
 
 ## Optional Acceptable Master Table
 
-The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. Cumulus Linux disables this option by default on PTP ports.
+The acceptable master table option is a security feature that prevents a rogue player from pretending to be the grandmaster clock to take over the PTP network. To use this feature, you configure the clock IDs of known grandmaster clocks in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the grandmaster clock received in the Announce message is in this table before proceeding with the master selection. Cumulus Linux disables this option by default on PTP ports.
 <!-- vale off -->
-The following example command adds the Grandmaster clock ID 24:8a:07:ff:fe:f4:16:06 to the acceptable master table and enable the PTP acceptable master table option for swp1:
+The following example command adds the grandmaster clock ID 24:8a:07:ff:fe:f4:16:06 to the acceptable master table and enables the PTP acceptable master table option for swp1:
 <!-- vale on -->
 {{< tabs "TabID614 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1277,9 +1273,13 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ## Optional Monitor Configuration
 
+Cumulus Linux provides the following optional PTP monitoring configuration.
+
 ### Configure Clock Correction and Path Delay Thresholds
 
-Cumulus Linux monitors clock correction and path delay against thresholds, and generates counters that show in NVUE show command output and log messages when PTP reaches the thresholds. You can configure the following monitor settings:
+Cumulus Linux monitors clock correction and path delay against thresholds, and generates counters when PTP reaches the set thresholds. You can see the counters in the NVUE `nv show` command output and in log messages.
+
+You can configure the following monitor settings:
 
 {{< tabs "TabID851 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1290,13 +1290,12 @@ Cumulus Linux monitors clock correction and path delay against thresholds, and g
 | `nv set service ptp <instance> monitor max-offset-threshold` | Sets the maximum difference allowed between the master and slave time. You can set a value between 0 and 1000000000 nanoseconds. The default value is 50 nanoseconds.|
 | `nv set service ptp <instance> monitor path-delay-threshold` | Sets the mean time that PTP packets take to travel between the master and slave. You can set a value between 0 and 1000000000 nanoseconds . The default value is 200 nanoseconds. |
 | `nv set service ptp <instance> monitor max-timestamp-entries` | Sets the maximum number of timestamp entries allowed. Cumulus Linux updates the timestamps continuously. You can specify a value between 100 and 200. The default value is 100 entries.|
-| `nv set service ptp <instance> monitor max-violation-log-sets` | Sets the maximum number of violation log sets allowed. You can specify a value between 2 and 4. The default value is 2 sets.|
-| `nv set service ptp <instance> monitor max-violation-log-entries` | Sets the maximum number of violation log entries allowed for each set. You can specify a value between 4 and 8. The default value is 8 entries.|
-| `nv set service ptp <instance> monitor violation-log-interval` | Sets the violation log interval. You can specify a value between 0 and 60 seconds. The default value is 0 seconds.|
 
-The following example sets the path delay threshold to 300:
+The following example sets the minimum offeset threshold to -1000, the maximum offeset threshold to 1000, and the path delay threshold to 300:
 
 ```
+cumulus@switch:~$ nv set service ptp 1 monitor min-offset-threshold -1000
+cumulus@switch:~$ nv set service ptp 1 monitor max-offset-threshold 1000
 cumulus@switch:~$ nv set service ptp 1 monitor path-delay-threshold 300
 cumulus@switch:~$ nv config apply
 ```
@@ -1312,7 +1311,7 @@ You can configure the following monitor settings manually in the `/etc/ptp4l.con
 | `offset_from_master_max_threshold` | Sets the maximum difference allowed between the master and slave time. You can set a value between 0 and 1000000000 nanoseconds. The default value is 50 nanoseconds. |
 | `mean_path_delay_threshold` | Sets the mean time that PTP packets take to travel between the master and slave. You can set a value between 0 and 1000000000 nanoseconds. The default value is 200 nanoseconds. |
 
-The following example sets the path delay threshold to 300 nanoseconds:
+The following example sets the minimum offeset threshold to -1000, the maximum offeset threshold to 1000, and the path delay threshold to 300:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -1330,8 +1329,8 @@ twoStepFlag             1
 dscp_event              46
 dscp_general            46
 
-offset_from_master_min_threshold   -50
-offset_from_master_max_threshold   50
+offset_from_master_min_threshold   -1000
+offset_from_master_max_threshold   1000
 mean_path_delay_threshold          300
 ...
 ```
@@ -1550,7 +1549,7 @@ You can drill down with the following `nv show service ptp <instance>` commands:
 ### Show PTP Interface Configuration
 
 To check configuration for a PTP interface, run the `nv show interface <interface> ptp` command.
-<!--This command also shows PTP counters (statistics, such as the number of announce messages received, the number of Sync messages received, and so on).-->
+<!--This command also shows PTP counters (statistics, such as the number of Announce messages received, the number of Sync messages received, and so on).-->
 
 ```
 cumulus@switch:~$ nv show interface swp1 ptp
@@ -1619,7 +1618,7 @@ swp12  Ucast  PASSIVE  Initial State (WAIT)
 ### Show the List of NVUE PTP Commands
 
 - To see a full list of NVUE show commands for PTP, run the `nv list-commands service ptp` command.
-- To show a full list of show commands for a PTP interface, run the `nv list-commands interface` command, then scroll to see PTP.
+- To show a full list of show commands for a PTP interface, run the `nv list-commands | grep 'nv show interface <interface-id> ptp'` command.
 
 ```
 cumulus@switch:~$ nv list-commands service ptp
@@ -1635,7 +1634,7 @@ nv show service ptp <instance-id> acceptable-master
 ```
 
 ```
-cumulus@switch:~$ nv list-commands interface
+cumulus@switch:~$ nv list-commands | grep 'nv show interface <interface-id> ptp'
 ...
 nv show interface <interface-id> ptp
 nv show interface <interface-id> ptp timers
@@ -1798,7 +1797,7 @@ network_transport            UDPv4
 ### PTP Traffic Shaping
 
 To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
-For example, if you see that the PTP timing offset varies widely and is does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
+For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
 
 {{%notice note%}}
 - Switches with Spectrum-2 and later do not support PTP shaping.

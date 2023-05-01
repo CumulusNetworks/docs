@@ -421,7 +421,7 @@ Cumulus Linux only supports adaptive routing with:
 - You cannot use adaptive routing with EVPN or VXLAN.
 {{%/notice%}}
 
-With adaptive routing, packets are routed to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.
+With adaptive routing, packets route to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.
 
 The change decision for port selection is set to one microsecond; you cannot change it.
 

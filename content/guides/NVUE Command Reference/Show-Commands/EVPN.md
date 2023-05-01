@@ -699,9 +699,9 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming bgp-info esi 03:44:38:39:
 
 - - -
 
-## nv show evpn vni <vni-id> multihoming bgp-info esi \<esi-id\> remote-vtep
+## nv show evpn vni \<vni-id\> multihoming bgp-info esi \<esi-id\> remote-vtep
 
-Shows BGP information for a specific multihoming Ethernet segment for the specified VNI on all remote VTEPs.
+Shows BGP information for a specific multihoming Ethernet segment for the specified VNI.
 
 ### Command Syntax
 
@@ -722,7 +722,7 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:
 
 - - -
 
-## nv show evpn vni <vni-id> multihoming bgp-info esi \<esi-id\> remote-vtep \<ipv4-address-id\>
+## nv show evpn vni \<vni-id\> multihoming bgp-info esi \<esi-id\> remote-vtep \<ipv4-address-id\>
 
 Shows BGP information for a specific multihoming Ethernet segment for the specified VNI on a specific remote VTEP.
 

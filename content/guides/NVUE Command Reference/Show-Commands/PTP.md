@@ -525,6 +525,28 @@ cumulus@leaf01:mgmt:~$ nv show service ptp 1 profile CUSTOM1
 
 - - -
 
+## nv show service ptp \<instance-id\> status
+
+Shows PTP status.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>` | The PTP instance number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service ptp 1 status
+```
+
+- - -
+
 ## nv show service ptp \<instance-id\> time-properties
 
 Shows time properties for the specified PTP instance, such as the current UTC offset and the PTP time scale.

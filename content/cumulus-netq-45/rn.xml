@@ -7,6 +7,38 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3438973</td>
+<td>When you install NetQ onto your VM, the installation fails with the following messages:
+
+
+05:57:33.023618: master-node-installer: Installed Debian ...	[ FAILED ]
+--------------------------------------
+ERROR: Failed to install the master node
+
+
+This is due to an expired key in the installation tarball. For assistance working around this issue, contact NVIDIA support.</td>
+<td>4.3.0-4.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3435373</td>
+<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command fail with the following message: 
+
+
+Job upgrade failed or timed out.
+
+
+To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.</td>
+<td>4.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3367267</td>
+<td>When you upgrade a switch with NetQ LCM using the {{root}} user, the upgrade fails with the following message:  Destination /home/root does not exist.  To work around this issue, perform the upgrade using a different user account.</td>
+<td>4.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3362224</td>
 <td>When you configure a new access profile with SSH authentication using the CLI, the command fails with the following log message:
 
@@ -77,12 +109,6 @@ To work around this issue, use the NetQ UI to configure the access profile.</td>
                                                          torc-21:vx-282 and torc-11:peerlink-3
    </td>
 <td>4.1.0-4.5.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2872288</td>
-<td>When a NetQ agent sends messages with validation check data, there might be a delay of up to 120 seconds before the new data is displayed in streaming validation checks.</td>
-<td>4.2.0-4.5.0</td>
 <td></td>
 </tr>
 <tr>

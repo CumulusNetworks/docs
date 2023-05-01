@@ -122,7 +122,7 @@ Copyright 1996-2005 Kunihiro Ishiguro, et al.
 switch#
 ```
 
-There are different modes to the CLI and certain commands are only available within a specific mode. Configuration is available with the `configure terminal` command:
+FRR provides different modes to the CLI and certain commands are only available within a specific mode. Configuration is available with the `configure terminal` command:
 
 ```
 switch# configure terminal
@@ -403,7 +403,7 @@ If you try to configure a routing protocol that is not running, vtysh ignores th
 
 ## Next Hop Tracking
 
-Routing daemons track the validity of next hops through notifications from the `zebra` daemon. For example, BGP routes that resolve to a next hop over a connected route in `zebra` are uninstalled when `bgpd` receives a nexthop-tracking (NHT) notification after `zebra` removes the connected route if the associated interface goes down.
+Routing daemons track the validity of next hops through notifications from the `zebra` daemon. For example, FRR uninstalls BGP routes that resolve to a next hop over a connected route in `zebra` when `bgpd` receives a next hop tracking (NHT) notification after `zebra` removes the connected route if the associated interface goes down.
 
 The `zebra` daemon does not consider next hops that resolve to a default route as valid by default. You can configure NHT to consider a longest prefix match lookup for next hop addresses resolving to the default route as a valid next hop. The following example configures the default route to be valid for NHT in the default VRF:
 
@@ -473,7 +473,7 @@ You can show tracked next hops with the following NVUE commands:
 - `nv show vrf <vrf> router nexthop-tracking ipv6`
 - `nv show vrf <vrf> router nexthop-tracking ipv6 <ip-address>`
 
-Alternatively, you can run the vtysh `show ip nht vrf <vrf> <ip-address>` command.
+You can also run the vtysh `show ip nht vrf <vrf> <ip-address>` command.
 
 ## Reload the FRR Configuration
 

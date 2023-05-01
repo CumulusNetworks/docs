@@ -1393,7 +1393,7 @@ Certain switches, such as the SN2700, SN4600, and SN4600c, require that you disa
    ```
 
    {{%notice note%}}
-When you configure a breakout port to 4x or 8x on certain switches such as the SN2700, SN4600, and SN4600c, you must set the subsequent even-numbered port to `disabled` in the `/etc/cumulus/ports.conf` file.  The SN3700, SN3700c, SN2201, SN2010, and SN2100 switch does not not have this requirement.
+When you configure a breakout port to 4x or 8x on certain switches such as the SN2700, SN4600, and SN4600c, you must set the subsequent even-numbered port to `disabled` in the `/etc/cumulus/ports.conf` file. The SN3700, SN3700c, SN2201, SN2010, and SN2100 switch does not have this requirement.
 {{%/notice%}}
 
 2. Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.

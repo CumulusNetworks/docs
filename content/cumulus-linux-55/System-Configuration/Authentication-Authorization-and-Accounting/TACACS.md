@@ -417,7 +417,7 @@ Privilege Level  role          command
 tacuser0@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a ip nv
 ```
 
-The `tacplus-auth` command handles authorization for each command. To make this an enforced authorization, change the TACACS+ login to use a restricted shell, with a very limited executable search path. Otherwise, the user can bypass the authorization. The `tacplus-restrict` utility simplifies setting up the restricted environment.
+The `tacplus-auth` command handles authorization for each command. To make this an enforced authorization, change the TACACS+ log in to use a restricted shell, with a very limited executable search path. Otherwise, the user can bypass the authorization. The `tacplus-restrict` utility simplifies setting up the restricted environment.
 
 The following table provides the `tacplus-restrict` command options:
 

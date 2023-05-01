@@ -109,7 +109,7 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 ### Priority
 
-You can set the priority for the clock source. The lowest priority is 1 and the the highest priority is 256. If two clock sources have the same priority, the switch uses the lowest clock source.
+You can set the priority for the clock source. The lowest priority is 1 and the highest priority is 256. If two clock sources have the same priority, the switch uses the lowest clock source.
 
 The following example command sets the priority to 256:
 

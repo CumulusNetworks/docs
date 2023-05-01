@@ -1603,7 +1603,7 @@ Action succeeded
 ### Show the Status of All PTP Interfaces
 
 To show the status of all PTP interfaces, run the `nv show service ptp <instance> status` command.
-The command output shows the PTP enabled ports, the PTP port mode (unicast or multicast), the state of the port based on BMCA, the unicast state, and identifies the server address to which the client is connected.
+The command output shows the PTP enabled ports, the PTP port mode (unicast or multicast), the state of the port based on BMCA, the unicast state, and identifies the server address to which the client connects.
 
 ```
 cumulus@switch:~$ nv show service ptp 1 status

@@ -130,7 +130,7 @@ You must specify `no-confirm` at the end of the command.
 
 Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux minor release without impacting traffic. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="warm, cold, or fast restart">}}.
 
-If the switch is in warm restart mode, restarting the switch after an upgrade does not result in traffic loss (this is known as a hitless upgrade).
+If the switch is in warm restart mode, restarting the switch after an upgrade does not result in traffic loss (this is a hitless upgrade).
 
 Upgrade mode includes the following options:
 - **all** runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.

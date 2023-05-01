@@ -1547,12 +1547,18 @@ monitor
 ```
 
 You can drill down with the following `nv show service ptp <instance>` commands:
-- `nv show service ptp <instance> acceptable-master` shows a collection of acceptable masters.
-- `nv show service ptp <instance> monitor` shows PTP monitor configuration.
+- `nv show service ptp <instance> domain` shows the domain configuration.
+- `nv show service ptp <instance> ip-dscp` shows PTP DSCP configuration.
+- `nv show service ptp <instance> priority1` shows PTP priority1 configuration.
+- `nv show service ptp <instance> priority2` shows PTP priority2 configuration.
+- `nv show service ptp <instance> acceptable-master` shows acceptable master configuration.
 - `nv show service ptp <instance> current` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> clock-quality` shows the clock quality status.
 - `nv show service ptp <instance> parent` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> time-properties` shows the clock time attributes.
+- `nv show service ptp <instance> monitor` shows PTP monitor configuration.
+- `nv show service ptp <instance> profile` shows PTP profile configuration.
+- `nv show service ptp <instance> unicast-master` shows the unicast master configuration.
 
 ### Show PTP Interface Configuration
 

@@ -490,13 +490,13 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 </tr>
 <tr>
 <td>3429530</td>
-<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
 <td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3418103</td>
-<td>On Spectrum-2 and Spectrum-3 switches, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
+<td>On the Spectrum-2 and Spectrum-3 switch, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -514,15 +514,16 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 </tr>
 <tr>
 <td>3410303</td>
-<td>The NVUE commands to set the frequency of LLDP updates {{nv set service lldp tx-interval}} and the amount of time to hold the information before discarding it {{nv set service lldp tx-hold-multiplier}} did not provide reasonable maximum and minimum values. Cumulus Linux 5.5.0 provides new values:
+<td>The NVUE command to set the frequency of LLDP updates {{nv set service lldp tx-interval}} and the NVUE command to 
+ set the amount of time to hold the information before discarding it {{nv set service lldp tx-hold-multiplier}} do not provide reasonable maximum and minimum values. Cumulus Linux 5.5.0 and later provides new values:
 - For the {{nv set service lldp tx-interval}} command, you can now set a minimum value of 5 and a maximum value of 32768 .
-- For the {{nv set service lldp tx-hold}} command, you can now set a minimum value of 1 and a maximum value of 8192.</td>
+- For the {{nv set service lldp tx-hold}} command, you can set a minimum value of 1 and a maximum value of 8192.</td>
 <td>5.4.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3409223</td>
-<td>On Cumulus Linux 5.4.0, {{nginx}} might be listening on port 80 through its default configuration in {{/etc/nginx/sites-enabled/default}}. This is not intended. To work around this issue, run the following commands:
+<td>{{nginx}} might be listening on port 80 through its default configuration in {{/etc/nginx/sites-enabled/default}}. This is not intended. To work around this issue, run the following commands:
  
 sudo rm -f /etc/nginx/sites-enabled/default
 systemctl is-active nginx &amp;&amp; sudo invoke-rc.d nginx restart
@@ -586,7 +587,7 @@ ERR cannot allocate vlan for sub-interface
 </tr>
 <tr>
 <td>3388201</td>
-<td>Cumulus Linux does not let you add an interface to the bond interface when the "bridge-allow-untagged no" is present.</td>
+<td>Cumulus Linux does not let you add an interface to the bond interface when the {{bridge-allow-untagged no}} option is present.</td>
 <td>5.4.0-5.4.0</td>
 <td></td>
 </tr>
@@ -662,7 +663,7 @@ The {{apt upgrade}} process now automatically translates the old syntax to the n
 </tr>
 <tr>
 <td>3350027</td>
-<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see errors in {{switchd.log}} due to dynamic flow deletion errors. 
+<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see dynamic flow deletion errors in {{switchd.log}}. 
 These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td>5.4.0-5.4.0</td>
 <td></td>
@@ -740,7 +741,7 @@ error: /etc/network/interfaces: line28: iface swp5: invalid syntax 'alias'
 </tr>
 <tr>
 <td>3331929</td>
-<td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf default router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
+<td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf &lt;vrf&gt; router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
 <td>5.4.0-5.4.0</td>
 <td></td>
 </tr>
@@ -755,6 +756,7 @@ We recommend that when using TACACS+, {{tacplus}} should be listed before {{file
 <tr>
 <td>3329494</td>
 <td>Ethtool HwIfInDot3FrameErrors (Rx FCS Errors) might lead to an incorrect very large HwIfInErrors count. To work around this issue, stop the source of the FCS errors, then reset the interface counters:
+
 1. Run the {{sudo mst status}} command to find the device.
 2. Run the {{sudo mlxlink -d &lt;device&gt; -p &lt;port_number&gt; -pc}} command to reset the interface counters. For example: {{sudo mlxlink -d /dev/mst/mt53104_pciconf0 -p 39 -pc}}.</td>
 <td>5.3.1-5.4.0</td>
@@ -762,7 +764,7 @@ We recommend that when using TACACS+, {{tacplus}} should be listed before {{file
 </tr>
 <tr>
 <td>3327477</td>
-<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -813,7 +815,7 @@ Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID.
 </tr>
 <tr>
 <td>3232091</td>
-<td>The NVUE {{nv unset interface &lt;interface&gt; link lanes}} command does not restore the port lane setting to default value. To work around this issue, run the {{nv set interface &lt;interface&gt; link lanes &lt;value&gt;}} command.</td>
+<td>The NVUE {{nv unset interface &lt;interface&gt; link lanes}} command does not restore the port lane setting to the default value. To work around this issue, run the {{nv set interface &lt;interface&gt; link lanes &lt;value&gt;}} command.</td>
 <td>5.4.0-5.4.0</td>
 <td></td>
 </tr>
@@ -874,8 +876,7 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 </tr>
 <tr>
 <td>3144740</td>
-<td>To avoid warning in the pre 5.5 CL releases:
-
+<td>
 The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token: ifXTable}} messages. To avoid these warnings, add the {{-noTokenWarnings}} option to the SNMPDOPTS variable in the {{/etc/defaults/snmpd}} file, then restart the {{snmpd}} service.</td>
 <td>5.2.0-5.4.0</td>
 <td></td>
@@ -983,7 +984,7 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3034435</td>
-<td>In a MLAG EVPN deployment when either of the clag peer undergoes reboot then the local host entries in ARP table are incorrectly programmed as remote by FRR.</td>
+<td>In an MLAG EVPN deployment when either of the MLAG peers reboots, FRR incorrectly programs the local host entries in the ARP table as remote. To work around this issue, either restart FRR or use BGP policies to mark and drop routes within an MLAG pair. Both MLAG peers must have an outbound policy that add a community representing the unique MLAG pair to Type-2 EVPN routes and an inbound policy to match and drop that community.</td>
 <td>4.4.4-4.4.5, 5.1.0-5.4.0</td>
 <td></td>
 </tr>
@@ -1031,7 +1032,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2867042</td>
-<td>When connecting the NVIDIA SN4600V switch to an SNxxxx system, the switch must run in auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
+<td>When connecting the NVIDIA SN4600 switch to another NVIDIA Spectrum switch, you must use auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>

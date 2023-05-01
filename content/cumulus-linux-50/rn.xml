@@ -20,13 +20,13 @@
 </tr>
 <tr>
 <td>3429530</td>
-<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
 <td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3418103</td>
-<td>On Spectrum-2 and Spectrum-3 switches, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
+<td>On the Spectrum-2 and Spectrum-3 switch, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -73,7 +73,7 @@ The {{apt upgrade}} process now automatically translates the old syntax to the n
 </tr>
 <tr>
 <td>3327477</td>
-<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -723,7 +723,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2867042</td>
-<td>When connecting the NVIDIA SN4600V switch to an SNxxxx system, the switch must run in auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
+<td>When connecting the NVIDIA SN4600 switch to another NVIDIA Spectrum switch, you must use auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -897,13 +897,13 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 </tr>
 <tr>
 <td>3429530</td>
-<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
 <td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3418103</td>
-<td>On Spectrum-2 and Spectrum-3 switches, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
+<td>On the Spectrum-2 and Spectrum-3 switch, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -950,7 +950,7 @@ The {{apt upgrade}} process now automatically translates the old syntax to the n
 </tr>
 <tr>
 <td>3327477</td>
-<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -1432,7 +1432,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2867042</td>
-<td>When connecting the NVIDIA SN4600V switch to an SNxxxx system, the switch must run in auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
+<td>When connecting the NVIDIA SN4600 switch to another NVIDIA Spectrum switch, you must use auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>

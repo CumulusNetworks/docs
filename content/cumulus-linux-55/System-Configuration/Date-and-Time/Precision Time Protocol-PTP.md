@@ -382,6 +382,14 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 Use the local priority when you enable a Telecom profile (ITU 8275-1 or ITU 8275-2). Modify the local priority in the profile to set the local priority of the local clock. You can set a value between 0 and 255. The default priority is 128.
 
+<!-->
+The following example command configures the local priority for the ITU 8275-2 profile to 10:
+
+```
+cumulus@switch:~$ nv set service ptp 1 profile default-itu-8275-2 local-priority 10
+cumulus@switch:~$ nv config apply
+```
+-->
 ## Optional Global Configuration
 
 Optional global PTP configuration includes configuring the DiffServ code point (DSCP). You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.

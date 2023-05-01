@@ -289,9 +289,9 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 Cumulus Linux provides several ways to modify the default basic global configuration. You can:
 - Use profiles.
 - Modify the parameters directly with NVUE commands.
-- Modify the Linux file.
+- Modify the Linux `/etc/ptp4l.conf` file.
 
-When a profile is in use, you cannot set global parameters with NVUE. Avoid editing the Linux file to modify the global parameters when a profile is in use.
+When a profile is in use, you cannot set global parameters with NVUE. Avoid editing the Linux `/etc/ptp4l.conf` file to modify the global parameters when a profile is in use.
 
 ### Clock Domains
 
@@ -380,7 +380,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ### Local Priority
 
-Use the local priority when you enable a Telecom profile. Modify the local priority in the profile. The default priority is 128.
+Use the local priority when you enable a Telecom profile (ITU 8275-1 or ITU 8275-2). Modify the local priority in the profile to set the local priority of the local clock. You can set a value between 0 and 255. The default priority is 128.
 
 ## Optional Global Configuration
 
@@ -615,7 +615,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ### Local Priority
 
-Use the local priority when you enable a Telecom profile. Modify the local priority in the profile. The default priority is 128.
+Use the local priority when you enable a Telecom profile (ITU 8275-1 or ITU 8275-2). Modify the local priority in the profile. You can set a value between 0 and 255. The default priority is 128.
 
 ## Optional PTP Interface Configuration
 

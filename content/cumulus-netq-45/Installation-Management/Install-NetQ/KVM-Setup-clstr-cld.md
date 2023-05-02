@@ -13,7 +13,9 @@ Follow these steps to set up and configure your VM on a cluster of servers in a 
 
     {{<netq-install/vm-reqs deployment="cloud" hypervisor="kvm">}}
 
-2. Confirm that the required ports are open for communications. {{<netq-install/port-reqs deployment="cloud" server="cluster">}}
+2. Confirm that the needed ports are open for communications.
+
+    {{<netq-install/port-reqs server="cluster">}}
 
 3. Download the NetQ Platform image.
 

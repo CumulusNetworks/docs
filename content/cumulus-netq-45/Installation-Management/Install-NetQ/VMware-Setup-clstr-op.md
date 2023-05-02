@@ -13,7 +13,7 @@ Follow these steps to set up and configure your VM cluster for an on-premises de
 
     {{<netq-install/vm-reqs deployment="onprem" hypervisor="vmware" version="4.2.0">}}
 
-2. Confirm that the required ports are open for communications.
+2. Confirm that the needed ports are open for communications.
 
     {{<netq-install/port-reqs server="cluster">}}
 

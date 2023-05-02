@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3429528</td>
+<td>EVPN and RoCE validation cards in the NetQ UI might not display data when Cumulus Linux switches are configured with high VNI scale.</td>
+<td>4.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3303284</td>
 <td>When you run the  {{netq show opta-health}} command, it might fail and produce the following error:
 

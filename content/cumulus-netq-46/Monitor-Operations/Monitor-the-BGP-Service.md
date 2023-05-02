@@ -21,7 +21,7 @@ netq check bgp
 ```
 ## View BGP in the UI
 
-To add the BGP card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Network services** > **All BGP Sessions card** > **Open cards**. In this example, there are 13 nodes running the BGP protocol, 0 open events (from the last 24 hours), and 10 nodes with unestablished sessions.
+To add the BGP card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All BGP Sessions card&nbsp;<span aria-label="and then">></span> Open cards**. In this example, there are 13 nodes running the BGP protocol, 0 open events (from the last 24 hours), and 10 nodes with unestablished sessions.
 
 {{<figure src="/images/netq/bgp-med-card-450.png" alt="" width="200" >}}
 

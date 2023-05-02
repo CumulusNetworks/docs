@@ -23,7 +23,7 @@ netq check evpn
 ```
 ## View EVPN in the UI
 
-To add the EVPN card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Network services** > **All EVPN Sessions card** > **Open cards**. In this example, there are 6 nodes running the EVPN service, 0 open events (from the last 24 hours), and 48 VNIs.
+To add the EVPN card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All EVPN Sessions card&nbsp;<span aria-label="and then">></span> Open cards**. In this example, there are 6 nodes running the EVPN service, 0 open events (from the last 24 hours), and 48 VNIs.
 
 {{<figure src="/images/netq/evpn-med-card-450.png" width="200">}}
 

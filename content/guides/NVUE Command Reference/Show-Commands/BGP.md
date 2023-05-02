@@ -2269,7 +2269,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id>
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\>
 
 Shows information about a specific IPv4 received route for a BGP neighbor in the specified VRF.
 
@@ -2293,7 +2293,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\> path
 
 Shows information about a specific IPv4 received route path for a BGP neighbor in the specified VRF.
 
@@ -2317,7 +2317,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\>
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\> path \<path-id\>
 
 Shows information about a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
 
@@ -2342,7 +2342,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> nexthop
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\> path \<path-id\> nexthop
 
 Shows information about the next hops for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
 
@@ -2367,7 +2367,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> nexthop \<nexthop-id\>
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\> path \<path-id\> nexthop \<nexthop-id\>
 
 Shows information about a specific next hop for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
 
@@ -2393,7 +2393,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> peer
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\> path \<path-id\> peer
 
 Shows information about peers for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
 
@@ -2418,7 +2418,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> flags
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\> path \<path-id\> flags
 
 Shows information about flags for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
 
@@ -2443,7 +2443,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> bestpath
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\> path \<path-id\> bestpath
 
 Shows information about the best paths for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
 
@@ -2468,7 +2468,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> aspath
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\> path \<path-id\> aspath
 
 Shows information about the AS paths for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
 
@@ -2493,7 +2493,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> community
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\> path \<path-id\> community
 
 Shows information about the communities for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
 
@@ -2518,7 +2518,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> large-community
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\> path \<path-id\> large-community
 
 Shows information about the large communities for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
 
@@ -2543,7 +2543,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> ext-community
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes \<route-id\> path \<path-id\> ext-community
 
 Shows information about the extended communities for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
 
@@ -2664,7 +2664,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> nexthop
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\> path \<path-id\> nexthop
 
 Shows information about the IPv6 received route path nexthops for a BGP neighbor in the specified VRF.
 
@@ -2689,7 +2689,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> nexthop \<nexthop-id\>
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\> path \<path-id\> nexthop \<nexthop-id\>
 
 Shows information about a specific IPv6 received route path nexthop for a BGP neighbor in the specified VRF.
 
@@ -2715,7 +2715,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> peer
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\> path \<path-id\> peer
 
 Shows information about the IPv6 received route path peers for a BGP neighbor in the specified VRF.
 
@@ -2740,7 +2740,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> flags
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\> path \<path-id\> flags
 
 Shows information about the IPv6 received route path flags for a BGP neighbor in the specified VRF.
 
@@ -2765,7 +2765,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> bestpath
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\> path \<path-id\> bestpath
 
 Shows information about the IPv6 received route path bestpath for a BGP neighbor in the specified VRF.
 
@@ -2790,7 +2790,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> aspath
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\> path \<path-id\> aspath
 
 Shows information about the IPv6 received route path AS path for a BGP neighbor in the specified VRF.
 
@@ -2815,7 +2815,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> community
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\> path \<path-id\> community
 
 Shows information about the IPv6 received route path communities for a BGP neighbor in the specified VRF.
 
@@ -2840,7 +2840,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> large-community
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\> path \<path-id\> large-community
 
 Shows information about the IPv6 received route path large communities for a BGP neighbor in the specified VRF.
 
@@ -2865,7 +2865,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> ext-community
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\> path \<path-id\> ext-community
 
 Shows information about the IPv6 received route path extended communities for a BGP neighbor in the specified VRF.
 

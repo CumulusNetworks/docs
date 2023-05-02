@@ -10,7 +10,6 @@ cascade:
     imgData: cumulus-netq
     siteSlug: cumulus-netq
     old: true
-    draft: true
 ---
 Cumulus® NetQ is a highly-scalable, modern network operations tool set that utilizes telemetry data for deep troubleshooting, visibility, and automated workflows, to reduce maintenance and network downtimes. It combines the ability to easily upgrade, configure and deploy network elements with a full suite of operations capabilities, such as visibility, troubleshooting, validation, trace and comparative look-back functionality.
 

@@ -7,15 +7,71 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3434315</td>
+<td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3429530</td>
+<td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3419953</td>
+<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3368217</td>
 <td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3366612</td>
+<td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
+<td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -38,7 +94,7 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -56,23 +112,17 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
-</tr>
-<tr>
-<td>3330654</td>
-<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3327477</td>
-<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -119,8 +169,8 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <tr>
 <td>3270988</td>
 <td>After restarting {{switchd}} on the NVIDIA SN2100 switch, the FAN speeds are at one hundred percent. To work around this issue, restart the {{hw-management}} service.</td>
-<td>4.4.5</td>
-<td></td>
+<td>4.4.5-5.2.0</td>
+<td>5.2.1-5.4.0</td>
 </tr>
 <tr>
 <td>3269538</td>
@@ -141,7 +191,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267353</td>
@@ -163,7 +213,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 </tr>
 <tr>
 <td>3236366</td>
-<td>When you run docker commands, the command process might crash. The crash can occur during the {{apt upgrade}} process, where you can run docker commands implicitly. To work around this issue, run {{ulimit -v unlimited}} before running docker commands or   running {{apt upgrade}} to upgrade to Cumulus Linux 4.4.5.</td>
+<td>When you run docker commands, the command process might crash. The crash can occur during the {{apt upgrade}} process, where you can run docker commands implicitly. To work around this issue, run {{ulimit -v unlimited}} before running docker commands.</td>
 <td>4.4.5</td>
 <td></td>
 </tr>
@@ -259,6 +309,13 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-5.2.1</td>
 <td>5.3.0-5.4.0</td>
+</tr>
+<tr>
+<td>3168564</td>
+<td>In a large scale VXLAN configuration (for example if you have more than 8500 VLANs across ports), {{switchd}} might crash when you restart {{clagd}} or when all bonds go operationally down, then up.
+On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scale limit for VXLAN deployments with 8500 VLANs across ports with LACP bypass disabled.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3163845</td>
@@ -424,7 +481,7 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 </tr>
 <tr>
 <td>3034435</td>
-<td>In a MLAG EVPN deployment when either of the clag peer undergoes reboot then the local host entries in ARP table are incorrectly programmed as remote by FRR.</td>
+<td>In an MLAG EVPN deployment when either of the MLAG peers reboots, FRR incorrectly programs the local host entries in the ARP table as remote. To work around this issue, either restart FRR or use BGP policies to mark and drop routes within an MLAG pair. Both MLAG peers must have an outbound policy that add a community representing the unique MLAG pair to Type-2 EVPN routes and an inbound policy to match and drop that community.</td>
 <td>4.4.4-4.4.5, 5.1.0-5.4.0</td>
 <td></td>
 </tr>
@@ -479,7 +536,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -546,6 +603,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2896450</td>
+<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in {{Paused}} mode after a {{switchd}} restart, which blocks traffic on that interface. To work around this issue, restart {{switchd}} a second or third time until all interfaces are functioning correctly, or reboot the switch.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -905,12 +968,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td></td>
 </tr>
 <tr>
-<td>2669873</td>
-<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2669858</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -1035,6 +1092,12 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 
 This error has no functional impact.</td>
 <td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2555175</td>
+<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -1659,6 +1722,15 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding {{bridge
 To work around this issue, remove the interface alias description from {{iproute2}}.</td>
 <td>3.7.8-3.7.10, 4.0.0-4.4.5</td>
 <td>3.7.11-3.7.16</td>
+</tr>
+<tr>
+<td>2543915</td>
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
+<td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2543900</td>
@@ -2126,15 +2198,71 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3434315</td>
+<td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3429530</td>
+<td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3419953</td>
+<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3368217</td>
 <td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3366612</td>
+<td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
+<td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2157,7 +2285,7 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -2175,23 +2303,17 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
-</tr>
-<tr>
-<td>3330654</td>
-<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3327477</td>
-<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -2272,7 +2394,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267353</td>
@@ -2400,6 +2522,13 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-5.2.1</td>
 <td>5.3.0-5.4.0</td>
+</tr>
+<tr>
+<td>3168564</td>
+<td>In a large scale VXLAN configuration (for example if you have more than 8500 VLANs across ports), {{switchd}} might crash when you restart {{clagd}} or when all bonds go operationally down, then up.
+On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scale limit for VXLAN deployments with 8500 VLANs across ports with LACP bypass disabled.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3163845</td>
@@ -2565,7 +2694,7 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 </tr>
 <tr>
 <td>3034435</td>
-<td>In a MLAG EVPN deployment when either of the clag peer undergoes reboot then the local host entries in ARP table are incorrectly programmed as remote by FRR.</td>
+<td>In an MLAG EVPN deployment when either of the MLAG peers reboots, FRR incorrectly programs the local host entries in the ARP table as remote. To work around this issue, either restart FRR or use BGP policies to mark and drop routes within an MLAG pair. Both MLAG peers must have an outbound policy that add a community representing the unique MLAG pair to Type-2 EVPN routes and an inbound policy to match and drop that community.</td>
 <td>4.4.4-4.4.5, 5.1.0-5.4.0</td>
 <td></td>
 </tr>
@@ -2620,7 +2749,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -2687,6 +2816,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2896450</td>
+<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in {{Paused}} mode after a {{switchd}} restart, which blocks traffic on that interface. To work around this issue, restart {{switchd}} a second or third time until all interfaces are functioning correctly, or reboot the switch.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -3046,12 +3181,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td></td>
 </tr>
 <tr>
-<td>2669873</td>
-<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2669858</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -3176,6 +3305,12 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 
 This error has no functional impact.</td>
 <td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2555175</td>
+<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -3800,6 +3935,15 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding {{bridge
 To work around this issue, remove the interface alias description from {{iproute2}}.</td>
 <td>3.7.8-3.7.10, 4.0.0-4.4.5</td>
 <td>3.7.11-3.7.16</td>
+</tr>
+<tr>
+<td>2543915</td>
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
+<td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2543900</td>
@@ -4331,8 +4475,11 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 </tr>
 <tr>
 <td>3031228</td>
-<td>Static VXLAN configuration prevents NCLU from working.</td>
-<td>4.3.0, 4.4.3</td>
+<td>In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
+
+warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
+</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>3023256</td>
@@ -4394,9 +4541,65 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3434315</td>
+<td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3429530</td>
+<td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3419953</td>
+<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3366612</td>
+<td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
+<td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -4419,7 +4622,7 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -4437,23 +4640,17 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
-</tr>
-<tr>
-<td>3330654</td>
-<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3327477</td>
-<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -4540,7 +4737,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267353</td>
@@ -4650,6 +4847,13 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-5.2.1</td>
 <td>5.3.0-5.4.0</td>
+</tr>
+<tr>
+<td>3168564</td>
+<td>In a large scale VXLAN configuration (for example if you have more than 8500 VLANs across ports), {{switchd}} might crash when you restart {{clagd}} or when all bonds go operationally down, then up.
+On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scale limit for VXLAN deployments with 8500 VLANs across ports with LACP bypass disabled.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3163845</td>
@@ -4844,12 +5048,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>5.1.0-5.4.0</td>
 </tr>
 <tr>
-<td>3031228</td>
-<td>Static VXLAN configuration prevents NCLU from working.</td>
-<td>4.3.0, 4.4.3-4.4.5</td>
-<td>4.3.1</td>
-</tr>
-<tr>
 <td>3023256</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
 <td>4.4.3</td>
@@ -4949,7 +5147,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -5016,6 +5214,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2896450</td>
+<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in {{Paused}} mode after a {{switchd}} restart, which blocks traffic on that interface. To work around this issue, restart {{switchd}} a second or third time until all interfaces are functioning correctly, or reboot the switch.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -5375,12 +5579,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td></td>
 </tr>
 <tr>
-<td>2669873</td>
-<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2669858</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -5505,6 +5703,12 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 
 This error has no functional impact.</td>
 <td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2555175</td>
+<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -6129,6 +6333,15 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding {{bridge
 To work around this issue, remove the interface alias description from {{iproute2}}.</td>
 <td>3.7.8-3.7.10, 4.0.0-4.4.5</td>
 <td>3.7.11-3.7.16</td>
+</tr>
+<tr>
+<td>2543915</td>
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
+<td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2543900</td>
@@ -6634,9 +6847,65 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3434315</td>
+<td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3429530</td>
+<td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3419953</td>
+<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3366612</td>
+<td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
+<td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -6659,7 +6928,7 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -6677,23 +6946,17 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
-</tr>
-<tr>
-<td>3330654</td>
-<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3327477</td>
-<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -6773,7 +7036,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267353</td>
@@ -6871,6 +7134,13 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-5.2.1</td>
 <td>5.3.0-5.4.0</td>
+</tr>
+<tr>
+<td>3168564</td>
+<td>In a large scale VXLAN configuration (for example if you have more than 8500 VLANs across ports), {{switchd}} might crash when you restart {{clagd}} or when all bonds go operationally down, then up.
+On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scale limit for VXLAN deployments with 8500 VLANs across ports with LACP bypass disabled.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3163845</td>
@@ -7157,7 +7427,7 @@ Fixed: 2.5.5-3+deb10u4</td>
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -7240,6 +7510,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2896450</td>
+<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in {{Paused}} mode after a {{switchd}} restart, which blocks traffic on that interface. To work around this issue, restart {{switchd}} a second or third time until all interfaces are functioning correctly, or reboot the switch.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -7599,12 +7875,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td></td>
 </tr>
 <tr>
-<td>2669873</td>
-<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2669858</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -7729,6 +7999,12 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 
 This error has no functional impact.</td>
 <td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2555175</td>
+<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -8353,6 +8629,15 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding {{bridge
 To work around this issue, remove the interface alias description from {{iproute2}}.</td>
 <td>3.7.8-3.7.10, 4.0.0-4.4.5</td>
 <td>3.7.11-3.7.16</td>
+</tr>
+<tr>
+<td>2543915</td>
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
+<td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2543900</td>
@@ -9050,9 +9335,65 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3434315</td>
+<td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3429530</td>
+<td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3419953</td>
+<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3366612</td>
+<td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
+<td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -9075,7 +9416,7 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -9093,23 +9434,17 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
-</tr>
-<tr>
-<td>3330654</td>
-<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3327477</td>
-<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -9162,7 +9497,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267353</td>
@@ -9245,6 +9580,13 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-5.2.1</td>
 <td>5.3.0-5.4.0</td>
+</tr>
+<tr>
+<td>3168564</td>
+<td>In a large scale VXLAN configuration (for example if you have more than 8500 VLANs across ports), {{switchd}} might crash when you restart {{clagd}} or when all bonds go operationally down, then up.
+On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scale limit for VXLAN deployments with 8500 VLANs across ports with LACP bypass disabled.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3163845</td>
@@ -9462,7 +9804,7 @@ Fixed: 2.5.5-3+deb10u4</td>
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -9533,6 +9875,12 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2896450</td>
+<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in {{Paused}} mode after a {{switchd}} restart, which blocks traffic on that interface. To work around this issue, restart {{switchd}} a second or third time until all interfaces are functioning correctly, or reboot the switch.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -10132,12 +10480,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td></td>
 </tr>
 <tr>
-<td>2669873</td>
-<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2669858</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -10262,6 +10604,12 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 
 This error has no functional impact.</td>
 <td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2555175</td>
+<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -10888,6 +11236,15 @@ To work around this issue, remove the interface alias description from {{iproute
 <td>3.7.11-3.7.16</td>
 </tr>
 <tr>
+<td>2543915</td>
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
+<td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2543900</td>
 <td>On the Mellanox switch, static VXLAN tunnels incorrectly allow traffic from any remote tunnel IP address.</td>
 <td>3.7.8-3.7.16, 4.0.0-4.4.5</td>
@@ -11379,6 +11736,16 @@ Fixed: 3.4.1-1+deb10u1</td>
 <td>4.3.0</td>
 </tr>
 <tr>
+<td>2690017</td>
+<td>When you remove a bond member, then re-add it, you might see a {{Parameter Error}} failure in {{{syslog}} and {{switchd.log}}:
+
+sx_sdk: LAG: Can't add port (0x00012400) to lag. Port has vports configured for it (Parameter Error).
+switchd[4529]: hal_mlx_bond.c:582 ERR bond32 member swp32 add failed: Parameter Error
+
+To work around this issue, restart {{switchd}}.</td>
+<td>4.3.0-4.3.1</td>
+</tr>
+<tr>
 <td>2687159</td>
 <td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25012 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
 Vulnerable: 0.6.1-2
@@ -11427,6 +11794,11 @@ result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
 <td>4.0.0-4.3.1</td>
+</tr>
+<tr>
+<td>2669873</td>
+<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
+<td>4.3.0-4.3.1</td>
 </tr>
 <tr>
 <td>2669073</td>

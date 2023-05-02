@@ -19,7 +19,7 @@ Follow these steps to set up and configure your VM on a single server in an on-p
 
     {{<netq-install/vmw-platform-image deployment="onprem" version="4.6">}}
 
-4. Setup and configure your VM.
+4. Set up and configure your VM.
 
     {{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.6">}}
 

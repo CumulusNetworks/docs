@@ -49,7 +49,7 @@ Make a note of the private IP address you assign to the worker node. You need it
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-12. Repeat steps 8 through 11 for each additional worker node you want in your cluster.
+12. Repeat steps 8 through 11 for each additional worker node in your cluster.
 
 13. The final step is to install and activate the NetQ software using the CLI:
 

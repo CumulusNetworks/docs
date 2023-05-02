@@ -493,7 +493,7 @@ Shows the PTP profiles configured for the specified PTP instance. PTP profiles a
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -515,7 +515,7 @@ Shows configuration settings for a specific PTP profile.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -581,7 +581,7 @@ Shows the PTP unicast master table configuration on the switch.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -604,7 +604,7 @@ Shows information about a specific PTP unicast master table on the switch.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -627,7 +627,7 @@ Shows the IP addresses of the specified PTP unicast master table.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -651,7 +651,7 @@ Shows information about a specific IP or MAC address for the specified PTP unica
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 

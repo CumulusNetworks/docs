@@ -11,7 +11,7 @@ Shows traffic forwarding configuration on the switch.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -27,7 +27,7 @@ Shows traffic forwarding ECMP hash configuration on the switch.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -43,7 +43,7 @@ Shows traffic forwarding LAG hash configuration on the switch.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 

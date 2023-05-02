@@ -21,7 +21,7 @@ Provides commands to configure the switch to import protocols from where routes 
 
 - - -
 
-## nv set vrf \<vrf-id\> router rib \<afi\> protocol \<import-protocol-id\> fib-filter (none|\<instance-name\>)
+## nv set vrf \<vrf-id\> router rib \<afi\> protocol \<import-protocol-id\> fib-filter
 
 Configures a route map to apply on the routes of the import protocol.
 
@@ -35,7 +35,7 @@ Configures a route map to apply on the routes of the import protocol.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 

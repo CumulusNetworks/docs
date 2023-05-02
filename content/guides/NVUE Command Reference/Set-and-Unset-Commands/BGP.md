@@ -2127,7 +2127,7 @@ Configures the source IP address of the TCP connection for the peer group, which
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 - - -
 
@@ -2160,7 +2160,7 @@ The default setting is `auto`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 - - -
 
@@ -4191,7 +4191,7 @@ Configures a description for the peer group.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -4606,7 +4606,7 @@ Configures the source IP address of the TCP connection, which is often used as t
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -4629,7 +4629,7 @@ Configures a description for the BGP peer in the specified VRF. If the descripti
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -4852,7 +4852,7 @@ The default setting is `off`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 

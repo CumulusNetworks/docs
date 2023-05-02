@@ -271,7 +271,7 @@ Configures the fabric ID from which Cumulus Linux derives the MAC address. You c
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -287,7 +287,7 @@ Configures the VRR MAC address globally on the switch. The default fabric MAC ad
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 

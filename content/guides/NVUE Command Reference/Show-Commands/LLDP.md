@@ -27,6 +27,28 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 lldp
 
 - - -
 
+## nv show interface \<interface-id\> lldp neighbor
+
+Shows information about all the LLDP neighbors for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`    |  The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp51 lldp neighbor
+```
+
+- - -
+
 ## nv show interface \<interface-id\> lldp neighbor \<neighbor-id\>
 
 Shows statistics for the specified LLDP neighbor for the specified interface.
@@ -40,7 +62,7 @@ Shows statistics for the specified LLDP neighbor for the specified interface.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -63,7 +85,7 @@ Shows bridge information for the specified LLDP neighbor.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -86,7 +108,7 @@ Shows the VLANs for the specified LLDP neighbor.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -110,7 +132,7 @@ Shows information about the specified VLAN for the specified LLDP neighbor.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 

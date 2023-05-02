@@ -398,7 +398,7 @@ Shows IPv4 routes in the BGP RIB that leak between VRFs.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -3463,7 +3463,7 @@ Shows BGP graceful restart configuration for the specified BGP neighbor. BGP gra
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -4840,7 +4840,7 @@ Shows BGP graceful restart configuration for the specified peer group.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 

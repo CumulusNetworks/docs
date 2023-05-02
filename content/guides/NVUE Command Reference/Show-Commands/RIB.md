@@ -63,7 +63,7 @@ Shows the IPv4 or IPv6 routing table for all protocols for the specified VRF.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -87,7 +87,7 @@ Shows the IPv4 or IPv6 routing table for the specified protocol (bgp, isis, ospf
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -283,7 +283,7 @@ Shows
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 

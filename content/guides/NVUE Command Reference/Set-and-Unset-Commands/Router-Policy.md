@@ -843,7 +843,7 @@ Configures Cumulus Linux to match the EVPN default route in the route map. You c
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -1579,7 +1579,7 @@ Configures a set clause in the route map to use the global address as the IPv6 n
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -1697,7 +1697,7 @@ Configures the IPv6 forwarding address you want to set for the route in the rout
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -1720,7 +1720,7 @@ Configures the label index value you want to set for the route in the route map.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -1858,7 +1858,7 @@ Configures the BGP IPv4 address of originator you want to set for the route in t
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 

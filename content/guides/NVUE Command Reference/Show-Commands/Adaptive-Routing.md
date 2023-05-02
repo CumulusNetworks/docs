@@ -33,7 +33,7 @@ Shows global adaptive routing configuration. This command shows if adaptive rout
 
 ### Version History
 
-Introduced in Cumulus Linux 5.2.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 

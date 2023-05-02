@@ -305,6 +305,11 @@ cumulus@leaf01:mgmt:~$ nv action clear service ptp 1 monitor violations log path
 
 Clears BGP IPv4 inbound routes.
 
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+
 ### Command Syntax
 
 | Syntax   |  Description  |
@@ -327,6 +332,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 
 Clears BGP IPv4 outbound routes.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
 ### Command Syntax
 
 | Syntax   |  Description  |
@@ -347,7 +357,13 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv4-unicast soft in
 
-Clears BGP IPv4 inbound routes for all BGP peers without resetting the peer sessions.
+Clears BGP IPv4 inbound routes for all BGP peers.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ### Command Syntax
 
@@ -369,7 +385,14 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family sof
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv4-unicast soft out
 
-Clears BGP IPv4 outbound routes for all BGP peers without resetting the peer sessions.
+Clears BGP IPv4 outbound routes for all BGP peers.
+
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ### Command Syntax
 
@@ -393,6 +416,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family sof
 
 Clears BGP IPv6 inbound routes.
 
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+
 ### Command Syntax
 
 | Syntax   |  Description  |
@@ -415,6 +443,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 
 Clears BGP IPv6 outbound routes.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
 ### Command Syntax
 
 | Syntax   |  Description  |
@@ -435,7 +468,13 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv6-unicast soft in
 
-Clears BGP IPv6 inbound routes for all BGP peers without resetting the peer sessions.
+Clears BGP IPv6 inbound routes for all BGP peers.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -457,7 +496,14 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv6-unicast soft out
 
-Clears BGP IPv6 outbound routes for all BGP peers without resetting the peer sessions.
+Clears BGP IPv6 outbound routes for all BGP peers.
+
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -481,6 +527,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 
 Clears BGP EVPN inbound routes.
 
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+
 ### Command Syntax
 
 | Syntax   |  Description  |
@@ -503,6 +554,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family l2v
 
 Clears BGP EVPN outbound routes.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
 ### Command Syntax
 
 | Syntax   |  Description  |
@@ -523,7 +579,13 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family l2v
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family l2vpn-evpn soft in
 
-Clears BGP EVPN inbound routes for all BGP peers without resetting the peer sessions.
+Clears BGP EVPN inbound routes for all BGP peers.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ### Command Syntax
 
@@ -545,7 +607,14 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family l2v
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family l2vpn-evpn soft out
 
-Clears BGP EVPN outbound routes for all BGP peers without resetting the peer sessions.
+Clears BGP EVPN outbound routes for all BGP peers.
+
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ### Command Syntax
 
@@ -568,6 +637,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family l2v
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> in
 
 Clears inbound routes for a specific BGP peer in the specified VRF.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
 
 ## Command Syntax
 
@@ -592,6 +666,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 in
 
 Clears outbound routes for a specific BGP peer in the specified VRF.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -614,6 +693,12 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 out
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> soft in
 
 Clears inbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -638,6 +723,13 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 sof
 
 Clears outbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -660,6 +752,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 sof
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast in
 
 Clears IPv4 inbound routes for a specific BGP peer in the specified VRF.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
 
 ## Command Syntax
 
@@ -684,6 +781,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 Clears IPv4 outbound routes for a specific BGP peer in the specified VRF.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -706,6 +808,12 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast soft in
 
 Clears IPv4 inbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -730,6 +838,13 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 Clears IPv4 outbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -752,6 +867,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast in
 
 Clears IPv6 inbound routes for a specific BGP peer in the specified VRF.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
 
 ## Command Syntax
 
@@ -776,6 +896,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 Clears IPv6 outbound routes for a specific BGP peer in the specified VRF.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -798,6 +923,12 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast soft in
 
 Clears IPv6 inbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -822,6 +953,13 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 Clears IPv6 outbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -844,6 +982,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn in
 
 Clears EVPN inbound routes for a specific BGP peer in the specified VRF.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
 
 ## Command Syntax
 
@@ -868,6 +1011,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 Clears EVPN outbound routes for a specific BGP peer in the specified VRF.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -890,6 +1038,12 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn soft in
 
 Clears EVPN inbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -914,6 +1068,13 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 Clears EVPN outbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -936,6 +1097,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> in
 
 Clears inbound routes for a specific BGP peer group in the specified VRF.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
 
 ## Command Syntax
 
@@ -960,6 +1126,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 Clears outbound routes for a specific BGP peer group in the specified VRF.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -981,7 +1152,13 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> soft in
 
-Clears inbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
+Clears inbound routes for a specific BGP peer group in the specified VRF.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -1004,7 +1181,14 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> soft out
 
-Clears outbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
+Clears outbound routes for a specific BGP peer group in the specified VRF.
+
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -1029,6 +1213,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 Clears IPv4 inbound routes for a specific BGP peer group in the specified VRF.
 
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -1052,6 +1241,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 Clears IPv4 outbound routes for a specific BGP peer group in the specified VRF.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -1073,7 +1267,13 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast soft in
 
-Clears IPv4 inbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
+Clears IPv4 inbound routes for a specific BGP peer group in the specified VRF.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -1096,7 +1296,14 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast soft out
 
-Clears IPv4 outbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
+Clears IPv4 outbound routes for a specific BGP peer group in the specified VRF.
+
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -1121,6 +1328,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 Clears IPv6 inbound routes for a specific BGP peer group in the specified VRF.
 
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -1144,6 +1356,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 Clears IPv6 outbound routes for a specific BGP peer group in the specified VRF.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -1165,7 +1382,13 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast soft in
 
-Clears IPv6 inbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
+Clears IPv6 inbound routes for a specific BGP peer group in the specified VRF.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -1188,7 +1411,14 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast soft out
 
-Clears IPv6 outbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
+Clears IPv6 outbound routes for a specific BGP peer group in the specified VRF.
+
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -1213,6 +1443,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 Clears EVPN inbound routes for a specific BGP peer group in the specified VRF.
 
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -1236,6 +1471,11 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 Clears EVPN outbound routes for a specific BGP peer group in the specified VRF.
 
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
 ## Command Syntax
 
 | Syntax   |  Description  |
@@ -1257,7 +1497,13 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn soft in
 
-Clears EVPN inbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
+Clears EVPN inbound routes for a specific BGP peer group in the specified VRF.
+
+This command do not clear counters in the kernel or hardware and does not reset BGP neighbor adjacencies.
+
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
+- When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 
@@ -1280,7 +1526,14 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn soft out
 
-Clears EVPN outbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
+Clears EVPN outbound routes for a specific BGP peer group in the specified VRF.
+
+This command:
+- Does not clear counters in the kernel or hardware
+- Does not reset BGP neighbor adjacencies.
+- Does not readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
 
 ## Command Syntax
 

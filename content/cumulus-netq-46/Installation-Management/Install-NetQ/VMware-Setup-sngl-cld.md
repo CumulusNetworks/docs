@@ -17,7 +17,7 @@ Follow these steps to set up and configure your VM for a cloud deployment:
 
     {{<netq-install/vmw-platform-image deployment="cloud" version="4.6">}}
 
-4. Setup and configure your VM.
+4. Set up and configure your VM.
 
     {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="4.6">}}
 

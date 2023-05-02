@@ -59,8 +59,6 @@ The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Supp
 | `nv show interface <interface> qos counters ingress-buffer-stats` |`nv show interface <interface> counters qos ingress-buffer-stats`|
 | `nv show interface <interface> qos counters pfc-stats` | `nv show interface <interface> counters qos pfc-stats`|
 | `nv show interface <interface> qos counters port-stats` |`nv show interface <interface> counters qos port-stats` |
-| `nv show interface <interface> qos counters port-stats rx-stats` | `nv show interface <interface> counters qos port-stats rx-stats` |
-| `nv show interface <interface> qos counters port-stats tx-stats` | `nv show interface <interface> counters qos port-stats tx-stats` |
 
 {{< /expand >}}
 

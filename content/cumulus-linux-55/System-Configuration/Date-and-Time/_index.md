@@ -9,4 +9,3 @@ This section discusses how to:
 - Set the time zone, and the date and time on the software clock on the switch
 - Configure {{<link url="Network-Time-Protocol-NTP" text="NTP">}}
 - Configure {{<link url="Precision-Time-Protocol-PTP" text="PTP">}}
-- Configure {{<link url="SyncE" text="SyncE">}}

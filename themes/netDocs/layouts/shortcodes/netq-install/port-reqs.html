@@ -35,7 +35,7 @@ The OPTA must be able to initiate sessions on TCP port 443 to hosts on the <code
     <tr>
     <td style=“text-align:right”>443</td>
     <td style=“text-align:center”>TCP</td>
-    <td>NetQ UI</td>
+    <td>Nginx</td>
     </tr>
     <tr>
     <td style=“text-align:right”>2379</td>
@@ -115,7 +115,7 @@ The OPTA must be able to initiate sessions on TCP port 443 to hosts on the <code
     <tr>
     <td style=“text-align:right”>443</td>
     <td style=“text-align:center”>TCP</td>
-    <td>NetQ UI</td>
+    <td>Nginx</td>
     </tr>
     <tr>
     <td style=“text-align:right”>2379</td>
@@ -259,10 +259,10 @@ The following ports are used for internal cluster communication and must also be
 
 {{- if ne (.Get "deployment") "cloud" -}}
 {{- if eq (.Get "server") "cluster" -}}
-You must open the following ports on your NetQ Platforms:
+You must open the following ports on your NetQ on-premises servers:
 {{ end }}
 {{- if eq (.Get "server") "single" -}}
-You must open the following ports on your NetQ Platform:
+You must open the following ports on your NetQ on-premises server:
 {{ end }}
 
 <table>
@@ -297,7 +297,7 @@ You must open the following ports on your NetQ Platform:
     <tr>
     <td style=“text-align:right”>443</td>
     <td style=“text-align:center”>TCP</td>
-    <td>Nginx</td>
+    <td>NetQ UI</td>
     </tr>
     <tr>
     <td style=“text-align:right”>2379</td>

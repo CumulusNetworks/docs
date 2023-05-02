@@ -382,6 +382,14 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 Use the local priority when you enable a Telecom profile (ITU 8275-1 or ITU 8275-2). Modify the local priority in the profile to set the local priority of the local clock. You can set a value between 0 and 255. The default priority is 128.
 
+<!-->
+The following example command configures the local priority for the ITU 8275-2 profile to 10:
+
+```
+cumulus@switch:~$ nv set service ptp 1 profile default-itu-8275-2 local-priority 10
+cumulus@switch:~$ nv config apply
+```
+-->
 ## Optional Global Configuration
 
 Optional global PTP configuration includes configuring the DiffServ code point (DSCP). You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
@@ -1539,12 +1547,18 @@ monitor
 ```
 
 You can drill down with the following `nv show service ptp <instance>` commands:
-- `nv show service ptp <instance> acceptable-master` shows a collection of acceptable masters.
-- `nv show service ptp <instance> monitor` shows PTP monitor configuration.
+- `nv show service ptp <instance> domain` shows the domain configuration.
+- `nv show service ptp <instance> ip-dscp` shows PTP DSCP configuration.
+- `nv show service ptp <instance> priority1` shows PTP priority1 configuration.
+- `nv show service ptp <instance> priority2` shows PTP priority2 configuration.
+- `nv show service ptp <instance> acceptable-master` shows acceptable master configuration.
 - `nv show service ptp <instance> current` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> clock-quality` shows the clock quality status.
 - `nv show service ptp <instance> parent` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> time-properties` shows the clock time attributes.
+- `nv show service ptp <instance> monitor` shows PTP monitor configuration.
+- `nv show service ptp <instance> profile` shows PTP profile configuration.
+- `nv show service ptp <instance> unicast-master` shows the unicast master configuration.
 
 ### Show PTP Interface Configuration
 

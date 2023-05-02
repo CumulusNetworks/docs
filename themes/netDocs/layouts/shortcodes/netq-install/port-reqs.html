@@ -1,70 +1,75 @@
 
 {{- if eq (.Get "deployment") "cloud" -}}
 {{- if eq (.Get "server") "single" -}}
-EDIT THE BELOW TABLE FOR CLOUD\/OPTA
+You must open the following ports on your NetQ OPTA:
 
 <table>
     <thead>
     <tr>
-    <th style="text-align:right">Port or Protocol Number</th>
-    <th style="text-align:center">Protocol</th>
+    <th style=“text-align:right”>Port or Protocol Number</th>
+    <th style=“text-align:center”>Protocol</th>
     <th>Component Access</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-    <td style="text-align:right">4</td>
-    <td style="text-align:center">IP Protocol</td>
+    <td style=“text-align:right”>4</td>
+    <td style=“text-align:center”>IP Protocol</td>
     <td>Calico networking (IP-in-IP Protocol)</td>
     </tr>
     <tr>
-    <td style="text-align:right">22</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>22</td>
+    <td style=“text-align:center”>TCP</td>
     <td>SSH</td>
     </tr>
     <tr>
-    <td style="text-align:right">179</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>80</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Nginx</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>179</td>
+    <td style=“text-align:center”>TCP</td>
     <td>Calico networking (BGP)</td>
     </tr>
     <tr>
-    <td style="text-align:right">443</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>443</td>
+    <td style=“text-align:center”>TCP</td>
     <td>NetQ UI</td>
     </tr>
     <tr>
-    <td style="text-align:right">2379</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>2379</td>
+    <td style=“text-align:center”>TCP</td>
     <td>etcd datastore</td>
     </tr>
     <tr>
-    <td style="text-align:right">4789</td>
-    <td style="text-align:center">UDP</td>
+    <td style=“text-align:right”>4789</td>
+    <td style=“text-align:center”>UDP</td>
     <td>Calico networking (VxLAN)</td>
     </tr>
     <tr>
-    <td style="text-align:right">6443</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>5000</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Docker registry</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>6443</td>
+    <td style=“text-align:center”>TCP</td>
     <td>kube-apiserver</td>
     </tr>
     <tr>
-    <td style="text-align:right">8443</td>
-    <td style="text-align:center">TCP</td>
-    <td>Admin UI</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">31980</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>31980</td>
+    <td style=“text-align:center”>TCP</td>
     <td>NetQ Agent communication</td>
     </tr>
     <tr>
-    <td style="text-align:right">31982</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>31982</td>
+    <td style=“text-align:center”>TCP</td>
     <td>NetQ Agent SSL communication</td>
     </tr>
     <tr>
-    <td style="text-align:right">32708</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>32708</td>
+    <td style=“text-align:center”>TCP</td>
     <td>API Gateway</td>
     </tr>
     </tr>
@@ -72,7 +77,6 @@ EDIT THE BELOW TABLE FOR CLOUD\/OPTA
     </tr>
     </tbody>
     </table>
-
 
 {{ end }}
 
@@ -187,65 +191,70 @@ You must open the following ports on your NetQ Platform:
 <table>
     <thead>
     <tr>
-    <th style="text-align:right">Port or Protocol Number</th>
-    <th style="text-align:center">Protocol</th>
+    <th style=“text-align:right”>Port or Protocol Number</th>
+    <th style=“text-align:center”>Protocol</th>
     <th>Component Access</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-    <td style="text-align:right">4</td>
-    <td style="text-align:center">IP Protocol</td>
+    <td style=“text-align:right”>4</td>
+    <td style=“text-align:center”>IP Protocol</td>
     <td>Calico networking (IP-in-IP Protocol)</td>
     </tr>
     <tr>
-    <td style="text-align:right">22</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>22</td>
+    <td style=“text-align:center”>TCP</td>
     <td>SSH</td>
     </tr>
     <tr>
-    <td style="text-align:right">179</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>80</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Nginx</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>179</td>
+    <td style=“text-align:center”>TCP</td>
     <td>Calico networking (BGP)</td>
     </tr>
     <tr>
-    <td style="text-align:right">443</td>
-    <td style="text-align:center">TCP</td>
-    <td>NetQ UI</td>
+    <td style=“text-align:right”>443</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Nginx</td>
     </tr>
     <tr>
-    <td style="text-align:right">2379</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>2379</td>
+    <td style=“text-align:center”>TCP</td>
     <td>etcd datastore</td>
     </tr>
     <tr>
-    <td style="text-align:right">4789</td>
-    <td style="text-align:center">UDP</td>
+    <td style=“text-align:right”>4789</td>
+    <td style=“text-align:center”>UDP</td>
     <td>Calico networking (VxLAN)</td>
     </tr>
     <tr>
-    <td style="text-align:right">6443</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>5000</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Docker registry</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>6443</td>
+    <td style=“text-align:center”>TCP</td>
     <td>kube-apiserver</td>
     </tr>
     <tr>
-    <td style="text-align:right">8443</td>
-    <td style="text-align:center">TCP</td>
-    <td>Admin UI</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">31980</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>31980</td>
+    <td style=“text-align:center”>TCP</td>
     <td>NetQ Agent communication</td>
     </tr>
     <tr>
-    <td style="text-align:right">31982</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>31982</td>
+    <td style=“text-align:center”>TCP</td>
     <td>NetQ Agent SSL communication</td>
     </tr>
     <tr>
-    <td style="text-align:right">32708</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>32708</td>
+    <td style=“text-align:center”>TCP</td>
     <td>API Gateway</td>
     </tr>
     </tr>

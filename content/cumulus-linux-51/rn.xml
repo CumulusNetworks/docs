@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3418103</td>
-<td>On the Spectrum-2 and Spectrum-3 switch, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
-<td>5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
 <td>5.0.0-5.4.0</td>

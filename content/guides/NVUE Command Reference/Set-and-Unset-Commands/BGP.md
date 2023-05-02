@@ -529,7 +529,7 @@ Applies a route map to the IPv4 prefixes that originate from a BGP node.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 

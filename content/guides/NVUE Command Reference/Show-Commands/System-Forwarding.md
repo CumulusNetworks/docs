@@ -59,7 +59,7 @@ Shows traffic forwarding log-level configuration.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 

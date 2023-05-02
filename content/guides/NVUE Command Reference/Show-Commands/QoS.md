@@ -171,7 +171,7 @@ Shows QoS congestion control configuration settings for the specified interface.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -193,7 +193,7 @@ Shows QoS congestion control traffic class configuration settings for the specif
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -216,7 +216,7 @@ Shows specific QoS congestion control traffic class configuration settings for t
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -227,6 +227,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos congestion-control traffic-cla
 ## nv show interface \<interface-id\> counters qos
 
 Shows all QoS statistics for the specified interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.4 and earlier, this command is `nv show interface <interface-id> qos counters`
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -250,6 +254,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos
 
 Shows all QoS egress queue statistics for the specified interface.
 
+{{%notice note%}}
+In Cumulus Linux 5.4 and earlier, this command is `nv show interface <interface-id> qos counters egress-queue-stats`
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -271,6 +279,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos egress-queue-stats
 ## nv show interface \<interface-id\> counters qos ingress-buffer-stats
 
 Shows all QoS ingress buffer statistics for the specified interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.4 and earlier, this command is `nv show interface <interface-id> qos counters ingress-buffer-stats`
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -294,6 +306,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 counters ingress-buffer-stats
 
 Shows all QoS PFC statistics for the specified interface.
 
+{{%notice note%}}
+In Cumulus Linux 5.4 and earlier, this command is `nv show interface <interface-id> qos counters pfc-stats`
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -315,6 +331,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos pfc-stats
 ## nv show interface \<interface-id\> counters qos port-stats
 
 Shows all QoS port statistics for the specified interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.4 and earlier, this command is `nv show interface <interface-id> qos counters port-stats`
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1691,7 +1711,7 @@ Shows QoS link pause configuration.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -1713,7 +1733,7 @@ Shows configuration settings for the specified QoS link pause profile.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 

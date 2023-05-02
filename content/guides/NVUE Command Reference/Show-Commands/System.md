@@ -27,7 +27,7 @@ Shows the polling interval for the switch counters for both the logical and phys
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 

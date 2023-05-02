@@ -288,7 +288,7 @@ Shows the IPv4 and IPv6 next hop tracking information for the specified VRF. Nex
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -311,7 +311,7 @@ Shows the IPv4 or IPv6 next hop tracking information for the specified VRF.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -334,7 +334,7 @@ Shows the IPv4 or IPv6 next hop tracking information for all route maps for the 
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -358,7 +358,7 @@ Shows the IPv4 or IPv6 next hop tracking information for a specific route map fo
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -382,7 +382,7 @@ Shows the IPv4 or IPv6 next hop tracking information for all protocols in the ro
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -407,7 +407,7 @@ Shows the IPv4 or IPv6 next hop tracking information for a specific route map pr
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 

@@ -27,7 +27,7 @@ Show VXLAN decapsulation configuration.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -43,7 +43,7 @@ Shows the configured DSCP action and value during VXLAN decapsulation.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -59,7 +59,7 @@ Show VXLAN encapsulation configuration.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -75,7 +75,7 @@ Shows the configured DSCP action and value during VXLAN encapsulation.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 

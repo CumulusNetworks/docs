@@ -32,6 +32,10 @@ cumulus@leaf01:mgmt:~$  nv show bridge domain br_default vlan 10 ptp
 
 Shows PTP statistics for the specified interface.
 
+{{%notice note%}}
+In Cumulus Linux 5.4 and earlier, this command is `nv show interface <interface-id> ptp counters`
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |

@@ -757,7 +757,7 @@ Configures the route map rule description. If the description is more than one w
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -1394,7 +1394,7 @@ Sets the BGP AS number to prepend for a matched route.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 

@@ -344,7 +344,7 @@ Configures the BGP Route Distinguisher to use for EVPN type-5 routes originated 
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 

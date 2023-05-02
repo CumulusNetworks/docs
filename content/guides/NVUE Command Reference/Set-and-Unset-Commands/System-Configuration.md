@@ -123,7 +123,7 @@ Configures the control plane policer forwarding rate, which is the maximum rate 
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 

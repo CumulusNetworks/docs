@@ -1683,7 +1683,7 @@ Shows the EVPN local RIB for the specified VRF.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -1705,7 +1705,7 @@ Shows the EVPN local RIB <span style="background-color:#F5F5DC">[RDs](## "Route 
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -1728,7 +1728,7 @@ Shows a specific EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -1751,7 +1751,7 @@ Shows the EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route D
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -1775,7 +1775,7 @@ Shows information about a specific EVPN local RIB <span style="background-color:
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -1799,7 +1799,7 @@ Shows the routes in the EVPN local RIB for the specified VRF with a specific <sp
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -1824,7 +1824,7 @@ Shows the routes in the EVPN local RIB for the specified VRF with a specific <sp
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 

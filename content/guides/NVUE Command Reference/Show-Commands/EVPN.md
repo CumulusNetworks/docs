@@ -1118,7 +1118,7 @@ Shows information about a specific EVPN next hop VTEP in the specified VRF.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.2.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 

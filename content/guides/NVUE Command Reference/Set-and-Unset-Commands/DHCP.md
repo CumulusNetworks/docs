@@ -25,9 +25,13 @@ Introduced in Cumulus Linux 5.0.0
 
 - - -
 
-## nv set service dhcp-relay \<vrf-id\> giaddress-interface \<interface-id\>
+## nv set service dhcp-relay \<vrf-id\> gateway-interface \<interface-id\>
 
 Configures the gateway IPv4 address on an interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.4 and earlier, this command is `nv set service dhcp-relay <vrf-id> giaddress-interface <interface-id>`
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -43,7 +47,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default giaddress-interface lo
+cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default gateway-interface lo
 ```
 
 - - -
@@ -175,9 +179,13 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface downstream s
 
 - - -
 
-## nv set service dhcp-relay6 \<vrf-id\> interface downstream \<interface-id\> address \<ipv6\>
+## nv set service dhcp-relay6 \<vrf-id\> interface downstream \<interface-id\> link-address \<ipv6\>
 
 Configures the IPv6 address on DHCP relay downstream interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.4 and earlier, the command is `nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> address <ipv6>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -222,9 +230,13 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface upstream swp
 
 - - -
 
-## nv set service dhcp-relay6 \<vrf-id\> interface upstream \<interface-id\> address \<ipv6\>
+## nv set service dhcp-relay6 \<vrf-id\> interface upstream \<interface-id\> server-address \<ipv6\>
 
 Configures the IPv6 address on the DHCP relay upstream interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.4 and earlier, the command is `nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> address <ipv6>`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -241,7 +253,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface upstream swp51 address 2001:db8:0002::0a00:0002
+cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface upstream swp51 server-address 2001:db8:0002::0a00:0002
 ```
 
 - - -

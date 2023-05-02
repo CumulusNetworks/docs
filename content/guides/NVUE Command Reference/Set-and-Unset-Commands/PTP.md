@@ -53,7 +53,7 @@ The default setting is `peer-to-peer`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -287,7 +287,7 @@ The default setting is IPv4.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -331,7 +331,7 @@ Configures the unicast table ID for the specified PTP interface; a unique ID tha
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -355,7 +355,7 @@ The default setting is `300`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -377,7 +377,7 @@ Configures the specified PTP interface to be a unicast client or a unicast serve
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -791,7 +791,7 @@ The default setting is `-3`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -841,7 +841,7 @@ The default setting is `peer-to-peer`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -866,7 +866,7 @@ The default setting is `-4`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -889,7 +889,7 @@ Configures the PTP domain for the custom profile. PTP domains allow different in
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -914,7 +914,7 @@ The default setting is 128.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -939,7 +939,7 @@ The default setting is 128.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -964,7 +964,7 @@ The default setting is 128.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -987,7 +987,7 @@ Configures the profile type; ieee-1588 or itu-g-8275-1. PTP profiles are a stand
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -1012,7 +1012,7 @@ The default setting is `-4`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
@@ -1037,7 +1037,7 @@ The default setting is `ipv4`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 

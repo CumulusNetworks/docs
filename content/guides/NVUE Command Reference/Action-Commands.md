@@ -39,7 +39,7 @@ Clears the MLAG LACP conflict on the specified interface bond. A conflict can be
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<interface>` | The interface that has an LACP conflict. |
 
@@ -63,7 +63,7 @@ This command does not clear counters in the kernel or hardware.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<interface-id>` | The interface on which you want to clear counters. |
 
@@ -85,7 +85,7 @@ Clears PTP counters on the specified interface.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<interface-id>` | The interface on which you want to clear PTP counters. |
 
@@ -107,7 +107,7 @@ Clears QoS buffer counters on the specified interface.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<interface-id>` | The interface on which you want to clear the QoS buffer. |
 
@@ -129,7 +129,7 @@ Clears QoS counters on the specified interface.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<interface-id>` | The interface on which you want to clear QoS counters. |
 
@@ -151,7 +151,7 @@ Clears QoS RoCE counters on the specified interface.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<interface-id>` | The interface on which you want to clear RoCE counters. |
 
@@ -173,7 +173,7 @@ Clears SyncE counters on the specified interface.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<interface-id>` | The interface on which you want to clear synce counters. |
 
@@ -243,7 +243,7 @@ Clears counters for the specified route map.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<route-map-id>` | The route map you want to clear. |
 
@@ -263,7 +263,7 @@ Clears PTP monitor violation log maximum offset value.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<instance-id>` |  The PTP instance number used for management purposes. |
 
@@ -285,7 +285,7 @@ Clears PTP monitor violation log minumum offset value.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<instance-id>` |  The PTP instance number used for management purposes. |
 
@@ -307,7 +307,7 @@ Clears the PTP  monitor violation log path delay value.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<instance-id>` |  The PTP instance number used for management purposes. |
 
@@ -329,7 +329,7 @@ Clears BGP IPv4 inbound routes.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -351,7 +351,7 @@ Clears BGP IPv4 outbound routes.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -373,7 +373,7 @@ Clears BGP IPv4 inbound routes for all BGP peers without resetting the peer sess
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -395,7 +395,7 @@ Clears BGP IPv4 outbound routes for all BGP peers without resetting the peer ses
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -417,7 +417,7 @@ Clears BGP IPv6 inbound routes.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -439,7 +439,7 @@ Clears BGP IPv6 outbound routes.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -461,7 +461,7 @@ Clears BGP IPv6 inbound routes for all BGP peers without resetting the peer sess
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -483,7 +483,7 @@ Clears BGP IPv6 outbound routes for all BGP peers without resetting the peer ses
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -505,7 +505,7 @@ Clears BGP EVPN inbound routes.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -527,7 +527,7 @@ Clears BGP EVPN outbound routes.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -549,7 +549,7 @@ Clears BGP EVPN inbound routes for all BGP peers without resetting the peer sess
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -571,7 +571,7 @@ Clears BGP EVPN outbound routes for all BGP peers without resetting the peer ses
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -593,7 +593,7 @@ Clears inbound routes for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -616,7 +616,7 @@ Clears outbound routes for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -639,7 +639,7 @@ Clears inbound routes for a specific BGP peer in the specified VRF without reset
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -662,7 +662,7 @@ Clears outbound routes for a specific BGP peer in the specified VRF without rese
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -685,7 +685,7 @@ Clears IPv4 inbound routes for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -708,7 +708,7 @@ Clears IPv4 outbound routes for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -731,7 +731,7 @@ Clears IPv4 inbound routes for a specific BGP peer in the specified VRF without 
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -754,7 +754,7 @@ Clears IPv4 outbound routes for a specific BGP peer in the specified VRF without
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -777,7 +777,7 @@ Clears IPv6 inbound routes for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -800,7 +800,7 @@ Clears IPv6 outbound routes for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -823,7 +823,7 @@ Clears IPv6 inbound routes for a specific BGP peer in the specified VRF without 
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -846,7 +846,7 @@ Clears IPv6 outbound routes for a specific BGP peer in the specified VRF without
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -869,7 +869,7 @@ Clears EVPN inbound routes for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -892,7 +892,7 @@ Clears EVPN outbound routes for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -915,7 +915,7 @@ Clears EVPN inbound routes for a specific BGP peer in the specified VRF without 
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -938,7 +938,7 @@ Clears EVPN outbound routes for a specific BGP peer in the specified VRF without
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -961,7 +961,7 @@ Clears inbound routes for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -984,7 +984,7 @@ Clears outbound routes for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1007,7 +1007,7 @@ Clears inbound routes for a specific BGP peer group in the specified VRF without
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1030,7 +1030,7 @@ Clears outbound routes for a specific BGP peer group in the specified VRF withou
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1053,7 +1053,7 @@ Clears IPv4 inbound routes for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1076,7 +1076,7 @@ Clears IPv4 outbound routes for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1099,7 +1099,7 @@ Clears IPv4 inbound routes for a specific BGP peer group in the specified VRF wi
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1122,7 +1122,7 @@ Clears IPv4 outbound routes for a specific BGP peer group in the specified VRF w
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1145,7 +1145,7 @@ Clears IPv6 inbound routes for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1168,7 +1168,7 @@ Clears IPv6 outbound routes for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1191,7 +1191,7 @@ Clears IPv6 inbound routes for a specific BGP peer group in the specified VRF wi
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1214,7 +1214,7 @@ Clears IPv6 outbound routes for a specific BGP peer group in the specified VRF w
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1237,7 +1237,7 @@ Clears EVPN inbound routes for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1260,7 +1260,7 @@ Clears EVPN outbound routes for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1283,7 +1283,7 @@ Clears EVPN inbound routes for a specific BGP peer group in the specified VRF wi
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1306,7 +1306,7 @@ Clears EVPN outbound routes for a specific BGP peer group in the specified VRF w
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<peer-group-id>` |  The peer group name. |
@@ -1329,7 +1329,7 @@ Clears all counters for the OSPF interfaces.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -1351,7 +1351,7 @@ Clears OSPF neighbor adjacency on the specified interface.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
 | `<interface-id>` | The interface. |
@@ -1374,7 +1374,7 @@ Disconnects authenticated and authorized users.
 
 ### Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<user>` | The user you want to disconnect. |
 
@@ -1412,7 +1412,7 @@ Shows information about the specified action.
 
 ## Command Syntax
 
-| \<div style="width:250px">Syntax   |  Description  |
+| Syntax   |  Description  |
 | ----------    | ------------  |
 | `<action-job-id>` | The action ID. |
 

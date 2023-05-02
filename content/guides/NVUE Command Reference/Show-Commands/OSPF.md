@@ -702,7 +702,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute static
 
 - - -
 
-## nv show vrf \<vrf-id\> router ospf static-neighbor
+<!-- ## nv show vrf \<vrf-id\> router ospf static-neighbor
 
 Shows information about the OSPF static neighbors in the specified VRF.
 
@@ -745,7 +745,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router ospf static-neighbor 10.10.10.
 ```
 
 - - -
-
+-->
 ## nv show vrf \<vrf-id\> router ospf timers
 
 Shows OSPF timer settings for the specified VRF.

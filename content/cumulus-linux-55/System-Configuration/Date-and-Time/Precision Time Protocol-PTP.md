@@ -291,7 +291,7 @@ Cumulus Linux provides several ways to modify the default basic global configura
 - Modify the parameters directly with NVUE commands.
 - Modify the Linux `/etc/ptp4l.conf` file.
 
-When a profile is in use, NVUE does not allow you to set global parameters. Avoid editing the Linux `/etc/ptp4l.conf` file to modify the global parameters when a profile is in use.
+When a predefined profile is set, NVUE does not allow you to configure global parameters. Do not edit the Linux `/etc/ptp4l.conf` file to modify the global parameters when a predefined profile is in use. For information about profiles, see {{<link url="#ptp-profiles" text="PTP Profiles">}}.
 
 ### Clock Domains
 
@@ -380,16 +380,50 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ### Local Priority
 
-Use the local priority when you enable a Telecom profile (ITU 8275-1 or ITU 8275-2). Modify the local priority in the profile to set the local priority of the local clock. You can set a value between 0 and 255. The default priority is 128.
+Use the local priority when you create a custom profile based on a Telecom profile (ITU 8275-1 or ITU 8275-2). Modify the local priority in a custom profile to set the local priority of the local clock. You can set a value between 0 and 255. The default priority is 128.
 
-<!-->
-The following example command configures the local priority for the ITU 8275-2 profile to 10:
+The following example command configures the local priority to 10 for the custom profile called CUSTOM1, which is based on ITU 8275-2:
+
+{{< tabs "TabID387 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service ptp 1 profile default-itu-8275-2 local-priority 10
+cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 local-priority 10
 cumulus@switch:~$ nv config apply
 ```
--->
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `G.8275.defaultDS.localPriority` option in the `/etc/ptp4l.conf` file. After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   28
+
+dscp_event                     46
+dscp_general                   46
+network_transport              L2
+dataset_comparison             G.8275.x
+G.8275.defaultDS.localPriority 10
+ptp_dst_mac                    01:80:C2:00:00:0E
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Optional Global Configuration
 
 Optional global PTP configuration includes configuring the DiffServ code point (DSCP). You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
@@ -619,7 +653,42 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ### Local Priority
 
-Use the local priority when you enable a Telecom profile (ITU 8275-1 or ITU 8275-2). Modify the local priority in the profile. You can set a value between 0 and 255. The default priority is 128.
+Set the local priority on an interface for a profile that uses ITU 8275-1 or ITU 8275-2. You can set a value between 0 and 255. The default priority is 128.
+
+The following example sets the local priority on swp1 to 10.
+
+{{< tabs "TabID658 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp local-priority 10
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Add the `G.8275.portDS.localPriority` option to the `interface` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+[swp1]
+udp_ttl                      1
+hybrid_e2e                   1
+masterOnly                   0
+delay_mechanism              E2E
+network_transport            UDPv6
+G.8275.portDS.localPriority  10
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Optional PTP Interface Configuration
 

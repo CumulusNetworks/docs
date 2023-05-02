@@ -702,6 +702,50 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute static
 
 - - -
 
+## nv show vrf \<vrf-id\> router ospf static-neighbor
+
+Shows information about the OSPF static neighbors in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf static-neighbor 
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf static-neighbor \<ipv4-address\>
+
+Shows information about a specific OSPF static neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf static-neighbor 10.10.10.1
+```
+
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf timers
 
 Shows OSPF timer settings for the specified VRF.

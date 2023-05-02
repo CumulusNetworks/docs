@@ -1902,6 +1902,1324 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn 
 
 - - -
 
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast route-counters
+
+Shows the number of IPv4 routes for a specific BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast route-counters
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes
+
+Shows information about the IPv4 advertised routes for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\>
+
+Shows information about a specific IPv4 advertised route for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path
+
+Shows path information about a specific IPv4 advertised route for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\>
+
+Shows information about a specific IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> nexthop
+
+Shows information about the next hops for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 nexthop -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> nexthop \<nexthop-id\>
+
+Shows information about the a specific next hop for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+| `<nexthop-id>` |   The next hop ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 nexthop 1 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> peer
+
+Shows information about the peers for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 peer -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> flags
+
+Shows information about the flags for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 flags -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> bestpath
+
+Shows information about the bestpath for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 bestpath -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> aspath
+
+Shows information about the AS path for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 aspath -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> community
+
+Shows information about the communities for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 community -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> large-community
+
+Shows information about the large communities for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 large-community -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast advertised-routes \<route-id\> path \<path-id\> ext-community
+
+Shows information about the extended communities for an IPv4 advertised route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The VRF name. |
+| `<route-id>` |   The IPv4 advertised route. |
+| `<path-id>` |   The IPv4 advertised route path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 ext-community -o json
+```
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes
+
+Shows information about the IPv4 received routes for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id>
+
+Shows information about a specific IPv4 received route for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv4 route. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path
+
+Shows information about a specific IPv4 received route path for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv4 route. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\>
+
+Shows information about a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv4 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> nexthop
+
+Shows information about the next hops for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 nexthop -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> nexthop \<nexthop-id\>
+
+Shows information about a specific next hop for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 route. |
+| `<path-id>` |   The path ID. |
+| `<nexthop-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 nexthop 1 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> peer
+
+Shows information about peers for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 peer -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> flags
+
+Shows information about flags for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 flags -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> bestpath
+
+Shows information about the best paths for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 bestpath -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> aspath
+
+Shows information about the AS paths for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 aspath -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> community
+
+Shows information about the communities for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 community -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> large-community
+
+Shows information about the large communities for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 large-community -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast received-routes <route-id> path \<path-id\> ext-community
+
+Shows information about the extended communities for a specific IPv4 received route path ID for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv4 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 ext-community -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes
+
+Shows information about the IPv6 received routes for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\>
+
+Shows information about a specific IPv6 received route for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\> path
+
+Shows information about IPv6 received route paths for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes \<route-id\> path \<path-id\>
+
+Shows information about a specific IPv6 received route path for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> nexthop
+
+Shows information about the IPv6 received route path nexthops for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1  nexthop -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> nexthop \<nexthop-id\>
+
+Shows information about a specific IPv6 received route path nexthop for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+| `<nexthop-id>` |   The nexthop ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 nexthop 1 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> peer
+
+Shows information about the IPv6 received route path peers for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 peer 1 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> flags
+
+Shows information about the IPv6 received route path flags for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 flags -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> bestpath
+
+Shows information about the IPv6 received route path bestpath for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 bestpath -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> aspath
+
+Shows information about the IPv6 received route path AS path for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 aspath -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> community
+
+Shows information about the IPv6 received route path communities for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 community -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> large-community
+
+Shows information about the IPv6 received route path large communities for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 large-community -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast received-routes <route-id> path \<path-id\> ext-community
+
+Shows information about the IPv6 received route path extended communities for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 ext-community -o json
+```
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast route-counters
+
+Shows the number of IPv6 routes for a specific BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast route-counters -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes
+
+Shows information about the IPv6 advertised routes for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes \<route-id\>
+
+Shows information about a specific IPv6 advertised route for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |   The VRF name. |
+| `<route-id>` |   The IPv6 route. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes \<route-id\> path
+
+Shows information about the IPv6 advertised route paths for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv6 route. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes \<route-id\> path \<path-id\>
+
+Shows information about a specific IPv6 advertised route path for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes \<route-id\> path \<path-id\> nexthop
+
+Shows information about the IPv6 advertised route nexthops for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 nexthop -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes \<route-id\> path \<path-id\> peer
+
+Shows information about the IPv6 advertised route peers for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 peers -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes \<route-id\> path \<path-id\> flags
+
+Shows information about the IPv6 advertised route flags for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 flags -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes \<route-id\> path \<path-id\> bestpath
+
+Shows information about the IPv6 advertised route best path for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 bestpath -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes \<route-id\> path \<path-id\> aspath
+
+Shows information about the IPv6 advertised route AS path for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 aspath -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes \<route-id\> path \<path-id\> community
+
+Shows information about the IPv6 advertised route communities for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 community -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes \<route-id\> path \<path-id\> large-community
+
+Shows information about the IPv6 advertised route large communities for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 large-community -o json
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast advertised-routes \<route-id\> path \<path-id\> ext-community
+
+Shows information about the IPv6 advertised route extended communities for a BGP neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF name or interface (for unnumbered BGP). |
+| `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<route-id>` |   The IPv6 route. |
+| `<path-id>` |   The path ID. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 ext-community -o json
+```
+
+
+- - -
+
 ## nv show evpn vni \<vni-id\> bgp-info
 
 Shows BGP information for the specified EVPN VNI.

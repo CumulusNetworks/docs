@@ -329,11 +329,19 @@ cumulus@leaf01:mgmt:~$ nv set evpn route-advertise svi-ip on
 
 Enables the EVPN control plane so that the EVPN service offered is VLAN-based and an EVI is created automatically for each extended VLAN.
 
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi,`
+{{%/notice%}}
+
 - - -
 
 ## nv set evpn vni \<vni-id\> rd
 
 Configures the BGP Route Distinguisher to use for EVPN type-5 routes originated from this VNI.
+
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi <vni-id> rd`
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -358,11 +366,19 @@ cumulus@leaf01:mgmt:~$ nv set evpn vni 10 rd 10.10.10.1:20
 
 Configures route targets for the specified VNI.
 
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi <vni-id> route-target`
+{{%/notice%}}
+
 - - -
 
 ## nv set evpn vni \<vni-id\> route-target both \<rt-id\>
 
 Configures the route targets you want to both import and export for the specified VNI.
+
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi <vni-id> route-target both <rt-id>`
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -387,6 +403,10 @@ cumulus@leaf01:mgmt:~$ nv set evpn vni 10 route-target both 65101:10
 
 Configures the route targets you want to export for the specified VNI.
 
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi <vni-id> route-target export <rt-id>`
+{{%/notice%}}
+
 ### Command Syntax
 
 | Command |  Description   |
@@ -409,6 +429,10 @@ cumulus@leaf01:mgmt:~$ nv set evpn vni 10 route-target export 65101:10
 ## nv set evpn vni \<vni-id\> route-target import \<rt-id\>
 
 Configures the route targets you want to import for the specified VNI.
+
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi <vni-id> route-target import <rt-id>`
+{{%/notice%}}
 
 ### Command Syntax
 

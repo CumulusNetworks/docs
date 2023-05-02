@@ -4,6 +4,7 @@ author: Cumulus Networks
 weight: 475
 product: Cumulus Linux
 type: nojsscroll
+draft: true
 ---
 ## nv show interface \<interface-id\> synce
 

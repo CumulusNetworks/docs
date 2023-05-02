@@ -480,6 +480,10 @@ cumulus@leaf01:mgmt:~$ nv show evpn route-advertise
 
 Shows information about the EVPN VNIs on the switch.
 
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi`
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -501,6 +505,10 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni
 ## nv show evpn vni \<vni-id\>
 
 Shows configuration information about the specified VNI.
+
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id>`
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -795,6 +803,10 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:
 
 Shows route advertisement information for the specified EVPN VNI.
 
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-advertise`
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -817,6 +829,10 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-advertise
 
 Shows route target information for the specified EVPN VNI.
 
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-target`
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -838,6 +854,10 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target
 ## nv show evpn vni \<vni-id\> route-target both
 
 Shows both import and export route target information for the specified EVPN VNI.
+
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-target both`
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -862,6 +882,10 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target both
 
 Shows information about both the specified import and export route target for the specified EVPN VNI.
 
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-target both <rt-id>`
+{{%/notice%}}
+
 ### Command Syntax
 
 |  Syntax |  Description   |
@@ -884,6 +908,10 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target both 65101:10
 ## nv show evpn vni \<vni-id\> route-target export
 
 Shows export route target information for the specified EVPN VNI.
+
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-target export`
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -908,6 +936,10 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target export
 
 Shows configuration information about the a specific export route target for the specified EVPN VNI.
 
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-target export <rt-id>`
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -931,6 +963,10 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10  route-target export 65101:10
 
 Shows import route target configuration for the specified EVPN VNI.
 
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-target import`
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -953,6 +989,10 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target import
 ## nv show evpn vni \<vni-id\> route-target import \<rt-id\>
 
 Shows configuration information about a specific import route target for the specified EVPN VNI.
+
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-target import <rt-id>`
+{{%/notice%}}
 
 ### Command Syntax
 

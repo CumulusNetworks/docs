@@ -79,7 +79,7 @@ cumulus@leaf01:mgmt:~$ nv action clear interface swp1 counters
 
 - - -
 
-## nv action clear interface \<interface-id\> ptp counters
+## nv action clear interface \<interface-id\> counters ptp
 
 Clears PTP counters on the specified interface.
 
@@ -96,7 +96,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv action clear interface swp1 ptp counters
+cumulus@leaf01:mgmt:~$ nv action clear interface swp1 counters ptp
 ```
 
 - - -
@@ -123,28 +123,6 @@ cumulus@leaf01:mgmt:~$ nv action clear interface swp1 qos buffer
 
 - - -
 
-## nv action clear interface \<interface-id\> qos counter
-
-Clears QoS counters on the specified interface.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ----------    | ------------  |
-| `<interface-id>` | The interface on which you want to clear QoS counters. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv action clear interface swp1 qos counter
-```
-
-- - -
-
 ## nv action clear interface \<interface-id\> qos roce counters
 
 Clears QoS RoCE counters on the specified interface.
@@ -162,11 +140,11 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv action clear interface swp1 qos roce counter
+cumulus@leaf01:mgmt:~$ nv action clear interface swp1 qos roce counters
 ```
 
 - - -
-
+<!--
 ## nv action clear interface \<interface-id\> synce counters
 
 Clears SyncE counters on the specified interface.
@@ -188,7 +166,7 @@ cumulus@leaf01:mgmt:~$ nv action clear interface swp1 synce counters
 ```
 
 - - -
-
+-->
 ## nv action clear mlag lacp-conflict
 
 Clears the MLAG LACP conflict. A conflict can be an LACP partner MAC address mismatch or a duplicate LACP partner MAC address.

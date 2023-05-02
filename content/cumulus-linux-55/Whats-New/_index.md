@@ -17,12 +17,7 @@ Cumulus Linux 5.5.0 supports new platforms, contains several new features and im
 {{%notice note%}}
 Early access features are now called beta features.
 {{%/notice%}}
-<!--
-{{%notice warning%}}
-- If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the new port configuration changes might impact your Cumulus Linux 5.5 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
-- Cumulus Linux 5.4 package upgrade (`apt-upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
-{{%/notice%}}
--->
+
 ### Platforms
 
 - NVIDIA SN3750-SX (100G Spectrum-2) continues to be in Beta
@@ -190,8 +185,6 @@ nv show vrf <vrf-id> router ospf neighbor <ipv4-nbr-id> interface
 nv show vrf <vrf-id> router ospf neighbor <ipv4-nbr-id> interface <interface-id>
 nv show vrf <vrf-id> router ospf neighbor <ipv4-nbr-id> interface <interface-id> local-ip
 nv show vrf <vrf-id> router ospf neighbor <ipv4-nbr-id> interface <interface-id> local-ip <ipv4-address-id>
-nv show vrf <vrf-id> router ospf static-neighbor
-nv show vrf <vrf-id> router ospf static-neighbor <ipv4-address-id>
 ```
 
 {{< /tab >}}
@@ -381,7 +374,6 @@ nv action clear vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2
 nv action clear vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn soft in
 nv action clear vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn soft out
 nv action clear vrf <vrf-id> router ospf interface <interface-id>
-nv action reboot system [-h] [--no-confirm]
 ```
 
 {{< /tab >}}

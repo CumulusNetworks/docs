@@ -1,7 +1,7 @@
 
 {{- if eq (.Get "deployment") "cloud" -}}
 {{- if eq (.Get "server") "single" -}}
-The OPTA must be able to initiate sessions on TCP port 443 to hosts on the <code>netq.nvidia.com</code> domain (<code>*.netq.nvidia.com</code>). You must also open the following ports on your NetQ OPTA:
+The OPTA must be able to initiate HTTPS connections (destination TCP port 443) to the domain <code>netq.nvidia.com</code> domain (<code>*.netq.nvidia.com</code>). You must also open the following ports on your NetQ OPTA:
 
 <table>
     <thead>
@@ -81,7 +81,7 @@ The OPTA must be able to initiate sessions on TCP port 443 to hosts on the <code
 {{ end }}
 
 {{- if eq (.Get "server") "cluster" -}}
-The OPTA must be able to initiate sessions on TCP port 443 to hosts on the <code>netq.nvidia.com</code> domain (<code>*.netq.nvidia.com</code>). You must also open the following ports on your NetQ OPTA:
+The OPTA must be able to initiate HTTPS connections (destination TCP port 443) to the domain <code>netq.nvidia.com</code> domain (<code>*.netq.nvidia.com</code>). You must also open the following ports on your NetQ OPTA:
 
 <table>
     <thead>
@@ -203,51 +203,6 @@ The following ports are used for internal cluster communication and must also be
     <td style="text-align:right">2380</td>
     <td style="text-align:center">TCP</td>
     <td>etcd</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">7072</td>
-    <td style="text-align:center">TCP</td>
-    <td>Kafka JMX monitoring</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">9092</td>
-    <td style="text-align:center">TCP</td>
-    <td>Kafka client</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">7071</td>
-    <td style="text-align:center">TCP</td>
-    <td>Cassandra JMX monitoring</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">7000</td>
-    <td style="text-align:center">TCP</td>
-    <td>Cassandra cluster communication</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">9042</td>
-    <td style="text-align:center">TCP</td>
-    <td>Cassandra client</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">7073</td>
-    <td style="text-align:center">TCP</td>
-    <td>Zookeeper JMX monitoring</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">2888</td>
-    <td style="text-align:center">TCP</td>
-    <td>Zookeeper cluster communication</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">3888</td>
-    <td style="text-align:center">TCP</td>
-    <td>Zookeeper cluster communication</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">2181</td>
-    <td style="text-align:center">TCP</td>
-    <td>Zookeeper client</td>
     </tr>
     </tbody>
     </table>

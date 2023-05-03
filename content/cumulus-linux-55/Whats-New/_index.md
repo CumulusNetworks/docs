@@ -249,8 +249,8 @@ nv set acl <acl-id> rule <rule-id> match ip ttl
 nv unset router policy route-map <route-map-id> rule <rule-id> match ext-community-list
 nv unset bridge domain <domain-id> ageing
 nv unset interface <interface-id> ptp local-priority
-nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> server-address
-nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> link-address
+nv unset service dhcp-relay6 <vrf-id> interface upstream <interface-id> server-address
+nv unset service dhcp-relay6 <vrf-id> interface downstream <interface-id> link-address
 nv unset service lldp lldp-med-inventory-tlv
 nv unset system reboot
 nv unset system reboot mode

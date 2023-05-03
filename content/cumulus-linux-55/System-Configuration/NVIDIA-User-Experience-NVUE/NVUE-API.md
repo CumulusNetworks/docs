@@ -51,18 +51,25 @@ For step by step documentation on generating self-signed certificates and keys, 
 
 After installing the certificates and keys, edit the `/etc/nginx/sites-available/nvue.conf` file to set the `ssl_certificate` and the `ssl_certificate_key` values to your keys, then restart NGINX with the `sudo systemctl restart nginx` command.
 
-## Understanding the API Architecture (Theory)
+## Understanding the API Architecture
 ### Supported HTTP Methods
-- Get -- used for Show Commands
-- Post -- used to Set Configuration
-- Patch -- used to Replace or Unset Configuration
+- GET 
+
+  This method is used to display configuration. It is equivalent to the `nv show` commands.
+- POST 
+
+  This method is used to set configuration.
+- PATCH
   
+  This method is used to replace or unset configuration.
   To change configuration settings with the REST API, you can either perform:
   - A root patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node `/nvue_v1`. 
   - A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/{vrf-id}/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
 
   You typically perform a *root patch* to push all configurations to the switch in bulk. For example, if you use a centralized configuration engine (such as an SDN controller or a network management system) to push the entire switch configuration every time you need to make a change, regardless of how small or large the change. A root patch can also make configuration changes with fewer round trips to the switch; running many specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
-- Delete -- used to Remove Configuration
+- DELETE
+
+  This method is used to delete configuration.
 ### Using the API 
 The NVUE CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI `nv show commands` reflect any PATCH operation (create) you run through the REST API. 
 
@@ -100,7 +107,7 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
 ...
 ```
 
-## Primary API Use Cases -- We should show a curl/python tabbed example of each.
+## Primary API Use Cases
 ### View a Configuration
 You can use the following example to get the current applied configuration on the switch. By changing the `rev` argument, any revision can be viewed. 
 {{< tabs "ViewConfig">}}
@@ -136,8 +143,26 @@ cumulus@switch:~$ curl -k -u cumulus:CumulusLinux! -X GET "https://127.0.0.1:876
 
 {{< /tab >}}
 {{< tab "Python Code ">}}
+```
+#!/usr/bin/env python3
 
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
 
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+if __name__ == "__main__":
+    r = requests.get(url=nvue_end_point + "/?rev=applied&filled=false",
+                     auth=auth,
+                     verify=False)
+    print("=======Current Applied Revision=======")
+    print(json.dumps(r.json(), indent=2))
+
+```
 
 {{< /tab >}}
 {{< tab "NVUE CLI ">}}
@@ -259,6 +284,115 @@ We know this is common workflow that customers want to see examples for and it's
    }
    ```
 {{</ tab >}}
+{{< tab "Python Code ">}}
+```
+#!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+def interface_config_example(interface):
+    # Create a new revision ID
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+    payload = {
+        "99.99.99.99/32": {}
+    }
+
+    # Make the necessary configuration changes
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + f"/interface/{interface}/ip/address",
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    time.sleep(DUMMY_SLEEP)
+    interface_config_example("lo")
+    time.sleep(DUMMY_SLEEP)
+    nvue_get("/interface/lo/ip/address")
+
+```
+
+{{< /tab >}}
 {{< tab "NVUE CLI ">}}
 
    ```
@@ -285,7 +419,7 @@ When a configuration change fails, you see an error in the change request.
 If you stage a configuration but it fails because of a dependency, the failure shows the reason. In the following example, the change fails because the BGP router ID is not set:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-05_02.12.10_U4XL 
 {
   "state": "invalid",
   "transition": {
@@ -308,7 +442,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8
 The staged configuration is missing `router-id`:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=4
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=changeset%2Fcumulus%2F2023-04-05_02.12.10_U4XL
 {
   "autonomous-system": 65999,
   "enable": "on"
@@ -320,9 +454,9 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8
 In some cases, such as the first push with NVUE or if you change a file manually instead of using NVUE, you see a warning prompt and the apply fails:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/4
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-05_02.12.10_U4XL
 {
-  "4": {
+  "changeset%2Fcumulus%2F2023-04-05_02.12.10_U4XL": {
     "state": "ays_fail",
     "transition": {
       "issue": {
@@ -341,7 +475,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.
 To resolve this issue, observe the failures or errors, and inspect the configuration that you are trying to apply. After you resolve the errors, retry the API. If you prefer to overlook the errors and force an apply, add `"auto-prompt":{"ays": "ays_yes"}` to the configuration apply.
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/4
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-05_02.12.10_U4XL
 ```
 
 ### Save a configuration
@@ -362,7 +496,48 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X PATCH -d '{"state": "sav
 
 {{< /tab >}}
 {{< tab "Python Code ">}}
+```
+#!/usr/bin/env python3
 
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+def save_nvue_changeset():
+    apply_payload = {"state": "save", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/applied"
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    save_nvue_changeset()
+
+```
 
 
 {{< /tab >}}
@@ -404,6 +579,26 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:87
 ```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+```
+#!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+if __name__ == "__main__":
+    r = requests.get(url=nvue_end_point + "/interface/swp1/link/stats",
+                     auth=auth,
+                     verify=False)
+    print("=======Interface swp1 Statistics=======")
+    print(json.dumps(r.json(), indent=2))
+
+```
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 ```
@@ -430,7 +625,6 @@ cumulus@switch:~$ nv set system hostname switch01
 cumulus@switch:~$ nv set interface lo ip address 99.99.99.99/32
 cumulus@switch:~$ nv set interface eth0 ip address 192.168.200.6/24
 cumulus@switch:~$ nv set interface bond0 bond member swp1-4
-
 ```
 2. View the changes as a JSON blob.
 ```
@@ -531,8 +725,6 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{
 ...
 ```
 4. Apply the changes using a PATCH to the revision changeset.
-{{< tabs "CLItoAPIApplyConfigChange">}}
-{{< tab "Curl Command ">}}
    ```
    cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -H 'Content-Type:application/json' -k -d '{"state": "apply", "auto-prompt": {"ays": "ays_yes"}}' -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-24_20.12.25_T2XX 
    {
@@ -543,14 +735,6 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{
      }
    }
    ```
-{{</ tab >}}
-{{< tab "Python Code ">}}
-
-   ```
-   
-   ```
-{{</ tab >}}
-{{</ tabs>}}
 
 5. Review the status of the apply and the configuration:
 {{< tabs "CLItoAPIReviewConfigChange">}}
@@ -566,9 +750,141 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{
    }
    ```
 {{</ tab >}}
-{{< tab "NVUE CLI ">}}
+{{< tab "Python Code ">}}
 
    ```
+   #!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    # apply_payload = {"state": "apply"}
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+def root_patch():
+    # Create an NVUE changeset
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Prepare payload which configures a few
+    # different switch configurations
+    payload = {
+      "interface": {
+        "bond0": {
+          "bond": {
+            "member": {
+              "swp1": {},
+              "swp2": {},
+              "swp3": {},
+              "swp4": {}
+            }
+          },
+          "type": "bond"
+        },
+        "lo": {
+          "ip": {
+            "address": {
+              "99.99.99.99/32": {}
+            }
+          }
+        }
+      },
+      "system": {
+        "hostname": "switch01"
+      }
+    }
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + "/",  # Root patch
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the staged changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path",
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    root_patch()
+    time.sleep(DUMMY_SLEEP)
+    nvue_get("/interface/bond0")
+    nvue_get("/interface/lo")
+    nvue_get("/system")
    
    ```
 {{</ tab >}}

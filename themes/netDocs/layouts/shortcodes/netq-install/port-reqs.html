@@ -1,7 +1,7 @@
 
 {{- if eq (.Get "deployment") "cloud" -}}
 {{- if eq (.Get "server") "single" -}}
-The OPTA must be able to initiate HTTPS connections (destination TCP port 443) to the domain <code>netq.nvidia.com</code> domain (<code>*.netq.nvidia.com</code>). You must also open the following ports on your NetQ OPTA:
+The OPTA must be able to initiate HTTPS connections (destination TCP port 443) to the <i>netq.nvidia.com</i> domain (<i>*.netq.nvidia.com</i>). You must also open the following ports on your NetQ OPTA:
 
 <table>
     <thead>
@@ -81,7 +81,7 @@ The OPTA must be able to initiate HTTPS connections (destination TCP port 443) t
 {{ end }}
 
 {{- if eq (.Get "server") "cluster" -}}
-The OPTA must be able to initiate HTTPS connections (destination TCP port 443) to the domain <code>netq.nvidia.com</code> domain (<code>*.netq.nvidia.com</code>). You must also open the following ports on your NetQ OPTA:
+The OPTA must be able to initiate HTTPS connections (destination TCP port 443) to the <i>netq.nvidia.com</i> domain (<i>*.netq.nvidia.com</i>). You must also open the following ports on your NetQ OPTA:
 
 <table>
     <thead>

@@ -6,7 +6,7 @@
 <thead>
 <tr class="header">
 <th>Resource</th>
-<th>Minimum Requirement</th>
+<th>Minimum Requirements</th>
 </tr>
 </thead>
 <tbody>
@@ -48,7 +48,7 @@
 {{ end }}
 {{ end }}
 {{- if eq (.Get "deployment") "cloud" -}}
-<td>For NetQ 3.2.x and later: 64 GB <br>For NetQ 3.1 and earlier: 32 GB </td>
+<td>64 GB </td>
 {{ end }}
 </tr>
 <tr class="odd">
@@ -58,10 +58,10 @@
 <tr class="even">
 <td>Hypervisor</td>
 {{- if eq (.Get "hypervisor") "vmware" -}}
-<td>VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux, CentOS, Ubuntu and RedHat operating systems</td>
+<td>VMware ESXi™ 6.5 or later (OVA image) for servers running Cumulus Linux, CentOS, Ubuntu, and RedHat operating systems</td>
 {{ end }}
 {{- if eq (.Get "hypervisor") "kvm" -}}
-<td>KVM/QCOW (QEMU Copy on Write) image for servers running CentOS, Ubuntu and RedHat operating systems </td>
+<td>KVM/QCOW (QEMU Copy on Write) image for servers running CentOS, Ubuntu, and RedHat operating systems </td>
 {{ end }}
 </tr>
 </tbody>

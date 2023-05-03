@@ -451,12 +451,6 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td></td>
 </tr>
 <tr>
-<td>3053197</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3053094</td>
 <td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
 <td>5.1.0-5.4.0</td>
@@ -1049,12 +1043,6 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>3055283</td>
 <td>After you run Linux commands to enable a custom ECMP or LAG hash parameter,  if you set the {{hash_config.enable}} or {{lag_hash_config.enable}} parameter to {{false}}, the custom parameters do not restore their default values. To work around this issue, change the custom ECMP or LAG hash parameters to their default values manually.</td>
 <td>5.1.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3053197</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>

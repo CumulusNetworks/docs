@@ -58,10 +58,10 @@ After installing the certificates and keys, edit the `/etc/nginx/sites-available
   This method is used to display configuration. It is equivalent to the `nv show` commands.
 - POST 
 
-  This method is used to set configuration.
+  This method is used to set configuration. It is equivalent to the `nv set` commands.
 - PATCH
   
-  This method is used to replace or unset configuration.
+  This method is used to replace or unset configuration. It is equivalent to the `nv set` and `nv unset` commands.
   To change configuration settings with the REST API, you can either perform:
   - A root patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node `/nvue_v1`. 
   - A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/{vrf-id}/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
@@ -69,7 +69,7 @@ After installing the certificates and keys, edit the `/etc/nginx/sites-available
   You typically perform a *root patch* to push all configurations to the switch in bulk. For example, if you use a centralized configuration engine (such as an SDN controller or a network management system) to push the entire switch configuration every time you need to make a change, regardless of how small or large the change. A root patch can also make configuration changes with fewer round trips to the switch; running many specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
 - DELETE
 
-  This method is used to delete configuration.
+  This method is used to delete configuration. It is equivalent to the `nv unset` commands.
 ### Using the API 
 The NVUE CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI `nv show commands` reflect any PATCH operation (create) you run through the REST API. 
 
@@ -198,11 +198,1047 @@ cumulus@switch:~$ nv config show
 {{< /tab >}}
 {{< /tabs >}}
 ### Replace an entire configuration
-We know this is common workflow that customers want to see examples for and it's not a straightforward process.
-1. Grab a new revision
-2. Do a root patch to delete the whole config tree
-3. Do a root patch with the entire config
-4. Apply
+1. Create a new revision ID using a POST:
+
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
+   {
+    "changeset/cumulus/2023-05-03_18.31.08_T2Y4": {
+      "state": "pending",
+      "transition": {
+        "issue": {},
+        "progress": ""
+      }
+    }
+   }
+   ```
+
+2. Record the revision ID. In the above example, the revision ID is `"changeset/cumulus/2023-05-03_18.31.08_T2Y4"`. URL encode this in order to use it in the next step - `changeset%2Fcumulus%2F2023-05-03_18.31.08_T2Y4`
+
+3. Do a root patch to delete the whole configuration.
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{}' -H 'Content-Type: application/json' -k -X DELETE https://127.0.0.1:8765/nvue_v1/?rev=changeset%2Fcumulus%2F2023-05-03_18.31.08_T2Y4
+   {}
+   ```
+
+4. Do a root patch to to update the switch with the new configuration.
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{
+    "system": {
+      "hostname": "switch01"
+      },
+      "bridge": {
+        "domain": {
+          "br_default": {
+            "type": "vlan-aware",
+            "vlan": {
+              "10": {
+                "vni": {
+                  "10": {}
+                  }
+                },
+              "20": {
+                "vni": {
+                  "20": {}
+                }
+              },
+              "30": {
+                "vni": {
+                  "30": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "evpn": {
+        "enable": "on"
+      },
+      "interface": {
+        "bond1": {
+          "bond": {
+            "lacp-bypass": "on",
+            "member": {
+              "swp1": {}
+            },
+            "mlag": {
+              "enable": "on",
+              "id": 1
+            },
+            "mode": "lacp"
+          },
+      "bridge": {
+        "domain": {
+          "br_default": {
+            "access": 10,
+            "stp": {
+              "admin-edge": "on",
+              "auto-edge": "on",
+              "bpdu-guard": "on"
+            }
+          }
+        }
+      },
+      "link": {
+        "mtu": 9000
+      },
+      "type": "bond"
+    },
+    "bond2": {
+      "bond": {
+        "lacp-bypass": "on",
+        "member": {
+          "swp2": {}
+        },
+        "mlag": {
+          "enable": "on",
+          "id": 2
+        },
+        "mode": "lacp"
+      },
+      "bridge": {
+        "domain": {
+          "br_default": {
+            "access": 20,
+            "stp": {
+              "admin-edge": "on",
+              "auto-edge": "on",
+              "bpdu-guard": "on"
+            }
+          }
+        }
+      },
+      "link": {
+        "mtu": 9000
+      },
+      "type": "bond"
+    },
+    "bond3": {
+      "bond": {
+        "lacp-bypass": "on",
+        "member": {
+          "swp3": {}
+        },
+        "mlag": {
+          "enable": "on",
+          "id": 3
+        },
+        "mode": "lacp"
+      },
+      "bridge": {
+        "domain": {
+          "br_default": {
+            "access": 30,
+            "stp": {
+              "admin-edge": "on",
+              "auto-edge": "on",
+              "bpdu-guard": "on"
+            }
+          }
+        }
+      },
+      "link": {
+        "mtu": 9000
+      },
+      "type": "bond"
+    },
+    "eth0": {
+      "ip": {
+        "address": {
+          "192.168.200.6/24": {}
+        },
+        "vrf": "mgmt"
+      },
+      "type": "eth"
+    },
+    "lo": {
+      "ip": {
+        "address": {
+          "10.10.10.1/32": {}
+        }
+      },
+      "type": "loopback"
+    },
+    "peerlink": {
+      "bond": {
+        "member": {
+          "swp49": {},
+          "swp50": {}
+        }
+      },
+      "bridge": {
+        "domain": {
+          "br_default": {}
+        }
+      },
+      "type": "peerlink"
+    },
+    "peerlink.4094": {
+      "base-interface": "peerlink",
+      "type": "sub",
+      "vlan": 4094
+    },
+    "swp51": {
+      "link": {
+        "state": {
+          "up": {}
+        }
+      },
+      "type": "swp"
+    },
+    "swp52": {
+      "link": {
+        "state": {
+          "up": {}
+        }
+      },
+      "type": "swp"
+    },
+    "swp53": {
+      "link": {
+        "state": {
+          "up": {}
+        }
+      },
+      "type": "swp"
+    },
+    "swp54": {
+      "link": {
+        "state": {
+          "up": {}
+        }
+      },
+      "type": "swp"
+    },
+    "vlan10": {
+      "ip": {
+        "address": {
+          "10.1.10.2/24": {}
+        },
+        "vrf": "RED",
+        "vrr": {
+          "address": {
+            "10.1.10.1/24": {}
+          },
+          "enable": "on",
+          "mac-address": "00:00:00:00:00:10",
+          "state": {
+            "up": {}
+          }
+        }
+      },
+      "type": "svi",
+      "vlan": 10
+    },
+    "vlan20": {
+      "ip": {
+        "address": {
+          "10.1.20.2/24": {}
+        },
+        "vrf": "RED",
+        "vrr": {
+          "address": {
+            "10.1.20.1/24": {}
+          },
+          "enable": "on",
+          "mac-address": "00:00:00:00:00:20",
+          "state": {
+            "up": {}
+          }
+        }
+      },
+      "type": "svi",
+      "vlan": 20
+    },
+    "vlan30": {
+      "ip": {
+        "address": {
+          "10.1.30.2/24": {}
+        },
+        "vrf": "BLUE",
+        "vrr": {
+          "address": {
+            "10.1.30.1/24": {}
+          },
+          "enable": "on",
+          "mac-address": "00:00:00:00:00:30",
+          "state": {
+            "up": {}
+          }
+        }
+      },
+      "type": "svi",
+      "vlan": 30
+      }
+    },
+    "mlag": {
+    "backup": {
+      "10.10.10.2": {}
+    },
+    "enable": "on",
+    "init-delay": 10,
+    "mac-address": "44:38:39:BE:EF:AA",
+    "peer-ip": "linklocal",
+    "priority": 1000
+    },
+    "nve": {
+    "vxlan": {
+      "arp-nd-suppress": "on",
+      "enable": "on",
+      "mlag": {
+        "shared-address": "10.0.1.12"
+      },
+      "source": {
+        "address": "10.10.10.1"
+      }
+    }
+    },
+    "router": {
+    "bgp": {
+      "enable": "on"
+    },
+    "vrr": {
+      "enable": "on"
+    }
+    },
+    "service": {},
+    "vrf": {
+    "BLUE": {
+      "evpn": {
+        "enable": "on",
+        "vni": {
+          "4002": {}
+        }
+      },
+      "router": {
+        "bgp": {
+          "address-family": {
+            "ipv4-unicast": {
+              "enable": "on",
+              "redistribute": {
+                "connected": {
+                  "enable": "on"
+                }
+              }
+            },
+            "l2vpn-evpn": {
+              "enable": "on"
+            }
+          },
+          "autonomous-system": 65101,
+          "enable": "on",
+          "router-id": "10.10.10.1"
+        }
+      }
+    },
+    "RED": {
+      "evpn": {
+        "enable": "on",
+        "vni": {
+          "4001": {}
+        }
+      },
+      "router": {
+        "bgp": {
+          "address-family": {
+            "ipv4-unicast": {
+              "enable": "on",
+              "redistribute": {
+                "connected": {
+                  "enable": "on"
+                }
+              }
+            },
+            "l2vpn-evpn": {
+              "enable": "on"
+            }
+          },
+          "autonomous-system": 65101,
+          "enable": "on",
+          "router-id": "10.10.10.1"
+        }
+      }
+    },
+    "default": {
+      "router": {
+        "bgp": {
+          "address-family": {
+            "ipv4-unicast": {
+              "enable": "on",
+              "redistribute": {
+                "connected": {
+                  "enable": "on"
+                }
+              }
+            },
+            "l2vpn-evpn": {
+              "enable": "on"
+            }
+          },
+          "autonomous-system": 65101,
+          "enable": "on",
+          "neighbor": {
+            "peerlink.4094": {
+              "peer-group": "underlay",
+              "type": "unnumbered"
+            },
+            "swp51": {
+              "peer-group": "underlay",
+              "type": "unnumbered"
+            },
+            "swp52": {
+              "peer-group": "underlay",
+              "type": "unnumbered"
+            },
+            "swp53": {
+              "peer-group": "underlay",
+              "type": "unnumbered"
+            },
+            "swp54": {
+              "peer-group": "underlay",
+              "type": "unnumbered"
+            }
+          },
+          "peer-group": {
+            "underlay": {
+              "address-family": {
+                "l2vpn-evpn": {
+                  "enable": "on"
+                }
+              },
+              "remote-as": "external"
+            }
+          },
+          "router-id": "10.10.10.1"
+        }
+      }
+    },
+    "mgmt": {
+      "router": {
+        "static": {
+          "0.0.0.0/0": {
+            "address-family": "ipv4-unicast",
+            "via": {
+              "192.168.200.1": {
+                "type": "ipv4-address"
+              }
+            }
+          }
+        }
+      }
+    }
+    }
+    }' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=changeset%2Fcumulus%2F2023-05-03_18.31.08_T2Y4
+   {}
+   ```
+
+5. Apply the changes using a PATCH to the revision changeset.
+{{< tabs "ApplyRootPatchConfigChange">}}
+{{< tab "Curl Command ">}}
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -H 'Content-Type:application/json' -d '{"state": "apply", "auto-prompt": {"ays": "ays_yes"}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-05-03_18.31.08_T2Y4
+   {
+     "state": "apply",
+     "transition": {
+       "issue": {},
+       "progress": ""
+     }
+   }
+   ```
+{{</ tab >}}
+{{< tab "NVUE CLI ">}}
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+{{</ tab >}}
+{{</ tabs>}}
+
+5. Review the status of the apply and the configuration:
+{{< tabs "ReviewRootPatchConfigChange">}}
+{{< tab "Curl Command ">}}
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-05-03_18.31.08_T2Y4
+   {
+     "state": "applied",
+     "transition": {
+       "issue": {},
+       "progress": ""
+     }
+   }
+   ```
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/system
+   {
+    "build": "Cumulus Linux 5.1.0",
+    "hostname": "switch01",
+    "timezone": "Etc/UTC",
+    "uptime": 3072272
+   }
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default/vlan/10
+   {
+    "multicast": {
+      "snooping": {
+        "querier": {
+          "source-ip": "0.0.0.0"
+        }
+      }
+    },
+    "ptp": {
+      "enable": "off"
+    },
+    "vni": {
+      "10": {
+        "flooding": {
+          "enable": "auto"
+        },
+        "mac-learning": "off"
+      }
+    }
+  }
+
+   ```
+{{</ tab >}}
+{{< tab "Python Code ">}}
+```
+#!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+def apply_new_config():
+    # Create a new revision ID
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Delete existing configuration
+    query_string = {"rev": changeset}
+    r = requests.delete(url=nvue_end_point + "/",
+                       auth=auth,
+                       verify=False,
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Patch the new configuration
+    payload = {
+      "system": {
+        "hostname": "switch01"
+      },
+      "bridge": {
+        "domain": {
+          "br_default": {
+            "type": "vlan-aware",
+            "vlan": {
+              "10": {
+                "vni": {
+                  "10": {}
+                }
+              },
+              "20": {
+                "vni": {
+                  "20": {}
+                }
+              },
+              "30": {
+                "vni": {
+                  "30": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "evpn": {
+        "enable": "on"
+      },
+      "interface": {
+        "bond1": {
+          "bond": {
+            "lacp-bypass": "on",
+            "member": {
+              "swp1": {}
+            },
+            "mlag": {
+              "enable": "on",
+              "id": 1
+            },
+            "mode": "lacp"
+          },
+          "bridge": {
+            "domain": {
+              "br_default": {
+                "access": 10,
+                "stp": {
+                  "admin-edge": "on",
+                  "auto-edge": "on",
+                  "bpdu-guard": "on"
+                }
+              }
+            }
+          },
+          "link": {
+            "mtu": 9000
+          },
+          "type": "bond"
+        },
+        "bond2": {
+          "bond": {
+            "lacp-bypass": "on",
+            "member": {
+              "swp2": {}
+            },
+            "mlag": {
+              "enable": "on",
+              "id": 2
+            },
+            "mode": "lacp"
+          },
+          "bridge": {
+            "domain": {
+              "br_default": {
+                "access": 20,
+                "stp": {
+                  "admin-edge": "on",
+                  "auto-edge": "on",
+                  "bpdu-guard": "on"
+                }
+              }
+            }
+          },
+          "link": {
+            "mtu": 9000
+          },
+          "type": "bond"
+        },
+        "bond3": {
+          "bond": {
+            "lacp-bypass": "on",
+            "member": {
+              "swp3": {}
+            },
+            "mlag": {
+              "enable": "on",
+              "id": 3
+            },
+            "mode": "lacp"
+          },
+          "bridge": {
+            "domain": {
+              "br_default": {
+                "access": 30,
+                "stp": {
+                  "admin-edge": "on",
+                  "auto-edge": "on",
+                  "bpdu-guard": "on"
+                }
+              }
+            }
+          },
+          "link": {
+            "mtu": 9000
+          },
+          "type": "bond"
+        },
+        "eth0": {
+          "ip": {
+            "address": {
+              "192.168.200.6/24": {}
+            },
+            "vrf": "mgmt"
+          },
+          "type": "eth"
+        },
+        "lo": {
+          "ip": {
+            "address": {
+              "10.10.10.1/32": {}
+            }
+          },
+          "type": "loopback"
+        },
+        "peerlink": {
+          "bond": {
+            "member": {
+              "swp49": {},
+              "swp50": {}
+            }
+          },
+          "bridge": {
+            "domain": {
+              "br_default": {}
+            }
+          },
+          "type": "peerlink"
+        },
+        "peerlink.4094": {
+          "base-interface": "peerlink",
+          "type": "sub",
+          "vlan": 4094
+        },
+        "swp51": {
+          "link": {
+            "state": {
+              "up": {}
+            }
+          },
+          "type": "swp"
+        },
+        "swp52": {
+          "link": {
+            "state": {
+              "up": {}
+            }
+          },
+          "type": "swp"
+        },
+        "swp53": {
+          "link": {
+            "state": {
+              "up": {}
+            }
+          },
+          "type": "swp"
+        },
+        "swp54": {
+          "link": {
+            "state": {
+              "up": {}
+            }
+          },
+          "type": "swp"
+        },
+        "vlan10": {
+          "ip": {
+            "address": {
+              "10.1.10.2/24": {}
+            },
+            "vrf": "RED",
+            "vrr": {
+              "address": {
+                "10.1.10.1/24": {}
+              },
+              "enable": "on",
+              "mac-address": "00:00:00:00:00:10",
+              "state": {
+                "up": {}
+              }
+            }
+          },
+          "type": "svi",
+          "vlan": 10
+        },
+        "vlan20": {
+          "ip": {
+            "address": {
+              "10.1.20.2/24": {}
+            },
+            "vrf": "RED",
+            "vrr": {
+              "address": {
+                "10.1.20.1/24": {}
+              },
+              "enable": "on",
+              "mac-address": "00:00:00:00:00:20",
+              "state": {
+                "up": {}
+              }
+            }
+          },
+          "type": "svi",
+          "vlan": 20
+        },
+        "vlan30": {
+          "ip": {
+            "address": {
+              "10.1.30.2/24": {}
+            },
+            "vrf": "BLUE",
+            "vrr": {
+              "address": {
+                "10.1.30.1/24": {}
+              },
+              "enable": "on",
+              "mac-address": "00:00:00:00:00:30",
+              "state": {
+                "up": {}
+              }
+            }
+          },
+          "type": "svi",
+          "vlan": 30
+        }
+      },
+      "mlag": {
+        "backup": {
+          "10.10.10.2": {}
+        },
+        "enable": "on",
+        "init-delay": 10,
+        "mac-address": "44:38:39:BE:EF:AA",
+        "peer-ip": "linklocal",
+        "priority": 1000
+      },
+      "nve": {
+        "vxlan": {
+          "arp-nd-suppress": "on",
+          "enable": "on",
+          "mlag": {
+            "shared-address": "10.0.1.12"
+          },
+          "source": {
+            "address": "10.10.10.1"
+          }
+        }
+      },
+      "router": {
+        "bgp": {
+          "enable": "on"
+        },
+        "vrr": {
+          "enable": "on"
+        }
+      },
+      "service": {},
+      "vrf": {
+        "BLUE": {
+          "evpn": {
+            "enable": "on",
+            "vni": {
+              "4002": {}
+            }
+          },
+          "router": {
+            "bgp": {
+              "address-family": {
+                "ipv4-unicast": {
+                  "enable": "on",
+                  "redistribute": {
+                    "connected": {
+                      "enable": "on"
+                    }
+                  }
+                },
+                "l2vpn-evpn": {
+                  "enable": "on"
+                }
+              },
+              "autonomous-system": 65101,
+              "enable": "on",
+              "router-id": "10.10.10.1"
+            }
+          }
+        },
+        "RED": {
+          "evpn": {
+            "enable": "on",
+            "vni": {
+              "4001": {}
+            }
+          },
+          "router": {
+            "bgp": {
+              "address-family": {
+                "ipv4-unicast": {
+                  "enable": "on",
+                  "redistribute": {
+                    "connected": {
+                      "enable": "on"
+                    }
+                  }
+                },
+                "l2vpn-evpn": {
+                  "enable": "on"
+                }
+              },
+              "autonomous-system": 65101,
+              "enable": "on",
+              "router-id": "10.10.10.1"
+            }
+          }
+        },
+        "default": {
+          "router": {
+            "bgp": {
+              "address-family": {
+                "ipv4-unicast": {
+                  "enable": "on",
+                  "redistribute": {
+                    "connected": {
+                      "enable": "on"
+                    }
+                  }
+                },
+                "l2vpn-evpn": {
+                  "enable": "on"
+                }
+              },
+              "autonomous-system": 65101,
+              "enable": "on",
+              "neighbor": {
+                "peerlink.4094": {
+                  "peer-group": "underlay",
+                  "type": "unnumbered"
+                },
+                "swp51": {
+                  "peer-group": "underlay",
+                  "type": "unnumbered"
+                },
+                "swp52": {
+                  "peer-group": "underlay",
+                  "type": "unnumbered"
+                },
+                "swp53": {
+                  "peer-group": "underlay",
+                  "type": "unnumbered"
+                },
+                "swp54": {
+                  "peer-group": "underlay",
+                  "type": "unnumbered"
+                }
+              },
+              "peer-group": {
+                "underlay": {
+                  "address-family": {
+                    "l2vpn-evpn": {
+                      "enable": "on"
+                    }
+                  },
+                  "remote-as": "external"
+                }
+              },
+              "router-id": "10.10.10.1"
+            }
+          }
+        },
+        "mgmt": {
+          "router": {
+            "static": {
+              "0.0.0.0/0": {
+                "address-family": "ipv4-unicast",
+                "via": {
+                  "192.168.200.1": {
+                    "type": "ipv4-address"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + f"/",
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    apply_new_config()
+    time.sleep(DUMMY_SLEEP)
+    print("=====Verifying some of the configurations=====")
+    nvue_get("/system")
+    nvue_get("/bridge/domain/br_default/vlan")
+
+```
+
+{{< /tab >}}
+{{< tab "NVUE CLI ">}}
+
+   ```
+   cumulus@switch:~$ 
+   ```
+
+   ```
+   cumulus@switch:~$ nv show interface lo ip address
+   
+-------------
+99.99.99.99/32
+127.0.0.1/8
+::1/128
+
+   ```
+{{</ tab >}}
+{{</ tabs>}}
 ### Make a configuration change
 1. Create a new revision ID using a POST:
 
@@ -899,6 +1935,126 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"system": {"hostname":"sw
 ```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+```
+   #!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    # apply_payload = {"state": "apply"}
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+def system_config():
+    # Create an NVUE changeset
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Prepare payload which configures a few
+    # different switch configurations
+    payload = {
+      "system": 
+      {
+        "hostname":"switch01",
+        "timezone":"America/Los_Angeles",
+        "message":
+        {
+          "pre-login":"Welcome to NVIDIA Cumulus Linux",
+          "post-login:"You have successfully logged in to switch01"
+        }
+      }
+    }
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + "/",  # Root patch
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the staged changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path",
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    system_config()
+    time.sleep(DUMMY_SLEEP)
+    nvue_get("/system")
+   
+   ```
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 ```
@@ -918,6 +2074,157 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"service": { "ntp": {"def
 ```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+```
+   #!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    # apply_payload = {"state": "apply"}
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+def services_config():
+    # Create an NVUE changeset
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Prepare payload which configures a few
+    # different switch configurations
+    payload = {
+      "service": 
+      { 
+        "ntp": 
+        {
+          "default":
+          {
+            "server:
+            {
+              "4.cumulusnetworks.pool.ntp.org":
+              {
+                "iburst":"on"
+              }
+            }
+          }
+        }, 
+        "dns": 
+        {
+          "mgmt":
+          {
+            "server:
+            {
+              "192.168.1.100":{}
+            }
+          }
+        }, 
+        "syslog": 
+        {
+          "mgmt":
+          {
+            "server:
+            {
+              "192.168.1.120":
+              {
+                "port":8000
+              }
+            }
+          }
+        }
+      }
+    }
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + "/",  # Root patch
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the staged changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path",
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    services_config()
+    time.sleep(DUMMY_SLEEP)
+    nvue_get("/service/ntp")
+    nvue_get("/service/dns")
+    nvue_get("/service/syslog")
+   
+   ```
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 ```
@@ -931,10 +2238,134 @@ cumulus@switch:~$ nv set service syslog mgmt server 192.168.1.120 port 8000
 #### Interface
 {{< tabs "InterfaceConfig" >}}
 {{< tab "Curl Command" >}}
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"swp1": {"type":"swp","link":{"state":"up"}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2XV 
+```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+```
+   #!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    # apply_payload = {"state": "apply"}
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+def interface_config():
+    # Create an NVUE changeset
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Prepare payload which configures a few
+    # different switch configurations
+    payload = {
+      "swp1": 
+      {
+        "type":"swp",
+        "link":
+        {
+          "state":"up"
+          }
+        }
+      }
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + "/interface", 
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the staged changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path",
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    interface_config()
+    time.sleep(DUMMY_SLEEP)
+    nvue_get("/interface/swp1")
+   
+   ```
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
+```
+cumulus@switch:~$ nv set interface swp1
+```
 {{< /tab >}}
 {{< /tabs >}}
 #### Bond
@@ -1004,6 +2435,130 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"bond0": {"type":"bond","
 ```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+```
+   #!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    # apply_payload = {"state": "apply"}
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+def interface_bond_config():
+    # Create an NVUE changeset
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Prepare payload which configures a few
+    # different switch configurations
+    payload = {
+      "bond0": 
+      {
+        "type":"bond",
+        "bond":
+        {
+          "member":
+          {
+            "swp1":{},
+            "swp2":{},
+            "swp3":{},
+            "swp4":{}
+          }
+        }
+      }
+    }
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + "/interface", 
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the staged changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path",
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    interface_bond_config()
+    time.sleep(DUMMY_SLEEP)
+    nvue_get("/interface/bond0")
+   
+   ```
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 ```
@@ -1015,11 +2570,161 @@ cumulus@switch:~$ nv set interface bond0 bond member swp1-4
 {{< tabs "BridgeConfig" >}}
 {{< tab "Curl Command" >}}
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2X 
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2X 
 cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2XV 
 ```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+```
+   #!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    # apply_payload = {"state": "apply"}
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+def bridge_config():
+    # Create an NVUE changeset
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Prepare payload which configures a few
+    # different switch configurations
+    payload = {
+      "swp1": 
+      {
+        "bridge":
+        {
+          "domain":
+          {
+            "br_default":{}
+          }
+        },
+        "swp2": 
+        {
+          "bridge":
+          {
+            "domain":
+            {
+              "br_default":{}
+            }
+          }
+        }
+      }
+    }
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + "/interface", 
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    payload = {
+      "untagged":1,
+      "vlan":
+      {
+        "10":{},
+        "20":{}
+      }
+    }
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + "/bridge/domain/br_default", 
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the staged changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path",
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    bridge_config()
+    time.sleep(DUMMY_SLEEP)
+    nvue_get("/interface/swp1")
+    nvue_get("/bridge/domain/br_default")
+   
+   ```
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 ```
@@ -1032,10 +2737,169 @@ cumulus@switch:~$ nv set bridge domain br_default untagged 1
 #### BGP
 {{< tabs "BGPConfig" >}}
 {{< tab "Curl Command" >}}
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"bgp": {"autonomous-system": 65101,"router-id":"10.10.10.1"}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/router?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2X 
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"bgp":{"neighbor":{"swp51":{"remote-as":"external"}},"address-family":{"ipv4-unicast":{"network":{"10.10.10.1/32":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/vrf/default/router?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2XV 
+```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+```
+   #!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    # apply_payload = {"state": "apply"}
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+def bgp_config():
+    # Create an NVUE changeset
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Prepare payload which configures a few
+    # different switch configurations
+    payload = {
+      "bgp": 
+      {
+        "autonomous-system": 65101,
+        "router-id":"10.10.10.1"
+      }
+    }
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + "/router", 
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    payload = {
+      "bgp":
+      {
+        "neighbor":
+        {
+          "swp51":
+          {
+            "remote-as":"external"
+          }
+        },
+        "address-family":
+        {
+          "ipv4-unicast":
+          {
+            "network":
+            {
+              "10.10.10.1/32":{}
+            }
+          }
+        }
+      }
+    }
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + "/vrf/default/router", 
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the staged changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path",
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    bgp_config()
+    time.sleep(DUMMY_SLEEP)
+    nvue_get("/router")
+    nvue_get("/vrf/default/router")
+   
+   ```
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
+```
+cumulus@switch:~$ nv set router bgp autonomous-system 65101
+cumulus@switch:~$ nv set router bgp router-id 10.10.10.1
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 remote-as external
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
+```
 {{< /tab >}}
 {{< /tabs >}}
 

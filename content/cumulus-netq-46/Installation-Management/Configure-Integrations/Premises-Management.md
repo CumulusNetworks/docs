@@ -14,7 +14,7 @@ There are two ways to implement a multi-site, on-premises deployment: (1) as a f
 
 ### Full NetQ Deployment at Each Premises
 
-In this implementation, there is a NetQ appliance or VM running the NetQ Platform software with a database. Each premises operates independently as an external premises, with its own NetQ UI and CLI. The NetQ appliance or VM at one of the deployments acts as the primary premises. A list of external premises is stored with the primary deployment.
+In this implementation, there is a NetQ appliance or VM running the NetQ software with a database. Each premises operates independently as an external premises, with its own NetQ UI and CLI. The NetQ appliance or VM at one of the deployments acts as the primary premises. A list of external premises is stored with the primary deployment.
 
 {{<figure src="/images/netq/appmgmt-multisite-onprem-fulldeploy-330.png" alt="" width="600">}}
 

@@ -7,7 +7,8 @@ toc: 4
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 4.3.1 (Broadcom switches) and 4.4.0 and above (Spectrum switches)
+- Cumulus Linux 4.3.0 and above (Broadcom switches)
+- Cumulus Linux 4.4.0 and above (Spectrum switches)
 - SONiC 202012
 - CentOS 7
 - RHEL 7.1
@@ -39,7 +40,7 @@ If your network uses a proxy server for external connections, you should first {
 ### Verify NTP Is Installed and Configured
 <!-- vale on -->
 
-Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
 ```
 cumulus@switch:~$ sudo systemctl status ntp
@@ -94,7 +95,7 @@ cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-app
 ### Verify NTP Is Installed and Configured
 <!-- vale on -->
 
-Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
 ```
 admin@switch:~$ sudo systemctl status ntp
@@ -186,7 +187,7 @@ root@rhel7:~# sudo yum install wget
 
 If NTP is not already installed and configured, follow these steps:
 
-1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
     ```
     root@rhel7:~# sudo yum install ntp
@@ -284,7 +285,7 @@ root@ubuntu:~# sudo systemctl start lldpd.service
 
 If NTP is not already installed and configured, follow these steps:
 
-1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
     ```
     root@ubuntu:~# sudo apt-get install ntp
@@ -432,7 +433,7 @@ The use of <code>netq-latest</code> in these examples means that a <code>get</co
 
 ## Install NetQ Agent
 
-After completing the preparation steps, install the agent onto your switch or host.
+After completing the preparation steps, install the agent on your switch or host.
 
 {{<tabs "Install NetQ Agent">}}
 
@@ -453,7 +454,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.5.0" opsys="cl">}}
+    {{<netq-install/agent-version version="4.6.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -461,7 +462,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ sudo systemctl restart rsyslog.service
     ```
 
-4. Continue with NetQ Agent configuration in the next section.
+4. Configure the NetQ Agent, as described in the next section.
 
 {{</tab>}}
 
@@ -488,7 +489,7 @@ To install the NetQ Agent (the following example uses Cumulus Linux but the step
     admin@switch:~$ sudo systemctl restart rsyslog.service
     ```
 
-4. Continue with NetQ Agent configuration in the next section.
+4. Configure the NetQ Agent, as described in the next section.
 
 {{</tab>}}
 
@@ -509,7 +510,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -qa | grep -i netq
     ```
 
-    {{<netq-install/agent-version version="4.5.0" opsys="rh">}}
+    {{<netq-install/agent-version version="4.6.0" opsys="rh">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -517,7 +518,7 @@ To install the NetQ Agent:
     root@rhel7:~# sudo systemctl restart rsyslog
     ```
 
-4. Continue with NetQ Agent Configuration in the next section.
+4. Configure the NetQ Agent, as described in the next section.
 
 {{</tab>}}
 
@@ -538,7 +539,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.5.0" opsys="ub">}}
+    {{<netq-install/agent-version version="4.6.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -546,7 +547,7 @@ To install the NetQ Agent:
 root@ubuntu:~# sudo systemctl restart rsyslog.service
 ```
 
-4. Continue with NetQ Agent Configuration in the next section.
+4. Configure the NetQ Agent, as described in the next section.
 
 {{</tab>}}
 

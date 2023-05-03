@@ -1,7 +1,7 @@
 ---
 title: Validate Network Protocol and Service Operations
 author: NVIDIA
-weight: 1020
+weight: 850
 toc: 4
 ---
 NetQ lets you validate the operation of the protocols and services running in your network either on demand or according to a schedule. For a general understanding of how well your network is operating, refer to the {{<link title="Validate Overall Network Health">}}.
@@ -17,17 +17,19 @@ When you want to validate the operation of one or more network protocols and ser
 <!-- vale on -->
 Using the NetQ UI, you can create an on-demand validation for multiple protocols or services at the same time. This is handy when the protocols are strongly related regarding a possible issue or if you only want to create one validation request.
 
+To run on-demand validations with the CLI, use the {{<link title="check" text="netq check">}} commands.
+
 {{<tabs "On-demand Validation">}}
 
 {{<tab "Validate Network">}}
 
 To create and run a request containing checks on one or more protocols or services within the NetQ UI:
 
-1. In the workbench header, click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Create a validation**. Choose whether the on-demand validation should run on all devices or on specific {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="device groups.">}}
+1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**. Choose whether the on-demand validation should run on all devices or on specific {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="device groups">}}.
 
-2. On the left side of the card, select the protocols or services you want to validate by clicking on their names, then click **Next**.
+2. Select the protocols or services you want to validate, then click **Next**.
 
-   This example shows BGP:
+   This example has BGP selected and displays the 8 checks that NetQ runs during a BGP validation:
 
    {{<figure src="/images/netq/validate-network-bgp.png" width="1100">}}
 
@@ -35,34 +37,12 @@ To create and run a request containing checks on one or more protocols or servic
 
    {{<figure src="/images/netq/validate-network-schedule-4.0.0.png" width="400">}}
 
-4. Click **Run** to start the check. It might take a few minutes for results to appear.
+4. Click **Run** to start the validation. It might take a few minutes for results to appear.
 
    The respective On-demand Validation Result card opens on your workbench. If you selected more than one protocol or service, a card opens for each selection. To view additional information about the errors reported, hover over a check and click **View details**. To view all data for all on-demand validation results for a given protocol, click **Show all results**.
 
    {{<figure src="/images/netq/on-demand-bgp-validation.png" width="600">}}
 
-{{</tab>}}
-
-{{<tab "netq check">}}
-
-To create and run a request containing checks on a single protocol or service all within the NetQ CLI, run the relevant `netq check` command. See the {{<link title="check" text="command line reference">}} for additional options, definitions, and examples.
-
-```
-netq check addresses
-netq check agents
-netq check bgp 
-netq check cl-version
-netq check evpn
-netq check interfaces
-netq check mlag
-netq check mtu
-netq check ntp
-netq check ospf
-netq check roce 
-netq check sensors
-netq check vlan
-netq check vxlan
-```
 {{</tab>}}
 
 {{<tab "netq add validation">}}
@@ -84,35 +64,25 @@ To run a scheduled validation now:
 
 1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Existing validations**.
 
-2. Select one or more validations you want to run by clicking their names, then click **View results**.
+2. Select one or more validations, then click **View results**.
 
 3. The associated Validation Result cards open on your workbench.
 
-
-
 ## Scheduled Validations
 
-When you want to see validation results on a regular basis, it is useful to configure a scheduled validation request to avoid re-creating the request each time. You can create up to 15 scheduled validations for a given NetQ system.
+By default, a scheduled validation for each protocol and service runs every hour. You can disable these validation checks in the UI, but you cannot edit them. 
 
-{{%notice note%}}
-
-By default, a scheduled validation for each protocol and service runs every hour. You do not need to create a scheduled validation for these unless you want it to run at a different interval. You cannot remove the default validations, but they do not count as part of the 15-validation limit.
-
-{{%/notice%}}
+You can create and schedule up to 15 custom validation checks. The hourly, default validation checks do not count towards this limit.
 
 ### Schedule a Validation
 
-You might want to create a scheduled validation that runs more often than the default validation if you are investigating an issue with a protocol or service. You might also want to create a scheduled validation that runs less often than the default validation if you prefer a longer term performance trend.
-
-Sometimes it is useful to run validations on more than one protocol simultaneously. This gives a view into any potential relationship between the protocols or services status. For example, you might want to compare NTP with Agent validations if NetQ Agents are losing connectivity or the data <!-- vale off -->appears to be collected<!-- vale on --> at the wrong time. It would help determine if loss of time synchronization is causing the issue. Simultaneous validations are displayed in the NetQ UI.
-
 {{<tabs "New Scheduled Validation">}}
 
-{{<tab "Validation Request">}}
+{{<tab "NetQ UI">}}
 
-1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Create a validation**. Choose whether the scheduled validation should run on all devices or on specific {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="device groups.">}}
+1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Create a validation**. Choose whether the scheduled validation should run on all devices or on specific {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="device groups">}}.
 
-2. On the left side of the card, select the protocols or services you want to validate by clicking on their names, then click **Next**.
+2. Select the protocols or services you want to validate, then click **Next**.
 
 3. Click **Later** then choose when to start the check and how frequently to repeat the check (every 30 minutes, 1 hour, 3 hours, 6 hours, 12 hours, or 1 day).
 
@@ -129,10 +99,10 @@ Sometimes it is useful to run validations on more than one protocol simultaneous
 To create a scheduled request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation name <text-new-validation-name> type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr) interval <text-time-min> [alert-on-failure]
+netq add validation name <text-new-validation-name> type (addr | agents | bgp | evpn | interfaces | license | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan) interval <text-time-min> [alert-on-failure]
 ```
 
-This example shows the creation of a BGP validation run every 15 minutes for debugging.
+The following example creates a BGP validation that runs every 15 minutes:
 
 ```
 cumulus@switch:~$ netq add validation name Bgp15m type bgp interval 15m
@@ -186,15 +156,13 @@ To analyze the results:
 
     {{<figure src="/images/netq/failed-vxlan-scheduled-validation.png" width="200">}}
 
-3. Switch to the large Scheduled Validation card using the card size picker.
-
-4. The card displays a chart alongside events metrics. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg" height="18" width="18">}} to expand or collapse the chart.
+3. Expand the card to display a chart alongside events metrics. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg" height="18" width="18">}} to expand or collapse the chart.
 
     {{<figure src="/images/netq/failed-vxlan-validation-large-chart.png" width="500">}}
 
-5. You can view the configuration of the request that produced the results shown on this card, by hovering over the card and clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18">}}.
+5. You can view the configuration of the request that produced the results shown on this card, by hovering over the card and selecting the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18">}} **Configuration** tab.
 
-6. To view all data available for all scheduled validation results for the given protocol or service, switch to the full-screen card.
+6. To view all data available for all scheduled validation results for the given protocol or service, expand the card to full-screen.
 
 7. In the Checks box, hover over an individual check and select **View details** for additional information:
 

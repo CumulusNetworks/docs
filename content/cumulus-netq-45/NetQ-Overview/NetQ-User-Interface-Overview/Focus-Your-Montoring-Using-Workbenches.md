@@ -47,7 +47,7 @@ Refer to {{<link url="Access-Data-with-Cards">}} for information about interacti
 
 To create a duplicate of an existing workbench:
 
-1. Select <img src="/images/netq/clone.svg" height="18" width="18"/> **Clone** in the workbench header.
+1. Select **Clone** in the workbench header.
 
 2. Name the cloned workbench and select **Clone**.
 

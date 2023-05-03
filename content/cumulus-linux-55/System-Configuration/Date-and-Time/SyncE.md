@@ -3,17 +3,20 @@ title: SyncE
 author: NVIDIA
 weight: 129
 toc: 3
+draft: true
 
 ---
-<span style="background-color:#F5F5DC">[SyncE](## "Synchronous Ethernet")</span> is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, (<span style="background-color:#F5F5DC">[ESMC](## "Ethernet Synchronization Messaging Channel")</span>), manages this synchronization.
+{{%notice note%}}
+SyncE is currently in Beta.
+{{%/notice%}}
+
+<span style="background-color:#F5F5DC">[SyncE](## "Synchronous Ethernet")</span> is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel manages this synchronization.
 
 The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 - The SyncE controller reads performance counters to calculate the differences between transmit and receive ethernet symbols on the physical layer to fine tune the clock frequency.
-- The SyncE daemon (`syncd`) manages:
-  - Transmitting and receiving <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
-  - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span> in the SSM.
-  - The next best clock to use when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
-  - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
+- The SyncE daemon (`synced`):
+  - Manages transmitting and receiving <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
+  - Manages the synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span> in the SSM.
 
 {{%notice note%}}
 Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
@@ -23,7 +26,7 @@ Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
 
 Basic SyncE configuration requires you:
 - Enable SyncE on the switch.
-- Configure SyncE on at least one interface or bond so that the interface is a timing source that passes to the selection algorithm.
+- Configure SyncE on at least one interface so that the interface is a timing source that passes to the selection algorithm.
 
 The basic configuration shown below uses the default SyncE settings:
 <!-- - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.-->
@@ -42,7 +45,25 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Start the synce service:
+Edit the `/etc/synced/synced.conf` file to configure the interface, then enable and start the SyncE service. Adding an interface section in the `/etc/synced/synced.conf` file enables SyncE on that interface.
+
+The following example enables SyncE on swp1, swp2, swp3.
+
+```
+cumulus@switch:~$ sudo nano /etc/synced/synced.conf
+...
+[global]
+twtr_seconds=10
+priority=1
+loglevel=info
+
+[swp1]
+
+[swp3]
+
+[swp4]
+priority=4
+```
 
 ```
 cumulus@switch:~$ sudo systemctl enable synced.service
@@ -71,7 +92,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced/synced.conf` file to change the `twtr_seconds setting`, then restart the `syncd` service.
+Edit the `/etc/synced/synced.conf` file to change the `twtr_seconds setting`, then restart the SyncE service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -89,7 +110,7 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 ### Priority
 
-You can set the priority for the clock source. The lowest priority is 1 and the the highest priority is 256. If two clock sources has the same priority, the switch uses the lowest clock source.
+You can set the priority for the clock source. The lowest priority is 1 and the highest priority is 256. If two clock sources have the same priority, the switch uses the lowest clock source.
 
 The following example command sets the priority to 256:
 
@@ -104,7 +125,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced/synced.conf` file to change the `priority` setting, then restart the `syncd` service.
+Edit the `/etc/synced/synced.conf` file to change the `priority` setting, then restart the SyncE service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -143,7 +164,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced.conf` file to change the `log-level` setting, then restart the `syncd` service.
+Edit the `/etc/synced.conf` file to change the `log-level` setting, then *reload* the SyncE service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -155,7 +176,7 @@ loglevel=debug
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart synced.service
+cumulus@switch:~$ sudo systemctl reload synced.service
 ```
 
 {{< /tab >}}
@@ -165,24 +186,24 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 ### Frequency Source Priority
 
-The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 100.
+The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 1.
 
-The following command example sets the priority on swp2 to 1, on swp2 to 10, and on swp3 to 1:
+The following command example sets the priority on swp2 to 10, on swp2 to 20, and on swp3 to 10:
 
 {{< tabs "TabID172 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 synce provider-priority 1
-cumulus@switch:~$ nv set interface swp2 synce provider-priority 10
-cumulus@switch:~$ nv set interface swp3 synce provider-priority 1
+cumulus@switch:~$ nv set interface swp1 synce provider-priority 10
+cumulus@switch:~$ nv set interface swp2 synce provider-priority 20
+cumulus@switch:~$ nv set interface swp3 synce provider-priority 10
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced.conf` file to change the `priority` setting for the interface, then restart the `syncd` service.
+Edit the `/etc/synced.conf` file to change the `priority` setting for the interface, then restart the SyncE service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -193,13 +214,13 @@ priority=256
 log-level=debug
 
 [swp1]
-priority=1
- 
-[swp2]
 priority=10
  
+[swp2]
+priority=20
+ 
 [swp3]
-priority=1
+priority=10
 ```
 
 ```
@@ -211,19 +232,27 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 ## Troubleshooting
 
-To show global SyncE configuration, run the `nv show service synce` command. To show SyncE configuration for a specific interface, run the `nv show interface <interface-id> synce` command.
+## Show SyncE Configuration and Counters
+
+To show global SyncE configuration, run the NVUE `nv show service synce` command or the Linux `syncectl show status` command.
+
+To show SyncE configuration for a specific interface, run the NVUE `nv show interface <interface-id> synce` command or the Linux  `syncectl show interface status <interface>` command.
 
 ```
 cumulus@switch:~$ nv show service synce
-                     operational                                                         applied
--------------------  ------------------------------------------------------------------  -------
-clock-identity       0x913500fffe00d100
-local-clock-quality  eec1
-network-type         1
-summary              Group #0: TRACKING holdover acquired on swp1. freq_diff: -51 (ppb)
+                           operational                                                        applied
+-------------------------  -----------------------------------------------------------------  -------
+enable                     On                                                                 on
+log-level                  notice
+provider-default-priority  10                                                                 10
+wait-to-restore-time       40                                                                 40
+clock-identity             0x849e00fffe00ca00
+local-clock-quality        eec1
+network-type               1
+summary                    Group #0: TRACKING holdover acquired on swp1. freq_diff: 77 (ppb)
 ```
 
-To show SyncE statistics for a specific interface, run the `nv show interface <interface-id> synce counters` command:
+To show SyncE statistics for a specific interface, run the NVUE `nv show interface <interface-id> synce counters` command or the Linux `syncectl show interface counters <interface` command:
 
 ```
 cumulus@switch:~$ nv show interface swp2 synce counters
@@ -254,6 +283,20 @@ tx-esmc-ssu-a    0
 tx-esmc-ssu-b    0
 tx-esmc-unknown  0
 ```
+
+## Clear SyncE Interface Counters
+
+To clear counters for a specific SyncE interface, run the NVUE `nv action clear interface <interface> synce counters` command or the Linux `syncectl clear interface counters <interface>` command.
+
+```
+cumulus@switch:~$ nv action clear interface swp1 synce counters
+swp1 counters cleared
+Action succeeded
+```
+
+To clear counters for all SyncE interfaces, run the `syncectl clear counters` command.
+
+To see all the `syncectl` commands, run `syncectl -h`.
 
 ## Related Information
 

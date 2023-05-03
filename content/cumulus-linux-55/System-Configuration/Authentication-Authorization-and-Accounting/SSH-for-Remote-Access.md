@@ -67,9 +67,9 @@ cumulus@leaf01:~$ nv set user admin2 ssh authorized-key prod_key key 1234
 cumulus@leaf01:~$ nv set user admin2 ssh authorized-key prod_key type ssh-rsa
 cumulus@leaf01:~$ nv config apply
 ```
-
+<!-- vale off -->
 ### Non-NVUE Managed User
-
+<!-- vale on -->
 The following example adds an authorized key file from the account `cumulus` on a host to the `cumulus` account on the switch:
 
 1. To copy a previously generated public key to the desired location, run the `ssh-copy-id` command and follow the prompts:

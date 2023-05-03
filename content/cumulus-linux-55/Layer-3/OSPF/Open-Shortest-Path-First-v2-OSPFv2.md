@@ -1063,11 +1063,16 @@ switch# exit
 
 NVUE provides several commands to show OSPF interface and OSPF neighbor configuration and statistics.
 
+{{%notice note%}}
+- The NVUE commands show brief output. To show more detailed operational information, run the NVUE commands with the ` --operational -o json` option or run the vtysh commands.
+- The following NVUE `nv show` commands support OSPF *numbered* only.
+{{%/notice%}}
+
 | Description | <div style="width:330px">NVUE Command |
 | ----------- | ------------------------------------- |
 | `nv show vrf <vrf> router ospf interface` | Shows all OSPF interfaces. |
 | `nv show vrf <vrf> router ospf interface <interface>` | Shows information about a specific OSPF interface. |
-| `nv show vrf <vrf> router ospf interface <interface> local-ip` | Shows the local IP addresses for the specified OSPF interface. | 
+| `nv show vrf <vrf> router ospf interface <interface> local-ip` | Shows the local IP addresses for the specified OSPF interface. |
 | `nv show vrf <vrf> router ospf interface <interface> local-ip <IPv4_address>` | Shows statistics for a specific OSPF interface local IP address. |
 | `nv show vrf <vrf> router ospf neighbor` | Shows the OSPF neighbor ID and the OSPF interface for all OSPF neighbors. |
 | `nv show vrf <vrf> router ospf neighbor <IPv4-address>` | Shows the interface and local IP addresses for a specific OSPF neighbor. |
@@ -1083,8 +1088,6 @@ Interface  Summary
 ---------  --------------------
 lo         local-ip: 10.10.10.1
 swp51      local-ip:   10.0.1.0
-           local-ip: 10.10.10.1
-swp52      local-ip: 10.10.10.1
 ```
 
 The following example shows the OSPF neighbor ID and the OSPF interface for all OSPF neighbors:
@@ -1094,7 +1097,37 @@ cumulus@switch:~$ nv show vrf default router ospf neighbor
               Summary         
 ------------  ----------------
 10.10.10.101  Interface: swp51
-10.10.10.102  Interface: swp52
+```
+
+The following example shows detailed OSPF neighbor information, which includes statistics:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor --operational -o json
+{
+  "10.10.10.101": {
+    "interface": {
+      "swp51": {
+        "local-ip": {
+          "10.0.1.0": {
+            "bdr-router-id": "10.10.10.101",
+            "dead-timer-expiry": 33519,
+            "dr-router-id": "10.10.10.1",
+            "neighbor-ip": "10.0.1.1",
+            "priority": 1,
+            "role": "BDR",
+            "state": "full",
+            "statistics": {
+              "db-summary-qlen": 0,
+              "ls-request-qlen": 0,
+              "ls-retrans-qlen": 0,
+              "state-changes": 5
+            }
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
 The following example shows the interface and local IP addresses for OSPF neighbor 10.10.10.101.
@@ -1103,27 +1136,56 @@ The following example shows the interface and local IP addresses for OSPF neighb
 cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101
 Interface  Summary             
 ---------  --------------------
-swp51      local-ip: 10.10.10.1
+swp51      local-ip: 10.0.1.0
+```
+
+The following example shows more detailed information for OSPF neighbor 10.10.10.101 and includes statistics:
+
+```
+cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 --operational -o json
+{
+  "interface": {
+    "swp51": {
+      "local-ip": {
+        "10.0.1.0": {
+          "bdr-router-id": "10.10.10.101",
+          "dead-timer-expiry": 30794,
+          "dr-router-id": "10.10.10.1",
+          "neighbor-ip": "10.0.1.1",
+          "priority": 1,
+          "role": "BDR",
+          "state": "full",
+          "statistics": {
+            "db-summary-qlen": 0,
+            "ls-request-qlen": 0,
+            "ls-retrans-qlen": 0,
+            "state-changes": 5
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
 The following example shows configuration and statistics for OSPF neighbor 10.10.10.101 on interface swp51 with the local IP address 10.10.10.1:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 10.10.10.1
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 10.0.1.0
                    operational   applied
 -----------------  ------------  -------
-bdr-router-id      0.0.0.0              
-dead-timer-expiry  59820                
-dr-router-id       0.0.0.0              
-neighbor-ip        10.10.10.101         
+bdr-router-id      10.10.10.101         
+dead-timer-expiry  30042                
+dr-router-id       10.10.10.1           
+neighbor-ip        10.0.1.1             
 priority           1                    
-role               DROther              
-state              init                 
+role               BDR                  
+state              full                 
 statistics                              
   db-summary-qlen  0                    
   ls-request-qlen  0                    
   ls-retrans-qlen  0                    
-  state-changes    318     
+  state-changes    5    
 ```
 
 FRR (vtysh) provides several OSPF troubleshooting commands:

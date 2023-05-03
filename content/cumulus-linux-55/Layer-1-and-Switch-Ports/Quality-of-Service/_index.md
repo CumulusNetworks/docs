@@ -392,9 +392,9 @@ traffic.cos_2.priority_remark.dscp = [40]
 {{< /tabs >}}
 
 To apply a custom profile to specific interfaces, see [Port Groups](#remarking).
-
+<!-- vale off -->
 ### Policy-based Marking
-
+<!-- vale on -->
 Cumulus Linux supports ACLs through `ebtables`, `iptables` or `ip6tables` for _egress_ packet marking and remarking.
 
 Cumulus Linux uses `ebtables` to mark layer 2, 802.1p COS values.
@@ -1457,7 +1457,7 @@ You can adjust settings for the following supported buffer regions and propertie
 
 |Buffers | Supported Property Values |
 |------------- |----------- |
-|`ingress-lossy-buffer` | <ul>The following properties are supported for the `bulk`, `control`, and `service[1-6]` priority groups: <br> `name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values. |
+|`ingress-lossy-buffer` | <ul>Cumulus Linux supports the following properties for the `bulk`, `control`, and `service[1-6]` priority groups: <br> `name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values. |
 |`egress-lossless-buffer` | <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> | 
 |`ingress-lossless-buffer` | <ul>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
 |`egress-lossy-buffer` | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority [0-7]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each multicast switch priority.<br>`traffic-class [0-15]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each traffic class.</ul> |
@@ -1490,7 +1490,6 @@ You can adjust the following properties for each pool:
 | `shared-alpha ` | The dynamic shared buffer alpha allocation. |
 | `shared-bytes` | The static shared buffer allocation in bytes. |
 
-
 A relationship exists between the default traffic pools and the advanced buffer configuration settings.  
 
 {{%notice note%}}
@@ -1509,10 +1508,10 @@ Reference the table below to view the mappings between the default traffic pool 
 | `default-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group bulk switch-priority` |
 | `default-lossless` | `memory-percent` | `ingress-pool 1`<br>`egress-pool 1` | `memory-percent` |
 | `roce-lossless` | `memory-percent` | `ingress-pool 1`<br>`egress-pool 1` | `memory-percent` |
-| `mc-lossy` | `memory-percent` | `ingress-pool 2`<br>`egress-pool 2` | `memory-percent` | 
-| `mc-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group service2 switch-priority` | 
+| `mc-lossy` | `memory-percent` | `ingress-pool 2`<br>`egress-pool 2` | `memory-percent` |
+| `mc-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group service2 switch-priority` |
 
-For example, to assign 20 percent of memory to a new static service pool you must allow 20 percent of memory to be available from the default traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to allocate the memory to `ingress-pool 3`:
+For example, to assign 20 percent of memory to a new static service pool, you must allow 20 percent of memory to be available from the default traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to allocate the memory to `ingress-pool 3`:
 
 ```
 cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 80
@@ -1553,36 +1552,70 @@ By default the syntax checker assumes:
 
 You can run the syntax checker when `switchd` is either running or stopped.
 
-<!--
-**Example Commands**
+## Show Qos Counters
 
-The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file and shows that there are no errors:
+NVUE provides the following commands to show QoS statistics for an interface:
 
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check
-No errors detected in traffic config file /etc/cumulus/datapath/traffic.conf
-```
+| <div style="width:430px">NVUE Command | Description |
+| ----------- | ------------ |
+| `nv show interface <interface> counters qos` | Shows all QoS statistics for a specific interface.|
+| `nv show interface <interface> counters qos egress-queue-stats` | Shows QoS egress queue statistics for a specific interface.|
+| `nv show interface <interface> counters qos ingress-buffer-stats` |Shows QoS ingress buffer statistics for a specific interface. |
+| `nv show interface <interface> counters qos pfc-stats`| Shows QoS PFC statistics for a specific interface.|
+| `nv show interface <interface> counters qos port-stats`| Shows QoS port statistics for a specific interface.|
 
-The following example command runs the syntax checker on the default `/etc/cumulus/datapath/traffic.conf` file in quiet mode. If errors exist, they write to the `/var/log/switchd.log` file.
-
-```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -q
-```
-
-The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file and shows that there are errors:
+The following example shows all QoS statistics for swp1:
 
 ```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf
-Traffic source 8021p: missing mapping for priority value '7'
-Errors detected while checking traffic config file /mypath/test-traffic.conf
-```
+cumulus@switch:~$ nv show interface swp1 counters qos
+Ingress Buffer Statistics
+============================
+    priority-group  rx-frames  rx-buffer-discards  rx-shared-buffer-discards
+    --------------  ---------  ------------------  -------------------------
+    0               0          0 Bytes             0 Bytes                  
+    1               0          0 Bytes             0 Bytes                  
+    2               0          0 Bytes             0 Bytes                  
+    3               0          0 Bytes             0 Bytes                  
+    4               0          0 Bytes             0 Bytes                  
+    5               0          0 Bytes             0 Bytes                  
+    6               0          0 Bytes             0 Bytes                  
+    7               0          0 Bytes             0 Bytes                  
 
-The following example command runs the syntax checker on the `/mypath/test-traffic.conf` file in quiet mode. If errors exist, they write to the `/var/log/switchd.log` file.
+Egress Queue Statistics
+==========================
+    traffic-class  tx-frames  tx-bytes  tx-uc-buffer-discards  wred-discards
+    -------------  ---------  --------  ---------------------  -------------
+    0              0          0 Bytes   0 Bytes                0            
+    1              0          0 Bytes   0 Bytes                0            
+    2              0          0 Bytes   0 Bytes                0            
+    3              0          0 Bytes   0 Bytes                0            
+    4              0          0 Bytes   0 Bytes                0            
+    5              0          0 Bytes   0 Bytes                0            
+    6              0          0 Bytes   0 Bytes                0            
+    7              0          0 Bytes   0 Bytes                0            
 
+PFC Statistics
+=================
+    switch-priority  rx-pause-frames  rx-pause-duration  tx-pause-frames  tx-pause-duration
+    ---------------  ---------------  -----------------  ---------------  -----------------
+    0                0                0                  0                0                
+    1                0                0                  0                0                
+    2                0                0                  0                0                
+    3                0                0                  0                0                
+    4                0                0                  0                0                
+    5                0                0                  0                0                
+    6                0                0                  0                0                
+    7                0                0                  0                0                
+
+Qos Port Statistics
+======================
+    Counter             Receive  Transmit
+    ------------------  -------  --------
+    ecn-marked-packets  n/a      0       
+    mc-buffer-discards  n/a      0       
+    pause-frames        0        0
+... 
 ```
-cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-traffic.conf -q
-```
--->
 
 ## Default Configuration Files
 

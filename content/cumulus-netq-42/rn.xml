@@ -68,12 +68,6 @@
 <td></td>
 </tr>
 <tr>
-<td>2872288</td>
-<td>When a NetQ agent sends messages with validation check data, there might be a delay of up to 120 seconds before the new data is displayed in streaming validation checks.</td>
-<td>4.2.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2817749</td>
 <td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
 <td>4.0.1-4.2.0</td>

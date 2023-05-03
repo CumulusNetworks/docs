@@ -46,6 +46,12 @@ NVIDIA recommends you use NVUE commands to configure restart mode and reboot the
    ...
    ```
 
+3. Save the configuration:
+
+   ```
+   cumulus@switch:~$ nv config save
+   ```
+
 The following command configures the switch to restart in cold mode:
 
 {{< tabs "28 ">}}
@@ -87,11 +93,11 @@ cumulus@switch:~$ sudo csmgrctl -f
 {{< /tabs >}}
 
 The following command configures the switch to restart in warm mode.
-<!-->
+<!--
 {{< notice warning >}}
 Warm restart mode resets any manually configured FEC settings.
-{{< /notice >}}-->
-
+{{< /notice >}}
+-->
 {{< tabs "76 ">}}
 {{< tab "NVUE Command ">}}
 
@@ -124,15 +130,11 @@ You must specify `no-confirm` at the end of the command.
 
 Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux minor release without impacting traffic. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="warm, cold, or fast restart">}}.
 
-If the switch is in warm restart mode, restarting the switch after an upgrade does not result in traffic loss (this is known as a hitless upgrade).
+If the switch is in warm restart mode, restarting the switch after an upgrade does not result in traffic loss (this is a hitless upgrade).
 
 Upgrade mode includes the following options:
 - **all** runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
 - **dry-run** provides information on the components you want to upgrade.
-
-{{%notice warning%}}
-Cumulus Linux 5.4 and later package upgrade (`apt-get upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
-{{%/notice%}}
 
 The following command upgrades all the system components:
 

@@ -138,7 +138,7 @@ To configure bond interfaces for EVPN-MH:
 {{<tabs "bond configuration">}}
 {{<tab "NVUE Commands">}}
 
-With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the Ethernet segment ID manually. Both options are shown below.
+With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the Ethernet segment ID manually. You can see both options below.
 
 The following example commands configure each bond interface with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
 
@@ -581,18 +581,122 @@ cumulus@switch:~$
 ## Troubleshooting
 
 Use the following commands to troubleshoot your EVPN multihoming configuration.
-
+<!-- vale off -->
 ### Show Global EVPN-MH Information
-
-To show global EVPN-MH information, such as the uplink count, startup delay timer, neighbor holdtime, and MAC entry hold time, run the NVUE `nv show evpn multihoming` command:
+<!-- vale on -->
+To show global EVPN-MH information, such as the uplink count, startup delay timer, neighbor hold time, and MAC entry hold time, run the NVUE `nv show evpn multihoming` command:
 
 ```
 cumulus@switch:~$ nv show evpn multihoming
+                     operational  applied
+-------------------  -----------  -------
+enable                            on     
+mac-holdtime         1080         1080   
+neighbor-holdtime    1080         1080   
+startup-delay        180          180    
+ead-evi-route                            
+  rx                              on     
+  tx                              on     
+segment                                  
+  df-preference                   32767  
+startup-delay-timer  --:--:--            
+uplink-active        2                   
+uplink-count         2  
 ```
 
 ### Show Ethernet Segment Information
 
-To display the Ethernet segments across all VNIs, run the `nv show evpn multihoming esi` commandor the vtysh `show evpn es` command. For example:
+To display the Ethernet segments across all VNIs, run the `nv show evpn multihoming esi -o json` command or the vtysh `show evpn es` command. For example:
+
+```
+cumulus@switch:~$ nv show evpn multihoming esi -o json
+{
+  "03:44:38:39:be:ef:aa:00:00:01": {
+    "df-preference": 50000,
+    "flags": {
+      "bridge-port": "on",
+      "local": "on",
+      "nexthop-group-active": "on",
+      "oper-up": "on",
+      "ready-for-bgp": "on",
+      "remote": "on"
+    },
+    "local-interface": "bond1",
+    "mac-count": 2,
+    "nexthop-group-id": 536870913,
+    "remote-vtep": {
+      "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
+        "nexthop-group-id": 268435463
+      }
+    },
+    "vni-count": 1
+  },
+  "03:44:38:39:be:ef:aa:00:00:02": {
+    "df-preference": 50000,
+    "flags": {
+      "bridge-port": "on",
+      "local": "on",
+      "nexthop-group-active": "on",
+      "oper-up": "on",
+      "ready-for-bgp": "on",
+      "remote": "on"
+    },
+    "local-interface": "bond2",
+    "mac-count": 2,
+    "nexthop-group-id": 536870914,
+    "remote-vtep": {
+      "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
+        "nexthop-group-id": 268435463
+      }
+    },
+    "vni-count": 1
+  },
+  "03:44:38:39:be:ef:aa:00:00:03": {
+    "df-preference": 50000,
+    "flags": {
+      "bridge-port": "on",
+      "local": "on",
+      "nexthop-group-active": "on",
+      "oper-up": "on",
+      "ready-for-bgp": "on",
+      "remote": "on"
+    },
+    "local-interface": "bond3",
+    "mac-count": 2,
+    "nexthop-group-id": 536870915,
+    "remote-vtep": {
+      "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
+        "nexthop-group-id": 268435463
+      }
+    },
+    "vni-count": 1
+  },
+  "03:44:38:39:be:ef:bb:00:00:01": {
+    "df-preference": 0,
+    "flags": {
+      "nexthop-group-active": "on",
+      "remote": "on"
+    },
+    "mac-count": 2,
+    "nexthop-group-id": 536870916,
+    "remote-vtep": {
+      "10.10.10.3": {
+        "nexthop-group-id": 268435461
+      },
+      "10.10.10.4": {
+        "nexthop-group-id": 268435462
+      }
+    },
+    "vni-count": 0
+  }
+}
+```
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -605,15 +709,9 @@ ESI                            Type ES-IF                 VTEPs
 03:44:38:39:be:ef:aa:00:00:03  LB   bond3
 ```
 
-To show information about a specific Ethernet segment ID (ESI), run the `nv show evpn multihoming esi <esi>` command:
-
-```
-cumulus@switch:~$ nv show evpn multihoming esi 00:44:38:39:BE:EF:AA:00:00:01
-```
-
 ### Show Ethernet Segment per VNI Information
 
-To display the Ethernet segments learned for each VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command or the vtysh `show evpn es-evi` command. For example:
+To display the Ethernet segments learned for each VNI, run the vtysh `show evpn es-evi` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -627,29 +725,167 @@ VNI      ESI                            Type
 10       03:44:38:39:be:ef:aa:00:00:01  L 
 ```
 
-You can also show information about a specific ESI for a VNI with the `nv show evpn vni <vni> multihoming esi <esi>` command:
+To display the Ethernet segments for a specific VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command. For example:
 
 ```
-cumulus@switch:~$ nv show evpn vni 10 multihoming esi 00:44:38:39:BE:EF:AA:00:00:01
+cumulus@switch:~$ nv show evpn vni 10 multihoming esi
+                               type.local  type.remote
+-----------------------------  ----------  -----------
+03:44:38:39:be:ef:aa:00:00:01  on
 ```
 
 ### Show BGP Ethernet Segment Information
 
-To display the Ethernet segments across all VNIs learned via type-1 and type-4 routes, run the NVUE `nv show evpn vni <vni> multihoming bgp-info esi` or the vtysh `show bgp l2vpn evpn es` command. For example:
+To display the Ethernet segments across all VNIs learned via type-1 and type-4 routes, run the NVUE `nv show evpn multihoming bgp-info esi -o json` command or the vtysh `show bgp l2vpn evpn es` command. For example:
 
 ```
-cumulus@switch:~$ sudo vtysh
-...
-switch# show bgp l2vpn evpn es
-ES Flags: B - bypass, L local, R remote, I inconsistent
-VTEP Flags: E ESR/Type-4, A active nexthop
-ESI                            Flags RD                    #VNIs    VTEPs
-03:44:38:39:be:ef:aa:00:00:01  BLR   10.10.10.1:3          1        
-03:44:38:39:be:ef:aa:00:00:02  BLR   10.10.10.1:4          1        
-03:44:38:39:be:ef:aa:00:00:03  BLR   10.10.10.1:5          1        
-03:44:38:39:be:ef:bb:00:00:01  R     -                     1        
-03:44:38:39:be:ef:bb:00:00:02  R     -                     1        
-03:44:38:39:be:ef:bb:00:00:03  R     -                     1    
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
+{
+  "03:44:38:39:be:ef:aa:00:00:01": {
+    "es-df-preference": 50000,
+    "flags": {
+      "advertise-evi": "on",
+      "up": "on"
+    },
+    "fragments": {
+      "10.10.10.1:3": {
+        "evi-count": 1
+      }
+    },
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 8,
+    "macip-path-count": 4,
+    "originator-ip": "10.10.10.1",
+    "rd": "10.10.10.1:3",
+    "remote-vtep": {
+      "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
+        "flags": {
+          "active": "on",
+          "esr": "on"
+        }
+      }
+    },
+    "type": {
+      "local": "on",
+      "remote": "on"
+    },
+    "vni-count": 1,
+    "vrf-count": 1
+  },
+  "03:44:38:39:be:ef:aa:00:00:02": {
+    "es-df-preference": 50000,
+    "flags": {
+      "advertise-evi": "on",
+      "up": "on"
+    },
+    "fragments": {
+      "10.10.10.1:4": {
+        "evi-count": 1
+      }
+    },
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 6,
+    "macip-path-count": 3,
+    "originator-ip": "10.10.10.1",
+    "rd": "10.10.10.1:4",
+    "remote-vtep": {
+      "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
+        "flags": {
+          "active": "on",
+          "esr": "on"
+        }
+      }
+    },
+    "type": {
+      "local": "on",
+      "remote": "on"
+    },
+    "vni-count": 1,
+    "vrf-count": 1
+  },
+  "03:44:38:39:be:ef:aa:00:00:03": {
+    "es-df-preference": 50000,
+    "flags": {
+      "advertise-evi": "on",
+      "up": "on"
+    },
+    "fragments": {
+      "10.10.10.1:5": {
+        "evi-count": 1
+      }
+    },
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 6,
+    "macip-path-count": 3,
+    "originator-ip": "10.10.10.1",
+    "rd": "10.10.10.1:5",
+    "remote-vtep": {
+      "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
+        "flags": {
+          "active": "on",
+          "esr": "on"
+        }
+      }
+    },
+    "type": {
+      "local": "on",
+      "remote": "on"
+    },
+    "vni-count": 1,
+    "vrf-count": 1
+  },
+  "03:44:38:39:be:ef:bb:00:00:01": {
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 16,
+    "macip-path-count": 0,
+    "originator-ip": "0.0.0.0",
+    "remote-vtep": {
+      "10.10.10.3": {
+        "flags": {
+          "active": "on"
+        }
+      },
+      "10.10.10.4": {
+        "flags": {
+          "active": "on"
+        }
+      }
+    },
+    "type": {
+      "remote": "on"
+    },
+    "vni-count": 1,
+    "vrf-count": 1
+  },
+  "03:44:38:39:be:ef:bb:00:00:02": {
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 0,
+    "macip-path-count": 0,
+    "originator-ip": "0.0.0.0",
+    "type": {
+      "remote": "on"
+    },
+    "vni-count": 1,
+    "vrf-count": 1
+  },
+  "03:44:38:39:be:ef:bb:00:00:03": {
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 0,
+    "macip-path-count": 0,
+    "originator-ip": "0.0.0.0",
+    "type": {
+      "remote": "on"
+    },
+    "vni-count": 1,
+    "vrf-count": 1
+  }
+}
 ```
 
 ### Show BGP Ethernet Segment per VNI Information
@@ -674,7 +910,7 @@ VNI      ESI                            Flags VTEPs
 
 ### Show EAD Route Types
 
-To view type-1 EAD routes, run the NVUE `nv show evpn multihoming ead-evi-route esi` command or the vtysh `show bgp l2vpn evpn route type ead` command. For example:
+To view type-1 EAD routes, run the NVUE vtysh `show bgp l2vpn evpn route type ead` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -3313,6 +3549,8 @@ exit-address-family
 {{< /tab >}}
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL54 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
+
+This simulation is running Cumulus Linux 5.4. The Cumulus Linux 5.5 simulation is coming soon.
 
 This simulation starts with the EVPN-MH with Head End Replication configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

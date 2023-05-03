@@ -20,7 +20,7 @@ Early access features are now called beta features.
 
 ### Platforms
 
-- NVIDIA SN3750-SX (100G Spectrum-2) continues to be in Beta
+- NVIDIA SN3750-SX (100G Spectrum-2) continues to be in beta
 
 {{%notice warning%}}
 The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. Do not use this switch in production; it is not supported through NVIDIA networking support.
@@ -29,7 +29,7 @@ The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Supp
 ### New Features and Enhancements
 
 - {{<link url="Switch-Port-Attributes/#breakout-ports" text="1G support">}} for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
-- {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.2 Profile">}}
+- {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.2 profile">}}
 - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}}
 - {{<link url="EVPN-Enhancements/#configure-a-site-id-for-mlag" text="Site ID for MLAG">}}
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
@@ -45,9 +45,9 @@ The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Supp
   - New EVPN commands to show {{<link url="EVPN-Multihoming/#troubleshooting" text="multihoming information">}}, {{<link url="Troubleshooting-EVPN/#examine-remote-router-mac-addresses" text="remote router MAC addresses">}}, {{<link url="Troubleshooting-EVPN/#examine-gateway-next-hops" text="nexthop VTEPs">}}, and {{<link url="Troubleshooting-EVPN/#show-access-vlans" text="access VLANs and their VNIs">}}
   - Updated {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#next-hop-groups" text="nv show router nexthop rib">}} and {{<link url="FRRouting/#next-hop-tracking" text="nv show vrf <vrf> router nexthop-tracking">}} commands show operational data
   - Updated {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data
-  - Support for the {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="named well known BGP communities">}} for `no-export`, `no-advertise`, and `additive` options
+  - Support for {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="named well known BGP communities">}} `no-export`, `no-advertise`, and `additive` options
 
-{{< expand "Changed commands" >}}
+{{< expand "Changed Commands" >}}
 | Previous Command | New Command |
 | ---------------- | ----------- |
 | `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>`| `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>` |
@@ -64,7 +64,7 @@ The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Supp
 
 {{< expand "New Commands" >}}
    {{< tabs "TabID40 ">}}
-{{< tab "show commands ">}}
+{{< tab "nv show commands ">}}
 
 ```
 nv show evpn vni <vni-id> multihoming
@@ -186,7 +186,7 @@ nv show vrf <vrf-id> router ospf neighbor <ipv4-nbr-id> interface <interface-id>
 ```
 
 {{< /tab >}}
-{{< tab "set commands ">}}
+{{< tab "nv set commands ">}}
 
 ```
 nv set router policy route-map <route-map-id> rule <rule-id> match ext-community-list
@@ -251,11 +251,11 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> soft
 nv set vrf <vrf-id> router ospf static-neighbor <ipv4-address-id>
 nv set vrf <vrf-id> router ospf static-neighbor <ipv4-address-id> poll-interval
 nv set vrf <vrf-id> router ospf static-neighbor <ipv4-address-id> priority
-nv set acl <acl-id> rule <rule-id> match ip ttl 0-255
+nv set acl <acl-id> rule <rule-id> match ip ttl
 ```
 
 {{< /tab >}}
-{{< tab "unset commands ">}}
+{{< tab "nv unset commands ">}}
 
 ```
 nv unset router policy route-map <route-map-id> rule <rule-id> match ext-community-list
@@ -317,7 +317,7 @@ nv unset acl <acl-id> rule <rule-id> match ip ttl
 ```
 
 {{< /tab >}}
-{{< tab "action commands ">}}
+{{< tab "nv action commands ">}}
 
 ```
 nv action disconnect system aaa user <user-id>

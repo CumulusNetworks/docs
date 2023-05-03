@@ -610,7 +610,7 @@ iface br_default
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the bridge ageing configuration setting, run the `nv show bridge domain <domain>` command:
+To show the bridge ageing configuration setting, run the `nv show bridge domain <domain>` command or the Linux `sudo ip -d link show <bridge-domain>` command.
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default
@@ -624,6 +624,8 @@ untagged                      1
 vlan-vni-offset               0
 ...
 ```
+
+To reset bridge ageing to the default value (1800 seconds), run the `nv unset bridge domain <domain> ageing` command.
 
 ## Static MAC Address Entries
 

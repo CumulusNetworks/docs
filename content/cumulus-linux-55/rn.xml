@@ -29,7 +29,7 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 </tr>
 <tr>
 <td>3430459</td>
-<td>When you configure PTP on 25G ports, the offset correction might be higher, which can affect the time synchronization of the node. To work around this issue, configure PTP on 100G ports, or on 10G or 1G ports with PTP shaper enabled.</td>
+<td>When you configure PTP on 25G ports on a Spectrum 1 system, the offset correction might be higher, which can affect the time synchronization of the node. To work around this issue, configure PTP on 100G ports, or on 10G or 1G ports with PTP shaper enabled.</td>
 <td>5.5.0</td>
 <td></td>
 </tr>
@@ -121,9 +121,7 @@ error: /etc/network/interfaces: line28: iface swp5: invalid syntax 'alias'
 </tr>
 <tr>
 <td>3329518</td>
-<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} (files is listed before tacplus), a user that is present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch.
-
-We recommend that when using TACACS+, {{tacplus}} should be listed before {{files}} in {{/etc/nsswitch.conf}}.  When using NVUE, ensure that {{tacacs}} has priority over {{local}}.</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} (files is listed before tacplus), a user that is present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch. NVIDIA recommends that when using TACACS+, you list {{tacplus}} before {{files}} in {{/etc/nsswitch.conf}}.  When using NVUE, ensure that {{tacacs}} has priority over {{local}}.</td>
 <td>5.4.0-5.5.0</td>
 <td></td>
 </tr>
@@ -276,12 +274,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3053197</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.5.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3053094</td>
 <td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
 <td>5.1.0-5.5.0</td>
@@ -421,10 +413,7 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 </tr>
 <tr>
 <td>3410303</td>
-<td>The NVUE command to set the frequency of LLDP updates {{nv set service lldp tx-interval}} and the NVUE command to 
- set the amount of time to hold the information before discarding it {{nv set service lldp tx-hold-multiplier}} do not provide reasonable maximum and minimum values. Cumulus Linux 5.5.0 and later provides new values:
-- For the {{nv set service lldp tx-interval}} command, you can now set a minimum value of 5 and a maximum value of 32768 .
-- For the {{nv set service lldp tx-hold}} command, you can set a minimum value of 1 and a maximum value of 8192.</td>
+<td>The NVUE command to set the frequency of LLDP updates {{nv set service lldp tx-interval}} and the NVUE command to set the amount of time to hold the information before discarding it {{nv set service lldp tx-hold-multiplier}} do not provide reasonable maximum and minimum values. Cumulus Linux 5.5.0 and later provides new values. For the {{nv set service lldp tx-interval}} command, you can now set a minimum value of 5 and a maximum value of 32768. For the {{nv set service lldp tx-hold}} command, you can set a minimum value of 1 and a maximum value of 8192.</td>
 <td>5.4.0</td>
 </tr>
 <tr>

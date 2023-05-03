@@ -359,12 +359,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>5.2.0-5.4.0</td>
 </tr>
 <tr>
-<td>3053197</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.6, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3046023</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-5.1.0</td>
@@ -2606,12 +2600,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>5.2.0-5.4.0</td>
 </tr>
 <tr>
-<td>3053197</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3046023</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-5.1.0</td>
@@ -4817,12 +4805,6 @@ end vrf
 To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.4.0</td>
-</tr>
-<tr>
-<td>3053197</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3046023</td>
@@ -7162,12 +7144,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>5.2.0-5.4.0</td>
 </tr>
 <tr>
-<td>3053197</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3046023</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-5.1.0</td>
@@ -9430,12 +9406,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.4.0</td>
-</tr>
-<tr>
-<td>3053197</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3046023</td>
@@ -11849,12 +11819,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.4.0</td>
-</tr>
-<tr>
-<td>3053197</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3046023</td>

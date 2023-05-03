@@ -280,12 +280,13 @@ You can use the NVUE configuration management commands to back up and restore co
 
 ### Action Commands
 
-The NVUE action commands reset counters for interfaces and remove conflicts from protodown MLAG bonds.
+The NVUE action commands clear counters, and provide system reboot, and TACACS user disconnect options.
 
-| <div style="width:450px">Command | Description |
+| Command | Description |
 | ------- | ----------- |
-|`nv action clear interface <interface> qos roce counters`  | Resets counters that the `nv show interface <interface> qos roce` command displays. |
-|`nv action clear interface <interface> bond mlag lacp-conflict`| Removes duplicate partner MAC address or partner MAC address mismatch conflicts from protodown MLAG bonds.|
+| `nv action clear` | Provides commands to clear {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#clear-interface-counters" text="interface counters">}}, {{<link url="Quality-of-Service/#clear-qos-buffers" text="Qos buffers">}}, {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP routes">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="OSPF interface counters">}}, {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="matches against a route map">}}, and to remove {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#lacp-partner-mac-address-duplicate-or-mismatch" text="conflicts from protodown MLAG bonds">}}. |
+| `nv action disconnect system aaa user`|  Disconnects a TACACs user. |
+| `nv action reboot system` |  Reboots the switch in the configured restart mode ({{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="fast, cold, or warm">}}). You must specify the `no-confirm` option with this command. |
 
 ### List All NVUE Commands
 
@@ -294,20 +295,14 @@ To show the full list of NVUE commands, run `nv list-commands`. For example:
 ```
 cumulus@switch:~$ nv list-commands
 nv show platform
-nv show platform capabilities
 nv show platform hardware
 nv show platform hardware component
 nv show platform hardware component <component-id>
-nv show platform hardware component <component-id> linecard
-nv show platform hardware component <component-id> port
-nv show platform hardware component <component-id> port <port-id>
-nv show platform hardware component <component-id> port <port-id> breakout-mode
-nv show platform hardware component <component-id> port <port-id> breakout-mode <mode-id>
+nv show platform software
+nv show platform software installed
+nv show platform software installed <installed-id>
+nv show platform capabilities
 nv show platform environment
-nv show platform environment fan
-nv show platform environment fan <fan-id>
-nv show platform environment sensor
-nv show platform environment sensor <sensor-id>
 ...
 ```
 
@@ -317,15 +312,11 @@ You can show the list of commands for a command grouping. For example, to show t
 cumulus@switch:~$ nv list-commands interface
 nv show interface
 nv show interface <interface-id>
-nv show interface <interface-id> pluggable
 nv show interface <interface-id> ip
 nv show interface <interface-id> ip address
 nv show interface <interface-id> ip address <ip-prefix-id>
-nv show interface <interface-id> ip neighbor
-nv show interface <interface-id> ip neighbor ipv4
-nv show interface <interface-id> ip neighbor ipv4 <neighbor-id>
-nv show interface <interface-id> ip neighbor ipv6
-nv show interface <interface-id> ip neighbor ipv6 <neighbor-id>
+nv show interface <interface-id> ip gateway
+nv show interface <interface-id> ip gateway <ip-address-id>
 ...
 ```
 <!-- vale off -->
@@ -333,8 +324,9 @@ Use the Tab key to get help for the command lists you want to see. For example, 
 <!-- vale on -->
 ```
 cumulus@switch:~$ nv list-commands interface swp1 <<press Tab>>
-acl            bridge         ip             lldp           ptp            router         tunnel
-bond           evpn           link           pluggable      qos            storm-control  
+acl            counters       link           ptp            storm-control  
+bond           evpn           lldp           qos            synce          
+bridge         ip             pluggable      router         tunnel
 ```
 
 ## NVUE Configuration File
@@ -535,18 +527,18 @@ The following example command lists the software installed on the switch:
 cumulus@switch:~$ nv show platform software
 Installed Software
 =====================
-                      description                                                     package                version
---------------------- ----------------------------                                    --------------------   ------------
-acpi                  displays information on ACPI devices                            acpi                   1.7-1.1                   
-acpi-support-base     scripts for handling base ACPI events such as the power button  acpi-support-base      0.142-8
-acpid                 Advanced Configuration and Power Interface event daemon         acpid                  1:2.0.31-1
-adduser               add and remove users and groups                                 adduser                3.118
-apt                   commandline package manager                                     apt                    1.8.2.3
-arping                sends IP and/or ARP pings (to the MAC address)                  arping                 2.19-6
-arptables             ARP table administration                                        arptables              0.0.4+snapshot20181021-4
-atftp                 advanced TFTP client                                            atftp                  0.7.git20120829-3.               
-atftpd                advanced TFTP server                                            atftpd                 0.7.git20120829-3.2~deb10u1 
-auditd                User space tools for security auditing                          auditd                 1:2.8.4-3              
+Installed software            description                     package                      version                       
+---------------------------   ---------------------------     --------------------------   -----------------------------
+acpi                          displays information on ACPI    acpi                         1.7-1.1                       
+                              devices                                                                                  
+acpi-support-base             scripts for handling base       acpi-support-base            0.142-8                       
+                              ACPI events such as the                                                                  
+                              power button                                                                             
+acpid                         Advanced Configuration and      acpid                        1:2.0.31-1                    
+                              Power Interface event daemon                                                             
+adduser                       add and remove users and        adduser                      3.118                         
+                              groups                                                                                   
+apt                           commandline package manager     apt                          1.8.2.3             
 ...
 ```
 
@@ -558,22 +550,26 @@ The following example command shows the running, applied, and pending swp1 inter
 cumulus@leaf01:~$ nv show interface swp1
                          operational  applied  description
 -----------------------  -----------  -------  ----------------------------------------------------------------------
-type                     swp                   The type of interface
-ip
-  [address]                                    ipv4 and ipv6 address
-link
-  mtu                    9216                  interface mtu
-  state                  down                  The state of the interface
-  stats
-    carrier-transitions  3                     Number of times the interface state has transitioned between up and...
-    in-bytes             300 Bytes             total number of bytes received on the interface
-    in-drops             5                     number of received packets dropped
-    in-errors            0                     number of received packets with errors
-    in-pkts              5                     total number of packets received on the interface
-    out-bytes            0 Bytes               total number of bytes transmitted out of the interface
-    out-drops            0                     The number of outbound packets that were chosen to be discarded eve...
-    out-errors           0                     The number of outbound packets that could not be transmitted becaus...
-    out-pkts             0                     total number of packets transmitted out of the interface
+t                         operational        applied  pending
+-----------------------  -----------------  -------  -------
+type                     swp                                
+ip                                                          
+  [address]                                                 
+link                                                        
+  auto-negotiate         off                                
+  mtu                    1500                               
+  state                  down                               
+  stats                                                     
+    carrier-transitions  2                                  
+    in-bytes             0 Bytes                            
+    in-drops             0                                  
+    in-errors            0                                  
+    in-pkts              0                                  
+    out-bytes            0 Bytes                            
+    out-drops            0                                  
+    out-errors           0                                  
+    out-pkts             0                                  
+  mac                    48:b0:2d:16:d8:82               
 ...
 ```
 

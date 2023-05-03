@@ -242,7 +242,7 @@ Undersize Errors  0        n/a
 ```
 
 {{%notice note%}}
-NVUE does not provide statistics for logical interfaces, such as bonds, VLAN interfaces or subinterfaces.
+NVUE does not show detailed statistics for logical interfaces, such as bonds, VLAN interfaces or subinterfaces. To see basic statistics for logical interfaces, run the `nv show interface <interface> link stats` command.
 <!--- To show statistics for all VNIs in a single VXLAN device, run the `nv show nve counters` command. To show statistics for a specific VNI in a single VXLAN device,run the `nv show nve counters vni <vni>` command.-->
 {{%/notice%}}
 

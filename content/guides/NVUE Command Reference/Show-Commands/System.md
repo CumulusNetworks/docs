@@ -199,7 +199,7 @@ cumulus@leaf01:mgmt:~$ nv show system message
 
 ## nv show system reboot
 
-Shows system reboot information.
+Shows system reboot information, such as the time when the switch rebooted, the reason for the reboot, and the restart mode (fast, warm, cold).
 
 ### Version History
 

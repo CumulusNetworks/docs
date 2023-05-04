@@ -7,6 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3455078</td>
+<td>When you bring down or delete a bridge or all interfaces on the switch, you see the following error message in the {{/var/log/switchd.log}} file:
+
+ERR bridge destroy for vlan &lt;vlan id&gt; bridge_id &lt;kernel bridge id&gt; vfid &lt;hw bridge id&gt; failed: Resource is in use
+
+The errors are temporary and have no impact on functionality or traffic.</td>
+<td>5.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3445841</td>
 <td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}} is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
 <td>5.0.0-5.5.0</td>
@@ -25,12 +35,6 @@
 cumulus@switch:~$ what-just-happened poll --export --no_metadata
 </td>
 <td>5.4.0-5.5.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3430459</td>
-<td>When you configure PTP on 25G ports on a Spectrum 1 system, the offset correction might be higher, which can affect the time synchronization of the node. To work around this issue, configure PTP on 100G ports, or on 10G or 1G ports with PTP shaper enabled.</td>
-<td>5.5.0</td>
 <td></td>
 </tr>
 <tr>

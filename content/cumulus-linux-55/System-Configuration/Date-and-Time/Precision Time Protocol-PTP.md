@@ -1231,7 +1231,7 @@ priority2                    128          128                 Priority2 attribut
 ...
 ```
 
-To show the settings for a profile, run the `nv show service ptp 1 profile <profile-name>` command:
+To show the settings for a profile, run the `nv show service ptp <instance> profile <profile-name>` command:
 
 ```
 cumulus@switch:~$ nv show service ptp 1 profile CUSTOM1
@@ -1616,23 +1616,23 @@ monitor
 ```
 
 You can drill down with the following `nv show service ptp <instance>` commands:
+- `nv show service ptp <instance> acceptable-master` shows acceptable master configuration.
+- `nv show service ptp <instance> clock-quality` shows the clock quality status.
+- `nv show service ptp <instance> current` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> domain` shows the domain configuration.
 - `nv show service ptp <instance> ip-dscp` shows PTP DSCP configuration.
-- `nv show service ptp <instance> priority1` shows PTP priority1 configuration.
-- `nv show service ptp <instance> priority2` shows PTP priority2 configuration.
-- `nv show service ptp <instance> acceptable-master` shows acceptable master configuration.
-- `nv show service ptp <instance> current` shows the local states learned during PTP message exchange.
-- `nv show service ptp <instance> clock-quality` shows the clock quality status.
-- `nv show service ptp <instance> parent` shows the local states learned during PTP message exchange.
-- `nv show service ptp <instance> time-properties` shows the clock time attributes.
 - `nv show service ptp <instance> monitor` shows PTP monitor configuration.
 - `nv show service ptp <instance> profile` shows PTP profile configuration.
+- `nv show service ptp <instance> parent` shows the local states learned during PTP message exchange.
+- `nv show service ptp <instance> priority1` shows PTP priority1 configuration.
+- `nv show service ptp <instance> priority2` shows PTP priority2 configuration.
+- `nv show service ptp <instance> status` shows the status of all PTP interfaces.
+- `nv show service ptp <instance> time-properties` shows the clock time attributes.
 - `nv show service ptp <instance> unicast-master` shows the unicast master configuration.
 
 ### Show PTP Interface Configuration
 
 To check configuration for a PTP interface, run the `nv show interface <interface> ptp` command.
-<!--This command also shows PTP counters (statistics, such as the number of Announce messages received, the number of Sync messages received, and so on).-->
 
 ```
 cumulus@switch:~$ nv show interface swp1 ptp

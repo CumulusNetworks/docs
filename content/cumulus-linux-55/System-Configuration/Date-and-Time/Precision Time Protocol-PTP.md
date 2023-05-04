@@ -1923,10 +1923,9 @@ In the `/etc/cumulus/switchd.d/ptp_shaper.conf` file, set the `interface.<interf
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ptp_shaper.conf
 ## Per-port configuration for PTP shaper
-interface.swp1.ptp.shaper = TRUE
-#interface.swp2.ptp.shaper = FALSE
-#interface.swp9.ptp.shaper = TRUE
-#interface.swp12.ptp.shaper = TRUE
+ptp_shaper.port_group_list = [enable-group]
+ptp_shaper.enable-group.port_set = swp1,swp2
+ptp_shaper.enable-group.ptp_shaper_enable = true
 ```
 
 ```

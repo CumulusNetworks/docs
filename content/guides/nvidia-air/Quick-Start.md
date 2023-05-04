@@ -215,13 +215,13 @@ In the SSH keys window, provide a name and enter your public key, then click **A
 
 The SSH keys upload automatically to the oob-mgmt-server.
 
-### Resource Budgets
+## Resource Budgets
 
 The number of simulation resources a user can consume is limited based on the user's account. For an account using a company email, a user is granted the following limits:
 
 - 60 vCPUs
-- 80GB memory
-- 600GB storage
+- 90GB memory
+- 650GB storage
 - 4 running simulations
 
 For an account using a non-company email, a user is granted the following limits:

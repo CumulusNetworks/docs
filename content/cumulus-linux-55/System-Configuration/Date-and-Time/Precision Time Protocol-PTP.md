@@ -1879,13 +1879,20 @@ network_transport            UDPv4
 
 ### PTP Traffic Shaping
 
-To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile.
-For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
+To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
 
 {{%notice note%}}
 - Switches with Spectrum-2 and later do not support PTP shaping.
 - Bonds do not support PTP shaping.
-- You cannot configure QoS egress queue or port based scheduling on the same ports with PTP traffic shaping.
+- You cannot configure {{<link url="Quality-of-Service/#shaping" text="QoS traffic shaping">}} and PTP traffic shaping on the same ports.
+- You must configure a {{<link url="Quality-of-Service/#egress-scheduler" text="strict priority">}} for PTP traffic; for example:
+
+  ```
+  cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 0-5,7 mode dwrr
+  cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 0-5,7 bw-percent 12
+  cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 6 mode strict
+  ```
+
 {{%/notice%}}
 
 {{< tabs "TabID1387 ">}}

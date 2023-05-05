@@ -2078,6 +2078,20 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3448171</td>
+<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+
+In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+
+systemctl restart switchd.service
+
+or
+
+sudo reboot</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3434315</td>
 <td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
 <td>4.3.0-4.4.5</td>

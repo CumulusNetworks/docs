@@ -19,7 +19,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop group
 
@@ -35,7 +35,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop groups
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop group \<nexthop-group-id\>
 
@@ -57,7 +57,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop 1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop group \<nexthop-group-id\> via
 
@@ -79,7 +79,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop 1 via
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop group \<nexthop-group-id\> via \<via-id\>
 
@@ -102,7 +102,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop 10 via fe80::a00:27ff:fea6:b9fe
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop rib
 
@@ -118,7 +118,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop rib
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop rib \<nhg-id\>
 
@@ -140,7 +140,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show router next hop rib 10
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop rib \<nhg-id\> depends
 
@@ -162,7 +162,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop rib 10 depends
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop rib \<nhg-id\> dependents
 
@@ -184,7 +184,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop rib 10 dependents
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop rib \<nhg-id\> resolved-via
 
@@ -206,7 +206,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show router next hop rib 10 resolved-via
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop rib \<nhg-id\> resolved-via \<resolved-via-id\>
 
@@ -229,7 +229,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop rib 10 resolved-via fe80::a00:27ff:fea6:b9fe
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop rib \<nhg-id\> resolved-via-backup
 
@@ -251,7 +251,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show router next hop 10 resolved-via-backup
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show router nexthop rib \<nhg-id\> resolved-via-backup \<resolved-via-id\>
 
@@ -274,7 +274,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop rib 20 resolved-via-backup 
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show vrf \<vrf-id\> router nexthop-tracking
 
@@ -296,7 +296,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show vrf default router nexthop-tracking
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show vrf \<vrf-id\> router nexthop-tracking \<afi\>
 
@@ -319,7 +319,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show vrf default router nexthop-tracking ipv4
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show vrf \<vrf-id\> router nexthop-tracking \<afi\> route-map
 
@@ -342,7 +342,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show vrf \<vrf-id\> router nexthop-tracking \<afi\> route-map \<nht-routemap-id\>
 
@@ -366,7 +366,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show vrf \<vrf-id\> router nexthop-tracking \<afi\> route-map \<nht-routemap-id\> protocol
 
@@ -390,7 +390,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show vrf \<vrf-id\> router nexthop-tracking \<afi\> route-map \<nht-routemap-id\> protocol \<nht-protocol-id\>
 
@@ -414,5 +414,3 @@ Introduced in Cumulus Linux 5.3.0
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 bgp
 ```
-
-- - -

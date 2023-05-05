@@ -19,7 +19,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show system wjh
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show system wjh channel
 
@@ -35,7 +35,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show system wjh channel
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show system wjh channel \<channel-id\>
 
@@ -51,7 +51,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show system wjh channel forwarding
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show system wjh channel \<channel-id\> trigger
 
@@ -67,7 +67,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show system wjh channel forwarding trigger
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show system wjh packet-buffer
 
@@ -82,5 +82,3 @@ Introduced in Cumulus Linux 5.3.0
 ```
 cumulus@leaf01:mgmt:~$ nv show system wjh packet-buffer
 ```
-
-- - -

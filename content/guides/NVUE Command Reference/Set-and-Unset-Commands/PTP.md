@@ -13,7 +13,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Provides PTP configuration commands for the interface.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp acceptable-master
 
@@ -37,7 +37,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp acceptable-master on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp delay-mechanism end-to-end
 
@@ -61,7 +61,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp delay-mechanism end-to-end
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp enable
 
@@ -85,7 +85,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp enable on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp forced-master
 
@@ -109,7 +109,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp forced-master on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp instance \<value\>
 
@@ -131,7 +131,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp mixed-multicast-unicast
 
@@ -155,13 +155,13 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp mixed-multicast-unicast on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp shaper
 
 Configures PTP shaping on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G to improve performance.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp shaper enable
 
@@ -177,13 +177,13 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp shaper enable on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp timers
 
 Provides PTP configuration commands to set timers for PTP messages for the specified PTP interface. The commands include the average interval between successive Announce messages, the number of announce intervals that have to occur without receiving an Announce message before a timeout occurs, the minimum average time interval allowed between successive Delay Required messages, and the interval between PTP synchronization messages on an interface.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp timers announce-interval
 
@@ -205,7 +205,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers announce-interval -1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp timers announce-timeout
 
@@ -227,7 +227,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers announce-interval 2
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp timers delay-req-interval
 
@@ -249,7 +249,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers delay-req-interval -5
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp timers sync-interval
 
@@ -271,7 +271,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers sync-interval -5
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp transport
 
@@ -295,7 +295,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp transport ipv6
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp ttl
 
@@ -317,7 +317,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp ttl 20
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp unicast-master-table-id
 
@@ -339,7 +339,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp unicast-master-table-id 1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp unicast-request-duration
 
@@ -363,7 +363,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp unicast-request-duration 500
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> ptp unicast-service-mode
 
@@ -385,13 +385,13 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp unicast-service-mode server
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\>
 
 Provides commands to configure global Precision Time Protocol (PTP) settings. The NVUE PTP commands require an instance number for management purposes.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> acceptable-master \<clock-id\>
 
@@ -414,7 +414,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> acceptable-master \<clock-id\> alt-priority \<value\>
 
@@ -437,7 +437,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06 alt-priority 2
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> current-profile
 
@@ -459,7 +459,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 current-profile default-itu-8275-1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> domain
 
@@ -483,7 +483,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 domain 3
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> enable
 
@@ -507,7 +507,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 enable on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> ip-dscp
 
@@ -529,13 +529,13 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 ip-dscp 22
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> monitor
 
 Provides commands to configure PTP monitor settings.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> monitor max-offset-threshold \<value\>
 
@@ -559,7 +559,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor max-offset-threshold 30
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> monitor max-timestamp-entries
 
@@ -583,7 +583,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor max-timestamp-entries 300
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> monitor max-violation-log-entries
 
@@ -607,7 +607,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor max-violation-log-entries 6
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> monitor max-violation-log-sets
 
@@ -631,7 +631,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor max-violation-log-sets 3
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> monitor min-offset-threshold \<value\>
 
@@ -655,7 +655,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor min-offset-threshold -20
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> monitor path-delay-threshold \<value\>
 
@@ -679,7 +679,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor path-delay-threshold 300
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> monitor violation-log-interval
 
@@ -703,7 +703,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor violation-log-interval 1000
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> priority1 \<value\>
 
@@ -727,7 +727,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 priority1 200
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> priority2 \<value\>
 
@@ -751,7 +751,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 priority2 200
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\>
 
@@ -774,7 +774,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> announce-interval
 
@@ -799,7 +799,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 announce-interval 5
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> announce-timeout
 
@@ -824,7 +824,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 announce-timeout 5
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> delay-mechanism end-to-end
 
@@ -849,7 +849,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 delay-mechanism end-to-end 
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> delay-req-interval
 
@@ -874,7 +874,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 delay-req-interval 5
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> domain
 
@@ -897,7 +897,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 domain 28
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> local-priority
 
@@ -922,7 +922,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 local-priority 100
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> priority1
 
@@ -947,7 +947,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 priority1 100
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> priority2
 
@@ -972,7 +972,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 priority2 100
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> profile-type
 
@@ -995,7 +995,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 profile-type itu-g-8275-1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> sync-interval
 
@@ -1020,7 +1020,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 sync-interval 5
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> transport
 
@@ -1045,7 +1045,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 transport ipv6
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> unicast-master \<table-id\>
 
@@ -1068,7 +1068,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 unicast-master 1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> unicast-master \<table-id\> address
 
@@ -1091,7 +1091,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 unicast-master 1 address 10.10.1.1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> unicast-master \<table-id\> peer-address
 
@@ -1114,7 +1114,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 unicast-master 1 peer-address 10.10.10.10
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service ptp \<instance-id\> unicast-master \<table-id\> query-interval
 
@@ -1137,13 +1137,13 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 unicast-master 1 query-interval 2
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set vrf \<vrf-id\> ptp
 
 Configures PTP in the specified VRF.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set vrf \<vrf-id\> ptp enable
 
@@ -1164,5 +1164,3 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf RED ptp enable on
 ```
-
-- - -

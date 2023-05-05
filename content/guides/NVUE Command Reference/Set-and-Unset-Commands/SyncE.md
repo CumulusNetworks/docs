@@ -14,7 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Configures Synce on the specified interface.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> synce enable
 
@@ -36,7 +36,7 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 synce enable on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set interface \<interface-id\> synce provider-priority
 
@@ -62,7 +62,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 synce provider-priority 10
 
 Configures the SyncE service (`synced.service`).
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service synce enable
 
@@ -78,7 +78,7 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv set service synce enable on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service synce log-level
 
@@ -99,7 +99,7 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv set service synce log-level debug
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service synce provider-default-priority
 
@@ -115,7 +115,7 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv set service synce provider-default-priority 256
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service synce wait-to-restore-time
 
@@ -130,5 +130,3 @@ Introduced in Cumulus Linux 5.5.0
 ```
 cumulus@leaf01:mgmt:~$ nv set service synce wait-to-restore-time 180
 ```
-
-- - -

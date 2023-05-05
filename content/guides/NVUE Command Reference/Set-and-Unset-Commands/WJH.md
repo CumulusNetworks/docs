@@ -13,7 +13,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Provides commands to configure What Just Happened (WJH) to provide real time visibility into network problems. You can diagnose network problems by looking at dropped packets.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system wjh channel \<channel-id\>
 
@@ -35,7 +35,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv set system wjh channel forwarding
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system wjh channel \<channel-id\> trigger
 
@@ -57,7 +57,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv set system wjh channel forwarding trigger l3
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system wjh enable
 
@@ -74,5 +74,3 @@ Introduced in Cumulus Linux 5.3.0
 ```
 cumulus@leaf01:mgmt:~$ nv set system wjh enable off
 ```
-
-- - -

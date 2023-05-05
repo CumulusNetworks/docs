@@ -19,7 +19,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server listening-address
 
@@ -35,7 +35,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server listening-address
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server listening-address \<listening-address-id>\
 
@@ -57,7 +57,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server listening-address localhost
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username
 
@@ -73,7 +73,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\
 
@@ -95,7 +95,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username testusernoauth
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-none
 
@@ -117,7 +117,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username testusernoauth auth-none
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-md5
 
@@ -139,7 +139,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\
 
@@ -162,7 +162,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show nv show service snmp-server username testuserauth auth-md5 myauthmd5password
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des
 
@@ -185,7 +185,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-des
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -209,7 +209,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-des myencryptsecret
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes
 
@@ -232,7 +232,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\
 
@@ -256,7 +256,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes myencryptsecret
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-sha
 
@@ -278,7 +278,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\
 
@@ -301,7 +301,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHApassword1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-des
 
@@ -324,7 +324,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-des
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -348,7 +348,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-des myencryptsecret
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes
 
@@ -371,7 +371,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-aes
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\
 
@@ -395,7 +395,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-aes myencryptsecret
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server mibs
 
@@ -411,7 +411,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server mibs
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server viewname
 
@@ -427,7 +427,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server viewname
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server viewname \<viewname-id>\
 
@@ -449,7 +449,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server viewname cumulusOnly
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server readonly-community
 
@@ -465,7 +465,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server readonly-community 
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server readonly-community \<readonly-community-id>\
 
@@ -487,7 +487,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server readonly-community simplepassword
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server readonly-community \<readonly-community-id>\ access
 
@@ -509,7 +509,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server readonly-community simplepassword access
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server readonly-community \<readonly-community-id>\ access \<access-id>\
 
@@ -532,7 +532,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server readonly-community simplepassword access 192.168.200.10/24
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server readonly-community-v6
 
@@ -548,7 +548,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server readonly-community-v6
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server readonly-community-v6 \<readonly-community-id>\
 
@@ -570,7 +570,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server readonly-community-v6 showitall
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server readonly-community-v6 \<readonly-community-id>\ access
 
@@ -592,7 +592,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server readonly-community-v6 showitall access
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server readonly-community-v6 \<readonly-community-id>\ access \<access-id>\
 
@@ -615,7 +615,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server readonly-community-v6 showitall access 2001:db8::1/128
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-link-down
 
@@ -631,7 +631,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-link-down
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-link-up
 
@@ -647,7 +647,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-link-up
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-snmp-auth-failures
 
@@ -663,7 +663,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-snmp-auth-failures
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-cpu-load-average
 
@@ -679,7 +679,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-cpu-load-average one-minute
 
@@ -695,7 +695,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\
 
@@ -717,7 +717,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 12
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute
 
@@ -739,7 +739,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 102 five-minute
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute \<five-minute-id>\
 
@@ -762,7 +762,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 12 five-minute 10
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute \<five-minute-id>\ fifteen-minute
 
@@ -785,7 +785,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 102 five-minute 501 fifteen-minute
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute \<five-minute-id>\ fifteen-minute \<fifteen-minute-id>\
 
@@ -809,7 +809,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 102 five-minute 501 fifteen-minute 1501
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination
 
@@ -825,7 +825,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\
 
@@ -847,7 +847,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ community-password
 
@@ -869,7 +869,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost community-password
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ community-password \<community-password-id>\
 
@@ -892,7 +892,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost community-password mymanagementvrfpassword
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf
 
@@ -914,7 +914,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\
 
@@ -937,7 +937,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ community-password
 
@@ -960,7 +960,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE community-password
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ community-password \<community-password-id>\
 
@@ -984,7 +984,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE community-password mynotsosecretpassword
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username
 
@@ -1007,7 +1007,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\
 
@@ -1031,7 +1031,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5
 
@@ -1055,7 +1055,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\
 
@@ -1080,7 +1080,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5 md5password2
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id
 
@@ -1105,7 +1105,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5 md5password2 engine-id
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id \<engine-id>\
 
@@ -1131,7 +1131,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5 md5password2 engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des
 
@@ -1156,7 +1156,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5 md5password2 encrypt-des
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -1182,7 +1182,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5 md5password2 encrypt-des myaessecret2
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
 
@@ -1209,7 +1209,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5 md5password2 encrypt-des myaessecret2 engine-id
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -1236,7 +1236,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-md5 md5password2 encrypt-des myaessecret2 engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha
 
@@ -1260,7 +1260,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\
 
@@ -1285,7 +1285,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id
 
@@ -1310,7 +1310,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1 engine-id
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id \<engine-id>\
 
@@ -1336,7 +1336,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des
 
@@ -1361,7 +1361,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1 encrypt-des
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -1387,7 +1387,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1 encrypt-des user666encryption
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
 
@@ -1413,7 +1413,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username user666password encrypt-aes user666encryption engine-id
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -1440,7 +1440,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username user666password encrypt-aes user666encryption engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username
 
@@ -1463,7 +1463,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost 
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\
 
@@ -1486,7 +1486,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5
 
@@ -1509,7 +1509,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user1 auth-md5
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\
 
@@ -1533,7 +1533,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user1 auth-md5 user1password
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id
 
@@ -1558,7 +1558,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id \<engine-id>\
 
@@ -1583,7 +1583,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user1 auth-md5 user1password engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des
 
@@ -1607,7 +1607,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -1632,7 +1632,8 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
 
 Shows the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
@@ -1656,7 +1657,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption engine-id
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -1682,7 +1683,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha
 
@@ -1705,7 +1706,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username limiteduser1 auth-sha
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\
 
@@ -1729,7 +1730,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id
 
@@ -1753,7 +1754,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1 engine-id
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id \<engine-id>\
 
@@ -1778,7 +1779,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des
 
@@ -1802,7 +1803,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -1827,7 +1828,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
 
@@ -1852,7 +1853,7 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption engine-id
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -1877,5 +1878,3 @@ Introduced in Cumulus Linux 5.3.0
 ```
 cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption engine-id 0x80001f888070939b14a514da5a00000000
 ```
-
-- - -

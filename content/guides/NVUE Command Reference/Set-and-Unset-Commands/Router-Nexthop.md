@@ -9,13 +9,13 @@ type: nojsscroll
 
 Configures next hop groups.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set router nexthop group \<nexthop-group-id\>
 
 Configures a next hop group ID.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set router nexthop group \<nexthop-group-id\> via \<via-id\>
 
@@ -38,7 +38,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set router nexthop group 10 via 10.0.1.0
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set router nexthop group \<nexthop-group-id\> via \<via-id\> interface \<interface-name\>
 
@@ -62,7 +62,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set router nexthop group 10 via 10.10.10.101 interface swp51
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set router nexthop group \<nexthop-group-id\> via \<via-id\> vrf \<vrf-name\>
 
@@ -86,7 +86,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set router nexthop group 10 via 10.10.10.101 vrf default
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set vrf \<vrf-id> router nexthop-tracking \<afi> resolved-via-default
 
@@ -109,7 +109,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set vrf default router nexthop-tracking ipv4 resolved-via-default on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set vrf \<vrf-id> router nexthop-tracking \<afi\>
 
@@ -132,7 +132,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set router nexthop-tracking ipv4
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\>
 
@@ -156,7 +156,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set router nexthop-tracking ipv4 route-map ROUTEMAP1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\> protocol
 
@@ -179,5 +179,3 @@ Introduced in Cumulus Linux 5.4.0
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 bgp
 ```
-
-- - -

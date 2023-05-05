@@ -13,7 +13,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Configures Switched Port Analyzer (SPAN) and Encapsulated Remote Span (ERSPAN). SPAN enables you to mirror all packets that come in from or go out of an interface (the SPAN source), and copy and transmit the packets out of a local port or CPU (the SPAN destination) for monitoring. ERSPAN enables the mirrored packets to go to a monitoring node located anywhere across the routed network.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\>
 
@@ -29,7 +29,7 @@ Configures the port mirror session number, which is a number between 0 and 7.
 
 Introduced in Cumulus Linux 5.0.0
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> span
 
@@ -45,7 +45,7 @@ Configures SPAN, which enables you to mirror all packets that come in from or go
 
 Introduced in Cumulus Linux 5.0.0
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> span destination \<port-id\>
 
@@ -68,7 +68,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span destination swp2
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> span direction
 
@@ -90,7 +90,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span direction ingress
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> span enable
 
@@ -112,7 +112,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span enable on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> span source-port \<port-id\>
 
@@ -135,7 +135,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span source-port swp1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> span truncate
 
@@ -151,7 +151,7 @@ Configures truncation to decrease bandwidth by reducing the size of monitored pa
 
 Introduced in Cumulus Linux 5.0.0
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> span truncate enable
 
@@ -173,7 +173,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span truncate enable on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> span truncate size
 
@@ -195,7 +195,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span truncate size 40
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> erspan
 
@@ -211,7 +211,7 @@ Configures Encapsulated Remote Switched Port Analyzer (ERSPAN).
 
 Introduced in Cumulus Linux 5.0.0
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> erspan destination
 
@@ -227,7 +227,7 @@ Configures the ERSPAN destination.
 
 Introduced in Cumulus Linux 5.0.0
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> erspan destination dest-ip \<dest-ip\>
 
@@ -250,7 +250,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan destination dest-ip 10.10.10.234
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> erspan destination source-ip \<source-ip\>
 
@@ -273,7 +273,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan destination source-ip 10.10.10.1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> erspan direction
 
@@ -295,7 +295,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 direction ingress
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> erspan enable
 
@@ -317,7 +317,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan enable on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> erspan source-port \<port-id\>
 
@@ -340,7 +340,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan source-port swp1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> erspan truncate
 
@@ -356,7 +356,7 @@ Configures truncation to decrease bandwidth by reducing the size of monitored pa
 
 Introduced in Cumulus Linux 5.0.0
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> erspan truncate enable
 
@@ -378,7 +378,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan truncate enable on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system port-mirror session \<session-id\> erspan truncate size
 
@@ -399,5 +399,3 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan truncate size 4000
 ```
-
-- - -

@@ -26,7 +26,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show bridge domain br_default vlan 10 ptp
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show interface \<interface-id\> counters ptp
 
@@ -52,7 +52,7 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 counters ptp
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show interface \<interface-id\> ptp
 
@@ -74,7 +74,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show interface swp1 ptp
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show interface \<interface-id\> ptp shaper
 
@@ -98,7 +98,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ptp shaper
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show interface \<interface-id\> ptp timers
 
@@ -120,7 +120,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ptp timers
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp
 
@@ -136,7 +136,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\>
 
@@ -158,7 +158,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> acceptable-master
 
@@ -174,7 +174,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 acceptable-master
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> acceptable-master \<clock-id\>
 
@@ -197,7 +197,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> current
 
@@ -219,7 +219,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 current
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> clock-quality
 
@@ -241,7 +241,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 clock-quality
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> monitor
 
@@ -263,7 +263,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> monitor timestamp-log
 
@@ -285,7 +285,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor timestamp-log
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> monitor violations
 
@@ -307,7 +307,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> monitor violations log
 
@@ -329,7 +329,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> monitor violations log acceptable-master
 
@@ -351,7 +351,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$   nv show service ptp 1 monitor violations log acceptable-master
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> monitor violations log forced-master
 
@@ -373,7 +373,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log forced-master
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> monitor violations log max-offset
 
@@ -395,7 +395,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log max-offset
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> monitor violations log min-offset
 
@@ -417,7 +417,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log min-offset
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> monitor violations log path-delay
 
@@ -439,7 +439,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log path-delay
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> parent
 
@@ -461,7 +461,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 parent
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> parent grandmaster-clock-quality
 
@@ -483,7 +483,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 parent grandmaster-clock-quality
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> profile
 
@@ -505,7 +505,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show service ptp 1 profile
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> profile \<profile-id\>
 
@@ -527,7 +527,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show service ptp 1 profile CUSTOM1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> status
 
@@ -549,7 +549,7 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show service ptp 1 status
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> time-properties
 
@@ -571,7 +571,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 time-properties
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> unicast-master
 
@@ -593,7 +593,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 unicast-master
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> unicast-master \<table-id\>
 
@@ -616,7 +616,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show service ptp 1 unicast-master 1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> unicast-master \<table-id\> address
 
@@ -639,7 +639,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show service ptp 1 unicast-master 1 address
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show service ptp \<instance-id\> unicast-master \<table-id\> address \<ip-mac-address-id\>
 
@@ -663,7 +663,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show service ptp 1 unicast-master 1 address 10.10.10.1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show vrf \<vrf-id\> ptp
 
@@ -684,5 +684,3 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$  nv show vrf default ptp
 ```
-
-- - -

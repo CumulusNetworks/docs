@@ -19,7 +19,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show system ztp
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show system ztp script
 
@@ -35,7 +35,7 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show system ztp script
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv show system ztp status
 
@@ -50,5 +50,3 @@ Introduced in Cumulus Linux 5.2.0
 ```
 cumulus@leaf01:mgmt:~$ nv show system ztp status
 ```
-
-- - -

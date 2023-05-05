@@ -13,13 +13,13 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Provides commands to configure the routing table for the specified VRF.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set vrf \<vrf-id\> router rib \<afi\> protocol \<import-protocol-id\>
 
 Provides commands to configure the switch to import protocols from where routes are known.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set vrf \<vrf-id\> router rib \<afi\> protocol \<import-protocol-id\> fib-filter
 
@@ -42,5 +42,3 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router rib ipv4 protocol bgp fib-filter routemap1
 ```
-
-- - -

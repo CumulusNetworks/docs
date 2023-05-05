@@ -29,13 +29,13 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set system aaa authentication-order 1 tacacs
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs accounting
 
 Configures TACACS+ accounting. TACACS+ accounting uses the `audisp` module, with an additional plugin for `auditd` and `audisp`. The plugin maps the `auid` in the accounting record to a TACACS login, which it bases on the `auid` and sessionid.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs accounting enable
 
@@ -51,7 +51,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs accounting enable on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs accounting send-records
 
@@ -67,13 +67,13 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs accounting send-records first-response
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs authentication
 
 Configures TACACS+ authentication.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs authentication mode
 
@@ -89,7 +89,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs authentication mode chap
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs authentication per-user-homedir
 
@@ -105,7 +105,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs authentication per-user-homedir on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs debug-level
 
@@ -121,7 +121,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs debug-level 2
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs enable
 
@@ -137,13 +137,13 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs enable on
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs exclude-user
 
 Configures TACACS to exclude users from going to the TACACS+ server for authentication.
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs exclude-user username \<value\>
 
@@ -165,7 +165,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs exclude-user user1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs server \<priority-id\>
 
@@ -187,7 +187,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs server \<priority-id\> host
 
@@ -209,7 +209,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 host 192.168.0.30
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs server \<priority-id\> port
 
@@ -231,7 +231,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 port 32
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs server \<priority-id\> prefer-ip-version 6
 
@@ -253,7 +253,7 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 prefer-ip-version 6 
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs server \<priority-id\> secret \<value\>
 
@@ -275,7 +275,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 secret mytacacskey
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs source-ip \<ipv4\>
 
@@ -297,7 +297,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs source-ip 10.10.10.1
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs timeout
 
@@ -313,7 +313,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs timeout 10
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set system aaa tacacs vrf \<vrf-name\>
 
@@ -334,5 +334,3 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ```
 cumulus@leaf01:mgmt:~$ nv set system aaa tacacs vrf mgmt
 ```
-
-- - -

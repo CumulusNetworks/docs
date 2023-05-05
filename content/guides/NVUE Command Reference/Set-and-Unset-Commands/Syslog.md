@@ -23,7 +23,7 @@ Configures the System Logging Protocol (`syslog`) service in the specified VRF s
 
 Introduced in Cumulus Linux 5.0.0
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service syslog \<vrf-id\> server \<server-id\>
 
@@ -40,7 +40,7 @@ Configures the remote `syslog` server.
 
 Introduced in Cumulus Linux 5.0.0
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service syslog \<vrf-id\> server \<server-id\> port
 
@@ -63,7 +63,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service syslog default server 192.168.0.254 port 514
 ```
 
-- - -
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
 
 ## nv set service syslog \<vrf-id\> server \<server-id\> protocol
 
@@ -85,5 +85,3 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set service syslog default server 192.168.0.254 protocol tcp
 ```
-
-- - -

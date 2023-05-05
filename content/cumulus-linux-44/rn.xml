@@ -7,6 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3448171</td>
+<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+
+In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+
+systemctl restart switchd.service
+
+or
+
+sudo reboot</td>
+<td>4.3.1-4.4.6</td>
+<td></td>
+</tr>
+<tr>
 <td>3434315</td>
 <td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
 <td>4.3.0-4.4.6</td>
@@ -2137,6 +2151,20 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3448171</td>
+<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+
+In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+
+systemctl restart switchd.service
+
+or
+
+sudo reboot</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3434315</td>
@@ -4322,6 +4350,20 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3448171</td>
+<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+
+In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+
+systemctl restart switchd.service
+
+or
+
+sudo reboot</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3434315</td>
@@ -6530,6 +6572,11 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
+<td>3094082</td>
+<td>If you apply a PBR policy with a next hop group but the next hop is not reachable, the PBR service crashes.</td>
+<td>4.4.0-4.4.3</td>
+</tr>
+<tr>
 <td>3091381</td>
 <td>Restarting {{switchd}} might fail due to an ACL SPAN module initialization failure. </td>
 <td>4.4.2-4.4.3</td>
@@ -6659,6 +6706,20 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3448171</td>
+<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+
+In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+
+systemctl restart switchd.service
+
+or
+
+sudo reboot</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3434315</td>
@@ -7060,6 +7121,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
 <td></td>
+</tr>
+<tr>
+<td>3094082</td>
+<td>If you apply a PBR policy with a next hop group but the next hop is not reachable, the PBR service crashes.</td>
+<td>4.4.0-4.4.3</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -8961,6 +9028,20 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3448171</td>
+<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+
+In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+
+systemctl restart switchd.service
+
+or
+
+sudo reboot</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3434315</td>
 <td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
 <td>4.3.0-4.4.5</td>
@@ -9330,6 +9411,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
 <td></td>
+</tr>
+<tr>
+<td>3094082</td>
+<td>If you apply a PBR policy with a next hop group but the next hop is not reachable, the PBR service crashes.</td>
+<td>4.4.0-4.4.3</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -11443,6 +11530,20 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3448171</td>
+<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+
+In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+
+systemctl restart switchd.service
+
+or
+
+sudo reboot</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3434315</td>
 <td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
 <td>4.3.0-4.4.5</td>
@@ -11764,6 +11865,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
 <td></td>
+</tr>
+<tr>
+<td>3094082</td>
+<td>If you apply a PBR policy with a next hop group but the next hop is not reachable, the PBR service crashes.</td>
+<td>4.4.0-4.4.3</td>
+<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3093966</td>

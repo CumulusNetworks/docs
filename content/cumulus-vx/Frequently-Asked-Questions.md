@@ -24,11 +24,15 @@ The support policy for Cumulus VX depends on whether you are a customer or non-c
 
 The intent of Cumulus VX is for simulation, testing, and training. Cumulus Linux is the software running directly on NVIDIA switches. Cumulus VX is not a production-ready virtual switch or router. See {{<link url="Overview#Cumulus-vx-compared-with-cumulus-linux" text="Cumulus VX Compared with Cumulus Linux">}}.
 
+### What is the difference between Cumulus VX and Cumulus AIR?
+
+Cumulus VX is a free virtual appliance with the Cumulus Linux operating system. You can install Cumulus VX on a supported hypervisor and configure the VMs with the reference topology or create your own topology. {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA AIR">}} is a cloud hosted, network simulation platform that behaves exactly like a real world production environment. You use NVIDIA Air to create a digital twin of your IT infrastructure.
+
 <!-- vale off -->
 ### I have platform and disk limitations for Cumulus VX, how do I try Cumulus Linux?
 <!-- vale on -->
 
-Try {{<exlink url="https://www.nvidia.com/en-us/networking/network-simulation/" text="Cumulus in the Cloud">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA Networking technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
+Try {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA AIR">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA Networking technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
 
 <!-- vale off -->
 ### How do I log into the Cumulus VX switches?

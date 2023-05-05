@@ -90,7 +90,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action
 
-Shows the action for the ACL rule specified.
+Shows the action for the specified ACL rule.
 
 ### Command Syntax
 
@@ -113,7 +113,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action deny
 
-Shows a deny action for the ACL rule specified.
+Shows the deny action for the specified ACL rule.
 
 ### Command Syntax
 
@@ -136,7 +136,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action deny
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action erspan
 
-Shows the ERSPAN session for the ACL rule specified.
+Shows the ERSPAN session for the specified ACL rule.
 
 ### Command Syntax
 
@@ -159,7 +159,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action erspan
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action log
 
-Shows logs for the ACL rule specified.
+Shows logs for the specified ACL rule.
 
 ### Command Syntax
 
@@ -182,7 +182,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action log
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action permit
 
-Shows a permit action for the ACL rule specified.
+Shows the permit action for the specified ACL rule.
 
 ### Command Syntax
 
@@ -205,7 +205,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action permit
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action police
 
-Shows policing of matched packets and bytes for the ACL rule specified.
+Shows policing of matched packets and bytes for the specified ACL rule.
 
 ### Command Syntax
 
@@ -228,7 +228,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action police
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action set
 
-Shows the set action for the ACL rule specified.
+Shows the set action for the specified ACL rule.
 
 ### Command Syntax
 
@@ -274,7 +274,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip
 
-Shows an IPv4 or IPv6 match for the ACL rule specified.
+Shows an IPv4 or IPv6 match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -297,7 +297,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port
 
-Shows destination port match configuration for the ACL rule specified.
+Shows destination port match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -320,7 +320,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port \<ip-port-id\>
 
-Shows destination port matches for the ACL rule specified.
+Shows destination port match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -344,7 +344,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port http
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip ecn
 
-Shows ECN matches for the ACL rule specified.
+Shows ECN match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -367,7 +367,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip ecn flags
 
-Shows the ECN protocol flag matches for the ACL rule specified.
+Shows the ECN protocol flag match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -390,7 +390,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn flags
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip fragment
 
-Shows ip fragment packet matches for the ACL rule specified.
+Shows ip fragment packet match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -413,7 +413,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip fragment
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip source-port
 
-Shows the source port match configuration for the ACL rule specified.
+Shows the source port match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -436,7 +436,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip source-port \<ip-port-id\>
 
-Shows source port matches for the ACL rule specified.
+Shows the match criteria for a specific port for the specified ACL rule.
 
 ### Command Syntax
 
@@ -460,7 +460,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp
 
-Shows TCP matches for the ACL rule specified.
+Shows TCP match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -483,7 +483,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp flags
 
-Shows TCP flag matches for the ACL rule specified.
+Shows TCP flag match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -506,7 +506,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp flags
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp mask
 
-Shows TCP protocol flag mask matches for the ACL rule specified.
+Shows TCP protocol flag mask match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -529,7 +529,7 @@ cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp mask
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match mac
 
-Shows MAC address matches for the ACL rule specified.
+Shows MAC address match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -712,7 +712,7 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 statistics
 
 ## nv show interface \<interface-id\> acl \<acl-id\> statistics \<rule-id\>
 
-Shows statistics for the specified ACL rule on the specified interface.
+Shows statistics for a specific ACL rule on the specified interface.
 
 ### Command Syntax
 

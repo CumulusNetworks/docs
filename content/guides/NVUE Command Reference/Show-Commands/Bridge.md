@@ -5,7 +5,10 @@ weight: 140
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show bridge
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show bridge</h>
 
 Shows the configured bridge domains.
 
@@ -19,9 +22,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain
+## <h>nv show bridge domain</h>
 
 Shows configuration settings for the all configured bridge domains.
 
@@ -35,9 +38,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\>
+## <h>nv show bridge domain \<domain-id\></h>
 
 Shows configuration settings for the specified bridge domain.
 
@@ -57,9 +60,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> mac-table
+## <h>nv show bridge domain \<domain-id\> mac-table</h>
 
 Shows the layer 2 Forwarding Database for the specified bridge domain.
 
@@ -79,9 +82,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> mdb
+## <h>nv show bridge domain \<domain-id\> mdb</h>
 
 Shows the MDB entries in the specified bridge domain.
 
@@ -101,9 +104,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mdb
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> multicast
+## <h>nv show bridge domain \<domain-id\> multicast</h>
 
 Shows the multicast configuration settings on the specified bridge domain.
 
@@ -123,9 +126,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default multicast
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> multicast snooping
+## <h>nv show bridge domain \<domain-id\> multicast snooping</h>
 
 Shows the IGMP or MLD snooping configuration settings on the specified bridge domain.
 
@@ -145,9 +148,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default multicast snooping
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> multicast snooping querier
+## <h>nv show bridge domain \<domain-id\> multicast snooping querier</h>
 
 Shows the IGMP or MLD querier configuration settings on the specified bridge domain.
 
@@ -167,9 +170,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default multicast snooping querier
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> router-port
+## <h>nv show bridge domain \<domain-id\> router-port</h>
 
 Shows the multicast router ports for the specified bridge domain.
 
@@ -189,9 +192,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default router-port
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> stp
+## <h>nv show bridge domain \<domain-id\> stp</h>
 
 Shows the STP settings for the specified bridge domain.
 
@@ -211,9 +214,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default stp
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> stp state
+## <h>nv show bridge domain \<domain-id\> stp state</h>
 
 Shows the STP state (uo or down) of the specified bridge domain.
 
@@ -233,9 +236,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default stp state
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> vlan
+## <h>nv show bridge domain \<domain-id\> vlan</h>
 
 Shows the VLANs on the specified bridge domain.
 
@@ -255,9 +258,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> vlan \<vid\>
+## <h>nv show bridge domain \<domain-id\> vlan \<vid\></h>
 
 Shows configuration settings for the specified VLAN on the specified bridge domain.
 
@@ -278,9 +281,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> vlan \<vid\> multicast
+## <h>nv show bridge domain \<domain-id\> vlan \<vid\> multicast</h>
 
 Shows the multicast configuration settings for the specified VLAN.
 
@@ -301,9 +304,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 multicast
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> vlan \<vid\> multicast snooping
+## <h>nv show bridge domain \<domain-id\> vlan \<vid\> multicast snooping</h>
 
 Shows the IGMP or MLD snooping configuration settings for the specified VLAN.
 
@@ -324,9 +327,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 multicast snooping
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier
+## <h>nv show bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier</h>
 
 Shows the IGMP or MLD querier configuration settings for the specified VLAN.
 
@@ -347,9 +350,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 multicast snooping querier
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> vlan \<vid\> ptp
+## <h>nv show bridge domain \<domain-id\> vlan \<vid\> ptp</h>
 
 Shows the PTP configuration settings for the specified VLAN.
 
@@ -370,9 +373,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 ptp
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> vlan \<vid\> vni
+## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni</h>
 
 Shows VNIs on a specific VLAN on the specified bridge domain.
 
@@ -393,9 +396,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\>
+## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\></h>
 
 Shows configuration settings for the specified VLAN VNI on the specified bridge domain.
 
@@ -417,9 +420,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding
+## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding</h>
 
 Shows configuration settings for BUM traffic flooding for the specified VNI.
 
@@ -441,9 +444,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication
+## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication</h>
 
 Shows the head-end-replication settings for the specified VNI.
 
@@ -465,9 +468,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding head-end-replication
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication \<hrep-id\>
+## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication \<hrep-id\></h>
 
 Shows specific head-end-replication settings for the specified VNI.
 
@@ -490,9 +493,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.0.1.34
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> bridge
+## <h>nv show interface \<interface-id\> bridge</h>
 
 Shows the bridge domain on the specified interface.
 
@@ -512,9 +515,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface bond3 bridge
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> bridge domain \<domain-id\>
+## <h>nv show interface \<interface-id\> bridge domain \<domain-id\></h>
 
 Shows configuration settings for the specified bridge domain on the specified interface.
 
@@ -535,9 +538,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface bond3 bridge domain br_default 
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> bridge domain \<domain-id\> stp
+## <h>nv show interface \<interface-id\> bridge domain \<domain-id\> stp</h>
 
 Shows STP configuration settings for the specified bridge domain on the specified interface.
 
@@ -558,9 +561,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface bond3 bridge domain br_default stp
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\>
+## <h>nv show interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\></h>
 
 Shows configuration settings for the specified VLAN on the specifies bridge domain.
 

@@ -5,11 +5,14 @@ weight: 620
 product: Cumulus Linux
 type: nojsscroll
 ---
+<style>
+h { color: RGB(118,185,0)}
+</style>
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set service ntp \<vrf-id\>
+## <h>nv set service ntp \<vrf-id\></h>
 
 Configures the Network Time Protocol (NTP) in a specific VRF.
 
@@ -31,9 +34,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ntp default
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service ntp \<vrf-id\> listen \<interface-name\>
+## <h>nv set service ntp \<vrf-id\> listen \<interface-name\></h>
 
 Configures the NTP interface on which to listen.
 
@@ -56,9 +59,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ntp default listen swp10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service ntp \<vrf-id\> pool \<server-id\>
+## <h>nv set service ntp \<vrf-id\> pool \<server-id\></h>
 
 Configures the remote NTP server pool.
 
@@ -79,9 +82,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ntp default pool 4.cumulusnetworks.pool.ntp.org
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service ntp \<vrf-id\> pool \<server-id\> iburst
+## <h>nv set service ntp \<vrf-id\> pool \<server-id\> iburst</h>
 
 Configures NTP to send a burst of eight packets instead of the usual one packet when the server pool is unreachable. You can specify `on` or `off`.
 
@@ -104,9 +107,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ntp default pool 4.cumulusnetworks.pool.ntp.org iburst on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service ntp \<vrf-id\> server \<server-id\>
+## <h>nv set service ntp \<vrf-id\> server \<server-id\></h>
 
 Configures the remote NTP server.
 
@@ -127,9 +130,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ntp default server time.nist.gov
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service ntp \<vrf-id\> server \<server-id\> iburst
+## <h>nv set service ntp \<vrf-id\> server \<server-id\> iburst</h>
 
 Configures NTP to send a burst of eight packets instead of the usual one packet when the server is unreachable. You can specify `on` or `off`.
 

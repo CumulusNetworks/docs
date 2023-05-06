@@ -5,7 +5,10 @@ weight: 470
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show system ztp
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show system ztp</h>
 
 Shows information about <span style="background-color:#F5F5DC">[ZTP](## "Zero Touch Provisioning")</span> scripts on the switch, such as location and version, the date the script was run, and if it was a success.
 
@@ -19,9 +22,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show system ztp
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system ztp script
+## <h>nv show system ztp script</h>
 
 Shows the location of the ZTP script on the switch.
 
@@ -35,9 +38,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show system ztp script
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system ztp status
+## <h>nv show system ztp status</h>
 
 Shows the status of the ZTP script run on the switch.
 

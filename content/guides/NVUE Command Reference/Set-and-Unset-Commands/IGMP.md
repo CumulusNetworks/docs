@@ -5,17 +5,20 @@ weight: 570
 product: Cumulus Linux
 type: nojsscroll
 ---
+<style>
+h { color: RGB(118,185,0)}
+</style>
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set interface \<interface-id\> ip igmp
+## <h>nv set interface \<interface-id\> ip igmp
 
 Provides commands to configure Internet Group Management Protocol (IGMP).
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip igmp enable
+## <h>nv set interface \<interface-id\> ip igmp enable</h>
 
 Turns IGMP on or off on the specified interface.
 
@@ -37,9 +40,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp enable on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip igmp last-member-query-interval
+## <h>nv set interface \<interface-id\> ip igmp last-member-query-interval</h>
 
 Configures the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 255 seconds.
 
@@ -61,9 +64,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp last-member-query-interval 10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip igmp query-interval
+## <h>nv set interface \<interface-id\> ip igmp query-interval</h>
 
 Configures how often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 1800 seconds.
 
@@ -85,9 +88,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp query-interval 1000
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip igmp query-max-response-time
+## <h>nv set interface \<interface-id\> ip igmp query-max-response-time</h>
 
 Configures the maximum response time for IGMP general queries. You can specify a value between 10 and 250 seconds.
 
@@ -109,9 +112,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp query-max-response-time 100
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip igmp static-group \<static-group-id\>
+## <h>nv set interface \<interface-id\> ip igmp static-group \<static-group-id\></h>
 
 Configures the IGMP static multicast mroute destination. This is the IPv4 address of the member associated with the specified multicast group address.
 
@@ -132,9 +135,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp static-group 234.10.10.10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip igmp static-group \<static-group-id\> source-address \<ipv4-unicast\>
+## <h>nv set interface \<interface-id\> ip igmp static-group \<static-group-id\> source-address \<ipv4-unicast\></h>
 
 Configures the IPv4 unicast address of the IGMP static multicast mroute source.
 
@@ -156,9 +159,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp static-group 234.10.10.10 source-address 234.1.1.1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip igmp version
+## <h>nv set interface \<interface-id\> ip igmp version</h>
 
 Configures the IGMP version. You can specify version 2 or version 3.
 
@@ -180,15 +183,15 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp version 3
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router igmp
+## <h>nv set router igmp
 
 Provides commands to configure global IGMP settings.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router igmp enable
+## <h>nv set router igmp enable</h>
 
 Turns IGMP on or off globally.
 

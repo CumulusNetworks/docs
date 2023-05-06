@@ -5,7 +5,10 @@ weight: 120
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show interface \<interface-id\> router adaptive-routing
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show interface \<interface-id\> router adaptive-routing</h>
 
 Shows if adaptive routing is enabled on the interface and the link utilization threshold (as a percentage).
 
@@ -25,9 +28,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 router adaptive-routing
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router adaptive-routing
+## <h>nv show router adaptive-routing</h>
 
 Shows global adaptive routing configuration. This command shows if adaptive routing is enabled.
 

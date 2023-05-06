@@ -5,17 +5,20 @@ weight: 550
 product: Cumulus Linux
 type: nojsscroll
 ---
+<style>
+h { color: RGB(118,185,0)}
+</style>
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set service dns \<vrf-id\>
+## <h>nv set service dns \<vrf-id\>
 
 Provides commands to configure the Domain Name Server (DNS) service.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dns \<vrf-id\> search \<domain\>
+## <h>nv set service dns \<vrf-id\> search \<domain\></h>
 
 Configures the domains to search for name matches.
 
@@ -36,9 +39,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set service dns default search nvidia.com
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dns \<vrf-id\> server \<dns-server-id\>
+## <h>nv set service dns \<vrf-id\> server \<dns-server-id\></h>
 
 Configures a remote DNS server.
 

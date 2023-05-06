@@ -5,7 +5,10 @@ weight: 400
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show system forwarding
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show system forwarding</h>
 
 Shows traffic forwarding configuration on the switch.
 
@@ -19,9 +22,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show system forwarding
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system forwarding ecmp-hash
+## <h>nv show system forwarding ecmp-hash</h>
 
 Shows traffic forwarding ECMP hash configuration on the switch.
 
@@ -35,9 +38,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show system forwarding ecmp-hash
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system forwarding lag-hash
+## <h>nv show system forwarding lag-hash</h>
 
 Shows traffic forwarding LAG hash configuration on the switch.
 
@@ -51,9 +54,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show system forwarding lag-hash
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system forwarding programming
+## <h>nv show system forwarding programming</h>
 
 Shows traffic forwarding log-level configuration.
 

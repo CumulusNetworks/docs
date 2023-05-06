@@ -5,17 +5,20 @@ weight: 610
 product: Cumulus Linux
 type: nojsscroll
 ---
+<style>
+h { color: RGB(118,185,0)}
+</style>
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set interface \<interface-id\> ip neighbor-discovery
+## <h>nv set interface \<interface-id\> ip neighbor-discovery</h>
 
 Configures Neighbor Discovery (ND) for an interface. ND allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\>
+## <h>nv set interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\></h>
 
 Configures the DNS search lists (DNSSL).
 
@@ -36,9 +39,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\> lifetime
+## <h>nv set interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\> lifetime</h>
 
 Configures the maximum amount of time you want to use the domain suffix for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword infinte to set the time to never expire. If you set the value to 0, the host does not use the DNSSL.
 
@@ -59,9 +62,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com lifetime infinite
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery enable
+## <h>nv set interface \<interface-id\> ip neighbor-discovery enable</h>
 
 Turns Neighbor Discovery on or off. The default setting is `on`.
 
@@ -81,15 +84,15 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery home-agent
+## <h>nv set interface \<interface-id\> ip neighbor-discovery home-agent</h>
 
 Configures the switch to be a Home Agent.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery home-agent enable
+## <h>nv set interface \<interface-id\> ip neighbor-discovery home-agent enable</h>
 
 Turns the Home Agent on or off. The default setting is `off`.
 
@@ -109,9 +112,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery home-agent lifetime
+## <h>nv set interface \<interface-id\> ip neighbor-discovery home-agent lifetime</h>
 
 Configures the maximum amount of time you want the router to act as a Home Agent. You can set a value between 0 and 65520 seconds. If you set the value to 0, the router is not a Home Agent. The default setting is 0.
 
@@ -131,9 +134,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent lifetime 200
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery home-agent preference
+## <h>nv set interface \<interface-id\> ip neighbor-discovery home-agent preference</h>
 
 Configures the Home Agent router preference used to order the addresses returned in the Home Agent address discovery reply. You can set a value between 0 and 65535. 0 is the lowest preference. The default setting is 0.
 
@@ -153,9 +156,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent preference 0
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery mtu
+## <h>nv set interface \<interface-id\> ip neighbor-discovery mtu</h>
 
 Configures the MTU for Neighbor Discovery messages on an interface. You can set a value between 1 and 65535.
 
@@ -175,9 +178,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery mtu 1500
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\>
+## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\></h>
 
 Configures the IPv6 prefix you want to include in router advertisements.
 
@@ -192,9 +195,9 @@ Configures the IPv6 prefix you want to include in router advertisements.
 
 Introduced in Cumulus Linux 5.1.0
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> autoconfig
+## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> autoconfig</h>
 
 Configures automatic configuration to indicate to hosts on the local link that they can use the specified prefix for IPv6 auto configuration. The default setting is `off`.
 
@@ -215,9 +218,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 autoconfig on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> off-link
+## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> off-link</h>
 
 Configures advertisement to make no statement about prefix on-link or off-link properties. The default setting is `off`.
 
@@ -238,9 +241,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 off-link on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> preferred-lifetime
+## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> preferred-lifetime</h>
 
 Configures the amount of time that addresses generated from a prefix remain preferred. You can specify a value between 0 and 4294967295. The default setting is 604800.
 
@@ -261,9 +264,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 preferred-lifetime 1000000000
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> router-address
+## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> router-address</h>
 
 Configures advertisement to indicates to hosts on the local link that the specified prefix contains a complete IP address by setting R flag.
 
@@ -286,9 +289,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 router-address on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> valid-lifetime
+## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> valid-lifetime</h>
 
 Configures the amount of time that the prefix is valid for on-link determination. You can specify a value between 0 and 4294967295. The default setting is 2592000.
 
@@ -309,9 +312,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 valid-lifetime 2000000000
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\>
+## <h>nv set interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\></h>
 
 Configures recursive DNS servers (RDNSS). You must specify the IPv6 address of each RDNSS you want to advertise.
 
@@ -332,9 +335,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\> lifetime
+## <h>nv set interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\> lifetime</h>
 
 Configures the maximum amount of time you want to use the RDNSS for domain name resolution. You can specify a value between 0 and 4294967295, or specify `infinite` to use the RDNSS for domain name resolution indefinitely. If you set the value to 0, the RDNSS address no longer advertises.
 
@@ -355,15 +358,15 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100 lifetime infinite
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement</h>
 
 Configures router advertisement for an interface.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement enable
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement enable</h>
 
 Turns router advertisement on or off for the interface. The default setting is `off`.
 
@@ -383,9 +386,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement enable off
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement fast-retransmit
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement fast-retransmit</h>
 
 Configures the switch to allow consecutive router advertisement packets to transmit more frequently than every three seconds (fast retransmit). The default setting is `on`.
 
@@ -405,9 +408,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement fast-retransmit off
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement hop-limit
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement hop-limit</h>
 
 Configures the hop limit value in the IP header of the outgoing router advertisement packet. You can set a value between 0 and 255. The default setting is 64.
 
@@ -427,9 +430,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement hop-limit 100
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval</h>
 
 Configures the maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface. You can set a value between 70 and 1800000 milliseconds. The default setting is 600000.
 
@@ -449,9 +452,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval 60000
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval-option
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval-option</h>
 
 Configures the switch to indicate to hosts that the router uses an advertisement interval to send router advertisements. The default setting is `off`.
 
@@ -471,9 +474,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval-option on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement lifetime
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement lifetime</h>
 
 Configures the maximum amount of time that router advertisement messages can exist on the route. You can specify a value between 0 and 9000. The default setting is 1800.
 
@@ -493,9 +496,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement lifetime 4000
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement managed-config
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement managed-config</h>
 
 Configures the switch to allow a dynamic host to use a managed protocol, such as DHCPv6, to configure IP addresses automatically (managed configuration). The default setting is `off`.
 
@@ -515,9 +518,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement managed-config on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement other-config
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement other-config</h>
 
 Configures the switch to allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. The default setting is `off`.
 
@@ -537,9 +540,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement other-config on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement reachable-time
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement reachable-time</h>
 
 Configures the amount of time that an IPv6 node is reachable. You can set a value between 0 and 3600000 milliseconds. The default setting is 0.
 
@@ -559,9 +562,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement reachable-time 3600000
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement retransmit-time
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement retransmit-time</h>
 
 Configures the interval at which neighbor solicitation messages retransmit. You can set a value between 0 and 4294967295 milliseconds. The default setting is 0.
 
@@ -581,9 +584,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement retransmit-time 4294967295
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement router-preference
+## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement router-preference</h>
 
 Configures the switch to allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default setting is `medium`.
 

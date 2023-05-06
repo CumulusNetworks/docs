@@ -5,7 +5,10 @@ weight: 170
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show evpn
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show evpn</h>
 
 Shows global EVPN control plane information.
 
@@ -19,9 +22,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show evpn
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn access-vlan-info
+## <h>nv show evpn access-vlan-info</h>
 
 Shows access VLAN information.
 
@@ -35,9 +38,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn access-vlan-info vlan
+## <h>nv show evpn access-vlan-info vlan</h>
 
 Shows all EVPN access VLANs.
 
@@ -51,9 +54,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info vlan
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn access-vlan-info vlan \<vlan-id\>
+## <h>nv show evpn access-vlan-info vlan \<vlan-id\></h>
 
 Shows EVPN access VLAN information for the specified VLAN.
 
@@ -73,9 +76,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info vlan 10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn access-vlan-info vlan \<vlan-id\> member-interface
+## <h>nv show evpn access-vlan-info vlan \<vlan-id\> member-interface</h>
 
 Shows EVPN access VLAN member interface information.
 
@@ -95,9 +98,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info vlan 10 member-interface
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn dad
+## <h>nv show evpn dad</h>
 
 Shows EVPN duplicate address detection information.
 
@@ -111,9 +114,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show evpn dad
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn dad duplicate-action
+## <h>nv show evpn dad duplicate-action</h>
 
 Shows the action to take when there is a duplicate address detected.
 
@@ -127,9 +130,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show evpn dad duplicate-action
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn dad duplicate-action freeze
+## <h>nv show evpn dad duplicate-action freeze</h>
 
 Shows all EVPN duplicate address freeze actions.
 
@@ -143,9 +146,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show evpn dad duplicate-action freeze
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn l2-nhg
+## <h>nv show evpn l2-nhg</h>
 
 Shows EVPN nexthop groups.
 
@@ -159,9 +162,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn l2-nhg
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn l2-nhg vtep-ip
+## <h>nv show evpn l2-nhg vtep-ip</h>
 
 Shows EVPN nexthop group information for all VTEPs.
 
@@ -175,9 +178,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn l2-nhg vtep-ip
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn l2-nhg vtep-ip \<vtep-id\>
+## <h>nv show evpn l2-nhg vtep-ip \<vtep-id\></h>
 
 Shows EVPN nexthop group information for the specified VTEP.
 
@@ -191,9 +194,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn l2-nhg vtep-ip 10.10.10.2
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming
+## <h>nv show evpn multihoming</h>
 
 Shows EVPM multihoming global configuration.
 
@@ -207,9 +210,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming bgp-info
+## <h>nv show evpn multihoming bgp-info</h>
 
 Shows EVPN multihoming BGP information.
 
@@ -223,9 +226,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming bgp-info esi
+## <h>nv show evpn multihoming bgp-info esi</h>
 
 Shows EVPN multihoming BGP information for all ESIs.
 
@@ -239,9 +242,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming bgp-info esi \<esi-id\>
+## <h>nv show evpn multihoming bgp-info esi \<esi-id\></h>
 
 Shows EVPN multihoming BGP information for the specified ESI.
 
@@ -255,9 +258,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming bgp-info esi \<esi-id\> remote-vtep
+## <h>nv show evpn multihoming bgp-info esi \<esi-id\> remote-vtep</h>
 
 Shows EVPN multihoming BGP information for the specified ESI for all VTEPs.
 
@@ -277,9 +280,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming bgp-info esi \<esi-id\> remote-vtep \<ipv4-address-id\>
+## <h>nv show evpn multihoming bgp-info esi \<esi-id\> remote-vtep \<ipv4-address-id\></h>
 
 Shows EVPN multihoming BGP information for the specified ESI for a specific VTEP.
 
@@ -300,9 +303,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming bgp-info esi \<esi-id\> fragments
+## <h>nv show evpn multihoming bgp-info esi \<esi-id\> fragments</h>
 
 Shows EVPN multihoming BGP remote VTEP fragment information for a specific ESI.
 
@@ -322,9 +325,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming bgp-info esi \<esi-id\> fragments \<fragment-id\>
+## <h>nv show evpn multihoming bgp-info esi \<esi-id\> fragments \<fragment-id\></h>
 
 Shows specific EVPN multihoming BGP remote VTEP fragment information for a specific ESI.
 
@@ -345,9 +348,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments 10.10.10.1:20
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming ead-evi-route
+## <h>nv show evpn multihoming ead-evi-route</h>
 
 Shows EVPN multihoming Ethernet Auto-discovery per EVPN instance route information.
 
@@ -361,9 +364,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming ead-evi-route
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming esi
+## <h>nv show evpn multihoming esi</h>
 
 Shows EVPN multihoming Ethernet segment ID information.
 
@@ -377,7 +380,7 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi
 ```
 
-## nv show evpn multihoming esi \<esi-id\>
+## <h>nv show evpn multihoming esi \<esi-id\></h>
 
 Shows information about the specified EVPN multihoming Ethernet segment ID.
 
@@ -398,7 +401,7 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02
 ```
 
-## nv show evpn multihoming esi \<esi-id\> remote-vtep
+## <h>nv show evpn multihoming esi \<esi-id\> remote-vtep</h>
 
 Shows information about the specified EVPN multihoming Ethernet segment ID for remote VTEPs.
 
@@ -419,9 +422,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming esi \<esi-id\> remote-vtep \<ipv4-address-id\>
+## <h>nv show evpn multihoming esi \<esi-id\> remote-vtep \<ipv4-address-id\></h>
 
 Shows information about a specific EVPN multihoming Ethernet segment ID for the specified remote VTEP.
 
@@ -442,9 +445,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn multihoming segment
+## <h>nv show evpn multihoming segment</h>
 
 Shows EVPN multihoming segment information.
 
@@ -458,9 +461,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming segment
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn route-advertise
+## <h>nv show evpn route-advertise</h>
 
 Shows EVPN route advertise information.
 
@@ -474,9 +477,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show evpn route-advertise
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni
+## <h>nv show evpn vni</h>
 
 Shows information about the EVPN VNIs on the switch.
 
@@ -500,9 +503,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\>
+## <h>nv show evpn vni \<vni-id\></h>
 
 Shows configuration information about the specified VNI.
 
@@ -526,9 +529,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> bgp-info
+## <h>nv show evpn vni \<vni-id\> bgp-info</h>
 
 Shows BGP configuration information for the specific VNI.
 
@@ -548,9 +551,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 bgp-info
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> host
+## <h>nv show evpn vni \<vni-id\> host</h>
 
 Shows the ARP and ND table for the specific VNI.
 
@@ -570,9 +573,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 host
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> host \<ip-address-id\>
+## <h>nv show evpn vni \<vni-id\> host \<ip-address-id\></h>
 
 Shows a specific ARP and ND table for the specific VNI.
 
@@ -593,9 +596,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 host 10.0.1.2
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> mac
+## <h>nv show evpn vni \<vni-id\> mac</h>
 
 Shows the MAC address for the specified EVPN VNI.
 
@@ -615,9 +618,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> mac \<mac-address-id\>
+## <h>nv show evpn vni \<vni-id\> mac \<mac-address-id\></h>
 
 Shows configuration information about a specific VNI MAC address.
 
@@ -638,9 +641,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac 50:88:b2:3c:08:f9
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> multihoming
+## <h>nv show evpn vni \<vni-id\> multihoming</h>
 
 Shows multihoming Ethernet configuration for the specified EVPN VNI.
 
@@ -660,9 +663,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> multihoming bgp-info esi
+## <h>nv show evpn vni \<vni-id\> multihoming bgp-info esi</h>
 
 Shows BGP information for the multihoming Ethernet segments for the specified VNI.
 
@@ -682,9 +685,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming bgp-info esi
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> multihoming bgp-info esi \<es-id\>
+## <h>nv show evpn vni \<vni-id\> multihoming bgp-info esi \<es-id\></h>
 
 Shows BGP information for a specific multihoming Ethernet segment for the specified VNI.
 
@@ -705,9 +708,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> multihoming bgp-info esi \<esi-id\> remote-vtep
+## <h>nv show evpn vni \<vni-id\> multihoming bgp-info esi \<esi-id\> remote-vtep</h>
 
 Shows BGP information for a specific multihoming Ethernet segment for the specified VNI.
 
@@ -728,9 +731,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> multihoming bgp-info esi \<esi-id\> remote-vtep \<ipv4-address-id\>
+## <h>nv show evpn vni \<vni-id\> multihoming bgp-info esi \<esi-id\> remote-vtep \<ipv4-address-id\></h>
 
 Shows BGP information for a specific multihoming Ethernet segment for the specified VNI on a specific remote VTEP.
 
@@ -752,9 +755,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> multihoming esi
+## <h>nv show evpn vni \<vni-id\> multihoming esi</h>
 
 Shows the EVPN multihoming ESIs for the specified VNI.
 
@@ -774,9 +777,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> multihoming esi \<es-id\>
+## <h>nv show evpn vni \<vni-id\> multihoming esi \<es-id\></h>
 
 Shows information for a specific multihoming Ethernet segment for the specified EVPN VNI.
 
@@ -797,9 +800,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> route-advertise
+## <h>nv show evpn vni \<vni-id\> route-advertise</h>
 
 Shows route advertisement information for the specified EVPN VNI.
 
@@ -823,9 +826,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-advertise
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> route-target
+## <h>nv show evpn vni \<vni-id\> route-target</h>
 
 Shows route target information for the specified EVPN VNI.
 
@@ -849,9 +852,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> route-target both
+## <h>nv show evpn vni \<vni-id\> route-target both</h>
 
 Shows both import and export route target information for the specified EVPN VNI.
 
@@ -876,9 +879,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target both
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> route-target both \<rt-id\>
+## <h>nv show evpn vni \<vni-id\> route-target both \<rt-id\></h>
 
 Shows information about both the specified import and export route target for the specified EVPN VNI.
 
@@ -903,9 +906,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target both 65101:10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> route-target export
+## <h>nv show evpn vni \<vni-id\> route-target export</h>
 
 Shows export route target information for the specified EVPN VNI.
 
@@ -930,9 +933,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target export
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> route-target export \<rt-id\>
+## <h>nv show evpn vni \<vni-id\> route-target export \<rt-id\></h>
 
 Shows configuration information about the a specific export route target for the specified EVPN VNI.
 
@@ -957,9 +960,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10  route-target export 65101:10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> route-target import
+## <h>nv show evpn vni \<vni-id\> route-target import</h>
 
 Shows import route target configuration for the specified EVPN VNI.
 
@@ -984,9 +987,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target import
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show evpn vni \<vni-id\> route-target import \<rt-id\>
+## <h>nv show evpn vni \<vni-id\> route-target import \<rt-id\></h>
 
 Shows configuration information about a specific import route target for the specified EVPN VNI.
 
@@ -1011,9 +1014,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target import 65102:10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> evpn
+## <h>nv show interface \<interface-id\> evpn</h>
 
 Shows EVPN control plane configuration for the specified interface.
 
@@ -1033,9 +1036,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface bond1 evpn
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> evpn multihoming
+## <h>nv show interface \<interface-id\> evpn multihoming</h>
 
 Shows the EVPN multihoming interface configuration parameters.
 
@@ -1055,9 +1058,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface bond1 evpn multihoming
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> evpn multihoming segment
+## <h>nv show interface \<interface-id\> evpn multihoming segment</h>
 
 Shows EVPN multihoming interface segment configuration.
 
@@ -1077,9 +1080,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface bond1 evpn multihoming segment
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> evpn
+## <h>nv show vrf \<vrf-id\> evpn</h>
 
 Shows EVPN control plane configuration for the specified VRF.
 
@@ -1099,9 +1102,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show vrf RED evpn
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> evpn bgp-info
+## <h>nv show vrf \<vrf-id\> evpn bgp-info</h>
 
 Shows layer 3 VNI information from BGP.
 
@@ -1121,9 +1124,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show vrf RED evpn bgp-info 
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> evpn nexthop-vtep
+## <h>nv show vrf \<vrf-id\> evpn nexthop-vtep</h>
 
 Shows the EVPN next hop VTEP for the specified VRF.
 
@@ -1143,9 +1146,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show vrf RED evpn nexthop-vtep
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> evpn nexthop-vtep \<nexthop-vtep-id\>
+## <h>nv show vrf \<vrf-id\> evpn nexthop-vtep \<nexthop-vtep-id\></h>
 
 Shows information about a specific EVPN next hop VTEP in the specified VRF.
 
@@ -1166,9 +1169,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show vrf RED evpn nexthop-vtep 10.10.10.101
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> evpn remote-router-mac
+## <h>nv show vrf \<vrf-id\> evpn remote-router-mac</h>
 
 Shows the EVPN remote router MAC addresses in the specified VRF.
 
@@ -1188,9 +1191,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show vrf RED evpn remote-router-mac
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> evpn remote-router-mac \<mac-address-id\>
+## <h>nv show vrf \<vrf-id\> evpn remote-router-mac \<mac-address-id\></h>
 
 Shows information about a specific EVPN remote router MAC address in the specified VRF.
 
@@ -1211,9 +1214,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show vrf RED evpn remote-router-mac 50:88:b2:3c:08:f9
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> evpn vni
+## <h>nv show vrf \<vrf-id\> evpn vni</h>
 
 Shows all EVPN VNIs in the specified VRF.
 
@@ -1233,9 +1236,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show vrf RED evpn vni 
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> evpn vni \<vni-id\>
+## <h>nv show vrf \<vrf-id\> evpn vni \<vni-id\></h>
 
 Shows EVPN configuration for a specific VNI in the specified VRF.
 

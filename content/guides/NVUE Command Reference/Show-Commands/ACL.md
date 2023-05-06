@@ -5,7 +5,10 @@ weight: 110
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show acl
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show acl</h>
 
 Shows the configured ACL rules on the switch.
 
@@ -19,9 +22,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\>
+## <h>nv show acl \<acl-id\></h>
 
 Shows the specified ACL rule.
 
@@ -41,9 +44,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule
+## <h>nv show acl \<acl-id\> rule</h>
 
 Shows the rules for the specified ACL.
 
@@ -63,9 +66,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\>
+## <h>nv show acl \<acl-id\> rule \<rule-id\></h>
 
 Shows configuration information about the ACL with the specified rule number.
 
@@ -86,9 +89,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> action
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action</h>
 
 Shows the action for the specified ACL rule.
 
@@ -109,9 +112,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> action deny
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action deny</h>
 
 Shows the deny action for the specified ACL rule.
 
@@ -132,9 +135,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action deny
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> action erspan
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action erspan</h>
 
 Shows the ERSPAN session for the specified ACL rule.
 
@@ -155,9 +158,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action erspan
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> action log
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action log</h>
 
 Shows logs for the specified ACL rule.
 
@@ -178,9 +181,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action log
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> action permit
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action permit</h>
 
 Shows the permit action for the specified ACL rule.
 
@@ -201,9 +204,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action permit
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> action police
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action police</h>
 
 Shows policing of matched packets and bytes for the specified ACL rule.
 
@@ -224,9 +227,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action police
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> action set
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action set</h>
 
 Shows the set action for the specified ACL rule.
 
@@ -247,9 +250,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action set
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match</h>
 
 Shows the ACL match criteria for the specified ACL rule.
 
@@ -270,9 +273,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match ip
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip</h>
 
 Shows an IPv4 or IPv6 match criteria for the specified ACL rule.
 
@@ -293,9 +296,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port</h>
 
 Shows destination port match criteria for the specified ACL rule.
 
@@ -316,9 +319,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port \<ip-port-id\>
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port \<ip-port-id\></h>
 
 Shows destination port match criteria for the specified ACL rule.
 
@@ -340,9 +343,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port http
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match ip ecn
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip ecn</h>
 
 Shows ECN match criteria for the specified ACL rule.
 
@@ -363,9 +366,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match ip ecn flags
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip ecn flags</h>
 
 Shows the ECN protocol flag match criteria for the specified ACL rule.
 
@@ -386,9 +389,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn flags
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match ip fragment
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip fragment</h>
 
 Shows ip fragment packet match criteria for the specified ACL rule.
 
@@ -409,9 +412,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip fragment
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match ip source-port
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip source-port</h>
 
 Shows the source port match criteria for the specified ACL rule.
 
@@ -432,9 +435,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match ip source-port \<ip-port-id\>
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip source-port \<ip-port-id\></h>
 
 Shows the match criteria for a specific port for the specified ACL rule.
 
@@ -456,9 +459,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip tcp</h>
 
 Shows TCP match criteria for the specified ACL rule.
 
@@ -479,9 +482,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp flags
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip tcp flags</h>
 
 Shows TCP flag match criteria for the specified ACL rule.
 
@@ -502,9 +505,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp flags
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp mask
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip tcp mask</h>
 
 Shows TCP protocol flag mask match criteria for the specified ACL rule.
 
@@ -525,9 +528,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp mask
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show acl \<acl-id\> rule \<rule-id\> match mac
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match mac</h>
 
 Shows MAC address match criteria for the specified ACL rule.
 
@@ -548,9 +551,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match mac
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> acl
+## <h>nv show interface \<interface-id\> acl</h>
 
 Shows the <span style="background-color:#F5F5DC">[ACLs](## "Access Control Lists")</span> on the specified interface. You use ACLs to match packets and take actions.
 
@@ -570,9 +573,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 acl
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> acl \<acl-id\>
+## <h>nv show interface \<interface-id\> acl \<acl-id\></h>
 
 Shows information about the specified ACL on the specified interface. You use ACLs to match packets and take actions.
 
@@ -593,9 +596,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> acl \<acl-id\> inbound
+## <h>nv show interface \<interface-id\> acl \<acl-id\> inbound</h>
 
 Shows information about the ACL applied for inbound traffic on the specified interface.
 
@@ -616,9 +619,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> acl \<acl-id\> inbound control-plane
+## <h>nv show interface \<interface-id\> acl \<acl-id\> inbound control-plane</h>
 
 Shows information about the ACL applied for the control plane on the specified interface.
 
@@ -639,9 +642,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound control-plane
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> acl \<acl-id\> outbound
+## <h>nv show interface \<interface-id\> acl \<acl-id\> outbound</h>
 
 Shows information about the ACL applied for outbound traffic on the specified interface.
 
@@ -662,9 +665,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> acl \<acl-id\> outbound control-plane
+## <h>nv show interface \<interface-id\> acl \<acl-id\> outbound control-plane</h>
 
 Shows information about the ACL applied to the control plane for outbound traffic on the specified interface.
 
@@ -685,9 +688,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound control-plane
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> acl \<acl-id\> statistics
+## <h>nv show interface \<interface-id\> acl \<acl-id\> statistics</h>
 
 Shows statistics for a specific ACL on the specified interface.
 
@@ -708,9 +711,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 statistics
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> acl \<acl-id\> statistics \<rule-id\>
+## <h>nv show interface \<interface-id\> acl \<acl-id\> statistics \<rule-id\></h>
 
 Shows statistics for a specific ACL rule on the specified interface.
 
@@ -731,9 +734,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 statistics 10
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system acl
+## <h>nv show system acl</h>
 
 Shows the ACL mode setting; atomic or non-atomic
 
@@ -747,9 +750,9 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show system acl
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane
+## <h>nv show system control-plane</h>
 
 Shows the control plane configuration.
 
@@ -763,9 +766,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show system control-plane
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane acl
+## <h>nv show system control-plane acl</h>
 
 Shows the control plane ACLs configured on the switch. You use control plane ACLs to apply a single rule for all packets forwarded to the CPU regardless of the source interface or destination interface on the switch. Control plane ACLs allow you to regulate traffic forwarded to applications on the switch with more granularity than traps and to configure ACLs to block SSH from specific addresses or subnets.
 
@@ -779,9 +782,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show system control-plane acl
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane acl \<acl-id\>
+## <h>nv show system control-plane acl \<acl-id\></h>
 
 Shows information about the specified control plane ACL.
 
@@ -795,9 +798,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane acl \<acl-id\> inbound
+## <h>nv show system control-plane acl \<acl-id\> inbound</h>
 
 Shows configuration information for the specified inbound control plane ACL.
 
@@ -811,9 +814,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 inbound
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane acl \<acl-id\> outbound
+## <h>nv show system control-plane acl \<acl-id\> outbound</h>
 
 Shows configuration information for the specified outbound control plane ACL.
 
@@ -827,9 +830,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 outbound
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane acl \<acl-id\> statistics
+## <h>nv show system control-plane acl \<acl-id\> statistics</h>
 
 Shows statistics for the specified control plane ACL.
 
@@ -843,9 +846,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 statistics
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane acl \<acl-id\> statistics \<rule-id\>
+## <h>nv show system control-plane acl \<acl-id\> statistics \<rule-id\></h>
 
 Shows statistics for the specified control plane ACL rule.
 
@@ -859,9 +862,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 statistics 10
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane policer
+## <h>nv show system control-plane policer</h>
 
 Shows control plane policer configuration.
 
@@ -875,9 +878,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show system control-plane policer
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane policer \<policer-id\>
+## <h>nv show system control-plane policer \<policer-id\></h>
 
 Shows configuration information for a specific control plane policer.
 
@@ -897,9 +900,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show system control-plane policer bfd
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane policer \<policer-id\> statistics
+## <h>nv show system control-plane policer \<policer-id\> statistics</h>
 
 Shows statistics for a specific control plane policer.
 
@@ -919,9 +922,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show system control-plane policer bfd statistics
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane trap
+## <h>nv show system control-plane trap</h>
 
 Shows the control plane trap configuration.
 
@@ -935,9 +938,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show system control-plane trap
 ```
 
-<hr style="border: dashed rgb(118,185,0) 1.0px;background-color: rgb(118,185,0);height: 6.0px;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system control-plane trap \<trap-id\>
+## <h>nv show system control-plane trap \<trap-id\></h>
 
 Shows specific control plane trap configuration.
 

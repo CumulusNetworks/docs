@@ -5,6 +5,9 @@ weight: 30
 product: Cumulus Linux
 type: nojsscroll
 ---
+<style>
+h { color: RGB(118,185,0)}
+</style>
 {{%notice note%}}
 This document is in Beta.
 {{%/notice%}}

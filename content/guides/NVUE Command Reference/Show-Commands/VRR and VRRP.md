@@ -5,7 +5,10 @@ weight: 440
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show interface \<interface-id\> ip vrr
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show interface \<interface-id\> ip vrr</h>
 
 Shows VRR configuration for the specified interface.
 
@@ -25,9 +28,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface vlan10 ip vrr
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> ip vrr address \<ip-prefix-id\>
+## <h>nv show interface \<interface-id\> ip vrr address \<ip-prefix-id\></h>
 
 Shows the information about the specified VRR IP address on the specified interface.
 
@@ -48,9 +51,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface vlan10 ip vrr address 10.1.10.1/24
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> ip vrr state
+## <h>nv show interface \<interface-id\> ip vrr state</h>
 
 Shows the state of the specified VRR interface.
 
@@ -70,9 +73,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface vlan10 ip vrr state
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router vrr
+## <h>nv show router vrr</h>
 
 Shows global VRR configuration on the switch.
 
@@ -86,9 +89,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router vrr
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> ip vrrp
+## <h>nv show interface \<interface-id\> ip vrrp</h>
 
 Shows VRRP configuration for the specified interface.
 
@@ -108,9 +111,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> ip vrrp virtual-router
+## <h>nv show interface \<interface-id\> ip vrrp virtual-router</h>
 
 Shows the virtual gateways implemented with VRRP for the specified interface.
 
@@ -130,9 +133,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\>
+## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\></h>
 
 Shows information about a specific virtual gateway implemented with VRRP for the specified interface.
 
@@ -153,9 +156,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address
+## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address</h>
 
 Shows the IP addresses of the virtual gateway implemented with VRRP for the specified interface.
 
@@ -176,9 +179,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44 address
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address \<ip-address-id\>
+## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address \<ip-address-id\></h>
 
 Shows information about the IP address of the virtual gateway implemented with VRRP for the specified interface.
 
@@ -200,9 +203,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44 address 10.0.0.1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address-family
+## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address-family</h>
 
 Shows the IP addresses for all address families for the virtual gateway implemented with VRRP for the specified interface.
 
@@ -223,9 +226,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44 address-family
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address-family \<afi\>
+## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address-family \<afi\></h>
 
 Shows the IP addresses for a specific address family (IPv4 or IPv6) for the virtual gateway implemented with VRRP for the specified interface.
 
@@ -247,9 +250,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44 address-family ipv4
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router vrrp
+## <h>nv show router vrrp</h>
 
 Shows global VRRP configuration on the switch.
 

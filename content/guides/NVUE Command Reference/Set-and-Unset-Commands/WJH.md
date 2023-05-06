@@ -5,17 +5,20 @@ weight: 820
 product: Cumulus Linux
 type: nojsscroll
 ---
+<style>
+h { color: RGB(118,185,0)}
+</style>
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set system wjh
+## <h>nv set system wjh
 
 Provides commands to configure What Just Happened (WJH) to provide real time visibility into network problems. You can diagnose network problems by looking at dropped packets.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system wjh channel \<channel-id\>
+## <h>nv set system wjh channel \<channel-id\></h>
 
 Configures a WJH channel where you want to monitor packet drops.
 
@@ -35,9 +38,9 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv set system wjh channel forwarding
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system wjh channel \<channel-id\> trigger
+## <h>nv set system wjh channel \<channel-id\> trigger</h>
 
 Configures the type of packet drops you want to monitor. You can monitor layer 1 (`l1`), layer 2 (`l2`), layer 3 (`l3`), or tunnel (`tunnel1) related packet drops.
 
@@ -57,9 +60,9 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv set system wjh channel forwarding trigger l3
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system wjh enable
+## <h>nv set system wjh enable</h>
 
 Turns the WJH service on or off.
 

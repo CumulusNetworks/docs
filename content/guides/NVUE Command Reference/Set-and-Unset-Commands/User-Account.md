@@ -5,11 +5,14 @@ weight: 790
 product: Cumulus Linux
 type: nojsscroll
 ---
+<style>
+h { color: RGB(118,185,0)}
+</style>
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set system aaa user \<user-id\> enable
+## <h>nv set system aaa user \<user-id\> enable</h>
 
 Turns the user account on or off.
 
@@ -29,9 +32,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 enable on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system aaa user \<user-id\> full-name \<value\>
+## <h>nv set system aaa user \<user-id\> full-name \<value\></h>
 
 Configures the full name for the specified user account. If the full name includes more than one name, either separate the names with a hyphen (FIRST-LAST) or enclose the full name in quotes ("FIRST LAST").
 
@@ -51,9 +54,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 full-name "FIRST LAST"
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system aaa user \<user-id\> hashed-password
+## <h>nv set system aaa user \<user-id\> hashed-password</h>
 
 Configures a hashed text password for the specified user account. You must specify the hashed password in Linux crypt format; the password must be a minimum of 15 to 20 characters long and must include special characters, digits, lower case alphabetic letters, and more.
 
@@ -73,9 +76,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 hashed-password '$1$/ETjhZMJ$P73qhBZEYP20mKnRkhBol0'
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system aaa user \<user-id\> password
+## <h>nv set system aaa user \<user-id\> password</h>
 
 Configures a plain text password for the specified user account by prompting you to enter a new password and to confirm the password.
 
@@ -99,9 +102,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 password
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set system aaa user \<user-id\> role
+## <h>nv set system aaa user \<user-id\> role</h>
 
 Configures the role for the user accounts configured on the switch and the groups to which they belong. You can specify `system-admin`, `nvue-admin`, and `nvue-monitor`.
 

@@ -5,19 +5,22 @@ weight: 710
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv set router nexthop
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv set router nexthop</h>
 
 Configures next hop groups.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router nexthop group \<nexthop-group-id\>
+## <h>nv set router nexthop group \<nexthop-group-id\></h>
 
 Configures a next hop group ID.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router nexthop group \<nexthop-group-id\> via \<via-id\>
+## <h>nv set router nexthop group \<nexthop-group-id\> via \<via-id\></h>
 
 Configures the next hop router for the next hop group.
 
@@ -38,9 +41,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set router nexthop group 10 via 10.0.1.0
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router nexthop group \<nexthop-group-id\> via \<via-id\> interface \<interface-name\>
+## <h>nv set router nexthop group \<nexthop-group-id\> via \<via-id\> interface \<interface-name\></h>
 
 Configures the next hop router and interface for the next hop group.
 
@@ -62,9 +65,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set router nexthop group 10 via 10.10.10.101 interface swp51
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router nexthop group \<nexthop-group-id\> via \<via-id\> vrf \<vrf-name\>
+## <h>nv set router nexthop group \<nexthop-group-id\> via \<via-id\> vrf \<vrf-name\></h>
 
 Configures the next hop router and VRF for the next hop group.
 
@@ -86,9 +89,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set router nexthop group 10 via 10.10.10.101 vrf default
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id> router nexthop-tracking \<afi> resolved-via-default
+## <h>nv set vrf \<vrf-id> router nexthop-tracking \<afi> resolved-via-default</h>
 
 Turns nexthop tracking resolved via default on or off.
 
@@ -109,9 +112,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set vrf default router nexthop-tracking ipv4 resolved-via-default on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id> router nexthop-tracking \<afi\>
+## <h>nv set vrf \<vrf-id> router nexthop-tracking \<afi\></h>
 
 Configures next hop tracking for the specified address family. Next hop tracking reduces the BGP convergence time by monitoring next hop address changes in the routing table.
 
@@ -132,9 +135,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set router nexthop-tracking ipv4
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\>
+## <h>nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\>
 
 Applies the specified nexthop tracking route map.
 
@@ -156,9 +159,9 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv set router nexthop-tracking ipv4 route-map ROUTEMAP1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\> protocol
+## <h>nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\> protocol
 
 Applies the specified nexthop tracking route map for the specified protocol. You can specify `bgp`, `ospf`, `ospf6`, or `static`.
 

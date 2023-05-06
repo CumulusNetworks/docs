@@ -5,17 +5,20 @@ weight: 720
 product: Cumulus Linux
 type: nojsscroll
 ---
+<style>
+h { color: RGB(118,185,0)}
+</style>
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set router policy
+## <h>nv set router policy</h>
 
 Configures a router policy.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy as-path-list \<list-id\>
+## <h>nv set router policy as-path-list \<list-id\></h>
 
 Sets the name of the AS path access list you want to use to match AS paths.
 
@@ -35,9 +38,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy as-path-list \<list-id\> rule \<rule-id\>
+## <h>nv set router policy as-path-list \<list-id\> rule \<rule-id\></h>
 
 Configures the AS Path list rule number.
 
@@ -56,9 +59,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy as-path-list \<list-id\> rule \<rule-id\> action
+## <h>nv set router policy as-path-list \<list-id\> rule \<rule-id\> action</h>
 
 Sets the action you want to take for a match. You can set `permit` or `deny`.
 
@@ -79,9 +82,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10 action permit
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy as-path-list \<list-id\> rule \<rule-id\> aspath-exp \<bgp-regex\>
+## <h>nv set router policy as-path-list \<list-id\> rule \<rule-id\> aspath-exp \<bgp-regex\></h>
 
 Configures the regular expression you want to use to match BGP AS paths.
 
@@ -103,9 +106,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10 aspath-exp ^100_
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy community-list \<list-id\>
+## <h>nv set router policy community-list \<list-id\></h>
 
 Configures the name of the community list you want to use to match BGP community policies.
 
@@ -125,9 +128,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy community-list \<list-id\> rule \<rule-id\>
+## <h>nv set router policy community-list \<list-id\> rule \<rule-id\></h>
 
 Configures the community list rule number.
 
@@ -148,9 +151,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy community-list \<list-id\> rule \<rule-id\> action
+## <h>nv set router policy community-list \<list-id\> rule \<rule-id\> action</h>
 
 Sets the action you want to take when you meet the match criteria. You can set `permit` or `deny`.
 
@@ -171,9 +174,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy community-list \<list-id\> rule \<rule-id\> community \<community-id\>
+## <h>nv set router policy community-list \<list-id\> rule \<rule-id\> community \<community-id\></h>
 
 Sets the name of the community you want to match.
 
@@ -195,9 +198,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 community 100:100
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy ext-community-list \<list-id\>
+## <h>nv set router policy ext-community-list \<list-id\></h>
 
 Sets the name of the Extended Community list you want to use to match BGP communities.
 
@@ -217,9 +220,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy ext-community-list \<list-id\> rule \<rule-id\>
+## <h>nv set router policy ext-community-list \<list-id\> rule \<rule-id\></h>
 
 Sets the extended community list rule number.
 
@@ -240,9 +243,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> action
+## <h>nv set router policy ext-community-list \<list-id\> rule \<rule-id\> action</h>
 
 Configures the action to take on a match. You can set `permit` or `deny`.
 
@@ -263,9 +266,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 action permit
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community
+## <h>nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community</h>
 
 Configures the Extended Community name.
 
@@ -286,9 +289,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community 64510:2
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt \<ext-community-id\>
+## <h>nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt \<ext-community-id\></h>
 
 Configures the Route Target Extended Community number.
 
@@ -310,9 +313,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community rt 64510:1111
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community soo \<ext-community-id\>
+## <h>nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community soo \<ext-community-id\></h>
 
 Configures the site-of-origin (SoO) Extended Community to identify routes that originate from a certain site so that you can prevent readvertising that prefix back to the source site.
 
@@ -334,9 +337,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community soo 45000:3
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy large-community-list \<list-id\>
+## <h>nv set router policy large-community-list \<list-id\></h>
 
 Configures the name of the Large Community list you want to use to match community based BGP policies.
 
@@ -356,9 +359,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy large-community-list \<list-id\> rule \<rule-id\>
+## <h>nv set router policy large-community-list \<list-id\> rule \<rule-id\></h>
 
 Configures the Large Community list rule number.
 
@@ -379,9 +382,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy large-community-list \<list-id\> rule \<rule-id\> action
+## <h>nv set router policy large-community-list \<list-id\> rule \<rule-id\> action</h>
 
 Configures the action for the large community list policy match. You can specify `permit` or `deny`.
 
@@ -402,9 +405,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10 action permit
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy large-community-list \<list-id\> rule \<rule-id\> large-community \<large-community-id\>
+## <h>nv set router policy large-community-list \<list-id\> rule \<rule-id\> large-community \<large-community-id\></h>
 
 Configures the community names for the large community list.
 
@@ -426,9 +429,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10 large-community 2914:65400:38016
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy prefix-list \<prefix-list-id\>
+## <h>nv set router policy prefix-list \<prefix-list-id\></h>
 
 Configures the name of the prefix list you want to use to match IPv4 and IPv6 address prefixes.
 
@@ -448,9 +451,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\>
+## <h>nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\></h>
 
 Configures the prefix list rule number.
 
@@ -471,9 +474,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy prefix-list \<list-id\> rule \<rule-id\> action
+## <h>nv set router policy prefix-list \<list-id\> rule \<rule-id\> action</h>
 
 Configures the action to take on a match; `permit` or `deny`.
 
@@ -494,9 +497,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 action permit
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\>
+## <h>nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\></h>
 
 Configures the prefix match criteria you want to use.
 
@@ -518,9 +521,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\> max-prefix-len
+## <h>nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\> max-prefix-len</h>
 
 Configures the maximum prefix length you want to match. You can specify a value between 0 and 128.
 
@@ -542,9 +545,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16 max-prefix-len 30
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\> min-prefix-len
+## <h>nv set router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\> min-prefix-len</h>
 
 Configures the minimum prefix length you want to match.
 
@@ -566,9 +569,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16 min-prefix-len 30
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy prefix-list \<list-id\> type
+## <h>nv set router policy prefix-list \<list-id\> type</h>
 
 Configures the type of prefix list; IPv4 or IPv6. The default setting is `ipv4`.
 
@@ -588,9 +591,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist type ipv4
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\>
+## <h>nv set router policy route-map \<route-map-id\></h>
 
 Configures the name of the route map you want to use for policy configuration.
 
@@ -610,9 +613,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\></h>
 
 Configures the route map rule number.
 
@@ -633,9 +636,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> action
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action</h>
 
 Configures the route map rule action; `permit` or `deny`.
 
@@ -650,9 +653,9 @@ Configures the route map rule action; `permit` or `deny`.
 
 Introduced in Cumulus Linux 5.0.0
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> action deny
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action deny</h>
 
 Configures the route map rule action to deny.
 
@@ -673,9 +676,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 deny
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit</h>
 
 Configures the route map rule action to permit.
 
@@ -696,9 +699,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy</h>
 
 Configures the permit action exit policy.
 
@@ -719,9 +722,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit exit-policy
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy rule \<value\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy rule \<value\></h>
 
 Configures the route map to go to specific rule when the matching conditions are met.
 
@@ -742,9 +745,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy rule 20
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> description
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> description</h>
 
 Configures the route map rule description. If the description is more than one word, enclose it in double quotes (").
 
@@ -765,9 +768,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 description none
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match</h>
 
 Configures the match criteria you want to use for the route map rule.
 
@@ -782,9 +785,9 @@ Configures the match criteria you want to use for the route map rule.
 
 Introduced in Cumulus Linux 5.0.0
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match as-path-list \<instance-name\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match as-path-list \<instance-name\></h>
 
 Configures the name of the BGP AS path list you want use in the route map.
 
@@ -805,9 +808,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match as-path-list MYLIST
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match community-list \<instance-name\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match community-list \<instance-name\></h>
 
 Configures the name of the BGP community list you want to use in the route map.
 
@@ -828,9 +831,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match community-list MYLIST
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match evpn-default-route
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match evpn-default-route</h>
 
 Configures Cumulus Linux to match the EVPN default route in the route map. You can set the value to `on` or `off`.
 
@@ -851,9 +854,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-default-route on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match evpn-route-type
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match evpn-route-type</h>
 
 Configures the EVPN route type you want to match in the route map. You can specify type 2 (MAC or IP advertisement routes), type 3 (Inclusive multicast Ethernet tag routes), or type 5 (IP prefix routes).
 
@@ -874,9 +877,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-route-type macip
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match evpn-vni \<value\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match evpn-vni \<value\></h>
 
 Configures the VNI ID you want to use a match in the route map.
 
@@ -897,9 +900,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-vni 10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match interface \<interface-name\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match interface \<interface-name\></h>
 
 Configures the interface you want to use as a match in the route map.
 
@@ -921,9 +924,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match interface swp51
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop \<address\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop \<address\></h>
 
 Configures the route map to match the IP address of a nexthop.
 
@@ -945,9 +948,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop 10.10.101
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-len
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-len</h>
 
 Configures the route map to match an IP nexthop prefix length.
 
@@ -968,9 +971,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop-len 32
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-list
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-list</h>
 
 Configures the IP next hop list you want to use as a match in the route map.
 
@@ -991,9 +994,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop-list prefixlist1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-type blackhole
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop-type blackhole</h>
 
 Configures the route map to match a null route (blackhole).
 
@@ -1014,9 +1017,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop-type blackhole
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-prefix-list
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-prefix-list</h>
 
 Configures the IP prefix list to use as a match in the route map.
 
@@ -1037,9 +1040,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-prefix-len
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-prefix-len</h>
 
 Configures the IP address prefix length you want to match. You can specify a value between 0 and 128.
 
@@ -1060,9 +1063,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-len 128
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match large-community-list \<instance-name\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match large-community-list \<instance-name\></h>
 
 Configures the name of the BGP Large Community list you want to use in the route map.
 
@@ -1083,9 +1086,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match large-community-list MYLIST
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match local-preference
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match local-preference</h>
 
 Configures the local preference of the route you want to match in the route map. You can specify a value between 0 and 4294967295.
 
@@ -1106,9 +1109,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match local-preference 300
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match metric
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match metric</h>
 
 Configures the route metric (the cost values used by routers to determine the best path to a destination network) you want to use as a match in the route map.
 
@@ -1129,9 +1132,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match metric 1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match origin
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match origin</h>
 
 Configures the BGP origin you want to use as a match in the route map. You can specify `egp`, `igp`, or `incomplete`.
 
@@ -1152,9 +1155,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match origin igp
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match peer
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match peer</h>
 
 Configures the BGP peer you want to use as a match in the route map. You can specify `local`, the interface, or the IPv4 or IPv6 address.
 
@@ -1175,9 +1178,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match peer swp51
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match source-protocol
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match source-protocol</h>
 
 Configures the source protocol you want to use as a match in the route map. The source protocol is the protocol through which the switch learns the route. You can specify `bgp`, `connected`, `kernel`, `ospf`, `spf6`, `sharp` or `static`.
 
@@ -1198,9 +1201,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-protocol bgp
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match source-vrf \<vrf-name\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match source-vrf \<vrf-name\></h>
 
 Configures the source VRF you want to use as a match in the route map.
 
@@ -1221,9 +1224,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-vrf RED
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match tag
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match tag</h>
 
 Configures the BGP tag you want to use as a match in the route map. You can specify a value between 1 and 4294967295.
 
@@ -1244,9 +1247,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match tag 10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match type
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match type</h>
 
 Configures the route types you want to use as a match in the route map. You can specify IPv4 or IPv6 routes.
 
@@ -1267,9 +1270,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ipv4
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set</h>
 
 Configures the route map rule set.
 
@@ -1284,9 +1287,9 @@ Configures the route map rule set.
 
 Introduced in Cumulus Linux 5.0.0
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\></h>
 
 Sets the aggregator AS Number for a matched route.
 
@@ -1308,9 +1311,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregator-as 65101
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\> address \<ipv4-address\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\> address \<ipv4-address\></h>
 
 Sets the originating AS of an aggregated route if there is a match.
 
@@ -1333,9 +1336,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregator-as 65101 address 10.10.10.01
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-exclude
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-exclude</h>
 
 Configures a set clause in the route map to remove the AS number from the AS Path attribute of the route. You can specify a value between 1 and 4294967295.
 
@@ -1356,9 +1359,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-exclude 65101
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend</h>
 
 Sets the BGP AS Path you want to prepend for a matched route.
 
@@ -1379,9 +1382,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend as
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend as</h>
 
 Sets the BGP AS number to prepend for a matched route.
 
@@ -1402,9 +1405,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend as 65101
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend last-as
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend last-as</h>
 
 Sets the last BGP AS path to prepend for a matched route. You can set a value between 1 and 10.
 
@@ -1425,9 +1428,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend as last-as 4
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set atomic-aggregate (on|off)
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set atomic-aggregate (on|off)</h>
 
 Configures a set clause in the route map to inform BGP peers that the local router is using a less specific (aggregated) route to a destination. You can specify `on` or `off`. The default setting is `off`.
 
@@ -1448,9 +1451,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set atomic-aggregate on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set community \<community-id\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set community \<community-id\></h>
 
 Sets the BGP Community attribute for a matched route.
 
@@ -1472,9 +1475,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community 100:100
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set community-delete-list
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set community-delete-list</h>
 
 Configures a set clause in the route map to remove BGP communities from being advertised to other BGP routes.
 
@@ -1495,9 +1498,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community-delete-list communitylist1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ip-nexthop
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ip-nexthop</h>
 
 Configures a set clause in the route map for the next hop address for an incoming packet regardless of the explicit route for the packet. You can specify the IP address of the peer, or leave it unchanged.
 
@@ -1518,9 +1521,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ip-nexthop peer-addr
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-global
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-global</h>
 
 Configures a set clause in the route map for IPv6 next hop global address.
 
@@ -1541,9 +1544,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-global 2001:db8:0002::0a00:0002
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-local
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-local</h>
 
 Configures a set clause in the route map for the IPv6 next hop local address.
 
@@ -1564,9 +1567,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-local 2001:db8:0002::0a00:0002
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-prefer-global
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ipv6-nexthop-prefer-global</h>
 
 Configures a set clause in the route map to use the global address as the IPv6 next hop.
 
@@ -1587,9 +1590,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-prefer-global on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community \<large-community-id\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community \<large-community-id\></h>
 
 Sets the large BGP Community for a matched route.
 
@@ -1611,9 +1614,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community 2914:65400:38016
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-bw
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-bw</h>
 
 Sets the BGP Extended Community for a matched route. You can specify `cumulative` `multipaths` `cumulative-non-transitive`, or `multipaths-non-transitive`.
 
@@ -1634,9 +1637,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-bw multipaths.
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-rt \<route-distinguisher\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-rt \<route-distinguisher\></h>
 
 Sets the route target Extended Community for a matched route.
 
@@ -1658,9 +1661,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-rt 64510:1111
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-soo \<route-distinguisher\>
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-soo \<route-distinguisher\></h>
 
 Sets the site-of-origin (SoO) Extended Community for a matched route.
 
@@ -1682,9 +1685,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-soo 100:30
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set forwarding-address
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set forwarding-address</h>
 
 Configures the IPv6 forwarding address you want to set for the route in the route map.
 
@@ -1705,9 +1708,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set forwarding-address 2001:100::1/64
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set label-index
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set label-index</h>
 
 Configures the label index value you want to set for the route in the route map. You can set a value between 0 and 1048560.
 
@@ -1728,9 +1731,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set label-index 1000
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community-delete-list
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community-delete-list</h>
 
 Configures a set clause in the route map to remove BGP Large Communities from being advertised to other BGP routes.
 
@@ -1751,9 +1754,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community-delete-list largecommunitylist1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set local-preference
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set local-preference</h>
 
 Sets the BGP local preference for a matched route. You can specify a value between 0 and 4294967295.
 
@@ -1774,9 +1777,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set local-preference 300
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric</h>
 
 Configures a set clause in the route map for the metric value for the destination routing protocol. You can set `metric-plus`, `metric-minus`, `rtt`, `rtt-plus`, or `rtt-minus`.
 
@@ -1797,9 +1800,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric metric-minus
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric type
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric type</h>
 
 Configures a set clause in the route map for the metric type for routes that match the map. The metric type is used by the OSPF protocol. You can set OSPF external type 1 metric or OSPF external type 2 metric.
 
@@ -1820,9 +1823,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric type type-2
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set origin
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set origin</h>
 
 Configures a set clause in the route map for the BGP origin code for the matched route. You can specify `egp` (the switch learns the origin of the route from an exterior routing protocol with the given autonomous system number) `igp` (the switch learns the origin of the route from an interior routing protocol), or `incomplete` (the origin of the route is unknown).
 
@@ -1843,9 +1846,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set origin igp
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set originator-id
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set originator-id</h>
 
 Configures the BGP IPv4 address of originator you want to set for the route in the route map.
 
@@ -1866,9 +1869,9 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set originator-id 10.10.10.4
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set source-ip
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set source-ip</h>
 
 Configures a set clause in the route map for the source IP address. You can specify an IPv4 or IPv6 address.
 
@@ -1889,9 +1892,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set source-ip 10.1.10.0
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set tag
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set tag</h>
 
 Configures a set clause in the route map for the tag value for the routing protocol.
 
@@ -1912,9 +1915,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set tag 100
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set weight
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set weight</h>
 
 Sets the BGP weight value for a matched route. You can specify a value between 0 and 4294967295.
 

@@ -5,11 +5,14 @@ weight: 540
 product: Cumulus Linux
 type: nojsscroll
 ---
+<style>
+h { color: RGB(118,185,0)}
+</style>
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set service dhcp-relay \<vrf-id\>
+## <h>nv set service dhcp-relay \<vrf-id\></h>
 
 Configures DHCP relays for IPv4 and IPv6.
 
@@ -23,9 +26,9 @@ Configures DHCP relays for IPv4 and IPv6.
 
 Introduced in Cumulus Linux 5.0.0
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-relay \<vrf-id\> gateway-interface \<interface-id\>
+## <h>nv set service dhcp-relay \<vrf-id\> gateway-interface \<interface-id\></h>
 
 Configures the gateway IPv4 address on an interface.
 
@@ -50,9 +53,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default gateway-interface lo
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-relay \<vrf-id\> giaddress-interface \<interface-id\> address
+## <h>nv set service dhcp-relay \<vrf-id\> giaddress-interface \<interface-id\> address</h>
 
 Configures the IPv4 address on the gateway interface.
 
@@ -74,9 +77,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default giaddress-interface address lo 10.10.10.1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-relay \<vrf-id\> interface \<interface-id\>
+## <h>nv set service dhcp-relay \<vrf-id\> interface \<interface-id\></h>
 
 Configures the interfaces on which to configure DHCP relay.
 
@@ -97,9 +100,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default interface swp51
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-relay \<vrf-id\> server \<server-id\>
+## <h>nv set service dhcp-relay \<vrf-id\> server \<server-id\></h>
 
 Configures the DHCP server.
 
@@ -120,9 +123,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default server 172.16.1.102
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-relay \<vrf-id\> source-ip
+## <h>nv set service dhcp-relay \<vrf-id\> source-ip</h>
 
 Configures the source IP address to use on the relayed packet.
 
@@ -142,21 +145,21 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default source-ip giaddress
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-relay6 \<vrf-id\>
+## <h>nv set service dhcp-relay6 \<vrf-id\></h>
 
 Configures DHCP relay for IPv6 on a specific VRF.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-relay6 \<vrf-id\> interface
+## <h>nv set service dhcp-relay6 \<vrf-id\> interface</h>
 
 Configures the DHCP relay IPv6 interfaces.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-relay6 \<vrf-id\> interface downstream \<interface-id\>
+## <h>nv set service dhcp-relay6 \<vrf-id\> interface downstream \<interface-id\></h>
 
 Configures the DHCP relay downstream interface.
 
@@ -177,9 +180,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface downstream swp1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-relay6 \<vrf-id\> interface downstream \<interface-id\> link-address \<ipv6\>
+## <h>nv set service dhcp-relay6 \<vrf-id\> interface downstream \<interface-id\> link-address \<ipv6\></h>
 
 Configures the IPv6 address on DHCP relay downstream interface.
 
@@ -205,9 +208,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface downstream swp1 address 2001:db8::1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-relay6 \<vrf-id\> interface upstream \<interface-id\>
+## <h>nv set service dhcp-relay6 \<vrf-id\> interface upstream \<interface-id\></h>
 
 Configures the upstream interface for DHCP relay for IPv6.
 
@@ -222,15 +225,15 @@ Configures the upstream interface for DHCP relay for IPv6.
 
 Introduced in Cumulus Linux 5.0.0
 
-## Example
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface upstream swp51
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-relay6 \<vrf-id\> interface upstream \<interface-id\> server-address \<ipv6\>
+## <h>nv set service dhcp-relay6 \<vrf-id\> interface upstream \<interface-id\> server-address \<ipv6\></h>
 
 Configures the IPv6 address on the DHCP relay upstream interface.
 
@@ -256,15 +259,15 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface upstream swp51 server-address 2001:db8:0002::0a00:0002
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server
+## <h>nv set service dhcp-server</h>
 
 Configures the Dynamic Host Configuration Protocol Server (DHCP server) for IPv4.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> domain-name \<domain-name-id\>
+## <h>nv set service dhcp-server \<vrf-id\> domain-name \<domain-name-id\></h>
 
 Configures the DHCP domain name.
 
@@ -285,9 +288,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default domain-name example.com
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> domain-name \<domain-name-id\> domain-name \<idn-hostname\>
+## <h>nv set service dhcp-server \<vrf-id\> domain-name \<domain-name-id\> domain-name \<idn-hostname\></h>
 
 Configures the Internationalized Domain Name (IDN) you want to use in this pool.
 
@@ -309,9 +312,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default domain-name example.com domain-name myIDN
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> domain-name-server \<server-id\>
+## <h>nv set service dhcp-server \<vrf-id\> domain-name-server \<server-id\>
 
 Confgures a remote DNS server to use globally.
 
@@ -332,9 +335,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default domain-name-server 192.168.200.53.
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> interface \<interface-id\>
+## <h>nv set service dhcp-server \<vrf-id\> interface \<interface-id\></h>
 
 Configures the DHCP client interface.
 
@@ -355,9 +358,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default interface swp1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\>
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\></h>
 
 Configures a DHCP pool.
 
@@ -372,9 +375,9 @@ Configures a DHCP pool.
 
 Introduced in Cumulus Linux 5.0.0
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> cumulus-provision-url \<value\>
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> cumulus-provision-url \<value\></h>
 
 Configures a specific URL for the provisioning script.
 
@@ -395,9 +398,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 cumulus-provision-url https://www.nvidia.com/provision
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> default-url \<value\>
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> default-url \<value\>
 
 Confifgures the default URL for the DHCP server pool.
 
@@ -418,9 +421,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 default-url https://www.nvidia.com/
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\></h>
 
 Configures the DHCP domain name you want to use in this pool.
 
@@ -442,9 +445,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 domain-name example.com
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\>
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\></h>
 
 Configures the remote DHCP domain name server you want to use in this pool.
 
@@ -466,9 +469,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 domain-name-server 192.168.200.53 
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> gateway \<gateway-id\>
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> gateway \<gateway-id\></h>
 
 Configures the DHCP gateway you want to use in this pool.
 
@@ -490,9 +493,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 gateway 10.1.10.1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> lease-time
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> lease-time</h>
 
 Configures the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000. The default setting is 600.
 
@@ -513,9 +516,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 lease-time 200000
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> ping-check
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> ping-check</h>
 
 Configures the DHCP server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range. The default setting is `off`.
 
@@ -536,9 +539,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 ping-check on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> pool-name \<value\>
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> pool-name \<value\></h>
 
 Configures the pool name.
 
@@ -560,9 +563,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 pool-name storage-servers
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\>
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\></h>
 
 Configures the start of the IP address range you want to use in this DHCP server pool.
 
@@ -578,9 +581,9 @@ Configures the start of the IP address range you want to use in this DHCP server
 
 Introduced in Cumulus Linux 5.0.0
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\> to \<ipv4\>
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\> to \<ipv4\></h>
 
 Configures the end of the IP address range you want to use in this DHCP server pool.
 
@@ -602,9 +605,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 range 10.1.10.100 to 10.1.10.199
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> static \<static-id\>
+## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\></h>
 
 Configures a static IP address for a resource, such as a server or printer.
 
@@ -625,9 +628,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> static \<static-id\> cumulus-provision-url \<value\>
+## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\> cumulus-provision-url \<value\></h>
 
 Configures a URL for a provisioning script.
 
@@ -648,9 +651,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 cumulus-provision-url http://192.0.2.1/myscript.sh
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> static \<static-id\> host-id-circuit-id \<value\>
+## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\> host-id-circuit-id \<value\></h>
 
 Configures the host identifier for the agent circuit ID.
 
@@ -672,9 +675,9 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 host-id-circuit-id 1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> static \<static-id\> ip-address \<ipv4\>
+## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\> ip-address \<ipv4\></h>
 
 Configures the static IP address for the resource.
 
@@ -695,9 +698,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 ip-address 10.0.0.2
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server \<vrf-id\> static \<static-id\> mac-address \<mac-address\>
+## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\> mac-address \<mac-address\></h>
 
 Configures the MAC address of the resource to which you want to assign a static IP address.
 
@@ -719,15 +722,15 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 mac-address 44:38:39:00:01:7e
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6
+## <h>nv set service dhcp-server6</h>
 
 Configures the Dynamic Host Configuration Protocol Server (DHCP server) for IPv6.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> domain-name \<domain-name-id\>
+## <h>nv set service dhcp-server6 \<vrf-id\> domain-name \<domain-name-id\></h>
 
 Configures the DHCP domain name for IPv6.
 
@@ -748,9 +751,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default domain-name example.com
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> domain-name \<domain-name-id\> domain-name \<idn-hostname\>
+## <h>nv set service dhcp-server6 \<vrf-id\> domain-name \<domain-name-id\> domain-name \<idn-hostname\></h>
 
 Configures the Internationalized Domain Name (IDN) of the IPv6 DHCP server.
 
@@ -772,9 +775,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default domain-name example.com domain-name 
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> domain-name-server \<server-id\>
+## <h>nv set service dhcp-server6 \<vrf-id\> domain-name-server \<server-id\></h>
 
 Configures the remote DNS server.
 
@@ -795,9 +798,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default domain-name-server 2001:db8::1/128
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> interface \<interface-id\>
+## <h>nv set service dhcp-server6 \<vrf-id\> interface \<interface-id\></h>
 
 Configures the DHCP client interface for IPv6.
 
@@ -818,15 +821,15 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default interface swp1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\>
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\></h>
 
 Configures DHCP IP pools for IPv6.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> cumulus-provision-url \<url\>
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> cumulus-provision-url \<url\></h>
 
 Configures a specific URL for the provisioning script.
 
@@ -848,9 +851,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 cumulus-provision-url https://www.nvidia.com/provision
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> default-url \<url\>
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> default-url \<url\>
 
 Confifgures the default URL for the IPv6 pool.
 
@@ -872,9 +875,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 default-url https://www.nvidia.com/
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\></h>
 
 Configures the DHCP domain name you want to use in this pool.
 
@@ -896,9 +899,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 domain-name example.com
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\> domain-name \<idn-hostname\>
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\> domain-name \<idn-hostname\></h>
 
 Configures the Internationalized Domain Name (IDN) you want to use in this pool for IPv6.
 
@@ -920,9 +923,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 domain-name example.com domain-name myidn
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\>
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\></h>
 
 Configures the remote DHCP domain name server you want to use in this pool.
 
@@ -944,9 +947,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 domain-name-server 2001:4860:4860::8888
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> lease-time
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> lease-time</h>
 
 Configures the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000.
 
@@ -967,9 +970,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 lease-time 200000
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> ping-check
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> ping-check</h>
 
 Configures the DHCP6 server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range.
 
@@ -990,9 +993,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 ping-check on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> pool-name \<value\>
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> pool-name \<value\></h>
 
 Configures the DHCP pool name for IPv6.
 
@@ -1014,9 +1017,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 pool-name storage-servers
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\>
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\></h>
 
 Configures the start of the DHCP pool range for IPv6.
 
@@ -1038,9 +1041,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 range 2002:a01:a64::
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\> to \<ipv6\>
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\> to \<ipv6\></h>
 
 Configures the end of the DHCP pool range for IPv6.
 
@@ -1062,9 +1065,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 range 2002:a01:a64:: to 2002:a01:ac7::
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> static \<static-id\>
+## <h>nv set service dhcp-server6 \<vrf-id\> static \<static-id\></h>
 
 Configures a static DHCP6 server for a resource, such as a server or printer.
 
@@ -1079,9 +1082,9 @@ Configures a static DHCP6 server for a resource, such as a server or printer.
 
 Introduced in Cumulus Linux 5.0.0
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> static \<static-id\> cumulus-provision-url \<value\>
+## <h>nv set service dhcp-server6 \<vrf-id\> static \<static-id\> cumulus-provision-url \<value\></h>
 
 Configures a URL for a provisioning script.
 
@@ -1102,9 +1105,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server1 cumulus-provision-url https://www.nvidia.com/provision
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> static \<static-id\> ip-address \<ipv6\>
+## <h>nv set service dhcp-server6 \<vrf-id\> static \<static-id\> ip-address \<ipv6\></h>
 
 Configures the IPv6 address for the static DHCP6 server.
 
@@ -1126,9 +1129,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server1 ip-address 2001:db8::1/128
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service dhcp-server6 \<vrf-id\> static \<static-id\> mac-address \<mac-address\>
+## <h>nv set service dhcp-server6 \<vrf-id\> static \<static-id\> mac-address \<mac-address\></h>
 
 Configures the MAC (hardware) address for the static DHCP6 server.
 

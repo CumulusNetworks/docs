@@ -5,7 +5,10 @@ weight: 250
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show interface \<interface-id\> router pbr
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show interface \<interface-id\> router pbr</h>
 
 Shows PBR configuration settings for the specified interface.
 
@@ -25,9 +28,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp51 router pbr
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> router pbr map
+## <h>nv show interface \<interface-id\> router pbr map</h>
 
 Shows the PBR maps configured for the specified interface.
 
@@ -47,9 +50,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv show interface swp51 router pbr map
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> router pbr map \<pbr-map-id\>
+## <h>nv show interface \<interface-id\> router pbr map \<pbr-map-id\></h>
 
 Shows configuration settings for the specified PBR map on the specified interface.
 
@@ -70,9 +73,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv show interface swp51 router pbr map map1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router pbr
+## <h>nv show router pbr</h>
 
 Shows global PBR configuration settings.
 
@@ -86,9 +89,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router pbr
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router pbr map
+## <h>nv show router pbr map</h>
 
 Shows settings for PBR maps. If you do not provide a specific map name, this command shows configuration settings for all configured maps.
 
@@ -102,9 +105,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router pbr map
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router pbr map \<pbr-map-id\>
+## <h>nv show router pbr map \<pbr-map-id\></h>
 
 Shows the configuration settings for a PBR map used for policy configuration.
 
@@ -124,9 +127,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router pbr map map1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router pbr map \<pbr-map-id\> rule
+## <h>nv show router pbr map \<pbr-map-id\> rule</h>
 
 Shows the rules for the specified PBR route map.
 
@@ -146,9 +149,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router pbr map \<pbr-map-id\> rule \<rule-id\>
+## <h>nv show router pbr map \<pbr-map-id\> rule \<rule-id\></h>
 
 Shows the match and set criteria, and the rule action for a route map.
 
@@ -169,9 +172,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action
+## <h>nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action</h>
 
 Shows the rule action for a PBR route map.
 
@@ -192,9 +195,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 action
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group
+## <h>nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group</h>
 
 Shows the next hop groups in the PBR route map rule action.
 
@@ -215,9 +218,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 action nexthop-group
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\>
+## <h>nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\></h>
 
 Shows configuration for the specified next hop group including the IP route table number of the default route.
 
@@ -239,9 +242,9 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 action nexthop-group group1
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> match
+## <h>nv show router pbr map \<pbr-map-id\> rule \<rule-id\> match</h>
 
 Shows the rule match criteria for a PBR route map.
 
@@ -262,9 +265,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 match
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show system global reserved routing-table pbr
+## <h>nv show system global reserved routing-table pbr</h>
 
 Shows the PBR reserved routing table ranges.
 

@@ -5,11 +5,14 @@ weight: 750
 product: Cumulus Linux
 type: nojsscroll
 ---
+<style>
+h { color: RGB(118,185,0)}
+</style>
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set service syslog \<vrf-id\>
+## <h>nv set service syslog \<vrf-id\></h>
 
 Configures the System Logging Protocol (`syslog`) service in the specified VRF so that the switch can use a standard message format to communicate with a logging server.
 
@@ -23,9 +26,9 @@ Configures the System Logging Protocol (`syslog`) service in the specified VRF s
 
 Introduced in Cumulus Linux 5.0.0
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service syslog \<vrf-id\> server \<server-id\>
+## <h>nv set service syslog \<vrf-id\> server \<server-id\></h>
 
 Configures the remote `syslog` server.
 
@@ -40,9 +43,9 @@ Configures the remote `syslog` server.
 
 Introduced in Cumulus Linux 5.0.0
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service syslog \<vrf-id\> server \<server-id\> port
+## <h>nv set service syslog \<vrf-id\> server \<server-id\> port</h>
 
 Configures the port number of the remote `syslog` server.
 
@@ -63,9 +66,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service syslog default server 192.168.0.254 port 514
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set service syslog \<vrf-id\> server \<server-id\> protocol
+## <h>nv set service syslog \<vrf-id\> server \<server-id\> protocol</h>
 
 Configures the protocol you want to use to transmit syslog data. You can specify either UDP or TCP.
 

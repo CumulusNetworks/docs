@@ -5,7 +5,10 @@ weight: 300
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show router ptm
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show router ptm</h>
 
 Shows if PTM check link state is enabled. When enabled, PTM performs additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that `ptmd` defines.
 

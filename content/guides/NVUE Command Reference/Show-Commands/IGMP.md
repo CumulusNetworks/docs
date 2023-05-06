@@ -5,7 +5,10 @@ weight: 180
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show interface \<interface-id\> ip igmp
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show interface \<interface-id\> ip igmp</h>
 
 Shows IGMP configuration information. IGMP prevents hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments.
 
@@ -25,9 +28,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip igmp
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> ip igmp static-group
+## <h>nv show interface \<interface-id\> ip igmp static-group</h>
 
 Shows information about IGMP static multicast groups configured on the interface.
 
@@ -47,9 +50,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip igmp static-group
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show interface \<interface-id\> ip igmp static-group \<static-group-id\>
+## <h>nv show interface \<interface-id\> ip igmp static-group \<static-group-id\></h>
 
 Shows information about IGMP static multicast groups configured on the interface.
 
@@ -70,9 +73,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip igmp static-group 224.10.0.0
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show router igmp
+## <h>nv show router igmp</h>
 
 Shows global IGMP configuration information.
 

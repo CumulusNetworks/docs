@@ -5,7 +5,10 @@ weight: 380
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show service syslog
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show service syslog</h>
 
 Shows the syslog configuration settings.
 
@@ -19,9 +22,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show service syslog
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show service syslog \<vrf-id\>
+## <h>nv show service syslog \<vrf-id\></h>
 
 Shows the syslog configuration settings for the specified VRF.
 
@@ -41,9 +44,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show service syslog default
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show service syslog \<vrf-id\> server \<server-id\>
+## <h>nv show service syslog \<vrf-id\> server \<server-id\></h>
 
 Shows the remote DNS servers for the specified VRF.
 
@@ -63,9 +66,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show service syslog default server
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show service syslog \<vrf-id\> server \<server-id\>
+## <h>nv show service syslog \<vrf-id\> server \<server-id\></h>
 
 Shows information about a specific remote DNS server for the specified VRF.
 

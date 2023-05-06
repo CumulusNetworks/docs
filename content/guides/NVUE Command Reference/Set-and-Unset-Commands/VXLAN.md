@@ -5,17 +5,20 @@ weight: 810
 product: Cumulus Linux
 type: nojsscroll
 ---
+<style>
+h { color: RGB(118,185,0)}
+</style>
 {{%notice note%}}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set nve vxlan
+## <h>nv set nve vxlan</h>
 
 Configures VXLAN settings on the switch.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan arp-nd-suppress
+## <h>nv set nve vxlan arp-nd-suppress</h>
 
 Turns VXLAN ARP and ND suppression on or off. The default setting is `on`.
 
@@ -29,15 +32,15 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set nve vxlan arp-nd-suppress off
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan decapsulation
+## <h>nv set nve vxlan decapsulation</h>
 
 Configures VXLAN decapsulation.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan decapsulation dscp action
+## <h>nv set nve vxlan decapsulation dscp action</h>
 
 Configures the VXLAN decapsulation DSCP/COS action. You can specify one of the following options:
 - `copy` (if the inner packet is IP).
@@ -50,9 +53,9 @@ Configures the VXLAN decapsulation DSCP/COS action. You can specify one of the f
 cumulus@leaf01:mgmt:~$ nv set nve vxlan decapsulation dscp action derive
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan enable
+## <h>nv set nve vxlan enable</h>
 
 Turns VXLAN on or off globally.
 
@@ -66,15 +69,15 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set nve vxlan enable on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan encapsulation
+## <h>nv set nve vxlan encapsulation</h>
 
 Configures VXLAN encapsulation.
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan encapsulation dscp action
+## <h>nv set nve vxlan encapsulation dscp action</h>
 
 Configures the VXLAN outer DSCP action during encapsulation. You can specify one of the following options:
 - `copy` (if the inner packet is IP)
@@ -93,9 +96,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set nve vxlan encapsulation dscp action derive
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan encapsulation dscp value
+## <h>nv set nve vxlan encapsulation dscp value</h>
 
 Configures the DSCP value to put in outer VXLAN packet.
 
@@ -109,15 +112,15 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set nve vxlan encapsulation dscp 16
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan flooding
+## <h>nv set nve vxlan flooding</h>
 
 Configures VXLAN flooding (how to handle BUM traffic).
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan flooding enable
+## <h>nv set nve vxlan flooding enable</h>
 
 Turns VXLAN flooding on or off.
 
@@ -131,9 +134,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set nve vxlan flooding enable on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan flooding head-end-replication \<hrep-id\>
+## <h>nv set nve vxlan flooding head-end-replication \<hrep-id\></h>
 
 Configures VXLAN head end replication where BUM traffic is replicated and individual copies sent to remote destinations.
 
@@ -153,9 +156,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set nve vxlan flooding head-end-replication 10.10.10.2
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan flooding multicast-group \<ipv4-multicast\>
+## <h>nv set nve vxlan flooding multicast-group \<ipv4-multicast\></h>
 
 Configures the multicast group for VXLAN flooding. BUM traffic goes to the specified multicast group and is received by receivers that are interested in that group. This usually requires that you use PIM-SM in the network.
 
@@ -177,9 +180,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set nve vxlan flooding multicast-group 224.0.0.10
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan mac-learning
+## <h>nv set nve vxlan mac-learning</h>
 
 Turns VXLAN MAC learning on or off.
 
@@ -193,9 +196,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set nve vxlan mac-learning on
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan mlag shared-address \<shared-address\>
+## <h>nv set nve vxlan mlag shared-address \<shared-address\></h>
 
 Configures the anycast IP address for VXLAN active-active.
 
@@ -215,9 +218,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set nve vxlan mlag shared-address 10.0.1.12
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan mtu
+## <h>nv set nve vxlan mtu</h>
 
 Configures the MTU for VXLAN interfaces.
 
@@ -231,9 +234,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set nve vxlan mtu 1500
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan port
+## <h>nv set nve vxlan port</h>
 
 Configures the UDP port for VXLAN frames.
 
@@ -247,9 +250,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set nve vxlan port 1024
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set nve vxlan source address \<source-address\>
+## <h>nv set nve vxlan source address \<source-address\></h>
 
 Configures the local tunnel IP address for VXLAN tunnels.
 

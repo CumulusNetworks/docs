@@ -5,7 +5,10 @@ weight: 450
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show nve vxlan
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show nve vxlan</h>
 
 Shows global VXLAN configuration on the switch.
 
@@ -19,9 +22,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show nve vxlan
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show nve vxlan decapsulation
+## <h>nv show nve vxlan decapsulation
 
 Show VXLAN decapsulation configuration.
 
@@ -35,9 +38,9 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show nve vxlan decapsulation
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show nve vxlan decapsulation dscp
+## <h>nv show nve vxlan decapsulation dscp</h>
 
 Shows the configured DSCP action and value during VXLAN decapsulation.
 
@@ -51,9 +54,9 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show nve vxlan decapsulation dscp
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show nve vxlan encapsulation
+## <h>nv show nve vxlan encapsulation
 
 Show VXLAN encapsulation configuration.
 
@@ -67,9 +70,9 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show nve vxlan encapsulation
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-# nv show nve vxlan encapsulation dscp
+# nv show nve vxlan encapsulation dscp</h>
 
 Shows the configured DSCP action and value during VXLAN encapsulation.
 
@@ -83,9 +86,9 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show nve vxlan encapsulation dscp
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show nve vxlan flooding
+## <h>nv show nve vxlan flooding</h>
 
 Shows VXLAN flooding configuration.
 
@@ -99,9 +102,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show nve vxlan flooding
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show nve vxlan flooding head-end-replication
+## <h>nv show nve vxlan flooding head-end-replication</h>
 
 Shows VXLAN head end replication information.
 
@@ -115,9 +118,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show nve vxlan flooding head-end-replication
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show nve vxlan flooding head-end-replication \<hrep-id\>
+## <h>nv show nve vxlan flooding head-end-replication \<hrep-id\></h>
 
 Shows VXLAN head end replication information for the specified IP address or for EVPN.
 
@@ -137,9 +140,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show nve vxlan flooding head-end-replication evpn
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show nve vxlan mlag
+## <h>nv show nve vxlan mlag</h>
 
 Shows VXLAN specfic MLAG configuration on the switch.
 
@@ -153,9 +156,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show nve vxlan mlag
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show nve vxlan source
+## <h>nv show nve vxlan source</h>
 
 Shows the VXLAN source address.
 

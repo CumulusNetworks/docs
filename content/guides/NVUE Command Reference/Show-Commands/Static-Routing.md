@@ -5,7 +5,10 @@ weight: 370
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show vrf \<vrf-id\> router static \<route-id\>
+<style>
+h { color: RGB(118,185,0)}
+</style>
+## <h>nv show vrf \<vrf-id\> router static \<route-id\></h>
 
 Shows configuration information about the static route for the specified VRF.
 
@@ -26,9 +29,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\>
+## <h>nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\></h>
 
 Shows information about the administrative distance for the static route for the specified VRF.
 
@@ -50,9 +53,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distance 2
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\>
+## <h>nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\></h>
 
 Shows information about the administrative distance for the static route and next hop for the specified VRF.
 
@@ -75,9 +78,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\> flag
+## <h>nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\> flag</h>
 
 Shows the flag value for the static route with the specified route prefix and distance in the specified VRF.
 
@@ -100,9 +103,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> router static \<route-id\> via \<via-id\>
+## <h>nv show vrf \<vrf-id\> router static \<route-id\> via \<via-id\></h>
 
 Shows information about the next hop for the static route in the specified VRF.
 
@@ -124,9 +127,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0
 ```
 
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 1.0PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 6.0PX;"/>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv show vrf \<vrf-id\> router static \<route-id\> via \<via-id\> flag
+## <h>nv show vrf \<vrf-id\> router static \<route-id\> via \<via-id\> flag</h>
 
 Shows the flag value for the static route with the next hop in the specified VRF.
 

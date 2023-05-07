@@ -89,6 +89,9 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 4. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/p/python-netq/" text="NetQ repository">}}, selecting the appropriate OS version and architecture. Place the files in an accessible part of your local network.
 
+    <div style="padding-left: 18px;">For CumulusLinux-4 NetQ images, look for [netq-agent|netq-apps]...cl4...[amd64/armel].deb, and for Sonic look for [netq-agent|netq-apps]...deb10...amd64.deb.
+    </div>
+    
 5. In the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Add image** above the table.
 
 6. Provide the *.deb* file(s) from an external drive that matches the criteria for the selected image.

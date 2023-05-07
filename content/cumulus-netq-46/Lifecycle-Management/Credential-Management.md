@@ -33,7 +33,7 @@ You cannot delete default profiles.
 You must have sudoer permission to configure switches when using the SSH key method.
 {{</notice>}}
 
-4. Create a pair of SSH private and public keys:
+4. Create a pair of SSH private and public keys on the NetQ appliance. (When prompted keep pressing enter):
 
     ```
     ssh-keygen -t rsa -C "<USER>"
@@ -99,7 +99,7 @@ To configure SSH authentication using a public/private key:
 You must have sudoer permission to properly configure switches when using the SSH key method.
 {{</notice>}}
 
-1. If the keys do not yet exist, create a pair of SSH private and public keys.
+1. If the keys do not yet exist, create a pair of SSH private and public keys on the NetQ appliance (When prompted keep pressing enter).
 
     ```
     ssh-keygen -t rsa -C "<USER>"
@@ -113,7 +113,7 @@ You must have sudoer permission to properly configure switches when using the SS
 3. Add these credentials to the switch. Specify a unique name for the configuration after `profile_name`. 
 
     ```
-    cumulus@switch:~$ netq lcm add credentials profile_name NEWPROFILE ssh-key PUBLIC_SSH_KEY
+    cumulus@switch:~$ netq lcm add credentials profile_name NEWPROFILE username <USERNAME> ssh-key PUBLIC_SSH_KEY
     ```
 
 {{</tab>}}

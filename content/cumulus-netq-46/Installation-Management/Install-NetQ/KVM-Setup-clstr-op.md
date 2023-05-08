@@ -54,6 +54,6 @@ Make a note of the private IP address you assign to the worker node. You need it
 
 13. The final step is to install and activate the NetQ software using the CLI:
 
-{{<netq-install/install-with-cli version="6" deployment="onprem-cluster">}}
+{{<netq-install/install-with-cli version="4.6" deployment="onprem-cluster">}}
 
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

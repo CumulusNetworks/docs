@@ -62,9 +62,9 @@ Shows EVPN access VLAN information for the specified VLAN.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
-| `<vlan-id>` |  The VLAN name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -84,9 +84,9 @@ Shows EVPN access VLAN member interface information.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
-| `<vlan-id>` |  The VLAN name. |
+| `<vlan-id>` | The VLAN name. |
 
 ### Version History
 
@@ -266,9 +266,9 @@ Shows EVPN multihoming BGP information for the specified ESI for all VTEPs.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<esi-id>` |  The ESI identifier. |
+| `<esi-id>` | The ESI identifier. |
 
 ### Version History
 
@@ -288,10 +288,10 @@ Shows EVPN multihoming BGP information for the specified ESI for a specific VTEP
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<esi-id>` |  The ESI identifier. |
-| `<ipv4-address-id>` |  The IPv4 address of the VTEP. |
+| `<esi-id>` | The ESI identifier. |
+| `<ipv4-address-id>` | The IPv4 address of the VTEP. |
 
 ### Version History
 
@@ -311,9 +311,9 @@ Shows EVPN multihoming BGP remote VTEP fragment information for a specific ESI.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<esi-id>` |  The ESI identifier. |
+| `<esi-id>` | The ESI identifier. |
 
 ### Version History
 
@@ -333,10 +333,10 @@ Shows specific EVPN multihoming BGP remote VTEP fragment information for a speci
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<esi-id>` |  The ESI identifier. |
-| `<fragment-id>` |  The route-distinguisher. |
+| `<esi-id>` | The ESI identifier. |
+| `<fragment-id>` | The route-distinguisher. |
 
 ### Version History
 
@@ -386,10 +386,10 @@ Shows information about the specified EVPN multihoming Ethernet segment ID.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
-| `<esi-id>` |  The ESI identifier. |
+| `<vni-id>` | The VNI name. |
+| `<esi-id>` | The ESI identifier. |
 
 ### Version History
 
@@ -407,10 +407,10 @@ Shows information about the specified EVPN multihoming Ethernet segment ID for r
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
-| `<esi-id>` |  The ESI identifier. |
+| `<vni-id>` | The VNI name. |
+| `<esi-id>` | The ESI identifier. |
 
 ### Version History
 
@@ -430,10 +430,10 @@ Shows information about a specific EVPN multihoming Ethernet segment ID for the 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
-| `<esi-id>` |  The ESI identifier. |
+| `<vni-id>` | The VNI name. |
+| `<esi-id>` | The ESI identifier. |
 
 ### Version History
 
@@ -489,9 +489,9 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi`
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 
 ### Version History
 
@@ -515,9 +515,9 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id>`
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 
 ### Version History
 
@@ -537,7 +537,7 @@ Shows BGP configuration information for the specific VNI.
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vni-id>` |  The VNI name. |
 
@@ -559,9 +559,9 @@ Shows the ARP and ND table for the specific VNI.
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+|  Syntax |  Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 
 ### Version History
 
@@ -581,7 +581,7 @@ Shows a specific ARP and ND table for the specific VNI.
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vni-id>` |  The VNI name. |
 | `<ip-address-id>` |  The IP address. |
@@ -604,9 +604,9 @@ Shows the MAC address for the specified EVPN VNI.
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 
 ### Version History
 
@@ -626,10 +626,10 @@ Shows configuration information about a specific VNI MAC address.
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
-| `<mac-address-id>` |  The MAC address. |
+| `<vni-id>` | The VNI name. |
+| `<mac-address-id>` | The MAC address. |
 
 ### Version History
 
@@ -649,9 +649,9 @@ Shows multihoming Ethernet configuration for the specified EVPN VNI.
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 
 ### Version History
 
@@ -671,9 +671,9 @@ Shows BGP information for the multihoming Ethernet segments for the specified VN
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 
 ### Version History
 
@@ -693,10 +693,10 @@ Shows BGP information for a specific multihoming Ethernet segment for the specif
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
-| `<es-id>` |  The Ethernet segment ID. |
+| `<vni-id>` | The VNI name. |
+| `<es-id>` | The Ethernet segment ID. |
 
 ### Version History
 
@@ -716,10 +716,10 @@ Shows BGP information for a specific multihoming Ethernet segment for the specif
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
-| `<es-id>` |  The Ethernet segment ID. |
+| `<vni-id>` | The VNI name. |
+| `<es-id>` | The Ethernet segment ID. |
 
 ### Version History
 
@@ -739,11 +739,11 @@ Shows BGP information for a specific multihoming Ethernet segment for the specif
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
-| `<es-id>` |  The Ethernet segment ID. |
-| `<ipv4-address-id>` |  The IPv4 address of the remote VTEP. |
+| `<vni-id>` | The VNI name. |
+| `<es-id>` | The Ethernet segment ID. |
+| `<ipv4-address-id>` | The IPv4 address of the remote VTEP. |
 
 ### Version History
 
@@ -763,9 +763,9 @@ Shows the EVPN multihoming ESIs for the specified VNI.
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 
 ### Version History
 
@@ -785,10 +785,10 @@ Shows information for a specific multihoming Ethernet segment for the specified 
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
-| `<es-id>` |  The Ethernet segment ID. |
+| `<vni-id>` | The VNI name. |
+| `<es-id>` | The Ethernet segment ID. |
 
 ### Version History
 
@@ -812,9 +812,9 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 
 ### Version History
 
@@ -838,9 +838,9 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 
 ### Version History
 
@@ -864,9 +864,9 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 | `<rt-id>` | The route target ID. |
 
 ### Version History
@@ -891,9 +891,9 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 
 ### Command Syntax
 
-|  Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 | `<rt-id>` | The route target ID. |
 
 ### Version History
@@ -918,9 +918,9 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 | `<rt-id>` | The route target ID. |
 
 ### Version History
@@ -945,9 +945,9 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 | `<rt-id>` | The route target ID. |
 
 ### Version History
@@ -972,9 +972,9 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 | `<rt-id>` | The route target ID. |
 
 ### Version History
@@ -999,9 +999,9 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` |  The VNI name. |
+| `<vni-id>` | The VNI name. |
 | `<rt-id>` | The route target ID. |
 
 ### Version History
@@ -1022,9 +1022,9 @@ Shows EVPN control plane configuration for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -1044,9 +1044,9 @@ Shows the EVPN multihoming interface configuration parameters.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`    |  The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -1066,9 +1066,9 @@ Shows EVPN multihoming interface segment configuration.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`    |  The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -1088,9 +1088,9 @@ Shows EVPN control plane configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name. |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1110,9 +1110,9 @@ Shows layer 3 VNI information from BGP.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
+| `<vrf-id>` | The VRF name.|
 
 ### Version History
 
@@ -1132,9 +1132,9 @@ Shows the EVPN next hop VTEP for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
+| `<vrf-id>` | The VRF name.|
 
 ### Version History
 
@@ -1154,10 +1154,10 @@ Shows information about a specific EVPN next hop VTEP in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
-| `<nexthop-vtep-id>` |  The IP address of the nexthop VTEP.|
+| `<vrf-id>` | The VRF name.|
+| `<nexthop-vtep-id>` | The IP address of the nexthop VTEP.|
 
 ### Version History
 
@@ -1177,9 +1177,9 @@ Shows the EVPN remote router MAC addresses in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
+| `<vrf-id>` | The VRF name.|
 
 ### Version History
 
@@ -1199,10 +1199,10 @@ Shows information about a specific EVPN remote router MAC address in the specifi
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
-| `<mac-address-id>` |  The MAC address.|
+| `<vrf-id>` | The VRF name.|
+| `<mac-address-id>` | The MAC address.|
 
 ### Version History
 
@@ -1222,9 +1222,9 @@ Shows all EVPN VNIs in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
+| `<vrf-id>` | The VRF name.|
 
 ### Version History
 
@@ -1244,9 +1244,9 @@ Shows EVPN configuration for a specific VNI in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<vni-id>` | The VXLAN ID. |
 
 ### Version History

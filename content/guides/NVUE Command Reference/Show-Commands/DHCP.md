@@ -30,9 +30,9 @@ Shows the IPv4 DHCP relay configuration in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -52,7 +52,7 @@ Shows the IPv4 DHCP relay gateway IP address (giaddress) interface configuration
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<interface-id>`  | The DHCP relay gateway address interface. |
@@ -75,7 +75,7 @@ Shows IPv4 DHCP relay configuration information for the interface that handles D
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<interface-id>` |  The DHCP relay interface.|
@@ -98,7 +98,7 @@ Shows configuration for the specified IPv4 DHCP server participating in DHCP rel
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<server-id>`   | The DHCP server. |
@@ -137,9 +137,9 @@ Shows IPv6 DHVP relay configuration information in the specified VRF on the swit
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -159,7 +159,7 @@ Shows the IPv6 DHCP relay interface configuration in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 
@@ -181,7 +181,7 @@ Shows the downstream IPv6 DHCP relay interface configuration.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<interface-id>` |  The DHCP relay interface. |
@@ -204,7 +204,7 @@ Shows the upstream IPv6 DHCP relay interface configuration.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<interface-id>` | The DHCP relay interface. |
@@ -243,9 +243,9 @@ Shows IPv4 DHCP server configuration information in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -265,9 +265,9 @@ Shows the DNS attributes provided by the DHCP server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -287,9 +287,9 @@ Shows information about a specific DNS attribute provided by the DHCP server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<domain-name-id>` | The IPv4 DHCP domain name. |
 
 ### Version History
@@ -310,9 +310,9 @@ Shows DNS configuration provided by the DHCP server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -332,10 +332,10 @@ Shows specific DNS server configuration provided by the DHCP server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<server-id>` |  The DNS server. |
+| `<vrf-id>` | The VRF name. |
+| `<server-id>` | The DNS server. |
 
 ### Version History
 
@@ -355,9 +355,9 @@ Shows a list of interfaces on which IPv4 DHCP client is attached.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -376,10 +376,10 @@ Shows information about a specific interface on which IPv4 DHCP client is attach
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<interface-id>`  | The IPv4 DHCP client interface. |
+| `<vrf-id>` | The VRF name. |
+| `<interface-id>` | The IPv4 DHCP client interface. |
 
 ### Version History
 
@@ -399,9 +399,9 @@ Shows a list of the IPv4 DHCP pool subnets and the applied configuration.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -421,10 +421,10 @@ Shows information about a specific IPv4 DHCP pool subnet.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<pool-id>` |  The DHCP pool subnet. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP pool subnet. |
 
 ### Version History
 
@@ -444,10 +444,10 @@ Shows the IPv4 DHCP domain names in the pool.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<pool-id>` |  The DHCP pool subnet. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP pool subnet. |
 
 ### Version History
 
@@ -467,10 +467,10 @@ Shows information about the IPv4 DHCP domain name in the pool.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<pool-id>` |  The DHCP pool subnet. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP pool subnet. |
 | `<domain-name-id>` | The DHCP domain name. |
 
 ### Version History
@@ -491,10 +491,10 @@ Shows a list of the IPv4 DHCP domain name servers in the pool.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<pool-id>` |  The DHCP pool subnet. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP pool subnet. |
 
 ### Version History
 
@@ -514,10 +514,10 @@ Shows information about the IPv4 DHCP domain name server in the pool.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<pool-id>` |  The DHCP pool subnet. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP pool subnet. |
 | `<server-id>` | The DNS server IP address.|
 
 ### Version History
@@ -538,10 +538,10 @@ Shows the IPv4 DHCP gateways in the pool.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<pool-id>` |  The DHCP pool subnet. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP pool subnet. |
 
 ### Version History
 
@@ -561,11 +561,11 @@ Shows information about a specific IPv4 DHCP gateway.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<pool-id>` |  The DHCP pool subnet. |
-| `<gateway-id>` |  The gateway IP address. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP pool subnet. |
+| `<gateway-id>` | The gateway IP address. |
 
 ### Version History
 
@@ -585,10 +585,10 @@ Shows the IPv4 DHCP IP address range assignments.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<pool-id>` |  The DHCP pool subnet. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP pool subnet. |
 
 ### Version History
 
@@ -608,11 +608,11 @@ Shows information about a specific IPv4 DHCP IP address range assignment.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<pool-id>` |  The DHCP pool subnet. |
-| `<range-id>` |  The start of the IP address range. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP pool subnet. |
+| `<range-id>` | The start of the IP address range. |
 
 ### Version History
 
@@ -632,7 +632,7 @@ Shows configuration for static hosts served by the DHCP server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 
@@ -654,7 +654,7 @@ Shows configuration for a specific static host served by the DHCP server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<static-id>` | The IDN host name.|
@@ -693,9 +693,9 @@ Shows IPv6 DHCP server configuration information in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
+| `<vrf-id>` |  The VRF name. |
 
 ### Version History
 
@@ -715,9 +715,9 @@ Shows the DNS attributes provided by the DHCP server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -737,9 +737,9 @@ Shows information about a specific DNS attribute provided by the DHCP server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
+| `<vrf-id>` | The VRF name. |
 | `<domain-name-id>` | The DHCP domain name. |
 
 ### Version History
@@ -760,9 +760,9 @@ Shows the IPv6 domain name servers.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name. |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -782,10 +782,10 @@ Shows information about a specific IPv6 domain name server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name. |
-| `<server-id>` |  The IPv6 address of the DNS server.|
+| `<vrf-id>` | The VRF name. |
+| `<server-id>` | The IPv6 address of the DNS server.|
 
 ### Version History
 
@@ -805,9 +805,9 @@ Shows the interfaces on which IPv6 DHCP client is attached.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -827,9 +827,9 @@ Shows information about a specific interface on which IPv6 DHCP client is attach
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
+| `<vrf-id>` | The VRF name. |
 | `<interface-id>` | The DHCP client interface. |
 
 ### Version History
@@ -850,9 +850,9 @@ Shows the configured IPv6 DHCP pool subnets.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -872,10 +872,10 @@ Shows information about a specific IPv6 DHCP pool subnet.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
-| `<pool-id>` |   The DHCP6 pool subnet. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP6 pool subnet. |
 
 ### Version History
 
@@ -895,9 +895,9 @@ Shows information about the IPv6 DHCP domain names in the pool.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
+| `<vrf-id>` | The VRF name.  |
 | `<pool-id>` |   The DHCP6 pool subnet. |
 
 ### Version History
@@ -918,9 +918,9 @@ Shows information about a specific IPv6 DHCP domain name in the pool.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
+| `<vrf-id>` | The VRF name. |
 | `<pool-id>` |   The DHCP6 pool subnet. |
 | `<domain-name-id>` | The DHCP domain name. |
 
@@ -942,10 +942,10 @@ Shows information about the IPv6 DHCP domain name servers in the pool.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
-| `<pool-id>` |   The DHCP6 pool subnet. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP6 pool subnet. |
 
 ### Version History
 
@@ -965,11 +965,11 @@ Shows information about a specific IPv6 DHCP domain name server in the pool.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
-| `<pool-id>` |   The DHCP6 pool subnet. |
-| `<server-id>` |  The DNS server.|
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP6 pool subnet. |
+| `<server-id>` | The DNS server. |
 
 ### Version History
 
@@ -989,10 +989,10 @@ Shows the IPv6 DHCP IP address range assignments.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
-| `<pool-id>` |   The DHCP6 pool subnet. |
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP6 pool subnet. |
 
 ### Version History
 
@@ -1012,11 +1012,11 @@ Shows information about a specific IPv6 DHCP IP address range assignment.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name. |
-| `<pool-id>` |   The DHCP6 pool subnet. |
-| `<range-id>` |  The start of the IPv6 address range.|
+| `<vrf-id>` | The VRF name. |
+| `<pool-id>` | The DHCP6 pool subnet. |
+| `<range-id>` | The start of the IPv6 address range. |
 
 ### Version History
 
@@ -1036,9 +1036,9 @@ Shows configuration for static hosts served by the IPv6 DHCP server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name. |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1058,10 +1058,10 @@ Shows configuration for a specific static host served by the IPv6 DHCP server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name. | 
-| `<static-id>` | The IDN host name.|
+| `<vrf-id>` | The VRF name. |
+| `<static-id>` | The IDN host name. |
 
 ### Version History
 

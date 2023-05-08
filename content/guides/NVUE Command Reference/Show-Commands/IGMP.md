@@ -16,7 +16,7 @@ Shows IGMP configuration information. IGMP prevents hosts on a local network fro
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`  | The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -36,9 +36,9 @@ Shows information about IGMP static multicast groups configured on the interface
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax |  Description |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -58,9 +58,9 @@ Shows information about IGMP static multicast groups configured on the interface
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name. |
+| `<interface-id>` | The interface name. |
 | `<static-group-id>` | The IGMP static multicast mroute destination. |
 
 ### Version History

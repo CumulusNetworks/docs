@@ -30,7 +30,7 @@ Shows <span style="background-color:#F5F5DC">[DNS](## "Domain Name Service")</sp
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 
@@ -52,10 +52,10 @@ Shows information about the specified remote DNS server.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<dns-server-id>`  | The IPv4 or IPv6 address of a DNS server. |
+| `<dns-server-id>` | The IPv4 or IPv6 address of a DNS server. |
 
 ### Version History
 

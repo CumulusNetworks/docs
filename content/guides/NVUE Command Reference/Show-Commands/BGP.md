@@ -62,7 +62,7 @@ Shows a summary of the BGP configuration information for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 
@@ -84,7 +84,7 @@ Shows a summary of the BGP configuration information for the specified VRF for a
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 
@@ -106,7 +106,7 @@ Shows a summary of the BGP IPv4 configuration information for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 
@@ -128,7 +128,7 @@ Shows configuration information for BGP IPv4 route redistribution for the specif
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 
@@ -150,7 +150,7 @@ Shows configuration information for IPv4 BGP static route redistribution for the
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 
@@ -172,7 +172,7 @@ Shows configuration information for BGP IPv4 connected route redistribution for 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 
@@ -194,7 +194,7 @@ Shows configuration information for BGP IPv4 kernel route redistribution for the
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 
@@ -216,7 +216,7 @@ Shows configuration information for redistributing OSPF IPv4 routes into BGP for
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |    The VRF name. |
 
@@ -238,7 +238,7 @@ Shows BGP IPv4 aggregate routes (a range of networks in your routing table aggre
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.  |
 
@@ -260,7 +260,7 @@ Shows information about a specific BGP IPv4 aggregate route (a range of networks
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.  |
 | `<aggregate-route-id>` |  The IPv4 address and route prefix in CIDR notation. |
@@ -283,7 +283,7 @@ Shows BGP IPv4 static networks for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |    The VRF name. |
 
@@ -305,7 +305,7 @@ Shows information about the specified BGP IPv4 static network for the specified 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |    The VRF name. |
 | `<static-network-id>` |   The IPv4 address and route prefix in CIDR notation. |
@@ -328,7 +328,7 @@ Shows configuration information about BGP IPV4 route import (route leaking) for 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |    The VRF name.  |
 
@@ -350,7 +350,7 @@ Shows configuration information about VRF to VRF IPv4 route leaking.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |   The VRF name. |
 
@@ -372,9 +372,9 @@ Shows the IPv4 routes in the BGP RIB imported from the VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -394,9 +394,9 @@ Shows IPv4 routes in the BGP RIB that leak between VRFs.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<leak-vrf-id>` |  The VRF from which routes are leaked. |
 
 ### Version History
@@ -417,9 +417,9 @@ Shows BGP IPv4 multipath configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -439,9 +439,9 @@ Shows the BGP IPv4 admin distances configured for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -461,9 +461,9 @@ Shows BGP IPv4 route export configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -483,9 +483,9 @@ Shows the controls for exporting IPv4 routes from the specified VRF into EVPN (a
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -505,9 +505,9 @@ Shows the IPv4 local RIB for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -527,7 +527,7 @@ Shows information about the IPv4 routes in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 
@@ -549,10 +549,10 @@ Shows information about for the specified IPv4 route in the local RIB, such as t
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax |  Description |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
-| `<route-id>` |  The IPv4 address and route prefix in CIDR notation. |
+| `<vrf-id>` |  The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation.  |
 
 ### Version History
 
@@ -572,10 +572,10 @@ Shows information about the paths for the specified IPv4 route in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
-| `<route-id>` |  The IPv4 address and route prefix in CIDR notation. |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation.  |
 
 ### Version History
 
@@ -595,11 +595,11 @@ Shows information about a specific IPv4 route path in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
-| `<route-id>` |  The IPv4 address and route prefix in CIDR notation. |
-| `<path-id>` |  The path ID. |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation.  |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -619,11 +619,11 @@ Shows information about the nexthops for the specified IPv4 route path in the lo
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` |  The IPv4 address and route prefix in CIDR notation |
-| `<path-id>` |  The path ID. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -643,12 +643,12 @@ Shows next hop information for the specified IPv4 route path in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
-| `<route-id>` |  The IPv4 address and route prefix in CIDR notation |
-| `<path-id>` |  The path ID. |
-| `<nexthop-id>` | The next hop. |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation |
+| `<path-id>` | The path ID. |
+| `<nexthop-id>`| The next hop. |
 
 ### Version History
 
@@ -668,11 +668,11 @@ Shows BGP peer information for the specified IPv4 route path in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
-| `<route-id>` |  The IPv4 address and route prefix in CIDR notation. |
-| `<path-id>` |  The path ID. |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation.  |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -692,11 +692,11 @@ Shows route path flags for the specified IPv4 route in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
-| `<route-id>` |  The IPv4 address and route prefix in CIDR notation. |
-| `<path-id>` |  The path ID. |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation.  |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -716,11 +716,11 @@ Shows best path information, such as the selection reason, for the specified IPv
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
-| `<route-id>` |  The IPv4 address and route prefix in CIDR notation. |
-| `<path-id>` |  The path ID. |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation.  |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -740,11 +740,11 @@ Shows the AS paths for the specified IPv4 route in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
-| `<route-id>` |  The IPv4 address and route prefix in CIDR notation. |
-| `<path-id>` |  The path ID. |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -764,11 +764,11 @@ Shows the community names for the community list for the specified IPv4 route pa
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
-| `<route-id>` |  The IPv4 address and route prefix in CIDR notation. |
-| `<path-id>` |  The path ID. |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -788,11 +788,11 @@ Shows the community names for the large community list for the specified IPv4 ro
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
-| `<route-id>` |  The IPv4 address and route prefix in CIDR notation. |
-| `<path-id>` |  The path ID. |
+| `<vrf-id>` | The VRF name. |
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -812,7 +812,7 @@ Shows the community names for the extended communities list for the specified IP
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
@@ -836,7 +836,7 @@ Shows the BGP IPv4 update groups for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 
@@ -858,7 +858,7 @@ Shows information about a specific BGP IPv4 update group in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<group-id>` | The group ID.|
@@ -881,7 +881,7 @@ Shows the subgroups for a specific BGP IPv4 update group in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<group-id>` | The group ID.|
@@ -904,9 +904,9 @@ Shows BGP IPv6 configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -926,10 +926,10 @@ Shows BGP IPv6 aggregate routes for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
-| `<aggregate-route-id>` |  The IPv6 address and route prefix in CIDR notation. |
+| `<vrf-id>` | The VRF name. |
+| `<aggregate-route-id>` | The IPv6 address and route prefix in CIDR notation. |
 
 ### Version History
 
@@ -949,10 +949,10 @@ Shows IPv6 aggregate routes. Aggregating a range of networks in your routing tab
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
-| `<aggregate-route-id>` |  The IPv6 address and route prefix in CIDR notation. |
+| `<vrf-id>` | The VRF name. |
+| `<aggregate-route-id>` | The IPv6 address and route prefix in CIDR notation. |
 
 ### Version History
 
@@ -972,9 +972,9 @@ Shows the IPv6 static networks for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -994,10 +994,10 @@ Shows information about a specific IPv6 static network for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
-| `<static-network-id>`  | The IPv6 address and route prefix in CIDR notation. |
+| `<vrf-id>` | The VRF name. |
+| `<static-network-id>` | The IPv6 address and route prefix in CIDR notation. |
 
 ### Version History
 
@@ -1017,9 +1017,9 @@ Shows BGP IPv6 route import configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1039,9 +1039,9 @@ Shows configuration information about VRF to VRF IPv6 route leaking.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1061,9 +1061,9 @@ Shows IPv6 routes in the BGP RIB that are dynamically leaked between VRFs.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1083,9 +1083,9 @@ Shows BGP IPv6 multipath configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1105,9 +1105,9 @@ Shows the BGP IPv6 admin distances configured for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1127,9 +1127,9 @@ Shows BGP IPv6 route export configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1149,9 +1149,9 @@ Shows BGP IPv6 route export to EVPN configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1171,9 +1171,9 @@ Shows configuration information for BGP IPv6 route redistribution for the specif
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1193,9 +1193,9 @@ Shows configuration information for BGP IPv6 static route redistribution for the
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1215,9 +1215,9 @@ Shows configuration information for BGP IPv6 connected route redistribution for 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1237,9 +1237,9 @@ Shows configuration information for BGP IPv6 kernel route redistribution for the
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1259,9 +1259,9 @@ Shows configuration information for BGP OSPF IPv6 route redistribution for the s
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -1281,7 +1281,7 @@ Shows the IPv6 local RIB for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 
@@ -1303,9 +1303,9 @@ Shows information about for the specified IPv6 route in the local RIB, such as t
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` |  The IPv6 address and route prefix in CIDR notation. |
 
 ### Version History
@@ -1326,9 +1326,9 @@ Shows the paths for the specified IPv6 route in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 
 ### Version History
@@ -1349,9 +1349,9 @@ Shows information about the paths for the specified IPv6 route in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 | `<path-id> ` | The path ID. |
 
@@ -1373,9 +1373,9 @@ Shows the next hops for the specified IPv6 route path in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 | `<path-id> ` | The path ID. |
 
@@ -1397,9 +1397,9 @@ Shows next hop information for the specified IPv6 route path in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 | `<path-id> ` | The path ID. |
 | `<nexthop-id>` | The next hop. |
@@ -1422,9 +1422,9 @@ Shows BGP peer information for the specified IPv6 route path in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 | `<path-id> ` | The path ID. |
 
@@ -1446,9 +1446,9 @@ Shows route path flags for the specified IPv6 route in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 | `<path-id> ` | The path ID. |
 
@@ -1470,9 +1470,9 @@ Shows best path information, such as the selection reason, for the specified IPv
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 | `<path-id> ` | The path ID. |
 
@@ -1494,9 +1494,9 @@ Shows the AS paths for the specified IPv6 route in the local RIB.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 | `<path-id> ` | The path ID. |
 
@@ -1518,9 +1518,9 @@ Shows the community names for the community list for the specified IPv6 route pa
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 | `<path-id> ` | The path ID. |
 
@@ -1542,9 +1542,9 @@ Shows the community names for the large community list for the specified IPv6 ro
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 | `<path-id> ` | The path ID. |
 
@@ -1566,9 +1566,9 @@ Shows the community names for the extended community list for the specified IPv6
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |   The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 | `<path-id> ` | The path ID. |
 
@@ -1590,7 +1590,7 @@ Shows the BGP IPv6 update groups for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 
@@ -1612,7 +1612,7 @@ Shows information about a specific BGP IPv6 update group in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<group-id>` | The group ID.|
@@ -1635,7 +1635,7 @@ Shows the subgroups for a specific BGP IPv6 update group in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<group-id>` | The group ID.|
@@ -1658,7 +1658,7 @@ Shows EVPN BGP configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 
@@ -1680,7 +1680,7 @@ Shows the EVPN local RIB for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 
@@ -1702,7 +1702,7 @@ Shows the EVPN local RIB <span style="background-color:#F5F5DC">[RDs](## "Route 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 
@@ -1724,7 +1724,7 @@ Shows a specific EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<rd-id>` |  The route distinguisher ID.|
@@ -1747,7 +1747,7 @@ Shows the EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route D
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<rd-id>` |  The route distinguisher ID.|
@@ -1770,7 +1770,7 @@ Shows information about a specific EVPN local RIB <span style="background-color:
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<rd-id>` |  The route distinguisher ID.|
@@ -1794,7 +1794,7 @@ Shows the routes in the EVPN local RIB for the specified VRF with a specific <sp
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<rd-id>` |  The route distinguisher ID.|
@@ -1818,7 +1818,7 @@ Shows the routes in the EVPN local RIB for the specified VRF with a specific <sp
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<rd-id>` |  The route distinguisher ID.|
@@ -1843,7 +1843,7 @@ Shows information about BGP EVPN update group events.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 
@@ -1865,7 +1865,7 @@ Shows information about a specific BGP EVPN update group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<group ID>` |  The BGP group ID.|
@@ -1888,7 +1888,7 @@ Shows the subgroup information for a specific BGP EVPN update group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<group ID>` |  The BGP group ID.|
@@ -1911,7 +1911,7 @@ Shows the number of IPv4 routes for a specific BGP neighbor in the specified VRF
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -1934,7 +1934,7 @@ Shows information about the IPv4 advertised routes for a BGP neighbor in the spe
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -1957,7 +1957,7 @@ Shows information about a specific IPv4 advertised route for a BGP neighbor in t
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -1981,7 +1981,7 @@ Shows path information about a specific IPv4 advertised route for a BGP neighbor
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -2005,7 +2005,7 @@ Shows information about a specific IPv4 advertised route path ID for a BGP neigh
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -2030,7 +2030,7 @@ Shows information about the next hops for an IPv4 advertised route path ID for a
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -2055,7 +2055,7 @@ Shows information about the a specific next hop for an IPv4 advertised route pat
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -2081,7 +2081,7 @@ Shows information about the peers for an IPv4 advertised route path ID for a BGP
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -2106,7 +2106,7 @@ Shows information about the flags for an IPv4 advertised route path ID for a BGP
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -2131,7 +2131,7 @@ Shows information about the bestpath for an IPv4 advertised route path ID for a 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -2156,7 +2156,7 @@ Shows information about the AS path for an IPv4 advertised route path ID for a B
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -2181,7 +2181,7 @@ Shows information about the communities for an IPv4 advertised route path ID for
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -2206,7 +2206,7 @@ Shows information about the large communities for an IPv4 advertised route path 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -2231,7 +2231,7 @@ Shows information about the extended communities for an IPv4 advertised route pa
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The VRF name. |
@@ -2255,7 +2255,7 @@ Shows information about the IPv4 received routes for a BGP neighbor in the speci
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2278,7 +2278,7 @@ Shows information about a specific IPv4 received route for a BGP neighbor in the
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2302,7 +2302,7 @@ Shows information about a specific IPv4 received route path for a BGP neighbor i
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2326,7 +2326,7 @@ Shows information about a specific IPv4 received route path ID for a BGP neighbo
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2351,7 +2351,7 @@ Shows information about the next hops for a specific IPv4 received route path ID
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -2376,7 +2376,7 @@ Shows information about a specific next hop for a specific IPv4 received route p
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -2402,7 +2402,7 @@ Shows information about peers for a specific IPv4 received route path ID for a B
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -2427,7 +2427,7 @@ Shows information about flags for a specific IPv4 received route path ID for a B
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -2452,7 +2452,7 @@ Shows information about the best paths for a specific IPv4 received route path I
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -2477,7 +2477,7 @@ Shows information about the AS paths for a specific IPv4 received route path ID 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -2502,7 +2502,7 @@ Shows information about the communities for a specific IPv4 received route path 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -2527,7 +2527,7 @@ Shows information about the large communities for a specific IPv4 received route
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -2552,7 +2552,7 @@ Shows information about the extended communities for a specific IPv4 received ro
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -2577,7 +2577,7 @@ Shows information about the IPv6 received routes for a BGP neighbor in the speci
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2600,7 +2600,7 @@ Shows information about a specific IPv6 received route for a BGP neighbor in the
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2624,7 +2624,7 @@ Shows information about IPv6 received route paths for a BGP neighbor in the spec
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2648,7 +2648,7 @@ Shows information about a specific IPv6 received route path for a BGP neighbor i
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2673,7 +2673,7 @@ Shows information about the IPv6 received route path nexthops for a BGP neighbor
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2698,7 +2698,7 @@ Shows information about a specific IPv6 received route path nexthop for a BGP ne
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2724,7 +2724,7 @@ Shows information about the IPv6 received route path peers for a BGP neighbor in
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2749,7 +2749,7 @@ Shows information about the IPv6 received route path flags for a BGP neighbor in
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2774,7 +2774,7 @@ Shows information about the IPv6 received route path bestpath for a BGP neighbor
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2799,7 +2799,7 @@ Shows information about the IPv6 received route path AS path for a BGP neighbor 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2824,7 +2824,7 @@ Shows information about the IPv6 received route path communities for a BGP neigh
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2849,7 +2849,7 @@ Shows information about the IPv6 received route path large communities for a BGP
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2874,7 +2874,7 @@ Shows information about the IPv6 received route path extended communities for a 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2898,7 +2898,7 @@ Shows the number of IPv6 routes for a specific BGP neighbor in the specified VRF
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2921,7 +2921,7 @@ Shows information about the IPv6 advertised routes for a BGP neighbor in the spe
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2944,7 +2944,7 @@ Shows information about a specific IPv6 advertised route for a BGP neighbor in t
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |   The VRF name. |
@@ -2969,7 +2969,7 @@ Shows information about the IPv6 advertised route paths for a BGP neighbor in th
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -2994,7 +2994,7 @@ Shows information about a specific IPv6 advertised route path for a BGP neighbor
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -3020,7 +3020,7 @@ Shows information about the IPv6 advertised route nexthops for a BGP neighbor in
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -3046,7 +3046,7 @@ Shows information about the IPv6 advertised route peers for a BGP neighbor in th
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -3072,7 +3072,7 @@ Shows information about the IPv6 advertised route flags for a BGP neighbor in th
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -3098,7 +3098,7 @@ Shows information about the IPv6 advertised route best path for a BGP neighbor i
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -3124,7 +3124,7 @@ Shows information about the IPv6 advertised route AS path for a BGP neighbor in 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -3150,7 +3150,7 @@ Shows information about the IPv6 advertised route communities for a BGP neighbor
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -3176,7 +3176,7 @@ Shows information about the IPv6 advertised route large communities for a BGP ne
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -3202,7 +3202,7 @@ Shows information about the IPv6 advertised route extended communities for a BGP
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
@@ -3229,7 +3229,7 @@ Shows BGP information for the specified EVPN VNI.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vni-id>` |   The VNI name.|
 
@@ -3251,9 +3251,9 @@ Shows layer 3 VNI BGP information from BGP for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -3273,9 +3273,9 @@ Shows BGP confederation configuration.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -3295,9 +3295,9 @@ Shows the BGP confederation member AS. A BGP confederation divides a large AS in
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -3367,9 +3367,9 @@ Shows global configuration for the specified BGP neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  | The BGP neighbor name or interface (for BGP unnumbered). |
 
 ### Version History
@@ -3390,9 +3390,9 @@ Shows BFD configuration for the specified BGP neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3413,9 +3413,9 @@ Shows the capabilities for the specified BGP neighbor, such as if extended next 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3436,9 +3436,9 @@ Shows the local AS for the specified BGP neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3459,9 +3459,9 @@ Shows BGP graceful restart configuration for the specified BGP neighbor. BGP gra
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3482,9 +3482,9 @@ Shows BGP TTL security configuration for the specified BGP neighbor. BGP TTL sec
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3505,9 +3505,9 @@ Shows the BGP neighbor next hop.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3528,9 +3528,9 @@ Message statistics
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3551,9 +3551,9 @@ Shows the Default External BGP (EBGP) route propagation behavior for the specifi
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3574,9 +3574,9 @@ Shows all address family configuration for the specified BGP neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3597,9 +3597,9 @@ Shows configuration information for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3620,9 +3620,9 @@ Shows the attribute modification configuration settings for the specified BGP IP
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3643,9 +3643,9 @@ Shows the configuration settings for handling the AS path for prefixes to and fr
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3666,9 +3666,9 @@ Shows if it is acceptable for a received AS path from the specified IPv4 neighbo
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3689,9 +3689,9 @@ Shows the policies for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3712,9 +3712,9 @@ Shows the inbound policy for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3735,9 +3735,9 @@ Shows the outbound policy for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3758,9 +3758,9 @@ Shows the limits on prefixes from the specified IPv4 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3781,9 +3781,9 @@ Shows the limits on inbound prefixes from the specified IPv4 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3804,9 +3804,9 @@ Shows default route origination configuration for the specified BGP IPv4 neighbo
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3827,9 +3827,9 @@ Shows community advertise configuration information for the specified BGP IPv4 n
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3850,9 +3850,9 @@ Shows conditional advertisement configuration information for the specified BGP 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3873,9 +3873,9 @@ Shows all advertised and received capabilities for the specified BGP IPv4 neighb
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3896,9 +3896,9 @@ Shows BGP graceful restart configuration information for the specified BGP IPv4 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3919,9 +3919,9 @@ Shows configuration information for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3942,9 +3942,9 @@ Shows the attribute modification configuration settings for the specified BGP IP
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3965,9 +3965,9 @@ Shows the configuration settings for handling the AS path for prefixes to and fr
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -3988,9 +3988,9 @@ Shows if it is acceptable for a received AS path from the specified IPv6 neighbo
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4011,9 +4011,9 @@ Shows limits on prefixes from the specified IPv6 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4034,9 +4034,9 @@ Shows the limits on inbound prefixes from the specified IPv6 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4057,9 +4057,9 @@ Shows default route origination configuration for the specified BGP IPv6 neighbo
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4080,9 +4080,9 @@ Shows policies for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4103,9 +4103,9 @@ Shows the inbound policy for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4126,9 +4126,9 @@ Shows the outbound policy for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4149,9 +4149,9 @@ Shows community advertise configuration information for the specified BGP IPv6 n
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4172,9 +4172,9 @@ Shows conditional advertisement configuration information for the specified BGP 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4195,9 +4195,9 @@ Shows all advertised and received capabilities for the specified BGP IPv6 neighb
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4218,9 +4218,9 @@ Shows BGP graceful restart configuration information for the specified BGP IPv6 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4243,9 +4243,9 @@ Shows EVPN configuration for the specified BGP neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4266,9 +4266,9 @@ Shows the attribute modification configuration settings for the specified neighb
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4289,9 +4289,9 @@ Shows the configuration options for handling the AS path for prefixes to and fro
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4312,9 +4312,9 @@ Shows if it is acceptable for a received AS path to contain the ASN of the local
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4335,9 +4335,9 @@ Shows EVPN policies for the specified neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4358,9 +4358,9 @@ Shows the inbound EVPN policy for the specified BGP neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4382,9 +4382,9 @@ Shows the outbound EVPN policy for the specified BGP neighbor.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4406,9 +4406,9 @@ Shows all advertised and received EVPN capabilities for the specified BGP neighb
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4429,9 +4429,9 @@ Shows graceful restart configuration for the specified BGP peer for EVPN.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4452,9 +4452,9 @@ Shows timer configuration for the specified BGP peer, such as the reconnect, adv
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
@@ -4491,7 +4491,7 @@ Shows BGP next hop information for IPv4 or IPv6 for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 | `<afi>` |  The address family: IPv4 or IPv6. |
@@ -4514,7 +4514,7 @@ Shows BGP IPv4 or IPv6 next hops for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 | `<afi>` |  The address family: IPv4 or IPv6. |
@@ -4537,7 +4537,7 @@ Shows information about a specific BGP IPv4 or IPv6 next hop for the specified V
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 | `<afi>` |  The address family: IPv4 or IPv6. |
@@ -4561,7 +4561,7 @@ Shows the recursive BGP IPv4 or IPv6 next hops for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 | `<afi>` |  The address family: IPv4 or IPv6. |
@@ -4585,7 +4585,7 @@ Shows all paths associated with BGP IPv4 or IPv6 nexthops for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 | `<afi>` |  The address family: IPv4 or IPv6. |
@@ -4609,12 +4609,12 @@ Shows information about a specific path associated with BGP IPv4 or IPv6 nexthop
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
 | `<afi>` |  The address family: IPv4 or IPv6. |
 | `<ip-address-id>` |  The IPv4 or IPv6 address. |
-| `<path-id>` |  The path ID. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -4634,9 +4634,9 @@ Shows the BGP path selection configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -4656,9 +4656,9 @@ Shows the BGP aspath path selection configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -4678,9 +4678,9 @@ Shows the BGP med path selection configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -4700,9 +4700,9 @@ Shows BGP multipath path-selection configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -4722,9 +4722,9 @@ Shows the peer groups configured for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -4744,9 +4744,9 @@ Shows global configuration for the specified peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` |  The peer group name. |
 
 ### Version History
@@ -4767,9 +4767,9 @@ Shows BFD configuration for the specified BGP peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
@@ -4790,9 +4790,9 @@ Shows BGP TTL security configuration for the specified BGP peer group. BGP TTL s
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` |  The peer group name. |
 
 ### Version History
@@ -4813,9 +4813,9 @@ Shows the capabilities for the specified BGP peer group, such as if extended nex
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` |  The peer group name. |
 
 ### Version History
@@ -4836,9 +4836,9 @@ Shows BGP graceful restart configuration for the specified peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` |  The peer group name. |
 
 ### Version History
@@ -4859,9 +4859,9 @@ Shows the local AS for the specified BGP peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` |  The peer group name. |
 
 ### Version History
@@ -4883,9 +4883,9 @@ and keepalive interval and the hold time for keepalive messages.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` |  The peer group name. |
 
 ### Version History
@@ -4906,9 +4906,9 @@ Shows configuration information for the address families (IPv4, IPv6, EVPN).
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` |   The peer group name. |
 
 ### Version History
@@ -4929,9 +4929,9 @@ Shows the configuration for the specified BGP IPv4 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
@@ -4952,9 +4952,9 @@ Shows community advertise configuration information for the specified BGP IPv4 p
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` |  The peer group name. |
 
 ### Version History
@@ -4975,9 +4975,9 @@ Shows the attribute modification configuration settings for the specified BGP IP
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
@@ -4998,9 +4998,9 @@ Shows the configuration settings for handling the AS path for prefixes to and fr
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
@@ -5021,9 +5021,9 @@ Shows if it is acceptable for a received AS path from the specified BGP IPv4 pee
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
@@ -5044,9 +5044,9 @@ Shows the limits on prefixes from the specified IPv4 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
@@ -5067,9 +5067,9 @@ Shows the limits on inbound prefixes from the specified IPv4 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5090,9 +5090,9 @@ Shows default route origination configuration for the specified BGP IPv4 peer gr
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5113,9 +5113,9 @@ Shows the policies configured for the specified BGP IPv4 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5136,9 +5136,9 @@ Shows the inbound policy for the specified BGP IPv4 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5159,9 +5159,9 @@ Shows the outbound policy for the specified BGP IPv4 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5182,9 +5182,9 @@ Shows conditional advertisement configuration information for the specified BGP 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5205,9 +5205,9 @@ Shows the configuration for the specified BGP IPv6 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5228,9 +5228,9 @@ Shows the policies for the specified BGP IPv6 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5251,9 +5251,9 @@ Shows the inbound policy for the specified BGP IPv6 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5274,9 +5274,9 @@ Shows the outbound policy for the specified BGP IPv6 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5297,9 +5297,9 @@ Shows the configuration settings for handling the AS path for prefixes to and fr
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5320,9 +5320,9 @@ Shows if it is acceptable for a received AS path from the specified BGP IPv6 pee
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5343,9 +5343,9 @@ Shows the limits on prefixes from the specified IPv6 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5366,9 +5366,9 @@ Shows the limits on inbound prefixes from the specified IPv6 peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5389,9 +5389,9 @@ Shows default route origination configuration for the specified BGP IPv6 peer gr
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5412,9 +5412,9 @@ Shows community advertise configuration information for the specified BGP IPv6 p
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5435,9 +5435,9 @@ Shows the attribute modification configuration settings for the specified BGP IP
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5458,9 +5458,9 @@ Shows conditional advertisement configuration information for the specified BGP 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5481,9 +5481,9 @@ Show configuration information for the specified BGP peer group for EVPN.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>` | The peer group name. |
 
 ### Version History
@@ -5504,9 +5504,9 @@ Shows the attribute modification configuration settings for the specified BGP pe
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
@@ -5527,9 +5527,9 @@ Shows the configuration settings for handling the AS path for prefixes to and fr
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |  The peer group name. |
 
 ### Version History
@@ -5550,9 +5550,9 @@ Shows if it is acceptable for a received AS path from the specified BGP peer gro
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
@@ -5573,9 +5573,9 @@ Shows the EVPN policies for the specified BGP peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
@@ -5596,9 +5596,9 @@ Shows the inbound EVPN policy for the specified BGP peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
@@ -5619,9 +5619,9 @@ Shows the outbound EVPN policy for the specified BGP peer group.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<peer-group-id>`  |  The peer group name. |
 
 ### Version History
@@ -5642,9 +5642,9 @@ Shows BGP route export configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -5664,9 +5664,9 @@ Shows BGP route export to EVPN configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -5686,9 +5686,9 @@ Shows the RTs configured for BGP route export for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -5708,9 +5708,9 @@ Shows BGP route export configuration for the specified RT in the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 | `<rt-id>` |  The route target. |
 
 ### Version History
@@ -5731,9 +5731,9 @@ Shows BGP route import configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -5753,9 +5753,9 @@ Shows BGP route import from EVPN configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -5775,7 +5775,7 @@ Shows the RTs configured for BGP route import from EVPN for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 
@@ -5797,7 +5797,7 @@ Shows configuration for the specified RD and layer 3 RT for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<rt-id>` | The route target. |
@@ -5820,9 +5820,9 @@ Shows BGP route-reflection configuration for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -5843,9 +5843,9 @@ and keepalive interval and the hold time for keepalive messages.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 

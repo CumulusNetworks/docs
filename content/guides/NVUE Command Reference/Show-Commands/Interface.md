@@ -15,7 +15,7 @@ Shows information about all the interfaces on the switch, such as the name, type
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -37,7 +37,7 @@ Shows the configuration information for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -59,7 +59,7 @@ Shows the bond member configuration for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -81,7 +81,7 @@ Shows specific bond member configuration for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -103,7 +103,7 @@ Shows all statistics for a specific interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -125,7 +125,7 @@ Shows packet drop counters for a specific interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -147,7 +147,7 @@ Shows error counters for a specific interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -169,7 +169,7 @@ Shows packet distribution counters for a specific interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -191,7 +191,7 @@ Shows the IP address configuration for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -213,7 +213,7 @@ Shows the IP addresses configured for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -235,7 +235,7 @@ Shows details about the specified IP address for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
 | `<ip-prefix-id>`  | The IPv4 or IPv6 address and route prefix in CIDR notation.|
@@ -258,7 +258,7 @@ Shows the gateway IP address for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -280,7 +280,7 @@ Shows information about a specific gateway IP address for the specified interfac
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -302,7 +302,7 @@ Shows IPv4 information for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -324,7 +324,7 @@ Shows IPv6 information for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -346,7 +346,7 @@ Shows information about the IP neighbors configured for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
 
@@ -368,7 +368,7 @@ Shows the IPv4 neighbors for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
 
@@ -390,7 +390,7 @@ Shows information about a specific IPv4 neighbor for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
 | `<neighbor-id>`  | The IPv4 address of the neighbor.|
@@ -413,7 +413,7 @@ Shows the IPv6 neighbors for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
 
@@ -435,7 +435,7 @@ Shows information about the specified IPv6 neighbor for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
 | `<neighbor-id>`  | The IPv4 address of the neighbor.|
@@ -458,7 +458,7 @@ Shows configuration and statistics for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>`  | The interface name.|
 
@@ -480,9 +480,9 @@ Shows the port breakouts for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name.|
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -502,10 +502,10 @@ Shows information about a specific port breakout for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name.|
-| `<mode-id>`    |  The breakout mode identifier: 1x, 2x, 4x, 8x, disabled, or loopback. |
+| `<interface-id>` | The interface name.|
+| `<mode-id>` |  The breakout mode identifier: 1x, 2x, 4x, 8x, disabled, or loopback. |
 
 ### Version History
 
@@ -525,9 +525,9 @@ Shows link flags for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name.|
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -547,9 +547,9 @@ Shows the state of the specified interface; if the link is up or down.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name.|
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -569,9 +569,9 @@ Shows statistics for the specified interface, such as packet size, packet drops,
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name.|
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -591,9 +591,9 @@ Shows traffic engineering statistics for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name.|
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -613,9 +613,9 @@ Shows the \<span style="background-color:#F5F5DC">[SFP](## "Small Form-Factor Pl
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`  |  The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -635,7 +635,7 @@ Shows storm control configuration settings for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -657,7 +657,7 @@ Shows tunnel information for the specified interface.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 
@@ -695,7 +695,7 @@ Shows the loopback interfaces associated with this VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 
@@ -717,7 +717,7 @@ Shows the IP addresses associated with the loopback interface for the specified 
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 
@@ -739,7 +739,7 @@ Shows details about the specified loopback IP address for the specified VRF.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<ip-prefix-id>` | The IPv4 or IPv6 address and route prefix in CIDR notation. |

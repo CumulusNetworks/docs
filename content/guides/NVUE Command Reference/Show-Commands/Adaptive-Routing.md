@@ -14,9 +14,9 @@ Shows if adaptive routing is enabled on the interface and the link utilization t
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax | Description |
 | --------- | -------------- |
-| `<interface-id>`  | The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 

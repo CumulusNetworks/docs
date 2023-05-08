@@ -22,4 +22,4 @@ The NVUE CLI provides descriptions and examples for the following commands:
 - {{<link url="Show-Commands" text="nv show">}} commands show various parts of the network configuration.
 - {{<link url="Set-and-Unset-Commands" text="nv set and nv unset">}} commands set and unset configuration options on the switch.
 - {{<link url="Config-Commands" text="nv config">}} commands manage and apply configurations.
-- {{<link url="Action-Commands" text="nv action">}} commands reset counters, remove MLAG LACP conflicts, and disconnect authorized and authenticated users.
+- {{<link url="Action-Commands" text="nv action">}} commands reset counters and routes, remove MLAG LACP conflicts, and disconnect authorized and authenticated users.

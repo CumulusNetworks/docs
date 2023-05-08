@@ -1592,7 +1592,7 @@ Clears OSPF neighbor adjacency on the specified interface.
 | Syntax   |  Description  |
 | ----------    | ------------  |
 | `<vrf-id>` |  The VRF name.  |
-| `<interface-id>` | The interface. |
+| `<interface-id>` | The interface on which you want to clear OSPF neighbor adjacency. |
 
 ### Version History
 

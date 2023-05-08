@@ -398,7 +398,7 @@ Shows information about a specific local IP address for the specified OSPF inter
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<interface-id>`    | The interface name. |
-| `<interface-id>`    | The local IPv4 address. |
+| `<ipv4-address>`    | The local IPv4 address. |
 
 ### Version History
 

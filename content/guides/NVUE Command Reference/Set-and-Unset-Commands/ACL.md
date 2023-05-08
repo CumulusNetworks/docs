@@ -946,7 +946,7 @@ Configures the ACL rule to apply in the inbound direction.
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The name of the ACL. |
+| `<acl-id>` |   The ACL name. |
 
 ### Version History
 
@@ -969,7 +969,7 @@ Configures the ACL rule to apply to a control plane interface in the inbound dir
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The name of the ACL. |
+| `<acl-id>` |   The ACL name. |
 
 ### Version History
 
@@ -992,7 +992,7 @@ Configures the ACL rule to apply in the outbound direction.
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The name of the ACL. |
+| `<acl-id>` |   The ACL name. |
 
 ### Version History
 
@@ -1015,7 +1015,7 @@ Configures the ACL rule to apply to a control plane interface in the outbound di
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The name of the ACL. |
+| `<acl-id>` |   The ACL name. |
 
 ### Version History
 
@@ -1043,7 +1043,7 @@ Configures an inbound control plane ACL.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The name of the ACL. |
+| `<acl-id>` |   The ACL name. |
 
 ### Version History
 
@@ -1065,7 +1065,7 @@ Configures an outbound control plane ACL.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The name of the ACL. |
+| `<acl-id>` |   The ACL name. |
 
 ### Version History
 

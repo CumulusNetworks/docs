@@ -462,6 +462,12 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3447762</td>
+<td>If the NVUE {{startup.yaml}} configuration file is invalid,  the {{nv config apply startup}} command times out without providing details on the error.</td>
+<td>5.4.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3445841</td>
 <td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}}) is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
 <td>5.0.0-5.5.0</td>
@@ -502,7 +508,7 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 </tr>
 <tr>
 <td>3418103</td>
-<td>On the Spectrum-2 and Spectrum-3 switch, if you use module SPQCELRCDFB when connected to a 3rd party switch, you might see no link or a very long link up time (around two minutes). To work around this issue, you should shut and then no shut the port.</td>
+<td>On the Spectrum-2 and Spectrum-3 switch, if you use module SPQCELRCDFB when connected to a 3rd party switch, you might see no link or a very long link up time (around two minutes). To work around this issue, bring down the port, then bring it back up.</td>
 <td>5.4.0</td>
 <td>5.5.0</td>
 </tr>
@@ -526,10 +532,10 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 </tr>
 <tr>
 <td>3409223</td>
-<td>{{nginx}} might be listening on port 80 through its default configuration in {{/etc/nginx/sites-enabled/default}}. This is not intended. To work around this issue, run the following commands:
+<td>NGNIX might be listening on port 80 through its default configuration in {{/etc/nginx/sites-enabled/default}}. To work around this issue, run the following commands:
  
-sudo rm -f /etc/nginx/sites-enabled/default
-systemctl is-active nginx &amp;&amp; sudo invoke-rc.d nginx restart
+cumulus@switch:~$ sudo rm -f /etc/nginx/sites-enabled/default
+cumulus@switch:~$ systemctl is-active nginx &amp;&amp; sudo invoke-rc.d nginx restart
 </td>
 <td>5.4.0</td>
 <td>5.5.0</td>
@@ -627,15 +633,13 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 </tr>
 <tr>
 <td>3362113</td>
-<td>If you restore an NVUE {{startup.yaml}} file after upgrade that includes breakout ports with QoS configured on the breakout interfaces or you run the {{nv config patch}} command to update a configuration with a {{yaml}} file that includes breakout ports with QoS configured on the breakout interfaces, the NVUE configuration fails to apply and subsequent attempts to run {{nv config apply}} fail with the following message: 
+<td>If you restore an NVUE {{startup.yaml}} file after upgrade that includes breakout ports with QoS configuration or you run the {{nv config patch}} command to update a configuration with a {{yaml}} file that includes breakout ports with QoS configuration, the NVUE configuration fails to apply and subsequent attempts to run {{nv config apply}} fail with the following message: 
 
-
-cumulus@switch:mgmt:/var/log# nv config apply
+cumulus@switch:~$ nv config apply
 Invalid config [rev_id: 11]
   qos config is not supported on following invalid interface: swp1s0. Supported on swp and bond interface types.
 
-
-To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS or remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
+To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
 <td>5.4.0-5.5.0</td>
 <td></td>
 </tr>
@@ -653,8 +657,7 @@ To work around this issue, run {{nv unset}} on the configured QoS settings, then
 </tr>
 <tr>
 <td>3350789</td>
-<td>In Cumulus Linux 5.4, NVUE deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) with no backwards compatibility.
-The {{apt upgrade}} process now automatically translates the old syntax to the new syntax; you no longer need to perform pre-upgrade configuration in the {{/etc/nvue.d/startup.yaml}} file.</td>
+<td>NVUE deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) with no backwards compatibility.</td>
 <td>5.0.0-5.4.0</td>
 <td>5.5.0</td>
 </tr>
@@ -748,10 +751,7 @@ cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 </tr>
 <tr>
 <td>3329494</td>
-<td>Ethtool HwIfInDot3FrameErrors (Rx FCS Errors) might lead to an incorrect very large HwIfInErrors count. To work around this issue, stop the source of the FCS errors, then reset the interface counters:
-
-1. Run the {{sudo mst status}} command to find the device.
-2. Run the {{sudo mlxlink -d &lt;device&gt; -p &lt;port_number&gt; -pc}} command to reset the interface counters. For example: {{sudo mlxlink -d /dev/mst/mt53104_pciconf0 -p 39 -pc}}.</td>
+<td>Ethtool {{HwIfInDot3FrameErrors}} (Rx FCS Errors) might lead to an incorrect and very large {{HwIfInErrors}} count. To work around this issue, stop the source of the FCS errors, then reset the interface counters. First, run the {{sudo mst status}} command to find the device, then run the {{sudo mlxlink -d &lt;device&gt; -p &lt;port_number&gt; -pc}} command to reset the interface counters; for example, {{sudo mlxlink -d /dev/mst/mt53104_pciconf0 -p 39 -pc}}.</td>
 <td>5.3.1-5.4.0</td>
 <td>5.5.0</td>
 </tr>
@@ -840,10 +840,10 @@ Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID.
 <td>3147782</td>
 <td>You cannot use NVUE to configure an SNMP view to include a subtree beginning with a period. For example:
 
-$ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310
+cumulus@switch:~$ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310
 Error: GET /nvue_v1/service/snmp-server/viewname/cumulusOnly/included?pointers=%5B%22%2Fparameters%22%2C+%22%2Fpatch%2FrequestBody%2Fcontent%2Fapplication~1json%2Fschema%22%2C+%22%2Fpatch%2Fparameters%22%2C+%22%2Fpatch%2Fresponses%2F200%2Flinks%22%5D responded with 404 NOT FOUND
 
-To work around this problem, reference the OID without the preceding period ( {{.}} ) in the command.</td>
+To work around this issue, reference the OID without the preceding period ( {{.}} ) in the command.</td>
 <td>5.3.0-5.5.0</td>
 <td></td>
 </tr>
@@ -876,7 +876,7 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
 </tr>
 <tr>
 <td>3142615</td>
-<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP in Cumulus Linux 5.0.0 through 5.2.1 and 5.4.0.</td>
+<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP agent.</td>
 <td>5.0.0-5.4.0</td>
 <td>5.5.0</td>
 </tr>
@@ -898,7 +898,7 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
 <td>3135952</td>
 <td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
-ethtool -s swp1 speed 100000 autoneg off lanes 2
+cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
 <td>5.2.0-5.5.0</td>
 <td></td>

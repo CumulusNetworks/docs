@@ -79,8 +79,7 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 </tr>
 <tr>
 <td>3350789</td>
-<td>In Cumulus Linux 5.4, NVUE deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) with no backwards compatibility.
-The {{apt upgrade}} process now automatically translates the old syntax to the new syntax; you no longer need to perform pre-upgrade configuration in the {{/etc/nvue.d/startup.yaml}} file.</td>
+<td>NVUE deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) with no backwards compatibility.</td>
 <td>5.0.0-5.4.0</td>
 <td>5.5.0</td>
 </tr>
@@ -418,7 +417,7 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
 </tr>
 <tr>
 <td>3142615</td>
-<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP in Cumulus Linux 5.0.0 through 5.2.1 and 5.4.0.</td>
+<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP agent.</td>
 <td>5.0.0-5.4.0</td>
 <td>5.5.0</td>
 </tr>
@@ -452,7 +451,7 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
 <td>3135952</td>
 <td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
-ethtool -s swp1 speed 100000 autoneg off lanes 2
+cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
 <td>5.2.0-5.5.0</td>
 <td></td>
@@ -799,8 +798,7 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 </tr>
 <tr>
 <td>3350789</td>
-<td>In Cumulus Linux 5.4, NVUE deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) with no backwards compatibility.
-The {{apt upgrade}} process now automatically translates the old syntax to the new syntax; you no longer need to perform pre-upgrade configuration in the {{/etc/nvue.d/startup.yaml}} file.</td>
+<td>NVUE deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) with no backwards compatibility.</td>
 <td>5.0.0-5.4.0</td>
 <td>5.5.0</td>
 </tr>
@@ -1150,7 +1148,7 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
 </tr>
 <tr>
 <td>3142615</td>
-<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP in Cumulus Linux 5.0.0 through 5.2.1 and 5.4.0.</td>
+<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP agent.</td>
 <td>5.0.0-5.4.0</td>
 <td>5.5.0</td>
 </tr>
@@ -1184,7 +1182,7 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
 <td>3135952</td>
 <td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
-ethtool -s swp1 speed 100000 autoneg off lanes 2
+cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
 <td>5.2.0-5.5.0</td>
 <td></td>

@@ -169,7 +169,7 @@ netq config del agent server
 
 If you want to use a specific port on the appliance or VM, use the `port` option. If you want the data sent over a particular virtual route interface, use the `vrf` option.
 
-This example shows how to add a NetQ Agent and tell it to send the data it collects to the NetQ Appliance or VM at the IPv4 address of 10.0.0.23 using the default port (on-premises = 31980; cloud = 443) and vrf (default).
+This example shows how to add a NetQ Agent and tell it to send the data it collects to the NetQ Appliance or VM at the IPv4 address of 10.0.0.23 using the default port and vrf (default).
 
 ```
 cumulus@switch~:$ netq config add agent server 10.0.0.23
@@ -196,7 +196,7 @@ cumulus@switch:~$ netq config restart agent
 
 ### Configure a NetQ Agent to Limit Switch CPU Usage
 
-While not typically an issue, you can restrict the NetQ Agent from using more than a configurable amount of the CPU resources. This setting requires Cumulus Linux versions 3.6.x, 3.7.x or 4.1.0 or later to be running on the switch.
+While not typically an issue, you can restrict the NetQ Agent from using more than a configurable amount of the CPU resources. 
 
 For more detail about this feature, refer to this [Knowledge Base article]({{<ref "knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches">}}).
 
@@ -216,7 +216,7 @@ cumulus@switch:~$ netq config restart agent
 
 ### Configure a NetQ Agent to Collect Data from Selected Services
 
-You can enable and disable data collection about FRR (FRRouting), Kubernetes, sensors, and WJH (What Just Happened).
+You can enable and disable data collection about FRR (FRRouting), Kubernetes, and WJH (What Just Happened).
 
 To configure the agent to start or stop collecting FRR data, run:
 
@@ -237,20 +237,6 @@ cumulus@switch:~$ netq config restart agent
 cumulus@switch:~$ netq config del agent kubernetes-monitor
 cumulus@switch:~$ netq config restart agent
 ```
-
-To configure the agent to start or stop collecting chassis sensor data, run:
-
-```
-cumulus@chassis~:$ netq config add agent sensors
-cumulus@switch:~$ netq config restart agent
-
-cumulus@chassis~:$ netq config del agent sensors
-cumulus@switch:~$ netq config restart agent
-```
-
-{{<notice note>}}
-This command is only valid when run on a chassis, not a switch.
-{{</notice>}}
 
 To configure the agent to start or stop collecting WJH data, run:
 

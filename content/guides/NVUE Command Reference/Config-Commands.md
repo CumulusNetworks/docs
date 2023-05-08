@@ -14,7 +14,7 @@ This document is in Beta.
 
 ## <h>nv config apply </h>
 
-Applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. To save the startup configuration automatically when you run `nv config apply` without having to run the `nv config save` command, set the `nv set system config auto-save enable on` command, described in the System Configuration section of the Set and Unset commands.
+Applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. To save the startup configuration automatically when you run `nv config apply` without having to run the `nv config save` command, run the `nv set system config auto-save enable on` command, described in the System Configuration section of the Set and Unset commands.
 
 You can specify the following options with the `nv config apply` command:
 

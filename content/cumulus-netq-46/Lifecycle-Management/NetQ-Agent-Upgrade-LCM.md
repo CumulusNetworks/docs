@@ -7,12 +7,6 @@ toc: 4
 
 Lifecycle management lets you upgrade to the latest agent version on switches with an existing NetQ Agent. You can upgrade only the NetQ Agent or both the NetQ Agent and NetQ CLI simultaneously. You can run up to five jobs at the same time; however, a given switch can only appear in one running job at a time.
 
-{{<notice info>}}
-
-Upgrades can be performed with LCM for NetQ Agents versions 2.4.0 and later. For earlier versions, perform a {{<link title="Install NetQ Agents" text="new installation">}}.
-
-{{</notice>}}
-
 ## Prepare for a NetQ Agent Upgrade
 
 Before you upgrade, make sure you have the appropriate files and credentials:
@@ -61,7 +55,6 @@ After you complete the preparation steps, upgrade the NetQ Agents:
 
 6. Review each switch:
 
-    - Is the NetQ Agent version 2.4.0 or later? If not, this switch can only be upgraded through the {{<link title="Upgrade Cumulus Linux/#upgrade-cumulus-linux-on-switches-without-netq-agent-installed" text="switch discovery">}} process.
     - Is the configuration profile the one you want to apply? If not, click **Change config**, then select an alternate profile to apply to all selected switches.
 
 <div style="padding-left: 18px;">

@@ -49,6 +49,10 @@ You must have sudoer permission to configure switches when using the SSH key met
     {{<figure src="/images/netq/ssh-access-profile-450.png" alt="card displaying field for ssh private key" width="300">}}
 
     {{<notice note>}}
+The <USERNAME> should have passwordless sudo access for this to work. 
+    {{</notice>}}
+    
+    {{<notice note>}}
 For security, your private key is stored in an encrypted format, and only provided to internal processes while encrypted.
     {{</notice>}}
 

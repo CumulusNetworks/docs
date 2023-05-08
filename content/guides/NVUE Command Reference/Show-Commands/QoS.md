@@ -215,7 +215,7 @@ Shows specific QoS congestion control traffic class configuration settings for t
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
-| `<qos-tc-id>` | The traffic class value. |
+| `<qos-tc-id>` | The traffic class (egress queue). |
 
 ### Version History
 
@@ -477,7 +477,7 @@ Shows specific QoS egress scheduler traffic class configuration settings for the
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
-| `<qos-tc-id>` | The traffic class value. |
+| `<qos-tc-id>` | The traffic class (egress queue). |
 
 ### Version History
 
@@ -545,7 +545,7 @@ Shows specific QoS egress shaper traffic class configuration for the specified i
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
-| `<qos-tc-id>` | The traffic class value. |
+| `<qos-tc-id>` | The traffic class (egress queue). |
 
 ### Version History
 
@@ -1445,7 +1445,7 @@ Shows specific traffic class configuration settings for the specified QoS conges
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<profile-id>` | The profile name.|
-| `<qos-tc-id>` | The traffic class value.|
+| `<qos-tc-id>` | The traffic class (egress queue).|
 
 ### Version History
 
@@ -1611,7 +1611,7 @@ Shows specific traffic class configuration settings for the specified QoS egress
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<profile-id>` | The profile name.|
-| `<qos-tc-id>` | The traffic class value.|
+| `<qos-tc-id>` | The traffic class (egress queue).|
 
 ### Version History
 
@@ -1694,7 +1694,7 @@ Shows specific traffic class configuration settings for the specified QoS egress
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<profile-id>` | The profile name.|
-| `<qos-tc-id>` | The traffic class value.|
+| `<qos-tc-id>` | The traffic class (egress queue).|
 
 ### Version History
 

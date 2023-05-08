@@ -1486,7 +1486,7 @@ Configures the bandwidth percent value between 1 and 100 for the specified egres
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |   The profile name. |
-| `<qos-tc-id>` |   The egress queue. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
 
 ### Version History
 
@@ -1509,7 +1509,7 @@ Configures the traffic class mode (`dwrr` or `strict`) for the specified egress 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |   The profile name. |
-| `<qos-tc-id>` |   The egress queue. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
 
 ### Version History
 
@@ -1552,7 +1552,7 @@ Configures the maximum bandwidth for the specified egress queue for a traffic sh
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |   The profile name. |
-| `<qos-tc-id>` |   The egress queue. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
 
 ### Version History
 
@@ -1575,7 +1575,7 @@ Configures the minimum bandwidth for the specified egress queue for a traffic sh
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<profile-id>` |   The profile name. |
-| `<qos-tc-id>` |   The egress queue. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
 
 ### Version History
 

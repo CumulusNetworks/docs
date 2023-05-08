@@ -310,7 +310,7 @@ Shows the IPv4 or IPv6 next hop tracking information for the specified VRF.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<afi>` | The address family: `ipv4` or `ipv6`. |
+| `<afi>` | The address family (IPv4 or IPv6). |
 
 ### Version History
 
@@ -333,7 +333,7 @@ Shows the IPv4 or IPv6 next hop tracking information for all route maps for the 
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<afi>` | The address family: `ipv4` or `ipv6`. |
+| `<afi>` | The address family (IPv4 or IPv6). |
 
 ### Version History
 
@@ -356,7 +356,7 @@ Shows the IPv4 or IPv6 next hop tracking information for a specific route map fo
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<afi>` | The address family: `ipv4` or `ipv6`. |
+| `<afi>` | The address family (IPv4 or IPv6). |
 | `<nht-routemap-id>` | The next hop tracking route map name. |
 
 ### Version History
@@ -380,7 +380,7 @@ Shows the IPv4 or IPv6 next hop tracking information for all protocols in the ro
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<afi>` | The address family: `ipv4` or `ipv6`. |
+| `<afi>` | The address family (IPv4 or IPv6). |
 | `<nht-routemap-id>` | The next hop tracking route map name. |
 
 ### Version History
@@ -404,7 +404,7 @@ Shows the IPv4 or IPv6 next hop tracking information for a specific route map pr
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<afi>` | The address family: `ipv4` or `ipv6`. |
+| `<afi>` | The address family (IPv4 or IPv6). |
 | `<nht-routemap-id>` | The next hop tracking route map name. |
 | `<nht-protocol-id>` | The protocol: `bgp`, `ospf`, `ospf6`, or `static`. |
 

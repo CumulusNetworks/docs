@@ -88,7 +88,7 @@ Configures the interfaces on which to configure DHCP relay.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<interface-id>` |  The interface on which to configure DHCP relay. |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Version History
 

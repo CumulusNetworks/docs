@@ -55,7 +55,7 @@ Shows the IPv4 DHCP relay gateway IP address (giaddress) interface configuration
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<interface-id>`  | The DHCP relay giaddress interface. |
+| `<interface-id>`  | The DHCP relay gateway address interface. |
 
 ### Version History
 

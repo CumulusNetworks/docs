@@ -464,7 +464,7 @@ Configures the EVPN control plane on the specified VRF.
 
 ## <h>nv set vrf \<vrf-id\> evpn enable</h>
 
-Turns the EVPN control plane on  or off in the specified VRF.
+Turns the EVPN control plane on or off in the specified VRF.
 
 ### Command Syntax
 

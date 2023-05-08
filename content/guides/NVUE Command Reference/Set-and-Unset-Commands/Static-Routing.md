@@ -31,7 +31,7 @@ Enables and disables the address family (`ipv4-unicast` or `ipv6-unicast`) for t
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 
 ### Version History
 
@@ -60,7 +60,7 @@ Configures the destination path distance and next hop for a specific static rout
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<distance-id>` |  A path distance. |
 | `<via-id>`       | The IP address of the nexthop router. |
 
@@ -85,7 +85,7 @@ Configures the destination path distance and next hop for a specific static rout
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<distance-id>` |  The path distance. |
 | `<via-id>`       | The IP address of the nexthop router. |
 
@@ -110,7 +110,7 @@ Configures the destination path distance and next hop for a specific static rout
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<distance-id>` |  The path distance. |
 | `<via-id>`       | The IP address of the nexthop router. |
 | `<interface-id>`  | The interface to use for egress. |
@@ -136,7 +136,7 @@ Configures the destination path distance and tag for a specific static route in 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<distance-id>` |  The path distance. |
 
 ### Version History
@@ -160,7 +160,7 @@ Configures the destination path distance and next hop type for a specific static
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<distance-id>` |  The path distance. |
 | `<via-id>`       | The IP address of the nexthop router. |
 
@@ -185,7 +185,7 @@ Configures the destination path distance and next hop for a specific static rout
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<distance-id>` |  The path distance. |
 | `<via-id>`       | The IP address of the nexthop router. |
 | `<vrf-id>`  | The VRF name. |
@@ -211,7 +211,7 @@ Configures the static route tag in the specified VRF. The tag provides additiona
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 
 ### Version History
 
@@ -234,7 +234,7 @@ Configures the next hop for a specific static route in the specified VRF.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<via-id>`       | The IP address of the nexthop router. |
 
 ### Version History
@@ -258,7 +258,7 @@ Configures the next hop for a specific static route in the specified VRF, and ad
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<via-id>`       | The IP address of the nexthop router. |
 
 ### Version History
@@ -282,8 +282,8 @@ Configures the next hop for a specific static route in the specified VRF, and th
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
-| `<via-id>`       | The IP address of the nexthop router. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
+| `<via-id>`       | The IPv4 or IPv6 address of the nexthop router. |
 | `<interface-name>`  | The interface to use for egress. |
 
 ### Version History
@@ -307,7 +307,7 @@ Configures the next hop type for a specific static route in the specified VRF. T
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<via-id>`   | The IP address of the nexthop router. |
 
 ### Version History
@@ -331,7 +331,7 @@ Configures the next hop for a specific static route in the specified VRF, and th
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
+| `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<via-id>`   | The IP address of the nexthop router. |
 | `<vrf-id>`   | The egress VRF. |
 

@@ -18,8 +18,8 @@ Consider the following before you install the NetQ system:
 
 You can deploy NetQ in one of two ways:
 
-- **Hosted on-premises**: Choose this deployment if you want to host at your location, and you have the in-house skill set to install, configure, back up, and maintain it. This model is also a good choice if you want very limited or no access to the internet from switches and hosts in your network, or if you have data residency requirements like GDPR.
-- **Hosted remotely**: Choose this deployment to host a multi-site, on-premises deployment or use NetQ Cloud. In the multi-site deployment, you host multiple small servers at each site and an on-premises appliance at a central location. In the cloud deployment, you host only a small local server on your premises that connects to the NetQ Cloud service over selected ports or through a proxy server. NetQ Cloud supports local data aggregation and forwarding---the majority of the NetQ applications use a hosted deployment strategy, storing data in the cloud. NVIDIA handles the backups and maintenance of the application and storage. This remote cloud service model is a good choice when you have limited in-house support or if you need the flexibility to scale quickly, while also reducing capital expenses.
+- **Hosted on-premises**: Choose this deployment if you want to host at your location and have the in-house skill set to install, configure, back up, and maintain NetQ. This model is also a good choice if you want very limited or no access to the internet from switches and hosts in your network, or if you have data-residency requirements like GDPR.
+- **Hosted remotely**: Choose this deployment to host a multi-site, on-premises deployment or use NetQ Cloud. In the multi-site deployment, you host multiple small servers at each site and an on-premises appliance at a central location. In the cloud deployment, you host only a small, local server on your premises that connects to the NetQ Cloud service over selected ports or through a proxy server. NetQ Cloud supports local data aggregation and forwarding---the majority of the NetQ applications use a hosted deployment strategy, storing data in the cloud. NVIDIA handles the backups and maintenance of the application and storage. This remote cloud service model is a good choice when you have limited in-house support or if you need the flexibility to scale quickly, while also reducing capital expenses.
 
 In all deployment models, the NetQ Agents reside on the switches and hosts they monitor in your network. Refer to {{<link title="Install the NetQ System">}} for a comprehensive list of deployment types and their respective requirements.
 
@@ -64,15 +64,3 @@ If you are using a load balancer in your deployment, NVIDIA recommends that you 
 ## Next Steps
 
 After you've decided on your deployment type, you're ready to {{<link title="Install the NetQ System" text="install NetQ">}}.
-
-
-<!---
-## Installation Workflow Summary
-
-No matter which choices you made above, the installation workflow can be summarized as follows:
-
-1. Prepare the physical server or virtual machine.
-1. Install the software.
-1. Install and configure the NetQ Agents on switches and hosts.
-1. Install and configure the NetQ CLI on switches and hosts (optional, but useful).
---->

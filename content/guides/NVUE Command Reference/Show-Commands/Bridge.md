@@ -48,7 +48,7 @@ Shows configuration settings for the specified bridge domain.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The name of the bridge domain. |
 
 ### Version History
 
@@ -70,7 +70,7 @@ Shows the layer 2 Forwarding Database for the specified bridge domain.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The name of the bridge domain. |
 
 ### Version History
 
@@ -92,7 +92,7 @@ Shows the MDB entries in the specified bridge domain.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 
 ### Version History
 
@@ -114,7 +114,7 @@ Shows the multicast configuration settings on the specified bridge domain.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 
 ### Version History
 
@@ -136,7 +136,7 @@ Shows the IGMP or MLD snooping configuration settings on the specified bridge do
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 
 ### Version History
 
@@ -158,7 +158,7 @@ Shows the IGMP or MLD querier configuration settings on the specified bridge dom
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 
 ### Version History
 
@@ -180,7 +180,7 @@ Shows the multicast router ports for the specified bridge domain.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 
 ### Version History
 
@@ -202,7 +202,7 @@ Shows the STP settings for the specified bridge domain.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 
 ### Version History
 
@@ -224,7 +224,7 @@ Shows the STP state (uo or down) of the specified bridge domain.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 
 ### Version History
 
@@ -246,7 +246,7 @@ Shows the VLANs on the specified bridge domain.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 
 ### Version History
 
@@ -268,7 +268,7 @@ Shows configuration settings for the specified VLAN on the specified bridge doma
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 | `<vid>` |   The VLAN name. |
 
 ### Version History
@@ -291,7 +291,7 @@ Shows the multicast configuration settings for the specified VLAN.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 | `<vid>`      | The VLAN name. |
 
 ### Version History
@@ -314,7 +314,7 @@ Shows the IGMP or MLD snooping configuration settings for the specified VLAN.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 | `<vid>`      | The VLAN name. |
 
 ### Version History
@@ -337,7 +337,7 @@ Shows the IGMP or MLD querier configuration settings for the specified VLAN.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 | `<vid>`  | The VLAN name. |
 
 ### Version History
@@ -360,7 +360,7 @@ Shows the PTP configuration settings for the specified VLAN.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | The bridge domain. |
+| `<domain-id>` | The  name of the bridge domain. |
 | `<vid>`      | The VLAN name. |
 
 ### Version History
@@ -383,7 +383,7 @@ Shows VNIs on a specific VLAN on the specified bridge domain.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 | `<vid>` |   The VLAN name. |
 
 ### Version History
@@ -406,7 +406,7 @@ Shows configuration settings for the specified VLAN VNI on the specified bridge 
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The  name of the bridge domain. |
 | `<vid>` |   The VLAN name. |
 | `<vni-id>` | The VXLAN name. |
 
@@ -430,7 +430,7 @@ Shows configuration settings for BUM traffic flooding for the specified VNI.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | The bridge domain. |
+| `<domain-id>` | The  name of the bridge domain. |
 | `<vid>` | The VLAN name.  |
 | `<vni-id>` | The VXLAN name. |
 
@@ -454,7 +454,7 @@ Shows the head-end-replication settings for the specified VNI.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | The bridge domain. |
+| `<domain-id>` | The  name of the bridge domain. |
 | `<vid>` | The VLAN name. |
 | `<vni-id>` | The VXLAN name. |
 
@@ -478,7 +478,7 @@ Shows specific head-end-replication settings for the specified VNI.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | The bridge domain. |
+| `<domain-id>` | The name of the bridge domain. |
 | `<vid>` | The VLAN name. |
 | `<vni-id>` | The VXLAN name. |
 | `<hrep-id>`  | The IPv4 unicast address or `evpn`. |
@@ -526,7 +526,7 @@ Shows configuration settings for the specified bridge domain on the specified in
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`  | The interface name. |
-| `<domain-id>` | The bridge domain. |
+| `<domain-id>` | The name of the bridge domain. |
 
 ### Version History
 
@@ -549,7 +549,7 @@ Shows STP configuration settings for the specified bridge domain on the specifie
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
-| `<domain-id>`  | The bridge domain. |
+| `<domain-id>`  | The name of the bridge domain. |
 
 ### Version History
 
@@ -572,7 +572,7 @@ Shows configuration settings for the specified VLAN on the specifies bridge doma
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`  |  The interface name. |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>`   | The name of the bridge domain. |
 | `<vid>`     | The VLAN name. You can also specify `all` to show settings for all VLANs. |
 
 ### Version History

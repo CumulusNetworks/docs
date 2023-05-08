@@ -62,7 +62,7 @@ Configures any interfaces in this bridge domain to use 802.1Q encapsulation by d
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
+|`<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -84,7 +84,7 @@ Configures any interfaces in this bridge domain to use this MAC address.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
+|`<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -118,7 +118,7 @@ Turns IGMP and MLD snooping on or off. The default setting is `off`.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
+|`<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -146,7 +146,7 @@ Turns the multicast querier on or off. The default setting is `off`.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
+|`<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -172,7 +172,7 @@ Configures the spanning tree priority. The bridge with the lowest priority is th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
+|`<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -194,7 +194,7 @@ Configures the STP state on the bridge. You can set a value of `up`, or `down`.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
+|`<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -216,7 +216,7 @@ Configures the bridge domain to be VLAN-aware.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
+|`<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -236,7 +236,7 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default type vlan-aware
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
+|`<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -258,7 +258,7 @@ Configures the VLAN tag identifier.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<domain-id>` |  The bridge domain. |
+| `<domain-id>` |  The name of the bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 
 ### Version History
@@ -281,7 +281,7 @@ Configures Precision Time Protocol (PTP) on the VLAN (all interfaces in this VLA
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` | The bridge domain. |
+| `<domain-id>`   | The name of the bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 
 ### Version History
@@ -298,7 +298,7 @@ Turns PTP on or off for the specified VLAN. The default setting is `off`.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` | The bridge domain. |
+| `<domain-id>`   | The name of the bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 
 ### Version History
@@ -321,7 +321,7 @@ Maps a VLAN to a VNI.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` | The bridge domain. |
+| `<domain-id>`   | The name of the bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 | `<vni-id>` | The VXLAN ID. |
 
@@ -351,7 +351,7 @@ Turns flooding on or off for the VNI.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` | The bridge domain. |
+| `<domain-id>`   | The name of the bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 | `<vni-id>` | The VXLAN ID. |
 
@@ -375,7 +375,7 @@ Configures replication of BUM traffic where individual copies send to remote des
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` | The bridge domain. |
+| `<domain-id>`   | The name of the bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 | `<vni-id>` | The VXLAN ID. |
 | `<hrep-id>`  |  The IPv4 unicast addresses or `evpn`. |
@@ -400,7 +400,7 @@ Configures BUM traffic to go to the specified multicast group, where receivers w
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` | The bridge domain. |
+| `<domain-id>`   | The name of the bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 | `<vni-id>` | The VXLAN ID. |
 | `<ipv4-multicast>` | The multicast group.|
@@ -425,7 +425,7 @@ Turns MAC learning on or off for the VNI. The default setting is `off`.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` | The bridge domain. |
+| `<domain-id>`   | The name of the bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 | `<vni-id>` | The VXLAN ID. |
 
@@ -475,7 +475,7 @@ Configures the source IP address you want to use to send IGMP MLD queries.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` | The bridge domain. |
+| `<domain-id>`   | The name of the bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 
 ### Version History
@@ -498,7 +498,7 @@ Configures the VNI offset when mapping VLANs to VNIs automatically. You can set 
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
+|`<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -527,7 +527,7 @@ Configures the bridged interface domain.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
+| `<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -550,7 +550,7 @@ Configures access ports to ignore all tagged packets. You can set a value betwee
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
+| `<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -573,7 +573,7 @@ Turns source MAC address learning on or off for this bridged interface.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
+| `<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -602,7 +602,7 @@ Turns STP PortAdminEdge on or off on the bridged interface. PortAdminEdge is equ
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
+| `<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -627,7 +627,7 @@ When a port with PortAutoEdge receives a BPDU, the port stops being in the edge 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
+| `<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -650,7 +650,7 @@ Turns `bpdufilter` on or off on a bridge domain. When on, `bpdufilter` filters B
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
+| `<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -673,7 +673,7 @@ Turns BPDU guard on or off on the bridged interface to protect the spanning tree
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
+| `<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -696,7 +696,7 @@ Turns bridge assurance capability for a bridged port on or off.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
+| `<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -719,7 +719,7 @@ Turns STP restricted role for the bridged port on or off.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
+| `<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -742,7 +742,7 @@ Configures the VLAN in which untagged packets ingressing this bridged interface 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
+| `<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 
@@ -765,7 +765,7 @@ Configures a VLAN for the bridged interface.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
+| `<domain-id>` |  The name of the bridge domain. |
 | `<vid>` |  The VLAN name. |
 
 ### Version History

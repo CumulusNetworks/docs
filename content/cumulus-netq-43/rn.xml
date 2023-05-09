@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3442456</td>
+<td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
+<td>4.2.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3438973</td>
 <td>When you install NetQ onto your VM, the installation fails with the following messages:
 

@@ -21,7 +21,7 @@ Configures BGP globally on the switch.
 ## <h>nv set router bgp autonomous-system</h>
 
 Configures the BGP <span style="background-color:#F5F5DC">[ASN](## "Autonomous System Number ")</span> on the switch to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
-w
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -2086,9 +2086,7 @@ Provides commands to configure graceful restart to minimize the negative effects
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> graceful-restart mode</h>
 
-Configures graceful restart mode for the peer group in the specified VRF. If you specify `auto`, the mode is inherited from the global setting. If you specify `off`, graceful restart is not negotiated with the peer group. If you specify `helper-only`, the switch is in a helper role only, where routes originated and advertised from a BGP peer in the peer group are not deleted. If you specify `full`, the switch is in both a helper and restarter role.
-
-The default setting is `auto`.
+Configures graceful restart mode for the peer group in the specified VRF. If you specify `auto`, the mode is inherited from the global setting. If you specify `off`, graceful restart is not negotiated with the peer group. If you specify `helper-only`, the switch is in a helper role only, where routes originated and advertised from a BGP peer in the peer group are not deleted. If you specify `full`, the switch is in both a helper and restarter role. The default setting is `auto`.
 
 ### Command Syntax
 
@@ -2394,6 +2392,8 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 Provides commands to configure the BGP attribute mode for the peer group in the specified VRF.
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod aspath</h>
 
 Configures BGP to follow normal BGP procedures when generating the `AS_PATH` attribute for the specified peer group. You can specify `on` or `off`.
@@ -2419,7 +2419,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod med</h>
 
-Configures BGP to follow normal BGP procedures when generating the `MED` attribute for the specified peer group in the specified VRF. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change the MED when sending an update to the peer group.
+Configures BGP to follow normal BGP procedures when generating the `MED` attribute for the peer group in the specified VRF. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change the `MED` when sending an update to the peer group.
 
 ### Command Syntax
 
@@ -2442,7 +2442,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod nexthop</h>
 
-Configures BGP to follow normal BGP procedures when generating the `NEXT_HOP` attribute for the specified peer group in the specified VRF. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change `NEXT_HOP` when sending an update to the peer group.
+Configures BGP to follow normal BGP procedures when generating the `NEXT_HOP` attribute for the peer group in the specified VRF. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change `NEXT_HOP` when sending an update to the peer group.
 
 ### Command Syntax
 
@@ -2465,7 +2465,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath</h>
 
-Provides commands to configure options for handling the BGP `AS_PATH` for IPv4 prefixes from or to the specified peer group in the specified VRF.
+Provides commands to configure options for handling the BGP `AS_PATH` for IPv4 prefixes from or to the peer group in the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2546,7 +2546,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath private-as</h>
 
-Configures what action to take with private ASNs for the peer group in the specified VRF. You can specify`none` to take no action, `remove`, to remove any private ASNs in the update to the peer, or `replace` to replace any private ASNs in the update to the peer with the ASN of the local system.
+Configures what action to take with private ASNs for the peer group in the specified VRF. You can specify `none` to take no action, `remove`, to remove any private ASNs in the update to the peer, or `replace` to replace any private ASNs in the update to the peer with the ASN of the local system.
 
 ### Command Syntax
 
@@ -2650,7 +2650,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits inbound reestablish-wait</h>
 
-Configures the time in seconds to wait before establishing the BGP session again with the peers in the peer group. You can specify a value between 1-4294967295. A value of `auto` uses standard BGP timers and processing (between 2 and 3 seconds). The default setting is `auto`.
+Configures the time in seconds to wait before establishing the BGP session again with the peers in the peer group. You can specify a value between 1 and 4294967295. A value of `auto` uses standard BGP timers and processing (between 2 and 3 seconds). The default setting is `auto`.
 
 ### Command Syntax
 
@@ -2956,7 +2956,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast enable</h>
 
-Turns IPv4 on or off for the BGP peer group. The default setting is `off`.
+Turns IPv4 on or off for the BGP peer group in the specified VRF. The default setting is `off`.
 
 ### Command Syntax
 
@@ -2979,7 +2979,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast route-reflector-client</h>
 
-Configures the BGP node as a route reflector for a BGP peer. The default setting is `off`.
+Configures the BGP node as a route reflector for the BGP peer group in the specified VRF. The default setting is `off`.
 
 ### Command Syntax
 
@@ -3002,7 +3002,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast route-server-client</h>
 
-Configures the BGP node as a route server for a BGP peer. The default setting is `off`.
+Configures the BGP node as a route server for the BGP peer group in the specified VRF. The default setting is `off`.
 
 ### Command Syntax
 
@@ -3094,7 +3094,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast weight</h>
 
-Configures the weight applied to IPv4 routes received from peer; this is used in the BGP route selection algorithm.
+Configures the weight applied to IPv4 routes received from peer group in the specified VRF. This is used in the BGP route selection algorithm.
 
 ### Command Syntax
 
@@ -3117,13 +3117,13 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast</h>
 
-Provides commands to configure IPv6 for the BGP peer group.
+Provides commands to configure IPv6 for the BGP peer group in the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy</h>
 
-Provides commands to configure IPv6 policies.
+Provides commands to configure IPv6 policies for the peer group in the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3135,7 +3135,7 @@ Provides commands to configure inbound IPv6 unicast policies.
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound route-map</h>
 
-Configures the route map you want to apply to updates received from the peers in the peer group.
+Configures the IPv6 route map you want to apply to updates received from the peers in the peer group.
 
 ### Command Syntax
 
@@ -3158,7 +3158,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound prefix-list</h>
 
-Configures the prefix list you want to apply to updates received from the peers in the peer group.
+Configures the prefix list you want to apply to updates received from the peers in the peer group for the specified VRF.
 
 ### Command Syntax
 
@@ -3181,7 +3181,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound aspath-list none</h>
 
-Configures the AS path filter list you want to apply to updates received from the peers in the peer group.
+Configures the AS path filter list you want to apply to updates received from the peers in the peer group for the specified VRF.
 
 ### Command Syntax
 
@@ -3204,13 +3204,13 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound</h>
 
-Provides commands to configure the outbound IPv6 unicast policy for the peer group.
+Provides commands to configure the outbound IPv6 unicast policy for the peer group for the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound aspath-list none</h>
 
-Configures the AS path filter list you want to apply to updates sent to the peers in the peer group.
+Configures the AS path filter list you want to apply to updates sent to the peers in the peer group for the specified VRF.
 
 ### Command Syntax
 
@@ -3233,7 +3233,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound prefix-list</h>
 
-Configures the IPv6 prefix list you want to apply to updates to be sent to the peers in the peer group.
+Configures the IPv6 prefix list you want to apply to updates to be sent to the peers in the peer group for the specified VRF.
 
 ### Command Syntax
 
@@ -3256,7 +3256,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound unsuppress-map</h>
 
-Configures the route map used to unsuppress IPv6 routes selectively when advertising to the peers in the peer group; these are routes that have been suppressed due to aggregation configuration.
+Configures the route map used to unsuppress IPv6 routes selectively when advertising to the peers in the peer group for the specified VRF. These are routes that have been suppressed due to aggregation configuration.
 
 ### Command Syntax
 
@@ -3279,7 +3279,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath</h>
 
-Provides commands to configure the AS path filter list you want to apply to updates sent to the peers in the peer group.
+Provides commands to configure the AS path filter list you want to apply to updates sent to the peers in the peer group for the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3487,7 +3487,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound reestablish-wait</h>
 
-Configures the time in seconds to wait before establishing the BGP session again with the peers in the peer group. You can specify a value between 1-4294967295.
+Configures the time in seconds to wait before establishing the BGP session again with the peers in the peer group. You can specify a value between 1 and 4294967295.
 
 ### Command Syntax
 

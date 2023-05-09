@@ -2,7 +2,6 @@
 title: Show Commands
 author: Cumulus Networks
 weight: 20
-product: Cumulus Linux
 type: nojsscroll
 ---
 {{%notice note%}}

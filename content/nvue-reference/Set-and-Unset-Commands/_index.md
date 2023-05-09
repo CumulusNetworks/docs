@@ -2,7 +2,6 @@
 title: Set and Unset Commands
 author: Cumulus Networks
 weight: 30
-product: Cumulus Linux
 type: nojsscroll
 ---
 {{%notice note%}}

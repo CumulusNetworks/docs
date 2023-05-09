@@ -2,7 +2,7 @@
 title: SyncE
 author: Cumulus Networks
 weight: 745
-product: Cumulus Linux
+
 type: nojsscroll
 draft: true
 ---

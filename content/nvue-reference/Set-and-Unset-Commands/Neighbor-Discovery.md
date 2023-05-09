@@ -2,7 +2,7 @@
 title: Neighbor Discovery
 author: Cumulus Networks
 weight: 610
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

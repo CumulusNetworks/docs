@@ -2,7 +2,7 @@
 title: Common Options
 author: Cumulus Networks
 weight: 60
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

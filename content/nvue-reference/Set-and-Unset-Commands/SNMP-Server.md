@@ -2,7 +2,7 @@
 title: SNMP Server
 author: Cumulus Networks
 weight: 730
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

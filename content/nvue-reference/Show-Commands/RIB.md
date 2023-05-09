@@ -2,7 +2,7 @@
 title: RIB
 author: Cumulus Networks
 weight: 330
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

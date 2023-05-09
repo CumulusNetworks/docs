@@ -2,7 +2,7 @@
 title: System Forwarding
 author: Cumulus Networks
 weight: 770
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

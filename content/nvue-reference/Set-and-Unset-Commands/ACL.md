@@ -2,7 +2,7 @@
 title: ACL
 author: Cumulus Networks
 weight: 500
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

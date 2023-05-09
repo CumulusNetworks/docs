@@ -2,7 +2,7 @@
 title: PTM
 author: Cumulus Networks
 weight: 300
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

@@ -2,7 +2,7 @@
 title: Config Commands
 author: Cumulus Networks
 weight: 50
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

@@ -2,7 +2,7 @@
 title: EVPN
 author: Cumulus Networks
 weight: 560
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

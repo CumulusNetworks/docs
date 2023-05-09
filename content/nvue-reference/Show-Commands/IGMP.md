@@ -2,7 +2,7 @@
 title: IGMP
 author: Cumulus Networks
 weight: 180
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

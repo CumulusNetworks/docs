@@ -4,11 +4,10 @@ author: Cumulus Networks
 weight: -34
 subsection: true
 cascade:
-  product: Cumulus Linux
+  product: NVUE
   version: '5.x'
   type: nojsscroll
 toc: 1
-draft: true
 ---
 {{%notice note%}}
 This document is in Beta.
@@ -21,7 +20,7 @@ This document is a reference for the Cumulus Linux NVUE CLI commands.
 ## Command Types
 
 The NVUE CLI provides descriptions and examples for the following commands:
-- {{<link url="Show-Commands" text="nv show">}} commands show various parts of the network configuration.
+- {{<link title="Show Commands" text="nv show">}} commands show various parts of the network configuration.
 - {{<link url="Set-and-Unset-Commands" text="nv set and nv unset">}} commands set and unset configuration options on the switch.
 - {{<link url="Config-Commands" text="nv config">}} commands manage and apply configurations.
-- {{<link url="Action-Commands" text="nv action">}} commands reset counters and routes, remove MLAG LACP conflicts, and disconnect authorized and authenticated users.
+- {{<link url="/Action-Commands" text="nv action">}} commands reset counters and routes, remove MLAG LACP conflicts, and disconnect authorized and authenticated users.

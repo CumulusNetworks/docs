@@ -2,7 +2,7 @@
 title: LLDP
 author: Cumulus Networks
 weight: 590
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

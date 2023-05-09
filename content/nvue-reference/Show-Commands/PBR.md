@@ -2,7 +2,7 @@
 title: PBR
 author: Cumulus Networks
 weight: 250
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

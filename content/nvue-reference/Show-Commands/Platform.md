@@ -2,7 +2,7 @@
 title: Platform
 author: Cumulus Networks
 weight: 270
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

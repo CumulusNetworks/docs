@@ -2,7 +2,7 @@
 title: DNS
 author: Cumulus Networks
 weight: 160
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

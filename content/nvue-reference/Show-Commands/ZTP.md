@@ -2,7 +2,7 @@
 title: ZTP
 author: Cumulus Networks
 weight: 470
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

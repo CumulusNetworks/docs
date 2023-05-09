@@ -2,7 +2,7 @@
 title: Adaptive Routing
 author: Cumulus Networks
 weight: 510
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

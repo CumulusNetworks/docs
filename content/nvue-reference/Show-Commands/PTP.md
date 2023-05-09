@@ -2,7 +2,7 @@
 title: PTP
 author: Cumulus Networks
 weight: 310
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

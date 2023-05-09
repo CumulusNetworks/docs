@@ -2,7 +2,7 @@
 title: TACACS
 author: Cumulus Networks
 weight: 420
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

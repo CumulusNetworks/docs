@@ -2,7 +2,7 @@
 title: NTP
 author: Cumulus Networks
 weight: 230
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

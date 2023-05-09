@@ -2,7 +2,7 @@
 title: Router Nexthop
 author: Cumulus Networks
 weight: 340
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

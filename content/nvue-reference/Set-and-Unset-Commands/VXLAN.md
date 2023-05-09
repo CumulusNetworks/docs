@@ -2,7 +2,7 @@
 title: VXLAN
 author: Cumulus Networks
 weight: 810
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

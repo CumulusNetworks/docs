@@ -2,7 +2,7 @@
 title: System Config
 author: Cumulus Networks
 weight: 390
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

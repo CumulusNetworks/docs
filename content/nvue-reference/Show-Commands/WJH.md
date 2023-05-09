@@ -2,7 +2,7 @@
 title: WJH
 author: Cumulus Networks
 weight: 460
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

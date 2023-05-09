@@ -2,7 +2,7 @@
 title: Bridge
 author: Cumulus Networks
 weight: 140
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

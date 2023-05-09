@@ -2,7 +2,7 @@
 title: Interface
 author: Cumulus Networks
 weight: 190
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

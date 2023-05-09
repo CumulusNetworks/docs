@@ -2,7 +2,7 @@
 title: PIM
 author: Cumulus Networks
 weight: 260
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

@@ -2,7 +2,7 @@
 title: Syslog
 author: Cumulus Networks
 weight: 750
-product: Cumulus Linux
+
 type: nojsscroll
 ---
 <style>

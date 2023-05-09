@@ -25,7 +25,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 router adaptive-routing
+cumulus@switch:~$ nv show interface swp1 router adaptive-routing
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -41,5 +41,5 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
+cumulus@switch:~$ nv show router adaptive-routing
 ```

@@ -29,7 +29,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system acl mode atomic
+cumulus@switch:~$ nv set system acl mode atomic
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -58,7 +58,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -81,7 +81,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action erspan dest-ip 10.10.10.3
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action erspan dest-ip 10.10.10.3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -104,7 +104,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action erspan source-ip 10.10.10.10
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action erspan source-ip 10.10.10.10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -127,7 +127,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action erspan ttl 200
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action erspan ttl 200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -150,7 +150,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action log
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action log
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -174,7 +174,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action log log-prefix 10.10.10.1/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action log log-prefix 10.10.10.1/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -197,12 +197,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action set class
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action set class</h>
 
 Modifies the class value for packet classification.
 
@@ -220,7 +220,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action set class 3
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set class 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -243,7 +243,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action set cos 6
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set cos 6
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -266,7 +266,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action set dscp af12
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp af12
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -289,7 +289,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police burst 1000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action police burst 1000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -312,7 +312,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police class 5
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action police class 5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -335,7 +335,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police mode mbps
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action police mode mbps
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -358,14 +358,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police rate 2000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action police rate 2000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action span \<interface-name\></h>
 
-Configures the SPAN session.
+Configures the SPAN session for the specified interface.
 
 ### Command Syntax
 
@@ -373,6 +373,7 @@ Configures the SPAN session.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
+| `<interface-name>` |  The interface name. |
 
 ### Version History
 
@@ -381,7 +382,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action span swp1
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action span swp1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -405,7 +406,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -429,7 +430,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -452,7 +453,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip dscp af13
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dscp af13
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -477,7 +478,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags ip-ect
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags ip-ect
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -502,7 +503,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags tcp-cwr
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags tcp-cwr
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -527,7 +528,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags tcp-ece
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags tcp-ece
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -550,7 +551,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip fragment 
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip fragment 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -573,7 +574,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip icmp-type dest-unreachable
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip icmp-type dest-unreachable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -596,7 +597,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip icmpv6-type router-advertisement
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip icmpv6-type router-advertisement
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -619,7 +620,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -643,7 +644,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -666,7 +667,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 22
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 22
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -695,7 +696,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip tcp flags syn
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp flags syn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -718,7 +719,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip tcp mask ack
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp mask ack
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -741,7 +742,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip tcp state established
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp state established
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -765,7 +766,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac dest-mac any
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match mac dest-mac any
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -789,7 +790,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac dest-mac-mask 00:00:00:00:00:12
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match mac dest-mac-mask 00:00:00:00:00:12
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -812,7 +813,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac protocol ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match mac protocol ipv4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -836,12 +837,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac source-mac any
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match mac source-mac any
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match mac source-mac-mask \<source-mac-mask\>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match mac source-mac-mask \<source-mac-mask\></h>
 
 Configure the source MAC address mask you want to match.
 
@@ -860,7 +861,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac source-mac-mask 00:00:00:00:00:12
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match mac source-mac-mask 00:00:00:00:00:12
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -884,7 +885,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac vlan 10
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match mac vlan 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -907,7 +908,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 remark "The following line permits TCP packets"
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 remark "The following line permits TCP packets"
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -932,7 +933,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 type ipv4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -955,7 +956,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -978,7 +979,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1001,7 +1002,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 outbound 
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 outbound 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1024,7 +1025,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 outbound control-plane
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 outbound control-plane
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1052,7 +1053,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system control-plane acl ACL1 inbound control-plane
+cumulus@switch:~$ nv set system control-plane acl ACL1 inbound control-plane
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1074,5 +1075,5 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system control-plane acl ACL1 outbound control-plane
+cumulus@switch:~$ nv set system control-plane acl ACL1 outbound control-plane
 ```

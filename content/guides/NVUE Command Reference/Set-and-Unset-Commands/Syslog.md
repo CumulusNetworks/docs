@@ -63,7 +63,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service syslog default server 192.168.0.254 port 514
+cumulus@switch:~$ nv set service syslog default server 192.168.0.254 port 514
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -86,5 +86,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service syslog default server 192.168.0.254 protocol tcp
+cumulus@switch:~$ nv set service syslog default server 192.168.0.254 protocol tcp
 ```

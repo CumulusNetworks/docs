@@ -36,7 +36,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service dns default search nvidia.com
+cumulus@switch:~$ nv set service dns default search nvidia.com
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -59,5 +59,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service dns default server 192.0.2.44
+cumulus@switch:~$ nv set service dns default server 192.0.2.44
 ```

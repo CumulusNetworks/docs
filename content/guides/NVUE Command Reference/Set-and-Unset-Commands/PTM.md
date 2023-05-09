@@ -31,5 +31,5 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router ptm enable on
+cumulus@switch:~$ nv set router ptm enable on
 ```

@@ -29,7 +29,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server enable on
+cumulus@switch:~$ nv set service snmp-server enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -55,7 +55,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server listening-address all
+cumulus@switch:~$ nv set service snmp-server listening-address all
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -78,7 +78,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server listening-address localhost vrf default
+cumulus@switch:~$ nv set service snmp-server listening-address localhost vrf default
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -94,7 +94,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server mibs cumulus-status-mib
+cumulus@switch:~$ nv set service snmp-server mibs cumulus-status-mib
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -125,7 +125,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server readonly-community simplepassword access 192.168.200.10/24
+cumulus@switch:~$ nv set service snmp-server readonly-community simplepassword access 192.168.200.10/24
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -149,7 +149,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server readonly-community simplepassword access 192.168.200.10/24 oid 1.3.6.1.2.1 
+cumulus@switch:~$ nv set service snmp-server readonly-community simplepassword access 192.168.200.10/24 oid 1.3.6.1.2.1 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -173,7 +173,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server readonly-community simplepassword access 192.168.200.10/24 view mysystem
+cumulus@switch:~$ nv set service snmp-server readonly-community simplepassword access 192.168.200.10/24 view mysystem
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -202,7 +202,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server readonly-community-v6 simplepassword access 2001:db8:1::100/32
+cumulus@switch:~$ nv set service snmp-server readonly-community-v6 simplepassword access 2001:db8:1::100/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -226,7 +226,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server readonly-community-v6 simplepassword access 2001:db8:1::100/32 oid 1.3.6.1.2.1
+cumulus@switch:~$ nv set service snmp-server readonly-community-v6 simplepassword access 2001:db8:1::100/32 oid 1.3.6.1.2.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -250,7 +250,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server readonly-community-v6 simplepassword access 2001:db8:1::100/32 view mysystem
+cumulus@switch:~$ nv set service snmp-server readonly-community-v6 simplepassword access 2001:db8:1::100/32 view mysystem
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -266,7 +266,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server system-contact myemail@example.com
+cumulus@switch:~$ nv set service snmp-server system-contact myemail@example.com
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -282,7 +282,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server system-location my-private-bunker
+cumulus@switch:~$ nv set service snmp-server system-location my-private-bunker
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -298,7 +298,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server system-name CumulusBox-1,543,567
+cumulus@switch:~$ nv set service snmp-server system-name CumulusBox-1,543,567
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -314,7 +314,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-cpu-load-average
+cumulus@switch:~$ nv set service snmp-server trap-cpu-load-average
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -330,7 +330,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-cpu-load-average one-minute 5
+cumulus@switch:~$ nv set service snmp-server trap-cpu-load-average one-minute 5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -346,7 +346,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-cpu-load-average one-minute 12 five-minute 10
+cumulus@switch:~$ nv set service snmp-server trap-cpu-load-average one-minute 12 five-minute 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -362,7 +362,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-cpu-load-average one-minute 12 five-minute 10 fifteen-minute 5
+cumulus@switch:~$ nv set service snmp-server trap-cpu-load-average one-minute 12 five-minute 10 fifteen-minute 5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -378,7 +378,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-down
+cumulus@switch:~$ nv set service snmp-server trap-link-down
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -394,7 +394,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-down check-frequency 10
+cumulus@switch:~$ nv set service snmp-server trap-link-down check-frequency 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -410,7 +410,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-up
+cumulus@switch:~$ nv set service snmp-server trap-link-up
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -426,7 +426,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-up check-frequency 10
+cumulus@switch:~$ nv set service snmp-server trap-link-up check-frequency 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -448,7 +448,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -471,7 +471,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost community-password mynotsosecretpassword
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost community-password mynotsosecretpassword
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -496,7 +496,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost community-password mynotsosecretpassword version 1
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost community-password mynotsosecretpassword version 1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -519,7 +519,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -543,7 +543,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password 
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -570,7 +570,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -595,7 +595,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-des mydessecret2 
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-des mydessecret2 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -623,7 +623,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-des mydessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-des mydessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -648,7 +648,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -676,7 +676,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -700,7 +700,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -727,7 +727,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -752,7 +752,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-des myencryptsecret
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-des myencryptsecret
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -780,7 +780,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-des myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-des myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -805,7 +805,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -833,7 +833,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -856,7 +856,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -880,7 +880,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED community-password mynotsosecretpassword
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED community-password mynotsosecretpassword
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -904,7 +904,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED community-password mynotsosecretpassword version 1
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED community-password mynotsosecretpassword version 1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -928,7 +928,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -953,7 +953,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5password 
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5password 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -981,7 +981,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor engine-id  0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor engine-id  0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1007,7 +1007,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5password encrypt-des user3encryption
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5password encrypt-des user3encryption
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1034,7 +1034,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor encrypt-des user3encryption engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor encrypt-des user3encryption engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1060,7 +1060,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor encrypt-aes myaessecret2
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor encrypt-aes myaessecret2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1087,7 +1087,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5password encrypt-aes user3encryption engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5password encrypt-aes user3encryption engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1112,7 +1112,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1140,7 +1140,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1166,7 +1166,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-des mydessecret2
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-des mydessecret2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1195,7 +1195,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-des mydessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-des mydessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1221,7 +1221,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-aes myaessecret1
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-aes myaessecret1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1250,7 +1250,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-aes myaessecret1 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-aes myaessecret1 engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1266,7 +1266,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-snmp-auth-failures
+cumulus@switch:~$ nv set service snmp-server trap-snmp-auth-failures
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1294,7 +1294,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1
+cumulus@switch:~$ nv set service snmp-server username testuser1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1317,7 +1317,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1341,7 +1341,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1366,7 +1366,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1391,7 +1391,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret view cumulusOnly
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret view cumulusOnly
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1415,7 +1415,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1440,7 +1440,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret oid 1.3.6.1.2.1.1
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret oid 1.3.6.1.2.1.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1465,7 +1465,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret view cumulusOnly
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret view cumulusOnly
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1490,7 +1490,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password oid 1.3.6.1.2.1
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password oid 1.3.6.1.2.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1518,7 +1518,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password view cumulusOnly
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password view cumulusOnly
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1540,7 +1540,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-none
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1564,7 +1564,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none oid 1.3.6.1.2.1
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-none oid 1.3.6.1.2.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1591,7 +1591,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none view cumulusOnly
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-none view cumulusOnly
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1614,7 +1614,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1638,7 +1638,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1663,7 +1663,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1688,7 +1688,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret view cumulusOnly
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret view cumulusOnly
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1712,7 +1712,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1737,7 +1737,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret oid 1.3.6.1.2.1.1
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret oid 1.3.6.1.2.1.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1762,7 +1762,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret view cumulusOnly
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret view cumulusOnly
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1787,7 +1787,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 oid 1.3.6.1.2.1
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 oid 1.3.6.1.2.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1815,7 +1815,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 view cumulusOnly
+cumulus@switch:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 view cumulusOnly
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1844,7 +1844,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server viewname cumulusOnly excluded .1.3.6.1.4.1.40310
+cumulus@switch:~$ nv set service snmp-server viewname cumulusOnly excluded .1.3.6.1.4.1.40310
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1867,5 +1867,5 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310.2
+cumulus@switch:~$ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310.2
 ```

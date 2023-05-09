@@ -29,7 +29,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa authentication-order 1 tacacs
+cumulus@switch:~$ nv set system aaa authentication-order 1 tacacs
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -51,7 +51,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs accounting enable on
+cumulus@switch:~$ nv set system aaa tacacs accounting enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -67,7 +67,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs accounting send-records first-response
+cumulus@switch:~$ nv set system aaa tacacs accounting send-records first-response
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -89,7 +89,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs authentication mode chap
+cumulus@switch:~$ nv set system aaa tacacs authentication mode chap
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -105,7 +105,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs authentication per-user-homedir on
+cumulus@switch:~$ nv set system aaa tacacs authentication per-user-homedir on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -121,7 +121,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs debug-level 2
+cumulus@switch:~$ nv set system aaa tacacs debug-level 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -137,7 +137,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs enable on
+cumulus@switch:~$ nv set system aaa tacacs enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -165,7 +165,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs exclude-user user1
+cumulus@switch:~$ nv set system aaa tacacs exclude-user user1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -187,7 +187,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5
+cumulus@switch:~$ nv set system aaa tacacs server 5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -209,7 +209,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 host 192.168.0.30
+cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -231,7 +231,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 port 32
+cumulus@switch:~$ nv set system aaa tacacs server 5 port 32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -253,7 +253,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 prefer-ip-version 6 
+cumulus@switch:~$ nv set system aaa tacacs server 5 prefer-ip-version 6 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -275,7 +275,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 secret mytacacskey
+cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -297,7 +297,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs source-ip 10.10.10.1
+cumulus@switch:~$ nv set system aaa tacacs source-ip 10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -313,7 +313,7 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs timeout 10
+cumulus@switch:~$ nv set system aaa tacacs timeout 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -335,5 +335,5 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa tacacs vrf mgmt
+cumulus@switch:~$ nv set system aaa tacacs vrf mgmt
 ```

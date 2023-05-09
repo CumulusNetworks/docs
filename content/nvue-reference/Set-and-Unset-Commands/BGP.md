@@ -3383,7 +3383,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath private-as</h>
 
-Configures what action to take with private ASNs. You can specify`none` to take no action, `remove`, to remove any private ASNs in the update to the peer, or `replace` to replace any private ASNs in the update to the peer with the ASN of the local system.
+Configures what action to take with private ASNs. You can specify `none` to take no action, `remove`, to remove any private ASNs in the update to the peer, or `replace` to replace any private ASNs in the update to the peer with the ASN of the local system.
 
 ### Command Syntax
 
@@ -3406,19 +3406,19 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits</h>
 
-Provides commands to configure prefix limits from peers in the peer group for IPv6.
+Provides commands to configure IPv6 prefix limits from peers in the peer group for the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound</h>
 
-Provides commands to configure limits on the inbound prefix from the peers in the peer group. 
+Provides commands to configure limits on the IPv6 inbound prefix from the peers in the peer group. 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound maximum</h>
 
-Configures the maximum number of prefixes that BGP can receive from the peers in the peer group. By default, there is no limit.
+Configures the maximum number of IPv6 prefixes that BGP can receive from the peers in the peer group for the specified VRF. By default, there is no limit.
 
 ### Command Syntax
 
@@ -3510,13 +3510,13 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination</h>
 
-Provides commands to configure default route origination for IPv6.
+Provides commands to configure IPv6 default route origination.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination enable</h>
 
-Turns default route origination for IPv6 on or off. The default setting is `off`.
+Turns IPv6 default route origination on or off. The default setting is `off`.
 
 ### Command Syntax
 
@@ -3539,7 +3539,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination policy</h>
 
-Configures the optional route map policy to control the conditions under which the default route is originated. The default setting is `none`.
+Configures the optional route map policy to control the conditions under which the IPv6 default route is originated. The default setting is `none`.
 
 ### Command Syntax
 
@@ -3568,7 +3568,7 @@ Provides commands to configure the BGP `COMMUNITY` attribute to advertise to the
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise regular</h>
 
-Configures BGP to announce the `COMMUNITIES` attribute to the peer group. The default setting is `off`.
+Configures BGP to announce the `COMMUNITIES` attribute to the peer group for the specified VRF. The default setting is `off`.
 
 ### Command Syntax
 
@@ -3591,7 +3591,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise extended</h>
 
-Configures BGP to announce the `EXT_COMMUNITIES` attribute to the peer group. The default setting is `off`.
+Configures BGP to announce the `EXT_COMMUNITIES` attribute to the peer group for the specified VRF. The default setting is `off`.
 
 ### Command Syntax
 
@@ -3614,7 +3614,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise large</h>
 
-Configures BGP to announce the `LARGE_COMMUNITIES` attribute to the peer group. The default setting is `off`.
+Configures BGP to announce the `LARGE_COMMUNITIES` attribute to the peer group for the specified VRF. The default setting is `off`.
 
 ### Command Syntax
 
@@ -3643,7 +3643,7 @@ Provides commands to configure the BGP attribute mode for the peer group for IPv
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast attribute-mod aspath</h>
 
-Configures BGP to follow normal BGP procedures when generating the `AS_PATH` attribute for the specified peer group. You can specify `on` or `off`.
+Configures BGP to follow normal IPv6 BGP procedures when generating the `AS_PATH` attribute for the peer group in the specified VRF. You can specify `on` or `off`.
 
 ### Command Syntax
 
@@ -3689,7 +3689,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast attribute-mod med</h>
 
-Configures BGP to follow normal BGP procedures when generating the `MED` attribute for the specified peer group. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change the MED when sending an update to the peer group.
+Configures BGP to follow normal BGP procedures when generating the `MED` attribute for the specified peer group. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change the `MED` when sending an update to the peer group.
 
 ### Command Syntax
 
@@ -3718,7 +3718,7 @@ Provides commands to configure BGP conditional advertisement, which lets you adv
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise enable</h>
 
-Turns BGP conditional advertisement on or off for IPv6. The default setting is `off`.
+Turns BGP conditional advertisement on or off for IPv6 for the peer group. The default setting is `off`.
 
 ### Command Syntax
 
@@ -3741,7 +3741,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise advertise-map \<instance-name\></h>
 
-Configures the route map that contains the prefix list with the list of IPv6 routes or prefixes you want to advertise.
+Configures the route map that contains the prefix list with the list of IPv6 routes or prefixes you want to advertise for the peer group.
 
 ### Command Syntax
 
@@ -3833,7 +3833,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast route-reflector-client</h>
 
-Configures the BGP node as a route reflector for a BGP peer. The default setting is `off`.
+Configures the BGP node as a route reflector for the BGP peer group. The default setting is `off`.
 
 ### Command Syntax
 
@@ -3856,7 +3856,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast route-server-client</h>
 
-Configures the BGP node as a route server for a BGP peer. The default setting is `off`.
+Configures the BGP node as a route server for the BGP peer group. The default setting is `off`.
 
 ### Command Syntax
 
@@ -3948,7 +3948,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast weight</h>
 
-Configures the weight applied to IPv6 routes received from peer; this is used in the BGP route selection algorithm. You can specify a value between 0 and 65535.
+Configures the weight applied to IPv6 routes received from the peer group; this is used in the BGP route selection algorithm. You can specify a value between 0 and 65535.
 
 ### Command Syntax
 
@@ -3977,7 +3977,7 @@ Provides commands to configure l2vpn EVPN for the peer group.
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn attribute-mod</h>
 
-Provides commands to configure the attribute mode for l2vpn EVPN.
+Provides commands to configure the attribute mode for EVPN for the peer group.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -3995,7 +3995,7 @@ Provides commands to allow the `AS_PATH` to contain the ASN of the local system.
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath allow-my-asn occurrences</h>
 
-Indicates the maximum number of times the local system's AS number can be in the received `AS_PATH`.
+Indicates the maximum number of times you can receive the ASN of the local system in the received `AS_PATH`.
 
 ### Command Syntax
 
@@ -4018,13 +4018,13 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy</h>
 
-Provides commands to configure policies for l2vpn EVPN for the peer group.
+Provides commands to configure EVPN policies for the peer group.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy inbound</h>
 
-Provides commands to configure inbound l2vpn EVPN policies for the peer group.
+Provides commands to configure inbound EVPN policies for the peer group.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -4036,7 +4036,7 @@ Provides commands to configure the outbound l2vpn-evpn policies.
 
 ## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> password none</h>
 
-Configure the password.
+Configures a password for the BGP peer group.
 
 ### Command Syntax
 
@@ -4094,7 +4094,7 @@ Provides commands to configure exporting routes from this VRF into EVPN.
 
 ## <h>nv set vrf \<vrf-id\> router bgp route-export to-evpn route-target \<rt-id\></h>
 
-A route target Syntax
+Configures the route target for BGP route export.
 
 ### Command Syntax
 
@@ -4129,7 +4129,7 @@ Provides commands to configure importing EVPN type-2 and type-5 routes into this
 
 ## <h>nv set vrf \<vrf-id\> router bgp route-import from-evpn route-target \<rt-id\></h>
 
-Configures the route target syntax.
+Configures the route target for BGP route import.
 
 ### Command Syntax
 
@@ -4230,7 +4230,7 @@ cumulus@switch:~$ nv set vrf default router bgp timers connection-retry
 
 ## <h>nv set vrf \<vrf-id\> router bgp timers route-advertisement</h>
 
-Configures the delay to insert before advertising the new results to a peer after making a new best path decision for a prefix. This delay rate limits the amount of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. You can set a value between 1 and 600 or `none`. The default value is 0 for both eBGP and iBGP sessions, which allows for fast convergence. 
+Configures the delay to insert before advertising the new results to a peer after making a new best path decision for a prefix. This delay rate limits the number of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. You can set a value between 1 and 600 or `none`. The default value is 0 for both eBGP and iBGP sessions, which allows for fast convergence. 
 
 ### Command Syntax
 
@@ -4330,7 +4330,7 @@ Provides commands to configure BGP global configuration.
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd</h>
 
-Provides commands to configure tracking BGP peering sessions using this configuration via BFD.
+Provides commands to configure tracking BGP peering sessions using this configuration with BFD.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -4518,7 +4518,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 description SPINE
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> enforce-first-as</h>
 
-Configures BGP to check that first AS matches peer's AS when BGP updates are received from eBGP peers with this configuration. You can specify `on` or `off`.
+Configures BGP to check that the first AS matches the peer's AS when BGP updates are received from eBGP peers with this configuration. You can specify `on` or `off`.
 
 
 ### Command Syntax
@@ -4821,7 +4821,7 @@ Provides commands to configure options for handling the AS_PATH for prefixes to 
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn</h>
 
-Turns on or off the option for a received AS_PATH to contain the ASN of the local system.
+Turns the option for a received AS_PATH to contain the ASN of the local system on or off .
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -4851,7 +4851,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn occurrences</h>
 
-Configues the maximum number of times the local system's AS number can occur in the received AS_PATH.
+Configures the maximum number of times the local system AS number can occur in the received AS_PATH.
 
 ### Command Syntax
 
@@ -4874,7 +4874,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy</h>
 
-Provides commands to configure policies for ipv4 unicast.
+Provides commands to configure policies for IPv4 unicast.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -4914,6 +4914,8 @@ Provides commands to configure outbound unicast policies.
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound aspath-list none</h>
+
+Applies the IPv4 outbound policy for the specified AS_PATH list.
 
 ### Command Syntax
 
@@ -5375,31 +5377,31 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn</h>
 
-Provides commands to configure the peer l2vpn EVPN address family.
+Provides commands to configure the peer for EVPN.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn attribute-mod</h>
 
-Provides commands to configure the attribute mode for l2vpn EVPN.
+Provides commands to configure the attribute mode for EVPN.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath</h>
 
-Provides commands to configure options for handling AS_PATH for prefixes to and from the peer for l2vpn EVPN.
+Provides commands to configure options for handling `AS_PATH` for prefixes to and from the peer for EVPN.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath allow-my-asn</h>
 
-Turns on and off the option for a received AS_PATH to contain the ASN of the local system for l2vpn EVPN.
+Turns on and off the option for a received `AS_PATH` to contain the ASN of the local system for EVPN.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath allow-my-asn occurrences</h>
 
-Configures the maximum number of times the local system's AS number can be in the received AS_PATH. You can set a value between 1 and 10.
+Configures the maximum number of times you can receive the ASN of the local system in the received `AS_PATH`. You can set a value between 1 and 10.
 
 ### Command Syntax
 
@@ -5422,19 +5424,19 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy</h>
 
-Provides commands to configure policies for l2vpn EVPN.
+Provides commands to configure policies for EVPN.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound</h>
 
-Provides commands to configure inbound l2vpn EVPN policies.
+Provides commands to configure inbound EVPN policies.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound</h>
 
-Provides commands to configure outbound l2vpn EVPN policies.
+Provides commands to configure outbound EVPN policies.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -5486,7 +5488,7 @@ Provides commands to configure BGP peer timers.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-# nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers connection-retry</h>
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers connection-retry</h>
 
 Configures how often the BGP process attempts to connect to a peer after a failure or when starting up. The default value is 10 seconds. 
 
@@ -5509,7 +5511,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 timers connection
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-# nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers hold</h>
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers hold</h>
 
 Configures the hold time in seconds. If BGP does not receive a keepalive or update message from the peer within the hold time, it declares the peer down and withdraws all routes received by this peer from the local BGP table. The default value is 9 seconds.
 
@@ -5532,7 +5534,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 timers hold 30.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-# nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers keepalive</h>
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers keepalive</h>
 
 Configures the interval during which keepalive messages are exchanged. To decrease CPU load when there are a lot of neighbors, you can increase the values of this timer and the hold timer, or disable the exchange of keepalives. When manually configuring new values, the keepalive interval can be less than or equal to one third of the hold time, but cannot be less than 1 second. Setting the keepalive and hold time values to 0 disables the exchange of keepalive messages. The default value is 3 seconds.
 
@@ -5555,7 +5557,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 timers keepalive 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-# nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers route-advertisement</h>
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers route-advertisement</h>
 
 Configures the delay in seconds before advertising new results to a peer after making a new best path decision for a prefix. This delay rate limits the number of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. The default value is 0 seconds.
 
@@ -5701,9 +5703,7 @@ After you configure the dynamic neighbors, a BGP speaker can listen for, and for
 
 ## <h>nv set vrf \<vrf-id\> router bgp dynamic-neighbor limit</h>
 
-Configures the maximum number of dynamic neighbors from which you can accept a connection. You must also set the `nv set vrf <vrf> router bgp dynamic-neighbor listen-range` command.
-
-You can specify a value between 1 and 5000. The default value is 100.
+Configures the maximum number of dynamic neighbors from which you can accept a connection. You must also set the `nv set vrf <vrf> router bgp dynamic-neighbor listen-range` command. You can specify a value between 1 and 5000. The default value is 100.
 
 ### Command Syntax
 

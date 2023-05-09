@@ -420,6 +420,19 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 ```
 
 {{</tab>}}
+        
+{{<tab "Ubuntu 20.04" >}}
+
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add the following line:
+
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
+...
+```
+
+{{</tab>}}
 
 {{</tabs>}}
 

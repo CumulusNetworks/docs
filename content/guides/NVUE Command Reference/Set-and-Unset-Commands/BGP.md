@@ -21,7 +21,7 @@ Configures BGP globally on the switch.
 ## <h>nv set router bgp autonomous-system</h>
 
 Configures the BGP <span style="background-color:#F5F5DC">[ASN](## "Autonomous System Number ")</span> on the switch to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
-
+w
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -2544,7 +2544,7 @@ cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath private-as</h>
+## <h>nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath private-as</h>
 
 Configures what action to take with private ASNs for the peer group in the specified VRF. You can specify`none` to take no action, `remove`, to remove any private ASNs in the update to the peer, or `replace` to replace any private ASNs in the update to the peer with the ASN of the local system.
 

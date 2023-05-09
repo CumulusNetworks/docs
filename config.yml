@@ -15,6 +15,7 @@ Params:
   cl_latest: "cumulus-linux-55"
   netq_latest: "cumulus-netq-46"
   sonic_latest: "sonic-202012"
+  nvue_latest: "nvue-reference"
 
   #Syntax Highlighting
   pygmentsCodeFencesGuessSyntax: True

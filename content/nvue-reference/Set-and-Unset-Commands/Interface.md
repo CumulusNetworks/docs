@@ -245,7 +245,7 @@ cumulus@switch:~$ nv set interface swp1 ip gateway 10.10.10.1
 
 ## <h>nv set interface \<interface-id\> ip ipv4</h>
 
-Configures IPv4 settings for an interface.
+Configures IPv4 settings for the specified interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -297,10 +297,6 @@ cumulus@switch:~$ nv set interface swp1 ip ipv4 forward on
 
 Configures IPv6 settings for an interface.
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ip ipv6 enable</h>
@@ -347,7 +343,7 @@ cumulus@switch:~$ nv set interface swp1 ip ipv6 forward off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> link
+## <h>nv set interface \<interface-id\> link</h>
 
 Provides commands to configure physical interface settings, such as the link state, auto-negotiation, breakouts, FEC, MTU, speed, 802.1X, and MAC authentication bypass (MAB).
 
@@ -456,9 +452,7 @@ cumulus@switch:~$ nv set interface swp1 link duplex half
 
 ## <h>nv set interface \<interface-id\> link fast-linkup</h>
 
-Configures fast linkup on interfaces on NVIDIA Spectrum1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as certain 100G optical network interface cards. You can specify `on` or `off`.
-
-The default setting is `off`.
+Configures fast linkup on interfaces on NVIDIA Spectrum1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as certain 100G optical network interface cards. You can specify `on` or `off`. The default setting is `off`.
 
 ### Command Syntax
 
@@ -480,9 +474,7 @@ cumulus@switch:~$ nv set interface swp1 link fast-linkup on
 
 ## <h>nv set interface \<interface-id\> link fec</h>
 
-Configures Forward Error Correction (FEC) for the interface. FEC enables the switch to detect and correct bit errors introduced over the cable between two interfaces.
-
-The default setting is `auto`.
+Configures Forward Error Correction (FEC) for the interface. FEC enables the switch to detect and correct bit errors introduced over the cable between two interfaces. The default setting is `auto`.
 
 ### Command Syntax
 
@@ -526,9 +518,7 @@ cumulus@switch:~$ nv set interface swp1 link lanes 1
 
 ## <h>nv set interface \<interface-id\> link mtu</h>
 
-Configures the maximum transmission unit (MTU) for the interface. You can set a value between 552 and 9216.
-
-The default setting is 9216
+Configures the maximum transmission unit (MTU) for the interface. You can set a value between 552 and 9216. The default setting is 9216.
 
 ### Command Syntax
 
@@ -570,7 +560,7 @@ cumulus@switch:~$ nv set interface swp1 link speed 10G
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> link state
+## <h>nv set interface \<interface-id\> link state</h>
 
 Brings an interface up or down administratively (admin up or admin down). You can specify `up` or `down`.
 
@@ -642,9 +632,7 @@ cumulus@switch:~$ nv set interface swp1 storm-control multicast 3000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> storm-control unknown-unicast
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/></h>
+## <h>nv set interface \<interface-id\> storm-control unknown-unicast</h>
 
 Configures the number of unknown unicast packets per second (pps) that signifies an unknown unicast storm. You can set a value between 1 and 4294967295.
 
@@ -710,7 +698,7 @@ cumulus@switch:~$ nv set interface tunnelR2 tunnel interface MYGRETUNNEL
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> tunnel mode gre
+## <h>nv set interface \<interface-id\> tunnel mode gre</h>
 
 Enables GRE mode for the specified interface.
 
@@ -828,11 +816,13 @@ Configures the loopback address in the specified VRF.
 
 ## <h>nv set vrf \<vrf-id\> loopback ip</h>
 
-Configures the loopback IP address in the specified VRF.
+Configures the loopback in the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> loopback ip address \<ip-prefix-id\>
+## <h>nv set vrf \<vrf-id\> loopback ip address \<ip-prefix-id\></h>
+
+Configures the loopback IP address in the specified VRF.
 
 ### Command Syntax
 

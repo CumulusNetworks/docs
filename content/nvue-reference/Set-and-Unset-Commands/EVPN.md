@@ -16,6 +16,8 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Configures the EVPN control plane.
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set evpn dad</h>
 
 Configures EVPN duplicate address detection. The VTEP considers a host MAC or IP address to be duplicate if the address moves across the network more than a certain number of times within a certain number of seconds. In addition to legitimate host or VM mobility scenarios, address movement can occur when you configure IP addresses incorrectly on a host or when packet looping occurs in the network due to faulty configuration or behavior.
@@ -50,7 +52,7 @@ cumulus@switch:~$ nv set evpn dad duplicate-action freeze duration permanent
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set evpn dad enable
+## <h>nv set evpn dad enable</h>
 
 Enables and disables duplicate address detection. The default setting is `off`.
 
@@ -98,7 +100,7 @@ cumulus@switch:~$ nv set evpn dad move-window 1200
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set evpn enable
+## <h>nv set evpn enable</h>
 
 Enables and disables the EVPN control plane. When enabled, the EVPN service offered is a VLAN-based service and an EVI is created automatically for each extended VLAN. The default setting is `off`.
 
@@ -180,9 +182,7 @@ cumulus@switch:~$ nv set evpn multihoming enable on
 
 ## <h>nv set evpn multihoming mac-holdtime</h>
 
-Configures the MAC hold time, which specifies the duration for which a switch maintains SYNC MAC entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the MAC address on the local Ethernet segment. You can specify a value between 0 and 86400 seconds.
-
-The default setting is 1080 seconds.
+Configures the MAC hold time, which specifies the duration for which a switch maintains SYNC MAC entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the MAC address on the local Ethernet segment. You can specify a value between 0 and 86400 seconds. The default setting is 1080 seconds.
 
 ### Version History
 
@@ -198,9 +198,7 @@ cumulus@switch:~$ nv set evpn multihoming mac-holdtime 1000
 
 ## <h>nv set evpn multihoming neighbor-holdtime</h>
 
-Configures the neighbor hold times, which specifies the duration for which a switch maintains SYNC neighbor entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. You can specify a value between between 0 and 86400 seconds.
-
-The default setting is 1080 seconds.
+Configures the neighbor hold times, which specifies the duration for which a switch maintains SYNC neighbor entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. You can specify a value between between 0 and 86400 seconds. The default setting is 1080 seconds.
 
 ### Version History
 
@@ -258,9 +256,7 @@ cumulus@switch:~$ nv set evpn multihoming segment mac-address 00:00:00:00:00:10
 
 ## <h>nv set evpn multihoming startup-delay</h>
 
-Configures the duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. You can specify a value between 0 and 3600 seconds.
-
-The default setting is 180 seconds.
+Configures the duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. You can specify a value between 0 and 3600 seconds. The default setting is 180 seconds.
 
 ### Version History
 
@@ -328,7 +324,7 @@ cumulus@switch:~$ nv set evpn route-advertise svi-ip on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set evpn vni
+## <h>nv set evpn vni</h>
 
 Enables the EVPN control plane so that the EVPN service offered is VLAN-based and an EVI is created automatically for each extended VLAN.
 
@@ -530,7 +526,7 @@ cumulus@switch:~$ nv set vrf RED evpn vni 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> evpn prefix-routes-only
+## <h>nv set vrf \<vrf-id\> evpn prefix-routes-only</h>
 
 Configures the switch to advertise IP prefix routes (type 5 routes) only in the specified VRF. You can specify `on` or `off`.
 

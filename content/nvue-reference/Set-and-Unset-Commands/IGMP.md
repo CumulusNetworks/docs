@@ -12,17 +12,15 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> ip igmp
+## <h>nv set interface \<interface-id\> ip igmp</h>
 
-Provides commands to configure Internet Group Management Protocol (IGMP).
+Provides commands to configure <span style="background-color:#F5F5DC">[IGMP](## "Internet Group Management Protocol")</span>.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ip igmp enable</h>
 
-Turns IGMP on or off on the specified interface.
-
-The default setting is `off`.
+Turns IGMP on or off on the specified interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -44,9 +42,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp enable on
 
 ## <h>nv set interface \<interface-id\> ip igmp last-member-query-interval</h>
 
-Configures the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 255 seconds.
-
-The default setting is `1`.
+Configures the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 255 seconds. The default setting is `1`.
 
 ### Command Syntax
 
@@ -68,9 +64,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-interval 10
 
 ## <h>nv set interface \<interface-id\> ip igmp query-interval</h>
 
-Configures how often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 1800 seconds.
-
-The default setting is `125`.
+Configures how often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 1800 seconds. The default setting is `125`.
 
 ### Command Syntax
 
@@ -92,9 +86,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp query-interval 1000
 
 ## <h>nv set interface \<interface-id\> ip igmp query-max-response-time</h>
 
-Configures the maximum response time for IGMP general queries. You can specify a value between 10 and 250 seconds.
-
-The default setting is `10`.
+Configures the maximum response time for IGMP general queries. You can specify a value between 10 and 250 seconds. The default setting is `10`.
 
 ### Command Syntax
 
@@ -163,9 +155,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp static-group 234.10.10.10 source
 
 ## <h>nv set interface \<interface-id\> ip igmp version</h>
 
-Configures the IGMP version. You can specify version 2 or version 3.
-
-The default setting is `2`.
+Configures the IGMP version. You can specify version 2 or version 3. The default setting is `2`.
 
 ### Command Syntax
 
@@ -185,7 +175,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp version 3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router igmp
+## <h>nv set router igmp</h>
 
 Provides commands to configure global IGMP settings.
 
@@ -193,9 +183,7 @@ Provides commands to configure global IGMP settings.
 
 ## <h>nv set router igmp enable</h>
 
-Turns IGMP on or off globally.
-
-The default setting is `off`.
+Turns IGMP on or off globally. The default setting is `off`.
 
 ### Version History
 

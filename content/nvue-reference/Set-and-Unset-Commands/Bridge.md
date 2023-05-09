@@ -16,10 +16,6 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Configures a bridge on the switch.
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set bridge domain \<domain-id\></h>
@@ -56,7 +52,7 @@ cumulus@switch:~$ nv set bridge domain br_default ageing 600
 
 ## <h>nv set bridge domain \<domain-id\> encap 802.1Q</h>
 
-Configures any interfaces in this bridge domain to use 802.1Q encapsulation by default.
+Configures all interfaces in this bridge domain to use 802.1Q encapsulation.
 
 ### Command Syntax
 
@@ -78,7 +74,7 @@ cumulus@switch:~$ nv set bridge domain br_default encap 802.1Q
 
 ## <h>nv set bridge domain \<domain-id\> mac-address</h>
 
-Configures any interfaces in this bridge domain to use this MAC address.
+Configures all interfaces in this bridge domain to use this MAC address.
 
 ### Command Syntax
 
@@ -164,6 +160,8 @@ cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier ena
 
 Configures STP on the bridge domain.
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set bridge domain \<domain-id\> stp priority</h>
 
 Configures the spanning tree priority. The bridge with the lowest priority is the root bridge. The priority must be a number between 0 and 61440, and must be a multiple of 4096. The default value is 32768.
@@ -230,7 +228,9 @@ cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> untagged
+## <h>nv set bridge domain \<domain-id\> untagged</h>
+
+Configures the interfaces on the bridge domain to be *untagged* so that they pass traffic for only a single VLAN.
 
 ### Command Syntax
 
@@ -275,18 +275,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10
 
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> ptp</h>
 
-Configures Precision Time Protocol (PTP) on the VLAN (all interfaces in this VLAN).
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<domain-id>`   | The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Configures Precision Time Protocol (PTP) on the all interfaces in the specified VLAN.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -313,7 +302,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan vlan10 ptp enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\>
+## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\></h>
 
 Maps a VLAN to a VNI.
 
@@ -332,20 +321,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10`
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding</h>
 
-Configures how to handle BUM traffic.
+Configures <span style="background-color:#F5F5DC">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding enable</h>
 
-Turns flooding on or off for the VNI.
+Turns flooding on or off for the specified VNI.
 
 ### Command Syntax
 
@@ -394,7 +383,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-e
 
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding multicast-group \<ipv4-multicast\></h>
 
-Configures BUM traffic to go to the specified multicast group, where receivers who are interested in that group receive the traffic. This requires PIM-SM to be used in the network.
+Configures BUM traffic to go to the specified multicast group, where receivers who are interested in that group receive the traffic. This requires you to use PIM-SM in the network.
 
 ### Command Syntax
 
@@ -450,10 +439,6 @@ Configures multicast on the VLAN.
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping</h>
 
 Configures IGMP and MLD snooping on the VLAN.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

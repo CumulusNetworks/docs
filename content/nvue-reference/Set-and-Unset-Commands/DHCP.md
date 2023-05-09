@@ -16,16 +16,6 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Configures DHCP relays for IPv4 and IPv6.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service dhcp-relay \<vrf-id\> gateway-interface \<interface-id\></h>
@@ -314,7 +304,7 @@ cumulus@switch:~$ nv set service dhcp-server default domain-name example.com dom
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-server \<vrf-id\> domain-name-server \<server-id\>
+## <h>nv set service dhcp-server \<vrf-id\> domain-name-server \<server-id\></h>
 
 Confgures a remote DNS server to use globally.
 
@@ -400,9 +390,9 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 cumulus-p
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> default-url \<value\>
+## <h>nv set service dhcp-server \<vrf-id\> pool \<pool-id\> default-url \<value\></h>
 
-Confifgures the default URL for the DHCP server pool.
+Configures the default URL for the DHCP server pool.
 
 ### Command Syntax
 
@@ -853,9 +843,9 @@ cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 cumul
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> default-url \<url\>
+## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> default-url \<url\></h>
 
-Confifgures the default URL for the IPv6 pool.
+Configures the default URL for the IPv6 pool.
 
 ### Command Syntax
 

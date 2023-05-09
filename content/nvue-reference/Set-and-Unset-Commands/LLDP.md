@@ -12,17 +12,15 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> lldp
+## <h>nv set interface \<interface-id\> lldp</h>
 
-Provides commands to configure Link Layer Discovery Protocol (LLDP) for an interface.
+Provides commands to configure <span style="background-color:#F5F5DC">[LLDP](## "Link Layer Discovery Protocol")</span> on an interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> lldp dcbx-ets-config-tlv</h>
 
-Configures ETS TLV transmission on the interface.
-
-The default setting is `off`.
+Configures ETS TLV transmission on the interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -66,9 +64,7 @@ cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv on
 
 ## <h>nv set interface \<interface-id\> lldp dcbx-pfc-tlv</h>
 
-Configures PFC TLV transmission on the interface.
-
-The default setting is `off`.
+Configures PFC TLV transmission on the interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -88,17 +84,15 @@ cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service lldp
+## <h>nv set service lldp</h>
 
-Provides commands to configure Link Layer Discovery Protocol LLDP globally on the switch.
+Provides commands to configure LLDP globally on the switch.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service lldp dot1-tlv</h>
 
-Turns dot1 TLV advertisements on or off.
-
-The default setting is `off`.
+Turns dot1 TLV advertisements on or off. The default setting is `off`.
 
 ### Version History
 

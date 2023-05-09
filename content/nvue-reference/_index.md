@@ -5,6 +5,7 @@ weight: -34
 subsection: true
 cascade:
   product: Cumulus Linux
+  version: '5.x'
   type: nojsscroll
 toc: 1
 draft: true

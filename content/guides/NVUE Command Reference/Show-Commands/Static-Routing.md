@@ -26,7 +26,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32
+cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -50,7 +50,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distance 2
+cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32 distance 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -75,7 +75,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0
+cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -100,7 +100,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32
+cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -124,7 +124,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0
+cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -148,5 +148,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0 flag
+cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0 flag
 ```

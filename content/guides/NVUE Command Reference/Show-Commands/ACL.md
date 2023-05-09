@@ -19,7 +19,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl
+cumulus@switch:~$ nv show acl
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -41,7 +41,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1
+cumulus@switch:~$ nv show acl EXAMPLE1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -63,7 +63,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule
+cumulus@switch:~$ nv show acl EXAMPLE1 rule
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -86,7 +86,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -109,7 +109,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -132,7 +132,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action deny
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -155,7 +155,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action erspan
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action erspan
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -178,7 +178,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action log
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action log
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -201,7 +201,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action permit
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action permit
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -224,7 +224,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action police
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action police
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -247,7 +247,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action set
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action set
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -270,7 +270,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -293,7 +293,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -316,7 +316,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -340,7 +340,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port http
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port http
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -363,7 +363,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip ecn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -386,7 +386,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn flags
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip ecn flags
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -409,7 +409,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip fragment
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip fragment
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -432,7 +432,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -456,7 +456,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -479,7 +479,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip tcp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -502,7 +502,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp flags
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip tcp flags
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -525,7 +525,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp mask
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip tcp mask
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -548,7 +548,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match mac
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match mac
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -570,7 +570,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 acl
+cumulus@switch:~$ nv show interface swp1 acl
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -593,7 +593,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -616,7 +616,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -639,7 +639,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound control-plane
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 inbound control-plane
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -662,7 +662,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -685,7 +685,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound control-plane
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 outbound control-plane
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -708,7 +708,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 statistics
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 statistics
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -731,7 +731,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 statistics 10
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 statistics 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -747,7 +747,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system acl
+cumulus@switch:~$ nv show system acl
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -763,7 +763,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane
+cumulus@switch:~$ nv show system control-plane
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -779,7 +779,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane acl
+cumulus@switch:~$ nv show system control-plane acl
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -795,7 +795,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1
+cumulus@switch:~$ nv show system control-plane acl ACL1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -811,7 +811,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 inbound
+cumulus@switch:~$ nv show system control-plane acl ACL1 inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -827,7 +827,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 outbound
+cumulus@switch:~$ nv show system control-plane acl ACL1 outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -843,7 +843,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 statistics
+cumulus@switch:~$ nv show system control-plane acl ACL1 statistics
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -859,7 +859,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 statistics 10
+cumulus@switch:~$ nv show system control-plane acl ACL1 statistics 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -875,7 +875,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane policer
+cumulus@switch:~$ nv show system control-plane policer
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -897,7 +897,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane policer bfd
+cumulus@switch:~$ nv show system control-plane policer bfd
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -919,7 +919,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane policer bfd statistics
+cumulus@switch:~$ nv show system control-plane policer bfd statistics
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -935,7 +935,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane trap
+cumulus@switch:~$ nv show system control-plane trap
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -957,5 +957,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show system control-plane trap l3-mtu-err
+cumulus@switch:~$ nv show system control-plane trap l3-mtu-err
 ```

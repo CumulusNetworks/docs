@@ -29,7 +29,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router pbr
+cumulus@switch:~$ nv set interface swp51 router pbr
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -51,7 +51,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router pbr map MAP1
+cumulus@switch:~$ nv set interface swp51 router pbr map MAP1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -73,7 +73,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pbr enable on
+cumulus@switch:~$ nv set router pbr enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -95,7 +95,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pbr map map1
+cumulus@switch:~$ nv set router pbr map map1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -118,7 +118,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10
+cumulus@switch:~$ nv set router pbr map map1 rule 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -141,7 +141,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
+cumulus@switch:~$ nv set router pbr map map1 rule 1 action vrf RED
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -165,7 +165,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
+cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -189,7 +189,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
+cumulus@switch:~$ nv set router pbr map map1 rule 1 action vrf RED
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -219,7 +219,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10 match destination-ip 10.1.2.0/24
+cumulus@switch:~$ nv set router pbr map map1 rule 10 match destination-ip 10.1.2.0/24
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -242,7 +242,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 match dscp 10
+cumulus@switch:~$ nv set router pbr map map1 rule 1 match dscp 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -265,7 +265,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 match ecn 3
+cumulus@switch:~$ nv set router pbr map map1 rule 1 match ecn 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -289,7 +289,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10 match source-ip 10.1.4.1/24 
+cumulus@switch:~$ nv set router pbr map map1 rule 10 match source-ip 10.1.4.1/24 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -311,7 +311,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system global reserved routing-table pbr begin 140000
+cumulus@switch:~$ nv set system global reserved routing-table pbr begin 140000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -327,5 +327,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system global reserved routing-table pbr end 150000
+cumulus@switch:~$ nv set system global reserved routing-table pbr end 150000
 ```

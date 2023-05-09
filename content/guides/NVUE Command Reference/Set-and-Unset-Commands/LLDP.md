@@ -37,7 +37,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 lldp dcbx-ets-config-tlv on
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-config-tlv on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -59,7 +59,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv on
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -83,7 +83,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
+cumulus@switch:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -107,7 +107,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service lldp dot1-tlv on
+cumulus@switch:~$ nv set service lldp dot1-tlv on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -126,7 +126,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service lldp mode force-send-cdpv1
+cumulus@switch:~$ nv set service lldp mode force-send-cdpv1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -142,7 +142,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service lldp tx-hold-multiplier 3
+cumulus@switch:~$ nv set service lldp tx-hold-multiplier 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -158,5 +158,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service lldp tx-interval 100
+cumulus@switch:~$ nv set service lldp tx-interval 100
 ```

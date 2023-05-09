@@ -29,7 +29,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 enable on
+cumulus@switch:~$ nv set system aaa user admin2 enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -51,7 +51,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 full-name "FIRST LAST"
+cumulus@switch:~$ nv set system aaa user admin2 full-name "FIRST LAST"
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -73,7 +73,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 hashed-password '$1$/ETjhZMJ$P73qhBZEYP20mKnRkhBol0'
+cumulus@switch:~$ nv set system aaa user admin2 hashed-password '$1$/ETjhZMJ$P73qhBZEYP20mKnRkhBol0'
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -99,7 +99,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 password
+cumulus@switch:~$ nv set system aaa user admin2 password
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -121,5 +121,5 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 nvue-monitor
+cumulus@switch:~$ nv set system aaa user admin2 nvue-monitor
 ```

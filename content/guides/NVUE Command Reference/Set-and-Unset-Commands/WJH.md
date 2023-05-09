@@ -35,7 +35,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system wjh channel forwarding
+cumulus@switch:~$ nv set system wjh channel forwarding
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -57,7 +57,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system wjh channel forwarding trigger l3
+cumulus@switch:~$ nv set system wjh channel forwarding trigger l3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -75,5 +75,5 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system wjh enable off
+cumulus@switch:~$ nv set system wjh enable off
 ```

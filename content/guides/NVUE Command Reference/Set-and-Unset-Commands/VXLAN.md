@@ -29,7 +29,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan arp-nd-suppress off
+cumulus@switch:~$ nv set nve vxlan arp-nd-suppress off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -50,7 +50,7 @@ Configures the VXLAN decapsulation DSCP/COS action. You can specify one of the f
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan decapsulation dscp action derive
+cumulus@switch:~$ nv set nve vxlan decapsulation dscp action derive
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -66,7 +66,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan enable on
+cumulus@switch:~$ nv set nve vxlan enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -93,7 +93,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan encapsulation dscp action derive
+cumulus@switch:~$ nv set nve vxlan encapsulation dscp action derive
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -109,7 +109,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan encapsulation dscp 16
+cumulus@switch:~$ nv set nve vxlan encapsulation dscp 16
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -131,7 +131,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan flooding enable on
+cumulus@switch:~$ nv set nve vxlan flooding enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -153,7 +153,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan flooding head-end-replication 10.10.10.2
+cumulus@switch:~$ nv set nve vxlan flooding head-end-replication 10.10.10.2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -177,7 +177,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan flooding multicast-group 224.0.0.10
+cumulus@switch:~$ nv set nve vxlan flooding multicast-group 224.0.0.10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -193,7 +193,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan mac-learning on
+cumulus@switch:~$ nv set nve vxlan mac-learning on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -215,7 +215,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan mlag shared-address 10.0.1.12
+cumulus@switch:~$ nv set nve vxlan mlag shared-address 10.0.1.12
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -231,7 +231,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan mtu 1500
+cumulus@switch:~$ nv set nve vxlan mtu 1500
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -247,7 +247,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan port 1024
+cumulus@switch:~$ nv set nve vxlan port 1024
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -269,5 +269,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan source address 10.10.10.1
+cumulus@switch:~$ nv set nve vxlan source address 10.10.10.1
 ```

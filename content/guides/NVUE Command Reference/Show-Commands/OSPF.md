@@ -25,7 +25,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 router ospf
+cumulus@switch:~$ nv show interface swp51 router ospf
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -47,7 +47,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 router ospf timers
+cumulus@switch:~$ nv show interface swp51 router ospf timers
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -69,7 +69,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 router ospf authentication
+cumulus@switch:~$ nv show interface swp51 router ospf authentication
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -91,7 +91,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 router ospf bfd
+cumulus@switch:~$ nv show interface swp51 router ospf bfd
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -107,7 +107,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router ospf
+cumulus@switch:~$ nv show router ospf
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -123,7 +123,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router ospf timers
+cumulus@switch:~$ nv show router ospf timers
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -139,7 +139,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router ospf timers lsa
+cumulus@switch:~$ nv show router ospf timers lsa
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -155,7 +155,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router ospf timers spf
+cumulus@switch:~$ nv show router ospf timers spf
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -177,7 +177,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf
+cumulus@switch:~$ nv show vrf default router ospf
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -200,7 +200,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0
+cumulus@switch:~$ nv show vrf default router ospf area 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -223,7 +223,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0 filter-list
+cumulus@switch:~$ nv show vrf default router ospf area 0 filter-list
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -247,7 +247,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0 network 10.10.10.1/32
+cumulus@switch:~$ nv show vrf default router ospf area 0 network 10.10.10.1/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -271,7 +271,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0 range 172.16.1.0/24
+cumulus@switch:~$ nv show vrf default router ospf area 0 range 172.16.1.0/24
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -293,7 +293,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf default-originate
+cumulus@switch:~$ nv show vrf default router ospf default-originate
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -315,7 +315,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf distance
+cumulus@switch:~$ nv show vrf default router ospf distance
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -337,7 +337,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf interface
+cumulus@switch:~$ nv show vrf default router ospf interface
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -360,7 +360,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf interface swp51
+cumulus@switch:~$ nv show vrf default router ospf interface swp51
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -383,7 +383,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf interface swp51 local-ip
+cumulus@switch:~$ nv show vrf default router ospf interface swp51 local-ip
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -407,7 +407,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf interface swp51 local-ip 10.0.1.9
+cumulus@switch:~$ nv show vrf default router ospf interface swp51 local-ip 10.0.1.9
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -429,7 +429,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor
+cumulus@switch:~$ nv show vrf default router ospf neighbor
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -452,7 +452,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101
+cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -474,7 +474,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface
+cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -498,7 +498,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51
+cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -522,7 +522,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip
+cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -546,7 +546,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 
+cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -568,7 +568,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf log
+cumulus@switch:~$ nv show vrf default router ospf log
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -590,7 +590,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf max-metric
+cumulus@switch:~$ nv show vrf default router ospf max-metric
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -612,7 +612,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute
+cumulus@switch:~$ nv show vrf default router ospf redistribute
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -634,7 +634,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute bgp
+cumulus@switch:~$ nv show vrf default router ospf redistribute bgp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -656,7 +656,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute connected
+cumulus@switch:~$ nv show vrf default router ospf redistribute connected
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -678,7 +678,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute kernel
+cumulus@switch:~$ nv show vrf default router ospf redistribute kernel
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -700,7 +700,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute static
+cumulus@switch:~$ nv show vrf default router ospf redistribute static
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -722,7 +722,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf static-neighbor 
+cumulus@switch:~$ nv show vrf default router ospf static-neighbor 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -744,7 +744,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf static-neighbor 10.10.10.1
+cumulus@switch:~$ nv show vrf default router ospf static-neighbor 10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -767,7 +767,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf timers 
+cumulus@switch:~$ nv show vrf default router ospf timers 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -789,7 +789,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf timers lsa
+cumulus@switch:~$ nv show vrf default router ospf timers lsa
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -811,5 +811,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf timers spf
+cumulus@switch:~$ nv show vrf default router ospf timers spf
 ```

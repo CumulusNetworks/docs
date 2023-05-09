@@ -26,7 +26,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show bridge domain br_default vlan 10 ptp
+cumulus@switch:~$  nv show bridge domain br_default vlan 10 ptp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -52,7 +52,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 counters ptp
+cumulus@switch:~$ nv show interface swp1 counters ptp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -74,7 +74,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show interface swp1 ptp
+cumulus@switch:~$  nv show interface swp1 ptp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -98,7 +98,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ptp shaper
+cumulus@switch:~$ nv show interface swp1 ptp shaper
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -120,7 +120,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ptp timers
+cumulus@switch:~$ nv show interface swp1 ptp timers
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -136,7 +136,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp
+cumulus@switch:~$  nv show service ptp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -158,7 +158,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1
+cumulus@switch:~$  nv show service ptp 1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -174,7 +174,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 acceptable-master
+cumulus@switch:~$  nv show service ptp 1 acceptable-master
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -197,7 +197,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
+cumulus@switch:~$  nv show service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -219,7 +219,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 current
+cumulus@switch:~$  nv show service ptp 1 current
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -241,7 +241,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 clock-quality
+cumulus@switch:~$  nv show service ptp 1 clock-quality
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -263,7 +263,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor
+cumulus@switch:~$  nv show service ptp 1 monitor
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -285,7 +285,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor timestamp-log
+cumulus@switch:~$  nv show service ptp 1 monitor timestamp-log
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -307,7 +307,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations
+cumulus@switch:~$  nv show service ptp 1 monitor violations
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -329,7 +329,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log
+cumulus@switch:~$  nv show service ptp 1 monitor violations log
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -351,7 +351,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$   nv show service ptp 1 monitor violations log acceptable-master
+cumulus@switch:~$   nv show service ptp 1 monitor violations log acceptable-master
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -373,7 +373,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log forced-master
+cumulus@switch:~$  nv show service ptp 1 monitor violations log forced-master
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -395,7 +395,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log max-offset
+cumulus@switch:~$  nv show service ptp 1 monitor violations log max-offset
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -417,7 +417,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log min-offset
+cumulus@switch:~$  nv show service ptp 1 monitor violations log min-offset
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -439,7 +439,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log path-delay
+cumulus@switch:~$  nv show service ptp 1 monitor violations log path-delay
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -461,7 +461,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 parent
+cumulus@switch:~$  nv show service ptp 1 parent
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -483,7 +483,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 parent grandmaster-clock-quality
+cumulus@switch:~$  nv show service ptp 1 parent grandmaster-clock-quality
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -505,7 +505,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service ptp 1 profile
+cumulus@switch:~$ nv show service ptp 1 profile
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -527,7 +527,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service ptp 1 profile CUSTOM1
+cumulus@switch:~$ nv show service ptp 1 profile CUSTOM1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -549,7 +549,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service ptp 1 status
+cumulus@switch:~$ nv show service ptp 1 status
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -571,7 +571,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 time-properties
+cumulus@switch:~$  nv show service ptp 1 time-properties
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -593,7 +593,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show service ptp 1 unicast-master
+cumulus@switch:~$  nv show service ptp 1 unicast-master
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -616,7 +616,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service ptp 1 unicast-master 1
+cumulus@switch:~$ nv show service ptp 1 unicast-master 1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -639,7 +639,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service ptp 1 unicast-master 1 address
+cumulus@switch:~$ nv show service ptp 1 unicast-master 1 address
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -663,7 +663,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show service ptp 1 unicast-master 1 address 10.10.10.1
+cumulus@switch:~$ nv show service ptp 1 unicast-master 1 address 10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -685,5 +685,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$  nv show vrf default ptp
+cumulus@switch:~$  nv show vrf default ptp
 ```

@@ -36,7 +36,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -59,7 +59,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com lifetime infinite
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com lifetime infinite
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -81,7 +81,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery enable off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -109,7 +109,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery home-agent on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -131,7 +131,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent lifetime 200
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery home-agent lifetime 200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -153,7 +153,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent preference 0
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery home-agent preference 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -175,7 +175,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery mtu 1500
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery mtu 1500
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -215,7 +215,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 autoconfig on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 autoconfig on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -238,7 +238,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 off-link on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 off-link on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -261,7 +261,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 preferred-lifetime 1000000000
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 preferred-lifetime 1000000000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -286,7 +286,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 router-address on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 router-address on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -309,7 +309,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 valid-lifetime 2000000000
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 valid-lifetime 2000000000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -332,7 +332,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -355,7 +355,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100 lifetime infinite
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100 lifetime infinite
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -383,7 +383,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement enable off
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement enable off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -405,7 +405,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement fast-retransmit off
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement fast-retransmit off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -427,7 +427,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement hop-limit 100
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement hop-limit 100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -449,7 +449,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval 60000
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval 60000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -471,7 +471,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval-option on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval-option on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -493,7 +493,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement lifetime 4000
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement lifetime 4000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -515,7 +515,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement managed-config on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement managed-config on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -537,7 +537,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement other-config on
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement other-config on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -559,7 +559,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement reachable-time 3600000
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement reachable-time 3600000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -581,7 +581,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement retransmit-time 4294967295
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement retransmit-time 4294967295
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -603,5 +603,5 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement router-preference high
+cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement router-preference high
 ```

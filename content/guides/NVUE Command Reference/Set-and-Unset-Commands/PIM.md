@@ -35,7 +35,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim active-active on
+cumulus@switch:~$ nv set interface swp51 router pim active-active on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -79,7 +79,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim address-family ipv4-unicast allow-rp enable on
+cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4-unicast allow-rp enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -102,7 +102,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim address-family ipv4-unicast allow-rp rp-list myprefixlist
+cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4-unicast allow-rp rp-list myprefixlist
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -125,7 +125,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim address-family ipv4-unicast multicast-boundary-oil MyPrefixList
+cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4-unicast multicast-boundary-oil MyPrefixList
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -147,7 +147,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim address-family ipv4-unicast use-source 10.100.100.100
+cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4-unicast use-source 10.100.100.100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -175,7 +175,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim bfd detect-multiplier  10
+cumulus@switch:~$ nv set interface swp51 router pim bfd detect-multiplier  10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -197,7 +197,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface router pim bfd on
+cumulus@switch:~$ nv set interface router pim bfd on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -219,7 +219,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim bfd min-receive-interval 300
+cumulus@switch:~$ nv set interface swp51 router pim bfd min-receive-interval 300
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -241,7 +241,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim bfd min-transmit-interval 300
+cumulus@switch:~$ nv set interface swp51 router pim bfd min-transmit-interval 300
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -263,7 +263,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 router pim dr-priority 100
+cumulus@switch:~$ nv set interface swp1 router pim dr-priority 100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -285,7 +285,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim enable on
+cumulus@switch:~$ nv set interface swp51 router pim enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -313,7 +313,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface router pim timers hello-interval 100
+cumulus@switch:~$ nv set interface router pim timers hello-interval 100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -335,7 +335,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pim enable on
+cumulus@switch:~$ nv set router pim enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -351,7 +351,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pim packets 50
+cumulus@switch:~$ nv set router pim packets 50
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -373,7 +373,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pim timers hello-interval 60
+cumulus@switch:~$ nv set router pim timers hello-interval 60
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -389,7 +389,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pim timers join-prune-interval 100
+cumulus@switch:~$ nv set router pim timers join-prune-interval 100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -405,7 +405,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pim timers keep-alive 10000
+cumulus@switch:~$ nv set router pim timers keep-alive 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -421,7 +421,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pim timers register-suppress 20000
+cumulus@switch:~$ nv set router pim timers register-suppress 20000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -437,7 +437,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router pim timers rp-keep-alive 10000
+cumulus@switch:~$ nv set router pim timers rp-keep-alive 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -477,7 +477,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast register-accept-list MYACCEPTLIST
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast register-accept-list MYACCEPTLIST
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -507,7 +507,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -547,7 +547,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast send-v6-secondary on
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast send-v6-secondary on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -577,7 +577,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover action immediate
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover action immediate
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -600,7 +600,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover prefix-list SPTrange
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover prefix-list SPTrange
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -622,7 +622,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast ssm-prefix-list SSMPREFIXLIST
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast ssm-prefix-list SSMPREFIXLIST
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -650,7 +650,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim ecmp enable on
+cumulus@switch:~$ nv set vrf default router pim ecmp enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -672,7 +672,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim ecmp rebalance on 
+cumulus@switch:~$ nv set vrf default router pim ecmp rebalance on 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -694,7 +694,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim enable on
+cumulus@switch:~$ nv set vrf default router pim enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -724,7 +724,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim msdp-mesh-group cumulus member-address 100.1.1.2
+cumulus@switch:~$ nv set vrf default router pim msdp-mesh-group cumulus member-address 100.1.1.2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -747,7 +747,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim msdp-mesh-group cumulus source-address 10.10.10.101
+cumulus@switch:~$ nv set vrf default router pim msdp-mesh-group cumulus source-address 10.10.10.101
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -769,7 +769,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim timers keep-alive 10000
+cumulus@switch:~$ nv set vrf default router pim timers keep-alive 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -791,5 +791,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router pim timers rp-keep-alive 1000
+cumulus@switch:~$ nv set vrf default router pim timers rp-keep-alive 1000
 ```

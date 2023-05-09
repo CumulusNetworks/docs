@@ -25,7 +25,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -47,7 +47,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery dnssl
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery dnssl
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -70,7 +70,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -92,7 +92,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery home-agent
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery home-agent
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -114,7 +114,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery prefix
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery prefix
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -137,7 +137,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -159,7 +159,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery rdnss
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -182,7 +182,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -204,5 +204,5 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery router-advertisement
+cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery router-advertisement
 ```

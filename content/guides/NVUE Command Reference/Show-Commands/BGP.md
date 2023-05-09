@@ -19,7 +19,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router bgp
+cumulus@switch:~$ nv show router bgp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -35,7 +35,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router bgp convergence-wait
+cumulus@switch:~$ nv show router bgp convergence-wait
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -51,7 +51,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router bgp graceful-restart
+cumulus@switch:~$ nv show router bgp graceful-restart
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -73,7 +73,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp
+cumulus@switch:~$ nv show vrf default router bgp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -95,7 +95,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family
+cumulus@switch:~$ nv show vrf default router bgp address-family
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -117,7 +117,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -139,7 +139,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -161,7 +161,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute static 
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute static 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -183,7 +183,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute connected
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -205,7 +205,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute kernel
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute kernel
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -227,7 +227,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute ospf
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute ospf
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -249,7 +249,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast aggregate-route
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast aggregate-route
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -272,7 +272,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -294,7 +294,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast network
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast network
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -317,7 +317,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -339,7 +339,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -361,7 +361,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -383,7 +383,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -406,7 +406,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list BLUE
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -428,7 +428,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast multipaths
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast multipaths
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -450,7 +450,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast admin-distance
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast admin-distance
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -472,7 +472,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-export
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-export
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -494,7 +494,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast route-export to-evpn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -516,7 +516,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -538,7 +538,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -561,7 +561,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -584,7 +584,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -608,7 +608,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -632,7 +632,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 nexthop
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 nexthop
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -657,7 +657,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 nexthop 2
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 nexthop 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -681,7 +681,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 peer
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 peer
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -705,7 +705,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 flags
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 flags
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -729,7 +729,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 bestpath
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 bestpath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -753,7 +753,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 aspath
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -777,7 +777,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 community
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -801,7 +801,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 large-community
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 large-community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -825,7 +825,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 ext-community
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 ext-community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -847,7 +847,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast update-group
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -870,7 +870,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 2
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -893,7 +893,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 2 subgroups
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 2 subgroups
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -915,7 +915,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -938,7 +938,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast aggregate-route 
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast aggregate-route 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -961,7 +961,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast aggregate-route 0:0:0:0:0:ffff:0a01:0/128
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast aggregate-route 0:0:0:0:0:ffff:0a01:0/128
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -983,7 +983,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast network
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast network
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1006,7 +1006,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast network 2001:db8::1/128
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast network 2001:db8::1/128
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1028,7 +1028,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-import
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast route-import
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1050,7 +1050,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-import from-vrf
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast route-import from-vrf
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1072,7 +1072,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-import from-vrf list
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast route-import from-vrf list
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1094,7 +1094,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast multipaths
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast multipaths
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1116,7 +1116,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast admin-distance
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast admin-distance
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1138,7 +1138,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-export
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast route-export
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1160,7 +1160,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-export to-evpn
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast route-export to-evpn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1182,7 +1182,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1204,7 +1204,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute static
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute static
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1226,7 +1226,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute connected
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute connected
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1248,7 +1248,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute kernel
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute kernel
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1270,7 +1270,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute ospf6
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute ospf6
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1292,7 +1292,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1315,7 +1315,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1338,7 +1338,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1362,7 +1362,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1386,7 +1386,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 nexthop
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 nexthop
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1411,7 +1411,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 nexthop 2
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 nexthop 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1435,7 +1435,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 peer
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 peer
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1459,7 +1459,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 flags
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 flags
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1483,7 +1483,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 bestpath
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 bestpath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1507,7 +1507,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 aspath
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1531,7 +1531,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 community
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1555,7 +1555,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 large-community
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 large-community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1579,7 +1579,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 ext-community
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 ext-community
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1601,7 +1601,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast update-group
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast update-group
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1624,7 +1624,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast update-group 2
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast update-group 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1647,7 +1647,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast update-group 2 subgroups
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast update-group 2 subgroups
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1669,7 +1669,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1691,7 +1691,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1713,7 +1713,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1736,7 +1736,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1759,7 +1759,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1783,7 +1783,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type multicast
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type multicast
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1807,7 +1807,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type multicast route
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type multicast route
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1832,7 +1832,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type multicast route 
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type multicast route 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1854,7 +1854,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1877,7 +1877,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 5
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 5
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1900,7 +1900,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 5 sub-group
+cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 5 sub-group
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1923,7 +1923,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast route-counters
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast route-counters
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1946,7 +1946,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1970,7 +1970,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1994,7 +1994,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2019,7 +2019,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2044,7 +2044,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 nexthop -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 nexthop -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2070,7 +2070,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 nexthop 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 nexthop 1 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2095,7 +2095,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 peer -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 peer -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2120,7 +2120,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 flags -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 flags -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2145,7 +2145,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 bestpath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 bestpath -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2170,7 +2170,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 aspath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 aspath -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2195,7 +2195,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 community -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2220,7 +2220,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 large-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 large-community -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2245,7 +2245,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 ext-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 10.10.10.1/32 path 1 ext-community -o json
 ```
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2267,7 +2267,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2291,7 +2291,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2315,7 +2315,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2340,7 +2340,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2365,7 +2365,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 nexthop -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 nexthop -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2391,7 +2391,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 nexthop 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 nexthop 1 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2416,7 +2416,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 peer -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 peer -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2441,7 +2441,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 flags -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 flags -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2466,7 +2466,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 bestpath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 bestpath -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2491,7 +2491,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 aspath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 aspath -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2516,7 +2516,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 community -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2541,7 +2541,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 large-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 large-community -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2566,7 +2566,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 ext-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 ext-community -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2589,7 +2589,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2613,7 +2613,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2637,7 +2637,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2662,7 +2662,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2687,7 +2687,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1  nexthop -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1  nexthop -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2713,7 +2713,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 nexthop 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 nexthop 1 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2738,7 +2738,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 peer 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 peer 1 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2763,7 +2763,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 flags -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 flags -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2788,7 +2788,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 bestpath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 bestpath -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2813,7 +2813,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 aspath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 aspath -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2838,7 +2838,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 community -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2863,7 +2863,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 large-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 large-community -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2888,7 +2888,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 ext-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast received-routes 2001:db8::1/128 path 1 ext-community -o json
 ```
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2910,7 +2910,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast route-counters -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast route-counters -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2933,7 +2933,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2958,7 +2958,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2983,7 +2983,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3009,7 +3009,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3035,7 +3035,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 nexthop -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 nexthop -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3061,7 +3061,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 peers -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 peers -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3087,7 +3087,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 flags -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes  2001:db8::1/128 path 1 flags -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3113,7 +3113,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 bestpath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 bestpath -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3139,7 +3139,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 aspath -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 aspath -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3165,7 +3165,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 community -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3191,7 +3191,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 large-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 large-community -o json
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3217,7 +3217,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 ext-community -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast advertised-routes 2001:db8::1/128 path 1 ext-community -o json
 ```
 
 
@@ -3240,7 +3240,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 bgp-info
+cumulus@switch:~$ nv show evpn vni 10 bgp-info
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3262,7 +3262,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default evpn bgp-info
+cumulus@switch:~$ nv show vrf default evpn bgp-info
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3284,7 +3284,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp confederation
+cumulus@switch:~$ nv show vrf default router bgp confederation
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3306,7 +3306,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp confederation member-as
+cumulus@switch:~$ nv show vrf default router bgp confederation member-as
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3324,7 +3324,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp dynamic-neighbor
+cumulus@switch:~$ nv show vrf default router bgp dynamic-neighbor
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3340,7 +3340,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp dynamic-neighbor listen-range
+cumulus@switch:~$ nv show vrf default router bgp dynamic-neighbor listen-range
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3356,7 +3356,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp dynamic-neighbor listen-range 10.0.1.0/24
+cumulus@switch:~$ nv show vrf default router bgp dynamic-neighbor listen-range 10.0.1.0/24
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3379,7 +3379,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3402,7 +3402,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 bfd
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 bfd
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3425,7 +3425,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 capabilities
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 capabilities
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3448,7 +3448,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 local-as
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 local-as
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3471,7 +3471,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 graceful-restart
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 graceful-restart
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3494,7 +3494,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 ttl-security
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 ttl-security
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3517,7 +3517,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 nexthop
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 nexthop
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3540,7 +3540,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3563,7 +3563,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 ebgp-policy
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 ebgp-policy
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3586,7 +3586,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3609,7 +3609,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3632,7 +3632,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast attribute-mod
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast attribute-mod
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3655,7 +3655,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3678,7 +3678,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3701,7 +3701,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3724,7 +3724,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3747,7 +3747,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3770,7 +3770,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3793,7 +3793,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits inbound
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3816,7 +3816,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast default-route-origination
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast default-route-origination
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3839,7 +3839,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast community-advertise
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast community-advertise
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3862,7 +3862,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3885,7 +3885,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast capabilities
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast capabilities
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3908,7 +3908,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast graceful-restart
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast graceful-restart
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3931,7 +3931,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3954,7 +3954,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast attribute-mod
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast attribute-mod
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3977,7 +3977,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4000,7 +4000,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath allow-my-asn
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath allow-my-asn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4023,7 +4023,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast prefix-limits
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast prefix-limits
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4046,7 +4046,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast prefix-limits inbound
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast prefix-limits inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4069,7 +4069,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast default-route-origination
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast default-route-origination
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4092,7 +4092,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4115,7 +4115,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy inbound
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4138,7 +4138,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy outbound
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4161,7 +4161,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast community-advertise
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast community-advertise
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4184,7 +4184,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast conditional-advertise
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast conditional-advertise
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4207,7 +4207,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast capabilities
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast capabilities
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4230,7 +4230,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast graceful-restart
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast graceful-restart
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4255,7 +4255,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4278,7 +4278,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn attribute-mod
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn attribute-mod
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4301,7 +4301,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn aspath
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4324,7 +4324,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn aspath allow-my-asn
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn aspath allow-my-asn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4347,7 +4347,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4370,7 +4370,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy inbound
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4394,7 +4394,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy outbound
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4418,7 +4418,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn capabilities
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn capabilities
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4441,7 +4441,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn graceful-restart
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn graceful-restart
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4464,7 +4464,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp52 timers
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp52 timers
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4480,7 +4480,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop
+cumulus@switch:~$ nv show vrf default router bgp nexthop
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4503,7 +4503,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4
+cumulus@switch:~$ nv show vrf default router bgp nexthop ipv4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4526,7 +4526,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address
+cumulus@switch:~$ nv show vrf default router bgp nexthop ipv4 ip-address
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4550,7 +4550,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.101
+cumulus@switch:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.101
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4574,7 +4574,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.101 resolved-via
+cumulus@switch:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.101 resolved-via
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4598,7 +4598,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 2001:2:2::4 path
+cumulus@switch:~$ nv show vrf default router bgp nexthop ipv4 ip-address 2001:2:2::4 path
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4623,7 +4623,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 2001:2:2::4 path 1 
+cumulus@switch:~$ nv show vrf default router bgp nexthop ipv4 ip-address 2001:2:2::4 path 1 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4645,7 +4645,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp path-selection
+cumulus@switch:~$ nv show vrf default router bgp path-selection
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4667,7 +4667,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp aspath
+cumulus@switch:~$ nv show vrf default router bgp aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4689,7 +4689,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp path-selection med
+cumulus@switch:~$ nv show vrf default router bgp path-selection med
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4711,7 +4711,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp path-selection multipath
+cumulus@switch:~$ nv show vrf default router bgp path-selection multipath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4733,7 +4733,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group
+cumulus@switch:~$ nv show vrf default router bgp peer-group
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4756,7 +4756,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4779,7 +4779,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES bfd
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES bfd
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4802,7 +4802,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES ttl-security
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES ttl-security
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4825,7 +4825,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES capabilities
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES capabilities
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4848,7 +4848,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES graceful-restart
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES graceful-restart
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4871,7 +4871,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES local-as
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES local-as
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4895,7 +4895,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES timers
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES timers
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4918,7 +4918,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4941,7 +4941,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast 
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4964,7 +4964,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4987,7 +4987,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5010,7 +5010,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5033,7 +5033,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath allow-my-asn
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath allow-my-asn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5056,7 +5056,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5079,7 +5079,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5102,7 +5102,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast default-route-origination
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast default-route-origination
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5125,7 +5125,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5148,7 +5148,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5171,7 +5171,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy outbound
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5194,7 +5194,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5217,7 +5217,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5240,7 +5240,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5263,7 +5263,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy inbound
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5286,7 +5286,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5309,7 +5309,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5332,7 +5332,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath allow-my-asn
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath allow-my-asn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5355,7 +5355,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5378,7 +5378,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5401,7 +5401,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5424,7 +5424,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5447,7 +5447,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5470,7 +5470,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5493,7 +5493,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5516,7 +5516,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn attribute-mod
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn attribute-mod
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5539,7 +5539,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn aspath
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn aspath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5562,7 +5562,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn aspath allow-my-asn
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn aspath allow-my-asn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5585,7 +5585,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5608,7 +5608,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy inbound
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy inbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5631,7 +5631,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy outbound
+cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5653,7 +5653,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-export
+cumulus@switch:~$ nv show vrf default router bgp route-export
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5675,7 +5675,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-export to-evpn route-target 
+cumulus@switch:~$ nv show vrf default router bgp route-export to-evpn route-target 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5697,7 +5697,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-export to-evpn route-target
+cumulus@switch:~$ nv show vrf default router bgp route-export to-evpn route-target
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5720,7 +5720,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-export to-evpn route-target 65101:10
+cumulus@switch:~$ nv show vrf default router bgp route-export to-evpn route-target 65101:10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5742,7 +5742,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-import
+cumulus@switch:~$ nv show vrf default router bgp route-import
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5764,7 +5764,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-import from-evpn route-target
+cumulus@switch:~$ nv show vrf default router bgp route-import from-evpn route-target
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5786,7 +5786,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-import from-evpn route-target
+cumulus@switch:~$ nv show vrf default router bgp route-import from-evpn route-target
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5809,7 +5809,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-import from-evpn route-target 65102:4001
+cumulus@switch:~$ nv show vrf default router bgp route-import from-evpn route-target 65102:4001
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5831,7 +5831,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-reflection
+cumulus@switch:~$ nv show vrf default router bgp route-reflection
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -5854,5 +5854,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router bgp timers
+cumulus@switch:~$ nv show vrf default router bgp timers
 ```

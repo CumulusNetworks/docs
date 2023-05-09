@@ -26,7 +26,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface
+cumulus@switch:~$ nv show interface
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -48,7 +48,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1
+cumulus@switch:~$ nv show interface swp1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -70,7 +70,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 bond member
+cumulus@switch:~$ nv show interface swp1 bond member
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -92,7 +92,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 bond member bond1
+cumulus@switch:~$ nv show interface swp1 bond member bond1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -114,7 +114,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 counters
+cumulus@switch:~$ nv show interface swp1 counters
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -136,7 +136,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 counters drops
+cumulus@switch:~$ nv show interface swp1 counters drops
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -158,7 +158,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 counters errors
+cumulus@switch:~$ nv show interface swp1 counters errors
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -180,7 +180,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 counters pktdist
+cumulus@switch:~$ nv show interface swp1 counters pktdist
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -202,7 +202,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip
+cumulus@switch:~$ nv show interface swp1 ip
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -224,7 +224,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip address
+cumulus@switch:~$ nv show interface swp1 ip address
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -247,7 +247,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip address 10.10.10.1/32
+cumulus@switch:~$ nv show interface swp1 ip address 10.10.10.1/32
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -269,7 +269,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip gateway
+cumulus@switch:~$ nv show interface swp1 ip gateway
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -291,7 +291,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip gateway 10.10.10.1
+cumulus@switch:~$ nv show interface swp1 ip gateway 10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -313,7 +313,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip ipv4
+cumulus@switch:~$ nv show interface swp1 ip ipv4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -335,7 +335,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip ipv6
+cumulus@switch:~$ nv show interface swp1 ip ipv6
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -357,7 +357,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor
+cumulus@switch:~$ nv show interface swp51 ip neighbor
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -379,7 +379,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor ipv4
+cumulus@switch:~$ nv show interface swp51 ip neighbor ipv4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -402,7 +402,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor ipv4 169.254.0.1
+cumulus@switch:~$ nv show interface swp51 ip neighbor ipv4 169.254.0.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -424,7 +424,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor ipv6
+cumulus@switch:~$ nv show interface swp51 ip neighbor ipv6
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -447,7 +447,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor ipv6 2001:db8:0002::0a00:0002
+cumulus@switch:~$ nv show interface swp51 ip neighbor ipv6 2001:db8:0002::0a00:0002
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -469,7 +469,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 link
+cumulus@switch:~$ nv show interface swp1 link
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -491,7 +491,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 link breakout 2x
+cumulus@switch:~$ nv show interface swp1 link breakout 2x
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -514,7 +514,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 link breakout 2x
+cumulus@switch:~$ nv show interface swp1 link breakout 2x
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -536,7 +536,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 link flag
+cumulus@switch:~$ nv show interface swp1 link flag
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -558,7 +558,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 link state
+cumulus@switch:~$ nv show interface swp1 link state
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -580,7 +580,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 link stats
+cumulus@switch:~$ nv show interface swp1 link stats
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -602,7 +602,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 link traffic-engineering
+cumulus@switch:~$ nv show interface swp1 link traffic-engineering
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -624,7 +624,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 pluggable
+cumulus@switch:~$ nv show interface swp1 pluggable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -646,7 +646,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 storm-control
+cumulus@switch:~$ nv show interface swp1 storm-control
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -668,7 +668,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 tunnel
+cumulus@switch:~$ nv show interface swp1 tunnel
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -684,7 +684,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface --view=counters
+cumulus@switch:~$ nv show interface --view=counters
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -706,7 +706,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default loopback
+cumulus@switch:~$ nv show vrf default loopback
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -728,7 +728,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default loopback ip
+cumulus@switch:~$ nv show vrf default loopback ip
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -751,5 +751,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default loopback ip address 10.10.10.1/32
+cumulus@switch:~$ nv show vrf default loopback ip address 10.10.10.1/32
 ```

@@ -35,7 +35,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos congestion-control
+cumulus@switch:~$ nv set interface swp1 qos congestion-control
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -58,7 +58,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos congestion-control profile MYPROFILE
+cumulus@switch:~$ nv set interface swp1 qos congestion-control profile MYPROFILE
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -81,7 +81,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-scheduler
+cumulus@switch:~$ nv set interface swp1 qos egress-scheduler
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -104,7 +104,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-scheduler profile MYPROFILE
+cumulus@switch:~$ nv set interface swp1 qos egress-scheduler profile MYPROFILE
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -127,7 +127,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-shaper
+cumulus@switch:~$ nv set interface swp1 qos egress-shaper
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -150,7 +150,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-shaper profile MYPROFILE
+cumulus@switch:~$ nv set interface swp1 qos egress-shaper profile MYPROFILE
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -172,7 +172,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos link-pause
+cumulus@switch:~$ nv set interface swp1 qos link-pause
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -195,7 +195,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos link-pause profile
+cumulus@switch:~$ nv set interface swp1 qos link-pause profile
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -217,7 +217,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos mapping
+cumulus@switch:~$ nv set interface swp1 qos mapping
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -240,7 +240,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos mapping profile MYPROFILE
+cumulus@switch:~$ nv set interface swp1 qos mapping profile MYPROFILE
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -269,7 +269,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos pfc profile
+cumulus@switch:~$ nv set interface swp1 qos pfc profile
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -291,7 +291,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos remark
+cumulus@switch:~$ nv set interface swp1 qos remark
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -314,7 +314,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos remark profile MYPROFILE
+cumulus@switch:~$ nv set interface swp1 qos remark profile MYPROFILE
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -354,7 +354,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer reserved 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer reserved 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -376,7 +376,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer service-pool 3
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer service-pool 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -398,7 +398,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer shared-alpha 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer shared-alpha 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -420,7 +420,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer shared-bytes 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer shared-bytes 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -448,7 +448,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-port 
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-port 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -470,7 +470,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer reserved 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer reserved 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -492,7 +492,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer shared-bytes 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer shared-bytes 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -515,7 +515,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -538,7 +538,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -561,7 +561,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7 service-pool 3
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7 service-pool 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -584,7 +584,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7 shared-alpha alpha_2
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7 shared-alpha alpha_2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -607,7 +607,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7 shared-bytes 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7 shared-bytes 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -630,7 +630,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -653,7 +653,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 reserved 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 reserved 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -676,7 +676,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 service-pool 3
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 service-pool 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -699,7 +699,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 shared-alpha alpha_2
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 shared-alpha alpha_2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -722,7 +722,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 shared-bytes 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 shared-bytes 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -745,7 +745,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-pool 3
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -768,7 +768,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-pool 3 infinite true
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 infinite true
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -793,7 +793,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-pool 3 memory-percent 20
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 memory-percent 20
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -816,7 +816,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-pool 3 mode dynamic
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 mode dynamic
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -839,7 +839,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-pool 3 reserved 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 reserved 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -862,7 +862,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-pool 3 shared-alpha alpha_1_4
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 shared-alpha alpha_1_4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -885,7 +885,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-pool 3 shared-bytes 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 shared-bytes 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -913,7 +913,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer service-pool 3
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer service-pool 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -935,7 +935,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer shared-alpha alpha_1_8
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer shared-alpha alpha_1_8
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -957,7 +957,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer shared-bytes 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer shared-bytes 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -986,7 +986,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1009,7 +1009,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 name SERVERS
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 name SERVERS
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1032,7 +1032,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 reserved 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 reserved 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1055,7 +1055,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 service-pool 2
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 service-pool 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1078,7 +1078,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 shared-alpha  10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 shared-alpha  10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1101,7 +1101,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 shared-bytes  10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 shared-bytes  10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1125,7 +1125,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 switch-priority 0,1,3,4,5,6,7
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 switch-priority 0,1,3,4,5,6,7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1148,7 +1148,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-pool 3
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1171,7 +1171,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-pool 3 infinite true
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 infinite true
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1196,7 +1196,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-pool 3 memory-percent 20
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 memory-percent 20
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1219,7 +1219,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-pool 3 mode dynamic
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 mode dynamic
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1242,7 +1242,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-pool 3 reserved 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 reserved 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1265,7 +1265,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-pool 3 shared-alpha alpha_1_4
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 shared-alpha alpha_1_4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1288,7 +1288,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global ingress-pool 3 shared-bytes 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 shared-bytes 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1327,7 +1327,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos congestion-control default-global traffic-class 4,5,7 ecn enable
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 ecn enable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1350,7 +1350,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos congestion-control default-global traffic-class 4,5,7 max-threshold 200000 
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 max-threshold 200000 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1373,7 +1373,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos congestion-control default-global traffic-class 4,5,7 min-threshold 40000 
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 min-threshold 40000 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1396,7 +1396,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos congestion-control default-global traffic-class 4,5,7 probability 80 
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 probability 80 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1421,7 +1421,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos congestion-control default-global traffic-class 4,5,7 red enable
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 red enable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1458,7 +1458,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos egress-queue-mapping default-global switch-priority 2 traffic-class 7
+cumulus@switch:~$ nv set qos egress-queue-mapping default-global switch-priority 2 traffic-class 7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1495,7 +1495,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos egress-scheduler default-global traffic-class 2,6 bw-percent 30
+cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 2,6 bw-percent 30
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1518,7 +1518,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos egress-scheduler default-global traffic-class 2,6 mode dwrr 
+cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 2,6 mode dwrr 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1561,7 +1561,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos egress-shaper shaper1 traffic-class 2 max-rate 500
+cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 max-rate 500
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1584,7 +1584,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos egress-shaper shaper1 traffic-class 2 min-rate 100
+cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 min-rate 100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1616,7 +1616,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports cable-length 50
+cumulus@switch:~$ nv set qos link-pause my_pause_ports cable-length 50
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1638,7 +1638,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports port-buffer 20000
+cumulus@switch:~$ nv set qos link-pause my_pause_ports port-buffer 20000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1660,7 +1660,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports rx disable
+cumulus@switch:~$ nv set qos link-pause my_pause_ports rx disable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1682,7 +1682,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports tx enable
+cumulus@switch:~$ nv set qos link-pause my_pause_ports tx enable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1706,7 +1706,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports xoff-threshold 1000
+cumulus@switch:~$ nv set qos link-pause my_pause_ports xoff-threshold 1000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1730,7 +1730,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports xon-threshold 1000
+cumulus@switch:~$ nv set qos link-pause my_pause_ports xon-threshold 1000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1769,7 +1769,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos mapping default-global dscp 10,21,36 switch-priority 0 
+cumulus@switch:~$ nv set qos mapping default-global dscp 10,21,36 switch-priority 0 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1798,7 +1798,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos mapping default-global pcp 0 switch-priority 4 
+cumulus@switch:~$ nv set qos mapping default-global pcp 0 switch-priority 4 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1820,7 +1820,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos mapping default-global port-default-sp 3
+cumulus@switch:~$ nv set qos mapping default-global port-default-sp 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1842,7 +1842,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos mapping default-global trust l3 
+cumulus@switch:~$ nv set qos mapping default-global trust l3 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1864,7 +1864,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos pfc default-global
+cumulus@switch:~$ nv set qos pfc default-global
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1886,7 +1886,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos pfc default-global cable-length 50
+cumulus@switch:~$ nv set qos pfc default-global cable-length 50
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1908,7 +1908,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos pfc default-global port-buffer 20000
+cumulus@switch:~$ nv set qos pfc default-global port-buffer 20000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1930,7 +1930,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos pfc default-global rx enable
+cumulus@switch:~$ nv set qos pfc default-global rx enable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1952,7 +1952,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos pfc default-global switch-priority 0
+cumulus@switch:~$ nv set qos pfc default-global switch-priority 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1974,7 +1974,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos pfc default-global tx enable
+cumulus@switch:~$ nv set qos pfc default-global tx enable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1996,7 +1996,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos pfc default-global xoff-threshold 1000
+cumulus@switch:~$ nv set qos pfc default-global xoff-threshold 1000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2018,7 +2018,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos pfc default-global xon-threshold 10000
+cumulus@switch:~$ nv set qos pfc default-global xon-threshold 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2046,7 +2046,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos remark default-global rewrite
+cumulus@switch:~$ nv set qos remark default-global rewrite
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2074,7 +2074,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos remark default-global switch-priority 0 dscp 22 
+cumulus@switch:~$ nv set qos remark default-global switch-priority 0 dscp 22 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2096,7 +2096,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos remark default-global switch-priority 0 pcp 4
+cumulus@switch:~$ nv set qos remark default-global switch-priority 0 pcp 4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2118,7 +2118,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos egress-shaper shaper1 port-max-rate 200000
+cumulus@switch:~$ nv set qos egress-shaper shaper1 port-max-rate 200000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2134,7 +2134,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos roce cable-length 1000
+cumulus@switch:~$ nv set qos roce cable-length 1000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2150,7 +2150,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos roce enable off
+cumulus@switch:~$ nv set qos roce enable off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2166,7 +2166,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos roce mode lossy
+cumulus@switch:~$ nv set qos roce mode lossy
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2188,7 +2188,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos traffic-pool 3
+cumulus@switch:~$ nv set qos traffic-pool 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2210,7 +2210,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos traffic-pool 3 memory percent 80
+cumulus@switch:~$ nv set qos traffic-pool 3 memory percent 80
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2232,5 +2232,5 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos traffic-pool 3
+cumulus@switch:~$ nv set qos traffic-pool 3
 ```

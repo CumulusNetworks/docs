@@ -19,5 +19,5 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show router ptm
+cumulus@switch:~$ nv show router ptm
 ```

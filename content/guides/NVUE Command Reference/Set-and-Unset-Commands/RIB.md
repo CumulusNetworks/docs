@@ -43,5 +43,5 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router rib ipv4 protocol bgp fib-filter routemap1
+cumulus@switch:~$ nv set vrf default router rib ipv4 protocol bgp fib-filter routemap1
 ```

@@ -33,7 +33,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 synce enable on
+cumulus@switch:~$ nv set interface swp1 synce enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -55,7 +55,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 synce provider-priority 10
+cumulus@switch:~$ nv set interface swp1 synce provider-priority 10
 ```
 
 ## <h>nv set service synce</h>
@@ -75,7 +75,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service synce enable on
+cumulus@switch:~$ nv set service synce enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -96,7 +96,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service synce log-level debug
+cumulus@switch:~$ nv set service synce log-level debug
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -112,7 +112,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service synce provider-default-priority 256
+cumulus@switch:~$ nv set service synce provider-default-priority 256
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -128,5 +128,5 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service synce wait-to-restore-time 180
+cumulus@switch:~$ nv set service synce wait-to-restore-time 180
 ```

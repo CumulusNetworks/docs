@@ -19,7 +19,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn
+cumulus@switch:~$ nv show evpn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -35,7 +35,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info
+cumulus@switch:~$ nv show evpn access-vlan-info
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -51,7 +51,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info vlan
+cumulus@switch:~$ nv show evpn access-vlan-info vlan
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -73,7 +73,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info vlan 10
+cumulus@switch:~$ nv show evpn access-vlan-info vlan 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -95,7 +95,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info vlan 10 member-interface
+cumulus@switch:~$ nv show evpn access-vlan-info vlan 10 member-interface
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -111,7 +111,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn dad
+cumulus@switch:~$ nv show evpn dad
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -127,7 +127,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn dad duplicate-action
+cumulus@switch:~$ nv show evpn dad duplicate-action
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -143,7 +143,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn dad duplicate-action freeze
+cumulus@switch:~$ nv show evpn dad duplicate-action freeze
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -159,7 +159,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn l2-nhg
+cumulus@switch:~$ nv show evpn l2-nhg
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -175,7 +175,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn l2-nhg vtep-ip
+cumulus@switch:~$ nv show evpn l2-nhg vtep-ip
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -191,7 +191,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn l2-nhg vtep-ip 10.10.10.2
+cumulus@switch:~$ nv show evpn l2-nhg vtep-ip 10.10.10.2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -207,7 +207,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming
+cumulus@switch:~$ nv show evpn multihoming
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -223,7 +223,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info
+cumulus@switch:~$ nv show evpn multihoming bgp-info
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -239,7 +239,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -255,7 +255,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -277,7 +277,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -300,7 +300,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -322,7 +322,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -345,7 +345,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments 10.10.10.1:20
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments 10.10.10.1:20
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -361,7 +361,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming ead-evi-route
+cumulus@switch:~$ nv show evpn multihoming ead-evi-route
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -377,7 +377,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi
+cumulus@switch:~$ nv show evpn multihoming esi
 ```
 
 ## <h>nv show evpn multihoming esi \<esi-id\></h>
@@ -398,7 +398,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02
+cumulus@switch:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02
 ```
 
 ## <h>nv show evpn multihoming esi \<esi-id\> remote-vtep</h>
@@ -419,7 +419,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
+cumulus@switch:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -442,7 +442,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
+cumulus@switch:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -458,7 +458,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming segment
+cumulus@switch:~$ nv show evpn multihoming segment
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -474,7 +474,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn route-advertise
+cumulus@switch:~$ nv show evpn route-advertise
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -500,7 +500,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni
+cumulus@switch:~$ nv show evpn vni
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -526,7 +526,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10
+cumulus@switch:~$ nv show evpn vni 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -548,7 +548,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 bgp-info
+cumulus@switch:~$ nv show evpn vni 10 bgp-info
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -570,7 +570,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 host
+cumulus@switch:~$ nv show evpn vni 10 host
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -593,7 +593,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 host 10.0.1.2
+cumulus@switch:~$ nv show evpn vni 10 host 10.0.1.2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -615,7 +615,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac
+cumulus@switch:~$ nv show evpn vni 10 mac
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -638,7 +638,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac 50:88:b2:3c:08:f9
+cumulus@switch:~$ nv show evpn vni 10 mac 50:88:b2:3c:08:f9
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -660,7 +660,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming
+cumulus@switch:~$ nv show evpn vni 10 multihoming
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -682,7 +682,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming bgp-info esi
+cumulus@switch:~$ nv show evpn vni 10 multihoming bgp-info esi
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -705,7 +705,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02
+cumulus@switch:~$ nv show evpn vni 10 multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -728,7 +728,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
+cumulus@switch:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -752,7 +752,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
+cumulus@switch:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -774,7 +774,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi
+cumulus@switch:~$ nv show evpn vni 10 multihoming esi
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -797,7 +797,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02
+cumulus@switch:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -823,7 +823,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-advertise
+cumulus@switch:~$ nv show evpn vni 10 route-advertise
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -849,7 +849,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target
+cumulus@switch:~$ nv show evpn vni 10 route-target
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -876,7 +876,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target both
+cumulus@switch:~$ nv show evpn vni 10 route-target both
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -903,7 +903,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target both 65101:10
+cumulus@switch:~$ nv show evpn vni 10 route-target both 65101:10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -930,7 +930,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target export
+cumulus@switch:~$ nv show evpn vni 10 route-target export
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -957,7 +957,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10  route-target export 65101:10
+cumulus@switch:~$ nv show evpn vni 10  route-target export 65101:10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -984,7 +984,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target import
+cumulus@switch:~$ nv show evpn vni 10 route-target import
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1011,7 +1011,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 route-target import 65102:10
+cumulus@switch:~$ nv show evpn vni 10 route-target import 65102:10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1033,7 +1033,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface bond1 evpn
+cumulus@switch:~$ nv show interface bond1 evpn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1055,7 +1055,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface bond1 evpn multihoming
+cumulus@switch:~$ nv show interface bond1 evpn multihoming
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1077,7 +1077,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface bond1 evpn multihoming segment
+cumulus@switch:~$ nv show interface bond1 evpn multihoming segment
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1099,7 +1099,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf RED evpn
+cumulus@switch:~$ nv show vrf RED evpn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1121,7 +1121,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf RED evpn bgp-info 
+cumulus@switch:~$ nv show vrf RED evpn bgp-info 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1143,7 +1143,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf RED evpn nexthop-vtep
+cumulus@switch:~$ nv show vrf RED evpn nexthop-vtep
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1166,7 +1166,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf RED evpn nexthop-vtep 10.10.10.101
+cumulus@switch:~$ nv show vrf RED evpn nexthop-vtep 10.10.10.101
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1188,7 +1188,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf RED evpn remote-router-mac
+cumulus@switch:~$ nv show vrf RED evpn remote-router-mac
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1211,7 +1211,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf RED evpn remote-router-mac 50:88:b2:3c:08:f9
+cumulus@switch:~$ nv show vrf RED evpn remote-router-mac 50:88:b2:3c:08:f9
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1233,7 +1233,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf RED evpn vni 
+cumulus@switch:~$ nv show vrf RED evpn vni 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1256,5 +1256,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf RED evpn vni 
+cumulus@switch:~$ nv show vrf RED evpn vni 
 ```

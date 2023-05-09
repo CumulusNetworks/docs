@@ -4,9 +4,87 @@ author: NVIDIA
 weight: 125
 toc: 3
 ---
+<style>
+  .scroll{
+    height: 500px;
+    overflow-y: auto;
+  }
+</style>
 In addition to the CLI, NVUE supports a REST API. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL or a web browser.
 
-## Enabling the NVUE REST API
+## Understanding the API Architecture
+The NVUE REST API is implemented by the nvued service (NVUE back-end). The HTTP endpoint is exposed over a Unix Domain Socket (UDS) which makes NVUE’s REST API accessible locally within the Cumulus Linux node. The `nv` CLI  also communicates with nvued over this UDS. 
+
+Cumulus Linux uses NGINX3, a popular HTTP web server and widely used reverse proxy to provide external access to NVUE REST API. Cumulus Linux supports HTTPS/TLS connections from external REST API cients.
+
+The below figure depicts the NVUE REST API architecture and how the requests are forwarded internally.
+{{< img src = "/images/cumulus-linux/nvue-api-arch.png" >}}
+
+### Supported HTTP Methods
+- GET 
+
+  This method is used to display configuration and operational data. It is equivalent to the `nv show` commands.
+- POST 
+
+  This method is used to create/submit operations. It is primarily used for `nv action` commands and for revision creation as in the `nv config` command.
+- PATCH
+  
+  This method is used to replace or unset configuration. It is used for the `nv set` commands and `nv config apply` command.
+  To change configuration settings with the REST API, you can either perform:
+  - A root patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node `/nvue_v1`. 
+  - A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/{vrf-id}/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
+
+  You typically perform a *root patch* to push all configurations to the switch in bulk. For example, if you use a centralized configuration engine (such as an SDN controller or a network management system) to push the entire switch configuration every time you need to make a change, regardless of how small or large the change. A root patch can also make configuration changes with fewer round trips to the switch; running many specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
+- DELETE
+
+  This method is used to delete configuration. It is equivalent to the `nv unset` commands.
+
+### Securing the API
+#### User Accounts
+NVUE REST API supports HTTP Basic Authentication. The API supports the same underlying authentication methods that NVUE CLI supports for username and password and the user accounts function the same on both API and CLI.
+
+#### Transport Layer Security
+<!-- vale off -->
+Cumulus Linux contains a self-signed certificate and private key used on the server-side in this application so that it works out of the box. This is generated when Cumulus Linux boots up for the first time.
+The X.509 certificate with the public key is found at `/etc/ssl/certs/cumulus.pem` and the corresponding private key is found at `/etc/ssl/private/cumulus.key`.
+
+NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format. For step by step documentation on generating self-signed certificates and keys, and installing them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
+
+In order to use your own certificate chain:
+
+1. Import the certificate and private key into the Cumulus Linux node using secure channels such as SCP or SFTP. 
+
+2. Store it in a location in the filesystem of you choice or use the same location i.e., `/etc/ssl/certs` and `/etc/ssl/private`. 
+
+3. Update the `/etc/nginx/sites-enabled/nvue.conf` file to set the `ssl_certificate` and the `ssl_certificate_key` values to your keys. 
+
+4. Restart NGINX with the `sudo systemctl restart nginx` command.
+<!-- vale on -->
+
+### Supported Objects
+With Cumulus Linux 5.5, the NVUE Object Model supports most features on the Cumulus Linux switch. At a high level, these are the supported objects:
+
+| High-level Objects | Description |
+| ------------------ | ----------- |
+| acl | Access control lists. |
+| bridge | Bridge domain configuration. |
+| evpn | EVPN configuration. |
+| interface | Interface configuration. |
+| mlag | MLAG configuration. |
+| nve | Network virtualization configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding. |
+| platform | Platform configuration, such as hardware and software components. |
+| qos | QoS RoCE configuration. |
+| router | Router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
+| service | DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
+| system | Global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs, system login messages and switch reboot history. |
+| vrf | VRF configuration. |
+
+## Using the API 
+The NVUE CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI `nv show commands` reflect any PATCH operation (create) you run through the REST API. 
+
+NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path. 
+
+### Enabling the NVUE REST API
 To enable the NVUE API, run these commands on the switch:
 
 ```
@@ -14,7 +92,7 @@ cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
 cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
-## Accessing NVUE REST API from a Front Panel Port
+### Accessing NVUE REST API from a Front Panel Port
 To access the NVUE REST API from a front panel port (swp) on the switch:
 
 1. Ensure that the `nvue.conf` file is present in the `/etc/nginx/sites-enabled` directory.
@@ -36,46 +114,8 @@ To access the NVUE REST API from a front panel port (swp) on the switch:
 - To access the REST API from the switch running `curl` locally, invoke the REST API client from the default VRF from the Cumulus Linux shell by prefixing the command with `ip vrf exec default curl`.
 - To access the NVUE REST API from a client on a peer Cumulus Linux switch or virtual appliance, or any other off-the-shelf Linux server or virtual machine, make sure the switch or appliance has the correct IP routing configuration so that the REST API HTTP packets arrive on the correct target interface and VRF.
 {{%/notice%}}
-## Securing the API
-### User Accounts
-NVUE REST API supports HTTP Basic Authentication. The API supports the same underlying authentication methods that NVUE CLI supports for username and password and the user accounts function the same on both API and CLI.
 
-#### Linux Group Permissions
-In order to create a API-only user without SSH permissions, you an either use a ZTP script to create a new user primed for API usage, or use API calls to create a a new automation user and prevent it from logging in.
-
-### Transport Layer Security
-<!-- vale off -->
-Cumulus Linux contains a self-signed certificate and private key used server-side in this application so that it works out of the box; however, NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format.
-<!-- vale on -->
-For step by step documentation on generating self-signed certificates and keys, and installing them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
-
-After installing the certificates and keys, edit the `/etc/nginx/sites-available/nvue.conf` file to set the `ssl_certificate` and the `ssl_certificate_key` values to your keys, then restart NGINX with the `sudo systemctl restart nginx` command.
-
-## Understanding the API Architecture
-### Supported HTTP Methods
-- GET 
-
-  This method is used to display configuration. It is equivalent to the `nv show` commands.
-- POST 
-
-  This method is used to set configuration. It is equivalent to the `nv set` commands.
-- PATCH
-  
-  This method is used to replace or unset configuration. It is equivalent to the `nv set` and `nv unset` commands.
-  To change configuration settings with the REST API, you can either perform:
-  - A root patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node `/nvue_v1`. 
-  - A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/{vrf-id}/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
-
-  You typically perform a *root patch* to push all configurations to the switch in bulk. For example, if you use a centralized configuration engine (such as an SDN controller or a network management system) to push the entire switch configuration every time you need to make a change, regardless of how small or large the change. A root patch can also make configuration changes with fewer round trips to the switch; running many specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
-- DELETE
-
-  This method is used to delete configuration. It is equivalent to the `nv unset` commands.
-### Using the API 
-The NVUE CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI `nv show commands` reflect any PATCH operation (create) you run through the REST API. 
-
-NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path. 
-
-#### Run cURL Commands
+### Run cURL Commands
 
 You can run the cURL commands from the command line. Use the username and password for the switch. For example:
 
@@ -109,7 +149,7 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
 
 ## Primary API Use Cases
 ### View a Configuration
-You can use the following example to get the current applied configuration on the switch. By changing the `rev` argument, any revision can be viewed. 
+You can use the following example to get the current applied configuration on the switch. By changing the `rev` argument, any revision can be viewed. Some of the possible options for the `rev` argument include `startup`,`pending`, `operational`, and `applied`.
 {{< tabs "ViewConfig">}}
 {{< tab "Curl Command ">}}
 
@@ -203,7 +243,7 @@ cumulus@switch:~$ nv config show
    ```
    cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
    {
-    "changeset/cumulus/2023-05-03_18.31.08_T2Y4": {
+    "1": {
       "state": "pending",
       "transition": {
         "issue": {},
@@ -213,19 +253,21 @@ cumulus@switch:~$ nv config show
    }
    ```
 
-2. Record the revision ID. In the above example, the revision ID is `"changeset/cumulus/2023-05-03_18.31.08_T2Y4"`. URL encode this in order to use it in the next step - `changeset%2Fcumulus%2F2023-05-03_18.31.08_T2Y4`
+2. Record the revision ID. In the above example, the revision ID is `"1"`.
 
 3. Do a root patch to delete the whole configuration.
    ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{}' -H 'Content-Type: application/json' -k -X DELETE https://127.0.0.1:8765/nvue_v1/?rev=changeset%2Fcumulus%2F2023-05-03_18.31.08_T2Y4
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{}' -H 'Content-Type: application/json' -k -X DELETE https://127.0.0.1:8765/nvue_v1/?rev=1
    {}
    ```
 
 4. Do a root patch to to update the switch with the new configuration.
+<div class=scroll>
+
    ```
    cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{
-    "system": {
-      "hostname": "switch01"
+      "system": {
+        "hostname": "switch01"
       },
       "bridge": {
         "domain": {
@@ -251,657 +293,7 @@ cumulus@switch:~$ nv config show
           }
         }
       },
-      "evpn": {
-        "enable": "on"
-      },
       "interface": {
-        "bond1": {
-          "bond": {
-            "lacp-bypass": "on",
-            "member": {
-              "swp1": {}
-            },
-            "mlag": {
-              "enable": "on",
-              "id": 1
-            },
-            "mode": "lacp"
-          },
-      "bridge": {
-        "domain": {
-          "br_default": {
-            "access": 10,
-            "stp": {
-              "admin-edge": "on",
-              "auto-edge": "on",
-              "bpdu-guard": "on"
-            }
-          }
-        }
-      },
-      "link": {
-        "mtu": 9000
-      },
-      "type": "bond"
-    },
-    "bond2": {
-      "bond": {
-        "lacp-bypass": "on",
-        "member": {
-          "swp2": {}
-        },
-        "mlag": {
-          "enable": "on",
-          "id": 2
-        },
-        "mode": "lacp"
-      },
-      "bridge": {
-        "domain": {
-          "br_default": {
-            "access": 20,
-            "stp": {
-              "admin-edge": "on",
-              "auto-edge": "on",
-              "bpdu-guard": "on"
-            }
-          }
-        }
-      },
-      "link": {
-        "mtu": 9000
-      },
-      "type": "bond"
-    },
-    "bond3": {
-      "bond": {
-        "lacp-bypass": "on",
-        "member": {
-          "swp3": {}
-        },
-        "mlag": {
-          "enable": "on",
-          "id": 3
-        },
-        "mode": "lacp"
-      },
-      "bridge": {
-        "domain": {
-          "br_default": {
-            "access": 30,
-            "stp": {
-              "admin-edge": "on",
-              "auto-edge": "on",
-              "bpdu-guard": "on"
-            }
-          }
-        }
-      },
-      "link": {
-        "mtu": 9000
-      },
-      "type": "bond"
-    },
-    "eth0": {
-      "ip": {
-        "address": {
-          "192.168.200.6/24": {}
-        },
-        "vrf": "mgmt"
-      },
-      "type": "eth"
-    },
-    "lo": {
-      "ip": {
-        "address": {
-          "10.10.10.1/32": {}
-        }
-      },
-      "type": "loopback"
-    },
-    "peerlink": {
-      "bond": {
-        "member": {
-          "swp49": {},
-          "swp50": {}
-        }
-      },
-      "bridge": {
-        "domain": {
-          "br_default": {}
-        }
-      },
-      "type": "peerlink"
-    },
-    "peerlink.4094": {
-      "base-interface": "peerlink",
-      "type": "sub",
-      "vlan": 4094
-    },
-    "swp51": {
-      "link": {
-        "state": {
-          "up": {}
-        }
-      },
-      "type": "swp"
-    },
-    "swp52": {
-      "link": {
-        "state": {
-          "up": {}
-        }
-      },
-      "type": "swp"
-    },
-    "swp53": {
-      "link": {
-        "state": {
-          "up": {}
-        }
-      },
-      "type": "swp"
-    },
-    "swp54": {
-      "link": {
-        "state": {
-          "up": {}
-        }
-      },
-      "type": "swp"
-    },
-    "vlan10": {
-      "ip": {
-        "address": {
-          "10.1.10.2/24": {}
-        },
-        "vrf": "RED",
-        "vrr": {
-          "address": {
-            "10.1.10.1/24": {}
-          },
-          "enable": "on",
-          "mac-address": "00:00:00:00:00:10",
-          "state": {
-            "up": {}
-          }
-        }
-      },
-      "type": "svi",
-      "vlan": 10
-    },
-    "vlan20": {
-      "ip": {
-        "address": {
-          "10.1.20.2/24": {}
-        },
-        "vrf": "RED",
-        "vrr": {
-          "address": {
-            "10.1.20.1/24": {}
-          },
-          "enable": "on",
-          "mac-address": "00:00:00:00:00:20",
-          "state": {
-            "up": {}
-          }
-        }
-      },
-      "type": "svi",
-      "vlan": 20
-    },
-    "vlan30": {
-      "ip": {
-        "address": {
-          "10.1.30.2/24": {}
-        },
-        "vrf": "BLUE",
-        "vrr": {
-          "address": {
-            "10.1.30.1/24": {}
-          },
-          "enable": "on",
-          "mac-address": "00:00:00:00:00:30",
-          "state": {
-            "up": {}
-          }
-        }
-      },
-      "type": "svi",
-      "vlan": 30
-      }
-    },
-    "mlag": {
-    "backup": {
-      "10.10.10.2": {}
-    },
-    "enable": "on",
-    "init-delay": 10,
-    "mac-address": "44:38:39:BE:EF:AA",
-    "peer-ip": "linklocal",
-    "priority": 1000
-    },
-    "nve": {
-    "vxlan": {
-      "arp-nd-suppress": "on",
-      "enable": "on",
-      "mlag": {
-        "shared-address": "10.0.1.12"
-      },
-      "source": {
-        "address": "10.10.10.1"
-      }
-    }
-    },
-    "router": {
-    "bgp": {
-      "enable": "on"
-    },
-    "vrr": {
-      "enable": "on"
-    }
-    },
-    "service": {},
-    "vrf": {
-    "BLUE": {
-      "evpn": {
-        "enable": "on",
-        "vni": {
-          "4002": {}
-        }
-      },
-      "router": {
-        "bgp": {
-          "address-family": {
-            "ipv4-unicast": {
-              "enable": "on",
-              "redistribute": {
-                "connected": {
-                  "enable": "on"
-                }
-              }
-            },
-            "l2vpn-evpn": {
-              "enable": "on"
-            }
-          },
-          "autonomous-system": 65101,
-          "enable": "on",
-          "router-id": "10.10.10.1"
-        }
-      }
-    },
-    "RED": {
-      "evpn": {
-        "enable": "on",
-        "vni": {
-          "4001": {}
-        }
-      },
-      "router": {
-        "bgp": {
-          "address-family": {
-            "ipv4-unicast": {
-              "enable": "on",
-              "redistribute": {
-                "connected": {
-                  "enable": "on"
-                }
-              }
-            },
-            "l2vpn-evpn": {
-              "enable": "on"
-            }
-          },
-          "autonomous-system": 65101,
-          "enable": "on",
-          "router-id": "10.10.10.1"
-        }
-      }
-    },
-    "default": {
-      "router": {
-        "bgp": {
-          "address-family": {
-            "ipv4-unicast": {
-              "enable": "on",
-              "redistribute": {
-                "connected": {
-                  "enable": "on"
-                }
-              }
-            },
-            "l2vpn-evpn": {
-              "enable": "on"
-            }
-          },
-          "autonomous-system": 65101,
-          "enable": "on",
-          "neighbor": {
-            "peerlink.4094": {
-              "peer-group": "underlay",
-              "type": "unnumbered"
-            },
-            "swp51": {
-              "peer-group": "underlay",
-              "type": "unnumbered"
-            },
-            "swp52": {
-              "peer-group": "underlay",
-              "type": "unnumbered"
-            },
-            "swp53": {
-              "peer-group": "underlay",
-              "type": "unnumbered"
-            },
-            "swp54": {
-              "peer-group": "underlay",
-              "type": "unnumbered"
-            }
-          },
-          "peer-group": {
-            "underlay": {
-              "address-family": {
-                "l2vpn-evpn": {
-                  "enable": "on"
-                }
-              },
-              "remote-as": "external"
-            }
-          },
-          "router-id": "10.10.10.1"
-        }
-      }
-    },
-    "mgmt": {
-      "router": {
-        "static": {
-          "0.0.0.0/0": {
-            "address-family": "ipv4-unicast",
-            "via": {
-              "192.168.200.1": {
-                "type": "ipv4-address"
-              }
-            }
-          }
-        }
-      }
-    }
-    }
-    }' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=changeset%2Fcumulus%2F2023-05-03_18.31.08_T2Y4
-   {}
-   ```
-
-5. Apply the changes using a PATCH to the revision changeset.
-{{< tabs "ApplyRootPatchConfigChange">}}
-{{< tab "Curl Command ">}}
-   ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -H 'Content-Type:application/json' -d '{"state": "apply", "auto-prompt": {"ays": "ays_yes"}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-05-03_18.31.08_T2Y4
-   {
-     "state": "apply",
-     "transition": {
-       "issue": {},
-       "progress": ""
-     }
-   }
-   ```
-{{</ tab >}}
-{{< tab "NVUE CLI ">}}
-
-   ```
-   cumulus@switch:~$ nv config apply
-   ```
-{{</ tab >}}
-{{</ tabs>}}
-
-5. Review the status of the apply and the configuration:
-{{< tabs "ReviewRootPatchConfigChange">}}
-{{< tab "Curl Command ">}}
-   ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-05-03_18.31.08_T2Y4
-   {
-     "state": "applied",
-     "transition": {
-       "issue": {},
-       "progress": ""
-     }
-   }
-   ```
-   ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/system
-   {
-    "build": "Cumulus Linux 5.1.0",
-    "hostname": "switch01",
-    "timezone": "Etc/UTC",
-    "uptime": 3072272
-   }
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default/vlan/10
-   {
-    "multicast": {
-      "snooping": {
-        "querier": {
-          "source-ip": "0.0.0.0"
-        }
-      }
-    },
-    "ptp": {
-      "enable": "off"
-    },
-    "vni": {
-      "10": {
-        "flooding": {
-          "enable": "auto"
-        },
-        "mac-learning": "off"
-      }
-    }
-  }
-
-   ```
-{{</ tab >}}
-{{< tab "Python Code ">}}
-```
-#!/usr/bin/env python3
-
-import requests
-from requests.auth import HTTPBasicAuth
-import json
-import time
-
-auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
-nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
-mime_header = {"Content-Type": "application/json"}
-
-DUMMY_SLEEP = 5  # In seconds
-POLL_APPLIED = 1  # in seconds
-RETRIES = 10
-
-def print_request(r: requests.Request):
-    print("=======Request=======")
-    print("URL:", r.url)
-    print("Headers:", r.headers)
-    print("Body:", r.body)
-
-def print_response(r: requests.Response):
-    print("=======Response=======")
-    print("Headers:", r.headers)
-    print("Body:", json.dumps(r.json(), indent=2))
-
-def create_nvue_changest():
-    r = requests.post(url=nvue_end_point + "/revision",
-                      auth=auth,
-                      verify=False)
-    print_request(r.request)
-    print_response(r)
-    response = r.json()
-    changeset = response.popitem()[0]
-    return changeset
-
-def apply_nvue_changeset(changeset):
-    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
-    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
-                                                               safe="")
-    r = requests.patch(url=url,
-                       auth=auth,
-                       verify=False,
-                       data=json.dumps(apply_payload),
-                       headers=mime_header)
-    print_request(r.request)
-    print_response(r)
-
-def is_config_applied(changeset) -> bool:
-    # Check if the configuration was indeed applied
-    global RETRIES
-    global POLL_APPLIED
-    retries = RETRIES
-    while retries > 0:
-        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
-                         auth=auth,
-                         verify=False)
-        response = r.json()
-        print(response)
-        if response["state"] == "applied":
-            return True
-        retries -= 1
-        time.sleep(POLL_APPLIED)
-
-    return False
-
-def apply_new_config():
-    # Create a new revision ID
-    changeset = create_nvue_changest()
-    print("Using NVUE Changeset: '{}'".format(changeset))
-
-    # Delete existing configuration
-    query_string = {"rev": changeset}
-    r = requests.delete(url=nvue_end_point + "/",
-                       auth=auth,
-                       verify=False,
-                       params=query_string,
-                       headers=mime_header)
-    print_request(r.request)
-    print_response(r)
-
-    # Patch the new configuration
-    payload = {
-      "system": {
-        "hostname": "switch01"
-      },
-      "bridge": {
-        "domain": {
-          "br_default": {
-            "type": "vlan-aware",
-            "vlan": {
-              "10": {
-                "vni": {
-                  "10": {}
-                }
-              },
-              "20": {
-                "vni": {
-                  "20": {}
-                }
-              },
-              "30": {
-                "vni": {
-                  "30": {}
-                }
-              }
-            }
-          }
-        }
-      },
-      "evpn": {
-        "enable": "on"
-      },
-      "interface": {
-        "bond1": {
-          "bond": {
-            "lacp-bypass": "on",
-            "member": {
-              "swp1": {}
-            },
-            "mlag": {
-              "enable": "on",
-              "id": 1
-            },
-            "mode": "lacp"
-          },
-          "bridge": {
-            "domain": {
-              "br_default": {
-                "access": 10,
-                "stp": {
-                  "admin-edge": "on",
-                  "auto-edge": "on",
-                  "bpdu-guard": "on"
-                }
-              }
-            }
-          },
-          "link": {
-            "mtu": 9000
-          },
-          "type": "bond"
-        },
-        "bond2": {
-          "bond": {
-            "lacp-bypass": "on",
-            "member": {
-              "swp2": {}
-            },
-            "mlag": {
-              "enable": "on",
-              "id": 2
-            },
-            "mode": "lacp"
-          },
-          "bridge": {
-            "domain": {
-              "br_default": {
-                "access": 20,
-                "stp": {
-                  "admin-edge": "on",
-                  "auto-edge": "on",
-                  "bpdu-guard": "on"
-                }
-              }
-            }
-          },
-          "link": {
-            "mtu": 9000
-          },
-          "type": "bond"
-        },
-        "bond3": {
-          "bond": {
-            "lacp-bypass": "on",
-            "member": {
-              "swp3": {}
-            },
-            "mlag": {
-              "enable": "on",
-              "id": 3
-            },
-            "mode": "lacp"
-          },
-          "bridge": {
-            "domain": {
-              "br_default": {
-                "access": 30,
-                "stp": {
-                  "admin-edge": "on",
-                  "auto-edge": "on",
-                  "bpdu-guard": "on"
-                }
-              }
-            }
-          },
-          "link": {
-            "mtu": 9000
-          },
-          "type": "bond"
-        },
         "eth0": {
           "ip": {
             "address": {
@@ -918,25 +310,6 @@ def apply_new_config():
             }
           },
           "type": "loopback"
-        },
-        "peerlink": {
-          "bond": {
-            "member": {
-              "swp49": {},
-              "swp50": {}
-            }
-          },
-          "bridge": {
-            "domain": {
-              "br_default": {}
-            }
-          },
-          "type": "peerlink"
-        },
-        "peerlink.4094": {
-          "base-interface": "peerlink",
-          "type": "sub",
-          "vlan": 4094
         },
         "swp51": {
           "link": {
@@ -969,66 +342,6 @@ def apply_new_config():
             }
           },
           "type": "swp"
-        },
-        "vlan10": {
-          "ip": {
-            "address": {
-              "10.1.10.2/24": {}
-            },
-            "vrf": "RED",
-            "vrr": {
-              "address": {
-                "10.1.10.1/24": {}
-              },
-              "enable": "on",
-              "mac-address": "00:00:00:00:00:10",
-              "state": {
-                "up": {}
-              }
-            }
-          },
-          "type": "svi",
-          "vlan": 10
-        },
-        "vlan20": {
-          "ip": {
-            "address": {
-              "10.1.20.2/24": {}
-            },
-            "vrf": "RED",
-            "vrr": {
-              "address": {
-                "10.1.20.1/24": {}
-              },
-              "enable": "on",
-              "mac-address": "00:00:00:00:00:20",
-              "state": {
-                "up": {}
-              }
-            }
-          },
-          "type": "svi",
-          "vlan": 20
-        },
-        "vlan30": {
-          "ip": {
-            "address": {
-              "10.1.30.2/24": {}
-            },
-            "vrf": "BLUE",
-            "vrr": {
-              "address": {
-                "10.1.30.1/24": {}
-              },
-              "enable": "on",
-              "mac-address": "00:00:00:00:00:30",
-              "state": {
-                "up": {}
-              }
-            }
-          },
-          "type": "svi",
-          "vlan": 30
         }
       },
       "mlag": {
@@ -1040,19 +353,7 @@ def apply_new_config():
         "mac-address": "44:38:39:BE:EF:AA",
         "peer-ip": "linklocal",
         "priority": 1000
-      },
-      "nve": {
-        "vxlan": {
-          "arp-nd-suppress": "on",
-          "enable": "on",
-          "mlag": {
-            "shared-address": "10.0.1.12"
-          },
-          "source": {
-            "address": "10.10.10.1"
-          }
-        }
-      },
+      }
       "router": {
         "bgp": {
           "enable": "on"
@@ -1063,116 +364,6 @@ def apply_new_config():
       },
       "service": {},
       "vrf": {
-        "BLUE": {
-          "evpn": {
-            "enable": "on",
-            "vni": {
-              "4002": {}
-            }
-          },
-          "router": {
-            "bgp": {
-              "address-family": {
-                "ipv4-unicast": {
-                  "enable": "on",
-                  "redistribute": {
-                    "connected": {
-                      "enable": "on"
-                    }
-                  }
-                },
-                "l2vpn-evpn": {
-                  "enable": "on"
-                }
-              },
-              "autonomous-system": 65101,
-              "enable": "on",
-              "router-id": "10.10.10.1"
-            }
-          }
-        },
-        "RED": {
-          "evpn": {
-            "enable": "on",
-            "vni": {
-              "4001": {}
-            }
-          },
-          "router": {
-            "bgp": {
-              "address-family": {
-                "ipv4-unicast": {
-                  "enable": "on",
-                  "redistribute": {
-                    "connected": {
-                      "enable": "on"
-                    }
-                  }
-                },
-                "l2vpn-evpn": {
-                  "enable": "on"
-                }
-              },
-              "autonomous-system": 65101,
-              "enable": "on",
-              "router-id": "10.10.10.1"
-            }
-          }
-        },
-        "default": {
-          "router": {
-            "bgp": {
-              "address-family": {
-                "ipv4-unicast": {
-                  "enable": "on",
-                  "redistribute": {
-                    "connected": {
-                      "enable": "on"
-                    }
-                  }
-                },
-                "l2vpn-evpn": {
-                  "enable": "on"
-                }
-              },
-              "autonomous-system": 65101,
-              "enable": "on",
-              "neighbor": {
-                "peerlink.4094": {
-                  "peer-group": "underlay",
-                  "type": "unnumbered"
-                },
-                "swp51": {
-                  "peer-group": "underlay",
-                  "type": "unnumbered"
-                },
-                "swp52": {
-                  "peer-group": "underlay",
-                  "type": "unnumbered"
-                },
-                "swp53": {
-                  "peer-group": "underlay",
-                  "type": "unnumbered"
-                },
-                "swp54": {
-                  "peer-group": "underlay",
-                  "type": "unnumbered"
-                }
-              },
-              "peer-group": {
-                "underlay": {
-                  "address-family": {
-                    "l2vpn-evpn": {
-                      "enable": "on"
-                    }
-                  },
-                  "remote-as": "external"
-                }
-              },
-              "router-id": "10.10.10.1"
-            }
-          }
-        },
         "mgmt": {
           "router": {
             "static": {
@@ -1188,99 +379,16 @@ def apply_new_config():
           }
         }
       }
-    }
-    query_string = {"rev": changeset}
-    r = requests.patch(url=nvue_end_point + f"/",
-                       auth=auth,
-                       verify=False,
-                       data=json.dumps(payload),
-                       params=query_string,
-                       headers=mime_header)
-    print_request(r.request)
-    print_response(r)
-
-    # Apply the changes to the new revision changeset
-    apply_nvue_changeset(changeset)
-
-    # Check if the changeset was applied
-    is_config_applied(changeset)
-
-def nvue_get(path):
-    r = requests.get(url=nvue_end_point + path,
-                     auth=auth,
-                     verify=False)
-    print_request(r.request)
-    print_response(r)
-
-if __name__ == "__main__":
-    apply_new_config()
-    time.sleep(DUMMY_SLEEP)
-    print("=====Verifying some of the configurations=====")
-    nvue_get("/system")
-    nvue_get("/bridge/domain/br_default/vlan")
-
-```
-
-{{< /tab >}}
-{{< tab "NVUE CLI ">}}
-
+    }' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=1
+   {}
    ```
-   cumulus@switch:~$ 
-   ```
+   </div>
 
-   ```
-   cumulus@switch:~$ nv show interface lo ip address
-   
--------------
-99.99.99.99/32
-127.0.0.1/8
-::1/128
-
-   ```
-{{</ tab >}}
-{{</ tabs>}}
-### Make a configuration change
-1. Create a new revision ID using a POST:
-
-   ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
-   { 
-      "changeset/cumulus/2023-04-06_20.22.44_T2XP": { 
-      "state": "pending", 
-      "transition": { 
-        "issue": {}, 
-        "progress": "" 
-      } 
-    } 
-   } 
-   ```
-2. Record the revision ID. In the above example, the revision ID is `"changeset/cumulus/2023-04-06_20.22.44_T2XP"`. URL encode this in order to use it in the next step - `changeset%2Fcumulus%2F2023-04-06_20.22.44_T2XP`
-
-3. Make the change using a PATCH and link it to the revision ID:
-{{< tabs "MakeConfigChange">}}
-{{< tab "Curl Command ">}}
-
-   ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=changeset%2Fcumulus%2F2023-04-06_20.22.44_T2XP 
-   {
-     "99.99.99.99/32": {}
-   }
-   ```
-{{</ tab >}}
-{{< tab "NVUE CLI ">}}
-
-   ```
-   cumulus@switch:~$ nv set interface lo ip address 99.99.99.99/32
-   ```
-{{</ tab >}}
-{{</ tabs>}}
-
-
-4. Apply the changes using a PATCH to the revision changeset.
-{{< tabs "ApplyConfigChange">}}
+5. Apply the changes using a PATCH to the revision changeset.
+{{< tabs "ApplyRootPatchConfigChange">}}
 {{< tab "Curl Command ">}}
    ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -H 'Content-Type:application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-06_20.22.44_T2XP 
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -H 'Content-Type:application/json' -d '{"state": "apply", "auto-prompt": {"ays": "ays_yes"}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/revision/1
    {
      "state": "apply",
      "transition": {
@@ -1299,12 +407,12 @@ if __name__ == "__main__":
 {{</ tabs>}}
 
 5. Review the status of the apply and the configuration:
-{{< tabs "ReviewConfigChange">}}
+{{< tabs "ReviewRootPatchConfigChange">}}
 {{< tab "Curl Command ">}}
    ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-06_20.22.44_T2XP 
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/revision/1
    {
-     "state": "apply",
+     "state": "applied",
      "transition": {
        "issue": {},
        "progress": ""
@@ -1312,15 +420,40 @@ if __name__ == "__main__":
    }
    ```
    ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/system
    {
-     "127.0.0.1/8": {},
-     "99.99.99.99/32": {},
-     "::1/128": {}
+    "build": "Cumulus Linux 5.4.0",
+    "hostname": "switch01",
+    "timezone": "Etc/UTC",
+    "uptime": 763
    }
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default/vlan/10
+   {
+    "multicast": {
+      "snooping": {
+        "querier": {
+          "source-ip": "0.0.0.0"
+        }
+      }
+    },
+    "ptp": {
+      "enable": "off"
+    },
+    "vni": {
+      "10": {
+        "flooding": {
+          "enable": "auto"
+        },
+        "mac-learning": "off"
+      }
+    }
+  }
+
    ```
 {{</ tab >}}
 {{< tab "Python Code ">}}
+<div class=scroll>
+
 ```
 #!/usr/bin/env python3
 
@@ -1388,17 +521,25 @@ def is_config_applied(changeset) -> bool:
 
     return False
 
-def interface_config_example(interface):
+def apply_new_config(path,payload):
     # Create a new revision ID
     changeset = create_nvue_changest()
     print("Using NVUE Changeset: '{}'".format(changeset))
-    payload = {
-        "99.99.99.99/32": {}
-    }
 
-    # Make the necessary configuration changes
+    # Delete existing configuration
     query_string = {"rev": changeset}
-    r = requests.patch(url=nvue_end_point + f"/interface/{interface}/ip/address",
+    r = requests.delete(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Patch the new configuration
+    
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + path,
                        auth=auth,
                        verify=False,
                        data=json.dumps(payload),
@@ -1421,19 +562,363 @@ def nvue_get(path):
     print_response(r)
 
 if __name__ == "__main__":
+    payload = {
+      "system": {
+        "hostname": "switch01"
+      },
+      "bridge": {
+        "domain": {
+          "br_default": {
+            "type": "vlan-aware",
+            "vlan": {
+              "10": {
+                "vni": {
+                  "10": {}
+                  }
+                },
+              "20": {
+                "vni": {
+                  "20": {}
+                }
+              },
+              "30": {
+                "vni": {
+                  "30": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "interface": {
+        "eth0": {
+          "ip": {
+            "address": {
+              "192.168.200.6/24": {}
+            },
+            "vrf": "mgmt"
+          },
+          "type": "eth"
+        },
+        "lo": {
+          "ip": {
+            "address": {
+              "10.10.10.1/32": {}
+            }
+          },
+          "type": "loopback"
+        },
+        "swp51": {
+          "link": {
+            "state": {
+              "up": {}
+            }
+          },
+          "type": "swp"
+        },
+        "swp52": {
+          "link": {
+            "state": {
+              "up": {}
+            }
+          },
+          "type": "swp"
+        },
+        "swp53": {
+          "link": {
+            "state": {
+              "up": {}
+            }
+          },
+          "type": "swp"
+        },
+        "swp54": {
+          "link": {
+            "state": {
+              "up": {}
+            }
+          },
+          "type": "swp"
+        }
+      },
+      "mlag": {
+        "backup": {
+          "10.10.10.2": {}
+        },
+        "enable": "on",
+        "init-delay": 10,
+        "mac-address": "44:38:39:BE:EF:AA",
+        "peer-ip": "linklocal",
+        "priority": 1000
+      }
+      "router": {
+        "bgp": {
+          "enable": "on"
+        },
+        "vrr": {
+          "enable": "on"
+        }
+      },
+      "service": {},
+      "vrf": {
+        "mgmt": {
+          "router": {
+            "static": {
+              "0.0.0.0/0": {
+                "address-family": "ipv4-unicast",
+                "via": {
+                  "192.168.200.1": {
+                    "type": "ipv4-address"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    apply_new_config("/",payload)
     time.sleep(DUMMY_SLEEP)
-    interface_config_example("lo")
+    print("=====Verifying some of the configurations=====")
+    nvue_get("/system")
+    nvue_get("/bridge/domain/br_default/vlan/10")
+
+```
+
+</div>
+{{< /tab >}}
+{{< tab "NVUE CLI ">}}
+
+  ```
+  cumulus@switch:~$ nv show system
+            operational          applied
+--------  -------------------  -------
+hostname  switch01             cumulus
+build     Cumulus Linux 5.4.0
+uptime    0:12:59
+timezone  Etc/UTC
+  ```
+
+   ```
+   cumulus@switch:~$ nv show bridge domain br_default vlan 10
+   
+                 operational  applied  pending  description
+---------------  -----------  -------  -------  ------------------------------------------------------
+[vni]            10           10       10       L2 VNI
+multicast
+  snooping
+    querier
+      source-ip  0.0.0.0      0.0.0.0  0.0.0.0  Source IP to use when sending IGMP/MLD queries.
+ptp
+  enable         off          off      off      Turn the feature 'on' or 'off'.  The default is 'off'.
+
+   ```
+{{</ tab >}}
+{{</ tabs>}}
+### Make a configuration change
+1. Create a new revision ID using a POST:
+
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
+   { 
+      "2": { 
+      "state": "pending", 
+      "transition": { 
+        "issue": {}, 
+        "progress": "" 
+      } 
+    } 
+   } 
+   ```
+2. Record the revision ID. In the above example, the revision ID is `"2"`.
+
+3. Make the change using a PATCH and link it to the revision ID:
+{{< tabs "MakeConfigChange">}}
+{{< tab "Curl Command ">}}
+
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=2
+   {
+     "99.99.99.99/32": {}
+   }
+   ```
+{{</ tab >}}
+{{< tab "NVUE CLI ">}}
+
+   ```
+   cumulus@switch:~$ nv set interface lo ip address 99.99.99.99/32
+   ```
+{{</ tab >}}
+{{</ tabs>}}
+
+
+4. Apply the changes using a PATCH to the revision changeset.
+{{< tabs "ApplyConfigChange">}}
+{{< tab "Curl Command ">}}
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -H 'Content-Type:application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/revision/2
+   {
+     "state": "apply",
+     "transition": {
+       "issue": {},
+       "progress": ""
+     }
+   }
+   ```
+{{</ tab >}}
+{{< tab "NVUE CLI ">}}
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+{{</ tab >}}
+{{</ tabs>}}
+
+5. Review the status of the apply and the configuration:
+{{< tabs "ReviewConfigChange">}}
+{{< tab "Curl Command ">}}
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/revision/2
+   {
+     "state": "applied",
+     "transition": {
+       "issue": {},
+       "progress": ""
+     }
+   }
+   ```
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address
+   {
+     "127.0.0.1/8": {},
+     "99.99.99.99/32": {},
+     "::1/128": {}
+   }
+   ```
+{{</ tab >}}
+{{< tab "Python Code ">}}
+<div class=scroll>
+
+```
+#!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+def apply_new_config(path,payload):
+    # Create a new revision ID
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Delete existing configuration
+    query_string = {"rev": changeset}
+    r = requests.delete(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Patch the new configuration
+    
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    payload = {
+        "99.99.99.99/32": {}
+    }
+    apply_new_config("/interface/lo/ip/address",payload)
     time.sleep(DUMMY_SLEEP)
     nvue_get("/interface/lo/ip/address")
 
 ```
 
+</div>
 {{< /tab >}}
 {{< tab "NVUE CLI ">}}
-
-   ```
-   cumulus@switch:~$ 
-   ```
 
    ```
    cumulus@switch:~$ nv show interface lo ip address
@@ -1455,7 +940,7 @@ When a configuration change fails, you see an error in the change request.
 If you stage a configuration but it fails because of a dependency, the failure shows the reason. In the following example, the change fails because the BGP router ID is not set:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-05_02.12.10_U4XL 
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/revision/6
 {
   "state": "invalid",
   "transition": {
@@ -1478,7 +963,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8
 The staged configuration is missing `router-id`:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=changeset%2Fcumulus%2F2023-04-05_02.12.10_U4XL
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=6
 {
   "autonomous-system": 65999,
   "enable": "on"
@@ -1490,9 +975,9 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8
 In some cases, such as the first push with NVUE or if you change a file manually instead of using NVUE, you see a warning prompt and the apply fails:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-05_02.12.10_U4XL
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/6
 {
-  "changeset%2Fcumulus%2F2023-04-05_02.12.10_U4XL": {
+  "6": {
     "state": "ays_fail",
     "transition": {
       "issue": {
@@ -1511,7 +996,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.
 To resolve this issue, observe the failures or errors, and inspect the configuration that you are trying to apply. After you resolve the errors, retry the API. If you prefer to overlook the errors and force an apply, add `"auto-prompt":{"ays": "ays_yes"}` to the configuration apply.
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-05_02.12.10_U4XL
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/6
 ```
 
 ### Save a configuration
@@ -1532,6 +1017,8 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X PATCH -d '{"state": "sav
 
 {{< /tab >}}
 {{< tab "Python Code ">}}
+<div class="scroll">
+
 ```
 #!/usr/bin/env python3
 
@@ -1575,7 +1062,7 @@ if __name__ == "__main__":
 
 ```
 
-
+</div>
 {{< /tab >}}
 {{< tab "NVUE CLI ">}}
 
@@ -1654,7 +1141,7 @@ out-pkts             3536508                        total number of packets tran
 {{< /tab >}}
 {{< /tabs >}}
 ### Converting CLI Changes to Use the API
-You cna take a configuration change from the CLI and use the API to set the same set of changes.
+You can take a configuration change from the CLI and use the API to set the same set of changes.
 1. Make your config changes on the system using the NVUE CLI.
 ```
 cumulus@switch:~$ nv set system hostname switch01
@@ -1696,6 +1183,8 @@ cumulus@switch:~$ nv config diff -o json
 ]
 ```
 3. Staple the JSON blob to a root patch request as the payload.
+<div class="scroll">
+
 ```
 cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{
       "interface": {
@@ -1721,7 +1210,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{
       "system": {
         "hostname": "switch01"
       }
-    }' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=changeset%2Fcumulus%2F2023-04-24_20.12.25_T2XX
+    }' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=3
 
 {
   "bridge": {
@@ -1760,9 +1249,11 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{
         },
 ...
 ```
+</div>
+
 4. Apply the changes using a PATCH to the revision changeset.
    ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -H 'Content-Type:application/json' -k -d '{"state": "apply", "auto-prompt": {"ays": "ays_yes"}}' -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-24_20.12.25_T2XX 
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -H 'Content-Type:application/json' -k -d '{"state": "apply", "auto-prompt": {"ays": "ays_yes"}}' -X PATCH https://127.0.0.1:8765/nvue_v1/revision/3
    {
      "state": "apply",
      "transition": {
@@ -1776,7 +1267,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{
 {{< tabs "CLItoAPIReviewConfigChange">}}
 {{< tab "Curl Command ">}}
    ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-24_20.12.25_T2XX 
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/revision/3
    {
      "state": "applied",
      "transition": {
@@ -1787,6 +1278,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{
    ```
 {{</ tab >}}
 {{< tab "Python Code ">}}
+<div class=scroll>
 
    ```
    #!/usr/bin/env python3
@@ -1859,13 +1351,47 @@ def is_config_applied(changeset) -> bool:
 
     return False
 
-def root_patch():
-    # Create an NVUE changeset
+def apply_new_config(path,payload):
+    # Create a new revision ID
     changeset = create_nvue_changest()
     print("Using NVUE Changeset: '{}'".format(changeset))
 
-    # Prepare payload which configures a few
-    # different switch configurations
+    # Delete existing configuration
+    query_string = {"rev": changeset}
+    r = requests.delete(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Patch the new configuration
+    
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
     payload = {
       "interface": {
         "bond0": {
@@ -1891,38 +1417,15 @@ def root_patch():
         "hostname": "switch01"
       }
     }
-    # Stage the change
-    query_string = {"rev": changeset}
-    r = requests.patch(url=nvue_end_point + "/",  # Root patch
-                       auth=auth,
-                       verify=False,
-                       data=json.dumps(payload),
-                       params=query_string,
-                       headers=mime_header)
-    print_request(r.request)
-    print_response(r)
-
-    # Apply the staged changeset
-    apply_nvue_changeset(changeset)
-
-    # Check if the changeset was applied
-    is_config_applied(changeset)
-
-def nvue_get(path):
-    r = requests.get(url=nvue_end_point + path",
-                     auth=auth,
-                     verify=False)
-    print_request(r.request)
-    print_response(r)
-
-if __name__ == "__main__":
-    root_patch()
+    apply_new_config("/",payload)
     time.sleep(DUMMY_SLEEP)
     nvue_get("/interface/bond0")
     nvue_get("/interface/lo")
     nvue_get("/system")
    
    ```
+
+   </div>
 {{</ tab >}}
 {{</ tabs>}}
 ## Practical API Examples
@@ -1931,10 +1434,12 @@ Send a targeted API request to `/nvue_v1/system ` to set system hostname, a pre-
 {{< tabs "SystemConfig" >}}
 {{< tab "Curl Command" >}}
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"system": {"hostname":"switch01","timezone":"America/Los_Angeles","message":{"pre-login":"Welcome to NVIDIA Cumulus Linux","post-login:"You have successfully logged in to switch01"}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=changeset%2Fcumulus%2F2023-04-06_20.31.58_T2XR 
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"system": {"hostname":"switch01","timezone":"America/Los_Angeles","message":{"pre-login":"Welcome to NVIDIA Cumulus Linux","post-login:"You have successfully logged in to switch01"}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=4
 ```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+<div class=scroll>
+
 ```
    #!/usr/bin/env python3
 
@@ -2006,13 +1511,47 @@ def is_config_applied(changeset) -> bool:
 
     return False
 
-def system_config():
-    # Create an NVUE changeset
+def apply_new_config(path,payload):
+    # Create a new revision ID
     changeset = create_nvue_changest()
     print("Using NVUE Changeset: '{}'".format(changeset))
 
-    # Prepare payload which configures a few
-    # different switch configurations
+    # Delete existing configuration
+    query_string = {"rev": changeset}
+    r = requests.delete(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Patch the new configuration
+    
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
     payload = {
       "system": 
       {
@@ -2025,36 +1564,13 @@ def system_config():
         }
       }
     }
-    # Stage the change
-    query_string = {"rev": changeset}
-    r = requests.patch(url=nvue_end_point + "/",  # Root patch
-                       auth=auth,
-                       verify=False,
-                       data=json.dumps(payload),
-                       params=query_string,
-                       headers=mime_header)
-    print_request(r.request)
-    print_response(r)
-
-    # Apply the staged changeset
-    apply_nvue_changeset(changeset)
-
-    # Check if the changeset was applied
-    is_config_applied(changeset)
-
-def nvue_get(path):
-    r = requests.get(url=nvue_end_point + path",
-                     auth=auth,
-                     verify=False)
-    print_request(r.request)
-    print_response(r)
-
-if __name__ == "__main__":
-    system_config()
+    apply_new_config("/",payload) # Root patch
     time.sleep(DUMMY_SLEEP)
     nvue_get("/system")
    
    ```
+
+</div>
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 ```
@@ -2070,10 +1586,12 @@ Send a targeted API request to `/nvue_v1/service ` to set up NTP, DNS, and SNMP 
 {{< tabs "ServicesConfig" >}}
 {{< tab "Curl Command" >}}
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"service": { "ntp": {"default":{"server:{"4.cumulusnetworks.pool.ntp.org":{"iburst":"on"}}}}, "dns": {"mgmt":{"server:{"192.168.1.100":{}}}}, "syslog": {"mgmt":{"server:{"192.168.1.120":{"port":8000}}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=changeset%2Fcumulus%2F2023-04-06_20.31.58_T2XR 
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"service": { "ntp": {"default":{"server:{"4.cumulusnetworks.pool.ntp.org":{"iburst":"on"}}}}, "dns": {"mgmt":{"server:{"192.168.1.100":{}}}}, "syslog": {"mgmt":{"server:{"192.168.1.120":{"port":8000}}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=5
 ```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+<div class=scroll>
+
 ```
    #!/usr/bin/env python3
 
@@ -2145,13 +1663,47 @@ def is_config_applied(changeset) -> bool:
 
     return False
 
-def services_config():
-    # Create an NVUE changeset
+def apply_new_config(path,payload):
+    # Create a new revision ID
     changeset = create_nvue_changest()
     print("Using NVUE Changeset: '{}'".format(changeset))
 
-    # Prepare payload which configures a few
-    # different switch configurations
+    # Delete existing configuration
+    query_string = {"rev": changeset}
+    r = requests.delete(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Patch the new configuration
+    
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
     payload = {
       "service": 
       { 
@@ -2193,38 +1745,15 @@ def services_config():
         }
       }
     }
-    # Stage the change
-    query_string = {"rev": changeset}
-    r = requests.patch(url=nvue_end_point + "/",  # Root patch
-                       auth=auth,
-                       verify=False,
-                       data=json.dumps(payload),
-                       params=query_string,
-                       headers=mime_header)
-    print_request(r.request)
-    print_response(r)
-
-    # Apply the staged changeset
-    apply_nvue_changeset(changeset)
-
-    # Check if the changeset was applied
-    is_config_applied(changeset)
-
-def nvue_get(path):
-    r = requests.get(url=nvue_end_point + path",
-                     auth=auth,
-                     verify=False)
-    print_request(r.request)
-    print_response(r)
-
-if __name__ == "__main__":
-    services_config()
+    apply_new_config("/",payload) # Root patch
     time.sleep(DUMMY_SLEEP)
     nvue_get("/service/ntp")
     nvue_get("/service/dns")
     nvue_get("/service/syslog")
    
    ```
+
+  </div>
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 ```
@@ -2239,10 +1768,12 @@ cumulus@switch:~$ nv set service syslog mgmt server 192.168.1.120 port 8000
 {{< tabs "InterfaceConfig" >}}
 {{< tab "Curl Command" >}}
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"swp1": {"type":"swp","link":{"state":"up"}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2XV 
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"swp1": {"type":"swp","link":{"state":"up"}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=5 
 ```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+<div class=scroll>
+
 ```
    #!/usr/bin/env python3
 
@@ -2314,13 +1845,47 @@ def is_config_applied(changeset) -> bool:
 
     return False
 
-def interface_config():
-    # Create an NVUE changeset
+def apply_new_config(path,payload):
+    # Create a new revision ID
     changeset = create_nvue_changest()
     print("Using NVUE Changeset: '{}'".format(changeset))
 
-    # Prepare payload which configures a few
-    # different switch configurations
+    # Delete existing configuration
+    query_string = {"rev": changeset}
+    r = requests.delete(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Patch the new configuration
+    
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
     payload = {
       "swp1": 
       {
@@ -2331,36 +1896,13 @@ def interface_config():
           }
         }
       }
-    # Stage the change
-    query_string = {"rev": changeset}
-    r = requests.patch(url=nvue_end_point + "/interface", 
-                       auth=auth,
-                       verify=False,
-                       data=json.dumps(payload),
-                       params=query_string,
-                       headers=mime_header)
-    print_request(r.request)
-    print_response(r)
-
-    # Apply the staged changeset
-    apply_nvue_changeset(changeset)
-
-    # Check if the changeset was applied
-    is_config_applied(changeset)
-
-def nvue_get(path):
-    r = requests.get(url=nvue_end_point + path",
-                     auth=auth,
-                     verify=False)
-    print_request(r.request)
-    print_response(r)
-
-if __name__ == "__main__":
-    interface_config()
+    apply_new_config("/interface",payload)
     time.sleep(DUMMY_SLEEP)
     nvue_get("/interface/swp1")
    
    ```
+  
+</div>
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 ```
@@ -2371,8 +1913,10 @@ cumulus@switch:~$ nv set interface swp1
 #### Bond
 {{< tabs "BondConfig" >}}
 {{< tab "Curl Command" >}}
+<div class="scroll">
+
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"bond0": {"type":"bond","bond":{"member":{"swp1":{},"swp2":{},"swp3":{},"swp4":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2XV 
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"bond0": {"type":"bond","bond":{"member":{"swp1":{},"swp2":{},"swp3":{},"swp4":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=6
 { 
   "bond0": { 
     "bond": { 
@@ -2433,8 +1977,12 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"bond0": {"type":"bond","
   } 
 } 
 ```
+
+</div>
 {{< /tab >}}
 {{< tab "Python Code" >}}
+<div class=scroll>
+
 ```
    #!/usr/bin/env python3
 
@@ -2506,13 +2054,47 @@ def is_config_applied(changeset) -> bool:
 
     return False
 
-def interface_bond_config():
-    # Create an NVUE changeset
+def apply_new_config(path,payload):
+    # Create a new revision ID
     changeset = create_nvue_changest()
     print("Using NVUE Changeset: '{}'".format(changeset))
 
-    # Prepare payload which configures a few
-    # different switch configurations
+    # Delete existing configuration
+    query_string = {"rev": changeset}
+    r = requests.delete(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Patch the new configuration
+    
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
     payload = {
       "bond0": 
       {
@@ -2529,36 +2111,13 @@ def interface_bond_config():
         }
       }
     }
-    # Stage the change
-    query_string = {"rev": changeset}
-    r = requests.patch(url=nvue_end_point + "/interface", 
-                       auth=auth,
-                       verify=False,
-                       data=json.dumps(payload),
-                       params=query_string,
-                       headers=mime_header)
-    print_request(r.request)
-    print_response(r)
-
-    # Apply the staged changeset
-    apply_nvue_changeset(changeset)
-
-    # Check if the changeset was applied
-    is_config_applied(changeset)
-
-def nvue_get(path):
-    r = requests.get(url=nvue_end_point + path",
-                     auth=auth,
-                     verify=False)
-    print_request(r.request)
-    print_response(r)
-
-if __name__ == "__main__":
-    interface_bond_config()
+    apply_new_config("/interface",payload)
     time.sleep(DUMMY_SLEEP)
     nvue_get("/interface/bond0")
    
    ```
+
+  </div>
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 ```
@@ -2570,11 +2129,13 @@ cumulus@switch:~$ nv set interface bond0 bond member swp1-4
 {{< tabs "BridgeConfig" >}}
 {{< tab "Curl Command" >}}
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2X 
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2XV 
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=7
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=7 
 ```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+<div class=scroll>
+
 ```
    #!/usr/bin/env python3
 
@@ -2646,14 +2207,48 @@ def is_config_applied(changeset) -> bool:
 
     return False
 
-def bridge_config():
-    # Create an NVUE changeset
+def apply_new_config(path,payload):
+    # Create a new revision ID
     changeset = create_nvue_changest()
     print("Using NVUE Changeset: '{}'".format(changeset))
 
-    # Prepare payload which configures a few
-    # different switch configurations
-    payload = {
+    # Delete existing configuration
+    query_string = {"rev": changeset}
+    r = requests.delete(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Patch the new configuration
+    
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    int_payload = {
       "swp1": 
       {
         "bridge":
@@ -2675,18 +2270,8 @@ def bridge_config():
         }
       }
     }
-    # Stage the change
-    query_string = {"rev": changeset}
-    r = requests.patch(url=nvue_end_point + "/interface", 
-                       auth=auth,
-                       verify=False,
-                       data=json.dumps(payload),
-                       params=query_string,
-                       headers=mime_header)
-    print_request(r.request)
-    print_response(r)
-
-    payload = {
+    apply_new_config("/interface",int_payload)
+    br_payload = {
       "untagged":1,
       "vlan":
       {
@@ -2694,37 +2279,14 @@ def bridge_config():
         "20":{}
       }
     }
-    # Stage the change
-    query_string = {"rev": changeset}
-    r = requests.patch(url=nvue_end_point + "/bridge/domain/br_default", 
-                       auth=auth,
-                       verify=False,
-                       data=json.dumps(payload),
-                       params=query_string,
-                       headers=mime_header)
-    print_request(r.request)
-    print_response(r)
-
-    # Apply the staged changeset
-    apply_nvue_changeset(changeset)
-
-    # Check if the changeset was applied
-    is_config_applied(changeset)
-
-def nvue_get(path):
-    r = requests.get(url=nvue_end_point + path",
-                     auth=auth,
-                     verify=False)
-    print_request(r.request)
-    print_response(r)
-
-if __name__ == "__main__":
-    bridge_config()
+    apply_new_config("/bridge/domain/br_default",br_payload)
     time.sleep(DUMMY_SLEEP)
     nvue_get("/interface/swp1")
     nvue_get("/bridge/domain/br_default")
    
    ```
+  
+  </div>
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 ```
@@ -2738,11 +2300,13 @@ cumulus@switch:~$ nv set bridge domain br_default untagged 1
 {{< tabs "BGPConfig" >}}
 {{< tab "Curl Command" >}}
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"bgp": {"autonomous-system": 65101,"router-id":"10.10.10.1"}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/router?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2X 
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"bgp":{"neighbor":{"swp51":{"remote-as":"external"}},"address-family":{"ipv4-unicast":{"network":{"10.10.10.1/32":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/vrf/default/router?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2XV 
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"bgp": {"autonomous-system": 65101,"router-id":"10.10.10.1"}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/router?rev=8
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"bgp":{"neighbor":{"swp51":{"remote-as":"external"}},"address-family":{"ipv4-unicast":{"network":{"10.10.10.1/32":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/vrf/default/router?rev=8
 ```
 {{< /tab >}}
 {{< tab "Python Code" >}}
+<div class=scroll>
+
 ```
    #!/usr/bin/env python3
 
@@ -2814,23 +2378,25 @@ def is_config_applied(changeset) -> bool:
 
     return False
 
-def bgp_config():
-    # Create an NVUE changeset
+def apply_new_config(path,payload):
+    # Create a new revision ID
     changeset = create_nvue_changest()
     print("Using NVUE Changeset: '{}'".format(changeset))
 
-    # Prepare payload which configures a few
-    # different switch configurations
-    payload = {
-      "bgp": 
-      {
-        "autonomous-system": 65101,
-        "router-id":"10.10.10.1"
-      }
-    }
-    # Stage the change
+    # Delete existing configuration
     query_string = {"rev": changeset}
-    r = requests.patch(url=nvue_end_point + "/router", 
+    r = requests.delete(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Patch the new configuration
+    
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + path,
                        auth=auth,
                        verify=False,
                        data=json.dumps(payload),
@@ -2839,7 +2405,29 @@ def bgp_config():
     print_request(r.request)
     print_response(r)
 
-    payload = {
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    rt_payload = {
+      "bgp": 
+      {
+        "autonomous-system": 65101,
+        "router-id":"10.10.10.1"
+      }
+    }
+    apply_new_config("/router",rt_payload)
+    vrf_payload = {
       "bgp":
       {
         "neighbor":
@@ -2861,37 +2449,14 @@ def bgp_config():
         }
       }
     }
-    # Stage the change
-    query_string = {"rev": changeset}
-    r = requests.patch(url=nvue_end_point + "/vrf/default/router", 
-                       auth=auth,
-                       verify=False,
-                       data=json.dumps(payload),
-                       params=query_string,
-                       headers=mime_header)
-    print_request(r.request)
-    print_response(r)
-
-    # Apply the staged changeset
-    apply_nvue_changeset(changeset)
-
-    # Check if the changeset was applied
-    is_config_applied(changeset)
-
-def nvue_get(path):
-    r = requests.get(url=nvue_end_point + path",
-                     auth=auth,
-                     verify=False)
-    print_request(r.request)
-    print_response(r)
-
-if __name__ == "__main__":
-    bgp_config()
+    apply_new_config("/vrf/default/router",vrf_payload)
     time.sleep(DUMMY_SLEEP)
     nvue_get("/router")
     nvue_get("/vrf/default/router")
    
    ```
+  
+  </div>
 {{< /tab >}}
 {{< tab "NVUE CLI" >}}
 ```
@@ -2899,6 +2464,87 @@ cumulus@switch:~$ nv set router bgp autonomous-system 65101
 cumulus@switch:~$ nv set router bgp router-id 10.10.10.1
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+### Action commands
+The NVUE action commands reset counters for interfaces, qos statistics, and remove conflicts from protodown MLAG bonds.
+{{< tabs "ActionCommands" >}}
+{{< tab "Curl Command" >}}
+```
+cumulus@switch:~$ curl -H 'Content-Type:application/json' -u 'cumulus:CumulusLinux!' -d '{"@clear": {"state": "start", "parameters": {}}}' -k -X POST "https://127.0.0.1:8765/nvue_v1/interface/swp1/qos/counter" 
+1
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET "https://127.0.0.1:8765/nvue_v1/action/1" 
+```
+{{< /tab >}}
+{{< tab "Python Code" >}}
+<div class=scroll>
+
+```
+   #!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="CumulusLinux!")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+
+def nvue_action():
+    r = requests.post(url=nvue_end_point + path,
+                      auth=auth,
+                      verify=False,
+                      data=json.dumps(apply_payload),
+                      headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+    return response
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+    payload = {
+      "@clear": 
+      {
+        "state": "start", 
+        "parameters": {}
+      }
+    }
+    action_id=nvue_action("/interface/swp1/qos/counter",payload)
+    time.sleep(DUMMY_SLEEP)
+    nvue_get(f"/action/{action_id}")
+   
+   ```
+
+</div>
+{{< /tab >}}
+{{< tab "NVUE CLI" >}}
+```
+cumulus@switch:~$ nv action clear interface swp1 qos counter
 ```
 {{< /tab >}}
 {{< /tabs >}}
@@ -3154,7 +2800,8 @@ The Full Object Model Download is available {{<mib_link url="cumulus-linux-54/ap
 
 ## Considerations
 
-Unlike the NVUE CLI, the NVUE API does not support configuring a plain text password for a user account; you must configure a hashed password for a user account with the NVUE API.
+- Unlike the NVUE CLI, the NVUE API does not support configuring a plain text password for a user account; you must configure a hashed password for a user account with the NVUE API.
+- If there are multiple updates to be made on the switch, a root patch is recommended. A root patch can make configuration changes with fewer round trips to the switch; running many specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
 
 ## Related Information
 

@@ -18,7 +18,7 @@ In an on-premises deployment, NetQ receives the raw data stream from the NetQ Ag
 
 {{<notice note>}}
 
-You can implement a proxy server (that sits between the NetQ Appliance or VM and the integration channels) that receives, processes, and distributes the notifications rather than having them sent directly to the integration channel. If you use such a proxy, you must configure NetQ with the proxy information.
+You can implement a proxy server (that sits between the NetQ appliance or VM and the integration channels) that receives, processes, and distributes the notifications rather than having them sent directly to the integration channel. If you use such a proxy, you must configure NetQ with the proxy information.
 
 {{</notice>}}
 

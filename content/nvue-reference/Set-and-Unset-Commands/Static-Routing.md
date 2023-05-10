@@ -22,7 +22,7 @@ Cumulus Linux adds static routes to the FRR routing table and then to the kernel
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router static \<route-id\> address-family
+## <h>nv set vrf \<vrf-id\> router static \<route-id\> address-family</h>
 
 Enables and disables the address family (`ipv4-unicast` or `ipv6-unicast`) for the static route in the specified VRF.
 
@@ -178,7 +178,7 @@ cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 vi
 
 ## <h>nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\> vrf</h>
 
-Configures the destination path distance and next hop for a specific static route in the specified VRF and the VRF to use for egress.
+Configures the destination path distance and next hop for a specific static route in the specified VRF, and the VRF to use for egress.
 
 ### Command Syntax
 

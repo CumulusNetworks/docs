@@ -34,7 +34,7 @@ cumulus@switch:~$ nv set interface swp51 router pbr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router pbr map \<pbr-map-id\>
+## <h>nv set interface \<interface-id\> router pbr map \<pbr-map-id\></h>
 
 Applies a PBR policy on the specified interface.
 
@@ -62,7 +62,7 @@ Configures global PBR (Policy-based Routing) settings.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router pbr enable
+## <h>nv set router pbr enable</h>
 
 Enables or disables PBR. The default setting is `off`.
 
@@ -125,7 +125,7 @@ cumulus@switch:~$ nv set router pbr map map1 rule 10
 
 ## <h>nv set router pbr map \<pbr-map-id\> rule \<rule-id\> action</h>
 
-Sets the action you want the PBR map rule to take, such as apply a net hop group or a VRF to a policy.
+Sets the action you want the PBR map rule to take, such as apply a next hop group or a VRF to a policy.
 
 ### Command Syntax
 
@@ -200,7 +200,7 @@ Sets the match criteria you want to use for the PBR map rule.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match destination-ip \<ipv4-prefix\>|\<ipv6-prefix\></h>
+## <h>nv set router pbr map \<pbr-map-id\> rule \<rule-id\> match destination-ip \<ip-address\></h>
 
 Sets PBR to match packets according to the destination IP prefix.
 
@@ -210,7 +210,7 @@ Sets PBR to match packets according to the destination IP prefix.
 | ---------  | -------------- |
 | `<pbr-map-id>` |  The PBR route map name. |
 | `<rule-id>`   | The PBR rule number. |
-| `<ipv4-prefix>` or `<ipv6-prefix>` | The destination IPv4 or IPv6 prefix. |
+| `<ip-address>` | The destination IPv4 or IPv6 prefix. |
 
 ### Version History
 

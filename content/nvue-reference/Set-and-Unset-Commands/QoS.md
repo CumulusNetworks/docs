@@ -111,7 +111,7 @@ cumulus@switch:~$ nv set interface swp1 qos egress-scheduler profile MYPROFILE
 
 ## <h>nv set interface \<interface-id\> qos egress-shaper</h>
 
-Configures QoS egress shapeing on the specified interface.
+Configures QoS egress shaping on the specified interface.
 
 ### Command Syntax
 
@@ -269,7 +269,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 qos pfc profile
+cumulus@switch:~$ nv set interface swp1 qos pfc profile MYPROFILE
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -775,9 +775,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 
 
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\> memory-percent</h>
 
-Configures the egress service pool memory percent allocation. You can specify a value between 0 and 100.
-
-The sum of `memory-percent` values across all egress pools must be less than or equal to 100 percent.
+Configures the egress service pool memory percent allocation. You can specify a value between 0 and 100. The sum of `memory-percent` values across all egress pools must be less than or equal to 100 percent.
 
 ### Command Syntax
 
@@ -1178,9 +1176,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 
 ## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\> memory-percent</h>
 
-Configures the ingress service pool memory percent allocation. You can specify a value between 0 and 100.
-
-The sum of `memory-percent` values across all ingress pools must be less than or equal to 100 percent.
+Configures the ingress service pool memory percent allocation. You can specify a value between 0 and 100. The sum of `memory-percent` values across all ingress pools must be less than or equal to 100 percent.
 
 ### Command Syntax
 
@@ -1295,11 +1291,9 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 
 ## <h>nv set qos congestion-control \<profile-id\></h>
 
-Configures Explicit Congestion Notification (ECN); an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
+Configures <span style="background-color:#F5F5DC">[ECN](## "Explicit Congestion Notification")</span>; an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
 
-ECN operates by having a transit switch that marks packets between two end hosts.
-
-You use ECN with RDMA over Converged Ethernet - RoCE.
+ECN operates by having a transit switch that marks packets between two end hosts. You use ECN with RDMA over Converged Ethernet - RoCE.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1403,7 +1397,7 @@ cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5
 
 ## <h>nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> red</h>
 
-Turns Random Early Detection (RED) on or off.
+Turns <span style="background-color:#F5F5DC">[RED](## "Random Early Detection")</span> on or off. 
 
 ECN prevents packet drops in the network due to congestion by signaling hosts to transmit less. However, if congestion continues after ECN marking, packets drop after the switch buffer is full. By default, Cumulus Linux tail-drops packets when the buffer is full. You can enable RED to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
 
@@ -1534,6 +1528,22 @@ Traffic shaping works by holding packets in the buffer and releasing them at spe
 ## <h>nv set qos egress-shaper \<profile-id\> port-max-rate</h>
 
 Configures the maximum packet shaper rate for the specified profile. You can set a value between 0 and 2147483647.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos egress-shaper shaper1 port-max-rate 2000
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1803,7 +1813,7 @@ cumulus@switch:~$ nv set qos mapping default-global pcp 0 switch-priority 4
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos mapping \<profile-id\> port-default-sp
+## <h>nv set qos mapping \<profile-id\> port-default-sp</h>
 
 Assigns all traffic to a specific switch priority regardless of the ingress marking.
 
@@ -2029,7 +2039,7 @@ Configures 802.1p or DSCP traffic marking.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos remark \<profile-id\> rewrite
+## <h>nv set qos remark \<profile-id\> rewrite</h>
 
 You can specify `l2`, `l3`, or `both`.
 
@@ -2155,7 +2165,7 @@ cumulus@switch:~$ nv set qos roce enable off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-# nv set qos roce mode</h>
+## nv set qos roce mode</h>
 
 Configures the RoCE mode. You can specify `lossy` or `lossless`. The default setting is `lossless`.
 

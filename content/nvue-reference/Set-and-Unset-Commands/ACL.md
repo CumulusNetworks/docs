@@ -844,7 +844,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match mac source-mac any
 
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> match mac source-mac-mask \<source-mac-mask\></h>
 
-Configure the source MAC address mask you want to match.
+Configures the source MAC address mask you want to match.
 
 ### Command Syntax
 

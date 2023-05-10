@@ -14,7 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set system forwarding</h>
 
-Configures switch sorwrding.
+Configures switch forwarding.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

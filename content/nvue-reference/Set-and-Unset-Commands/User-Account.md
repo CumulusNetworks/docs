@@ -14,7 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set system aaa user \<user-id\> enable</h>
 
-Turns the user account on or off.
+Turns the user account for the switch on or off.
 
 ### Command Syntax
 

@@ -12,17 +12,15 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> bond mlag
+## <h>nv set interface \<interface-id\> bond mlag</h>
 
-Provides commands to configure Multi-chassis Link Aggregation (MLAG) on a bond interface.
+Provides commands to configure <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> on a bond interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> bond mlag enable</h>
 
-Turns MLAG on or off on the bond interface.
-
-The default setting is `off`.
+Turns MLAG on or off on the bond interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -44,9 +42,7 @@ cumulus@switch:~$ nv set interface swp1 bond mlag enable on
 
 ## <h>nv set interface \<interface-id\> bond mlag id</h>
 
-Configures the MLAG ID on the bond interface. You must specify a unique MLAG ID (`clag-id`) for every dual-connected bond on each peer switch so that switches know which links dual-connect or connect to the same host or switch. The value must be between 1 and 65535 and must be the same on both peer switches. A value of 0 disables MLAG on the bond.
-
-The default setting is `auto`.
+Configures the MLAG ID on the bond interface. You must specify a unique MLAG ID (`clag-id`) for every dual-connected bond on each peer switch so that switches know which links dual-connect or connect to the same host or switch. The value must be between 1 and 65535 and must be the same on both peer switches. A value of 0 disables MLAG on the bond. The default setting is `auto`.
 
 ### Command Syntax
 
@@ -66,9 +62,9 @@ cumulus@switch:~$ nv set interface swp1 bond mlag id 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set mlag
+## <h>nv set mlag</h>
 
-Provides commands to configure global Multi-chassis Link Aggregation (MLAG) settings.
+Provides commands to configure global MLAG settings.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -118,9 +114,7 @@ cumulus@switch:~$ nv set mlag backup 10.10.10.2 vrf RED
 
 ## <h>nv set mlag debug</h>
 
-Turns MLAG debugging on or off.
-
-The default setting is `off`.
+Turns MLAG debugging on or off. The default setting is `off`.
 
 ### Version History
 
@@ -136,9 +130,7 @@ cumulus@switch:~$ nv set mlag debug on
 
 ## <h>nv set mlag enable</h>
 
-Turns MLAG on or off.
-
-The default setting is `off`.
+Turns MLAG on or off. The default setting is `off`.
 
 ### Version History
 
@@ -177,9 +169,7 @@ cumulus@switch:~$ nv set mlag init-delay 100
 
 ## <h>nv set mlag mac-address</h>
 
-Configures the MLAG system MAC address. NVIDIA provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network. Do not to use a multicast MAC address. Make sure you specify a different MAC address for each MLAG pair in the network.
-
-The default setting is `auto`.
+Configures the MLAG system MAC address. NVIDIA provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network. Do not to use a multicast MAC address. Make sure you specify a different MAC address for each MLAG pair in the network. The default setting is `auto`.
 
 ### Version History
 
@@ -211,9 +201,7 @@ cumulus@switch:~$ nv set mlag peer-ip linklocal
 
 ## <h>nv set mlag priority</h>
 
-Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a value between 0-65535.
-
-The default setting is 32768.
+Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a value between 0-65535. The default setting is 32768.
 
 ### Version History
 
@@ -227,7 +215,7 @@ cumulus@switch:~$ nv set mlag priority 2084
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set nve vxlan mlag
+## <h>nv set nve vxlan mlag</h>
 
 Provides commands to configure MLAG for VXLAN.
 

@@ -42,7 +42,7 @@ Configures VXLAN decapsulation.
 
 ## <h>nv set nve vxlan decapsulation dscp action</h>
 
-Configures the VXLAN decapsulation DSCP/COS action. You can specify one of the following options:
+Configures the VXLAN decapsulation DSCP or COS action. You can specify one of the following options:
 - `copy` (if the inner packet is IP).
 - `preserve` (the inner DSCP does not change).
 - `derive` (from the switch priority).
@@ -100,7 +100,7 @@ cumulus@switch:~$ nv set nve vxlan encapsulation dscp action derive
 
 ## <h>nv set nve vxlan encapsulation dscp value</h>
 
-Configures the DSCP value to put in outer VXLAN packet.
+Configures the DSCP value to put in outer VXLAN packets.
 
 ### Version History
 

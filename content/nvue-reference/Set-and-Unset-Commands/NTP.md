@@ -14,9 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set service ntp \<vrf-id\></h>
 
-Configures the Network Time Protocol (NTP) in a specific VRF.
-
-The default VRF is `default`.
+Configures the Network Time Protocol (NTP) in a specific VRF. The default VRF is `default`.
 
 ### Command Syntax
 
@@ -38,9 +36,7 @@ cumulus@switch:~$ nv set service ntp default
 
 ## <h>nv set service ntp \<vrf-id\> listen \<interface-name\></h>
 
-Configures the NTP interface on which to listen.
-
-The default setting is `eth0`.
+Configures the NTP interface on which to listen. The default setting is `eth0`.
 
 ### Command Syntax
 
@@ -70,7 +66,7 @@ Configures the remote NTP server pool.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<server-id>` |  The hostname or IP address of the NTP server. |
+| `<server-id>` |  The NTP server pool. |
 
 ### Version History
 
@@ -86,9 +82,7 @@ cumulus@switch:~$ nv set service ntp default pool 4.cumulusnetworks.pool.ntp.org
 
 ## <h>nv set service ntp \<vrf-id\> pool \<server-id\> iburst</h>
 
-Configures NTP to send a burst of eight packets instead of the usual one packet when the server pool is unreachable. You can specify `on` or `off`.
-
-The default setting is `off`.
+Configures NTP to send a burst of eight packets instead of the usual one packet when the server pool is unreachable. You can specify `on` or `off`. The default setting is `off`.
 
 ### Command Syntax
 
@@ -134,9 +128,7 @@ cumulus@switch:~$ nv set service ntp default server time.nist.gov
 
 ## <h>nv set service ntp \<vrf-id\> server \<server-id\> iburst</h>
 
-Configures NTP to send a burst of eight packets instead of the usual one packet when the server is unreachable. You can specify `on` or `off`.
-
-The default setting is `off`.
+Configures NTP to send a burst of eight packets instead of the usual one packet when the server is unreachable. You can specify `on` or `off`. The default setting is `off`.
 
 ### Command Syntax
 

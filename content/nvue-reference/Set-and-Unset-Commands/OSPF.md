@@ -68,7 +68,7 @@ cumulus@switch:~$ nv set interface swp51 router ospf authentication enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-# nv set interface \<interface-id\> router ospf authentication md5-key \<value\></h>
+## nv set interface \<interface-id\> router ospf authentication md5-key \<value\></h>
 
 Configures the MD5 key for the specified interface.
 
@@ -253,9 +253,7 @@ cumulus@switch:~$ nv set interface swp51 router ospf enable on
 
 ## <h>nv set interface \<interface-id\> router ospf mtu-ignore</h>
 
-Configures OSPF to turn MTU value checking in the OSPF DBD packets on or off.
-
-The default setting is `on`.
+Configures OSPF to turn MTU value checking in the OSPF DBD packets on or off. The default setting is `on`.
 
 ### Command Syntax
 
@@ -817,7 +815,7 @@ cumulus@switch:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24 supp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-# nv set vrf \<vrf-id\> router ospf area \<area-id\> type</h>
+## nv set vrf \<vrf-id\> router ospf area \<area-id\> type</h>
 
 Configures the OSPF area type. You can specify `normal`, `stub`, `totally-stub`, `nssa`, or `totally-nssa`.
 
@@ -1228,7 +1226,7 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute bgp metric-type
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute bgp route-map \<route-map-id\>
+## <h>nv set vrf \<vrf-id\> router ospf redistribute bgp route-map \<route-map-id\></h>
 
 Applies the specified route map for OSPF BGP route redistribution.
 
@@ -1323,7 +1321,7 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute connected metric-t
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute connected route-map \<route-map-id\>
+## <h>nv set vrf \<vrf-id\> router ospf redistribute connected route-map \<route-map-id\></h>
 
 Applies the specified route map for OSPF connected route redistribution.
 
@@ -1418,7 +1416,7 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute kernel metric-type
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute kernel route-map \<route-map-id\>
+## <h>nv set vrf \<vrf-id\> router ospf redistribute kernel route-map \<route-map-id\></h>
 
 Applies the specified route map for OSPF kernel route redistribution.
 
@@ -1513,7 +1511,7 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute static metric-type
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute static route-map \<route-map\>
+## <h>nv set vrf \<vrf-id\> router ospf redistribute static route-map \<route-map\></h>
 
 Applies the specified route map for OSPF static route redistribution.
 

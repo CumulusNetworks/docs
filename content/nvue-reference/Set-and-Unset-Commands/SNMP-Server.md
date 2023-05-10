@@ -18,7 +18,7 @@ Configures SNMP settings on the switch.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service snmp-server enable (on|off)</h>
+## <h>nv set service snmp-server enable</h>
 
 Turns the SNMP server on or off.
 
@@ -478,9 +478,7 @@ cumulus@switch:~$ nv set service snmp-server trap-destination localhost communit
 
 ## <h>nv set service snmp-server trap-destination \<trap-destination-id\> community-password \<community-password-id\> version</h>
 
-Configures the trap receiver IP address for SNMPv1 and SNMPv2c traps, the community password, and the SNMP version (1 or 2c).
-
-The default version is SNMPv2c.
+Configures the trap receiver IP address for SNMPv1 and SNMPv2c traps, the community password, and the SNMP version (1 or 2c). The default version is SNMPv2c.
 
 ### Command Syntax
 

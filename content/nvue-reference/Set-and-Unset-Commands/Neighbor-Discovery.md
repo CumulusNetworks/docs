@@ -14,7 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery</h>
 
-Configures Neighbor Discovery (ND) for an interface. ND allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
+Configures <span style="background-color:#F5F5DC">[ND](## "Neighbor Discovery")</span> for an interface. ND allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -43,7 +43,7 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.n
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\> lifetime</h>
 
-Configures the maximum amount of time you want to use the domain suffix for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword infinte to set the time to never expire. If you set the value to 0, the host does not use the DNSSL.
+Configures the maximum amount of time you want to use the domain suffix for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword `infinte` to set the time to never expire. If you set the value to 0, the host does not use the DNSSL.
 
 ### Command Syntax
 
@@ -66,7 +66,7 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.n
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery enable</h>
 
-Turns Neighbor Discovery on or off. The default setting is `on`.
+Turns ND on or off. The default setting is `on`.
 
 ### Command Syntax
 
@@ -160,7 +160,7 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery home-agent prefere
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery mtu</h>
 
-Configures the MTU for Neighbor Discovery messages on an interface. You can set a value between 1 and 65535.
+Configures the MTU for ND messages on an interface. You can set a value between 1 and 65535.
 
 ### Command Syntax
 
@@ -180,20 +180,9 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery mtu 1500
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\></h>
+## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix</h>
 
 Configures the IPv6 prefix you want to include in router advertisements.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` | The interface you want to configure. |
-| `<ipv6-address-id>` | The IPv6 address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -390,7 +379,7 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertiseme
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement fast-retransmit</h>
 
-Configures the switch to allow consecutive router advertisement packets to transmit more frequently than every three seconds (fast retransmit). The default setting is `on`.
+Configures the specified interface to allow consecutive router advertisement packets to transmit more frequently than every three seconds (fast retransmit). The default setting is `on`.
 
 ### Command Syntax
 
@@ -456,7 +445,7 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertiseme
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval-option</h>
 
-Configures the switch to indicate to hosts that the router uses an advertisement interval to send router advertisements. The default setting is `off`.
+Configures the specified interface to indicate to hosts that the router uses an advertisement interval to send router advertisements. The default setting is `off`.
 
 ### Command Syntax
 
@@ -500,7 +489,7 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertiseme
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement managed-config</h>
 
-Configures the switch to allow a dynamic host to use a managed protocol, such as DHCPv6, to configure IP addresses automatically (managed configuration). The default setting is `off`.
+Configures the specified interface to allow a dynamic host to use a managed protocol, such as DHCPv6, to configure IP addresses automatically (managed configuration). The default setting is `off`.
 
 ### Command Syntax
 
@@ -522,7 +511,7 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertiseme
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement other-config</h>
 
-Configures the switch to allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. The default setting is `off`.
+Configures the specified interface to allow a dynamic host to use a managed protocol to configure additional information through DHCPv6. The default setting is `off`.
 
 ### Command Syntax
 
@@ -588,7 +577,7 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertiseme
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement router-preference</h>
 
-Configures the switch to allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default setting is `medium`.
+Configures the specified interface to allow hosts to use router preference to select the default router. You can set a value of high, medium, or low. The default setting is `medium`.
 
 ### Command Syntax
 

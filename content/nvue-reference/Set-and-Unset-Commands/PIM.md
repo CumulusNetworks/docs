@@ -42,29 +42,25 @@ cumulus@switch:~$ nv set interface swp51 router pim active-active on
 
 ## <h>nv set interface \<interface-id\> router pim address-family</h>
 
-Configures the address family on the PIM enabled interface.
+Configures the address family on the PIM interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> router pim address-family ipv4-unicast</h>
 
-Configures the IPv4 unicast address family.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Configures the IPv4 unicast address family on the interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> router pim address-family ipv4-unicast allow-rp</h>
 
-Configures the interface to ignore the RP check for all upstream neighbors. The default value is `off`.
+Configures the PIM interface to ignore the RP check for all upstream neighbors. The default value is `off`.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> router pim address-family ipv4-unicast allow-rp enable</h>
 
-Configures PIM to ignore the RP check for all upstream neighbors. The default setting is `off`.
+Configures the PIM interface to ignore the RP check for all upstream neighbors. The default setting is `off`.
 
 ### Command Syntax
 
@@ -132,7 +128,7 @@ cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4-unicast 
 
 ## <h>nv set interface \<interface-id\> router pim address-family ipv4-unicast use-source</h>
 
-Configures the PIM enabled interface to use the unique source address in the PIM Hello source field.
+Configures the PIM interface to use the unique source address in the PIM Hello source field.
 
 ### Command Syntax
 
@@ -154,13 +150,13 @@ cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4-unicast 
 
 ## <h>nv set interface \<interface-id\> router pim bfd</h>
 
-Configures BFD for the PIM enabled interface.
+Configures BFD for the PIM interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> router pim bfd detect-multiplier</h>
 
-Configures the BFD detect multiplier value for a PIM enabled interface. You can set a value between 2 and 255.
+Configures the BFD detect multiplier value for a PIM interface. You can set a value between 2 and 255.
 
 ### Command Syntax
 
@@ -182,7 +178,7 @@ cumulus@switch:~$ nv set interface swp51 router pim bfd detect-multiplier  10
 
 ## <h>nv set interface \<interface-id\> router pim bfd enable</h>
 
-Turns BFD on or off on the PIM enabled interface. The default setting is `off`.
+Turns BFD on or off on the PIM interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -204,7 +200,7 @@ cumulus@switch:~$ nv set interface router pim bfd on
 
 ## <h>nv set interface \<interface-id\> router pim bfd min-receive-interval</h>
 
-Configures the BFD minimum receive interval in milliseconds or a PIM enabled interface. You can set a value between 50 and 60000.
+Configures the BFD minimum receive interval in milliseconds for a PIM interface. You can set a value between 50 and 60000.
 
 ### Command Syntax
 
@@ -226,7 +222,7 @@ cumulus@switch:~$ nv set interface swp51 router pim bfd min-receive-interval 300
 
 ## <h>nv set interface \<interface-id\> router pim bfd min-transmit-interval</h>
 
-Configures the BFD minimum transmit interval in milliseconds or a PIM enabled interface. You can set a value between 50 and 60000.
+Configures the BFD minimum transmit interval in milliseconds for a PIM interface. You can set a value between 50 and 60000.
 
 ### Command Syntax
 
@@ -248,7 +244,7 @@ cumulus@switch:~$ nv set interface swp51 router pim bfd min-transmit-interval 30
 
 ## <h>nv set interface \<interface-id\> router pim dr-priority</h>
 
-Configures the Designated Router Election (DR) priority. You can specify a value between 1 and 4294967295.
+Configures the Designated Router Election (DR) priority for the PIM interface. You can specify a value between 1 and 4294967295.
 
 ### Command Syntax
 
@@ -270,7 +266,7 @@ cumulus@switch:~$ nv set interface swp1 router pim dr-priority 100
 
 ## <h>nv set interface \<interface-id\> router pim enable</h>
 
-Turns PIM on or off on the interface. The default setting is `off`.
+Turns PIM on or off for an interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -292,13 +288,13 @@ cumulus@switch:~$ nv set interface swp51 router pim enable on
 
 ## <h>nv set interface \<interface-id\> router pim timers</h>
 
-Configures PIM timers on an interface.
+Configures PIM timers on the interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> router pim timers hello-interval</h>
 
-Configures the PIM Hello packets periodic interval on the enabled PIM interface. The hold time is 3.5 times the `hello-interval`, the amount of time the neighbor must be in a reachable state.
+Configures the PIM Hello packets periodic interval on the PIM interface. The hold time is 3.5 times the `hello-interval`, the amount of time the neighbor must be in a reachable state.
 
 ### Command Syntax
 
@@ -326,7 +322,7 @@ Configures PIM globally on the switch.
 
 ## <h>nv set router pim enable</h>
 
-Turns PIM on or off. The default setting is `off`.
+Turns PIM on or off globally. The default setting is `off`.
 
 ### Version History
 
@@ -410,7 +406,7 @@ cumulus@switch:~$ nv set router pim timers keep-alive 10000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router pim timers register-suppress
+## <h>nv set router pim timers register-suppress</h>
 
 The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000 seconds. The default setting is 60 seconds.
 
@@ -450,17 +446,17 @@ Configures PIM on the specified VRF.
 
 ## <h>nv set vrf \<vrf-id\> router pim address-family</h>
 
-Configures the address family for PIM.
+Configures the address family for PIM on the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast</h>
 
-Configures the IPv4 unicast address family.
+Configures the IPv4 unicast address family on the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast register-accept-list
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast register-accept-list</h>
 
 Applies a prefix-list that specifies the source list to accept PIM register messages.
 
@@ -490,7 +486,7 @@ Configures RP settings for the specified VRF.
 
 ## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range \<group-range-id\></h>
 
-Configures the group to RP mapping using the anycast address.
+Configures the group to RP mapping using the anycast address on the specified VRF.
 
 ### Command Syntax
 
@@ -512,9 +508,9 @@ cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast rp 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> prefix-list \<instance-name\>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> prefix-list \<instance-name\></h>
 
-Applies a prefix list that specifies the multicast group range.
+Applies a prefix list that specifies the multicast group range on the specified VRF.
 
 ### Command Syntax
 
@@ -532,7 +528,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast send-v6-secondary</h>
 
-Turns sending IPv6 addresses as secondary addresses on or off. The default setting is `off`.
+Turns sending IPv6 addresses as secondary addresses on or off on the specified VRF. The default setting is `off`.
 
 ### Command Syntax
 
@@ -582,9 +578,9 @@ cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover prefix-list \<instance-name\>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover prefix-list \<instance-name\></h>
 
-Applies the prefix list that specifies the multicast group range.
+Applies the prefix list that specifies the multicast group range on the specified VRF.
 
 ### Command Syntax
 
@@ -605,9 +601,9 @@ cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast ssm-prefix-list
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast ssm-prefix-list</h>
 
-Applies a prefix-list to specify the Source Specific Multicast (SSM) group range.
+Applies a prefix-list to specify the Source Specific Multicast (SSM) group range on the specified VRF.
 
 ### Command Syntax
 
@@ -731,7 +727,7 @@ cumulus@switch:~$ nv set vrf default router pim msdp-mesh-group cumulus member-a
 
 ## <h>nv set vrf \<vrf-id\> router pim msdp-mesh-group \<msdp-mesh-group-id\> source-address \<ipv4\></h>
 
-Configures the MSDP mesh group source IP address.
+Configures the MSDP mesh group source IP address on the specified VRF.
 
 ### Command Syntax
 

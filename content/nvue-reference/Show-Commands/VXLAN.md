@@ -26,7 +26,7 @@ cumulus@switch:~$ nv show nve vxlan
 
 ## <h>nv show nve vxlan decapsulation
 
-Show VXLAN decapsulation configuration.
+Shows VXLAN decapsulation configuration.
 
 ### Version History
 
@@ -58,7 +58,7 @@ cumulus@switch:~$ nv show nve vxlan decapsulation dscp
 
 ## <h>nv show nve vxlan encapsulation
 
-Show VXLAN encapsulation configuration.
+Shows VXLAN encapsulation configuration.
 
 ### Version History
 

@@ -5,7 +5,7 @@ weight: 1130
 toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
-- Cumulus Linux includes and enables the WJH agent by default so that you can stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-33" >}}). 
+- Cumulus Linux includes and enables the WJH agent by default so that you can stream detailed and contextual telemetry for off-switch analysis with tools, such as {{<kb_link latest="netq" text="NVIDIA NetQ">}}. 
 - Cumulus Linux includes the WJH service so that you can diagnose network problems by looking at dropped packets. WJH shows only forwarding (layer 2, layer 3, and tunnel) related issues.
 
 ## Enable the WJH Service

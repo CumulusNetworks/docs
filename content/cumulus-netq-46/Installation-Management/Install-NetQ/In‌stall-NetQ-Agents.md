@@ -12,7 +12,7 @@ After installing the NetQ software, you should install the NetQ Agents on each s
 - SONiC 202012
 - CentOS 7
 - RHEL 7.1
-- Ubuntu 18.04
+- Ubuntu 18.04, Ubuntu 20.04
 
 ## Prepare for NetQ Agent Installation
 
@@ -416,6 +416,19 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and ad
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
 ...
 deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+...
+```
+
+{{</tab>}}
+        
+{{<tab "Ubuntu 20.04" >}}
+
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add the following line:
+
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
 ...
 ```
 

@@ -20,7 +20,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 ### Download and Install the Software
 
 1. Download and install {{<exlink url="https://www.virtualbox.org/wiki/Downloads" text="VirtualBox">}}.
-2. Download and install {{<exlink url="https://www.https://www.vagrantup.com/downloads" text="Vagrant">}}.
+2. Download and install {{<exlink url="https://www.vagrantup.com/downloads" text="Vagrant">}}.
 
 ### Create VMs and Network Connections
 

@@ -287,7 +287,7 @@ GitLab also provides a way for you to define custom environment variables for th
 
 Because the NetQ installation requires unique configuration and access keys, these get stored as masked variables with the GitLab project (you can configure the keys to be valid only on protected branches). These variables get called during the NetQ provisioning CI job to allow for programmatic provisioning of NetQ in the automated CI pipeline.
 
-It is best practice to configure a dedicated or dummy CI and CLI user in NetQ Cloud User Management. This allows the generated access-key and secret-key from this account to be more easily disposable in case you need to revoke or change them. For more information about setting up NetQ users and generating auth keys to store with your CI/CD enabled GitLab project, refer to the [NetQ documentation]({{<ref "/cumulus-netq-30" >}}).
+It is best practice to configure a dedicated or dummy CI and CLI user in NetQ Cloud User Management. This allows the generated access-key and secret-key from this account to be more easily disposable in case you need to revoke or change them. For more information about setting up NetQ users and generating auth keys to store with your CI/CD enabled GitLab project, refer to the {{<kb_link latest="netq" text="NetQ documentation">}}.
 
 If you want to use the reference `ci-common` and `test` scripts unmodified, configure the following variables in the **Settings**|**CI/CD**|**Variables** area in GitLab on your project:
 
@@ -295,7 +295,7 @@ If you want to use the reference `ci-common` and `test` scripts unmodified, conf
 |------------- | ----------- |
 | `CONCURRENCY_ID` | An integer value to help the simulation host support concurrent simulations for concurrent projects. You must specify this variable if your GitLab Runner supports multiple projects that can run simulations concurrently.<br>For example:<br> `1` |
 | `NETQ_ACCESS_KEY` | A valid access\-key generated from the NetQ Cloud User Management page.<br>For example:<br> `bf5802fd59456d7be723d85f99c303b5c943c536f75b86e1da8fb94a48a18dfa` |
-| `NETQ_BOOTSTRAP_TARBALL` | The URL to the NetQ bootstrap tarball on netq-ts. For more information, refer to the [NetQ documentation]({{<ref "/cumulus-netq-30/Cumulus-NetQ-Deployment-Guide/Install-NetQ/Install-NetQ-System-Platform/Prepare-Existing-NetQ-Appliance" >}}). You must store this variable in GitLab as base64 encoded due to the slash characters (/) in the path.<br>For example:<br> `L21udC9pbnN0YWxsYWJsZXMvbmV0cS1ib290c3RyYXAtMi40LjEudGd6` |
+| `NETQ_BOOTSTRAP_TARBALL` | The URL to the NetQ bootstrap tarball on netq-ts. For more information, refer to the {{<kb_link latest="netq" text="NetQ documentation">}}. You must store this variable in GitLab as base64 encoded due to the slash characters (/) in the path.<br>For example:<br> `L21udC9pbnN0YWxsYWJsZXMvbmV0cS1ib290c3RyYXAtMi40LjEudGd6` |
 | `NETQ_CONFIG_KEY` | The config-key for your dedicated premises for CI and simulation from the Cumulus NetQ Cloud Onboarding process email.<br>For example:<br> `CXx0Dh1zY3XucHJXZDMubmV0cx5jdX11bHVzbmV0d29Ya3MuYd9tGLsD` |
 | `NETQ_OPTA_TARBALL` | The URL of the NetQ OPTA install tarball. You must store this variable in GitLab as base64 encoded due to the slash characters (/) in the path.<br>For example:<br> `L21udC9pbnN0YWxsYWJsZXMvTmV0US0yLjQuMS1vcHRhLnRneg==` |
 | `NETQ_PREMISE_NAME` | The string of your premises name for this dedicated CI/CD simulation environment.<br>For example:<br> `netq-demo-dc-6` |

@@ -116,7 +116,7 @@ cumulus@switch:~$ nv set system control-plane policer acl-log burst 1000
 
 ## <h>nv set system control-plane policer \<policer-id\> rate</h>
 
-Configures the control plane policer forwarding rate, which is the maximum rate in kilobytes (KB) or packets. You can specify a value between 10 and 50000.
+Configures the control plane policer forwarding rate, which is the maximum rate in kilobytes (KB) for packets. You can specify a value between 10 and 50000.
 
 ### Command Syntax
 
@@ -358,7 +358,7 @@ Configures the reserved VLAN range.
 
 ## <h>nv set system global reserved vlan internal</h>
 
-Configures the reserved VLAN range.
+Configures the internal reserved VLAN range.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -456,9 +456,7 @@ Configures the message you want users of the switch to see before and after they
 
 ## <h>nv set system message post-login</h>
 
-Configures the message you want users to see after they log into the switch.
-
-If the message contains more than one word, you must enclose it in quotes (").
+Configures the message you want users to see after they log into the switch. If the message contains more than one word, you must enclose it in quotes (").
 
 ### Version History
 
@@ -474,9 +472,7 @@ cumulus@switch:~$ nv set system message post-login "This switch is being used fo
 
 ## <h>nv set system message pre-login</h>
 
-Configures the message you want users to see before they log into the switch.
-
-If the message contains more than one word, you must enclose it in quotes (").
+Configures the message you want users to see before they log into the switch. If the message contains more than one word, you must enclose it in quotes (").
 
 ### Version History
 

@@ -12,31 +12,9 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set system aaa authentication-order \<priority-id\></h>
-
-Configures the authentication order so that either TACACS+ or local authentication has priority (the lower number has priority). You can specify a value of `tacacs` or `local`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<user-id>`  |  The user account. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set system aaa authentication-order 1 tacacs
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set system aaa tacacs accounting</h>
 
-Configures TACACS+ accounting. TACACS+ accounting uses the `audisp` module, with an additional plugin for `auditd` and `audisp`. The plugin maps the `auid` in the accounting record to a TACACS login, which it bases on the `auid` and sessionid.
+Configures TACACS+ accounting. TACACS+ accounting uses the `audisp` module, with an additional plugin for `auditd` and `audisp`. The plugin maps the `auid` in the accounting record to a TACACS login, which it bases on the `auid` and `sessionid`.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -90,6 +68,28 @@ Introduced in Cumulus Linux 5.4.0 (beta)
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs authentication mode chap
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system aaa authentication-order \<priority-id\></h>
+
+Configures the authentication order so that either TACACS+ or local authentication has priority (the lower number has priority). You can specify a value of `tacacs` or `local`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`  |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system aaa authentication-order 1 tacacs
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -150,7 +150,7 @@ Configures TACACS to exclude users from going to the TACACS+ server for authenti
 
 ## <h>nv set system aaa tacacs exclude-user username \<value\></h>
 
-Configures TACACS to exclude a user from going to the TACACS+ server for authentication.
+Configures TACACS to exclude the specified user from going to the TACACS+ server for authentication.
 
 ### Command Syntax
 
@@ -194,7 +194,7 @@ cumulus@switch:~$ nv set system aaa tacacs server 5
 
 ## <h>nv set system aaa tacacs server \<priority-id\> host</h>
 
-Configures the IPv4 address or hostname of at least one TACACS+ server.
+Configures the IPv4 address or hostname of the TACACS+ server. You must configure at least one TACACS+ server.
 
 ### Command Syntax
 

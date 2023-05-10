@@ -20,7 +20,7 @@ Configures Virtual Router Redundancy (VRR) for an interface. VRR enables hosts t
 
 ## <h>nv set interface \<interface-id\> ip vrr address \<ip-prefix-id\></h>
 
-Configures the virtual address and prefix.
+Configures the VRR virtual address and prefix.
 
 ### Command Syntax
 
@@ -155,13 +155,13 @@ cumulus@switch:~$ nv set router vrr enable on
 
 ## <h>nv set interface \<interface-id\> ip vrrp</h>
 
-Configures the Virtual Router Redundancy Protocol (VRRP) on the interface.
+Configures the <span style="background-color:#F5F5DC">[VRRP](## "Virtual Router Redundancy Protocol")</span> on the interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ip vrrp enable</h>
 
-Turns on VRRP on the interface. The default setting is `off`.
+Turns VRRP on or off for the interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -183,7 +183,7 @@ cumulus@switch:~$ nv set interface swp1 ip vrrp enable on
 
 ## <h>nv set interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\></h>
 
-Configures the group of virtual gateways implemented with VRRP.
+Configures the group of virtual gateways used with VRRP.
 
 ### Command Syntax
 

@@ -42,7 +42,7 @@ cumulus@switch:~$ nv set router policy as-path-list mylist
 
 ## <h>nv set router policy as-path-list \<list-id\> rule \<rule-id\></h>
 
-Configures the AS Path list rule number.
+Configures the AS path list rule number.
 
 ### Command Syntax
 
@@ -130,26 +130,9 @@ cumulus@switch:~$ nv set router policy community-list COMMUNITY1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router policy community-list \<list-id\> rule \<rule-id\></h>
+## <h>nv set router policy community-list \<list-id\> rule</h>
 
-Configures the community list rule number.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<list-id>`  | The community list name. |
-| `<rule-id>`  | The community list rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
-```
+Configures the community list rule.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -202,7 +185,7 @@ cumulus@switch:~$ nv set router policy community-list COMMUNITY1 rule 10 communi
 
 ## <h>nv set router policy ext-community-list \<list-id\></h>
 
-Sets the name of the Extended Community list you want to use to match BGP communities.
+Sets the name of the extended community list you want to use to match BGP communities.
 
 ### Command Syntax
 
@@ -270,7 +253,7 @@ cumulus@switch:~$ nv set router policy ext-community-list mylist rule 10 action 
 
 ## <h>nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community</h>
 
-Configures the Extended Community name.
+Configures the extended community name.
 
 ### Command Syntax
 
@@ -293,7 +276,7 @@ cumulus@switch:~$ nv set router policy ext-community-list mylist rule 10 ext-com
 
 ## <h>nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt \<ext-community-id\></h>
 
-Configures the Route Target Extended Community number.
+Configures the extended community number.
 
 ### Command Syntax
 
@@ -317,7 +300,7 @@ cumulus@switch:~$ nv set router policy ext-community-list mylist rule 10 ext-com
 
 ## <h>nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community soo \<ext-community-id\></h>
 
-Configures the site-of-origin (SoO) Extended Community to identify routes that originate from a certain site so that you can prevent readvertising that prefix back to the source site.
+Configures the site-of-origin (SoO) extended community to identify routes that originate from a certain site so that you can prevent readvertising that prefix back to the source site.
 
 ### Command Syntax
 
@@ -341,7 +324,7 @@ cumulus@switch:~$ nv set router policy ext-community-list mylist rule 10 ext-com
 
 ## <h>nv set router policy large-community-list \<list-id\></h>
 
-Configures the name of the Large Community list you want to use to match community based BGP policies.
+Configures the name of the large community list you want to use to match community based BGP policies.
 
 ### Command Syntax
 
@@ -363,7 +346,7 @@ cumulus@switch:~$ nv set router policy large-community-list mylist
 
 ## <h>nv set router policy large-community-list \<list-id\> rule \<rule-id\></h>
 
-Configures the Large Community list rule number.
+Configures the large community list rule number.
 
 ### Command Syntax
 
@@ -657,7 +640,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action deny</h>
 
-Configures the route map rule action to deny.
+Configures the route map rule action to `deny`.
 
 ### Command Syntax
 
@@ -680,7 +663,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 deny
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit</h>
 
-Configures the route map rule action to permit.
+Configures the route map rule action to `permit`.
 
 ### Command Syntax
 
@@ -765,7 +748,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 description none
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 description "this is my route map description"
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1067,7 +1050,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-le
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match large-community-list \<instance-name\></h>
 
-Configures the name of the BGP Large Community list you want to use in the route map.
+Configures the name of the BGP large community list you want to use in the route map.
 
 ### Command Syntax
 
@@ -1276,22 +1259,11 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match ipv4
 
 Configures the route map rule set.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` | The route map rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\></h>
 
-Sets the aggregator AS Number for a matched route.
+Sets the aggregator ASN for a matched route.
 
 ### Command Syntax
 
@@ -1299,7 +1271,7 @@ Sets the aggregator AS Number for a matched route.
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
-| `<asn-id>` | The ASN number.|
+| `<asn-id>` | The ASN.|
 
 ### Version History
 
@@ -1340,7 +1312,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set aggregator-as 
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-exclude</h>
 
-Configures a set clause in the route map to remove the AS number from the AS Path attribute of the route. You can specify a value between 1 and 4294967295.
+Configures a set clause in the route map to remove the ASN from the AS path attribute of the route. You can specify a value between 1 and 4294967295.
 
 ### Command Syntax
 
@@ -1363,7 +1335,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set as-path-exclud
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend</h>
 
-Sets the BGP AS Path you want to prepend for a matched route.
+Sets the BGP AS path you want to prepend for a matched route.
 
 ### Command Syntax
 
@@ -1386,7 +1358,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepen
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend as</h>
 
-Sets the BGP AS number to prepend for a matched route.
+Sets the BGP ASN to prepend for a matched route.
 
 ### Command Syntax
 
@@ -1455,7 +1427,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set atomic-aggrega
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set community \<community-id\></h>
 
-Sets the BGP Community attribute for a matched route.
+Sets the BGP community attribute for a matched route.
 
 ### Command Syntax
 
@@ -1594,7 +1566,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-p
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community \<large-community-id\></h>
 
-Sets the large BGP Community for a matched route.
+Sets the large BGP community for a matched route.
 
 ### Command Syntax
 
@@ -1618,7 +1590,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set large-communit
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-bw</h>
 
-Sets the BGP Extended Community for a matched route. You can specify `cumulative` `multipaths` `cumulative-non-transitive`, or `multipaths-non-transitive`.
+Sets the BGP extended community for a matched route. You can specify `cumulative` `multipaths` `cumulative-non-transitive`, or `multipaths-non-transitive`.
 
 ### Command Syntax
 
@@ -1641,7 +1613,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set ext-community-
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-rt \<route-distinguisher\></h>
 
-Sets the route target Extended Community for a matched route.
+Sets the route target extended community for a matched route.
 
 ### Command Syntax
 
@@ -1665,7 +1637,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set ext-community-
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ext-community-soo \<route-distinguisher\></h>
 
-Sets the site-of-origin (SoO) Extended Community for a matched route.
+Sets the site-of-origin (SoO) extended community for a matched route.
 
 ### Command Syntax
 
@@ -1735,7 +1707,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set label-index 10
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community-delete-list</h>
 
-Configures a set clause in the route map to remove BGP Large Communities from being advertised to other BGP routes.
+Configures a set clause in the route map to remove BGP large communities from being advertised to other BGP routes.
 
 ### Command Syntax
 

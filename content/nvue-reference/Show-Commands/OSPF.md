@@ -505,7 +505,7 @@ cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 interfac
 
 ## <h>nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\> interface \<interface-id\> local-ip
 
-Show the local IP address for a specific OSPF neighbor interface in the specified VRF.
+Shosw the local IP address for a specific OSPF neighbor interface in the specified VRF.
 
 ### Command Syntax
 
@@ -529,7 +529,7 @@ cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 interfac
 
 ## <h>nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\>  interface \<interface-id\> local-ip \<address\>
 
-Show information about a specific local IP address for the specified OSPF neighbor interface.
+Shows information about a specific local IP address for the specified OSPF neighbor interface.
 
 ### Command Syntax
 

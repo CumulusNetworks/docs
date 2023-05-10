@@ -301,7 +301,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast net
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast network \<static-network-id\></h>
 
-Shows information about the specified BGP IPv4 static network for the specified VRF.
+Shows information about a specific BGP IPv4 static network for the specified VRF.
 
 ### Command Syntax
 
@@ -545,7 +545,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\></h>
 
-Shows information about for the specified IPv4 route in the local RIB, such as the BGP peer to which the path is advertised and the path count.
+Shows information about the specified IPv4 route in the local RIB, such as the BGP peer to which the path is advertised and the path count.
 
 ### Command Syntax
 
@@ -808,7 +808,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast loc
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib route \<route-id\> path \<path-id\> ext-community</h>
 
-Shows the community names for the extended communities list for the specified IPv4 route path in the local RIB.
+Shows the community names for the extended community list for the specified IPv4 route path in the local RIB.
 
 ### Command Syntax
 
@@ -1299,7 +1299,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib route \<route-id\></h>
 
-Shows information about for the specified IPv6 route in the local RIB, such as the BGP peer to which the path is advertised and the path count.
+Shows information about the specified IPv6 route in the local RIB, such as the BGP peer to which the path is advertised and the path count.
 
 ### Command Syntax
 
@@ -1743,14 +1743,14 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type</h>
 
-Shows the EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route distinguisher route types (`ead`, `macip`, `multicast`, `ethernet-segment`, `prefix`, or an integer between 1 and 5) for the specified VRF.
+Shows the EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route distinguisher route types for the specified VRF.
 
 ### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
-| `<rd-id>` |  The route distinguisher ID.|
+| `<rd-id>` |  The route distinguisher ID: `ead`, `macip`, `multicast`, `ethernet-segment`, `prefix`, or an integer between 1 and 5. |
 
 ### Version History
 
@@ -3313,7 +3313,7 @@ cumulus@switch:~$ nv show vrf default router bgp confederation member-as
 
 ## <h>nv show vrf \<vrf-id\> router bgp dynamic-neighbor</h>
 
-Shows BGP dynamic neighbor configuration on the switch. BGP dynamic neighbors provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
+Shows BGP dynamic neighbor configuration on the switch. BGP dynamic neighbors provide BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
 After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group.
 
@@ -3522,9 +3522,9 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 nexthop
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> message-stats
+## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> message-stats</h>
 
-Message statistics
+Shows BGP neighbor message statistics.
 
 ### Command Syntax
 
@@ -3540,7 +3540,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 message-stats
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4652,7 +4652,7 @@ cumulus@switch:~$ nv show vrf default router bgp path-selection
 
 ## <h>nv show vrf \<vrf-id\> router bgp path-selection aspath</h>
 
-Shows the BGP aspath path selection configuration for the specified VRF.
+Shows the BGP AS path path selection configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -5475,7 +5475,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn
+## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn</h>
 
 Shows configuration information for the specified BGP peer group for EVPN.
 
@@ -5704,7 +5704,7 @@ cumulus@switch:~$ nv show vrf default router bgp route-export to-evpn route-targ
 
 ## <h>nv show vrf \<vrf-id\> router bgp route-export to-evpn route-target \<rt-id\></h>
 
-Shows BGP route export configuration for the specified RT in the specified VRF.
+Shows BGP route export configuration for a specific RT in the specified VRF.
 
 ### Command Syntax
 
@@ -5793,7 +5793,7 @@ cumulus@switch:~$ nv show vrf default router bgp route-import from-evpn route-ta
 
 ## <h>nv show vrf \<vrf-id\> router bgp route-import from-evpn route-target \<rt-id\></h>
 
-Shows configuration for the specified RD and layer 3 RT for the specified VRF.
+Shows configuration for a specific RD and layer 3 RT for the specified VRF.
 
 ### Command Syntax
 
@@ -5816,7 +5816,7 @@ cumulus@switch:~$ nv show vrf default router bgp route-import from-evpn route-ta
 
 ## <h>nv show vrf \<vrf-id\> router bgp route-reflection</h>
 
-Shows BGP route-reflection configuration for the specified VRF.
+Shows BGP route reflection configuration for the specified VRF.
 
 ### Command Syntax
 

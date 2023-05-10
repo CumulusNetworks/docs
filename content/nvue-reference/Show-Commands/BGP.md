@@ -5477,7 +5477,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn
 
-Show configuration information for the specified BGP peer group for EVPN.
+Shows configuration information for the specified BGP peer group for EVPN.
 
 ### Command Syntax
 

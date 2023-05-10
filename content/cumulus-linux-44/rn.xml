@@ -8,15 +8,17 @@
 </tr>
 <tr>
 <td>3448171</td>
-<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
-In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+This only impacts the default VRF and a default route learned dynamically.
 
-systemctl restart switchd.service
+In order to recover from this condition: 
 
-or
+1. Restart switchd.service (sudo systemctl restart switchd.service)
 
-sudo reboot</td>
+OR
+ 
+2. Reboot the switch (sudo reboot)</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -2207,15 +2209,17 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 </tr>
 <tr>
 <td>3448171</td>
-<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
-In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+This only impacts the default VRF and a default route learned dynamically.
 
-systemctl restart switchd.service
+In order to recover from this condition: 
 
-or
+1. Restart switchd.service (sudo systemctl restart switchd.service)
 
-sudo reboot</td>
+OR
+ 
+2. Reboot the switch (sudo reboot)</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -4563,15 +4567,17 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 </tr>
 <tr>
 <td>3448171</td>
-<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
-In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+This only impacts the default VRF and a default route learned dynamically.
 
-systemctl restart switchd.service
+In order to recover from this condition: 
 
-or
+1. Restart switchd.service (sudo systemctl restart switchd.service)
 
-sudo reboot</td>
+OR
+ 
+2. Reboot the switch (sudo reboot)</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -6883,15 +6889,17 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 </tr>
 <tr>
 <td>3448171</td>
-<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
-In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+This only impacts the default VRF and a default route learned dynamically.
 
-systemctl restart switchd.service
+In order to recover from this condition: 
 
-or
+1. Restart switchd.service (sudo systemctl restart switchd.service)
 
-sudo reboot</td>
+OR
+ 
+2. Reboot the switch (sudo reboot)</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -9385,15 +9393,17 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 </tr>
 <tr>
 <td>3448171</td>
-<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
-In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+This only impacts the default VRF and a default route learned dynamically.
 
-systemctl restart switchd.service
+In order to recover from this condition: 
 
-or
+1. Restart switchd.service (sudo systemctl restart switchd.service)
 
-sudo reboot</td>
+OR
+ 
+2. Reboot the switch (sudo reboot)</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>

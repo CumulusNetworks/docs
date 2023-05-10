@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set vrf \<vrf-id\> router rib \<afi\>
+## <h>nv set vrf \<vrf-id\> router rib
 
 Provides commands to configure the routing table for the specified VRF.
 

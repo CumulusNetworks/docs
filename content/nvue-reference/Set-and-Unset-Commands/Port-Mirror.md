@@ -14,7 +14,9 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set system port-mirror</h>
 
-Configures Switched Port Analyzer (SPAN) and Encapsulated Remote Span (ERSPAN). SPAN enables you to mirror all packets that come in from or go out of an interface (the SPAN source), and copy and transmit the packets out of a local port or CPU (the SPAN destination) for monitoring. ERSPAN enables the mirrored packets to go to a monitoring node located anywhere across the routed network.
+Configures <span style="background-color:#F5F5DC">[SPAN](## "Switched Port Analyzer")</span> and <span style="background-color:#F5F5DC">[ERSPAN](## "Encapsulated Remote Span")</span>.
+- SPAN enables you to mirror all packets that come in from or go out of an interface (the SPAN source), and copy and transmit the packets out of a local port or CPU (the SPAN destination) for monitoring.
+- ERSPAN enables the mirrored packets to go to a monitoring node located anywhere across the routed network.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -22,31 +24,11 @@ Configures Switched Port Analyzer (SPAN) and Encapsulated Remote Span (ERSPAN). 
 
 Configures the port mirror session number, which is a number between 0 and 7.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system port-mirror session \<session-id\> span</h>
 
 Configures SPAN, which enables you to mirror all packets that come in from or go out of an interface (the SPAN source), and copy and transmit the packets out of a local port or CPU (the SPAN destination) for monitoring.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number, which is a number between 0 and 7. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -144,16 +126,6 @@ cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1
 
 Configures truncation to decrease bandwidth by reducing the size of monitored packets.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system port-mirror session \<session-id\> span truncate enable</h>
@@ -204,31 +176,11 @@ cumulus@switch:~$ nv set system port-mirror session 1 span truncate size 40
 
 Configures Encapsulated Remote Switched Port Analyzer (ERSPAN).
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system port-mirror session \<session-id\> erspan destination</h>
 
 Configures the ERSPAN destination.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -348,16 +300,6 @@ cumulus@switch:~$ nv set system port-mirror session 1 erspan source-port swp1
 ## <h>nv set system port-mirror session \<session-id\> erspan truncate</h>
 
 Configures truncation to decrease bandwidth by reducing the size of monitored packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

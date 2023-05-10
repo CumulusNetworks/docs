@@ -137,7 +137,7 @@ cumulus@switch:~$ nv set router nexthop-tracking ipv4
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\>
+## <h>nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\></h>
 
 Applies the specified nexthop tracking route map.
 
@@ -161,7 +161,7 @@ cumulus@switch:~$ nv set router nexthop-tracking ipv4 route-map ROUTEMAP1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\> protocol
+## <h>nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\> protocol</h>
 
 Applies the specified nexthop tracking route map for the specified protocol. You can specify `bgp`, `ospf`, `ospf6`, or `static`.
 

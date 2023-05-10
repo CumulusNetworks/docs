@@ -35,7 +35,7 @@ Follow these steps to set up and configure your VM on a single server in an on-p
 
     {{<netq-install/set-hostname>}}
 
-8. The final step is to install and activate the NetQ software using the CLI:
+8. Install and activate the NetQ software using the CLI:
 
 {{<netq-install/install-with-cli version="4.6" deployment="onprem-single">}}
 

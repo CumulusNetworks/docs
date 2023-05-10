@@ -5,15 +5,9 @@ weight: 790
 toc: 3
 ---
 
-Threshold-crossing events are user-defined events that detect and prevent network failures for ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="Threshold-Crossing Events Reference" text="Threshold-crossing Events Reference">}}.
+Threshold-crossing events are user-defined events that detect and prevent network failures for ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="Threshold-Crossing Events Reference" text="Threshold-Crossing Events Reference">}}.
 
 A notification configuration must contain one rule. Each rule must contain a scope and a threshold. If you want to deliver events to one or more notification channels (for example, email or Slack), create them by following the instructions in {{<link title="Configure System Event Notifications#create-a-channel" text="Create a Channel">}}, and then return here to define your rule.
-
-{{%notice note%}}
-
-If a rule is not associated with a channel, the event information is only reachable from the database.
-
-{{%/notice%}}
 
 ## Define a Scope
 

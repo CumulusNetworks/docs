@@ -2,12 +2,12 @@
 
 {{- if eq (.Get "deployment") "onprem-single" -}}
 
-<p>Run the following command on your NetQ platform server or NetQ Appliance:</p>
+<p>Run the following command on your NetQ platform server:</p>
 
 <pre><code>cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.6.0.tgz</code></pre>
 
 
-<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<p>If you have changed the IP address or hostname of the NetQ On-premises VM after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p><pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre><p>Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install standalone full interface eno1 bundle /mnt/installables/NetQ-4.6.0.tgz</pre></p></div>
+<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<p>If you have changed the IP address or hostname of the NetQ on-premises VM after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p><pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre><p>Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install standalone full interface eno1 bundle /mnt/installables/NetQ-4.6.0.tgz</pre></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -36,7 +36,7 @@
 
 {{- if eq (.Get "deployment") "cloud-single" -}}
 
-<p>Run the following command on your NetQ Cloud Appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key through the NetQ UI in the premise management configuration.</p>
+<p>Run the following command on your NetQ cloud appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key through the NetQ UI in the premises management configuration.</p>
 
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.6.0-opta.tgz config-key &lt;your-config-key&gt; [proxy-host &lt;proxy-hostname&gt; proxy-port &lt;proxy-port&gt;]
 </code></pre>
@@ -57,7 +57,7 @@
     netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
     </code></pre><p>Run the <code>netq install cluster worker-init &lt;ssh-key></code> on each of your worker nodes.</p>
     
-<p>Run the following command on your NetQ Cloud Appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key through the NetQ UI in the premise management configuration.</p>
+<p>Run the following command on your NetQ Cloud Appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key through the NetQ UI in the premises management configuration.</p>
 
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.6.0-opta.tgz config-key &lt;your-config-key&gt; workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; [proxy-host &lt;proxy-hostname&gt; proxy-port &lt;proxy-port&gt;]
     </code></pre>
@@ -69,7 +69,7 @@
 
 {{end}}
 
-<h2 id=verify-installation-status>Verify Installation Status</h2><p>To view the status of the installation, use the <code>netq show status [verbose]</code> command. The following example shows a successful on-premise installation:</p><pre><code class=language-$ data-lang=$>State: Active
+<h2 id=verify-installation-status>Verify Installation Status</h2><p>To view the status of the installation, use the <code>netq show status [verbose]</code> command. The following example shows a successful on-premises installation:</p><pre><code class=language-$ data-lang=$>State: Active
     Version: 4.6.0
     Installer Version: 4.6.0
     Installation Type: Standalone
@@ -110,7 +110,7 @@
 <pre><code>cumulus@hostname:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.5.0.tgz</code></pre>
 
 
-<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<p>If you have changed the IP address or hostname of the NetQ On-premises VM after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p><pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre><p>Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install standalone full interface eno1 bundle /mnt/installables/NetQ-4.5.0.tgz</pre></p></div>
+<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<p>If you have changed the IP address or hostname of the NetQ on-premises VM after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p><pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre><p>Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install standalone full interface eno1 bundle /mnt/installables/NetQ-4.5.0.tgz</pre></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -131,7 +131,7 @@
 
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.5.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</code></pre>
     
-<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<br><p>If you have changed the IP address or hostname of the NetQ On-premises VM after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p><pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre><p>Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install standalone full interface eno1 bundle /mnt/installables/NetQ-4.5.0.tgz</pre></p></div>
+<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<br><p>If you have changed the IP address or hostname of the NetQ on-premises VM after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p><pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre><p>Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install standalone full interface eno1 bundle /mnt/installables/NetQ-4.5.0.tgz</pre></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -139,7 +139,7 @@
 
 {{- if eq (.Get "deployment") "cloud-single" -}}
 
-<p>Run the following command on your NetQ Cloud Appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key through the NetQ UI in the premise management configuration.</p>
+<p>Run the following command on your NetQ Cloud Appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key through the NetQ UI in the premises management configuration.</p>
 
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.5.0-opta.tgz config-key &lt;your-config-key&gt; [proxy-host &lt;proxy-hostname&gt; proxy-port &lt;proxy-port&gt;]
 </code></pre>
@@ -172,7 +172,7 @@
 
 {{end}}
 
-<h2 id=verify-installation-status>Verify Installation Status</h2><p>To view the status of the installation, use the <code>netq show status [verbose]</code> command. The following example shows a successful on-premise installation:</p><pre><code class=language-$ data-lang=$>State: Active
+<h2 id=verify-installation-status>Verify Installation Status</h2><p>To view the status of the installation, use the <code>netq show status [verbose]</code> command. The following example shows a successful on-premises installation:</p><pre><code class=language-$ data-lang=$>State: Active
     Version: 4.5.0
     Installer Version: 4.5.0
     Installation Type: Standalone

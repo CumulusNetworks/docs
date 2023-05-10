@@ -14,17 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set service syslog \<vrf-id\></h>
 
-Configures the System Logging Protocol (`syslog`) service in the specified VRF so that the switch can use a standard message format to communicate with a logging server.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Configures the system logging protocol (`syslog`) service in the specified VRF so that the switch can use a standard message format to communicate with a logging server.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -42,6 +32,12 @@ Configures the remote `syslog` server.
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service syslog default server 192.168.0.254
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

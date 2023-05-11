@@ -34,7 +34,7 @@ cumulus@switch:~$ nv show interface swp1 bond mlag
 
 ## <h>nv show interface \<interface-id\> bond mlag consistency-checker</h>
 
-Shows MLAG consistency checker inconsistencies on the bond interface.
+Shows MLAG inconsistencies on the bond interface.
 
 ### Command Syntax
 
@@ -72,7 +72,7 @@ cumulus@switch:~$ nv show mlag
 
 ## <h>nv show mlag backup</h>
 
-Shows the backup IP address configured for the MLAG peer link. The switch uses this backup IP address if MLAG the peer link goes down.
+Shows the backup IP address configured for the MLAG peer link. The switch uses this backup IP address if the MLAG peer link goes down.
 
 ### Version History
 
@@ -88,7 +88,7 @@ cumulus@switch:~$ nv show mlag backup
 
 ## <h>nv show mlag backup \<backup-ip\></h>
 
-Shows information about the MLAG backup IP address specified, such as the VRF.
+Shows information about the MLAG backup IP address specified.
 
 ### Command Syntax
 

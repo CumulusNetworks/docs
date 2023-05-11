@@ -34,7 +34,7 @@ cumulus@switch:~$ nv show interface vlan10 ip vrr
 
 ## <h>nv show interface \<interface-id\> ip vrr address \<ip-prefix-id\></h>
 
-Shows the information about the specified VRR IP address on the specified interface.
+Shows the information about a specific VRR IP address on the specified interface.
 
 ### Command Syntax
 

@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show interface \<interface-id\> lldp</h>
 
-Shows LLDP statistics for the specified interface.
+Shows <span style="background-color:#F5F5DC">[LLDP](## "Link Layer Discovery Protocol")</span> statistics for the specified interface.
 
 ### Command Syntax
 
@@ -56,7 +56,7 @@ cumulus@switch:~$ nv show interface swp51 lldp neighbor
 
 ## <h>nv show interface \<interface-id\> lldp neighbor \<neighbor-id\></h>
 
-Shows statistics for the specified LLDP neighbor for the specified interface.
+Shows statistics for a specific LLDP neighbor for the specified interface.
 
 ### Command Syntax
 
@@ -125,7 +125,7 @@ cumulus@switch:~$ nv show interface swp1 lldp neighbor leaf02 bridge vlan
 
 ## <h>nv show interface \<interface-id\> lldp neighbor \<neighbor-id\> bridge vlan \<vid\></h>
 
-Shows information about the specified VLAN for the specified LLDP neighbor.
+Shows information about a specific VLAN for the specified LLDP neighbor.
 
 ### Command Syntax
 

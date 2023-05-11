@@ -130,7 +130,7 @@ Shows ND prefix configuration for the specified interface, such as the amount of
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
-| `<ipv6-address-id>`  | The IPv6 address of the RDNSS.|
+| `<ipv6-address-id>`  | The IPv6 address and route prefix.|
 
 ### Version History
 
@@ -191,7 +191,7 @@ cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1:
 
 ## <h>nv show interface \<interface-id\> ip neighbor-discovery router-advertisement</h>
 
-Shows router advertisement configuration for an interface, such as the hop limit value advertised in a Router Advertisement message, the maximum amount of time that Router Advertisement messages can exist on the route, the interval at which neighbor solicitation messages retransmit, and if fast transmit mode is on.
+Shows router advertisement configuration for an interface, such as the hop limit value advertised in a router advertisement message, the maximum amount of time that router advertisement messages can exist on the route, the interval at which neighbor solicitation messages retransmit, and if fast transmit mode is on.
 
 ### Command Syntax
 

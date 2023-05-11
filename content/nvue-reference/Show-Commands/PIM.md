@@ -264,7 +264,7 @@ cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp
 
 ## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\></h>
 
-Shows IPv4 PIM configuration for the specified <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
+Shows IPv4 PIM configuration settings for a specific <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
 
 ### Command Syntax
 
@@ -310,7 +310,7 @@ cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp 
 
 ## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range \<group-range-id\></h>
 
-Shows IPv4 PIM configuration for the specified <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> group range for the specified VRF.
+Shows IPv4 PIM configuration settings for a specific <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> group range for the specified VRF.
 
 ### Command Syntax
 
@@ -334,7 +334,7 @@ cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp 
 
 ## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover</h>
 
-Shows IPv4 PIM <span style="background-color:#F5F5DC">[SPT](## "SPT Shortest Path Tree")</span> switchover configuration for the specified VRF.
+Shows IPv4 PIM <span style="background-color:#F5F5DC">[SPT](## "Shortest Path Tree")</span> switchover configuration for the specified VRF.
 
 ### Command Syntax
 

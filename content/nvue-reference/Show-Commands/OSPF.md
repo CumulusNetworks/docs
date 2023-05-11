@@ -18,7 +18,7 @@ Shows all OSPF configuration settings for the specified interface.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -40,7 +40,7 @@ Shows <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</sp
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -62,7 +62,7 @@ Shows the MD5 authentication configuration settings on the specified interface.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -84,7 +84,7 @@ Shows the BFD configuration settings on the specified interface.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    | The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -353,7 +353,7 @@ Shows information about a specific OSPF interface in the specified VRF.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<interface-id>`    | The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -376,7 +376,7 @@ Shows the local IP addresses for a specific OSPF interface in the specified VRF.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<interface-id>`    | The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -399,7 +399,7 @@ Shows information about a specific local IP address for the specified OSPF inter
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<interface-id>`    | The interface name. |
+| `<interface-id>` | The interface name. |
 | `<ipv4-address>`    | The local IPv4 address. |
 
 ### Version History
@@ -505,9 +505,9 @@ cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 interfac
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\> interface \<interface-id\> local-ip
+## <h>nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\> interface \<interface-id\> local-ip</h>
 
-Shosw the local IP address for a specific OSPF neighbor interface in the specified VRF.
+Shows the local IP address for a specific OSPF neighbor interface in the specified VRF.
 
 ### Command Syntax
 
@@ -529,7 +529,7 @@ cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 interfac
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\>  interface \<interface-id\> local-ip \<address\>
+## <h>nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\>  interface \<interface-id\> local-ip \<address\></h>
 
 Shows information about a specific local IP address for the specified OSPF neighbor interface.
 

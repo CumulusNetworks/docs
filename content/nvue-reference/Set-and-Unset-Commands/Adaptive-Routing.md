@@ -20,9 +20,7 @@ Provides commands to configure adaptive routing on the specified interface. Adap
 
 ## <h>nv set interface \<interface-id\> router adaptive-routing enable</h>
 
-Turns adaptive routing on the specified interface on or off.
-
-The default setting is `off`.
+Turns adaptive routing on the specified interface on or off. The default setting is `off`.
 
 ### Command Syntax
 

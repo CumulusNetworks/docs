@@ -8,6 +8,8 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system wjh</h>
 
 Shows <span style="background-color:#F5F5DC">[WJH](## "What Just Happened")</span>configuration on the switch. WJH provides real time visibility into network problems.

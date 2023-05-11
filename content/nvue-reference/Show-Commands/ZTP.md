@@ -8,6 +8,8 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system ztp</h>
 
 Shows information about <span style="background-color:#F5F5DC">[ZTP](## "Zero Touch Provisioning")</span> scripts on the switch, such as location and version, the date the script was run, and if it was a success.

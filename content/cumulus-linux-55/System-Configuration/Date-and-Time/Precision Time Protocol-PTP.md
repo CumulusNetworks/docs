@@ -1231,7 +1231,7 @@ priority2                    128          128                 Priority2 attribut
 ...
 ```
 
-To show the settings for a profile, run the `nv show service ptp 1 profile <profile-name>` command:
+To show the settings for a profile, run the `nv show service ptp <instance> profile <profile-name>` command:
 
 ```
 cumulus@switch:~$ nv show service ptp 1 profile CUSTOM1
@@ -1616,23 +1616,23 @@ monitor
 ```
 
 You can drill down with the following `nv show service ptp <instance>` commands:
+- `nv show service ptp <instance> acceptable-master` shows acceptable master configuration.
+- `nv show service ptp <instance> clock-quality` shows the clock quality status.
+- `nv show service ptp <instance> current` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> domain` shows the domain configuration.
 - `nv show service ptp <instance> ip-dscp` shows PTP DSCP configuration.
-- `nv show service ptp <instance> priority1` shows PTP priority1 configuration.
-- `nv show service ptp <instance> priority2` shows PTP priority2 configuration.
-- `nv show service ptp <instance> acceptable-master` shows acceptable master configuration.
-- `nv show service ptp <instance> current` shows the local states learned during PTP message exchange.
-- `nv show service ptp <instance> clock-quality` shows the clock quality status.
-- `nv show service ptp <instance> parent` shows the local states learned during PTP message exchange.
-- `nv show service ptp <instance> time-properties` shows the clock time attributes.
 - `nv show service ptp <instance> monitor` shows PTP monitor configuration.
 - `nv show service ptp <instance> profile` shows PTP profile configuration.
+- `nv show service ptp <instance> parent` shows the local states learned during PTP message exchange.
+- `nv show service ptp <instance> priority1` shows PTP priority1 configuration.
+- `nv show service ptp <instance> priority2` shows PTP priority2 configuration.
+- `nv show service ptp <instance> status` shows the status of all PTP interfaces.
+- `nv show service ptp <instance> time-properties` shows the clock time attributes.
 - `nv show service ptp <instance> unicast-master` shows the unicast master configuration.
 
 ### Show PTP Interface Configuration
 
 To check configuration for a PTP interface, run the `nv show interface <interface> ptp` command.
-<!--This command also shows PTP counters (statistics, such as the number of Announce messages received, the number of Sync messages received, and so on).-->
 
 ```
 cumulus@switch:~$ nv show interface swp1 ptp
@@ -1879,19 +1879,26 @@ network_transport            UDPv4
 
 ### PTP Traffic Shaping
 
-To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
-For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
+To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
 
 {{%notice note%}}
 - Switches with Spectrum-2 and later do not support PTP shaping.
 - Bonds do not support PTP shaping.
-- Do not configure QoS, such as egress queue or port based scheduling, on the same ports with PTP traffic shaping.
+- You cannot configure {{<link url="Quality-of-Service/#shaping" text="QoS traffic shaping">}} and PTP traffic shaping on the same ports.
+- You must configure a {{<link url="Quality-of-Service/#egress-scheduler" text="strict priority">}} for PTP traffic; for example:
+
+  ```
+  cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 0-5,7 mode dwrr
+  cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 0-5,7 bw-percent 12
+  cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 6 mode strict
+  ```
+
 {{%/notice%}}
 
 {{< tabs "TabID1387 ">}}
 {{< tab "NVUE Commands ">}}
 
-For each PTP-enabled port where you want to set traffic shaping, run the `nv set interface <interface> ptp shaper enable on` command.
+For each PTP-enabled port on which you want to set traffic shaping, run the `nv set interface <interface> ptp shaper enable on` command.
 
 ```
 cumulus@switch:~$ nv set interface swp1 ptp shaper enable on
@@ -1899,7 +1906,7 @@ cumulus@switch:~$ nv set interface swp2 ptp shaper enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To see the PTP shaping setting for a switch port, run the `nv show interface <interface> ptp shaper` command:
+To see the PTP shaping setting for an interface, run the `nv show interface <interface> ptp shaper` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 ptp shaper
@@ -1911,15 +1918,14 @@ enable               on
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the `/etc/cumulus/switchd.d/ptp_shaper.conf` file, set the `interface.<interface>.ptp.shaper` parameter to TRUE for the interfaces to which you want to apply traffic shaping, then reload `switchd`.
+In the `/etc/cumulus/switchd.d/ptp_shaper.conf` file, set the following parameters for the interfaces to which you want to apply traffic shaping and enable the traffic shaper. You must reload `switchd` for the changes to take effect.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ptp_shaper.conf
 ## Per-port configuration for PTP shaper
-interface.swp1.ptp.shaper = TRUE
-#interface.swp2.ptp.shaper = FALSE
-#interface.swp9.ptp.shaper = TRUE
-#interface.swp12.ptp.shaper = TRUE
+ptp_shaper.port_group_list = [enable-group]
+ptp_shaper.enable-group.port_set = swp1,swp2
+ptp_shaper.enable-group.ptp_shaper_enable = true
 ```
 
 ```

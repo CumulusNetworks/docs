@@ -26,6 +26,7 @@ You can configure SPAN and ERSPAN in one of the following ways:
 - Cumulus Linux does not support IPv6 ERSPAN destinations.
 - ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination or next hop does not already exist in the kernel, you need to manually resolve this before sending mirrored traffic (use `ping` or `arping`).
 - Mirroring to the same interface that you are monitoring causes a recursive flood of traffic and might impact traffic on other interfaces.
+- Cumulus VX does not support ACL-based SPAN, ERSPAN, or port mirroring. To capture packets in Cumulus VX, use the `tcpdump` command line network traffic analyzer.
 {{%/notice%}}
 
 ## NVUE Configuration

@@ -7,13 +7,21 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## April 2023
+## May 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0504-012
+- Updated oob-mgmt-server to Ubuntu 22.04
+- Added a limit of 256 for the maximum number of interfaces on a single node
+- Updated resource budget limits for accounts using a company email
+- Fixed a bug that prevented some simulations with TPM/UEFI from loading
+- Fixed a bug in validation of image uploads
+<!-- Air:WhatsNew -->
+
+## April 2023
 ### 82.2023.0424-012
 - Fixed an incorrect calculation for resource budgets in some scenarios
 - Fixed an issue causing the login page to be shown instead of a node's console in some scenarios
 - Applied new security updates
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0420-012
 - Updated sleep handling for longer running simulations

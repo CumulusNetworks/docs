@@ -6,7 +6,7 @@ toc: 3
 ---
 You can {{<link title="Monitor Events" text="view system events via the NetQ UI or CLI">}}. You can also receive event notifications via a third-party application. This page explains how to integrate NetQ with syslog, PagerDuty, Slack, or email to receive notifications about events on your network. Alternately, you can send notifications to other third-party applications via a generic webhook channel.
 
-In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, then stores and delivers events to the Notification function. The Notification function filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream to the NetQ Cloud service for processing and delivery.
+In an on-premises deployment, NetQ receives the raw data stream from the NetQ Agents, processes the data, then delivers events to notification channels. In a cloud deployment, NetQ passes the raw data stream to the NetQ Cloud service for processing and delivery.
 
 <!--
 
@@ -552,51 +552,6 @@ netq show notification channel [json]
 {{</tab>}}
 
 {{</tabs>}}
-
-You can remove channels if they are not part of an existing notification configuration.
-
-{{<tabs "TabID5588" >}}
-
-{{<tab "NetQ UI" >}}
-
-To remove notification channels:
-
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Notification channels**.
-
-2. Select the tab for the type of channel you want to remove.
-
-3. Select one or more channels.
-
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> **Delete**.
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
-To remove notification channels, run:
-
-```
-netq config del notification channel <text-channel-name-anchor>
-```
-
-This example removes a Slack integration and verifies it is no longer in
-the configuration:
-
-```
-cumulus@switch:~$ netq del notification channel slk-netq-events
-
-cumulus@switch:~$ netq show notification channel
-Matching config_notify records:
-Name            Type             Severity         Channel Info
---------------- ---------------- ---------------- ------------------------
-pd-netq-events  pagerduty        info             integration-key: 1234567
-                                                    890
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
 ### Create a Rule
 
 The second step is to create and verify a rule that accepts a set of events. You create rules for system events using the NetQ CLI.
@@ -800,7 +755,51 @@ To delete notification filters, run:
 ```
 netq del notification filter <text-filter-name-anchor>
 ```
+## Delete a Channel
 
+You can remove channels if they are not part of an existing notification configuration.
+
+{{<tabs "TabID5588" >}}
+
+{{<tab "NetQ UI" >}}
+
+To remove notification channels:
+
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Notification channels**.
+
+2. Select the tab for the type of channel you want to remove.
+
+3. Select one or more channels.
+
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> **Delete**.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+To remove notification channels, run:
+
+```
+netq config del notification channel <text-channel-name-anchor>
+```
+
+This example removes a Slack integration and verifies it is no longer in
+the configuration:
+
+```
+cumulus@switch:~$ netq del notification channel slk-netq-events
+
+cumulus@switch:~$ netq show notification channel
+Matching config_notify records:
+Name            Type             Severity         Channel Info
+--------------- ---------------- ---------------- ------------------------
+pd-netq-events  pagerduty        info             integration-key: 1234567
+                                                    890
+```
+
+{{</tab>}}
+
+{{</tabs>}}
 ## Configure a Proxy Server
 
 To send notification messages through a proxy server instead of directly to a notification channel, you configure NetQ with the hostname and optionally a port of a proxy server. If you do not specify a port, NetQ defaults to port 80. NetQ supports one proxy server. To simplify deployment, configure your proxy server before configuring channels, rules, or filters.

@@ -45,7 +45,7 @@ To view the premises you just added, return to the home workbench and select the
 
 ### Full NetQ Deployment at Primary Premises and Smaller Deployments at Secondary Premises
 
-In this implementation, there is a NetQ appliance or VM at one of the deployments acting as the primary premises for the other deployments. The primary premises runs the NetQ software (including the NetQ UI and CLI) and houses the database. All other deployments are secondary premises; they run the NetQ Collector software and send their data to the primary premises for storage and processing. A list of these secondary premises is stored with the primary deployment.
+In this implementation, there is a NetQ appliance or VM at one of the deployments acting as the primary premises for the other deployments. The primary premises runs the NetQ software (including the NetQ UI and CLI) and houses the database. All other deployments are secondary premises; they run the NetQ cloud software and send their data to the primary premises for storage and processing. A list of these secondary premises is stored with the primary deployment.
 
 {{<figure src="/images/netq/appmgmt-multisite-onprem-mixeddeploy-330.png" alt="" width="500">}}
 

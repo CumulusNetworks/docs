@@ -24,7 +24,7 @@ netq check ospf
 
 ## View OSPF in the UI
 
- To add the OSPF card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Network services** > **All OSPF Sessions card** > **Open cards**. In this example, there are 9 nodes running the service with a total of 40 sessions.
+ To add the OSPF card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All OSPF Sessions card&nbsp;<span aria-label="and then">></span> Open cards**. In this example, there are 9 nodes running the service with a total of 40 sessions.
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-medium-230.png" width="200">}}
 

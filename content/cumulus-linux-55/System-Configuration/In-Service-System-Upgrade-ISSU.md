@@ -126,6 +126,18 @@ cumulus@switch:~$ nv action reboot system no-confirm
 You must specify `no-confirm` at the end of the command.
 {{%/notice%}}
 
+To show system reboot information, such as the reboot date and time, reason, and reset mode (fast, cold, warm), run the NVUE `nv show system reboot` command:
+
+```
+cumulus@switch:~$ nv show system reboot
+           operational                       applied  pending
+---------  --------------------------------  -------  -------
+reason                                                       
+  gentime  2023-04-26T15:11:23.140569+00:00                  
+  reason   Unknown                                           
+  user     system/root
+```
+
 ## Upgrade Mode
 
 Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux minor release without impacting traffic. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="warm, cold, or fast restart">}}.

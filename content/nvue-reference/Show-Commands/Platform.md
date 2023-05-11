@@ -212,7 +212,7 @@ cumulus@switch:~$ nv show platform environment sensor Temp
 
 ## <h>nv show platform hardware</h>
 
-Shows platform hardware information on the switch, such as the base MAC address, model and manufacturer, memory, Cumulus Linux release, serial numner and system MAC address.
+Shows platform hardware information on the switch, such as the base MAC address, model and manufacturer, memory, Cumulus Linux release, serial number, and system MAC address.
 
 ### Version History
 
@@ -298,7 +298,7 @@ cumulus@switch:~$ nv show platform software installed
 
 ## <h>nv show platform software installed \<installed-id\></h>
 
-Shows information about the specified installed package, such the package description and version number.
+Shows information about the specified installed package, such as the package description and version number.
 
 ### Command Syntax
 

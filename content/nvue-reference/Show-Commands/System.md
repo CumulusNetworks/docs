@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show system</h>
 
-Shows information about the switch, such as the hostname, Cumulus Linux verison, the switch uptime, and the timezone.
+Shows information about the switch, such as the hostname, Cumulus Linux version, the switch uptime, and the time zone.
 
 ### Version History
 
@@ -172,7 +172,7 @@ cumulus@switch:~$ nv show system global reserved vlan l3-vni-vlan
 
 ## <h>nv show system memory</h>
 
-Shows information about the switch memory, such as the total amount of memory, the amount of free and used memory,and the percent of memory utilized.
+Shows information about the switch memory, such as the total amount of memory, the amount of free and used memory, and the percent of memory utilized.
 
 ### Version History
 

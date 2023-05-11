@@ -5,7 +5,7 @@ weight: 20
 type: nojsscroll
 ---
 {{%notice note%}}
-This document is in Beta.
+This document is in beta.
 {{%/notice%}}
 
 This section describes all the `nv show` commands. The commands are organized by functionality, such as adaptive routing, BGP, OSPF, and so on.

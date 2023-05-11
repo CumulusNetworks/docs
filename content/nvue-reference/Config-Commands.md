@@ -9,7 +9,7 @@ type: nojsscroll
 h { color: RGB(118,185,0)}
 </style>
 {{%notice note%}}
-This document is in Beta.
+This document is in beta.
 {{%/notice%}}
 
 ## <h>nv config apply </h>

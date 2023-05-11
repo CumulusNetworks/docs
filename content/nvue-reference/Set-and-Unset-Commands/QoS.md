@@ -1293,7 +1293,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 
 Configures <span style="background-color:#F5F5DC">[ECN](## "Explicit Congestion Notification")</span>; an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
 
-ECN operates by having a transit switch that marks packets between two end hosts. You use ECN with RDMA over Converged Ethernet - RoCE.
+ECN operates by having a transit switch that marks packets between two end hosts. You use ECN with RDMA over Converged Ethernet (RoCE).
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

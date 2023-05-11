@@ -445,10 +445,11 @@ Router ospf
 
 ARP suppression with EVPN allows a VTEP to suppress ARP flooding over VXLAN tunnels as much as possible. A local proxy handles ARP requests from locally attached hosts for remote hosts. ARP suppression is for IPv4; ND suppression is for IPv6.
 
-Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce ARP and ND packet flooding over VXLAN tunnels; however, you must to configure layer 3 interfaces (SVIs) for ARP and ND suppression to work with EVPN.
+Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce ARP and ND packet flooding over VXLAN tunnels; however, you must configure layer 3 interfaces (SVIs) for ARP and ND suppression to work with EVPN.
 
 {{%notice note%}}
-ARP and ND suppression only suppresses the flooding of known hosts. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
+- ARP and ND suppression only suppresses the flooding of known hosts. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
+- You must enable ARP and ND suppression on all VXLAN interfaces on the switch. You cannot enable ARP and ND suppression on some VXLAN interfaces but not on others.
 {{%/notice%}}
 
 In a centralized routing deployment, you must configure layer 3 interfaces even if you configure the switch only for layer 2 (you are not using VXLAN routing). To avoid installing unnecessary layer 3 information, you can turn off IP forwarding.
@@ -570,8 +571,20 @@ cumulus@leaf01:~$ sudo ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-You must enable ARP and ND suppression on all VXLAN interfaces on the switch. You cannot enable ARP and ND suppression on some VXLAN interfaces but not on others.
+The neighbor manager service relies on ARP and ND suppression to snoop on ARP and ND packets and install forwarding entries for those hosts. If you disable suppression, you must enable the neighbor manager snooper manually:
+
+1. Create the systemd override configuration file `/etc/systemd/system/neighmgrd.service` with the following content:
+
+```
+[Service]
+ExecStart=/usr/bin/neighmgrd --snoop-all-bridges
+```
+
+2. Reload the systemd unit configuration with the `sudo systemctl daemon-reload` command.
+
+3. Restart the `neighmgrd` service with the `sudo systemctl restart neighmgrd.service` command.
 {{%/notice%}}
+
 
 ## Configure Static MAC Addresses
 

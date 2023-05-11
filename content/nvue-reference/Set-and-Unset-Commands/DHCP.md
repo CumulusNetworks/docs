@@ -306,7 +306,7 @@ cumulus@switch:~$ nv set service dhcp-server default domain-name example.com dom
 
 ## <h>nv set service dhcp-server \<vrf-id\> domain-name-server \<server-id\></h>
 
-Confgures a remote DNS server to use globally.
+Configures a remote DNS server to use globally.
 
 ### Command Syntax
 

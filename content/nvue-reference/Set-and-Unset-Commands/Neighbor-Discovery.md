@@ -257,7 +257,7 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1:
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> router-address</h>
 
-Configures advertisement to indicates to hosts on the local link that the specified prefix contains a complete IP address by setting R flag.
+Configures advertisement to indicate to hosts on the local link that the specified prefix contains a complete IP address by setting R flag.
 
 The default setting is `off`.
 

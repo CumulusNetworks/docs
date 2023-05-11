@@ -102,7 +102,7 @@ If NTP is not already installed and configured, follow these steps:
 
 {{<tab "RHEL7 or CentOS">}}
 
-1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Appliance or VM to enable useful statistical analysis.
+1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ appliance or VM to enable useful statistical analysis.
 
     ```
     root@rhel7:~# sudo yum install ntp
@@ -141,7 +141,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 {{<tab "Ubuntu">}}
 
-1.  Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1.  Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ appliance to enable useful statistical analysis.
 
     ```
     root@ubuntu:~# sudo apt-get install ntp
@@ -539,7 +539,7 @@ If you have multiple premises and want to query data from a different premises t
 {{<tab "Cloud Deployments">}}
 
 <!-- vale off -->
-To access and configure the CLI for your on-premises NetQ deployment, you must generate AuthKeys. You'll need your username and password to generate them. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were obtained during {{<link title="Access the NetQ UI#log-in-to-netq" text="first login to the NetQ Cloud">}} and premises activation.
+To access and configure the CLI for your NetQ cloud deployment, you must generate AuthKeys. You'll need your username and password to generate them. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were obtained during your {{<link title="Access the NetQ UI#log-in-to-netq" text="intial login to the NetQ Cloud">}} and premises activation.
 <!-- vale on -->
 
 To generate AuthKeys:

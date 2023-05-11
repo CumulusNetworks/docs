@@ -12,13 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show interface</h>
 
-Shows information about all the interfaces on the switch, such as the name, type (swp,bond,vrf and so on), state (up or down), speed, MTU, remote host and remote port (if available), and IP address.
-
-### Command Syntax
-
-| Syntax | Description |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
+Shows information about all the interfaces on the switch, such as the name, type (swp, bond, vrf, and so on), state (up or down), speed, MTU, remote host and remote port, and IP address.
 
 ### Version History
 
@@ -100,7 +94,7 @@ cumulus@switch:~$ nv show interface swp1 bond member bond1
 
 ## <h>nv show interface \<interface\> counters</h>
 
-Shows all statistics for a specific interface.
+Shows all counters for a specific interface, such as packet drop, error, and distribution counts.
 
 ### Command Syntax
 
@@ -188,7 +182,7 @@ cumulus@switch:~$ nv show interface swp1 counters pktdist
 
 ## <h>nv show interface \<interface-id\> ip</h>
 
-Shows the IP address configuration for the specified interface.
+Shows the IP configuration for the specified interface.
 
 ### Command Syntax
 
@@ -232,7 +226,7 @@ cumulus@switch:~$ nv show interface swp1 ip address
 
 ## <h>nv show interface \<interface-id\> ip address \<ip-prefix-id\></h>
 
-Shows details about the specified IP address for the specified interface.
+Shows details about a specific IP address for the specified interface.
 
 ### Command Syntax
 
@@ -432,7 +426,7 @@ cumulus@switch:~$ nv show interface swp51 ip neighbor ipv6
 
 ## <h>nv show interface \<interface-id\> ip neighbor ipv6 \<neighbor-id\></h>
 
-Shows information about the specified IPv6 neighbor for the specified interface.
+Shows information about a specific IPv6 neighbor for the specified interface.
 
 ### Command Syntax
 
@@ -610,7 +604,7 @@ cumulus@switch:~$ nv show interface swp1 link traffic-engineering
 
 ## <h>nv show interface \<interface-id\> pluggable</h>
 
-Shows the \<span style="background-color:#F5F5DC">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
+Shows the <span style="background-color:#F5F5DC">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
 
 ### Command Syntax
 

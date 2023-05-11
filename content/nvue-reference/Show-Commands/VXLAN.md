@@ -8,6 +8,8 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show nve vxlan</h>
 
 Shows global VXLAN configuration on the switch.
@@ -72,7 +74,7 @@ cumulus@switch:~$ nv show nve vxlan encapsulation
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-# nv show nve vxlan encapsulation dscp</h>
+## nv show nve vxlan encapsulation dscp</h>
 
 Shows the configured DSCP action and value during VXLAN encapsulation.
 

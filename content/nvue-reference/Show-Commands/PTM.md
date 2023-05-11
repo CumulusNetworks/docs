@@ -8,6 +8,8 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show router ptm</h>
 
 Shows if PTM check link state is enabled. When enabled, PTM performs additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that `ptmd` defines.

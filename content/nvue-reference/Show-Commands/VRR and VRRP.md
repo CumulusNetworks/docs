@@ -8,6 +8,8 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> ip vrr</h>
 
 Shows VRR configuration for the specified interface.
@@ -32,7 +34,7 @@ cumulus@switch:~$ nv show interface vlan10 ip vrr
 
 ## <h>nv show interface \<interface-id\> ip vrr address \<ip-prefix-id\></h>
 
-Shows the information about the specified VRR IP address on the specified interface.
+Shows the information about a specific VRR IP address on the specified interface.
 
 ### Command Syntax
 

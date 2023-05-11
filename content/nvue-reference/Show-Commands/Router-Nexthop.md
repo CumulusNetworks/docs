@@ -8,6 +8,8 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show router nexthop</h>
 
 Shows information about the next hops in the RIB, such as the IP address, VRF, interface, type, and so on.

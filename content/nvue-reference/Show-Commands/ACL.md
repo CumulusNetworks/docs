@@ -8,6 +8,8 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show acl</h>
 
 Shows the configured ACL rules on the switch.
@@ -26,7 +28,7 @@ cumulus@switch:~$ nv show acl
 
 ## <h>nv show acl \<acl-id\></h>
 
-Shows the specified ACL rule.
+Shows the specified ACL configuration.
 
 ### Command Syntax
 
@@ -277,7 +279,7 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match
 
 ## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip</h>
 
-Shows an IPv4 or IPv6 match criteria for the specified ACL rule.
+Shows the IPv4 or IPv6 match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -577,7 +579,7 @@ cumulus@switch:~$ nv show interface swp1 acl
 
 ## <h>nv show interface \<interface-id\> acl \<acl-id\></h>
 
-Shows information about the specified ACL on the specified interface. You use ACLs to match packets and take actions.
+Shows information about a specific ACL on the specified interface. You use ACLs to match packets and take actions.
 
 ### Command Syntax
 
@@ -788,6 +790,12 @@ cumulus@switch:~$ nv show system control-plane acl
 
 Shows information about the specified control plane ACL.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.5.0
@@ -803,6 +811,12 @@ cumulus@switch:~$ nv show system control-plane acl ACL1
 ## <h>nv show system control-plane acl \<acl-id\> inbound</h>
 
 Shows configuration information for the specified inbound control plane ACL.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
 
 ### Version History
 
@@ -820,6 +834,12 @@ cumulus@switch:~$ nv show system control-plane acl ACL1 inbound
 
 Shows configuration information for the specified outbound control plane ACL.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.5.0
@@ -836,6 +856,12 @@ cumulus@switch:~$ nv show system control-plane acl ACL1 outbound
 
 Shows statistics for the specified control plane ACL.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.5.0
@@ -851,6 +877,13 @@ cumulus@switch:~$ nv show system control-plane acl ACL1 statistics
 ## <h>nv show system control-plane acl \<acl-id\> statistics \<rule-id\></h>
 
 Shows statistics for the specified control plane ACL rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 

@@ -8,6 +8,8 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show evpn</h>
 
 Shows global EVPN control plane information.
@@ -102,7 +104,7 @@ cumulus@switch:~$ nv show evpn access-vlan-info vlan 10 member-interface
 
 ## <h>nv show evpn dad</h>
 
-Shows EVPN duplicate address detection information.
+Shows EVPN duplicate address detection information. The VTEP considers a host MAC or IP address to be duplicate if the address moves across the network more than a certain number of times within a certain number of seconds. In addition to legitimate host or VM mobility scenarios, address movement can occur when you configure IP addresses incorrectly on a host or when packet looping occurs in the network due to faulty configuration or behavior.
 
 ### Version History
 
@@ -198,7 +200,7 @@ cumulus@switch:~$ nv show evpn l2-nhg vtep-ip 10.10.10.2
 
 ## <h>nv show evpn multihoming</h>
 
-Shows EVPM multihoming global configuration.
+Shows global EVPM multihoming configuration.
 
 ### Version History
 
@@ -645,7 +647,7 @@ cumulus@switch:~$ nv show evpn vni 10 mac 50:88:b2:3c:08:f9
 
 ## <h>nv show evpn vni \<vni-id\> multihoming</h>
 
-Shows multihoming Ethernet configuration for the specified EVPN VNI.
+Shows multihoming Ethernet configuration for the specified VNI.
 
 ### Command Syntax
 
@@ -781,7 +783,7 @@ cumulus@switch:~$ nv show evpn vni 10 multihoming esi
 
 ## <h>nv show evpn vni \<vni-id\> multihoming esi \<es-id\></h>
 
-Shows information for a specific multihoming Ethernet segment for the specified EVPN VNI.
+Shows information for a specific multihoming Ethernet segment for the specified VNI.
 
 ### Command Syntax
 
@@ -804,7 +806,7 @@ cumulus@switch:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00
 
 ## <h>nv show evpn vni \<vni-id\> route-advertise</h>
 
-Shows route advertisement information for the specified EVPN VNI.
+Shows route advertisement information for the specified VNI.
 
 {{%notice note%}}
 In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-advertise`
@@ -830,7 +832,7 @@ cumulus@switch:~$ nv show evpn vni 10 route-advertise
 
 ## <h>nv show evpn vni \<vni-id\> route-target</h>
 
-Shows route target information for the specified EVPN VNI.
+Shows route target information for the specified VNI.
 
 {{%notice note%}}
 In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-target`

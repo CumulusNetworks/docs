@@ -8,6 +8,8 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show service dhcp-relay</h>
 
 Shows the IPv4 DHCP relay configuration on the switch.
@@ -46,9 +48,13 @@ cumulus@switch:~$ nv show service dhcp-relay default
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service dhcp-relay \<vrf-id\> giaddress-interface \<interface-id\></h>
+## <h>nv show service dhcp-relay \<vrf-id\> gateway-interface \<interface-id\></h>
 
-Shows the IPv4 DHCP relay gateway IP address (giaddress) interface configuration.
+Shows the IPv4 DHCP relay gateway IP address interface configuration.
+
+{{%notice note%}}
+In Cumulus Linux 5.4 and earlier, this command is `nv show service dhcp-relay <vrf-id> giaddress-interface <interface-id>`
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -64,7 +70,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service dhcp-relay default giaddress-interface lo
+cumulus@switch:~$ nv show service dhcp-relay default gateway-interface lo
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -94,7 +100,7 @@ cumulus@switch:~$ nv show service dhcp-relay default interface swp1
 
 ## <h>nv show service dhcp-relay \<vrf-id\> server \<server-id\></h>
 
-Shows configuration for the specified IPv4 DHCP server participating in DHCP relay.
+Shows configuration information for the specified IPv4 DHCP server participating in DHCP relay.
 
 ### Command Syntax
 
@@ -261,7 +267,7 @@ cumulus@switch:~$ nv show service dhcp-server default
 
 ## <h>nv show service dhcp-server \<vrf-id\> domain-name</h>
 
-Shows the DNS attributes provided by the DHCP server.
+Shows the DNS attributes provided by the DHCP server in the specified VRF.
 
 ### Command Syntax
 
@@ -283,7 +289,7 @@ cumulus@switch:~$ nv show service dhcp-server default domain-name
 
 ## <h>nv show service dhcp-server \<vrf-id\> domain-name \<domain-name-id\></h>
 
-Shows information about a specific DNS attribute provided by the DHCP server.
+Shows information about a specific DNS attribute provided by the DHCP server in the specified VRF.
 
 ### Command Syntax
 
@@ -306,7 +312,7 @@ cumulus@switch:~$ nv show service dhcp-server default domain-name my-domain
 
 ## <h>nv show service dhcp-server \<vrf-id\> domain-name-server</h>
 
-Shows DNS configuration provided by the DHCP server.
+Shows DNS configuration provided by the DHCP server in the specified VRF.
 
 ### Command Syntax
 
@@ -328,7 +334,7 @@ cumulus@switch:~$ nv show service dhcp-server default domain-name-server
 
 ## <h>nv show service dhcp-server \<vrf-id\> domain-name-server \<server-id\></h>
 
-Shows specific DNS server configuration provided by the DHCP server.
+Shows specific DNS server configuration provided by the DHCP server in the specified VRF.
 
 ### Command Syntax
 
@@ -351,7 +357,7 @@ cumulus@switch:~$ nv show service dhcp-server default domain-name-server 192.168
 
 ## <h>nv show service dhcp-server \<vrf-id\> interface</h>
 
-Shows a list of interfaces on which IPv4 DHCP client is attached.
+Shows a list of interfaces on which the IPv4 DHCP client is attached.
 
 ### Command Syntax
 
@@ -372,7 +378,7 @@ cumulus@switch:~$ nv show service dhcp-server default interface
 
 ## <h>nv show service dhcp-server \<vrf-id\> interface \<interface-id\></h>
 
-Shows information about a specific interface on which IPv4 DHCP client is attached.
+Shows information about a specific interface on which the IPv4 DHCP client is attached.
 
 ### Command Syntax
 
@@ -440,7 +446,7 @@ cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24
 
 ## <h>nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name</h>
 
-Shows the IPv4 DHCP domain names in the pool.
+Shows the IPv4 DHCP domain names in the specified pool.
 
 ### Command Syntax
 
@@ -463,7 +469,7 @@ cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-n
 
 ## <h>nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\></h>
 
-Shows information about the IPv4 DHCP domain name in the pool.
+Shows information about a specific IPv4 DHCP domain name in the specified pool.
 
 ### Command Syntax
 
@@ -487,7 +493,7 @@ cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-n
 
 ## <h>nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name-server</h>
 
-Shows a list of the IPv4 DHCP domain name servers in the pool.
+Shows a list of the IPv4 DHCP domain name servers in the specified pool.
 
 ### Command Syntax
 
@@ -510,7 +516,7 @@ cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-n
 
 ## <h>nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\></h>
 
-Shows information about the IPv4 DHCP domain name server in the pool.
+Shows information about a specific IPv4 DHCP domain name server in the specified pool.
 
 ### Command Syntax
 
@@ -534,7 +540,7 @@ cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-n
 
 ## <h>nv show service dhcp-server \<vrf-id\> pool \<pool-id\> gateway</h>
 
-Shows the IPv4 DHCP gateways in the pool.
+Shows the IPv4 DHCP gateways in the specified pool.
 
 ### Command Syntax
 
@@ -557,7 +563,7 @@ cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24 gateway
 
 ## <h>nv show service dhcp-server \<vrf-id\> pool \<pool-id\> gateway \<gateway-id\></h>
 
-Shows information about a specific IPv4 DHCP gateway.
+Shows information about a specific IPv4 DHCP gateway in the specified pool.
 
 ### Command Syntax
 
@@ -711,7 +717,7 @@ cumulus@switch:~$ nv show service dhcp-server6 default
 
 ## <h>nv show service dhcp-server6 \<vrf-id\> domain-name</h>
 
-Shows the DNS attributes provided by the DHCP server.
+Shows the DNS attributes provided by the IPv6 DHCP server.
 
 ### Command Syntax
 
@@ -733,7 +739,7 @@ cumulus@switch:~$ nv show service dhcp-server6 default domain-name
 
 ## <h>nv show service dhcp-server6 \<vrf-id\> domain-name \<domain-name-id\></h>
 
-Shows information about a specific DNS attribute provided by the DHCP server.
+Shows information about a specific DNS attribute provided by the IPv6 DHCP server.
 
 ### Command Syntax
 
@@ -801,7 +807,7 @@ cumulus@switch:~$ nv show service dhcp-server6 default domain-name-server 0:0:0:
 
 ## <h>nv show service dhcp-server6 \<vrf-id\> interface</h>
 
-Shows the interfaces on which IPv6 DHCP client is attached.
+Shows the interfaces on which the IPv6 DHCP client is attached.
 
 ### Command Syntax
 
@@ -823,7 +829,7 @@ cumulus@switch:~$ nv show service dhcp-server6 default interface
 
 ## <h>nv show service dhcp-server6 \<vrf-id\> interface \<interface-id\></h>
 
-Shows information about a specific interface on which IPv6 DHCP client is attached.
+Shows information about a specific interface on which the IPv6 DHCP client is attached.
 
 ### Command Syntax
 
@@ -891,7 +897,7 @@ cumulus@switch:~$ nv show service dhcp-server6 default storage-servers
 
 ## <h>nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name</h>
 
-Shows information about the IPv6 DHCP domain names in the pool.
+Shows information about the IPv6 DHCP domain names in the specified pool.
 
 ### Command Syntax
 
@@ -914,7 +920,7 @@ cumulus@switch:~$ nv show service dhcp-server6 default storage-servers domain-na
 
 ## <h>nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\></h>
 
-Shows information about a specific IPv6 DHCP domain name in the pool.
+Shows information about a specific IPv6 DHCP domain name in the specified pool.
 
 ### Command Syntax
 
@@ -938,7 +944,7 @@ cumulus@switch:~$ nv show service dhcp-server6 default storage-servers domain-na
 
 ## <h>nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name-server</h>
 
-Shows information about the IPv6 DHCP domain name servers in the pool.
+Shows information about the IPv6 DHCP domain name servers in the specified pool.
 
 ### Command Syntax
 
@@ -961,7 +967,7 @@ cumulus@switch:~$ nv show service dhcp-server6 default storage-servers domain-na
 
 ## <h>nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\></h>
 
-Shows information about a specific IPv6 DHCP domain name server in the pool.
+Shows information about a specific IPv6 DHCP domain name server in the specified pool.
 
 ### Command Syntax
 

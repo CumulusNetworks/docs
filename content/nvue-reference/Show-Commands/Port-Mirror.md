@@ -138,7 +138,7 @@ Shows information about the specified destination IP address for the specified E
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<session-id>` | The port mirror session number |
+| `<session-id>` | The port mirror session number. |
 | `<dest-ip>` |  The destination IPv4 address. |
 
 ### Version History
@@ -177,13 +177,13 @@ cumulus@switch:~$ nv show system port-mirror session 1 erspan destination source
 
 ## <h>nv show system port-mirror session \<session-id\> erspan destination source-ip \<source-ip\></h>
 
-Shows information about the specified the destination source IP address for the specified ERSPAN session.
+Shows information about a specific destination source IP address for the specified ERSPAN session.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<session-id>` | The port mirror session number |
+| `<session-id>` | The port mirror session number. |
 | `<source-ip>` | The source IPv4 address. |
 
 ### Version History
@@ -267,7 +267,7 @@ cumulus@switch:~$ nv show system port-mirror session 1 erspan truncate
 
 ## <h>nv show system port-mirror session \<session-id\> span</h>
 
-Shows configuration for the specified SPAN session.
+Shows configuration settings for the specified SPAN session.
 
 ### Command Syntax
 
@@ -311,7 +311,7 @@ cumulus@switch:~$ nv show system port-mirror session 1 span destination
 
 ## <h>nv show system port-mirror session \<session-id\> span destination \<port-id\></h>
 
-Shows information about the specified destination port for the specified SPAN session.
+Shows information about a specific destination port for the specified SPAN session.
 
 ### Command Syntax
 
@@ -356,7 +356,7 @@ cumulus@switch:~$ nv show system port-mirror session 1 span source-port
 
 ## <h>nv show system port-mirror session \<session-id\> span source-port \<port-id\></h>
 
-Shows information about the specified source port (swp or bond) for the specified SPAN session.
+Shows information about a specific source port (swp or bond) for the specified SPAN session.
 
 ### Command Syntax
 

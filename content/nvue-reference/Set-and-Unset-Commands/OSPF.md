@@ -1150,7 +1150,7 @@ cumulus@switch:~$ nv set vrf default router ospf max-metric on-startup 200
 
 ## <h>nv set vrf \<vrf-id\> router ospf redistribute</h>
 
-Configures OSPF route redistributution.
+Configures OSPF route redistribution.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1441,7 +1441,7 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute kernel route-map R
 
 ## <h>nv set vrf \<vrf-id\> router ospf redistribute static</h>
 
-Configures OSPF static route redistributution.
+Configures OSPF static route redistribution.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

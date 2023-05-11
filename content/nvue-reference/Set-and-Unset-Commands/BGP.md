@@ -169,7 +169,7 @@ cumulus@switch:~$ nv set router bgp graceful-restart stale-routes-time 400
 
 ## <h>nv set router bgp graceful-shutdown</h>
 
-Turns BGP graceful shutdown on or off on the switch to reduce packet loss during planned maintenance of a router or link. BGP graceful shutdown  forces traffic to route around the BGP node.
+Turns BGP graceful shutdown on or off on the switch to reduce packet loss during planned maintenance of a router or link. BGP graceful shutdown forces traffic to route around the BGP node.
 
 ### Version History
 
@@ -1112,7 +1112,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redi
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static metric</h>
 
-Configures the metric you want to use for the redistributed IPv6 route for the specified VRF. You can specify `auto`, or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route. The default setting is `auto`.
+Configures the metric you want to use for the redistributed IPv6 route for the specified VRF. You can specify `auto`, or a value between 0 and 4294967295. If you specify `auto`, the switch chooses an appropriate value based on the type of route. The default setting is `auto`.
 
 ### Command Syntax
 
@@ -1184,7 +1184,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redi
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected metric</h>
 
-Configures the metric you want to use for the redistributed connected IPv6 route for the specified VRF. You can specify auto or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route.
+Configures the metric you want to use for the redistributed connected IPv6 route for the specified VRF. You can specify auto or a value between 0 and 4294967295. If you specify `auto`, the switch chooses an appropriate value based on the type of route.
 
 The default setting is `auto`.
 
@@ -1258,7 +1258,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast redi
 
 ## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel metric</h>
 
-Configures the metric you want to use for the redistributed kernel route for the specified VRF. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route.
+Configures the metric you want to use for the redistributed kernel route for the specified VRF. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch chooses an appropriate value based on the type of route.
 
 The default setting is `auto`.
 
@@ -1576,7 +1576,7 @@ cumulus@switch:~$ nv set vrf default router bgp path-selection med compare-alway
 
 ## <h>nv set vrf \<vrf-id\> router bgp path-selection med compare-deterministic</h>
 
-Applies route selection for the specified VRF in a way that produces deterministic answers locally .
+Applies route selection for the specified VRF in a way that produces deterministic answers locally.
 
 ### Command Syntax
 
@@ -4973,7 +4973,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound reestablish-wait</h>
 
-Specifes the time in seconds to wait before establishing the IPv4 BGP session again with the peer. You can set avalue between 1 and 4294967295. The default setting is auto, which uses standard BGP timers and processing (typically be 2-3 seconds).
+Specifes the time in seconds to wait before establishing the IPv4 BGP session again with the peer. You can set a value between 1 and 4294967295. The default setting is auto, which uses standard BGP timers and processing (typically between 2-3 seconds).
 
 ### Command Syntax
 

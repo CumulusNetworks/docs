@@ -193,7 +193,7 @@ cumulus@switch:~$ nv show router nexthop rib 10 dependents
 
 ## <h>nv show router nexthop rib \<nhg-id\> resolved-via</h>
 
-Shows details the next-hop address for a particular next hop.
+Shows details of the next-hop address for a particular next hop.
 
 ### Command Syntax
 

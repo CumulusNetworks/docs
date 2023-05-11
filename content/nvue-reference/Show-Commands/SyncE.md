@@ -1,7 +1,7 @@
 ---
 title: SyncE
 author: Cumulus Networks
-weight: 475
+weight: 375
 
 type: nojsscroll
 draft: true

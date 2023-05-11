@@ -720,7 +720,7 @@ cumulus@switch:~$ nv set interface swp1 bridge domain default stp restrrole
 
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> untagged</h>
 
-Configures the VLAN in which untagged packets ingressing this bridged interface are in. Egress packets are always tagged. You can set a value between 1 and 4094, `none`, or `auto`. If you specify `none`, the switch drops untagged packets.
+Configures the VLAN in which untagged packets ingress this bridged interface. Egress packets are always tagged. You can set a value between 1 and 4094, `none`, or `auto`. If you specify `none`, the switch drops untagged packets.
 
 ### Command Syntax
 

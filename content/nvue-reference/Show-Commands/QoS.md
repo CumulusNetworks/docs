@@ -229,6 +229,9 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv show interface swp5 qos congestion-control traffic-class 2
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+
 ## <h>nv show interface \<interface-id\> counters qos</h>
 
 Shows all QoS statistics for the specified interface.
@@ -312,7 +315,7 @@ cumulus@switch:~$ nv show interface swp1 counters ingress-buffer-stats
 Shows all QoS PFC statistics for the specified interface.
 
 {{%notice note%}}
-In Cumulus Linux 5.4 and earlier, this command is `nv show interface <interface-id> qos counters pfc-stats`
+In Cumulus Linux 5.4 and earlier, this command is `nv show interface <interface-id> qos counters pfc-stats`.
 {{%/notice%}}
 
 ### Command Syntax

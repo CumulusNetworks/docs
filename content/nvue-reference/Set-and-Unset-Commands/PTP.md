@@ -152,7 +152,7 @@ cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast on
 
 ## <h>nv set interface \<interface-id\> ptp shaper</h>
 
-Configures PTP shaping on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G to improve performance.
+Configures PTP shaping on the NVIDIA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G to improve performance.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

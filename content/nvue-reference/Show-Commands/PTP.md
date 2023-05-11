@@ -12,13 +12,13 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> ptp</h>
 
-Shows configuration and counters for the specified VLAN interface on the specified bridge domain.
+Shows PTP configuration and counters for a specific VLAN interface on the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`   |  The interface name. |
+| `<domain-id>`   |  The bridge domain. |
 | `<vid-id>`   |  The VLAN name. |
 
 ### Version History
@@ -61,7 +61,7 @@ cumulus@switch:~$ nv show interface swp1 counters ptp
 
 ## <h>nv show interface \<interface-id\> ptp</h>
 
-Shows configuration and counters for the specified PTP interface.
+Shows PTP configuration and counters for the specified interface.
 
 ### Command Syntax
 
@@ -85,7 +85,9 @@ cumulus@switch:~$  nv show interface swp1 ptp
 
 Shows if PTP shaper is enabled on the specified PTP interface.
 
-This command is available for the NVIDA Spectrum 1 switch only for PTP-enabled ports with speeds lower than 100G.
+{{%notice note%}}
+This command is available for the NVIDIA Spectrum 1 switch only for PTP-enabled ports with speeds lower than 100G.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -250,7 +252,7 @@ cumulus@switch:~$  nv show service ptp 1 clock-quality
 
 ## <h>nv show service ptp \<instance-id\> monitor</h>
 
-Shows the PTP monitor configuration for the specified PTP instance, such as the minimum and maximum difference allowed between the master and slave time, the mean time that PTP packets take to travel between the master and slave, the maximum number of timestamp entries allowed, the maximum number of violation log sets allowed and the maximum number of violation log entries allowed for each set, and the violation log interval.
+Shows the PTP monitor configuration for the specified PTP instance, such as the minimum and maximum difference allowed between the master and slave time, the mean time that PTP packets take to travel between the master and slave, the maximum number of timestamp entries allowed, the maximum number of violation log sets allowed, the maximum number of violation log entries allowed for each set, and the violation log interval.
 
 ### Command Syntax
 
@@ -492,7 +494,7 @@ cumulus@switch:~$  nv show service ptp 1 parent grandmaster-clock-quality
 
 ## <h>nv show service ptp \<instance-id\> profile</h>
 
-Shows the PTP profiles configured for the specified PTP instance. PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
+Shows the predefined and custom PTP profiles configured for the specified PTP instance. Predefined profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. A custom profile is based off a predefined profile. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
 ### Command Syntax
 

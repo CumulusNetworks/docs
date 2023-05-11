@@ -106,11 +106,11 @@ You can view the current configuration of a NetQ Agent to determine what data it
 
 ```
 netq config show agent 
-    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats||wjh|wjh-threshold] 
+    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|ssl|stats||wjh|wjh-threshold] 
     [json]
 ```
 
-The following example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF. There is no special configuration to monitor Kubernetes, FRR, interface statistics, sensors, or WJH, and there are no limits on CPU usage or change to the default logging level.
+The following example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF. There is no special configuration to monitor Kubernetes, FRR, interface statistics, or WJH, and there are no limits on CPU usage or change to the default logging level.
 
 ```
 cumulus@switch:~$ netq config show agent
@@ -146,7 +146,7 @@ The agent configuration commands let you:
 
 - Add, disable, and remove a NetQ Agent
 - Start and stop a NetQ Agent
-- Configure a NetQ Agent to collect selected data (CPU usage limit, FRR, Kubernetes, sensors, WJH)
+- Configure a NetQ Agent to collect selected data (CPU usage limit, FRR, Kubernetes, WJH)
 - Configure a NetQ Agent to send data to a server cluster
 - Troubleshoot the NetQ Agent
 
@@ -369,7 +369,6 @@ running-config-mon-json        30  yes       Netq Predefined Command
 cl-support-json               180  yes       Netq Predefined Command
 resource-util-json            120  yes       findmnt / -n -o FS-OPTIONS
 smonctl-json                   30  yes       /usr/sbin/smonctl -j
-sensors-json                   30  yes       sensors -u
 ssd-util-json               86400  yes       sudo /usr/sbin/smartctl -a /dev/sda
 ospf-neighbor-json             60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all neighbor detail json']
 ospf-interface-json            60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all interface json']
@@ -414,7 +413,6 @@ running-config-mon-json        30  yes       Netq Predefined Command
 cl-support-json               180  yes       Netq Predefined Command
 resource-util-json            120  yes       findmnt / -n -o FS-OPTIONS
 smonctl-json                   30  yes       /usr/sbin/smonctl -j
-sensors-json                   30  yes       sensors -u
 ssd-util-json               86400  yes       sudo /usr/sbin/smartctl -a /dev/sda
 ospf-neighbor-json             60  no        ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all neighbor detail json']
 ospf-interface-json            60  no        ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all interface json']
@@ -449,7 +447,6 @@ running-config-mon-json        30  yes       Netq Predefined Command
 cl-support-json               180  yes       Netq Predefined Command
 resource-util-json            120  yes       findmnt / -n -o FS-OPTIONS
 smonctl-json                   30  yes       /usr/sbin/smonctl -j
-sensors-json                   30  yes       sensors -u
 ssd-util-json               86400  yes       sudo /usr/sbin/smartctl -a /dev/sda
 ospf-neighbor-json             60  no        ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all neighbor detail json']
 ospf-interface-json            60  no        ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all interface json']

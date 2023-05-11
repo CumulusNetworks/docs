@@ -55,28 +55,34 @@ You need the following items to perform the certificate installation:
     2. Copy and add the following content to the file:
 
        ```
-       apiVersion: extensions/v1beta1
+       apiVersion: networking.k8s.io/v1
        kind: Ingress
        metadata:
          annotations:
-           kubernetes.io/ingress.class: "ingress-nginx"
-           nginx.ingress.kubernetes.io/ssl-redirect: "true"
-           nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-           nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
-           nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
-           nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
-           nginx.ingress.kubernetes.io/proxy-body-size: 10g
-           nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+            nginx.ingress.kubernetes.io/ssl-redirect: "true"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+            nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
+            nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+            nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+            nginx.ingress.kubernetes.io/proxy-body-size: 10g
+            nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
          name: netq-gui-ingress-external
          namespace: default
        spec:
-         rules:
-         - host: <your-hostname>
-           http:
+        ingressClassName: ingress-nginx-class
+        rules:
+        - host: <your-hostname>
+          http:
              paths:
-             - backend:
-                 serviceName: netq-gui
-                 servicePort: 80
+              - path: /
+              pathType: Prefix
+              backend:
+                service:
+                 name: netq-gui
+                 port: 
+                  number: 80
+              path: /
+              pathType: Prefix
          tls:
          - hosts:
            - <your-hostname>

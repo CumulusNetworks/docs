@@ -571,7 +571,7 @@ cumulus@leaf01:~$ sudo ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-The neighbor manager service relies on ARP and ND suppression to snoop on ARP and ND packets and install forwarding entries for those hosts. If you disable suppression, you must enable the neighbor manager snooper manually:
+The neighbor manager service relies on ARP and ND suppression to snoop on packets and update forwarding entries based on neighbor changes. If you disable suppression, you must enable the neighbor manager snooper manually:
 
 1. Create the systemd override configuration file `/etc/systemd/system/neighmgrd.service` with the following content:
 

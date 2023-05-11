@@ -10,7 +10,7 @@ NetQ reports switch performance metrics for the following categories:
 
 - **System configuration**: events, interfaces, IP and MAC addresses, VLANs, IP routes, IP neighbors, and installed software packages
 - **Utilization statistics**: CPU, memory, disk, ACL and forwarding resources, SSD, and BTRFS
-- **Physical sensing**: digital optics and chassis sensors
+- **Physical sensing**: digital optics and switch sensors
 - **RoCE** and **Precision Time Protocol**
 
 For switch inventory information (ASIC, platform, CPU, memory, disk, and OS), refer to {{<link title="Switch Inventory">}}.

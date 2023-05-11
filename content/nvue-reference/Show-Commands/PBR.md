@@ -34,7 +34,7 @@ cumulus@switch:~$ nv show interface swp51 router pbr
 
 ## <h>nv show interface \<interface-id\> router pbr map</h>
 
-Shows the PBR maps configured for the specified interface.
+Shows the PBR route maps configured for the specified interface.
 
 ### Command Syntax
 
@@ -56,7 +56,7 @@ cumulus@switch:~$ nv show interface swp51 router pbr map
 
 ## <h>nv show interface \<interface-id\> router pbr map \<pbr-map-id\></h>
 
-Shows configuration settings for the specified PBR map on the specified interface.
+Shows configuration settings for a specific PBR route map on the specified interface.
 
 ### Command Syntax
 
@@ -95,7 +95,7 @@ cumulus@switch:~$ nv show router pbr
 
 ## <h>nv show router pbr map</h>
 
-Shows settings for PBR maps. If you do not provide a specific map name, this command shows configuration settings for all configured maps.
+Shows settings for PBR route maps. If you do not provide a specific route map name, this command shows configuration settings for all configured PBR route maps.
 
 ### Version History
 
@@ -111,7 +111,7 @@ cumulus@switch:~$ nv show router pbr map
 
 ## <h>nv show router pbr map \<pbr-map-id\></h>
 
-Shows the configuration settings for a PBR map used for policy configuration.
+Shows the configuration settings for a PBR route map used for policy configuration.
 
 ### Command Syntax
 
@@ -155,7 +155,7 @@ cumulus@switch:~$ nv show router pbr map map1 rule
 
 ## <h>nv show router pbr map \<pbr-map-id\> rule \<rule-id\></h>
 
-Shows the match and set criteria, and the rule action for a route map.
+Shows the match and set criteria, and the rule action for a PBR route map.
 
 ### Command Syntax
 
@@ -224,7 +224,7 @@ cumulus@switch:~$ nv show router pbr map map1 rule 1 action nexthop-group
 
 ## <h>nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\></h>
 
-Shows configuration for the specified next hop group including the IP route table number of the default route.
+Shows configuration settings for the specified next hop group including the IP route table number of the default route.
 
 ### Command Syntax
 

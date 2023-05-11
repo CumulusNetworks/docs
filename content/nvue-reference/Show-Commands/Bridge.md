@@ -8,9 +8,11 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show bridge</h>
 
-Shows the configured bridge domains.
+Shows the configured bridge domains on the switch.
 
 ### Version History
 
@@ -64,7 +66,7 @@ cumulus@switch:~$ nv show bridge domain br_default
 
 ## <h>nv show bridge domain \<domain-id\> mac-table</h>
 
-Shows the layer 2 Forwarding Database for the specified bridge domain.
+Shows the layer 2 forwarding database for the specified bridge domain.
 
 ### Command Syntax
 
@@ -218,7 +220,7 @@ cumulus@switch:~$ nv show bridge domain br_default stp
 
 ## <h>nv show bridge domain \<domain-id\> stp state</h>
 
-Shows the STP state (uo or down) of the specified bridge domain.
+Shows the STP state (up or down) of the specified bridge domain.
 
 ### Command Syntax
 
@@ -262,14 +264,14 @@ cumulus@switch:~$ nv show bridge domain br_default vlan
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\></h>
 
-Shows configuration settings for the specified VLAN on the specified bridge domain.
+Shows configuration settings for a specific VLAN on the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN name. |
+| `<vid>` | The VLAN ID. |
 
 ### Version History
 
@@ -292,7 +294,7 @@ Shows the multicast configuration settings for the specified VLAN.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<vid>`      | The VLAN name. |
+| `<vid>`      | The VLAN ID. |
 
 ### Version History
 
@@ -315,7 +317,7 @@ Shows the IGMP or MLD snooping configuration settings for the specified VLAN.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<vid>`      | The VLAN name. |
+| `<vid>`      | The VLAN ID. |
 
 ### Version History
 
@@ -338,7 +340,7 @@ Shows the IGMP or MLD querier configuration settings for the specified VLAN.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<vid>`  | The VLAN name. |
+| `<vid>`  | The VLAN ID. |
 
 ### Version History
 
@@ -361,7 +363,7 @@ Shows the PTP configuration settings for the specified VLAN.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<vid>`      | The VLAN name. |
+| `<vid>`      | The VLAN ID. |
 
 ### Version History
 
@@ -384,7 +386,7 @@ Shows VNIs on a specific VLAN on the specified bridge domain.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN name. |
+| `<vid>` | The VLAN ID. |
 
 ### Version History
 
@@ -400,15 +402,15 @@ cumulus@switch:~$ nv show bridge domain br_default vlan 10 vni
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\></h>
 
-Shows configuration settings for the specified VLAN VNI on the specified bridge domain.
+Shows configuration settings for a specific VLAN VNI on the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN name. |
-| `<vni-id>` | The VXLAN name. |
+| `<vid>` | The VLAN ID. |
+| `<vni-id>` | The VXLAN ID. |
 
 ### Version History
 
@@ -431,8 +433,8 @@ Shows configuration settings for BUM traffic flooding for the specified VNI.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN name.  |
-| `<vni-id>` | The VXLAN name. |
+| `<vid>` | The VLAN ID.  |
+| `<vni-id>` | The VXLAN ID. |
 
 ### Version History
 
@@ -455,8 +457,8 @@ Shows the head-end-replication settings for the specified VNI.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN name. |
-| `<vni-id>` | The VXLAN name. |
+| `<vid>` | The VLAN ID. |
+| `<vni-id>` | The VXLAN ID. |
 
 ### Version History
 
@@ -479,8 +481,8 @@ Shows specific head-end-replication settings for the specified VNI.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN name. |
-| `<vni-id>` | The VXLAN name. |
+| `<vid>` | The VLAN ID. |
+| `<vni-id>` | The VXLAN ID. |
 | `<hrep-id>`  | The IPv4 unicast address or `evpn`. |
 
 ### Version History
@@ -542,7 +544,7 @@ cumulus@switch:~$ nv show interface bond3 bridge domain br_default
 
 ## <h>nv show interface \<interface-id\> bridge domain \<domain-id\> stp</h>
 
-Shows STP configuration settings for the specified bridge domain on the specified interface.
+Shows STP configuration settings for a specific bridge domain on the specified interface.
 
 ### Command Syntax
 
@@ -565,7 +567,7 @@ cumulus@switch:~$ nv show interface bond3 bridge domain br_default stp
 
 ## <h>nv show interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\></h>
 
-Shows configuration settings for the specified VLAN on the specifies bridge domain.
+Shows configuration settings for a specific VLAN on the specified bridge domain.
 
 ### Command Syntax
 
@@ -573,7 +575,7 @@ Shows configuration settings for the specified VLAN on the specifies bridge doma
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
 | `<domain-id>` | The name of the bridge domain. |
-| `<vid>` | The VLAN name. You can also specify `all` to show settings for all VLANs. |
+| `<vid>` | The VLAN ID. You can also specify `all` to show settings for all VLANs. |
 
 ### Version History
 

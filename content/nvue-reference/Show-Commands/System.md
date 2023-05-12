@@ -1,7 +1,7 @@
 ---
 title: System
 author: Cumulus Networks
-weight: 410
+weight: 385
 
 type: nojsscroll
 ---
@@ -172,7 +172,7 @@ cumulus@switch:~$ nv show system global reserved vlan l3-vni-vlan
 
 ## <h>nv show system memory</h>
 
-Shows information about the switch memory, such as the total amount of memory, the amount of free and used memory,and the percent of memory utilized.
+Shows information about the switch memory, such as the total amount of memory, the amount of free and used memory, and the percent of memory utilized.
 
 ### Version History
 

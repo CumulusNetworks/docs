@@ -8,6 +8,8 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show service syslog</h>
 
 Shows the syslog configuration settings.
@@ -77,7 +79,7 @@ Shows information about a specific remote DNS server for the specified VRF.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name. |
-| `<server-id>` | The hostname or IP address of a syslog server. |
+| `<server-id>` | The hostname or IP address of the syslog server. |
 
 ### Version History
 

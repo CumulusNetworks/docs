@@ -68,7 +68,7 @@ Shows information about the administrative distance for the static route and nex
 | `<vrf-id>` |  The VRF name.|
 | `<route-id>` | The IP prefix. |
 | `<distance-id>` | The path distance. |
-| `<via-id>` | The IP address, interface, or "blackhole". |
+| `<via-id>` | The IP address, interface, or `blackhole`. |
 
 ### Version History
 
@@ -84,7 +84,7 @@ cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32 distance 2 v
 
 ## <h>nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\> flag</h>
 
-Shows the flag value for the static route with the specified route prefix and distance in the specified VRF.
+Shows the flag value for the static route with a specific route prefix and distance for the specified VRF.
 
 ### Command Syntax
 
@@ -93,7 +93,7 @@ Shows the flag value for the static route with the specified route prefix and di
 | `<vrf-id>` |  The VRF name.|
 | `<route-id>` | The IP prefix. |
 | `<distance-id>` |  The path distance. |
-| `<via-id>` | The IP address, interface, or "blackhole".|
+| `<via-id>` | The IP address, interface, or `blackhole`.|
 
 ### Version History
 
@@ -109,7 +109,7 @@ cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32
 
 ## <h>nv show vrf \<vrf-id\> router static \<route-id\> via \<via-id\></h>
 
-Shows information about the next hop for the static route in the specified VRF.
+Shows information about the next hop for the static route for the specified VRF.
 
 ### Command Syntax
 
@@ -117,7 +117,7 @@ Shows information about the next hop for the static route in the specified VRF.
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<route-id>` | The IP prefix. |
-| `<via-id>` | The IP address, interface, or "blackhole". |
+| `<via-id>` | The IP address, interface, or `blackhole`. |
 
 ### Version History
 
@@ -133,7 +133,7 @@ cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0
 
 ## <h>nv show vrf \<vrf-id\> router static \<route-id\> via \<via-id\> flag</h>
 
-Shows the flag value for the static route with the next hop in the specified VRF.
+Shows the flag value for the static route with the next hop for the specified VRF.
 
 ### Command Syntax
 
@@ -141,7 +141,7 @@ Shows the flag value for the static route with the next hop in the specified VRF
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<route-id>` | The IP prefix. |
-| `<via-id>` | The IP address, interface, or "blackhole". |
+| `<via-id>` | The IP address, interface, or `blackhole`. |
 
 ### Version History
 

@@ -22,10 +22,11 @@ The following illustration shows the NVUE REST API architecture and illustrates 
 
 ## Supported HTTP Methods
 
+The NVUE REST API supports the following methods:
 - The **GET** method displays configuration and operational data, and is equivalent to the `nv show` commands.
 - The **POST** method creates and submits operations. You typically use this method for `nv action` commands and for the `nv config` command to create revisions.
 - The **PATCH** method replaces or unsets a configuration. You use this method for the `nv set` and `nv config apply` commands. You can either perform:
-  - A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/{vrf-id}/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
+  - A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/<vrf-id>/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
   - A root patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node `/nvue_v1`. You typically perform a *root patch* to push all configurations to the switch in bulk; for example, if you use an SDN controller or a network management system to push the entire switch configuration every time you need to make a change, regardless of how small or large. A root patch can also make configuration changes with fewer round trips to the switch.
 - The **DELETE** method deletes a configuration and is equivalent to the `nv unset` commands.
 
@@ -36,7 +37,7 @@ The NVUE REST API supports HTTP basic authentication. The API supports the same 
 NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format. For the steps to generate self-signed certificates and keys, and to install them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
 To use your own certificate chain:
-1. Import the certificate and private key onto the Cumulus Linux switch using secure channels such as SCP or SFTP.
+1. Import the certificate and private key onto the Cumulus Linux switch using secure channels, such as SCP or SFTP.
 2. Store the certificate and private key on the filesystem in a location of you choice or use the same location; for example, `/etc/ssl/certs` and `/etc/ssl/private`.
 3. Update the `/etc/nginx/sites-enabled/nvue.conf` file to set the `ssl_certificate` and the `ssl_certificate_key` values to your keys.
 4. Restart NGINX with the `sudo systemctl restart nginx` command.
@@ -68,7 +69,7 @@ NVUE follows a declarative model, removing context-specific commands and setting
 
 ### Enable the NVUE REST API
 
-To enable the NVUE API, run these commands on the switch:
+To enable the NVUE REST API, run these commands on the switch:
 
 ```
 cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
@@ -1172,7 +1173,7 @@ out-pkts             3536508                        total number of packets tran
 
 ### Convert CLI Changes to Use the API
 
-You can take a configuration change from the CLI and use the API to set the same set of changes.
+You can take a configuration change from the CLI and use the API to configure the same set of changes.
 
 1. Make your configuration changes on the system with the NVUE CLI.
 
@@ -1477,7 +1478,7 @@ The following section provides practical API examples.
 
 ### Configure the System
 
-Send a targeted API request to `/nvue_v1/system ` to set the system hostname, pre-login or post-login message, and timezone on the switch.
+To set the system hostname, pre-login or post-login message, and timezone on the switch, send a targeted API request to `/nvue_v1/system`.
 
 {{< tabs "SystemConfig" >}}
 {{< tab "Curl Command" >}}
@@ -1635,7 +1636,7 @@ cumulus@switch:~$ nv set system message post-login "You have successfully logged
 
 ### Configure Services
 
-Send a targeted API request to `/nvue_v1/service ` to set up NTP, DNS, and SNMP on the switch.
+To set up NTP, DNS, and SNMP on the switch, send a targeted API request to `/nvue_v1/service`.
 
 {{< tabs "ServicesConfig" >}}
 {{< tab "Curl Command" >}}
@@ -2642,7 +2643,7 @@ cumulus@switch:~$ nv action clear interface swp1 qos counter
 
 ## Example Python Script
 
-In the following python example, the `full_config_example()` method sets the system pre-login message, enables BGP globally, and a changes a few other configuration settings in a single bulk operation. The API end-point goes to the root node `/nvue_v1`. The `bridge_config_example()` method performs a targeted API request to `/nvue_v1/bridge/domain/{domain-id}` to set the `vlan-vni-offset` attribute.
+In the following python example, the `full_config_example()` method sets the system pre-login message, enables BGP globally, and changes a few other configuration settings in a single bulk operation. The API end-point goes to the root node `/nvue_v1`. The `bridge_config_example()` method performs a targeted API request to `/nvue_v1/bridge/domain/<domain-id>` to set the `vlan-vni-offset` attribute.
 
 {{< expand "Example Python Script" >}}
 
@@ -2882,7 +2883,7 @@ if __name__ == "__main__":
 
 ## Try the API
 
-You can try out the NVUE REST API with the {{<exlink url="https://air.nvidia.com/marketplace?demo_id=aa77bb13-6a7d-431c-9203-640510778beb" text="NVUE API Lab">}} available on NVIDIA Air. The lab provides a basic example that helps you get started with the APIs. You can try out the other examples in this document.
+To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/marketplace?demo_id=aa77bb13-6a7d-431c-9203-640510778beb" text="NVUE API Lab">}} available on NVIDIA Air. The lab provides a basic example to help you get started. You can also try out the other examples in this document.
 
 ## Resources
 

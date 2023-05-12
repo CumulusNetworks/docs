@@ -9,13 +9,17 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## May 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0511-015
+- Added Cumulus Linux 5.5.0
+- Fixed an issue related to image uploads
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0504-012
 - Updated oob-mgmt-server to Ubuntu 22.04
 - Added a limit of 256 for the maximum number of interfaces on a single node
 - Updated resource budget limits for accounts using a company email
 - Fixed a bug that prevented some simulations with TPM/UEFI from loading
 - Fixed a bug in validation of image uploads
-<!-- Air:WhatsNew -->
 
 ## April 2023
 ### 82.2023.0424-012

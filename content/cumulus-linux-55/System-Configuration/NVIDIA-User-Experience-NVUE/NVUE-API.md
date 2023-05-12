@@ -257,6 +257,7 @@ To replace an entire configuration:
 4. Do a root patch to update the switch with the new configuration.
 
    <div class=scroll>
+
    ```
    cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{
       "system": {

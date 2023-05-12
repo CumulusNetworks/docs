@@ -96,7 +96,7 @@ cumulus@switch:~$ nv set system aaa authentication-order 1 tacacs
 
 ## <h>nv set system aaa tacacs authentication per-user-homedir</h>
 
-Turns per user home directory on or off to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in. The default setting os `off`.
+Turns per user home directory on or off to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in. The default setting is `off`.
 
 ### Version History
 

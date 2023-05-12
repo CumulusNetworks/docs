@@ -403,47 +403,6 @@ None
 
 None
 - - -
-
-## netq config add agent sensors
-
-Configures the NetQ Agent to collect information from the sensors on the switch chassis, including fan, power supply, and temperature data. You must run this command from the chassis.
-
-### Syntax
-
-```
-netq config add agent sensors
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| sensors | NA | Collect information from all chassis sensors |
-
-### Options
-
-None
-
-### Sample Usage
-
-Configure sensor monitoring
-
-```
-cumulus@chassis:~$ netq config add agent sensors
-Successfully added sensors monitor. Please restart netq-agent (netq config restart agent)
-
-cumulus@chassis:~$ netq config restart agent
-Restarting netq-agent... Success!
-```
-
-### Related Commands
-
-- `netq config show agent sensors`
-- `netq config del agent sensors`
-- `netq config restart agent`
-
-- - -
-
 ## netq config add agent server
 
 Configures the destination (NetQ appliance or VM) for the data collected by the NetQ Agent and for API requests.
@@ -994,7 +953,7 @@ WJH: Disables the NetQ Agent from collecting What Just Happened events on a swit
 
 ```
 netq config del agent 
-    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|ssl|stats|wjh] 
+    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|kubernetes-monitor|loglevel|server|ssl|stats|wjh] 
     [json]
 ```
 ### Required Arguments
@@ -1011,7 +970,6 @@ None
 | frr-monitor | NA | Stop the NetQ Agent from monitoring FRR when running in a container |
 | kubernetes-monitor | NA | Stop the NetQ Agent from monitoring Kubernetes containers |
 | loglevel | NA | Stop the NetQ Agent from logging events about the agent |
-| sensors | NA | Stop the NetQ Agent from monitoring chassis sensors |
 | server | NA | Delete the current destination of NetQ Agent data and API requests |
 | ssl | NA | Delete SSL configuration |
 | stats | NA | Stop the NetQ Agent from collecting interface statistics |
@@ -1396,7 +1354,7 @@ Displays the configuration of the NetQ Agent on a switch. Several forms of this 
 
 ```
 netq config show agent 
-    [asic-monitor|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats|wjh|wjh-threshold] 
+    [asic-monitor|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|ssl|stats|wjh|wjh-threshold] 
     [json]
 ```
 ### Required Arguments
@@ -1412,7 +1370,6 @@ None
 | frr-monitor | NA | Display FRR monitoring configuration |
 | kubernetes-monitor | NA | Display the Kubernetes monitoring configuration |
 | loglevel | NA | Display the NetQ Agent logging level configuration |
-| sensors | NA | Display NetQ Agent sensors configuration |
 | ssl | NA | Display SSL configuration |
 | stats | NA | Display status of interface statistics |
 | wjh | NA | Display NetQ Agent What Just Happened monitoring configuration |

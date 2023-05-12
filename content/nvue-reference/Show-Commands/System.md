@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show system</h>
 
-Shows information about the switch, such as the hostname, Cumulus Linux verison, the switch uptime, and the timezone.
+Shows information about the switch, such as the hostname, Cumulus Linux version, the switch uptime, and the time zone.
 
 ### Version History
 

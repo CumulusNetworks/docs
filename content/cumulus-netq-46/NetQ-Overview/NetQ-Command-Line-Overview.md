@@ -470,7 +470,7 @@ The following example shows how to restart the CLI instance:
 cumulus@switch~:$ netq config restart cli
 ```
 
-The following example shows how to enable the CLI on a NetQ on-premises appliance or virtual machine (VM):
+The following example shows how to enable the CLI on a NetQ on-premises appliance or virtual machine:
 
 ```
 cumulus@switch~:$ netq config add cli server 10.1.3.101

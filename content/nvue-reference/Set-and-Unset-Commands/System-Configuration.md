@@ -472,7 +472,7 @@ cumulus@switch:~$ nv set system message post-login "This switch is being used fo
 
 ## <h>nv set system message pre-login</h>
 
-Configures the message you want users to see before they log into the switch. If the message contains more than one word, you must enclose it in quotes (").
+Configures the message you want users to see before they log in to the switch. If the message contains more than one word, you must enclose it in quotes (").
 
 ### Version History
 

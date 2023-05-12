@@ -650,7 +650,7 @@ Shows next hop information for the specified IPv4 route path in the local RIB.
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv4 address and route prefix in CIDR notation |
 | `<path-id>` | The path ID. |
-| `<nexthop-id>`| The next hop. |
+| `<nexthop-id>`| The nexthop ID. |
 
 ### Version History
 
@@ -1404,7 +1404,7 @@ Shows next hop information for the specified IPv6 route path in the local RIB.
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
 | `<path-id> ` | The path ID. |
-| `<nexthop-id>` | The next hop. |
+| `<nexthop-id>` | The nexthop ID. |
 
 ### Version History
 
@@ -2063,7 +2063,7 @@ Shows information about the a specific next hop for an IPv4 advertised route pat
 | `<neighbor-id>` |  The VRF name. |
 | `<route-id>` |   The IPv4 advertised route. |
 | `<path-id>` |   The IPv4 advertised route path ID. |
-| `<nexthop-id>` |   The next hop ID. |
+| `<nexthop-id>` |   The nexthop ID. |
 
 ### Version History
 
@@ -2384,7 +2384,7 @@ Shows information about a specific next hop for a specific IPv4 received route p
 | `<neighbor-id>` |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
 | `<route-id>` |   The IPv4 route. |
 | `<path-id>` |   The path ID. |
-| `<nexthop-id>` |   The path ID. |
+| `<nexthop-id>` |   The nexthop ID. |
 
 ### Version History
 

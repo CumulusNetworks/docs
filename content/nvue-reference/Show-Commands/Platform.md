@@ -298,7 +298,7 @@ cumulus@switch:~$ nv show platform software installed
 
 ## <h>nv show platform software installed \<installed-id\></h>
 
-Shows information about the specified installed package, such the package description and version number.
+Shows information about the specified installed package, such as the package description and version number.
 
 ### Command Syntax
 

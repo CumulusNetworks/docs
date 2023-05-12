@@ -1213,7 +1213,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound</h>
 
-Shows the IPv4 outbound policy configuration for a specifc BGP neighbor.
+Shows the IPv4 outbound policy configuration for a specific BGP neighbor.
 
 ### Command Syntax
 
@@ -1236,7 +1236,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy</h>
 
-Shows the EVPN policy configuration for a specifc BGP neighbor.
+Shows the EVPN policy configuration for a specific BGP neighbor.
 
 ### Command Syntax
 
@@ -1259,7 +1259,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound</h>
 
-Shows the EVPN inbound policy configuration for a specifc BGP neighbor.
+Shows the EVPN inbound policy configuration for a specific BGP neighbor.
 
 ### Command Syntax
 
@@ -1282,7 +1282,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound</h>
 
-Shows the EVPN outbound policy configuration for a specifc BGP neighbor.
+Shows the EVPN outbound policy configuration for a specific BGP neighbor.
 
 ### Command Syntax
 
@@ -1305,7 +1305,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy</h>
 
-Shows the IPv4 policy configuration for a specifc BGP peer group.
+Shows the IPv4 policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1328,7 +1328,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound</h>
 
-Shows the IPv4 inbound policy configuration for a specifc BGP peer group.
+Shows the IPv4 inbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1351,7 +1351,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound</h>
 
-Shows the IPv4 outbound policy configuration for a specifc BGP peer group.
+Shows the IPv4 outbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1374,7 +1374,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy</h>
 
-Shows the IPv6 policy configuration for a specifc BGP peer group.
+Shows the IPv6 policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1397,7 +1397,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound</h>
 
-Shows the IPv6 inbound policy configuration for a specifc BGP peer group.
+Shows the IPv6 inbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1420,7 +1420,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound</h>
 
-Shows the IPv6 outbound policy configuration for a specifc BGP peer group.
+Shows the IPv6 outbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1443,7 +1443,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy</h>
 
-Shows the EVPN policy configuration for a specifc BGP peer group.
+Shows the EVPN policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1466,7 +1466,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy inbound</h>
 
-Shows the EVPN inbound policy configuration for a specifc BGP peer group.
+Shows the EVPN inbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1489,7 +1489,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy outbound</h>
 
-Shows the EVPN outbound policy configuration for a specifc BGP peer group.
+Shows the EVPN outbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 

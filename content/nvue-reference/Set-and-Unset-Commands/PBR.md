@@ -156,7 +156,7 @@ Configures the next hop group you want to apply to the policy map.
 | ---------  | -------------- |
 | `<pbr-map-id>`  |  The PBR route map name. |
 | `<rule-id>`     |  The PBR rule number. |
-| `<nexthop-group-id>`  | The next hop group name. |
+| `<nexthop-group-id>`  | The nexthop group name. |
 
 ### Version History
 

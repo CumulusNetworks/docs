@@ -939,7 +939,7 @@ cumulus@switch:~$ nv show evpn vni 10 route-target export
 
 ## <h>nv show evpn vni \<vni-id\> route-target export \<rt-id\></h>
 
-Shows configuration information about the a specific export route target for the specified EVPN VNI.
+Shows configuration information about a specific export route target for the specified EVPN VNI.
 
 {{%notice note%}}
 In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-target export <rt-id>`

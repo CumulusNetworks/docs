@@ -19,6 +19,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3437980</td>
+<td>If the number of bonds and its bond members exceeds the total number of physical ports on the switch  and LACP bypass is enabled, {{switchd}} might crash when frequent link flaps occur or {{switchd}} restarts. To work around this issue, disable LACP bypass.</td>
+<td>5.4.0</td>
+<td>5.5.0</td>
+</tr>
+<tr>
 <td>3436595</td>
 <td>When using WJH, if you export dropped packets to a file in PCAP format, the file contains custom WJH header data. As a result, certain tools, such as Wireshark, cannot decode the data. To work around this issue, use the {{--no_metadata}} option with the export command:
 

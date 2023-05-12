@@ -79,6 +79,7 @@ pdfhidden: True
 ### Fixed Issues in 5.5.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="3437980"></a> [3437980](#3437980) <a name="3437980"></a> <br /> | If the number of bonds and its bond members exceeds the total number of physical ports on the switch  and LACP bypass is enabled, <code>switchd</code> might crash when frequent link flaps occur or <code>switchd</code> restarts. To work around this issue, disable LACP bypass. | 5.4.0 | |
 | <a name="3434791"></a> [3434791](#3434791) <a name="3434791"></a> <br /> | Changing the <code>ebgp-multihop</code> setting for a BGP peer always resets the peer, even if the configured TTL value matches the existing TTL value of the peer. | 5.3.1-5.4.0 | |
 | <a name="3432897"></a> [3432897](#3432897) <a name="3432897"></a> <br /> | When you remove the restriction from a TACACS+ mapped user to remove per command authorization, the <code>tacplus-restrict -R</code> command does not restore ownership of restored files correctly. As a result, some commands might fail due to permission errors in the files or directories under the home directory. To work around this issue, run the <code>sudo chown</code> command  to correct the ownership of the affected files and directories. | 5.0.0-5.4.0 | |
 | <a name="3429530"></a> [3429530](#3429530) <a name="3429530"></a> <br /> | On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time. | 4.2.1-5.4.0 | |

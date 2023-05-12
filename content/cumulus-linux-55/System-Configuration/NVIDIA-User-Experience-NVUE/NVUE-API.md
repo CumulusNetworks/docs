@@ -12,9 +12,7 @@ toc: 3
 </style>
 In addition to the CLI, NVUE supports a REST API. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL or a web browser.
 
-The `nvued` service provides access to the NVUE REST API. Cumulus Linux exposes the HTTP endpoint internally, which makes the NVUE REST API accessible locally within the Cumulus Linux switch. The NVUE CLI also communicates with the `nvued` service using internal APIs.
-
-To provide external access to the NVUE REST API, Cumulus Linux uses an HTTP reverse proxy server, and supports HTTPS and TLS connections from external REST API clients.
+The `nvued` service provides access to the NVUE REST API. Cumulus Linux exposes the HTTP endpoint internally, which makes the NVUE REST API accessible locally within the Cumulus Linux switch. The NVUE CLI also communicates with the `nvued` service using internal APIs. To provide external access to the NVUE REST API, Cumulus Linux uses an HTTP reverse proxy server, and supports HTTPS and TLS connections from external REST API clients.
 
 The following illustration shows the NVUE REST API architecture and illustrates how Cumulus Linux forwards the requests internally.
 

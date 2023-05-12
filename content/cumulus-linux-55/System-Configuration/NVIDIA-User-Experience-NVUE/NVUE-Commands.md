@@ -4,9 +4,11 @@ author: NVIDIA
 weight: 121
 toc: 2
 ---
-This section shows you how to list all the NVUE commands and see command descriptions.
+This section shows you how to list all the NVUE commands and see help for the commands.
 
-## List All Commands
+To view the NVUE command reference for Cumulus Linux, which describes all the NVUE CLI commands and provides examples, go to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvue-reference/" text="NVUE Command Reference">}}.
+
+## List All NVUE Commands
 
 To see a list of all the NVUE `nv show`, `nv set`, `nv unset`, `nv action`, and `nv config` commands, run `nv list-commands`.
 
@@ -24,24 +26,10 @@ nv show platform software
 nv show platform software installed
 nv show platform software installed <installed-id>
 nv show platform capabilities
-nv show platform environment
-nv show platform environment fan
-nv show platform environment fan <fan-id>
-nv show platform environment psu
-nv show platform environment psu <psu-id>
-nv show platform environment led
-nv show platform environment led <led-id>
-nv show platform environment sensor
-nv show platform environment sensor <sensor-id>
-nv show action
-nv show action <action-job-id>
-nv show router
-nv show router ptm
-nv show router nexthop
 ...
 ```
 
-## Show a Command Description
+## Show the NVUE Command Help
 
 To see a description for a command, type the command with `-h` at the end:
 

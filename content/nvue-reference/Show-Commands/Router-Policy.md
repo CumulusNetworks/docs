@@ -1122,7 +1122,7 @@ cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action perm
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy
+## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy</h>
 
 Shopws the permit action exit policy for the specified route map rule.
 

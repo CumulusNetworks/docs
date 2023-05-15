@@ -30,7 +30,13 @@ The NVUE REST API supports the following methods:
 
 ## Secure the API
 
-The NVUE REST API supports HTTP basic authentication. The API supports the same underlying authentication methods that the NVUE CLI supports for the username and password, and the user accounts function the same on both the API and the CLI. Cumulus Linux contains a self-signed certificate and private key to use on the server-side in this implementation so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
+### Authentication
+
+The NVUE REST API supports HTTP basic authentication. The API supports the same underlying authentication methods that the NVUE CLI supports for the username and password, and the user accounts function the same on both the API and the CLI. 
+
+### Certificates
+
+Cumulus Linux contains a self-signed certificate and private key to use on the server-side in this implementation so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
 
 NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format. For the steps to generate self-signed certificates and keys, and to install them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
@@ -39,6 +45,41 @@ To use your own certificate chain:
 2. Store the certificate and private key on the filesystem in a location of you choice or use the same location; for example, `/etc/ssl/certs` and `/etc/ssl/private`.
 3. Update the `/etc/nginx/sites-enabled/nvue.conf` file to set the `ssl_certificate` and the `ssl_certificate_key` values to your keys.
 4. Restart NGINX with the `sudo systemctl restart nginx` command.
+
+### API-only user
+
+Use the Linux Group permissions to create a API-only user without SSH permissions. This can be added as part of the ZTP script.
+
+```
+# Create the dedicated automation user 
+adduser --disabled-password --gecos "Automation User,,,," --shell /usr/bin/nologin automation
+
+# Set the password
+echo 'automation:password!' | chpasswd
+
+# Add the user to nvapply group to make NVUE config changes
+adduser automation nvapply
+
+```
+
+### Control-plane Access Control List (ACL)
+
+With Cumulus Linux 5.5, you can now secure the API using control-plane ACLs. Below is an example of how you can allow users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
+
+```
+cumulus@switch:~$ nv set acl API-PROTECT type ipv4 
+cumulus@switch:~$ nv set acl API-PROTECT rule 10 action permit
+cumulus@switch:~$ nv set acl API-PROTECT rule 10 match ip .protocol tcp .dest-port 8765 .source-ip 192.168.200.0/24
+cumulus@switch:~$ nv set acl API-PROTECT rule 10 remark "Allow the Management Subnet to talk to API"
+
+cumulus@switch:~$ nv set acl API-PROTECT rule 20 action permit
+cumulus@switch:~$ nv set acl API-PROTECT rule 20 match ip .protocol tcp .dest-port 8765 .source-ip 127.0.0.1
+cumulus@switch:~$ nv set acl API-PROTECT rule 20 remark "Allow the local switch to talk to the API"
+
+cumulus@switch:~$ nv set acl API-PROTECT rule 30 action deny
+cumulus@switch:~$ nv set acl API-PROTECT rule 30 match ip .protocol tcp .dest-port 8765
+cumulus@switch:~$ nv set acl API-PROTECT rule 30 remark "Block everyone else from talking to the API"
+```
 
 ## Supported Objects
 

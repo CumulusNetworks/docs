@@ -293,8 +293,8 @@ Traceback (most recent call last):
   obj, end = self.scan_once(s, idx)
 MemoryError
 </td>
-<td>3.7.15-4.4.1</td>
-<td>4.4.2-4.4.5</td>
+<td>3.7.15-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>2827336</td>
@@ -2969,8 +2969,8 @@ Traceback (most recent call last):
   obj, end = self.scan_once(s, idx)
 MemoryError
 </td>
-<td>3.7.15-4.4.1</td>
-<td>4.4.2-4.4.5</td>
+<td>3.7.15-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>2855881</td>

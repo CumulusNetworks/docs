@@ -30,8 +30,12 @@ The NVUE REST API supports the following methods:
 
 ## Secure the API
 
-The NVUE REST API supports HTTP basic authentication. The API supports the same underlying authentication methods that the NVUE CLI supports for the username and password, and the user accounts function the same on both the API and the CLI. Cumulus Linux contains a self-signed certificate and private key to use on the server-side in this implementation so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
+The NVUE REST API supports HTTP basic authentication, and the same underlying authentication methods for username and password that the NVUE CLI supports. User accounts work the same on both the API and the CLI.
 
+### Certificates
+<!-- vale off -->
+Cumulus Linux includes a self-signed certificate and private key to use on the server so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
+<!-- vale on -->
 NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format. For the steps to generate self-signed certificates and keys, and to install them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
 To use your own certificate chain:
@@ -39,10 +43,44 @@ To use your own certificate chain:
 2. Store the certificate and private key on the filesystem in a location of you choice or use the same location; for example, `/etc/ssl/certs` and `/etc/ssl/private`.
 3. Update the `/etc/nginx/sites-enabled/nvue.conf` file to set the `ssl_certificate` and the `ssl_certificate_key` values to your keys.
 4. Restart NGINX with the `sudo systemctl restart nginx` command.
+<!-- vale off -->
+### API-only User
+<!-- vale on -->
+To create an API-only user without SSH permissions, use Linux group permissions. You can create the API-only user in the ZTP script.
+
+```
+# Create the dedicated automation user 
+adduser --disabled-password --gecos "Automation User,,,," --shell /usr/bin/nologin automation
+
+# Set the password
+echo 'automation:password!' | chpasswd
+
+# Add the user to nvapply group to make NVUE config changes
+adduser automation nvapply
+```
+
+### Control Plane ACLs
+
+You can secure the API with control plane ACLs. The following example allows users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
+
+```
+cumulus@switch:~$ nv set acl API-PROTECT type ipv4 
+cumulus@switch:~$ nv set acl API-PROTECT rule 10 action permit
+cumulus@switch:~$ nv set acl API-PROTECT rule 10 match ip .protocol tcp .dest-port 8765 .source-ip 192.168.200.0/24
+cumulus@switch:~$ nv set acl API-PROTECT rule 10 remark "Allow the Management Subnet to talk to API"
+
+cumulus@switch:~$ nv set acl API-PROTECT rule 20 action permit
+cumulus@switch:~$ nv set acl API-PROTECT rule 20 match ip .protocol tcp .dest-port 8765 .source-ip 127.0.0.1
+cumulus@switch:~$ nv set acl API-PROTECT rule 20 remark "Allow the local switch to talk to the API"
+
+cumulus@switch:~$ nv set acl API-PROTECT rule 30 action deny
+cumulus@switch:~$ nv set acl API-PROTECT rule 30 match ip .protocol tcp .dest-port 8765
+cumulus@switch:~$ nv set acl API-PROTECT rule 30 remark "Block everyone else from talking to the API"
+```
 
 ## Supported Objects
 
-With Cumulus Linux 5.5, the NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-55/api/index.html" text="here.">}}
+The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-55/api/index.html" text="here.">}}
 
 | High-level Objects | Description |
 | ------------------ | ----------- |
@@ -62,9 +100,9 @@ With Cumulus Linux 5.5, the NVUE object model supports most features on the Cumu
 ## Use the API
 
 The NVUE CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or from the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI `nv show commands` reflect any PATCH operation (create and update) you run through the REST API.
-
-NVUE follows a declarative model, removing context-specific commands and settings. NVUE is structured as a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are more branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
-
+<!-- vale off -->
+NVUE follows a declarative model, removing context-specific commands and settings. The structure of NVUE is like a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are more branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
+<!-- vale on -->
 ### Enable the NVUE REST API
 
 To enable the NVUE REST API, run these commands on the switch:
@@ -1476,7 +1514,7 @@ The following section provides practical API examples.
 
 ### Configure the System
 
-To set the system hostname, pre-login or post-login message, and timezone on the switch, send a targeted API request to `/nvue_v1/system`.
+To set the system hostname, pre-login or post-login message, and time zone on the switch, send a targeted API request to `/nvue_v1/system`.
 
 {{< tabs "SystemConfig" >}}
 {{< tab "Curl Command" >}}

@@ -12,7 +12,7 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0c
 <!-- vale on -->
-Cumulus Linux 5.4.0c replaces Cumulus Linux 5.4.0b and provides new firmware (version 34.2012.0302) to resolve a thermal shut down issue (ID 3466776).
+Cumulus Linux 5.4.0c replaces Cumulus Linux 5.4.0b and provides new firmware (version 34.2012.0302) that provides improved thermal sensor data accuracy.
 
 Cumulus Linux 5.4.0b is no longer available.
 
@@ -51,7 +51,7 @@ The NVIDIA SN5600 switch is available as a POC and open to customer feedback. Do
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0c
 <!-- vale on -->
-Cumulus Linux 5.4.0c is the same as 5.4.0b but provides new firmware (version 34.2012.0302). The new firmware resolves a thermal shut down issue (ID 3466776). See the release description and open issues in 5.4.0b, below.
+Cumulus Linux 5.4.0c is the same as 5.4.0b but provides new firmware (version 34.2012.0302). The new firmware provides improved thermal sensor data accuracy. See the release description and open issues in 5.4.0b, below.
 
 ## What's New in Cumulus Linux 5.4.0b
 <!-- vale on -->

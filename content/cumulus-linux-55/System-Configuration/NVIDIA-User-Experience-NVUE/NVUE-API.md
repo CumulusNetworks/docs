@@ -32,11 +32,11 @@ The NVUE REST API supports the following methods:
 
 ### Authentication
 
-The NVUE REST API supports HTTP basic authentication. The API supports the same underlying authentication methods that the NVUE CLI supports for the username and password, and the user accounts function the same on both the API and the CLI. 
+The NVUE REST API supports HTTP basic authentication, and supports the same underlying authentication methods that the NVUE CLI supports for the username and password. The user accounts work the same on both the API and the CLI.
 
 ### Certificates
 
-Cumulus Linux contains a self-signed certificate and private key to use on the server-side in this implementation so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
+Cumulus Linux includes a self-signed certificate and private key to use on the server-side in this implementation so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
 
 NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format. For the steps to generate self-signed certificates and keys, and to install them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
@@ -46,9 +46,9 @@ To use your own certificate chain:
 3. Update the `/etc/nginx/sites-enabled/nvue.conf` file to set the `ssl_certificate` and the `ssl_certificate_key` values to your keys.
 4. Restart NGINX with the `sudo systemctl restart nginx` command.
 
-### API-only user
+### API-only User
 
-Use the Linux Group permissions to create a API-only user without SSH permissions. This can be added as part of the ZTP script.
+Use the Linux group permissions to create an API-only user without SSH permissions. You can create the API-only user in the ZTP script.
 
 ```
 # Create the dedicated automation user 
@@ -59,12 +59,11 @@ echo 'automation:password!' | chpasswd
 
 # Add the user to nvapply group to make NVUE config changes
 adduser automation nvapply
-
 ```
 
 ### Control-plane Access Control List (ACL)
 
-With Cumulus Linux 5.5, you can now secure the API using control-plane ACLs. Below is an example of how you can allow users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
+With Cumulus Linux 5.5, you can now secure the API with control-plane ACLs. Below is an example of how you can allow users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
 
 ```
 cumulus@switch:~$ nv set acl API-PROTECT type ipv4 

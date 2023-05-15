@@ -49,6 +49,8 @@
       {{ $jsMenuNoScroll := slice $jsnoScroll $jsCollapse $jsCustom | resources.Concat "js/menuBundleNoScroll.js"}}
       
       <script src = "{{ $jsMenuNoScroll.Permalink }}"> </script>
+      {{ $menuBundleNoScroll := resources.Get "js/menuBundleNoScroll.js" }}
+      <script type="application/javascript" src="{{ $menuBundleNoScroll.Permalink }}"></script>
       {{ end }}
     </aside>
 {{ end }}

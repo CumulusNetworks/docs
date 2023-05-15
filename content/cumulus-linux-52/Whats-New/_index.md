@@ -20,7 +20,7 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 
 ### Platforms
 
-- NVIDIA SN2201 (1G and 100G Spectrum-1)
+- NVIDIA SN2201 (100G Spectrum-1)
 
 ### New Features and Enhancements
 

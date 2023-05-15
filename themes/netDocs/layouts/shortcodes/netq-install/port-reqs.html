@@ -1,72 +1,292 @@
-{{- if eq (.Get "server") "cluster" -}}
-You must open the following ports on your NetQ Platforms:
-{{ end }}
+
+{{- if eq (.Get "deployment") "cloud" -}}
 {{- if eq (.Get "server") "single" -}}
-You must open the following ports on your NetQ Platform:
-{{ end }}
+The OPTA must be able to initiate HTTPS connections (destination TCP port 443) to the <i>netq.nvidia.com</i> domain (<i>*.netq.nvidia.com</i>). You must also open the following ports on your NetQ OPTA:
 
 <table>
     <thead>
     <tr>
-    <th style="text-align:right">Port or Protocol Number</th>
+    <th style=“text-align:right”>Port or Protocol Number</th>
+    <th style=“text-align:center”>Protocol</th>
+    <th>Component Access</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td style=“text-align:right”>4</td>
+    <td style=“text-align:center”>IP Protocol</td>
+    <td>Calico networking (IP-in-IP Protocol)</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>22</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>SSH</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>80</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Nginx</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>179</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Calico networking (BGP)</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>443</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Nginx</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>2379</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>etcd datastore</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>4789</td>
+    <td style=“text-align:center”>UDP</td>
+    <td>Calico networking (VxLAN)</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>5000</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Docker registry</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>6443</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>kube-apiserver</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>31980</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>NetQ Agent communication</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>31982</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>NetQ Agent SSL communication</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>32708</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>API Gateway</td>
+    </tr>
+    </tr>
+    </tr>
+    </tr>
+    </tbody>
+    </table>
+
+{{ end }}
+
+{{- if eq (.Get "server") "cluster" -}}
+The OPTA must be able to initiate HTTPS connections (destination TCP port 443) to the <i>netq.nvidia.com</i> domain (<i>*.netq.nvidia.com</i>). You must also open the following ports on your NetQ OPTA:
+
+<table>
+    <thead>
+    <tr>
+    <th style=“text-align:right”>Port or Protocol Number</th>
+    <th style=“text-align:center”>Protocol</th>
+    <th>Component Access</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td style=“text-align:right”>4</td>
+    <td style=“text-align:center”>IP Protocol</td>
+    <td>Calico networking (IP-in-IP Protocol)</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>22</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>SSH</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>80</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Nginx</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>179</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Calico networking (BGP)</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>443</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Nginx</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>2379</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>etcd datastore</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>4789</td>
+    <td style=“text-align:center”>UDP</td>
+    <td>Calico networking (VxLAN)</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>5000</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Docker registry</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>6443</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>kube-apiserver</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>31980</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>NetQ Agent communication</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>31982</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>NetQ Agent SSL communication</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>32708</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>API Gateway</td>
+    </tr>
+    </tr>
+    </tr>
+    </tr>
+    </tbody>
+    </table>
+
+The following ports are used for internal cluster communication and must also be open between servers in your cluster:<br><br>
+
+<table>
+    <thead>
+    <tr>
+    <th style="text-align:right">Port</th>
     <th style="text-align:center">Protocol</th>
     <th>Component Access</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-    <td style="text-align:right">4</td>
-    <td style="text-align:center">IP Protocol</td>
-    <td>Calico networking (IP-in-IP Protocol)</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">22</td>
+    <td style="text-align:right">8080</td>
     <td style="text-align:center">TCP</td>
-    <td>SSH</td>
+    <td>Admin API</td>
     </tr>
     <tr>
-    <td style="text-align:right">179</td>
+    <td style="text-align:right">5000</td>
     <td style="text-align:center">TCP</td>
-    <td>Calico networking (BGP)</td>
+    <td>Docker registry</td>
     </tr>
     <tr>
-    <td style="text-align:right">443</td>
-    <td style="text-align:center">TCP</td>
-    <td>NetQ UI</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">2379</td>
-    <td style="text-align:center">TCP</td>
-    <td>etcd datastore</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">4789</td>
+    <td style="text-align:right">8472</td>
     <td style="text-align:center">UDP</td>
-    <td>Calico networking (VxLAN)</td>
+    <td>Flannel port for VXLAN</td>
     </tr>
     <tr>
     <td style="text-align:right">6443</td>
     <td style="text-align:center">TCP</td>
+    <td>Kubernetes API server</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">10250</td>
+    <td style="text-align:center">TCP</td>
+    <td>kubelet health probe</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">2379</td>
+    <td style="text-align:center">TCP</td>
+    <td>etcd</td>
+    </tr>
+    <tr>
+    <td style="text-align:right">2380</td>
+    <td style="text-align:center">TCP</td>
+    <td>etcd</td>
+    </tr>
+    </tbody>
+    </table>
+
+    {{ end }}
+{{ end }}
+
+
+
+{{- if ne (.Get "deployment") "cloud" -}}
+{{- if eq (.Get "server") "cluster" -}}
+You must open the following ports on your NetQ on-premises servers:
+{{ end }}
+{{- if eq (.Get "server") "single" -}}
+You must open the following ports on your NetQ on-premises server:
+{{ end }}
+
+<table>
+    <thead>
+    <tr>
+    <th style=“text-align:right”>Port or Protocol Number</th>
+    <th style=“text-align:center”>Protocol</th>
+    <th>Component Access</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td style=“text-align:right”>4</td>
+    <td style=“text-align:center”>IP Protocol</td>
+    <td>Calico networking (IP-in-IP Protocol)</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>22</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>SSH</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>80</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Nginx</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>179</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Calico networking (BGP)</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>443</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>NetQ UI</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>2379</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>etcd datastore</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>4789</td>
+    <td style=“text-align:center”>UDP</td>
+    <td>Calico networking (VxLAN)</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>5000</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>Docker registry</td>
+    </tr>
+    <tr>
+    <td style=“text-align:right”>6443</td>
+    <td style=“text-align:center”>TCP</td>
     <td>kube-apiserver</td>
     </tr>
     <tr>
-    <td style="text-align:right">8443</td>
-    <td style="text-align:center">TCP</td>
-    <td>Admin UI</td>
-    </tr>
-    <tr>
-    <td style="text-align:right">31980</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>31980</td>
+    <td style=“text-align:center”>TCP</td>
     <td>NetQ Agent communication</td>
     </tr>
     <tr>
-    <td style="text-align:right">31982</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>31982</td>
+    <td style=“text-align:center”>TCP</td>
     <td>NetQ Agent SSL communication</td>
     </tr>
     <tr>
-    <td style="text-align:right">32708</td>
-    <td style="text-align:center">TCP</td>
+    <td style=“text-align:right”>32708</td>
+    <td style=“text-align:center”>TCP</td>
     <td>API Gateway</td>
     </tr>
     </tr>
@@ -174,3 +394,4 @@ Additionally, for internal cluster communication, you must open these ports:
 {{ end }}
 
 <div class="notices note"><p>Port 32666 is no longer used for the NetQ UI.</p></div>
+{{ end }}

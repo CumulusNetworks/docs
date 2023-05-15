@@ -316,6 +316,19 @@ Cumulus Linux does not provide NVUE commands for this setting.
 <!-- vale off -->
 {{<cl/restart-switchd>}}
 <!-- vale on -->
+
+3. Resilient hashing in hardware does not work with next hop groups; the switch remaps flows to new next hops when the set of nexthops changes. To work around this issue, configure zebra not to install next hop IDs in the kernel with the following vtysh command:
+
+  ```
+  cumulus@switch:~$ sudo vtysh
+  switch# configure terminal
+  switch(config)# zebra nexthop proto only
+  switch(config)# exit
+  switch# write memory
+  switch# exit
+  cumulus@switch:~$
+  ```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -340,7 +353,7 @@ Cumulus Linux only supports adaptive routing with:
 - You cannot use adaptive routing with EVPN or VXLAN.
 {{%/notice%}}
 
-Adaptive Routing is in Sticky Free mode, where packets route to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.
+With adaptive routing, packets are routed to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.
 
 The change decision for port selection is set to one microsecond; you cannot change it.
 <!--Adaptive Routing is in Sticky Free mode, which uses a periodic grades-based egress port selection process.

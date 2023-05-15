@@ -13,9 +13,10 @@ enableRobotsTXT: True
 disableKinds: ["RSS", "taxonomy", "term"]
 
 Params:
-  cl_latest: "cumulus-linux-54"
-  netq_latest: "cumulus-netq-45"
+  cl_latest: "cumulus-linux-55"
+  netq_latest: "cumulus-netq-46"
   sonic_latest: "sonic-202012"
+  nvue_latest: "nvue-reference"
 
   #Syntax Highlighting
   pygmentsCodeFencesGuessSyntax: True

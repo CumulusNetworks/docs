@@ -182,6 +182,28 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show router nexthop rib
+Nexthop-group  address-family  installed  interface-index  ref-count  type   valid  vrf      Summary           
+-------------  --------------  ---------  ---------------  ---------  -----  -----  -------  ------------------
+...
+75             ipv4            on         74               2          zebra  on     default                    
+76             ipv4            on         74               2          zebra  on     default                    
+77             unspecified     on                          2          zebra  on     default  Nexthop-group:  78
+                                                                                             Nexthop-group:  79
+                                                                                             Nexthop-group:  78
+                                                                                             Nexthop-group:  79
+78             ipv4            on         67               3          zebra  on     default                    
+79             ipv4            on         67               3          zebra  on     default                    
+90             ipv6            on         55               8          zebra  on     default                    
+96             ipv6            on         54               8          zebra  on     default                    
+108            unspecified     on                          6          zebra  on     default  Nexthop-group: 109
+                                                                                             Nexthop-group:  65
+                                                                                             Nexthop-group:  90
+                                                                                             Nexthop-group:  96
+                                                                                             Nexthop-group: 109
+                                                                                             Nexthop-group:  65
+                                                                                             Nexthop-group:  90
+                                                                                             Nexthop-group:  96
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -203,7 +225,39 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router next hop rib 10
+cumulus@switch:~$ nv show router nexthop rib 108
+                operational  applied
+--------------  -----------  -------
+address-family  unspecified         
+installed       on                  
+ref-count       6                   
+type            zebra               
+valid           on                  
+vrf             default             
+
+resolved-via
+===============
+    Nexthop                    type        vrf      weight  Summary         
+    -------------------------  ----------  -------  ------  ----------------
+    fe80::4ab0:2dff:fe60:910e  ip-address  default  1       Interface: swp54
+    fe80::4ab0:2dff:fea7:7852  ip-address  default  1       Interface: swp53
+    fe80::4ab0:2dff:fec8:8fb9  ip-address  default  1       Interface: swp52
+    fe80::4ab0:2dff:feff:e147  ip-address  default  1       Interface: swp51
+
+resolved-via-backup
+======================
+
+depends
+==========
+    Nexthop-group
+    -------------
+    65           
+    90           
+    96           
+    109          
+
+dependents
+=============
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -225,7 +279,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router nexthop rib 10 depends
+cumulus@switch:~$ nv show router nexthop rib 39 depends
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -269,7 +323,10 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router next hop rib 10 resolved-via
+cumulus@switch:~$  nv show router nexthop rib 39 resolved-via
+Nexthop  type       vrf      weight  Summary
+-------  ---------  -------  ------  -------
+vxlan99  interface  default 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -292,7 +349,14 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router nexthop rib 10 resolved-via fe80::a00:27ff:fea6:b9fe
+cumulus@switch:~$ nv show router nexthop rib 39 resolved-via vxlan99
+      operational  applied  pending
+----  -----------  -------  -------
+type  interface                    
+vrf   default                      
+
+interface
+============
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -314,7 +378,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router next hop 10 resolved-via-backup
+cumulus@switch:~$ nv show router nexthop rib 39 resolved-via-backup
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -360,6 +424,14 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show vrf default router nexthop-tracking
+      resolved-via-default  Summary                              
+----  --------------------  -------------------------------------
+ipv4                        ip-address:                10.10.10.2
+                            ip-address:                10.10.10.3
+                            ip-address:                10.10.10.4
+                            ip-address:              192.168.0.22
+ipv6                        ip-address: fe80::4ab0:2dff:fe08:9898
+                            ip-address: fe80::4ab0:2dff:fed8:67cb
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -383,6 +455,12 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4
+              operational   applied  pending
+------------  ------------  -------  -------
+[ip-address]  10.10.10.2                    
+[ip-address]  10.10.10.3                    
+[ip-address]  10.10.10.4                    
+[ip-address]  192.168.0.22
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

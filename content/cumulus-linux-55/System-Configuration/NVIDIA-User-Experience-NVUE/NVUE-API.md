@@ -30,11 +30,11 @@ The NVUE REST API supports the following methods:
 
 ## Secure the API
 
-The NVUE REST API supports HTTP basic authentication, and the same underlying authentication methods that the NVUE CLI supports for the username and password. The user accounts work the same on both the API and the CLI.
+The NVUE REST API supports HTTP basic authentication, and the same underlying authentication methods for username and password that the NVUE CLI supports. User accounts work the same on both the API and the CLI.
 
 ### Certificates
 <!-- vale off -->
-Cumulus Linux includes a self-signed certificate and private key to use on the server side in this implementation so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
+Cumulus Linux includes a self-signed certificate and private key to use on the server so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
 <!-- vale on -->
 NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format. For the steps to generate self-signed certificates and keys, and to install them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
@@ -46,7 +46,7 @@ To use your own certificate chain:
 <!-- vale off -->
 ### API-only User
 <!-- vale on -->
-Use Linux group permissions to create an API-only user without SSH permissions. You can create the API-only user in the ZTP script.
+To create an API-only user without SSH permissions, use Linux group permissions. You can create the API-only user in the ZTP script.
 
 ```
 # Create the dedicated automation user 
@@ -61,7 +61,7 @@ adduser automation nvapply
 
 ### Control Plane ACLs
 
-With Cumulus Linux 5.5, you can secure the API with control plane ACLs. Below is an example of how you can allow users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
+You can secure the API with control plane ACLs. The following example allows users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
 
 ```
 cumulus@switch:~$ nv set acl API-PROTECT type ipv4 
@@ -80,7 +80,7 @@ cumulus@switch:~$ nv set acl API-PROTECT rule 30 remark "Block everyone else fro
 
 ## Supported Objects
 
-With Cumulus Linux 5.5, the NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-55/api/index.html" text="here.">}}
+The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-55/api/index.html" text="here.">}}
 
 | High-level Objects | Description |
 | ------------------ | ----------- |

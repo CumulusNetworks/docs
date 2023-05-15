@@ -12,9 +12,7 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0c
 <!-- vale on -->
-Cumulus Linux 5.4.0c replaces Cumulus Linux 5.4.0b and includes new firmware (version 34.2012.0302) that provides improved thermal sensor data accuracy.
-
-Cumulus Linux 5.4.0b is no longer available.
+Cumulus Linux 5.4.0c replaces Cumulus Linux 5.4.0b and includes new firmware (version 34.2012.0302) that provides improved thermal sensor data accuracy. Cumulus Linux 5.4.0b is no longer available.
 
 Cumulus Linux 5.4.0c only supports the following platform, which is available as a proof of concept (POC):
 

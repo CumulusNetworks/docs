@@ -10,22 +10,26 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 - For a list of open and fixed issues in Cumulus Linux 5.4, see the {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
-## What's New in Cumulus Linux 5.4.0b
+## What's New in Cumulus Linux 5.4.0c
 <!-- vale on -->
-Cumulus Linux 5.4.0b only supports the following platform, which is available as a proof of concept (POC):
+Cumulus Linux 5.4.0c replaces Cumulus Linux 5.4.0b and includes new firmware (version 34.2012.0302) that provides improved thermal sensor data accuracy.
+
+Cumulus Linux 5.4.0b is no longer available.
+
+Cumulus Linux 5.4.0c only supports the following platform, which is available as a proof of concept (POC):
 
 - NVIDIA SN5600 (800G Spectrum-4)
 
 {{%notice note%}}
-- Cumulus Linux 5.4.0b does not support package upgrade; you must install the Cumulus Linux 5.4.0b image.
-- If you install a new Cumulus Linux 5.4.0b image, you must power cycle the switch after installation.
-- Cumulus Linux 5.4.0b does not support forced link speed; the switch uses auto-negotiation only.
+- Cumulus Linux 5.4.0c does not support package upgrade; you must install the Cumulus Linux 5.4.0c image.
+- If you install a new Cumulus Linux 5.4.0c image, you must power cycle the switch after installation.
+- Cumulus Linux 5.4.0c does not support forced link speed; the switch uses auto-negotiation only.
 - For information about NetQ features supported for Spectrum-4, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-45/More-Documents/Spectrum-Support/" text="NetQ Spectrum-4 Support">}}.
 {{%/notice%}}
 
 The following list describes open issues specific to the NVIDIA SN5600 (Spectrum-4) switch. See {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4.0 Release Notes">}} for additional open issues that are not fixed in this release.
 
-{{< expand "NVIDIA SN5600 Open Issues" >}}
+{{< expand "Open Issues" >}}
 | Issue ID | Description |
 | -------  | ---------- |
 | 3436305  | Auto-negotiation and link-training is not supported at 25G between the NVIDIA SN5600 switch and non-NVIDIA devices.|
@@ -44,7 +48,6 @@ The following list describes open issues specific to the NVIDIA SN5600 (Spectrum
 {{%notice warning%}}
 The NVIDIA SN5600 switch is available as a POC and open to customer feedback. Do not use this switch in production; it is not supported through NVIDIA networking support.
 {{%/notice%}}
-
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0
 <!-- vale on -->

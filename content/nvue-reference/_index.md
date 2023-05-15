@@ -27,4 +27,4 @@ The NVUE CLI provides descriptions and examples for the following commands:
 
 ## Download the Command Reference
 
-You can download the NVUE command reference for offline use. {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvue-reference/NVUE-html.zip" text="Download a zip file">}} of the command reference in HTML format, extract it locally, and open `nvue-reference.html` in your web browser.
+You can download the NVUE command reference for offline use. {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvue-reference/NVUE-html.zip" text="Download a zip file">}} of the command reference in HTML format, extract it locally, then open `nvue-reference.html` in your web browser.

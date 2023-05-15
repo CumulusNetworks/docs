@@ -31,7 +31,14 @@ NVIDIA has also developed and released new applications as open source. The list
 
 You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="here" >}}. Use the HCL to confirm that Cumulus Linux supports your switch model. The HCL lists products by port configuration, manufacturer and SKU part number.
 
+
 ## Download the User Guide
+
+The following options exist for downloading the user guide for offline use:
+
+1. Host the documentation on a local host {{<exlink url="https://github.com/CumulusNetworks/docs" text="using hugo.">}}
+
+2. Download a zip file of an {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-55/CL55-html.zip" text="HTML documentation build">}} for offline use. Download the desired version, extract it locally, and open `cumulus-linux-55.html` in your web browser.
 <!-- vale off -->
-You can view the complete Cumulus Linux {{% version %}} user guide as a single page to print to PDF {{% pdf_link "here." %}}
+3. You can view the complete Cumulus Linux {{% version %}} user guide as a single page to print to PDF {{% pdf_link "here." %}} Click on the link once and use your web browser's print-to-PDF functionality to save a PDF locally.
 <!-- vale on -->

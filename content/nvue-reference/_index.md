@@ -24,3 +24,7 @@ The NVUE CLI provides descriptions and examples for the following commands:
 - {{<link url="Set-and-Unset-Commands" text="nv set and nv unset">}} commands set and unset configuration options on the switch.
 - {{<link url="Config-Commands" text="nv config">}} commands manage and apply configurations.
 - {{<link url="/Action-Commands" text="nv action">}} commands reset counters and routes, remove MLAG LACP conflicts, and disconnect authorized and authenticated users.
+
+## Download the Command Reference
+
+You can download the NVUE command reference for offline use. {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvue-reference/NVUE-html.zip" text="Download a zip file">}} of the command reference in HTML format, extract it locally, and open `nvue-reference.html` in your web browser.

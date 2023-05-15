@@ -152,7 +152,7 @@ cumulus@switch:~$ nv show evpn dad duplicate-action freeze
 
 ## <h>nv show evpn l2-nhg</h>
 
-Shows EVPN nexthop groups.
+Shows EVPN next hop groups.
 
 ### Version History
 
@@ -168,7 +168,7 @@ cumulus@switch:~$ nv show evpn l2-nhg
 
 ## <h>nv show evpn l2-nhg vtep-ip</h>
 
-Shows EVPN nexthop group information for all VTEPs.
+Shows EVPN next hop group information for all VTEPs.
 
 ### Version History
 
@@ -184,7 +184,7 @@ cumulus@switch:~$ nv show evpn l2-nhg vtep-ip
 
 ## <h>nv show evpn l2-nhg vtep-ip \<vtep-id\></h>
 
-Shows EVPN nexthop group information for the specified VTEP.
+Shows EVPN next hop group information for the specified VTEP.
 
 ### Version History
 
@@ -939,7 +939,7 @@ cumulus@switch:~$ nv show evpn vni 10 route-target export
 
 ## <h>nv show evpn vni \<vni-id\> route-target export \<rt-id\></h>
 
-Shows configuration information about the a specific export route target for the specified EVPN VNI.
+Shows configuration information about a specific export route target for the specified EVPN VNI.
 
 {{%notice note%}}
 In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> route-target export <rt-id>`

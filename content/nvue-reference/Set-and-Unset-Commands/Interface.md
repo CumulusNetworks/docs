@@ -404,7 +404,7 @@ cumulus@switch:~$ nv set interface swp1 link breakout 4x
 
 ## <h>nv set interface \<interface-id\> link breakout \<mode-id\> lanes-per-port \<lanes-per-port\></h>
 
-Configures the number of lanes per split port. By default, to calculate the split port width, Cumulus Linux uses the formula: split port width = full port width / breakout. For example, a port split into two interfaces (2x breakout) => 8 lanes width / 2x breakout = 4 lanes per split port. If you need to use a different port width than the default, you can set the number of lanes per port.
+Configures the number of lanes per split port. By default, to calculate the split port width, Cumulus Linux uses the formula: split port width = full port width / breakout. For example, a port split into two interfaces (2x breakout) = 8 lanes width / 2x breakout = 4 lanes per split port. If you need to use a different port width than the default, you can set the number of lanes per port.
 
 ### Command Syntax
 
@@ -452,7 +452,7 @@ cumulus@switch:~$ nv set interface swp1 link duplex half
 
 ## <h>nv set interface \<interface-id\> link fast-linkup</h>
 
-Configures fast linkup on interfaces on NVIDIA Spectrum1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as certain 100G optical network interface cards. You can specify `on` or `off`. The default setting is `off`.
+Configures fast linkup on interfaces on NVIDIA Spectrum 1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as certain 100G optical network interface cards. You can specify `on` or `off`. The default setting is `off`.
 
 ### Command Syntax
 
@@ -766,7 +766,7 @@ cumulus@switch:~$ nv set interface tunnelR2 tunnel ttl 50
 
 ## <h>nv set interface \<interface-id\> type</h>
 
-Configures the interface type. The typ can be `swp`, `eth`, `bond`, `loopback`, `svi`, `sub`, `peerlink`, `tunnel`, `bridge` or `vrf`.
+Configures the interface type. The type can be `swp`, `eth`, `bond`, `loopback`, `svi`, `sub`, `peerlink`, `tunnel`, `bridge` or `vrf`.
 
 ### Command Syntax
 

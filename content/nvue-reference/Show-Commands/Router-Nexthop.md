@@ -28,7 +28,7 @@ cumulus@switch:~$ nv show router nexthop
 
 ## <h>nv show router nexthop group</h>
 
-Shows the next hop groups in the RIB. Nexthop groups are a way to encapsulate ECMP information together.
+Shows the next hop groups in the RIB. Next hop groups are a way to encapsulate ECMP information together.
 
 ### Version History
 
@@ -111,7 +111,7 @@ cumulus@switch:~$ nv show router nexthop 10 via fe80::a00:27ff:fea6:b9fe
 
 ## <h>nv show router nexthop rib</h>
 
-Shows information about the next hops in RIB, such as the IP address, VRF, interface, type, and so on.
+Shows information about the next hops in the RIB, such as the IP address, VRF, interface, type, and so on.
 
 ### Version History
 
@@ -149,7 +149,7 @@ cumulus@switch:~$ nv show router next hop rib 10
 
 ## <h>nv show router nexthop rib \<nhg-id\> depends</h>
 
-Shows information about the next hops on which a specific next hop relies on.
+Shows information about the next hops on which a specific next hop relies.
 
 ### Command Syntax
 
@@ -171,7 +171,7 @@ cumulus@switch:~$ nv show router nexthop rib 10 depends
 
 ## <h>nv show router nexthop rib \<nhg-id\> dependents</h>
 
-Shows information about the next hop dependents on which a specific next hop relies on.
+Shows information about the next hop dependents on which a specific next hop relies.
 
 ### Command Syntax
 
@@ -193,7 +193,7 @@ cumulus@switch:~$ nv show router nexthop rib 10 dependents
 
 ## <h>nv show router nexthop rib \<nhg-id\> resolved-via</h>
 
-Shows details the next-hop address for a particular next hop.
+Shows details about the next hop address for a particular next hop.
 
 ### Command Syntax
 
@@ -328,7 +328,7 @@ cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4
 
 ## <h>nv show vrf \<vrf-id\> router nexthop-tracking \<afi\> route-map</h>
 
-Shows the IPv4 or IPv6 next hop tracking information for all route maps for the specified VRF.
+Shows the IPv4 or IPv6 next hop tracking information for all route maps in the specified VRF.
 
 ### Command Syntax
 
@@ -351,7 +351,7 @@ cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROU
 
 ## <h>nv show vrf \<vrf-id\> router nexthop-tracking \<afi\> route-map \<nht-routemap-id\></h>
 
-Shows the IPv4 or IPv6 next hop tracking information for a specific route map for the specified VRF.
+Shows the IPv4 or IPv6 next hop tracking information for a specific route map in the specified VRF.
 
 ### Command Syntax
 
@@ -375,7 +375,7 @@ cumulus@switch:~$ nv show vrf default router nexthop-tracking ipv4 route-map ROU
 
 ## <h>nv show vrf \<vrf-id\> router nexthop-tracking \<afi\> route-map \<nht-routemap-id\> protocol</h>
 
-Shows the IPv4 or IPv6 next hop tracking information for all protocols in the route map: BGP, OSPF, OSPF6, or static for the specified VRF.
+Shows the IPv4 or IPv6 next hop tracking information for all protocols in the route map in the specified VRF.
 
 ### Command Syntax
 

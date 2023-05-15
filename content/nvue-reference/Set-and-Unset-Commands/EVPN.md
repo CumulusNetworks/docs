@@ -127,7 +127,7 @@ Configures global EVPN multihoming configuration settings.
 Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes.
 
 {{%notice note%}}
-Some third party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
+Some third-party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
 {{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -198,7 +198,7 @@ cumulus@switch:~$ nv set evpn multihoming mac-holdtime 1000
 
 ## <h>nv set evpn multihoming neighbor-holdtime</h>
 
-Configures the neighbor hold times, which specifies the duration for which a switch maintains SYNC neighbor entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. You can specify a value between between 0 and 86400 seconds. The default setting is 1080 seconds.
+Configures the neighbor hold times, which specifies the duration for which a switch maintains SYNC neighbor entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. You can specify a value between 0 and 86400 seconds. The default setting is 1080 seconds.
 
 ### Version History
 

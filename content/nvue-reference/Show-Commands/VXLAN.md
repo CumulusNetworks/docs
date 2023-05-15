@@ -146,7 +146,7 @@ cumulus@switch:~$ nv show nve vxlan flooding head-end-replication evpn
 
 ## <h>nv show nve vxlan mlag</h>
 
-Shows VXLAN specfic MLAG configuration on the switch.
+Shows VXLAN specific MLAG configuration on the switch.
 
 ### Version History
 

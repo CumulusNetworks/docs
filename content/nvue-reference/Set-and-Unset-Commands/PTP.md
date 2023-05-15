@@ -86,7 +86,7 @@ cumulus@switch:~$ nv set service ptp enable on
 
 ## <h>nv set interface \<interface-id\> ptp forced-master</h>
 
-Configures PTP interfaces to always be in a master state. The interfaces ignores any Announce messages they receive. The default setting is `off`.
+Configures PTP interfaces to always be in a master state. The interfaces ignore any Announce messages they receive. The default setting is `off`.
 
 ### Command Syntax
 
@@ -152,13 +152,13 @@ cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast on
 
 ## <h>nv set interface \<interface-id\> ptp shaper</h>
 
-Configures PTP shaping on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G to improve performance.
+Configures PTP shaping on the NVIDIA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G to improve performance.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ptp shaper enable</h>
 
-Turns a pre-defined traffic shaping profile on or off on the specified interface to improve performance. This command is available for the NVIDA Spectrum 1 switch only for PTP-enabled ports with speeds lower than 100G. For example, if you see that the PTP timing offset varies widely and is does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
+Turns a pre-defined traffic shaping profile on or off on the specified interface to improve performance. This command is available for the NVIDIA Spectrum 1 switch only for PTP-enabled ports with speeds lower than 100G. For example, if you see that the PTP timing offset varies widely and is does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
 
 - Switches with Spectrum-2 and later do not support PTP shaping.
 - Bonds do not support PTP shaping.
@@ -691,7 +691,7 @@ cumulus@switch:~$ nv set service ptp 1 monitor violation-log-interval 1000
 
 ## <h>nv set service ptp \<instance-id\> priority1</h>
 
-Configures PTP priority 1 to override the clock class and quality selection criteria and select the best master clock. You can set a value between 0 and 255.  For the boundary clock, use a number above 128. The lower priority applies first. The default setting is 128.
+Configures PTP priority 1 to override the clock class and quality selection criteria and select the best master clock. You can set a value between 0 and 255. For the boundary clock, use a number above 128. The lower priority applies first. The default setting is 128.
 
 ### Command Syntax
 
@@ -713,7 +713,7 @@ cumulus@switch:~$ nv set service ptp 1 priority1 200
 
 ## <h>nv set service ptp \<instance-id\> priority2</h>
 
-Configures PTP priority 2 to identify primary and backup clocks among identical redundant Grandmasters. You can set a value between 0 and 255.  For the boundary clock, use a number above 128. The lower priority applies first. The default setting is 128.
+Configures PTP priority 2 to identify primary and backup clocks among identical redundant Grandmasters. You can set a value between 0 and 255. For the boundary clock, use a number above 128. The lower priority applies first. The default setting is 128.
 
 ### Command Syntax
 

@@ -433,6 +433,11 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Affects </th>
 </tr>
 <tr>
+<td>3437980</td>
+<td>If the number of bonds and its bond members exceeds the total number of physical ports on the switch  and LACP bypass is enabled, {{switchd}} might crash when frequent link flaps occur or {{switchd}} restarts. To work around this issue, disable LACP bypass.</td>
+<td>5.4.0</td>
+</tr>
+<tr>
 <td>3434791</td>
 <td>Changing the {{ebgp-multihop}} setting for a BGP peer always resets the peer, even if the configured TTL value matches the existing TTL value of the peer.</td>
 <td>5.3.1-5.4.0</td>

@@ -156,7 +156,6 @@ Shows the specified community list rules.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  The community list name. |
-| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -218,7 +217,7 @@ cumulus@switch:~$ nv show router policy community-list COMMUNITY1 rule 10 commun
 
 ## <h>nv show router policy community-list \<list-id\> rule \<rule-id\> community \<community-id\></h>
 
-Shows the configuration for the specified community name for the specified community-list.
+Shows the configuration for a specific community name for the specified community-list.
 
 ### Command Syntax
 
@@ -348,7 +347,7 @@ cumulus@switch:~$ nv show router policy ext-community-list MYEXTENDEDCOMMUNITYLI
 
 ## <h>nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt</h>
 
-Shows the specified extended community rule Route Target Extended Community configuration.
+Shows the Route Target Extended Community configuration for the specified extended community rule.
 
 ### Command Syntax
 
@@ -372,7 +371,7 @@ cumulus@switch:~$ nv show router policy ext-community-list MYEXTENDEDCOMMUNITYLI
 
 ## <h>nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt \<ext-community-id\></h>
 
-Shows the extended community Route Target Extended Community configuration for the specified rextended community list rule.
+Shows the Route Target Extended Community configuration for a specified extended community list rule.
 
 ### Command Syntax
 
@@ -396,7 +395,7 @@ cumulus@switch:~$ nv show router policy ext-community-list MYEXTENDEDCOMMUNITYLI
 
 ## <h>nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community soo</h>
 
-Shows the site-of-origin (SoO) Extended Community rules.
+Shows the site-of-origin (SoO) extended community rules.
 
 ### Command Syntax
 
@@ -419,7 +418,7 @@ cumulus@switch:~$ nv show router policy ext-community-list MYEXTENDEDCOMMUNITYLI
 
 ## <h>nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community soo \<ext-community-id\></h>
 
-Shows the configuration for the specified site-of-origin (SoO) Extended Community rule.
+Shows the configuration for the specified site-of-origin (SoO) extended community rule.
 
 ### Command Syntax
 
@@ -443,7 +442,7 @@ cumulus@switch:~$ nv show router policy ext-community-list MYEXTENDEDCOMMUNITYLI
 
 ## <h>nv show router policy large-community-list</h>
 
-Shows the large community lists used configured on the switch to match community based BGP policies.
+Shows the large community lists configured on the switch to match community based BGP policies.
 
 ### Version History
 
@@ -842,8 +841,6 @@ cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set
 
 Shows the set AS path prepend configuration for the specified route map rule.
 
-AS Path prepend
-
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1122,7 +1119,7 @@ cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action perm
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy
+## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy</h>
 
 Shopws the permit action exit policy for the specified route map rule.
 
@@ -1147,7 +1144,7 @@ cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action perm
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ebgp-policy</h>
 
-Shows the EBGP policy configuration on the switch.
+Shows the eBGP policy configuration on the switch.
 
 ### Command Syntax
 
@@ -1216,7 +1213,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound</h>
 
-Shows the IPv4 outbound policy configuration for a specifc BGP neighbor.
+Shows the IPv4 outbound policy configuration for a specific BGP neighbor.
 
 ### Command Syntax
 
@@ -1239,7 +1236,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family i
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy</h>
 
-Shows the EVPN policy configuration for a specifc BGP neighbor.
+Shows the EVPN policy configuration for a specific BGP neighbor.
 
 ### Command Syntax
 
@@ -1262,7 +1259,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound</h>
 
-Shows the EVPN inbound policy configuration for a specifc BGP neighbor.
+Shows the EVPN inbound policy configuration for a specific BGP neighbor.
 
 ### Command Syntax
 
@@ -1285,7 +1282,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l
 
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound</h>
 
-Shows the EVPN outbound policy configuration for a specifc BGP neighbor.
+Shows the EVPN outbound policy configuration for a specific BGP neighbor.
 
 ### Command Syntax
 
@@ -1308,7 +1305,7 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy</h>
 
-Shows the IPv4 policy configuration for a specifc BGP peer group.
+Shows the IPv4 policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1331,7 +1328,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound</h>
 
-Shows the IPv4 inbound policy configuration for a specifc BGP peer group.
+Shows the IPv4 inbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1354,7 +1351,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound</h>
 
-Shows the IPv4 outbound policy configuration for a specifc BGP peer group.
+Shows the IPv4 outbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1377,7 +1374,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy</h>
 
-Shows the IPv6 policy configuration for a specifc BGP peer group.
+Shows the IPv6 policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1400,7 +1397,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound</h>
 
-Shows the IPv6 inbound policy configuration for a specifc BGP peer group.
+Shows the IPv6 inbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1423,7 +1420,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound</h>
 
-Shows the IPv6 outbound policy configuration for a specifc BGP peer group.
+Shows the IPv6 outbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1446,7 +1443,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy</h>
 
-Shows the EVPN policy configuration for a specifc BGP peer group.
+Shows the EVPN policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1469,7 +1466,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy inbound</h>
 
-Shows the EVPN inbound policy configuration for a specifc BGP peer group.
+Shows the EVPN inbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 
@@ -1492,7 +1489,7 @@ cumulus@switch:~$ nv show vrf default router bgp peer-group SPINES address-famil
 
 ## <h>nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy outbound</h>
 
-Shows the EVPN outbound policy configuration for a specifc BGP peer group.
+Shows the EVPN outbound policy configuration for a specific BGP peer group.
 
 ### Command Syntax
 

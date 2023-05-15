@@ -2,7 +2,6 @@
 title: SNMP Server
 author: Cumulus Networks
 weight: 360
-
 type: nojsscroll
 ---
 <style>
@@ -688,7 +687,7 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average
 
 ## <h>nv show service snmp-server trap-cpu-load-average one-minute</h>
 
-Shows the SNMP traps generated when the CPU load average the one-minute threshold.
+Shows the SNMP traps generated when the CPU load average exceeds the one-minute threshold.
 
 ### Version History
 
@@ -704,7 +703,7 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute
 
 ## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\</h>
 
-Shows the SNMP traps generated when the CPU load average the one-minute interval exceeds a certain percentage.
+Shows the SNMP traps generated when the CPU load average for the one-minute interval exceeds a certain percentage.
 
 ### Command Syntax
 
@@ -726,13 +725,13 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 1
 
 ## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute</h>
 
-Shows the SNMP traps generated when the CPU load average for the one minute interval exceeds a certain percentage and reaches the five-minute interval.
+Shows the SNMP traps generated when the CPU load average for the one-minute interval exceeds a certain percentage and reaches the five-minute interval.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<one-minute-id>` | The one minute load average threshold ID.|
+| `<one-minute-id>` | The one-minute load average threshold ID.|
 
 ### Version History
 
@@ -748,7 +747,7 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 1
 
 ## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute \<five-minute-id>\</h>
 
-Shows the SNMP traps generated when the CPU load average for the one minute interval and the five minute interval exceed a certain percentage.
+Shows the SNMP traps generated when the CPU load average for the one-minute interval and the five-minute interval exceed a certain percentage.
 
 ### Command Syntax
 
@@ -771,7 +770,7 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 1
 
 ## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute \<five-minute-id>\ fifteen-minute</h>
 
-Shows the SNMP traps generated when the CPU load average for the one minute interval and the five minute interval exceed a certain percentage and reaches the fifteen-minute interval.
+Shows the SNMP traps generated when the CPU load average for the one-minute interval and the five-minute interval exceed a certain percentage and reaches the fifteen-minute interval.
 
 ### Command Syntax
 
@@ -1016,7 +1015,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 ## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\</h>
 
-Shows configuration settings for the SNMP trap destination username in the specified VRF.
+Shows configuration settings for the SNMP trap destination username for the specified VRF.
 
 ### Command Syntax
 

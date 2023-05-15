@@ -14,6 +14,10 @@ h { color: RGB(118,185,0)}
 
 Shows information about the next hops in the RIB, such as the IP address, VRF, interface, type, and so on.
 
+{{%notice note%}}
+Add `-o json` at the end of the command to see the output in a more readable format.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -21,7 +25,64 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router nexthop
+cumulus@switch:~$ nv show router nexthop -o json
+{
+  "rib": {
+    "29": {
+      "address-family": "ipv4",
+      "installed": "on",
+      "interface-index": 1,
+      "ref-count": 2,
+      "resolved-via": {
+        "lo": {
+          "flags": {
+            "active": {},
+            "directly-connected": {},
+            "installed": {}
+          },
+          "type": "interface",
+          "vrf": "default"
+        }
+      },
+      "type": "zebra",
+      "valid": "on",
+      "vrf": "default"
+    },
+    "30": {
+      "address-family": "ipv4",
+      "installed": "on",
+      "interface-index": 2,
+      "ref-count": 2,
+      "resolved-via": {
+        "eth0": {
+          "flags": {
+            "active": {},
+            "directly-connected": {},
+            "installed": {}
+          },
+          "type": "interface",
+          "vrf": "mgmt"
+        }
+      },
+      "type": "zebra",
+      "valid": "on",
+      "vrf": "default"
+    },
+    "31": {
+      "address-family": "ipv4",
+      "interface-index": 65,
+      "ref-count": 2,
+      "resolved-via": {
+        "vlan30v0": {
+          "flags": {
+            "active": {},
+            "directly-connected": {},
+            "installed": {}
+          },
+          "type": "interface",
+          "vrf": "BLUE"
+        }
+... 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -37,7 +98,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router nexthop groups
+cumulus@switch:~$ nv show router nexthop group
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

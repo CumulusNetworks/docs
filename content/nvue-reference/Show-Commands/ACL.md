@@ -22,6 +22,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl
+          type  Summary 
+--------  ----  --------
+EXAMPLE1  ipv4  rule: 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -44,6 +47,13 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1
+      operational  applied
+----  -----------  -------
+type               ipv4
+
+rule
+=======
+
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -66,6 +76,13 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule
+Number  Summary                         
+------  --------------------------------
+10      match.ip.dest-ip:   10.0.15.8/32
+        match.ip.dest-port:          ANY
+        match.ip.protocol:           tcp
+        match.ip.source-ip: 10.0.14.2/32
+        match.ip.source-port:        ANY
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -89,6 +106,15 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10
+                   operational   applied     
+-----------------  ------------  ------------
+match                                        
+  ip                                         
+    dest-ip        10.0.15.8/32  10.0.15.8/32
+    protocol       tcp           tcp         
+    source-ip      10.0.14.2/32  10.0.14.2/32
+    [dest-port]    ANY           ANY         
+    [source-port]  ANY           ANY
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -112,6 +138,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action
+  operational  applied
+  -----------  -------
+               permit
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

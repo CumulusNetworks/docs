@@ -36,7 +36,7 @@ The NVUE REST API supports HTTP basic authentication, and the same underlying au
 <!-- vale off -->
 Cumulus Linux includes a self-signed certificate and private key to use on the server so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
 <!-- vale on -->
-NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format. For the steps to generate self-signed certificates and keys, and to install them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
+NVIDIA recommends you use your own certificates and keys. For the steps to generate self-signed certificates and keys, and to install them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
 To use your own certificate chain:
 1. Import the certificate and private key onto the Cumulus Linux switch using secure channels, such as SCP or SFTP.
@@ -421,7 +421,7 @@ To replace an entire configuration:
 {{< tab "Curl Command ">}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -H 'Content-Type:application/json' -d '{"state": "apply", "auto-prompt": {"ays": "ays_yes"}}' -k -PATCH https://127.0.0.1:8765/nvue_v1/revision/1
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -H 'Content-Type:application/json' -d '{"state": "apply", "auto-prompt": {"ays": "ays_yes"}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/revision/1
 {
   "state": "apply",
   "transition": {
@@ -1858,6 +1858,220 @@ cumulus@switch:~$ nv set service syslog mgmt server 192.168.1.120 port 8000
 {{< /tab >}}
 {{< /tabs >}}
 
+### Configure Users
+
+The following example creates a new user and deletes the user.
+
+{{< tabs "UsersConfig" >}}
+{{< tab "Curl Command" >}}
+
+This example creates a new user `test1`.
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"system": {"aaa": {"user": {"test1": {"hashed-password":"72b28582708d749c6c82f3b3f226041f1bd37090281641eaeba8d44bd915d0042d609a92759d9f6fb96475cb0601cf428cd22613df8a53a09461e0b426cf0a35","role": "nvue-monitor","enable": "on","full-name": "Test User"}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=5
+```
+
+This example deletes the user `test1`.
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k -X DELETE https://127.0.0.1:8765/nvue_v1/system/aaa/user/test1?rev=6
+```
+
+{{< /tab >}}
+{{< tab "Python Code" >}}
+
+<div class=scroll>
+
+```
+#!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="cumulus", password="password")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    # apply_payload = {"state": "apply"}
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+def apply_new_config(path,payload):
+    # Create a new revision ID
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Delete existing configuration
+    query_string = {"rev": changeset}
+    r = requests.delete(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Patch the new configuration
+    
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + path,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the changes to the new revision changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def delete_config(path):
+    # Create an NVUE changeset
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # Equivalent to JSON `null`
+    payload = None
+
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.delete(url=nvue_end_point + path,
+                        auth=auth,
+                        verify=False,
+                        data=json.dumps(payload),
+                        params=query_string,
+                        headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the staged changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def nvue_get(path):
+    r = requests.get(url=nvue_end_point + path,
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+if __name__ == "__main__":
+
+    # Need to create a hashed password - The supported password
+    # hashes are documented here:
+    # https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-55/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/#hashed-passwords  # noqa
+    # Here in this example, we use SHA-512
+    import crypt
+    hashed_password = crypt.crypt("hello$world#2023", salt=crypt.METHOD_SHA512)
+    payload = {
+        "system": {
+            "aaa": {
+                "user": {
+                    "test1": {
+                        "hashed-password": hashed_password,
+                        "role": "nvue-monitor",
+                        "enable": "on",
+                        "full-name": "Test User",
+                    }
+                }
+            }
+        }
+    }
+    apply_new_config("/",payload) # Root patch
+    time.sleep(DUMMY_SLEEP)
+    nvue_get("/system/user/aaa")
+
+    """Delete an existing user account using the AAA API."""
+    delete_config("/system/aaa/user/test1")
+    time.sleep(DUMMY_SLEEP)
+    nvue_get("/system/user/aaa")
+   ```
+
+   </div>
+
+{{< /tab >}}
+{{< tab "NVUE CLI" >}}
+
+This example creates a new user `test1`.
+
+```
+cumulus@switch:~$ nv set system aaa user test1
+cumulus@switch:~$ nv set system aaa user test1 full-name "Test User" 
+cumulus@switch:~$ nv set system aaa user test1 password "abcd@test"
+cumulus@switch:~$ nv set system aaa user test1 role nvue-monitor
+cumulus@switch:~$ nv set system aaa user test1 enable on
+```
+
+This example deletes the user `test1`.
+
+```
+cumulus@switch:~$ nv unset system aaa user test1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Configure an Interface
 
 The following example configures an interface.
@@ -1866,7 +2080,7 @@ The following example configures an interface.
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"type":"swp","link":{"state":"up"}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=5 
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"type":"swp","link":{"state":"up"}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=6 
 ```
 
 {{< /tab >}}
@@ -2021,7 +2235,7 @@ The following example configures a bond.
 <div class="scroll">
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"bond0": {"type":"bond","bond":{"member":{"swp1":{},"swp2":{},"swp3":{},"swp4":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=6
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"bond0": {"type":"bond","bond":{"member":{"swp1":{},"swp2":{},"swp3":{},"swp4":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=7
 {
   "bond0": {
     "bond": {
@@ -2241,8 +2455,8 @@ The following example configures a bridge.
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=7
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=7 
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=8
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=8
 ```
 
 {{< /tab >}}
@@ -2419,8 +2633,8 @@ The following example configures BGP.
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"bgp": {"autonomous-system": 65101,"router-id":"10.10.10.1"}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/router?rev=8
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"bgp":{"neighbor":{"swp51":{"remote-as":"external"}},"address-family":{"ipv4-unicast":{"network":{"10.10.10.1/32":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/vrf/default/router?rev=8
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"bgp": {"autonomous-system": 65101,"router-id":"10.10.10.1"}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/router?rev=9
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"bgp":{"neighbor":{"swp51":{"remote-as":"external"}},"address-family":{"ipv4-unicast":{"network":{"10.10.10.1/32":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/vrf/default/router?rev=9
 ```
 
 {{< /tab >}}

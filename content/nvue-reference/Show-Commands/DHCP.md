@@ -51,6 +51,15 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay default
+                     operational    applied      
+-------------------  -------------  -------------
+source-ip            auto           auto         
+[gateway-interface]  swp2           swp2         
+[interface]          peerlink.4094  peerlink.4094
+[interface]          swp51          swp51        
+[interface]          swp52          swp52        
+[interface]          vlan10         vlan10       
+[server]             172.16.1.102   172.16.1.102
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -77,7 +86,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service dhcp-relay default gateway-interface lo
+cumulus@switch:~$ nv show service dhcp-relay default gateway-interface swp2
+         operational  applied 
+-------  -----------  --------
+address  10.0.0.4     10.0.0.4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

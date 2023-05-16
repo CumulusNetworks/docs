@@ -18,6 +18,10 @@ IETF has defined extensions to OSPFv3 to support multiple address families (both
 
 To configure OSPFv3, you need to specify the router ID and map interfaces to areas. The following commands provide examples.
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as OSPF, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 ```
 cumulus@switch:~$ net add ospf6 router-id 0.0.0.1
 cumulus@switch:~$ net add ospf6 interface swp1 area 0.0.0.0

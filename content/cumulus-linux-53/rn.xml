@@ -59,6 +59,16 @@ ERR cannot allocate vlan for sub-interface
 <td>5.5.0</td>
 </tr>
 <tr>
+<td>3393306</td>
+<td>The {{python-netaddr}} package is not preinstalled on the switch, which leads to an error similar to the following when SNMP accesses data from the CUMULUS-BGPVRF-MIB.
+
+CUMULUS-BGPVRF-MIB::bgpPeerFsmEstablishedTransitions = No Such Instance currently exists at this OID
+
+To work around this issue, manually install the {{python-netaddr}} package with the {{sudo -E apt-get install python-netaddr}} command.</td>
+<td>5.3.1-5.4.0</td>
+<td>5.5.0</td>
+</tr>
+<tr>
 <td>3390758</td>
 <td>The {{neighmgrd}} service does not enable the snooper unless ARP suppression is enabled on at least one VXLAN interface. This can result in missing ARP and NDP entries if the host does not directly interact with the switch.</td>
 <td>5.3.1-5.4.0</td>
@@ -187,6 +197,16 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>3298616</td>
 <td>NVUE gracefully detects and handles upgrades that include valid flexible snippets. For any invalid (incompatible) flexible snippets, you must delete the snippets before you {{apt upgrade}} Cumulus Linux; otherwise, the NVUE {{nv config apply}} command and the equivalent REST API, do not run.</td>
 <td>5.3.0-5.3.1</td>
+<td>5.4.0-5.5.0</td>
+</tr>
+<tr>
+<td>3296715</td>
+<td>When you clear interface counters with the {{ethtool -S &lt;interface&gt; clear}} command, the command fails with the following message:
+
+switch:~$ ethtool -S swp1 clear
+ethtool (-S): unknown parameter 'clear'
+</td>
+<td>5.2.0-5.3.1</td>
 <td>5.4.0-5.5.0</td>
 </tr>
 <tr>
@@ -786,6 +806,16 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>3298616</td>
 <td>NVUE gracefully detects and handles upgrades that include valid flexible snippets. For any invalid (incompatible) flexible snippets, you must delete the snippets before you {{apt upgrade}} Cumulus Linux; otherwise, the NVUE {{nv config apply}} command and the equivalent REST API, do not run.</td>
 <td>5.3.0-5.3.1</td>
+<td>5.4.0-5.5.0</td>
+</tr>
+<tr>
+<td>3296715</td>
+<td>When you clear interface counters with the {{ethtool -S &lt;interface&gt; clear}} command, the command fails with the following message:
+
+switch:~$ ethtool -S swp1 clear
+ethtool (-S): unknown parameter 'clear'
+</td>
+<td>5.2.0-5.3.1</td>
 <td>5.4.0-5.5.0</td>
 </tr>
 <tr>

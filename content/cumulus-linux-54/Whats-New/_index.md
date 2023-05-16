@@ -10,22 +10,24 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 - For a list of open and fixed issues in Cumulus Linux 5.4, see the {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
-## What's New in Cumulus Linux 5.4.0b
+## What's New in Cumulus Linux 5.4.0c
 <!-- vale on -->
-Cumulus Linux 5.4.0b only supports the following platform, which is available as a proof of concept (POC):
+Cumulus Linux 5.4.0c replaces Cumulus Linux 5.4.0b and includes new firmware (version 34.2012.0302) that provides improved thermal sensor data accuracy. Cumulus Linux 5.4.0b is no longer available.
+
+Cumulus Linux 5.4.0c only supports the following platform, which is available as a proof of concept (POC):
 
 - NVIDIA SN5600 (800G Spectrum-4)
 
 {{%notice note%}}
-- Cumulus Linux 5.4.0b does not support package upgrade; you must install the Cumulus Linux 5.4.0b image.
-- If you install a new Cumulus Linux 5.4.0b image, you must power cycle the switch after installation.
-- Cumulus Linux 5.4.0b does not support forced link speed; the switch uses auto-negotiation only.
+- Cumulus Linux 5.4.0c does not support package upgrade; you must install the Cumulus Linux 5.4.0c image.
+- If you install a new Cumulus Linux 5.4.0c image, you must power cycle the switch after installation.
+- Cumulus Linux 5.4.0c does not support forced link speed; the switch uses auto-negotiation only.
 - For information about NetQ features supported for Spectrum-4, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-45/More-Documents/Spectrum-Support/" text="NetQ Spectrum-4 Support">}}.
 {{%/notice%}}
 
 The following list describes open issues specific to the NVIDIA SN5600 (Spectrum-4) switch. See {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4.0 Release Notes">}} for additional open issues that are not fixed in this release.
 
-{{< expand "NVIDIA SN5600 Open Issues" >}}
+{{< expand "Open Issues" >}}
 | Issue ID | Description |
 | -------  | ---------- |
 | 3436305  | Auto-negotiation and link-training is not supported at 25G between the NVIDIA SN5600 switch and non-NVIDIA devices.|
@@ -36,7 +38,7 @@ The following list describes open issues specific to the NVIDIA SN5600 (Spectrum
 | 3436287  | The NVIDIA SN5600 switch does not support connecting to a Spectrum 1 switch using a 2x breakout with the MCP7Y60-H001 cable at 25G. |
 | 3436229  | On the NVIDIA SN5600 switch, when you connect a service port to non-NVIDIA devices, auto-negotiation is not supported for 25G links.|
 | 3436215  | On the NVIDIA SN5600 switch, the thermal control service crashes when you remove a fan tray.|
-| 3434855  | If the SDK becomes stuck and not able to process API calls, the {{systemd}} watchdog stops {{switchd}} and Cumulus Linux generates a {{cl-support}} file. {{switchd}} restarts after the watchdog timeout and then runs without issues. |
+| 3434855  | If the SDK becomes stuck and not able to process API calls, the `systemd` watchdog stops `switchd` and Cumulus Linux generates a `cl-support` file. `switchd` restarts after the watchdog timeout and then runs without issues. |
 | 3419124  | On rare occasions, LLDP and other CPU originated IP packets that egress a port might get replicated in the data plane and forwarded out of another port as well. The peer node might discard the unicast packets on the wrong port because of destination MAC address; however, there might be problems with multicast packets, such as LLDP, which uses a multicast MAC address as the destination MAC address. To work around this issue, reboot the switch. |
 | 3395489  | On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.|
 {{< /expand >}}
@@ -44,7 +46,6 @@ The following list describes open issues specific to the NVIDIA SN5600 (Spectrum
 {{%notice warning%}}
 The NVIDIA SN5600 switch is available as a POC and open to customer feedback. Do not use this switch in production; it is not supported through NVIDIA networking support.
 {{%/notice%}}
-
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0
 <!-- vale on -->

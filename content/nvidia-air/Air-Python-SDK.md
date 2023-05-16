@@ -2219,6 +2219,83 @@ List existing permissions
 ```
 
 
+## ResourceBudget
+
+Manage a ResourceBudget
+
+### json
+Returns a JSON string representation of the budget
+
+### refresh
+Syncs the budget with all values returned by the API
+
+### update
+Update the budget with the provided data
+
+**Arguments**:
+
+- `kwargs` _dict, optional_ - All optional keyword arguments are applied as key/value pairs in the request's JSON payload
+
+<a name="air_sdk.resource_budget.ResourceBudgetApi"></a>
+## ResourceBudgetApi
+
+High-level interface for the ResourceBudget API
+
+<a name="air_sdk.resource_budget.ResourceBudgetApi.get"></a>
+### get
+
+Get an existing budget
+
+**Arguments**:
+
+- `budget_id` _str_ - ResourceBudget ID
+- `kwargs` _dict, optional_ - All other optional keyword arguments are applied as query
+  parameters/filters
+
+**Returns**:
+
+  [`ResourceBudget`](#resource_budget)
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+  
+
+**Example**:
+
+```
+>>> air.resource_budgets.get('c604c262-396a-48a0-a8f6-31708c0cff82')
+<ResourceBudget c604c262-396a-48a0-a8f6-31708c0cff82>
+```
+
+<a name="air_sdk.resource_budget.ResourceBudgetApi.list"></a>
+### list
+
+List existing budgets
+
+**Arguments**:
+
+- `kwargs` _dict, optional_ - All other optional keyword arguments are applied as query
+  parameters/filters
+
+**Returns**:
+
+  list
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+
+**Example**:
+
+```
+>>> air.resource_budgets.list()
+[<ResourceBudget c604c262-396a-48a0-a8f6-31708c0cff82>, <ResourceBudget 906675f7-8b8d-4f52-b59d-52847af2f0ef>]
+```
+
+
 ## Service
 
 Manage a service

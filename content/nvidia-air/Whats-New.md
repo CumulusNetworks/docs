@@ -9,10 +9,13 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## May 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0515-016
+- Added Cumulus Linux 5.5.0 to OS dropdown in the builder
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0511-015
 - Added Cumulus Linux 5.5.0
 - Fixed an issue related to image uploads
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0504-012
 - Updated oob-mgmt-server to Ubuntu 22.04

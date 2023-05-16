@@ -44,6 +44,10 @@ To configure a PBR policy:
 
 {{< tab "NCLU Commands" >}}
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as PBR, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 1. Configure the policy map. The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.
 
     If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match. You cannot mix IPv4 and IPv6 addresses in a rule.

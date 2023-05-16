@@ -62,7 +62,7 @@ Configures the destination path distance and next hop for a specific static rout
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<distance-id>` |  A path distance. |
-| `<via-id>`       | The IP address of the nexthop router. |
+| `<via-id>`       | The IP address of the next hop router. |
 
 ### Version History
 
@@ -78,7 +78,7 @@ cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 vi
 
 ## <h>nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\> flag onlink</h>
 
-Configures the destination path distance and next hop for a specific static route in the specified VRF, and adds the `onlink` flag, which configures the switch to pretend that the nexthop is directly attached to the link, even if it does not match any interface prefix.
+Configures the destination path distance and next hop for a specific static route in the specified VRF, and adds the `onlink` flag, which configures the switch to pretend that the next hop is directly attached to the link, even if it does not match any interface prefix.
 
 ### Command Syntax
 
@@ -87,7 +87,7 @@ Configures the destination path distance and next hop for a specific static rout
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<distance-id>` |  The path distance. |
-| `<via-id>`       | The IP address of the nexthop router. |
+| `<via-id>`       | The IP address of the next hop router. |
 
 ### Version History
 
@@ -103,7 +103,7 @@ cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 vi
 
 ## <h>nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\> interface \<interface-id\></h>
 
-Configures the destination path distance and next hop for a specific static route in the specified VRF and the interface to use for egress.  If you do not specify an interface, Cumulus Linux determines the interface automatically. This command is only valid when the next hop (via) type is an IPv4 or IPv6 address.
+Configures the destination path distance and next hop for a specific static route in the specified VRF and the interface to use for egress. If you do not specify an interface, Cumulus Linux determines the interface automatically. This command is only valid when the next hop (via) type is an IPv4 or IPv6 address.
 
 ### Command Syntax
 
@@ -112,7 +112,7 @@ Configures the destination path distance and next hop for a specific static rout
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<distance-id>` |  The path distance. |
-| `<via-id>`       | The IP address of the nexthop router. |
+| `<via-id>`       | The IP address of the next hop router. |
 | `<interface-id>`  | The interface to use for egress. |
 
 ### Version History
@@ -162,7 +162,7 @@ Configures the destination path distance and next hop type for a specific static
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<distance-id>` |  The path distance. |
-| `<via-id>`       | The IP address of the nexthop router. |
+| `<via-id>`       | The IP address of the next hop router. |
 
 ### Version History
 
@@ -187,7 +187,7 @@ Configures the destination path distance and next hop for a specific static rout
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
 | `<distance-id>` |  The path distance. |
-| `<via-id>`       | The IP address of the nexthop router. |
+| `<via-id>`       | The IP address of the next hop router. |
 | `<vrf-id>`  | The VRF name. |
 
 ### Version History
@@ -235,7 +235,7 @@ Configures the next hop for a specific static route in the specified VRF.
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
-| `<via-id>`       | The IP address of the nexthop router. |
+| `<via-id>`       | The IP address of the next hop router. |
 
 ### Version History
 
@@ -251,7 +251,7 @@ cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0
 
 ## <h>nv set vrf \<vrf-id\> router static \<route-id\> via \<via-id\> flag onlink</h>
 
-Configures the next hop for a specific static route in the specified VRF, and adds the `onlink` flag, which configures the switch to pretend that the nexthop is directly attached to the link, even if it does not match any interface prefix.
+Configures the next hop for a specific static route in the specified VRF, and adds the `onlink` flag, which configures the switch to pretend that the next hop is directly attached to the link, even if it does not match any interface prefix.
 
 ### Command Syntax
 
@@ -259,7 +259,7 @@ Configures the next hop for a specific static route in the specified VRF, and ad
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
-| `<via-id>`       | The IP address of the nexthop router. |
+| `<via-id>`       | The IP address of the next hop router. |
 
 ### Version History
 
@@ -283,7 +283,7 @@ Configures the next hop for a specific static route in the specified VRF, and th
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
-| `<via-id>`       | The IPv4 or IPv6 address of the nexthop router. |
+| `<via-id>`       | The IPv4 or IPv6 address of the next hop router. |
 | `<interface-name>`  | The interface to use for egress. |
 
 ### Version History
@@ -308,7 +308,7 @@ Configures the next hop type for a specific static route in the specified VRF. T
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
-| `<via-id>`   | The IP address of the nexthop router. |
+| `<via-id>`   | The IP address of the next hop router. |
 
 ### Version History
 
@@ -332,7 +332,7 @@ Configures the next hop for a specific static route in the specified VRF, and th
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IPv4 or IPv6 prefix. |
-| `<via-id>`   | The IP address of the nexthop router. |
+| `<via-id>`   | The IP address of the next hop router. |
 | `<vrf-id>`   | The egress VRF. |
 
 ### Version History

@@ -370,7 +370,7 @@ This command does not clear counters in the kernel or hardware and does not rese
 
 - When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, this command clears the routes in the soft reconfiguration table for the address family. This results in reevaluating routes in the BGP table against any applied input policies.
 - When the switch has a neighbor configured *without* the `soft-reconfiguration inbound` option enabled, this command sends the peer a route refresh message.
-- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
+- If you do not specify the direction `in`, the command affects both inbound and outbound routes depending on whether you enable soft-reconfiguration inbound.
 
 ### Command Syntax
 

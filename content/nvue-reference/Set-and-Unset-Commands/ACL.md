@@ -558,7 +558,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip fragment
 
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip icmp-type</h>
 
-Configures the IP ICMP type you want to match. You can specify: `dest-unreachable`, `echo-reply`, `echo-request`, `port-unreachable`, or `time-exceeded`. Alternatively, you can specify an integer between 0 and 255.
+Configures the IP ICMP type you want to match. You can specify: `dest-unreachable`, `echo-reply`, `echo-request`, `port-unreachable`, `time-exceeded`, or an integer between 0 and 255.
 
 ### Command Syntax
 
@@ -581,7 +581,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip icmp-type dest-unreachabl
 
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip icmpv6-type</h>
 
-Configures the IP ICMPv6 type you want to match. You can specify: `router-solicitation`, `router-advertisement`, `neighbor-solicitation`, or `neighbor-advertisement`. Alternatively, you can specify an integer between 0 and 255.
+Configures the IP ICMPv6 type you want to match. You can specify: `router-solicitation`, `router-advertisement`, `neighbor-solicitation`, `neighbor-advertisement`, or an integer between 0 and 255.
 
 ### Command Syntax
 
@@ -703,7 +703,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp flags syn
 
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip tcp mask</h>
 
-Configures the IP TCP mask you want to match in the packet.  You can specify: `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.
+Configures the IP TCP mask you want to match in the packet. You can specify: `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.
 
 ### Command Syntax
 
@@ -797,7 +797,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match mac dest-mac-mask 00:00:00:0
 
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> match mac protocol</h>
 
-Configures the MAC protocol you want to match. You can specify `ANY`, `arp`, `ipv4`, or `ipv6`. Alternatively you can specify a value between 0 and 255.
+Configures the MAC protocol you want to match. You can specify `ANY`, `arp`, `ipv4`, or `ipv6`, or a value between 0 and 255.
 
 ### Command Syntax
 

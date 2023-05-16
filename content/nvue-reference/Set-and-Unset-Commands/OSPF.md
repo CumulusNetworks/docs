@@ -479,7 +479,7 @@ cumulus@switch:~$ nv set router ospf enable on
 
 ## <h>nv set router ospf router-id</h>
 
-Configures the OSPF router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures the router ID for all VRFs if a common one is used; otherwise, you must set the router ID for every VRF.
+Configures the OSPF router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures the router ID for all VRFs if it is a common one; otherwise, you must set the router ID for every VRF.
 
 ### Version History
 
@@ -769,7 +769,7 @@ cumulus@switch:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24
 
 ## <h>nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\> cost</h>
 
-Configures the metric advertised for the specified address range. You can specify a value between 0 and 16777215, or `auto`. The default value is `auto` (the operational default value is derived from the components).
+Configures the metric advertised for the specified address range. You can specify a value between 0 and 16777215, or `auto`. The default value is `auto` (Cumulus Linux derives the operational default value from the components).
 
 ### Command Syntax
 

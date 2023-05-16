@@ -1086,7 +1086,7 @@ Shows configuration for a specific static host served by the IPv6 DHCP server.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<static-id>` | The IDN host name. |
+| `<static-id>` | The IDN hostname. |
 
 ### Version History
 

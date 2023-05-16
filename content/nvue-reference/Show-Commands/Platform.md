@@ -22,6 +22,36 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform
+               operational                            applied  pending
+-------------  -------------------------------------  -------  -------
+software                                                              
+  [installed]  acpi                                                   
+  [installed]  acpi-support-base                                      
+  [installed]  acpid                                                  
+  [installed]  adduser                                                
+  [installed]  apt                                                    
+  [installed]  arping                                                 
+  [installed]  arptables                                              
+  [installed]  atftp                                                  
+  [installed]  atftpd                                                 
+  [installed]  audisp-tacplus                                         
+  [installed]  auditd                                                 
+  [installed]  babeltrace                                             
+  [installed]  base-files                                             
+  [installed]  base-passwd                                            
+  [installed]  bash                                                   
+  [installed]  bash-completion                                        
+  [installed]  bind9-host                                             
+  [installed]  binutils                                               
+  [installed]  binutils-common                                        
+  [installed]  binutils-x86-64-linux-gnu                              
+  [installed]  bridge-utils                                           
+  [installed]  bsdmainutils                                           
+  [installed]  bsdutils                                               
+  [installed]  busybox                                                
+  [installed]  bwm-ng                                                 
+  [installed]  bzip2
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -38,6 +68,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform capabilities
+                     operational  applied  pending
+-------------------  -----------  -------  -------
+single-vxlan-device  off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -54,6 +87,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform environment
+          operational                         applied  pending
+--------  ----------------------------------  -------  -------
+[sensor]  Board Sensor Near Virtual Switch                    
+[sensor]  Board Sensor at Front Left Corner                   
+[sensor]  Board Sensor at Front Right Corner                  
+[sensor]  Board Sensor near CPU                               
+[sensor]  Board Sensor near Fan                               
+[sensor]  PSU1 Temp Sensor                                    
+[sensor]  PSU2 Temp Sensor                                    
+[fan]     Fan1                                                
+[fan]     Fan2                                                
+[fan]     Fan3                                                
+[fan]     Fan4                                                
+[fan]     Fan5                                                
+[fan]     Fan6                                                
+[fan]     PSU1Fan1                                            
+[fan]     PSU2Fan1                                            
+[led]     Fan                                                 
+[led]     Power                                               
+[led]     System                                              
+[psu]     PSU1                                                
+[psu]     PSU2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -70,6 +125,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform environment fan
+Name      Limit variance  Max Speed  Min Speed  Current Speed (RPM)  Fan State
+--------  --------------  ---------  ---------  -------------------  ---------
+Fan1                      29000      2500       6000                 ok       
+Fan2                      29000      2500       6000                 ok       
+Fan3                      29000      2500       6000                 ok       
+Fan4                      29000      2500       6000                 ok       
+Fan5                      29000      2500       6000                 ok       
+Fan6                      29000      2500       6000                 ok       
+PSU1Fan1                  29000      2500       6000                 ok       
+PSU2Fan1                  29000      2500       6000                 ok
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -92,6 +157,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform environment fan Fan2
+           operational  applied  pending
+---------  -----------  -------  -------
+max-speed  29000                        
+min-speed  2500                         
+speed      6000                         
+state      ok
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -108,6 +179,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform environment led
+LED Name  LED Color
+--------  ---------
+Fan       green    
+Power     green    
+System    green
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -130,6 +206,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform environment led Fan
+       operational  applied  pending
+-----  -----------  -------  -------
+color  green
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -146,6 +225,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform environment psu
+Name  PSU State
+----  ---------
+PSU1  ok       
+PSU2  ok
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -168,6 +251,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform environment psu PSU1
+       operational  applied  pending
+-----  -----------  -------  -------
+state  ok
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -183,7 +269,16 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show platform environment sensor 
+cumulus@switch:~$ nv show platform environment sensor
+Sensor Name                         Critical Temp  Max Temp  Min Temp  Sensor State  Current temperature (°C)
+----------------------------------  -------------  --------  --------  ------------  ------------------------
+Board Sensor Near Virtual Switch    85.0           80.0      5         ok            25.0                    
+Board Sensor at Front Left Corner   85.0           80.0      5         ok            25.0                    
+Board Sensor at Front Right Corner  85.0           80.0      5         ok            25.0                    
+Board Sensor near CPU               85.0           80.0      5         ok            25.0                    
+Board Sensor near Fan               85.0           80.0      5         ok            25.0                    
+PSU1 Temp Sensor                    85.0           80.0      5         ok            25.0                    
+PSU2 Temp Sensor                    85.0           80.0      5         ok            25.0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -222,6 +317,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform hardware
+               operational        applied  pending
+-------------  -----------------  -------  -------
+base-mac       44:38:39:22:01:7A                  
+manufacturer   Cumulus                            
+memory         1.69 GB                            
+model          VX                                 
+part-number    5.5.0                              
+product-name   VX                                 
+serial-number  44:38:39:22:01:7a                  
+system-mac     44:38:39:22:01:b1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -238,6 +343,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform hardware component
+        Model  Serial  State  Type  
+------  -----  ------  -----  ------
+device  vx                    switch
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -260,6 +368,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform hardware component device
+       operational  applied  pending
+-----  -----------  -------  -------
+model  vx                           
+type   switch
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -276,6 +388,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform software
+Installed Software
+=====================
+    Installed software          description                 package                      version                     
+    -------------------------…  -------------------------…  --------------------------…  ---------------------------…
+    acpi                        displays information on     acpi                         1.7-1.1                     
+                                ACPI devices                                                                         
+    acpi-support-base           scripts for handling base   acpi-support-base            0.142-8                     
+                                ACPI events such as the                                                              
+                                power button                                                                         
+    acpid                       Advanced Configuration and  acpid                        1:2.0.31-1                  
+                                Power Interface event                                                                
+                                daemon                                                                               
+    adduser                     add and remove users and    adduser                      3.118                       
+                                groups                                                                               
+    apt                         commandline package         apt                          1.8.2.3                     
+                                manager                                                                              
+    arping                      sends IP and/or ARP pings   arping                       2.19-6                      
+                                (to the MAC address)                                                                 
+    arptables                   ARP table administration    arptables                    0.0.4+snapshot20181021-4    
+    atftp                       advanced TFTP client        atftp                        0.7.git20120829-3.2~deb10u3 
+    atftpd                      advanced TFTP server        atftpd                       0.7.git20120829-3.2~deb
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -292,6 +426,22 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform software installed
+Installed software          description                 package                      version                     
+-------------------------…  -------------------------…  --------------------------…  ---------------------------…
+acpi                        displays information on     acpi                         1.7-1.1                     
+                            ACPI devices                                                                         
+acpi-support-base           scripts for handling base   acpi-support-base            0.142-8                     
+                            ACPI events such as the                                                              
+                            power button                                                                         
+acpid                       Advanced Configuration and  acpid                        1:2.0.31-1                  
+                            Power Interface event                                                                
+                            daemon                                                                               
+adduser                     add and remove users and    adduser                      3.118                       
+                            groups                                                                               
+apt                         commandline package         apt                          1.8.2.3                     
+                            manager                                                                              
+arping                      sends IP and/or ARP pings   arping                       2.19-6  
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -314,4 +464,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform software installed what-just-happened
+            operational                                                      applied  pending
+-----------  ---------------------------------------------------------------  -------  -------
+description  Package containing what-just-happened feature for Cumulus Linux                  
+package      what-just-happened                                                               
+version      2.1.1-cl5.5.0u3
 ```

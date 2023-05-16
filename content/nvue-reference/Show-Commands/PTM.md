@@ -22,4 +22,7 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show router ptm
+        applied  pending
+------  -------  -------
+enable  off      off
 ```

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3455998</td>
+<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3448171</td>
 <td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
@@ -106,6 +112,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3321391</td>
+<td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
+<td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>

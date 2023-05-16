@@ -7,12 +7,29 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3459696</td>
+<td>If you run the NVUE {{nv show vrf &lt;vrf&gt; router bgp peer-group &lt;peer-group&gt;}} command when the BGP instance is not enabled, you see an NVUE traceback error.</td>
+<td>5.4.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3455078</td>
 <td>When you bring down or delete a bridge or all interfaces on the switch, you see the following error message in the {{/var/log/switchd.log}} file:
 
 ERR bridge destroy for vlan &lt;vlan id&gt; bridge_id &lt;kernel bridge id&gt; vfid &lt;hw bridge id&gt; failed: Resource is in use
 
 The errors are temporary and have no impact on functionality or traffic.</td>
+<td>5.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3452763</td>
+<td>When you use the NVUE API with TACACS+, users might see a 403 Forbidden message if no TACACS+ user has logged in some other way, such as with SSH.  To work around this issue, log in any TACACS+ user through SSH before you use the NVUE API with TACACS+ users, or run the following commands:
+
+cumulus@switch:~$ sudo touch /run/tacacs_client_map
+cumulus@switch:~$ sudo chown root:shadow /run/tacacs_client_map
+cumulus@switch:~$ sudo chmod 0644 /run/tacacs_client_map
+</td>
 <td>5.5.0</td>
 <td></td>
 </tr>
@@ -30,6 +47,22 @@ cumulus@switch:~$ sudo nano frr_policy.yaml
 
 
 cumulus@switch:~$ nv config patch frr_policy.yaml
+</td>
+<td>5.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3452688</td>
+<td>When you use NVUE to configure a named extended community list with a route target, Cumulus Linux defines it as expanded instead of standard. As a result, routes do not match the expected community list. </td>
+<td>5.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3452681</td>
+<td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see the following error:
+
+cumulus@switch:~$ nv show system aaa tacacs authorization 1
+Error: GET /nvue_v1/system/aaa/tacacs/authorization/1?rev=operational responded with 404 NOT FOUND
 </td>
 <td>5.5.0</td>
 <td></td>
@@ -433,6 +466,11 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Affects </th>
 </tr>
 <tr>
+<td>3446455</td>
+<td>The vtysh {{show version}} command shows an incorrect version number; for  example, instead of Cumulus Linux 5.4, the command output shows Cumulus Linux 5.3.</td>
+<td>5.4.0</td>
+</tr>
+<tr>
 <td>3437980</td>
 <td>If the number of bonds and its bond members exceeds the total number of physical ports on the switch  and LACP bypass is enabled, {{switchd}} might crash when frequent link flaps occur or {{switchd}} restarts. To work around this issue, disable LACP bypass.</td>
 <td>5.4.0</td>
@@ -499,6 +537,15 @@ ERR cannot allocate vlan for sub-interface
 <td>3393866</td>
 <td>On a VX, NVUE commands with an argument parameter that can be multiple types (such as IPv4 and IPv6) do not provide auto complete or additional options when you use a question mark.</td>
 <td>5.4.0</td>
+</tr>
+<tr>
+<td>3393306</td>
+<td>The {{python-netaddr}} package is not preinstalled on the switch, which leads to an error similar to the following when SNMP accesses data from the CUMULUS-BGPVRF-MIB.
+
+CUMULUS-BGPVRF-MIB::bgpPeerFsmEstablishedTransitions = No Such Instance currently exists at this OID
+
+To work around this issue, manually install the {{python-netaddr}} package with the {{sudo -E apt-get install python-netaddr}} command.</td>
+<td>5.3.1-5.4.0</td>
 </tr>
 <tr>
 <td>3390758</td>

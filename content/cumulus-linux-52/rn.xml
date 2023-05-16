@@ -129,6 +129,16 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td>5.4.0-5.5.0</td>
 </tr>
 <tr>
+<td>3296715</td>
+<td>When you clear interface counters with the {{ethtool -S &lt;interface&gt; clear}} command, the command fails with the following message:
+
+switch:~$ ethtool -S swp1 clear
+ethtool (-S): unknown parameter 'clear'
+</td>
+<td>5.2.0-5.3.1</td>
+<td>5.4.0-5.5.0</td>
+</tr>
+<tr>
 <td>3289646</td>
 <td>The memory consumption in {{ptmd}} can grow when the socket being used for a BFD session needs to be recreated. This is often seen when the route being used to forward BFD packets is removed; for example, if the connected route is removed when an interface goes down, over which a single hop BFD session is formed.</td>
 <td>5.2.0-5.3.1</td>
@@ -845,6 +855,16 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td>3301988</td>
 <td>Some EVPN multihoming show commands might cause BGP to crash if you use the {{json}} flag and attempt to reference the default VRF by name. For example, {{show bgp l2vpn evpn es-vrf json}}.</td>
 <td>5.0.0-5.3.1</td>
+<td>5.4.0-5.5.0</td>
+</tr>
+<tr>
+<td>3296715</td>
+<td>When you clear interface counters with the {{ethtool -S &lt;interface&gt; clear}} command, the command fails with the following message:
+
+switch:~$ ethtool -S swp1 clear
+ethtool (-S): unknown parameter 'clear'
+</td>
+<td>5.2.0-5.3.1</td>
 <td>5.4.0-5.5.0</td>
 </tr>
 <tr>

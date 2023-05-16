@@ -432,6 +432,9 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show vrf default router ospf neighbor
+              Summary         
+------------  ----------------
+10.10.10.101  Interface: swp51
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -439,6 +442,10 @@ cumulus@switch:~$ nv show vrf default router ospf neighbor
 ## <h>nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\></h>
 
 Shows information about a specific OSPF neighbor in the specified VRF.
+
+{{%notice note%}}
+Add `-- operational -o json` at the end of the command to see more complete output.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -454,7 +461,30 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101
+cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 --operational -o json
+{
+  "interface": {
+    "swp51": {
+      "local-ip": {
+        "10.0.1.0": {
+          "bdr-router-id": "10.10.10.101",
+          "dead-timer-expiry": 30794,
+          "dr-router-id": "10.10.10.1",
+          "neighbor-ip": "10.0.1.1",
+          "priority": 1,
+          "role": "BDR",
+          "state": "full",
+          "statistics": {
+            "db-summary-qlen": 0,
+            "ls-request-qlen": 0,
+            "ls-retrans-qlen": 0,
+            "state-changes": 5
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -548,7 +578,21 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 
+cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 10.0.1.0
+                   operational   applied
+-----------------  ------------  -------
+bdr-router-id      10.10.10.101         
+dead-timer-expiry  30042                
+dr-router-id       10.10.10.1           
+neighbor-ip        10.0.1.1             
+priority           1                    
+role               BDR                  
+state              full                 
+statistics                              
+  db-summary-qlen  0                    
+  ls-request-qlen  0                    
+  ls-retrans-qlen  0                    
+  state-changes    5 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -28,6 +28,9 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 router adaptive-routing
+        applied
+------  -------
+enable  on  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -44,4 +47,7 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show router adaptive-routing
+        applied  description
+------  -------  ------------------------------------------------------
+enable  on       Turn the feature 'on' or 'off'.  The default is 'off'.
 ```

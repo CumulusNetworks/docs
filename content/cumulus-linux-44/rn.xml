@@ -10023,29 +10023,6 @@ Fixed: 3.42.1-1+deb10u4</td>
 <td>5.1.0-5.5.0</td>
 </tr>
 <tr>
-<td>2859177</td>
-<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
-
-cumulus@switch:~$ sudo cl-route-check --layer3
-Traceback (most recent call last):
- File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
-  routing.collect_data()
- File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
-  self.collect_data_bgp_ipv4()
- File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
-  bgp_ipv4 = json.loads(output)
- File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
-  return _default_decoder.decode(s)
- File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
-  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
- File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
-  obj, end = self.scan_once(s, idx)
-MemoryError
-</td>
-<td>3.7.15-4.4.1</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
 <td>2854785</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
 <td>3.7.15, 4.3.0, 4.4.0-4.4.5</td>

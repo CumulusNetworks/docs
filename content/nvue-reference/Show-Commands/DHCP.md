@@ -22,6 +22,13 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay
+           source-ip  Summary
+---------  ---------  -----------------------
++ default  auto       gateway-interface: lo
+  default             interface:        swp51
+  default             interface:        swp52
+  default             interface:        vlan10
+  default             server:    172.16.1.102
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

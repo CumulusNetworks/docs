@@ -811,6 +811,12 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show system control-plane acl
+ACL Name   Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
+---------  -------  ----------  --------  -----------  ---------
+acl1       1        0           0         0            0
+           65535    0           0         0            0
+acl2       1        0           0         0            0
+           65535    0           0         0            0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -899,6 +905,13 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show system control-plane acl ACL1 statistics
+Rule  In Packet  In Byte  Out Packet  Out Byte  Summary 
+
+----  ---------  -------  ----------  --------  --------------------------- 
+
+1     0          0 Bytes  0           0 Bytes   match.ip.dest-ip:   9.1.2.3 
+
+2     0          0 Bytes  0           0 Bytes   match.ip.source-ip: 7.8.2.3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

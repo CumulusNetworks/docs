@@ -911,7 +911,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match interface sw
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop \<address\></h>
 
-Configures the route map to match the IP address of a nexthop.
+Configures the route map to match the IP address of a next hop.
 
 ### Command Syntax
 
@@ -1776,7 +1776,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set metric metric-
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric type</h>
 
-Configures a set clause in the route map for the metric type for routes that match the map. The metric type is used by the OSPF protocol. You can set OSPF external type 1 metric or OSPF external type 2 metric.
+Configures a set clause in the route map for the metric type for routes that match the map. The OSPF protocol uses the metric type. You can set OSPF external type 1 metric or OSPF external type 2 metric.
 
 ### Command Syntax
 

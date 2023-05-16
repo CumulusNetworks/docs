@@ -1860,18 +1860,18 @@ cumulus@switch:~$ nv set service syslog mgmt server 192.168.1.120 port 8000
 
 ### Configure Users
 
-The following example creates a new user and deletes the user.
+The following example creates a new user, then deletes the user.
 
 {{< tabs "UsersConfig" >}}
 {{< tab "Curl Command" >}}
 
-This example creates a new user `test1`.
+This example creates a new user called `test1`.
 
 ```
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"system": {"aaa": {"user": {"test1": {"hashed-password":"72b28582708d749c6c82f3b3f226041f1bd37090281641eaeba8d44bd915d0042d609a92759d9f6fb96475cb0601cf428cd22613df8a53a09461e0b426cf0a35","role": "nvue-monitor","enable": "on","full-name": "Test User"}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=5
 ```
 
-This example deletes the user `test1`.
+This example deletes the `test1` user.
 
 ```
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -k -X DELETE https://127.0.0.1:8765/nvue_v1/system/aaa/user/test1?rev=6

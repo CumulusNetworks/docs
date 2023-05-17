@@ -23,7 +23,7 @@ The following configuration example enables the multicast querier and sets sourc
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier enable on
-cumulus@switch:~$ nv set bridge domain br_default vlan vlan10 multicast snooping querier source-ip 10.10.10.1
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 multicast snooping querier source-ip 10.10.10.1
 cumulus@switch:~$ nv config apply
 ```
 

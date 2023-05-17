@@ -21,6 +21,37 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show service snmp-server
+                     applied                
+-------------------  -----------------------
+[listening-address]  10.10.10.10            
+[listening-address]  192.168.200.11         
+[listening-address]  localhost              
+[listening-address]  localhost-v6           
+system-contact       myemail@example.com    
+system-location      my-private-bunker      
+enable               on                     
+trap-link-down                              
+  check-frequency    10                     
+trap-link-up                                
+  check-frequency    15                     
+                     enable                 
+                     listening-address      
+                     readonly-community     
+                     readonly-community-v6  
+                     system-contact         
+                     system-location        
+                     system-name            
+                     trap-cpu-load-average  
+                     trap-destination       
+                     trap-link-down         
+                     trap-link-up           
+                     trap-snmp-auth-failures
+                     username               
+                     viewname               
+[username]           limiteduser1           
+[username]           testuserauth           
+[username]           testusernoauth         
+system-name          CumulusBox-1,543,567
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -97,6 +128,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show service snmp-server username testusernoauth
+           applied          
+----------  -----------------
+[auth-md5]  myauthmd5password
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -649,6 +683,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show service snmp-server trap-link-up
+                 applied
+---------------  -------
+check-frequency  15
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -132,7 +132,7 @@ netq upgrade bundle /mnt/installables/NetQ-4.6.0-opta.tgz
 
 {{</tabs>}}
 
-2. After the upgrade completes, confirm the upgrade was successful.
+2. After the upgrade command completes, confirm the upgrade was successful.
 
 On-premises VM:
 
@@ -154,7 +154,7 @@ Cloud VM:
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```
 
-3. Retag and restart required pods for your NetQ 4.6.0 upgrade:
+3. To complete the upgrade to 4.6.0, retag and restart the following pods:
 
 Cloud VM:
 

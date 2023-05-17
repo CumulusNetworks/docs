@@ -36,7 +36,7 @@ The NVUE REST API supports HTTP basic authentication, and the same underlying au
 <!-- vale off -->
 Cumulus Linux includes a self-signed certificate and private key to use on the server so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
 <!-- vale on -->
-NVIDIA recommends you use your own certificates and keys. For the steps to generate self-signed certificates and keys, and to install them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
+NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format. For the steps to generate self-signed certificates and keys, and to install them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
 To use your own certificate chain:
 1. Import the certificate and private key onto the Cumulus Linux switch using secure channels, such as SCP or SFTP.

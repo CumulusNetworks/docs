@@ -545,12 +545,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.5.0</td>
@@ -560,12 +554,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.5.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.4.2-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -657,14 +645,6 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0-5.5.0</td>
-</tr>
-<tr>
-<td>2853536</td>
-<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
-This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
-To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2845531</td>
@@ -2780,12 +2760,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.5.0</td>
@@ -2795,12 +2769,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.5.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.4.2-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2892,14 +2860,6 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0-5.5.0</td>
-</tr>
-<tr>
-<td>2853536</td>
-<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
-This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
-To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2845531</td>
@@ -5205,12 +5165,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.5.0</td>
@@ -5226,12 +5180,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.5.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.4.2-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -5323,14 +5271,6 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0-5.5.0</td>
-</tr>
-<tr>
-<td>2853536</td>
-<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
-This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
-To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2845531</td>
@@ -7485,12 +7425,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>4.4.3-4.4.5, 5.1.0-5.5.0</td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.5.0</td>
@@ -7543,12 +7477,6 @@ Vulnerable: &lt;= 2:3.42.1-1+deb10u4
 Fixed: 2:3.42.1-1+deb10u5</td>
 <td>4.4.0-4.4.2</td>
 <td>4.4.3-4.4.5</td>
-</tr>
-<tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.4.2-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2944167</td>
@@ -7647,14 +7575,6 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0-5.5.0</td>
-</tr>
-<tr>
-<td>2853536</td>
-<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
-This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
-To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2845531</td>
@@ -9902,12 +9822,6 @@ Fixed: 1.9.2-1+deb10u1</td>
 <td>4.4.3-4.4.5, 5.1.0-5.5.0</td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2961079</td>
 <td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
 Vulnerable: &lt;= 2.5.5-3+deb10u3
@@ -10093,14 +10007,6 @@ Fixed: 3.42.1-1+deb10u4</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.1</td>
 <td>4.4.2-4.4.5, 5.0.0-5.5.0</td>
-</tr>
-<tr>
-<td>2853536</td>
-<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
-This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
-To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2848204</td>

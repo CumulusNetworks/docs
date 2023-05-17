@@ -154,6 +154,32 @@ Cloud VM:
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```
 
+3. Retag and restart required pods for your NetQ 4.6.0 upgrade:
+
+Cloud VM:
+
+```
+sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
+```
+
+On-premises VM:
+
+```
+sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
+
+sudo docker tag localhost:5000/cp-schema-registry:7.2.0 docker-registry:5000/cp-schema-registry:7.2.0
+sudo docker push docker-registry:5000/cp-schema-registry:7.2.0
+sudo kubectl get pods -n default|grep -i cp-schema-registry|awk '{print $1}'|xargs kubectl delete pod -n default
+
+sudo docker tag localhost:5000/cp-kafka:7.2.0 docker-registry:5000/cp-kafka:7.2.0
+sudo docker push docker-registry:5000/cp-kafka:7.2.0
+sudo kubectl get pods -n default|grep -i kafka-broker|awk '{print $1}'|xargs kubectl delete pod -n default
+```
+
 ## Upgrading from Earlier Releases
 
 Upgrading to NetQ 4.6.0 from a NetQ release earlier than 4.5.0 requires a new installation of the NetQ virtual machine. Perform the following steps to upgrade:

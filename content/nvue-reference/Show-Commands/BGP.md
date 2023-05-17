@@ -44,7 +44,7 @@ graceful-restart
 
 ## <h>nv show router bgp convergence-wait</h>
 
-Shows global read-only mode configuration. Read-only mode reduces CPU and network usage when restarting the BGP process.
+Shows global readonly mode configuration. Readonly mode reduces CPU and network usage when restarting the BGP process.
 
 ### Version History
 
@@ -5297,12 +5297,7 @@ resolved-via
     Nexthop                    interface
     -------------------------  ---------
     fe80::4ab0:2dff:fe08:9898  swp51    
-    fe80::4ab0:2dff:fed8:67cb  swp52    
-
-
-
-path
-=======
+    fe80::4ab0:2dff:fed8:67cb  swp52
 ...
 ```
 

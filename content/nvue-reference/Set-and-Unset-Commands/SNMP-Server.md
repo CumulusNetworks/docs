@@ -101,9 +101,9 @@ cumulus@switch:~$ nv set service snmp-server mibs cumulus-status-mib
 
 ## <h>nv set service snmp-server readonly-community \<readonly-community-id\></h>
 
-Configures the SNMP read-only community string for SNMP requests.
+Configures the SNMP readonly community string for SNMP requests.
 
-Cumulus Linux disables SNMP authentication for SNMPv1 and SNMPv2c by default. To enable authentication, provide a password (community string) for SNMPv1 or SNMPv2c environments so that the `snmpd` daemon can respond to requests. By default, this provides access to the full OID tree for such requests, regardless of their source. Cumulus Linux does not set a default password so `snmpd` does not respond to any requests that arrive unless you set the read-only community password.
+Cumulus Linux disables SNMP authentication for SNMPv1 and SNMPv2c by default. To enable authentication, provide a password (community string) for SNMPv1 or SNMPv2c environments so that the `snmpd` daemon can respond to requests. By default, this provides access to the full OID tree for such requests, regardless of their source. Cumulus Linux does not set a default password so `snmpd` does not respond to any requests that arrive unless you set the readonly community password.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -115,7 +115,7 @@ Configures the source IP address of the host or network to which you want to res
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<readonly-community-id>` | The SNMP read-only community string.|
+| `<readonly-community-id>` | The SNMP readonly community string.|
 | `<access-id>` | The IPv4 address of the host or network to which you want to restrict access.|
 
 ### Version History
@@ -138,7 +138,7 @@ Configures the OID tree for which you want to restrict access.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<readonly-community-id>` | The SNMP read-only community string.|
+| `<readonly-community-id>` | The SNMP readonly community string.|
 | `<access-id>` | The IPv4 address of the host or network to which you want to restrict access.|
 | `<oid>` | The OID tree that identifies an SNMP MIB object.|
 
@@ -162,7 +162,7 @@ Configures the view (the subset of the OID tree) to which you want to restrict v
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<readonly-community-id>` | The SNMP read-only community string.|
+| `<readonly-community-id>` | The SNMP readonly community string.|
 | `<access-id>` | The IPv4 address of the host or network to which you want to restrict access.|
 | `<view>` | The view (subset of the OID tree).|
 
@@ -180,7 +180,7 @@ cumulus@switch:~$ nv set service snmp-server readonly-community simplepassword a
 
 ## <h>nv set service snmp-server readonly-community-v6 \<readonly-community-id\></h>
 
-Configures the SNMP read-only community string for SNMP requests for IPv6.
+Configures the SNMP readonly community string for SNMP requests for IPv6.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -192,7 +192,7 @@ Configures the source IPv6 address of the host or network to which you want to r
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<readonly-community-id>` | The SNMP read-only community string.|
+| `<readonly-community-id>` | The SNMP readonly community string.|
 | `<access-id>` | The IPv6 address of the host or network to which you want to restrict access.|
 
 ### Version History
@@ -215,7 +215,7 @@ Configures the OID tree for which you want to restrict access for IPv6.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<readonly-community-id>` | The SNMP read-only community string.|
+| `<readonly-community-id>` | The SNMP readonly community string.|
 | `<access-id>` | The IPv6 address of the host or network to which you want to restrict access.|
 | `<oid>` | The OID tree that identifies an SNMP MIB object.|
 
@@ -239,7 +239,7 @@ Configures the view (the subset of the OID tree) to which you want to restrict v
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<readonly-community-id>` | The SNMP read-only community string.|
+| `<readonly-community-id>` | The SNMP readonly community string.|
 | `<access-id>` | The IPv6 address of the host or network to which you want to restrict access.|
 | `<view>` | The view (subset of the OID tree).|
 
@@ -1273,7 +1273,7 @@ cumulus@switch:~$ nv set service snmp-server trap-snmp-auth-failures
 
 Configures the SNMPv3 username for authentication.
 
-NVIDIA recommends you use an SNMPv3 username and password instead of the read-only community; SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
+NVIDIA recommends you use an SNMPv3 username and password instead of the readonly community; SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
 
 {{%notice note%}}
 The default snmpd.conf file contains the default `user _snmptrapusernameX`. You cannot use this username for authentication. SNMP traps require this username.

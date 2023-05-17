@@ -177,7 +177,7 @@ cumulus@switch:~$ nv config apply
 The following example commands exclude the user `USER1` from going to the TACACS+ server for authentication and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs exclude-user username USER1
+cumulus@switch:~$ nv set system aaa tacacs exclude-user USER1
 cumulus@switch:~$ nv set system aaa tacacs authentication per-user-homedir on
 cumulus@switch:~$ nv config apply
 ```

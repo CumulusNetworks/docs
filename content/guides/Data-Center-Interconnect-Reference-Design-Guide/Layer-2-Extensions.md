@@ -5,10 +5,37 @@ weight: 40
 product: Cumulus Networks Guides
 imgData: guides
 ---
+<style>
+  .scroll{
+    height: 500px;
+    overflow-y: auto;
+  }
+</style>
+
+## Introduction
+
+The purpose of a Layer-2 extension from one data center to another is usually to support an application or a system that requires Layer-2 adjacency. Some legacy applications require L2 adjacency for their operations and those systems---although fewer and fewer---continue to exist in enterprise environments. Keeping in mind that modern era of cloud has already said his goodbye with layer-2 world, one can easily draw some conclusions out of this. As such that extending layer-2 domains across long distances is synonym with procrastination your life-long challenges and delaying a closure, which will eventually come back to you as a few technical troubles. Therefore,  this option should be considered as last resort when an engineer has no other means of solving organizational and technical problems other than extending layer-2 across geographically separated datacenters. There are many reasons  why L2 extensions are undesirable.  Here are a few of them :  Increased chance of creating topological asymmetries, broadcast/multicast storms (extended from one data center to others), increased MTTR, troubleshooting difficulties (compared to L3 extension, as there’s no clear Layer-2/Layer-3 demarcation point in the network, there’s a constant need to see packet captures taken from different sections of the network, need for a Layer-2 loop detection system on all your ToR/leaf switches.  
+
+It’s important to keep in mind that the keyword here is “blast radius”. By limiting the scope of the  Layer-2 network, we reduce the blast radius. And the bigger the blast radius is, the more susceptible the network is to any unusual hick ups. Incases where  it’s not possible to avoid Layer2 stretch use cases, it’s crucial to understand that the extended Layer-2 broadcast domains must be kept as minimal as possible to  limit MAC address advertisements and withdrawals. It’s important to understand that extending Layer2 domains is the same as merging multiple broadcast domains and by doing so the product is a geographically separated large broadcast domain that’s interconnected via a complex network over a distance. 
+
+<!--diagram of reference topology-->
+
+In the world of networks, there’s a solution for almost every problem. However, picking the right solution for a particular problem is in the hands of capable engineer who doesn’t always have the luxury of choosing the ideal technical solution. 
+
+In terms of EVPN/VXLAN, extending a Layer-2 segment from one data center to another  involves extending EVPN Type-2 (MAC/IP) routes for individual MAC addresses and Type-3 (Inclusive Multicast) route for BUM (Broadcast/Unknown-Unicast/Multicast) traffic. Additionally, in modern EVPN/VXLAN environments where multihoming is widely used, extending Type-1 (Ethernet Auto Discovery) routes and Type-4 (Ethernet Segment) routes is equally essential.
+
+In the configuration example below, we have the following setup: 
+
+<!--construct table-->
+
+Our purpose is to interconnect VLAN id 10 in DC1 with VLAN id 10 in DC2 using EVPN/VXLAN Layer-2 stretch. We will use route-target import statements to connect two RED vrf’s to each other. This will give us connectivity between server01 and server03 within the RED vrf and server02 and server04 within GREEN vrf. The RED and GREEN vrf’s will not be able to communicate with each other. One thing to notice here is that server01 and server03 will be in the same broadcast domain (as server02 and server04). From a Layer-2 point of view, they’re adjacent hosts. Servers will have each other’s MAC addresses in their ARP cache. 
+
+We’ll also see all ESIs across the fabric, therefore ESI addressing across the fabric must be unique. 
 
 ## Configurations
-
 ### Server01 Configuration
+
+<div class=scroll>
 
 ```
 ubuntu@server01:~$ cat /etc/netplan/config.yaml 
@@ -57,8 +84,11 @@ ubuntu@server01:~$ ip address 
     inet6 fe80::4020:47ff:fe91:95a7/64 scope link 
        valid_lft forever preferred_lft forever 
 ```
+</div>
 
 ### Server03 Configuration
+
+<div class=scroll>
 
 ```
 ubuntu@server03:~$ cat /etc/netplan/config.yaml 
@@ -107,7 +137,11 @@ ubuntu@server03:~$ ip address 
     inet6 fe80::b44b:fff:feea:f202/64 scope link 
        valid_lft forever preferred_lft forever 
 ```
+</div>
+
 ### Leaf01 Configuration
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ nv config show -o commands 
@@ -176,7 +210,11 @@ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn enable on�
 nv set vrf default router bgp neighbor swp2 remote-as external 
 nv set vrf default router bgp neighbor swp2 type unnumbered  
 ```
+</div>
+
 ### Spine01 Configuration
+
+<div class=scroll>
 
 ```
 nv set interface eth0 ip vrf mgmt 
@@ -193,7 +231,11 @@ nv set vrf default router bgp neighbor swp1-4 address-family l2vpn-evpn enable o
 nv set vrf default router bgp neighbor swp1-4 remote-as external 
 nv set vrf default router bgp neighbor swp1-4 type unnumbered 
 ```
+</div>
+
 ### Borderleaf01 Configuration
+
+<div class=scroll>
 
 ```
 cumulus@borderleaf01:mgmt:~$ nv config show -o commands 
@@ -229,8 +271,11 @@ nv set vrf default router bgp peer-group dci_group1 remote-as external 
 nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
 nv set vrf default router bgp peer-group underlay remote-as external 
 ```
+</div>
 
 ### Leaf03 Configuration
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ nv config show -o commands 
@@ -299,7 +344,11 @@ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn enable on�
 nv set vrf default router bgp neighbor swp2 remote-as external 
 nv set vrf default router bgp neighbor swp2 type unnumbered 
 ```
+</div>
+
 ### Spine03 Configuration
+
+<div class=scroll>
 
 ```
 nv set interface eth0 ip vrf mgmt 
@@ -316,7 +365,11 @@ nv set vrf default router bgp neighbor swp1-4 address-family l2vpn-evpn enable o
 nv set vrf default router bgp neighbor swp1-4 remote-as external 
 nv set vrf default router bgp neighbor swp1-4 type unnumbered 
 ```
+</div>
+
 ### Borderleaf04 Configuration
+
+<div class=scroll>
 
 ```
 cumulus@borderleaf04:mgmt:~$ nv config show -o commands 
@@ -350,10 +403,14 @@ nv set vrf default router bgp peer-group dci_group1 remote-as external 
 nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
 nv set vrf default router bgp peer-group underlay remote-as external 
 ```
+</div>
 
 ## Diagnostic Commands
 
+In this section we cover CLI  commands to troubleshoot and diagnose DCI configuration and learn how to validate the setup. 
 ### DC1
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ net show evpn es detail 
@@ -628,10 +685,13 @@ Flags: * - Kernel 
 * 4002       L3   10.10.10.2:5          65102:4002                65102:4002               GREEN 
 cumulus@leaf02:mgmt:~$ 
 ```
+</div>
 
 <!--image in doc, waiting for clarification-->
 
 Verify that the bridge `br_default` is learning MAC entries:
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table 
@@ -689,7 +749,11 @@ cumulus@leaf02:mgmt:~$ nv show bridge domain br_default mac-table 
 19                        permanent   br_default               00:00:5e:00:01:0a 
 20  4365   br_default     permanent   br_default  4365         44:38:39:22:bb:07           10 
 ```
+</div>
+
 Verify that the host routes over the L3 VNI on `vrf RED`:
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ net show route vrf RED 
@@ -727,8 +791,11 @@ C * fe80::/64 is directly connected, vlan10-v0, 02:21:20 
 C>* fe80::/64 is directly connected, vlan10, 02:21:20 
 cumulus@leaf01:mgmt:~$ 
 ```
+</div>
 
 Verify EVPN Type-2 routes from the perspective of the ingress provider edge (leaf01) for the end host *42:20:47:91:95:a7* 
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep 42:20:47:91:95:a7 -A 4 
@@ -779,8 +846,11 @@ cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep 42:20:47:91:9
                     ESI:03:00:00:00:00:00:aa:00:00:01 
                     RT:65102:10 ET:8 MM:1 
 ```
+</div>
 
 Verify EVPN Type-2 routes from the perspective of the egress provider edge (leaf03) for the end host *42:20:47:91:95:a7* 
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep 42:20:47:91:95:a7 -A 4 
@@ -846,8 +916,11 @@ cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep 42:20:47:91:9
                     ESI:03:00:00:00:00:00:aa:00:00:01 
                     RT:65102:10 ET:8 MM:1 
 ```
+</div>
 
 ### DC2
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ net show evpn es detail 
@@ -1123,10 +1196,12 @@ Flags: * - Kernel 
 * 4002       L3   10.10.20.2:7          65202:4002                65202:4002               GREEN 
 * 4001       L3   10.10.20.2:8          65202:4001                65202:4001               RED 
 ```
-
+</div>
 <!--unknown image in doc-->
 
 Verify that the bridge `br_default` is learning MAC entries:
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ nv show bridge domain br_default mac-table 
@@ -1183,8 +1258,11 @@ cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table 
 19                        permanent   br_default               00:00:5e:00:01:14 
 20  1955   br_default     permanent   br_default  1955         44:38:39:22:bb:09           10 
 ```
+</div>
 
 Verify that the host routes over the L3 VNI on `vrf RED`:
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ net show route vrf RED 
@@ -1221,7 +1299,11 @@ C * fe80::/64 is directly connected, vlan220_l3, 02:25:32 
 C * fe80::/64 is directly connected, vlan10-v0, 02:25:33 
 C>* fe80::/64 is directly connected, vlan10, 02:25:33 
 ```
+</div>
+
 Verify EVPN Type-2 routes from the perspective of egress PE (leaf01) for the end host *b6:4b:0f:ea:f2:02* 
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep -A 4 b6:4b:0f:ea:f2:02 
@@ -1287,8 +1369,11 @@ cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep -A 4 b6:4b:0f
                     ESI:03:00:00:00:00:00:bb:00:00:01 
                     RT:65202:10 ET:8 
 ```
+</div>
 
 Verify EVPN Type-2 routes from the perspective of the ingress PE (leaf03) for the end host *b6:4b:0f:ea:f2:02*
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep -A 4 b6:4b:0f:ea:f2:02 
@@ -1339,3 +1424,5 @@ cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep -A 4 b6:4b:0f
                     ESI:03:00:00:00:00:00:bb:00:00:01 
                     RT:65202:10 ET:8 
 ```
+
+</div>

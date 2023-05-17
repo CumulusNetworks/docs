@@ -5,10 +5,32 @@ weight: 50
 product: Cumulus Networks Guides
 imgData: guides
 ---
+<style>
+  .scroll{
+    height: 500px;
+    overflow-y: auto;
+  }
+</style>
+
+## Introduction
+
+L3 Extensions behave similarly to an L3VPN implemented with VXLAN tunnels for data -plane point of view and use EVPN as control- plane. To achieve this, leaf switches set up full mesh VXLAN tunnels within and across PODs, signaled by EVPN and routing exchange in between pods happen via EVPN Type-5 routes. Within the pod, there are Type-1 and Type-4 routes for EVPN-MH,Type-2 for MAC/IP & MAC routes, and Type-3 for BUM HER routes.
+
+In the configuration example below, we have the following setup: 
+
+<!--make table-->
+
+Our purpose is to interconnect vrf RED in DC1 with vrf RED in DC2 using Downstream VNI and symmetrical routing. We will be using route-target import statements to connect two RED vrf’s to each other at Layer-3 (only prefix exchange). This will give us IP connectivity between server01 and server03 within RED vrf and server02 and server04 within GREEN vrf, but the RED and GREEN vrf’s ill not be able to communicate with each other. All servers are in different IP subnets, therefore there is no Layer-2 adjacency in between them. When a server wants to communicate with its peer in the other DC, it will have its default gateway which is the local vrr MAC in its ARP cache. 
+
+On border leaf nodes we are filtering EVPN prefixes except Type-5 to be distributed across DCI links, as our use case is a Layer-3 interconnect. This will ensure only Type-5 prefixes are exchanged via DCI and remote DC will not receive and process unwanted prefix types. Therefore, the ESI and MAC are visible for each local POD, but not across PODs. 
+
+<!--insert reference topology-->
 
 ## Configurations
 
 ### Server01 Configuration
+
+<div class=scroll>
 
 ```
 ubuntu@server01:~$ cat /etc/netplan/config.yaml 
@@ -63,7 +85,11 @@ ubuntu@server01:~$ ip addr 
     inet6 fe80::4020:47ff:fe91:95a7/64 scope link 
        valid_lft forever preferred_lft forever 
 ```
+</div>
+
 ### Server03 Configuration
+
+<div class=scroll>
 
 ```
 ubuntu@server03:~$ cat /etc/netplan/config.yaml 
@@ -118,7 +144,11 @@ ubuntu@server03:~$ ip addr 
     inet6 fe80::b44b:fff:feea:f202/64 scope link 
        valid_lft forever preferred_lft forever 
 ```
+</div>
+
 ### Leaf01 Configuration
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ nv config show -o commands 
@@ -198,8 +228,11 @@ nv set vrf default router bgp neighbor swp2 type unnumbered 
 nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
 nv set vrf default router bgp peer-group underlay remote-as external 
 ```
+</div>
 
 ### Spine01 Configuration
+
+<div class=scroll>
 
 ```
 cumulus@spine01:mgmt:~$ nv config show -o commands 
@@ -221,8 +254,11 @@ nv set vrf default router bgp neighbor swp1-4 address-family l2vpn-evpn enable o
 nv set vrf default router bgp neighbor swp1-4 remote-as external 
 nv set vrf default router bgp neighbor swp1-4 type unnumbered 
 ```
+</div>
 
 ### Borderleaf01 Configuration
+
+<div class=scroll>
 
 ```
 cumulus@borderleaf01:mgmt:~$ nv config show -o commands 
@@ -283,7 +319,11 @@ nv set vrf default router bgp peer-group dci_group1 remote-as external 
 nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
 nv set vrf default router bgp peer-group underlay remote-as external 
 ```
+</div>
+
 ### Leaf03 Configuration
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ nv config show -o commands 
@@ -363,7 +403,11 @@ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn enable on�
 nv set vrf default router bgp neighbor swp2 remote-as external 
 nv set vrf default router bgp neighbor swp2 type unnumbered 
 ```
+</div>
+
 ### Spine03 Configuration
+
+<div class=scroll>
 
 ```
 cumulus@spine03:mgmt:~$ nv config show -o commands 
@@ -387,8 +431,11 @@ nv set vrf default router bgp neighbor swp1-4 address-family l2vpn-evpn enable o
 nv set vrf default router bgp neighbor swp1-4 remote-as external 
 nv set vrf default router bgp neighbor swp1-4 type unnumbered 
 ```
+</div>
 
 ### Borderleaf04 Configuration
+
+<div class=scroll>
 
 ```
 cumulus@borderleaf04:mgmt:~$ nv config show -o commands 
@@ -449,10 +496,12 @@ nv set vrf default router bgp peer-group dci_group1 remote-as external 
 nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
 nv set vrf default router bgp peer-group underlay remote-as external 
 ```
+</div>
 
 ## Diagnostic Commands
-
 ### DC1
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp sum 
@@ -1073,7 +1122,11 @@ MAC               Type   Flags Intf/Remote ES/VTEP       �
 44:38:39:22:bb:07 local        vlan20                               0/0 
 a6:e0:55:25:f3:b2 local  NP    bond2                          20    1/0 
 ```
+</div>
+
 Verify that the bridge `br_default` is learning MAC entries:
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table 
@@ -1110,8 +1163,11 @@ cumulus@leaf02:mgmt:~$ nv show bridge domain br_default mac-table 
 11                         permanent   br_default               00:00:5e:00:01:0a 
 12  243505  br_default     permanent   br_default  243505       44:38:39:22:bb:07           10 
 ```
+</div>
 
 From the table above, locate the L3 VLAN interface MAC and the VRR MAC:
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$  nv show int vlan10 ip vrr 
@@ -1132,7 +1188,11 @@ cumulus@leaf02:mgmt:~$ nv show int vlan10 | grep mac 
     mac-id                                   none 
   mac                     44:38:39:22:bb:07 
 ```
+</div>
+
 Verify EVPN Type-5 routes from the perspective of the ingress PE (leaf01) for the end host *192.168.10.110* connected to leaf03 and leaf04: 
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.10 -A 4 -B 1 
@@ -1156,8 +1216,11 @@ Route Distinguisher: 10.10.20.2:6 
                     RT:65202:5001 ET:8 Rmac:44:38:39:22:bb:09 
 Route Distinguisher: 10.10.20.2:7 
 ```
+</div>
 
-Verify EVPN Type-5 routes from the perspective of the egress PE (leaf03) for the end host 192.168.10.110 connected to leaf03 and leaf04: 
+Verify EVPN Type-5 routes from the perspective of the egress PE (leaf03) for the end host 192.168.10.110 connected to leaf03 and leaf04:
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.10 -A 4 -B 1 
@@ -1177,7 +1240,11 @@ Route Distinguisher: 10.10.20.2:6 
                     RT:65202:5001 ET:8 Rmac:44:38:39:22:bb:09 
 Route Distinguisher: 10.10.20.2:7 
 ```
+</div>
+
 Routing from the border leaf perspective:
+
+<div class=scroll>
 
 ```
 cumulus@borderleaf01:mgmt:~$ net show bgp sum 
@@ -1275,8 +1342,11 @@ Route Distinguisher: 10.10.20.2:6 
                                                            0 65210 65299 65202 ? 
                     RT:65202:5001 ET:8 Rmac:44:38:39:22:bb:09 
 ```
+</div>
 
 ### DC2
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ net show bgp sum 
@@ -1894,7 +1964,11 @@ ee:54:69:be:3a:3f local  NP    bond2                   �
 48:b0:2d:a7:e2:6e local  P     bond2                          2020  0/0 
 44:38:39:22:bb:08 remote       10.10.20.1                           0/0 
 ```
+</div>
+
 Verify that the bridge `br_default` is learning MAC entries:
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ nv show bridge domain br_default mac-table 
@@ -1931,7 +2005,11 @@ cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table 
 11                      permanent   br_default               00:00:5e:00:01:14 
 12  729  br_default     permanent   br_default  729          44:38:39:22:bb:09           1010 
 ```
+</div>
+
 From the table above, locate the L3 VLAN interface MAC and the VRR MAC:
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ nv show int vlan1010 | grep mac 
@@ -1961,8 +2039,11 @@ mac-id                          none 
 state        up                 up 
 cumulus@leaf04:mgmt:~$ 
 ```
+</div>
 
 Verify EVPN Type-5 routes from the perspective of the ingress PE (leaf03) for the end host *192.168.1.10* connected to leaf01 and leaf02:
+
+<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1\. -A 4 -B 1 
@@ -1986,8 +2067,11 @@ Route Distinguisher: 10.10.10.2:4 
                     RT:65102:4001 ET:8 Rmac:44:38:39:22:bb:07 
 Route Distinguisher: 10.10.10.2:5 
 ```
+</div>
 
 Verify EVPN Type-5 routes from the perspective of the egress PE (leaf01) for the end host *192.168.1.10* connected to leaf01 and leaf02:
+
+<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1\. -A 4 -B 1 
@@ -2008,7 +2092,11 @@ Route Distinguisher: 10.10.10.2:4 
 Route Distinguisher: 10.10.10.2:5 
 -- 
 ```
+</div>
+
 Routing from the border leaf perspective:
+
+<div class=scroll>
 
 ```
 cumulus@borderleaf04:mgmt:~$ net show bgp sum 
@@ -2108,3 +2196,4 @@ Route Distinguisher: 10.10.20.2:8 
                                                            0 65299 65202 ? 
                     RT:65202:5001 ET:8 Rmac:44:38:39:22:bb:09 
 ```
+</div>

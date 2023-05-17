@@ -22,6 +22,22 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa tacacs
+                    applied       
+------------------  --------------
+enable              on            
+source-ip           10.10.10.1    
+timeout             10            
+vrf                 mgmt          
+accounting                        
+  enable            off           
+  send-records      first-response
+authentication                    
+  mode              chap          
+  per-user-homedir  on            
+[authorization]     0             
+[exclude-user]      USER1         
+[server]            5             
+[server]            10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -54,6 +70,10 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa tacacs authentication
+              applied       
+------------  --------------
+enable        off           
+send-records  first-response
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -85,6 +105,10 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa tacacs server
+   host          port  prefer-ip-version  secret
+--  ------------  ----  -----------------  ------
+5   192.168.0.30  32    4                  *     
+10  192.168.1.30  49    4                  *
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -107,4 +131,10 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa tacacs server 5
+                   applied     
+-----------------  ------------
+host               192.168.0.30
+port               32          
+prefer-ip-version  4           
+secret             *
 ```

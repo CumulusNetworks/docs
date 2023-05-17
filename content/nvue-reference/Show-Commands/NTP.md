@@ -22,6 +22,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service ntp
+         listen  Summary                             
+-------  ------  ------------------------------------
+default  swp10   pool: 4.cumulusnetworks.pool.ntp.org
+                 server:                192.168.0.254
+                 server:                time.nist.gov
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -44,6 +49,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service ntp default
+          operational                     applied                       
+--------  ------------------------------  ------------------------------
+[pool]    4.cumulusnetworks.pool.ntp.org  4.cumulusnetworks.pool.ntp.org
+[server]  192.168.0.254                   192.168.0.254                 
+[server]  time.nist.gov                   time.nist.gov                 
+listen    swp10                           swp10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -67,6 +78,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service ntp default pool 4.cumulusnetworks.pool.ntp.org
+        operational  applied
+------  -----------  -------
+iburst  on           on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -90,4 +104,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service ntp default server time.nist.gov
+        operational  applied
+------  -----------  -------
+iburst               on
 ```

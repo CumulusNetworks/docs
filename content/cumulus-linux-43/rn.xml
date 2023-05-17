@@ -341,12 +341,6 @@ Fixed: 1.9.2-1+deb10u1</td>
 <td>4.4.3-4.4.5, 5.1.0-5.5.0</td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
@@ -2290,7 +2284,7 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <tr>
 <td>2949512</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-4.3.0</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2943222</td>

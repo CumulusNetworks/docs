@@ -169,7 +169,7 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <tr>
 <td>2965759</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -191,15 +191,9 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td></td>
 </tr>
 <tr>
-<td>2949512</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-4.3.0</td>
-<td>4.3.1-4.4.5</td>
-</tr>
-<tr>
 <td>2947679</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.4.2-4.4.5</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -293,6 +287,14 @@ Traceback (most recent call last):
   obj, end = self.scan_once(s, idx)
 MemoryError
 </td>
+<td>3.7.15-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>2853536</td>
+<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
+This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
+To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
 <td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
@@ -2663,7 +2665,7 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <tr>
 <td>2965759</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -2750,15 +2752,9 @@ Fixed: 3.26-1+debu8u16</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>2949512</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-4.3.0</td>
-<td>4.3.1-4.4.5</td>
-</tr>
-<tr>
 <td>2947679</td>
 <td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.4.2-4.4.5</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -2995,6 +2991,14 @@ Vulnerable: &lt;= 3.4.2-1+deb8u10
 Fixed: 3.4.2-1+deb8u11</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2853536</td>
+<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
+This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
+To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
+<td>3.7.15-3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>2850806</td>

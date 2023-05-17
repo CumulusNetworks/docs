@@ -1204,7 +1204,7 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute bgp metric 2000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute bgp metric-type</h>
+## <h>nv set vrf \<vrf-id\> router ospf redistribute bgp metric-type \<type\></h>
 
 Configures the metric type for OSPF BGP route redistribution; 1 or 2.
 
@@ -1221,7 +1221,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf redistribute bgp metric-type
+cumulus@switch:~$ nv set vrf default router ospf redistribute bgp metric-type 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1594,7 +1594,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router-id 10.10.10.1 
+cumulus@switch:~$ nv set vrf default router ospf router-id 10.10.10.1 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1744,5 +1744,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf spf max-holdtime 3000
+cumulus@switch:~$ nv set vrf default router ospf timers spf max-holdtime 3000
 ```

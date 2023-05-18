@@ -28,16 +28,17 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 router adaptive-routing
-        applied
-------  -------
-enable  on  
+                            applied
+--------------------------  -------
+enable                      on     
+link-utilization-threshold  50  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show router adaptive-routing</h>
 
-Shows global adaptive routing configuration. This command shows if adaptive routing is enabled.
+Shows if adaptive routing is enabled globally.
 
 ### Version History
 
@@ -47,7 +48,7 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show router adaptive-routing
-        applied  description
-------  -------  ------------------------------------------------------
-enable  on       Turn the feature 'on' or 'off'.  The default is 'off'.
+        applied
+------  -------
+enable  on
 ```

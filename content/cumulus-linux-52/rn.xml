@@ -446,6 +446,20 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
 <td>5.5.0</td>
 </tr>
 <tr>
+<td>3139364</td>
+<td>When Cumulus Linux updates the ECMP container with a new next hop list, it allocates the flow counters for the new next hop list without deallocating the counters bound to the old next hop list. This results in resource exhaustion and you see the following error messages in the {{/var/log/switchd.log}} file:
+
+hal_mlx_stat.c:3215 ERR Failed to allocate counter(s) for ecmp [71025:0] status: Internal Error
+hal_mlx_stat.c:3196 ERR Counter set for ecmp [71025:0] idx 0 failed: Internal Error
+hal_mlx_sdk_nexthop_wrap.c:1076 ERR Counter 0 alloc for ecmp next hop failed: Internal Error
+hal_mlx_sdk_counter_wrap.c:54 ERR Counter alloc failed: No More Resources
+
+This issue does not have any functional impact to forwarding. Even without the flow counters attached to the ECMP group, packet forwarding works without any issues.
+To avoid allocating next hop counters for any new ECMP next hop list update, set {{mlx.stats.ecmp.enable}} to FALSE in the {{/etc/mlx/datapath/stats.conf}} file, then restart {{switchd}} with the {{sudo systemctl reload switchd}} command.</td>
+<td>5.0.0-5.2.1</td>
+<td>5.3.0-5.5.0</td>
+</tr>
+<tr>
 <td>3139164</td>
 <td>NVUE does not allow you to set 2X/4X lanes. To work around this issue, set the appropriate lanes for forced speed with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example, {{ethtool -s swp1 speed 100000 autoneg off lanes 2}}.</td>
 <td>5.2.0-5.2.1</td>
@@ -1185,6 +1199,20 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
  1.3.6.1.2.1.25 --&gt; hostResource</td>
 <td>5.0.1-5.4.0</td>
 <td>5.5.0</td>
+</tr>
+<tr>
+<td>3139364</td>
+<td>When Cumulus Linux updates the ECMP container with a new next hop list, it allocates the flow counters for the new next hop list without deallocating the counters bound to the old next hop list. This results in resource exhaustion and you see the following error messages in the {{/var/log/switchd.log}} file:
+
+hal_mlx_stat.c:3215 ERR Failed to allocate counter(s) for ecmp [71025:0] status: Internal Error
+hal_mlx_stat.c:3196 ERR Counter set for ecmp [71025:0] idx 0 failed: Internal Error
+hal_mlx_sdk_nexthop_wrap.c:1076 ERR Counter 0 alloc for ecmp next hop failed: Internal Error
+hal_mlx_sdk_counter_wrap.c:54 ERR Counter alloc failed: No More Resources
+
+This issue does not have any functional impact to forwarding. Even without the flow counters attached to the ECMP group, packet forwarding works without any issues.
+To avoid allocating next hop counters for any new ECMP next hop list update, set {{mlx.stats.ecmp.enable}} to FALSE in the {{/etc/mlx/datapath/stats.conf}} file, then restart {{switchd}} with the {{sudo systemctl reload switchd}} command.</td>
+<td>5.0.0-5.2.1</td>
+<td>5.3.0-5.5.0</td>
 </tr>
 <tr>
 <td>3139164</td>

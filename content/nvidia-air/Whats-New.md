@@ -9,9 +9,13 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## May 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0518-011
+- Fixed a bug related to simulation state control and resource budgets
+- Improved validation for the link API
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0515-016
 - Added Cumulus Linux 5.5.0 to OS dropdown in the builder
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0511-015
 - Added Cumulus Linux 5.5.0

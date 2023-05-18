@@ -154,13 +154,6 @@ To work around this issue, manually install the {{python-netaddr}} package with 
 <td>5.5.0</td>
 </tr>
 <tr>
-<td>3389950</td>
-<td>NVUE does not accept special characters in the system hostname; avoid using special characters in the system hostname.
-</td>
-<td>5.4.0-5.5.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3389198</td>
 <td>The NVUE {{nv unset}} command does not completely remove IPv6 DNS server configuration.
 </td>

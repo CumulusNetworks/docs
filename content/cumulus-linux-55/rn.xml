@@ -138,13 +138,6 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td></td>
 </tr>
 <tr>
-<td>3389950</td>
-<td>NVUE does not accept special characters in the system hostname; avoid using special characters in the system hostname.
-</td>
-<td>5.4.0-5.5.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3368217</td>
 <td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.5.0</td>

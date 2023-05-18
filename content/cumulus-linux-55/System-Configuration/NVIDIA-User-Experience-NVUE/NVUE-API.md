@@ -76,6 +76,8 @@ cumulus@switch:~$ nv set acl API-PROTECT rule 20 remark "Allow the local switch 
 cumulus@switch:~$ nv set acl API-PROTECT rule 30 action deny
 cumulus@switch:~$ nv set acl API-PROTECT rule 30 match ip .protocol tcp .dest-port 8765
 cumulus@switch:~$ nv set acl API-PROTECT rule 30 remark "Block everyone else from talking to the API"
+
+cumulus@switch:~$ nv set system control-plane acl API-PROTECT inbound
 ```
 
 ## Supported Objects

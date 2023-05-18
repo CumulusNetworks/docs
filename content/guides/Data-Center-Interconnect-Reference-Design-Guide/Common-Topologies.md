@@ -22,7 +22,7 @@ Regardless of your architecture, it's important to make sure that your devices a
 
 {{<img src= "/images/guides/dwdm-interconnect-ii.png">}}
 
-## Using a Third-Party Ethernet Services Provider
+## Using a Third-party Ethernet Services Provider
 
 The following sections address important physical layer considerations when implementing a solution through a third-party Ethernet services provider.
 

@@ -52,7 +52,7 @@ cumulus@leaf01:mgmt:~$ nv show nve vxlan source 
 -------  -----------  ---------- 
 address  10.10.10.1   10.10.10.1    
 ```
-The VXLAN tunnel source address configuration is applied with the following NVUE configuration statement: 
+Apply the VXLAN tunnel source address configuration with the following NVUE configuration statement: 
 
 ```
 nv set nve vxlan source address 10.10.10.1 
@@ -77,9 +77,9 @@ Route targets are used to define which VPN a BGP learned or locally injected pre
 
 ### Planning Ethernet Segment Identifiers
 
-Ethernet segment identifiers (ESIs) define multihomed Ethernet segments and use EVPN Type-1 and Type-4 routes. When extending Layer 2 across data centers, these routes are also exchanged over DCI and ESIs local to a POD become globally significant across the entire EVPN fabric and must be unique for each Ethernet segment. Cumulus Linux derives a 10-byte ESI value (Type 3) from Ethernet segment system MAC address (6-byte) and a local discriminator value (3-byte) as described in this document.  
+Ethernet segment identifiers (ESIs) define multihomed Ethernet segments and use EVPN Type-1 and Type-4 routes. To extend Layer 2 across data centers, these routes are also exchanged over DCI and ESIs local to a POD become globally significant across the entire EVPN fabric and must be unique for each Ethernet segment. Cumulus Linux derives a 10-byte ESI value (Type 3) from the Ethernet segment system MAC address (6-byte) and a local discriminator value (3-byte).  
 
-However, you can also plan and configure the ESI numbering scheme across the entire fabric manually. You must have a unique ESI, which you can configure with the following command:
+You can also plan and configure the ESI numbering scheme across the entire fabric manually. You must have a unique ESI, which you can configure with the following command:
 
 ```
 nv set interface <interface> evpn multihoming segment identifier <ESI number> 
@@ -87,6 +87,6 @@ nv set interface <interface> evpn multihoming segment identifier <ESI number>
 
 Note that the ESI number for the configuration must start with ‘00’ (which indicates that the ESI is managed and configured by the operator) and must be separated by colons, for example `00:00:00:00:00:00:aa:00:00:01`.
 
-For a Layer 3 extension (VRF handover) where only Type-5 prefixes are exchanged, ESI numbers are less significant. This is because Type-1 and Type-4 prefixes are not passed on to DCI. However, consistent, unique ESIs across the fabric are a design best practice.
+For a Layer 3 extension (VRF handover) where only Type-5 prefixes are exchanged, ESI numbers are less significant. This is because Type-1 and Type-4 prefixes are not passed on to the DCI. That said, consistent, unique ESIs across the fabric are a design best practice.
 
-<!--insert EVPN deployment with eBGP diagram>
+<!--insert EVPN deployment with eBGP diagram (Figure 7)-->

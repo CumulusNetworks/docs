@@ -19,16 +19,15 @@ L3 Extensions behave similarly to an L3VPN implemented with VXLAN tunnels for da
 In the configuration example below, we have the following setup: 
 
 <!--make table-->
+{{<img src= "/images/guides/dci-table-ii.png">}}
 
 Our purpose is to interconnect vrf RED in DC1 with vrf RED in DC2 using Downstream VNI and symmetrical routing. We will be using route-target import statements to connect two RED vrf’s to each other at Layer-3 (only prefix exchange). This will give us IP connectivity between server01 and server03 within RED vrf and server02 and server04 within GREEN vrf, but the RED and GREEN vrf’s ill not be able to communicate with each other. All servers are in different IP subnets, therefore there is no Layer-2 adjacency in between them. When a server wants to communicate with its peer in the other DC, it will have its default gateway which is the local vrr MAC in its ARP cache. 
 
 On border leaf nodes we are filtering EVPN prefixes except Type-5 to be distributed across DCI links, as our use case is a Layer-3 interconnect. This will ensure only Type-5 prefixes are exchanged via DCI and remote DC will not receive and process unwanted prefix types. Therefore, the ESI and MAC are visible for each local POD, but not across PODs. 
 
-<!--insert reference topology-->
-
 ## Configurations
 
-### Server01 Configuration
+### Server01
 
 <div class=scroll>
 
@@ -87,7 +86,7 @@ ubuntu@server01:~$ ip addr 
 ```
 </div>
 
-### Server03 Configuration
+### Server03
 
 <div class=scroll>
 
@@ -146,7 +145,7 @@ ubuntu@server03:~$ ip addr 
 ```
 </div>
 
-### Leaf01 Configuration
+### Leaf01
 
 <div class=scroll>
 
@@ -230,7 +229,7 @@ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
 
-### Spine01 Configuration
+### Spine01
 
 <div class=scroll>
 
@@ -256,7 +255,7 @@ nv set vrf default router bgp neighbor swp1-4 type unnumbered 
 ```
 </div>
 
-### Borderleaf01 Configuration
+### Borderleaf01
 
 <div class=scroll>
 
@@ -321,7 +320,7 @@ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
 
-### Leaf03 Configuration
+### Leaf03
 
 <div class=scroll>
 
@@ -405,7 +404,7 @@ nv set vrf default router bgp neighbor swp2 type unnumbered 
 ```
 </div>
 
-### Spine03 Configuration
+### Spine03
 
 <div class=scroll>
 
@@ -433,7 +432,7 @@ nv set vrf default router bgp neighbor swp1-4 type unnumbered 
 ```
 </div>
 
-### Borderleaf04 Configuration
+### Borderleaf04
 
 <div class=scroll>
 

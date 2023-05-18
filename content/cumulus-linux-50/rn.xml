@@ -206,6 +206,20 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 <td>5.2.0-5.5.0</td>
 </tr>
 <tr>
+<td>3139364</td>
+<td>When Cumulus Linux updates the ECMP container with a new next hop list, it allocates the flow counters for the new next hop list without deallocating the counters bound to the old next hop list. This results in resource exhaustion and you see the following error messages in the {{/var/log/switchd.log}} file:
+
+hal_mlx_stat.c:3215 ERR Failed to allocate counter(s) for ecmp [71025:0] status: Internal Error
+hal_mlx_stat.c:3196 ERR Counter set for ecmp [71025:0] idx 0 failed: Internal Error
+hal_mlx_sdk_nexthop_wrap.c:1076 ERR Counter 0 alloc for ecmp next hop failed: Internal Error
+hal_mlx_sdk_counter_wrap.c:54 ERR Counter alloc failed: No More Resources
+
+This issue does not have any functional impact to forwarding. Even without the flow counters attached to the ECMP group, packet forwarding works without any issues.
+To avoid allocating next hop counters for any new ECMP next hop list update, set {{mlx.stats.ecmp.enable}} to FALSE in the {{/etc/mlx/datapath/stats.conf}} file, then restart {{switchd}} with the {{sudo systemctl reload switchd}} command.</td>
+<td>5.0.0-5.2.1</td>
+<td>5.3.0-5.5.0</td>
+</tr>
+<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-5.1.0</td>
@@ -1029,6 +1043,20 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 <td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP agent.</td>
 <td>5.0.0-5.4.0</td>
 <td>5.5.0</td>
+</tr>
+<tr>
+<td>3139364</td>
+<td>When Cumulus Linux updates the ECMP container with a new next hop list, it allocates the flow counters for the new next hop list without deallocating the counters bound to the old next hop list. This results in resource exhaustion and you see the following error messages in the {{/var/log/switchd.log}} file:
+
+hal_mlx_stat.c:3215 ERR Failed to allocate counter(s) for ecmp [71025:0] status: Internal Error
+hal_mlx_stat.c:3196 ERR Counter set for ecmp [71025:0] idx 0 failed: Internal Error
+hal_mlx_sdk_nexthop_wrap.c:1076 ERR Counter 0 alloc for ecmp next hop failed: Internal Error
+hal_mlx_sdk_counter_wrap.c:54 ERR Counter alloc failed: No More Resources
+
+This issue does not have any functional impact to forwarding. Even without the flow counters attached to the ECMP group, packet forwarding works without any issues.
+To avoid allocating next hop counters for any new ECMP next hop list update, set {{mlx.stats.ecmp.enable}} to FALSE in the {{/etc/mlx/datapath/stats.conf}} file, then restart {{switchd}} with the {{sudo systemctl reload switchd}} command.</td>
+<td>5.0.0-5.2.1</td>
+<td>5.3.0-5.5.0</td>
 </tr>
 <tr>
 <td>3138746</td>

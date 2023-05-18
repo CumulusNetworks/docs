@@ -22,6 +22,4 @@ The following reference DCI topology consists of two pods interconnected via two
 
 ## NVIDIA Air
 
-NVIDIA Air helps customers and partners to simulate any network topology supported by NVIDIA to be created as a Digital TWIN. You can find blogs , documentation and API guide of this platform in the corresponding links. 
-
-The topologies (for each use case) in this document have been created using NVIDIA AIR Infrastructure Simulation Platform and could be ported/moved onto real NVIDIA switches when required hardware and software (Cumulus Linux 5.4.0 and above) installed. 
+NVIDIA Air is a cloud hosted, network simulation platform that behaves exactly like a real world production environment. The topologies in this document were created with NVIDIA Air running Cumulus Linux 5.4.0.

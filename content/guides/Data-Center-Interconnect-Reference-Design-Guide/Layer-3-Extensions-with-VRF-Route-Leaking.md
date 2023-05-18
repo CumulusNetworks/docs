@@ -174,7 +174,7 @@ nv set vrf default router bgp peer-group underlay remote-as external 
 
 The route-import statement above is used in both RED and GREEN VRFs to mutually leak (inject) EVPN Type-5 routes into their respective routing tables. There is direct DCI connectivity between borderleaf01 and borderleaf04.You must enable the l2vpn address family for the DCI underlay session to exchange EVPN routes. 
 
-Considering this scenario, we would like to avoid any Layer-2 stretch with EVPN Type-2 and Type-3 routes. To do this, filter any unwanted EVPN route type with a simple filter applied to the BGP peer-group outbound direction: 
+To avoid any Layer-2 stretch with EVPN Type-2 and Type-3 routes, filter any unwanted EVPN route type with a simple filter applied to the BGP peer-group outbound direction: 
 
 ```
 nv set router policy route-map control_t5 rule 1 action permit 

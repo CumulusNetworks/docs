@@ -30,9 +30,13 @@ Extending a layer-2 segment from one data center to another involves extending E
 
 We will use the following configuration as an example:
 
-<!--need to construct a table out of the image-->
+|DCI 1|DCI 2|
+|--|--|
+|<table> </tr><tr><td>vrf</td><td>RED</td></tr><td>L2 VNI</td><td>10</tr><td>L3 VNI</td><td>4001</td></tr></table>| <table> </tr><tr><td>vrf</td><td>RED</td></tr><td>L2 VNI</td><td>10</tr><td>L3 VNI</td><td>4001</td></tr> </table>|
 
-{{<img src= "/images/guides/dci-table.png">}}
+|DCI 1|DCI 2|
+|--|--|
+|<table> </tr><tr><td>vrf</td><td>GREEN</td></tr><td>L2 VNI</td><td>20</tr><td>L3 VNI</td><td>4002</td></tr></table>| <table> </tr><tr><td>vrf</td><td>GREEN</td></tr><td>L2 VNI</td><td>20</tr><td>L3 VNI</td><td>4002</td></tr> </table>|
 
 Our purpose is to interconnect VLAN id 10 in DC1 with VLAN id 10 in DC2 using EVPN/VXLAN layer-2 stretch. We will use route-target import statements to connect two RED vrfs to each other. This provides connectivity between server01 and server03 within the RED vrf and server02 and server04 within the GREEN vrf. The RED and GREEN vrfs will not be able to communicate with each other. Note that server01 and server03 will be in the same broadcast domain as server02 and server04. From a layer-2 perspective, they’re adjacent hosts. Servers will include each other’s MAC addresses in their ARP cache. 
 

@@ -24,7 +24,8 @@ The example shows a layer 3 interconnect configuration, where the border leafs f
 
 The following examples show a full configuration that includes server, leaf, spine, and border leafs.
 
-### server01
+{{< tabs "TabID27 ">}}
+{{< tab "server01 ">}}
 
 <div class=scroll>
 
@@ -83,7 +84,8 @@ ubuntu@server01:~$ ip addr 
 ```
 </div>
 
-### server03
+{{< /tab >}}
+{{< tab "server03 ">}}
 
 <div class=scroll>
 
@@ -142,357 +144,366 @@ ubuntu@server03:~$ ip addr 
 ```
 </div>
 
-### leaf01
+{{< /tab >}}
+{{< tab "leaf01 ">}}
 
 <div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ nv config show -o commands 
-nv set bridge domain br_default vlan 10 vni 10 
-nv set bridge domain br_default vlan 20 vni 20 
-nv set evpn enable on 
-nv set evpn multihoming enable on 
-nv set interface bond1 bond member swp3 
-nv set interface bond1 bridge domain br_default access 10 
-nv set interface bond1 evpn multihoming segment local-id 1 
-nv set interface bond1-2 bond lacp-bypass on 
-nv set interface bond1-2 evpn multihoming segment df-preference 50000 
-nv set interface bond1-2 evpn multihoming segment enable on 
-nv set interface bond1-2 evpn multihoming segment mac-address 00:00:00:00:00:AA 
-nv set interface bond1-2 type bond 
-nv set interface bond2 bond member swp4 
-nv set interface bond2 bridge domain br_default access 20 
-nv set interface bond2 evpn multihoming segment local-id 2 
-nv set interface eth0 ip vrf mgmt 
-nv set interface eth0 type eth 
-nv set interface lo ip address 10.10.10.1/32 
-nv set interface lo type loopback 
-nv set interface swp1-2 evpn multihoming uplink on 
-nv set interface swp1-2 type swp 
-nv set interface vlan10 ip address 192.168.1.2/24 
-nv set interface vlan10 ip vrf RED 
-nv set interface vlan10 ip vrr address 192.168.1.1/24 
-nv set interface vlan10 vlan 10 
-nv set interface vlan10,20 ip vrr enable on 
-nv set interface vlan10,20 ip vrr state up 
-nv set interface vlan10,20 type svi 
-nv set interface vlan20 ip address 192.168.2.2/24 
-nv set interface vlan20 ip vrf GREEN 
-nv set interface vlan20 ip vrr address 192.168.2.1/24 
-nv set interface vlan20 vlan 20 
-nv set nve vxlan arp-nd-suppress on 
-nv set nve vxlan enable on 
-nv set nve vxlan source address 10.10.10.1 
-nv set router bgp autonomous-system 65101 
-nv set router bgp enable on 
-nv set router bgp router-id 10.10.10.1 
-nv set router vrr enable on 
-nv set service lldp 
-nv set system config auto-save enable on 
-nv set system global anycast-id 10 
-nv set system global fabric-id 10 
-nv set system hostname leaf01 
-nv set vrf GREEN evpn enable on 
-nv set vrf GREEN evpn vni 4002 
-nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
-nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
-nv set vrf GREEN router bgp autonomous-system 65101 
-nv set vrf GREEN router bgp enable on 
-nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
-nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
-nv set vrf GREEN router bgp router-id 10.10.10.1 
-nv set vrf RED evpn enable on 
-nv set vrf RED evpn vni 4001 
-nv set vrf RED router bgp address-family ipv4-unicast enable on 
-nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
-nv set vrf RED router bgp autonomous-system 65101 
-nv set vrf RED router bgp enable on 
-nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
-nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
-nv set vrf RED router bgp router-id 10.10.10.1 
-nv set vrf default router bgp address-family ipv4-unicast enable on 
-nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32 
-nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf default router bgp address-family l2vpn-evpn enable on 
-nv set vrf default router bgp enable on 
-nv set vrf default router bgp neighbor swp1 peer-group underlay 
-nv set vrf default router bgp neighbor swp1 type unnumbered 
-nv set vrf default router bgp neighbor swp2 peer-group underlay 
-nv set vrf default router bgp neighbor swp2 type unnumbered 
-nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
-nv set vrf default router bgp peer-group underlay remote-as external 
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 20 vni 20 
+cumulus@leaf01:mgmt:~$ nv set evpn enable on 
+cumulus@leaf01:mgmt:~$ nv set evpn multihoming enable on 
+cumulus@leaf01:mgmt:~$ nv set interface bond1 bond member swp3 
+cumulus@leaf01:mgmt:~$ nv set interface bond1 bridge domain br_default access 10 
+cumulus@leaf01:mgmt:~$ nv set interface bond1 evpn multihoming segment local-id 1 
+cumulus@leaf01:mgmt:~$ nv set interface bond1-2 bond lacp-bypass on 
+cumulus@leaf01:mgmt:~$ nv set interface bond1-2 evpn multihoming segment df-preference 50000 
+cumulus@leaf01:mgmt:~$ nv set interface bond1-2 evpn multihoming segment enable on 
+cumulus@leaf01:mgmt:~$ nv set interface bond1-2 evpn multihoming segment mac-address 00:00:00:00:00:AA 
+cumulus@leaf01:mgmt:~$ nv set interface bond1-2 type bond 
+cumulus@leaf01:mgmt:~$ nv set interface bond2 bond member swp4 
+cumulus@leaf01:mgmt:~$ nv set interface bond2 bridge domain br_default access 20 
+cumulus@leaf01:mgmt:~$ nv set interface bond2 evpn multihoming segment local-id 2 
+cumulus@leaf01:mgmt:~$ nv set interface eth0 ip vrf mgmt 
+cumulus@leaf01:mgmt:~$ nv set interface eth0 type eth 
+cumulus@leaf01:mgmt:~$ nv set interface lo ip address 10.10.10.1/32 
+cumulus@leaf01:mgmt:~$ nv set interface lo type loopback 
+cumulus@leaf01:mgmt:~$ nv set interface swp1-2 evpn multihoming uplink on 
+cumulus@leaf01:mgmt:~$ nv set interface swp1-2 type swp 
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip address 192.168.1.2/24 
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrf RED 
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr address 192.168.1.1/24 
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 vlan 10 
+cumulus@leaf01:mgmt:~$ nv set interface vlan10,20 ip vrr enable on 
+cumulus@leaf01:mgmt:~$ nv set interface vlan10,20 ip vrr state up 
+cumulus@leaf01:mgmt:~$ nv set interface vlan10,20 type svi 
+cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip address 192.168.2.2/24 
+cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip vrf GREEN 
+cumulus@leaf01:mgmt:~$ nv set interface vlan20 ip vrr address 192.168.2.1/24 
+cumulus@leaf01:mgmt:~$ nv set interface vlan20 vlan 20 
+cumulus@leaf01:mgmt:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf01:mgmt:~$ nv set nve vxlan enable on 
+cumulus@leaf01:mgmt:~$ nv set nve vxlan source address 10.10.10.1 
+cumulus@leaf01:mgmt:~$ nv set router bgp autonomous-system 65101 
+cumulus@leaf01:mgmt:~$ nv set router bgp enable on 
+cumulus@leaf01:mgmt:~$ nv set router bgp router-id 10.10.10.1 
+cumulus@leaf01:mgmt:~$ nv set router vrr enable on 
+cumulus@leaf01:mgmt:~$ nv set service lldp 
+cumulus@leaf01:mgmt:~$ nv set system config auto-save enable on 
+cumulus@leaf01:mgmt:~$ nv set system global anycast-id 10 
+cumulus@leaf01:mgmt:~$ nv set system global fabric-id 10 
+cumulus@leaf01:mgmt:~$ nv set system hostname leaf01 
+cumulus@leaf01:mgmt:~$ nv set vrf GREEN evpn enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf GREEN evpn vni 4002 
+cumulus@leaf01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf GREEN router bgp autonomous-system 65101 
+cumulus@leaf01:mgmt:~$ nv set vrf GREEN router bgp enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
+cumulus@leaf01:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
+cumulus@leaf01:mgmt:~$ nv set vrf GREEN router bgp router-id 10.10.10.1 
+cumulus@leaf01:mgmt:~$ nv set vrf RED evpn enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf RED evpn vni 4001 
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp autonomous-system 65101 
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp router-id 10.10.10.1 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
 
-### spine01
+{{< /tab >}}
+{{< tab "spine01 ">}}
 
 <div class=scroll>
 
 ```
 cumulus@spine01:mgmt:~$ nv config show -o commands 
-nv set interface eth0 ip vrf mgmt 
-nv set interface eth0 type eth 
-nv set interface lo ip address 10.10.10.101/32 
-nv set interface lo type loopback 
-nv set interface swp1-4 type swp 
-nv set router bgp autonomous-system 65199 
-nv set router bgp enable on 
-nv set router bgp router-id 10.10.10.101 
-nv set system config auto-save enable on 
-nv set system hostname spine01 
-nv set vrf default router bgp address-family ipv4-unicast enable on 
-nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32 
-nv set vrf default router bgp address-family l2vpn-evpn enable on 
-nv set vrf default router bgp enable on 
-nv set vrf default router bgp neighbor swp1-4 address-family l2vpn-evpn enable on 
-nv set vrf default router bgp neighbor swp1-4 remote-as external 
-nv set vrf default router bgp neighbor swp1-4 type unnumbered 
+cumulus@spine01:mgmt:~$ nv set interface eth0 ip vrf mgmt 
+cumulus@spine01:mgmt:~$ nv set interface eth0 type eth 
+cumulus@spine01:mgmt:~$ nv set interface lo ip address 10.10.10.101/32 
+cumulus@spine01:mgmt:~$ nv set interface lo type loopback 
+cumulus@spine01:mgmt:~$ nv set interface swp1-4 type swp 
+cumulus@spine01:mgmt:~$ nv set router bgp autonomous-system 65199 
+cumulus@spine01:mgmt:~$ nv set router bgp enable on 
+cumulus@spine01:mgmt:~$ nv set router bgp router-id 10.10.10.101 
+cumulus@spine01:mgmt:~$ nv set system config auto-save enable on 
+cumulus@spine01:mgmt:~$ nv set system hostname spine01 
+cumulus@spine01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
+cumulus@spine01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32 
+cumulus@spine01:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
+cumulus@spine01:mgmt:~$ nv set vrf default router bgp enable on 
+cumulus@spine01:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 address-family l2vpn-evpn enable on 
+cumulus@spine01:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 remote-as external 
+cumulus@spine01:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 type unnumbered 
 ```
 </div>
 
-### border01
+{{< /tab >}}
+{{< tab "border01 ">}}
 
 <div class=scroll>
 
 ```
 cumulus@border01:mgmt:~$ nv config show -o commands 
-nv set evpn enable on 
-nv set interface eth0 ip vrf mgmt 
-nv set interface eth0 type eth 
-nv set interface lo ip address 10.10.10.10/32 
-nv set interface lo type loopback 
-nv set interface swp1-3 type swp 
-nv set nve vxlan enable on 
-nv set router bgp autonomous-system 65110 
-nv set router bgp enable on 
-nv set router bgp router-id 10.10.10.10 
-nv set router policy route-map control_t5 rule 1 action permit 
-nv set router policy route-map control_t5 rule 1 match evpn-route-type ip-prefix 
-nv set router policy route-map control_t5 rule 2 action deny 
-nv set service lldp 
-nv set system config auto-save enable on 
-nv set system global anycast-id 10 
-nv set system global fabric-id 10 
-nv set system hostname border01 
-nv set vrf GREEN evpn enable on 
-nv set vrf GREEN evpn vni 4002 
-nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
-nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
-nv set vrf GREEN router bgp autonomous-system 65110 
-nv set vrf GREEN router bgp enable on 
-nv set vrf GREEN router bgp peer-group underlay address-family l2vpn-evpn enable on 
-nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
-nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
-nv set vrf GREEN router bgp router-id 10.10.10.10 
-nv set vrf RED evpn enable on 
-nv set vrf RED evpn vni 4001 
-nv set vrf RED router bgp address-family ipv4-unicast enable on 
-nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
-nv set vrf RED router bgp autonomous-system 65110 
-nv set vrf RED router bgp enable on 
-nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on 
-nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
-nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
-nv set vrf RED router bgp router-id 10.10.10.10 
-nv set vrf default router bgp address-family ipv4-unicast enable on 
-nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.10/32 
-nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf default router bgp address-family l2vpn-evpn enable on 
-nv set vrf default router bgp enable on 
-nv set vrf default router bgp neighbor swp1 peer-group underlay 
-nv set vrf default router bgp neighbor swp1 type unnumbered 
-nv set vrf default router bgp neighbor swp2 peer-group underlay 
-nv set vrf default router bgp neighbor swp2 type unnumbered 
-nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
-nv set vrf default router bgp neighbor swp3 type unnumbered 
-nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
-nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn policy outbound route-map control_t5 
-nv set vrf default router bgp peer-group dci_group1 remote-as external 
-nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
-nv set vrf default router bgp peer-group underlay remote-as external 
+cumulus@border01:mgmt:~$ nv set evpn enable on 
+cumulus@border01:mgmt:~$ nv set interface eth0 ip vrf mgmt 
+cumulus@border01:mgmt:~$ nv set interface eth0 type eth 
+cumulus@border01:mgmt:~$ nv set interface lo ip address 10.10.10.10/32 
+cumulus@border01:mgmt:~$ nv set interface lo type loopback 
+cumulus@border01:mgmt:~$ nv set interface swp1-3 type swp 
+cumulus@border01:mgmt:~$ nv set nve vxlan enable on 
+cumulus@border01:mgmt:~$ nv set router bgp autonomous-system 65110 
+cumulus@border01:mgmt:~$ nv set router bgp enable on 
+cumulus@border01:mgmt:~$ nv set router bgp router-id 10.10.10.10 
+cumulus@border01:mgmt:~$ nv set router policy route-map control_t5 rule 1 action permit 
+cumulus@border01:mgmt:~$ nv set router policy route-map control_t5 rule 1 match evpn-route-type ip-prefix 
+cumulus@border01:mgmt:~$ nv set router policy route-map control_t5 rule 2 action deny 
+cumulus@border01:mgmt:~$ nv set service lldp 
+cumulus@border01:mgmt:~$ nv set system config auto-save enable on 
+cumulus@border01:mgmt:~$ nv set system global anycast-id 10 
+cumulus@border01:mgmt:~$ nv set system global fabric-id 10 
+cumulus@border01:mgmt:~$ nv set system hostname border01 
+cumulus@border01:mgmt:~$ nv set vrf GREEN evpn enable on 
+cumulus@border01:mgmt:~$ nv set vrf GREEN evpn vni 4002 
+cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
+cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp autonomous-system 65110 
+cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp enable on 
+cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
+cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
+cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp router-id 10.10.10.10 
+cumulus@border01:mgmt:~$ nv set vrf RED evpn enable on 
+cumulus@border01:mgmt:~$ nv set vrf RED evpn vni 4001 
+cumulus@border01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast enable on 
+cumulus@border01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@border01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@border01:mgmt:~$ nv set vrf RED router bgp autonomous-system 65110 
+cumulus@border01:mgmt:~$ nv set vrf RED router bgp enable on 
+cumulus@border01:mgmt:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@border01:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
+cumulus@border01:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
+cumulus@border01:mgmt:~$ nv set vrf RED router bgp router-id 10.10.10.10 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.10/32 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp enable on 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp3 type unnumbered 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn policy outbound route-map control_t5 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 remote-as external 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
 
-### leaf03
+{{< /tab >}}
+{{< tab "leaf03 ">}}
 
 <div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ nv config show -o commands 
-nv set bridge domain br_default vlan 1010 vni 1010 
-nv set bridge domain br_default vlan 2020 vni 2020 
-nv set evpn enable on 
-nv set evpn multihoming enable on 
-nv set interface bond1 bond member swp3 
-nv set interface bond1 bridge domain br_default access 1010 
-nv set interface bond1 evpn multihoming segment local-id 1 
-nv set interface bond1-2 bond lacp-bypass on 
-nv set interface bond1-2 evpn multihoming segment df-preference 50000 
-nv set interface bond1-2 evpn multihoming segment enable on 
-nv set interface bond1-2 evpn multihoming segment mac-address 00:00:00:00:00:BB 
-nv set interface bond1-2 type bond 
-nv set interface bond2 bond member swp4 
-nv set interface bond2 bridge domain br_default access 2020 
-nv set interface bond2 evpn multihoming segment local-id 2 
-nv set interface eth0 ip vrf mgmt 
-nv set interface eth0 type eth 
-nv set interface lo ip address 10.10.20.1/32 
-nv set interface lo type loopback 
-nv set interface swp1-2 evpn multihoming uplink on 
-nv set interface swp1-2 type swp 
-nv set interface vlan1010 ip address 192.168.10.101/24 
-nv set interface vlan1010 ip vrf RED 
-nv set interface vlan1010 ip vrr address 192.168.10.100/24 
-nv set interface vlan1010 vlan 1010 
-nv set interface vlan1010,2020 ip vrr enable on 
-nv set interface vlan1010,2020 ip vrr state up 
-nv set interface vlan1010,2020 type svi 
-nv set interface vlan2020 ip address 192.168.20.101/24 
-nv set interface vlan2020 ip vrf GREEN 
-nv set interface vlan2020 ip vrr address 192.168.20.100/24 
-nv set interface vlan2020 vlan 2020 
-nv set nve vxlan arp-nd-suppress on 
-nv set nve vxlan enable on 
-nv set nve vxlan source address 10.10.20.1 
-nv set router bgp autonomous-system 65201 
-nv set router bgp enable on 
-nv set router bgp router-id 10.10.20.1 
-nv set router vrr enable on 
-nv set service lldp 
-nv set system config auto-save enable on 
-nv set system global anycast-id 20 
-nv set system global fabric-id 20 
-nv set system hostname leaf03 
-nv set vrf GREEN evpn enable on 
-nv set vrf GREEN evpn vni 5002 
-nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
-nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
-nv set vrf GREEN router bgp autonomous-system 65201 
-nv set vrf GREEN router bgp enable on 
-nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
-nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
-nv set vrf GREEN router bgp router-id 10.10.20.1 
-nv set vrf RED evpn enable on 
-nv set vrf RED evpn vni 5001 
-nv set vrf RED router bgp address-family ipv4-unicast enable on 
-nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
-nv set vrf RED router bgp autonomous-system 65201 
-nv set vrf RED router bgp enable on 
-nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
-nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
-nv set vrf RED router bgp router-id 10.10.20.1 
-nv set vrf default router bgp address-family ipv4-unicast enable on 
-nv set vrf default router bgp address-family ipv4-unicast network 10.10.20.1/32 
-nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf default router bgp address-family l2vpn-evpn enable on 
-nv set vrf default router bgp enable on 
-nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn enable on 
-nv set vrf default router bgp neighbor swp1 remote-as external 
-nv set vrf default router bgp neighbor swp1 type unnumbered 
-nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn enable on 
-nv set vrf default router bgp neighbor swp2 remote-as external 
-nv set vrf default router bgp neighbor swp2 type unnumbered 
+cumulus@leaf03:mgmt:~$ nv set bridge domain br_default vlan 1010 vni 1010 
+cumulus@leaf03:mgmt:~$ nv set bridge domain br_default vlan 2020 vni 2020 
+cumulus@leaf03:mgmt:~$ nv set evpn enable on 
+cumulus@leaf03:mgmt:~$ nv set evpn multihoming enable on 
+cumulus@leaf03:mgmt:~$ nv set interface bond1 bond member swp3 
+cumulus@leaf03:mgmt:~$ nv set interface bond1 bridge domain br_default access 1010 
+cumulus@leaf03:mgmt:~$ nv set interface bond1 evpn multihoming segment local-id 1 
+cumulus@leaf03:mgmt:~$ nv set interface bond1-2 bond lacp-bypass on 
+cumulus@leaf03:mgmt:~$ nv set interface bond1-2 evpn multihoming segment df-preference 50000 
+cumulus@leaf03:mgmt:~$ nv set interface bond1-2 evpn multihoming segment enable on 
+cumulus@leaf03:mgmt:~$ nv set interface bond1-2 evpn multihoming segment mac-address 00:00:00:00:00:BB 
+cumulus@leaf03:mgmt:~$ nv set interface bond1-2 type bond 
+cumulus@leaf03:mgmt:~$ nv set interface bond2 bond member swp4 
+cumulus@leaf03:mgmt:~$ nv set interface bond2 bridge domain br_default access 2020 
+cumulus@leaf03:mgmt:~$ nv set interface bond2 evpn multihoming segment local-id 2 
+cumulus@leaf03:mgmt:~$ nv set interface eth0 ip vrf mgmt 
+cumulus@leaf03:mgmt:~$ nv set interface eth0 type eth 
+cumulus@leaf03:mgmt:~$ nv set interface lo ip address 10.10.20.1/32 
+cumulus@leaf03:mgmt:~$ nv set interface lo type loopback 
+cumulus@leaf03:mgmt:~$ nv set interface swp1-2 evpn multihoming uplink on 
+cumulus@leaf03:mgmt:~$ nv set interface swp1-2 type swp 
+cumulus@leaf03:mgmt:~$ nv set interface vlan1010 ip address 192.168.10.101/24 
+cumulus@leaf03:mgmt:~$ nv set interface vlan1010 ip vrf RED 
+cumulus@leaf03:mgmt:~$ nv set interface vlan1010 ip vrr address 192.168.10.100/24 
+cumulus@leaf03:mgmt:~$ nv set interface vlan1010 vlan 1010 
+cumulus@leaf03:mgmt:~$ nv set interface vlan1010,2020 ip vrr enable on 
+cumulus@leaf03:mgmt:~$ nv set interface vlan1010,2020 ip vrr state up 
+cumulus@leaf03:mgmt:~$ nv set interface vlan1010,2020 type svi 
+cumulus@leaf03:mgmt:~$ nv set interface vlan2020 ip address 192.168.20.101/24 
+cumulus@leaf03:mgmt:~$ nv set interface vlan2020 ip vrf GREEN 
+cumulus@leaf03:mgmt:~$ nv set interface vlan2020 ip vrr address 192.168.20.100/24 
+cumulus@leaf03:mgmt:~$ nv set interface vlan2020 vlan 2020 
+cumulus@leaf03:mgmt:~$ nv set nve vxlan arp-nd-suppress on 
+cumulus@leaf03:mgmt:~$ nv set nve vxlan enable on 
+cumulus@leaf03:mgmt:~$ nv set nve vxlan source address 10.10.20.1 
+cumulus@leaf03:mgmt:~$ nv set router bgp autonomous-system 65201 
+cumulus@leaf03:mgmt:~$ nv set router bgp enable on 
+cumulus@leaf03:mgmt:~$ nv set router bgp router-id 10.10.20.1 
+cumulus@leaf03:mgmt:~$ nv set router vrr enable on 
+cumulus@leaf03:mgmt:~$ nv set service lldp 
+cumulus@leaf03:mgmt:~$ nv set system config auto-save enable on 
+cumulus@leaf03:mgmt:~$ nv set system global anycast-id 20 
+cumulus@leaf03:mgmt:~$ nv set system global fabric-id 20 
+cumulus@leaf03:mgmt:~$ nv set system hostname leaf03 
+cumulus@leaf03:mgmt:~$ nv set vrf GREEN evpn enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf GREEN evpn vni 5002 
+cumulus@leaf03:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf GREEN router bgp autonomous-system 65201 
+cumulus@leaf03:mgmt:~$ nv set vrf GREEN router bgp enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
+cumulus@leaf03:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
+cumulus@leaf03:mgmt:~$ nv set vrf GREEN router bgp router-id 10.10.20.1 
+cumulus@leaf03:mgmt:~$ nv set vrf RED evpn enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf RED evpn vni 5001 
+cumulus@leaf03:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf RED router bgp autonomous-system 65201 
+cumulus@leaf03:mgmt:~$ nv set vrf RED router bgp enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
+cumulus@leaf03:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
+cumulus@leaf03:mgmt:~$ nv set vrf RED router bgp router-id 10.10.20.1 
+cumulus@leaf03:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.20.1/32 
+cumulus@leaf03:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf default router bgp enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf default router bgp neighbor swp1 remote-as external 
+cumulus@leaf03:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
+cumulus@leaf03:mgmt:~$ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn enable on 
+cumulus@leaf03:mgmt:~$ nv set vrf default router bgp neighbor swp2 remote-as external 
+cumulus@leaf03:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
 ```
 </div>
 
-### spine03
+{{< /tab >}}
+{{< tab "spine03 ">}}
 
 <div class=scroll>
 
 ```
 cumulus@spine03:mgmt:~$ nv config show -o commands 
-nv set interface eth0 ip vrf mgmt 
-nv set interface eth0 type eth 
-nv set interface lo ip address 10.10.20.103/32 
-nv set interface lo type loopback 
-nv set interface swp1-4 type swp 
-nv set router bgp autonomous-system 65299 
-nv set router bgp enable on 
-nv set router bgp router-id 10.10.20.103 
-nv set system config auto-save enable on 
-nv set system global anycast-id 20 
-nv set system global fabric-id 20 
-nv set system hostname spine03 
-nv set vrf default router bgp address-family ipv4-unicast enable on 
-nv set vrf default router bgp address-family ipv4-unicast network 10.10.20.103/32 
-nv set vrf default router bgp address-family l2vpn-evpn enable on 
-nv set vrf default router bgp enable on 
-nv set vrf default router bgp neighbor swp1-4 address-family l2vpn-evpn enable on 
-nv set vrf default router bgp neighbor swp1-4 remote-as external 
-nv set vrf default router bgp neighbor swp1-4 type unnumbered 
+cumulus@spine03:mgmt:~$ nv set interface eth0 ip vrf mgmt 
+cumulus@spine03:mgmt:~$ nv set interface eth0 type eth 
+cumulus@spine03:mgmt:~$ nv set interface lo ip address 10.10.20.103/32 
+cumulus@spine03:mgmt:~$ nv set interface lo type loopback 
+cumulus@spine03:mgmt:~$ nv set interface swp1-4 type swp 
+cumulus@spine03:mgmt:~$ nv set router bgp autonomous-system 65299 
+cumulus@spine03:mgmt:~$ nv set router bgp enable on 
+cumulus@spine03:mgmt:~$ nv set router bgp router-id 10.10.20.103 
+cumulus@spine03:mgmt:~$ nv set system config auto-save enable on 
+cumulus@spine03:mgmt:~$ nv set system global anycast-id 20 
+cumulus@spine03:mgmt:~$ nv set system global fabric-id 20 
+cumulus@spine03:mgmt:~$ nv set system hostname spine03 
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.20.103/32 
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp enable on 
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 address-family l2vpn-evpn enable on 
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 remote-as external 
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 type unnumbered 
 ```
 </div>
 
-### border04
+{{< /tab >}}
+{{< tab "border04 ">}}
 
 <div class=scroll>
 
 ```
 cumulus@border04:mgmt:~$ nv config show -o commands 
-nv set evpn enable on 
-nv set interface eth0 ip vrf mgmt 
-nv set interface eth0 type eth 
-nv set interface lo ip address 10.10.20.11/32 
-nv set interface lo type loopback 
-nv set interface swp1-3 type swp 
-nv set nve vxlan enable on 
-nv set router bgp autonomous-system 65210 
-nv set router bgp enable on 
-nv set router bgp router-id 10.10.20.11 
-nv set router policy route-map control_t5 rule 1 action permit 
-nv set router policy route-map control_t5 rule 1 match evpn-route-type ip-prefix 
-nv set router policy route-map control_t5 rule 2 action deny 
-nv set service lldp 
-nv set system config auto-save enable on 
-nv set system global anycast-id 20 
-nv set system global fabric-id 20 
-nv set system hostname border04 
-nv set vrf GREEN evpn enable on 
-nv set vrf GREEN evpn vni 5002 
-nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
-nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
-nv set vrf GREEN router bgp autonomous-system 65210 
-nv set vrf GREEN router bgp enable on 
-nv set vrf GREEN router bgp peer-group underlay address-family l2vpn-evpn enable on 
-nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
-nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
-nv set vrf GREEN router bgp router-id 10.10.20.11 
-nv set vrf RED evpn enable on 
-nv set vrf RED evpn vni 5001 
-nv set vrf RED router bgp address-family ipv4-unicast enable on 
-nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
-nv set vrf RED router bgp autonomous-system 65210 
-nv set vrf RED router bgp enable on 
-nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on 
-nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
-nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
-nv set vrf RED router bgp router-id 10.10.20.11 
-nv set vrf default router bgp address-family ipv4-unicast enable on 
-nv set vrf default router bgp address-family ipv4-unicast network 10.10.20.11/32 
-nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
-nv set vrf default router bgp address-family l2vpn-evpn enable on 
-nv set vrf default router bgp enable on 
-nv set vrf default router bgp neighbor swp1 peer-group underlay 
-nv set vrf default router bgp neighbor swp1 type unnumbered 
-nv set vrf default router bgp neighbor swp2 peer-group underlay 
-nv set vrf default router bgp neighbor swp2 type unnumbered 
-nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
-nv set vrf default router bgp neighbor swp3 type unnumbered 
-nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
-nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn policy outbound route-map control_t5 
-nv set vrf default router bgp peer-group dci_group1 remote-as external 
-nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
-nv set vrf default router bgp peer-group underlay remote-as external 
+cumulus@border04:mgmt:~$ nv set evpn enable on 
+cumulus@border04:mgmt:~$ nv set interface eth0 ip vrf mgmt 
+cumulus@border04:mgmt:~$ nv set interface eth0 type eth 
+cumulus@border04:mgmt:~$ nv set interface lo ip address 10.10.20.11/32 
+cumulus@border04:mgmt:~$ nv set interface lo type loopback 
+cumulus@border04:mgmt:~$ nv set interface swp1-3 type swp 
+cumulus@border04:mgmt:~$ nv set nve vxlan enable on 
+cumulus@border04:mgmt:~$ nv set router bgp autonomous-system 65210 
+cumulus@border04:mgmt:~$ nv set router bgp enable on 
+cumulus@border04:mgmt:~$ nv set router bgp router-id 10.10.20.11 
+cumulus@border04:mgmt:~$ nv set router policy route-map control_t5 rule 1 action permit 
+cumulus@border04:mgmt:~$ nv set router policy route-map control_t5 rule 1 match evpn-route-type ip-prefix 
+cumulus@border04:mgmt:~$ nv set router policy route-map control_t5 rule 2 action deny 
+cumulus@border04:mgmt:~$ nv set service lldp 
+cumulus@border04:mgmt:~$ nv set system config auto-save enable on 
+cumulus@border04:mgmt:~$ nv set system global anycast-id 20 
+cumulus@border04:mgmt:~$ nv set system global fabric-id 20 
+cumulus@border04:mgmt:~$ nv set system hostname border04 
+cumulus@border04:mgmt:~$ nv set vrf GREEN evpn enable on 
+cumulus@border04:mgmt:~$ nv set vrf GREEN evpn vni 5002 
+cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
+cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp autonomous-system 65210 
+cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp enable on 
+cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
+cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
+cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp router-id 10.10.20.11 
+cumulus@border04:mgmt:~$ nv set vrf RED evpn enable on 
+cumulus@border04:mgmt:~$ nv set vrf RED evpn vni 5001 
+cumulus@border04:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast enable on 
+cumulus@border04:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@border04:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@border04:mgmt:~$ nv set vrf RED router bgp autonomous-system 65210 
+cumulus@border04:mgmt:~$ nv set vrf RED router bgp enable on 
+cumulus@border04:mgmt:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@border04:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
+cumulus@border04:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
+cumulus@border04:mgmt:~$ nv set vrf RED router bgp router-id 10.10.20.11 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.20.11/32 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp enable on 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp3 type unnumbered 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn policy outbound route-map control_t5 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 remote-as external 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Diagnostic Commands
 

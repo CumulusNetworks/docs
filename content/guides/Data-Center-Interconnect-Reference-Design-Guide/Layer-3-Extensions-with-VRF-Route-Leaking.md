@@ -23,12 +23,12 @@ Each network is unique and has its own business and technical requirements. You 
 
 The following examples show route leaking configurations.
 
-### Borderleaf01
+### border01
 
 <div class=scroll>
 
 ```
-cumulus@borderleaf01:mgmt:~$ nv config show -o commands 
+cumulus@border01:mgmt:~$ nv config show -o commands 
 nv set evpn enable on 
 nv set interface eth0 ip vrf mgmt 
 nv set interface eth0 type eth 
@@ -46,7 +46,7 @@ nv set service lldp 
 nv set system config auto-save enable on 
 nv set system global anycast-id 10 
 nv set system global fabric-id 10 
-nv set system hostname borderleaf01 
+nv set system hostname border01 
 nv set system message post-login 'DCI ref guide - Layer3 VRF stretch topology with route leaking use case' 
 nv set vrf GREEN evpn enable on 
 nv set vrf GREEN evpn vni 4002 
@@ -97,12 +97,12 @@ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
 
-### Borderleaf04
+### border04
 
 <div class=scroll>
 
 ```
-cumulus@borderleaf04:mgmt:~$ nv config show -o commands 
+cumulus@border04:mgmt:~$ nv config show -o commands 
 nv set evpn enable on 
 nv set interface eth0 ip vrf mgmt 
 nv set interface eth0 type eth 
@@ -121,7 +121,7 @@ nv set service lldp 
 nv set system config auto-save enable on 
 nv set system global anycast-id 20 
 nv set system global fabric-id 20 
-nv set system hostname borderleaf04 
+nv set system hostname border04 
 nv set system message post-login 'DCI ref guide - Layer3 VRF stretch topology with route leaking use case' 
 nv set vrf GREEN evpn enable on 
 nv set vrf GREEN evpn vni 5002 
@@ -174,7 +174,7 @@ nv set vrf default router bgp peer-group underlay remote-as external 
 Both RED and GREEN VRFs include the `route-import` statement to mutually leak (inject) EVPN type-5 routes into their respective routing tables:
 `nv set vrf <vrf_name> router bgp route-import from-evpn route-target <asn:vni>`
 
-There is direct DCI connectivity between borderleaf01 and borderleaf04. You must enable the `l2vpn` address family for the DCI underlay session to exchange EVPN routes.
+There is direct DCI connectivity between border01 and border04. You must enable the `l2vpn` address family for the DCI underlay session to exchange EVPN routes.
 
 To avoid any layer 2 stretch with EVPN type-2 and type-3 routes, filter any unwanted EVPN route types with a simple filter applied to the BGP peer group in the outbound direction:
 
@@ -186,14 +186,14 @@ nv set router policy route-map control_t5 rule 3 action deny 
 nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn policy outbound route-map control_t5 
 ```
 
-### Borderleaf01
+### border01
 
 To verify route targets leaked into each VRF, run the following command on the border leaf.
 
 <div class=scroll>
 
 ```
-cumulus@borderleaf01:mgmt:~$ nv show vrf RED evpn bgp-info 
+cumulus@border01:mgmt:~$ nv show vrf RED evpn bgp-info 
                        operational        applied 
 ---------------------  -----------------  ------- 
 local-vtep             10.10.10.10 
@@ -205,7 +205,7 @@ system-mac             44:38:39:22:dd:06 
 [import-route-target]  0:4002 
 [import-route-target]  65210:5001 
 [import-route-target]  65210:5002 
-cumulus@borderleaf01:mgmt:~$ nv show vrf GREEN evpn bgp-info 
+cumulus@border01:mgmt:~$ nv show vrf GREEN evpn bgp-info 
                        operational        applied 
 ---------------------  -----------------  ------- 
 local-vtep             10.10.10.10 
@@ -220,12 +220,12 @@ system-mac             44:38:39:22:dd:06 
 ```
 </div>
 
-### Borderleaf04
+### border04
 
 <div class=scroll>
 
 ```
-cumulus@borderleaf04:mgmt:~$ nv show vrf RED evpn bgp-info 
+cumulus@border04:mgmt:~$ nv show vrf RED evpn bgp-info 
                        operational        applied 
 ---------------------  -----------------  ------- 
 local-vtep             10.10.20.11 
@@ -237,7 +237,7 @@ system-mac             44:38:39:22:dd:09 
 [import-route-target]  0:5002 
 [import-route-target]  65110:4001 
 [import-route-target]  65110:4002 
-cumulus@borderleaf04:mgmt:~$ nv show vrf GREEN evpn bgp-info 
+cumulus@border04:mgmt:~$ nv show vrf GREEN evpn bgp-info 
                        operational        applied 
 ---------------------  -----------------  ------- 
 local-vtep             10.10.20.11 
@@ -252,14 +252,14 @@ system-mac             44:38:39:22:dd:09 
 ```
 </div>
 
-### Borderleaf01
+### border01
 
 To examine BGP and routing tables for each VRF, run the following commands.
 
 <div class=scroll>
 
 ```
-cumulus@borderleaf01:mgmt:~$ net show route vrf RED 
+cumulus@border01:mgmt:~$ net show route vrf RED 
 show ip route vrf RED 
 ====================== 
 Codes: K - kernel route, C - connected, S - static, R - RIP, 
@@ -293,7 +293,7 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng, 
 VRF RED: 
 K>* ::/0 [255/8192] unreachable (ICMP unreachable), 00:45:07 
 C>* fe80::/64 is directly connected, vlan220_l3, 00:45:07 
-cumulus@borderleaf01:mgmt:~$ net show route vrf GREEN 
+cumulus@border01:mgmt:~$ net show route vrf GREEN 
 show ip route vrf GREEN 
 ======================== 
 Codes: K - kernel route, C - connected, S - static, R - RIP, 
@@ -327,7 +327,7 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng, 
 VRF GREEN: 
 K>* ::/0 [255/8192] unreachable (ICMP unreachable), 00:45:12 
 C>* fe80::/64 is directly connected, vlan370_l3, 00:45:12 
-cumulus@borderleaf01:mgmt:~$ net show bgp vrf RED 
+cumulus@border01:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
 BGP table version is 6, local router ID is 10.10.10.10, vrf id 13 
@@ -363,7 +363,7 @@ Displayed  6 routes and 19 total paths 
 show bgp vrf RED ipv6 unicast 
 ============================= 
 No BGP prefixes displayed, 0 exist 
-cumulus@borderleaf01:mgmt:~$ net show bgp vrf GREEN 
+cumulus@border01:mgmt:~$ net show bgp vrf GREEN 
 show bgp vrf GREEN ipv4 unicast 
 =============================== 
 BGP table version is 6, local router ID is 10.10.10.10, vrf id 11 
@@ -403,12 +403,12 @@ No BGP prefixes displayed, 0 exist 
 
 </div>
 
-### Borderleaf04
+### border04
 
 <div class=scroll>
 
 ```
-cumulus@borderleaf04:mgmt:~$ net show route vrf RED 
+cumulus@border04:mgmt:~$ net show route vrf RED 
 show ip route vrf RED 
 ====================== 
 Codes: K - kernel route, C - connected, S - static, R - RIP, 
@@ -442,7 +442,7 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng, 
 VRF RED: 
 K>* ::/0 [255/8192] unreachable (ICMP unreachable), 1d03h32m 
 C>* fe80::/64 is directly connected, vlan220_l3, 1d03h32m 
-cumulus@borderleaf04:mgmt:~$ net show route vrf GREEN 
+cumulus@border04:mgmt:~$ net show route vrf GREEN 
 show ip route vrf GREEN 
 ======================== 
 Codes: K - kernel route, C - connected, S - static, R - RIP, 
@@ -476,7 +476,7 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng, 
 VRF GREEN: 
 K>* ::/0 [255/8192] unreachable (ICMP unreachable), 1d03h32m 
 C>* fe80::/64 is directly connected, vlan370_l3, 1d03h32m 
-cumulus@borderleaf04:mgmt:~$ net show bgp vrf RED 
+cumulus@border04:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
 BGP table version is 40, local router ID is 10.10.20.11, vrf id 13 
@@ -514,7 +514,7 @@ Displayed  6 routes and 19 total paths 
 show bgp vrf RED ipv6 unicast 
 ============================= 
 No BGP prefixes displayed, 0 exist 
-cumulus@borderleaf04:mgmt:~$ net show bgp vrf GREEN 
+cumulus@border04:mgmt:~$ net show bgp vrf GREEN 
 show bgp vrf GREEN ipv4 unicast 
 =============================== 
 BGP table version is 40, local router ID is 10.10.20.11, vrf id 11 

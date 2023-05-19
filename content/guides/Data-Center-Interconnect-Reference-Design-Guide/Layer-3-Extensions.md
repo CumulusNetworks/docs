@@ -11,20 +11,20 @@ imgData: guides
     overflow-y: auto;
   }
 </style>
-Layer 3 extensions use EVPN as a control plane and are similar to a layer 3 VPN with VXLAN tunnels. The leaf switches set up full mesh VXLAN tunnels within and across PODs, and the routing exchange between pods occurs with EVPN type-5 routes. Within the pod, there are type-1 and type-4 routes for EVPN multihoming, type-2 for MAC addresses, IP addresses and MAC routes, and type-3 for BUM HER routes.
+Layer 3 extensions use EVPN as a control plane and are similar to layer 3 VPN with VXLAN tunnels. The leaf switches set up full mesh VXLAN tunnels within and across PODs, and the routing exchange between pods occurs with EVPN type-5 routes. Within the pod, there are type-1 and type-4 routes for EVPN multihoming, type-2 for MAC addresses, IP addresses and MAC routes, and type-3 for BUM HER routes.
 
 <!--make table-->
 {{<img src= "/images/guides/dci-table-ii.png">}}
 
 The following configuration example connects VRF RED in DC1 with VRF RED in DC2, using downstream VNI and symmetrical routing. The `route-target import` statements connect two RED VRFs at layer 3 (for prefix exchange). This configuration provides IP connectivity between server01 and server03 within VRF RED, and server02 and server04 within VRF GREEN, but the RED and GREEN VRFs cannot communicate with each other. All servers are in different IP subnets; there is no layer 2 adjacency between them. A server communicates with its peer in the other DC through its default gateway, which is the local VRR MAC address in the ARP cache.
 
-The example shows a layer 3 interconnect configuration, where the border leafs filter EVPN prefixes (except type-5) to distribute across DCI links. This configuration ensures the DCI only exchanges type-5 prefixes, and that the remote DC does not receive and process unwanted prefix types. The ESI and MAC addresses are visible for each local POD, but not across PODs.
+The example shows a layer 3 interconnect configuration, where the border leafs filter EVPN prefixes (except type-5) to distribute across DCI links. This configuration ensures that DCI only exchanges type-5 prefixes, and that the remote DC does not receive and process unwanted prefix types. The ESI and MAC addresses are visible for each local POD, but not across PODs.
 
 ## Configurations
 
 The following examples show a full configuration that includes server, leaf, spine, and border leafs.
 
-### Server01
+### server01
 
 <div class=scroll>
 
@@ -83,7 +83,7 @@ ubuntu@server01:~$ ip addr 
 ```
 </div>
 
-### Server03
+### server03
 
 <div class=scroll>
 
@@ -142,7 +142,7 @@ ubuntu@server03:~$ ip addr 
 ```
 </div>
 
-### Leaf01
+### leaf01
 
 <div class=scroll>
 
@@ -226,7 +226,7 @@ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
 
-### Spine01
+### spine01
 
 <div class=scroll>
 
@@ -252,12 +252,12 @@ nv set vrf default router bgp neighbor swp1-4 type unnumbered 
 ```
 </div>
 
-### Borderleaf01
+### border01
 
 <div class=scroll>
 
 ```
-cumulus@borderleaf01:mgmt:~$ nv config show -o commands 
+cumulus@border01:mgmt:~$ nv config show -o commands 
 nv set evpn enable on 
 nv set interface eth0 ip vrf mgmt 
 nv set interface eth0 type eth 
@@ -275,7 +275,7 @@ nv set service lldp 
 nv set system config auto-save enable on 
 nv set system global anycast-id 10 
 nv set system global fabric-id 10 
-nv set system hostname borderleaf01 
+nv set system hostname border01 
 nv set vrf GREEN evpn enable on 
 nv set vrf GREEN evpn vni 4002 
 nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
@@ -317,7 +317,7 @@ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
 
-### Leaf03
+### leaf03
 
 <div class=scroll>
 
@@ -401,7 +401,7 @@ nv set vrf default router bgp neighbor swp2 type unnumbered 
 ```
 </div>
 
-### Spine03
+### spine03
 
 <div class=scroll>
 
@@ -429,12 +429,12 @@ nv set vrf default router bgp neighbor swp1-4 type unnumbered 
 ```
 </div>
 
-### Borderleaf04
+### border04
 
 <div class=scroll>
 
 ```
-cumulus@borderleaf04:mgmt:~$ nv config show -o commands 
+cumulus@border04:mgmt:~$ nv config show -o commands 
 nv set evpn enable on 
 nv set interface eth0 ip vrf mgmt 
 nv set interface eth0 type eth 
@@ -452,7 +452,7 @@ nv set service lldp 
 nv set system config auto-save enable on 
 nv set system global anycast-id 20 
 nv set system global fabric-id 20 
-nv set system hostname borderleaf04 
+nv set system hostname border04 
 nv set vrf GREEN evpn enable on 
 nv set vrf GREEN evpn vni 5002 
 nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
@@ -1340,7 +1340,7 @@ To verify routing on the border leaf:
 <div class=scroll>
 
 ```
-cumulus@borderleaf01:mgmt:~$ net show bgp sum 
+cumulus@border01:mgmt:~$ net show bgp sum 
 show bgp ipv4 unicast summary 
 ============================= 
 BGP router identifier 10.10.10.10, local AS number 65110 vrf-id 0 
@@ -1350,7 +1350,7 @@ Peers 3, using 68 KiB of memory 
 Peer groups 2, using 128 bytes of memory 
  
 Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt 
-borderleaf04(swp3) 4      65210       735       734        0    0    0 00:35:39            5       10 
+border04(swp3) 4      65210       735       734        0    0    0 00:35:39            5       10 
 spine01(swp1)      4      65199       778       776        0    0    0 00:36:20            3       10 
 spine02(swp2)      4      65199       777       775        0    0    0 00:36:16            3       10 
  
@@ -1369,7 +1369,7 @@ Peers 3, using 68 KiB of memory 
 Peer groups 2, using 128 bytes of memory 
  
 Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt 
-borderleaf04(swp3) 4      65210       735       734        0    0    0 00:35:39            4        8 
+border04(swp3) 4      65210       735       734        0    0    0 00:35:39            4        8 
 spine01(swp1)      4      65199       778       776        0    0    0 00:36:20           42       46 
 spine02(swp2)      4      65199       777       775        0    0    0 00:36:16           42       46 
  
@@ -1377,7 +1377,7 @@ Total number of neighbors 3 
 ```
 
 ```
-cumulus@borderleaf01:mgmt:~$ net show bgp vrf RED 
+cumulus@border01:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
 BGP table version is 3, local router ID is 10.10.10.10, vrf id 13 
@@ -1407,7 +1407,7 @@ No BGP prefixes displayed, 0 exist
 ```
 
 ```
-cumulus@borderleaf01:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1 -A 3 -B 1 
+cumulus@border01:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1 -A 3 -B 1 
 Route Distinguisher: 10.10.10.1:6 
 *  [5]:[0]:[24]:[192.168.1.0] RD 10.10.10.1:6 
                     10.10.10.1 (spine02) 
@@ -1429,12 +1429,12 @@ Route Distinguisher: 10.10.10.2:4 
 -- 
 Route Distinguisher: 10.10.20.1:8 
 *> [5]:[0]:[24]:[192.168.10.0] RD 10.10.20.1:8 
-                    10.10.20.1 (borderleaf04) 
+                    10.10.20.1 (border04) 
                                                            0 65210 65299 65201 ? 
                     RT:65201:5001 ET:8 Rmac:44:38:39:22:bb:08 
 Route Distinguisher: 10.10.20.2:6 
 *> [5]:[0]:[24]:[192.168.10.0] RD 10.10.20.2:6 
-                    10.10.20.2 (borderleaf04) 
+                    10.10.20.2 (border04) 
                                                            0 65210 65299 65202 ? 
                     RT:65202:5001 ET:8 Rmac:44:38:39:22:bb:09 
 ```
@@ -2290,7 +2290,7 @@ To view routing from the border leaf:
 <div class=scroll>
 
 ```
-cumulus@borderleaf04:mgmt:~$ net show bgp sum 
+cumulus@border04:mgmt:~$ net show bgp sum 
 show bgp ipv4 unicast summary 
 ============================= 
 BGP router identifier 10.10.20.11, local AS number 65210 vrf-id 0 
@@ -2300,7 +2300,7 @@ Peers 3, using 68 KiB of memory 
 Peer groups 2, using 128 bytes of memory 
  
 Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt 
-borderleaf01(swp3) 4      65110      1260      1263        0    0    0 01:01:26            5       10 
+border01(swp3) 4      65110      1260      1263        0    0    0 01:01:26            5       10 
 spine03(swp1)      4      65299      1341      1345        0    0    0 01:01:24            4       10 
 spine04(swp2)      4      65299      1340      1343        0    0    0 01:01:16            4       10 
  
@@ -2321,7 +2321,7 @@ Peers 3, using 68 KiB of memory 
 Peer groups 2, using 128 bytes of memory 
  
 Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt 
-borderleaf01(swp3) 4      65110      1260      1263        0    0    0 01:01:26            4        8 
+border01(swp3) 4      65110      1260      1263        0    0    0 01:01:26            4        8 
 spine03(swp1)      4      65299      1342      1346        0    0    0 01:01:24           42       46 
 spine04(swp2)      4      65299      1340      1343        0    0    0 01:01:16           42       46 
  
@@ -2329,7 +2329,7 @@ Total number of neighbors 3
 ```
 
 ``` 
-cumulus@borderleaf04:mgmt:~$ net show bgp vrf RED 
+cumulus@border04:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
 BGP table version is 11, local router ID is 10.10.20.11, vrf id 13 
@@ -2361,15 +2361,15 @@ No BGP prefixes displayed, 0 exist
 ```
 
 ```
-cumulus@borderleaf04:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1\. -A 3 -B 1 
+cumulus@border04:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1\. -A 3 -B 1 
 Route Distinguisher: 10.10.10.1:6 
 *> [5]:[0]:[24]:[192.168.1.0] RD 10.10.10.1:6 
-                    10.10.10.1 (borderleaf01) 
+                    10.10.10.1 (border01) 
                                                            0 65110 65199 65101 ? 
                     RT:65101:4001 ET:8 Rmac:44:38:39:22:bb:06 
 Route Distinguisher: 10.10.10.2:4 
 *> [5]:[0]:[24]:[192.168.1.0] RD 10.10.10.2:4 
-                    10.10.10.2 (borderleaf01) 
+                    10.10.10.2 (border01) 
                                                            0 65110 65199 65102 ? 
                     RT:65102:4001 ET:8 Rmac:44:38:39:22:bb:07 
 -- 

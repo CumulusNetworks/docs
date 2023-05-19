@@ -11,22 +11,19 @@ imgData: guides
     overflow-y: auto;
   }
 </style>
+The purpose of a layer 2 extension from one data center to another is usually to support an application or a system that requires layer 2 adjacency. Some legacy applications require layer 2 adjacency for their operations and those systems---although fewer and fewer---continue to exist in enterprise environments. <!--???--> <!--Keeping in mind that modern era of cloud has already said his goodbye with layer 2 world, one can easily draw some conclusions out of this. As such that extending layer 2 domains across long distances is synonym with procrastination your life-long challenges and delaying a closure, which will eventually come back to you as a few technical troubles. Therefore, this option should be considered as last resort when an engineer has no other means of solving organizational and technical problems other than extending layer 2 across geographically separated datacenters. --> Layer 2 extensions are undesirable for the following reasons:
 
-## Introduction
-
-The purpose of a layer-2 extension from one data center to another is usually to support an application or a system that requires layer-2 adjacency. Some legacy applications require L2 adjacency for their operations and those systems---although fewer and fewer---continue to exist in enterprise environments. <!--???--> <!--Keeping in mind that modern era of cloud has already said his goodbye with layer-2 world, one can easily draw some conclusions out of this. As such that extending layer-2 domains across long distances is synonym with procrastination your life-long challenges and delaying a closure, which will eventually come back to you as a few technical troubles. Therefore, this option should be considered as last resort when an engineer has no other means of solving organizational and technical problems other than extending layer-2 across geographically separated datacenters. --> There are several reasons why L2 extensions are undesirable:
-
-- They can increase the chances of creating topological asymmetries. 
-- Broadcast and multicast storms risk extending from one data center to others. 
+- They can increase the chances of creating topological asymmetries.
+- Broadcast and multicast storms risk extending from one data center to others.
 - They can increase MTTR.
-- They are difficult to troubleshoot compared to an L3 extension. This is because there’s no clear demarcation between layer 2 and layer 3. 
-- They require a layer-2 loop detection system on all ToR/leaf switches.  
+- They are difficult to troubleshoot compared to a layer 3 extension because there is no clear demarcation between layer 2 and layer 3.
+- They require a layer 2 loop detection system on all ToR and leaf switches.  
 
-By limiting the scope of the layer-2 network, we reduce the potential impact when problems do occur. If it’s not possible to avoid a layer 2 extension, it’s crucial to understand that the extended layer-2 broadcast domains must be kept to a minimum to limit MAC address advertisements and withdrawals. Extending layer-2 domains is the same as merging multiple broadcast domains. This creates a geographically separated large broadcast domain that’s interconnected via a complex network over a distance.
+By limiting the scope of the layer 2 network, you reduce the potential impact when problems occur. If it is not possible to avoid a layer 2 extension, it is crucial to keep the extended layer 2 broadcast domains to a minimum to limit MAC address advertisements and withdrawals. Extending layer 2 domains is the same as merging multiple broadcast domains; it creates a geographically separated large broadcast domain that is interconnected through a complex network over a distance.
 
 <!--diagram of reference topology-->
 
-Extending a layer-2 segment from one data center to another involves extending EVPN Type-2 (MAC/IP) routes for individual MAC addresses and Type-3 (Inclusive Multicast) routes for BUM (Broadcast/Unknown-Unicast/Multicast) traffic. In modern EVPN/VXLAN environments with multihoming, extending Type-1 (Ethernet Auto Discovery) routes and Type-4 (Ethernet Segment) routes is equally essential.
+Extending a layer 2 segment from one data center to another involves extending EVPN type-2 (MAC and IP address) routes for individual MAC addresses and type-3 (Inclusive Multicast) routes for BUM (Broadcast, Unknown-Unicast, and Multicast) traffic. In modern EVPN and VXLAN environments with multihoming, extending type-1 (Ethernet Auto Discovery) routes and type-4 (Ethernet Segment) routes is equally essential.
 
 We will use the following configuration as an example:
 
@@ -34,11 +31,12 @@ We will use the following configuration as an example:
 
 {{<img src= "/images/guides/dci-table.png">}}
 
-Our purpose is to interconnect VLAN id 10 in DC1 with VLAN id 10 in DC2 using EVPN/VXLAN layer-2 stretch. We will use route-target import statements to connect two RED vrfs to each other. This provides connectivity between server01 and server03 within the RED vrf and server02 and server04 within the GREEN vrf. The RED and GREEN vrfs will not be able to communicate with each other. Note that server01 and server03 will be in the same broadcast domain as server02 and server04. From a layer-2 perspective, they’re adjacent hosts. Servers will include each other’s MAC addresses in their ARP cache. 
+The following configuration examples interconnect VLAN ID 10 in DC1 with VLAN ID 10 in DC2 using EVPN and VXLAN layer 2 stretch. The route target import statements connect two RED VRFs to each other and provide connectivity between server01 and server03 within the RED VRF, and server02 and server04 within the GREEN VRF. The RED and GREEN VRFs cannot communicate with each other. server01 and server03 are in the same broadcast domain as server02 and server04. From a layer 2 perspective, they are adjacent hosts. The servers include each other’s MAC addresses in their ARP cache.
 
-We’ll also see all ESIs across the fabric, therefore ESI addressing across the fabric must be unique. 
+We’ll also see all ESIs across the fabric, therefore ESI addressing across the fabric must be unique.
 
-## Configurations
+## Configuration
+
 ### Server01
 
 <div class=scroll>
@@ -414,6 +412,7 @@ nv set vrf default router bgp peer-group underlay remote-as external 
 ## Diagnostic Commands
 
 Use the commands in this section to troubleshoot and validate your DCI configuration.
+
 ### DC1
 
 <div class=scroll>

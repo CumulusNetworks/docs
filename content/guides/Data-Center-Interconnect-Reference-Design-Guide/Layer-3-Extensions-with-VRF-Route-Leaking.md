@@ -11,9 +11,6 @@ imgData: guides
     overflow-y: auto;
   }
 </style>
-
-## Introduction
-
 After the introduction of IP based VPN services, VRF route leaking has become more common in enterprise and service provider environments, and also in EVPN-based Ethernet VPNs. VRFs isolate routing tables, and create multi tenancy within a wide area network (WAN) and data center. However, routing across VRFs is often required, especially where external routing between VRFs is not possible or economical. When implementing route leaking in a data center fabric, you need to know where in the network route leaking needs to happen.  
 
 If you want to use a common denominator that keeps a summary of each POD, and interconnects PODs and DC locations, a border leaf is a good choice. Typically, you use border leafs where the data center interconnects, such as with a firewall, load balancer, intrusion detection system (IDS), SSL-offload device, and WEB application firewall (WAF). If you have any of these interconnected services, the border leaf is the point that has visibility into each tenant in the DC. You typically use these network and security services across VRFs that have a direct connection to each tenant network. Therefore, performing VRF route leaking on regular leaf prevents those services from seeing the big picture because they attach to a service leaf or a border leaf. Using a border leaf is also also a good idea if you prefer to have a deterministic set of next hops and a number of hops that reach the cross-connection point.
@@ -283,9 +280,7 @@ B>* 192.168.2.10/32 [20/0] via 10.10.10.1, vxlan99 (vrf default) onlink, label 4
   *                        via 10.10.10.2, vxlan99 (vrf default) onlink, label 4002, weight 1, 00:45:04 
 B>* 192.168.10.0/24 [20/0] via 10.10.20.11, vxlan99 (vrf default) onlink, label 5002, weight 1, 00:45:04 
 B>* 192.168.20.0/24 [20/0] via 10.10.20.11, vxlan99 (vrf default) onlink, label 5001, weight 1, 00:45:04 
- 
- 
- 
+
 show ipv6 route vrf RED 
 ======================== 
 Codes: K - kernel route, C - connected, S - static, R - RIPng, 
@@ -319,9 +314,7 @@ B>* 192.168.2.10/32 [20/0] via 10.10.10.1, vlan370_l3 onlink, weight 1, 00:45:09
   *                        via 10.10.10.2, vlan370_l3 onlink, weight 1, 00:45:09 
 B>* 192.168.10.0/24 [20/0] via 10.10.20.11, vxlan99 (vrf default) onlink, label 5002, weight 1, 00:45:09 
 B>* 192.168.20.0/24 [20/0] via 10.10.20.11, vxlan99 (vrf default) onlink, label 5001, weight 1, 00:45:09 
- 
- 
- 
+
 show ipv6 route vrf GREEN 
 ========================== 
 Codes: K - kernel route, C - connected, S - static, R - RIPng, 
@@ -367,7 +360,6 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete 
  
 Displayed  6 routes and 19 total paths 
  
- 
 show bgp vrf RED ipv6 unicast 
 ============================= 
 No BGP prefixes displayed, 0 exist 
@@ -403,8 +395,7 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete 
 *> 192.168.20.0/24  10.10.20.11<                           0 65210 i 
  
 Displayed  6 routes and 19 total paths 
- 
- 
+
 show bgp vrf GREEN ipv6 unicast 
 =============================== 
 No BGP prefixes displayed, 0 exist 
@@ -438,9 +429,7 @@ B>* 192.168.10.110/32 [20/0] via 10.10.20.1, vlan220_l3 onlink, weight 1, 00:41:
 B>* 192.168.20.0/24 [200/0] unreachable (blackhole), weight 1, 00:41:52 
 B>* 192.168.20.110/32 [20/0] via 10.10.20.1, vxlan99 (vrf default) onlink, label 5002, weight 1, 00:41:52 
   *                          via 10.10.20.2, vxlan99 (vrf default) onlink, label 5002, weight 1, 00:41:52 
- 
- 
- 
+
 show ipv6 route vrf RED 
 ======================== 
 Codes: K - kernel route, C - connected, S - static, R - RIPng, 
@@ -474,9 +463,7 @@ B>* 192.168.20.0/24 [20/0] via 10.10.20.1, vlan370_l3 onlink, weight 1, 00:41:57
   *                        via 10.10.20.2, vlan370_l3 onlink, weight 1, 00:41:57 
 B>* 192.168.20.110/32 [20/0] via 10.10.20.1, vlan370_l3 onlink, weight 1, 00:41:57 
   *                          via 10.10.20.2, vlan370_l3 onlink, weight 1, 00:41:57 
- 
- 
- 
+
 show ipv6 route vrf GREEN 
 ========================== 
 Codes: K - kernel route, C - connected, S - static, R - RIPng, 
@@ -524,7 +511,6 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete 
  
 Displayed  6 routes and 19 total paths 
  
- 
 show bgp vrf RED ipv6 unicast 
 ============================= 
 No BGP prefixes displayed, 0 exist 
@@ -562,8 +548,7 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete 
 *                   10.10.20.1<                            0 65299 65201 i 
  
 Displayed  6 routes and 19 total paths 
- 
- 
+
 show bgp vrf GREEN ipv6 unicast 
 =============================== 
 No BGP prefixes displayed, 0 exist 

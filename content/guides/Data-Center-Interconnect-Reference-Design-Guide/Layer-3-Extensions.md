@@ -11,21 +11,18 @@ imgData: guides
     overflow-y: auto;
   }
 </style>
-
-## Introduction
-
-L3 Extensions behave similarly to an L3VPN implemented with VXLAN tunnels for data -plane point of view and use EVPN as control- plane. To achieve this, leaf switches set up fullmesh VXLAN tunnels within and across PODs, signaled by EVPN and routing exchange in between pods happen via EVPN Type-5 routes. Within the pod, there are Type-1 and Type-4 routes for EVPN-MH, Type-2 for MAC/IP & MAC routes, and Type-3 for BUM HER routes.
-
-We will use the following configuration as an example:
+Layer 3 extensions use EVPN as a control plane and are similar to a layer 3 VPN with VXLAN tunnels. The leaf switches set up full mesh VXLAN tunnels within and across PODs, and the routing exchange between pods occurs with EVPN type-5 routes. Within the pod, there are type-1 and type-4 routes for EVPN multihoming, type-2 for MAC addresses, IP addresses and MAC routes, and type-3 for BUM HER routes.
 
 <!--make table-->
 {{<img src= "/images/guides/dci-table-ii.png">}}
 
-Our purpose is to interconnect vrf RED in DC1 with vrf RED in DC2 using Downstream VNI and symmetrical routing. We will be using route-target import statements to connect two RED vrf’s to each other at Layer-3 (only prefix exchange). This will give us IP connectivity between server01 and server03 within RED vrf and server02 and server04 within GREEN vrf, but the RED and GREEN vrf’s will not be able to communicate with each other. All servers are in different IP subnets, therefore there is no Layer-2 adjacency in between them. When a server wants to communicate with its peer in the other DC, it will have its default gateway which is the local vrr MAC in its ARP cache. 
+The following configuration example connects VRF RED in DC1 with VRF RED in DC2, using downstream VNI and symmetrical routing. The `route-target import` statements connect two RED VRFs at layer 3 (for prefix exchange). This configuration provides IP connectivity between server01 and server03 within VRF RED, and server02 and server04 within VRF GREEN, but the RED and GREEN VRFs cannot communicate with each other. All servers are in different IP subnets; there is no layer 2 adjacency between them. A server communicates with its peer in the other DC through its default gateway, which is the local VRR MAC address in the ARP cache.
 
-On border leaf nodes we are filtering EVPN prefixes except Type-5 to be distributed across DCI links, as our use case is a Layer-3 interconnect. This will ensure only Type-5 prefixes are exchanged via DCI and remote DC will not receive and process unwanted prefix types. Therefore, the ESI and MAC are visible for each local POD, but not across PODs. 
+The example shows a layer 3 interconnect configuration, where the border leafs filter EVPN prefixes (except type-5) to distribute across DCI links. This configuration ensures the DCI only exchanges type-5 prefixes, and that the remote DC does not receive and process unwanted prefix types. The ESI and MAC addresses are visible for each local POD, but not across PODs.
 
 ## Configurations
+
+The following examples show a full configuration that includes server, leaf, spine, and border leafs.
 
 ### Server01
 
@@ -498,6 +495,9 @@ nv set vrf default router bgp peer-group underlay remote-as external 
 </div>
 
 ## Diagnostic Commands
+
+The following examples show troubleshooting commands.
+
 ### DC1
 
 <div class=scroll>
@@ -534,29 +534,44 @@ Neighbor        V         AS   MsgRcvd   MsgSent   TblVer 
 spine01(swp1)   4      65199      2924      2922        0    0    0 02:18:52           26       46 
 spine02(swp2)   4      65199      2924      2922        0    0    0 02:18:52           26       46 
  
-Total number of neighbors 2 
+Total number of neighbors 2
+```
+
+``` 
 cumulus@leaf01:mgmt:~$ net show evpn es 
 Type: B bypass, L local, R remote, N non-DF 
 ESI                            Type ES-IF                 VTEPs 
 03:00:00:00:00:00:aa:00:00:01  LR   bond1                 10.10.10.2 
 03:00:00:00:00:00:aa:00:00:02  LR   bond2                 10.10.10.2 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn es 
 ES Flags: B - bypass, L local, R remote, I inconsistent 
 VTEP Flags: E ESR/Type-4, A active nexthop 
 ESI                            Flags RD                    #VNIs    VTEPs 
 03:00:00:00:00:00:aa:00:00:01  LR    10.10.10.1:3          1        10.10.10.2(EA) 
 03:00:00:00:00:00:aa:00:00:02  LR    10.10.10.1:4          1        10.10.10.2(EA) 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn es-evi 
 Flags: L local, R remote, I inconsistent 
 VTEP-Flags: E EAD-per-ES, V EAD-per-EVI 
 VNI      ESI                            Flags VTEPs 
 20       03:00:00:00:00:00:aa:00:00:02  LR    10.10.10.2(EV) 
 10       03:00:00:00:00:00:aa:00:00:01  LR    10.10.10.2(EV) 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn es-vrf 
 ES-VRF Flags: A Active 
 ESI                            VRF             Flags IPv4-NHG IPv6-NHG Ref 
 03:00:00:00:00:00:aa:00:00:01  VRF RED         A     72580645 72580646 1 
 03:00:00:00:00:00:aa:00:00:02  VRF GREEN       A     72580647 72580648 1 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show int bond1 
     Name   MAC                Speed  MTU   Mode 
 --  -----  -----------------  -----  ----  ------- 
@@ -607,7 +622,9 @@ Routing 
   EVPN-MH: ES id 1 ES sysmac 00:00:00:00:00:aa 
   protodown: off (n/a) 
   ARP-ND redirect enabled: ARP 1713 ND 2791 
-  
+```
+
+``` 
 cumulus@leaf01:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
@@ -628,10 +645,13 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete 
 *                   10.10.20.1<                            0 65199 65110 65210 65299 65201 ? 
  
 Displayed  2 routes and 7 total paths 
- 
+
 show bgp vrf RED ipv6 unicast 
 ============================= 
-No BGP prefixes displayed, 0 exist 
+No BGP prefixes displayed, 0 exist
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show route vrf RED 
 show ip route vrf RED 
 ====================== 
@@ -663,6 +683,9 @@ K>* ::/0 [255/8192] unreachable (ICMP unreachable), 2d22h09m 
 C * fe80::/64 is directly connected, vlan10-v0, 2d19h15m 
 C * fe80::/64 is directly connected, vlan220_l3, 2d22h08m 
 C>* fe80::/64 is directly connected, vlan10, 2d22h09m 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show bgp vrf GREEN 
 show bgp vrf GREEN ipv4 unicast 
 =============================== 
@@ -687,6 +710,9 @@ Displayed  2 routes and 7 total paths 
 show bgp vrf GREEN ipv6 unicast 
 =============================== 
 No BGP prefixes displayed, 0 exist 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show route vrf GREEN 
 show ip route vrf GREEN 
 ======================== 
@@ -718,6 +744,9 @@ K>* ::/0 [255/8192] unreachable (ICMP unreachable), 2d22h09m 
 C * fe80::/64 is directly connected, vlan20-v0, 2d19h16m 
 C * fe80::/64 is directly connected, vlan20, 2d22h09m 
 C>* fe80::/64 is directly connected, vlan370_l3, 2d22h09m 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show bgp vrf RED 192.168.1.0/24 
 BGP routing table entry for 192.168.1.0/24 
 Paths: (3 available, best #3, vrf RED) 
@@ -738,6 +767,9 @@ Paths: (3 available, best #3, vrf RED) 
     0.0.0.0 from 0.0.0.0 (10.10.10.1) 
       Origin incomplete, metric 0, weight 32768, valid, sourced, bestpath-from-AS Local, best (Weight) 
       Last update: Mon Apr 17 08:46:47 2023 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show bgp vrf RED 192.168.10.0/24 
 BGP routing table entry for 192.168.10.0/24 
 Paths: (4 available, best #3, vrf RED) 
@@ -766,7 +798,9 @@ Paths: (4 available, best #3, vrf RED) 
       Origin incomplete, valid, external 
       Extended Community: RT:65201:5001 ET:8 Rmac:44:38:39:22:bb:08 
       Last update: Mon Apr 17 11:04:25 2023 
-cumulus@leaf01:mgmt:~$ 
+```
+
+```
 cumulus@leaf01:mgmt:~$  net show bgp evpn vni 
 Advertise Gateway Macip: Disabled 
 Advertise SVI Macip: Disabled 
@@ -781,6 +815,9 @@ Flags: * - Kernel 
 * 10         L2   10.10.10.1:7          65101:10                  65101:10                 RED 
 * 4002       L3   10.10.10.1:5          0:4002, ...               65101:4002               GREEN 
 * 4001       L3   10.10.10.1:6          0:4001, ...               65101:4001               RED 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show bgp evpn vni 4001 
 VNI: 4001 (known to the kernel) 
   Type: L3 
@@ -798,6 +835,9 @@ VNI: 4001 (known to the kernel) 
     0:5001 
   Export Route Target: 
     65101:4001 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show bgp evpn vni 4002 
 VNI: 4002 (known to the kernel) 
   Type: L3 
@@ -814,7 +854,10 @@ VNI: 4002 (known to the kernel) 
     0:4002 
     0:5002 
   Export Route Target: 
-    65101:4002 
+    65101:4002
+```
+
+``` 
 cumulus@leaf01:mgmt:~$ net show evpn mac vni all 
 VNI 10 #MACs (local and remote) 5 
  
@@ -835,7 +878,9 @@ MAC               Type   Flags Intf/Remote ES/VTEP       �
 48:b0:2d:7f:a9:bd remote       10.10.10.2                           0/0 
 44:38:39:22:bb:07 remote       10.10.10.2                           0/0 
 a6:e0:55:25:f3:b2 local  NP    bond2                          20    1/0 
-cumulus@leaf01:mgmt:~$ 
+```
+
+```
 cumulus@leaf02:mgmt:~$ net show bgp sum 
 show bgp ipv4 unicast summary 
 ============================= 
@@ -868,6 +913,9 @@ spine01(swp1)   4      65199      3015      3013      
 spine02(swp2)   4      65199      3015      3013        0    0    0 02:23:26           24       46 
  
 Total number of neighbors 2 
+```
+
+```
 cumulus@leaf02:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
@@ -891,7 +939,10 @@ Displayed  2 routes and 7 total paths 
  
 show bgp vrf RED ipv6 unicast 
 ============================= 
-No BGP prefixes displayed, 0 exist 
+No BGP prefixes displayed, 0 exist
+```
+
+``` 
 cumulus@leaf02:mgmt:~$ net show bgp vrf GREEN 
 show bgp vrf GREEN ipv4 unicast 
 =============================== 
@@ -915,7 +966,10 @@ Displayed  2 routes and 7 total paths 
  
 show bgp vrf GREEN ipv6 unicast 
 =============================== 
-No BGP prefixes displayed, 0 exist 
+No BGP prefixes displayed, 0 exist
+```
+
+``` 
 cumulus@leaf02:mgmt:~$ net show route vrf RED 
 show ip route vrf RED 
 ====================== 
@@ -947,6 +1001,9 @@ K>* ::/0 [255/8192] unreachable (ICMP unreachable), 2d22h13m 
 C * fe80::/64 is directly connected, vlan10-v0, 2d19h20m 
 C * fe80::/64 is directly connected, vlan10, 2d22h13m 
 C>* fe80::/64 is directly connected, vlan220_l3, 2d22h13m 
+```
+
+```
 cumulus@leaf02:mgmt:~$ net show route vrf GREEN 
 show ip route vrf GREEN 
 ======================== 
@@ -978,28 +1035,43 @@ K>* ::/0 [255/8192] unreachable (ICMP unreachable), 2d22h13m 
 C * fe80::/64 is directly connected, vlan20-v0, 2d19h20m 
 C * fe80::/64 is directly connected, vlan20, 2d22h13m 
 C>* fe80::/64 is directly connected, vlan370_l3, 2d22h13m 
+```
+
+```
 cumulus@leaf02:mgmt:~$ net show evpn es 
 Type: B bypass, L local, R remote, N non-DF 
 ESI                            Type ES-IF                 VTEPs 
 03:00:00:00:00:00:aa:00:00:01  LRN  bond1                 10.10.10.1 
 03:00:00:00:00:00:aa:00:00:02  LRN  bond2                 10.10.10.1 
+```
+
+```
 cumulus@leaf02:mgmt:~$ net show bgp l2vpn evpn es 
 ES Flags: B - bypass, L local, R remote, I inconsistent 
 VTEP Flags: E ESR/Type-4, A active nexthop 
 ESI                            Flags RD                    #VNIs    VTEPs 
 03:00:00:00:00:00:aa:00:00:01  LR    10.10.10.2:6          1        10.10.10.1(EA) 
 03:00:00:00:00:00:aa:00:00:02  LR    10.10.10.2:7          1        10.10.10.1(EA) 
+```
+
+```
 cumulus@leaf02:mgmt:~$ net show bgp l2vpn evpn es-evi 
 Flags: L local, R remote, I inconsistent 
 VTEP-Flags: E EAD-per-ES, V EAD-per-EVI 
 VNI      ESI                            Flags VTEPs 
 20       03:00:00:00:00:00:aa:00:00:02  LR    10.10.10.1(EV) 
 10       03:00:00:00:00:00:aa:00:00:01  LR    10.10.10.1(EV) 
+```
+
+```
 cumulus@leaf02:mgmt:~$ net show bgp l2vpn evpn es-vrf 
 ES-VRF Flags: A Active 
 ESI                            VRF             Flags IPv4-NHG IPv6-NHG Ref 
 03:00:00:00:00:00:aa:00:00:01  VRF RED         A     72580647 72580648 1 
 03:00:00:00:00:00:aa:00:00:02  VRF GREEN       A     72580645 72580646 1 
+```
+
+```
 cumulus@leaf02:mgmt:~$  net show bgp evpn vni 
 Advertise Gateway Macip: Disabled 
 Advertise SVI Macip: Disabled 
@@ -1014,6 +1086,9 @@ Flags: * - Kernel 
 * 10         L2   10.10.10.2:3          65102:10                  65102:10                 RED 
 * 4001       L3   10.10.10.2:4          0:4001, ...               65102:4001               RED 
 * 4002       L3   10.10.10.2:5          0:4002, ...               65102:4002               GREEN 
+```
+
+```
 cumulus@leaf02:mgmt:~$ net show int bond1 
     Name   MAC                Speed  MTU   Mode 
 --  -----  -----------------  -----  ----  ------- 
@@ -1064,7 +1139,9 @@ Routing 
   EVPN-MH: ES id 1 ES sysmac 00:00:00:00:00:aa 
   protodown: off (n/a) 
   ARP-ND redirect enabled: ARP 906 ND 3030 
-  
+```
+
+```
 cumulus@leaf02:mgmt:~$ net show bgp evpn vni 4001 
 VNI: 4001 (known to the kernel) 
   Type: L3 
@@ -1082,7 +1159,9 @@ VNI: 4001 (known to the kernel) 
     0:5001 
   Export Route Target: 
     65102:4001 
- 
+```
+
+```
 cumulus@leaf02:mgmt:~$ net show bgp evpn vni 4002 
 VNI: 4002 (known to the kernel) 
   Type: L3 
@@ -1099,7 +1178,10 @@ VNI: 4002 (known to the kernel) 
     0:4002 
     0:5002 
   Export Route Target: 
-    65102:4002 
+    65102:4002
+```
+
+```
 cumulus@leaf02:mgmt:~$ net show evpn mac vni all 
 VNI 10 #MACs (local and remote) 5 
  
@@ -1124,7 +1206,7 @@ a6:e0:55:25:f3:b2 local  NP    bond2                   �
 </div>
 <br>
 
-Verify that the bridge `br_default` is learning MAC entries:
+To verify that the bridge `br_default` is learning MAC entries:
 
 <div class=scroll>
 
@@ -1145,7 +1227,9 @@ cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table 
 10  253880  br_default     permanent   bond1       253880       48:b0:2d:3d:e9:84 
 11                         permanent   br_default               00:00:5e:00:01:0a 
 12  243496  br_default     permanent   br_default  243496       44:38:39:22:bb:06           10 
-cumulus@leaf01:mgmt:~$ 
+```
+
+```
 cumulus@leaf02:mgmt:~$ nv show bridge domain br_default mac-table 
     age     bridge-domain  entry-type  interface   last-update  MAC address        src-vni  vlan  vni   Summary 
 --  ------  -------------  ----------  ----------  -----------  -----------------  -------  ----  ----  ---------------------- 
@@ -1166,7 +1250,7 @@ cumulus@leaf02:mgmt:~$ nv show bridge domain br_default mac-table 
 </div>
 <br>
 
-From the table above, locate the L3 VLAN interface MAC and the VRR MAC:
+From the table above, locate the layer 3 VLAN interface MAC address and the VRR MAC address:
 
 <div class=scroll>
 
@@ -1179,11 +1263,16 @@ mac-address  00:00:5e:00:01:0a  auto 
 mac-id                          none 
 [address]    192.168.1.1/24     192.168.1.1/24 
 state        up                 up 
- 
+```
+
+```
 cumulus@leaf01:mgmt:~$ nv show int vlan10 | grep mac 
     mac-address                              auto 
     mac-id                                   none 
   mac                     44:38:39:22:bb:06 
+```
+
+```
 cumulus@leaf02:mgmt:~$ nv show int vlan10 | grep mac 
     mac-address                              auto 
     mac-id                                   none 
@@ -1192,7 +1281,7 @@ cumulus@leaf02:mgmt:~$ nv show int vlan10 | grep mac 
 </div>
 <br>
 
-Verify EVPN Type-5 routes from the perspective of the ingress PE (leaf01) for the end host *192.168.10.110* connected to leaf03 and leaf04: 
+Verify EVPN type-5 routes at the ingress PE (leaf01) for the end host *192.168.10.110*, which connects to leaf03 and leaf04:
 
 <div class=scroll>
 
@@ -1221,7 +1310,7 @@ Route Distinguisher: 10.10.20.2:7 
 </div>
 <br>
 
-Verify EVPN Type-5 routes from the perspective of the egress PE (leaf03) for the end host 192.168.10.110 connected to leaf03 and leaf04:
+Verify EVPN type-5 routes at the egress PE (leaf03) for the end host 192.168.10.110, which connects to leaf03 and leaf04:
 
 <div class=scroll>
 
@@ -1246,7 +1335,7 @@ Route Distinguisher: 10.10.20.2:7 
 </div>
 <br>
 
-Routing from the border leaf perspective:
+To verify routing on the border leaf:
 
 <div class=scroll>
 
@@ -1267,11 +1356,9 @@ spine02(swp2)      4      65199       777       775   �
  
 Total number of neighbors 3 
  
- 
 show bgp ipv6 unicast summary 
 ============================= 
 % No BGP neighbors found 
- 
  
 show bgp l2vpn evpn summary 
 =========================== 
@@ -1287,6 +1374,9 @@ spine01(swp1)      4      65199       778       776   �
 spine02(swp2)      4      65199       777       775        0    0    0 00:36:16           42       46 
  
 Total number of neighbors 3 
+```
+
+```
 cumulus@borderleaf01:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
@@ -1310,11 +1400,13 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete 
 *>                  10.10.20.1<                            0 65210 65299 65201 ? 
  
 Displayed  3 routes and 10 total paths 
- 
- 
+
 show bgp vrf RED ipv6 unicast 
 ============================= 
-No BGP prefixes displayed, 0 exist 
+No BGP prefixes displayed, 0 exist
+```
+
+```
 cumulus@borderleaf01:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1 -A 3 -B 1 
 Route Distinguisher: 10.10.10.1:6 
 *  [5]:[0]:[24]:[192.168.1.0] RD 10.10.10.1:6 
@@ -1382,29 +1474,44 @@ Neighbor        V         AS   MsgRcvd   MsgSent   TblVer 
 spine03(swp1)   4      65299     79699     79702        0    0    0 2d18h00m           25       46 
 spine04(swp2)   4      65299     79714     79715        0    0    0 2d18h00m           25       46 
  
-Total number of neighbors 2 
+Total number of neighbors 2
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show evpn es 
 Type: B bypass, L local, R remote, N non-DF 
 ESI                            Type ES-IF                 VTEPs 
 03:00:00:00:00:00:bb:00:00:01  LR   bond1                 10.10.20.2 
 03:00:00:00:00:00:bb:00:00:02  LR   bond2                 10.10.20.2 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn es 
 ES Flags: B - bypass, L local, R remote, I inconsistent 
 VTEP Flags: E ESR/Type-4, A active nexthop 
 ESI                            Flags RD                    #VNIs    VTEPs 
 03:00:00:00:00:00:bb:00:00:01  LR    10.10.20.1:3          1        10.10.20.2(EA) 
 03:00:00:00:00:00:bb:00:00:02  LR    10.10.20.1:4          1        10.10.20.2(EA) 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn es-evi 
 Flags: L local, R remote, I inconsistent 
 VTEP-Flags: E EAD-per-ES, V EAD-per-EVI 
 VNI      ESI                            Flags VTEPs 
 2020     03:00:00:00:00:00:bb:00:00:02  LR    10.10.20.2(EV) 
 1010     03:00:00:00:00:00:bb:00:00:01  LR    10.10.20.2(EV) 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn es-vrf 
 ES-VRF Flags: A Active 
 ESI                            VRF             Flags IPv4-NHG IPv6-NHG Ref 
 03:00:00:00:00:00:bb:00:00:01  VRF RED         A     72580647 72580648 1 
-03:00:00:00:00:00:bb:00:00:02  VRF GREEN       A     72580645 72580646 1 
+03:00:00:00:00:00:bb:00:00:02  VRF GREEN       A     72580645 72580646 1
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show int bond1 
     Name   MAC                Speed  MTU   Mode 
 --  -----  -----------------  -----  ----  ------- 
@@ -1455,7 +1562,9 @@ Routing 
   EVPN-MH: ES id 1 ES sysmac 00:00:00:00:00:bb 
   protodown: off (n/a) 
   ARP-ND redirect enabled: ARP 1653 ND 2667 
-  
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
@@ -1479,7 +1588,10 @@ Displayed  2 routes and 7 total paths 
  
 show bgp vrf RED ipv6 unicast 
 ============================= 
-No BGP prefixes displayed, 0 exist 
+No BGP prefixes displayed, 0 exist
+```
+
+``` 
 cumulus@leaf03:mgmt:~$ net show bgp vrf GREEN 
 show bgp vrf GREEN ipv4 unicast 
 =============================== 
@@ -1504,6 +1616,9 @@ Displayed  2 routes and 7 total paths 
 show bgp vrf GREEN ipv6 unicast 
 =============================== 
 No BGP prefixes displayed, 0 exist 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show route vrf RED 
 show ip route vrf RED 
 ====================== 
@@ -1535,6 +1650,9 @@ K>* ::/0 [255/8192] unreachable (ICMP unreachable), 2d18h01m 
 C * fe80::/64 is directly connected, vlan1010, 02:56:08 
 C * fe80::/64 is directly connected, vlan1010-v0, 02:56:10 
 C>* fe80::/64 is directly connected, vlan220_l3, 2d18h01m 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show route vrf GREEN 
 show ip route vrf GREEN 
 ======================== 
@@ -1566,6 +1684,9 @@ K>* ::/0 [255/8192] unreachable (ICMP unreachable), 2d18h01m 
 C * fe80::/64 is directly connected, vlan2020, 02:56:12 
 C * fe80::/64 is directly connected, vlan2020-v0, 02:56:14 
 C>* fe80::/64 is directly connected, vlan370_l3, 2d18h01m 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp vrf RED 192.168.10.0/24 
 BGP routing table entry for 192.168.10.0/24 
 Paths: (3 available, best #3, vrf RED) 
@@ -1586,6 +1707,9 @@ Paths: (3 available, best #3, vrf RED) 
     0.0.0.0 from 0.0.0.0 (10.10.20.1) 
       Origin incomplete, metric 0, weight 32768, valid, sourced, bestpath-from-AS Local, best (Weight) 
       Last update: Mon Apr 17 08:46:48 2023 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp vrf RED 192.168.1.0/24 
 BGP routing table entry for 192.168.1.0/24 
 Paths: (4 available, best #4, vrf RED) 
@@ -1614,7 +1738,9 @@ Paths: (4 available, best #4, vrf RED) 
       Origin incomplete, valid, external, multipath, bestpath-from-AS 65299, best (Older Path) 
       Extended Community: RT:65101:4001 ET:8 Rmac:44:38:39:22:bb:06 
       Last update: Mon Apr 17 11:04:24 2023 
- 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp evpn vni 
 Advertise Gateway Macip: Disabled 
 Advertise SVI Macip: Disabled 
@@ -1629,7 +1755,9 @@ Flags: * - Kernel 
 * 1010       L2   10.10.20.1:9          65201:1010                65201:1010               RED 
 * 5002       L3   10.10.20.1:7          0:4002, ...               65201:5002               GREEN 
 * 5001       L3   10.10.20.1:8          0:4001, ...               65201:5001               RED 
- 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp evpn vni 5001 
 VNI: 5001 (known to the kernel) 
   Type: L3 
@@ -1647,6 +1775,9 @@ VNI: 5001 (known to the kernel) 
     0:5001 
   Export Route Target: 
     65201:5001 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp evpn vni 5002 
 VNI: 5002 (known to the kernel) 
   Type: L3 
@@ -1664,6 +1795,9 @@ VNI: 5002 (known to the kernel) 
     0:5002 
   Export Route Target: 
     65201:5002 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show evpn mac vni all 
 VNI 1010 #MACs (local and remote) 5 
  
@@ -1684,8 +1818,9 @@ ee:54:69:be:3a:3f local  NP    bond2                   �
 44:38:39:22:bb:09 remote       10.10.20.2                           0/0 
 48:b0:2d:a7:e2:6e local  P     bond2                          2020  0/0 
 44:38:39:22:bb:08 local        vlan2020                             0/0 
-cumulus@leaf03:mgmt:~$ 
- 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show bgp sum 
 show bgp ipv4 unicast summary 
 ============================= 
@@ -1715,7 +1850,10 @@ Neighbor        V         AS   MsgRcvd   MsgSent   TblVer 
 spine03(swp1)   4      65299       229       236        0    0    0 00:08:42           25       46 
 spine04(swp2)   4      65299       224       231        0    0    0 00:08:34           25       46 
  
-Total number of neighbors 2 
+Total number of neighbors 2
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
@@ -1740,6 +1878,9 @@ Displayed  2 routes and 7 total paths 
 show bgp vrf RED ipv6 unicast 
 ============================= 
 No BGP prefixes displayed, 0 exist 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show bgp vrf GREEN 
 show bgp vrf GREEN ipv4 unicast 
 =============================== 
@@ -1764,6 +1905,9 @@ Displayed  2 routes and 7 total paths 
 show bgp vrf GREEN ipv6 unicast 
 =============================== 
 No BGP prefixes displayed, 0 exist 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show route vrf RED 
 show ip route vrf RED 
 ====================== 
@@ -1795,6 +1939,9 @@ K>* ::/0 [255/8192] unreachable (ICMP unreachable), 00:09:06 
 C * fe80::/64 is directly connected, vlan220_l3, 00:09:05 
 C * fe80::/64 is directly connected, vlan1010, 00:09:06 
 C>* fe80::/64 is directly connected, vlan1010-v0, 00:09:06 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show route vrf GREEN 
 show ip route vrf GREEN 
 ======================== 
@@ -1826,28 +1973,43 @@ K>* ::/0 [255/8192] unreachable (ICMP unreachable), 00:09:13 
 C * fe80::/64 is directly connected, vlan370_l3, 00:09:13 
 C * fe80::/64 is directly connected, vlan2020-v0, 00:09:13 
 C>* fe80::/64 is directly connected, vlan2020, 00:09:13 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show evpn es 
 Type: B bypass, L local, R remote, N non-DF 
 ESI                            Type ES-IF                 VTEPs 
 03:00:00:00:00:00:bb:00:00:01  LRN  bond1                 10.10.20.1 
 03:00:00:00:00:00:bb:00:00:02  LRN  bond2                 10.10.20.1 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show bgp l2vpn evpn es 
 ES Flags: B - bypass, L local, R remote, I inconsistent 
 VTEP Flags: E ESR/Type-4, A active nexthop 
 ESI                            Flags RD                    #VNIs    VTEPs 
 03:00:00:00:00:00:bb:00:00:01  LR    10.10.20.2:3          1        10.10.20.1(EA) 
 03:00:00:00:00:00:bb:00:00:02  LR    10.10.20.2:4          1        10.10.20.1(EA) 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show bgp l2vpn evpn es-evi 
 Flags: L local, R remote, I inconsistent 
 VTEP-Flags: E EAD-per-ES, V EAD-per-EVI 
 VNI      ESI                            Flags VTEPs 
 2020     03:00:00:00:00:00:bb:00:00:02  LR    10.10.20.1(EV) 
 1010     03:00:00:00:00:00:bb:00:00:01  LR    10.10.20.1(EV) 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show bgp l2vpn evpn es-vrf 
 ES-VRF Flags: A Active 
 ESI                            VRF             Flags IPv4-NHG IPv6-NHG Ref 
 03:00:00:00:00:00:bb:00:00:01  VRF RED         A     72580645 72580646 1 
 03:00:00:00:00:00:bb:00:00:02  VRF GREEN       A     72580647 72580648 1 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show bgp evpn vni 
 Advertise Gateway Macip: Disabled 
 Advertise SVI Macip: Disabled 
@@ -1862,6 +2024,9 @@ Flags: * - Kernel 
 * 1010       L2   10.10.20.2:9          65202:1010                65202:1010               RED 
 * 5002       L3   10.10.20.2:7          0:4002, ...               65202:5002               GREEN 
 * 5001       L3   10.10.20.2:8          0:4001, ...               65202:5001               RED 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show int bond1 
     Name   MAC                Speed  MTU   Mode 
 --  -----  -----------------  -----  ----  ------- 
@@ -1912,7 +2077,9 @@ Routing 
   EVPN-MH: ES id 1 ES sysmac 00:00:00:00:00:bb 
   protodown: off (n/a) 
   ARP-ND redirect enabled: ARP 1 ND 8 
-  
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show bgp evpn vni 5001 
 VNI: 5001 (known to the kernel) 
   Type: L3 
@@ -1930,6 +2097,9 @@ VNI: 5001 (known to the kernel) 
     0:5001 
   Export Route Target: 
     65202:5001 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show bgp evpn vni 5002 
 VNI: 5002 (known to the kernel) 
   Type: L3 
@@ -1947,6 +2117,9 @@ VNI: 5002 (known to the kernel) 
     0:5002 
   Export Route Target: 
     65202:5002 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show evpn mac vni all 
 VNI 1010 #MACs (local and remote) 5 
  
@@ -1971,7 +2144,7 @@ ee:54:69:be:3a:3f local  NP    bond2                   �
 </div>
 <br>
 
-Verify that the bridge `br_default` is learning MAC entries:
+To verify that the bridge `br_default` is learning MAC address entries:
 
 <div class=scroll>
 
@@ -1992,7 +2165,9 @@ cumulus@leaf03:mgmt:~$ nv show bridge domain br_default mac-table 
 10  725                 permanent   vxlan48     2            00:00:00:00:00:00  2020           None  remote-dst: 10.10.20.2 
 11                      permanent   br_default               00:00:5e:00:01:14 
 12  874  br_default     permanent   br_default  874          44:38:39:22:bb:08           1010 
-cumulus@leaf03:mgmt:~$  
+```
+
+```  
 cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table 
     age  bridge-domain  entry-type  interface   last-update  MAC address        src-vni  vlan  vni   Summary 
 --  ---  -------------  ----------  ----------  -----------  -----------------  -------  ----  ----  ---------------------- 
@@ -2013,7 +2188,7 @@ cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table 
 </div>
 <br>
 
-From the table above, locate the L3 VLAN interface MAC and the VRR MAC:
+From the table above, locate the layer 3 VLAN interface MAC address and the VRR MAC address:
 
 <div class=scroll>
 
@@ -2022,6 +2197,9 @@ cumulus@leaf03:mgmt:~$ nv show int vlan1010 | grep mac 
     mac-address                              auto 
     mac-id                                   none 
   mac                     44:38:39:22:bb:08 
+```
+
+```
 cumulus@leaf03:mgmt:~$ nv show int vlan1010 ip vrr 
              operational        applied 
 -----------  -----------------  ----------------- 
@@ -2030,11 +2208,16 @@ mac-address  00:00:5e:00:01:14  auto 
 mac-id                          none 
 [address]    192.168.10.100/24  192.168.10.100/24 
 state        up                 up 
-cumulus@leaf03:mgmt:~$  
+```
+
+```
 cumulus@leaf04:mgmt:~$ nv show int vlan1010 | grep mac 
     mac-address                              auto 
     mac-id                                   none 
   mac                     44:38:39:22:bb:09 
+```
+
+```
 cumulus@leaf04:mgmt:~$ nv show int vlan1010 ip vrr 
              operational        applied 
 -----------  -----------------  ----------------- 
@@ -2043,12 +2226,11 @@ mac-address  00:00:5e:00:01:14  auto 
 mac-id                          none 
 [address]    192.168.10.100/24  192.168.10.100/24 
 state        up                 up 
-cumulus@leaf04:mgmt:~$ 
 ```
 </div>
 <br>
 
-Verify EVPN Type-5 routes from the perspective of the ingress PE (leaf03) for the end host *192.168.1.10* connected to leaf01 and leaf02:
+To verify EVPN type-5 routes at the ingress PE (leaf03) for the end host *192.168.1.10*, which is connected to leaf01 and leaf02:
 
 <div class=scroll>
 
@@ -2103,7 +2285,7 @@ Route Distinguisher: 10.10.10.2:5 
 </div>
 <br>
 
-Routing from the border leaf perspective:
+To view routing from the border leaf:
 
 <div class=scroll>
 
@@ -2143,7 +2325,10 @@ borderleaf01(swp3) 4      65110      1260      1263       
 spine03(swp1)      4      65299      1342      1346        0    0    0 01:01:24           42       46 
 spine04(swp2)      4      65299      1340      1343        0    0    0 01:01:16           42       46 
  
-Total number of neighbors 3 
+Total number of neighbors 3
+```
+
+``` 
 cumulus@borderleaf04:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
@@ -2172,7 +2357,10 @@ Displayed  3 routes and 10 total paths 
  
 show bgp vrf RED ipv6 unicast 
 ============================= 
-No BGP prefixes displayed, 0 exist 
+No BGP prefixes displayed, 0 exist
+```
+
+```
 cumulus@borderleaf04:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1\. -A 3 -B 1 
 Route Distinguisher: 10.10.10.1:6 
 *> [5]:[0]:[24]:[192.168.1.0] RD 10.10.10.1:6 

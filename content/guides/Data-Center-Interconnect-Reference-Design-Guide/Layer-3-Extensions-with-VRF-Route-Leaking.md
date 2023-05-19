@@ -11,7 +11,7 @@ imgData: guides
     overflow-y: auto;
   }
 </style>
-After the introduction of IP based VPN services, VRF route leaking has become more common in enterprise and service provider environments, and also in EVPN-based Ethernet VPNs. VRFs isolate routing tables, and create multi tenancy within a wide area network (WAN) and data center. However, routing across VRFs is often required, especially where external routing between VRFs is not possible or economical. When implementing route leaking in a data center fabric, you need to know where in the network route leaking needs to happen.  
+After the introduction of IP based VPN services, VRF route leaking has become more common in enterprise and service provider environments, and also in EVPN-based Ethernet VPNs. VRFs isolate routing tables, and create multi tenancy within a wide area network (WAN) and data center. However, routing across VRFs is often necessary, especially where external routing between VRFs is not possible or economical. When implementing route leaking in a data center fabric, you need to know where in the network route leaking needs to happen.  
 
 If you want to use a common denominator that keeps a summary of each POD, and interconnects PODs and DC locations, a border leaf is a good choice. Typically, you use border leafs where the data center interconnects, such as with a firewall, load balancer, intrusion detection system (IDS), SSL-offload device, and WEB application firewall (WAF). If you have any of these interconnected services, the border leaf is the point that has visibility into each tenant in the DC. You typically use these network and security services across VRFs that have a direct connection to each tenant network. Therefore, performing VRF route leaking on regular leaf prevents those services from seeing the big picture because they attach to a service leaf or a border leaf. Using a border leaf is also also a good idea if you prefer to have a deterministic set of next hops and a number of hops that reach the cross-connection point.
 
@@ -21,7 +21,7 @@ Each network is unique and has its own business and technical requirements. You 
 
 ## Configuration
 
-The following examples show route leaking configuration.
+The following examples show a route leaking configuration.
 
 {{< tabs "TabID27 ">}}
 {{< tab "border01 ">}}
@@ -286,10 +286,10 @@ cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 add
 
 ## Verify and Examine Route Leaking
 
+To verify route targets leaked into each VRF, and to examine BGP and routing tables for each VRF, run the following commands on the border leaf switches.
+
 {{< tabs "TabID290 ">}}
 {{< tab "border01 ">}}
-
-To verify route targets leaked into each VRF, run the following command on the border leaf.
 
 <div class=scroll>
 
@@ -322,11 +322,6 @@ system-mac             44:38:39:22:dd:06 
 [import-route-target]  65210:5001 
 [import-route-target]  65210:5002 
 ```
-</div>
-
-To examine BGP and routing tables for each VRF, run the following commands.
-
-<div class=scroll>
 
 ```
 cumulus@border01:mgmt:~$ net show route vrf RED 
@@ -362,7 +357,10 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng, 
  
 VRF RED: 
 K>* ::/0 [255/8192] unreachable (ICMP unreachable), 00:45:07 
-C>* fe80::/64 is directly connected, vlan220_l3, 00:45:07 
+C>* fe80::/64 is directly connected, vlan220_l3, 00:45:07
+```
+
+```
 cumulus@border01:mgmt:~$ net show route vrf GREEN 
 show ip route vrf GREEN 
 ======================== 
@@ -396,7 +394,10 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng, 
  
 VRF GREEN: 
 K>* ::/0 [255/8192] unreachable (ICMP unreachable), 00:45:12 
-C>* fe80::/64 is directly connected, vlan370_l3, 00:45:12 
+C>* fe80::/64 is directly connected, vlan370_l3, 00:45:12
+```
+
+```
 cumulus@border01:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
@@ -433,6 +434,9 @@ Displayed  6 routes and 19 total paths 
 show bgp vrf RED ipv6 unicast 
 ============================= 
 No BGP prefixes displayed, 0 exist 
+```
+
+```
 cumulus@border01:mgmt:~$ net show bgp vrf GREEN 
 show bgp vrf GREEN ipv4 unicast 
 =============================== 
@@ -490,6 +494,9 @@ system-mac             44:38:39:22:dd:09 
 [import-route-target]  0:5002 
 [import-route-target]  65110:4001 
 [import-route-target]  65110:4002 
+```
+
+```
 cumulus@border04:mgmt:~$ nv show vrf GREEN evpn bgp-info 
                        operational        applied 
 ---------------------  -----------------  ------- 
@@ -503,9 +510,6 @@ system-mac             44:38:39:22:dd:09 
 [import-route-target]  65110:4001 
 [import-route-target]  65110:4002 
 ```
-</div>
-
-<div class=scroll>
 
 ```
 cumulus@border04:mgmt:~$ net show route vrf RED 
@@ -542,6 +546,9 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng, 
 VRF RED: 
 K>* ::/0 [255/8192] unreachable (ICMP unreachable), 1d03h32m 
 C>* fe80::/64 is directly connected, vlan220_l3, 1d03h32m 
+```
+
+```
 cumulus@border04:mgmt:~$ net show route vrf GREEN 
 show ip route vrf GREEN 
 ======================== 
@@ -575,7 +582,10 @@ Codes: K - kernel route, C - connected, S - static, R - RIPng, 
  
 VRF GREEN: 
 K>* ::/0 [255/8192] unreachable (ICMP unreachable), 1d03h32m 
-C>* fe80::/64 is directly connected, vlan370_l3, 1d03h32m 
+C>* fe80::/64 is directly connected, vlan370_l3, 1d03h32m
+```
+
+``` 
 cumulus@border04:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
@@ -613,7 +623,10 @@ Displayed  6 routes and 19 total paths 
  
 show bgp vrf RED ipv6 unicast 
 ============================= 
-No BGP prefixes displayed, 0 exist 
+No BGP prefixes displayed, 0 exist
+```
+
+``` 
 cumulus@border04:mgmt:~$ net show bgp vrf GREEN 
 show bgp vrf GREEN ipv4 unicast 
 =============================== 

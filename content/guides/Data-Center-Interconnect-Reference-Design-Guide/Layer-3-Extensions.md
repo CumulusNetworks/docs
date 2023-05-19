@@ -13,16 +13,16 @@ imgData: guides
 </style>
 Layer 3 extensions use EVPN as a control plane and are similar to layer 3 VPN with VXLAN tunnels. The leaf switches set up full mesh VXLAN tunnels within and across PODs, and the routing exchange between pods occurs with EVPN type-5 routes. Within the pod, there are type-1 and type-4 routes for EVPN multihoming, type-2 for MAC addresses, IP addresses and MAC routes, and type-3 for BUM HER routes.
 
-<!--make table-->
-{{<img src= "/images/guides/dci-table-ii.png">}}
+## Configuration
+
+|DCI 1|DCI 2|
+|--|--|
+|<table> </tr><tr><td>VRF</td><td>RED</td></tr><td>Layer 2 VNI</td><td>10</tr><td>Layer 3 VNI</td><td>4001</td></tr></table>| <table> </tr><tr><td>VRF</td><td>RED</td></tr><td>Layer 2 VNI</td><td>1010</tr><td>Layer 3 VNI</td><td>5001</td></tr> </table>|
+|<table> </tr><tr><td>VRF</td><td>GREEN</td></tr><td>Layer 2 VNI</td><td>20</tr><td>Layer 3 VNI</td><td>4002</td></tr></table>| <table> </tr><tr><td>VRF</td><td>GREEN</td></tr><td>Layer 2 VNI</td><td>2020</tr><td>Layer 3 VNI</td><td>5002</td></tr> </table>|
 
 The following configuration example connects VRF RED in DC1 with VRF RED in DC2, using downstream VNI and symmetrical routing. The `route-target import` statements connect two RED VRFs at layer 3 (for prefix exchange). This configuration provides IP connectivity between server01 and server03 within VRF RED, and server02 and server04 within VRF GREEN, but the RED and GREEN VRFs cannot communicate with each other. All servers are in different IP subnets; there is no layer 2 adjacency between them. A server communicates with its peer in the other DC through its default gateway, which is the local VRR MAC address in the ARP cache.
 
 The example shows a layer 3 interconnect configuration, where the border leafs filter EVPN prefixes (except type-5) to distribute across DCI links. This configuration ensures that DCI only exchanges type-5 prefixes, and that the remote DC does not receive and process unwanted prefix types. The ESI and MAC addresses are visible for each local POD, but not across PODs.
-
-## Configurations
-
-The following examples show a full configuration that includes server, leaf, spine, and border leafs.
 
 {{< tabs "TabID27 ">}}
 {{< tab "server01 ">}}
@@ -509,7 +509,8 @@ cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group underlay remot
 
 The following examples show troubleshooting commands.
 
-### DC1
+{{< tabs "TabID512 ">}}
+{{< tab "DC1 ">}}
 
 <div class=scroll>
 
@@ -1451,7 +1452,8 @@ Route Distinguisher: 10.10.20.2:6 
 ```
 </div>
 
-### DC2
+{{< /tab >}}
+{{< tab "DC2 ">}}
 
 <div class=scroll>
 
@@ -2153,7 +2155,6 @@ ee:54:69:be:3a:3f local  NP    bond2                   �
 44:38:39:22:bb:08 remote       10.10.20.1                           0/0 
 ```
 </div>
-<br>
 
 To verify that the bridge `br_default` is learning MAC address entries:
 
@@ -2197,7 +2198,6 @@ cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table 
 12  729  br_default     permanent   br_default  729          44:38:39:22:bb:09           1010 
 ```
 </div>
-<br>
 
 From the table above, locate the layer 3 VLAN interface MAC address and the VRR MAC address:
 
@@ -2239,7 +2239,6 @@ mac-id                          none 
 state        up                 up 
 ```
 </div>
-<br>
 
 To verify EVPN type-5 routes at the ingress PE (leaf03) for the end host *192.168.1.10*, which is connected to leaf01 and leaf02:
 
@@ -2268,7 +2267,6 @@ Route Distinguisher: 10.10.10.2:4 
 Route Distinguisher: 10.10.10.2:5 
 ```
 </div>
-<br>
 
 Verify EVPN Type-5 routes from the perspective of the egress PE (leaf01) for the end host *192.168.1.10* connected to leaf01 and leaf02:
 
@@ -2294,7 +2292,6 @@ Route Distinguisher: 10.10.10.2:5 
 -- 
 ```
 </div>
-<br>
 
 To view routing from the border leaf:
 
@@ -2317,11 +2314,9 @@ spine04(swp2)      4      65299      1340      1343    �
  
 Total number of neighbors 3 
  
- 
 show bgp ipv6 unicast summary 
 ============================= 
 % No BGP neighbors found 
- 
  
 show bgp l2vpn evpn summary 
 =========================== 
@@ -2364,8 +2359,7 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete 
 *                   10.10.20.1<                            0 65299 65201 i 
  
 Displayed  3 routes and 10 total paths 
- 
- 
+
 show bgp vrf RED ipv6 unicast 
 ============================= 
 No BGP prefixes displayed, 0 exist

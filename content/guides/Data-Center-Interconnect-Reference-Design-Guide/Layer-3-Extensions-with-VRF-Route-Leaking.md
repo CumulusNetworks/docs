@@ -14,14 +14,18 @@ imgData: guides
 
 ## Introduction
 
-VRF route leaking is commonly used in enterprise and service provider environments ever since IP based VPN services were introduced. This is the same for EVPN-based Ethernet VPNs. We use VRFs to isolate routing tables and create multi-tenancy within wide-area networks (WANs) and data centers. However, routing across VRFs is often required and for the scenarios where external routing in between VRFs is neither possible nor economical, route leaking is the only tool. Regarding with route-leaking in a data center fabric one of the first and most critical questions to be answered is that where in the network route leaking needs to happen.  
+After the introduction of IP based VPN services, VRF route leaking has become more common in enterprise and service provider environments, and also in EVPN-based Ethernet VPNs. VRFs isolate routing tables, and create multi tenancy within a wide area network (WAN) and data center. However, routing across VRFs is often required, especially where external routing between VRFs is not possible or economical. When implementing route leaking in a data center fabric, you need to know where in the network route leaking needs to happen.  
 
-If we want a common denominator that will keep a summary of each POD and also face with the external environments, interconnect PODs and DC locations, we could narrow down our selection for such location in the network, border leaf. Usually border leaf nodes are dedicated leaf nodes for firewalls, load balancers, intrusion detection systems (IDS), SSL-offload devices, and WEB application firewalls (WAF), also where datacenter interconnection takes place. If we have any of these services and an interconnect, the border leaf is the point which has visibility to each tenant in the DC. Such network and security services are typically used across VRFs or come in handy when they have a direct connection to each tenant network. That is why VRF is a practical technology. Therefore, performing VRF route-leaking on regular leaf nodes blinds those services because they’re attached to a service leaf or a border leaf separate from a regular leaf. That’s one of the reasons route leaking on a border leaf node tends to be a more desirable choice. Another reason is that one might prefer having a deterministic set of next-hops and number of hops to reach such cross-connection point. Again, in this use case border leaf nodes are good choices for route leaking operations. 
+If you want to use a common denominator that keeps a summary of each POD, and interconnects PODs and DC locations, a border leaf is a good choice. Typically, you use border leafs where the data center interconnects, such as with a firewall, load balancer, intrusion detection system (IDS), SSL-offload device, and WEB application firewall (WAF). If you have any of these interconnected services, the border leaf is the point that has visibility into each tenant in the DC. You typically use these network and security services across VRFs that have a direct connection to each tenant network. Therefore, performing VRF route leaking on regular leaf prevents those services from seeing the big picture because they attach to a service leaf or a border leaf. Using a border leaf is also also a good idea if you prefer to have a deterministic set of next hops and a number of hops that reach the cross-connection point.
 
 {{<img src="/images/guides/route-leaking-between-vrfs.png">}}
 
-However, each network is unique and has its own business and technical requirements. There might be use cases where route leaking would be the best on each individual leaf. Each leaf can perform the leaking operation, so depending on the complexity and scale of the operation, this might be the desired solution. Moreover, leaking can be partially performed on border leaf nodes and partially on regular leaf equipment.  
+Each network is unique and has its own business and technical requirements. You might find that route leaking is best for you on each individual leaf. Each leaf can perform the leaking operation; therefore, depending on the complexity and scale of the operation, this might be the desired solution. You can also perform route leaking partially on a border leaf and partially on a regular leaf.
+
 ## Configurations
+
+The following examples show route leaking configurations.
+
 ### Borderleaf01
 
 <div class=scroll>
@@ -170,12 +174,12 @@ nv set vrf default router bgp peer-group underlay remote-as external 
 </div>
 <br>
 
-The route-import statement is used in both RED and GREEN VRFs to mutually leak (inject) EVPN Type-5 routes into their respective routing tables: 
+Both RED and GREEN VRFs include the `route-import` statement to mutually leak (inject) EVPN type-5 routes into their respective routing tables:
 `nv set vrf <vrf_name> router bgp route-import from-evpn route-target <asn:vni>`
 
-There is direct DCI connectivity between borderleaf01 and borderleaf04. You must enable the l2vpn address family for the DCI underlay session to exchange EVPN routes. 
+There is direct DCI connectivity between borderleaf01 and borderleaf04. You must enable the `l2vpn` address family for the DCI underlay session to exchange EVPN routes.
 
-To avoid any Layer-2 stretch with EVPN Type-2 and Type-3 routes, filter any unwanted EVPN route types with a simple filter applied to the BGP peer-group outbound direction: 
+To avoid any layer 2 stretch with EVPN type-2 and type-3 routes, filter any unwanted EVPN route types with a simple filter applied to the BGP peer group in the outbound direction:
 
 ```
 nv set router policy route-map control_t5 rule 1 action permit 
@@ -184,9 +188,10 @@ nv set router policy route-map control_t5 rule 3 action deny 
  
 nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn policy outbound route-map control_t5 
 ```
+
 ### Borderleaf01
 
-To verify route-targets leaked into each vrf use the following command on border leaf nodes.
+To verify route targets leaked into each VRF, run the following command on the border leaf.
 
 <div class=scroll>
 
@@ -658,4 +663,4 @@ nv set vrf default router bgp peer-group underlay remote-as external 
 </div>
 <br>
 
-As displayed in the leaf configurations, leaf nodes must also import cross-site route-targets advertised by border leafs. This is because interconnected data centers use VNIs that are different from downstream VNIs. The classical auto-route-target import function has no way of detecting these VNIs and cannot import the route targets automatically.
+The leaf switch must also import cross site route targets that the border leafs advertise; interconnected data centers use VNIs that are different from downstream VNIs. The classical `auto-route-target` import function cannot detect these VNIs and cannot import the route targets automatically.

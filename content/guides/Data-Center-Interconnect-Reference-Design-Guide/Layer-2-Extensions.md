@@ -14,21 +14,27 @@ imgData: guides
 
 ## Introduction
 
-The purpose of a Layer-2 extension from one data center to another is usually to support an application or a system that requires Layer-2 adjacency. Some legacy applications require L2 adjacency for their operations and those systems---although fewer and fewer---continue to exist in enterprise environments. Keeping in mind that modern era of cloud has already said his goodbye with layer-2 world, one can easily draw some conclusions out of this. As such that extending layer-2 domains across long distances is synonym with procrastination your life-long challenges and delaying a closure, which will eventually come back to you as a few technical troubles. Therefore, this option should be considered as last resort when an engineer has no other means of solving organizational and technical problems other than extending layer-2 across geographically separated datacenters. There are many reasons why L2 extensions are undesirable.  Here are a few of them :  Increased chance of creating topological asymmetries, broadcast/multicast storms (extended from one data center to others), increased MTTR, troubleshooting difficulties (compared to L3 extension, as there’s no clear Layer-2/Layer-3 demarcation point in the network, there’s a constant need to see packet captures taken from different sections of the network, need for a Layer-2 loop detection system on all your ToR/leaf switches.  
+The purpose of a layer-2 extension from one data center to another is usually to support an application or a system that requires layer-2 adjacency. Some legacy applications require L2 adjacency for their operations and those systems---although fewer and fewer---continue to exist in enterprise environments. <!--???--> <!--Keeping in mind that modern era of cloud has already said his goodbye with layer-2 world, one can easily draw some conclusions out of this. As such that extending layer-2 domains across long distances is synonym with procrastination your life-long challenges and delaying a closure, which will eventually come back to you as a few technical troubles. Therefore, this option should be considered as last resort when an engineer has no other means of solving organizational and technical problems other than extending layer-2 across geographically separated datacenters. --> There are several reasons why L2 extensions are undesirable:
 
-It’s important to keep in mind that the keyword here is “blast radius”. By limiting the scope of the  Layer-2 network, we reduce the blast radius. And the bigger the blast radius is, the more susceptible the network is to any unusual hick ups. Incases where  it’s not possible to avoid Layer2 stretch use cases, it’s crucial to understand that the extended Layer-2 broadcast domains must be kept as minimal as possible to  limit MAC address advertisements and withdrawals. It’s important to understand that extending Layer2 domains is the same as merging multiple broadcast domains and by doing so the product is a geographically separated large broadcast domain that’s interconnected via a complex network over a distance. 
+- They can increase the chances of creating topological asymmetries. 
+- Broadcast and multicast storms risk extending from one data center to others. 
+- They can increase MTTR.
+- They are difficult to troubleshoot compared to an L3 extension. This is because there’s no clear demarcation between layer 2 and layer 3. 
+- They require a layer-2 loop detection system on all ToR/leaf switches.  
+
+By limiting the scope of the layer-2 network, we reduce the potential impact when problems do occur. If it’s not possible to avoid a layer 2 extension, it’s crucial to understand that the extended layer-2 broadcast domains must be kept to a minimum to limit MAC address advertisements and withdrawals. Extending layer-2 domains is the same as merging multiple broadcast domains. This creates a geographically separated large broadcast domain that’s interconnected via a complex network over a distance.
 
 <!--diagram of reference topology-->
 
-In terms of EVPN/VXLAN, extending a Layer-2 segment from one data center to another involves extending EVPN Type-2 (MAC/IP) routes for individual MAC addresses and Type-3 (Inclusive Multicast) route for BUM (Broadcast/Unknown-Unicast/Multicast) traffic. Additionally, in modern EVPN/VXLAN environments where multihoming is widely used, extending Type-1 (Ethernet Auto Discovery) routes and Type-4 (Ethernet Segment) routes is equally essential.
+Extending a layer-2 segment from one data center to another involves extending EVPN Type-2 (MAC/IP) routes for individual MAC addresses and Type-3 (Inclusive Multicast) routes for BUM (Broadcast/Unknown-Unicast/Multicast) traffic. In modern EVPN/VXLAN environments with multihoming, extending Type-1 (Ethernet Auto Discovery) routes and Type-4 (Ethernet Segment) routes is equally essential.
 
-In the configuration example below, we have the following setup: 
+We will use the following configuration as an example:
 
 <!--need to construct a table out of the image-->
 
 {{<img src= "/images/guides/dci-table.png">}}
 
-Our purpose is to interconnect VLAN id 10 in DC1 with VLAN id 10 in DC2 using EVPN/VXLAN Layer-2 stretch. We will use route-target import statements to connect two RED vrf’s to each other. This will give us connectivity between server01 and server03 within the RED vrf and server02 and server04 within GREEN vrf. The RED and GREEN vrf’s will not be able to communicate with each other. One thing to notice here is that server01 and server03 will be in the same broadcast domain (as server02 and server04). From a Layer-2 point of view, they’re adjacent hosts. Servers will have each other’s MAC addresses in their ARP cache. 
+Our purpose is to interconnect VLAN id 10 in DC1 with VLAN id 10 in DC2 using EVPN/VXLAN layer-2 stretch. We will use route-target import statements to connect two RED vrfs to each other. This provides connectivity between server01 and server03 within the RED vrf and server02 and server04 within the GREEN vrf. The RED and GREEN vrfs will not be able to communicate with each other. Note that server01 and server03 will be in the same broadcast domain as server02 and server04. From a layer-2 perspective, they’re adjacent hosts. Servers will include each other’s MAC addresses in their ARP cache. 
 
 We’ll also see all ESIs across the fabric, therefore ESI addressing across the fabric must be unique. 
 
@@ -686,8 +692,7 @@ Flags: * - Kernel 
 cumulus@leaf02:mgmt:~$ 
 ```
 </div>
-
-<!--image in doc, waiting for clarification-->
+<br>
 
 Verify that the bridge `br_default` is learning MAC entries:
 
@@ -750,7 +755,7 @@ cumulus@leaf02:mgmt:~$ nv show bridge domain br_default mac-table 
 20  4365   br_default     permanent   br_default  4365         44:38:39:22:bb:07           10 
 ```
 </div>
-
+<br>
 Verify that the host routes over L3VNI on vrf RED, the route for 192.168.1.110/32 points towards remote VTEP destinations with ECMP:
 
 <div class=scroll>
@@ -792,6 +797,7 @@ C>* fe80::/64 is directly connected, vlan10, 02:21:20 
 cumulus@leaf01:mgmt:~$ 
 ```
 </div>
+<br>
 
 Verify EVPN Type-2 routes from the perspective of the ingress PE (leaf01) for the end host *42:20:47:91:95:a7* 
 
@@ -847,6 +853,7 @@ cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep 42:20:47:91:9
                     RT:65102:10 ET:8 MM:1 
 ```
 </div>
+<br>
 
 Verify EVPN Type-2 routes from the perspective of the egress PE (leaf03) for the end host *42:20:47:91:95:a7* 
 
@@ -1197,6 +1204,7 @@ Flags: * - Kernel 
 * 4001       L3   10.10.20.2:8          65202:4001                65202:4001               RED 
 ```
 </div>
+<br>
 
 Verify that the bridge `br_default` is learning MAC entries:
 
@@ -1258,6 +1266,7 @@ cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table 
 20  1955   br_default     permanent   br_default  1955         44:38:39:22:bb:09           10 
 ```
 </div>
+<br>
 
 Verify that the host routes over the L3 VNI on `vrf RED`:
 
@@ -1299,6 +1308,7 @@ C * fe80::/64 is directly connected, vlan10-v0, 02:25:33 
 C>* fe80::/64 is directly connected, vlan10, 02:25:33 
 ```
 </div>
+<br>
 
 Verify EVPN Type-2 routes from the perspective of egress PE (leaf01) for the end host *b6:4b:0f:ea:f2:02* 
 
@@ -1369,6 +1379,7 @@ cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep -A 4 b6:4b:0f
                     RT:65202:10 ET:8 
 ```
 </div>
+<br>
 
 Verify EVPN Type-2 routes from the perspective of the ingress PE (leaf03) for the end host *b6:4b:0f:ea:f2:02*
 

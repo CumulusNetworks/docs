@@ -14,14 +14,14 @@ imgData: guides
 
 ## Introduction
 
-L3 Extensions behave similarly to an L3VPN implemented with VXLAN tunnels for data -plane point of view and use EVPN as control- plane. To achieve this, leaf switches set up full mesh VXLAN tunnels within and across PODs, signaled by EVPN and routing exchange in between pods happen via EVPN Type-5 routes. Within the pod, there are Type-1 and Type-4 routes for EVPN-MH,Type-2 for MAC/IP & MAC routes, and Type-3 for BUM HER routes.
+L3 Extensions behave similarly to an L3VPN implemented with VXLAN tunnels for data -plane point of view and use EVPN as control- plane. To achieve this, leaf switches set up fullmesh VXLAN tunnels within and across PODs, signaled by EVPN and routing exchange in between pods happen via EVPN Type-5 routes. Within the pod, there are Type-1 and Type-4 routes for EVPN-MH, Type-2 for MAC/IP & MAC routes, and Type-3 for BUM HER routes.
 
-In the configuration example below, we have the following setup: 
+We will use the following configuration as an example:
 
 <!--make table-->
 {{<img src= "/images/guides/dci-table-ii.png">}}
 
-Our purpose is to interconnect vrf RED in DC1 with vrf RED in DC2 using Downstream VNI and symmetrical routing. We will be using route-target import statements to connect two RED vrf’s to each other at Layer-3 (only prefix exchange). This will give us IP connectivity between server01 and server03 within RED vrf and server02 and server04 within GREEN vrf, but the RED and GREEN vrf’s ill not be able to communicate with each other. All servers are in different IP subnets, therefore there is no Layer-2 adjacency in between them. When a server wants to communicate with its peer in the other DC, it will have its default gateway which is the local vrr MAC in its ARP cache. 
+Our purpose is to interconnect vrf RED in DC1 with vrf RED in DC2 using Downstream VNI and symmetrical routing. We will be using route-target import statements to connect two RED vrf’s to each other at Layer-3 (only prefix exchange). This will give us IP connectivity between server01 and server03 within RED vrf and server02 and server04 within GREEN vrf, but the RED and GREEN vrf’s will not be able to communicate with each other. All servers are in different IP subnets, therefore there is no Layer-2 adjacency in between them. When a server wants to communicate with its peer in the other DC, it will have its default gateway which is the local vrr MAC in its ARP cache. 
 
 On border leaf nodes we are filtering EVPN prefixes except Type-5 to be distributed across DCI links, as our use case is a Layer-3 interconnect. This will ensure only Type-5 prefixes are exchanged via DCI and remote DC will not receive and process unwanted prefix types. Therefore, the ESI and MAC are visible for each local POD, but not across PODs. 
 
@@ -1122,6 +1122,7 @@ MAC               Type   Flags Intf/Remote ES/VTEP       �
 a6:e0:55:25:f3:b2 local  NP    bond2                          20    1/0 
 ```
 </div>
+<br>
 
 Verify that the bridge `br_default` is learning MAC entries:
 
@@ -1163,6 +1164,7 @@ cumulus@leaf02:mgmt:~$ nv show bridge domain br_default mac-table 
 12  243505  br_default     permanent   br_default  243505       44:38:39:22:bb:07           10 
 ```
 </div>
+<br>
 
 From the table above, locate the L3 VLAN interface MAC and the VRR MAC:
 
@@ -1188,6 +1190,7 @@ cumulus@leaf02:mgmt:~$ nv show int vlan10 | grep mac 
   mac                     44:38:39:22:bb:07 
 ```
 </div>
+<br>
 
 Verify EVPN Type-5 routes from the perspective of the ingress PE (leaf01) for the end host *192.168.10.110* connected to leaf03 and leaf04: 
 
@@ -1216,6 +1219,7 @@ Route Distinguisher: 10.10.20.2:6 
 Route Distinguisher: 10.10.20.2:7 
 ```
 </div>
+<br>
 
 Verify EVPN Type-5 routes from the perspective of the egress PE (leaf03) for the end host 192.168.10.110 connected to leaf03 and leaf04:
 
@@ -1240,6 +1244,7 @@ Route Distinguisher: 10.10.20.2:6 
 Route Distinguisher: 10.10.20.2:7 
 ```
 </div>
+<br>
 
 Routing from the border leaf perspective:
 
@@ -1964,6 +1969,7 @@ ee:54:69:be:3a:3f local  NP    bond2                   �
 44:38:39:22:bb:08 remote       10.10.20.1                           0/0 
 ```
 </div>
+<br>
 
 Verify that the bridge `br_default` is learning MAC entries:
 
@@ -2005,6 +2011,7 @@ cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table 
 12  729  br_default     permanent   br_default  729          44:38:39:22:bb:09           1010 
 ```
 </div>
+<br>
 
 From the table above, locate the L3 VLAN interface MAC and the VRR MAC:
 
@@ -2039,6 +2046,7 @@ state        up                 up 
 cumulus@leaf04:mgmt:~$ 
 ```
 </div>
+<br>
 
 Verify EVPN Type-5 routes from the perspective of the ingress PE (leaf03) for the end host *192.168.1.10* connected to leaf01 and leaf02:
 
@@ -2067,6 +2075,7 @@ Route Distinguisher: 10.10.10.2:4 
 Route Distinguisher: 10.10.10.2:5 
 ```
 </div>
+<br>
 
 Verify EVPN Type-5 routes from the perspective of the egress PE (leaf01) for the end host *192.168.1.10* connected to leaf01 and leaf02:
 
@@ -2092,6 +2101,7 @@ Route Distinguisher: 10.10.10.2:5 
 -- 
 ```
 </div>
+<br>
 
 Routing from the border leaf perspective:
 

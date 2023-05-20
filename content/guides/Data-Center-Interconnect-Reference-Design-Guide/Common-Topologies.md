@@ -34,7 +34,7 @@ The following sections address physical layer considerations when implementing a
 
 All overlay technologies (including EVPN and VXLAN) add overhead to data plane encapsulation. Although the VXLAN header itself is only eight bytes, it introduces greater overhead to the data packets by preserving the original layer 2, layer 3, and layer 4 headers inside the newly-constructed VXLAN tunnel frames that become part of the overlay payload. These VXLAN frames still require their own layer 2 and layer 3 destination address (VTEP destination), a UDP header, and the VXLAN header itself. The resulting overhead is *50 bytes*.
 
-The following diagram compares VXLAN encapsulation overhead to an Ethernet frame:
+The following illustration compares VXLAN encapsulation overhead to an Ethernet frame:
 
 {{<img src="/images/guides/vxlan-overhead.png">}}
 

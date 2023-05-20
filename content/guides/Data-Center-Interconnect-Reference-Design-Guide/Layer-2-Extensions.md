@@ -11,13 +11,15 @@ imgData: guides
     overflow-y: auto;
   }
 </style>
-The purpose of a layer 2 extension from one data center to another is usually to support an application or a system that requires layer 2 adjacency. Some legacy applications require layer 2 adjacency for their operations and those systems---although fewer and fewer---continue to exist in enterprise environments. <!--???--> <!--Keeping in mind that modern era of cloud has already said his goodbye with layer 2 world, one can easily draw some conclusions out of this. As such that extending layer 2 domains across long distances is synonym with procrastination your life-long challenges and delaying a closure, which will eventually come back to you as a few technical troubles. Therefore, this option should be considered as last resort when an engineer has no other means of solving organizational and technical problems other than extending layer 2 across geographically separated datacenters. --> Layer 2 extensions are undesirable for the following reasons:
+Layer 2 extension from one data center to another typically supports an application or a system that requires layer 2 adjacency. Some legacy applications require layer 2 adjacency for their operations and those systems---although fewer and fewer---continue to exist in enterprise environments. <!--???--> <!--Keeping in mind that modern era of cloud has already said his goodbye with layer 2 world, one can easily draw some conclusions out of this. As such that extending layer 2 domains across long distances is synonym with procrastination your life-long challenges and delaying a closure, which will eventually come back to you as a few technical troubles. Therefore, this option should be considered as last resort when an engineer has no other means of solving organizational and technical problems other than extending layer 2 across geographically separated datacenters. -->
+With the modern era of cloud computing, extending layer 2 domains across long distances is no longer a typical use case; consider this option as a last resort when you have no other way of solving organizational and technical problems other than extending layer 2 across geographically separated data centers.
 
+Layer 2 extensions are undesirable for the following reasons:
 - They can increase the chances of creating topological asymmetries.
 - Broadcast and multicast storms risk extending from one data center to others.
 - They can increase MTTR.
 - They are difficult to troubleshoot compared to a layer 3 extension because there is no clear demarcation between layer 2 and layer 3.
-- They require a layer 2 loop detection system on all ToR and leaf switches.  
+- They require a layer 2 loop detection system on all ToR and leafs.  
 
 By limiting the scope of the layer 2 network, you reduce the potential impact when problems occur. If it is not possible to avoid a layer 2 extension, it is crucial to keep the extended layer 2 broadcast domains to a minimum to limit MAC address advertisements and withdrawals. Extending layer 2 domains is the same as merging multiple broadcast domains; it creates a geographically separated large broadcast domain that is interconnected through a complex network over a distance.
 
@@ -241,43 +243,43 @@ cumulus@spine01:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 type unnum
 </div>
 
 {{< /tab >}}
-{{< tab "border01 ">}}
+{{< tab "borderleaf01 ">}}
 
 <div class=scroll>
 
 ```
-cumulus@border01:mgmt:~$ nv config show -o commands 
-cumulus@border01:mgmt:~$ nv set evpn enable on 
-cumulus@border01:mgmt:~$ nv set interface eth0 ip vrf mgmt 
-cumulus@border01:mgmt:~$ nv set interface eth0 type eth 
-cumulus@border01:mgmt:~$ nv set interface lo ip address 10.10.10.10/32 
-cumulus@border01:mgmt:~$ nv set interface lo type loopback 
-cumulus@border01:mgmt:~$ nv set interface swp1-3 type swp 
-cumulus@border01:mgmt:~$ nv set nve vxlan enable on 
-cumulus@border01:mgmt:~$ nv set router bgp autonomous-system 65110 
-cumulus@border01:mgmt:~$ nv set router bgp enable on 
-cumulus@border01:mgmt:~$ nv set router bgp router-id 10.10.10.10 
-cumulus@border01:mgmt:~$ nv set service lldp 
-cumulus@border01:mgmt:~$ nv set system config auto-save enable on 
-cumulus@border01:mgmt:~$ nv set system global anycast-id 10 
-cumulus@border01:mgmt:~$ nv set system global fabric-id 10 
-cumulus@border01:mgmt:~$ nv set system hostname border01 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.10/32 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp1 remote-as external 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp2 remote-as external 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp3 type unnumbered 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 remote-as external 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
+cumulus@borderleaf01:mgmt:~$ nv config show -o commands 
+cumulus@borderleaf01:mgmt:~$ nv set evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set interface eth0 ip vrf mgmt 
+cumulus@borderleaf01:mgmt:~$ nv set interface eth0 type eth 
+cumulus@borderleaf01:mgmt:~$ nv set interface lo ip address 10.10.10.10/32 
+cumulus@borderleaf01:mgmt:~$ nv set interface lo type loopback 
+cumulus@borderleaf01:mgmt:~$ nv set interface swp1-3 type swp 
+cumulus@borderleaf01:mgmt:~$ nv set nve vxlan enable on 
+cumulus@borderleaf01:mgmt:~$ nv set router bgp autonomous-system 65110 
+cumulus@borderleaf01:mgmt:~$ nv set router bgp enable on 
+cumulus@borderleaf01:mgmt:~$ nv set router bgp router-id 10.10.10.10 
+cumulus@borderleaf01:mgmt:~$ nv set service lldp 
+cumulus@borderleaf01:mgmt:~$ nv set system config auto-save enable on 
+cumulus@borderleaf01:mgmt:~$ nv set system global anycast-id 10 
+cumulus@borderleaf01:mgmt:~$ nv set system global fabric-id 10 
+cumulus@borderleaf01:mgmt:~$ nv set system hostname borderleaf01 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.10/32 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp1 address-family l2vpn-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp1 remote-as external 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp2 address-family l2vpn-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp2 remote-as external 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp3 type unnumbered 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 remote-as external 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
 
@@ -378,41 +380,41 @@ cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 type unnum
 </div>
 
 {{< /tab >}}
-{{< tab "border04 ">}}
+{{< tab "borderleaf04 ">}}
 
 <div class=scroll>
 
 ```
-cumulus@border04:mgmt:~$ nv config show -o commands 
-cumulus@border04:mgmt:~$ nv set evpn enable on 
-cumulus@border04:mgmt:~$ nv set interface eth0 ip vrf mgmt 
-cumulus@border04:mgmt:~$ nv set interface eth0 type eth 
-cumulus@border04:mgmt:~$ nv set interface lo ip address 10.10.20.11/32 
-cumulus@border04:mgmt:~$ nv set interface lo type loopback 
-cumulus@border04:mgmt:~$ nv set interface swp1-3 type swp 
-cumulus@border04:mgmt:~$ nv set nve vxlan enable on 
-cumulus@border04:mgmt:~$ nv set router bgp autonomous-system 65210 
-cumulus@border04:mgmt:~$ nv set router bgp enable on 
-cumulus@border04:mgmt:~$ nv set router bgp router-id 10.10.20.11 
-cumulus@border04:mgmt:~$ nv set service lldp 
-cumulus@border04:mgmt:~$ nv set system config auto-save enable on 
-cumulus@border04:mgmt:~$ nv set system global anycast-id 20 
-cumulus@border04:mgmt:~$ nv set system global fabric-id 20 
-cumulus@border04:mgmt:~$ nv set system hostname border04 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.20.11/32 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp enable on 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp3 type unnumbered 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 remote-as external 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
+cumulus@borderleaf04:mgmt:~$ nv config show -o commands 
+cumulus@borderleaf04:mgmt:~$ nv set evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set interface eth0 ip vrf mgmt 
+cumulus@borderleaf04:mgmt:~$ nv set interface eth0 type eth 
+cumulus@borderleaf04:mgmt:~$ nv set interface lo ip address 10.10.20.11/32 
+cumulus@borderleaf04:mgmt:~$ nv set interface lo type loopback 
+cumulus@borderleaf04:mgmt:~$ nv set interface swp1-3 type swp 
+cumulus@borderleaf04:mgmt:~$ nv set nve vxlan enable on 
+cumulus@borderleaf04:mgmt:~$ nv set router bgp autonomous-system 65210 
+cumulus@borderleaf04:mgmt:~$ nv set router bgp enable on 
+cumulus@borderleaf04:mgmt:~$ nv set router bgp router-id 10.10.20.11 
+cumulus@borderleaf04:mgmt:~$ nv set service lldp 
+cumulus@borderleaf04:mgmt:~$ nv set system config auto-save enable on 
+cumulus@borderleaf04:mgmt:~$ nv set system global anycast-id 20 
+cumulus@borderleaf04:mgmt:~$ nv set system global fabric-id 20 
+cumulus@borderleaf04:mgmt:~$ nv set system hostname borderleaf04 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.20.11/32 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp3 type unnumbered 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 remote-as external 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
 
@@ -494,6 +496,9 @@ ESI                            Flags RD       
 03:00:00:00:00:00:aa:00:00:02  LR    10.10.10.1:4          1        10.10.10.2(EA) 
 03:00:00:00:00:00:bb:00:00:01  R     -                     1        10.10.20.1(A),10.10.20.2(A) 
 03:00:00:00:00:00:bb:00:00:02  R     -                     1        10.10.20.1(A),10.10.20.2(A) 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn es-evi 
 Flags: L local, R remote, I inconsistent 
 VTEP-Flags: E EAD-per-ES, V EAD-per-EVI 
@@ -502,6 +507,9 @@ VNI      ESI                            Flags 
 20       03:00:00:00:00:00:bb:00:00:02  R     10.10.20.1(EV),10.10.20.2(EV) 
 10       03:00:00:00:00:00:aa:00:00:01  LR    10.10.10.2(EV) 
 10       03:00:00:00:00:00:bb:00:00:01  R     10.10.20.1(EV),10.10.20.2(EV) 
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn es-vrf 
 ES-VRF Flags: A Active 
 ESI                            VRF             Flags IPv4-NHG IPv6-NHG Ref 
@@ -509,12 +517,19 @@ ESI                            VRF         �
 03:00:00:00:00:00:aa:00:00:02  VRF GREEN       A     72580647 72580648 1 
 03:00:00:00:00:00:bb:00:00:01  VRF RED         A     72580651 72580652 1 
 03:00:00:00:00:00:bb:00:00:02  VRF GREEN       A     72580649 72580650 1 
+
+```
+
+```
 cumulus@leaf01:mgmt:~$ net show evpn vni 
 VNI        Type VxLAN IF              # MACs   # ARPs   # Remote VTEPs  Tenant VRF 
 10         L2   vxlan48               10       3        3               RED 
 20         L2   vxlan48               10       2        3               GREEN 
 4001       L3   vxlan99               0        0        n/a             RED 
 4002       L3   vxlan99               0        0        n/a             GREEN 
+```
+
+```
 cumulus@leaf01:mgmt:~$  net show bgp evpn vni 
 Advertise Gateway Macip: Disabled 
 Advertise SVI Macip: Disabled 
@@ -710,11 +725,8 @@ Flags: * - Kernel 
 * 4001       L3   10.10.10.2:4          65102:4001                65102:4001               RED 
 * 4002       L3   10.10.10.2:5          65102:4002                65102:4002               GREEN 
 ```
-</div>
 
 Verify that the bridge `br_default` is learning MAC entries:
-
-<div class=scroll>
 
 ```
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table 
@@ -773,11 +785,8 @@ cumulus@leaf02:mgmt:~$ nv show bridge domain br_default mac-table 
 19                        permanent   br_default               00:00:5e:00:01:0a 
 20  4365   br_default     permanent   br_default  4365         44:38:39:22:bb:07           10 
 ```
-</div>
 
-Verify that the host routes over L3VNI on vrf RED, the route for 192.168.1.110/32 points towards remote VTEP destinations with ECMP:
-
-<div class=scroll>
+Verify that the host routes over layer 3 VNI on VRF RED; the route for 192.168.1.110/32 points towards remote VTEP destinations with ECMP:
 
 ```
 cumulus@leaf01:mgmt:~$ net show route vrf RED 
@@ -796,9 +805,7 @@ C * 192.168.1.0/24 [0/1024] is directly connected, vlan10-v0, 02:21:20 
 C>* 192.168.1.0/24 is directly connected, vlan10, 02:21:20 
 B>* 192.168.1.110/32 [20/0] via 10.10.20.1, vlan220_l3 onlink, weight 1, 00:31:40 
   *                         via 10.10.20.2, vlan220_l3 onlink, weight 1, 00:31:40 
- 
- 
- 
+
 show ipv6 route vrf RED 
 ======================== 
 Codes: K - kernel route, C - connected, S - static, R - RIPng, 
@@ -814,11 +821,8 @@ C * fe80::/64 is directly connected, vlan220_l3, 02:21:20 
 C * fe80::/64 is directly connected, vlan10-v0, 02:21:20 
 C>* fe80::/64 is directly connected, vlan10, 02:21:20 
 ```
-</div>
 
-Verify EVPN Type-2 routes from the perspective of the ingress PE (leaf01) for the end host *42:20:47:91:95:a7* 
-
-<div class=scroll>
+Verify EVPN type-2 routes at the ingress PE (leaf01) for the end host *42:20:47:91:95:a7*:
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep 42:20:47:91:95:a7 -A 4 
@@ -869,11 +873,8 @@ cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep 42:20:47:91:9
                     ESI:03:00:00:00:00:00:aa:00:00:01 
                     RT:65102:10 ET:8 MM:1 
 ```
-</div>
 
-Verify EVPN Type-2 routes from the perspective of the egress PE (leaf03) for the end host *42:20:47:91:95:a7* 
-
-<div class=scroll>
+Verify EVPN type-2 routes at the egress PE (leaf03) for the end host *42:20:47:91:95:a7*:
 
 ```
 cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep 42:20:47:91:95:a7 -A 4 
@@ -1001,6 +1002,9 @@ ESI: 03:00:00:00:00:00:bb:00:00:02 
  VTEPs: 
      10.10.20.2(local) df_alg: preference df_pref: 10000 sph: tc-filter 
  nh: 268435463 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn es 
 ES Flags: B - bypass, L local, R remote, I inconsistent 
 VTEP Flags: E ESR/Type-4, A active nexthop 
@@ -1009,6 +1013,9 @@ ESI                            Flags RD       
 03:00:00:00:00:00:aa:00:00:02  R     -                     1        10.10.10.1(A),10.10.10.2(A) 
 03:00:00:00:00:00:bb:00:00:01  LR    10.10.20.1:3          1        10.10.20.2(EA) 
 03:00:00:00:00:00:bb:00:00:02  LR    10.10.20.1:4          1        10.10.20.2(EA) 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn es-evi 
 Flags: L local, R remote, I inconsistent 
 VTEP-Flags: E EAD-per-ES, V EAD-per-EVI 
@@ -1017,6 +1024,9 @@ VNI      ESI                            Flags 
 20       03:00:00:00:00:00:bb:00:00:02  LR    10.10.20.2(EV) 
 10       03:00:00:00:00:00:aa:00:00:01  R     10.10.10.1(EV),10.10.10.2(EV) 
 10       03:00:00:00:00:00:bb:00:00:01  LR    10.10.20.2(EV) 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn es-vrf 
 ES-VRF Flags: A Active 
 ESI                            VRF             Flags IPv4-NHG IPv6-NHG Ref 
@@ -1024,12 +1034,18 @@ ESI                            VRF         �
 03:00:00:00:00:00:aa:00:00:02  VRF GREEN       A     72580651 72580652 1 
 03:00:00:00:00:00:bb:00:00:01  VRF RED         A     72580647 72580648 1 
 03:00:00:00:00:00:bb:00:00:02  VRF GREEN       A     72580645 72580646 1 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show evpn vni 
 VNI        Type VxLAN IF              # MACs   # ARPs   # Remote VTEPs  Tenant VRF 
 10         L2   vxlan48               10       4        3               RED 
 20         L2   vxlan48               10       2        3               GREEN 
 4001       L3   vxlan99               0        0        n/a             RED 
 4002       L3   vxlan99               0        0        n/a             GREEN 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show bgp evpn vni 
 Advertise Gateway Macip: Disabled 
 Advertise SVI Macip: Disabled 
@@ -1046,6 +1062,9 @@ Flags: * - Kernel 
   4002       L2   10.10.20.1:11         65201:4002                65201:4002               default 
 * 4002       L3   10.10.20.1:5          65201:4002                65201:4002               GREEN 
 * 4001       L3   10.10.20.1:6          65201:4001                65201:4001               RED 
+```
+
+```
 cumulus@leaf03:mgmt:~$ net show interface bond1 
     Name   MAC                Speed  MTU   Mode 
 --  -----  -----------------  -----  ----  ------- 
@@ -1096,8 +1115,9 @@ Routing 
   EVPN-MH: ES id 1 ES sysmac 00:00:00:00:00:bb 
   protodown: off (n/a) 
   ARP-ND redirect enabled: ARP 49 ND 128 
-  
-cumulus@leaf03:mgmt:~$ 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show evpn es detail 
 ESI: 03:00:00:00:00:00:aa:00:00:01 
  Type: Remote 
@@ -1152,6 +1172,9 @@ ESI: 03:00:00:00:00:00:bb:00:00:02 
  VTEPs: 
      10.10.20.1(local) df_alg: preference df_pref: 50000 sph: tc-filter 
  nh: 268435463 
+```
+
+```
 cumulus@leaf04:mgmt:~$ net show interface bond1 
     Name   MAC                Speed  MTU   Mode 
 --  -----  -----------------  -----  ----  ------- 
@@ -1202,7 +1225,9 @@ Routing 
   EVPN-MH: ES id 1 ES sysmac 00:00:00:00:00:bb 
   protodown: off (n/a) 
   ARP-ND redirect enabled: ARP 84 ND 254 
-  
+```
+
+```  
 cumulus@leaf04:mgmt:~$ net show bgp l2vpn evpn vni 
 Advertise Gateway Macip: Disabled 
 Advertise SVI Macip: Disabled 
@@ -1220,12 +1245,8 @@ Flags: * - Kernel 
 * 4002       L3   10.10.20.2:7          65202:4002                65202:4002               GREEN 
 * 4001       L3   10.10.20.2:8          65202:4001                65202:4001               RED 
 ```
-</div>
-<br>
 
 Verify that the bridge `br_default` is learning MAC entries:
-
-<div class=scroll>
 
 ```
 cumulus@leaf03:mgmt:~$ nv show bridge domain br_default mac-table 
@@ -1254,7 +1275,9 @@ cumulus@leaf03:mgmt:~$ nv show bridge domain br_default mac-table 
 18  10120  br_default     permanent   bond2       10120        48:b0:2d:d5:d5:91 
 19                        permanent   br_default               00:00:5e:00:01:14 
 20  1950   br_default     permanent   br_default  1950         44:38:39:22:bb:08           10 
-cumulus@leaf03:mgmt:~$ 
+```
+
+``` 
 cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table 
     age    bridge-domain  entry-type  interface   last-update  MAC address        src-vni  vlan  vni   Summary 
 --  -----  -------------  ----------  ----------  -----------  -----------------  -------  ----  ----  ---------------------- 
@@ -1282,12 +1305,8 @@ cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table 
 19                        permanent   br_default               00:00:5e:00:01:14 
 20  1955   br_default     permanent   br_default  1955         44:38:39:22:bb:09           10 
 ```
-</div>
-<br>
 
-Verify that the host routes over the L3 VNI on `vrf RED`:
-
-<div class=scroll>
+Verify that the host routes over the layer 3 VNI on `vrf RED`:
 
 ```
 cumulus@leaf03:mgmt:~$ net show route vrf RED 
@@ -1306,9 +1325,7 @@ C * 192.168.1.0/24 [0/1024] is directly connected, vlan10-v0, 02:25:33 
 C>* 192.168.1.0/24 is directly connected, vlan10, 02:25:33 
 B>* 192.168.1.10/32 [20/0] via 10.10.10.1, vlan220_l3 onlink, weight 1, 00:06:30 
   *                        via 10.10.10.2, vlan220_l3 onlink, weight 1, 00:06:30 
- 
- 
- 
+
 show ipv6 route vrf RED 
 ======================== 
 Codes: K - kernel route, C - connected, S - static, R - RIPng, 
@@ -1324,12 +1341,8 @@ C * fe80::/64 is directly connected, vlan220_l3, 02:25:32 
 C * fe80::/64 is directly connected, vlan10-v0, 02:25:33 
 C>* fe80::/64 is directly connected, vlan10, 02:25:33 
 ```
-</div>
-<br>
 
-Verify EVPN Type-2 routes from the perspective of egress PE (leaf01) for the end host *b6:4b:0f:ea:f2:02* 
-
-<div class=scroll>
+Verify EVPN type-2 routes from the egress PE (leaf01) for the end host *b6:4b:0f:ea:f2:02*:
 
 ```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep -A 4 b6:4b:0f:ea:f2:02 
@@ -1395,12 +1408,8 @@ cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep -A 4 b6:4b:0f
                     ESI:03:00:00:00:00:00:bb:00:00:01 
                     RT:65202:10 ET:8 
 ```
-</div>
-<br>
 
-Verify EVPN Type-2 routes from the perspective of the ingress PE (leaf03) for the end host *b6:4b:0f:ea:f2:02*
-
-<div class=scroll>
+Verify EVPN type-2 routes from the ingress PE (leaf03) for the end host *b6:4b:0f:ea:f2:02*:
 
 ```
 cumulus@leaf03:mgmt:~$ net show bgp l2vpn evpn route type 2 | grep -A 4 b6:4b:0f:ea:f2:02 

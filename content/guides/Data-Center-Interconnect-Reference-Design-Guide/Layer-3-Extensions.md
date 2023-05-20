@@ -257,68 +257,68 @@ cumulus@spine01:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 type unnum
 </div>
 
 {{< /tab >}}
-{{< tab "border01 ">}}
+{{< tab "borderleaf01 ">}}
 
 <div class=scroll>
 
 ```
-cumulus@border01:mgmt:~$ nv config show -o commands 
-cumulus@border01:mgmt:~$ nv set evpn enable on 
-cumulus@border01:mgmt:~$ nv set interface eth0 ip vrf mgmt 
-cumulus@border01:mgmt:~$ nv set interface eth0 type eth 
-cumulus@border01:mgmt:~$ nv set interface lo ip address 10.10.10.10/32 
-cumulus@border01:mgmt:~$ nv set interface lo type loopback 
-cumulus@border01:mgmt:~$ nv set interface swp1-3 type swp 
-cumulus@border01:mgmt:~$ nv set nve vxlan enable on 
-cumulus@border01:mgmt:~$ nv set router bgp autonomous-system 65110 
-cumulus@border01:mgmt:~$ nv set router bgp enable on 
-cumulus@border01:mgmt:~$ nv set router bgp router-id 10.10.10.10 
-cumulus@border01:mgmt:~$ nv set router policy route-map control_t5 rule 1 action permit 
-cumulus@border01:mgmt:~$ nv set router policy route-map control_t5 rule 1 match evpn-route-type ip-prefix 
-cumulus@border01:mgmt:~$ nv set router policy route-map control_t5 rule 2 action deny 
-cumulus@border01:mgmt:~$ nv set service lldp 
-cumulus@border01:mgmt:~$ nv set system config auto-save enable on 
-cumulus@border01:mgmt:~$ nv set system global anycast-id 10 
-cumulus@border01:mgmt:~$ nv set system global fabric-id 10 
-cumulus@border01:mgmt:~$ nv set system hostname border01 
-cumulus@border01:mgmt:~$ nv set vrf GREEN evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf GREEN evpn vni 4002 
-cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
-cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
-cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp autonomous-system 65110 
-cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp enable on 
-cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp peer-group underlay address-family l2vpn-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
-cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
-cumulus@border01:mgmt:~$ nv set vrf GREEN router bgp router-id 10.10.10.10 
-cumulus@border01:mgmt:~$ nv set vrf RED evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf RED evpn vni 4001 
-cumulus@border01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast enable on 
-cumulus@border01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
-cumulus@border01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf RED router bgp autonomous-system 65110 
-cumulus@border01:mgmt:~$ nv set vrf RED router bgp enable on 
-cumulus@border01:mgmt:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
-cumulus@border01:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
-cumulus@border01:mgmt:~$ nv set vrf RED router bgp router-id 10.10.10.10 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.10/32 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp neighbor swp3 type unnumbered 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn policy outbound route-map control_t5 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 remote-as external 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
-cumulus@border01:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
+cumulus@borderleaf01:mgmt:~$ nv config show -o commands 
+cumulus@borderleaf01:mgmt:~$ nv set evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set interface eth0 ip vrf mgmt 
+cumulus@borderleaf01:mgmt:~$ nv set interface eth0 type eth 
+cumulus@borderleaf01:mgmt:~$ nv set interface lo ip address 10.10.10.10/32 
+cumulus@borderleaf01:mgmt:~$ nv set interface lo type loopback 
+cumulus@borderleaf01:mgmt:~$ nv set interface swp1-3 type swp 
+cumulus@borderleaf01:mgmt:~$ nv set nve vxlan enable on 
+cumulus@borderleaf01:mgmt:~$ nv set router bgp autonomous-system 65110 
+cumulus@borderleaf01:mgmt:~$ nv set router bgp enable on 
+cumulus@borderleaf01:mgmt:~$ nv set router bgp router-id 10.10.10.10 
+cumulus@borderleaf01:mgmt:~$ nv set router policy route-map control_t5 rule 1 action permit 
+cumulus@borderleaf01:mgmt:~$ nv set router policy route-map control_t5 rule 1 match evpn-route-type ip-prefix 
+cumulus@borderleaf01:mgmt:~$ nv set router policy route-map control_t5 rule 2 action deny 
+cumulus@borderleaf01:mgmt:~$ nv set service lldp 
+cumulus@borderleaf01:mgmt:~$ nv set system config auto-save enable on 
+cumulus@borderleaf01:mgmt:~$ nv set system global anycast-id 10 
+cumulus@borderleaf01:mgmt:~$ nv set system global fabric-id 10 
+cumulus@borderleaf01:mgmt:~$ nv set system hostname borderleaf01 
+cumulus@borderleaf01:mgmt:~$ nv set vrf GREEN evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf GREEN evpn vni 4002 
+cumulus@borderleaf01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf GREEN router bgp autonomous-system 65110 
+cumulus@borderleaf01:mgmt:~$ nv set vrf GREEN router bgp enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf GREEN router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
+cumulus@borderleaf01:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
+cumulus@borderleaf01:mgmt:~$ nv set vrf GREEN router bgp router-id 10.10.10.10 
+cumulus@borderleaf01:mgmt:~$ nv set vrf RED evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf RED evpn vni 4001 
+cumulus@borderleaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf RED router bgp autonomous-system 65110 
+cumulus@borderleaf01:mgmt:~$ nv set vrf RED router bgp enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
+cumulus@borderleaf01:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
+cumulus@borderleaf01:mgmt:~$ nv set vrf RED router bgp router-id 10.10.10.10 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.10/32 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp neighbor swp3 type unnumbered 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn policy outbound route-map control_t5 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 remote-as external 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
 
@@ -437,68 +437,68 @@ cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 type unnum
 </div>
 
 {{< /tab >}}
-{{< tab "border04 ">}}
+{{< tab "borderleaf04 ">}}
 
 <div class=scroll>
 
 ```
-cumulus@border04:mgmt:~$ nv config show -o commands 
-cumulus@border04:mgmt:~$ nv set evpn enable on 
-cumulus@border04:mgmt:~$ nv set interface eth0 ip vrf mgmt 
-cumulus@border04:mgmt:~$ nv set interface eth0 type eth 
-cumulus@border04:mgmt:~$ nv set interface lo ip address 10.10.20.11/32 
-cumulus@border04:mgmt:~$ nv set interface lo type loopback 
-cumulus@border04:mgmt:~$ nv set interface swp1-3 type swp 
-cumulus@border04:mgmt:~$ nv set nve vxlan enable on 
-cumulus@border04:mgmt:~$ nv set router bgp autonomous-system 65210 
-cumulus@border04:mgmt:~$ nv set router bgp enable on 
-cumulus@border04:mgmt:~$ nv set router bgp router-id 10.10.20.11 
-cumulus@border04:mgmt:~$ nv set router policy route-map control_t5 rule 1 action permit 
-cumulus@border04:mgmt:~$ nv set router policy route-map control_t5 rule 1 match evpn-route-type ip-prefix 
-cumulus@border04:mgmt:~$ nv set router policy route-map control_t5 rule 2 action deny 
-cumulus@border04:mgmt:~$ nv set service lldp 
-cumulus@border04:mgmt:~$ nv set system config auto-save enable on 
-cumulus@border04:mgmt:~$ nv set system global anycast-id 20 
-cumulus@border04:mgmt:~$ nv set system global fabric-id 20 
-cumulus@border04:mgmt:~$ nv set system hostname border04 
-cumulus@border04:mgmt:~$ nv set vrf GREEN evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf GREEN evpn vni 5002 
-cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
-cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
-cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp autonomous-system 65210 
-cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp enable on 
-cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp peer-group underlay address-family l2vpn-evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
-cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
-cumulus@border04:mgmt:~$ nv set vrf GREEN router bgp router-id 10.10.20.11 
-cumulus@border04:mgmt:~$ nv set vrf RED evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf RED evpn vni 5001 
-cumulus@border04:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast enable on 
-cumulus@border04:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
-cumulus@border04:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf RED router bgp autonomous-system 65210 
-cumulus@border04:mgmt:~$ nv set vrf RED router bgp enable on 
-cumulus@border04:mgmt:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
-cumulus@border04:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
-cumulus@border04:mgmt:~$ nv set vrf RED router bgp router-id 10.10.20.11 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.20.11/32 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp enable on 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp neighbor swp3 type unnumbered 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn policy outbound route-map control_t5 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 remote-as external 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
-cumulus@border04:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
+cumulus@borderleaf04:mgmt:~$ nv config show -o commands 
+cumulus@borderleaf04:mgmt:~$ nv set evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set interface eth0 ip vrf mgmt 
+cumulus@borderleaf04:mgmt:~$ nv set interface eth0 type eth 
+cumulus@borderleaf04:mgmt:~$ nv set interface lo ip address 10.10.20.11/32 
+cumulus@borderleaf04:mgmt:~$ nv set interface lo type loopback 
+cumulus@borderleaf04:mgmt:~$ nv set interface swp1-3 type swp 
+cumulus@borderleaf04:mgmt:~$ nv set nve vxlan enable on 
+cumulus@borderleaf04:mgmt:~$ nv set router bgp autonomous-system 65210 
+cumulus@borderleaf04:mgmt:~$ nv set router bgp enable on 
+cumulus@borderleaf04:mgmt:~$ nv set router bgp router-id 10.10.20.11 
+cumulus@borderleaf04:mgmt:~$ nv set router policy route-map control_t5 rule 1 action permit 
+cumulus@borderleaf04:mgmt:~$ nv set router policy route-map control_t5 rule 1 match evpn-route-type ip-prefix 
+cumulus@borderleaf04:mgmt:~$ nv set router policy route-map control_t5 rule 2 action deny 
+cumulus@borderleaf04:mgmt:~$ nv set service lldp 
+cumulus@borderleaf04:mgmt:~$ nv set system config auto-save enable on 
+cumulus@borderleaf04:mgmt:~$ nv set system global anycast-id 20 
+cumulus@borderleaf04:mgmt:~$ nv set system global fabric-id 20 
+cumulus@borderleaf04:mgmt:~$ nv set system hostname borderleaf04 
+cumulus@borderleaf04:mgmt:~$ nv set vrf GREEN evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf GREEN evpn vni 5002 
+cumulus@borderleaf04:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf GREEN router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf GREEN router bgp autonomous-system 65210 
+cumulus@borderleaf04:mgmt:~$ nv set vrf GREEN router bgp enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf GREEN router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:4002 
+cumulus@borderleaf04:mgmt:~$ nv set vrf GREEN router bgp route-import from-evpn route-target ANY:5002 
+cumulus@borderleaf04:mgmt:~$ nv set vrf GREEN router bgp router-id 10.10.20.11 
+cumulus@borderleaf04:mgmt:~$ nv set vrf RED evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf RED evpn vni 5001 
+cumulus@borderleaf04:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf RED router bgp autonomous-system 65210 
+cumulus@borderleaf04:mgmt:~$ nv set vrf RED router bgp enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf RED router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:4001 
+cumulus@borderleaf04:mgmt:~$ nv set vrf RED router bgp route-import from-evpn route-target ANY:5001 
+cumulus@borderleaf04:mgmt:~$ nv set vrf RED router bgp router-id 10.10.20.11 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.20.11/32 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp1 peer-group underlay 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp1 type unnumbered 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp2 peer-group underlay 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumbered 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp3 peer-group dci_group1 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp neighbor swp3 type unnumbered 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 address-family l2vpn-evpn policy outbound route-map control_t5 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group dci_group1 remote-as external 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group underlay address-family l2vpn-evpn enable on 
+cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
 
@@ -1352,7 +1352,7 @@ To verify routing on the border leaf:
 <div class=scroll>
 
 ```
-cumulus@border01:mgmt:~$ net show bgp sum 
+cumulus@borderleaf01:mgmt:~$ net show bgp sum 
 show bgp ipv4 unicast summary 
 ============================= 
 BGP router identifier 10.10.10.10, local AS number 65110 vrf-id 0 
@@ -1362,7 +1362,7 @@ Peers 3, using 68 KiB of memory 
 Peer groups 2, using 128 bytes of memory 
  
 Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt 
-border04(swp3) 4      65210       735       734        0    0    0 00:35:39            5       10 
+borderleaf04(swp3) 4      65210       735       734        0    0    0 00:35:39            5       10 
 spine01(swp1)      4      65199       778       776        0    0    0 00:36:20            3       10 
 spine02(swp2)      4      65199       777       775        0    0    0 00:36:16            3       10 
  
@@ -1381,7 +1381,7 @@ Peers 3, using 68 KiB of memory 
 Peer groups 2, using 128 bytes of memory 
  
 Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt 
-border04(swp3) 4      65210       735       734        0    0    0 00:35:39            4        8 
+borderleaf04(swp3) 4      65210       735       734        0    0    0 00:35:39            4        8 
 spine01(swp1)      4      65199       778       776        0    0    0 00:36:20           42       46 
 spine02(swp2)      4      65199       777       775        0    0    0 00:36:16           42       46 
  
@@ -1389,7 +1389,7 @@ Total number of neighbors 3 
 ```
 
 ```
-cumulus@border01:mgmt:~$ net show bgp vrf RED 
+cumulus@borderleaf01:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
 BGP table version is 3, local router ID is 10.10.10.10, vrf id 13 
@@ -1419,7 +1419,7 @@ No BGP prefixes displayed, 0 exist
 ```
 
 ```
-cumulus@border01:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1 -A 3 -B 1 
+cumulus@borderleaf01:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1 -A 3 -B 1 
 Route Distinguisher: 10.10.10.1:6 
 *  [5]:[0]:[24]:[192.168.1.0] RD 10.10.10.1:6 
                     10.10.10.1 (spine02) 
@@ -1441,12 +1441,12 @@ Route Distinguisher: 10.10.10.2:4 
 -- 
 Route Distinguisher: 10.10.20.1:8 
 *> [5]:[0]:[24]:[192.168.10.0] RD 10.10.20.1:8 
-                    10.10.20.1 (border04) 
+                    10.10.20.1 (borderleaf04) 
                                                            0 65210 65299 65201 ? 
                     RT:65201:5001 ET:8 Rmac:44:38:39:22:bb:08 
 Route Distinguisher: 10.10.20.2:6 
 *> [5]:[0]:[24]:[192.168.10.0] RD 10.10.20.2:6 
-                    10.10.20.2 (border04) 
+                    10.10.20.2 (borderleaf04) 
                                                            0 65210 65299 65202 ? 
                     RT:65202:5001 ET:8 Rmac:44:38:39:22:bb:09 
 ```
@@ -2240,7 +2240,7 @@ state        up                 up 
 ```
 </div>
 
-To verify EVPN type-5 routes at the ingress PE (leaf03) for the end host *192.168.1.10*, which is connected to leaf01 and leaf02:
+To verify EVPN type-5 routes at the ingress PE (leaf03) for the end host *192.168.1.10* connected to leaf01 and leaf02:
 
 <div class=scroll>
 
@@ -2268,7 +2268,7 @@ Route Distinguisher: 10.10.10.2:5 
 ```
 </div>
 
-Verify EVPN Type-5 routes from the perspective of the egress PE (leaf01) for the end host *192.168.1.10* connected to leaf01 and leaf02:
+Verify EVPN type-5 routes at the egress PE (leaf01) for the end host *192.168.1.10* connected to leaf01 and leaf02:
 
 <div class=scroll>
 
@@ -2298,7 +2298,7 @@ To view routing from the border leaf:
 <div class=scroll>
 
 ```
-cumulus@border04:mgmt:~$ net show bgp sum 
+cumulus@borderleaf04:mgmt:~$ net show bgp sum 
 show bgp ipv4 unicast summary 
 ============================= 
 BGP router identifier 10.10.20.11, local AS number 65210 vrf-id 0 
@@ -2308,7 +2308,7 @@ Peers 3, using 68 KiB of memory 
 Peer groups 2, using 128 bytes of memory 
  
 Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt 
-border01(swp3) 4      65110      1260      1263        0    0    0 01:01:26            5       10 
+borderleaf01(swp3) 4      65110      1260      1263        0    0    0 01:01:26            5       10 
 spine03(swp1)      4      65299      1341      1345        0    0    0 01:01:24            4       10 
 spine04(swp2)      4      65299      1340      1343        0    0    0 01:01:16            4       10 
  
@@ -2327,7 +2327,7 @@ Peers 3, using 68 KiB of memory 
 Peer groups 2, using 128 bytes of memory 
  
 Neighbor           V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt 
-border01(swp3) 4      65110      1260      1263        0    0    0 01:01:26            4        8 
+borderleaf01(swp3) 4      65110      1260      1263        0    0    0 01:01:26            4        8 
 spine03(swp1)      4      65299      1342      1346        0    0    0 01:01:24           42       46 
 spine04(swp2)      4      65299      1340      1343        0    0    0 01:01:16           42       46 
  
@@ -2335,7 +2335,7 @@ Total number of neighbors 3
 ```
 
 ``` 
-cumulus@border04:mgmt:~$ net show bgp vrf RED 
+cumulus@borderleaf04:mgmt:~$ net show bgp vrf RED 
 show bgp vrf RED ipv4 unicast 
 ============================= 
 BGP table version is 11, local router ID is 10.10.20.11, vrf id 13 
@@ -2366,15 +2366,15 @@ No BGP prefixes displayed, 0 exist
 ```
 
 ```
-cumulus@border04:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1\. -A 3 -B 1 
+cumulus@borderleaf04:mgmt:~$ net show bgp evpn route type 5 | grep 192.168.1\. -A 3 -B 1 
 Route Distinguisher: 10.10.10.1:6 
 *> [5]:[0]:[24]:[192.168.1.0] RD 10.10.10.1:6 
-                    10.10.10.1 (border01) 
+                    10.10.10.1 (borderleaf01) 
                                                            0 65110 65199 65101 ? 
                     RT:65101:4001 ET:8 Rmac:44:38:39:22:bb:06 
 Route Distinguisher: 10.10.10.2:4 
 *> [5]:[0]:[24]:[192.168.1.0] RD 10.10.10.2:4 
-                    10.10.10.2 (border01) 
+                    10.10.10.2 (borderleaf01) 
                                                            0 65110 65199 65102 ? 
                     RT:65102:4001 ET:8 Rmac:44:38:39:22:bb:07 
 -- 

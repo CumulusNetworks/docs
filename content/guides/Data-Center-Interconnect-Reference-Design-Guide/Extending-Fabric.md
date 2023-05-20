@@ -6,7 +6,7 @@ product: Cumulus Networks Guides
 imgData: guides
 ---
 
-This section describes how to extend EVPN/VXLAN fabrics across data centers and use EVPN and VXLAN to interconnect them. Because EVPN and VXLAN leverages control plane MAC learning, you need to extend the signaling (control plane) domain across data centers or interconnect multiple control plane domains.
+This section describes how to extend EVPN and VXLAN fabrics across data centers and use EVPN and VXLAN to interconnect them. Because EVPN and VXLAN leverages control plane MAC learning, you need to extend the signaling (control plane) domain across data centers or interconnect multiple control plane domains.
 
 This environment demonstrates a best practice configuration for several use cases including layer 2 extension using EVPN signaling with type-1, type-2 and type-4 routes; layer 3 extension and routing using EVPN type-5 routes; and inter-VLAN routing using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing/" text="EVPN symmetric routing">}} for {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/guides/EVPN-Network-Reference/EVPN-Deployment-Scenarios/#distributed-routing" text="distributed routing">}} in an EVPN and VXLAN fabric. Examples also provide a route leaking scenario for inter POD communication.
 

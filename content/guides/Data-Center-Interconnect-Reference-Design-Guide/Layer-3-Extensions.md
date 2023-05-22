@@ -150,7 +150,6 @@ ubuntu@server03:~$ ip addr 
 <div class=scroll>
 
 ```
-cumulus@leaf01:mgmt:~$ nv config show -o commands 
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 20 vni 20 
 cumulus@leaf01:mgmt:~$ nv set evpn enable on 
@@ -235,7 +234,6 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-
 <div class=scroll>
 
 ```
-cumulus@spine01:mgmt:~$ nv config show -o commands 
 cumulus@spine01:mgmt:~$ nv set interface eth0 ip vrf mgmt 
 cumulus@spine01:mgmt:~$ nv set interface eth0 type eth 
 cumulus@spine01:mgmt:~$ nv set interface lo ip address 10.10.10.101/32 
@@ -262,7 +260,6 @@ cumulus@spine01:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 type unnum
 <div class=scroll>
 
 ```
-cumulus@borderleaf01:mgmt:~$ nv config show -o commands 
 cumulus@borderleaf01:mgmt:~$ nv set evpn enable on 
 cumulus@borderleaf01:mgmt:~$ nv set interface eth0 ip vrf mgmt 
 cumulus@borderleaf01:mgmt:~$ nv set interface eth0 type eth 
@@ -328,7 +325,6 @@ cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group underlay r
 <div class=scroll>
 
 ```
-cumulus@leaf03:mgmt:~$ nv config show -o commands 
 cumulus@leaf03:mgmt:~$ nv set bridge domain br_default vlan 1010 vni 1010 
 cumulus@leaf03:mgmt:~$ nv set bridge domain br_default vlan 2020 vni 2020 
 cumulus@leaf03:mgmt:~$ nv set evpn enable on 
@@ -413,7 +409,6 @@ cumulus@leaf03:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumber
 <div class=scroll>
 
 ```
-cumulus@spine03:mgmt:~$ nv config show -o commands 
 cumulus@spine03:mgmt:~$ nv set interface eth0 ip vrf mgmt 
 cumulus@spine03:mgmt:~$ nv set interface eth0 type eth 
 cumulus@spine03:mgmt:~$ nv set interface lo ip address 10.10.20.103/32 
@@ -442,7 +437,6 @@ cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 type unnum
 <div class=scroll>
 
 ```
-cumulus@borderleaf04:mgmt:~$ nv config show -o commands 
 cumulus@borderleaf04:mgmt:~$ nv set evpn enable on 
 cumulus@borderleaf04:mgmt:~$ nv set interface eth0 ip vrf mgmt 
 cumulus@borderleaf04:mgmt:~$ nv set interface eth0 type eth 
@@ -1216,9 +1210,8 @@ MAC               Type   Flags Intf/Remote ES/VTEP       �
 a6:e0:55:25:f3:b2 local  NP    bond2                          20    1/0 
 ```
 </div>
-<br>
 
-To verify that the bridge `br_default` is learning MAC entries:
+Verify that the bridge `br_default` is learning MAC entries:
 
 <div class=scroll>
 
@@ -1260,7 +1253,6 @@ cumulus@leaf02:mgmt:~$ nv show bridge domain br_default mac-table 
 12  243505  br_default     permanent   br_default  243505       44:38:39:22:bb:07           10 
 ```
 </div>
-<br>
 
 From the table above, locate the layer 3 VLAN interface MAC address and the VRR MAC address:
 
@@ -1291,7 +1283,6 @@ cumulus@leaf02:mgmt:~$ nv show int vlan10 | grep mac 
   mac                     44:38:39:22:bb:07 
 ```
 </div>
-<br>
 
 Verify EVPN type-5 routes at the ingress PE (leaf01) for the end host *192.168.10.110*, which connects to leaf03 and leaf04:
 
@@ -1320,7 +1311,6 @@ Route Distinguisher: 10.10.20.2:6 
 Route Distinguisher: 10.10.20.2:7 
 ```
 </div>
-<br>
 
 Verify EVPN type-5 routes at the egress PE (leaf03) for the end host 192.168.10.110, which connects to leaf03 and leaf04:
 
@@ -1345,7 +1335,6 @@ Route Distinguisher: 10.10.20.2:6 
 Route Distinguisher: 10.10.20.2:7 
 ```
 </div>
-<br>
 
 To verify routing on the border leaf:
 

@@ -12,8 +12,10 @@ NVIDIA has assembled many long form technical guides that provide deep dives int
 Currently, the available documents here include the following:
 
 - {{<link title="Cumulus Linux VXLAN and EVPN Network Reference Design Guide">}}
+- {{<link title="Data Center Interconnect Reference Design Guide">}}
 - {{<link title="Data Center Network Automation Quick Start Guide">}}
 - {{<link title="Production Ready Automation Guide">}}
+- {{<link title="Campus Architecture Solution Guide">}}
 - {{<link title="Cumulus Linux Security Guide">}}
 - {{<link title="Cumulus Linux Configuration Guide for Ethernet Storage Fabrics">}}
 - {{<link title="Cumulus Linux Deployment Guide for VMware NSX-T">}}

@@ -41,6 +41,15 @@ OR
 <td>5.5.0</td>
 </tr>
 <tr>
+<td>3419962</td>
+<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
+
+switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
+</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3419953</td>
 <td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
 <td>4.3.1-4.4.5</td>
@@ -339,12 +348,6 @@ Fixed: 1.9.2-1+deb10u1</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2</td>
 <td>4.4.3-4.4.5, 5.1.0-5.5.0</td>
-</tr>
-<tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2961008</td>
@@ -2290,7 +2293,7 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <tr>
 <td>2949512</td>
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-4.3.0</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2943222</td>

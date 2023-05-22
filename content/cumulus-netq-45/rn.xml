@@ -71,6 +71,35 @@ To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.
 <td></td>
 </tr>
 <tr>
+<td>3431386</td>
+<td>When you upgrade your NetQ VM from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command, certain pods are not correctly retagged. To work around this issue, retag and restart the affected pods with the following commands for your deployment after upgrading:
+
+On-premises VMs:
+
+sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
+
+sudo docker tag localhost:5000/cp-schema-registry:7.2.0 docker-registry:5000/cp-schema-registry:7.2.0
+sudo docker push docker-registry:5000/cp-schema-registry:7.2.0
+sudo kubectl get pods -n default|grep -i cp-schema-registry|awk '{print $1}'|xargs kubectl delete pod -n default
+
+sudo docker tag localhost:5000/cp-kafka:7.2.0 docker-registry:5000/cp-kafka:7.2.0
+sudo docker push docker-registry:5000/cp-kafka:7.2.0
+sudo kubectl get pods -n default|grep -i kafka-broker|awk '{print $1}'|xargs kubectl delete pod -n default
+
+
+Cloud VMs:
+
+sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
+
+</td>
+<td>4.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3367267</td>
 <td>When you upgrade a switch with NetQ LCM using the {{root}} user, the upgrade fails with the following message:  Destination /home/root does not exist.  To work around this issue, perform the upgrade using a different user account.</td>
 <td>4.5.0</td>

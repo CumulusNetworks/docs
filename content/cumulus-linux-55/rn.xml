@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3466703</td>
+<td>In rare cases when there is high load, the {{clagd}} service might experience a buffer overflow and MLAG bonds stay in a proto-down state on the secondary switch. You see a "NetlinkThread: Netlink overflow" log message and the MLAG state indicates VLAN conflicts between peers. To work around this issue, restart the {{clagd}} service with the {{sudo systemctl restart clagd}} command on the switch that reports the overflow log message.</td>
+<td>5.2.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3459696</td>
 <td>If you run the NVUE {{nv show vrf &lt;vrf&gt; router bgp peer-group &lt;peer-group&gt;}} command when the BGP instance is not enabled, you see an NVUE traceback error.</td>
 <td>5.4.0-5.5.0</td>
@@ -99,12 +105,6 @@ These messages do not affect the functionality of the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>3442483</td>
-<td>When you change the bridge MAC address with the NVUE {{nv set system global system-mac &lt;mac-address&gt;}} command and change the global MTU policy from the default setting (9216), the switch drops local route traffic and {{switchd}} goes into a continuous sync cycle causing a high CPU.  To work around this issue, restart {{switchd}} to restore the switch back to a normal state with the latest configuration.</td>
-<td>5.5.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3436595</td>
 <td>When using WJH, if you export dropped packets to a file in PCAP format, the file contains custom WJH header data. As a result, certain tools, such as Wireshark, cannot decode the data. To work around this issue, use the {{--no_metadata}} option with the export command:
 
@@ -134,13 +134,6 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <tr>
 <td>3395489</td>
 <td>On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.</td>
-<td>5.4.0-5.5.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3389950</td>
-<td>NVUE does not accept special characters in the system hostname; avoid using special characters in the system hostname.
-</td>
 <td>5.4.0-5.5.0</td>
 <td></td>
 </tr>

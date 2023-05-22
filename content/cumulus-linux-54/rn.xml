@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3466703</td>
+<td>In rare cases when there is high load, the {{clagd}} service might experience a buffer overflow and MLAG bonds stay in a proto-down state on the secondary switch. You see a "NetlinkThread: Netlink overflow" log message and the MLAG state indicates VLAN conflicts between peers. To work around this issue, restart the {{clagd}} service with the {{sudo systemctl restart clagd}} command on the switch that reports the overflow log message.</td>
+<td>5.2.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3459696</td>
 <td>If you run the NVUE {{nv show vrf &lt;vrf&gt; router bgp peer-group &lt;peer-group&gt;}} command when the BGP instance is not enabled, you see an NVUE traceback error.</td>
 <td>5.4.0-5.5.0</td>
@@ -152,13 +158,6 @@ To work around this issue, manually install the {{python-netaddr}} package with 
 <td>The {{neighmgrd}} service does not enable the snooper unless ARP suppression is enabled on at least one VXLAN interface. This can result in missing ARP and NDP entries if the host does not directly interact with the switch.</td>
 <td>5.3.1-5.4.0</td>
 <td>5.5.0</td>
-</tr>
-<tr>
-<td>3389950</td>
-<td>NVUE does not accept special characters in the system hostname; avoid using special characters in the system hostname.
-</td>
-<td>5.4.0-5.5.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3389198</td>

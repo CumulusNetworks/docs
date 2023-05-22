@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3466703</td>
+<td>In rare cases when there is high load, the {{clagd}} service might experience a buffer overflow and MLAG bonds stay in a proto-down state on the secondary switch. You see a "NetlinkThread: Netlink overflow" log message and the MLAG state indicates VLAN conflicts between peers. To work around this issue, restart the {{clagd}} service with the {{sudo systemctl restart clagd}} command on the switch that reports the overflow log message.</td>
+<td>5.2.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3459696</td>
 <td>If you run the NVUE {{nv show vrf &lt;vrf&gt; router bgp peer-group &lt;peer-group&gt;}} command when the BGP instance is not enabled, you see an NVUE traceback error.</td>
 <td>5.4.0-5.5.0</td>
@@ -95,12 +101,6 @@ These messages do not affect the functionality of the switch.</td>
 <tr>
 <td>3442569</td>
 <td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
-<td>5.5.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3442483</td>
-<td>When you change the bridge MAC address with the NVUE {{nv set system global system-mac &lt;mac-address&gt;}} command and change the global MTU policy from the default setting (9216), the switch drops local route traffic and {{switchd}} goes into a continuous sync cycle causing a high CPU.  To work around this issue, restart {{switchd}} to restore the switch back to a normal state with the latest configuration.</td>
 <td>5.5.0</td>
 <td></td>
 </tr>

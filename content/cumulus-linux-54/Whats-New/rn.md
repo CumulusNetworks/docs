@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3466703"></a> [3466703](#3466703) <a name="3466703"></a> <br /> | In rare cases when there is high load, the <code>clagd</code> service might experience a buffer overflow and MLAG bonds stay in a proto-down state on the secondary switch. You see a "NetlinkThread: Netlink overflow" log message and the MLAG state indicates VLAN conflicts between peers. To work around this issue, restart the <code>clagd</code> service with the <code>sudo systemctl restart clagd</code> command on the switch that reports the overflow log message. | 5.2.0-5.5.0 | |
 | <a name="3459696"></a> [3459696](#3459696) <a name="3459696"></a> <br /> | If you run the NVUE <code>nv show vrf <vrf> router bgp peer-group <peer-group></code> command when the BGP instance is not enabled, you see an NVUE traceback error. | 5.4.0-5.5.0 | |
 | <a name="3447762"></a> [3447762](#3447762) <a name="3447762"></a> <br /> | If the NVUE <code>startup.yaml</code> configuration file is invalid,  the <code>nv config apply startup</code> command times out without providing details on the error. | 5.4.0-5.5.0 | |
 | <a name="3446455"></a> [3446455](#3446455) <a name="3446455"></a> <br /> | The vtysh <code>show version</code> command shows an incorrect version number; for  example, instead of Cumulus Linux 5.4, the command output shows Cumulus Linux 5.3. | 5.4.0 | 5.5.0|

@@ -4819,12 +4819,6 @@ Provides commands to configure options for handling the AS_PATH for prefixes to 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn</h>
-
-Turns the option for a received AS_PATH to contain the ASN of the local system on or off .
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn enable</h>
 
 Configures BGP to allow a received AS path to contain the ASN of the local system.
@@ -5125,7 +5119,24 @@ Provides commands to configure options for handling the AS_PATH for IPv6 prefixe
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath allow-my-asn</h>
 
-Turns on or off the option to allow the received AS_PATH to contain the ASN of the local system.
+Enables or disables the option to allow the received AS_PATH to contain the ASN of the local system.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath allow-my-asn enable on
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

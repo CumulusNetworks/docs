@@ -11,21 +11,21 @@ imgData: guides
     overflow-y: auto;
   }
 </style>
-Layer 2 extension from one data center to another typically supports an application or a system that requires layer 2 adjacency. Some legacy applications require layer 2 adjacency for their operations and those systems---although fewer and fewer---continue to exist in enterprise environments. <!--???--> <!--Keeping in mind that modern era of cloud has already said his goodbye with layer 2 world, one can easily draw some conclusions out of this. As such that extending layer 2 domains across long distances is synonym with procrastination your life-long challenges and delaying a closure, which will eventually come back to you as a few technical troubles. Therefore, this option should be considered as last resort when an engineer has no other means of solving organizational and technical problems other than extending layer 2 across geographically separated data centers. -->
+Layer 2 extension from one data center to another typically supports an application or a system that requires layer 2 adjacency. Some legacy applications require layer 2 adjacency for their operations and those systems, although fewer and fewer, continue to exist in enterprise environments. <!--???--> <!--Keeping in mind that modern era of cloud has already said his goodbye with layer 2 world, one can easily draw some conclusions out of this. As such that extending layer 2 domains across long distances is synonym with procrastination your life-long challenges and delaying a closure, which will eventually come back to you as a few technical troubles. Therefore, this option should be considered as last resort when an engineer has no other means of solving organizational and technical problems other than extending layer 2 across geographically separated data centers. -->
 With the modern era of cloud computing, extending layer 2 domains across long distances is no longer a typical use case; consider this option as a last resort when you have no other way of solving organizational and technical problems other than extending layer 2 across geographically separated data centers.
 
 Layer 2 extensions are undesirable for the following reasons:
 - They can increase the chances of creating topological asymmetries.
 - Broadcast and multicast storms risk extending from one data center to others.
-- They can increase MTTR.
+- They can increase <span style="background-color:#F5F5DC">[MTTR](## "Mean Time to Recovery")</span>.
 - They are difficult to troubleshoot compared to a layer 3 extension because there is no clear demarcation between layer 2 and layer 3.
-- They require a layer 2 loop detection system on all ToR and leafs.  
+- They require a layer 2 loop detection system on all ToR and leaf switches.  
 
 By limiting the scope of the layer 2 network, you reduce the potential impact when problems occur. If it is not possible to avoid a layer 2 extension, it is crucial to keep the extended layer 2 broadcast domains to a minimum to limit MAC address advertisements and withdrawals. Extending layer 2 domains is the same as merging multiple broadcast domains; it creates a geographically separated large broadcast domain that is interconnected through a complex network over a distance.
 
 <!--diagram of reference topology-->
 
-Extending a layer 2 segment from one data center to another involves extending EVPN type-2 (MAC and IP address) routes for individual MAC addresses and type-3 (Inclusive Multicast) routes for BUM (Broadcast, Unknown-Unicast, and Multicast) traffic. In modern EVPN and VXLAN environments with multihoming, extending type-1 (Ethernet Auto Discovery) routes and type-4 (Ethernet Segment) routes is equally essential.
+Extending a layer 2 segment from one data center to another involves extending EVPN type-2 (MAC and IP address) routes for individual MAC addresses and type-3 (Inclusive Multicast) routes for <span style="background-color:#F5F5DC">[BUM](## "Broadcast, Unknown-Unicast, and Multicast")</span>  traffic. In modern EVPN and VXLAN environments with multihoming, extending type-1 (Ethernet Auto Discovery) routes and type-4 (Ethernet Segment) routes is equally essential.
 
 ## Configuration
 
@@ -34,9 +34,9 @@ DCI 1|DCI 2|
 |<table> </tr><tr><td>VRF</td><td>RED</td></tr><td>Layer 2 VNI</td><td>10</tr><td>Layer 3 VNI</td><td>4001</td></tr></table>| <table> </tr><tr><td>VRF</td><td>RED</td></tr><td>Layer 2 VNI</td><td>10</tr><td>Layer 3 VNI</td><td>4001</td></tr> </table>|
 |<table> </tr><tr><td>VRF</td><td>GREEN</td></tr><td>Layer 2 VNI</td><td>20</tr><td>Layer 3 VNI</td><td>4002</td></tr></table>| <table> </tr><tr><td>VRF</td><td>GREEN</td></tr><td>Layer 2 VNI</td><td>20</tr><td>Layer 3 VNI</td><td>4002</td></tr> </table>|
 
-The following configuration examples interconnect VLAN ID 10 in DC1 with VLAN ID 10 in DC2 using EVPN and VXLAN layer 2 stretch. The route target import statements connect two RED VRFs to each other and provide connectivity between server01 and server03 within the RED VRF, and server02 and server04 within the GREEN VRF. The RED and GREEN VRFs cannot communicate with each other. server01 and server03 are in the same broadcast domain as server02 and server04. From a layer 2 perspective, they are adjacent hosts. The servers include each other’s MAC addresses in their ARP cache.
+This example configuration interconnects VLAN ID 10 in DC1 with VLAN ID 10 in DC2 using EVPN and VXLAN layer 2 stretch. The route target import statements connect two RED VRFs to each other and provide connectivity between server01 and server03 within the RED VRF, and server02 and server04 within the GREEN VRF. The RED and GREEN VRFs cannot communicate with each other. server01 and server03 are in the same broadcast domain as server02 and server04. From a layer 2 perspective, they are adjacent hosts. The servers include each other’s MAC addresses in their ARP cache.
 
-The example also configures ESIs across the fabric; ESI addressing across the fabric must be unique.
+The example also configures multiple ESIs across the fabric, which must be unique.
 
 {{< tabs "TabID40 ">}}
 {{< tab "server01 ">}}
@@ -152,7 +152,6 @@ ubuntu@server03:~$ ip address 
 <div class=scroll>
 
 ```
-cumulus@leaf01:mgmt:~$ nv config show -o commands 
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 20 vni 20 
 cumulus@leaf01:mgmt:~$ nv set evpn enable on 
@@ -248,7 +247,6 @@ cumulus@spine01:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 type unnum
 <div class=scroll>
 
 ```
-cumulus@borderleaf01:mgmt:~$ nv config show -o commands 
 cumulus@borderleaf01:mgmt:~$ nv set evpn enable on 
 cumulus@borderleaf01:mgmt:~$ nv set interface eth0 ip vrf mgmt 
 cumulus@borderleaf01:mgmt:~$ nv set interface eth0 type eth 
@@ -289,7 +287,6 @@ cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group underlay r
 <div class=scroll>
 
 ```
-cumulus@leaf03:mgmt:~$ nv config show -o commands 
 cumulus@leaf03:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 
 cumulus@leaf03:mgmt:~$ nv set bridge domain br_default vlan 20 vni 20 
 cumulus@leaf03:mgmt:~$ nv set evpn enable on 
@@ -385,7 +382,6 @@ cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 type unnum
 <div class=scroll>
 
 ```
-cumulus@borderleaf04:mgmt:~$ nv config show -o commands 
 cumulus@borderleaf04:mgmt:~$ nv set evpn enable on 
 cumulus@borderleaf04:mgmt:~$ nv set interface eth0 ip vrf mgmt 
 cumulus@borderleaf04:mgmt:~$ nv set interface eth0 type eth 
@@ -423,7 +419,7 @@ cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group underlay r
 
 ## Diagnostic Commands
 
-Use the commands in this section to troubleshoot and validate your DCI configuration.
+The following commands can troubleshoot and validate the DCI configuration.
 
 {{< tabs "TabID426 ">}}
 {{< tab "DC1 ">}}
@@ -517,7 +513,6 @@ ESI                            VRF         �
 03:00:00:00:00:00:aa:00:00:02  VRF GREEN       A     72580647 72580648 1 
 03:00:00:00:00:00:bb:00:00:01  VRF RED         A     72580651 72580652 1 
 03:00:00:00:00:00:bb:00:00:02  VRF GREEN       A     72580649 72580650 1 
-
 ```
 
 ```
@@ -786,7 +781,7 @@ cumulus@leaf02:mgmt:~$ nv show bridge domain br_default mac-table 
 20  4365   br_default     permanent   br_default  4365         44:38:39:22:bb:07           10 
 ```
 
-Verify that the host routes over layer 3 VNI on VRF RED; the route for 192.168.1.110/32 points towards remote VTEP destinations with ECMP:
+Verify the host routes over the layer 3 VNI on VRF RED; the route for 192.168.1.110/32 points to remote VTEP destinations with ECMP:
 
 ```
 cumulus@leaf01:mgmt:~$ net show route vrf RED 

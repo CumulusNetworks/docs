@@ -13,7 +13,7 @@ imgData: guides
 </style>
 After the introduction of IP based VPN services, VRF route leaking has become more common in enterprise and service provider environments, and also in EVPN-based Ethernet VPNs. VRFs isolate routing tables, and create multi tenancy within a wide area network (WAN) and data center. However, routing across VRFs is often necessary, especially where external routing between VRFs is not possible or economical. When implementing route leaking in a data center fabric, you need to know where in the network route leaking needs to happen.  
 
-If you want to use a common denominator that keeps a summary of each POD, and interconnects PODs and DC locations, a border leaf is a good choice. Typically, you use border leafs where the data center interconnects, such as with a firewall, load balancer, intrusion detection system (IDS), SSL-offload device, and WEB application firewall (WAF). If you have any of these interconnected services, the border leaf is the point that has visibility into each tenant in the DC. You typically use these network and security services across VRFs that have a direct connection to each tenant network. Therefore, performing VRF route leaking on regular leaf prevents those services from seeing the big picture because they attach to a service leaf or a border leaf. Using a border leaf is also also a good idea if you prefer to have a deterministic set of next hops and a number of hops that reach the cross-connection point.
+If you want to use a common denominator that keeps a summary of each POD, and interconnects PODs and DC locations, a border leaf is a good choice. Typically, you use border leafs where the data center interconnects, such as with a firewall, load balancer, <span style="background-color:#F5F5DC">[IDS](## "intrusion detection system ")</span>, SSL-offload device, or <span style="background-color:#F5F5DC">[WAF](## "WEB application firewall ")</span>. If you have any of these interconnected services, the border leaf is the point that has visibility into each tenant in the DC. You typically use these network and security services across VRFs that have a direct connection to each tenant network. Therefore, performing VRF route leaking on regular leaf switches prevents those services from seeing the big picture because they attach to a service leaf or a border leaf. Using a border leaf is also also a good idea if you prefer to have a deterministic set of next hops or a number of hops that reach the cross-connection point.
 
 {{<img src="/images/guides/route-leaking-between-vrfs.png">}}
 
@@ -29,7 +29,6 @@ The following examples show a route leaking configuration.
 <div class=scroll>
 
 ```
-cumulus@borderleaf01:mgmt:~$ nv config show -o commands 
 cumulus@borderleaf01:mgmt:~$ nv set evpn enable on 
 cumulus@borderleaf01:mgmt:~$ nv set interface eth0 ip vrf mgmt 
 cumulus@borderleaf01:mgmt:~$ nv set interface eth0 type eth 
@@ -104,7 +103,6 @@ cumulus@borderleaf01:mgmt:~$ nv set vrf default router bgp peer-group underlay r
 <div class=scroll>
 
 ```
-cumulus@borderleaf04:mgmt:~$ nv config show -o commands 
 cumulus@borderleaf04:mgmt:~$ nv set evpn enable on 
 cumulus@borderleaf04:mgmt:~$ nv set interface eth0 ip vrf mgmt 
 cumulus@borderleaf04:mgmt:~$ nv set interface eth0 type eth 
@@ -170,7 +168,6 @@ cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group underlay a
 cumulus@borderleaf04:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
-<br>
 
 {{< /tab >}}
 {{< tab "leaf01 ">}}
@@ -263,7 +260,6 @@ cumulus@leaf03:mgmt:~$ nv set vrf default router bgp peer-group underlay address
 cumulus@leaf03:mgmt:~$ nv set vrf default router bgp peer-group underlay remote-as external 
 ```
 </div>
-<br>
 
 {{< /tab >}}
 {{< /tabs >}}

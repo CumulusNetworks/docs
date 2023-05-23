@@ -395,18 +395,14 @@ You can assign an IP address and other DHCP options based on physical location o
 {{< tab "IPv4 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server default static server1 ip-address 10.0.0.2
-cumulus@switch:~$ nv set service dhcp-server default interface swp1
-cumulus@switch:~$ nv config apply
+Cumulus Linux does not provide NVUE commands for this setting.
 ```
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
 ```
-cumulus@switch:~$ nv set service dhcp-server6 default static server1 ip-address 2001:db8:1::100
-cumulus@switch:~$ nv set service dhcp-server6 default interface swp1
-cumulus@switch:~$ nv config apply
+Cumulus Linux does not provide NVUE commands for this setting.
 ```
 
 {{< /tab >}}
@@ -423,9 +419,26 @@ cumulus@switch:~$ nv config apply
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
    ...
-   host myhost {
-       ifname "swp1" ;
-       fixed-address 10.0.0.10 ;
+   authoritative;
+   option cumulus-provision-url code 239 = text;
+   
+   subnet 10.0.0.0 netmask 255.255.255.0 {
+       option domain-name-servers 192.168.200.53;
+       option domain-name "example.com";
+       option routers 10.0.0.1;
+       default-lease-time 3600;
+       max-lease-time 3600;
+       ping-check off;
+   
+       pool {
+           range 10.0.0.2 10.0.0.254;
+       }
+   }
+   group {
+       host myhost {
+           ifname "swp1" ;
+           fixed-address 10.0.0.2 ;
+       }
    }
    ...
    ```

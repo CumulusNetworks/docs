@@ -53,7 +53,6 @@ type               ipv4
 
 rule
 =======
-
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -187,6 +186,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action erspan
+     operational  applied  pending
+---  -----------  -------  -------
+ttl                        200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -325,6 +327,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip
+             operational  applied
+-----------  -----------  -------
+protocol                  tcp    
+[dest-port]               200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -605,6 +611,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl
+ACL Name  Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
+--------  -------  ----------  --------  -----------  ---------
+EXAMPLE1  10                             0            0 
+
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -628,6 +638,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1
+Statistics
+=============
+    Rule  In Packet  In Byte  Out Packet  Out Byte  Summary                
+    ----  ---------  -------  ----------  --------  -----------------------
+    10                        0           0 Bytes   match.ip.dest-port: 200
+                                                    match.ip.protocol:  tcp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -743,6 +759,10 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 statistics
+Rule  In Packet  In Byte  Out Packet  Out Byte  Summary                
+----  ---------  -------  ----------  --------  -----------------------
+10                        0           0 Bytes   match.ip.dest-port: 200
+                                                match.ip.protocol:  tcp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -766,6 +786,15 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 statistics 10
+                 operational  applied
+---------------  -----------  -------
+match                                
+  ip                                 
+    protocol     tcp                 
+    [dest-port]  200                 
+outbound                             
+  byte           0 Bytes             
+  packet         0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -782,6 +811,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system acl
+      applied
+----  -------
+mode  atomic 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -842,50 +874,6 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show system control-plane acl ACL1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system control-plane acl \<acl-id\> inbound</h>
-
-Shows configuration information for the specified inbound control plane ACL.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system control-plane acl ACL1 inbound
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system control-plane acl \<acl-id\> outbound</h>
-
-Shows configuration information for the specified outbound control plane ACL.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system control-plane acl ACL1 outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

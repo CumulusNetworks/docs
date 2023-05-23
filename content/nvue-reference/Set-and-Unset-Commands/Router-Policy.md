@@ -253,24 +253,7 @@ cumulus@switch:~$ nv set router policy ext-community-list mylist rule 10 action 
 
 ## <h>nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community</h>
 
-Configures the extended community name.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<list-id>` |  The extended community list name. |
-| `<rule-id>` | The extended community list rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router policy ext-community-list mylist rule 10 ext-community 64510:2
-```
+Configures the extended community.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -625,17 +608,6 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10
 
 Configures the route map rule action; `permit` or `deny`.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` | The route map rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action deny</h>
@@ -656,7 +628,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 deny
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action deny
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -702,7 +674,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 permit exit-policy
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -756,17 +728,6 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 description "this 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match</h>
 
 Configures the match criteria you want to use for the route map rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` | The route map rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

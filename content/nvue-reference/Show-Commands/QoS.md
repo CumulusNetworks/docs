@@ -27,7 +27,13 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp5 qos
+cumulus@switch:~$ nv show interface swp1 qos
+                  operational  applied    
+----------------  -----------  -----------
+egress-scheduler                          
+  profile                      list2      
+mapping                                   
+  profile                      customports
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -254,6 +260,53 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 counters qos
+Ingress Buffer Statistics
+============================
+    priority-group  rx-frames  rx-buffer-discards  rx-shared-buffer-discards
+    --------------  ---------  ------------------  -------------------------
+    0               0          0 Bytes             0 Bytes                  
+    1               0          0 Bytes             0 Bytes                  
+    2               0          0 Bytes             0 Bytes                  
+    3               0          0 Bytes             0 Bytes                  
+    4               0          0 Bytes             0 Bytes                  
+    5               0          0 Bytes             0 Bytes                  
+    6               0          0 Bytes             0 Bytes                  
+    7               0          0 Bytes             0 Bytes                  
+
+Egress Queue Statistics
+==========================
+    traffic-class  tx-frames  tx-bytes  tx-uc-buffer-discards  wred-discards
+    -------------  ---------  --------  ---------------------  -------------
+    0              0          0 Bytes   0 Bytes                0            
+    1              0          0 Bytes   0 Bytes                0            
+    2              0          0 Bytes   0 Bytes                0            
+    3              0          0 Bytes   0 Bytes                0            
+    4              0          0 Bytes   0 Bytes                0            
+    5              0          0 Bytes   0 Bytes                0            
+    6              0          0 Bytes   0 Bytes                0            
+    7              0          0 Bytes   0 Bytes                0            
+
+PFC Statistics
+=================
+    switch-priority  rx-pause-frames  rx-pause-duration  tx-pause-frames  tx-pause-duration
+    ---------------  ---------------  -----------------  ---------------  -----------------
+    0                0                0                  0                0                
+    1                0                0                  0                0                
+    2                0                0                  0                0                
+    3                0                0                  0                0                
+    4                0                0                  0                0                
+    5                0                0                  0                0                
+    6                0                0                  0                0                
+    7                0                0                  0                0                
+
+Qos Port Statistics
+======================
+    Counter             Receive  Transmit
+    ------------------  -------  --------
+    ecn-marked-packets  n/a      0       
+    mc-buffer-discards  n/a      0       
+    pause-frames        0        0
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -280,6 +333,20 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 counters qos egress-queue-stats
+
+ECN configuration
+====================
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos egress-queue-stats
+traffic-class  tx-frames  tx-bytes  tx-uc-buffer-discards  wred-discards
+-------------  ---------  --------  ---------------------  -------------
+0              0          0 Bytes   0 Bytes                0            
+1              0          0 Bytes   0 Bytes                0            
+2              0          0 Bytes   0 Bytes                0            
+3              0          0 Bytes   0 Bytes                0            
+4              0          0 Bytes   0 Bytes                0            
+5              0          0 Bytes   0 Bytes                0            
+6              0          0 Bytes   0 Bytes                0            
+7              0          0 Bytes   0 Bytes                0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -305,7 +372,17 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 counters ingress-buffer-stats
+cumulus@switch:~$ nv show interface swp1 counters qos ingress-buffer-stats
+priority-group  rx-frames  rx-buffer-discards  rx-shared-buffer-discards
+--------------  ---------  ------------------  -------------------------
+0               0          0 Bytes             0 Bytes                  
+1               0          0 Bytes             0 Bytes                  
+2               0          0 Bytes             0 Bytes                  
+3               0          0 Bytes             0 Bytes                  
+4               0          0 Bytes             0 Bytes                  
+5               0          0 Bytes             0 Bytes                  
+6               0          0 Bytes             0 Bytes                  
+7               0          0 Bytes             0 Bytes
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -332,6 +409,16 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 counters qos pfc-stats
+switch-priority  rx-pause-frames  rx-pause-duration  tx-pause-frames  tx-pause-duration
+---------------  ---------------  -----------------  ---------------  -----------------
+0                0                0                  0                0                
+1                0                0                  0                0                
+2                0                0                  0                0                
+3                0                0                  0                0                
+4                0                0                  0                0                
+5                0                0                  0                0                
+6                0                0                  0                0                
+7                0                0                  0                0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -603,7 +690,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp5 qos mapping
+cumulus@switch:~$ nv show interface swp1 qos mapping
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -670,7 +757,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp5 qos mapping pcp
+cumulus@switch:~$ nv show interface swp1 qos mapping pcp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1306,6 +1393,10 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-pool
+Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
+-------  --------  --------------  -------  --------  ------------  ------------
+0                  80              dynamic                                      
+3                  20
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1393,6 +1484,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos congestion-control
+Profile         Summary         
+--------------  ----------------
+default-global  traffic-class: 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1415,6 +1509,16 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos congestion-control default-global
+    operational  applied  description
+--  -----------  -------  -----------
+
+ECN Configurations
+=====================
+    traffic-class  ECN     RED     Min Th   Max Th    Probability
+    -------------  ------  ------  -------  --------  -----------
+    4              enable  enable  40000 B  200000 B  100
+    5              enable  enable  40000 B  200000 B  100
+    7              enable  enable  40000 B  200000 B  100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1437,6 +1541,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos congestion-control default-global traffic-class
+traffic-class  ECN     RED      Min Th     Max Th   Probability
+-------------  ------  -------  ---------  -------  -----------
+0              enable  disable  146.48 KB  1.43 MB  100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1460,6 +1567,13 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos congestion-control default-global traffic-class 4
+               operational  applied   description
+-------------  -----------  --------  -----------------------------------
+ecn            enable       enable    Early Congestion Notification State
+max-threshold  200000 B     200000 B  Maximum Threshold (in bytes)
+min-threshold  40000 B      40000 B   Minimum Threshold (in bytes)
+probability    100          100       Probability
+red            enable       enable    Random Early Detection State
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1476,6 +1590,16 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos egress-queue-mapping
+Profile         Summary           
+--------------  ------------------
+default-global  switch-priority: 0
+                switch-priority: 1
+                switch-priority: 2
+                switch-priority: 3
+                switch-priority: 4
+                switch-priority: 5
+                switch-priority: 6
+                switch-priority: 7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1498,6 +1622,21 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos egress-queue-mapping default-global
+    operational  applied  description
+--  -----------  -------  -----------
+
+SP->TC mapping configuration
+===============================
+    switch-priority  traffic-class
+    ---------------  -------------
+    0                0
+    1                1
+    2                7
+    3                3
+    4                4
+    5                5
+    6                6
+    7                7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1520,6 +1659,16 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos egress-queue-mapping default-global switch-priority
+switch-priority  traffic-class
+---------------  -------------
+0                0            
+1                1            
+2                2            
+3                3            
+4                4            
+5                5            
+6                6            
+7                7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1543,6 +1692,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos egress-queue-mapping default-global switch-priority 2
+               operational  applied  description
+-------------  -----------  -------  -------------
+traffic-class  7            7        Traffic Class
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1559,6 +1711,32 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos egress-scheduler
+Profile         Summary         
+--------------  ----------------
+default-global  traffic-class: 0
+                traffic-class: 1
+                traffic-class: 2
+                traffic-class: 3
+                traffic-class: 4
+                traffic-class: 5
+                traffic-class: 6
+                traffic-class: 7
+list1           traffic-class: 0
+                traffic-class: 1
+                traffic-class: 2
+                traffic-class: 3
+                traffic-class: 4
+                traffic-class: 5
+                traffic-class: 6
+                traffic-class: 7
+list2           traffic-class: 0
+                traffic-class: 1
+                traffic-class: 2
+                traffic-class: 3
+                traffic-class: 4
+                traffic-class: 5
+                traffic-class: 6
+                traffic-class: 7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1581,6 +1759,21 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos egress-scheduler default-global
+    operational  applied  description
+--  -----------  -------  -----------
+
+TC->DWRR weight configuration
+================================
+    traffic-class  mode    bw-percent
+    -------------  ------  ----------
+    0              strict
+    1              strict
+    2              dwrr    30
+    3              dwrr    20
+    4              dwrr    20
+    5              strict
+    6              dwrr    30
+    7              strict
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1603,6 +1796,16 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos egress-scheduler default-global traffic-class
+traffic-class  mode  bw-percent
+-------------  ----  ----------
+0              dwrr  12        
+1              dwrr  13        
+2              dwrr  12        
+3              dwrr  13        
+4              dwrr  12        
+5              dwrr  13        
+6              dwrr  12        
+7              dwrr  13
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1626,6 +1829,10 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos egress-scheduler default-global traffic-class 2
+            operational  applied
+----------  -----------  -------
+bw-percent  12           12     
+mode        dwrr         dwrr
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1763,6 +1970,17 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos mapping
+Profile         Port Default SP  Trust  Summary  
+--------------  ---------------  -----  ---------
+customports     4                port            
+default-global  0                l2     802.1p: 0
+                                        802.1p: 1
+                                        802.1p: 2
+                                        802.1p: 3
+                                        802.1p: 4
+                                        802.1p: 5
+                                        802.1p: 6
+                                        802.1p: 7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1785,6 +2003,10 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos mapping default-global
+                 operational  applied  description
+---------------  -----------  -------  ----------------------------
+port-default-sp  3            3        Port Default Switch Priority
+trust            port         port     Port Trust configuration
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1830,6 +2052,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos mapping default-global pcp 0
+                 operational  applied  description
+---------------  -----------  -------  ------------------------
+switch-priority  4            4        Internal Switch Priority
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1875,6 +2100,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos mapping default-global dscp 22
+                 operational  applied  description
+---------------  -----------  -------  ------------------------
+switch-priority  4            4        Internal Switch Priority
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1913,6 +2141,15 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos pfc default-global
+                   operational  applied  description
+-----------------  -----------  -------  --------------------------------
+cable-length       50           50       Cable Length (in meters)
+port-buffer        25000 B      25000 B  Port Buffer (in bytes)
+rx                 disable      disable  PFC Rx State
+tx                 enable       enable   PFC Tx State
+xoff-threshold     10000 B      10000 B  Xoff Threshold (in bytes)
+xon-threshold      2000 B       2000 B   Xon Threshold (in bytes)
+[switch-priority]  0            0        Collection of switch priorities
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2159,6 +2396,17 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos traffic-pool default-lossy
+                   applied
+-----------------  -------
+memory-percent     80     
+[switch-priority]  0      
+[switch-priority]  1      
+[switch-priority]  2      
+[switch-priority]  3      
+[switch-priority]  4      
+[switch-priority]  5      
+[switch-priority]  6      
+[switch-priority]  7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

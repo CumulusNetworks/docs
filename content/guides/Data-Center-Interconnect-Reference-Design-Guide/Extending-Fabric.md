@@ -42,7 +42,7 @@ Assigning each border leaf pair a common AS number prevents locally advertised p
 
 ### Underlay and Overlay Considerations
 
-EVPN and VXLAN is an overlay technology that creates an underlay, topology-independent fabric with multitenancy, redundancy, and load-balancing capabilities. However, to establish VXLAN tunnels from leaf to leaf, the network must distribute tunnel source addresses (usually a loopback) using an underlay routing protocol. This allows all VXLAN peers to have the host route of each tunnel destination as a /32 prefix in their routing tables. This is a fundamental principle of EVPN and VXLAN---each leaf requires a host route of all the corresponding PE VXLAN tunnel destination addresses in its routing table so that it can establish end-to-end VXLAN tunnels.
+EVPN-VXLAN is an overlay technology that creates a topology-independent underlay fabric. Decoupling the underlay from the overlay creates a network with multitenancy, redundancy, and host mobility across a vendor-agnostic ecosystem. However, to establish VXLAN tunnels from leaf to leaf, the network must distribute tunnel source addresses (usually a loopback) using an underlay routing protocol. This allows all VXLAN peers to have the host route of each tunnel destination as a /32 prefix in their routing tables. This is a fundamental principle of EVPN and VXLAN---each leaf requires a host route of all the corresponding PE VXLAN tunnel destination addresses in its routing table so that it can establish end-to-end VXLAN tunnels.
 
 The following command shows the VXLAN tunnel destination address of the corresponding PE:
 

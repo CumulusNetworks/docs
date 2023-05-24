@@ -372,6 +372,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast aggregate-route
+
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -395,6 +396,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16
+              operational  applied  
+------------  -----------  ---------
+as-set                     on       
+route-map                  routemap1
+summary-only               on 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1243,6 +1249,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast upd
 
 Shows information about a specific BGP IPv4 update group in the specified VRF.
 
+{{%notice note%}}
+Add `-o json` at the end of the command to see the output in a more readable format.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1257,7 +1267,42 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 1
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 3 -o json
+{
+  "create-time": 1682967480,
+  "min-route-advertisement-interval": 0,
+  "sub-group": {
+    "7": {
+      "adjacency-count": 8,
+      "coalesce-time": 1250,
+      "counters": {
+        "join-events": 6,
+        "merge-check-events": 0,
+        "merge-events": 4,
+        "peer-refresh-events": 0,
+        "prune-events": 4,
+        "split-events": 0,
+        "switch-events": 0
+      },
+      "create-time": 1682967480,
+      "needs-refresh": "off",
+      "neighbor": {
+        "swp51": {},
+        "swp52": {}
+      },
+      "packet-counters": {
+        "queue-hwm-len": 5,
+        "queue-len": 0,
+        "queue-total": 42,
+        "total-enqueued": 42
+      },
+      "sub-group-id": 7,
+      "version": 106
+    }
+  },
+  "update-group-id": "3"
+}
+
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1266,6 +1311,10 @@ cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast upd
 
 Shows the subgroups for a specific BGP IPv4 update group in the specified VRF.
 
+{{%notice note%}}
+Add `-o json` at the end of the command to see the output in a more readable format.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax | Description |
@@ -1280,7 +1329,37 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 2 subgroup
+cumulus@switch:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 3 subgroup
+ -o json
+{
+  "7": {
+    "adjacency-count": 8,
+    "coalesce-time": 1250,
+    "counters": {
+      "join-events": 6,
+      "merge-check-events": 0,
+      "merge-events": 4,
+      "peer-refresh-events": 0,
+      "prune-events": 4,
+      "split-events": 0,
+      "switch-events": 0
+    },
+    "create-time": 1682967480,
+    "needs-refresh": "off",
+    "neighbor": {
+      "swp51": {},
+      "swp52": {}
+    },
+    "packet-counters": {
+      "queue-hwm-len": 5,
+      "queue-len": 0,
+      "queue-total": 42,
+      "total-enqueued": 42
+    },
+    "sub-group-id": 7,
+    "version": 106
+  }
+}
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1737,6 +1816,14 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib
+
+IPV6 Routes
+==============
+                                                                             
+    LocalPref - Local Preference, Best - Best path, Reason - Reason for selection
+                                                                             
+    IPv6 Prefix  Nexthop  Metric  Weight  LocalPref  Aspath  Best  Reason  Flags
+    -----------  -------  ------  ------  ---------  ------  ----  ------  -----
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3044,7 +3131,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3170,7 +3257,10 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 flags -o json
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 path 1 flags 
+operational  applied
+-----------  -------
+multipath
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

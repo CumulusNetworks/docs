@@ -86,7 +86,7 @@ Validates the communication status of all nodes (leafs, spines, and hosts) runni
 ### Syntax
 
 ```
-netq check agents streaming
+netq check agents (legacy | streaming)
     [hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>]
     [include <agents-number-range-list> | exclude <agents-number-range-list>]
@@ -96,7 +96,9 @@ netq check agents streaming
 
 ### Required Arguments
 
-None
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| legacy, streaming | N/A | Perform a legacy (non-streaming) or streaming check.  |
 
 ### Options
 
@@ -295,7 +297,7 @@ Warning nodes       : 0
 Cumulus Linux Image Version Test   : passed
 ```
 
-List devices which do not match a version
+List devices which do not match a version:
 
 ```
 cumulus@switch:~$ netq check cl-version match-version 3.7.12
@@ -326,7 +328,7 @@ spine03           OS           4.2.1                                unexpected o
 spine04           OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
 ```
 
-List devices with a version greater than or equal to a version
+List devices with a version greater than or equal to a version:
 
 ```
 cumulus@switch:~$ netq check cl-version min-version 3.7.12
@@ -348,6 +350,10 @@ Cumulus Linux Image Version Test   : passed
 - - -
 
 ## netq check clag
+
+{{%notice tip%}}
+Use `netq check mlag` in place of `netq check clag`. The `netq check clag` command remains available for automation scripts, but is no longer being developed.
+{{%/notice%}}
 
 Verifies CLAG session consistency by identifying all CLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for:
 
@@ -473,9 +479,10 @@ SVI Test                 : passed
 
 ### Related Commands
 
-- ```netq show clag```
-- ```netq show unit-tests clag```
-- ```netq add validation```
+- `netq check mlag`
+- `netq show clag`
+- `netq show unit-tests clag`
+- `netq add validation`
 
 - - -
 <!-- vale off -->
@@ -584,6 +591,8 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of ports that failed validation
 - Number of unverified ports (no peer found for the node)
 
+This command only checks the physical interfaces; it does not check bridges, bonds, or other software constructs.
+
 ### Syntax
 
 ```
@@ -654,8 +663,6 @@ server06          eth1                      leaf03            swp3              
 server06          eth2                      leaf04            swp3                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
 ```
 
-Basic validation without error information:
-
 ```
 cumulus@switch:~$ netq check interfaces summary
 interface check result summary:
@@ -676,12 +683,35 @@ Oper State Test    : passed
 Speed Test         : passed
 Autoneg Test       : 0 warnings, 12 errors
 ```
+This example checks for configuration mismatches and finds a link speed mismatch on server03. The link speed on swp49 is *40G* and the peer port swp50 shows as *unknown*.
+
+```
+cumulus@switch:~$ netq check interfaces
+Checked Nodes: 10, Failed Nodes: 1
+Checked Ports: 125, Failed Ports: 2, Unverified Ports: 35
+Hostname          Interface                 Peer Hostname     Peer Interface            Message
+----------------- ------------------------- ----------------- ------------------------- -----------------------------------
+server03          swp49                     server03          swp50                     Speed mismatch (40G, Unknown)      
+server03          swp50                     server03          swp49                     Speed mismatch (Unknown, 40G)  
+```
+
+```
+cumulus@switch:~$ netq check interfaces
+Checked Nodes: 18, Failed Nodes: 8
+Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
+ 
+Matching cables records:
+Hostname          Interface                 Peer Hostname     Peer Interface            Message
+----------------- ------------------------- ----------------- ------------------------- -----------------------------------
+leaf02            -                         -                 -                         Link flapped 11 times in last 5
+                                                                                        mins                    
+```
 
 ### Related Commands
 
-- ```netq show interfaces```
-- ```netq show unit-tests interfaces```
-- ```netq add validation```
+- `netq show interfaces physical`
+- `netq show unit-tests interfaces`
+- `netq add validation`
 
 - - -
 
@@ -707,7 +737,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 
 ```
 netq check mlag
-    [label <text-label-name> | hostnames <text-list-hostnames> ]
+    [label <text-label-name> | hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>]
     [include <mlag-number-range-list> | exclude <mlag-number-range-list>]
     [around <text-time>]
@@ -1066,19 +1096,11 @@ None
 
 ### Sample Usage
 
+The default validation runs a networkwide OSPF connectivity and configuration check on all nodes running the OSPF service. This example shows errors in the timers and interface MTU tests.
+
 ```
 cumulus@switch:~# netq check ospf
-ospf check result summary:
-
-Total nodes: 8
-Checked nodes: 8
-Failed nodes: 4
-Rotten nodes: 0
-Warning nodes: 0
-
-Additional summary:
-Failed Adjacencies: 4
-Total Adjacencies: 24
+Checked nodes: 8, Total nodes: 8, Rotten nodes: 0, Failed nodes: 4, Warning nodes: 0, Failed Adjacencies: 4, Total Adjacencies: 24
 
 Router ID Test        : passed
 Adjacency Test        : passed
@@ -1113,6 +1135,12 @@ tor-2             uplink-2                  0.0.0.20                  27.0.0.20 
 ## netq check roce
 
 Searches for consistent RoCE and QoS configurations across nodes.
+
+{{<notice note>}}
+
+This command captures additional mismatches on NVUE-enabled switches running Cumulus Linux 5.0 or later and NetQ Agent 4.6.0. Priority code point (PCP) monitoring requires a switch running NetQ Agent 4.5 or later.
+
+{{</notice>}}
 ### Syntax
 
 ```
@@ -1147,19 +1175,56 @@ None
 cumulus@switch:mgmt:~$ netq check roce
 roce check result summary:
 
-Total nodes         : 12
-Checked nodes       : 12
-Failed nodes        : 0
+Total nodes         : 2
+Checked nodes       : 2
+Failed nodes        : 2
 Rotten nodes        : 0
 Warning nodes       : 0
 Skipped nodes       : 0
 
 
-RoCE mode Test                 : passed
-RoCE Classification Test       : passed
+RoCE mode Test                 : 0 warnings, 1 errors
+RoCE Classification Test       : 0 warnings, 6 errors
 RoCE Congestion Control Test   : passed
-RoCE Flow Control Test         : passed
+RoCE Flow Control Test         : 0 warnings, 3 errors
 RoCE ETS mode Test             : passed
+
+
+RoCE mode Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+mlx-3700c-24      RoCE Lossy mode inconsistent with mlx-3700c-2
+                  3                                            
+
+
+RoCE Classification Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+mlx-3700c-23      DSCP mapping config invalid for switch-prio 2.
+                  Expected DSCP: 16,17,18,19,20,21,22,23.  
+                  DSCP mapping config invalid for switch-prio 3.
+                  Expected DSCP: 24,25,26,27,28,29,30,31.        
+mlx-3700c-23      Invalid traffic-class mapping for switch-prio
+                  rity 3.Expected 3 Got 2                      
+mlx-3700c-23      RoCE SP->DSCP mapping 2->26 inconsistent with
+                  mlx-3700c-24                                 
+mlx-3700c-23      RoCE SP->PCP mapping 2->2 inconsistent with m
+                  lx-3700c-24                                  
+mlx-3700c-23      RoCE SP->TC mapping 2->0 inconsistent with ml
+                  x-3700c-24                                   
+mlx-3700c-24      RoCE SP->PG mapping 3->1 inconsistent with ml
+                  x-3700c-23                                   
+
+
+RoCE Flow Control Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+mlx-3700c-23      Invalid RoCE PFC rx-enabled flag.Expected: en
+                  abled.                                       
+mlx-3700c-23      RoCE PFC Priority Mismatch.Expected pfc-prior
+                  ity: 3.                                      
+mlx-3700c-23      RoCE PFC cable-length Mismatch.Expected cable
+                  -length: 100. 
 ```
 ### Related Commands
 

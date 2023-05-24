@@ -11,17 +11,15 @@ Follow these steps to set up and configure your VM for a cloud deployment:
 
     {{<netq-install/vm-reqs deployment="cloud" hypervisor="vmware">}}
 
-2. Confirm that the needed ports are open for communications.
-
-    {{<netq-install/port-reqs server="single">}}
+2. Confirm that the required ports are open for communications. {{<netq-install/port-reqs deployment="cloud" server="single">}}
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="cloud" version="4.5">}}
+    {{<netq-install/vmw-platform-image deployment="cloud" version="4.6">}}
 
-4. Setup and configure your VM.
+4. Set up and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="4.5">}}
+    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="4.6">}}
 
 5. Log in to the VM and change the password.
 
@@ -35,8 +33,8 @@ Follow these steps to set up and configure your VM for a cloud deployment:
 
     {{<netq-install/set-hostname>}}
 
-8. The final step is to install and activate the NetQ software using the CLI:
+8. Install and activate the NetQ software using the CLI:
 
-{{<netq-install/install-with-cli version="4.5" deployment="cloud-single">}}
+{{<netq-install/install-with-cli version="4.6" deployment="cloud-single">}}
 
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

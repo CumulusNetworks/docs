@@ -186,14 +186,14 @@ cumulus@switch:~$ netq add notification channel email onprem-email to netq-notif
 Successfully added/updated channel onprem-email
 ```
 
-Create a PagerDuty channel
+Create a PagerDuty channel:
 
 ```
 cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
 Successfully added/updated channel pd-netq-events
 ```
 
-Create a Slack channel
+Create a Slack channel:
 
 ```
 cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
@@ -201,7 +201,7 @@ Successfully added/updated channel slk-netq-events
 ```
 
 <!-- vale off -->
-Create a Syslog channel
+Create a Syslog channel:
 <!-- vale on -->
 
 ```
@@ -381,7 +381,7 @@ Successfully configured notifier proxy proxy4:80
 
 ## netq add tca
 
-NetQ supports a set of events that trigger after crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="TCA Event Messages Reference">}}.
+NetQ supports a set of events that trigger after crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="Threshold-Crossing Events Reference">}}.
 
 A TCA event notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel.  *Note: If a rule is not associated with a channel, the event information is only reachable from the database.* If you want to deliver events to one or more notification channels, create the channels before you create TCA events with ```netq add notification channel```.
 

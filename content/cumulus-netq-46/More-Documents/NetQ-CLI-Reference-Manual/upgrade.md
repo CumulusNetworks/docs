@@ -10,7 +10,7 @@ type: nojsscroll
 
 ## netq upgrade
 
-Upgrades NetQ on NetQ On-premises Appliances or VMs. For detailed instructions, see {{<link title="Upgrade NetQ Appliances and Virtual Machines" text="Upgrade NetQ Appliances and Virtual Machines">}}
+Upgrades NetQ on NetQ On-premises Appliances or VMs. For detailed instructions, see {{<link title="Upgrade NetQ Virtual Machines" text="Upgrade NetQ Virtual Machines">}}
 
 ### Syntax
 
@@ -31,7 +31,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.5.0.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.6.0.tgz
 ```
 
 ### Related Commands

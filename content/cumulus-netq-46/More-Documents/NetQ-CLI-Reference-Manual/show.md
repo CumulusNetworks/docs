@@ -78,14 +78,22 @@ Last Changed              Hostname          Ifname       Prefix                 
 Mon Nov 23 22:28:42 2020  leaf03            lo           10.10.10.3                     32       default
 ```
 
-Show only the differences between now and four months ago:
+The following example displays a full chronology of changes for an IP address. If a caret (^) notation appeared, it would indicate that there was no change in value from the row above.
 
 ```
-cumulus@switch:~$ netq show address-history 10.10.10.3 between now and 120d
+cumulus@switch:~$ netq show address-history 10.1.10.2/24
+
 Matching addresshistory records:
 Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
 ------------------------- ----------------- ------------ ------------------------------ -------- ---------------
-Thu Oct 15 22:28:16 2020  leaf03            lo           10.10.10.3                     32       default
+Tue Sep 29 15:35:21 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 15:35:24 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:07 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:08 2020  leaf01            vlan10       10.1.10.2                      24       RED
 ```
 
 Show changes grouped by VRF:
@@ -97,7 +105,23 @@ Last Changed              Hostname          Ifname       Prefix                 
 ------------------------- ----------------- ------------ ------------------------------ -------- ---------------
 Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104                    24       default
 ```
+The following example displays the history of an IP address between now and two hours ago. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
 
+```
+cumulus@switch:~$ netq show address-history 10.1.10.2/24 between 2h and now
+
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Tue Sep 29 15:35:21 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 15:35:24 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:07 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:08 2020  leaf01            vlan10       10.1.10.2                      24       RED
+```
 ### Related Commands
 
 - ```netq show mac-history```
@@ -245,7 +269,7 @@ None
 
 ### Sample Usage
 
-Display BGP sessions across all network nodes. This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and last time something changed.
+Display BGP sessions across all network nodes. This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and the last time something changed.
 
 
 ```
@@ -380,7 +404,7 @@ Hostname          Device Allocated     Unallocated Space    Largest Chunk Size  
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
 leaf01            37.79 %              3.58 GB              588.5 MB             771.91 MB            yes                  Wed Sep 16 21:25:17 2020
 ```
-
+Look for the **Rebalance Recommended** column. If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the output to determine if you are getting close to needing a rebalance, and come back to view this data at a later time.
 ### Related Commands
 
 - ```netq show cl-ssd-util```
@@ -911,13 +935,14 @@ leaf01            swp50                     8749                 0              
 
 ## netq show events
 
-Display system events that have occurred in the last 24 hours. Optionally, view events for a time in the past. You can filter the output by event severity and event type. The output provides the following information for each device:
+Display system events that have occurred in the last 24 hours. <!--is this 24 hours or 1 hour?--> You can filter the output by event severity and event type. The output provides the following information for each device:
 
 - Message type
 - Event severity (info, error)
 - Descriptive event message
 - When the event occurred
 
+Event querying is supported for a 72-hour window within the past 30 days.
 ### Syntax
 
 ```
@@ -989,41 +1014,21 @@ leaf02            services                 info             Service netqd status
                                                             nactive to active
 ...
 ```
-Display all BGP events between now and five days ago:
+
+Display events that have occurred on the leaf01 switch between now and an hour ago.
 
 ```
-cumulus@switch:~$ netq show events message_type bgp between now and 5d
-Matching bgp records:
-Hostname          Message Type Severity Message                             Timestamp
------------------ ------------ -------- ----------------------------------- -------------------------
-leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-...
+cumulus@switch:~$ netq leaf01 show events
+
+Matching events records:
+Hostname          Message Type             Severity         Message                             Timestamp
+----------------- ------------------------ ---------------- ----------------------------------- -------------------------
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 20:34:31 2020
+                                                            t after allocation greater than chu
+                                                            nk size 0.57 GB
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 20:04:30 2020
+                                                            t after allocation greater than chu
+                                                            nk size 0.57 GB
 ```
 ### Related Commands
 
@@ -1221,6 +1226,7 @@ The output provides the following for each device:
 - The associated VRF, VLANs, PVID, MTU, and LLDP peer
 - When the last change occurred for any of these items
 - The total number of interfaces on a given device
+- The module, vendor, part number, and performance info. for physical interfaces
 
 ### Syntax
 
@@ -1409,6 +1415,100 @@ leaf04            vlan20-v0                 macvlan          up         RED     
 leaf04            vlan30-v0                 macvlan          up         BLUE            MAC: 00:00:00:00:00:1c,             Tue Oct 27 22:29:06 2020
 ```
 
+Display cable information and status for all interface ports on all devices:
+
+```
+cumulus@switch:~$ netq show interfaces physical
+Matching cables records:
+Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
+----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
+border01          vagrant                   down       Unknown    off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp54                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp49                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp2                      down       Unknown    off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp3                      up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp52                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp1                      down       Unknown    off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp53                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp4                      down       Unknown    off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp50                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          eth0                      up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp51                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border02          swp49                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp54                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp52                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp53                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp4                      down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp3                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          vagrant                   down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp1                      down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp2                      down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp51                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp50                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          eth0                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+fw1               swp49                     down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:37 2020
+fw1               eth0                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:37 2020
+fw1               swp1                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:37 2020
+fw1               swp2                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:37 2020
+fw1               vagrant                   down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:37 2020
+fw2               vagrant                   down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:38 2020
+fw2               eth0                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:38 2020
+fw2               swp49                     down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:38 2020
+fw2               swp2                      down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:38 2020
+fw2               swp1                      down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:38 2020
+...
+```
+
+The following example displays detailed module information for the interface ports on the leaf02 switch:
+
+```
+cumulus@switch:~$ netq leaf02 show interfaces physical module
+Matching cables records are:
+Hostname          Interface                 Module    Vendor               Part No          Serial No                 Transceiver      Connector        Length Last Changed
+----------------- ------------------------- --------- -------------------- ---------------- ------------------------- ---------------- ---------------- ------ -------------------------
+leaf02            swp1                      RJ45      n/a                  n/a              n/a                       n/a              n/a              n/a    Thu Feb  7 22:49:37 2019
+leaf02            swp2                      SFP       Mellanox             MC2609130-003    MT1507VS05177             1000Base-CX,Copp Copper pigtail   3m     Thu Feb  7 22:49:37 2019
+                                                                                                                        er Passive,Twin
+                                                                                                                        Axial Pair (TW)
+leaf02            swp47                     QSFP+     CISCO                AFBR-7IER05Z-CS1 AVE1823402U               n/a              n/a              5m     Thu Feb  7 22:49:37 2019
+leaf02            swp48                     QSFP28    TE Connectivity      2231368-1        15250052                  100G Base-CR4 or n/a              3m     Thu Feb  7 22:49:37 2019
+                                                                                                                        25G Base-CR CA-L
+                                                                                                                        ,40G Base-CR4               
+leaf02            swp49                     SFP       OEM                  SFP-10GB-LR      ACSLR130408               10G Base-LR      LC               10km,  Thu Feb  7 22:49:37 2019
+                                                                                                                                                        10000m
+leaf02            swp50                     SFP       JDSU                 PLRXPLSCS4322N   CG03UF45M                 10G Base-SR,Mult LC               80m,   Thu Feb  7 22:49:37 2019
+                                                                                                                        imode,                            30m,  
+                                                                                                                        50um (M5),Multim                  300m  
+                                                                                                                        ode,            
+                                                                                                                        62.5um (M6),Shor
+                                                                                                                        twave laser w/o
+                                                                                                                        OFC (SN),interme
+                                                                                                                        diate distance (
+                                                                                                                        I)              
+leaf02            swp51                     SFP       Mellanox             MC2609130-003    MT1507VS05177             1000Base-CX,Copp Copper pigtail   3m     Thu Feb  7 22:49:37 2019
+                                                                                                                        er Passive,Twin
+                                                                                                                        Axial Pair (TW)
+leaf02            swp52                     SFP       FINISAR CORP.        FCLF8522P2BTL    PTN1VH2                   1000Base-T       RJ45             100m   Thu Feb  7 22:49:37 2019
+```
+
+The following example first determines which models (part numbers) exist on all the devices and then displays devices with a part number of QSFP-H40G-CU1M installed:
+
+```
+cumulus@switch:~$ netq show interfaces physical model
+    2231368-1         :  2231368-1
+    624400001         :  624400001
+    QSFP-H40G-CU1M    :  QSFP-H40G-CU1M
+    QSFP-H40G-CU1MUS  :  QSFP-H40G-CU1MUS
+    n/a               :  n/a
+
+cumulus@switch:~$ netq show interfaces physical model QSFP-H40G-CU1M
+Matching cables records:
+Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
+----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
+leaf01            swp50                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
+leaf02            swp52                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
+```
+
 ### Related Commands
 
 - `netq show events`
@@ -1589,6 +1689,13 @@ netq [<hostname>] show inventory disk
     [opta]
     [json]
 
+netq [<hostname>] show inventory license 
+    [cumulus] 
+    [status ok | status missing] 
+    [around <text-time>] 
+    [opta] 
+    [json]
+
 netq [<hostname>] show inventory memory
     [type <memory-type>|vendor <memory-vendor>]
     [opta]
@@ -1609,6 +1716,7 @@ netq [<hostname>] show inventory os
 | board | NA | Only display motherboard information: hostname, vendor, model, base MAC address, serial number, part number, revision, manufacturing date |
 | cpu | NA | Only display processor information: hostname, architecture, model, frequency, number of cores |
 | disk | NA | Only display disk information: hostname, disk name and type, transport, size, vendor, model |
+| license | NA | Only display license information: hostname, disk name and type, transport, size, vendor, model |
 | memory | NA | Only display memory information: hostname, memory name, type, size, speed, vendor, serial number |
 | os | NA | Only display operating system information: hostname, OS name, version, when changed |
 
@@ -1622,6 +1730,8 @@ netq [<hostname>] show inventory os
 | model-id | \<asic-model-id\> | Only display results for ASIC models with this ID |
 | arch | \<cpu-arch\> | Only display results for CPUs with this architecture |
 | transport | \<disk-transport\> | Only display results for disks with this transport method |
+| cumulus | NA | Only display Cumulus Linux licenses |
+| status | \<ok\>, \<missing\>, | Only display results for devices with valid (ok) or missing licenses |
 | type | \<memory-type\> | Only display results for memory of this type |
 | version | \<os-version\> | Only display results for operating systems of this version |
 | name | \<os-name\> | Only display results for operating systems with this name |
@@ -1801,6 +1911,39 @@ netq show ipv6 addresses
 
 ### Sample Usage
 
+The following example shows all IPv4 addresses in the reference topology:
+
+```
+cumulus@switch:~$ netq show ip addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+10.10.10.104/32           spine04           lo                        default         Mon Oct 19 22:28:23 2020
+192.168.200.24/24         spine04           eth0                                      Tue Oct 20 15:46:20 2020
+10.10.10.103/32           spine03           lo                        default         Mon Oct 19 22:29:01 2020
+192.168.200.23/24         spine03           eth0                                      Tue Oct 20 15:19:24 2020
+192.168.200.22/24         spine02           eth0                                      Tue Oct 20 15:40:03 2020
+10.10.10.102/32           spine02           lo                        default         Mon Oct 19 22:28:45 2020
+192.168.200.21/24         spine01           eth0                                      Tue Oct 20 15:59:36 2020
+10.10.10.101/32           spine01           lo                        default         Mon Oct 19 22:28:48 2020
+192.168.200.38/24         server08          eth0                      default         Mon Oct 19 22:28:50 2020
+192.168.200.37/24         server07          eth0                      default         Mon Oct 19 22:28:43 2020
+192.168.200.36/24         server06          eth0                      default         Mon Oct 19 22:40:52 2020
+10.1.20.105/24            server05          uplink                    default         Mon Oct 19 22:41:08 2020
+10.1.10.104/24            server04          uplink                    default         Mon Oct 19 22:40:45 2020
+192.168.200.33/24         server03          eth0                      default         Mon Oct 19 22:41:04 2020
+192.168.200.32/24         server02          eth0                      default         Mon Oct 19 22:41:00 2020
+10.1.10.101/24            server01          uplink                    default         Mon Oct 19 22:40:36 2020
+10.255.1.228/24           oob-mgmt-server   vagrant                   default         Mon Oct 19 22:28:20 2020
+192.168.200.1/24          oob-mgmt-server   eth1                      default         Mon Oct 19 22:28:20 2020
+10.1.20.3/24              leaf04            vlan20                    RED             Mon Oct 19 22:28:47 2020
+10.1.10.1/24              leaf04            vlan10-v0                 RED             Mon Oct 19 22:28:47 2020
+192.168.200.14/24         leaf04            eth0                                      Tue Oct 20 15:56:40 2020
+10.10.10.4/32             leaf04            lo                        default         Mon Oct 19 22:28:47 2020
+10.1.20.1/24              leaf04            vlan20-v0                 RED             Mon Oct 19 22:28:47 2020
+...
+```
+
 Display all IP addresses on the *spine01* switch:
 
 ```
@@ -1823,10 +1966,80 @@ Address                   Hostname          Interface                 VRF       
 10.1.30.2/24              leaf03            vlan30                    BLUE            Thu Sep 17 20:25:08 2020
 ```
 
+The following example shows all IPv6 addresses in the reference topology:
+
+```
+cumulus@switch:~$ netq show ipv6 addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+fe80::4638:39ff:fe00:16c/ spine04           eth0                                      Mon Oct 19 22:28:23 2020
+64
+fe80::4638:39ff:fe00:27/6 spine04           swp5                      default         Mon Oct 19 22:28:23 2020
+4
+fe80::4638:39ff:fe00:2f/6 spine04           swp6                      default         Mon Oct 19 22:28:23 2020
+4
+fe80::4638:39ff:fe00:17/6 spine04           swp3                      default         Mon Oct 19 22:28:23 2020
+4
+fe80::4638:39ff:fe00:1f/6 spine04           swp4                      default         Mon Oct 19 22:28:23 2020
+4
+fe80::4638:39ff:fe00:7/64 spine04           swp1                      default         Mon Oct 19 22:28:23 2020
+fe80::4638:39ff:fe00:f/64 spine04           swp2                      default         Mon Oct 19 22:28:23 2020
+fe80::4638:39ff:fe00:2d/6 spine03           swp6                      default         Mon Oct 19 22:29:01 2020
+4
+fe80::4638:39ff:fe00:25/6 spine03           swp5                      default         Mon Oct 19 22:29:01 2020
+4
+fe80::4638:39ff:fe00:170/ spine03           eth0                                      Mon Oct 19 22:29:01 2020
+64
+fe80::4638:39ff:fe00:15/6 spine03           swp3                      default         Mon Oct 19 22:29:01 2020
+4
+...
+```
+The following example shows the IPv6 address information for the leaf01 switch:
+
+```
+cumulus@switch:~$ netq leaf01 show ipv6 addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+fe80::4638:39ff:febe:efaa leaf01            vlan4002                  BLUE            Mon Oct 19 22:28:22 2020
+/64
+fe80::4638:39ff:fe00:8/64 leaf01            swp54                     default         Mon Oct 19 22:28:22 2020
+fe80::4638:39ff:fe00:59/6 leaf01            vlan10                    RED             Mon Oct 19 22:28:22 2020
+4
+fe80::4638:39ff:fe00:59/6 leaf01            vlan20                    RED             Mon Oct 19 22:28:22 2020
+4
+fe80::4638:39ff:fe00:59/6 leaf01            vlan30                    BLUE            Mon Oct 19 22:28:22 2020
+4
+fe80::4638:39ff:fe00:2/64 leaf01            swp51                     default         Mon Oct 19 22:28:22 2020
+fe80::4638:39ff:fe00:4/64 leaf01            swp52                     default         Mon Oct 19 22:28:22 2020
+fe80::4638:39ff:febe:efaa leaf01            vlan4001                  RED             Mon Oct 19 22:28:22 2020
+/64
+fe80::4638:39ff:fe00:6/64 leaf01            swp53                     default         Mon Oct 19 22:28:22 2020
+fe80::200:ff:fe00:1c/64   leaf01            vlan30-v0                 BLUE            Mon Oct 19 22:28:22 2020
+fe80::200:ff:fe00:1b/64   leaf01            vlan20-v0                 RED             Mon Oct 19 22:28:22 2020
+fe80::200:ff:fe00:1a/64   leaf01            vlan10-v0                 RED             Mon Oct 19 22:28:22 2020
+fe80::4638:39ff:fe00:59/6 leaf01            peerlink.4094             default         Mon Oct 19 22:28:22 2020
+4
+fe80::4638:39ff:fe00:59/6 leaf01            bridge                    default         Mon Oct 19 22:28:22 2020
+4
+fe80::4638:39ff:fe00:17a/ leaf01            eth0                                      Mon Oct 19 22:28:22 2020
+64
+```
+The following example shows the number of IPv4 and IPv6 addresses on the leaf01 switch:
+
+```
+cumulus@switch:~$ netq leaf01 show ip addresses count
+Count of matching address records: 9
+
+cumulus@switch:~$ netq leaf01 show ipv6 addresses count
+Count of matching address records: 17
+```
+
 ### Related Commands
 
-- ```netq show ip/ipv6 neighbors```
-- ```netq show ip/ipv6 routes```
+- `netq show ip/ipv6 neighbors`
+- `netq show ip routes`
 
 - - -
 
@@ -1922,6 +2135,22 @@ IP Address                Hostname          Interface                 MAC Addres
 169.254.0.1               spine03           swp5                      44:38:39:00:00:26  default         no     Thu Dec  3 22:31:27 2020
 ...
 ```
+The following example shows all IPv4 neighbors using the RED VRF. Note that the VRF name is case sensitive.
+
+```
+cumulus@switch:~$ netq show ip neighbors vrf RED
+Matching neighbor records:
+IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
+------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
+10.1.10.2                 leaf04            vlan10                    44:38:39:00:00:5d  RED             no     Mon Oct 19 22:28:47 2020
+10.1.20.2                 leaf04            vlan20                    44:38:39:00:00:5d  RED             no     Mon Oct 19 22:28:47 2020
+10.1.10.3                 leaf03            vlan10                    44:38:39:00:00:5e  RED             no     Mon Oct 19 22:28:18 2020
+10.1.20.3                 leaf03            vlan20                    44:38:39:00:00:5e  RED             no     Mon Oct 19 22:28:18 2020
+10.1.10.2                 leaf02            vlan10                    44:38:39:00:00:59  RED             no     Mon Oct 19 22:28:30 2020
+10.1.20.2                 leaf02            vlan20                    44:38:39:00:00:59  RED             no     Mon Oct 19 22:28:30 2020
+10.1.10.3                 leaf01            vlan10                    44:38:39:00:00:37  RED             no     Mon Oct 19 22:28:22 2020
+10.1.20.3                 leaf01            vlan20                    44:38:39:00:00:37  RED             no     Mon Oct 19 22:28:22 2020
+```
 
 Display all IPv6 addresses on the *leaf03* switch:
 
@@ -1955,8 +2184,8 @@ fe80::4638:39ff:fe00:180  leaf03            eth0                      44:38:39:0
 
 ### Related Commands
 
-- ```netq show ip/ipv6 addresses```
-- ```netq show ip/ipv6 routes```
+- `netq show ip/ipv6 addresses`
+- `netq show ip routes`
 
 - - -
 
@@ -2061,6 +2290,36 @@ no     default         10.0.1.1/32                    spine04           169.254.
 yes    default         10.10.10.104/32                spine04           lo                                  Thu Dec  3 22:29:17 2020
 ...
 ```
+The following example shows the routes available for an IP address of 10.0.0.12. The result shows nine available routes:
+
+```
+cumulus@switch:~$ netq show ip routes 10.0.0.12
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+no                     0.0.0.0/0                      spine04           Blackhole                           Mon Oct 19 22:28:23 2020
+no                     0.0.0.0/0                      spine03           Blackhole                           Mon Oct 19 22:29:01 2020
+no                     0.0.0.0/0                      spine02           Blackhole                           Mon Oct 19 22:28:46 2020
+no                     0.0.0.0/0                      spine01           Blackhole                           Mon Oct 19 22:28:48 2020
+no     default         0.0.0.0/0                      server08          192.168.200.1: eth0                 Mon Oct 19 22:28:50 2020
+no     default         0.0.0.0/0                      server07          192.168.200.1: eth0                 Mon Oct 19 22:28:43 2020
+no     default         10.0.0.0/8                     server06          10.1.30.1: uplink                   Mon Oct 19 22:40:52 2020
+no     default         10.0.0.0/8                     server05          10.1.20.1: uplink                   Mon Oct 19 22:41:08 2020
+no     default         10.0.0.0/8                     server04          10.1.10.1: uplink                   Mon Oct 19 22:40:45 2020
+no     default         10.0.0.0/8                     server03          10.1.30.1: uplink                   Mon Oct 19 22:41:04 2020
+no     default         10.0.0.0/8                     server02          10.1.20.1: uplink                   Mon Oct 19 22:41:00 2020
+no     default         10.0.0.0/8                     server01          10.1.10.1: uplink                   Mon Oct 19 22:40:36 2020
+no     default         0.0.0.0/0                      oob-mgmt-server   10.255.1.1: vagrant                 Mon Oct 19 22:28:20 2020
+no     BLUE            0.0.0.0/0                      leaf04            Blackhole                           Mon Oct 19 22:28:47 2020
+no                     0.0.0.0/0                      leaf04            Blackhole                           Mon Oct 19 22:28:47 2020
+no     RED             0.0.0.0/0                      leaf04            Blackhole                           Mon Oct 19 22:28:47 2020
+no     BLUE            0.0.0.0/0                      leaf03            Blackhole                           Mon Oct 19 22:28:18 2020
+no                     0.0.0.0/0                      leaf03            Blackhole                           Mon Oct 19 22:28:18 2020
+no     RED             0.0.0.0/0                      leaf03            Blackhole                           Mon Oct 19 22:28:18 2020
+no     BLUE            0.0.0.0/0                      leaf02            Blackhole                           Mon Oct 19 22:28:30 2020
+no                     0.0.0.0/0                      leaf02            Blackhole                           Mon Oct 19 22:28:30 2020
+...
+```
 
 Display all IPv6 routes on the *leaf03* switch:
 
@@ -2073,11 +2332,30 @@ no     RED             ::/0                           leaf03            Blackhol
 no                     ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
 no     BLUE            ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
 ```
+The following example shows all IPv4 routes owned by spine01 switch:
 
+```
+cumulus@switch:~$ netq spine01 show ip routes origin
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+yes                    192.168.200.0/24               spine01           eth0                                Mon Oct 19 22:28:48 2020
+yes                    192.168.200.21/32              spine01           eth0                                Mon Oct 19 22:28:48 2020
+yes    default         10.10.10.101/32                spine01           lo                                  Mon Oct 19 22:28:48 2020
+```
+This example shows the total number of IPv4 and IPv6 routes for all devices on the leaf01 switch.
+
+```
+cumulus@switch:~$ netq leaf01 show ip routes count
+Count of matching routes records: 27
+    
+cumulus@switch:~$ netq leaf01 show ipv6 routes count
+Count of matching routes records: 3
+```
 ### Related Commands
 
-- ```netq show ip/ipv6 addresses```
-- ```netq show ip/ipv6 neighbors```
+- `netq show ip/ipv6 addresses`
+- `netq show ip/ipv6 neighbors`
 
 - - -
 
@@ -2247,11 +2525,11 @@ netq [<hostname>] show kubernetes service
 | cluster | NA | Only display Kubernetes cluster information |
 | node | NA | Only display Kubernetes node information |
 | daemon-set | NA |  Only display Kubernetes daemon-set information |
-| deployment | NA | Only display Kubernetes node information |
-| pod | NA | Only display Kubernetes node information |
-| replication-controller | NA | Only display Kubernetes node information |
-| replica-set | NA | Only display Kubernetes node information |
-| service | NA | Only display Kubernetes node information |
+| deployment | NA | Only display Kubernetes deployment information |
+| pod | NA | Only display Kubernetes pod information |
+| replication-controller | NA | Only display Kubernetes replicaiton controller information |
+| replica-set | NA | Only display Kubernetes replication set information |
+| service | NA | Only display Kubernetes service information |
 | connectivity | NA | Only display connectivity information for the daemon-set, deployment, or service |
 
 ### Options
@@ -2488,6 +2766,47 @@ None
 
 ### Sample Usage
 
+This example shows the Cumulus reference topology, where LLDP runs on all border, firewall, leaf and spine switches, servers, including the out-of-band management server.
+
+```
+cumulus@switch:~$ netq show lldp
+
+Matching lldp records:
+Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
+----------------- ------------------------- ----------------- ------------------------- -------------------------
+border01          swp3                      fw1               swp1                      Mon Oct 26 04:13:29 2020
+border01          swp49                     border02          swp49                     Mon Oct 26 04:13:29 2020
+border01          swp51                     spine01           swp5                      Mon Oct 26 04:13:29 2020
+border01          swp52                     spine02           swp5                      Mon Oct 26 04:13:29 2020
+border01          eth0                      oob-mgmt-switch   swp20                     Mon Oct 26 04:13:29 2020
+border01          swp53                     spine03           swp5                      Mon Oct 26 04:13:29 2020
+border01          swp50                     border02          swp50                     Mon Oct 26 04:13:29 2020
+border01          swp54                     spine04           swp5                      Mon Oct 26 04:13:29 2020
+border02          swp49                     border01          swp49                     Mon Oct 26 04:13:11 2020
+border02          swp3                      fw1               swp2                      Mon Oct 26 04:13:11 2020
+border02          swp51                     spine01           swp6                      Mon Oct 26 04:13:11 2020
+border02          swp54                     spine04           swp6                      Mon Oct 26 04:13:11 2020
+border02          swp52                     spine02           swp6                      Mon Oct 26 04:13:11 2020
+border02          eth0                      oob-mgmt-switch   swp21                     Mon Oct 26 04:13:11 2020
+border02          swp53                     spine03           swp6                      Mon Oct 26 04:13:11 2020
+border02          swp50                     border01          swp50                     Mon Oct 26 04:13:11 2020
+fw1               eth0                      oob-mgmt-switch   swp18                     Mon Oct 26 04:38:03 2020
+fw1               swp1                      border01          swp3                      Mon Oct 26 04:38:03 2020
+fw1               swp2                      border02          swp3                      Mon Oct 26 04:38:03 2020
+fw2               eth0                      oob-mgmt-switch   swp19                     Mon Oct 26 04:46:54 2020
+leaf01            swp1                      server01          mac:44:38:39:00:00:32     Mon Oct 26 04:13:57 2020
+leaf01            swp2                      server02          mac:44:38:39:00:00:34     Mon Oct 26 04:13:57 2020
+leaf01            swp52                     spine02           swp1                      Mon Oct 26 04:13:57 2020
+leaf01            swp49                     leaf02            swp49                     Mon Oct 26 04:13:57 2020
+leaf01            eth0                      oob-mgmt-switch   swp10                     Mon Oct 26 04:13:57 2020
+leaf01            swp3                      server03          mac:44:38:39:00:00:36     Mon Oct 26 04:13:57 2020
+leaf01            swp53                     spine03           swp1                      Mon Oct 26 04:13:57 2020
+leaf01            swp50                     leaf02            swp50                     Mon Oct 26 04:13:57 2020
+leaf01            swp54                     spine04           swp1                      Mon Oct 26 04:13:57 2020
+leaf01            swp51                     spine01           swp1                      Mon Oct 26 04:13:57 2020
+...
+```
+
 Display session for a given host interface port:
 
 ```
@@ -2503,8 +2822,8 @@ spine04           swp5                      border01          swp54             
 
 ### Related Commands
 
-- ```netq show events```
-- ```netq check lldp```
+- `netq show events`
+- `netq check lldp`
 
 - - -
 
@@ -2865,28 +3184,43 @@ None
 
 ### Sample Usage
 
-```
-cumulus@switch:~$ netq show macs
-Matching mac records:
-Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
------- ------------------ ------ ----------------- ------------------------------ ------ -------------------------
-no     46:38:39:00:00:46  20     leaf04            bond2                          no     Mon Dec  7 22:30:15 2020
-yes    00:00:00:00:00:1a  10     leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
-yes    44:38:39:00:00:5e  4002   leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
-yes    44:38:39:00:00:5e  20     leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:5d  30     leaf04            peerlink                       no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:59  30     leaf04            vni30                          no     Mon Dec  7 22:30:15 2020
-yes    7e:1a:b3:4f:05:b8  20     leaf04            vni20                          no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:37  30     leaf04            vni30                          no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:36  30     leaf04            vni30                          yes    Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:37  20     leaf04            vni20                          no     Mon Dec  7 22:30:15 2020
-no     44:38:39:be:ef:aa  4001   leaf04            vniRED                         yes    Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:37  10     leaf04            vni10                          no     Mon Dec  7 22:30:15 2020
-yes    36:6a:10:4a:41:02  4001   leaf04            vniRED                         no     Mon Dec  7 22:30:15 2020
-...
-```
+The following example displays a full chronology of changes for an IP address neighbor. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
 
+```
+cumulus@switch:~$ netq show neighbor-history 10.1.10.2
 
+Matching neighborhistory records:
+Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
+------------------------- ----------------- ------------ --------------- ------ -------------- ------------------ -------- -------------------------
+Tue Sep 29 17:25:08 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:17 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+```
+The following example displays the history of an IP address neighbor by hostname.
+
+```
+cumulus@switch:~$ netq show neighbor-history 10.1.10.2 listby hostname
+
+Matching neighborhistory records:
+Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
+------------------------- ----------------- ------------ --------------- ------ -------------- ------------------ -------- -------------------------
+Tue Sep 29 17:25:08 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:17 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+```
+The following example displays the history of an IP address neighbor between now and two hours ago.
+
+```
+cumulus@switch:~$ netq show neighbor-history 10.1.10.2 between 2h and now
+
+Matching neighborhistory records:
+Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
+------------------------- ----------------- ------------ --------------- ------ -------------- ------------------ -------- -------------------------
+Tue Sep 29 15:35:18 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 15:35:22 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+Tue Sep 29 17:25:00 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:08 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+Tue Sep 29 17:25:08 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:14 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+```
 ### Related Commands
 
 - ```netq show address-history```
@@ -3209,12 +3543,36 @@ spine02           swp3                      0.0.0.0      Unnumbered       Full  
 spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     Thu Feb  7 14:42:16 2019
 ```
 
+This example show OSPF sessions on the *leaf01* switch:
+
+```
+cumulus@switch:~$ netq leaf01 show ospf
+Matching ospf records:
+Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
+----------------- ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
+leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      Thu Feb  7 14:42:16 2019
+leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      Thu Feb  7 14:42:16 2019
+```
+
+This example shows OSPF sessions for all devices using the *swp51* interface on the host node.
+
+```
+cumulus@switch:~$ netq show ospf swp51
+Matching ospf records:
+Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
+----------------- ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
+leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      Thu Feb  7 14:42:16 2019
+leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      Thu Feb  7 14:42:16 2019
+leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      Thu Feb  7 14:42:16 2019
+leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      Thu Feb  7 14:42:16 2019
+```
+
 ### Related Commands
-<!-- vale off -->
+
 - ```netq show events```
 - ```netq check ospf```
 - ```netq show unit-tests ospf```
-<!-- vale on -->
+
 - - -
 
 ## netq show ptp
@@ -3480,7 +3838,7 @@ Displays RoCE configuration.
 
 {{<notice note>}}
 
-Priority code point (PCP) monitoring requires NetQ Agent 4.5.
+Priority code point (PCP) monitoring requires NetQ Agent 4.5 or later.
 
 {{</notice>}}
 
@@ -3507,26 +3865,31 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show roce-config 
+cumulus@switch:~$ netq show roce-config
 
 Matching roce records:
-Hostname          Interface       RoCE Mode  Enabled TCs  Mode     ECN Max  ECN Min  DSCP->SP   PCP->SP  SP->PG   SP->TC   PFC SPs  PFC Rx     PFC Tx     ETS Mode   Last Changed
+Hostname          Interface       RoCE Mode  Enabled TCs  Mode     ECN Max  ECN Min  SP->DSCP   SP->PCP  SP->PG   SP->TC   PFC SPs  PFC Rx     PFC Tx     ETS Mode   Last Changed
 ----------------- --------------- ---------- ------------ -------- -------- -------- ---------- -------- -------- -------- -------- ---------- ---------- ---------- -------------------------
-mlx-2700a1-19     swp2            Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-mlx-2700a1-19     swp24           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-mlx-2700a1-19     swp23           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-mlx-2700a1-19     swp31           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-ufm-switch23      swp32           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp1            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp8            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp11           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp22           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp15           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp18           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp26           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp29           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp4            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp30           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+mlx-3700c-23      swp16           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp27           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp32           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp23           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp25           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp5            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp26           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp4            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp18           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp12           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp9            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp30           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp21           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp13           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp1            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp24           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp15           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp17           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp22           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-24      swp8            Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Wed Mar 29 11:00:51 2023
 ...
 ```
 
@@ -3598,6 +3961,35 @@ switch            swp63s3         0            0            0                  0
 switch            swp1s3          0            0            0                  0                  0                  0            0                  0            0
 switch            swp63s0         0            0            0                  0                  0                  0            0                  0            0
 switch            swp63s2         0            0            0                  0                  0                  0            0                  0            0
+```
+
+Display RoCE-specific Tx counters:
+
+```
+cumulus@switch:~$ netq show roce-counters tx roce 
+
+Matching roce records:
+Hostname          Interface       TC packets TC bytes   unicast no buffer discard PFC pause packets  PFC pause duration buffer usage buffer max usage   TC usage   TC max usage
+----------------- --------------- ---------- ---------- ------------------------- ------------------ ------------------ ------------ ------------------ ---------- ---------------
+switch            swp1s1          0          0          0                         0                  0                  0            0                  0          0
+switch            swp1s2          0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s1         0          0          0                         0                  0                  0            0                  0          0
+switch            swp1s0          0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s3         0          0          0                         0                  0                  0            0                  0          0
+switch            swp1s3          0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s0         0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s2         0          0          0                         0                  0                  0            0                  0          0
+```
+
+To view counters for a specific switch port, include the switch name with the command:
+
+```
+cumulus@switch:~$ netq show roce-counters swp1s1 rx general 
+
+Matching roce records:
+Hostname          Interface            PG packets           PG bytes             no buffer discard    buffer usage         buffer max usage     PG usage             PG max usage
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+switch            swp1s1               1643392              154094520            0                    0                    1                    0                    1
 ```
 
 ### Related Commands
@@ -3749,26 +4141,44 @@ spine04           psu2temp1       psu2 temp sensor                    ok        
 Displays configuration and health of system-level services for one or all switches and hosts, currently or for a time in the past. You can filter the output by switch, service, VRF, and status. 
 
 Supported services include:
-<!-- vale off -->
+
+- **aclinit**: `aclinit` service
+- **acltool**: `acltool` service
+- **bgp**: BGP (Border Gateway Protocol) service
 - **bgpd**: BGP daemon
-- **clagd**: MLAG daemon
-- **helpledmgrd**: Switch LED manager daemon
+- **chrony**:  `chrony` service
+- **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
+- **cumulus-chassis-ssh**: cumulus-chassis-ssh
+- **cumulus-chassisd**: cumulus-chassisd
+- **database**: database
+- **dhcp_relay**: DHCP relay service
+- **docker**: Docker container service
+- **ledmgrd**: Switch LED manager daemon
+- **lldp**: LLDP (Link Layer Discovery Protocol) service
 - **lldpd**: LLDP daemon
-- **mstpd**: MSTP daemon
-- **neighmgrd**: Neighbor Manager daemon for BGP and OSPF
+- **mstpd**: MSTP (Multiple Spanning Tree Protocol) daemon
+- **neighmgrd**: Neighbor manager daemon for BGP and OSPF
 - **netq-agent**: NetQ Agent service
 - **netqd**: NetQ application daemon
-- **ntp**: NTP service
-- **ntpd**: NTP daemon
+- **ntp**: Network Time Protocol (NTP) service
+- **pmon**: Process monitor service
+- **portwd**: Port watch daemon
 - **ptmd**: PTM (Prescriptive Topology Manager) daemon
-- **pwmd**: PWM (Password Manager) daemon
+- **pwmd**: Password manager daemon
+- **radv**: Route advertiser service
 - **rsyslog**: Rocket-fast system event logging processing service
 - **smond**: System monitor daemon
-- **ssh**: Secure Shell service for switches and servers
+- **ssh**: Secure shell service for switches and servers
+- **status**: Show services with a given status (*ok*, *error*, *warning*, *fail*)
+- **switchd**: Cumulus Linux `switchd` service for hardware acceleration
+- **swss**: SONiC switch state service daemon
+- **sx_sdk**: Spectrum ASIC SDK service
+- **syncd**: Synchronization service
 - **syslog**: System event logging service
-- **vrf**: VRF service
+- **teamd**: Network team service
+- **vrf**: VRF (Virtual Route Forwarding) service
+- **wd_keepalive**: Software watchdog service
 - **zebra**: GNU Zebra routing daemon
-<!-- vale on -->
 
 The output provides the following information for each switch and host:
 
@@ -3872,7 +4282,7 @@ leaf02            rsyslog              11937 default         yes     yes    no  
 
 ### Related Commands
 
-None
+- `netq show events`
 
 - - -
 ## netq show status verbose
@@ -3901,8 +4311,8 @@ None
 cumulus@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 4.5.0
-Installer Version: 4.5.0
+Version: 4.6.0
+Installer Version: 4.6.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdsaHpjKzcwNmJiNVROOExRRXdLL3l5RVNLSHRhUE5sZS9FRjN0cTNzaHh1NmRtMkZpYmg3WWxKUE9lZTd5bnVlV2huaTZxZ0xxV3ZMYkpLMGdkc3RQcGdzNUlqanNMR3RzRTFpaEdNa3RZNlJYenQxLzh4Z3pVRXp3WTBWZDB4aWJrdDF3RGQwSjhnbExlbVk1RDM4VUdBVFVkMWQwcndLQ3gxZEhRdEM5L1UzZUs5cHFlOVdBYmE0ZHdiUFlaazZXLzM0ZmFsdFJxaG8rNUJia0pkTkFnWHdkZGZ5RXA1Vjc3Z2I1TUU3Q1BxOXp2Q1lXZW84cGtXVS9Wc0gxWklNWnhsa2crYlZ4MDRWUnN4ZnNIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==
@@ -4611,7 +5021,7 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 
 ## netq show wjh-drop
 
-Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems on NVIDIA Spectrum switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by various attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Event Messages Reference">}} for descriptions of the supported drop reasons.
+Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems on NVIDIA Spectrum switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by various attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Events Reference">}} for descriptions of the supported drop reasons.
 
 {{%notice note%}}
 Viewing WJH drop information requires Cumulus Linux 4.0.0 or later and NetQ Agent 2.4.0 or later. You must also configure the NetQ Agent to collect this data.

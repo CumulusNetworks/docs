@@ -1,7 +1,7 @@
 ---
 title: Validation Checks
 author: NVIDIA
-weight: 1000
+weight: 750
 toc: 2
 ---
 When you discover operational anomalies, you can check whether the devices, hosts, network protocols, and services are operating as expected. NetQ lets you see when changes have occurred to the network, devices, and interfaces by viewing their operation, configuration, and status at an earlier point in time.
@@ -25,15 +25,12 @@ Validation support is available in the NetQ UI and the NetQ CLI for the followin
 | VLAN | Yes | Yes |
 | VXLAN | Yes | Yes |
 
-## Validation with the NetQ UI
+## View and Run Validations in the UI
 
-The NetQ UI uses the following cards to create validations and view results for these protocols and services:
+The Validation Summary card displays a summary of validation checks from the past 24 hours. Select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation** in the header to create or schedule new validation checks, as well as view previous checks.
 
-- Network Health
-- Validation Request
-- On-demand and Scheduled Validation Results
+{{<figure src="/images/netq/val-summary-460.png" width="200">}}
 
-For a general understanding of how well your network is operating, the Network Health card workflow is the best place to start as it contains the highest-level view and performance roll-ups.
 
 ## Validation with the NetQ CLI
 
@@ -42,10 +39,10 @@ The NetQ CLI uses the {{<link title="check" text="netq check commands">}} to val
 
 To view the list of tests run for a given protocol or service by default, use either `netq show unit-tests <protocol/service>` or perform a tab completion on `netq check <protocol/service> [include|exclude]`. Refer to {{<link title="Validation Tests Reference">}} for a description of the individual tests.
 
-### Select the Tests to Run
+### Select Which Tests to Run
 
 <!-- vale off -->
-You can include or exclude one or more of the various tests performed during the validation. Each test is assigned a number, which is used to identify which tests to run. By default, all tests are run. The `<protocol-number-range-list>` value is used with the `include` and `exclude` options to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
+You can include or exclude one or more of the various tests performed during the validation. Each test is {{<link title="Validation Tests Reference" text="assigned a number">}}, which is used to identify the tests. By default, all tests are run. The `<protocol-number-range-list>` value is used with the `include` and `exclude` options to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
 <!-- vale on -->
 
 - include 1,3,5
@@ -55,14 +52,65 @@ You can include or exclude one or more of the various tests performed during the
 - exclude 6-7
 - exclude 3,4-7,9
 
-The output indicates whether a given test passed, failed, or was <!-- vale off -->skipped<!-- vale on -->.
+The output indicates whether a given test passed, failed, or was skipped.
+### Example Validation Test
+
+The following example shows a BGP validation that includes only the session establishment and router ID tests. Note that you can obtain the same results using either of the `include` or `exclude` options and that the test that is not run is marked as *skipped*.
+
+```
+cumulus@switch:~$ netq show unit-tests bgp
+   0 : Session Establishment     - check if BGP session is in established state
+   1 : Address Families          - check if tx and rx address family advertisement is consistent between peers of a BGP session
+   2 : Router ID                 - check for BGP router id conflict in the network
+
+Configured global result filters:
+Configured per test result filters:
+```
+
+```
+cumulus@switch:~$ netq check bgp include 0,2
+bgp check result summary:
+
+Total nodes         : 10
+Checked nodes       : 10
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Additional summary:
+Total Sessions      : 54
+Failed Sessions     : 0
+
+Session Establishment Test   : passed
+Address Families Test        : skipped
+Router ID Test               : passed
+```
+
+```
+cumulus@switch:~$ netq check bgp exclude 1
+bgp check result summary:
+
+Total nodes         : 10
+Checked nodes       : 10
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+
+Additional summary:
+Total Sessions      : 54
+Failed Sessions     : 0
+
+Session Establishment Test   : passed
+Address Families Test        : skipped
+Router ID Test               : passed
+```
 
 ## Validation Check Result Filtering
 
-You can create filters to suppress false alarms or uninteresting errors and warnings that can be a nuisance in CI workflows. For example, certain configurations permit a singly connected MLAG bond, which generates a standard error that is not useful.
+You can create filters to suppress false alarms or uninteresting errors and warnings. For example, certain configurations permit a singly connected MLAG bond, which generates a standard error that is not useful.
 
 {{%notice note%}}
-Filtered errors and warnings related to validation checks do NOT generate notifications and do not get counted in the alarm and info event totals. They do get counted as part of suppressed notifications instead.
+Filtered errors and warnings related to validation checks do NOT generate notifications and are not counted in events totals. They are counted as part of suppressed notifications instead.
 {{%/notice%}}
 
 You define these filters in the `/etc/netq/check-filter.yml` file. You can create a rule for individual check commands or you can create a global rule that applies to all tests run by the check command. Additionally, you can create a rule specific to a particular test run by the check command.
@@ -182,7 +230,3 @@ netq-cli:
 Then run `netq config restart cli` to apply the change.
 
 If you update your scripts to work with the new version of the commands, change the `old-check` value to *false* or remove it. Then restart the CLI.
-
-{{%notice tip%}}
-Use `netq check mlag` in place of `netq check clag` from NetQ 2.4 onward. `netq check clag` remains available for automation scripts, but you should begin migrating to `netq check mlag` to maintain compatibility with future NetQ releases.
-{{%/notice%}}

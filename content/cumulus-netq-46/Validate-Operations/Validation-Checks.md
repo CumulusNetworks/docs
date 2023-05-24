@@ -9,7 +9,7 @@ toc: 3
 NetQ collects data that validates the health of your network fabric, devices, and interfaces. You can create and run validations with either the NetQ UI or the NetQ CLI. The number of checks and the type of checks are tailored to the particular protocol or element being validated.
 <!-- vale on -->
 
-Use the value in the Test Number column in the tables below with the NetQ CLI when you want to include or exclude specific tests with the `netq check` command. You can get the test numbers by running the `netq show unit-tests` command.
+Use the value in the Test Number column in the tables below with the CLI when you want to include or exclude specific tests with the {{<link title="check" text="netq check">}} command. You can get the test numbers by running the {{<link title="show/#netq-show-unit-tests" text="netq show unit-tests">}} command.
 
 ## Addresses Validation Tests
 
@@ -62,7 +62,6 @@ The EVPN validation tests look for status and configuration anomalies.
 | 4 | EVPN Session | For each EVPN session, checks if: <ul><li><em>adv_all_vni</em> is enabled</li><li>FDB learning is disabled on tunnel interface</li></ul> |
 | 5 | VLAN Consistency | Checks for consistency of VLAN to VNI mapping across the network |
 | 6 | VRF Consistency | Checks for consistency of VRF to L3 VNI mapping across the network |
-| 7 | L3 VNI RMAC | Checks L3 VNI router MAC and SVI |
 <!-- vale on -->
 
 ## Interface Validation Tests

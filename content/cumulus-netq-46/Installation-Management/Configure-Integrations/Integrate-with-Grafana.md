@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 550
 toc: 3
 ---
-Switches collect statistics about the performance of their interfaces. The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ Appliance or Virtual Machine.
+Switches collect statistics about the performance of their interfaces. The NetQ Agent on each switch collects these statistics every 15 seconds and then sends them to your NetQ appliance or virtual machine.
 
 NetQ collects statistics for *physical* interfaces; it does not collect statistics for *virtual* interfaces, such as bonds, bridges, and VXLANs.
 

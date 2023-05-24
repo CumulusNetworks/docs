@@ -36,9 +36,7 @@ You can access the API gateway and execute requests from the Swagger UI or a ter
 
 {{<tab "Swagger UI">}}
 
-1. Download {{<exlink url="https://swagger.io/tools/swagger-ui/download/" text="Swagger UI 2.0">}}.
-
-2. Open a new browser tab or window, and enter one of the following in the address bar:
+1. Open a new browser tab or window, and enter one of the following in the address bar:
 
     - Cloud deployments:  https://api.netq.nvidia.com/swagger/
     - On-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
@@ -46,7 +44,7 @@ You can access the API gateway and execute requests from the Swagger UI or a ter
 
     This opens the Swagger interface.
 
-3. Select *auth* from the **Select a definition** dropdown at the top right of the window. This opens the authorization API.
+2. Select *auth* from the **Select a definition** dropdown at the top right of the window. This opens the authorization API.
 
     {{<figure src="/images/netq/api-swagger-onopen-320.png" alt="" width="700">}}
 
@@ -181,7 +179,7 @@ In a terminal window, use `bash` plus `curl` to execute requests. Each request c
 
 ### API Responses
 
-A NetQ API response is comprised of a status code, any relevant error codes (if unsuccessful), and the collected data (if successful).
+A NetQ API response comprises a status code, any relevant error codes (if unsuccessful), and the collected data (if successful).
 
 The following HTTP status codes might be presented in the API responses:
 
@@ -194,7 +192,7 @@ The following HTTP status codes might be presented in the API responses:
 | 404  | Not Found | Requested resource could not be found. | Try the request again after a period of time or verify status of resource. |
 | 409  | Conflict | Request cannot be processed due to conflict in current state of the resource. | Verify status of resource and remove conflict. |
 | 500  | Internal Server Error | Unexpected condition has occurred. | Perform general troubleshooting and try the request again. |
-| 503  | Service Unavailable | The service being requested is currently unavailable. | Verify the status of the NetQ Platform or Appliance, and the associated service. |
+| 503  | Service Unavailable | The service being requested is currently unavailable. | Verify the status of the NetQ Platform or appliance, and the associated service. |
 
 ## Example Requests and Responses
 

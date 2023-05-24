@@ -11,6 +11,13 @@ type: nojsscroll
 
 You must run the `netq config` commands with sudo privileges.
 
+<!--expose when CLI/UI is supported
+## netq config add agent asic-monitor
+
+Configures ASIC buffer monitoring.
+
+-->
+
 ## netq config add agent cluster-servers
 
 Configures the server cluster where the NetQ Agents on monitored switches and hosts should send their collected data. You can also provide a specific port or VRF to use for the communication. Note that you must restart the NetQ Agent to enable the configuration.
@@ -396,47 +403,6 @@ None
 
 None
 - - -
-
-## netq config add agent sensors
-
-Configures the NetQ Agent to collect information from the sensors on the switch chassis, including fan, power supply, and temperature data. You must run this command from the chassis.
-
-### Syntax
-
-```
-netq config add agent sensors
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| sensors | NA | Collect information from all chassis sensors |
-
-### Options
-
-None
-
-### Sample Usage
-
-Configure sensor monitoring
-
-```
-cumulus@chassis:~$ netq config add agent sensors
-Successfully added sensors monitor. Please restart netq-agent (netq config restart agent)
-
-cumulus@chassis:~$ netq config restart agent
-Restarting netq-agent... Success!
-```
-
-### Related Commands
-
-- `netq config show agent sensors`
-- `netq config del agent sensors`
-- `netq config restart agent`
-
-- - -
-
 ## netq config add agent server
 
 Configures the destination (NetQ appliance or VM) for the data collected by the NetQ Agent and for API requests.
@@ -527,7 +493,7 @@ Restarting netq-agent... Success!
 
 ## netq config add agent wjh
 
-Configures the NetQ Agent to collect and send What Just Happened events from  NVIDIA Spectrum&trade; switches. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}} for a list of supported WJH events and to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for configuration information.
+Configures the NetQ Agent to collect and send What Just Happened events from  NVIDIA Spectrum&trade; switches. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}} for a list of supported WJH events and to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for configuration information.
 
 ### Syntax
 
@@ -591,7 +557,7 @@ netq config add agent wjh-drop-filter
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. To specify more than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
+| drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. To specify more than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}}. |
 | severity | \<text-drop-severity-list\> | Only collect and send WJH events with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
 ### Sample Usage
@@ -751,7 +717,7 @@ cumulus@switch:~# sudo netq config restart cli
 
 ## netq config add opta config-key
 
-Adds the OPTA configuration key as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}. 
+Adds the OPTA configuration key as part of the {{<link title="Install On-switch OPTA" text="on-switch OPTA configuration">}}.
 
 ### Syntax
 
@@ -786,9 +752,23 @@ netq config add opta config-key tHkSI2d3LmRldjMubmV0cWRldi5jdW11bHVasdf29ya3MuY2
 
 - - -
 <!--
+## netq config add opta executor-enabled
+
+### Syntax
+
+```
+netq config add opta executor-enabled
+    [true|false]
+```
+
+### Required Arguments
+
+### Sample Usage
+-->
+<!--
 ## netq config add opta generate-opta-ssl
 
-For additional information, see {{<link title="gNMI Streaming">}}. 
+Generates OPTA TLS/SSL certificates. For additional information, see {{<link title="gNMI Streaming">}}. 
 
 ### Syntax
 
@@ -806,11 +786,11 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | opta-hostnames | \<text-opta-hostnames\> |  |
-| opta-ips | \<text-opta-ips\> |  |
-
-### Sample Usage
+| opta-ips | \<text-opta-ips\> | Specifies OPTA IP addresses |
 
 ### Related Commands
+
+None
 - - -
 -->
 ## netq config add opta proxy-host
@@ -973,8 +953,7 @@ WJH: Disables the NetQ Agent from collecting What Just Happened events on a swit
 
 ```
 netq config del agent 
-    [cluster-servers]
-    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|ssl|stats|wjh] 
+    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|kubernetes-monitor|loglevel|server|ssl|stats|wjh] 
     [json]
 ```
 ### Required Arguments
@@ -985,12 +964,12 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| asic-monitor | NA | Stop the NetQ Agent from monitoring ASICs |
 | cluster-servers | NA | Remove all cluster servers configured to receive NetQ Agent data |
 | cpu-limit | NA | Remove CPU usage limit for the NetQ Agent on this device | 
 | frr-monitor | NA | Stop the NetQ Agent from monitoring FRR when running in a container |
 | kubernetes-monitor | NA | Stop the NetQ Agent from monitoring Kubernetes containers |
 | loglevel | NA | Stop the NetQ Agent from logging events about the agent |
-| sensors | NA | Stop the NetQ Agent from monitoring chassis sensors |
 | server | NA | Delete the current destination of NetQ Agent data and API requests |
 | ssl | NA | Delete SSL configuration |
 | stats | NA | Stop the NetQ Agent from collecting interface statistics |
@@ -1041,7 +1020,7 @@ netq config del agent wjh-drop-filter
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. To specify than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
+| drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. To specify than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}}. |
 | severity | \<text-drop-severity-list\> | Delete WJH event filter with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
 ### Sample Usage
@@ -1137,6 +1116,22 @@ cumulus@switch:~$ netq config del cli server
 - ```netq config restart agent```
 
 - - -
+<!--
+## netq config del opta executor-enabled
+
+### Syntax
+
+### Required Arguments
+
+### Options
+
+### Related Commands
+
+- `netq config add opta executor-enabled`
+
+-->
+
+- - -
 ## netq config del opta proxy-host
 
 Deletes a proxy host as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}.
@@ -1185,8 +1180,42 @@ None
 - - -
 -->
 <!--
+## netq config lcm-executor
+
+Configures support for lifecycle management features for on-switch OPTA. Read more about {{<link title="Install On-switch OPTA/#configure-the-lcm-executor" text="configuring the LCM executor">}}.
+
+### Syntax
+
+```
+netq config (start|stop|status|restart) lcm-executor
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | start, stop, status, restart | NA |
+
+### Options
+
+None
+
+### Sample Usage
+
+```
+netq config restart lcm-executor
+```
+
+### Related Commands
+
+- `netq config opta`
+
+- - -
+
+-->
+
 ## netq config opta
 
+Configures the OPTA (on-premises telemetry aggregator) service in cloud environments. Read more about {{<link title="Install On-switch OPTA" text="configuring the OPTA service">}}.
 ### Syntax
 
 ```
@@ -1196,7 +1225,7 @@ netq config (start|stop|status|restart) opta
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| NA | start, stop, status, restart |  |
+| NA | start, stop, status, restart | NA |
 
 ### Options
 
@@ -1204,10 +1233,16 @@ None
 
 ### Sample Usage
 
+```
+netq config restart opta
+```
+
 ### Related Commands
 
+- `netq config lcm-executor`
+
 - - -
--->
+
 ## netq config reload parser
 
 Loads the NetQ configuration file.
@@ -1315,36 +1350,11 @@ None
 
 Displays the configuration of the NetQ Agent on a switch. Several forms of this command are available.
 
-
-
-<!-- CPU Limit: Displays the maximum percentage of CPU resources of the switch that a NetQ Agent might use. When restricted by the `netq config add agent cpu-limit` command, the value is between 40 and 60 percent. For more detail about this feature, refer to this [Knowledge Base]({{<ref "knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches">}}) article.
-
-FRR Monitor: Displays the NetQ Agent Free Range Router (FRR) function monitoring configuration on a switch. If configured, FRR monitoring occurs on FRR running in a Docker container. If not configured, FRR is likely running as a service.
-
-Kubernetes Monitor: Displays the NetQ Agent Kubernetes monitoring configuration on a switch, included whether it is enabled and the polling period.
-
-Log Level: Displays the amount of information logged about the NetQ Agent activity, from only critical issues to every available message. Identified issues get logged to the `/var/log/netq-agent.log` file. The default log level is *info*.
-
-- Error: Logs only events classified as errors
-- Warning: Logs events classified as warnings and errors
-- Info: Logs events classified as info, warning, and errors
-- Debug: Logs all events
-
-Sensors: Displays the NetQ Agent sensors configuration on a chassis.
-
-SSL: 
-
-Stats: Displays whether you configured the NetQ Agent for interface statistics monitoring on a switch (true) or not (false).
-
-WJH: Displays whether you configured the NetQ Agent for What Just Happened event monitoring on an NVIDIA Spectrum switch. Refer to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for setting up WJH monitoring.
-
-WJH Threshold: Displays whether you configured the NetQ Agent with WJH latency and congestion thresholds on an NVIDIA Spectrum switch. -->
-
 ### Syntax
 
 ```
 netq config show agent 
-    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats||wjh|wjh-threshold] 
+    [asic-monitor|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|ssl|stats|wjh|wjh-threshold] 
     [json]
 ```
 ### Required Arguments
@@ -1355,17 +1365,19 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| asic-monitor | NA | Display NetQ Agent ASIC monitoring configuration |
 | cpu-limit | NA | View the maximum percentage of CPU resource that the NetQ Agent can use |
 | frr-monitor | NA | Display FRR monitoring configuration |
 | kubernetes-monitor | NA | Display the Kubernetes monitoring configuration |
 | loglevel | NA | Display the NetQ Agent logging level configuration |
-| sensors | NA | Display NetQ Agent sensors configuration |
 | ssl | NA | Display SSL configuration |
 | stats | NA | Display status of interface statistics |
 | wjh | NA | Display NetQ Agent What Just Happened monitoring configuration |
 | wjh-threshold | NA | Display NetQ Agent WJH latency and congestion thresholds configuration |
-| json | NA | Display the output in JSON file format |
+| json | NA | Display the output in JSON format |
 ### Sample Usage
+
+<!--need updated example-->
 
 ```
 cumulus@switch:~$ netq config show agent 

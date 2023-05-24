@@ -15,7 +15,7 @@ Update the activation key using the NetQ CLI:
 
 {{<tab "NetQ CLI">}}
 
-Run the following command on your standalone or master NetQ Cloud Appliance or VM replacing `text-opta-key` with your new key.
+Run the following command on your master NetQ VM replacing `text-opta-key` with your new key.
 
 ```
 cumulus@<hostname>:~$ netq install standalone activate-job config-key <text-opta-key>

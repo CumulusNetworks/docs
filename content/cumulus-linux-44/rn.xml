@@ -7,16 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3455998</td>
+<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
+<td>4.3.1-4.4.6</td>
+<td></td>
+</tr>
+<tr>
 <td>3448171</td>
-<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
-In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+This only impacts the default VRF and a default route learned dynamically.
 
-systemctl restart switchd.service
+In order to recover from this condition: 
 
-or
+1. Restart switchd.service (sudo systemctl restart switchd.service)
 
-sudo reboot</td>
+OR
+ 
+2. Reboot the switch (sudo reboot)</td>
 <td>4.3.1-4.4.6</td>
 <td></td>
 </tr>
@@ -31,6 +39,15 @@ sudo reboot</td>
 <td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
 <td>4.2.1-5.4.0</td>
 <td>5.5.0</td>
+</tr>
+<tr>
+<td>3419962</td>
+<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
+
+switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
+</td>
+<td>4.3.1-4.4.6</td>
+<td></td>
 </tr>
 <tr>
 <td>3419953</td>
@@ -434,12 +451,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.4.2-4.4.6</td>
-<td></td>
-</tr>
-<tr>
 <td>2944167</td>
 <td>When you use NCLU commands to add a port to a bridge and the port already exists under the bridge, Cumulus Linux removes all other ports from the bridge.</td>
 <td>4.4.2-4.4.6</td>
@@ -528,14 +539,6 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0-5.5.0</td>
-</tr>
-<tr>
-<td>2853536</td>
-<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
-This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
-To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
-<td>4.4.0-4.4.6</td>
-<td></td>
 </tr>
 <tr>
 <td>2845531</td>
@@ -2061,6 +2064,11 @@ ERR cannot allocate vlan for sub-interface
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
+<td>3321391</td>
+<td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
+<td>4.2.1-4.4.5</td>
+</tr>
+<tr>
 <td>3293110</td>
 <td>You cannot set the NTF router flag (NTF_ROUTER) on neighbor entries from the user space.</td>
 <td>4.4.2-4.4.5</td>
@@ -2153,16 +2161,24 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3455998</td>
+<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3448171</td>
-<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
-In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+This only impacts the default VRF and a default route learned dynamically.
 
-systemctl restart switchd.service
+In order to recover from this condition: 
 
-or
+1. Restart switchd.service (sudo systemctl restart switchd.service)
 
-sudo reboot</td>
+OR
+ 
+2. Reboot the switch (sudo reboot)</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -2177,6 +2193,15 @@ sudo reboot</td>
 <td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
 <td>4.2.1-5.4.0</td>
 <td>5.5.0</td>
+</tr>
+<tr>
+<td>3419962</td>
+<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
+
+switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
+</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3419953</td>
@@ -2284,6 +2309,12 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3321391</td>
+<td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
+<td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2677,12 +2708,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.5.0</td>
@@ -2692,12 +2717,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.5.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.4.2-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2789,14 +2808,6 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0-5.5.0</td>
-</tr>
-<tr>
-<td>2853536</td>
-<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
-This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
-To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2845531</td>
@@ -4352,16 +4363,24 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3455998</td>
+<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3448171</td>
-<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
-In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+This only impacts the default VRF and a default route learned dynamically.
 
-systemctl restart switchd.service
+In order to recover from this condition: 
 
-or
+1. Restart switchd.service (sudo systemctl restart switchd.service)
 
-sudo reboot</td>
+OR
+ 
+2. Reboot the switch (sudo reboot)</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -4376,6 +4395,15 @@ sudo reboot</td>
 <td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
 <td>4.2.1-5.4.0</td>
 <td>5.5.0</td>
+</tr>
+<tr>
+<td>3419962</td>
+<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
+
+switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
+</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3419953</td>
@@ -4483,6 +4511,12 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3321391</td>
+<td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
+<td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -4898,12 +4932,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.5.0</td>
@@ -4913,12 +4941,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.5.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.4.2-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -5010,14 +5032,6 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0-5.5.0</td>
-</tr>
-<tr>
-<td>2853536</td>
-<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
-This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
-To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2845531</td>
@@ -6708,16 +6722,24 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3455998</td>
+<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3448171</td>
-<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
-In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+This only impacts the default VRF and a default route learned dynamically.
 
-systemctl restart switchd.service
+In order to recover from this condition: 
 
-or
+1. Restart switchd.service (sudo systemctl restart switchd.service)
 
-sudo reboot</td>
+OR
+ 
+2. Reboot the switch (sudo reboot)</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -6732,6 +6754,15 @@ sudo reboot</td>
 <td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
 <td>4.2.1-5.4.0</td>
 <td>5.5.0</td>
+</tr>
+<tr>
+<td>3419962</td>
+<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
+
+switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
+</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3419953</td>
@@ -6833,6 +6864,12 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3321391</td>
+<td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
+<td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -7309,12 +7346,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.5.0</td>
@@ -7330,12 +7361,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.5.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.4.2-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -7427,14 +7452,6 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0-5.5.0</td>
-</tr>
-<tr>
-<td>2853536</td>
-<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
-This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
-To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2845531</td>
@@ -9028,16 +9045,24 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3455998</td>
+<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3448171</td>
-<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
-In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+This only impacts the default VRF and a default route learned dynamically.
 
-systemctl restart switchd.service
+In order to recover from this condition: 
 
-or
+1. Restart switchd.service (sudo systemctl restart switchd.service)
 
-sudo reboot</td>
+OR
+ 
+2. Reboot the switch (sudo reboot)</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -9052,6 +9077,15 @@ sudo reboot</td>
 <td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
 <td>4.2.1-5.4.0</td>
 <td>5.5.0</td>
+</tr>
+<tr>
+<td>3419962</td>
+<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
+
+switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
+</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3419953</td>
@@ -9153,6 +9187,12 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3321391</td>
+<td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
+<td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -9575,12 +9615,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>4.4.3-4.4.5, 5.1.0-5.5.0</td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.5.0</td>
@@ -9633,12 +9667,6 @@ Vulnerable: &lt;= 2:3.42.1-1+deb10u4
 Fixed: 2:3.42.1-1+deb10u5</td>
 <td>4.4.0-4.4.2</td>
 <td>4.4.3-4.4.5</td>
-</tr>
-<tr>
-<td>2947679</td>
-<td>If the {{clagd}} service stops during {{initDelay}}, the peerlink flag does not clear from any VNIs that become dual connected during this time. {{switchd}} uses the peerlink flag to program MLAG loop prevention. As a result of the overlapping stale flags, traffic destined for the VXLAN might drop.</td>
-<td>3.7.15-3.7.16, 4.4.2-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2944167</td>
@@ -9737,14 +9765,6 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0-5.5.0</td>
-</tr>
-<tr>
-<td>2853536</td>
-<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
-This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
-To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2845531</td>
@@ -11530,16 +11550,24 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3455998</td>
+<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3448171</td>
-<td>If a BGP learned default route is withdrawn leaving no more known default route path, then the default route is again advertised traffic hitting the default route will now go through the slow path (cpu) and the traffic will be intermittently dropped by the rate-limiters in place to protect the CPU if the rate is high enough.
+<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
 
-In order to recover from this condition, you may either restart switchd.service or reboot the switch.
+This only impacts the default VRF and a default route learned dynamically.
 
-systemctl restart switchd.service
+In order to recover from this condition: 
 
-or
+1. Restart switchd.service (sudo systemctl restart switchd.service)
 
-sudo reboot</td>
+OR
+ 
+2. Reboot the switch (sudo reboot)</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -11554,6 +11582,15 @@ sudo reboot</td>
 <td>On the Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
 <td>4.2.1-5.4.0</td>
 <td>5.5.0</td>
+</tr>
+<tr>
+<td>3419962</td>
+<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
+
+switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
+</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3419953</td>
@@ -11655,6 +11692,12 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3321391</td>
+<td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
+<td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -11978,12 +12021,6 @@ Fixed: 1.9.2-1+deb10u1</td>
 <td>4.4.3-4.4.5, 5.1.0-5.5.0</td>
 </tr>
 <tr>
-<td>2965759</td>
-<td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2961079</td>
 <td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
 Vulnerable: &lt;= 2.5.5-3+deb10u3
@@ -12159,29 +12196,6 @@ Fixed: 3.42.1-1+deb10u4</td>
 <td>5.1.0-5.5.0</td>
 </tr>
 <tr>
-<td>2859177</td>
-<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
-
-cumulus@switch:~$ sudo cl-route-check --layer3
-Traceback (most recent call last):
- File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
-  routing.collect_data()
- File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
-  self.collect_data_bgp_ipv4()
- File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
-  bgp_ipv4 = json.loads(output)
- File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
-  return _default_decoder.decode(s)
- File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
-  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
- File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
-  obj, end = self.scan_once(s, idx)
-MemoryError
-</td>
-<td>3.7.15-4.4.1</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
 <td>2854785</td>
 <td>When you configure 199 VXLANs plus 199 VLANs, {{clagd}} crashes every few seconds. </td>
 <td>3.7.15, 4.3.0, 4.4.0-4.4.5</td>
@@ -12192,14 +12206,6 @@ MemoryError
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.1</td>
 <td>4.4.2-4.4.5, 5.0.0-5.5.0</td>
-</tr>
-<tr>
-<td>2853536</td>
-<td>MLAG between Cumulus Linux and Arista devices might result in some links being suspended by the Arista devices with the error {{LACP partner validation failed}}.
-This happens when you use the same LACP port ID for more than one bond member on the Cumulus Linux switch.
-To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance-xor}} command on the bond on the Cumulus Linux switch. For proper operation, you need to make the equivalent change on the device on the other side of the link.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2848204</td>

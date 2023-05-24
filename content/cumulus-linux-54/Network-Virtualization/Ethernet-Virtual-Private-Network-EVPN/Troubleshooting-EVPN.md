@@ -13,8 +13,8 @@ The following outputs are from the {{<exlink url="https://gitlab.com/cumulus-con
 You can use various NVUE or Linux commands to examine interfaces, VLAN mappings and the bridge MAC forwarding database known to the Linux kernel. You can also use these commands to examine the neighbor cache and the routing table (for the underlay or for a specific tenant VRF). Some of the key commands are:
 
 - `nv show nve vxlan` (NVUE) or `ip [-d] link show type vxlan` (Linux)
-- `net show net show bridge macs` or `bridge [-s] fdb show` (Linux)
-- `net show net show bridge vlan` or `bridge vlan show` (Linux)
+- `net show bridge macs` or `bridge [-s] fdb show` (Linux)
+- `net show bridge vlan` or `bridge vlan show` (Linux)
 - `ip neighbor show` (Linux)
 - `ip route show [table <vrf-name>]` (Linux)
 

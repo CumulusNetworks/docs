@@ -23,6 +23,10 @@ To configure BGP numbered on a BGP node, you need to:
 {{< tabs "23 ">}}
 {{< tab "NCLU Commands ">}}
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as BGP, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 {{< tabs "26 ">}}
 {{< tab " leaf01 ">}}
 
@@ -481,6 +485,10 @@ The only difference between a BGP unnumbered configuration and the BGP numbered 
 
 {{< tabs "463 ">}}
 {{< tab "NCLU Commands ">}}
+
+{{%notice info%}}
+When you commit a change that configures a new routing service such as BGP, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
 
 {{< tabs "466 ">}}
 {{< tab "leaf01 ">}}

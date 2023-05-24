@@ -498,7 +498,7 @@ Confirmation of the on-demand job is provided. Refer to {{<link title="Verify Ne
 
 ### Create a Layer 2 On-demand Trace
 
-It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. It you cannot find a path through a layer 2 path, you might also try checking connectivity through a layer 3 path.
+It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. If you cannot find a path through a layer 2 path, you might also try checking connectivity through a layer 3 path.
 
 {{< tabs "TabID505" >}}
 

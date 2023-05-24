@@ -1,0 +1,1 @@
+frr-rpki-rtrlib-dbgsym has no copyright file

@@ -571,7 +571,7 @@ In the following example, the PBR-enabled switch has a PBR policy to route all t
 
 ```
 cumulus@switch:~$ nv set router pbr map map1 rule 1 match source-ip 0.0.0.0/0
-cumulus@switch:~$ nv set router nexthop-group group1 via 192.168.0.32
+cumulus@switch:~$ nv set router nexthop group group1 via 192.168.0.32
 cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
 cumulus@switch:~$ nv set interface swp51 router pbr map map1
 cumulus@switch:~$ nv config apply
@@ -584,28 +584,31 @@ cumulus@switch:~$ nv config apply
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
+switch(config)# nexthop-group group1
+switch(config-nh-group)#  nexthop 192.168.0.32
+switch(config-nh-group)# exit
 switch(config)# pbr-map map1 seq 1
-switch(config-pbr-map)# match src-ip 0.0.0.0/0
-switch(config-pbr-map)# set nexthop 192.168.0.32
+switch(config-pbr-map)#  match src-ip 0.0.0.0/0
+switch(config-pbr-map)#  set nexthop-group group1
 switch(config-pbr-map)# exit
 switch(config)# interface swp51
-switch(config-if)# pbr-policy map1
+switch(config-if)#  pbr-policy map1
 switch(config-if)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
+cumulus@switch:mgmt:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+interface swp51
+pbr-policy map1
 nexthop-group group1
 nexthop 192.168.0.32
 pbr-map map1 seq 1
 match src-ip 0.0.0.0/0
 set nexthop-group group1
-interface swp51
-pbr-policy map1
 ...
 ```
 

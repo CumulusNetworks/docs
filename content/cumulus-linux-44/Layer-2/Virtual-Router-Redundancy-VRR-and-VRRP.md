@@ -471,6 +471,10 @@ The parent interface must use a primary address as the source address on VRRP ad
 {{< tabs "TabID448 ">}}
 {{< tab "NCLU Commands ">}}
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as VRRP, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 {{< tabs "TabID526 ">}}
 {{< tab "spine01 ">}}
 

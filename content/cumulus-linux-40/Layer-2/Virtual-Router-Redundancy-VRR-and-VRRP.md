@@ -435,6 +435,10 @@ A primary address is required for the parent interface to use as the source addr
 {{< tabs "TabID442 ">}}
 {{< tab "NCLU Commands ">}}
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as VRRP, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 **spine01**
 
 ```

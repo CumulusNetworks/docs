@@ -10,7 +10,7 @@ You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Networ
 
 ### Configure the gNMI Agent
 
-The gNMI Agent is disabled by default. To enable it, run:
+The gNMI Agent is included in the `netq-agent` package and is disabled by default. To enable it, run:
 
 ```
  cumulus@switch:~$ netq config add agent gnmi-enable true
@@ -31,7 +31,26 @@ Use the following commands to adjust the settings:
 
        cumulus@switch:~$ netq config restart agent
 
+{{%notice note%}}
 
+The gNMI agent relies on data collected from the NVUE service. For complete data collection with gNMI, the NVUE service must be enabled. To check the status of the `nvued` service, run the `sudo systemctl status nvued.service` command:
+
+
+```
+cumulus@switch:mgmt:~$ sudo systemctl status nvued.service
+● nvued.service - NVIDIA User Experience Daemon
+   Loaded: loaded (/lib/systemd/system/nvued.service; enabled; vendor preset: enabled)
+   Active: active (running) since Thu 2023-03-09 20:00:17 UTC; 6 days ago
+```
+
+If necessary, enable and start the service:
+
+```
+cumulus@switch:mgmt:~$ sudo systemctl enable nvued.service
+cumulus@switch:mgmt:~$ sudo systemctl start nvued.service
+```
+
+{{%/notice%}}
 ### Using the gNMI Agent Exclusively
 
 NVIDIA recommends collecting data with both the gNMI and NetQ Agents. However, if you do not want to collect data with both Agents, you can disable the NetQ Agent. Data is then sent exclusively to the gNMI Agent.
@@ -53,6 +72,13 @@ WJH, `openconfig-platform`, and `openconfig-lldp` data continue streaming to gNM
 
 {{%/notice%}}
 
+### Supported Subscription Modes
+
+Cumulus Linux supports the following gNMI {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="subscription modes">}}:
+
+- `POLL` mode
+- `ONCE` mode
+- `STREAM` mode, supported for `ON_CHANGE` subscriptions only
 ### Supported Models
 
 Cumulus Linux supports the following OpenConfig models:
@@ -578,8 +604,7 @@ module wjh-drop-types {
 <!-- vale on -->
 ### Supported Features
 
-The gNMI Agent currently supports *capability* and *stream subscribe* requests for WJH events.
-
+The gNMI Agent currently supports `Capabilities` and `STREAM` subscribe requests for WJH events.
 
 ### WJH Drop Reasons
 <!-- vale off -->
@@ -678,140 +703,105 @@ The data NetQ sends to the gNMI Agent is in the form of WJH drop reasons. The re
 ### gNMI Client Requests
 
 <!-- vale off -->
-You can use your gNMI client on a host server to request capabilities and data that the Agent is subscribed to.
+You can use your gNMI client on a host to request capabilities and data that the Agent is subscribed to. The examples below use the {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMIc client.">}}.
 <!-- vale on -->
 
-The following example shows a gNMI client request for interface speed:
+The following example shows a gNMIc `STREAM` request for WJH data:
 
 ```
-gnmi_client -target_addr 10.209.37.121:9339 -xpath "/interfaces/interface[name=swp1]/ethernet/state/port-speed" -once
+gnmic -a 10.209.37.121:9339 -u cumulus -p ****** --skip-verify subscribe --path "wjh/aggregate/l2/reasons/reason[id=209][severity=error]/state/drop" --mode stream --prefix "/interfaces/interface[name=swp8]/" --target netq
+
 {
-   "Response": {
-      "Update": {
-         "update": [
-            {
-               "val": {
-                  "Value": {
-                     "StringVal": "SPEED_40GB"
-                  }
-               },
-               "path": {
-                  "elem": [
-                     {
-                        "name": "state"
-                     },
-                     {
-                        "name": "port-speed"
-                     }
-                  ]
-               }
-            }
-         ],
-         "timestamp": 1636910588085654861,
-         "prefix": {
-            "target": "netq",
-            "elem": [
-               {
-                  "name": "interfaces"
-               },
-               {
-                  "name": "interface",
-                  "key": {
-                     "name": "swp1"
-                  }
-               },
-               {
-                  "name": "ethernet"
-               }
-            ]
-         }
+  "source": "10.209.37.121:9339",
+  "subscription-name": "default-1677695197",
+  "timestamp": 1677695102858146800,
+  "time": "2023-03-01T18:25:02.8581468Z",
+  "prefix": "interfaces/interface[name=swp8]/wjh/aggregate/l2/reasons/reason[severity=error][id=209]",
+  "target": "netq",
+  "updates": [
+    {
+      "Path": "state/drop",
+      "values": {
+        "state/drop": "[{\"AggCount\":283,\"Dip\":\"0.0.0.0\",\"Dmac\":\"1c:34:da:17:93:7c\",\"Dport\":0,\"DropType\":\"L2\",\"EgressPort\":\"\",\"EndTimestamp\":1677695102,\"FirstTimestamp\":1677695072,\"Hostname\":\"neo-switch01\",\"IngressLag\":\"\",\"IngressPort\":\"swp8\",\"Proto\":0,\"Reason\":\"Source MAC is multicast\",\"ReasonId\":209,\"Severity\":\"Error\",\"Sip\":\"0.0.0.0\",\"Smac\":\"01:00:5e:00:00:01\",\"Sport\":0}]"
       }
-   }
+    }
+  ]
 }
-
-
-```
-
-The following example shows a gNMI client request for WJH drop data:
-
-```
-gnmi_client -target_addr 10.209.37.121:9339 -xpath "/interfaces/interface[name=swp8]/wjh/aggregate/l2/reasons/reason[id=210]"
 {
-   "Response": {
-      "Update": {
-         "update": [
-            {
-               "val": {
-                  "Value": {
-                     "StringVal": "[{
-									  "IngressPort": "swp8",
-									  "DropType": "L2",
-									  "Reason": "Source MAC equals destination MAC",
-									  "Severity": "Error",
-									  "Smac": "00:02:10:00:00:01",
-									  "Dmac": "00:02:10:00:00:01",
-									  "Proto": 6,
-									  "Sport": 15,
-									  "Dport": 16,
-									  "Sip": "1.1.1.1"
-									  "Dip": "2.2.2.2",
-									  "AggCount": 192,
-									  "FirstTimestamp": 1636907412,
-									  "EndTimestamp": 1636907432,
-								   }]"
-
-                  }
-               },
-               "path": {
-                  "elem": [
-                     {
-                        "name": "state"
-                     },
-                     {
-                        "name": "drop"
-                     }
-                  ]
-               }
-            }
-         ],
-         "prefix": {
-            "elem": [
-               {
-                  "name": "interfaces"
-               },
-               {
-                  "key": {
-                     "name": "swp8"
-                  },
-                  "name": "interface"
-               },
-               {
-                  "name": "wjh"
-               },
-               {
-                  "name": "aggregate"
-               },
-               {
-                  "name": "l2"
-               },
-               {
-                  "name": "reasons"
-               },
-               {
-                  "key" : {
-                     "severity": "error",
-                     "id": "210"
-                  },
-                  "name" : "reason"
-               }
-            ],
-            "target": "netq"
-         },
-         "timestamp": 1636907442362981645
+  "source": "10.209.37.121:9339",
+  "subscription-name": "default-1677695197",
+  "timestamp": 1677695132988218890,
+  "time": "2023-03-01T18:25:32.98821889Z",
+  "prefix": "interfaces/interface[name=swp8]/wjh/aggregate/l2/reasons/reason[severity=error][id=209]",
+  "target": "netq",
+  "updates": [
+    {
+      "Path": "state/drop",
+      "values": {
+        "state/drop": "[{\"AggCount\":287,\"Dip\":\"0.0.0.0\",\"Dmac\":\"1c:34:da:17:93:7c\",\"Dport\":0,\"DropType\":\"L2\",\"EgressPort\":\"\",\"EndTimestamp\":1677695132,\"FirstTimestamp\":1677695102,\"Hostname\":\"neo-switch01\",\"IngressLag\":\"\",\"IngressPort\":\"swp8\",\"Proto\":0,\"Reason\":\"Source MAC is multicast\",\"ReasonId\":209,\"Severity\":\"Error\",\"Sip\":\"0.0.0.0\",\"Smac\":\"01:00:5e:00:00:01\",\"Sport\":0}]"
       }
-   }
+    }
+  ]
+}
+```
+
+The following example shows a gNMIc `ONCE` mode request for interface port speed:
+
+```
+gnmic -a 10.209.37.121:9339 -u cumulus -p ****** --skip-verify subscribe --path "ethernet/state/port-speed" --mode once --prefix "/interfaces/interface[name=swp1]/" --target netq
+{
+  "source": "10.209.37.123:9339",
+  "subscription-name": "default-1677695151",
+  "timestamp": 1677256036962254134,
+  "time": "2023-02-24T16:27:16.962254134Z",
+  "target": "netq",
+  "updates": [
+    {
+      "Path": "interfaces/interface[name=swp1]/ethernet/state/port-speed",
+      "values": {
+        "interfaces/interface/ethernet/state/port-speed": "SPEED_1GB"
+      }
+    }
+  ]
+}
+```
+
+The following example shows a gNMIc `POLL` mode request for interface status:
+
+```
+gnmic -a 10.209.37.121:9339 -u cumulus -p ****** --skip-verify subscribe --path "state/oper-status" --mode poll --prefix "/interfaces/interface[name=swp1]/" --target netq
+{
+  "timestamp": 1677644403153198642,
+  "time": "2023-03-01T04:20:03.153198642Z",
+  "prefix": "interfaces/interface[name=swp1]",
+  "target": "netq",
+  "updates": [
+    {
+      "Path": "state/oper-status",
+      "values": {
+        "state/oper-status": "UP"
+      }
+    }
+  ]
+}
+received sync response 'true' from '10.209.37.123:9339'
+{
+  "timestamp": 1677644403153198642,
+  "time": "2023-03-01T04:20:03.153198642Z",
+  "prefix": "interfaces/interface[name=swp1]",
+  "target": "netq",
+  "updates": [
+    {
+      "Path": "state/oper-status",
+      "values": {
+        "state/oper-status": "UP"
+      }
+    }
+  ]
 }
 ```
 ## Related Information
 
-{{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}
+- {{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}
+- {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMIc client">}}
+- {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMI subscription mode documentation">}}

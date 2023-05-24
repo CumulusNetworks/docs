@@ -365,7 +365,7 @@ cumulus@switch:~$ sudo ifreload -a
 ```
 
 {{%notice note%}}
-You must enable ARP and ND suppression on all VXLAN interfaces on the switch. You cannot enable ARP and ND suppression on some VXLAN interfaces but not on others.
+NVIDIA recommends that you keep ARP and ND suppression enabled on all VXLAN interfaces on the switch. If you must disable suppression for a special use case, you can not disable ARP and ND suppression on some VXLAN interfaces but not others.
 {{%/notice%}}
 
 ## Configure Static MAC Addresses

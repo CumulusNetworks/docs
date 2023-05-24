@@ -22,7 +22,6 @@ You can configure SPAN and ERSPAN in one of the following ways:
 All three methods are described below.
 
 {{%notice note%}}
-
 - Mirrored traffic is not guaranteed. If the MTP is congested, mirrored packets might be discarded.
 - A SPAN and ERSPAN destination interface that is oversubscribed might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN and ERSPAN when the aggregate speed of all source ports exceeds the destination port.
 - Because SPAN and ERSPAN is done in hardware, eth0 is not supported as a destination.
@@ -30,7 +29,7 @@ All three methods are described below.
 - Cumulus Linux does not support IPv6 ERSPAN destinations.
 - ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination or next hop does not already exist in the kernel, you need to manually resolve this before mirrored traffic is sent (use ping or arping).
 - Mirroring to the same interface that is being monitored causes a recursive flood of traffic and might impact traffic on other interfaces.
-
+- Cumulus VX does not support ACL rules for SPAN, ERSPAN, or port mirroring. To capture packets in Cumulus VX, use the `tcpdump` command line network traffic analyzer.
 {{%/notice%}}
 
 ## NCLU Configuration

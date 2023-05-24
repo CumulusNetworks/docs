@@ -350,6 +350,15 @@ None
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq show check-filter
+Matching config_check records:
+Check Filter ID      Check Name           Test Name            Scope                                                        Active Suppress Until
+-------------------- -------------------- -------------------- ------------------------------------------------------------ ------ --------------------
+roce_3               roce                 RoCE Classification  [{"Reason":"Invalid traffic-class mapping for switch-priority 4.Expected 0 Got 3"}]          
+True   Sun May  4 09:20:54 2025 
+```
+
 ### Related Commands
 
 - netq add check-filter

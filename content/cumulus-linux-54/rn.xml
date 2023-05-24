@@ -462,16 +462,40 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3466703</td>
+<td>In rare cases when there is high load, the {{clagd}} service might experience a buffer overflow and MLAG bonds stay in a proto-down state on the secondary switch. You see a "NetlinkThread: Netlink overflow" log message and the MLAG state indicates VLAN conflicts between peers. To work around this issue, restart the {{clagd}} service with the {{sudo systemctl restart clagd}} command on the switch that reports the overflow log message.</td>
+<td>5.2.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3459696</td>
+<td>If you run the NVUE {{nv show vrf &lt;vrf&gt; router bgp peer-group &lt;peer-group&gt;}} command when the BGP instance is not enabled, you see an NVUE traceback error.</td>
+<td>5.4.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3447762</td>
 <td>If the NVUE {{startup.yaml}} configuration file is invalid,  the {{nv config apply startup}} command times out without providing details on the error.</td>
 <td>5.4.0-5.5.0</td>
 <td></td>
 </tr>
 <tr>
+<td>3446455</td>
+<td>The vtysh {{show version}} command shows an incorrect version number; for  example, instead of Cumulus Linux 5.4, the command output shows Cumulus Linux 5.3.</td>
+<td>5.4.0</td>
+<td>5.5.0</td>
+</tr>
+<tr>
 <td>3445841</td>
 <td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}}) is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
 <td>5.0.0-5.5.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3437980</td>
+<td>If the number of bonds and its bond members exceeds the total number of physical ports on the switch  and LACP bypass is enabled, {{switchd}} might crash when frequent link flaps occur or {{switchd}} restarts. To work around this issue, disable LACP bypass.</td>
+<td>5.4.0</td>
+<td>5.5.0</td>
 </tr>
 <tr>
 <td>3436595</td>
@@ -575,17 +599,20 @@ ERR cannot allocate vlan for sub-interface
 <td>5.5.0</td>
 </tr>
 <tr>
-<td>3390758</td>
-<td>The {{neighmgrd}} service does not enable the snooper unless ARP suppression is enabled on at least one VXLAN interface. This can result in missing ARP and NDP entries if the host does not directly interact with the switch.</td>
+<td>3393306</td>
+<td>The {{python-netaddr}} package is not preinstalled on the switch, which leads to an error similar to the following when SNMP accesses data from the CUMULUS-BGPVRF-MIB.
+
+CUMULUS-BGPVRF-MIB::bgpPeerFsmEstablishedTransitions = No Such Instance currently exists at this OID
+
+To work around this issue, manually install the {{python-netaddr}} package with the {{sudo -E apt-get install python-netaddr}} command.</td>
 <td>5.3.1-5.4.0</td>
 <td>5.5.0</td>
 </tr>
 <tr>
-<td>3389950</td>
-<td>NVUE does not accept special characters in the system hostname; avoid using special characters in the system hostname.
-</td>
-<td>5.4.0-5.5.0</td>
-<td></td>
+<td>3390758</td>
+<td>The {{neighmgrd}} service does not enable the snooper unless ARP suppression is enabled on at least one VXLAN interface. This can result in missing ARP and NDP entries if the host does not directly interact with the switch.</td>
+<td>5.3.1-5.4.0</td>
+<td>5.5.0</td>
 </tr>
 <tr>
 <td>3389198</td>
@@ -1153,6 +1180,15 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <td>3298616</td>
 <td>NVUE gracefully detects and handles upgrades that include valid flexible snippets. For any invalid (incompatible) flexible snippets, you must delete the snippets before you {{apt upgrade}} Cumulus Linux; otherwise, the NVUE {{nv config apply}} command and the equivalent REST API, do not run.</td>
 <td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3296715</td>
+<td>When you clear interface counters with the {{ethtool -S &lt;interface&gt; clear}} command, the command fails with the following message:
+
+switch:~$ ethtool -S swp1 clear
+ethtool (-S): unknown parameter 'clear'
+</td>
+<td>5.2.0-5.3.1</td>
 </tr>
 <tr>
 <td>3293039</td>

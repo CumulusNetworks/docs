@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3442456</td>
+<td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
+<td>4.2.0-4.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3436299</td>
 <td>RoCE validations might not display data in the NetQ UI and CLI for Cumulus Linux switches when the NVUE service is not running. This issue will resolve itself within 24 hours after the next full status update from the NetQ agent. </td>
 <td>4.6.0</td>

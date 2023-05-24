@@ -86,6 +86,8 @@ To rename an existing premises:
 1. Select a premises to rename, then click {{<img src="/images/old_doc_images/pencil-2.png" width="16">}} **Edit**.
 
 1. Enter the new name for the premises, then click **Done**.
+    
+<div class="notices note"><p>After renaming the premises, to continue using NetQ CLI please generate a new access-key, secret-key pair following the instructions here https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Install-NetQ/Install-NetQ-CLI/#configure-the-netq-cli and re-configure. </p></div>
 
 <!--Need to find new place for this
 

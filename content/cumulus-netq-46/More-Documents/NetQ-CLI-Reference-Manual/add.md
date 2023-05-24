@@ -7,10 +7,11 @@ right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
 ---
+
 <!--
 ## netq add check-filter
 
-You can add filters to `netq check` commands to prevent them from generating events. Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for step-by-step instructions. 
+You can add filters to `netq check` commands to suppress validation failures based on hostnames, failure reason, and other parameters. Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for step-by-step instructions. 
 
 ### Syntax
 
@@ -41,11 +42,15 @@ None
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq add check-filter check_name roce test_name 'RoCE Classification' scope '[{"Reason": "Invalid traffic-class mapping for switch-priority 4.Expected 0 Got 3"}]' is_active true
+Successfully added/updated Check Filter 
+```
+
 ### Related Commands
 
 - netq del check-filter
 - netq show check-filter
-
  - - -
  -->
 ## netq add events-config

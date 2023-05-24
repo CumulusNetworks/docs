@@ -11,8 +11,8 @@ type: nojsscroll
 
 Three sets of validation commands are available, all for verifying the health and performance of network protocols and services:
 
-- `netq check` commands. These commands validate various elements in your network fabric. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results appear in the NetQ CLI. Commands with a `streaming` option run streaming checks by default to return results faster. To run a non-streaming validation, include the `legacy` option.  
-- `netq add validation` commands. Use {{<link url="add/#netq-add-validation-name" text="these commands">}} to validate various elements in your network fabric. The results appear in the Validation Result cards in the UI, where you can filter them.
+- `netq check` commands. These commands check whether your network's devices, hosts, network protocols, and services are operating as expected. They 'validate' your network against an ideal setup and report mismatches and recommendations. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. Commands with a `streaming` option run streaming checks by default to return results faster. To run a non-streaming validation, include the `legacy` option.  
+- `netq add validation` commands. Use {{<link url="add/#netq-add-validation" text="these commands">}} to validate various elements in your network fabric. The results appear in the Validation Result cards in the UI, where you can filter them.
 - Validation management commands. `netq show validation settings` displays a list of all jobs and job settings and `netq del validation` allows you to remove validations.
 
 Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation.
@@ -765,79 +765,62 @@ None
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 ### Sample Usage
 
+The following example runs a check on two devices: `noc-se` and `noc-pr`. The output reports several errors, including a peerlink MTU mismatch, a bond MTU mismatch, a bond in a conflicted state, and a singly-connected bond. To resolve these errors, reconfigure the mismatched values and bring up the bond interface that is in a down state. Then run the command again to verify the updated configurations.
+
 ```
-cumulus@switch:~$ netq check mlag
-clag check result summary:
+cumulus@switch:~$ netq check mlag hostnames noc-se,noc-pr
+mlag check result summary:
 
-Total nodes         : 6
-Checked nodes       : 6
-Failed nodes        : 0
-Rotten nodes        : 0
-Warning nodes       : 0
+Total nodes                             : 2
+Checked nodes                           : 2
+Failed nodes                            : 2
+Rotten nodes                            : 0
+Warning nodes                           : 0
+Skipped nodes                           : 0
+Checked nodes hostname                  : noc-se, noc-pr
 
-Peering Test             : passed
+
+Peering Test             : 0 warnings, 2 errors
 Backup IP Test           : passed
 Clag SysMac Test         : passed
 VXLAN Anycast IP Test    : passed
 Bridge Membership Test   : passed
 Spanning Tree Test       : passed
-Dual Home Test           : passed
+Dual Home Test           : 0 warnings, 2 errors
 Single Home Test         : passed
-Conflicted Bonds Test    : passed
+Conflicted Bonds Test    : 0 warnings, 5 errors
 ProtoDown Bonds Test     : passed
 SVI Test                 : passed
+
+
+Peering Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+noc-pr            Peerlink peerlink-1.4094 MTU mismatch        
+noc-se            Peerlink peerlink-1.4094 MTU mismatch        
+
+
+Dual Home Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+noc-pr            Dually connected bond NetQBond-3 MTU mismatch
+                  with peer noc-se:NetQBond-3                  
+noc-se            Dually connected bond NetQBond-3 MTU mismatch
+                  with peer noc-pr:NetQBond-3                  
+Conflicted Bonds Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+noc-pr            Bond NetQBond-1 in Conflicted state due to ma
+                  tching clagid not configured on peer         
+noc-pr            Bond NetQBond-2 in Conflicted state due to ma
+                  tching clagid not configured on peer         
+noc-pr            Bond NetQBond-4 in Conflicted state due to no
+                  t found in peer                              
+noc-se            Bond NetQBond-1 in Conflicted state due to ma
+                  tching clagid not configured on peer         
+noc-se            Bond NetQBond-2 in Conflicted state due to ma
+                  tching clagid not configured on peer 
 ```
-
-Validate only selected devices:
-
-```
-cumulus@switch:~$ netq check mlag hostnames leaf01,leaf02
-clag check result summary:
-
-Total nodes         : 2
-Checked nodes       : 2
-Failed nodes        : 0
-Rotten nodes        : 0
-Warning nodes       : 0
-
-Peering Test             : passed
-Backup IP Test           : passed
-Clag SysMac Test         : passed
-VXLAN Anycast IP Test    : passed
-Bridge Membership Test   : passed
-Spanning Tree Test       : passed
-Dual Home Test           : passed
-Single Home Test         : passed
-Conflicted Bonds Test    : passed
-ProtoDown Bonds Test     : passed
-SVI Test                 : passed
-```
-
-Exclude selected validation tests:
-
-```
-cumulus@switch:~$ netq check mlag exclude 2
-clag check result summary:
-
-Total nodes         : 6
-Checked nodes       : 6
-Failed nodes        : 0
-Rotten nodes        : 0
-Warning nodes       : 0
-
-Peering Test             : passed
-Backup IP Test           : passed
-Clag SysMac Test         : skipped
-VXLAN Anycast IP Test    : passed
-Bridge Membership Test   : passed
-Spanning Tree Test       : passed
-Dual Home Test           : passed
-Single Home Test         : passed
-Conflicted Bonds Test    : passed
-ProtoDown Bonds Test     : passed
-SVI Test                 : passed
-```
-
 ### Related Commands
 
 - ```netq show mlag```
@@ -1138,7 +1121,7 @@ Searches for consistent RoCE and QoS configurations across nodes.
 
 {{<notice note>}}
 
-This command captures additional mismatches on NVUE-enabled switches running Cumulus Linux 5.0 or later and NetQ Agent 4.6.0. Priority code point (PCP) monitoring requires a switch running NetQ Agent 4.5 or later.
+This command captures mismatches on NVUE-enabled switches running Cumulus Linux 5.0 or later and NetQ Agent 4.6.0. Priority code point (PCP) validations require a switch running NetQ Agent 4.5 or later.
 
 {{</notice>}}
 ### Syntax
@@ -1171,22 +1154,24 @@ None
 
 ### Sample Usage
 
+The following example displays several RoCE errors in the network's fabric. The 'RoCE mode test' indicates that switches are running in both lossy and lossless modes, which must be reconciled. The other errors report configuration mismatches along with the expected configurations. To fix these errors, reconfigure RoCE according to the recommendations reported in the output. Then run the command again to verify its accuracy.
+
 ```
 cumulus@switch:mgmt:~$ netq check roce
 roce check result summary:
 
-Total nodes         : 2
-Checked nodes       : 2
-Failed nodes        : 2
-Rotten nodes        : 0
-Warning nodes       : 0
-Skipped nodes       : 0
-
+Total nodes                             : 2
+Checked nodes                           : 2
+Failed nodes                            : 2
+Rotten nodes                            : 0
+Warning nodes                           : 0
+Skipped nodes                           : 0
+Checked nodes hostname                  : mlx-3700c-23, mlx-3700c-24
 
 RoCE mode Test                 : 0 warnings, 1 errors
-RoCE Classification Test       : 0 warnings, 6 errors
-RoCE Congestion Control Test   : passed
-RoCE Flow Control Test         : 0 warnings, 3 errors
+RoCE Classification Test       : 0 warnings, 3 errors
+RoCE Congestion Control Test   : 0 warnings, 2 errors
+RoCE Flow Control Test         : 0 warnings, 2 errors
 RoCE ETS mode Test             : passed
 
 
@@ -1195,36 +1180,32 @@ Hostname          Reason
 ----------------- ---------------------------------------------
 mlx-3700c-24      RoCE Lossy mode inconsistent with mlx-3700c-2
                   3                                            
-
-
 RoCE Classification Test details:
 Hostname          Reason
 ----------------- ---------------------------------------------
-mlx-3700c-23      DSCP mapping config invalid for switch-prio 2.
-                  Expected DSCP: 16,17,18,19,20,21,22,23.  
-                  DSCP mapping config invalid for switch-prio 3.
-                  Expected DSCP: 24,25,26,27,28,29,30,31.        
 mlx-3700c-23      Invalid traffic-class mapping for switch-prio
-                  rity 3.Expected 3 Got 2                      
-mlx-3700c-23      RoCE SP->DSCP mapping 2->26 inconsistent with
-                  mlx-3700c-24                                 
-mlx-3700c-23      RoCE SP->PCP mapping 2->2 inconsistent with m
-                  lx-3700c-24                                  
-mlx-3700c-23      RoCE SP->TC mapping 2->0 inconsistent with ml
-                  x-3700c-24                                   
-mlx-3700c-24      RoCE SP->PG mapping 3->1 inconsistent with ml
-                  x-3700c-23                                   
-
-
+                  rity 4.Expected 0 Got 3                      
+mlx-3700c-24      DSCP mapping config invalid for switch-prio 3
+                  .Expected DSCP: 24,25,26,27,28,29,30,31.  
+                  DSCP mapping config invalid for switch-prio 5.
+                  Expected DSCP: 40,41,42,43,44,45,46,47.        
+mlx-3700c-24      PCP mapping config invalid for switch-prio 3.
+                  Expected PCP: 3. PCP mapping config invalid f
+                  or switch-prio 4.Expected PCP: 4.            
+RoCE Congestion Control Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+mlx-3700c-23      Congestion Config TC Mismatch.Expected enable
+                  d-tc: 0,3.                                   
+mlx-3700c-23      Congestion Config mode Mismatch.Expected cong
+                  estion-mode: ECN.                            
 RoCE Flow Control Test details:
 Hostname          Reason
 ----------------- ---------------------------------------------
 mlx-3700c-23      Invalid RoCE PFC rx-enabled flag.Expected: en
                   abled.                                       
 mlx-3700c-23      RoCE PFC Priority Mismatch.Expected pfc-prior
-                  ity: 3.                                      
-mlx-3700c-23      RoCE PFC cable-length Mismatch.Expected cable
-                  -length: 100. 
+                  ity: 3.
 ```
 ### Related Commands
 

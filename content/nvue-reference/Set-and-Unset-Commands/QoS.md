@@ -2115,22 +2115,6 @@ cumulus@switch:~$ nv set qos remark default-global switch-priority 0 pcp 4
 
 Configures RDMA over Converged Ethernet lossless (RoCE).
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<profile-id>` |   The profile name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set qos egress-shaper shaper1 port-max-rate 200000
-```
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set qos roce cable-length</h>

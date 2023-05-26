@@ -188,8 +188,6 @@ iface vlan4001
 
 {{%/notice%}}
 
-{{%/notice%}}
-
 ### Configure the VRF to Layer 3 VNI Mapping
 
 {{< tabs "TabID193 ">}}

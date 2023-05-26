@@ -171,10 +171,6 @@ iface vlan10
 - When two VTEPs are operating in **VXLAN active-active** mode and performing **symmetric** routing, you need to configure the router MAC corresponding to each layer 3 VNI to ensure both VTEPs use the same MAC address. Specify the `address-virtual` (MAC address) for the SVI corresponding to the layer 3 VNI. Use the same address on both switches in the MLAG pair. Use the MLAG system MAC address. See {{<link url="#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
 
 {{%/notice%}}
-
-
-{{%/notice%}}
-
 ### Configure the VRF to Layer 3 VNI Mapping
 
 {{< tabs "TabID206 ">}}

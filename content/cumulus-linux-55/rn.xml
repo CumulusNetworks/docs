@@ -114,6 +114,12 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td></td>
 </tr>
 <tr>
+<td>3433944</td>
+<td>The {{wjh_dissector.lua}} WJH packet decoder script provided with Cumulus Linux might fail to decode all WJH packets.</td>
+<td>5.4.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3428677</td>
 <td>In certain cases, Cumulus Linux does not process next hop updates because the {{zebra}} IP routing manager thinks the state of the next hops is unchanged. As a result, route installation fails and remains in a rejected state.</td>
 <td>5.3.0-5.5.0</td>

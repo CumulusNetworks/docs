@@ -218,23 +218,53 @@ None
 
 ### Sample Usage
 
+The following example reports 8 errors from the 'session establishment' test. To fix these errors, bring up the items that are in a down state. Then rerun the command to verify the new configuration.
+
 ```
 cumulus@switch:~$ netq check bgp
 bgp check result summary:
 
-Total nodes         : 10
-Checked nodes       : 10
-Failed nodes        : 0
+Total nodes         : 13
+Checked nodes       : 13
+Failed nodes        : 2
 Rotten nodes        : 0
 Warning nodes       : 0
+Skipped nodes       : 0
 
 Additional summary:
-Total Sessions      : 54
-Failed Sessions     : 0
+Failed Sessions     : 8
+Total Sessions      : 228
 
-Session Establishment Test   : passed
+
+Session Establishment Test   : 0 warnings, 8 errors
 Address Families Test        : passed
 Router ID Test               : passed
+Hold Time Test               : passed
+Keep Alive Interval Test     : passed
+Ipv4 Stale Path Time Test    : passed
+Ipv6 Stale Path Time Test    : passed
+Interface MTU Test           : passed
+
+
+Session Establishment Test details:
+Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
+----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
+spine-1           DataVrf1080     swp7.2            tor-1             BGP session with peer tor-1 (swp7.2 vrf DataV Wed May  3 11:12:35 2023
+                                                                      rf1080) failed, reason: BFD down received
+spine-1           DataVrf1081     swp7.3            tor-1             BGP session with peer tor-1 (swp7.3 vrf DataV Wed May  3 11:12:35 2023
+                                                                      rf1081) failed, reason: BFD down received
+spine-1           DataVrf1082     swp7.4            tor-1             BGP session with peer tor-1 (swp7.4 vrf DataV Wed May  3 11:12:35 2023
+                                                                      rf1082) failed, reason: BFD down received
+spine-1           default         swp7              tor-1             BGP session with peer tor-1 (swp7 vrf default Wed May  3 11:12:34 2023
+                                                                      ) failed, reason: BFD down received
+tor-1             DataVrf1080     swp3.2            spine-1           BGP session with peer spine-1 (swp3.2 vrf Dat Wed May  3 11:12:38 2023
+                                                                      aVrf1080) failed, reason: Link Admin Down
+tor-1             DataVrf1081     swp3.3            spine-1           BGP session with peer spine-1 (swp3.3 vrf Dat Wed May  3 11:12:38 2023
+                                                                      aVrf1081) failed, reason: Link Admin Down
+tor-1             DataVrf1082     swp3.4            spine-1           BGP session with peer spine-1 (swp3.4 vrf Dat Wed May  3 11:12:38 2023
+                                                                      aVrf1082) failed, reason: Link Admin Down
+tor-1             default         swp3              spine-1           BGP session with peer spine-1 (swp3 vrf defau Wed May  3 11:12:38 2023
+                                                                      lt) failed, reason: Link Admin Down
 ```
 
 ### Related Commands
@@ -539,7 +569,7 @@ None
 
 ### Sample Usage
 
-The following example displays an error for the 'EVPN-BGP session' test. To fix the error, bring up the interface that is in a down state. Run the test again to verify the new configuration.
+The following example reports an error for the 'EVPN-BGP session' test. To fix the error, bring up the interface that is in a down state. Run the test again to verify the new configuration.
 
 ```
 cumulus@switch:~$: netq check evpn

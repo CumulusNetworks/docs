@@ -12,7 +12,7 @@ This document supports the Cumulus Linux 5.5 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.5.1
 <!-- vale on -->
-Cumulus Linux 5.5.1 provides new SDK and firmware, and includes a bug fix to resolve link degradation when swapping between the upper and lower four lanes of a port.
+Cumulus Linux 5.5.1 provides new SDK and firmware, and includes a bug fix to resolve a {{<link title="Cumulus Linux 5.5 Release Notes" text="link degradation issue">}}.
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.5.0
 <!-- vale on -->

@@ -14,13 +14,30 @@ This document supports the Cumulus Linux 5.6 release, and lists new platforms, f
 <!-- vale on -->
 Cumulus Linux 5.6.0 supports new platforms, contains several new features and improvements, and provides bug fixes.
 
-{{%notice note%}}
-Early access features are now called beta features.
-{{%/notice%}}
-
 ### Platforms
 
+- NVIDIA SN5600 (800G Spectrum-4)
+- NVIDIA SN3750-SX (200G Spectrum-2) is now generally available
+
 ### New Features and Enhancements
+
+- Multiple adaptive routing profiles
+- QOS FC watchdog for lossless queues
+- BGP WCMP for adaptive routing enabled traffic
+- Support adaptive routing for RoCE with VXLAN
+- Deterministic warm boot switchover
+- NVUE enhancements include:
+  - PVST and PVRST with VLAN-aware bridges
+  - ARP and ND Timer configuration
+  - Support templating SSH service options
+  - VRRP operational data
+  - Enable and Disable external API access
+  - Clear operation for all routing protocols
+  - IGMP commands
+  - Commands to set the time
+  - Platform keyword presentation
+- Service password-encryption support for BGP and OSPF in FRR - integration
+- PTP 1-step clock
 
 {{< expand "Changed Commands" >}}
 | Previous Command | New Command |
@@ -30,7 +47,8 @@ Early access features are now called beta features.
 {{< /expand >}}
 
 {{< expand "New Commands" >}}
-   {{< tabs "TabID40 ">}}
+
+{{< tabs "TabID40 ">}}
 {{< tab "nv show commands ">}}
 
 {{< /tab >}}

@@ -58,6 +58,12 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td>5.5.0</td>
 </tr>
 <tr>
+<td>3433944</td>
+<td>The {{wjh_dissector.lua}} WJH packet decoder script provided with Cumulus Linux might fail to decode all WJH packets.</td>
+<td>5.4.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3432897</td>
 <td>When you remove the restriction from a TACACS+ mapped user to remove per command authorization, the {{tacplus-restrict -R}} command does not restore ownership of restored files correctly. As a result, some commands might fail due to permission errors in the files or directories under the home directory. To work around this issue, run the {{sudo chown}} command  to correct the ownership of the affected files and directories.</td>
 <td>5.0.0-5.4.0</td>

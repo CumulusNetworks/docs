@@ -9,7 +9,7 @@ pdfhidden: True
 ---
 ## 5.5.1 Open Source Software Licenses
 
-Cumulus Linux 5.5.1 provides a new SDK (4.5.6108) and firmware (2010_6108) version, and includes the open source software licenses listed in 5.5.0 Open Source Software Licenses, below.
+Cumulus Linux 5.5.1 provides a new SDK version (4.5.6108) and firmware version (2010_6108). All other open source software licenses are the same as those listed in Cumulus Linux 5.5.0, below.
 
 ## 5.5.0 Open Source Software Licenses 
 | Package | Version | License(s) |

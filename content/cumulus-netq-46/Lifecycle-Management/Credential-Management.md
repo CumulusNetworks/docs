@@ -33,11 +33,12 @@ You cannot delete default profiles.
 You must have sudoer permission to configure switches when using the SSH key method.
 {{</notice>}}
 
-4. Create a pair of SSH private and public keys:
+4. Create a pair of SSH private and public keys on the NetQ appliance:
 
     ```
     ssh-keygen -t rsa -C "<USER>"
     ```
+When prompted, hit the enter/return key.
 
 5. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
@@ -99,21 +100,23 @@ To configure SSH authentication using a public/private key:
 You must have sudoer permission to properly configure switches when using the SSH key method.
 {{</notice>}}
 
-1. If the keys do not yet exist, create a pair of SSH private and public keys.
+1. If the keys do not yet exist, create a pair of SSH private and public keys on the NetQ appliance.
 
     ```
     ssh-keygen -t rsa -C "<USER>"
     ```
+When prompted, hit the enter/return key.
 
 2. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
     - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where you generated the SSH key pair for each switch
-
+<br>
+<br>
 3. Add these credentials to the switch. Specify a unique name for the configuration after `profile_name`. 
 
     ```
-    cumulus@switch:~$ netq lcm add credentials profile_name NEWPROFILE ssh-key PUBLIC_SSH_KEY
+    cumulus@switch:~$ netq lcm add credentials profile_name NEWPROFILE username <USERNAME> ssh-key PUBLIC_SSH_KEY
     ```
 
 {{</tab>}}
@@ -162,7 +165,8 @@ To configure SSH authentication using a public/private key (requires sudoer perm
 
     - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where you generated the SSH key pair for each switch
-
+<br>
+<br>
 3. Add these new credentials to the switch:
 
     ```

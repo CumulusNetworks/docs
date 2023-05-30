@@ -1350,7 +1350,6 @@ If you split a 100G port into four interfaces and auto-negotiation is on (the de
 
 {{%notice warning%}}
 - Cumulus Linux 5.4 and later uses a new format for port splitting; instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. The new format does not support specifying a speed for breakout ports in the `/etc/cumulus/ports.conf` file. To set a speed, either set the `link-speed` parameter for each split port in the `/etc/network/interfaces` file or run the NVUE `nv set interface <interface> link speed <speed>` command.
-<!-- - Cumulus Linux 5.5 continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, see {{<link url="#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.-->
 {{%/notice%}}
 
 {{< tabs "TabID1281 ">}}
@@ -1654,57 +1653,6 @@ cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'
 ```
 
 ## Considerations
-<!--
-### Important Upgrade Information for Breakout Ports and NVUE
-
-Cumulus Linux 5.4 and later uses a new format for port splitting but continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, you must either:
-
-- Upgrade to Cumulus Linux 5.5 with a {{<link url="Upgrading-Cumulus-Linux/#cumulus-linux-image-install-onie" text="binary installation">}}, then configure port breakouts on your switch with the {{<link url="#configure-a-breakout-port" text="new NVUE syntax">}}.
-- Upgrade to Cumulus Linux 5.5 with package installation (`apt upgrade`) but follow the steps below **before** you upgrade.
-
-To upgrade with `apt upgrade`:
-
-1. **Before** you run `apt upgrade`, save the current NVUE configuration with the `nv config save` command.
-2. Edit the `/etc/nvue.d/startup.yaml` file to use the new NVUE breakout syntax for each breakout port. For example, change `4x10G` to `4x: {}`:
-
-{{%notice note%}}
-You must also add the colon (`:`) and curly brackets (`{}`) after the split port setting and also after any split port `disabled` setting.
-{{%/notice%}}
-
-   Change:
-
-   ```
-   interface:
-     swp1:
-       link:
-         breakout: 4x10G
-       type: swp
-...
-      swp2:
-        link:
-          breakout: disabled
-        type: swp
-   ```
-
-   to
-
-   ```
-   interface:
-     swp1:
-       link:
-         breakout:
-           4x: {}
-       type: swp
-...
-      swp2:
-        link:
-          breakout:
-            disabled: {}
-        type: swp
-   ```
-
-3. {{<link url="Upgrading-Cumulus-Linux/" text="Upgrade">}} to Cumulus Linux 5.5 with `apt-get upgrade`.
--->
 <!-- vale off -->
 <!-- Vale issue #253 -->
 ### Auto-negotiation and FEC
@@ -1715,13 +1663,6 @@ If auto-negotiation is off on 100G and 25G interfaces, you must set FEC to *OFF*
 ### Auto-negotiation and Link Speed
 <!-- vale on -->
 If auto-negotiation is on and you set the link speed for a port, Cumulus Linux disables auto-negotiation and uses the port speed setting you configure.
-
-<!--### Port Speed and the ifreload -a Command
-
-When you configure break out ports in the `/etc/cumulus/ports.conf` file, you must run the `ifreload -a` command to reload the configuration after restarting `switchd` if:
-- You configure or configure then remove the port speed in the `/etc/cumulus/ports.conf` file and you also set or remove the speed on the same physical port or breakouts of that port in the `/etc/network/interfaces` file after the last time you restarted `switchd`.
-- You break out a switch port or remove a break out port, and you set the port speed in both the `/etc/cumulus/ports.conf` file and the `/etc/network/interfaces` file.-->
-
 <!-- vale off -->
 <!-- Vale issue #253 -->
 ### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms

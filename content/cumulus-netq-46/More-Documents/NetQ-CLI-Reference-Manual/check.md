@@ -238,11 +238,11 @@ Router ID Test               : passed
 ```
 
 ### Related Commands
-<!-- vale off -->
-- ```netq show bgp```
-- ```netq show unit-tests bgp```
-- ```netq add validation```
-<!-- vale on -->
+
+- `netq show bgp`
+- `netq show unit-tests bgp`
+- `netq add validation`
+
 - - -
 
 <!-- vale off -->
@@ -539,37 +539,46 @@ None
 
 ### Sample Usage
 
+The following example displays an error for the 'EVPN-BGP session' test. To fix the error, bring up the interface that is in a down state. Run the test again to verify the new configuration.
+
 ```
-cumulus@switch:~$ netq check evpn
+cumulus@switch:~$: netq check evpn
 evpn check result summary:
 
 Total nodes         : 6
 Checked nodes       : 6
-Failed nodes        : 0
+Failed nodes        : 1
 Rotten nodes        : 0
 Warning nodes       : 0
+Skipped nodes       : 0
 
 Additional summary:
-Total VNIs          : 5
-Failed BGP Sessions : 0
-Total Sessions      : 30
+Total VNIs          : 13
+Failed EVPN Sessions: 1
+Total EVPN Sessions : 47
 
-EVPN BGP Session Test            : passed
+
+EVPN BGP Session Test            : 0 warnings, 1 errors
 EVPN VNI Type Consistency Test   : passed
 EVPN Type 2 Test                 : skipped
 EVPN Type 3 Test                 : passed
 EVPN Session Test                : passed
 Vlan Consistency Test            : passed
 Vrf Consistency Test             : passed
-L3 VNI RMAC Test                 : skipped
-```
 
+
+EVPN BGP Session Test details:
+Hostname          Peer Name         Peer Hostname     Reason                                        Last Changed
+----------------- ----------------- ----------------- --------------------------------------------- -------------------------
+tor-1             swp3              spine-1           BGP session with peer spine-1 (swp3 vrf defau Wed May  3 11:12:34 2023
+                                                      lt) failed, reason: Interface down
+```
 ### Related Commands
-<!-- vale off -->
-- ```netq show evpn```
-- ```netq show unit-tests evpn```
-- ```netq add validation```
-<!-- vale on -->
+
+- `netq show evpn`
+- `netq show unit-tests evpn`
+- `netq add validation`
+
 - - -
 
 ## netq check interfaces
@@ -765,7 +774,7 @@ None
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 ### Sample Usage
 
-The following example runs a check on two devices: `noc-se` and `noc-pr`. The output reports several errors, including a peerlink MTU mismatch, a bond MTU mismatch, a bond in a conflicted state, and a singly-connected bond. To resolve these errors, reconfigure the mismatched values and bring up the bond interface that is in a down state. Then run the command again to verify the updated configurations.
+The following example runs a check on two devices: `noc-se` and `noc-pr`. The output reports several errors, including a peerlink MTU mismatch, a bond MTU mismatch, a bond in a conflicted state, and a singly-connected bond. To resolve these errors, reconfigure the mismatched values and bring up the bond interface that is in a down state. Then run the command again to verify the new configurations.
 
 ```
 cumulus@switch:~$ netq check mlag hostnames noc-se,noc-pr
@@ -823,9 +832,9 @@ noc-se            Bond NetQBond-2 in Conflicted state due to ma
 ```
 ### Related Commands
 
-- ```netq show mlag```
-- ```netq show unit-tests mlag```
-- ```netq add validation```
+- `netq show mlag`
+- `netq show unit-tests mlag`
+- `netq add validation`
 
 - - -
 

@@ -36254,12 +36254,6 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <td>3.7.2</td>
 </tr>
 <tr>
-<td>2538347</td>
-<td>Cumulus Linux 3.7.2 introduced {{clagd}} synchronization for permanent MAC addresses (MAC address of SVI interfaces). By allowing this permanent address to be synchronized, each MLAG system installs the MAC address over the peer link. While this forwarding entry is programmed, this device cannot properly decapsulate VXLAN packets, which results in these packets being discarded. 
- To work around this issue, make sure that the VLAN ID (SVI used for the layer 3 VNI) is *not* part of the bridge in an MLAG configuration. This ensures that traffic tagged with that VLAN ID is not forwarded on the peer link or other trunks. </td>
-<td>3.7.2</td>
-</tr>
-<tr>
 <td>2538343</td>
 <td>In an EVPN symmetric routing deployment with active-active anycast IP configured, the next hop attribute is sometimes set to a unique address instead of the anycast IP address. 
  To work around this issue, do not use {{default-originate ipv4}}; instead configure the network statements (recommended for small scale deployments). 
@@ -37615,13 +37609,6 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <tr>
 <td>2538384</td>
 <td>Log entries containing {{grep}} commands almost completely fill the {{var/log/openvswitch/ovs-vtepd.log}} file. </td>
-<td>3.7.2</td>
-<td>3.7.3-3.7.16</td>
-</tr>
-<tr>
-<td>2538347</td>
-<td>Cumulus Linux 3.7.2 introduced {{clagd}} synchronization for permanent MAC addresses (MAC address of SVI interfaces). By allowing this permanent address to be synchronized, each MLAG system installs the MAC address over the peer link. While this forwarding entry is programmed, this device cannot properly decapsulate VXLAN packets, which results in these packets being discarded. 
- To work around this issue, make sure that the VLAN ID (SVI used for the layer 3 VNI) is *not* part of the bridge in an MLAG configuration. This ensures that traffic tagged with that VLAN ID is not forwarded on the peer link or other trunks. </td>
 <td>3.7.2</td>
 <td>3.7.3-3.7.16</td>
 </tr>

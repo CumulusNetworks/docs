@@ -262,6 +262,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default router-port
+  ageing-timer  interface  type     
+-  ------------  ---------  ---------
+1     0.00       peerlink   permanent
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -595,6 +598,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default vlan 10 vni 10 flooding head-end-replication
+IP Address
+----------
+10.0.1.34
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

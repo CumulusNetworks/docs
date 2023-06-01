@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3467890"></a> [3467890](#3467890) <a name="3467890"></a> <br /> | BGP aggregate routers are not advertised after learning the same route from another protocol. To work around this issue, restart the FRR service or, if possible, don't learn the route from another protocol (use route maps instead). | 5.3.0-5.5.0 | |
 | <a name="3466703"></a> [3466703](#3466703) <a name="3466703"></a> <br /> | In rare cases when there is high load, the <code>clagd</code> service might experience a buffer overflow and MLAG bonds stay in a proto-down state on the secondary switch. You see a "NetlinkThread: Netlink overflow" log message and the MLAG state indicates VLAN conflicts between peers. To work around this issue, restart the <code>clagd</code> service with the <code>sudo systemctl restart clagd</code> command on the switch that reports the overflow log message. | 5.2.0-5.5.0 | |
 | <a name="3459696"></a> [3459696](#3459696) <a name="3459696"></a> <br /> | If you run the NVUE <code>nv show vrf <vrf> router bgp peer-group <peer-group></code> command when the BGP instance is not enabled, you see an NVUE traceback error. | 5.4.0-5.5.0 | |
 | <a name="3447762"></a> [3447762](#3447762) <a name="3447762"></a> <br /> | If the NVUE <code>startup.yaml</code> configuration file is invalid,  the <code>nv config apply startup</code> command times out without providing details on the error. | 5.4.0-5.5.0 | |

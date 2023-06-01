@@ -7,6 +7,10 @@ version: "5.5"
 toc: 1
 pdfhidden: True
 ---
+## 5.5.1 Open Source Software Licenses
+
+Cumulus Linux 5.5.1 provides a new SDK version (4.5.6108) and firmware version (2010_6108). All other open source software licenses are the same as those listed in Cumulus Linux 5.5.0, below.
+
 ## 5.5.0 Open Source Software Licenses 
 | Package | Version | License(s) |
 |---	        |---	        |---	    |
@@ -1736,4 +1740,3 @@ pdfhidden: True
 | {{<foss_file text="zlib1g-dev" url="cumulus-linux-55/Whats-New/licenses/zlib1g-dev.txt" >}} | 1.2.11.dfsg-1+deb10u2 | Zlib(&#42; ); Zlib(amiga/Makefile.pup); Zlib(contrib/minizip/&#42; ); Zlib(debian/&#42; ); Zlib(debian/&#42; ) |
 | {{<foss_file text="zsh" url="cumulus-linux-55/Whats-New/licenses/zsh.txt" >}} | 5.7.1-1+deb10u1 | Zsh(&#42; ); Expat(debian/&#42; ); BSD-3(Src/compat.c); Zsh(Completion/Unix/Command/_hg); GPL-2+(Completion/Unix/Command/_darcs); GPL-2(Completion/openSUSE/Command/_osc); GPL-2(Completion/openSUSE/Command/_zypper); Artistic or GPL-1+ or Zsh(Misc/make-zsh-urls); PWS-Zsh-FAQ(Etc/FAQ.yo); Zsh(Etc/FAQ.yo); Expat(Etc/FAQ.yo); BSD-3(Etc/FAQ.yo); GPL-2+(Etc/FAQ.yo); GPL-2(Etc/FAQ.yo); GPL-1+(Etc/FAQ.yo); Artistic(Etc/FAQ.yo) |
 | {{<foss_file text="zsh-common" url="cumulus-linux-55/Whats-New/licenses/zsh-common.txt" >}} | 5.7.1-1+deb10u1 | Zsh(&#42; ); Expat(debian/&#42; ); BSD-3(Src/compat.c); Zsh(Completion/Unix/Command/_hg); GPL-2+(Completion/Unix/Command/_darcs); GPL-2(Completion/openSUSE/Command/_osc); GPL-2(Completion/openSUSE/Command/_zypper); Artistic or GPL-1+ or Zsh(Misc/make-zsh-urls); PWS-Zsh-FAQ(Etc/FAQ.yo); Zsh(Etc/FAQ.yo); Expat(Etc/FAQ.yo); BSD-3(Etc/FAQ.yo); GPL-2+(Etc/FAQ.yo); GPL-2(Etc/FAQ.yo); GPL-1+(Etc/FAQ.yo); Artistic(Etc/FAQ.yo) |
-

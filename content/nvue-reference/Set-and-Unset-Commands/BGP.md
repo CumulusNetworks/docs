@@ -3226,7 +3226,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound aspath-filter myaspathlist
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound aspath-list myaspathlist
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

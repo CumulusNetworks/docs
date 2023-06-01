@@ -533,7 +533,9 @@ Restarting netq-agent... Success!
 
 ## netq config add agent wjh-drop-filter
 
-Filters the WJH events at the NetQ Agent before the NetQ system processes them. NetQ performs the filtering on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severities. This command only applies to NVIDIA Spectrum switches.
+Filters the WJH events at the NetQ Agent before the NetQ system processes them. NetQ performs the filtering on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons, severities, or source/destination IP addresses. You must restart the agent after applying a filter with the `netq config restart agent` command. 
+
+WJH commands are only supported by NVIDIA Spectrum switches.
 
 ### Syntax
 
@@ -567,6 +569,32 @@ cumulus@switch:~$ netq config add agent wjh-drop-filter drop-type l1 drop-reason
 
 cumulus@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
+```
+This example configures the NetQ Agent to drop only the L1 drops with bad signal integrity.
+
+```
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type l1 drop-reasons BAD_SIGNAL_INTEGRITY
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+This example configures the NetQ Agent to drop only router drops with warning severity.
+
+```
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type router severity Warning
+```
+
+This example configures the NetQ Agent to drop only router drops due to blackhole routes.
+
+```
+cumulus@netq-ts:~$ netq config add agent wjh-drop-filter drop-type router drop-reasons BLACKHOLE_ROUTE
+```
+
+This example configures the NetQ Agent to drop only router drops when the source IP is a class E address.
+
+```
+cumulus@netq-ts:~$ netq config add agent wjh-drop-filter drop-type router drop-reasons SRC_IP_IS_IN_CLASS_E
 ```
 
 ### Related Commands
@@ -602,8 +630,8 @@ netq config add agent wjh-threshold
 | wjh-threshold | NA | Collect and send WJH latency or congestion events triggered by the specified high and low thresholds |
 | latency | NA | Collect and send WJH latency events |
 | congestion | NA | Collect and send WJH congestion events |
-| NA | \<text-tc-list\> or all | Only send events for these traffic classes, or use *all* for all traffic classes. When you desire more than one traffic class, you should format this value should as a comma-separated list, without spaces. |
-| NA | \<text-port-list\> or all | Only send events occurring on these ports, or use *all* for all ports. When you desire more than one port, you should format this value as a comma-separated list, without spaces. For example *swp1,swp2,swp3,swp4*. |
+| NA | \<text-tc-list\> or all | Only send events for these traffic classes, or use *all* for all traffic classes. To include more than one traffic class, format this value as a comma-separated list, without spaces. |
+| NA | \<text-port-list\> or all | Only send events occurring on these ports, or use *all* for all ports. To include more than one port, format this value as a comma-separated list, without spaces. For example *swp1,swp2,swp3,swp4*. |
 | NA | \<text-th-hi\> | Trigger an event when the latency is greater than this amount of time, or when buffer occupancy is greater than this percentage. |
 | NA | \<text-th-lo\> | Trigger an event when the latency is less than this amount of time, or when buffer occupancy is less than this percentage. |
 
@@ -612,13 +640,13 @@ netq config add agent wjh-threshold
 None
 ### Sample Usage
 
-Create latency thresholds for Class *3* traffic on port *swp1* where the upper threshold is *10* and the lower threshold is *1*.
+Create latency thresholds for Class 3 traffic on port swp1 where the upper threshold is 10 and the lower threshold is 1.
 
 ```
 cumulus@switch:~$ sudo netq config add agent wjh-threshold latency 3 swp1 10 1
 ```
 
-Create congestion thresholds for Class *4* traffic on port *swp1* where the upper threshold is *200* and the lower threshold is *10*.
+Create congestion thresholds for Class 4 traffic on port swp1 where the upper threshold is 200 and the lower threshold is 10.
 
 ```
 cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200 10
@@ -626,11 +654,11 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 
 ### Related Commands
 
-- ```netq config show agent wjh-threshold```
-- ```netq config del agent wjh-threshold```
-- ```netq config add agent wjh```
-- ```netq config add agent wjh-drop-filter```
-- ```netq config restart agent```
+- `netq config show agent wjh-threshold`
+- `netq config del agent wjh-threshold`
+- `netq config add agent wjh`
+- `netq config add agent wjh-drop-filter`
+- `netq config restart agent`
 
 - - -
 ## netq config add cli proxy

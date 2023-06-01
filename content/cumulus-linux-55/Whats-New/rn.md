@@ -84,7 +84,7 @@ pdfhidden: True
 ### Fixed Issues in 5.5.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| <a name="3474352"></a> [3474352](#3474352) <a name="3474352"></a> <br />None | On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap between the upper and lower four lanes on a port, the firmware gets stuck. | 5.3.0-5.5.0 | |
+| <a name="3474352"></a> [3474352](#3474352) <a name="3474352"></a> <br />None | On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap the upper and lower four lanes on a port, the firmware gets stuck. | 5.3.0-5.5.0 | |
 
 ## 5.5.0 Release Notes
 ### Open Issues in 5.5.0

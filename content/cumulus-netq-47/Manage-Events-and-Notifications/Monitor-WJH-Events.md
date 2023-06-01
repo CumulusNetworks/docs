@@ -100,7 +100,7 @@ Select **Advanced view** in the top-right corner for a tabular display of drops 
 
 {{<tab "NetQ CLI">}}
 
-To view WJH drops, run one of the following commands. Refer to the {{<link title="show/#netq-config-show-wjh-drop" text="command line reference">}} for a comprehensive list of options and definitions.
+To view WJH drops, run one of the following commands. Refer to the {{<link title="show/#netq-show-wjh-drop" text="command line reference">}} for a comprehensive list of options and definitions.
 
 ```
 netq [<hostname>] show wjh-drop 

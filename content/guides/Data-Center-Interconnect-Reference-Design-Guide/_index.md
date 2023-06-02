@@ -20,3 +20,5 @@ This document uses the following reference DCI topology that consists of two pod
 ## NVIDIA Air
 
 {{<exlink url="https://air.nvidia.com/" text="NVIDIA Air">}} is a cloud-hosted, network simulation platform that behaves exactly like a real world production environment. The topologies in this document were created with NVIDIA Air running Cumulus Linux 5.4.0.
+
+NVIDIA AIR provides {{<exlink url="https://air.nvidia.com/marketplace?demo_id=77b72253-0a82-4148-b34d-a07dbef8f242" text="EVPN VXLAN based DCI labs">}}, which are pre-built demos. You can use the DCI labs along with this guide to better understand the configurations.

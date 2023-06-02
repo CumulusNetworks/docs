@@ -11,7 +11,8 @@ imgData: guides
     overflow-y: auto;
   }
 </style>
-Layer 2 extension from one data center to another typically supports an application or a system that requires layer 2 adjacency. Some legacy applications require layer 2 adjacency for their operations and those systems, although fewer and fewer, continue to exist in enterprise environments. <!--???--> <!--Keeping in mind that modern era of cloud has already said his goodbye with layer 2 world, one can easily draw some conclusions out of this. As such that extending layer 2 domains across long distances is synonym with procrastination your life-long challenges and delaying a closure, which will eventually come back to you as a few technical troubles. Therefore, this option should be considered as last resort when an engineer has no other means of solving organizational and technical problems other than extending layer 2 across geographically separated data centers. -->
+Layer 2 extension from one data center to another typically supports an application or a system that requires layer 2 adjacency. Some legacy applications require layer 2 adjacency for their operations and those systems, although fewer and fewer, continue to exist in enterprise environments.
+
 With the modern era of cloud computing, extending layer 2 domains across long distances is no longer a typical use case; consider this option as a last resort when you have no other way of solving organizational and technical problems other than extending layer 2 across geographically separated data centers.
 
 Layer 2 extensions are undesirable for the following reasons:
@@ -23,11 +24,11 @@ Layer 2 extensions are undesirable for the following reasons:
 
 By limiting the scope of the layer 2 network, you reduce the potential impact when problems occur. If it is not possible to avoid a layer 2 extension, it is crucial to keep the extended layer 2 broadcast domains to a minimum to limit MAC address advertisements and withdrawals. Extending layer 2 domains is the same as merging multiple broadcast domains; it creates a geographically separated large broadcast domain that is interconnected through a complex network over a distance.
 
-<!--diagram of reference topology-->
-
 Extending a layer 2 segment from one data center to another involves extending EVPN type-2 (MAC and IP address) routes for individual MAC addresses and type-3 (Inclusive Multicast) routes for <span style="background-color:#F5F5DC">[BUM](## "Broadcast, Unknown-Unicast, and Multicast")</span>  traffic. In modern EVPN and VXLAN environments with multihoming, extending type-1 (Ethernet Auto Discovery) routes and type-4 (Ethernet Segment) routes is equally essential.
 
 ## Configuration
+
+{{<img src="/images/guides/dci-reference-topology.png">}}
 
 DCI 1|DCI 2|
 |--|--|
@@ -360,18 +361,18 @@ cumulus@leaf03:mgmt:~$ nv set vrf default router bgp neighbor swp2 type unnumber
 <div class=scroll>
 
 ```
-cumulus@spine03:mgmt:~$ nv set interface eth0 ip vrf mgmt 
-cumulus@spine03:mgmt:~$ nv set interface lo ip address 10.10.10.101/32 
-cumulus@spine03:mgmt:~$ nv set router bgp autonomous-system 65199 
-cumulus@spine03:mgmt:~$ nv set router bgp enable on 
-cumulus@spine03:mgmt:~$ nv set router bgp router-id 10.10.10.101 
-cumulus@spine03:mgmt:~$ nv set system config auto-save enable on 
-cumulus@spine03:mgmt:~$ nv set system hostname spine01 
-cumulus@spine03:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on 
-cumulus@spine03:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.101/32 
-cumulus@spine03:mgmt:~$ nv set vrf default router bgp enable on 
-cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 address-family l2vpn-evpn enable on 
-cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 remote-as external 
+cumulus@spine03:mgmt:~$ nv set interface eth0 ip vrf mgmt
+cumulus@spine03:mgmt:~$ nv set interface lo ip address 10.10.20.103/32
+cumulus@spine03:mgmt:~$ nv set router bgp autonomous-system 65299
+cumulus@spine03:mgmt:~$ nv set router bgp enable on
+cumulus@spine03:mgmt:~$ nv set router bgp router-id 10.10.20.103
+cumulus@spine03:mgmt:~$ nv set system config auto-save enable on
+cumulus@spine03:mgmt:~$ nv set system hostname spine03
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.20.103/32
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp enable on
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 address-family l2vpn-evpn enable on
+cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 remote-as external
 cumulus@spine03:mgmt:~$ nv set vrf default router bgp neighbor swp1-4 type unnumbered 
 ```
 </div>

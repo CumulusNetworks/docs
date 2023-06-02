@@ -21,6 +21,8 @@ Each network is unique and has its own business and technical requirements. You 
 
 ## Configuration
 
+{{<img src="/images/guides/dci-reference-topology.png">}}
+
 The following examples show a route leaking configuration.
 
 {{< tabs "TabID27 ">}}

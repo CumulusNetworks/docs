@@ -15,6 +15,8 @@ Layer 3 extensions use EVPN as a control plane and are similar to layer 3 VPN wi
 
 ## Configuration
 
+{{<img src="/images/guides/dci-reference-topology.png">}}
+
 |DCI 1|DCI 2|
 |--|--|
 |<table> </tr><tr><td>VRF</td><td>RED</td></tr><td>Layer 2 VNI</td><td>10</tr><td>Layer 3 VNI</td><td>4001</td></tr></table>| <table> </tr><tr><td>VRF</td><td>RED</td></tr><td>Layer 2 VNI</td><td>1010</tr><td>Layer 3 VNI</td><td>5001</td></tr> </table>|

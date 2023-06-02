@@ -110,7 +110,7 @@ synce
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> bond member</h>
+## <h>nv show interface \<interface-id\> bond</h>
 
 Shows the bond member configuration for the specified interface.
 
@@ -127,7 +127,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 bond member
+cumulus@switch:~$ nv show interface swp1 bond
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

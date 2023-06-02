@@ -261,7 +261,7 @@ cumulus@switch:~$ nv show interface swp1 counters drops
 Counter          Receive  Transmit
 ---------------  -------  --------
 ACL Drops        0        n/a     
-Buffer Drops     0        n/a     
+Buffer Drops     0        n/a
 Non-Queue Drops  n/a      0       
 Queue Drops      n/a      0       
 Total Drops      0        0
@@ -882,6 +882,11 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 storm-control
+                 applied
+---------------  -------
+broadcast        400    
+multicast        3000   
+unknown-unicast  2000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

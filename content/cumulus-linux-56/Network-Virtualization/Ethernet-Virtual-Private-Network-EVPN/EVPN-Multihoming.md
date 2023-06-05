@@ -958,6 +958,10 @@ Route Distinguisher: 10.10.10.3:2
 ...
 ```
 
+## Considerations
+
+If you enable EVPN-MH and configure {{<link url="Netfilter-ACLs/#match-on-vlan-ids-on-layer-2-interfaces" text="VLAN match rules in ebtables with a {{mark}} target">}}, the ebtables rule might overwrite the {{mark}} set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class {{mark}} might not get hit. To work around this issue, add ebtable rules to {{ACCEPT}} the packets already marked by EVPN-MH traffic class rules on ingress.
+
 ## Configuration Example
 
 The following configuration examples use the topology illustrated below and configure EVPN multihoming with head end replication using single VXLAN devices. The examples provide configuration for server01 through server04. The configuration for server05 and server06 are not included for simplicity.

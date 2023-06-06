@@ -303,6 +303,78 @@ Only during the upgrade process does Cumulus Linux supports different software v
 Running different versions of Cumulus Linux on MLAG peer switches outside of the upgrade time period is untested and might have unexpected results.
 {{%/notice%}}
 
+{{< tabs "TabID306 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Verify the switch is in the secondary role:
+
+    ```
+    cumulus@switch:~$ nv show mlag
+    ```
+
+2. Shut down the core uplink layer 3 interfaces. The following example shuts down swp1:
+
+    ```
+    cumulus@switch:~$ nv set interface swp1 link state down
+    ```
+
+3. Shut down the peer link:
+
+    ```
+    cumulus@switch:~$ nv set interface peerlink link state down
+    ```
+
+4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
+
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.1.0-mlx-amd64.bin
+    ```
+
+   To upgrade the switch with package upgrade instead of booting into ONIE, run the `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands; see {{<link url="#package-upgrade" text="Package Upgrade">}}.
+
+5. Reboot the switch with the Linux `sudo reboot` command. NVUE does not provide a reboot command in this release.
+
+    ```
+    cumulus@switch:~$ sudo reboot
+    ```
+
+6. If you installed a new image on the switch, restore the configuration files to the new release.
+
+7. Verify STP convergence across both switches with the Linux `mstpctl showall` command. NVUE does not provide an equivalent command.
+
+    ```
+    cumulus@switch:~$ mstpctl showall
+    ```
+
+8. Verify core uplinks and peer links are UP:
+
+    ```
+    cumulus@switch:~$ nv show interface
+    ```
+
+9. Verify MLAG convergence:
+
+    ```
+    cumulus@switch:~$ nv show mlag
+    ```
+
+10. Make this secondary switch the primary:
+
+    ```
+    cumulus@switch:~$ nv set mlag priority 2084
+    ```
+
+11. Verify the other switch is now in the secondary role.
+12. Repeat steps 2-9 on the new secondary switch.
+13. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
+
+    ```
+    cumulus@switch:~$ nv set mlag priority 32768
+    ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 1. Verify the switch is in the secondary role:
 
     ```
@@ -343,10 +415,10 @@ Running different versions of Cumulus Linux on MLAG peer switches outside of the
     cumulus@switch:~$ mstpctl showall
     ```
 
-8. Verify core uplinks and peer links are UP:
+8. Verify that core uplinks and peer links are UP:
 
     ```
-    cumulus@switch:~$ nv show interface
+    cumulus@switch:~$ ip addr show
     ```
 
 9. Verify MLAG convergence:
@@ -368,6 +440,9 @@ Running different versions of Cumulus Linux on MLAG peer switches outside of the
     ```
     cumulus@switch:~$ clagctl priority 32768
     ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Roll Back a Cumulus Linux Installation
 

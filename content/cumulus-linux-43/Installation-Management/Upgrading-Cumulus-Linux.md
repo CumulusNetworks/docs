@@ -497,33 +497,35 @@ This is due to a change in the bonding driver regarding how the *actor port key*
     cumulus@switch:~$ sudo reboot
     ```
 
-6. Verify STP convergence across both switches:
+6. If you installed a new image on the switch, restore the configuration files to the new release.
+
+7. Verify STP convergence across both switches:
 
     ```
     cumulus@switch:~$ mstpctl showall
     ```
 
-7. Verify core uplinks and peer links are UP:
+8. Verify core uplinks and peer links are UP:
 
     ```
     cumulus@switch:~$ net show interface
     ```
 
-8. Verify MLAG convergence:
+9. Verify MLAG convergence:
 
     ```
     cumulus@switch:~$ clagctl status
     ```
 
-9. Make this secondary switch the primary:
+10. Make this secondary switch the primary:
 
     ```
     cumulus@switch:~$ clagctl priority 2048
     ```
 
-10. Verify the other switch is now in the secondary role.
-11. Repeat steps 2-8 on the new secondary switch.
-12. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
+11. Verify the other switch is now in the secondary role.
+12. Repeat steps 2-9 on the new secondary switch.
+13. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
 
     ```
     cumulus@switch:~$ clagctl priority 32768

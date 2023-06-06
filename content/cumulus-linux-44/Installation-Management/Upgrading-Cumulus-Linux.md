@@ -90,6 +90,24 @@ The following commands show you which files changed after the previous Cumulus L
 - Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changes.
 {{%/notice%}}
 
+### Create a cl-support Output File
+
+**Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
+
+1. Create the `cl-support` archive file with the `cl-support` command:
+
+   ```
+   cumulus@switch:~$ sudo cl-support
+   ```
+
+2. Copy the `cl-support` file off the switch to a different location.
+
+3. After upgrade is complete, run the `cl-support` command again to create a new archive file:
+
+   ```
+   cumulus@switch:~$ sudo cl-support
+   ```
+
 ## Upgrade Cumulus Linux
 
 You can upgrade Cumulus Linux in one of two ways:

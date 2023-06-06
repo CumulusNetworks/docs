@@ -12,10 +12,10 @@ Consider deploying, provisioning, configuring, and upgrading switches using auto
 ## Before You Upgrade
 
 {{%notice tip%}}
-
 Be sure to read the knowledge base article [Upgrades: Network Device Worldview and Linux Host Worldview Comparison]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Network-Device-and-Linux-Host-Worldview-Comparison" >}}), which provides a detailed comparison between the network device and Linux host worldview of upgrade and installation.
-
 {{%/notice%}}
+
+### Back up Configuration Files
 
 Understanding the location of configuration data is required for successful upgrades, migrations, and backup. As with other Linux distributions, the `/etc` directory is the primary location for all configuration data in Cumulus Linux. The following list is a likely set of files that you need to back up and migrate to a new release. Make sure you examine any file that has been changed. Consider making the following files and directories part of a backup strategy.
 
@@ -90,6 +90,24 @@ You can check which files have changed since the last binary install with the fo
 - Run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
 
 {{%/notice%}}
+
+### Create a cl-support Output File
+
+**Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
+
+1. Create the `cl-support` archive file with the `cl-support` command:
+
+   ```
+   cumulus@switch:~$ sudo cl-support
+   ```
+
+2. Copy the `cl-support` file off the switch to a different location.
+
+3. After upgrade is complete, run the `cl-support` command again to create a new archive file:
+
+   ```
+   cumulus@switch:~$ sudo cl-support
+   ```
 
 ## Upgrade Cumulus Linux
 

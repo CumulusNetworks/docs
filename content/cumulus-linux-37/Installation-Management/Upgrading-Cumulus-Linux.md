@@ -155,7 +155,7 @@ Understanding the location of configuration data is required for successful upgr
 
 </details>
 
-### Create a cl-support Output File
+### Create a cl-support File
 
 **Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
 

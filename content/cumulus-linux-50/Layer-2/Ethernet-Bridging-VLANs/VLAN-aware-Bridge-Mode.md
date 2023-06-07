@@ -14,7 +14,6 @@ On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VL
 - You cannot use VLAN translation with multiple VLAN-aware bridges
 - You cannot use double tagged VLAN interfaces with multiple VLAN-aware bridges
 - You cannot associate multiple single VXLAN devices (SVDs) with a single VLAN-aware bridge
-- Cumulus Linux does not support IGMPv3.
 <!-- vale off -->
 ## Configure a VLAN-aware Bridge
 <!-- vale on -->

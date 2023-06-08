@@ -204,6 +204,25 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+## Change the Bridge IGMP Version
+
+You can configure a bridge to use IGMPv2 or IGMPv3. IGMPv2 is the default version. To change the IGMP version, add the `bridge-igmp-version <version>` parameter to the bridge stanza in the `/etc/network/interfaces` file. For example, to change the IGMP version to IGMPv3:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto br_default
+iface br_default
+    bridge-ports swp3
+    hwaddress 44:38:39:22:01:bb
+    bridge-vlan-aware yes
+    bridge-vids 1
+    bridge-pvid 1
+    bridge-igmp-version 3
+```
+
+NVUE does not provide a command to change the bridge IGMP version.
+
 ## Disable IGMP and MLD Snooping
 
 If you do not use mirroring functions or other types of multicast traffic, you can disable IGMP and MLD snooping.

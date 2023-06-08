@@ -623,10 +623,10 @@ cumulus@switch:~$ sudo ip link set swp2 protodown_reason linkflap off
 cumulus@switch:~$ sudo ip link set swp2 protodown off
 ```
 
-After a few seconds the port state returns to UP. Run the `ip link` command again to verify that the interface is no longer in a protodown state and that the reason is cleared:
+After a few seconds the port state returns to UP. Run the `ip link show <interface>` command to verify that the interface is no longer in a protodown state and that the reason is cleared:
 
 ```
-cumulus@switch:~$ ip link
+cumulus@switch:~$ ip link show swp2
 37: swp2: <NO-CARRIER,BROADCAST,MULTICAST,SLAVE,UP> mtu 9178 qdisc pfifo_fast master bond131 state UP mode DEFAULT group default qlen 1000
   link/ether 1c:34:da:ba:bb:2a brd ff:ff:ff:ff:ff:ff
 ```

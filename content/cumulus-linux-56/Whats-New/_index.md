@@ -23,6 +23,8 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 - Multiple adaptive routing profiles
 - QOS FC watchdog for lossless queues
+- Fan direction mismatch detection
+- Indication for secure firmware boot failure
 - BGP WCMP for adaptive routing enabled traffic
 - Adaptive routing for RoCE with VXLAN
 - Deterministic warm boot switchover

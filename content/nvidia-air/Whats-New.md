@@ -7,11 +7,17 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## May 2023
+## June 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0612-011
+- Fixed an error encountered by the agent when a node woke up from sleep
+- Added Cumulus Linux 5.5.1 to OS dropdown in the builder
+- Added support for IPv4 based services
+<!-- Air:WhatsNew -->
+
+## May 2023
 ### 82.2023.0525-012
 - Fixed a bug impacting simulation creation including a fake device with more than 256 interfaces
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0518-011
 - Fixed a bug related to simulation state control and resource budgets

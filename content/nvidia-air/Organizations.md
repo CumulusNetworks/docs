@@ -5,7 +5,7 @@ weight: 50
 product: NVIDIA Air
 ---
 <!-- vale off -->
-NVIDIA Air supports collaboration so that you can share simulations with your colleagues in an organization. To join an organization, contact your Organization Administrator or your NVIDIA sales team. If you do not know who your Organization Administrator is, reach out to citc-support@nvidia.com.
+NVIDIA Air supports collaboration so that you can share simulations with your colleagues in an organization. To join an organization, contact your Organization Administrator or your NVIDIA sales team. If you do not know who your Organization Administrator is, reach out to air-support@nvidia.com.
 <!-- vale on -->
 ## Assign an Organization to Your Simulation
 

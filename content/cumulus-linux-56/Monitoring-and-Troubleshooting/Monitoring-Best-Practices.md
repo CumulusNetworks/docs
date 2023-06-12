@@ -60,6 +60,7 @@ Not all switch models include a sensor for monitoring power consumption and volt
 |------------- |------------ |----------- |
 | High temperature | <pre>/var/log/syslog</pre> | <pre>/usr/sbin/smond : : Temp1(Board Sensor near CPU): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Temp2(Board Sensor Near Virtual Switch): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Temp3(Board Sensor at Front Left Corner): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Temp4(Board Sensor at Front Right Corner): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Temp5(Board Sensor near Fan): state changed from UNKNOWN to OK</pre> |
 | Fan speed issues | <pre>/var/log/syslog</pre> | <pre>/usr/sbin/smond : : Fan1(Fan Tray 1, Fan 1): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Fan2(Fan Tray 1, Fan 2): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Fan3(Fan Tray 2, Fan 1): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Fan4(Fan Tray 2, Fan 2): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Fan5(Fan Tray 3, Fan 1): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Fan6(Fan Tray 3, Fan 2): state changed from UNKNOWN to OK</pre> |
+| Fan direction issue |<pre>/var/log/syslog</pre> |<pre>/usr/sbin/smond : : Fan direction mismatch: 12 fans B2F; 1 fans F2B!</pre> |
 | PSU failure | <pre>/var/log/syslog</pre> | <pre>/usr/sbin/smond : : PSU1Fan1(PSU1 Fan): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : PSU2Fan1(PSU2 Fan): state changed from UNKNOWN to BAD</pre> |
 
 ## System Data
@@ -203,7 +204,6 @@ Monitoring the routing table provides trending on the size of the infrastructure
 |-------------- |-------------------- |-------------- |
 | Host Entries | `cl-resource-query`<br>`cl-resource-query -k` | 600 seconds |
 | Route Entries | `cl-resource-query`<br>`cl-resource-query -k` | 600 seconds |
-
 
 ### Routing Logs
 

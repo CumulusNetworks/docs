@@ -34,7 +34,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - Support templating SSH service options
   - VRRP operational data
   - Enable and Disable external API access
-  - Clear operation for all routing protocols  
+  - Clear operation for all routing protocols
   - IGMP commands
   - Commands to set the time
   - Platform keyword presentation

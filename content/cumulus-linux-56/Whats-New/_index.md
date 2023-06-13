@@ -27,7 +27,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - BGP WCMP for adaptive routing enabled traffic
 - Adaptive routing for RoCE with VXLAN
 - Deterministic warm boot switchover
-- Fan direction now shows in {{<link url="Monitoring-System-Hardware#nvue-commands" text="NVUE">}} and {{<link url="Monitoring-System-Hardware#smond" text="Linux smonctl -v">}} command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
+- {{<link url="Monitoring-System-Hardware#nvue-commands" text="Fan direction">}} now shows in NVUE and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
 - NVUE enhancements include:
   - PVST and PVRST with VLAN-aware bridges
   - ARP and ND Timer configuration

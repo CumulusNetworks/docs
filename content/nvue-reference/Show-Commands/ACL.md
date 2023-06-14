@@ -258,6 +258,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action police
+       operational  applied
+-----  -----------  -------
+burst               200    
+mode                packet 
+rate                400
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -304,6 +309,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match
+            operational  applied
+----------  -----------  -------
+ip                              
+  protocol               tcp 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -356,7 +365,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port
 Ports
 -----
-ANY
+200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -380,7 +389,8 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port http
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port 200
+
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -596,6 +606,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match mac
+                 operational  applied          
+---------------  -----------  -----------------
+dest-mac                      08:9e:01:ce:e2:04
+dest-mac-mask                 ff:ff:ff:ff:ff:ff
+source-mac                    00:00:00:00:00:12
+source-mac-mask               ff:ff:ff:ff:ff:ff
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -837,6 +853,55 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system control-plane
+trap
+=======
+policer
+==========
+    Policer        State  Policer Rate  Policer Burst  Summary            
+    -------------  -----  ------------  -------------  -------------------
+    acl-log        on     100           100            Policer CBS:      7
+                                                       Policer CIR:    100
+                                                       Policer Id:       6
+                                                       To CPU Bytes:     0
+                                                       To CPU Pkts:      0
+                                                       Trap Group:      18
+                                                       Violated Packets: 0
+    arp            on     800           800            Policer CBS:     10
+                                                       Policer CIR:    800
+                                                       Policer Id:       9
+                                                       To CPU Bytes:     0
+                                                       To CPU Pkts:      0
+                                                       Trap Group:      13
+                                                       Violated Packets: 0
+    bfd            on     2000          2000           Policer CBS:     11
+                                                       Policer CIR:   2000
+                                                       Policer Id:      10
+                                                       To CPU Bytes:     0
+                                                       To CPU Pkts:      0
+                                                       Trap Group:      17
+                                                       Violated Packets: 0
+    bgp            on     2000          2000           Policer CBS:     11
+                                                       Policer CIR:   2000
+                                                       Policer Id:      12
+                                                       To CPU Bytes:     0
+                                                       To CPU Pkts:      0
+                                                       Trap Group:      16
+                                                       Violated Packets: 0
+    catch-all      on     100           100            Policer CBS:      7
+                                                       Policer CIR:    100
+                                                       Policer Id:       1
+                                                       To CPU Bytes:     0
+                                                       To CPU Pkts:      0
+                                                       Trap Group:       0
+                                                       Violated Packets: 0
+    clag           on     2000          2000           Policer CBS:     11
+                                                       Policer CIR:   2000
+                                                       Policer Id:      13
+                                                       To CPU Bytes:     0
+                                                       To CPU Pkts:      0
+                                                       Trap Group:      28
+                                                       Violated Packets: 0
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -932,7 +997,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system control-plane acl ACL1 statistics 10
+cumulus@switch:~$ nv show system control-plane acl ACL1 statistics 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -949,6 +1014,37 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system control-plane policer
+Policer        State  Policer Rate  Policer Burst  Summary            
+-------------  -----  ------------  -------------  -------------------
+acl-log        on     100           100            Policer CBS:      7
+                                                   Policer CIR:    100
+                                                   Policer Id:       6
+                                                   To CPU Bytes:     0
+                                                   To CPU Pkts:      0
+                                                   Trap Group:      18
+                                                   Violated Packets: 0
+arp            on     800           800            Policer CBS:     10
+                                                   Policer CIR:    800
+                                                   Policer Id:       9
+                                                   To CPU Bytes:     0
+                                                   To CPU Pkts:      0
+                                                   Trap Group:      13
+                                                   Violated Packets: 0
+bfd            on     2000          2000           Policer CBS:     11
+                                                   Policer CIR:   2000
+                                                   Policer Id:      10
+                                                   To CPU Bytes:     0
+                                                   To CPU Pkts:      0
+                                                   Trap Group:      17
+                                                   Violated Packets: 0
+bgp            on     2000          2000           Policer CBS:     11
+                                                   Policer CIR:   2000
+                                                   Policer Id:      12
+                                                   To CPU Bytes:     0
+                                                   To CPU Pkts:      0
+                                                   Trap Group:      16
+                                                   Violated Packets: 0
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -971,6 +1067,19 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system control-plane policer bfd
+                 operational  applied
+---------------  -----------  -------
+burst            2000                
+rate             2000                
+state            on                  
+statistics                           
+  policer-cbs    11                  
+  policer-cir    2000                
+  policer-id     10                  
+  to-cpu-bytes   0                   
+  to-cpu-pkts    0                   
+  trap-group-id  17                  
+  violated-pkts  0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -993,6 +1102,15 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system control-plane policer bfd statistics
+               operational  applied
+-------------  -----------  -------
+policer-cbs    11                  
+policer-cir    2000                
+policer-id     10                  
+to-cpu-bytes   0                   
+to-cpu-pkts    0                   
+trap-group-id  17                  
+violated-pkts  0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1031,4 +1149,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system control-plane trap l3-mtu-err
+       operational  applied
+-----  -----------  -------
+state  off          off
 ```

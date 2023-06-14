@@ -33,7 +33,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - ARP and ND Timer configuration
   - Support templating SSH service options
   - VRRP operational data
-  - Enable and Disable external API access
+  - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and Disable external API access">}}
   - Clear operation for all routing protocols
   - IGMP commands
   - Commands to set the time

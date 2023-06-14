@@ -56,6 +56,57 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show interface swp5 qos buffer
+Buffer Statistics - Ingress Port
+===================================
+    Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
+    -------  -------  -------------  -------------  ---------  ----------
+    1        DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_8   
+    2        DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_8   
+
+Buffer Statistics - Ingress Priority Group
+=============================================
+    priori…  Pool ID  Mode     Reserv…  Current  Max      Shared  Lossy/…  XON Th  XOFF Th  HR      HR/PL    HR/PL   
+                               Size     Usage    Usage    Max                                       Usage    Max     
+    ------…  -------  -------  ------…  ------…  ------…  -----…  ------…  -----…  -------  -----…  ------…  -------…
+    0        2        DYNAMIC  0 Bytes  0 Bytes  0 Bytes  ALPHA…  Lossy    0       0 Bytes  18.98   0 Bytes  0 Bytes 
+                                                                           Bytes            KB                       
+    9        1        DYNAMIC  9.98 KB  0 Bytes  0 Bytes  ALPHA…  Lossy    0       0 Bytes  9.98    0 Bytes  0 Bytes 
+                                                                           Bytes            KB                       
+
+Buffer Statistics - Egress Port
+==================================
+    Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
+    -------  -------  -------------  -------------  ---------  ----------
+    12       DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_8   
+    13       DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_16  
+
+Buffer - Egress Traffic Class
+================================
+    traffic-class  Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
+    -------------  -------  ------------  -------------  -------------  ---------  ----------
+    0              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    1              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    2              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    3              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    4              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    5              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    6              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    7              13       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+    8              10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    9              10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    10             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    11             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    12             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    13             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    14             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    15             10       BUFFER UNITS  0 Bytes        0 Bytes        0 Bytes    infinity  
+    16             12       DYNAMIC       1008 Bytes     0 Bytes        0 Bytes    ALPHA_8   
+
+Buffer - Egress Multicast
+============================
+    Pool ID  Mode          Reserved Size  Current Usage  Max Usage  Shared Max
+    -------  ------------  -------------  -------------  ---------  ----------
+    10       BUFFER UNITS  9.98 KB        0 Bytes        0 Bytes    90.00 KB  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -78,6 +129,10 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show interface swp5 qos buffer ingress-port
+Pool ID  Mode     Reserved Size  Current Usage  Max Usage  Shared Max
+-------  -------  -------------  -------------  ---------  ----------
+1        DYNAMIC  0 Bytes        0 Bytes        0 Bytes    ALPHA_8   
+2        DYNAMIC  9.98 KB        0 Bytes        0 Bytes    ALPHA_8 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1130,7 +1185,44 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp5 qos roce status
+cumulus@switch:~$ nv show interface swp16 qos roce status
+                    operational    applied  description
+------------------  -------------  -------  ---------------------------------------------------
+congestion-control
+  congestion-mode   ecn, absolute           Congestion config mode
+  enabled-tc        0,3                     Congestion config enabled Traffic Class
+  max-threshold     1.43 MB                 Congestion config max-threshold
+  min-threshold     153.00 KB               Congestion config min-threshold
+pfc
+  pfc-priority      3                       switch-prio on which PFC is enabled
+  rx-enabled        yes                     PFC Rx Enabled status
+  tx-enabled        yes                     PFC Tx Enabled status
+trust
+  trust-mode        pcp,dscp                Trust Setting on the port for packet classification
+mode                lossless                Roce Mode
+ 
+RoCE PCP/DSCP->SP mapping configurations
+===========================================
+          pcp  dscp  switch-prio
+    ----  ---  ----  -----------
+    cnp   6    48    6
+    roce  3    26    3
+ 
+RoCE SP->TC mapping and ETS configurations
+=============================================
+          switch-prio  traffic-class  scheduler-weight
+    ----  -----------  -------------  ----------------
+    cnp   6            6              strict priority
+    roce  3            3              dwrr-50%
+ 
+RoCE Pool Status
+===================
+        name                   mode     pool-id  switch-priorities  traffic-class  size      current-usage  max-usage
+    --  ---------------------  -------  -------  -----------------  -------------  --------  -------------  ---------
+    0   lossy-default-ingress  DYNAMIC  2        0,1,2,4,5,6,7      -              15.16 MB  0 Bytes        16.00 MB
+    1   roce-reserved-ingress  DYNAMIC  3        3                  -              15.16 MB  7.30 MB        7.90 MB
+    2   lossy-default-egress   DYNAMIC  13       -                  0,6            15.16 MB  0 Bytes        16.01 MB
+    3   roce-reserved-egress   DYNAMIC  14       -                  3              inf       7.29 MB        13.47 MB
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2755,18 +2847,59 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show qos roce
-        operational  applied
-------  -----------  -------
-enable               off    
+                    operational  applied
+------------------  -----------  -------
+enable                           on     
+mode                lossy        lossy  
+congestion-control                      
+  congestion-mode   ECN                 
+  enabled-tc        0,3                 
+  max-threshold     1.43 MB             
+  min-threshold     146.48 KB           
+  probability       100                 
+lldp-app-tlv                            
+  priority          3                   
+  protocol-id       4791                
+  selector          UDP                 
+pfc                                     
+  pfc-priority      -                   
+trust                                   
+  trust-mode        pcp,dscp            
 
 RoCE PCP/DSCP->SP mapping configurations
 ===========================================
+       pcp  dscp                     switch-prio
+    -  ---  -----------------------  -----------
+    0  0    0,1,2,3,4,5,6,7          0          
+    1  1    8,9,10,11,12,13,14,15    1          
+    2  2    16,17,18,19,20,21,22,23  2          
+    3  3    24,25,26,27,28,29,30,31  3          
+    4  4    32,33,34,35,36,37,38,39  4          
+    5  5    40,41,42,43,44,45,46,47  5          
+    6  6    48,49,50,51,52,53,54,55  6          
+    7  7    56,57,58,59,60,61,62,63  7          
 
 RoCE SP->TC mapping and ETS configurations
 =============================================
+       switch-prio  traffic-class  scheduler-weight
+    -  -----------  -------------  ----------------
+    0  0            0              DWRR-50%        
+    1  1            0              DWRR-50%        
+    2  2            0              DWRR-50%        
+    3  3            3              DWRR-50%        
+    4  4            0              DWRR-50%        
+    5  5            0              DWRR-50%        
+    6  6            6              strict-priority 
+    7  7            0              DWRR-50%        
 
 RoCE pool config
 ===================
+       name                   mode     size  switch-priorities  traffic-class
+    -  ---------------------  -------  ----  -----------------  -------------
+    0  lossy-default-ingress  Dynamic  50%   0,1,2,4,5,6,7      -            
+    1  roce-reserved-ingress  Dynamic  50%   3                  -            
+    2  lossy-default-egress   Dynamic  50%   -                  0,6          
+    3  roce-reserved-egress   Dynamic  50%   -                  3            
 
 Exception List
 =================
@@ -2786,6 +2919,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show qos roce prio-map
+   pcp  dscp                     switch-prio
+-  ---  -----------------------  -----------
+0  0    0,1,2,3,4,5,6,7          0          
+1  1    8,9,10,11,12,13,14,15    1          
+2  2    16,17,18,19,20,21,22,23  2          
+3  3    24,25,26,27,28,29,30,31  3          
+4  4    32,33,34,35,36,37,38,39  4          
+5  5    40,41,42,43,44,45,46,47  5          
+6  6    48,49,50,51,52,53,54,55  6          
+7  7    56,57,58,59,60,61,62,63  7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2802,6 +2945,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show qos roce tc-map
+   switch-prio  traffic-class  scheduler-weight
+-  -----------  -------------  ----------------
+0  0            0              DWRR-50%        
+1  1            0              DWRR-50%        
+2  2            0              DWRR-50%        
+3  3            3              DWRR-50%        
+4  4            0              DWRR-50%        
+5  5            0              DWRR-50%        
+6  6            6              strict-priority 
+7  7            0              DWRR-50%
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2818,6 +2971,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show qos roce pool-map
+   name                   mode     size  switch-priorities  traffic-class
+-  ---------------------  -------  ----  -----------------  -------------
+0  lossy-default-ingress  Dynamic  50%   0,1,2,4,5,6,7      -            
+1  roce-reserved-ingress  Dynamic  50%   3                  -            
+2  lossy-default-egress   Dynamic  50%   -                  0,6          
+3  roce-reserved-egress   Dynamic  50%   -                  3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2834,6 +2993,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show qos roce pool
+   name                   mode     pool-id  size      current-usage  max-usage
+-  ---------------------  -------  -------  --------  -------------  ---------
+0  lossy-default-ingress  DYNAMIC  2        14.46 MB  0 Bytes        0 Bytes  
+2  lossy-default-egress   DYNAMIC  13       14.46 MB  0 Bytes        0 Bytes
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

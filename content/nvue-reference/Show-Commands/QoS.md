@@ -326,7 +326,14 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp5 qos congestion-control traffic-class 2
+cumulus@switch:~$ nv show interface swp5 qos congestion-control traffic-class 0
+               operational  applied
+-------------  -----------  -------
+ecn            enable              
+max-threshold  1.43 MB             
+min-threshold  153.00 KB           
+probability    100                 
+red            disable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2630,6 +2637,27 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos mapping default-global dscp
+DSCP  switch-priority
+----  ---------------
+0     0              
+1     0              
+2     0              
+3     0              
+4     0              
+5     0              
+6     0              
+7     0              
+8     1              
+9     1              
+10    1              
+11    1              
+12    1              
+13    1              
+14    1              
+15    1              
+16    2              
+17    2
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

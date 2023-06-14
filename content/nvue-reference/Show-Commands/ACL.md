@@ -390,7 +390,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port 200
-
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -414,7 +413,6 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip ecn
-
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -489,7 +487,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip source-port
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -881,26 +879,6 @@ policer
                                                        Trap Group:      17
                                                        Violated Packets: 0
     bgp            on     2000          2000           Policer CBS:     11
-                                                       Policer CIR:   2000
-                                                       Policer Id:      12
-                                                       To CPU Bytes:     0
-                                                       To CPU Pkts:      0
-                                                       Trap Group:      16
-                                                       Violated Packets: 0
-    catch-all      on     100           100            Policer CBS:      7
-                                                       Policer CIR:    100
-                                                       Policer Id:       1
-                                                       To CPU Bytes:     0
-                                                       To CPU Pkts:      0
-                                                       Trap Group:       0
-                                                       Violated Packets: 0
-    clag           on     2000          2000           Policer CBS:     11
-                                                       Policer CIR:   2000
-                                                       Policer Id:      13
-                                                       To CPU Bytes:     0
-                                                       To CPU Pkts:      0
-                                                       Trap Group:      28
-                                                       Violated Packets: 0
 ...
 ```
 
@@ -920,9 +898,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@switch:~$ nv show system control-plane acl
 ACL Name   Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
 ---------  -------  ----------  --------  -----------  ---------
-acl1       1        0           0         0            0
+ACL1       1        0           0         0            0
            65535    0           0         0            0
-acl2       1        0           0         0            0
+ACL2       1        0           0         0            0
            65535    0           0         0            0
 ```
 
@@ -1031,19 +1009,6 @@ arp            on     800           800            Policer CBS:     10
                                                    Trap Group:      13
                                                    Violated Packets: 0
 bfd            on     2000          2000           Policer CBS:     11
-                                                   Policer CIR:   2000
-                                                   Policer Id:      10
-                                                   To CPU Bytes:     0
-                                                   To CPU Pkts:      0
-                                                   Trap Group:      17
-                                                   Violated Packets: 0
-bgp            on     2000          2000           Policer CBS:     11
-                                                   Policer CIR:   2000
-                                                   Policer Id:      12
-                                                   To CPU Bytes:     0
-                                                   To CPU Pkts:      0
-                                                   Trap Group:      16
-                                                   Violated Packets: 0
 ...
 ```
 

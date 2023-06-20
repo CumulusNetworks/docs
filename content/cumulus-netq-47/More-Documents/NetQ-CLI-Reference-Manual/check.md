@@ -11,7 +11,7 @@ type: nojsscroll
 
 Three sets of validation commands are available, all for verifying the health and performance of network protocols and services:
 
-- `netq check` commands. These commands check whether your network's devices, hosts, network protocols, and services are operating as expected. They 'validate' your network against an ideal setup and report mismatches and recommendations. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. Commands with a `streaming` option run streaming checks by default to return results faster. To run a non-streaming validation, include the `legacy` option.  
+- `netq check` commands. These commands check whether your network's devices, hosts, network protocols, and services are operating as expected. They 'validate' your network against an ideal setup and report mismatches and recommendations. They allow filtering by hostname, can include or exclude selected tests, and some have additional options.
 - `netq add validation` commands. Use {{<link url="add/#netq-add-validation" text="these commands">}} to validate various elements in your network fabric. The results appear in the Validation Result cards in the UI, where you can filter them.
 - Validation management commands. `netq show validation settings` displays a list of all jobs and job settings and `netq del validation` allows you to remove validations.
 
@@ -86,7 +86,7 @@ Validates the communication status of all nodes (leafs, spines, and hosts) runni
 ### Syntax
 
 ```
-netq check agents (legacy | streaming)
+netq check agents
     [hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>]
     [include <agents-number-range-list> | exclude <agents-number-range-list>]
@@ -96,9 +96,7 @@ netq check agents (legacy | streaming)
 
 ### Required Arguments
 
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| legacy, streaming | N/A | Perform a legacy (non-streaming) or streaming check.  |
+None
 
 ### Options
 
@@ -192,7 +190,6 @@ netq check bgp
     [check_filter_id <text-check-filter-id>]
     [include <bgp-number-range-list> | exclude <bgp-number-range-list>]
     [around <text-time>]
-    [streaming | legacy]
     [json | summary]
 ```
 
@@ -211,8 +208,6 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
-| legacy | NA | Perform a non-streaming query check |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -409,7 +404,6 @@ netq check clag
     [check_filter_id <text-check-filter-id>]
     [include <clag-number-range-list> | exclude <clag-number-range-list>]
     [around <text-time>]
-    [streaming | legacy]
     [json | summary]
 ```
 
@@ -427,8 +421,6 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
-| legacy | NA | Perform a non-streaming query check |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -544,7 +536,6 @@ netq check evpn
     [check_filter_id <text-check-filter-id>]
     [include <evpn-number-range-list> | exclude <evpn-number-range-list>]
     [around <text-time>]
-    [streaming | legacy]
     [json | summary]
 ```
 
@@ -562,8 +553,6 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
-| legacy | NA | Perform a non-streaming query check |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -640,7 +629,6 @@ netq check interfaces
     [check_filter_id <text-check-filter-id>]
     [include <interface-number-range-list> | exclude <interface-number-range-list>]
     [around <text-time>]
-    [streaming | legacy]
     [json | summary]
 ```
 
@@ -658,8 +646,6 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
-| legacy | NA | Perform a non-streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
 
@@ -780,7 +766,6 @@ netq check mlag
     [check_filter_id <text-check-filter-id>]
     [include <mlag-number-range-list> | exclude <mlag-number-range-list>]
     [around <text-time>]
-    [streaming | legacy]
     [json | summary]
 ```
 
@@ -798,8 +783,6 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
-| legacy | NA | Perform a non-streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 ### Sample Usage
@@ -892,7 +875,6 @@ netq check mtu
     [check_filter_id <text-check-filter-id>]
     [include <mtu-number-range-list> | exclude <mtu-number-range-list>]
     [around <text-time>]
-    [streaming | legacy]
     [json | summary]
 ```
 
@@ -911,8 +893,6 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
-| legacy | NA | Perform a non-streaming query check |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -1018,7 +998,6 @@ netq check ntp
     [check_filter_id <text-check-filter-id>]
     [include <ntp-number-range-list> | exclude <ntp-number-range-list>]
     [around <text-time>]
-    [streaming]
     [json | summary]
 ```
 
@@ -1036,7 +1015,6 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -1167,7 +1145,6 @@ This command captures mismatches on NVUE-enabled switches running Cumulus Linux 
 
 ```
 netq check roce
-    [streaming]
     [hostnames <text-list-hostnames>] 
     [check_filter_id <text-check-filter-id>] 
     [include <roce-number-range-list> | exclude <roce-number-range-list>] 
@@ -1277,7 +1254,6 @@ netq check sensors
     [check_filter_id <text-check-filter-id>]
     [include <sensors-number-range-list> | exclude <sensors-number-range-list>]
     [around <text-time>]
-    [streaming]
     [json | summary]
 ```
 
@@ -1295,7 +1271,6 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -1352,7 +1327,6 @@ netq check vlan
     [check_filter_id <text-check-filter-id>] 
     [include <vlan-number-range-list> | exclude <vlan-number-range-list>]
     [around <text-time>]
-    [streaming | legacy]
     [json | summary]
 ```
 
@@ -1371,8 +1345,6 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
-| legacy | NA | Perform a non-streaming query check |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
@@ -1446,7 +1418,6 @@ netq check vxlan
     [check_filter_id <text-check-filter-id>]
     [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>]
     [around <text-time>]
-    [streaming | legacy]
     [json | summary]
 ```
 
@@ -1464,8 +1435,6 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
-| legacy | NA | Perform a non-streaming query check |
 | json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 

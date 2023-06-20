@@ -63,49 +63,6 @@ cumulus@switch:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap
 ### Related Commands
 
 - ```netq bootstrap reset```
-- ```netq bootstrap master upgrade```
-
-- - -
-
-## netq bootstrap master upgrade
-
-Loads master node with a new NetQ installer in an existing server cluster deployment.
-
-{{%notice note%}}
-
-This command applies only when upgrading from NetQ 3.1.1 and earlier.
-
-{{%/notice%}}
-
-### Syntax
-
-```
-netq bootstrap master upgrade
-    <text-tarball-name>
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<text-tarball-name\> | Full path of the installation file, for example, */mnt/installables/netq-bootstrap-4.0.0.tgz*  |
-
-### Options
-
-None
-
-### Sample Usage
-
-Basic bootstrap:
-
-```
-cumulus@switch:~$ netq bootstrap master upgrade mnt/installables/netq-bootstrap-4.0.0.tgz
-```
-
-### Related Commands
-
-- ```netq bootstrap```
-- ```netq bootstrap reset```
 
 - - -
 
@@ -182,7 +139,6 @@ cumulus@switch:~$ netq bootstrap reset keep-db
 ### Related Commands
 
 - ```netq bootstrap```
-- ```netq bootstrap master upgrade```
 
 
 

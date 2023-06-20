@@ -108,7 +108,7 @@ package netq-apps is not installed
 
 First remove the data collected to free up used disk space. Then remove the software.
 
-1. Log on to the NetQ system server.
+1. Log in to the NetQ system server.
 
 2. Remove the data:
 

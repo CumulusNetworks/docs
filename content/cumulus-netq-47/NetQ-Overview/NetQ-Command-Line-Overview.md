@@ -491,12 +491,6 @@ Use the following commands to manage the NetQ system itself:
 - **install**: Installs NetQ in standalone or cluster deployments; also used to install patch software.
 - **upgrade bundle**: Upgrades NetQ on NetQ On-premises Appliances or VMs.
 
-The following example shows how to bootstrap a single server or master server in a server cluster:
-
-```
-cumulus@switch:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-4.1.0.tgz
-```
-
 The following example shows how to decommission a switch named leaf01:
 
     cumulus@netq-appliance:~$ netq decommission leaf01

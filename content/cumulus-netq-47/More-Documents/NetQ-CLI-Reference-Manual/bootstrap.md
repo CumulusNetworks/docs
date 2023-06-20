@@ -7,66 +7,6 @@ right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
 ---
-
-## netq bootstrap
-
-Load the installation program onto the network switches and hosts in either a single server or server cluster arrangement. This command is the same for any deployment model.
-
-### Syntax
-
-```
-netq bootstrap master
-    (interface <text-opta-ifname>|ip-addr <text-ip-addr>)
-    tarball <text-tarball-name>
-    [pod-ip-range <text-pod-ip-range>]
-    [ignore-errors]
-
-netq bootstrap worker
-    tarball <text-tarball-name>
-    master-ip <text-master-ip>
-    [password <text-password>]
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| master | NA | Load the installation program onto the single NetQ server or master server in a cluster |
-| interface | \<text-opta-ifname\> | Name of the interface on the NetQ appliance or VM where the server listens for NetQ Agents |
-| ip-addr | \<text-ip-addr\> | IP address of the interface on the NetQ appliance or VM where the server listens for NetQ Agents |
-| worker | NA | Load the installation program onto worker nodes in a NetQ server cluster |
-| tarball | \<text-tarball-name\> | Full path of the installation file, for example, */mnt/installables/netq-bootstrap-4.0.0.tgz* |
-| master-ip | \<text-master-ip\> | IP address for the master server in a NetQ server cluster |
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| pod-ip-range | \<text-pod-ip-range\> | Change the IP address range to this range for Flannel container environments when you have a conflict. NetQ overrides the default Flannel address range (10.1.0.0/16) with 10.244.0.0/16. |
-| password | \<text-password\> | Passphrase for access to the worker node |
-| ignore-errors| NA | Ignore errors caused by Kubernetes pre-flight checks |
-
-### Sample Usage
-
-Bootstrap single server or master server in a server cluster:
-
-```
-cumulus@switch:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-4.0.0.tgz
-```
-
-Bootstrap worker node in server cluster:
-
-```
-cumulus@switch:~$ netq bootstrap worker tarball /mnt/installables/netq-bootstrap-4.0.0.tgz  master-ip 192.168.10.20
-```
-
-### Related Commands
-
-- ```netq bootstrap reset```
-
-- - -
-
-<!--Refresh NetQ installation artifacts
 ## netq bootstrap refresh
 
 ### Syntax
@@ -93,11 +33,10 @@ netq bootstrap refresh
 ### Sample Usage
 
 ### Related Commands
-- netq bootstrap reset
+
+None
 
 - - -
-
--->
 ## netq bootstrap reset
 
 Reset the node to prepare it for loading the installation program. In on-premises deployments with database on site, you can choose whether to save the current data or discard it (default) during the reset process. NetQ saves all data by default in remotely hosted database deployments.
@@ -138,7 +77,7 @@ cumulus@switch:~$ netq bootstrap reset keep-db
 
 ### Related Commands
 
-- ```netq bootstrap```
+None
 
 
 

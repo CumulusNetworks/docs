@@ -14,7 +14,6 @@ Cumulus Linux supports multiple VLAN-aware bridges but with the following limita
 - You cannot use VLAN translation with multiple VLAN-aware bridges.
 - You cannot use double tagged VLAN interfaces with multiple VLAN-aware bridges.
 - You cannot associate multiple single VXLAN devices (SVDs) with a single VLAN-aware bridge
-- Cumulus Linux does not support IGMPv3.
 <!-- vale off -->
 ## Configure a VLAN-aware Bridge
 <!-- vale on -->

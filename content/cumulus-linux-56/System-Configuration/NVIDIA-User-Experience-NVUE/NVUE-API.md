@@ -107,13 +107,49 @@ NVUE follows a declarative model, removing context-specific commands and setting
 <!-- vale on -->
 ### Enable the NVUE REST API
 
-To enable the NVUE REST API, run these commands on the switch:
+To enable the NVUE REST API:
+- Set the API state to enabled.
+- Set the API port. If you do not set a port, Cumulus Linux uses the default port 8765.
+- Specify the API listening address; you can specify an IPv4 address or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
 
+```
+cumulus@switch:~$ nv set system api state enable
+cumulus@switch:~$ nv set system api port 8888
+cumulus@switch:~$ nv set system api listening-address localhost
+```
+
+To disable the NVUE REST API, run the `nv set system api state disable` command.
+
+{{%notice note%}}
+- You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the the management VRF and to swp1 on VRF BLUE.
+{{%/notice%}}
+<!--
 ```
 cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
 cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
+-->
+
+To show if the REST API is enabled, the configured port, and information about connections, such as the number of accepted and active connections, run the `nv show system api` command:
+
+```
+cumulus@switch:~$ nv show system api
+                  operational     applied
+--------------    -----------     -------
+port              8888            8888
+state             enabled         enabled
+connections
+  accepted        31
+  active          1
+  handled         33
+  reading         0
+  requests        28
+  waiting         0
+  writing         1
+```
+
+To show the configured listening address, run the `nv show system api listening-address` command.
 
 ### Access the NVUE REST API from a Front Panel Port
 

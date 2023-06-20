@@ -16,22 +16,24 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 ### Platforms
 
-- NVIDIA SN5600 (800G Spectrum-4)
+- NVIDIA SN5600 (800G Spectrum-4). This switch only supports 1G on the bonus port.
 - NVIDIA SN3750-SX (200G Spectrum-2) is now generally available
 
 ### New Features and Enhancements
 
 - Multiple adaptive routing profiles
 - QOS FC watchdog for lossless queues
+- Indication for secure firmware boot failure
 - BGP WCMP for adaptive routing enabled traffic
 - Adaptive routing for RoCE with VXLAN
 - Deterministic warm boot switchover
+- {{<link url="Monitoring-System-Hardware" text="Fan direction">}} now shows in NVUE and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
 - NVUE enhancements include:
   - PVST and PVRST with VLAN-aware bridges
   - ARP and ND Timer configuration
   - Support templating SSH service options
   - VRRP operational data
-  - Enable and Disable external API access
+  - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and Disable external API access">}}
   - Clear operation for all routing protocols
   - IGMP commands
   - Commands to set the time

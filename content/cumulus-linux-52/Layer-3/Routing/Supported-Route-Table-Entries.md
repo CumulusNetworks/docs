@@ -54,6 +54,10 @@ The values in the following tables reflect results from testing, which can diffe
 <!-- vale on -->
 The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number is half of the /64 IPv6 prefix number.
 
+{{%notice note%}}
+For the ipmc-max profile, the `cl-resource-query` command output displays 33K instead of 15K as the maximum number of IPv4 multicast routes in `switchd`. 15K is the supported and validated value. You can use the higher value of 33K to test higher multicast scale in non-production environments.
+{{%/notice%}}
+
 ## Forwarding Resource Profiles
 
 You can configure forwarding resource allocation. Choose the profile that best suits your network architecture.

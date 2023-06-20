@@ -231,6 +231,7 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 {{%notice note%}}
 - Cumulus Linux reserves `mark` values between 0 and 100; for example, if you use `--mark-set 10`, you see an error. Use mark values between 101 and 4196.
 - You cannot mark multiple VLANs with the same value.
+- If you enable {{<link url="EVPN-Multihoming" text="EVPN-MH">}} and configure VLAN match rules in ebtables with a {{mark}} target, the ebtables rule might overwrite the {{mark}} set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class {{mark}} might not get hit. To work around this issue, add ebtable rules to {{ACCEPT}} the packets already marked by EVPN-MH traffic class rules on ingress.
 {{%/notice%}}
 
 ## Install and Manage ACL Rules with NVUE

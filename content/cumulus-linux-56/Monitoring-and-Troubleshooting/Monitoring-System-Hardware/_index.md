@@ -6,10 +6,64 @@ toc: 3
 ---
 You can monitor system hardware with the following commands and utilities:
 
+- NVUE
 - `decode-syseeprom`
 - `smond`
 - `sensors`
 - watchdog
+
+## NVUE Commands
+
+You can run NVUE commands to monitor your system hardware.
+
+| Command | Description |
+| ----------- | ----------- |
+| `nv show platform hardware`| Shows platform hardware information on the switch, such as the base MAC address, model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address. |
+| `nv show system cpu` | Shows information about the switch CPU, such as the core-count, the model, and the utilization percentage.|
+| `nv show platform environment` | Shows a list of sensors, fans, LEDs, and PSUs on the switch.|
+|`nv show platform environment fan` | Shows information about the fans on the switch, such as the minimum, maximum and current speed, the fan state, and the fan direction.|
+| `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|
+| `nv show platform environment psu` | Shows information about the PSUs on the switch, such as the PSU name and state.|
+| `nv show platform environment sensor` | Shows information about the sensors on the switch, such as the critical, maximum, minimum and current temperature and the current state of the sensor.|
+
+The following example shows the `nv show platform hardware` command output:
+
+```
+cumulus@switch:~$ nv show platform hardware
+                operational        applied
+-------------  -----------------  -------
+base-mac       44:38:39:22:01:7A         
+manufacturer   Cumulus                   
+memory         1.69 GB                   
+model          VX                        
+part-number    5.5.0                     
+product-name   VX                        
+serial-number  44:38:39:22:01:7a         
+system-mac     44:38:39:22:01:b1
+```
+
+The following example shows the `nv show platform fan` command output:
+
+```
+cumulus@switch:~$ nv show platform fan
+Name      Limit variance  Max Speed  Min Speed  Current Speed (RPM)  Fan State Fan Direction 
+--------  --------------  ---------  ---------  -------------------  --------- -------------
+Fan1                      25000      4500       9398                 ok        F2B  
+Fan2                      25000      4500       8282                 ok        F2B  
+Fan3                      25000      4500       9014                 ok        F2B  
+Fan4                      25000      4500       8282                 ok        F2B   
+Fan5                      25000      4500       9076                 ok        F2B  
+Fan6                      25000      4500       8282                 ok        F2B  
+Fan7                      25000      4500       9266                 ok        F2B  
+Fan8                      25000      4500       8334                 ok        F2B  
+Fan9                      25000      4500       9266                 ok        F2B  
+Fan10                     25000      4500       8334                 ok        F2B  
+Fan11                     25000      4500       9398                 ok        F2B  
+Fan12                     25000      4500       8334                 ok        F2B  
+PSU1Fan1                  None       None       None                 absent.   F2B  
+PSU2Fan1                  27500      5500       10208                ok.       F2B
+```
+
 <!-- vale off -->
 ## decode-syseeprom Command
 <!-- vale on -->
@@ -58,11 +112,11 @@ Run the `dmidecode` command to retrieve hardware configuration information popul
 
 Run `apt-get` to install the `lshw` program on the switch, which also retrieves hardware configuration information.
 
-## smond Daemon
+## smond
 
-The `smond` daemon monitors system units like power supply and fan, updates the corresponding LEDs, and logs the change in state. The `cpld` registers detect changes in system unit state. `smond` utilizes these registers to read all sources, which determines the health of the unit and updates the system LEDs.
+The `smond` service monitors system units like power supply and fan, updates the corresponding LEDs, and logs the change in state. The `cpld` registers detect changes in system unit state. `smond` utilizes these registers to read all sources, which determines the health of the unit and updates the system LEDs.
 
-Run the  `sudo smonctl` command to display sensor information for the various system units:
+Run the `sudo smonctl` command to display sensor information for the various system units:
 
 ```
 cumulus@switch:~$ sudo smonctl
@@ -92,6 +146,14 @@ The `smonctl` command includes the following options:
 | --------| ----------- |
 | `-s <sensor>`, `--sensor <sensor>` | Displays data for the specified sensor. |
 | `-v`, `--verbose` | Displays detailed hardware sensors data. |
+
+The following command example shows detailed information about FAN6 on the switch. The information includes the fan state, the current, minimum, and maximum speed, the limit variance, and the fan direction.
+
+```
+cumulus@switch:~$ smonctl -s FAN6 -v
+Fan6(Fan Tray 3 Rear):  OK 
+fan:8282 RPM   (max = 25000 RPM, min = 4500 RPM, limit_variance = 15%, dir = F2B)
+```
 
 For more information, read `man smond` and `man smonctl`.
 

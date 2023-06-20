@@ -66,23 +66,23 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show mlag
-                operational               applied            pending          
---------------  ------------------------  -----------------  -----------------
-enable                                    on                 on               
-debug                                     off                off              
-init-delay                                100                100              
-mac-address     44:38:39:be:ef:aa         44:38:39:BE:EF:AA  44:38:39:BE:EF:AA
-peer-ip         fe80::4ab0:2dff:fea4:ac9  linklocal          linklocal        
-priority        32768                     32768              2084             
-[backup]        10.10.10.2                10.10.10.2         10.10.10.2       
-backup-active   True                                                          
-backup-reason                                                                 
-local-id        48:b0:2d:48:5b:86                                             
-local-role      primary                                                       
-peer-alive      True                                                          
-peer-id         48:b0:2d:a4:0a:c9                                             
-peer-interface  peerlink.4094                                                 
-peer-priority   32768                                                         
+                operational                applied          
+--------------  -------------------------  -----------------
+enable          on                         on               
+debug           off                        off              
+init-delay      180                        180              
+mac-address     44:38:39:be:ef:aa          44:38:39:BE:EF:AA
+peer-ip         fe80::4ab0:2dff:fec4:375b  linklocal        
+priority        32768                      32768            
+[backup]        10.10.10.2                 10.10.10.2       
+backup-active   True                                        
+backup-reason                                               
+local-id        48:b0:2d:4f:42:28                           
+local-role      primary                                     
+peer-alive      True                                        
+peer-id         48:b0:2d:c4:37:5b                           
+peer-interface  peerlink.4094                               
+peer-priority   32768                                       
 peer-role       secondary
 ```
 

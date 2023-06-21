@@ -447,6 +447,7 @@ To enable adaptive routing on specific ports:
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
+cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -459,32 +460,26 @@ When you enable or disable adaptive routing, NVUE restarts the `switchd` service
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
-   - To enable adaptive routing globally (on all ports), set the global `adaptive_routing.enable` parameter to `TRUE`.
-   - To enable adaptive routing on specific ports, set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE`.
+Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
+- To enable adaptive routing globally (on all ports), set the global `adaptive_routing.enable` parameter to `TRUE`.
+- To enable adaptive routing on specific ports, set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
 ## Global adaptive-routing enable/disable setting 
-adaptive_routing.enable = TRUE
-
-## Supported AR profile modes : STICKY_FREE
-#adaptive_routing.profile0.mode = STICKY_FREE
-
-## Maximum value for buffer-congestion threshold is 16777216. Unit is in cells
-#adaptive_routing.congestion_threshold.low = 100
-#adaptive_routing.congestion_threshold.medium = 1000
-#adaptive_routing.congestion_threshold.high = 10000
-
+adaptive_routing.enable = TRUE 
+adaptive_routing.profile = ar-profile-1
+adaptive_routing.link_util_threshold_disabled = TRUE 
 ## Per-port configuration for adaptive-routing
 interface.swp51.adaptive_routing.enable = TRUE
 interface.swp51.adaptive_routing.link_util_thresh = 70
+
+interface.swp52.adaptive_routing.enable = TRUE
+interface.swp52.adaptive_routing.link_util_thresh = 70
 ...
 ```
 
-The `/etc/cumulus/switchd.d/adaptive_routing.conf` file contains the adaptive routing profile mode (`STICKY_FREE`) and *default* buffer congestion threshold settings; do not change these settings.
-
-2. {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
+{{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
 <!-- vale off -->
 {{<cl/restart-switchd>}}
 <!-- vale on -->
@@ -499,8 +494,8 @@ To disable adaptive routing on a specific port, set the `interface.<port>.adapti
 ### Adaptive Routing Profiles
 
 Cumulus Linux provides these adaptive routing profiles:
-- `ar-profile-1` includes settings for ??. You cannot change the `ar-profile-1` profile settings. This is the default profile.
-- `ar-profile-2` includes settings for ??. You cannot change the `ar-profile-2` profile settings.
+- `ar-profile-1` is the default profile. You cannot change the `ar-profile-1` profile settings.
+- `ar-profile-2`. You cannot change the `ar-profile-2` profile settings.
 - `ar-profile-custom` includes settings you can change to create a custom profile; see {{<link url="#configure-a-custom-profile" text="Configure a Custom Profile">}}, below.
 
 {{< tabs "TabID505 ">}}
@@ -558,7 +553,7 @@ adaptive_routing.profile0.elephant_flow = FALSE
 cumulus@switch:~$ sudo cat /etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf 
 ## Supported AR profile mode : FREE (0:FREE, 1:TIME_BOUND, 2:RANDOM) 
 adaptive_routing.profile0.mode = 0 
-Maximum value for buffer-congestion threshold is 16777216. Unit is in cells 
+## Maximum value for buffer-congestion threshold is 16777216. Unit is in cells 
 adaptive_routing.congestion_threshold.low = 200 
 adaptive_routing.congestion_threshold.medium = 1000 
 adaptive_routing.congestion_threshold.high = 10000 
@@ -623,10 +618,10 @@ To configure a custom profile, you must edit the `/etc/cumulus/switchd.d/adaptiv
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf
 ## Supported AR profile mode : FREE (0:FREE, 1:TIME_BOUND, 2:RANDOM) 
 adaptive_routing.profile0.mode = 0 
-Maximum value for buffer-congestion threshold is 16777216. Unit is in cells 
-adaptive_routing.congestion_threshold.low = 200 
-adaptive_routing.congestion_threshold.medium = 1000 
-adaptive_routing.congestion_threshold.high = 10000 
+## Maximum value for buffer-congestion threshold is 16777216. Unit is in cells 
+adaptive_routing.congestion_threshold.low = 100 
+adaptive_routing.congestion_threshold.medium = 2000 
+adaptive_routing.congestion_threshold.high = 20000 
 ## AR shaper attributes [unit is in 100ns (Ex: 1=100ns; 10=1us)] 
 adaptive_routing.shaper_to = 10 
 adaptive_routing.shaper_from = 10 
@@ -635,23 +630,29 @@ adaptive_routing.profile0.bind_time = 0
 adaptive_routing.profile0.free_threshold = 4 
 adaptive_routing.profile0.busy_threshold = 0 
 adaptive_routing.profile0.shaper_from_enable = TRUE 
-adaptive_routing.profile0.shaper_to_enable = FALSE 
-adaptive_routing.profile0.elephant_flow = FALSE 
+adaptive_routing.profile0.shaper_to_enable = TRUE 
+adaptive_routing.profile0.elephant_flow = TRUE 
 #adaptive_routing.ecmp_size = 64. >>>>>Any change in this value needs switchd restart by user. 
 ```
 
 After changing parameter values and saving the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
-If you change the `adaptive_routing.ecmp_size` parameter, you must restart `switchd` with the `systemctl restart switchd` command.
+If you change the `adaptive_routing.ecmp_size` parameter, you must **restart** `switchd` with the `systemctl restart switchd` command.
 
 ### Link Utilization
 
-To enable global link utilization:
+Adaptive routing considers a port congested based on the link utilization threshold. The default link utilization threshold percentage is 70 and link utilization is off.
+
+- To change the link utilization threshold percentage, run the `nv set interface <interface> router adaptive-routing link-utilization-threshold` command. You can set a value between 1 and 100.
+- To enable link utilization, run the `nv set router adaptive-routing link-utilization-threshold enable on` command.
+
+The following example commands change the link utilization threshold percentage to 100 and enable link utilization:
 
 {{< tabs "TabID624 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
+cumulus@switch:~$ nv set interface swp51 router adaptive-routing link-utilization-threshold 100
 cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold enable on
 cumulus@switch:~$ nv config apply
 ```
@@ -663,11 +664,18 @@ When you enable or disable link utilization, NVUE reloads `switchd`.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `??` parameter to TRUE:
+Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `interface.<interface>.adaptive_routing.link_util_thresh` parameter to a value between 1 and 100, and the `adaptive_routing.link_util_threshold_disabled` parameter to FALSE:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
-?????
+## Global adaptive-routing enable/disable setting 
+adaptive_routing.enable = TRUE 
+adaptive_routing.profile = ar-profile-1 
+adaptive_routing.link_util_threshold_disabled = FALSE 
+
+## Per-port configuration for adaptive-routing 
+interface.swp1.adaptive_routing.enable = TRUE 
+interface.swp1.adaptive_routing.link_util_thresh = 100 
 ```
 
 Reload `switchd` with the `sudo systemctl reload switchd.service` command.
@@ -677,13 +685,24 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 ### Example Configuration
 
-The following example commands enable adaptive routing using the default profile and enable global link utilization:
-
-{{< tabs "TabID656 ">}}
+{{< tabs "TabID693 ">}}
 {{< tab "NVUE Commands ">}}
+
+The following example commands enable adaptive routing with the default profile `ar-profile-1` globally on all ports. Global link utilization is off (the default setting):
 
 ```
 cumulus@switch:~$ nv set router adaptive-routing enable on
+cumulus@switch:~$ nv config apply 
+```
+
+The following example commands enable adaptive routing with the custom profile `ar_profile_custom` on swp51 and swp52, set the link utilization threshold percentage to 100 on both swp51 and swp52, and enable global link utilization:
+
+```
+cumulus@switch:~$ nv set router adaptive-routing profile ar_profile_custom
+cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
+cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
+cumulus@switch:~$ nv set interface swp51 router adaptive-routing link-utilization-threshold 100
+cumulus@switch:~$ nv set interface swp52 router adaptive-routing link-utilization-threshold 100
 cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold enable on
 cumulus@switch:~$ nv config apply 
 ```
@@ -691,9 +710,37 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
+The following example commands enable adaptive routing with the default profile `ar-profile-1` globally on all ports. Global link utilization is off (the default setting):
+
 ```
-cumulus@switch:~$ sudo nano 
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
+## Global adaptive-routing enable/disable setting 
+adaptive_routing.enable = TRUE 
+adaptive_routing.profile = ar-profile-1 
+adaptive_routing.link_util_threshold_disabled = TRUE
+... 
 ```
+
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
+
+The following example commands enable adaptive routing with the custom profile `ar_profile_custom` on swp51 and swp52, set the link utilization threshold percentage to 100 on both swp51 and swp52, and enable global link utilization:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
+## Global adaptive-routing enable/disable setting 
+adaptive_routing.enable = TRUE 
+adaptive_routing.profile = ar-profile-custom 
+adaptive_routing.link_util_threshold_disabled = FALSE 
+
+## Per-port configuration for adaptive-routing 
+interface.swp51.adaptive_routing.enable = TRUE 
+interface.swp51.adaptive_routing.link_util_thresh = 100
+
+interface.swp52.adaptive_routing.enable = TRUE 
+interface.swp52.adaptive_routing.link_util_thresh = 100
+```
+
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}

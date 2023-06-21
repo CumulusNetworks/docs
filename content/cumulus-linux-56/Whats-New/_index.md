@@ -21,7 +21,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 ### New Features and Enhancements
 
-- Multiple adaptive routing profiles
+- {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Multiple adaptive routing profiles">}}
 - QOS FC watchdog for lossless queues
 - Indication for secure firmware boot failure
 - BGP WCMP for adaptive routing enabled traffic

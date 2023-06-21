@@ -46,22 +46,16 @@ The following example shows the `nv show platform fan` command output:
 
 ```
 cumulus@switch:~$ nv show platform fan
-Name      Limit variance  Max Speed  Min Speed  Current Speed (RPM)  Fan State Fan Direction 
---------  --------------  ---------  ---------  -------------------  --------- -------------
-Fan1                      25000      4500       9398                 ok        F2B  
-Fan2                      25000      4500       8282                 ok        F2B  
-Fan3                      25000      4500       9014                 ok        F2B  
-Fan4                      25000      4500       8282                 ok        F2B   
-Fan5                      25000      4500       9076                 ok        F2B  
-Fan6                      25000      4500       8282                 ok        F2B  
-Fan7                      25000      4500       9266                 ok        F2B  
-Fan8                      25000      4500       8334                 ok        F2B  
-Fan9                      25000      4500       9266                 ok        F2B  
-Fan10                     25000      4500       8334                 ok        F2B  
-Fan11                     25000      4500       9398                 ok        F2B  
-Fan12                     25000      4500       8334                 ok        F2B  
-PSU1Fan1                  None       None       None                 absent.   F2B  
-PSU2Fan1                  27500      5500       10208                ok.       F2B
+Name      Fan Direction  Limit variance  Max Speed  Min Speed  Current Speed (RPM)  Fan State
+--------  -------------  --------------  ---------  ---------  -------------------  ---------
+Fan1      F2B                            29000      2500       6000                 ok       
+Fan2      F2B                            29000      2500       6000                 ok       
+Fan3      F2B                            29000      2500       6000                 ok       
+Fan4      F2B                            29000      2500       6000                 ok       
+Fan5      F2B                            29000      2500       6000                 ok       
+Fan6      F2B                            29000      2500       6000                 ok       
+PSU1Fan1  F2B                            29000      2500       6000                 ok       
+PSU2Fan1  F2B                            29000      2500       6000                 ok    
 ```
 
 <!-- vale off -->

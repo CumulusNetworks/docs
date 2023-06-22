@@ -420,6 +420,10 @@ You can also set these optional parameters. If you do not set these parameters, 
 
 The NCLU commands write VRRP configuration to the `/etc/network/interfaces` file and the `/etc/frr/frr.conf` file.
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as VRRP, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 The following example commands configure two switches (spine01 and spine02) that form one virtual router group (VRID 44) with IPv4 address 10.0.0.1/24 and IPv6 address 2001:0db8::1/64. *spine01* is the master; it has a priority of 254. *spine02* is the backup VRRP router.
 
 **spine01**

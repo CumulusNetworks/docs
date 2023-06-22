@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 90
 toc: 3
 ---
-The NetQ user interface (UI) lets you access NetQ and visualize your network through a web browser instead of a terminal window with a command line interface (CLI). NetQ supports Google Chrome and Mozilla Firefox.
+The NetQ user interface lets you access NetQ through a web browser, where you can visualize your network and interact with the display using a keyboard and mouse.
 
 - {{<link title="Access the NetQ UI">}} 
 - {{<link title="Application Layout">}} 

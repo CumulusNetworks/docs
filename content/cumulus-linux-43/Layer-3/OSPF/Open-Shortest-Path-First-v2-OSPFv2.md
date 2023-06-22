@@ -36,6 +36,10 @@ The configuration below uses the `network` command to configure the IP subnet pr
 
 {{< tab "NCLU Commands ">}}
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as OSPF, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 {{< tabs "TabID49 ">}}
 
 {{< tab "leaf01 ">}}

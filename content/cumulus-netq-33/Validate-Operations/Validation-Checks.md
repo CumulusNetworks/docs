@@ -90,7 +90,7 @@ The link MTU validation tests look for consistency across an interface and appro
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | Link MTU Consistency | Checks for consistency of MTU setting on two sides of a physical interface |
-| 1 | VLAN interface | Checks if the MTU of an SVI is no smaller than the parent interface, substracting the VLAN tag size |
+| 1 | VLAN interface | Checks if the MTU of an SVI is no smaller than the parent interface, subtracting the VLAN tag size |
 | 2 | Bridge interface | Checks if the MTU on a bridge is not arbitrarily smaller than the smallest MTU among its members |
 
 ## MLAG Validation Tests

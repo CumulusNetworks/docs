@@ -95,6 +95,10 @@ iface lo inet loopback
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+When you use EVPN with MLAG, EVPN might install local MAC addresses or neighbor entries as remote entries. To prevent EVPN from taking ownership of local MAC addresses or neighbor entries from MLAG, you can associate all local layer 2 VNIs with a unique site ID, which represents an MLAG pair. See {{<link url="EVPN-Enhancements/#configure-a-site-id-for-mlag" text="Configure a Site ID for MLAG">}}.
+{{%/notice%}}
+
 ## Troubleshooting
 
 This section describes VXLAN active-active failure conditions and provides troubleshooting commands.
@@ -1753,7 +1757,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL54 - VXLAN Active-Active" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
+    {{< simulation name="Try It CL55 - VXLAN Active-Active" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
 The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

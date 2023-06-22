@@ -16,7 +16,7 @@ user documentation.
 |Bridge|Device that connects two communication networks or network segments. Occurs at OSI Model Layer 2, Data Link Layer.|
 |Clos|Multistage circuit switching network used by the telecommunications industry, first formalized by Charles Clos in 1952.|
 |Device|UI term referring to a switch, host, or chassis or combination of these. Typically used when describing hardware and components versus a software or network topology. See also Node.|
-|Event|Change or occurrence in network or component that can trigger a notification. Events are cateogrized by severity: error, info, warning, and debug.|
+|Event|Change or occurrence in network or component that can trigger a notification. Events are categorized by severity: error or info.|
 |Fabric|Network topology where a set of network nodes interconnects through one or more network switches.|
 |Fresh|Node that has been silent for the last 90 seconds.|
 |High Availability|Software used to provide a high percentage of uptime (running and available) for network devices.|
@@ -62,6 +62,7 @@ user documentation.
 | IPv4/IPv6 | Internet Protocol, version 4 or 6 |
 | LACP | Link Aggregation Control Protocol |
 | LAN | Local Area Network |
+| LCM | Lifecycle Management |
 | LLDP | Link Layer Data Protocol |
 | MAC | Media Access Control |
 | MIB | Management Information Base |
@@ -69,6 +70,7 @@ user documentation.
 | MLD | Multicast Listener Discovery |
 | NTP | Network Time Protocol |
 | OOB | Out of Band (management) |
+| OPTA | On-premises Telemetry Aggregator |
 | OSPF | Open Shortest Path First |
 | PTP | Precision Time Protocol |
 | RFC | Remote Function Call |
@@ -76,6 +78,7 @@ user documentation.
 | SDN | Software-Defined Network |
 | SNMP | Simple Network Management Protocol |
 | STP | Spanning Tree Protocol |
+| TCA | Threshold Crossing Alarms |
 | TCP | Transport Control Protocol |
 | ToR | Top of Rack |
 | UDP | User Datagram Protocol |

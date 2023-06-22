@@ -14,7 +14,6 @@ Cumulus Linux supports multiple VLAN-aware bridges but with the following limita
 - You cannot use VLAN translation with multiple VLAN-aware bridges.
 - You cannot use double tagged VLAN interfaces with multiple VLAN-aware bridges.
 - You cannot associate multiple single VXLAN devices (SVDs) with a single VLAN-aware bridge
-- Cumulus Linux does not support IGMPv3.
 <!-- vale off -->
 ## Configure a VLAN-aware Bridge
 <!-- vale on -->
@@ -137,6 +136,56 @@ iface bridge2
     bridge-vlan-aware yes
     bridge-vids 10
     bridge-pvid 1
+...
+```
+
+Run the `ifreload -a` command to load the new configuration:
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+You can associate different [SVIs](#vlan-layer-3-addressing) with each bridge by changing the `base-interface` value. The following example creates SVIs for VLAN 10 in both bridge1 and bridge2:
+
+
+{{< tabs "TabID154 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface bridge2_vlan10 type svi
+cumulus@switch:~$ nv set interface bridge2_vlan10 vlan 10
+cumulus@switch:~$ nv set interface bridge2_vlan10 base-interface bridge2
+cumulus@switch:~$ nv set interface bridge2_vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface bridge1_vlan10 type svi
+cumulus@switch:~$ nv set interface bridge1_vlan10 vlan 10
+cumulus@switch:~$ nv set interface bridge1_vlan10 base-interface bridge1
+cumulus@switch:~$ nv set interface bridge1_vlan10 ip address 192.168.10.2/24
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file and add the bridge:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto bridge2_vlan10
+iface bridge2_vlan10
+    address 10.1.10.2/24
+    hwaddress 1c:34:da:1d:e6:fd
+    vlan-raw-device bridge2
+    vlan-id 10
+auto bridge1_vlan10
+iface bridge1_vlan10
+    address 192.168.10.2/24
+    hwaddress 1c:34:da:1d:e6:fd
+    vlan-raw-device bridge1
+    vlan-id 10
 ...
 ```
 

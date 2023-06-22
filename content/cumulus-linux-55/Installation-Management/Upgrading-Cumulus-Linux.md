@@ -140,6 +140,24 @@ To backup and restore the configuration commands:
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
+### Create a cl-support File
+
+**Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
+
+1. Create the `cl-support` archive file with the `cl-support` command:
+
+```
+cumulus@switch:~$ sudo cl-support
+```
+
+2. Copy the `cl-support` file off the switch to a different location.
+
+3. After upgrade is complete, run the `cl-support` command again to create a new archive file:
+
+```
+cumulus@switch:~$ sudo cl-support
+```
+
 ## Upgrade Cumulus Linux
 
 <span style="background-color:#F5F5DC">[ONIE](## "Open Network Install Environment")</span> is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
@@ -201,17 +219,12 @@ To upgrade the switch:
 6. Reinstall third party applications and associated configurations.
 
 ### Package Upgrade
-<!--
-{{%notice warning%}}
-- Cumulus Linux 5.4 and later uses a new format for port splitting but continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, see {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
-- Cumulus Linux 5.4 package upgrade does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. The following table shows which upgrade paths support warm restart to complete the upgrade.
 
-  | From   | To   | Warm Restart Mode |
-  |------- | ---- | ----------------- |
-  | 5.0.0 - 5.3.0 | 5.3.1 | Yes       |
-  | 5.0.0 - 5.3.1 | 5.4.0 | No        |
+{{%notice note%}}
+- NVUE deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier. If you use NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, NVUE automatically updates the configuration during upgrade to Cumulus Linux 5.5 and later to use the new format (2x, 4x, 8x).
+- Cumulus Linux continues to support the old port split format in the `/etc/cumulus/ports.conf` file; however NVIDIA recommends that you use the new format.
 {{%/notice%}}
--->
+
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
 
 When you use package upgrade to upgrade your switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
@@ -305,7 +318,85 @@ Because Cumulus Linux is a collection of different Debian Linux packages, be awa
 
 If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} to dual connect two switches in your environment, follow the steps below to upgrade the switches.
 
+{{%notice info%}}
 You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
+
+Only during the upgrade process does Cumulus Linux supports different software versions between MLAG peer switches. After you upgrade the first MLAG switch in the pair, run the `clagctl showtimers` command to monitor the `init-delay` timer. When the timer expires, make the upgraded MLAG switch the primary, then upgrade the peer to the same version of Cumulus Linux.
+
+NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer switches outside of the upgrade time period; you might see unexpected results.
+{{%/notice%}}
+
+{{< tabs "TabID311 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Verify the switch is in the secondary role:
+
+    ```
+    cumulus@switch:~$ nv show mlag
+    ```
+
+2. Shut down the core uplink layer 3 interfaces. The following example shuts down swp1:
+
+    ```
+    cumulus@switch:~$ nv set interface swp1 link state down
+    ```
+
+3. Shut down the peer link:
+
+    ```
+    cumulus@switch:~$ nv set interface peerlink link state down
+    ```
+
+4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
+
+    ```
+    cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.1.0-mlx-amd64.bin
+    ```
+
+   To upgrade the switch with package upgrade instead of booting into ONIE, run the `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands; see {{<link url="#package-upgrade" text="Package Upgrade">}}.
+
+5. Reboot the switch:
+
+    ```
+    cumulus@switch:~$ nv action reboot system
+    ```
+
+6. If you installed a new image on the switch, restore the configuration files to the new release.
+
+7. Verify STP convergence across both switches with the Linux `mstpctl showall` command. NVUE does not provide an equivalent command.
+
+    ```
+    cumulus@switch:~$ mstpctl showall
+    ```
+
+8. Verify core uplinks and peer links are UP:
+
+    ```
+    cumulus@switch:~$ nv show interface
+    ```
+
+9. Verify MLAG convergence:
+
+    ```
+    cumulus@switch:~$ nv show mlag
+    ```
+
+10. Make this secondary switch the primary:
+
+    ```
+    cumulus@switch:~$ nv set mlag priority 2084
+    ```
+
+11. Verify the other switch is now in the secondary role.
+12. Repeat steps 2-9 on the new secondary switch.
+13. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
+
+    ```
+    cumulus@switch:~$ nv set mlag priority 32768
+    ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 1. Verify the switch is in the secondary role:
 
@@ -325,11 +416,13 @@ You must upgrade both switches in the MLAG pair to the same release of Cumulus L
     cumulus@switch:~$ sudo ip link set peerlink down
     ```
 
-4. Run the `onie-install -a -i <image-location>` command to boot the switch into ONIE. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
+4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.1.0-mlx-amd64.bin
     ```
+
+   To upgrade the switch with package upgrade instead of booting into ONIE, run the `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands; see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
 5. Reboot the switch:
 
@@ -337,37 +430,42 @@ You must upgrade both switches in the MLAG pair to the same release of Cumulus L
     cumulus@switch:~$ sudo reboot
     ```
 
-6. Verify STP convergence across both switches:
+6. If you installed a new image on the switch, restore the configuration files to the new release.
+
+7. Verify STP convergence across both switches:
 
     ```
     cumulus@switch:~$ mstpctl showall
     ```
 
-7. Verify core uplinks and peer links are UP:
+8. Verify that core uplinks and peer links are UP:
 
     ```
-    cumulus@switch:~$ nv show interface
+    cumulus@switch:~$ ip addr show
     ```
 
-8. Verify MLAG convergence:
+9. Verify MLAG convergence:
 
     ```
     cumulus@switch:~$ clagctl status
     ```
 
-9. Make this secondary switch the primary:
+10. Make this secondary switch the primary:
 
     ```
     cumulus@switch:~$ clagctl priority 2048
     ```
 
-10. Verify the other switch is now in the secondary role.
-11. Repeat steps 2-8 on the new secondary switch.
-12. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
+11. Verify the other switch is now in the secondary role.
+12. Repeat steps 2-9 on the new secondary switch.
+13. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
 
     ```
     cumulus@switch:~$ clagctl priority 32768
     ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Roll Back a Cumulus Linux Installation
 

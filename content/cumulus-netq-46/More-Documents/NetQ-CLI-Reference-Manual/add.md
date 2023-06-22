@@ -7,10 +7,11 @@ right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
 ---
+
 <!--
 ## netq add check-filter
 
-You can add filters to `netq check` commands to prevent them from generating events. Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for step-by-step instructions. 
+You can add filters to `netq check` commands to suppress validation failures based on hostnames, failure reason, and other parameters. Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for step-by-step instructions. 
 
 ### Syntax
 
@@ -41,11 +42,15 @@ None
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq add check-filter check_name roce test_name 'RoCE Classification' scope '[{"Reason": "Invalid traffic-class mapping for switch-priority 4.Expected 0 Got 3"}]' is_active true
+Successfully added/updated Check Filter 
+```
+
 ### Related Commands
 
 - netq del check-filter
 - netq show check-filter
-
  - - -
  -->
 ## netq add events-config
@@ -381,7 +386,7 @@ Successfully configured notifier proxy proxy4:80
 
 ## netq add tca
 
-NetQ supports a set of events that trigger after crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="TCA Event Messages Reference">}}.
+NetQ supports a set of events that trigger after crossing a user-defined threshold, called TCA events. These events allow detection and prevention of network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="Threshold-Crossing Events Reference">}}.
 
 A TCA event notification configuration must contain one rule. Each rule must contain a scope and a threshold. Optionally, you can specify an associated channel.  *Note: If a rule is not associated with a channel, the event information is only reachable from the database.* If you want to deliver events to one or more notification channels, create the channels before you create TCA events with ```netq add notification channel```.
 

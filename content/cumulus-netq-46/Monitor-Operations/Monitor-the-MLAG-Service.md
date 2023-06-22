@@ -13,13 +13,8 @@ You use Multi-Chassis Link Aggregation (MLAG) to enable a server or switch with 
 Other vendors refer to the Cumulus Linux implementation of MLAG as MLAG, MC-LAG or VPC. The NetQ UI uses the MLAG terminology predominantly. However, the management daemon, named `clagd`, and other options in the code, such as `clag-id`, remain for historical purposes.
 
 {{%/notice%}}
-
-NetQ enables operators to view the health of the MLAG service on a networkwide and a per-session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show mlag` command.
-
 {{%notice tip%}}
-
 Any prior scripts or automation that use the older `netq show clag` command continue to work as the command still exists in the operating system.
-
 {{%/notice%}}
 
 ## MLAG Commands
@@ -30,9 +25,14 @@ Monitor MLAG with the following commands. See the {{<link title="show/#netq-show
 netq show mlag
 netq show events message_type mlag
 ```
+The {{<link title="check/#netq check mlag" text="netq check mlag">}} command verifies MLAG session consistency by identifying all MLAG peers with errors or misconfigurations in the NetQ domain.
+
+```
+netq check mlag
+```
 ## View MLAG in the UI
 
-To add the MLAG card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Network services** > **All MLAG Sessions card** > **Open cards**. This example shows the following for the last 24 hours:
+To add the MLAG card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All MLAG Sessions card&nbsp;<span aria-label="and then">></span> Open cards**. This example shows the following for the last 24 hours:
 
 - Four nodes have been running the MLAG protocol with no changes in that number
 - Four sessions were established and remained so

@@ -17,11 +17,11 @@ Follow these steps to set up and configure your VM on a cluster of servers in a 
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="cloud" version="4.5">}}
+    {{<netq-install/vmw-platform-image deployment="cloud" version="4.6">}}
 
-4. Setup and configure your VM.
+4. Set up and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="4.5">}}
+    {{<netq-install/vm-setup hypervisor="vmware" deployment="cloud" version="4.6">}}
 
 5. Log in to the VM and change the password.
 
@@ -35,24 +35,24 @@ Follow these steps to set up and configure your VM on a cluster of servers in a 
 
     {{<netq-install/set-hostname>}}
 
-8. Verify that your first worker node meets the VM requirements, as described in Step 1.
+8. Verify that your first worker node meets the VM requirements, as described in step 1.
 
-9. Confirm that the needed ports are open for communications, as described in Step 2.
+9. Confirm that the required ports are open for communications, as described in step 2.
 
-10. Open your hypervisor and set up the VM in the same manner as for the master node.
+10. Open your hypervisor and set up the VM in the same manner as the master node.
 
     {{<notice note>}}
-Make a note of the private IP address you assign to the worker node. You need it for later installation steps.
+Make a note of the private IP address you assign to the worker node. You will need it at a later point in the installation process.
     {{</notice>}}
 
 11. Verify the worker node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-12. Repeat Steps 8 through 11 for each additional worker node you want in your cluster.
+12. Repeat steps 8 through 11 for each additional worker node in your cluster.
 
-13. The final step is to install and activate the NetQ software using the CLI:
+13. Install and activate the NetQ software using the CLI:
 
-{{<netq-install/install-with-cli version="4.5" deployment="cloud-cluster">}}
+{{<netq-install/install-with-cli version="4.6" deployment="cloud-cluster">}}
 
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

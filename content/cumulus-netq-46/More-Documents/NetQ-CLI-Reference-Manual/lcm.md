@@ -12,7 +12,7 @@ type: nojsscroll
 ## netq lcm add cl-image
 <!-- vale on -->
 
-Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. Images must match the version, architecture, and ASIC vendor for the switches you want to upgrade. For detailed instructions, see {{<link title="Upgrade Cumulus Linux Using LCM">}}.
+Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. Images must match the version, architecture, and ASIC vendor for the switches you want to upgrade. For detailed instructions, see {{<link title="Upgrade Cumulus Linux">}}.
 
 ### Syntax
 
@@ -126,7 +126,7 @@ None
 ```
 cumulus@switch:~$ netq lcm add default-version cl-images 5.3.0
 
-cumulus@switch:~$ netq lcm add default-version netq-images 4.5.0
+cumulus@switch:~$ netq lcm add default-version netq-images 4.6.0
 ```
 
 ### Related Commands
@@ -315,14 +315,14 @@ Deletes the access credentials required to upgrade Cumulus Linux or NetQ on swit
 
 ```
 netq lcm del credentials 
-    profile_id <text-credential-profile-id>
+    profile_ids <text-credential-profile-ids>
 ```
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | credentials | NA | Remove the access credentials used to upgrade switches |
-| profile_id | <text-credential-profile-id\> | Remove the profile assigned this ID |
+| profile_ids | <text-credential-profile-ids\> | Remove the profile assigned this ID |
 
 ### Options
 
@@ -1050,10 +1050,10 @@ netq lcm show switches
 cumulus@switch:~$ netq lcm show switches cl-version 5.2.0
 Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Credential Profile                   Last Changed
 ----------------- ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ------------------------------------ -------------------------
-noc-se                       192.168.0.15              00:01:00:00:12:00  x86_64   5.2.0       4.5.0-cl4u41~ []                           Netq-Default                         Fri Feb  3 20:50:40 2023
+noc-se                       192.168.0.15              00:01:00:00:12:00  x86_64   5.2.0       4.6.0-cl4u42~ []                           Netq-Default                         Fri Feb  3 20:50:40 2023
                                                                                                1675445092.42
                                                                                                fbac0a
-spine-1                      192.168.0.15              00:01:00:00:13:00  x86_64   5.2.0       4.5.0-cl4u41~ []                           n-2000                               Fri Feb  3 22:28:25 2023
+spine-1                      192.168.0.15              00:01:00:00:13:00  x86_64   5.2.0       4.6.0-cl4u42~ []                           n-2000                               Fri Feb  3 22:28:25 2023
                                                                                                1675445092.42
                                                                                                fbac0a
 ```
@@ -1151,7 +1151,7 @@ netq lcm upgrade cl-image
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-cl430 cl-version 4.3.0 netq-version 4.5.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-cl430 cl-version 4.3.0 netq-version 4.6.0 hostnames spine01,spine02
 ```
 
 ### Related Commands
@@ -1192,7 +1192,7 @@ netq lcm upgrade netq-image
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl530-nq450 netq-version 4.5.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl530-nq450 netq-version 4.6.0 hostnames spine01,spine02
 ```
 
 ### Related Commands

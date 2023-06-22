@@ -5,15 +5,16 @@ weight: 320
 toc: 4
 --- 
 
-Installing the NetQ CLI on your NetQ Appliances, VMs, switches, or hosts gives you access to new features and bug fixes, and allows you to manage your network from multiple points in the network.
+Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to new features and bug fixes, and allows you to manage your network from multiple points in the network.
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux 3.7.16 and later
+- Cumulus Linux 4.3.0 and above (Broadcom switches)
+- Cumulus Linux 4.4.0 and above (Spectrum switches)
 - SONiC 202012
 - CentOS 7
 - RHEL 7.1
-- Ubuntu 18.04
+- Ubuntu 18.04, Ubuntu 20.04
 
 {{<notice note>}}
 If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NetQ repository.
@@ -101,7 +102,7 @@ If NTP is not already installed and configured, follow these steps:
 
 {{<tab "RHEL7 or CentOS">}}
 
-1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Appliance or VM to enable useful statistical analysis.
+1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ appliance or VM to enable useful statistical analysis.
 
     ```
     root@rhel7:~# sudo yum install ntp
@@ -140,7 +141,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 {{<tab "Ubuntu">}}
 
-1.  Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1.  Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ appliance to enable useful statistical analysis.
 
     ```
     root@ubuntu:~# sudo apt-get install ntp
@@ -298,6 +299,19 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 
 {{</tab>}}
 
+{{<tab "Ubuntu 20.04" >}}
+
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add the following line:
+
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
+...
+```
+
+{{</tab>}}
+
 {{</tabs>}}
 
     {{<notice note>}}
@@ -312,57 +326,21 @@ Follow these steps to install the NetQ CLI on a switch or host.
 
 {{<tab "Cumulus Linux">}}
 
-To install the NetQ CLI you need to install `netq-apps` on each switch. This is available from the NVIDIA networking repository.
+Cumulus Linux 4.4 and later includes the `netq-apps` package by default. To upgrade the NetQ CLI to the latest version:
 
-Cumulus Linux 4.4 and later includes the `netq-apps` package by default.
-
-{{<notice note>}}
-If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
-{{</notice>}}
-
-To obtain the NetQ CLI package:
-
-Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
-
-*Note that NetQ has a separate repository from Cumulus Linux.*
-
-{{<tabs "TabID327" >}}
-
-{{<tab "Cumulus Linux 3.7" >}}
+1. Add the repository by uncommenting or adding the following line in `/etc/apt/sources.list`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-4.5
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ...
 ```
 
 {{<notice tip>}}
-You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository to always retrieve the latest version of NetQ.
+You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v4.3: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.3</pre>
 {{</notice>}}
 
-{{</tab>}}
-
-{{<tab "Cumulus Linux 4.0 and later" >}}
-
-Cumulus Linux 4.4 and later includes the `netq-apps` package by default.
-
-To add the repository, uncomment or add the following line in `/etc/apt/sources.list`:
-
-```
-cumulus@switch:~$ sudo nano /etc/apt/sources.list
-...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.5
-...
-```
-
-{{<notice tip>}}
-You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
-{{</notice>}}
-
-{{</tab>}}
-
-{{</tabs>}}
 
 2. Update the local `apt` repository and install the software on the switch.
 
@@ -377,7 +355,7 @@ You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLin
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.5" opsys="cl">}}
+{{<netq-install/cli-version version="4.6" opsys="cl">}}
 <!-- vale on -->
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -411,9 +389,9 @@ To obtain the NetQ CLI package:
     admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
-    You should see version 4.5.0 and update 40 in the results. For example:
+    You should see version 4.6.0 and update 41 in the results. For example:
 
-    - netq-apps_<strong>4.5.0</strong>-deb10u<strong>41</strong>~1677245149.f5b57862_amd64.deb
+    - netq-apps_<strong>4.6.0</strong>-deb10u<strong>41</strong>~1682430128.e13e0426_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -459,7 +437,7 @@ To obtain the NetQ CLI package:
     root@rhel7:~# rpm -q -netq-apps
     ```
 <!-- vale off -->
-    {{<netq-install/cli-version version="4.1.0" opsys="rh">}}
+{{<netq-install/cli-version version="4.6" opsys="rh">}}
 <!-- vale on -->
 5. Continue with the next section.
 
@@ -480,7 +458,7 @@ To obtain the NetQ CLI package:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.5" opsys="ub">}}
+{{<netq-install/cli-version version="4.6" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 
@@ -574,7 +552,7 @@ If you have multiple premises and want to query data from a different premises t
 {{<tab "Cloud Deployments">}}
 
 <!-- vale off -->
-To access and configure the CLI for your on-premises NetQ deployment, you must generate AuthKeys. You'll need your username and password to generate them. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were obtained during {{<link title="Access the NetQ UI#log-in-to-netq" text="first login to the NetQ Cloud">}} and premises activation.
+To access and configure the CLI for your NetQ cloud deployment, you must generate AuthKeys. You'll need your username and password to generate them. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were obtained during your {{<link title="Access the NetQ UI#log-in-to-netq" text="intial login to the NetQ Cloud">}} and premises activation.
 <!-- vale on -->
 
 To generate AuthKeys:

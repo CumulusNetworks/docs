@@ -522,6 +522,78 @@ Run the `sudo ifreload -a` command to apply all the configuration changes:
 ```
 cumulus@leaf01:~$ sudo ifreload -a
 ```
+<!-- vale off -->
+## Unconfigure MLAG
+<!-- vale on -->
+To unconfigure MLAG:
+
+{{< tabs "TabID532 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the following commands to unset MLAG, and unset the peerlink and the peerlink VLAN subinterface that Cumulus Linux creates automatically. You must run the commands at the same time with the `nv config apply` command.
+
+```
+cumulus@leaf01:~$ nv unset mlag
+cumulus@leaf01:~$ nv unset interface peerlink
+cumulus@leaf01:~$ nv unset interface peerlink.4094
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file.
+
+1. Remove the `auto peerlink` stanza; for example, remove lines similar to the following:
+
+  ```
+  ...
+  auto peerlink
+  iface peerlink
+      bond-slaves swp49 swp50
+  auto peerlink.4094
+  iface peerlink.4094
+  clagd-backup-ip 10.10.10.2
+  clagd-peer-ip linklocal
+  clagd-sys-mac 44:38:39:BE:EF:AA
+  ...
+  ```
+
+2. Remove the `clag-id` line from the bond stanzas. In the following example, remove `clag-id 1` from the `auto bond1` stanza and `clag-id 2` from the `auto bond2` stanza:
+
+  ```
+  ...
+  auto bond1
+  iface bond1
+      alias bond1 on swp1
+      bond-slaves swp1
+      clag-id 1
+
+  auto bond2
+  iface bond2
+      alias bond2 on swp2
+      bond-slaves swp2
+      clag-id 2
+  ...
+  ```
+
+3. Remove `peerlink` from the `bridge-ports` line of the bridge stanza. In the following example, remove `peerlink` from the `auto br_default` stanza:
+
+  ```
+  auto br_default
+  iface br_default
+      bridge-ports bond1 bond2 peerlink
+      bridge-vlan-aware yes
+  ```
+
+4. Run the `sudo ifreload -a` command:
+
+  ```
+  cumulus@leaf01:~$ sudo ifreload -a
+  ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Best Practices
 
@@ -809,16 +881,15 @@ The following table shows the conflict types and actions that Cumulus Linux take
 | MLAG native VLAN | Interface | Protodown only the MLAG bonds on the secondary switch when there is a native VLAN mismatch. |
 | STP root bridge priority | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is an <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> priority mismatch across peers. |
 | MLAG system MAC address | Global  | Protodown the MLAG bonds and VNIs on the secondary switch when there is an MLAG system MAC address mismatch across peers.|
-| Peer IP | Global   | Protodown the MLAG bonds and VNIs on the secondary switch when there is a peer IP address mismatch. |
+| Peer IP | Global   | Protodown the MLAG bonds and VNIs on the secondary switch when there is an IP address mismatch within the same subnet between peers. The consistency checker does not trigger an IP address mismatch between the linklocal keyword and a static IPv4 address, or between IPv4 addresses across subnets.|
 | Peer link MTU | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is a peer link MTU mismatch across peers. |
 | Peer link native VLAN | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is a peer link VLAN mismatch across peers.<br>Protodown the MLAG bonds and VNIs on the secondary switch when there is no PVID. |
 | VXLAN anycast IP address | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is an anycast IP address mismatch across peers.<br>Protodown the MLAG bonds and VNIs on the node where there is no configured anycast IP address. |
-| Peer link bridge member | Global | Protodown the MLAG bonds and VNIs on the MLAG switch where there is a peer link bridge member conflict. |
-| MLAG bond bridge member | Interface | Protodown the MLAG bonds and VNIs on the MLAG switch if the MLAG bond is not a bridge member. |
+| Peer link bridge member | Global | Protodown the MLAG bonds and VNIs on the MLAG switch where there is a peer link bridge member conflict.</div>{{%notice note%}}The peer value always displays `NOT-SYNCED` for this consistency check because Cumulus Linux does not enforce the same interface name for the peerlink and because of limitations with traditional bridges.{{%/notice%}} |
+| MLAG bond bridge member | Interface | Protodown the MLAG bonds and VNIs on the MLAG switch if the MLAG bond is not a bridge member.</div>{{%notice note%}}The peer value always displays `NOT-SYNCED` for this consistency check because Cumulus Linux does not enforce the same interface name for the peerlink and because of limitations with traditional bridges.{{%/notice%}} |
 | LACP partner MAC address | Interface | Protodown the MLAG bonds on the MLAG switch if there is an LACP partner MAC address mismatch or if there is a duplicate LACP partner MAC address. |
 | MLAG VLANs| Interface   |  Suspend the inconsistent VLANs on either MLAG peer if the VLANs are not part of the peer link or if there is mismatch of VLANs configured on the MLAG bonds between the MLAG peers. |
 | Peer link VLANs| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
-| VLAN on VXLAN interface | VXLAN | Suspend the inconsistent VLAN on either MLAG peer if there is a VLAN mismatch on VXLAN interfaces.|
 | MLAG protocol version | Global | The consistency check records an MLAG protocol version mismatch between the MLAG peers. Cumulus Linux does not take any distruptive action. |
 | MLAG package version | Global| The consistency check records an MLAG package version mismatch between the MLAG peers. Cumulus Linux does not take any disruptive action.|
 
@@ -1574,7 +1645,7 @@ iface swp2
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL54 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
+    {{< simulation name="Try It CL55 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
 
 This simulation starts with the example MLAG configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

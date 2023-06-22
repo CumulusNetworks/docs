@@ -715,7 +715,6 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-
 ## Configuration Example
 
 The example below shows a basic MLAG configuration, where:

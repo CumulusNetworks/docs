@@ -411,7 +411,9 @@ If you specify a subinterface, such as swp1.100, then run `ifup swp1.100`, Cumul
 
 You can specify both IPv4 and IPv6 addresses for the same interface.
 
-For IPv6 addresses, you can create or modify the IP address for an interface using either `::` or `0:0:0` notation. For example,both 2620:149:43:c109:0:0:0:5 and 2001:DB8::1/126 are valid.
+For IPv6 addresses:
+- You can create or modify the IP address for an interface using either `::` or `0:0:0` notation. For example,both 2620:149:43:c109:0:0:0:5 and 2001:DB8::1/126 are valid.
+- Cumulus Linux assigns the IPv6 address with all zeroes in the interface identifier (2001:DB8::/126) for each subnet; connected hosts cannot use this address.
 
 The following example commands configure three IP addresses for swp1; two IPv4 addresses and one IPv6 address.
 
@@ -628,6 +630,48 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Link Flap Protection
+
+Cumulus Linux enables link flap detection by default. Link flap detection triggers when there are five link flaps within ten seconds, at which point the interface goes into a protodown state and shows `linkflap` as the reason. The `switchd` service also shows a log message similar to the following:
+
+```
+2023-02-10T17:53:21.264621+00:00 cumulus switchd[10109]: sync_port.c:2263 ERR swp2 link flapped more than 3 times in the last 60 seconds, setting protodown
+```
+
+To show interfaces with the protodown flag, run the Linux `ip link` command:
+
+```
+cumulus@switch:~$ ip link
+37: swp2: <NO-CARRIER,BROADCAST,MULTICAST,SLAVE,UP> mtu 9178 qdisc pfifo_fast master bond131 state DOWN mode DEFAULT group default qlen 1000
+  link/ether 1c:34:da:ba:bb:2a brd ff:ff:ff:ff:ff:ff protodown on protodown_reason <linkflap>
+```
+
+### Clear the Interface Protodown State and Reason
+
+The `ifdown` and `ifup` commands do not clear the protodown state. You must clear the protodown state and the reason manually using the `sudo ip link set <interface> protodown_reason linkflap off` and `sudo ip link set <interface> protodown off` commands.
+
+```
+cumulus@switch:~$ sudo ip link set swp2 protodown_reason linkflap off
+cumulus@switch:~$ sudo ip link set swp2 protodown off
+```
+
+After a few seconds the port state returns to UP. Run the `ip link show <interface>` command to verify that the interface is no longer in a protodown state and that the reason is cleared:
+
+```
+cumulus@switch:~$ ip link show swp2
+37: swp2: <NO-CARRIER,BROADCAST,MULTICAST,SLAVE,UP> mtu 9178 qdisc pfifo_fast master bond131 state UP mode DEFAULT group default qlen 1000
+  link/ether 1c:34:da:ba:bb:2a brd ff:ff:ff:ff:ff:ff
+```
+
+### Change Link Flap Protection Settings
+
+You can change link flap protection settings in the `/etc/cumulus/switchd.conf` file:
+- To change the duration during which a link must flap the number of times set in the link flap threshold before link flap protection triggers, change the `link_flap_window` setting.
+- To change the number of times the link must flap within the link flap window before link flap protection triggers, change the `link_flap_threshold` setting.
+- To disable link flap protection, set the `link_flap_window` and `link_flap_threshold` parameters to 0 (zero).
+
+After you change the link flap settings, you must restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 ## Mako Templates
 

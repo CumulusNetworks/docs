@@ -9,7 +9,7 @@ EVPN includes multiple models for routing between different subnets (VLANs), als
 Cumulus Linux supports these models:
 
 - {{<link url="#centralized-routing" text="Centralized routing">}}: Specific VTEPs act as designated layer 3 gateways and perform routing between subnets; other VTEPs just perform bridging.
-<!--- {{<link url="#asymmetric-routing" text="Distributed asymmetric routing">}}: Every VTEP participates in routing, but all routing is done at the ingress VTEP; the egress VTEP only performs bridging.-->
+- {{<link url="#asymmetric-routing" text="Distributed asymmetric routing">}}: Every VTEP participates in routing, but all routing is done at the ingress VTEP; the egress VTEP only performs bridging.
 - {{<link url="#symmetric-routing" text="Distributed symmetric routing">}}: Every VTEP participates in routing and performs routing at both the ingress VTEP and the egress VTEP.
 
    You typically deploy distributed routing with the VTEPs that have an *anycast IP and MAC address* for each subnet; each VTEP that has a particular subnet has the same IP/MAC for that subnet. Such a model facilitates easy host and VM mobility as there is no need to change the host or VM configuration when it moves from one VTEP to another.
@@ -67,13 +67,16 @@ You can deploy centralized routing at the VNI level, where you can configure the
 When you use centralized routing, even if the source host and destination host attach to the same VTEP, the packets travel to the gateway VTEP, the switch routes the packets, then the packets come back.
 {{%/notice%}}
 
-<!--## Asymmetric Routing
+## Asymmetric Routing
 
-In distributed asymmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts. The routing is called asymmetric because only the ingress VTEP performs routing, the egress VTEP only performs bridging. Asymmetric routing can be achieved with only host routing and does not involve any interconnecting VNIs. However, you must provision each VTEP with all VLANs/VNIs - the subnets between which communication can take place; this is required even if there are no locally-attached hosts for a particular VLAN.
+In distributed asymmetric routing, each VTEP acts as a layer 3 gateway, performing routing for its attached hosts. The routing is called asymmetric because only the ingress VTEP performs routing, the egress VTEP only performs bridging. You can achieve asymmetric routing with only host routing, which does not involve any interconnecting VNIs. However, you must provision each VTEP with all VLANs and corresponding VNIs (the subnets between which communication takes place); this is required even if there are no locally-attached hosts for a particular VLAN.
+
+The only additional configuration required to implement asymmetric routing beyond the standard configuration for a layer 2 VTEP described above is to ensure that each VTEP has all VLANs (and corresponding VNIs) provisioned and the SVI for each VLAN is configured with an anycast IP or MAC address.
 
 {{%notice note%}}
-The only additional configuration required to implement asymmetric routing beyond the standard configuration for a layer 2 VTEP described earlier is to ensure that each VTEP has all VLANs (and corresponding VNIs) provisioned on it and the SVI for each such VLAN is configured with an anycast IP/MAC address.
-{{%/notice%}}-->
+- NVIDIA recommends you use symmetric or centralized routing instead of asymmetric routing.
+- Asymmetric routing does not support EVPN multihoming.
+{{%/notice%}}
 
 ## Symmetric Routing
 
@@ -162,10 +165,12 @@ iface vlan10
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-When two VTEPs are operating in **VXLAN active-active** mode and performing **symmetric** routing, you need to configure the router MAC corresponding to each layer 3 VNI to ensure both VTEPs use the same MAC address. Specify the `address-virtual` (MAC address) for the SVI corresponding to the layer 3 VNI. Use the same address on both switches in the MLAG pair. Use the MLAG system MAC address. See {{<link url="#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
-{{%/notice%}}
+{{%notice info%}}
 
+- Do not add the Layer 3 VNI VLAN IDs to the bridge `vids` list in the layer 2 bridge configuration.
+- When two VTEPs are operating in **VXLAN active-active** mode and performing **symmetric** routing, you need to configure the router MAC corresponding to each layer 3 VNI to ensure both VTEPs use the same MAC address. Specify the `address-virtual` (MAC address) for the SVI corresponding to the layer 3 VNI. Use the same address on both switches in the MLAG pair. Use the MLAG system MAC address. See {{<link url="#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
+
+{{%/notice%}}
 ### Configure the VRF to Layer 3 VNI Mapping
 
 {{< tabs "TabID206 ">}}

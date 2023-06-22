@@ -7,11 +7,12 @@ toc: 4
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 3.7.16 and later
+- Cumulus Linux 4.3.0 and above (Broadcom switches)
+- Cumulus Linux 4.4.0 and above (Spectrum switches)
 - SONiC 202012
 - CentOS 7
 - RHEL 7.1
-- Ubuntu 18.04
+- Ubuntu 18.04, Ubuntu 20.04
 
 ## Prepare for NetQ Agent Installation
 
@@ -39,7 +40,7 @@ If your network uses a proxy server for external connections, you should first {
 ### Verify NTP Is Installed and Configured
 <!-- vale on -->
 
-Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
 ```
 cumulus@switch:~$ sudo systemctl status ntp
@@ -65,57 +66,26 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Obtain NetQ Agent Software Package
 
-To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the NVIDIA networking repository.
+Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upgrade the NetQ Agent to the latest version: 
 
-To obtain the NetQ Agent package:
-
-Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
-
-*Note that NetQ has a separate repository from Cumulus Linux.*
-
-{{<tabs "Get Agent Package" >}}
-
-{{<tab "Cumulus Linux 3.7" >}}
+1. Add the repository by uncommenting or adding the following line in `/etc/apt/sources.list`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-{{<version>}}
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ...
 ```
 
 {{<notice tip>}}
-You  can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.3: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.3</pre>
 {{</notice>}}
 
-{{</tab>}}
-
-{{<tab "Cumulus Linux 4.0 and later">}}
-
-Cumulus Linux 4.4 and later includes the `netq-agent` package by default.
-
-To add the repository, uncomment or add the following line in `/etc/apt/sources.list`:
-
-```
-cumulus@switch:~$ sudo nano /etc/apt/sources.list
-...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-{{<version>}}
-...
-```
-
-{{<notice tip>}}
-You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
-{{</notice>}}
-
-Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
+2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
 
 ```
 cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
 ```
-
-{{</tab>}}
-
-{{</tabs>}}
 
 {{</tab>}}
 
@@ -125,7 +95,7 @@ cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-app
 ### Verify NTP Is Installed and Configured
 <!-- vale on -->
 
-Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
 ```
 admin@switch:~$ sudo systemctl status ntp
@@ -172,7 +142,7 @@ To install the NetQ Agent you need to install `netq-agent` on each switch or hos
 
 To obtain the NetQ Agent package:
 
-1. Install the `wget` utility so you can install the GPG keys in step 3.
+1. Install the `wget` utility so that you can install the GPG keys in step 3.
 
        admin@switch:~$ sudo apt-get update
        admin@switch:~$ sudo apt-get install wget -y
@@ -201,7 +171,7 @@ Before you install the NetQ Agent on a Red Hat or CentOS server, make sure you i
 
 ### Verify the Server is Running lldpd and wget
 
-Make sure you are running lldp**d**, not lldp**ad**. CentOS does not include `lldpd` by default, nor does it include `wget`; however,the installation requires it.
+Make sure you are running lldp**d**, not lldp**ad**. CentOS does not include `lldpd` by default, nor does it include `wget`; however, the installation requires it.
 
 To install this package, run the following commands:
 
@@ -217,7 +187,7 @@ root@rhel7:~# sudo yum install wget
 
 If NTP is not already installed and configured, follow these steps:
 
-1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
     ```
     root@rhel7:~# sudo yum install ntp
@@ -315,7 +285,7 @@ root@ubuntu:~# sudo systemctl start lldpd.service
 
 If NTP is not already installed and configured, follow these steps:
 
-1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be in time synchronization with the NetQ Platform or NetQ Appliance to enable useful statistical analysis.
+1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
     ```
     root@ubuntu:~# sudo apt-get install ntp
@@ -450,6 +420,19 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 ```
 
 {{</tab>}}
+        
+{{<tab "Ubuntu 20.04" >}}
+
+Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add the following line:
+
+```
+root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
+...
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
+...
+```
+
+{{</tab>}}
 
 {{</tabs>}}
 
@@ -463,7 +446,7 @@ The use of <code>netq-latest</code> in these examples means that a <code>get</co
 
 ## Install NetQ Agent
 
-After completing the preparation steps, install the agent onto your switch or host.
+After completing the preparation steps, install the agent on your switch or host.
 
 {{<tabs "Install NetQ Agent">}}
 
@@ -484,7 +467,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.5.0" opsys="cl">}}
+    {{<netq-install/agent-version version="4.6.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -492,7 +475,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ sudo systemctl restart rsyslog.service
     ```
 
-4. Continue with NetQ Agent configuration in the next section.
+4. Configure the NetQ Agent, as described in the next section.
 
 {{</tab>}}
 
@@ -519,7 +502,7 @@ To install the NetQ Agent (the following example uses Cumulus Linux but the step
     admin@switch:~$ sudo systemctl restart rsyslog.service
     ```
 
-4. Continue with NetQ Agent configuration in the next section.
+4. Configure the NetQ Agent, as described in the next section.
 
 {{</tab>}}
 
@@ -540,7 +523,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -qa | grep -i netq
     ```
 
-    {{<netq-install/agent-version version="4.5.0" opsys="rh">}}
+    {{<netq-install/agent-version version="4.6.0" opsys="rh">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -548,7 +531,7 @@ To install the NetQ Agent:
     root@rhel7:~# sudo systemctl restart rsyslog
     ```
 
-4. Continue with NetQ Agent Configuration in the next section.
+4. Configure the NetQ Agent, as described in the next section.
 
 {{</tab>}}
 
@@ -569,7 +552,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.5.0" opsys="ub">}}
+    {{<netq-install/agent-version version="4.6.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -577,7 +560,7 @@ To install the NetQ Agent:
 root@ubuntu:~# sudo systemctl restart rsyslog.service
 ```
 
-4. Continue with NetQ Agent Configuration in the next section.
+4. Configure the NetQ Agent, as described in the next section.
 
 {{</tab>}}
 
@@ -617,7 +600,7 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 3. Set the parameters for the agent as follows:
     - port: 31980 (default configuration)
-    - server: IP address of the NetQ Appliance or VM where the agent should send its collected data
+    - server: IP address of the NetQ appliance or VM where the agent should send its collected data
     - vrf: default (or one that you specify)
 
     Your configuration should be similar to this:
@@ -631,7 +614,7 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 ### Configure NetQ Agents Using the NetQ CLI
 
-If you configured the NetQ CLI, you can use it to configure the NetQ Agent to send telemetry data to the NetQ Appliance or VM. To configure the NetQ CLI, refer to {{<link title="Install NetQ CLI">}}.
+If you configured the NetQ CLI, you can use it to configure the NetQ Agent to send telemetry data to the NetQ appliance or VM. To configure the NetQ CLI, refer to {{<link title="Install NetQ CLI">}}.
 
 {{<notice info>}}
 If you intend to use a VRF for agent communication (recommended), refer to {{<link url="#configure-the-agent-to-use-a-vrf" text="Configure the Agent to Use VRF">}}. If you intend to specify a port for communication, refer to {{<link url="#configure-the-agent-to-communicate-over-a-specific-port" text="Configure the Agent to Communicate over a Specific Port">}}.
@@ -643,7 +626,7 @@ Use the following command to configure the NetQ Agent:
 netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
 ```
 
-This example uses an IP address of *192.168.1.254* and the default port and VRF for the NetQ Appliance or VM.
+This example uses an IP address of *192.168.1.254* and the default port and VRF for the NetQ appliance or VM.
 
 ```
 sudo netq config add agent server 192.168.1.254
@@ -658,7 +641,7 @@ A couple of additional options are available for configuring the NetQ Agent. If 
 ### Configure the Agent to Use a VRF
 
 <!-- vale off -->
-By default, NetQ uses the *default* VRF for communication between the NetQ Appliance or VM and NetQ Agents. While optional, NVIDIA strongly recommends that you configure NetQ Agents to communicate with the NetQ Appliance or VM only via a {{<kb_link latest="cl" url="Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF.md" text="VRF">}}, including a {{<kb_link latest="cl" url="Layer-3/VRFs/Management-VRF.md" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if you configured the management VRF and you want the agent to communicate with the NetQ Appliance or VM over it, configure the agent like this:
+By default, NetQ uses the *default* VRF for communication between the NetQ appliance or VM and NetQ Agents. While optional, NVIDIA strongly recommends that you configure NetQ Agents to communicate with the NetQ appliance or VM only via a {{<kb_link latest="cl" url="Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF.md" text="VRF">}}, including a {{<kb_link latest="cl" url="Layer-3/VRFs/Management-VRF.md" text="management VRF">}}. To do so, you need to specify the VRF name when configuring the NetQ Agent. For example, if you configured the management VRF and you want the agent to communicate with the NetQ appliance or VM over it, configure the agent like this:
 <!-- vale on -->
 
 ```
@@ -672,51 +655,11 @@ If you later change the VRF configured for the NetQ Agent (using a lifecycle man
 
 ### Configure the Agent to Communicate over a Specific Port
 
-By default, NetQ uses port 31980 for communication between the NetQ Appliance or VM and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ Appliance or VM via a different port, you need to specify the port number when configuring the NetQ Agent, like this:
+By default, NetQ uses port 31980 for communication between the NetQ appliance or VM and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ appliance or VM via a different port, you need to specify the port number when configuring the NetQ Agent, like this:
 
 ```
 sudo netq config add agent server 192.168.1.254 port 7379
 sudo netq config restart agent
 ```
-
-## Configure the On-switch OPTA
-
-{{<notice note>}}
-On-switch OPTA functionality is an early access feature, and it does not support Flow Analysis or LCM. 
-{{</notice>}}
-
-On-switch OPTA (on-premises telemetry aggregator) is intended for use in small NetQ Cloud deployments where a dedicated OPTA might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
-
-Instead of installing a dedicated OPTA appliance, you can enable the OPTA service on every switch in your environment that will send data to the NetQ Cloud. To configure a switch for OPTA functionality, install the `netq-opta` package.
-
-```
-sudo apt-get update
-sudo apt-get install netq-opta
-```
-
-After the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the {{<link title="Premises Management" text="premises management configuration">}}.
-
-```
-netq config add opta config-key <config_key> [vrf <vrf_name>] [proxy-host <text-proxy-host> proxy-port <text-proxy-port>] 
-```
-
-The VRF name should be the VRF used to communicate with the NetQ Cloud. Specifying a proxy host and port is optional. For example:
-
-```
-netq config add opta config-key tHkSI2d3LmRldjMubmV0cWRldi5jdW11bHVasdf29ya3MuY29tGLsDIiwzeUpNc3BwK1IyUjVXY2p2dDdPL3JHS3ZrZ1dDUkpFY2JkMVlQOGJZUW84PTIEZGV2MzoHbmV0cWRldr vrf mgmt
-```
-
-You can also add a proxy host separately with the following command:
-
-```
-netq config add opta proxy-host <text-proxy-host> proxy-port <text-proxy-port>
-```
-
-The final step is configuring the local NetQ Agent on the switch to connect to the local OPTA service. Configure the agent on the switch to connect to `localhost` with the following command:
-
-```
-netq config add agent server localhost vrf mgmt
-```
-
 ## Related Information
 - {{<link title="Manage NetQ Agents">}}

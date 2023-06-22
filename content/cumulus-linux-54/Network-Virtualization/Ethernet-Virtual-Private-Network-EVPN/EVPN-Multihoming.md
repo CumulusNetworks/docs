@@ -12,7 +12,7 @@ toc: 4
 - Provides a single BGP-EVPN control plane
 - Allows multi-vendor interoperability
 
-EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, type-2 and type-4 routes">}} to discover Ethernet segments (ES) and to forward traffic to those Ethernet segments. The MAC and neighbor databases synchronize between the Ethernet segment peers through these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that attach to the same server. Each Ethernet segment has an unique Ethernet segment ID (`es-id`) across the entire PoD.
+EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, type-2 and type-4 routes">}} to discover Ethernet segments (ES) and to forward traffic to those Ethernet segments. The MAC and neighbor databases synchronize between the Ethernet segment peers through these routes as well. An *{{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="Ethernet segment">}}* is a group of switch links that attach to the same server. Each Ethernet segment has an unique Ethernet segment ID (ESI) across the entire PoD.
 
 To configure EVPN-MH, you set an Ethernet segment system MAC address and a local Ethernet segment ID on a static or LACP bond. These two parameters generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}) automatically:
 
@@ -83,16 +83,10 @@ The following features are not supported with EVPN-MH:
 
 To configure EVPN-MH, you must complete **all** the following steps:
 1. Enable EVPN multihoming.
-2. Set the Ethernet segment ID.
-4. Configure multihoming uplinks.
+2. Configure an ESI on each EVPN-MH bond interface.
+3. Configure multihoming uplinks.
 
-These settings apply to interfaces, typically bonds.
-
-An Ethernet segment configuration has these characteristics:
-
-- The Ethernet segment ID is a 24-bit integer (1-16777215).
-- Each interface (bond) needs its own Ethernet segment ID.
-- You can associate static and LACP bonds with an Ethernet segment ID.
+You can associate static and LACP bonds with an ESI.
 
 The switch selects a *designated forwarder* (DF) for each Ethernet segment. The DF forwards flooded traffic received through the VXLAN overlay to the locally attached Ethernet segment. Specify a preference on an Ethernet segment for the DF election, as this leads to predictable failure scenarios. The EVPN VTEP with the highest DF preference setting becomes the DF. The DF preference setting defaults to _32767_.
 
@@ -145,7 +139,9 @@ To configure bond interfaces for EVPN-MH:
 {{<tabs "bond configuration">}}
 {{<tab "NVUE Commands">}}
 
-The following example commands configure bond interfaces using the local discriminator ID and the system MAC address to generate a unique ESI automatically:
+With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the Ethernet segment ID manually. Both options are shown below.
+
+The following example commands configure each bond interface with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
@@ -159,21 +155,23 @@ cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preferenc
 cumulus@leaf01:~$ nv config apply
 ```
 
-As an alternative, you can configure the ESI manually using the Ethernet segment identifier; a 24-bit integer that must be unique. The following example commands configure the bond interfaces manually using Ethernet segment IDs:
+The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique.
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2
 cumulus@leaf01:~$ nv set interface bond3 bond member swp3
-cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment identifier 44:38:39:BE:EF:AA:00:00:01
-cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment identifier 44:38:39:BE:EF:AA:00:00:02
-cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment identifier 44:38:39:BE:EF:AA:00:00:03
+cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:01
+cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:02
+cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:03
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ nv config apply
 ```
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
+
+Configure the ESI on each bond interface with the local Ethernet segment ID and the system MAC address:
 
 ```
 cumulus@leaf01:~$ sudo vtysh

@@ -413,12 +413,11 @@ The benefits of using adaptive routing include:
 Cumulus Linux only supports adaptive routing with:
 - Switches on Spectrum-2 and later
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RDMA with lossless RoCEv2" >}} unicast traffic
-- Physical uplink (layer 3) ports; you *cannot* configure adaptive routing on subinterfaces, SVIs, bonds, or ports that are part of a bond.
+- Physical uplink (layer 3) ports; you *cannot* configure adaptive routing on bonds or ports that are part of a bond.
 - Interfaces in the default VRF
 
 {{%notice note%}}
 - Adaptive routing does not make use of resilient hashing.
-- You cannot use adaptive routing with EVPN or VXLAN.
 {{%/notice%}}
 
 With adaptive routing, packets route to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.

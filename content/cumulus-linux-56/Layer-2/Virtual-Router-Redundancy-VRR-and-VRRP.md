@@ -15,7 +15,7 @@ Cumulus Linux provides the option of using <span style="background-color:#F5F5DC
    Use VRRP when you have multiple distinct devices that connect to a layer 2 segment through multiple logical connections (not through a single bond). VRRP elects a single active forwarder that *owns* the virtual MAC address while it is active. This prevents the forwarding database of the layer 2 domain from continuously updating in response to MAC flaps because the switch receives frames sourced from the virtual MAC address from discrete logical connections.
 
 {{%notice note%}}
-You cannot configure both VRR and VRRP on the same switch.
+Cumulus Linux does not support both VRR and VRRP on the same switch.
 {{%/notice%}}
 
 ## VRR
@@ -37,7 +37,8 @@ The switches implement the layer 2 network interconnecting the servers and the r
 - One or more interfaces to each peer switch. To accommodate higher bandwidth between the switches and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have a unique IP address for both the physical and virtual interface; the switch uses the unique address when it initiates an ARP request.
 
 {{%notice note%}}
-Cumulus Linux only supports VRR on an <span style="background-color:#F5F5DC">[SVI](## "Switched Virtual Interface")</span>. You cannot configure VRR on a physical interface or virtual subinterface.
+- Cumulus Linux only supports VRR on an <span style="background-color:#F5F5DC">[SVI](## "Switched Virtual Interface")</span>. You cannot configure VRR on a physical interface or virtual subinterface.
+- Cumulus Linux supports only one VRR interface.
 {{%/notice%}}
 
 The example commands below create a VLAN-aware bridge interface for a VRR-enabled network. The example assumes you have already configured a VLAN-aware bridge with VLAN 10 and that VLAN 10 has an IP address and uses the default fabric-wide VRR MAC address 00:00:5e:00:01:01.

@@ -431,12 +431,12 @@ You must configure adaptive routing on *all* ports that are part of the same ECM
 
 ### Enable Adaptive Routing
 
-When you enable adaptive routing without selecting a profile, Cumulus Linux uses the default profile `ar-profile-1`. To use a different adaptive routing profile, see {{<link url="#adaptive-routing-profiles" text="Adaptive Routing Profiles">}}, below.
+When you enable adaptive routing, Cumulus Linux uses the default profile `ar-profile-1`. To use a different adaptive routing profile, see {{<link url="#adaptive-routing-profiles" text="Adaptive Routing Profiles">}}, below.
 
 {{< tabs "TabID436 ">}}
 {{< tab "NVUE Commands ">}}
 
-For each port on which you want to enable adaptive routing, run the `nv set interface <interface> router adaptive-routing enable on` command. NVUE enables the adaptive routing feature and sets adaptive routing on the specified ports.
+For each port on which you want to enable adaptive routing, run the `nv set interface <interface> router adaptive-routing enable on` command. NVUE sets adaptive routing on the specified ports and enables the adaptive routing feature.
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
@@ -444,10 +444,10 @@ cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
 cumulus@switch:~$ nv config apply
 ```
 
-To disable adaptive routing globally, run the `nv set router adaptive-routing enable off` command. To disable adaptive routing on a port, run the `nv set interface <interface> router adaptive-routing enable off` command.
+To disable adaptive routing, run the `nv set router adaptive-routing enable off` command. To disable adaptive routing on a port, run the `nv set interface <interface> router adaptive-routing enable off` command.
 
 {{%notice warning%}}
-When you enable or disable adaptive routing, NVUE restarts the `switchd` service, which causes all network ports to reset, interrupting network services, in addition to resetting the switch hardware configuration.
+Enabling or disabling adaptive routing restarts the `switchd` service, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -489,7 +489,7 @@ To disable adaptive routing on a specific port, set the `interface.<port>.adapti
 Cumulus Linux provides these adaptive routing profiles:
 - `ar-profile-1` is the default profile. You cannot change the `ar-profile-1` profile settings.
 - `ar-profile-2`. You cannot change the `ar-profile-2` profile settings.
-- `ar-profile-custom` includes settings you can change to create a custom profile; see {{<link url="#configure-a-custom-profile" text="Configure a Custom Profile">}}, below.
+- `ar-profile-custom` includes settings you can change to create a custom profile.
 
 {{< tabs "TabID505 ">}}
 {{< tab "ar-profile-1 settings">}}
@@ -592,7 +592,7 @@ When you set the profile, NVUE reloads `switchd`.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `adaptive_routing.profile` parameter to `ar-profile-1`,`ar-profile-2`, or `ar-profile-custom`.
+Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `adaptive_routing.profile` parameter to `ar-profile-1`, `ar-profile-2`, or `ar-profile-custom`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
@@ -635,12 +635,11 @@ If you change the `adaptive_routing.ecmp_size` parameter, you must **restart** `
 
 ### Link Utilization
 
-Adaptive routing considers a port congested based on the link utilization threshold. The default link utilization threshold percentage is 70 and link utilization is off.
+Adaptive routing considers a port congested based on the link utilization threshold. The default link utilization threshold percentage on an interface is 70. You can change the link utilization threshold percentage for an interface to a value between 1 and 100.
 
-- To change the link utilization threshold percentage, run the `nv set interface <interface> router adaptive-routing link-utilization-threshold` command. You can set a value between 1 and 100.
-- To enable link utilization, run the `nv set router adaptive-routing link-utilization-threshold enable on` command.
+Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
-The following example commands change the link utilization threshold percentage to 100 and enable link utilization:
+The following example changes the link utilization threshold percentage to 100 on swp51 and enables link utilization:
 
 {{< tabs "TabID624 ">}}
 {{< tab "NVUE Commands ">}}
@@ -658,7 +657,9 @@ When you enable or disable link utilization, NVUE reloads `switchd`.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `interface.<interface>.adaptive_routing.link_util_thresh` parameter to a value between 1 and 100, and the `adaptive_routing.link_util_threshold_disabled` parameter to FALSE:
+Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set:
+- `interface.<interface>.adaptive_routing.link_util_thresh` to a value between 1 and 100.
+- `adaptive_routing.link_util_threshold_disabled` to FALSE.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
@@ -682,14 +683,15 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{< tabs "TabID693 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example commands enable adaptive routing with the default profile `ar-profile-1` globally on all ports. Global link utilization is off (the default setting):
+The following example enables adaptive routing with the default profile `ar-profile-1` on swp1 and swp2. Global link utilization is off (the default setting).
 
 ```
-cumulus@switch:~$ nv set router adaptive-routing enable on
+cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
+cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
 cumulus@switch:~$ nv config apply 
 ```
 
-The following example commands enable adaptive routing with the custom profile `ar_profile_custom` on swp51 and swp52, set the link utilization threshold percentage to 100 on both swp51 and swp52, and enable global link utilization:
+The following example enables adaptive routing with the custom profile `ar_profile_custom` on swp51 and swp52, sets the link utilization threshold percentage to 100 on both swp51 and swp52, and enables global link utilization:
 
 ```
 cumulus@switch:~$ nv set router adaptive-routing profile ar_profile_custom
@@ -704,7 +706,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example commands enable adaptive routing with the default profile `ar-profile-1` globally on all ports. Global link utilization is off (the default setting):
+The following example enables adaptive routing with the default profile `ar-profile-1` on swp1 and swp2. Global link utilization is off (the default setting).
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
@@ -712,12 +714,19 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
 adaptive_routing.enable = TRUE 
 adaptive_routing.profile = ar-profile-1 
 adaptive_routing.link_util_threshold_disabled = TRUE
+
+## Per-port configuration for adaptive-routing 
+interface.swp51.adaptive_routing.enable = TRUE 
+interface.swp51.adaptive_routing.link_util_thresh = 70
+
+interface.swp52.adaptive_routing.enable = TRUE 
+interface.swp52.adaptive_routing.link_util_thresh = 70
 ... 
 ```
 
 Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
-The following example commands enable adaptive routing with the custom profile `ar_profile_custom` on swp51 and swp52, set the link utilization threshold percentage to 100 on both swp51 and swp52, and enable global link utilization:
+The following example enables adaptive routing with the custom profile `ar_profile_custom` on swp51 and swp52, sets the link utilization threshold percentage to 100 on both swp51 and swp52, and enables global link utilization.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf

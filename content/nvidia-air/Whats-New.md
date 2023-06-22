@@ -9,11 +9,15 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## June 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0622
+- Fixed an issue that caused the oob-mgmt-switch to lose the default route after reboot
+- Increased resource budget limits for non-company emails
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0612-011
 - Fixed an error encountered by the agent when a node woke up from sleep
 - Added Cumulus Linux 5.5.1 to OS dropdown in the builder
 - Added support for IPv4 based services
-<!-- Air:WhatsNew -->
 
 ## May 2023
 ### 82.2023.0525-012

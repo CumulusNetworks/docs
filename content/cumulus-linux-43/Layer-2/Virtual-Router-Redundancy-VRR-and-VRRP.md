@@ -39,7 +39,8 @@ The routers implement the layer 2 network interconnecting the hosts and the redu
 - One or more interfaces to each peer router. To accommodate higher bandwidth between the routers and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have unique IP addresses for both the physical (the `address` option below) and virtual (the `address-virtual` option below) interfaces; the unique address is used when the switch initiates an ARP request.
 
 {{%notice note%}}
-Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). VRR is not supported on physical interfaces or virtual subinterfaces.
+- Cumulus Linux only supports VRR on switched virtual interfaces (SVIs). VRR is not supported on physical interfaces or virtual subinterfaces.
+- Cumulus Linux supports only one VRR interface.
 {{%/notice%}}
 
 {{< tabs "TabID53 ">}}

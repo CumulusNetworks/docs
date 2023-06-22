@@ -9,7 +9,7 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## June 2023
 <!-- Air:WhatsNew -->
-### 82.2023.0622
+### 82.2023.0622-012
 - Fixed an issue that caused the oob-mgmt-switch to lose the default route after reboot
 - Increased resource budget limits for non-company emails
 <!-- Air:WhatsNew -->

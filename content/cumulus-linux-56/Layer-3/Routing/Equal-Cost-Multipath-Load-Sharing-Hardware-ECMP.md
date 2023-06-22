@@ -436,14 +436,7 @@ When you enable adaptive routing without selecting a profile, Cumulus Linux uses
 {{< tabs "TabID436 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable adaptive routing globally (on all ports):
-
-```
-cumulus@switch:~$ nv set router adaptive-routing enable on
-cumulus@switch:~$ nv config apply
-```
-
-To enable adaptive routing on specific ports:
+For each port on which you want to enable adaptive routing, run the `nv set interface <interface> router adaptive-routing enable on` command. NVUE enables the adaptive routing feature and sets adaptive routing on the specified ports.
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
@@ -461,8 +454,8 @@ When you enable or disable adaptive routing, NVUE restarts the `switchd` service
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
-- To enable adaptive routing globally (on all ports), set the global `adaptive_routing.enable` parameter to `TRUE`.
-- To enable adaptive routing on specific ports, set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE`.
+- Set the `adaptive_routing.enable` parameter to `TRUE` to enable the adaptive routing feature.
+- Set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE` to enable adaptive routing on the specified ports.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
@@ -484,7 +477,7 @@ interface.swp52.adaptive_routing.link_util_thresh = 70
 {{<cl/restart-switchd>}}
 <!-- vale on -->
 
-To disable adaptive routing globally, set the `adaptive_routing.enable` parameter to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
+To disable adaptive routing, set the `adaptive_routing.enable` parameter to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
 
 To disable adaptive routing on a specific port, set the `interface.<port>.adaptive_routing.enable` parameter  to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
 
@@ -579,6 +572,7 @@ To set the profile you want to use:
 {{< tab "NVUE Commands ">}}
 
 Run the `nv set router adaptive-routing profile <profile-name>` command. The following example sets the profile to `ar-profile-2`:
+
 ```
 cumulus@switch:~$ nv set router adaptive-routing profile ar-profile-2
 cumulus@switch:~$ nv config apply

@@ -113,7 +113,7 @@ auto vlan10
 iface vlan10
     address 10.1.10.2/24
     address 10.1.11.2/24
-    address-virtual 00:00:5e:00:01:00 10.1.10.1/24 10.1.11.1/24
+    address-virtual 00:00:5e:00:01:01 10.1.10.1/24 10.1.11.1/24
     hwaddress 44:38:39:22:01:7a
     vlan-raw-device br_default
     vlan-id 10
@@ -122,6 +122,10 @@ iface vlan10
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+To reduce BGP EVPN processing during convergence, NVIDIA recommends that you use the same fabric-wide MAC address across all VLANs and VRR subnets.
+{{%/notice%}}
 
 ### Configure the Hosts
 

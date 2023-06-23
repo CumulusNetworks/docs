@@ -39,8 +39,7 @@ The routers implement the layer 2 network interconnecting the hosts and the redu
 - One or more interfaces to each peer router. To accommodate higher bandwidth between the routers and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have a unique IP address for both the physical and virtual interface; the switch uses the unique address when it initiates an ARP request.
 
 {{%notice note%}}
-- Cumulus Linux only supports VRR on an [SVI](## "Switched Virtual Interface"). You cannot configure VRR on a physical interface or virtual subinterface.
-- Cumulus Linux supports only one VRR interface.
+Cumulus Linux only supports VRR on an [SVI](## "Switched Virtual Interface"). You cannot configure VRR on a physical interface or virtual subinterface.
 {{%/notice%}}
 
 The example commands below create a VLAN-aware bridge interface for a VRR-enabled network. The example assumes you have already configured a VLAN-aware bridge with VLAN 10 and that VLAN 10 has an IP address:
@@ -86,6 +85,46 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### EVPN Distributed Routing with VRR
+
+In an EVPN routing environment, if you want to configure multiple subnets as VRR addresses on a VLAN, you must configure them with the same VRR MAC address.
+
+The following example commands configure both 10.1.10.1/24 and 10.1.11.1/24 on VLAN 10 using the default fabric-wide VRR MAC address 00:00:5e:00:01:01.
+
+{{< tabs "TabID164 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr adress 10.1.10.1/24
+cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr adress 10.1.11.1/24
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file; for example:
+
+```
+cumulus@switch:mgmt:~$ sudo nano /etc/network/interfaces
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    address 10.1.11.2/24
+    address-virtual 00:00:5e:00:01:01 10.1.10.1/24 10.1.11.1/24
+    hwaddress 44:38:39:22:01:7a
+    vlan-raw-device br_default
+    vlan-id 10
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+To reduce BGP EVPN processing during convergence, NVIDIA recommends that you use the same fabric-wide MAC address across all VLANs and VRR subnets.
+{{%/notice%}}
 
 ### Configure the Hosts
 

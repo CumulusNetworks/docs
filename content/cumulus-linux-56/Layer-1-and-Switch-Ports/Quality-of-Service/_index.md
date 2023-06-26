@@ -466,9 +466,9 @@ Congestion control prevents traffic loss during times of congestion and helps id
 
 Cumulus Linux supports the following congestion control mechanisms:
 
-- Pause Frames (IEEE 802.3x), sends specialized ethernet frames to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion.
-- Priority Flow Control (PFC), which is an upgrade of Pause Frames that IEEE 802.1bb defines, extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value to pause, while other COS values or queues continue transmitting.
-- Explicit Congestion Notification (ECN). Unlike Pause Frames and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
+- Link pause (IEEE 802.3x), sends specialized ethernet frames to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion.
+- Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on a per switch priority value basis instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
+- Explicit Congestion Notification (ECN). Unlike link pause and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
 
 {{%notice note%}}
 You can not configure link pause and PFC on the same port.
@@ -476,7 +476,7 @@ You can not configure link pause and PFC on the same port.
 
 ### Flow Control Buffers
 
-Before configuring pause frames or PFC, configure the buffer pool memory allocated for lossless and lossy flows. The following example sets each to fifty percent:
+Before configuring link pause or PFC, configure the buffer pool memory allocated for lossless and lossy flows. The following example sets each to fifty percent:
 
 {{< tabs "TabID445 ">}}
 {{< tab "NVUE Commands">}}
@@ -523,17 +523,17 @@ flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 {{< /tab >}}
 {{< /tabs >}}
 
-### Pause Frames
+### Link Pause
 
-Pause frames are an older congestion control mechanism that causes all traffic on a link between two switches, or between a host and switch, to stop transmitting during times of congestion. Pause frames start and stop depending on buffer congestion. You configure pause frames on a per-direction, per-interface basis. You can receive pause frames to stop the switch from transmitting when requested, send pause frames to request neighboring devices to stop transmitting, or both.
+Link pause is an older congestion control mechanism that causes all traffic on a link between two switches, or between a host and switch, to stop transmitting during times of congestion. Link pause starts and stops depending on buffer congestion. You configure link pause on a per-direction, per-interface basis. You can receive pause frames to stop the switch from transmitting when requested, send pause frames to request neighboring devices to stop transmitting, or both.
 
 {{% notice note %}}
-- NVIDIA recommends that you use Priority Flow Control (PFC) instead of pause frames.
-- Before configuring pause frames, you must first modify the switch buffer allocation. Refer to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
+- NVIDIA recommends that you use Priority Flow Control (PFC) instead of link pause.
+- Before configuring link pause, you must first modify the switch buffer allocation. Refer to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
 {{% /notice %}}
 
 {{% notice warning %}}
-Pause frame buffer calculation is a complex topic that IEEE 802.1Q-2012 defines. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (interface delay) introduce as well as the distance between end points (cable length).
+Link pause buffer calculation is a complex topic that IEEE 802.1Q-2012 defines. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (interface delay) introduce as well as the distance between end points (cable length).
 
 Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
 {{% /notice %}}
@@ -559,7 +559,7 @@ cumulus@switch:~$ nv set interface swp1-swp4,swp6 qos link-pause profile my_paus
 cumulus@switch:~$ nv config apply
 ```
 
-To show the pause frame settings for a profile, run the `nv show qos link-pause <profile>` command
+To show the link pause settings for a profile, run the `nv show qos link-pause <profile>` command
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -584,7 +584,7 @@ To process pause frames, you must enable link pause on the specific interfaces.
 
 ### Priority Flow Control (PFC)
 
-Priority flow control extends the capabilities of pause frames by the frames for a specific 802.1p value instead of stopping all traffic on a link. If a switch supports PFC and receives a PFC pause frame for a given 802.1p value, the switch stops transmitting frames from that queue, but continues transmitting frames for other queues.
+Priority flow control extends the capabilities of link pause by the frames for a specific 802.1p value instead of stopping all traffic on a link. If a switch supports PFC and receives a PFC pause frame for a given 802.1p value, the switch stops transmitting frames from that queue, but continues transmitting frames for other queues.
 
 You use PFC with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section provides information to specifically deploy PFC and ECN for RoCE environments.
 
@@ -656,9 +656,101 @@ pfc.default-global.cable_length = 50
 
 To apply a custom profile to specific interfaces, see [Port Groups](#pfc).
 
+### PFC Watchdog
+
+PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled. In lossless Ethernet, PFC and link pause instruct the link partner to pause sending packets to avoid back pressure that spreads to the whole network causing the network to stop forwarding traffic. PFC watchdog detects abnormal back pressure caused by receiving excessive pause frames and disables PFC and link pause temporarily.
+
+When you enable PFC watchdog, the switch detects a lossless queue if it receives a pause storm from its link partner and the queue is in a paused state for three 100 millisecond intervals (robustness * poll interval) even when the queue is empty.
+
+After detecting a pause storm, the watchdog dicards all subsequent `pause` packets received, all existing new incoming packets in the egress queue on the port, and subsequent packets destined to the output queue. As a result, the switch does not generate any pause frames to its neighbour due to this output queue congestion. The peer switch becomes decongested and the switch stops receiving pause frames in the ingress direction on the port where storm mitigation occurs.
+
+The watchdog continues to count pause frames received on the traffic queue on the port (or port for link pause). If there are no pause frames received in any polling interval period, it restores the PFC configuration on the traffic queue (or the link pause configuration on the port) and stops dropping packets.
+
+{{%notice note%}}
+- PFC watchdog only works for lossless traffic queues.
+- You can only use PFC watchdog if you configure PFC or link pause on the switch.
+{{%/notice%}}
+
+To enable PFC watchdog:
+
+{{< tabs "TabID694 ">}}
+{{< tab "NVUE Commands ">}}
+
+Enable PFC watchdog on the interfaces where you enable PFC or link pause:
+
+```
+cumulus@switch:~$ nv set interface swp1 qos pfc-watchdog state enabled
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+You can control the PFC watchdog polling interval. The default polling interval is 100 milliseconds.
+
+The following example sets the PFC watchdog polling interval to 20 milliseconds:
+
+{{< tabs "TabID712 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog polling-interval 20
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+You can control how many polling intervals the PFC watchdog must wait (robustness) before it mitigates the storm condition. The default number of polling intervals is 3.
+
+The following example sets the number of polling intervals to 5:
+
+{{< tabs "TabID727 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog robustness 5
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show if PFC watchdog is enabled and to show the state for each traffic class, run the `nv show interface <interface> qos pfc-watchdog` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog
+                 operational  applied 
+---------------  -----------  ------- 
+state            enabled      enabled 
+
+PFC WD Status 
+=========================== 
+    traffic-class  status    deadlock-count 
+    -------------  --------  -------------- 
+
+    0              OK        0 
+    1              OK        3 
+    2              DEADLOCK  2  
+    3              OK        0 
+    4              OK        0 
+    5              OK        0 
+    6              OK        0 
+    7              DEADLOCK  3 
+```
+
 ### Explicit Congestion Notification (ECN)
 
-Unlike pause frames or PFC, ECN is an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
+Unlike link pause or PFC, ECN is an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
 
 You use ECN with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section describes how to deploy PFC and ECN for RoCE environments.
 

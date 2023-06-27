@@ -664,11 +664,12 @@ When you enable PFC watchdog, the switch detects a lossless queue if it receives
 
 After detecting a pause storm, the watchdog dicards all subsequent `pause` packets received, all existing new incoming packets in the egress queue on the port, and subsequent packets destined to the output queue. As a result, the switch does not generate any pause frames to its neighbour due to this output queue congestion. The peer switch becomes decongested and the switch stops receiving pause frames in the ingress direction on the port where storm mitigation occurs.
 
-The watchdog continues to count pause frames received on the traffic queue on the port (or port for link pause). If there are no pause frames received in any polling interval period, it restores the PFC configuration on the traffic queue (or the link pause configuration on the port) and stops dropping packets.
+The watchdog continues to count pause frames received on the port. If there are no pause frames received in any polling interval period, it restores the PFC configuration on the port and stops dropping packets.
 
 {{%notice note%}}
 - PFC watchdog only works for lossless traffic queues.
 - You can only use PFC watchdog if you configure PFC or link pause on the switch.
+- You can only enable PFC watchdog on a physical interface (swp).
 {{%/notice%}}
 
 To enable PFC watchdog:
@@ -680,11 +681,21 @@ Enable PFC watchdog on the interfaces where you enable PFC or link pause:
 
 ```
 cumulus@switch:~$ nv set interface swp1 qos pfc-watchdog state enabled
+cumulus@switch:~$ nv set interface swp3 qos pfc-watchdog state enabled
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+Edit the `PFC WD` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+
+```
+...
+# PFC WD 
+pfc_watchdog.port_group_list = [pfc_wd_port_group] 
+pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp3
+```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -704,6 +715,16 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
+Edit the `PFC WD` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file and set the `pfc_watchdog.pfc_wd_poll-interval` parameter.
+
+```
+...
+# PFC WD 
+pfc_watchdog.port_group_list = [pfc_wd_port_group] 
+pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp3
+pfc_watchdog.pfc_wd_poll-interval = 20
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -721,6 +742,16 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+Edit the `PFC WD` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file  and set the `pfc_watchdog.pfc_wd_robustness` parameter.
+
+```
+...
+# PFC WD 
+pfc_watchdog.port_group_list = [pfc_wd_port_group] 
+pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp3
+pfc_watchdog.pfc_wd_robustness = 5
+```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1564,6 +1595,7 @@ The shared buffer alpha value determines the proportion of available shared memo
 cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer shared-alpha alpha_2
 cumulus@switch:~$ nv config apply
 ```
+
 ### Service Pools
 
 You can configure ingress and egress service pool profile properties with the following NVUE commands:

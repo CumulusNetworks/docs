@@ -86,7 +86,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-### EVPN Distributed Routing with VRR
+### EVPN Routing with VRR
 
 In an EVPN routing environment, if you want to configure multiple subnets as VRR addresses on a VLAN, you must configure them with the same VRR MAC address.
 

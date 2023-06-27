@@ -21,11 +21,12 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 ### New Features and Enhancements
 
-- {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Multiple adaptive routing profiles">}}
-- QOS FC watchdog for lossless queues
+- Adaptive routing enhancements include:
+  - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Multiple adaptive routing profiles">}}
+  - BGP WCMP for adaptive routing enabled traffic
+  - Adaptive routing for RoCE with VXLAN
+- {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
 - Indication for secure firmware boot failure
-- BGP WCMP for adaptive routing enabled traffic
-- Adaptive routing for RoCE with VXLAN
 - Deterministic warm boot switchover
 - {{<link url="Monitoring-System-Hardware" text="Fan direction">}} now shows in NVUE and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
 - NVUE enhancements include:

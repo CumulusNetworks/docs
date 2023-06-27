@@ -11,7 +11,7 @@ Cumulus Linux supports several different <span style="background-color:#F5F5DC">
 - <span style="background-color:#F5F5DC">[COS](## "Class of Service")</span> and <span style="background-color:#F5F5DC">[DSCP](## "Differentiated Services Code Point")</span> marking and remarking
 - Shaping and policing
 - Egress traffic scheduling (802.1Qaz, Enhanced Transmission Selection (ETS))
-- Flow control with IEEE Pause Frames, <span style="background-color:#F5F5DC">[PFC](## "Priority Flow Control")</span>, and <span style="background-color:#F5F5DC">[ECN](## "Explicit Congestion Notification")</span>
+- Flow control with IEEE Link Pause, <span style="background-color:#F5F5DC">[PFC](## "Priority Flow Control")</span>, and <span style="background-color:#F5F5DC">[ECN](## "Explicit Congestion Notification")</span>
 - {{<link title="RDMA over Converged Ethernet - RoCE" text="Lossless and lossy RoCE ">}}
 
 Cumulus Linux uses two configuration files for QoS:

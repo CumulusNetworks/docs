@@ -227,6 +227,6 @@ The number of simulation resources a user can consume is limited based on the us
 For an account using a non-company email, a user is granted the following limits:
 
 - 30 vCPUs
-- 45GB memory
+- 55GB memory
 - 350GB storage
 - 1 running simulation

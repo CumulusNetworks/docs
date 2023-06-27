@@ -1817,7 +1817,7 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-When you enable graceful BGP shutdown, Cumulus Linux adds the `graceful-shutdown` community to all paths from eBGP peers and sets the `local-pref` for that route to `0`. To see the configuration, run the NCLU command `net show bgp <route>` or the vtysh command `show ip bgp <route>`. For example:
+When you enable graceful BGP shutdown, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes from eBGP peers and sets the `local-pref` for that route to `0` (refer to {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8326" text="RFC8326">}}). To see the configuration, run the NCLU command `net show bgp <route>` or the vtysh command `show ip bgp <route>`. For example:
 
 ```
 cumulus@leaf01:~$ net show bgp 10.10.10.0/24

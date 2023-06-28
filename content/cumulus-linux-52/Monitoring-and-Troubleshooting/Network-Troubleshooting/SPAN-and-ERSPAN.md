@@ -124,7 +124,7 @@ Always place your rule files under `/etc/cumulus/acl/policy.d/`.
 
 ### Limitations
 
-- Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
+- On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
 - Cumulus Linux does not support SPAN ACL rules for an output interface that is a subinterface.
 - Multiple rules (SPAN sources) can point to the same SPAN destination, but a given SPAN source *cannot* specify two SPAN destinations.
 

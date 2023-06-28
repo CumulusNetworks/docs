@@ -232,7 +232,6 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    #
    time_stamping                  software
    
-   
    # Interfaces in which ptp should be enabled
    # these interfaces should be routed ports
    # if an interface does not have an ip address
@@ -248,9 +247,9 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    masterOnly              0
    delay_mechanism         E2E
    ```
-   
-   For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to    the IP adress of the VLAN interface:
-   
+
+   For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+
    ```
    [swp1]
    l2_mode                 trunk
@@ -261,8 +260,8 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    delay_mechanism         E2E
    network_transport       UDPv4
    ```
-   
-   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and    `src_ip` to the IP adress of the VLAN interface:
+
+   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and  `src_ip` to the IP adress of the VLAN interface:
    
    ```
    [swp2]
@@ -334,9 +333,9 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-### One-step and Two-step Clock
+### Clock Correction Mode
 
-The Cumulus Linux switch provides two clock modes:
+The Cumulus Linux switch provides the following clock correction modes:
 - *One-step* mode, where the PTP time stamps the packet as it egresses the port and there is no need for a follow-up packet.
 - *Two-step* mode, where PTP notes the time when the packet egresses the port and sends it in a separate follow-up message.
 

@@ -12,5 +12,5 @@ This section describes the following layer 2 configuration:
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation">}} (MLAG)
 - {{<link url="Link-Layer-Discovery-Protocol" text="Link Layer Discovery Protocol">}} (LLDP)
 - {{<link url="LACP-Bypass" text="LACP bypass">}}
-- {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="Virtual Router Redundancy">}} (VRR)
+- {{<link url="Virtual-Router-Redundancy-VRR" text="Virtual Router Redundancy">}} (VRR)
 - {{<link url="IGMP-and-MLD-Snooping" text="IGMP and MLD snooping">}}

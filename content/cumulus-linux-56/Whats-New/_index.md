@@ -29,6 +29,8 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - Indication for secure firmware boot failure
 - Deterministic warm boot switchover
 - {{<link url="Monitoring-System-Hardware" text="Fan direction">}} now shows in NVUE and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
+- Service password-encryption support for BGP and OSPF in FRR - integration
+- {{<link url="Precision-Time-Protocol-PTP#clock-correction-mode" text="PTP one-step clock correction mode">}}
 - NVUE enhancements include:
   - PVST and PVRST with VLAN-aware bridges
   - ARP and ND Timer configuration
@@ -39,8 +41,6 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - IGMP commands
   - Commands to set the time
   - Platform keyword presentation
-- Service password-encryption support for BGP and OSPF in FRR - integration
-- PTP 1-step clock
 
 {{< expand "Changed Commands" >}}
 | Previous Command | New Command |

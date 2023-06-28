@@ -243,7 +243,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 
 - For Broadcom switches, Cumulus Linux supports a maximum of two SPAN destinations.
 - Because SPAN and ERSPAN is done in hardware, eth0 is not supported as a  destination.
-- For Mellanox Spectrum switches, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
+- For Mellanox Spectrum switches with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
 - Multiple rules (SPAN sources) can point to the same SPAN destination, but a given SPAN source *cannot* specify two SPAN destinations.
 - To configure SPAN or ERSPAN on a Tomahawk or Trident3 switch, you must enable {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="non-atomic update  mode">}}.
 - Mellanox Spectrum switches reject SPAN ACL rules for an output interface that is a subinterface.

@@ -334,6 +334,51 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
+### One-step and Two-step Clock
+
+The Cumulus Linux switch provides two clock modes:
+- *One-step* mode, where the PTP time stamps the packet as it egresses the port and there is no need for a follow-up packet.
+- *Two-step* mode, where PTP notes the time when the packet egresses the port and sends it in a separate follow-up message.
+
+Two-step mode is the default configuration. To configure the switch to use one-step mode:
+
+{{< tabs "TabID345 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service ptp 1 two-step off
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `twoStepFlag` setting to 0, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly               0
+priority1               254
+priority2               254
+domainNumber            3
+
+twoStepFlag             0
+dscp_event              43
+dscp_general            43
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### PTP Priority
 
 Use the PTP priority to select the best master clock. You can set priority 1 and 2:

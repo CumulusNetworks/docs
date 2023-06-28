@@ -28,7 +28,7 @@ Cumulus Linux supports:
 - PTP on layer 3 interfaces, trunk ports, bonds, and switch ports belonging to a VLAN.
 - Multicast, unicast, and mixed message mode.
 - End-to-End delay mechanism only. Cumulus Linux does not support Peer-to-Peer.
-- Two-step clock correction mode, where PTP notes the time when the packet goes out of the port and sends the time in a separate (follow-up) message. Cumulus Linux does not support one-step mode.
+- One-step and two-step clock correction mode.
 - Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
 {{%notice note%}}
@@ -57,7 +57,7 @@ The basic configuration shown below uses the *default* PTP settings:
 - {{<link url="#Forced-master-mode" text="Announce messages from any master are accepted">}}.
 - {{<link url="#Message-mode" text="The PTP Interface Message Mode">}} is multicast.
 - The delay mechanism is End-to-End (E2E), where the slave measures the delay between itself and the master. The master and slave send delay request and delay response messages between each other to measure the delay.
-- The hardware packet time stamping mode is two-step.
+- The clock correction mode is two-step.
 
 To configure other settings, such as the PTP profile, domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
 

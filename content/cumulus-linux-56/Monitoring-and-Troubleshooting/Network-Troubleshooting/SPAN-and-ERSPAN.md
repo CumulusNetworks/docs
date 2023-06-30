@@ -64,7 +64,7 @@ cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
 
-To reduce the volume of copied data, you can truncate the mirrored frames at specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4. The following commands truncate the mirrored frames for SPAN at 40 bytes:
+To reduce the volume of copied data, you can truncate the mirrored frames at a specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4. The following commands truncate the mirrored frames for SPAN at 40 bytes:
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 span truncate size 40
@@ -73,7 +73,7 @@ cumulus@switch:~$ nv config apply
 
 You can configure ACL rules to limit traffic according to source or destination IP address, IP protocol, TCP or UDP source or destination port, or TCP flags.
 
-The following example command matches on swp1 ingress traffic that has the source IP Address 10.10.1.1. When a match occurs, the traffic mirrors to swp2:
+The following example command matches on swp1 ingress traffic that has the source IP address 10.10.1.1. When a match occurs, the traffic mirrors to swp2:
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
@@ -85,7 +85,7 @@ cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
 
-The following example command matches OSPF packets coming in swp1. When a match occurs, the traffic mirrors to swp2:
+The following example command matches OSPF packets coming in on swp1. When a match occurs, the traffic mirrors to swp2:
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
@@ -215,7 +215,7 @@ cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```
 
-The following example rule matches on swp1 egress traffic that has the source IP Address 10.10.1.1. When a match occurs, the traffic mirrors to the CPU:
+The following example rule matches on swp1 egress traffic that has the source IP address 10.10.1.1. When a match occurs, the traffic mirrors to the CPU:
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action span cpu
@@ -242,7 +242,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/span-cpu.rules
 cumulus@switch:~$ sudo cl-acltool -i
 ```
 
-The following example rule matches on swp1 egress traffic that has the source IP Address 10.10.1.1. When a match occurs, the traffic mirrors to the CPU:
+The following example rule matches on swp1 egress traffic that has the source IP address 10.10.1.1. When a match occurs, the traffic mirrors to the CPU:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/span-cpu.rules

@@ -472,7 +472,7 @@ iface vlan4001
 {{< /tab >}}
 {{< /tabs >}}
 
-The anycast MAC address is different from the {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#change-the-vrr-mac-address" text="fabric-wide VRR MAC address">}}, which distributes the same VRR gateway on VLAN interfaces across switches fabric-wide. The following diagram shows the relationship between the anycast MAC address or ID, which is unique for each active-active pair, and the fabric MAC address or ID, which is consistent across the entire fabric.
+The anycast MAC address is different from the {{<link url="Virtual-Router-Redundancy-VRR/#change-the-vrr-mac-address" text="fabric-wide VRR MAC address">}}, which distributes the same VRR gateway on VLAN interfaces across switches fabric-wide. The following diagram shows the relationship between the anycast MAC address or ID, which is unique for each active-active pair, and the fabric MAC address or ID, which is consistent across the entire fabric.
 
 {{< img src = "/images/cumulus-linux/anycast-fabric-address.png" >}}
 

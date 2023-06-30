@@ -234,9 +234,9 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    delay_mechanism         E2E
    network_transport       UDPv4
    ```
-   
-   For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to    the IP adress of the VLAN interface:
-   
+
+   For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+
    ```
    [swp1]
    l2_mode                 trunk
@@ -247,9 +247,9 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    delay_mechanism         E2E
    network_transport       UDPv4
    ```
-   
-   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and    `src_ip` to the IP adress of the VLAN interface:
-   
+
+   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and  `src_ip` to the IP adress of the VLAN interface:
+
    ```
    [swp2]
    l2_mode                 access

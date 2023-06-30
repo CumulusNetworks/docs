@@ -128,8 +128,6 @@ cumulus@switch:~$ net commit
 
 You can configure SPAN and ERSPAN with `cl-acltool`, the {{<link url="Netfilter-ACLs" text="same utility used for security ACL configuration">}}. The match criteria for SPAN and ERSPAN is usually an interface; for more granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The SPAN source interface can be a port, a subinterface, or a bond interface. Ingress traffic on interfaces can be matched, and on switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, egress traffic can be matched.
 
-Cumulus Linux supports a maximum of two SPAN destinations. Multiple rules (SPAN sources) can point to the same SPAN destination, although a given SPAN source cannot specify two SPAN destinations. The SPAN destination (MTP) interface can be a physical port, subinterface, bond interface or CPU.  The SPAN and ERSPAN action is independent of security ACL actions. If packets match both a security ACL rule and a SPAN rule, both actions are carried out.
-
 {{%notice note%}}
 
 Always place your rule files under `/etc/cumulus/acl/policy.d/`.
@@ -139,7 +137,7 @@ Always place your rule files under `/etc/cumulus/acl/policy.d/`.
 ### Limitations
 
 - For Broadcom switches, Cumulus Linux supports a maximum of two SPAN destinations.
-- For Mellanox Spectrum switches, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
+- For Mellanox switches with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
 - To configure SPAN or ERSPAN on a Tomahawk or Trident3 switch, you must enable {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="non-atomic update  mode">}}.
 - Mellanox Spectrum switches reject SPAN ACL rules for an output interface that is a subinterface.
 - Multiple rules (SPAN sources) can point to the same SPAN destination, but a given SPAN source *cannot* specify two SPAN destinations.

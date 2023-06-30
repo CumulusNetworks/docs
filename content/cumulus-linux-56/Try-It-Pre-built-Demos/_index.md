@@ -14,7 +14,7 @@ The following Try It demos are available:
 - {{<link url="EVPN-Multihoming/#configuration-example" text="EVPN multihoming">}}
 - {{<link url="Configuration-Examples/#evpn-symmetric-routing" text="EVPN symmetric routing">}}
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#configuration-example" text="MLAG">}}
-- {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP/#configuration-example" text="VRR">}}
+- {{<link url="Virtual-Router-Redundancy-VRR/#configuration-example" text="VRR">}}
 - {{<link url="Static-VXLAN-Tunnels/#single-vxlan-device" text="Single VXLAN device">}}
 - {{<link url="VXLAN-Active-active-Mode/#configuration-example" text="VXLAN Active-active Mode">}}
 - {{<link title="GRE Tunneling#configuration-example" text="GRE">}}

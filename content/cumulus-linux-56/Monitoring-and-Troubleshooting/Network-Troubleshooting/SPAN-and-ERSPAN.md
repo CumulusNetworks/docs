@@ -51,6 +51,8 @@ You can set the following SPAN options:
 
 You can also truncate the mirrored frames at specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4.
 
+The NVUE commands save the configuration in the `/etc/cumulus/switchd.d/port-mirror.conf` file.
+
 ### Example Commands
 
 The following example commands mirror all packets received on swp1, and copy and transmit the packets to swp2 for monitoring:
@@ -81,20 +83,24 @@ cumulus@switch:~$ nv config apply
 The following example command matches on swp1 ingress traffic that has the source IP Address 10.10.1.1. When a match occurs, the traffic mirrors to swp2:
 
 ```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action span swp2
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip source-ip 10.10.1.1
+cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip source-ip 10.10.1.1
 cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
 
 The following example command matches OSPF packets coming in swp1. When a match occurs, the traffic mirrors to swp2:
 
 ```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action span swp2
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip protocol ospf
+cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip protocol ospf
 cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -215,6 +221,7 @@ The following example rule matches on swp1 ingress traffic that has the source I
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action span cpu
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip source-ip 10.10.1.1
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```
@@ -224,6 +231,7 @@ The following example rule matches on swp1 egress traffic that has the source IP
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action span cpu
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip source-ip 10.10.1.1
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 outbound
 cumulus@switch:~$ nv config apply
 ```

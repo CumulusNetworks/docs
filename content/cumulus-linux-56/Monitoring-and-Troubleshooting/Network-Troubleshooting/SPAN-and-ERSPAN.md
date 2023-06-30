@@ -15,7 +15,7 @@ toc: 4
 ```
 
 To reduce the volume of copied data, you can configure SPAN and ERSPAN traffic rules to limit the traffic you mirror. You can limit traffic according to:
-- IPv4 source or destination IP address
+- Source or destination IP address
 - IP protocol
 - TCP or UDP source or destination port
 - TCP flags
@@ -37,19 +37,10 @@ You can configure SPAN and ERSPAN with NVUE commands or with ACL rules. If you a
 
 ## SPAN
 
-To mirror all packets that come in from or go out of an interface, and copy and transmit the packets out of a local port for monitoring:
-
 {{< tabs "TabID32 ">}}
 {{< tab "NVUE Commands ">}}
 
 SPAN configuration with NVUE requires a session ID, which is a number between 0 and 7.
-
-You can set the following SPAN options:
-- Source port (`source-port`)
-- Destination port (`destination`)
-- Direction (`ingress` or `egress`)
-
-You can also truncate the mirrored frames at specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4.
 
 The NVUE commands save the configuration in the `/etc/cumulus/switchd.d/port-mirror.conf` file.
 
@@ -73,12 +64,14 @@ cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
 
-The following commands truncate the mirrored frames for SPAN at 40 bytes:
+To reduce the volume of copied data, you can truncate the mirrored frames at specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4. The following commands truncate the mirrored frames for SPAN at 40 bytes:
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 span truncate size 40
 cumulus@switch:~$ nv config apply
 ```
+
+You can configure ACL rules to limit traffic according to source or destination IP address, IP protocol, TCP or UDP source or destination port, or TCP flags.
 
 The following example command matches on swp1 ingress traffic that has the source IP Address 10.10.1.1. When a match occurs, the traffic mirrors to swp2:
 
@@ -136,11 +129,7 @@ cumulus@switch:~$ nv config apply
    ```
 
    {{%notice warning%}}
-Running the following command is incorrect. The command removes **all** existing control-plane rules or other installed rules and only installs the rules defined in `span.rules`:
-
-```
-cumulus@switch:~$ sudo cl-acltool -i  -P /etc/cumulus/acl/policy.d/span.rules
-```
+Do not run the `cl-acltool -i` command with `-P` option: `sudo cl-acltool -i  -P /etc/cumulus/acl/policy.d/span.rules`. The `-P` option removes **all** existing control plane rules or other installed rules and only installs the rules defined in the specified file.
 {{%/notice%}}
 
 4. Verify that the you installed the SPAN rules:
@@ -275,8 +264,6 @@ cumulus@switch:~$ sudo tcpdump -i mirror
 ```
 
 ## ERSPAN
-
-To configure ERSPAN:
 
 {{< tabs "TabID347 ">}}
 {{< tab "NVUE Commands ">}}
@@ -433,7 +420,7 @@ cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
 
 ## Show SPAN and ERSPAN Configuration
 
-To show SPAN and ERSPAN configuration for a specific session, run the `nv show system port-mirror session <session-id>` command. To show SPAN and ERSPAN configuration for all sessions, run the `nv show system port-mirror` command.
+To show SPAN and ERSPAN configuration for a specific session, run the NVUE `nv show system port-mirror session <session-id>` command. To show SPAN and ERSPAN configuration for all sessions, run the NVUE `nv show system port-mirror` command.
 
 ```
 cumulus@switch:~$ nv show system port-mirror session 1
@@ -450,9 +437,16 @@ span
     enable                             off  
 ```
 
+You can also run the `sudo cl-acltool -L all | grep SPAN` or `sudo cl-acltool -L all | grep ERSPAN` command.
+
+```
+cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
+    0     0 SPAN       all  --  any    swp1    10.10.1.1            anywhere             /* rule_id:1,acl_name:EXAMPLE1,dir:outbound,interface_id:swp1 */ dport:cpu
+```
+
 ## Manual Configuration (Advanced)
 
-You can configure SPAN and ERSPAN by editing the `/etc/cumulus/switchd.d/port-mirror.conf` file.
+If you are an advanced user, you can edit the `/etc/cumulus/switchd.d/port-mirror.conf` file to configure SPAN and ERSPAN.
 
 The following example SPAN configuration mirrors all packets received on swp1, and copies and transmits the packets to swp2 for monitoring:
 

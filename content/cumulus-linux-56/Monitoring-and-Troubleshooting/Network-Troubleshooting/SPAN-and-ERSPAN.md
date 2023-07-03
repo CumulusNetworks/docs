@@ -14,14 +14,14 @@ toc: 4
  ----------------------------------------------------------
 ```
 
-To reduce the volume of copied data, you can configure SPAN and ERSPAN traffic rules to limit the traffic you mirror. You can limit traffic according to:
+To reduce the volume of data, you can truncate the mirrored frames at a specified number of bytes. You can also configure SPAN and ERSPAN traffic rules (ACLs) to limit the traffic you mirror. You can limit traffic according to:
 - Source or destination IP address
 - IP protocol
 - TCP or UDP source or destination port
 - TCP flags
 - An ingress port or wildcard (swp+)
 
-You can configure SPAN and ERSPAN with NVUE commands or with ACL rules. If you are an advanced user, you can {{<link url="#manual-configuration-advanced" text="edit the /etc/cumulus/switchd.d/port-mirror.conf file">}}.
+You can configure SPAN and ERSPAN with NVUE commands or with `cl-acltool` rules. If you are an advanced user, you can {{<link url="#manual-configuration-advanced" text="edit the /etc/cumulus/switchd.d/port-mirror.conf file">}}.
 
 {{%notice note%}}
 - On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
@@ -40,7 +40,14 @@ You can configure SPAN and ERSPAN with NVUE commands or with ACL rules. If you a
 {{< tabs "TabID32 ">}}
 {{< tab "NVUE Commands ">}}
 
+To configure SPAN with NVUE, run the `nv set system port-mirror session <session-id> span <option>` command.
+
 SPAN configuration with NVUE requires a session ID, which is a number between 0 and 7.
+
+You can set the following SPAN options:
+- Source port
+- Destination port
+- Direction (ingress or egress)
 
 The NVUE commands save the configuration in the `/etc/cumulus/switchd.d/port-mirror.conf` file.
 
@@ -143,7 +150,7 @@ Do not run the `cl-acltool -i` command with `-P` option: `sudo cl-acltool -i  -P
 SPAN sessions that reference an outgoing interface create the mirrored packets according to the ingress interface before the routing decision. For example, the following rule captures traffic that is ultimately destined to leave swp1 but mirrors the packets when they arrive on swp49. The rule transmits packets that reference the original VLAN tag, and source and destination MAC address at the time that swp49 originally receives the packet.
 
 ```
--A FORWARD --out-interface swp1 -j SPAN --dport swp2
+-A FORWARD --out-interface swp1 -j SPAN --dport swp49
 ```
 
 ### Example Rules
@@ -273,11 +280,11 @@ To configure ERSPAN with NVUE, run the `nv set system port-mirror session <sessi
 ERSPAN configuration requires a session ID, which is a number between 0 and 7.
 
 You can set the following ERSPAN options:
-- Source port (`source-port`)
-- Destination port (`destination`)
-- Direction (`ingress` or `egress`)
-- Source IP address for ERSPAN encapsulation (`destination source-ip`)
-- Destination IP address for ERSPAN encapsulation (`destination dest-ip`)
+- Source port
+- Destination port
+- Direction (ingress or egress)
+- Source IP address for ERSPAN encapsulation
+- Destination IP address for ERSPAN encapsulation
 
 You can also truncate the mirrored frames at specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4.
 

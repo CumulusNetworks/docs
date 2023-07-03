@@ -486,9 +486,11 @@ To disable adaptive routing on a specific port, set the `interface.<port>.adapti
 ### Adaptive Routing Profiles
 
 Cumulus Linux provides these adaptive routing profiles:
-- `ar-profile-1` is the default profile. You cannot change the `ar-profile-1` profile settings.
-- `ar-profile-2`. You cannot change the `ar-profile-2` profile settings.
-- `ar-profile-custom` includes settings you can change to create a custom profile.
+- `ar-profile-1`
+- `ar-profile-2`
+- `ar-profile-custom`
+
+The default profile is either `ar-profile-1` or `ar-profile-2` depending on your switch. For Spectrum-4 switches, the default profile is set to `ar-profile-2`. For switches with Spectrum-3 and earlier, the default profile is set to `ar-profile-1`.
 
 {{< tabs "TabID505 ">}}
 {{< tab "ar-profile-1 settings">}}
@@ -565,19 +567,19 @@ adaptive_routing.profile0.elephant_flow = FALSE
 {{< /tab >}}
 {{< /tabs >}}
 
-To set the profile you want to use:
+To change the adaptive routing profile:
 
 {{< tabs "TabID581 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv set router adaptive-routing profile <profile-name>` command. The following example sets the profile to `ar-profile-2`:
+Run the `nv set router adaptive-routing profile <profile-name>` command. The following example sets the profile to `ar-profile-1`:
 
 ```
-cumulus@switch:~$ nv set router adaptive-routing profile ar-profile-2
+cumulus@switch:~$ nv set router adaptive-routing profile ar-profile-1
 cumulus@switch:~$ nv config apply
 ```
 
-To revert the profile to the default profile `ar-profile-1`:
+To revert the profile to the default profile `ar-profile-2`:
 
 ```
 cumulus@switch:~$ nv unset router adaptive-routing profile
@@ -753,15 +755,17 @@ To show adaptive routing settings, run the `nv show router adaptive-routing` com
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
-        applied  description
-------  -------  ------------------------------------------------------
-enable  on       Turn the feature 'on' or 'off'.  The default is 'off'.
+                            operational   applied
+--------------------------  ------------  -------
+enable                      on            on    
+link-utilization-threshold  off           off   
+profile                     ar-profile-2 
 ```
 
 To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 router adaptive-routing 
+cumulus@leaf01:mgmt:~$ nv show interface swp51 router adaptive-routing
                             applied  description
 --------------------------  -------  ------------------------------------------------------
 enable                      on       Turn the feature 'on' or 'off'.  The default is 'off'.

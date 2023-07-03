@@ -4,17 +4,16 @@ author: NVIDIA
 weight: 130
 toc: 4
 ---
-Workbenches are dashboards where you collect and view data. Two types of workbenches are available:
+Workbenches are dashboards where you collect cards and view data. The cards displayed on a workbench can be displayed across multiple premises (global) or are restricted to one premises (local). Each user can create two types of workbenches:
 
-<!-- vale off -->
-- **Default**: Provided by NVIDIA; you *cannot* save changes you make to these workbenches
-- **Custom**: Created by the user; changes made to these workbenches are saved automatically
-<!-- vale on -->
+- **Default**: this workbench is called NetQ Workbench. It is provided by NVIDIA and available to all users in your organization. NetQ will not save changes made to this workbench.
+- **Custom**: created by the user. Changes made to these workbenches are saved automatically
+
 
 Both types of workbenches display a set of cards. Default workbenches are public (accessible to all users), whereas custom workbenches are private (viewing is restricted to the user who created them).
 ## Default Workbenches
 
-The default workbench contains Device Inventory, Switch Inventory, Validation Summary, What Just Happened, Host Inventory, DPU Inventory, and Events cards.
+The default workbench includes cards displaying your network's device inventory, switch inventory, validation summary, What Just Happened events, host inventory, DPU inventory, and system events.
 
 {{<figure src="/images/netq/default-wb-460.png" alt="default netq workbench" width="900">}}
 
@@ -67,14 +66,9 @@ To remove a workbench:
 
 ## Open an Existing Workbench
 
-There are several options for opening workbenches:
+There are several ways to access workbenches:
 
-- Open through the Workbench header
-    - Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> next to the current workbench name and locate the workbench
-        - Under My Home, click the name of your favorite workbench
-        - Under My Most Recent, click the workbench if in list
-        - Search by workbench name
-        - Click **All My WB** to open all workbenches and select it from the list
+- In the header, select <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> next to the current workbench name to open a menu listing the default and recently accessed workbenches. Click **All my WB** to open a list of all workbenches.
 - Open through the main menu
     - Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18"/> **Menu** and select the workbench from the **Favorites** or **Workbenches** sections
 - Open through the NVIDIA logo
@@ -99,3 +93,7 @@ To modify the auto-refresh setting:
     {{<figure src="/images/netq/wb-refresh-rate-set-400.png" alt="refresh rate dropdown listng rate options of 30 seconds, 1 minute, and 2 minutes" width="150">}}
 
 To disable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> **Pause**. When you're ready for the data to refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/> **Play**.
+
+## Related Information
+
+- {{<link title="Configure Premises" text="Configure Premises">}}

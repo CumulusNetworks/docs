@@ -89,6 +89,10 @@ To rename an existing premises:
 
 4. (Optional) {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="Reconfigure the NetQ CLI">}} by generating new AuthKeys. You must complete this step after renaming a premises for the CLI to be functional.
 
+## Related Information
+
+- {{<link title="Focus Your Monitoring Using Workbenches" text="Focus Your Monitoring Using Workbenches">}}
+
 <!--Need to find new place for this
 
 ## System Server Information

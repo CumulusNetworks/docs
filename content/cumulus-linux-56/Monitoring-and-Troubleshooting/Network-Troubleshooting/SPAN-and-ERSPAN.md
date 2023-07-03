@@ -21,7 +21,7 @@ To reduce the volume of data, you can truncate the mirrored frames at a specifie
 - TCP flags
 - An ingress port or wildcard (swp+)
 
-You can configure SPAN and ERSPAN with NVUE commands or with `cl-acltool` rules. If you are an advanced user, you can {{<link url="#manual-configuration-advanced" text="edit the /etc/cumulus/switchd.d/port-mirror.conf file">}}.
+You configure SPAN and ERSPAN with either NVUE commands or `cl-acltool` rules. If you are an advanced user, you can {{<link url="#manual-configuration-advanced" text="edit the /etc/cumulus/switchd.d/port-mirror.conf file">}}.
 
 {{%notice note%}}
 - On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
@@ -110,6 +110,7 @@ cumulus@switch:~$ nv config apply
 {{%notice note%}}
 - Always place your rule files in the `/etc/cumulus/acl/policy.d/` directory.
 - Using `cl-acltool` with the `--out-interface` rule applies to transit traffic only; it does not apply to traffic sourced from the switch.
+- `--out-interface` rules cannot target bond interfaces, only the bond members tied to them. For example, to mirror all packets going out of bond1 to swp53, where bond1 members are swp1 and swp2, create the rule `-A FORWARD --out-interface swp1,swp2 -j SPAN --dport swp53`.
 {{%/notice%}}
 
 1. Create a rules file in the `/etc/cumulus/acl/policy.d/` directory. The following example mirrors swp1 input traffic and swp4 output traffic to destination swp2.
@@ -191,11 +192,6 @@ To capture traffic that is received on bond1 and mirror the packets when on swp5
 -A FORWARD --in-interface bond1 -j SPAN --dport swp53
 ```
 
-{{%notice note%}}
-- Using `cl-acltool` with the `--out-interface` rule applies to transit traffic only; it does not apply to traffic sourced from the switch.
-- `--out-interface` rules cannot target bond interfaces, only the bond members tied to them. For example, to mirror all packets going out of bond1 to swp53, where bond1 members are swp1 and swp2, create the rule `-A FORWARD --out-interface swp1,swp2 -j SPAN --dport swp53`.
-{{%/notice%}}
-
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -206,7 +202,8 @@ You can set the CPU port as a SPAN destination interface to mirror data plane tr
 Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic does not overwhelm the CPU.
 
 {{%notice note%}}
-Cumulus Linux does not support egress mirroring for control plane generated traffic to the CPU port.
+- Cumulus Linux does not support egress mirroring for control plane generated traffic to the CPU port.
+- When you use an `cl-acltool` rule to set the CPU port as a SPAN destination interface, the rule applies on both ingress and egress. For packets that match the rule on *both* ingress and egress, Cumulus Linux mirrors the traffic only once to the destination interface.
 {{%/notice%}}
 
 {{< tabs "TabID271 ">}}

@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 1145
 toc: 4
 ---
-<span style="background-color:#F5F5DC">[SPAN](## "Switched Port Analyzer")</span> enables you to mirror all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet goes out of the MTP.
-
-<span style="background-color:#F5F5DC">[ERSPAN](## "Encapsulated Remote SPAN")</span> enables the mirrored packets to go to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by looking up the destination IP address in its routing table. The switch encapsulates the original layer 2 packet with GRE for IP delivery. The encapsulated packets have the following format:
+Cumulus Linux supports both <span style="background-color:#F5F5DC">[SPAN](## "Switched Port Analyzer")</span> and <span style="background-color:#F5F5DC">[ERSPAN](## "Encapsulated Remote SPAN")</span>.
+- SPAN mirrors all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet goes out of the MTP.
+- ERSPAN sends the mirrored packets to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by looking up the destination IP address in its routing table. The switch encapsulates the original layer 2 packet with GRE for IP delivery. The encapsulated packets have the following format:
 
 ```
  ----------------------------------------------------------
@@ -19,9 +19,12 @@ To reduce the volume of data, you can truncate the mirrored frames at a specifie
 - IP protocol
 - TCP or UDP source or destination port
 - TCP flags
-- An ingress port or wildcard (swp+)
+- An ingress port
 
-You configure SPAN and ERSPAN with either NVUE commands or `cl-acltool` rules. If you are an advanced user, you can {{<link url="#manual-configuration-advanced" text="edit the /etc/cumulus/switchd.d/port-mirror.conf file">}}.
+You can configure SPAN and ERSPAN with either NVUE commands or `cl-acltool` rules. Do not run both NVUE commands and `cl-acltool` at the same time to configure SPAN and ERSPAN.
+
+If you are an advanced user, you can {{<link url="#manual-configuration-advanced" text="edit the /etc/cumulus/switchd.d/port-mirror.conf file">}}; however, NVIDIA recommends you either run NVUE commands or use `cl-acltool`.
+
 
 {{%notice note%}}
 - On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
@@ -36,6 +39,8 @@ You configure SPAN and ERSPAN with either NVUE commands or `cl-acltool` rules. I
 {{%/notice%}}
 
 ## SPAN
+
+This section describes how to configure SPAN on your switch.
 
 {{< tabs "TabID32 ">}}
 {{< tab "NVUE Commands ">}}
@@ -71,6 +76,15 @@ cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
 
+The following example commands mirror packets from all ports to swp53:
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port ANY
+cumulus@switch:~$ nv set system port-mirror session 1 span destination swp53
+cumulus@switch:~$ nv config apply
+```
+
 To reduce the volume of copied data, you can truncate the mirrored frames at a specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4. The following commands truncate the mirrored frames for SPAN at 40 bytes:
 
 ```
@@ -101,6 +115,18 @@ cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip protocol ospf
 cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
+cumulus@switch:~$ nv config apply
+```
+
+The following example matches UDP packets coming in on bond1. When a match occurs, the traffic mirrors to swp53:
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port bond1
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip protocol udp
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv set system port-mirror session 1 span destination swp53
 cumulus@switch:~$ nv config apply
 ```
 

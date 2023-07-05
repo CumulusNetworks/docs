@@ -21,9 +21,11 @@ To reduce the volume of data, you can truncate the mirrored frames at a specifie
 - TCP flags
 - An ingress port
 
-You can configure SPAN and ERSPAN with either NVUE commands or `cl-acltool` rules. Do not run both NVUE commands and `cl-acltool` at the same time to configure SPAN and ERSPAN.
+You can configure SPAN and ERSPAN with either NVUE commands or `cl-acltool` rules. If you are an advanced user, you can {{<link url="#manual-configuration-advanced" text="edit the /etc/cumulus/switchd.d/port-mirror.conf file">}}.
 
-If you are an advanced user, you can {{<link url="#manual-configuration-advanced" text="edit the /etc/cumulus/switchd.d/port-mirror.conf file">}}; however, NVIDIA recommends you either run NVUE commands or use `cl-acltool`.
+{{%notice note%}}
+Do not run both NVUE commands and `cl-acltool` at the same time to configure SPAN and ERSPAN.
+{{%/notice%}}
 
 {{%notice note%}}
 - On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.

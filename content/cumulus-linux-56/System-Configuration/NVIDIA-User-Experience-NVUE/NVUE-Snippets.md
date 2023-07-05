@@ -319,9 +319,11 @@ Flexible snippets are an extension of traditional snippets that let you manage a
 
 To configure and manage flexible snippets, your user account must be in the sudo group, which includes the NVUE `system-admin` role, or you must be the root user.
 
+### Files You Can Manage
+
 You can use flexible snippets to add configuration to the following files:
 
-| Filename  | Description |
+| <div style="width:350px">Filename  | Description |
 | --------- | ----------- |
 |`/etc/cumulus/csmgrd` | Configuration file for `csmgrctl` commands. |
 |`/etc/default/isc-dhcp-relay-<VRF>`| Configuration file for DHCP relay. Changes to this file require a `dhcrelay@<VRF>.service` restart. |
@@ -350,7 +352,9 @@ Use caution when creating flexible snippets:
 - Do not manually update configuration files to which you add flexible snippets.
 {{%/notice%}}
 
-To create flexible snippets:
+### Create a Flexible Snippet
+
+To create a flexible snippet:
 
 1. Create a file in `yaml` format and add each flexible snippet you want to apply in the format shown below. NVUE appends the flexible snippet at the end of an existing file. If the file does not exist, NVUE creates the file, then adds the content.
 

@@ -39,7 +39,7 @@ When multiple routes are in the routing table, a hash determines through which p
 Cumulus Linux enables the BGP `maximum-paths` setting by default and installs multiple routes. Refer to {{<link url="Optional-BGP-Configuration#ecmp" text="BGP and ECMP">}}.
 {{%/notice%}}
 
-### Next Hop Groups
+## Next Hop Groups
 
 ECMP routes resolve to next hop groups, which identify one or more next hops. To view next hop information, run the NVUE `nv show router nexthop rib` or `nv show router nexthop rib <id>` commands, or the `ip nexthop show` or `ip nexthop show <id>` kernel commands.
 
@@ -430,7 +430,7 @@ You must configure adaptive routing on *all* ports that are part of the same ECM
 
 ### Enable Adaptive Routing
 
-When you enable adaptive routing, Cumulus Linux uses the default profile `ar-profile-1`. To use a different adaptive routing profile, see {{<link url="#adaptive-routing-profiles" text="Adaptive Routing Profiles">}}, below.
+When you enable adaptive routing, Cumulus Linux uses the default profile for your switch ASIC type (`ar-profile-2` for Spectum-4 or `ar-profile-1` for Spectrum-3 and earlier). To change the adaptive routing profile, see {{<link url="#adaptive-routing-profiles" text="Adaptive Routing Profiles">}}, below.
 
 {{< tabs "TabID436 ">}}
 {{< tab "NVUE Commands ">}}
@@ -486,128 +486,11 @@ To disable adaptive routing on a specific port, set the `interface.<port>.adapti
 ### Adaptive Routing Profiles
 
 Cumulus Linux provides these adaptive routing profiles:
-- `ar-profile-1`
-- `ar-profile-2`
-- `ar-profile-custom`
+- `ar-profile-1` is the default profile for a switch with the Spectrum-2 and Spectrum-3 ASIC.
+- `ar-profile-2` is the default profile for a switch with the Spectrum-4 ASIC.
+- `ar-profile-custom` includes adaptive routing settings you can change.
 
-The default profile is either `ar-profile-1` or `ar-profile-2` depending on your switch. For Spectrum-4 switches, the default profile is set to `ar-profile-2`. For switches with Spectrum-3 and earlier, the default profile is set to `ar-profile-1`.
-
-{{< tabs "TabID505 ">}}
-{{< tab "ar-profile-1 settings">}}
-
-```
-cumulus@switch:~$ sudo cat /etc/cumulus/switchd.d/adaptive_routing_ar_profile_1.conf
-## Supported AR profile mode : FREE (0:FREE, 1:TIME_BOUND, 2:RANDOM)
-adaptive_routing.profile0.mode = 0
-## Maximum value for buffer-congestion threshold is 16777216. Unit is in cells
-adaptive_routing.congestion_threshold.low = 200
-adaptive_routing.congestion_threshold.medium = 1000
-adaptive_routing.congestion_threshold.high = 10000
-## AR shaper attributes [unit is in 100ns (Ex: 1=100ns; 10=1us)]
-adaptive_routing.shaper_to = 10
-adaptive_routing.shaper_from = 10
-## Adaptive-routing profile0 parameters
-adaptive_routing.profile0.bind_time = 0
-adaptive_routing.profile0.free_threshold = 4
-adaptive_routing.profile0.busy_threshold = 0
-adaptive_routing.profile0.shaper_from_enable = TRUE
-adaptive_routing.profile0.shaper_to_enable = FALSE
-adaptive_routing.profile0.elephant_flow = FALSE
-#adaptive_routing.ecmp_size = 64   >>>>>Any change in this value needs switchd restart by user.
-```
-
-{{< /tab >}}
-{{< tab "ar-profile-2 settings">}}
-
-```
-cumulus@switch:~$ sudo cat /etc/cumulus/switchd.d/adaptive_routing_ar_profile_2.conf
-## Supported AR profile mode : FREE (0:FREE, 1:TIME_BOUND, 2:RANDOM)
-adaptive_routing.profile0.mode = 0
-## Maximum value for buffer-congestion threshold is 16777216. Unit is in cells
-adaptive_routing.congestion_threshold.low = 200
-adaptive_routing.congestion_threshold.medium = 1000
-adaptive_routing.congestion_threshold.high = 10000
-## AR shaper attributes [unit is in 100ns (Ex: 1=100ns; 10=1us)]
-adaptive_routing.shaper_to = 10
-adaptive_routing.shaper_from = 10
-## Adaptive-routing profile0 parameters
-adaptive_routing.profile0.bind_time = 0
-adaptive_routing.profile0.free_threshold = 4
-adaptive_routing.profile0.busy_threshold = 0
-adaptive_routing.profile0.shaper_from_enable = TRUE
-adaptive_routing.profile0.shaper_to_enable = FALSE
-adaptive_routing.profile0.elephant_flow = FALSE
-#adaptive_routing.ecmp_size = 64   >>>>>Any change in this value needs switchd restart by user. 
-```
-
-{{< /tab >}}
-{{< tab "ar-profile-custom settings">}}
-
-```
-cumulus@switch:~$ sudo cat /etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf 
-## Supported AR profile mode : FREE (0:FREE, 1:TIME_BOUND, 2:RANDOM) 
-adaptive_routing.profile0.mode = 0 
-## Maximum value for buffer-congestion threshold is 16777216. Unit is in cells 
-adaptive_routing.congestion_threshold.low = 200 
-adaptive_routing.congestion_threshold.medium = 1000 
-adaptive_routing.congestion_threshold.high = 10000 
-## AR shaper attributes [unit is in 100ns (Ex: 1=100ns; 10=1us)] 
-adaptive_routing.shaper_to = 10 
-adaptive_routing.shaper_from = 10 
-## Adaptive-routing profile0 parameters 
-adaptive_routing.profile0.bind_time = 0 
-adaptive_routing.profile0.free_threshold = 4 
-adaptive_routing.profile0.busy_threshold = 0 
-adaptive_routing.profile0.shaper_from_enable = TRUE 
-adaptive_routing.profile0.shaper_to_enable = FALSE 
-adaptive_routing.profile0.elephant_flow = FALSE 
-#adaptive_routing.ecmp_size = 64. >>>>>Any change in this value needs switchd restart by user. 
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To change the adaptive routing profile:
-
-{{< tabs "TabID581 ">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv set router adaptive-routing profile <profile-name>` command. The following example sets the profile to `ar-profile-1`:
-
-```
-cumulus@switch:~$ nv set router adaptive-routing profile ar-profile-1
-cumulus@switch:~$ nv config apply
-```
-
-To revert the profile to the default profile `ar-profile-2`:
-
-```
-cumulus@switch:~$ nv unset router adaptive-routing profile
-cumulus@switch:~$ nv config apply
-```
-
-{{%notice note%}}
-When you set the profile, NVUE reloads `switchd`.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `adaptive_routing.profile` parameter to `ar-profile-1`, `ar-profile-2`, or `ar-profile-custom`.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
-# Global adaptive-routing enable/disable setting 
-adaptive_routing.enable = TRUE 
-adaptive_routing.profile = ar-profile-2      
-```
-
-Reload `switchd` with the `sudo systemctl reload switchd.service` command.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To configure a custom profile, you must edit the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file to change parameter values. NVUE does not provide commands.
+If you want to make changes to a profile, you must configure the custom profile by editing the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file. NVUE does not provide commands.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf
@@ -634,16 +517,63 @@ After changing parameter values and saving the `/etc/cumulus/switchd.d/adaptive_
 
 If you change the `adaptive_routing.ecmp_size` parameter, you must **restart** `switchd` with the `systemctl restart switchd` command.
 
+To apply the adaptive routing profile:
+
+{{< tabs "TabID581 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set router adaptive-routing profile <profile-name>` command. The following example sets the profile to `ar-profile-custom`:
+
+```
+cumulus@switch:~$ nv set router adaptive-routing profile ar-profile-custom
+cumulus@switch:~$ nv config apply
+```
+
+To revert the profile to the default profile for the switch:
+
+```
+cumulus@switch:~$ nv unset router adaptive-routing profile
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+When you set the profile, NVUE reloads `switchd`.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `adaptive_routing.profile` parameter.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
+# Global adaptive-routing enable/disable setting 
+adaptive_routing.enable = TRUE 
+adaptive_routing.profile = ar-profile-custom      
+```
+
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Link Utilization
 
 Adaptive routing considers a port congested based on the link utilization threshold. The default link utilization threshold percentage on an interface is 70. You can change the link utilization threshold percentage for an interface to a value between 1 and 100.
 
 Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
-The following example changes the link utilization threshold percentage to 100 on swp51 and enables link utilization:
-
 {{< tabs "TabID624 ">}}
 {{< tab "NVUE Commands ">}}
+
+The following example changes enables link utilization and uses the default link utilization threshold percentage of 70:
+
+```
+cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold enable on
+cumulus@switch:~$ nv config apply
+```
+
+The following example changes the link utilization threshold percentage to 100 on swp51 and enables link utilization:
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing link-utilization-threshold 100
@@ -684,7 +614,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{< tabs "TabID693 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example enables adaptive routing with the default profile `ar-profile-1` on swp1 and swp2. Global link utilization is off (the default setting).
+The following example enables adaptive routing with the default profile for the switch on swp1 and swp2. Global link utilization is off (the default setting).
 
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
@@ -707,13 +637,13 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example enables adaptive routing with the default profile `ar-profile-1` on swp1 and swp2. Global link utilization is off (the default setting).
+The following example enables adaptive routing with the default profile for a switch with the Spectrum-4 ASIC (`ar-profile-2`) on swp1 and swp2. Global link utilization is off (the default setting).
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
 ## Global adaptive-routing enable/disable setting 
 adaptive_routing.enable = TRUE 
-adaptive_routing.profile = ar-profile-1 
+adaptive_routing.profile = ar-profile-2 
 adaptive_routing.link_util_threshold_disabled = TRUE
 
 ## Per-port configuration for adaptive-routing 

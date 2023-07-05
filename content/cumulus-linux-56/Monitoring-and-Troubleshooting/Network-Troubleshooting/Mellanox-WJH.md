@@ -10,7 +10,7 @@ toc: 4
 
 {{%notice note%}}
 - Packet drop monitoring is available on a switch with Spectrum-2 and later.
-- Packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN">}}.
+- Packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN">}}.
 {{%/notice%}}
 
 ## Configure WJH

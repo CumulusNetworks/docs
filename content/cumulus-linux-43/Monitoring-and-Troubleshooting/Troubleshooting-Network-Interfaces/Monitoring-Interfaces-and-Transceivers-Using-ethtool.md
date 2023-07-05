@@ -104,6 +104,10 @@ Cleared counters
 | `-t <tag name>`|Saves statistics with `<tag name>`. |
 | `-v`|Prints `cl-netstat` version and exits. |
 
+{{%notice note%}}
+On Mellanox switches, Cumulus Linux updates physical counters to the kernel every two seconds and virtual interfaces (such as VLAN interfaces) every ten seconds. You cannot change these values. Because the update process takes a lower priority than other `switchd` processes, the interval might be longer when the system is under a heavy load.
+{{%/notice%}}
+
 ## Monitor Switch Port SFP/QSFP Hardware Information Using ethtool
 
 To see hardware capabilities and measurement information on the SFP or QSFP module installed in a particular port, use the `ethtool -m` command. If the SFP/QSFP supports Digital Optical Monitoring (that is, the `Optical diagnostics support` field in the output below is set to *Yes*), the optical power levels and thresholds are also printed below the standard hardware details.

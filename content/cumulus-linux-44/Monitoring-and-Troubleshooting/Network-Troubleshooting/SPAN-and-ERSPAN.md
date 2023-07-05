@@ -28,6 +28,7 @@ You can configure SPAN and ERSPAN in one of the following ways:
 - ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination or next hop does not already exist in the kernel, you need to manually resolve this before sending mirrored traffic (use `ping` or `arping`).
 - Mirroring to the same interface that you are monitoring causes a recursive flood of traffic and might impact traffic on other interfaces.
 - Cumulus VX does not support ACL rules for SPAN, ERSPAN, or port mirroring. To capture packets in Cumulus VX, use the `tcpdump` command line network traffic analyzer.
+- When capturing bridged traffic in SPAN to CPU scenarios if RX and TX port of a flow are specified in the same session only a single copy of the frame is captured.
 {{%/notice%}}
 
 ## NCLU Configuration
@@ -324,10 +325,11 @@ To configure SPAN for all packets going out of `bond0` locally to `bond1`:
    ```
 
    {{%notice note%}}
-Using `cl-acltool` with the `--out-interface` rule applies to transit traffic only; it does not apply to traffic sourced from the switch.
+- Using `cl-acltool` with the `--out-interface` rule applies to transit traffic only; it does not apply to traffic sourced from the switch.
+- When capturing bridged traffic in SPAN to CPU scenarios if RX and TX port of a flow are specified in the same session only a single copy of the frame is captured.
 {{%/notice%}}
 
-2. Install the rules:
+3. Install the rules:
 
    ```
    cumulus@switch:~$ sudo cl-acltool -i
@@ -342,7 +344,7 @@ Using `cl-acltool` with the `--out-interface` rule applies to transit traffic on
    done.
    ```
 
-3. Verify that you installed the SPAN rules:
+4. Verify that you installed the SPAN rules:
 
    ```
    cumulus@switch:~$ sudo iptables -L -v | grep SPAN

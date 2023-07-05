@@ -9,9 +9,11 @@ toc: 1
 This page summarizes new features and improvements for the NetQ {{<version>}} release. For a complete list of open and fixed issues, see the {{<link title="NVIDIA NetQ 4.7 Release Notes" text="release notes">}}.
 
 <!-- vale off -->
-## What's New in NetQ 4.6.0
+## What's New in NetQ 4.7.0
 <!-- vale on -->
-NetQ 4.6.0 includes the following new features and improvements:
+NetQ 4.7.0 includes the following new features and improvements:
+
+- You can now create workbenches that are tied to an individual premises. The cards on this workbench can be customized to reflected one or multiple premises.
 
 - Lifecycle management support for cloud deployments running the on-switch OPTA service. {{<link title="Install On-switch OPTA#configure-the-lcm-executor" text="Configure the LCM executor">}} on a switch that is running OPTA to enable switch discovery, upgrades, and decommissions; install Netq Agents and the command line interface; and run a flow analysis.
 - Full support for {{<link title="PTP" text="Precision Time Protocol monitoring">}} via the UI and CLI.

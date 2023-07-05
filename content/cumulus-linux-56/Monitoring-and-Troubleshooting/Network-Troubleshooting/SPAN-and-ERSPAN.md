@@ -230,7 +230,7 @@ Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic
 
 {{%notice note%}}
 - Cumulus Linux does not support egress mirroring for control plane generated traffic to the CPU port.
-- When you use an `cl-acltool` rule to set the CPU port as a SPAN destination interface, the rule applies on both ingress and egress. For packets that match the rule on *both* ingress and egress, Cumulus Linux mirrors the traffic only once to the destination interface.
+- When you set the CPU port as a SPAN destination interface, Cumulus Linux mirrors packets that match the rule on *both* ingress and egress only once to the destination interface.
 {{%/notice%}}
 
 {{< tabs "TabID271 ">}}

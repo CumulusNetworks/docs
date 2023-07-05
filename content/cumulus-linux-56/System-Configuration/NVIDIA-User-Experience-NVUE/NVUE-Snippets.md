@@ -319,6 +319,24 @@ Flexible snippets are an extension of traditional snippets that let you manage a
 
 To configure and manage flexible snippets, your user account must be in the sudo group, which includes the NVUE `system-admin` role, or you must be the root user.
 
+You can use flexible snippets to add configuration to the following files:
+
+| Filename  | Description |
+| --------- | ----------- |
+|`/etc/cumulus/csmgrd` | Configuration file for `csmgrctl` commands. |
+|`/etc/default/isc-dhcp-relay-<VRF>`| Configuration file for DHCP relay. Changes to this file require a `dhcrelay@<VRF>.service` restart. |
+|`/etc/resolv.conf`| Configuration file for DNS resolution.|
+|`/etc/hosts`| Configuration file for the hostname of the switch. |
+|`/etc/default/isc-dhcp-server-<VRF>`| Configuration file for DHCP servers. Changes to this file require a `dhcpd@<VRF>.service` restart. |
+|`/etc/default/isc-dhcp-server6-<VRF>`| Configuration file for DHCP servers for IPv6. Changes to this file require a `dhcpd6@<VRF>.service` restart |
+|`/etc/dhcp/dhcpd-<VRF>.conf`| Configuration file for the `dhcpd` service. Changes to this file require a `dhcpd@<VRF>.service` restart|
+|`/etc/dhcp/dhcpd6-<VRF>.conf`| Configuration file for the `dhcpd` service for IPv6. Changes to this file require a `dhcpd6@<VRF>.service` restart |
+|`/etc/ntp.conf`| Configuration file for NTP servers. Changes to this file require an `ntp` service restart.|
+|`/etc/default/isc-dhcp-relay6-<VRF>`| Configuration file for DHCP relay for IPv6. Changes to this file require a `dhcrelay6@<VRF>.service` restart.|
+|`etc/snmp/snmpd.conf`| Configuration file for SNMP. Changes to this file require an `snmpd` restart.|
+|`/etc/cumulus/datapath/traffic.conf`| Configuration file for forwarding table profiles. Changes to this file require a `switchd` restart.|
+|`/etc/cumulus/switchd.conf`| Configuration file for `switchd`. Changes to this file require a `switchd` restart. |
+
 Flexible snippets do *not* support:
 - Binary files.
 - Symbolic links.
@@ -326,12 +344,10 @@ Flexible snippets do *not* support:
 - More than one flexible snippet in the same destination file.
 
 {{%notice warning%}}
-
 Use caution when creating flexible snippets:
 - If you configure flexible snippets incorrectly, they might impact switch functionality. For example, even though flexible snippet validation allows you to only add textual content, Cumulus Linux does not prevent you from creating a flexible snippet that adds to sensitive text files, such as `/boot/grub.cfg` and `/etc/fstab`  or add corrupt contents. Such snippets might render the switch unusable or create a potential security vulnerability (the NVUE service (`nvued`) runs with superuser privileges).
 - Do not add flexible snippets to configuration files that NVUE already controls, such as the `/etc/hosts`, `/etc/ntp.conf`, or `/etc/ptp4l.conf` files. Cumulus Linux does not prevent you from creating and applying a flexible snippet to these files and does not show warnings or errors. Cumulus Linux might accept the snippet content without adding it in the file. For a list of the files that NVUE manages, refer to {{<link url="NVUE-CLI/#configuration-files-that-nvue-manages" text="Configuration Files that NVUE Manages">}}.
 - Do not manually update configuration files to which you add flexible snippets.
-
 {{%/notice%}}
 
 To create flexible snippets:

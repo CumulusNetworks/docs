@@ -13,7 +13,7 @@ Workbenches are dashboards where you can visualize and curate different aspects 
 
 NVIDIA provides an example workbench that opens when you first log in to NetQ, called NetQ Workbench. It includes cards displaying your network's device inventory, switch inventory, validation summary, What Just Happened events, host inventory, DPU inventory, and system events. This workbench is visible to all users wtihin an organization and any changes to it will not be saved.
 
-{{<figure src="/images/netq/default-wb-460.png" alt="default netq workbench" width="900">}}
+{{<figure src="/images/netq/default-wb-460.png" alt="default netq workbench" width="1000">}}
 
 ## Create a Custom Workbench
 
@@ -27,7 +27,7 @@ You can create an unlimited number of custom workbenches. These workbenches are 
 Refer to the {{<link title="Configure Premises" text="premises management chapter">}} for more information about setting up and managing data between multiple premises.
 {{</notice>}}
 
-3. (Optional) Set the workbench as your home workbench, which is displayed when you log in to NetQ.
+3. (Optional) Set the workbench as your home workbench, which is displayed when you log in to NetQ from the same premises.
 
 4. Select the cards you would like displayed on your new workbench.
 

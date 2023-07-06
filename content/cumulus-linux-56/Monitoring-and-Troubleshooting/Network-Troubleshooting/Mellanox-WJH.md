@@ -162,6 +162,11 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 
 ## Considerations
 
+<!--### Buffer Drop Monitoring
+
+- Buffer drop monitoring is available on a switch with Spectrum-2 and later.
+- Buffer drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN">}}.-->
+
 ### Cumulus Linux and Docker
 
 WJH runs in a Docker container. By default, when Docker starts, it creates a bridge called `docker0`. However, for compatibility reasons Cumulus Linux disables the `docker0` bridge in the `/etc/docker/daemon.json` file with the attribute `"bridge: none"`.

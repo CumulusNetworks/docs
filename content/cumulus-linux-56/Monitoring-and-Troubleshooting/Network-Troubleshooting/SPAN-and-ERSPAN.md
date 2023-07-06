@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 1145
 toc: 4
 ---
-<span style="background-color:#F5F5DC">[SPAN](## "Switched Port Analyzer")</span> enables you to mirror all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet goes out of the MTP.
-
-<span style="background-color:#F5F5DC">[ERSPAN](## "Encapsulated Remote SPAN")</span> enables the mirrored packets to go to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by looking up the destination IP address in its routing table. The switch encapsulates the original layer 2 packet with GRE for IP delivery. The encapsulated packets have the following format:
+Cumulus Linux supports both <span style="background-color:#F5F5DC">[SPAN](## "Switched Port Analyzer")</span> and <span style="background-color:#F5F5DC">[ERSPAN](## "Encapsulated Remote SPAN")</span>.
+- SPAN mirrors all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet goes out of the MTP.
+- ERSPAN sends the mirrored packets to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by looking up the destination IP address in its routing table. The switch encapsulates the original layer 2 packet with GRE for IP delivery. The encapsulated packets have the following format:
 
 ```
  ----------------------------------------------------------
@@ -14,20 +14,25 @@ toc: 4
  ----------------------------------------------------------
 ```
 
-To reduce the volume of copied data, you can configure SPAN and ERSPAN traffic rules to limit the traffic you mirror. You can limit traffic according to:
+To reduce the volume of data, you can truncate the mirrored frames at a specified number of bytes. You can also configure SPAN and ERSPAN traffic rules (ACLs) to limit the traffic you mirror. You can limit traffic according to:
 - Source or destination IP address
 - IP protocol
 - TCP or UDP source or destination port
 - TCP flags
-- An ingress port or wildcard (swp+)
+- An ingress port
 
-You can configure SPAN and ERSPAN with NVUE commands or with ACL rules. If you are an advanced user, you can {{<link url="#manual-configuration-advanced" text="edit the /etc/cumulus/switchd.d/port-mirror.conf file">}}.
+You can configure SPAN and ERSPAN with either NVUE commands or `cl-acltool` rules. If you are an advanced user, you can {{<link url="#manual-configuration-advanced" text="edit the /etc/cumulus/switchd.d/port-mirror.conf file">}}.
+
+{{%notice note%}}
+Do not run both NVUE commands and `cl-acltool` at the same time to configure SPAN and ERSPAN.
+{{%/notice%}}
 
 {{%notice note%}}
 - On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
 - Multiple SPAN sources can point to the same SPAN destination, but a SPAN source *cannot* specify two SPAN destinations.
 - Cumulus Linux does not support IPv6 ERSPAN destinations.
 - You cannot use eth0 as a destination.
+- You cannot mirror packets that *egress* a bond interface (such as bond1); you can only mirror packets that *egress* bond members (such as swp1, swp2 and so on).
 - Mirrored traffic is not guaranteed. A congested MTP results in discarded mirrored packets.
 - A oversubscribed SPAN and ERSPAN destination interface might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN and ERSPAN when the aggregate speed of all source ports exceeds the destination port.
 - ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination or next hop does not already exist in the kernel, you need to manually resolve this before sending mirrored traffic (use `ping` or `arping`).
@@ -35,12 +40,23 @@ You can configure SPAN and ERSPAN with NVUE commands or with ACL rules. If you a
 - Cumulus VX does not support ACL-based SPAN, ERSPAN, or port mirroring. To capture packets in Cumulus VX, use the `tcpdump` command line network traffic analyzer.
 {{%/notice%}}
 
+<!-- - WJH buffer drop monitoring uses a SPAN destination; if you configure {{<link title="What Just Happened (WJH)" >}}, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type.-->
+
 ## SPAN
+
+This section describes how to configure SPAN on your switch.
 
 {{< tabs "TabID32 ">}}
 {{< tab "NVUE Commands ">}}
 
+To configure SPAN with NVUE, run the `nv set system port-mirror session <session-id> span <option>` command.
+
 SPAN configuration with NVUE requires a session ID, which is a number between 0 and 7.
+
+You can set the following SPAN options:
+- Source port
+- Destination port
+- Direction (ingress or egress)
 
 The NVUE commands save the configuration in the `/etc/cumulus/switchd.d/port-mirror.conf` file.
 
@@ -61,6 +77,15 @@ The following example commands mirror all packets that go out of swp1, and copy 
 cumulus@switch:~$ nv set system port-mirror session 1 span direction egress
 cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1
 cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands mirror packets from all ports to swp53:
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port ANY
+cumulus@switch:~$ nv set system port-mirror session 1 span destination swp53
 cumulus@switch:~$ nv config apply
 ```
 
@@ -97,12 +122,25 @@ cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
 
+The following example matches UDP packets coming in on bond1. When a match occurs, the traffic mirrors to swp53.
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port bond1
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip protocol udp
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv set system port-mirror session 1 span destination swp53
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "cl-acltool Configuration ">}}
 
 {{%notice note%}}
 - Always place your rule files in the `/etc/cumulus/acl/policy.d/` directory.
 - Using `cl-acltool` with the `--out-interface` rule applies to transit traffic only; it does not apply to traffic sourced from the switch.
+- `--out-interface` rules cannot target bond interfaces, only the bond members tied to them. For example, to mirror all packets going out of bond1 to swp53, where bond1 members are swp1 and swp2, create the rule `-A FORWARD --out-interface swp1,swp2 -j SPAN --dport swp53`.
 {{%/notice%}}
 
 1. Create a rules file in the `/etc/cumulus/acl/policy.d/` directory. The following example mirrors swp1 input traffic and swp4 output traffic to destination swp2.
@@ -143,7 +181,7 @@ Do not run the `cl-acltool -i` command with `-P` option: `sudo cl-acltool -i  -P
 SPAN sessions that reference an outgoing interface create the mirrored packets according to the ingress interface before the routing decision. For example, the following rule captures traffic that is ultimately destined to leave swp1 but mirrors the packets when they arrive on swp49. The rule transmits packets that reference the original VLAN tag, and source and destination MAC address at the time that swp49 originally receives the packet.
 
 ```
--A FORWARD --out-interface swp1 -j SPAN --dport swp2
+-A FORWARD --out-interface swp1 -j SPAN --dport swp49
 ```
 
 ### Example Rules
@@ -184,11 +222,6 @@ To capture traffic that is received on bond1 and mirror the packets when on swp5
 -A FORWARD --in-interface bond1 -j SPAN --dport swp53
 ```
 
-{{%notice note%}}
-- Using `cl-acltool` with the `--out-interface` rule applies to transit traffic only; it does not apply to traffic sourced from the switch.
-- `--out-interface` rules cannot target bond interfaces, only the bond members tied to them. For example, to mirror all packets going out of bond1 to swp53, where bond1 members are swp1 and swp2, create the rule `-A FORWARD --out-interface swp1,swp2 -j SPAN --dport swp53`.
-{{%/notice%}}
-
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -199,7 +232,8 @@ You can set the CPU port as a SPAN destination interface to mirror data plane tr
 Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic does not overwhelm the CPU.
 
 {{%notice note%}}
-Cumulus Linux does not support egress mirroring for control plane generated traffic to the CPU port.
+- Cumulus Linux does not support egress mirroring for control plane generated traffic to the CPU port.
+- When you set the CPU port as a SPAN destination interface, Cumulus Linux mirrors packets that match the rule on *both* ingress and egress only once to the destination interface.
 {{%/notice%}}
 
 {{< tabs "TabID271 ">}}
@@ -273,11 +307,11 @@ To configure ERSPAN with NVUE, run the `nv set system port-mirror session <sessi
 ERSPAN configuration requires a session ID, which is a number between 0 and 7.
 
 You can set the following ERSPAN options:
-- Source port (`source-port`)
-- Destination port (`destination`)
-- Direction (`ingress` or `egress`)
-- Source IP address for ERSPAN encapsulation (`destination source-ip`)
-- Destination IP address for ERSPAN encapsulation (`destination dest-ip`)
+- Source port
+- Destination port
+- Direction (ingress or egress)
+- Source IP address for ERSPAN encapsulation
+- Destination IP address for ERSPAN encapsulation
 
 You can also truncate the mirrored frames at specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4.
 

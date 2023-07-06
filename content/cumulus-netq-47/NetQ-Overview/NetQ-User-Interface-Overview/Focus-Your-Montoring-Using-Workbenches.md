@@ -88,4 +88,4 @@ To disable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-I
 ## Related Information
 
 - {{<link title="Configure Premises" text="Configure Premises">}}
-- {{<link title="Access Data with Cards" text="Acess Data with Cards">}}
+- {{<link title="Access Data with Cards" text="Access Data with Cards">}}

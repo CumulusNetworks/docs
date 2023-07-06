@@ -14,23 +14,9 @@ Cumulus Linux supports both <span style="background-color:#F5F5DC">[SPAN](## "Sw
  ----------------------------------------------------------
 ```
 
-{{%notice note%}}
-- On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
-- WJH buffer drop monitoring uses a SPAN destination; if you configure {{<link title="What Just Happened (WJH)" >}}, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type.
-- Multiple SPAN sources can point to the same SPAN destination, but a SPAN source *cannot* specify two SPAN destinations.
-- Cumulus Linux does not support IPv6 ERSPAN destinations.
-- You cannot use eth0 as a destination.
-- You cannot mirror packets that *egress* a bond interface (such as bond1); you can only mirror packets that *egress* bond members (such as swp1, swp2 and so on).
-- Mirrored traffic is not guaranteed. A congested MTP results in discarded mirrored packets.
-- A oversubscribed SPAN and ERSPAN destination interface might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN and ERSPAN when the aggregate speed of all source ports exceeds the destination port.
-- ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination or next hop does not already exist in the kernel, you need to manually resolve this before sending mirrored traffic (use `ping` or `arping`).
-- Mirroring to the same interface that you are monitoring causes a recursive flood of traffic and might impact traffic on other interfaces.
-- Cumulus VX does not support ACL-based SPAN, ERSPAN, or port mirroring. To capture packets in Cumulus VX, use the `tcpdump` command line network traffic analyzer.
-{{%/notice%}}
-
 ## SPAN
 
-To configure SPAN to mirror ports on your switch:
+To configure SPAN to mirror ports on your switch, you create a port mirror session:
 
 {{< tabs "TabID43 ">}}
 {{< tab "NVUE Commands ">}}
@@ -70,7 +56,16 @@ To mirror packets from all ports to swp53:
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
-cumulus@switch:~$ nv set system port-mirror session 1 span source-port ANY
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1-54
+cumulus@switch:~$ nv set system port-mirror session 1 span destination swp53
+cumulus@switch:~$ nv config apply
+```
+
+To mirror all packets received on bond1, and copy and transmit the packets to swp53 for monitoring:
+
+```
+cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port bond1
 cumulus@switch:~$ nv set system port-mirror session 1 span destination swp53
 cumulus@switch:~$ nv config apply
 ```
@@ -180,7 +175,9 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Create a file in the `/etc/cumulus/acl/policy.d/` directory and add the rule. The following example matches on swp1 ingress traffic that has the source IP address 10.10.1.1. When a match occurs, the traffic mirrors to the CPU:
+1. Create a file in the `/etc/cumulus/acl/policy.d/` directory and add the rules.
+
+   To match swp1 ingress traffic that has the source IP address 10.10.1.1 and mirror the traffic to the CPU when a match occurs:
 
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/span-cpu.rules
@@ -188,19 +185,17 @@ cumulus@switch:~$ nv config apply
      -A FORWARD -i swp1 -s 10.10.1.1 -j SPAN --dport cpu
    ```
 
+   To match swp1 egress traffic that has the source IP address 10.10.1.1 and mirror the traffic to the CPU when a match occurs:
+
+   ```
+   -A FORWARD -o swp1 -s 10.10.1.1 -j SPAN --dport cpu
+   ```
+
 2. Install the rule:
 
    ```
    cumulus@switch:~$ sudo cl-acltool -i
    ```
-
-### Example Rules
-
-To match on swp1 egress traffic that has the source IP address 10.10.1.1 and mirror the traffic to the CPU when a match occurs:
-
-```
--A FORWARD -o swp1 -s 10.10.1.1 -j SPAN --dport cpu
-```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -461,6 +456,7 @@ cumulus@switch:~$ nv config apply
      ```
 
      `src-ip` can be any IP address, even if it does not exist in the routing table.
+
      `dst-ip` must be an IP address reachable through the routing table and front-panel port (not the management port) or SVI. Use ping or ip route get <ip> to verify that the destination IP address is reachable.
 
 2. Install the rules:
@@ -538,3 +534,17 @@ You can also run the `sudo cl-acltool -L all | grep SPAN` or `sudo cl-acltool -L
 cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
     0     0 SPAN       all  --  any    swp1    10.10.1.1            anywhere             /* rule_id:1,acl_name:EXAMPLE1,dir:outbound,interface_id:swp1 */ dport:cpu
 ```
+
+## Limitations
+
+- On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
+- WJH buffer drop monitoring uses a SPAN destination; if you configure {{<link title="What Just Happened (WJH)" >}}, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type.
+- Multiple SPAN sources can point to the same SPAN destination, but a SPAN source *cannot* specify two SPAN destinations.
+- Cumulus Linux does not support IPv6 ERSPAN destinations.
+- You cannot use eth0 as a destination.
+- You cannot mirror packets that *egress* a bond interface (such as bond1); you can only mirror packets that *egress* bond members (such as swp1, swp2 and so on).
+- Mirrored traffic is not guaranteed. A congested MTP results in discarded mirrored packets.
+- A oversubscribed SPAN and ERSPAN destination interface might result in data plane buffer depletion and buffer drops. Exercise caution when enabling SPAN and ERSPAN when the aggregate speed of all source ports exceeds the destination port.
+- ERSPAN does not cause the kernel to send ARP requests to resolve the next hop for the ERSPAN destination. If an ARP entry for the destination or next hop does not already exist in the kernel, you need to manually resolve this before sending mirrored traffic (use `ping` or `arping`).
+- Mirroring to the same interface that you are monitoring causes a recursive flood of traffic and might impact traffic on other interfaces.
+- Cumulus VX does not support ACL-based SPAN, ERSPAN, or port mirroring. To capture packets in Cumulus VX, use the `tcpdump` command line network traffic analyzer.

@@ -4,14 +4,14 @@ author: NVIDIA
 weight: 130
 toc: 4
 ---
-Workbenches are dashboards where you can visualize and curate different aspects of your network {{<link text="with cards" url="Access-Data-with-Cards">}}. For example, you might create a workbench that:
+Workbenches are dashboards where you can visualize and curate data representing different aspects of your network. For example, you might create a workbench that:
 
 - Shows network statistics for the past week alongside network statistics for the past 24 hours.
 - Only displays data about virtual overlays.
 - Displays switches that you are troubleshooting.
 - Is focused on application or account management.
 
-NVIDIA provides an example workbench that opens when you first log in to NetQ, called NetQ Workbench. It includes cards displaying your network's device inventory, switch inventory, validation summary, What Just Happened events, host inventory, DPU inventory, and system events. This workbench is visible to all users wtihin an organization and any changes to it will not be saved.
+NVIDIA provides an example workbench that opens when you first log in to NetQ, called NetQ Workbench. It includes cards displaying your network's device inventory, switch inventory, validation summary, What Just Happened events, host inventory, DPU inventory, and system events. This workbench is visible to all users within an organization and any changes to it will not be saved.
 
 {{<figure src="/images/netq/default-wb-460.png" alt="default netq workbench" width="1000">}}
 
@@ -27,16 +27,16 @@ You can create an unlimited number of custom workbenches. These workbenches are 
 Refer to the {{<link title="Configure Premises" text="premises management chapter">}} for more information about setting up and managing data between multiple premises.
 {{</notice>}}
 
-3. (Optional) Set the workbench as your home workbench, which is displayed when you log in to NetQ from the same premises.
+3. (Optional) Set the workbench as your home workbench, which opens when you log in to NetQ from the same premises.
 
 4. Select the cards you would like displayed on your new workbench.
 
-      {{<figure src="/images/netq/create-a-workbench.png" alt="interface displaying the cards a user can select to add to their workbench" width="800">}}
+      {{<figure src="/images/netq/new-wb-470.png" alt="interface displaying the cards a user can select to add to their workbench" width="800">}}
 
 4. Click **Create**.
 
 {{<notice tip>}}
-You can clone a workbench to quickly create a workbench with the same cards as the one you're viewing. In the header, select <b>Clone</b>, modify the workbench settings, then click <b>Clone</b>.
+You can clone a workbench to quickly create a new workbench with the same cards as the one you're viewing. In the header, select <b>Clone</b>, modify the workbench settings, then click <b>Clone</b>.
 {{</notice>}}
 
 ## Switch Between Workbenches
@@ -50,11 +50,14 @@ There are several ways to access workbenches:
 
 ## Edit a Workbench
 
-The changes you make to a workbench are saved automatically. To change a workbench from local to global (or global to local) availability, select <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> next to the current workbench and select **Manage my WB**. Locate the workbench whose availability you'd like to edit and select **Local** or **Global**.
+The changes you make to a workbench are saved automatically. To change a workbench from local to global (or global to local) availability, select <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> next to the current workbench and select **Manage my WB**. Locate the workbench whose availability you'd like to change and select **Local** or **Global**.
+
+To change your home workbench, select the <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> next to the current workbench and select **Manage my WB**. On the Workbenches card, hover over the workbench you'd like to set as your home workbench and select {{<img src="/images/netq/home-workbench.png" width="18px">}} **Home**. The next time you log in from this premises, the workbench you selected will be displayed.
+{{<figure src="/images/netq/new-home-wb-470.png" alt="" width="900">}}
 
 ## Delete a Workbench
 
-You can only delete workbenches that you created. The default NetQ Workbench cannot be deleted. To delete a workbench:
+You can only delete workbenches that you created. The NVIDIA-supplied NetQ Workbench cannot be deleted. When you delete a workbench that you have designated as your home workbench, the NetQ Workbench will replace it as the home workbench. To delete a workbench:
 
 1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="profile icon" height="18" width="18"/> **User Settings** in the top-right corner.
 
@@ -85,3 +88,4 @@ To disable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-I
 ## Related Information
 
 - {{<link title="Configure Premises" text="Configure Premises">}}
+- {{<link title="Access Data with Cards" text="Acess Data with Cards">}}

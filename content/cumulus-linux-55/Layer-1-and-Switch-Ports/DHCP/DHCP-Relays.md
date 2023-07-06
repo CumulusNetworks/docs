@@ -258,7 +258,7 @@ To use the gateway IP address as the source IP address:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay default source-ip gateway
+cumulus@leaf01:~$ nv set service dhcp-relay default source-ip giaddress
 cumulus@leaf01:~$ nv config apply
 ```
 

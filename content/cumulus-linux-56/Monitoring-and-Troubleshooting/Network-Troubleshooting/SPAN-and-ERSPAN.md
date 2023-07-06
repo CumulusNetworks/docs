@@ -29,7 +29,6 @@ Do not run both NVUE commands and `cl-acltool` at the same time to configure SPA
 
 {{%notice note%}}
 - On a switch with the Spectrum-2 ASIC or later, Cumulus Linux supports four SPAN destinations in atomic mode or eight SPAN destinations in non-atomic mode. On a switch with the Spectrum 1 ASIC, Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
-- WJH packet drop monitoring uses a SPAN destination; if you configure {{<link title="What Just Happened (WJH)" >}}, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type.
 - Multiple SPAN sources can point to the same SPAN destination, but a SPAN source *cannot* specify two SPAN destinations.
 - Cumulus Linux does not support IPv6 ERSPAN destinations.
 - You cannot use eth0 as a destination.
@@ -40,6 +39,8 @@ Do not run both NVUE commands and `cl-acltool` at the same time to configure SPA
 - Mirroring to the same interface that you are monitoring causes a recursive flood of traffic and might impact traffic on other interfaces.
 - Cumulus VX does not support ACL-based SPAN, ERSPAN, or port mirroring. To capture packets in Cumulus VX, use the `tcpdump` command line network traffic analyzer.
 {{%/notice%}}
+
+<!-- - WJH buffer drop monitoring uses a SPAN destination; if you configure {{<link title="What Just Happened (WJH)" >}}, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type.-->
 
 ## SPAN
 

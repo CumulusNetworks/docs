@@ -50,7 +50,7 @@ Edit the `/etc/what-just-happened/what-just-happened.json` file:
 
 After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
 
-The following example configures two separate channels (these are the default settings):
+The following example configures two separate channels:
 - The `forwarding` channel monitors layer 2, layer 3, and tunnel packet drops.
 - The `layer-1` channel monitors layer 1 packet drops.
 
@@ -85,8 +85,33 @@ cumulus@switch:~$ sudo systemctl restart what-just-happened
 {{< /tab >}}
 {{< /tabs >}}
 
-## Buffer and ACL Monitoring
+## Buffer and ACL Packet Drop Monitoring
 
+In addition to layer 1, layer 2, layer 3, and tunnel related issues, you can monitor buffer and ACL related issues. NVUE does not provide commands to set the buffer and ACL packet drop categories. You must edit the `/etc/what-just-happened/what-just-happened.json` file, then restart the `what-just-happened` service.
+
+The following example configures two separate channels:
+- The `buffer` channel monitors buffer packet drops.
+- The `acl` channel monitors ACL packet drops.
+
+```
+cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
+{
+    "what-just-happened": {
+        "channels": {
+            "buffer": {
+                "drop_category_list": ["buffer"]
+            },
+            "acl": {
+                "drop_category_list": ["acl"]
+            }
+        }
+    }
+}
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart what-just-happened
+```
 
 ## Show Information about Dropped Packets
 
@@ -100,6 +125,18 @@ To show information about packet drops for all the channels you configure, run t
 You can also show the WJH configuration on the switch:
 - To show the configuration for a channel, run the `nv show system wjh channel <channel>` command. For example, `nv show system wjh channel forwarding`.
 - To show the configuration for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command. For example, `nv show system wjh channel forwarding trigger`.
+
+The following example shows information about layer 1 packet drops:
+
+```
+cumulus@switch:~$ nv show system wjh packet-buffer
+#   dMAC  dPort  Dst IP:Port  EthType  Drop group  IP Proto  Drop reason - Recommended action                         Severity  sMAC  sPort    Src IP:Port  Timestamp              VLAN
+--  ----  -----  -----------  -------  ----------  --------  -------------------------------------------------------  --------  ----  -------  -----------  ---------------------  ----
+1   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp17    N/A          22/11/03 01:00:35.458  N/A
+2   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp18    N/A          22/11/03 01:00:35.458  N/A
+3   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp19    N/A          22/11/03 01:00:35.458  N/A
+4   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp20    N/A          22/11/03 01:00:35.458  N/A
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -116,25 +153,8 @@ You can run the following commands from the command line.
 
 Run the `what-just-happened -h` command to see all the WJH command options.
 
-{{< /tab >}}
-{{< /tabs >}}
-
-### Command Examples
-
 To show all dropped packets and the reason for the drop, run the NVUE `nv show system wjh packet-buffer` command or the `what-just-happened poll` command.
 
-The following example shows information about layer 1 packet drops:
-
-```
-cumulus@switch:~$ nv show system wjh packet-buffer
-#   dMAC  dPort  Dst IP:Port  EthType  Drop group  IP Proto  Drop reason - Recommended action                         Severity  sMAC  sPort    Src IP:Port  Timestamp              VLAN
---  ----  -----  -----------  -------  ----------  --------  -------------------------------------------------------  --------  ----  -------  -----------  ---------------------  ----
-1   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp17    N/A          22/11/03 01:00:35.458  N/A
-2   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp18    N/A          22/11/03 01:00:35.458  N/A
-3   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp19    N/A          22/11/03 01:00:35.458  N/A
-4   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp20    N/A          22/11/03 01:00:35.458  N/A
-
-```
 
 The following example shows that packets drop five times because the source MAC address equals the destination MAC address:
 
@@ -163,12 +183,15 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 4    21/06/16 12:03:12.745  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Considerations
 
-<!--### Buffer Drop Monitoring
+### Buffer Packet Drop Monitoring
 
-- Buffer drop monitoring is available on a switch with Spectrum-2 and later.
-- Buffer drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN">}}.-->
+- Buffer packet drop monitoring is available on a switch with Spectrum-2 and later.
+- Buffer packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN">}}.
 
 ### Cumulus Linux and Docker
 

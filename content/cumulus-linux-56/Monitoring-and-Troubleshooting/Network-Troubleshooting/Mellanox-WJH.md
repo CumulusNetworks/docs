@@ -15,7 +15,7 @@ You can choose which packet drops you want to monitor by creating channels and s
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example configures two separate channels (these are the default settings):
+The following example configures two separate channels:
 - The `forwarding` channel monitors layer 2, layer 3, and tunnel packet drops.
 - The `layer-1` channel monitors layer 1 packet drops.
 
@@ -88,6 +88,11 @@ cumulus@switch:~$ sudo systemctl restart what-just-happened
 ## Buffer and ACL Packet Drop Monitoring
 
 In addition to layer 1, layer 2, layer 3, and tunnel related issues, you can monitor buffer and ACL related issues. NVUE does not provide commands to set the buffer and ACL packet drop categories. You must edit the `/etc/what-just-happened/what-just-happened.json` file, then restart the `what-just-happened` service.
+
+{{%notice note%}}
+- Buffer packet drop monitoring is available on a switch with Spectrum-2 and later.
+- Buffer packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN">}}. If you need to remove the SPAN session, delete buffer monitoring from the `/etc/what-just-happened/what-just-happened.json` file and reload the `what-just-happened` service.
+{{%/notice%}}
 
 The following example configures two separate channels:
 - The `buffer` channel monitors buffer packet drops.
@@ -187,11 +192,6 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 {{< /tabs >}}
 
 ## Considerations
-
-### Buffer Packet Drop Monitoring
-
-- Buffer packet drop monitoring is available on a switch with Spectrum-2 and later.
-- Buffer packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN">}}.
 
 ### Cumulus Linux and Docker
 

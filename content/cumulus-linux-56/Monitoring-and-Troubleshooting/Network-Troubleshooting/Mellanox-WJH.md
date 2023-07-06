@@ -8,11 +8,6 @@ toc: 4
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-44" >}}).
 - The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, and tunnel related issues. Cumulus Linux enables and runs the WJH service by default.
 
-{{%notice note%}}
-- Packet drop monitoring is available on a switch with Spectrum-2 and later.
-- Packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN">}}.
-{{%/notice%}}
-
 ## Configure WJH
 
 You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories (layer 1, layer 2, layer 3, and tunnel) you want to monitor.
@@ -166,6 +161,11 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 ```
 
 ## Considerations
+
+<!--### Buffer Drop Monitoring
+
+- Buffer drop monitoring is available on a switch with Spectrum-2 and later.
+- Buffer drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN">}}.-->
 
 ### Cumulus Linux and Docker
 

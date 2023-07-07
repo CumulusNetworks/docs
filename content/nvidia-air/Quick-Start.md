@@ -230,3 +230,12 @@ For an account using a non-company email, a user is granted the following limits
 - 55GB memory
 - 350GB storage
 - 1 running simulation
+
+NVIDIA users are granted the following limits:
+
+- 100 vCPUs
+- 100GB memory
+- 1TB storage
+- 5 running simulations
+
+Individual user account resources are great for running demos and smaller simulations but to run larger simulations it is best to use {{<link title="Organizations">}}.

@@ -680,21 +680,25 @@ To enable PFC watchdog:
 Enable PFC watchdog on the interfaces where you enable PFC or link pause:
 
 ```
-cumulus@switch:~$ nv set interface swp1 qos pfc-watchdog state enabled
-cumulus@switch:~$ nv set interface swp3 qos pfc-watchdog state enabled
+cumulus@switch:~$ nv set interface swp1 qos pfc-watchdog state enable
+cumulus@switch:~$ nv set interface swp3 qos pfc-watchdog state enable
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `PFC WD` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+Edit the `PFC Watchdog Configuration` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 ```
 ...
-# PFC WD 
-pfc_watchdog.port_group_list = [pfc_wd_port_group] 
-pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp3
+# PFC Watchdog Configuration
+# Add the port to the port_group_list where you want to enable PFC Watchdog
+# It will enable PFC Watchdog on all the traffic-class corresponding to
+# the lossless switch-priority configured on the port.
+pfc_watchdog.port_group_list = [pfc_wd_port_group]
+pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp2
+...
 ```
 
 {{< /tab >}}
@@ -702,33 +706,36 @@ pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp3
 
 You can control the PFC watchdog polling interval. The default polling interval is 100 milliseconds.
 
-The following example sets the PFC watchdog polling interval to 20 milliseconds:
+The following example sets the PFC watchdog polling interval to 200 milliseconds:
 
 {{< tabs "TabID712 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set qos pfc-watchdog polling-interval 20
+cumulus@switch:~$ nv set qos pfc-watchdog polling-interval 200
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `PFC WD` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file and set the `pfc_watchdog.pfc_wd_poll-interval` parameter.
+Edit the `PFC Watchdog Configuration` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file and set the `pfc_watchdog.pfc_wd_poll-interval` parameter.
 
 ```
 ...
-# PFC WD 
+# PFC Watchdog Configuration
+# Add the port to the port_group_list where you want to enable PFC Watchdog
+# It will enable PFC Watchdog on all the traffic-class corresponding to
+# the lossless switch-priority configured on the port.
 pfc_watchdog.port_group_list = [pfc_wd_port_group] 
 pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp3
-pfc_watchdog.pfc_wd_poll-interval = 20
+pfc_watchdog.pfc_wd_poll-interval = 200
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-You can control how many polling intervals the PFC watchdog must wait (robustness) before it mitigates the storm condition. The default number of polling intervals is 3.
+You can control how many polling intervals the PFC watchdog must wait before it mitigates the storm condition. The default number of polling intervals is 3.
 
 The following example sets the number of polling intervals to 5:
 

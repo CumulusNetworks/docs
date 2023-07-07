@@ -13,12 +13,8 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale on -->
 NetQ 4.7.0 includes the following new features and improvements:
 
-- You can now create workbenches that are tied to an individual premises. The cards on this workbench can be customized to reflected one or multiple premises.
-
-- Lifecycle management support for cloud deployments running the on-switch OPTA service. {{<link title="Install On-switch OPTA#configure-the-lcm-executor" text="Configure the LCM executor">}} on a switch that is running OPTA to enable switch discovery, upgrades, and decommissions; install Netq Agents and the command line interface; and run a flow analysis.
-- Full support for {{<link title="PTP" text="Precision Time Protocol monitoring">}} via the UI and CLI.
-- Enhanced RoCE {{<link title="check/#netq-check-roce" text="validation checks">}} and {{<link title="RoCE" text="monitoring">}} for NVUE-enabled switches. The `netq check roce` command now checks for mismatches for switch priority, cable length, and congestion control.
-- Expanded {{<link title="Access Data with Cards#table-settings" text="table options">}} that allow you to export and download tables that exceed 10,000 rows as a CSV file.
+- {{<link title="Focus Your Monitoring Using Workbenches" text="Create workbenches">}} that can be accessed from an individual premises or that are available globally, across premises
+- {{<link title="Configure and Monitor What Just Happened/#suppress-events-with-filters" text="Create WJH suppression rules">}} based on IP addresses
 ## Upgrade Paths
 
 You can {{<link title="Upgrade NetQ" text="upgrade">}} directly to NetQ 4.7.0 if your deployment is currently running version 4.5.0 or later.

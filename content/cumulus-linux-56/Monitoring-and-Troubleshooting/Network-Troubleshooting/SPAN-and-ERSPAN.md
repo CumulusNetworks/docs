@@ -151,7 +151,7 @@ You can set the CPU port as a SPAN destination interface to mirror data plane tr
 
 Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic does not overwhelm the CPU.
 
-You configure he CPU port as the SPAN Destination with ACLs.
+You configure the CPU port as the SPAN destination with ACLs.
 
 To monitor traffic mirrored to the CPU, run the `tcpcdump -i mirror` command.
 

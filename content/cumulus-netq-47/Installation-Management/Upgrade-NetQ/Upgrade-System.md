@@ -6,6 +6,17 @@ toc: 4
 ---
 
 This page describes how to upgrade your NetQ virtual machines. Note that the upgrade instructions vary depending on NetQ version you’re currently running.
+
+<!--
+
+If your current NetQ version is:
+
+- **4.2.0 or earlier**: perform an incremental {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="upgrade to version 4.3.0">}} before you {{<link title="Upgrade NetQ" text="back up your data">}} and perform a new installation of NetQ 4.5.0. Then {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-4.5.0-or-later" text="follow the steps below">}}.
+- **4.3.0 to 4.4.1**: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-4.4.1-or-earlier" text="follow these steps">}}.
+- **4.5.0 or later**: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-4.5.0-or-later" text="Follow these steps">}}.
+
+-->
+
 ## Upgrading from NetQ 4.4.1 or Earlier
 
 Upgrading to NetQ 4.7.0 from a NetQ version below 4.5.0 requires a new installation of the NetQ virtual machine. Perform the following steps to upgrade:

@@ -127,15 +127,11 @@ If any issue occurs, contact the NVIDIA Support team.
 
 #### Upgrade Using the NetQ CLI
 
-Prepare your NetQ VM for the upgrade:
+1. Prepare your NetQ VM for the upgrade:
 
-1. Run the `netq bootstrap reset keep-db purge-images` command to clear the current install state and save the current database. 
+Run the `netq bootstrap reset keep-db purge-images` command to clear the current install state and save the current database.  In cluster deployments, run this command on the master and all worker VMs.
 
-2. In cluster deployments, run the command from step 1 on the master and all worker VMs.
-
-After completing the preparation steps, upgrade your NetQ on-premises or cloud VMs using the NetQ CLI. To upgrade your NetQ software:
-
-1. Run the appropriate `netq install` command for your deployment.
+2. Run the appropriate `netq install` command for your deployment.
 
 {{<tabs "CLI Upgrade">}}
 
@@ -150,7 +146,7 @@ cumulus@<hostname>:~$ netq install standalone full interface <interface-name> bu
 ```
 
 {{%notice note%}}
-You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `<interface-name>` above.
+You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
 {{%/notice%}}
 
 {{</tab>}}
@@ -174,7 +170,7 @@ cumulus@<hostname>:~$ netq install cluster full interface <interface-name> bundl
 ```
 
 {{%notice note%}}
-You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `<interface-name>` above.
+You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
 {{%/notice%}}
 
 {{</tab>}}
@@ -196,7 +192,7 @@ cumulus@<hostname>:~$ netq install opta standalone full interface <interface-nam
 ```
 
 {{%notice note%}}
-You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `<interface-name>` above.
+You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
 {{%/notice%}}
 {{</tab>}}
 
@@ -219,7 +215,7 @@ cumulus@<hostname>:~$ netq install opta cluster full interface <interface-name> 
 ```
 
 {{%notice note%}}
-You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `<interface-name>` above.
+You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
 {{%/notice%}}
 
 {{</tab>}}
@@ -230,7 +226,7 @@ You can specify the IP address instead of the interface name here: use `ip-addr 
 
 {{</tabs>}}
 
-2. After the upgrade command completes, confirm the upgrade was successful.
+3. After the upgrade command completes, confirm the upgrade was successful.
 
 On-premises VM:
 
@@ -251,5 +247,3 @@ Cloud VM:
     APPLIANCE_VERSION=4.6.0
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```
-
-```

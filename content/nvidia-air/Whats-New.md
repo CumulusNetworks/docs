@@ -7,12 +7,17 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## June 2023
+## July 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0706-012
+- Fixed an issue when deleting a topology associated with active simulations
+- Fixed an issue where links could be connected to the same interface on both ends
+<!-- Air:WhatsNew -->
+
+## June 2023
 ### 82.2023.0622-012
 - Fixed an issue that caused the oob-mgmt-switch to lose the default route after reboot
 - Increased resource budget limits for non-company emails
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0612-011
 - Fixed an error encountered by the agent when a node woke up from sleep

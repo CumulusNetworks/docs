@@ -8,27 +8,25 @@ Cumulus Linux supports both <span style="background-color:#F5F5DC">[SPAN](## "Sw
 - SPAN mirrors all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet goes out of the MTP.
 - ERSPAN sends the mirrored packets to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by looking up the destination IP address in its routing table. The switch encapsulates the original layer 2 packet with GRE for IP delivery. The encapsulated packets have the following format:
 
-```
- ----------------------------------------------------------
-| MAC_HEADER | IP_HEADER | GRE_HEADER | L2_Mirrored_Packet |
- ----------------------------------------------------------
-```
+  ```
+   ----------------------------------------------------------
+  | MAC_HEADER | IP_HEADER | GRE_HEADER | L2_Mirrored_Packet |
+   ----------------------------------------------------------
+  ```
 
 ## SPAN
 
-To configure SPAN to mirror ports on your switch, you create a port mirror session:
-
-{{< tabs "TabID43 ">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv set system port-mirror session <session-id> span <option>` command. The NVUE commands save the configuration in the `/etc/cumulus/switchd.d/port-mirror.conf` file.
-
-SPAN configuration with NVUE requires a session ID, which is a number between 0 and 7.
+To configure SPAN to mirror ports on your switch, you create a port mirror session. The session ID is a number between 0 and 7.
 
 You set the following SPAN options:
 - Source port
 - Destination port
 - Direction (ingress or egress)
+
+{{< tabs "TabID43 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set system port-mirror session <session-id> span <option>` command. The NVUE commands save the configuration in the `/etc/cumulus/switchd.d/port-mirror.conf` file.
 
 To reduce the volume of data, you can truncate the mirrored frames at a specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4.
 
@@ -51,6 +49,10 @@ cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1
 cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+SPAN sessions that reference an outgoing interface create the mirrored packets according to the ingress interface before the routing decision. For example, the above commands capture traffic that is ultimately destined to leave swp1 but mirrors the packets when they arrive on swp2. Packets that reference the original VLAN tag, and the source and destination MAC address transfer when swp2 originally receives the packet.
+{{%/notice%}}
 
 To mirror packets from all ports to swp53:
 
@@ -96,7 +98,9 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.d/port-mirror.conf` file. The following example configuration mirrors all packets received on swp1, and copies and transmits the packets to swp2 for monitoring:
+Edit the `/etc/cumulus/switchd.d/port-mirror.conf` file, then load the configuration.
+
+The following example configuration mirrors all packets received on swp1, and copies and transmits the packets to swp2 for monitoring:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/port-mirror.conf
@@ -127,75 +131,16 @@ mirror.session.1.dest = swp2
 mirror.session.1.type = span
 ```
 
-After you edit the configuration file, run the following command to the load the configuration:
+SPAN sessions that reference an outgoing interface create the mirrored packets according to the ingress interface before the routing decision. For example, the following rule captures traffic that is ultimately destined to leave swp1 but mirrors the packets when they arrive on swp49. The rule transmits packets that reference the original VLAN tag, and source and destination MAC address at the time that swp49 originally receives the packet.
 
 ```
-cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/switchd.d/port-mirror.conf -prefix mirror
+[session_1]
+session-id = 1
+mirror.session.1.direction = egress
+mirror.session.1.src = swp1
+mirror.session.1.dest = swp49
+mirror.session.1.type = span
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### CPU port as the SPAN Destination
-
-You can set the CPU port as a SPAN destination interface to mirror data plane traffic to the CPU. The SPAN traffic goes to a separate network interface mirror where you can analyze it with `tcpdump`. This is a useful feature if you do not have any free external ports on the switch for monitoring. SPAN traffic does not appear on switch ports.
-
-Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic does not overwhelm the CPU.
-
-To monitor traffic mirrored to the CPU, run the `tcpcdump -i mirror` command.
-
-{{%notice note%}}
-- Cumulus Linux does not support egress mirroring for control plane generated traffic to the CPU port.
-- When you set the CPU port as a SPAN destination interface, Cumulus Linux mirrors packets that match the rule on *both* ingress and egress only once to the destination interface.
-{{%/notice%}}
-
-{{< tabs "TabID271 ">}}
-{{< tab "NVUE Commands ">}}
-
-To match swp1 ingress traffic that has the source IP address 10.10.1.1 and mirror the traffic to the CPU when a match occurs:
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action span cpu
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip source-ip 10.10.1.1
-cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
-cumulus@switch:~$ nv config apply
-```
-
-To match swp1 egress traffic that has the source IP address 10.10.1.1 and mirror the traffic to the CPU when a match occurs:
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action span cpu
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip source-ip 10.10.1.1
-cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
-cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 outbound
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-1. Create a file in the `/etc/cumulus/acl/policy.d/` directory and add the rules.
-
-   To match swp1 ingress traffic that has the source IP address 10.10.1.1 and mirror the traffic to the CPU when a match occurs:
-
-   ```
-   cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/span-cpu.rules
-   [iptables]
-     -A FORWARD -i swp1 -s 10.10.1.1 -j SPAN --dport cpu
-   ```
-
-   To match swp1 egress traffic that has the source IP address 10.10.1.1 and mirror the traffic to the CPU when a match occurs:
-
-   ```
-   -A FORWARD -o swp1 -s 10.10.1.1 -j SPAN --dport cpu
-   ```
-
-2. Install the rule:
-
-   ```
-   cumulus@switch:~$ sudo cl-acltool -i
-   ```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -249,16 +194,16 @@ cumulus@switch:~$ nv config apply
 - `--out-interface` rules cannot target bond interfaces, only the bond members tied to them. For example, to mirror all packets going out of bond1 to swp53, where bond1 members are swp1 and swp2, create the rule `-A FORWARD --out-interface swp1,swp2 -j SPAN --dport swp53`.
 {{%/notice%}}
 
-1. Create a rules file in the `/etc/cumulus/acl/policy.d/` directory. The following example mirrors swp1 input traffic and swp4 output traffic to destination swp2.
+1. Create a rules file in the `/etc/cumulus/acl/policy.d/` directory. The following example rules mirror ICMP packets that ingress swp1 to swp54 and UDP packets that egress swp4 to swp53:
 
    ```
    cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/span.rules
    [iptables]
-   -A FORWARD --in-interface swp1 -j SPAN --dport swp2
-   -A FORWARD --out-interface swp4 -j SPAN --dport swp2
+   -A FORWARD --in-interface swp1 -p icmp -j SPAN --dport swp54
+   -A FORWARD --out-interface swp4 -p udp -j SPAN --dport swp53
    ```
 
-3. Install the rules:
+2. Install the rules:
 
    ```
    cumulus@switch:~$ sudo cl-acltool -i
@@ -268,17 +213,15 @@ cumulus@switch:~$ nv config apply
 Do not run the `cl-acltool -i` command with `-P` option. The `-P` option removes **all** existing control plane rules or other installed rules and only installs the rules defined in the specified file.
 {{%/notice%}}
 
-4. Verify that the you installed the SPAN rules:
+3. Verify that you installed the SPAN rules:
 
    ```
    cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
-   38025 7034K SPAN       all  --  swp1   any     anywhere             anywhere             dport:swp2
-   50832   55M SPAN       all  --  any    swp4    anywhere             anywhere             dport:swp2
+   38025 7034K SPAN       icmp --  swp1   any     anywhere             anywhere             dport:swp54
+   50832   55M SPAN       udp  --  any    swp4    anywhere             anywhere             dport:swp53
    ```
 
 ### Example Rules
-
-<!-- SPAN sessions that reference an outgoing interface create the mirrored packets according to the ingress interface before the routing decision. For example, the following rule captures traffic that is ultimately destined to leave swp1 but mirrors the packets when they arrive on swp49. The rule transmits packets that reference the original VLAN tag, and source and destination MAC address at the time that swp49 originally receives the packet.-->
 
 To mirror forwarded packets from all ports matching source IP address 20.0.1.0 and destination IP address 20.0.1.2 to port swp1:
 
@@ -313,21 +256,90 @@ To mirror all forwarded TCP packets with only FIN set:
 {{< /tab >}}
 {{< /tabs >}}
 
+### CPU port as the SPAN Destination
+
+You can set the CPU port as a SPAN destination interface to mirror data plane traffic to the CPU. The SPAN traffic goes to a separate network interface mirror where you can analyze it with `tcpdump`. This is a useful feature if you do not have any free external ports on the switch for monitoring. SPAN traffic does not appear on switch ports.
+
+Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic does not overwhelm the CPU.
+
+You configure the CPU port as the SPAN destination with ACLs.
+
+To monitor traffic mirrored to the CPU, run the `tcpcdump -i mirror` command.
+
+{{%notice note%}}
+- Cumulus Linux does not support egress mirroring for control plane generated traffic to the CPU port.
+- When you set the CPU port as a SPAN destination interface, Cumulus Linux mirrors packets that match the rule on *both* ingress and egress only once to the destination interface.
+{{%/notice%}}
+
+{{< tabs "TabID271 ">}}
+{{< tab "NVUE Commands ">}}
+
+To match swp1 ingress traffic that has the source IP address 10.10.1.1 and mirror the traffic to the CPU when a match occurs:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action span cpu
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip source-ip 10.10.1.1
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+To match swp1 egress traffic that has the source IP address 10.10.1.1 and mirror the traffic to the CPU when a match occurs:
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action span cpu
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip source-ip 10.10.1.1
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 outbound
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Create a file in the `/etc/cumulus/acl/policy.d/` directory and add rules.
+
+   To match swp1 ingress traffic that has the source IP address 10.10.1.1 and mirror the traffic to the CPU when a match occurs:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/span-cpu.rules
+   [iptables]
+     -A FORWARD -i swp1 -s 10.10.1.1 -j SPAN --dport cpu
+   ```
+
+   To match swp1 egress traffic that has the source IP address 10.10.1.1 and mirror the traffic to the CPU when a match occurs:
+
+   ```
+   -A FORWARD -o swp1 -s 10.10.1.1 -j SPAN --dport cpu
+   ```
+
+2. Install the rule:
+
+   ```
+   cumulus@switch:~$ sudo cl-acltool -i
+   ```
+
+   {{%notice warning%}}
+Do not run the `cl-acltool -i` command with `-P` option. The `-P` option removes **all** existing control plane rules or other installed rules and only installs the rules defined in the specified file.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## ERSPAN
+
+To configure ERSPAN to mirror ports on your switch, you create a port mirror session. The session ID is a number between 0 and 7.
+
+You can set the following ERSPAN options:
+- Source port
+- Direction (ingress or egress)
+- Source IP address for ERSPAN encapsulation
+- Destination IP address for ERSPAN encapsulation
 
 {{< tabs "TabID347 ">}}
 {{< tab "NVUE Commands ">}}
 
-To configure ERSPAN with NVUE, run the `nv set system port-mirror session <session-id> erspan <option>` command. The NVUE commands save the configuration in the `/etc/cumulus/switchd.d/port-mirror.conf` file.
-
-ERSPAN configuration requires a session ID, which is a number between 0 and 7.
-
-You can set the following ERSPAN options:
-- Source port
-- Destination port
-- Direction (ingress or egress)
-- Source IP address for ERSPAN encapsulation
-- Destination IP address for ERSPAN encapsulation
+Run the `nv set system port-mirror session <session-id> erspan <option>` command. The NVUE commands save the configuration in the `/etc/cumulus/switchd.d/port-mirror.conf` file.
 
 To reduce the volume of data, you can truncate the mirrored frames at a specified number of bytes. The size must be between 4 and 4088 bytes and a multiple of 4.
 
@@ -374,7 +386,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.d/port-mirror.conf` file to configure ERSPAN.
+Edit the `/etc/cumulus/switchd.d/port-mirror.conf` file, then load the configuration.
 
 The following example ERSPAN configuration mirrors all packets received on swp1:
 
@@ -407,7 +419,7 @@ mirror.session.1.dest = 10.10.10.1 10.10.10.234
 mirror.session.1.type = erspan
 ```
 
-After you edit the configuration file, run the following command to the load the configuration:
+Run the following command to the load the configuration:
 
 ```
 cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/switchd.d/port-mirror.conf -prefix mirror
@@ -433,12 +445,12 @@ You can configure selective ERSPAN with ACLs to mirror a subset of traffic accor
 {{< tabs "TabID414 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following command mirrors inbound ICMP packets from all swp interfaces. The source IP address for ERSPAN encapsulation is 10.0.0.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
+The following command mirrors inbound ICMP packets from all swp interfaces. The source IP address for ERSPAN encapsulation is 10.10.10.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip protocol icmp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action erspan source-ip 10.0.0.1
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action erspan source-ip 10.10.10.1
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action erspan dest-ip 10.10.10.234
 cumulus@switch:~$ nv set interface swp1-54 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
@@ -447,12 +459,12 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Create a rules file in `/etc/cumulus/acl/policy.d/`. The following rule configures ERSPAN for all packets coming in from swp1. The source IP address for ERSPAN encapsulation is 10.0.0.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
+1. Create a rules file in `/etc/cumulus/acl/policy.d/`. The following rule configures ERSPAN for all ICMP packets that ingress swp1. The source IP address for ERSPAN encapsulation is 10.10.10.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
 
      ```
      cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/erspan.rules
      [iptables]
-     -A FORWARD --in-interface swp1 -j ERSPAN --src-ip 10.0.0.1 --dst-ip 10.10.10.234
+     -A FORWARD --in-interface swp1 -p icmp -j ERSPAN --src-ip 10.10.10.1 --dst-ip 10.10.10.234
      ```
 
      `src-ip` can be any IP address, even if it does not exist in the routing table.
@@ -465,45 +477,49 @@ cumulus@switch:~$ nv config apply
    cumulus@switch:~$ sudo cl-acltool -i
    ```
 
+   {{%notice warning%}}
+Do not run the `cl-acltool -i` command with `-P` option. The `-P` option removes **all** existing control plane rules or other installed rules and only installs the rules defined in the specified file.
+{{%/notice%}}
+
 3. Verify that you installed the ERSPAN rules:
 
      ```
-     cumulus@switch:~$ sudo iptables -L -v | grep SPAN
-     69  6804 ERSPAN     all  --  swp1   any     anywhere      anywhere       ERSPAN src-ip:10.0.0.1 dst-ip:10.10.10.234
+     cumulus@switch:~$ sudo iptables -L -v | grep ERSPAN
+     29     0 ERSPAN     icmp --  swp1   any     anywhere             anywhere             ERSPAN src-ip:10.10.10.1 dst-ip:10.10.10.234
      ```
 
 ### Example Rules
 
-In the following example rules, the source IP address for ERSPAN encapsulation is 10.0.0.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
+In the following example rules, the source IP address for ERSPAN encapsulation is 10.10.10.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
 
 To mirror forwarded packets from all ports matching the source IP address 20.0.0.2 and the destination IP address 20.0.1.2:
 
 ```
--A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j ERSPAN --src-ip 10.0.0.1 --dst-ip 10.10.10.234
+-A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j ERSPAN --src-ip 10.10.10.1 --dst-ip 10.10.10.234
 ```
 
 To mirror ICMP packets from all ports:
 
 ```
--A FORWARD --in-interface swp+ -p icmp -j ERSPAN --src-ip 10.0.0.1 --dst-ip 10.10.10.234
+-A FORWARD --in-interface swp+ -p icmp -j ERSPAN --src-ip 10.10.10.1 --dst-ip 10.10.10.234
 ```
 
 To mirror forwarded UDP packets with destination port 53 arriving on swp1:
 
 ```
--A FORWARD --in-interface swp1 -p udp --dport 53 -j ERSPAN --src-ip 10.0.0.1 --dest-ip 10.10.10.234
+-A FORWARD --in-interface swp1 -p udp --dport 53 -j ERSPAN --src-ip 10.10.10.1 --dest-ip 10.10.10.234
 ```
 
 To mirror all forwarded TCP packets with only SYN set:
 
 ```
--A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j ERSPAN --src-ip 10.0.0.1 --dst-ip 10.10.10.234
+-A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j ERSPAN --src-ip 10.10.10.1 --dst-ip 10.10.10.234
 ```
 
 To mirror all forwarded TCP packets with only FIN set:
 
 ```
--A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j ERSPAN --src-ip 10.0.0.1 --dst-ip 10.10.10.234
+-A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j ERSPAN --src-ip 10.10.10.1 --dst-ip 10.10.10.234
 ```
 
 {{< /tab >}}
@@ -532,7 +548,7 @@ You can also run the `sudo cl-acltool -L all | grep SPAN` or `sudo cl-acltool -L
 
 ```
 cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
-    0     0 SPAN       all  --  any    swp1    10.10.1.1            anywhere             /* rule_id:1,acl_name:EXAMPLE1,dir:outbound,interface_id:swp1 */ dport:cpu
+    0     0 SPAN       all  --  any    swp1    10.10.10.1    anywhere    /* rule_id:1,acl_name:EXAMPLE1,dir:outbound,interface_id:swp1 */ dport:cpu
 ```
 
 ## Limitations

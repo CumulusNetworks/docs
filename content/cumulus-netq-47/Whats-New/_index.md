@@ -17,7 +17,7 @@ NetQ 4.7.0 includes the following new features and improvements:
 - {{<link title="Configure and Monitor What Just Happened/#suppress-events-with-filters" text="Create WJH suppression rules">}} based on IP addresses
 ## Upgrade Paths
 
-You can {{<link title="Upgrade NetQ" text="upgrade">}} directly to NetQ 4.7.0 if your deployment is currently running version 4.5.0 or later.
+You can {{<link title="Upgrade NetQ" text="upgrade directly to NetQ 4.7.0">}} if your deployment is currently running version 4.5.0 or later.
 
 To {{<link title="Upgrade NetQ" text="upgrade to NetQ 4.7.0">}} from versions earlier than 4.5.0, you must back up your current NetQ data and perform a new installation of NetQ 4.7.0. This process is supported when upgrading from NetQ 4.3.0 or above.
 
@@ -33,4 +33,4 @@ NetQ 4.6.0 is compatible with NetQ Agent versions 4.5.0 and later. You can insta
 - RHEL 7.1
 - Ubuntu 18.04
 
-You must upgrade to the latest agent version to enable 4.6 features.
+You must upgrade to the latest agent version to enable 4.7 features.

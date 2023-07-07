@@ -5,6 +5,7 @@ weight: 410
 toc: 4
 ---
 
+This page describes how to upgrade your NetQ virtual machines. Note that the upgrade instructions vary depending on NetQ version you’re currently running.
 ## Upgrading from NetQ 4.4.1 or Earlier
 
 Upgrading to NetQ 4.7.0 from a NetQ version below 4.5.0 requires a new installation of the NetQ virtual machine. Perform the following steps to upgrade:
@@ -123,8 +124,6 @@ sudo systemctl restart kubelet
 
 Check if the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
 
-If any issue occurs, contact the NVIDIA Support team.
-
 #### Upgrade Using the NetQ CLI
 
 1. Prepare your NetQ VM for the upgrade:
@@ -146,7 +145,7 @@ cumulus@<hostname>:~$ netq install standalone full interface <interface-name> bu
 ```
 
 {{%notice note%}}
-You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
+You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
 {{%/notice%}}
 
 {{</tab>}}
@@ -163,14 +162,14 @@ cumulus@<hostname>:~$ netq install cluster master-init
 
 Run the `netq install cluster worker-init <ssh-key>` command from the output on each of your worker nodes.
 
-Run the following command on your master node, using the IP addresses of your worker nodes:
+Run the following command on your master node using the IP addresses of your worker nodes:
 
 ```
 cumulus@<hostname>:~$ netq install cluster full interface <interface-name> bundle /mnt/installables/NetQ-4.7.0.tgz workers <worker-1-ip> <worker-2-ip>
 ```
 
 {{%notice note%}}
-You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
+You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
 {{%/notice%}}
 
 {{</tab>}}
@@ -185,14 +184,14 @@ You can specify the IP address instead of the interface name here: use `ip-addr 
 
 {{<tab "Standalone">}}
 
-Run the following command on your NetQ cloud appliance with the config-key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also obtain the configuration key through the {{<link title="Configure Premises" text="NetQ UI">}}.
+Run the following command on your NetQ cloud appliance with the config key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also {{<link title="Configure Premises" text="obtain the configuration key using the NetQ UI">}}.
 
 ```
 cumulus@<hostname>:~$ netq install opta standalone full interface <interface-name> bundle /mnt/installables/NetQ-4.7.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
 ```
 
 {{%notice note%}}
-You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
+You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
 {{%/notice%}}
 {{</tab>}}
 
@@ -208,14 +207,14 @@ cumulus@<hostname>:~$ netq install cluster master-init
 
 Run the `netq install cluster worker-init <ssh-key>` command from the output on each of your worker nodes.
 
-Run the following command on your master NetQ cloud appliance using the IP addresses of your worker nodes and the config-key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also obtain the configuration key through the {{<link title="Configure Premises" text="NetQ UI">}}..
+Run the following command on your master NetQ cloud appliance using the IP addresses of your worker nodes and the config key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also {{<link title="Configure Premises" text="obtain the configuration key using the NetQ UI">}}.
 
 ```
 cumulus@<hostname>:~$ netq install opta cluster full interface <interface-name> bundle /mnt/installables/NetQ-4.7.0-opta.tgz config-key <your-config-key> workers <worker-1-ip> <worker-2-ip> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
 ```
 
 {{%notice note%}}
-You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
+You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
 {{%/notice%}}
 
 {{</tab>}}
@@ -228,7 +227,9 @@ You can specify the IP address instead of the interface name here: use `ip-addr 
 
 3. After the upgrade command completes, confirm the upgrade was successful.
 
-On-premises VM:
+{{<tabs "TabID230" >}}
+
+{{<tab "On-premises VM" >}}
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
@@ -237,8 +238,10 @@ On-premises VM:
     APPLIANCE_VERSION=4.6.0
     APPLIANCE_NAME=NetQ On-premises Appliance
     ```
+{{</tab>}}
 
-Cloud VM:
+{{<tab "Cloud VM" >}}
+
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
@@ -247,3 +250,6 @@ Cloud VM:
     APPLIANCE_VERSION=4.6.0
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```
+{{</tab>}}
+
+{{</tabs>}}

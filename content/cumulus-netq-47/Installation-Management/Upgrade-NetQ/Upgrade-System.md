@@ -5,14 +5,25 @@ weight: 410
 toc: 4
 ---
 
-## Upgrading from NetQ 4.5.0
+## Upgrading from NetQ 4.4.1 or Earlier
 
-You can upgrade directly to NetQ 4.6.0 if your deployment is currently running version 4.5.0. If your deployment is on a release earlier than 4.5.0, see [Upgrading from Earlier Releases](#upgrading-from-earlier-releases).
+Upgrading to NetQ 4.7.0 from a NetQ version below 4.5.0 requires a new installation of the NetQ virtual machine. Perform the following steps to upgrade:
+
+1. For on-premises deployments, {{<link title="Back Up and Restore NetQ" text="back up your existing NetQ data">}}. NetQ Cloud Appliances and VMs create backups automatically.
+
+2. Follow the {{<link title="Install the NetQ System" text="installation process">}} for your deployment model.
+
+3. For on-premises deployments, {{<link title="Back Up and Restore NetQ/#restore-your-netq-data" text="restore your NetQ data">}}.
+
+
+## Upgrading from NetQ 4.5.0 or Later
+
+You can upgrade to NetQ 4.7.0 if your deployment is currently running version 4.5.0 or later.
 ### Back up your NetQ Data
 
 {{<link title="Back Up and Restore NetQ" text="Backing up your NetQ data">}} is an optional step for on-premises deployments. NetQ cloud deployments create backups automatically.
 
-### Download Software and Update Debian Packages
+<!--### Download Software and Update Debian Packages
 
 1. Download the relevant software.
 
@@ -59,6 +70,16 @@ You can upgrade directly to NetQ 4.6.0 if your deployment is currently running v
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
+
+-->
+
+### Download the Upgrade Tarball
+
+1. Download the relevant software.
+
+    {{<netq-install/upgrade-image version="4.7">}}
+
+2. Copy the file to the `/mnt/installables/` directory on your NetQ VM.
 ### Run the Upgrade
 
 {{%notice note%}}
@@ -75,7 +96,7 @@ Verify the following items before upgrading NetQ. For cluster deployments, verif
 2. Check if enough disk space is available before you proceed with the upgrade:
 
 ```
-cumulus@netq-appliance:~$ df -h /
+cumulus@<hostname>:~$ df -h /
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda1       248G   70G  179G  28% /
 cumulus@netq-appliance:~$
@@ -87,7 +108,7 @@ NVIDIA recommends proceeding with the installation only if the `Use%` is less th
 4. Check if the certificates have expired:
 
 ```
-cumulus@netq-appliance:~$ sudo grep client-certificate-data /etc/kubernetes/kubelet.conf | cut -d: -f2 | xargs | base64 -d | openssl x509 -dates -noout | grep notAfter | cut -f2 -d=
+cumulus@<hostname>:~$ sudo grep client-certificate-data /etc/kubernetes/kubelet.conf | cut -d: -f2 | xargs | base64 -d | openssl x509 -dates -noout | grep notAfter | cut -f2 -d=
 Dec 18 17:53:16 2021 GMT
 cumulus@netq-appliance:~$
 ```
@@ -106,27 +127,104 @@ If any issue occurs, contact the NVIDIA Support team.
 
 #### Upgrade Using the NetQ CLI
 
-After completing the preparation steps, upgrade your NetQ on-premises or cloud VMs using the NetQ CLI.
+Prepare your NetQ VM for the upgrade:
 
-To upgrade your NetQ software:
+1. Run the `netq bootstrap reset keep-db purge-images` command to clear the current install state and save the current database. 
 
-1. Run the appropriate `netq upgrade` command.
+2. In cluster deployments, run the command from step 1 on the master and all worker VMs.
+
+After completing the preparation steps, upgrade your NetQ on-premises or cloud VMs using the NetQ CLI. To upgrade your NetQ software:
+
+1. Run the appropriate `netq install` command for your deployment.
 
 {{<tabs "CLI Upgrade">}}
 
 {{<tab "On-premises Deployments">}}
 
+{{<tabs "On-prem standalone or cluster">}}
+
+{{<tab "Standalone">}}
+
 ```
-netq upgrade bundle /mnt/installables/NetQ-4.6.0.tgz
+cumulus@<hostname>:~$ netq install standalone full interface <interface-name> bundle /mnt/installables/NetQ-4.7.0.tgz
 ```
+
+{{%notice note%}}
+You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `<interface-name>` above.
+{{%/notice%}}
+
+{{</tab>}}
+
+{{<tab "Cluster">}}
+
+Run the following command on your master node to initialize the cluster. Copy the output of the command to use on your worker nodes:
+
+```
+cumulus@<hostname>:~$ netq install cluster master-init
+   Please run the following command on all worker nodes:
+   netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
+```
+
+Run the `netq install cluster worker-init <ssh-key>` command from the output on each of your worker nodes.
+
+Run the following command on your master node, using the IP addresses of your worker nodes:
+
+```
+cumulus@<hostname>:~$ netq install cluster full interface <interface-name> bundle /mnt/installables/NetQ-4.7.0.tgz workers <worker-1-ip> <worker-2-ip>
+```
+
+{{%notice note%}}
+You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `<interface-name>` above.
+{{%/notice%}}
+
+{{</tab>}}
+
+{{</tabs>}}
 
 {{</tab>}}
 
 {{<tab "Cloud Deployments">}}
 
+{{<tabs "Cloud standalone or cluster">}}
+
+{{<tab "Standalone">}}
+
+Run the following command on your NetQ cloud appliance with the config-key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also obtain the configuration key through the {{<link title="Configure Premises" text="NetQ UI">}}.
+
 ```
-netq upgrade bundle /mnt/installables/NetQ-4.6.0-opta.tgz
+cumulus@<hostname>:~$ netq install opta standalone full interface <interface-name> bundle /mnt/installables/NetQ-4.7.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
 ```
+
+{{%notice note%}}
+You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `<interface-name>` above.
+{{%/notice%}}
+{{</tab>}}
+
+{{<tab "Cluster">}}
+
+Run the following command on your master node to initialize the cluster. Copy the output of the command to use on your worker nodes:
+
+```
+cumulus@<hostname>:~$ netq install cluster master-init
+   Please run the following command on all worker nodes:
+   netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
+```
+
+Run the `netq install cluster worker-init <ssh-key>` command from the output on each of your worker nodes.
+
+Run the following command on your master NetQ cloud appliance using the IP addresses of your worker nodes and the config-key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also obtain the configuration key through the {{<link title="Configure Premises" text="NetQ UI">}}..
+
+```
+cumulus@<hostname>:~$ netq install opta cluster full interface <interface-name> bundle /mnt/installables/NetQ-4.7.0-opta.tgz config-key <your-config-key> workers <worker-1-ip> <worker-2-ip> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
+```
+
+{{%notice note%}}
+You can specify the IP address instead of the interface name here: use `ip-addr <IP address>` in place of the interface referenced with `<interface-name>` above.
+{{%/notice%}}
+
+{{</tab>}}
+
+{{</tabs>}}
 
 {{</tab>}}
 
@@ -154,38 +252,4 @@ Cloud VM:
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```
 
-3. To complete the upgrade to 4.6.0, retag and restart the following pods:
-
-Cloud VM:
-
 ```
-sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
-sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
-sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
-```
-
-On-premises VM:
-
-```
-sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
-sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
-sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
-
-sudo docker tag localhost:5000/cp-schema-registry:7.2.0 docker-registry:5000/cp-schema-registry:7.2.0
-sudo docker push docker-registry:5000/cp-schema-registry:7.2.0
-sudo kubectl get pods -n default|grep -i cp-schema-registry|awk '{print $1}'|xargs kubectl delete pod -n default
-
-sudo docker tag localhost:5000/cp-kafka:7.2.0 docker-registry:5000/cp-kafka:7.2.0
-sudo docker push docker-registry:5000/cp-kafka:7.2.0
-sudo kubectl get pods -n default|grep -i kafka-broker|awk '{print $1}'|xargs kubectl delete pod -n default
-```
-
-## Upgrading from Earlier Releases
-
-Upgrading to NetQ 4.6.0 from a NetQ release earlier than 4.5.0 requires a new installation of the NetQ virtual machine. Perform the following steps to upgrade:
-
-1. For on-premises deployments, {{<link title="Back Up and Restore NetQ" text="back up your existing NetQ data">}}. NetQ cloud deployments create backups automatically.
-
-2. Follow the {{<link title="Install the NetQ System" text="installation process">}} for your deployment model.
-
-3. For on-premises deployments, {{<link title="Back Up and Restore NetQ/#restore-your-netq-data" text="restore your NetQ data">}}.

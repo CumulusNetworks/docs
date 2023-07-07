@@ -442,12 +442,12 @@ You can configure selective ERSPAN with ACLs to mirror a subset of traffic accor
 {{< tabs "TabID414 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following command mirrors inbound ICMP packets from all swp interfaces. The source IP address for ERSPAN encapsulation is 10.0.0.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
+The following command mirrors inbound ICMP packets from all swp interfaces. The source IP address for ERSPAN encapsulation is 10.10.10.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip protocol icmp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action erspan source-ip 10.0.0.1
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action erspan source-ip 10.10.10.1
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action erspan dest-ip 10.10.10.234
 cumulus@switch:~$ nv set interface swp1-54 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
@@ -456,12 +456,12 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Create a rules file in `/etc/cumulus/acl/policy.d/`. The following rule configures ERSPAN for all packets coming in from swp1. The source IP address for ERSPAN encapsulation is 10.0.0.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
+1. Create a rules file in `/etc/cumulus/acl/policy.d/`. The following rule configures ERSPAN for all packets coming in from swp1. The source IP address for ERSPAN encapsulation is 10.10.10.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
 
      ```
      cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/erspan.rules
      [iptables]
-     -A FORWARD --in-interface swp1 -j ERSPAN --src-ip 10.0.0.1 --dst-ip 10.10.10.234
+     -A FORWARD --in-interface swp1 -j ERSPAN --src-ip 10.10.10.1 --dst-ip 10.10.10.234
      ```
 
      `src-ip` can be any IP address, even if it does not exist in the routing table.
@@ -478,41 +478,41 @@ cumulus@switch:~$ nv config apply
 
      ```
      cumulus@switch:~$ sudo iptables -L -v | grep SPAN
-     69  6804 ERSPAN     all  --  swp1   any     anywhere      anywhere       ERSPAN src-ip:10.0.0.1 dst-ip:10.10.10.234
+     69  6804 ERSPAN     all  --  swp1   any     anywhere      anywhere       ERSPAN src-ip:10.10.10.1 dst-ip:10.10.10.234
      ```
 
 ### Example Rules
 
-In the following example rules, the source IP address for ERSPAN encapsulation is 10.0.0.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
+In the following example rules, the source IP address for ERSPAN encapsulation is 10.10.10.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
 
 To mirror forwarded packets from all ports matching the source IP address 20.0.0.2 and the destination IP address 20.0.1.2:
 
 ```
--A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j ERSPAN --src-ip 10.0.0.1 --dst-ip 10.10.10.234
+-A FORWARD --in-interface swp+ -s 20.0.0.2 -d 20.0.1.2 -j ERSPAN --src-ip 10.10.10.1 --dst-ip 10.10.10.234
 ```
 
 To mirror ICMP packets from all ports:
 
 ```
--A FORWARD --in-interface swp+ -p icmp -j ERSPAN --src-ip 10.0.0.1 --dst-ip 10.10.10.234
+-A FORWARD --in-interface swp+ -p icmp -j ERSPAN --src-ip 10.10.10.1 --dst-ip 10.10.10.234
 ```
 
 To mirror forwarded UDP packets with destination port 53 arriving on swp1:
 
 ```
--A FORWARD --in-interface swp1 -p udp --dport 53 -j ERSPAN --src-ip 10.0.0.1 --dest-ip 10.10.10.234
+-A FORWARD --in-interface swp1 -p udp --dport 53 -j ERSPAN --src-ip 10.10.10.1 --dest-ip 10.10.10.234
 ```
 
 To mirror all forwarded TCP packets with only SYN set:
 
 ```
--A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j ERSPAN --src-ip 10.0.0.1 --dst-ip 10.10.10.234
+-A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL SYN -j ERSPAN --src-ip 10.10.10.1 --dst-ip 10.10.10.234
 ```
 
 To mirror all forwarded TCP packets with only FIN set:
 
 ```
--A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j ERSPAN --src-ip 10.0.0.1 --dst-ip 10.10.10.234
+-A FORWARD --in-interface swp+ -p tcp --tcp-flags ALL FIN -j ERSPAN --src-ip 10.10.10.1 --dst-ip 10.10.10.234
 ```
 
 {{< /tab >}}
@@ -541,7 +541,7 @@ You can also run the `sudo cl-acltool -L all | grep SPAN` or `sudo cl-acltool -L
 
 ```
 cumulus@switch:~$ sudo cl-acltool -L all | grep SPAN
-    0     0 SPAN       all  --  any    swp1    10.10.1.1            anywhere             /* rule_id:1,acl_name:EXAMPLE1,dir:outbound,interface_id:swp1 */ dport:cpu
+    0     0 SPAN       all  --  any    swp1    10.10.10.1    anywhere    /* rule_id:1,acl_name:EXAMPLE1,dir:outbound,interface_id:swp1 */ dport:cpu
 ```
 
 ## Limitations

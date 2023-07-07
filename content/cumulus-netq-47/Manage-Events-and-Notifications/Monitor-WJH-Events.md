@@ -96,6 +96,10 @@ Select **Advanced view** in the top-right corner for a tabular display of drops 
 
 {{<figure src="/images/netq/advanced-wjh-460.png" alt="advanced view of WJH L2 drops" width="1000">}}
 
+For L1 events, you can group entries by switch and ingress port to reduce the number of events displayed. To do this, select the **Aggregate by port** toggle in the top-right corner.
+
+{{<figure src="/images/netq/port-aggregation-470.png" alt="advanced view of WJH L1 drops with aggregated drops" width="1000">}}
+
 {{</tab>}}
 
 {{<tab "NetQ CLI">}}

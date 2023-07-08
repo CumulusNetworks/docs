@@ -677,7 +677,7 @@ copp.igmp.burst = 200
 ```
 
 ```
-cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
+cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/policers.conf
 ```
 
 {{< /tab >}}

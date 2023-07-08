@@ -991,7 +991,7 @@ cumulus@switch:~$ nv config apply
 2. Run the following command:
 
    ```
-   cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
+   cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/policers.conf
    ```
 
 <!-- vale off -->

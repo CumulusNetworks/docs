@@ -553,6 +553,35 @@ cumulus@leaf01:~$ nv set system global nd base-reachable-time 2080000
 cumulus@leaf01:~$ nv set system global nd locktime 100
 ```
 
+- To set the minimum, effective, and maximum threshold values to the default settings, run the `nv unset system global arp garbage-collection-threshold` command or the `nv unset system global nd garbage-collection-threshold` command.
+- To set the base reachable time to the default setting, run the `nv unset system global arp base-reachable-time` command or the `nv unset system global nd base-reachable-time` command.
+- To set the locktime value to the default setting, run the `nv unset system global arp locktime` command or the `nv unset system global nd locktime` command.
+
+To show all the timer settings, run the `nv show system global arp` command:
+
+```
+nv show system global arp
+                              operational
+----------------------------  -----------
+base-reachable-time           2080000    
+locktime                      100        
+garbage-collection-threshold             
+  effective                   55000      
+  maximum                     70000      
+  minimum                     200        
+```
+
+To show the minimum, effective, and maximum threshold settings, run the `nv show system global arp garbage-collection-threshold` command for IPv4 or the `nv show system global arp garbage-collection-threshold` command for IPv6.
+
+```
+cumulus@leaf01:~$ nv show system global arp garbage-collection-threshold
+           operational  applied
+---------  -----------  -------
+effective  55000               
+maximum    70000               
+minimum    200     
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 

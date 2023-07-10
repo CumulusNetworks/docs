@@ -462,8 +462,26 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3511640</td>
+<td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3496931</td>
 <td>When you update a prefix list associated with an RP,  the {{pimd}} service might crash if the prefix list exists without any prefixes. To work around this issue, ensure that any prefix list associated with an RP includes at least one prefix at all times.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3496889</td>
+<td>When PTP is not enabled on switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3495630</td>
+<td>The NVUE {{nv show service ptp &lt;instance&gt; current}} command output shows an incorrect value. To work around this issue, run the {{nv show service ptp &lt;instance&gt; monitor timestamp-log}} command or the Linux {{pmc}} utility.</td>
 <td>5.3.1-5.5.1</td>
 <td></td>
 </tr>
@@ -757,6 +775,13 @@ To work around this issue, run {{nv unset}} on the configured QoS settings, then
 <td>5.5.0-5.5.1</td>
 </tr>
 <tr>
+<td>3350027</td>
+<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see dynamic flow deletion errors in {{switchd.log}}. 
+These errors do not affect new dynamic NAT flows from new NAT rules.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3349533</td>
 <td>On the Spectrum-2 and Spectrum-3 switch with ports operating at 1G speed, there is loss of frames that have an odd or random frame size. In the frame size range of 75 to 1000 bytes, there is frame loss of less than approximately one percent for all odd or random frame sizes in the range. In the frame size range greater than 1000 bytes, there is no loss observed.</td>
 <td>5.4.0</td>
@@ -823,12 +848,6 @@ cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 <td>3334275</td>
 <td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
 <td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3331929</td>
-<td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf &lt;vrf&gt; router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
-<td>5.4.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>

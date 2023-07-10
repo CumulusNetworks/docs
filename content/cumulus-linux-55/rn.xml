@@ -7,8 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3511640</td>
+<td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3499177</td>
+<td>{{snmpwalk}} results in the following error because the SNMP index does not increase and contains duplicate indexes.
+
+Error: OID not increasing: TCP-MIB::tcpListenerProcess.ipv4."0.0.0.0".179
+&gt;= TCP-MIB::tcpListenerProcess.ipv4."0.0.0.0".179
+</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3496931</td>
 <td>When you update a prefix list associated with an RP,  the {{pimd}} service might crash if the prefix list exists without any prefixes. To work around this issue, ensure that any prefix list associated with an RP includes at least one prefix at all times.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3496889</td>
+<td>When PTP is not enabled on switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3495630</td>
+<td>The NVUE {{nv show service ptp &lt;instance&gt; current}} command output shows an incorrect value. To work around this issue, run the {{nv show service ptp &lt;instance&gt; monitor timestamp-log}} command or the Linux {{pmc}} utility.</td>
 <td>5.3.1-5.5.1</td>
 <td></td>
 </tr>
@@ -102,12 +130,6 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td></td>
 </tr>
 <tr>
-<td>3452688</td>
-<td>When you use NVUE to configure a named extended community list with a route target, Cumulus Linux defines it as expanded instead of standard. As a result, routes do not match the expected community list. </td>
-<td>5.5.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3452681</td>
 <td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see the following error:
 
@@ -158,9 +180,25 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td></td>
 </tr>
 <tr>
+<td>3433577</td>
+<td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3428677</td>
 <td>In certain cases, Cumulus Linux does not process next hop updates because the {{zebra}} IP routing manager thinks the state of the next hops is unchanged. As a result, route installation fails and remains in a rejected state.</td>
 <td>5.3.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3419940</td>
+<td>When generating a {{cl-support}} file either manually or when an issue occurs on the system, you see the following kernel error messages:
+
+&apos;Register access failed (reg_id=0x9029, status=0x4)&apos; followed by a hex dump of a few lines.
+
+This error message is benign and has no functional impact.</td>
+<td>5.5.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -200,6 +238,13 @@ To work around this issue, run {{nv unset}} on the configured QoS settings, then
 <td></td>
 </tr>
 <tr>
+<td>3350027</td>
+<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see dynamic flow deletion errors in {{switchd.log}}. 
+These errors do not affect new dynamic NAT flows from new NAT rules.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3347538</td>
 <td>When connecting NVIDIA-to-NVIDIA in PAM4, you must enable auto-negotiation.</td>
 <td>5.4.0-5.5.1</td>
@@ -227,12 +272,6 @@ To work around this issue, run {{nv unset}} on the configured QoS settings, then
 <td>3334275</td>
 <td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
 <td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3331929</td>
-<td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf &lt;vrf&gt; router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
-<td>5.4.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -515,8 +554,36 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3511640</td>
+<td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3499177</td>
+<td>{{snmpwalk}} results in the following error because the SNMP index does not increase and contains duplicate indexes.
+
+Error: OID not increasing: TCP-MIB::tcpListenerProcess.ipv4."0.0.0.0".179
+&gt;= TCP-MIB::tcpListenerProcess.ipv4."0.0.0.0".179
+</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3496931</td>
 <td>When you update a prefix list associated with an RP,  the {{pimd}} service might crash if the prefix list exists without any prefixes. To work around this issue, ensure that any prefix list associated with an RP includes at least one prefix at all times.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3496889</td>
+<td>When PTP is not enabled on switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3495630</td>
+<td>The NVUE {{nv show service ptp &lt;instance&gt; current}} command output shows an incorrect value. To work around this issue, run the {{nv show service ptp &lt;instance&gt; monitor timestamp-log}} command or the Linux {{pmc}} utility.</td>
 <td>5.3.1-5.5.1</td>
 <td></td>
 </tr>
@@ -616,12 +683,6 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td></td>
 </tr>
 <tr>
-<td>3452688</td>
-<td>When you use NVUE to configure a named extended community list with a route target, Cumulus Linux defines it as expanded instead of standard. As a result, routes do not match the expected community list. </td>
-<td>5.5.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3452681</td>
 <td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see the following error:
 
@@ -672,9 +733,25 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td></td>
 </tr>
 <tr>
+<td>3433577</td>
+<td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3428677</td>
 <td>In certain cases, Cumulus Linux does not process next hop updates because the {{zebra}} IP routing manager thinks the state of the next hops is unchanged. As a result, route installation fails and remains in a rejected state.</td>
 <td>5.3.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3419940</td>
+<td>When generating a {{cl-support}} file either manually or when an issue occurs on the system, you see the following kernel error messages:
+
+&apos;Register access failed (reg_id=0x9029, status=0x4)&apos; followed by a hex dump of a few lines.
+
+This error message is benign and has no functional impact.</td>
+<td>5.5.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -714,6 +791,13 @@ To work around this issue, run {{nv unset}} on the configured QoS settings, then
 <td></td>
 </tr>
 <tr>
+<td>3350027</td>
+<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see dynamic flow deletion errors in {{switchd.log}}. 
+These errors do not affect new dynamic NAT flows from new NAT rules.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3347538</td>
 <td>When connecting NVIDIA-to-NVIDIA in PAM4, you must enable auto-negotiation.</td>
 <td>5.4.0-5.5.1</td>
@@ -741,12 +825,6 @@ To work around this issue, run {{nv unset}} on the configured QoS settings, then
 <td>3334275</td>
 <td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
 <td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3331929</td>
-<td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf &lt;vrf&gt; router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
-<td>5.4.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>

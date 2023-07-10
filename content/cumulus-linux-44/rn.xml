@@ -84,6 +84,12 @@ psample { group=1 }
 <td></td>
 </tr>
 <tr>
+<td>3387852</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
+<td>4.4.0-4.4.6</td>
+<td></td>
+</tr>
+<tr>
 <td>3376798</td>
 <td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
 
@@ -91,6 +97,12 @@ switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay :
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3.7.0-3.7.16, 4.3.1-4.4.6</td>
+<td></td>
+</tr>
+<tr>
+<td>3368217</td>
+<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>4.4.4-4.4.6, 5.2.1-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -143,6 +155,24 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3327477</td>
 <td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.6, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3303105</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.4.0-4.4.6</td>
 <td></td>
 </tr>
 <tr>
@@ -209,6 +239,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>5.3.0-5.5.1</td>
 </tr>
 <tr>
+<td>3226579</td>
+<td>The {{net show interface &lt;interface&gt; detail}} command output shows {{Type=Unknown}} for the specified interface.</td>
+<td>4.4.3-4.4.6</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
@@ -218,8 +254,18 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3216921</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
 </td>
-<td>3.7.0-4.3.0, 4.4.0-4.4.6</td>
-<td>4.3.1</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.6</td>
+<td></td>
+</tr>
+<tr>
+<td>3216759</td>
+<td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
+
+hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
+
+To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.6</td>
+<td></td>
 </tr>
 <tr>
 <td>3211359</td>
@@ -357,12 +403,6 @@ end vrf
 <td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
 <td>4.4.4-5.1.0</td>
 <td>5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.3.0, 4.4.0-4.4.6</td>
-<td>4.3.1</td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -770,6 +810,18 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>The bridge MAC address is updated during a port change on bridge interfaces.</td>
 <td>4.3.0, 4.4.0-4.4.6</td>
 <td>4.3.1, 5.0.0-5.5.1</td>
+</tr>
+<tr>
+<td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.6</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.6</td>
+<td></td>
 </tr>
 <tr>
 <td>2728119</td>
@@ -2354,6 +2406,24 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.4.0-5.5.1</td>
 </tr>
 <tr>
+<td>3303105</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3293110</td>
 <td>You cannot set the NTF router flag (NTF_ROUTER) on neighbor entries from the user space.</td>
 <td>4.4.2-4.4.5</td>
@@ -2509,6 +2579,16 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td></td>
 </tr>
 <tr>
+<td>3216759</td>
+<td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
+
+hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
+
+To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3211359</td>
 <td>The {{net show interface &lt;interface&gt; detail}} command output shows {{Type=Unknown}} for the specified interface.</td>
 <td>4.4.3-5.0.1</td>
@@ -2644,12 +2724,6 @@ end vrf
 <td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
 <td>4.4.4-5.1.0</td>
 <td>5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -4588,8 +4662,8 @@ ip route 128.0.0.0/1 10.1.1.1
        File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
          msgData.ParseFromString(msgHdr.data)
      google.protobuf.message.DecodeError: Error parsing message</td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3293110</td>
@@ -4741,8 +4815,8 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
-<td>3.7.15-4.4.4</td>
-<td>4.4.5</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3211359</td>
@@ -4886,12 +4960,6 @@ end vrf
 <td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
 <td>4.4.4-5.1.0</td>
 <td>5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -6959,8 +7027,8 @@ ip route 128.0.0.0/1 10.1.1.1
        File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
          msgData.ParseFromString(msgHdr.data)
      google.protobuf.message.DecodeError: Error parsing message</td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3297171</td>
@@ -7106,8 +7174,8 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
-<td>3.7.15-4.4.4</td>
-<td>4.4.5</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3211359</td>
@@ -7224,12 +7292,6 @@ end vrf
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
 <td>4.4.0-4.4.3</td>
 <td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3094082</td>
@@ -9300,8 +9362,8 @@ ip route 128.0.0.0/1 10.1.1.1
        File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
          msgData.ParseFromString(msgHdr.data)
      google.protobuf.message.DecodeError: Error parsing message</td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3297171</td>
@@ -9434,8 +9496,8 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
-<td>3.7.15-4.4.4</td>
-<td>4.4.5</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3211054</td>
@@ -9535,12 +9597,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
 <td>4.4.0-4.4.3</td>
 <td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3094082</td>
@@ -11603,7 +11659,7 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734107</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.4.1</td>
+<td>3.7.12-4.3.0, 4.4.0-4.4.1</td>
 </tr>
 <tr>
 <td>2728205</td>
@@ -11823,8 +11879,8 @@ ip route 128.0.0.0/1 10.1.1.1
        File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
          msgData.ParseFromString(msgHdr.data)
      google.protobuf.message.DecodeError: Error parsing message</td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3291548</td>
@@ -11924,8 +11980,8 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
-<td>3.7.15-4.4.4</td>
-<td>4.4.5</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3209699</td>
@@ -12010,12 +12066,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
 <td>4.4.0-4.4.3</td>
 <td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3094082</td>
@@ -12675,8 +12725,8 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734107</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.4.1</td>
-<td>4.4.2-4.4.5</td>
+<td>3.7.12-4.3.0, 4.4.0-4.4.1</td>
+<td>4.3.1, 4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2734103</td>

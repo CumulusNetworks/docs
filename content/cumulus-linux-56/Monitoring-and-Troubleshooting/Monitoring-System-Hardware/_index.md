@@ -42,10 +42,10 @@ serial-number  44:38:39:22:01:7a
 system-mac     44:38:39:22:01:b1
 ```
 
-The following example shows the `nv show platform fan` command output:
+The following example shows the `nv show platform environment fan` command output:
 
 ```
-cumulus@switch:~$ nv show platform fan
+cumulus@switch:~$ nv show platform environment fan
 Name      Fan Direction  Limit variance  Max Speed  Min Speed  Current Speed (RPM)  Fan State
 --------  -------------  --------------  ---------  ---------  -------------------  ---------
 Fan1      F2B                            29000      2500       6000                 ok       

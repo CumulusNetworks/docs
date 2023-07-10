@@ -31,15 +31,15 @@ To view events, metrics, and attributes per switch, open the Switch card:
 
 Attributes are displayed as the default tab on the large Switch card. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces and NetQ Agent on the switch.
 
-{{<figure src="/images/netq/switch-attributes-460.png" alt="large switch card displaying attributes" width="700">}}
+{{<figure src="/images/netq/switch-attributes-470.png" alt="large switch card displaying attributes" width="700">}}
 
-Hover over the top of the card, then select the appropriate icon to view utilization info, interface statistics, digital optics info, RoCe metrics, and PTP clock graphs. This example displays utilization information, including CPU, memory, and disk utilization from the past 24 hours:
+Hover over the top of the card and select the appropriate icon to view utilization info, interface statistics, digital optics info, RoCE metrics, and PTP clock graphs. This example displays utilization information, including CPU, memory, and disk utilization from the past 24 hours:
 
-{{<figure src="/images/netq/device-utilization-460.png" alt="large switch card displaying attributes" width="700">}}
+{{<figure src="/images/netq/utilization-470.png" alt="large switch card displaying attributes" width="700">}}
 
-Expand the Switch card to full-screen to view, filter or export information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, software packages, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, digital optics, and PTP: 
+Expand the Switch card to full-screen to view, filter, or export information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, software packages, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, digital optics, PTP, and process monitoring: 
 
-{{<figure src="/images/netq/fullscreen-switch-460.png" width="1200">}}
+{{<figure src="/images/netq/switch-full-470.png" width="1200">}}
 
 ## Switch Commands
 

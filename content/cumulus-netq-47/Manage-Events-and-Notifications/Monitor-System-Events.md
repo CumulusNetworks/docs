@@ -8,7 +8,7 @@ Use the UI or CLI to monitor events: you can view all events across the entire n
 
 Note that in the UI, it can take several minutes for NetQ to process and accurately display network events. The delay is caused by events with multiple network dependencies. It takes between 5 and 10 minutes for NetQ to consolidate and display these events.
 
-Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure Threshold-Crossing Event Notifications">}} for information about configuring third-party applications to broadcast NetQ events.
+Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure and Monitor Threshold-Crossing Events">}} for information about configuring third-party applications to broadcast NetQ events.
 ## Event Commands
 
 Monitor events with the following command. See the {{<link title="show/#netq-show-events" text="command line reference">}} for additional options, definitions, and examples.

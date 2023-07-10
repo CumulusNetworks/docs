@@ -5,7 +5,7 @@ weight: 812
 toc: 4
 ---
 
-This reference lists the threshold-based events that NetQ supports. You can view these messages through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure Threshold-Crossing Event Notifications">}}.
+This reference lists the threshold-based events that NetQ supports. You can view these messages through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure and Monitor Threshold-Crossing Events">}}.
 
 ## ACL Resources
 

@@ -1,11 +1,15 @@
 ---
-title: Configure Threshold-Crossing Event Notifications
+title: Configure and Monitor Threshold-Crossing Events
 author: NVIDIA
 weight: 790
 toc: 3
 ---
 
-Threshold-crossing events are user-defined events that detect and prevent network failures for ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="Threshold-Crossing Events Reference" text="Threshold-Crossing Events Reference">}}.
+Threshold-crossing events are user-defined events that detect and prevent network failures for ACL resources, BGP, digital optics, ECMP, forwarding resources, interface errors and statistics, link flaps, resource utilization, RoCE, sensors, and What Just Happened events. 
+
+You can find a complete list of TCAs---including event IDs required for the command line---in the {{<link title="Threshold-Crossing Events Reference" text="Threshold-Crossing Events Reference">}}.
+
+<!--
 
 A notification configuration must contain one rule. Each rule must contain a scope and a threshold. If you want to deliver events to one or more notification channels (for example, email or Slack), create them by following the instructions in {{<link title="Configure System Event Notifications#create-a-channel" text="Create a Channel">}}, and then return here to define your rule.
 
@@ -279,6 +283,8 @@ The hostname, reason/port down reason, ingress port, and drop type scope paramet
 {{</tab>}}
 
 {{</tabs>}}
+
+-->
 
 ## Create a Threshold-crossing Rule
 

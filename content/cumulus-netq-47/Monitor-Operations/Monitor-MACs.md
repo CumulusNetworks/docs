@@ -43,13 +43,11 @@ You can view all MAC addresses across your network with the NetQ UI or the NetQ 
 
 {{<tab "NetQ UI" >}}
 
-1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
+1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the **Network** heading, select **MACs**.
+2. Under the Network section, select **MACs**.
 
-    {{<figure src="/images/netq/mac-table.png" alt="table listing all devices and their associated MAC addresses" width="700">}}
-
-You can filter and sort the table entries.
+    {{<figure src="/images/netq/macs-full-470.png" alt="table listing all devices and their associated MAC addresses" width="1100">}}
 
 {{</tab>}}
 
@@ -90,13 +88,13 @@ yes    ce:93:1d:e3:08:1b  4002   border01          vniBLUE                      
 
 {{<tab "NetQ UI" >}}
 
-1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
+1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the **Network** heading, select **MACs**.
+2. Under the Network section, select **MACs**.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname:
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} **Filters** and enter a hostname:
 
-    {{<figure src="/images/netq/mac-filter-hostname.png" alt="filter dialog prompting user to enter a hostname" width="400">}}
+    {{<figure src="/images/netq/macs-filter-470.png" alt="filter dialog prompting user to enter a hostname" width="400">}}
 
 4. Click **Apply**.
 
@@ -167,15 +165,15 @@ no     46:38:39:00:00:40  20     leaf03            bond2                        
 
 {{<tab "NetQ UI" >}}
 
-1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
+1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the **Network** heading, select **MACs**.
+2. Under the Network section, select **MACs**.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a VLAN ID.
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} **Filters** and enter a VLAN ID.
 
 4. Click **Apply**.
 
-5. (Optional) Select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and add the additional hostname filter to view the MAC addresses for a VLAN on a particular device.
+5. (Optional) Select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} **Filters** and add the additional hostname filter to view the MAC addresses for a VLAN on a particular device.
 
 {{</tab>}}
 
@@ -273,13 +271,13 @@ yes    4a:32:30:8c:13:08  10     leaf02            vni10                        
 
 {{<tab "NetQ UI" >}}
 
-1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
+1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the **Network** heading, select **MACs**.
+2. Under the Network section, select **MACs**.
 
-3. Locate the **Egress Port** column. Hover over the column header and select it to sort A-Z or Z-A order of the egress port used by a MAC address.
+3. Locate the **Egress port** column. Hover over the column header and select it to sort A-Z or Z-A order of the egress port used by a MAC address.
 
-4. (Optional) Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname to view the MAC addresses on a particular device.
+4. (Optional) Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} **Filters** and enter a hostname to view the MAC addresses on a particular device.
 
 
 {{</tab>}}

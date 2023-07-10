@@ -449,7 +449,7 @@ Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce AR
 
 {{%notice note%}}
 - ARP and ND suppression only suppresses the flooding of known hosts. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
-- NVIDIA recommends that you keep ARP and ND suppression enabled on all VXLAN interfaces on the switch. If you must disable suppression for a special use case, you can not disable ARP and ND suppression on some VXLAN interfaces but not others.
+- NVIDIA recommends that you keep ARP and ND suppression enabled on all VXLAN interfaces on the switch. If you must disable suppression for a special use case, you cannot disable ARP and ND suppression on some VXLAN interfaces but not others.
 {{%/notice%}}
 
 In a centralized routing deployment, you must configure layer 3 interfaces even if you configure the switch only for layer 2 (you are not using VXLAN routing). To avoid installing unnecessary layer 3 information, you can turn off IP forwarding.
@@ -519,23 +519,67 @@ iface bridge1
 ...
 ```
 
-When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that the Linux kernel ARP `sysctl` settings `gc_thresh2` and `gc_thresh3` both have a value larger than the number of neighbor (ARP and ND) entries you expect in the deployment. To configure these settings, edit the `/etc/sysctl.d/neigh.conf` file, then reboot the switch. If your network has more hosts than the values in the example below, change the `sysctl` entries accordingly.
+### Timer Settings
 
-{{< expand " Example /etc/sysctl.d/neigh.conf file"  >}}
+Cumulus Linux provides timer settings for stale neighbor entry garbage collection. You can configure the following timer settings, where `<type>` in the NVUE command is either `arp` or `nd` and `<address-family>` in the Linux file parameter is either `ipv4` or `ipv6`.
+
+| <div style="width:300px">NVUE| <div style="width:200px">Linux | Description  |
+|------- |------- |------- |
+| `nv set system global <type> garbage-collection-threshold minimum` |`net.<address-family>.neigh.default.gc_thresh1`| The minimum number of entries to keep in the ARP cache. The garbage collector does not run if there are fewer than this number of entries in the ARP cache. You can specify a value between 0 and 2147483647. The default value for both IPv4 (ARP) and IPv6 (ND) is 128.|
+|`nv set system global <type> garbage-collection-threshold effective`| `net.<address-family>.neigh.default.gc_thresh2`| The soft maximum number of entries to keep in the ARP cache.  The garbage collector allows the number of entries to exceed this value for five seconds before collection. You can specify a value between 0 and 2147483647. The default value for IPv4 (ARP) is 35840. The default value for IPv6 (ND) is 17920.|
+| `nv set system global <type> garbage-collection-threshold maximum`| `net.<address-family>.neigh.default.gc_thresh3`| The hard maximum number of entries to keep in the ARP cache. The garbage collector always runs if there are more than this number of entries in the ARP cache. You can specify a value between 0 and 2147483647. The default value is for IPv4 (ARP) is 40960. The default value for IPv6 (ND) is 20480. |
+|`nv set system global <type> base-reachable-time`| `net.<address-family>.neigh.default.base_reachable_time_ms`| Specifies how long in milliseconds an ARP cache entry is valid. The entry is considered valid for at least a value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 0 and 4294967295. The default value for both IPv4 (ARP) and IPv6 (ND) is 1080000.|
+| `nv set system global <type> locktime` | `net.<address-family>.neigh.default.locktime`| The minimum number of jiffies to keep an ARP entry in the cache. You can specify a value between 0 and 4294967295. The default value for both IPv4 (ARP) and IPv6 (ND) is 10.|
+
+{{%notice note%}}
+When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment.
+{{%/notice%}}
+
+### Example Commands
+
+{{< tabs "TabID531 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set system global arp garbage-collection-threshold minimum 200
+cumulus@leaf01:~$ nv set system global arp garbage-collection-threshold effective 55000
+cumulus@leaf01:~$ nv set system global arp garbage-collection-threshold maximum 70000
+cumulus@leaf01:~$ nv set system global arp base-reachable-time 2080000
+cumulus@leaf01:~$ nv set system global arp locktime 100
+cumulus@leaf01:~$ nv set system global nd garbage-collection-threshold minimum 200
+cumulus@leaf01:~$ nv set system global nd garbage-collection-threshold effective 30000
+cumulus@leaf01:~$ nv set system global nd garbage-collection-threshold maximum 50000
+cumulus@leaf01:~$ nv set system global nd base-reachable-time 2080000
+cumulus@leaf01:~$ nv set system global nd locktime 100
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/sysctl.d/neigh.conf` file, then reboot the switch:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/sysctl.d/neigh.conf
 ...
-net.ipv4.neigh.default.gc_thresh3=14336
-net.ipv6.neigh.default.gc_thresh3=16384
-net.ipv4.neigh.default.gc_thresh2=7168
-net.ipv6.neigh.default.gc_thresh2=8192
+net.ipv4.neigh.default.gc_thresh2=55000
+net.ipv4.neigh.default.gc_thresh3=70000
+net.ipv6.neigh.default.gc_thresh2=30000
+net.ipv6.neigh.default.gc_thresh3=50000
+net.ipv4.neigh.default.base_reachable_time_ms=2080000
+net.ipv4.neigh.default.locktime=100
+net.ipv4.neigh.default.gc_thresh1=200
+net.ipv6.neigh.default.base_reachable_time_ms=2080000
+net.ipv6.neigh.default.locktime=100
+net.ipv6.neigh.default.gc_thresh1=200
 ...
 ```
 
-{{< /expand >}}
+{{< /tab >}}
+{{< /tabs >}}
 
-Keep ARP and ND suppression on to reduce ARP and ND packet flooding over VXLAN tunnels. However, if you need to disable ARP and ND suppression, follow the example commands below.
+### Disable ARP and ND Suppression
+
+NVIDIA recommends that you keep ARP and ND suppression on to reduce ARP and ND packet flooding over VXLAN tunnels. However, if you *do* need to disable ARP and ND suppression, run the NVUE `nv set nve vxlan arp-nd-suppress off` command or set `bridge-arp-nd-suppress off` in the `/etc/network/interfaces` file:
 
 {{< tabs "TabID593 ">}}
 {{< tab "NVUE Commands ">}}
@@ -584,7 +628,6 @@ ExecStart=/usr/bin/neighmgrd --snoop-all-bridges
 
 3. Restart the `neighmgrd` service with the `sudo systemctl restart neighmgrd.service` command.
 {{%/notice%}}
-
 
 ## Configure Static MAC Addresses
 

@@ -523,6 +523,8 @@ iface bridge1
 
 Cumulus Linux provides timer settings for neighbor entry garbage collection. You can configure the following timer settings, where `<type>` in the NVUE command is either `arp` or `nd` and `<address-family>` in the `/etc/sysctl.d/neigh.conf` file parameters is either `ipv4` or `ipv6`.
 
+The NVUE commands write to the `/etc/sysctl.d/neigh.conf` file.
+
 | <div style="width:250px">NVUE Command| <div style="width:200px">Linux Parameter| Description  |
 |------- |------- |------- |
 | `nv set system global <type> garbage-collection-threshold minimum` |`net.<address-family>.neigh.default.gc_thresh1`| The minimum number of entries to keep in the ARP cache. The garbage collector does not run if there are fewer than this number of entries in the ARP cache. You can specify a value between 0 and 2147483647. The default value for both IPv4 (ARP) and IPv6 (ND) is 128.|

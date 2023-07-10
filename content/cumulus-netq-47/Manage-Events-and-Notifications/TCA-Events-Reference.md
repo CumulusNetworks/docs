@@ -14,17 +14,17 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | --- | --- | --- |
 | Ingress ACL IPv4 % | TCA_TCAM_IN_ACL_V4_FILTER_UPPER | Number of ingress ACL filters for IPv4 addresses on a given switch or host exceeded user-defined threshold |
 | Egress ACL IPv4 % | TCA_TCAM_EG_ACL_V4_FILTER_UPPER | Number of egress ACL filters for IPv4 addresses on a given switch or host exceeded user-defined maximum threshold |
-| Ingress ACL IPv4 Mangle % | TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Number of ingress ACL mangles for IPv4 addresses on a given switch or host exceeded user-defined maximum threshold |
-| Ingress ACL IPv4 Mangle % | TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Number of egress ACL mangles for IPv4 addresses on a given switch or host exceeded user-defined maximum threshold |
+| Ingress ACL IPv4 mangle % | TCA_TCAM_IN_ACL_V4_MANGLE_UPPER | Number of ingress ACL mangles for IPv4 addresses on a given switch or host exceeded user-defined maximum threshold |
+| Ingress ACL IPv4 mangle % | TCA_TCAM_EG_ACL_V4_MANGLE_UPPER | Number of egress ACL mangles for IPv4 addresses on a given switch or host exceeded user-defined maximum threshold |
 | Ingress ACL IPv6 % | TCA_TCAM_IN_ACL_V6_FILTER_UPPER | Number of ingress ACL filters for IPv6 addresses on a given switch or host exceeded user-defined maximum threshold |
 | Egress ACL IPv6 % | TCA_TCAM_EG_ACL_V6_FILTER_UPPER | Number of egress ACL filters for IPv6 addresses on a given switch or host exceeded user-defined maximum threshold |
-| Ingress ACL IPv6 Mangle % | TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Number of ingress ACL mangles for IPv6 addresses on a given switch or host exceeded user-defined maximum threshold |
-| Egress ACL IPv6 Mangle % | TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Number of egress ACL mangles for IPv6 addresses on a given switch or host exceeded user-defined maximum threshold |
+| Ingress ACL IPv6 mangle % | TCA_TCAM_IN_ACL_V6_MANGLE_UPPER | Number of ingress ACL mangles for IPv6 addresses on a given switch or host exceeded user-defined maximum threshold |
+| Egress ACL IPv6 mangle % | TCA_TCAM_EG_ACL_V6_MANGLE_UPPER | Number of egress ACL mangles for IPv6 addresses on a given switch or host exceeded user-defined maximum threshold |
 | Ingress ACL 8021x % | TCA_TCAM_IN_ACL_8021x_FILTER_UPPER | Number of ingress ACL 802.1 filters on a given switch or host exceeded user-defined maximum threshold |
 | ACL L4 port % | TCA_TCAM_ACL_L4_PORT_CHECKERS_UPPER | Number of ACL port range checkers on a given switch or host exceeded user-defined maximum threshold |
-| ACL Regions % | TCA_TCAM_ACL_REGIONS_UPPER | Number of ACL regions on a given switch or host exceeded user-defined maximum threshold |
-| Ingress ACL Mirror % | TCA_TCAM_IN_ACL_MIRROR_UPPER | Number of ingress ACL mirrors on a given switch or host exceeded user-defined maximum threshold |
-| ACL 18B Rules % | TCA_TCAM_ACL_18B_RULES_UPPER | Number of ACL 18B rules on a given switch or host exceeded user-defined maximum threshold |
+| ACL regions % | TCA_TCAM_ACL_REGIONS_UPPER | Number of ACL regions on a given switch or host exceeded user-defined maximum threshold |
+| Ingress ACL mirror % | TCA_TCAM_IN_ACL_MIRROR_UPPER | Number of ingress ACL mirrors on a given switch or host exceeded user-defined maximum threshold |
+| ACL 18B rules % | TCA_TCAM_ACL_18B_RULES_UPPER | Number of ACL 18B rules on a given switch or host exceeded user-defined maximum threshold |
 | ACL 32B % | TCA_TCAM_ACL_32B_RULES_UPPER | Number of ACL 32B rules on a given switch or host exceeded user-defined maximum threshold |
 | ACL 54B % | TCA_TCAM_ACL_54B_RULES_UPPER | Number of ACL 54B rules on a given switch or host exceeded user-defined maximum threshold |
 | Ingress PBR IPv4 % | TCA_TCAM_IN_PBR_V4_FILTER_UPPER | Number of ingress policy-based routing (PBR) filters for IPv4 addresses on a given switch or host exceeded user-defined maximum threshold |

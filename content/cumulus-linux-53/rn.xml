@@ -13,6 +13,18 @@
 <td></td>
 </tr>
 <tr>
+<td>3496889</td>
+<td>When PTP is not enabled on switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3495630</td>
+<td>The NVUE {{nv show service ptp &lt;instance&gt; current}} command output shows an incorrect value. To work around this issue, run the {{nv show service ptp &lt;instance&gt; monitor timestamp-log}} command or the Linux {{pmc}} utility.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3491259</td>
 <td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
 <td>5.0.0-5.5.1</td>
@@ -1488,6 +1500,11 @@ Invalid Command: set router policy route-map GLOBAL rule 10 description global
 <td>3176318</td>
 <td>The NVUE {{nv set bridge domain br_default stp priority}} command does not change the STP priority.</td>
 <td>5.1.0-5.2.1</td>
+</tr>
+<tr>
+<td>3171316</td>
+<td>Various FRR show commands do not have json output. This applies to BGP show commands ending in {{prefix-list}}, {{route-map}}, {{dampening}} parameters, and longer-prefixes. FRR {{show bgp detail}} output contains a summary instead of details on each prefix. FRR {{show bgp ... neighbor routes}} and {{show bgp ... neighbor received-routes}} both incorrectly use a json key of {{advertisedRoutes}}.</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3166746</td>

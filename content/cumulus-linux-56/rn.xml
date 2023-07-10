@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3368217</td>
+<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>4.4.4-4.4.5, 5.2.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3362113</td>
 <td>If you restore an NVUE {{startup.yaml}} file after upgrade that includes breakout ports with QoS configuration or you run the {{nv config patch}} command to update a configuration with a {{yaml}} file that includes breakout ports with QoS configuration, the NVUE configuration fails to apply and subsequent attempts to run {{nv config apply}} fail with the following message: 
 
@@ -33,12 +39,6 @@ To work around this issue, run {{nv unset}} on the configured QoS settings, then
 <tr>
 <td>3345054</td>
 <td>The NVUE {{nv show interface &lt;interface&gt; qos}} command takes a significant time to show output or times out. To work around this issue, use specific QoS commands. For example, to show congestion control information, run the {{nv show interface &lt;interface&gt; qos congestion-control}} command.</td>
-<td>5.4.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3336808</td>
-<td>If you run the NVUE {{nv set interface &lt;interface&gt; description}} command without providing a description, the {{nv config apply}} command fails with the error {{Unable to restart services (ifreload-nvue.service)}}.</td>
 <td>5.4.0-5.6.0</td>
 <td></td>
 </tr>
@@ -259,6 +259,21 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Affects </th>
 </tr>
 <tr>
+<td>3496931</td>
+<td>When you update a prefix list associated with an RP,  the {{pimd}} service might crash if the prefix list exists without any prefixes. To work around this issue, ensure that any prefix list associated with an RP includes at least one prefix at all times.</td>
+<td>5.3.1-5.5.1</td>
+</tr>
+<tr>
+<td>3496889</td>
+<td>When PTP is not enabled on switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
+<td>5.3.1-5.5.1</td>
+</tr>
+<tr>
+<td>3495630</td>
+<td>The NVUE {{nv show service ptp &lt;instance&gt; current}} command output shows an incorrect value. To work around this issue, run the {{nv show service ptp &lt;instance&gt; monitor timestamp-log}} command or the Linux {{pmc}} utility.</td>
+<td>5.3.1-5.5.1</td>
+</tr>
+<tr>
 <td>3491259</td>
 <td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
 <td>5.0.0-5.5.1</td>
@@ -359,9 +374,45 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td>5.4.0-5.5.1</td>
 </tr>
 <tr>
+<td>3436305</td>
+<td>Auto-negotiation and link-training is not supported at 25G between the NVIDIA SN5600 switch and non-NVIDIA devices.</td>
+<td></td>
+</tr>
+<tr>
+<td>3436296</td>
+<td>On the NVIDIA SN5600 switch, the 8x port breakout is not supported with the MCP4Y10-N00A cable .
+</td>
+<td></td>
+</tr>
+<tr>
+<td>3436291</td>
+<td>The NVIDIA SN5600 switch does not support connecting to a Spectrum-2 or Spectrum-3 switch with an MCP7Y70-H001 4X  breakout cable.</td>
+<td></td>
+</tr>
+<tr>
+<td>3436287</td>
+<td>The NVIDIA SN5600 switch does not support connecting to a Spectrum-1 switch using a 2x breakout with the MCP7Y60-H001 copper cable at 25G.</td>
+<td></td>
+</tr>
+<tr>
+<td>3436229</td>
+<td>On the NVIDIA SN5600 switch, when you connect a Service port to non-NVIDIA devices, auto-negotiation is not supported for 25G links.</td>
+<td></td>
+</tr>
+<tr>
+<td>3436215</td>
+<td>On the NVIDIA SN5600 switch, the thermal control service crashes  when you remove a fan tray.</td>
+<td></td>
+</tr>
+<tr>
 <td>3433944</td>
 <td>The {{wjh_dissector.lua}} WJH packet decoder script provided with Cumulus Linux might fail to decode all WJH packets.</td>
 <td>5.4.0-5.5.1</td>
+</tr>
+<tr>
+<td>3433577</td>
+<td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
+<td>5.5.0-5.5.1</td>
 </tr>
 <tr>
 <td>3428677</td>
@@ -369,9 +420,23 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td>5.3.0-5.5.1</td>
 </tr>
 <tr>
+<td>3419940</td>
+<td>When generating a {{cl-support}} file either manually or when an issue occurs on the system, you see the following kernel error messages:
+
+&apos;Register access failed (reg_id=0x9029, status=0x4)&apos; followed by a hex dump of a few lines.
+
+This error message is benign and has no functional impact.</td>
+<td>5.5.0-5.5.1</td>
+</tr>
+<tr>
 <td>3413785</td>
 <td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.1</td>
+</tr>
+<tr>
+<td>3336808</td>
+<td>If you run the NVUE {{nv set interface &lt;interface&gt; description}} command without providing a description, the {{nv config apply}} command fails with the error {{Unable to restart services (ifreload-nvue.service)}}.</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3334275</td>

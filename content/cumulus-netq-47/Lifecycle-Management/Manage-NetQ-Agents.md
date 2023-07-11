@@ -106,7 +106,7 @@ You can view the current configuration of a NetQ Agent to determine what data it
 
 ```
 netq config show agent 
-    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|ssl|stats||wjh|wjh-threshold] 
+    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|ssl|stats|wjh|wjh-threshold] 
     [json]
 ```
 

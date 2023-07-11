@@ -135,6 +135,66 @@ cumulus@switch:~$ netq lcm add default-version netq-images 4.6.0
 
 - - -
 
+<!-- need to check this against command line diff for 4.7
+https://redmine.mellanox.com/issues/3144699#change-27154407
+-->
+## netq lcm add netq-config
+
+Adds a NetQ configuration profile.
+
+### Syntax
+
+```
+netq lcm add netq-config config-profile-name <text-config-profile> 
+    access-key <text-access-key> 
+    secret-key <text-secret-key> 
+    [cpu-limit <text-cpu-limit>] 
+    [log-level error | log-level warn | log-level info | log-level debug] 
+    [vrf default | vrf mgmt | vrf <text-config-vrf>] 
+    [wjh enable | wjh disable]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| config-profile-name | \<text-config-profile\> | Specify the name for the configuration profile |
+| access-key | \<text-access-key\> | NetQ access key |
+| secret-key | \<text-secret-key\> | NetQ secret key |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| cpu-limit | \<text-cpu-limit\> | Specify the percentage of CPU resources on a switch that the NetQ Agent cannot exceed |
+| log-level | error, warn, info, debug | Specify the logging level |
+| vrf | default, mgmt, \<text-config-vrf\>  | Set the VRF to default, management, or specify a custom VRF |
+| wjh | enable, disable | Enable or disable What Just Happened events |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq lcm add netq-config config-profile-name test-set-all access-key KEY secret-key SKEY cpu-limit 60 log-level error vrf mgmt wjh enable
+NetQ config profile test-set-all successfully added
+ 
+cumulus@switch:~$ netq lcm show netq-config
+ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed
+------------------------- --------------- ------------------------------ --------------- --------- --------- --------- -------------------------
+config_profile_d349823e2a test-set-all    No                             mgmt            Enable    60%       error     Thu Apr 20 08:38:37 2023
+ae91a083ed7874d5a3c4fd09b
+1e99963bda91efccecfc5421a
+faa8
+config_profile_3289efda36 NetQ default co Yes                            mgmt            Disable   Disable   info      Mon Apr 17 06:21:35 2023
+db4065d56f91ebbd34a523b45 nfig
+944fbfd10c5d75f9134d42023
+eb2b
+```
+
+### Related Commands
+
+- `netq lcm show netq-config`
+- `netq lcm del netq-config`
+
+- - -
 ## netq lcm add netq-image
 
 Adds a NetQ image (.deb package) to the lifecycle management repository. Images must match the version, architecture, and operating system for the switches you want to upgrade. For each version of NetQ, you must add the `netq-agent` and `netq-apps` packages. For more information, see {{<link title="NetQ and Network OS Images">}}.
@@ -193,8 +253,7 @@ Assigns or changes a role for one or more switches that defines its placement in
 ### Syntax
 
 ```
-netq lcm add
-    role (superspine | spine | leaf | exit)
+netq lcm add role (superspine | spine | leaf | exit)
     switches <text-switch-hostnames>
 ```
 
@@ -339,6 +398,70 @@ cumulus@switch:~$ netq lcm del credentials profile_id credential_profile_3eddab2
 - `netq lcm add credentials`
 - `netq lcm detach credentials`
 - `netq lcm show credentials`
+
+- - -
+
+<!-- need to verify below command against 4.7 command line diff-->
+## netq lcm del netq-config
+
+Deletes a NetQ configuration profile. You can obtain the configuration profile ID with `netq lcm show netq-config`.
+
+### Syntax
+
+```
+netq lcm del netq-config config-profile-id <text-config-profile-id>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| config-profile-id | \<text-config-profile-id\> | Remove the NetQ configuration profile with this identifier |
+
+### Options
+
+None
+
+### Sample Usage
+
+To obtain the configuration profile ID, run `netq lcm show netq-config`:
+
+``` 
+cumulus@switch:~$ netq lcm show netq-config
+ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed
+------------------------- --------------- ------------------------------ --------------- --------- --------- --------- -------------------------
+config_profile_d349823e2a test-set-all    No                             mgmt            Enable    60%       error     Thu Apr 20 08:38:37 2023
+ae91a083ed7874d5a3c4fd09b
+1e99963bda91efccecfc5421a
+faa8
+config_profile_3289efda36 NetQ default co Yes                            mgmt            Disable   Disable   info      Mon Apr 17 06:21:35 2023
+db4065d56f91ebbd34a523b45 nfig
+944fbfd10c5d75f9134d42023
+eb2b
+```
+
+After obtaining the profile ID, run the delete command:
+
+```
+cumulus@switch:~$ netq lcm del netq-config config-profile-id config_profile_d349823e2aae91a083ed7874d5a3c4fd09b1e99963bda91efccecfc5421afaa8
+NetQ config profile ID config_profile_d349823e2aae91a083ed7874d5a3c4fd09b1e99963bda91efccecfc5421afaa8 successfully deleted
+```
+
+You can verify that the configuration profile was deleted with `netq lcm show netq-config`:
+
+```
+cumulus@switch:~$ netq lcm show netq-config
+ID                        Name            Default Profile                VRF             WJH       CPU Limit Log Level Last Changed
+------------------------- --------------- ------------------------------ --------------- --------- --------- --------- -------------------------
+config_profile_3289efda36 NetQ default co Yes                            mgmt            Disable   Disable   info      Mon Apr 17 06:21:35 2023
+db4065d56f91ebbd34a523b45 nfig
+944fbfd10c5d75f9134d42023
+eb2b
+```
+
+### Related Commands
+
+- `netq lcm add netq-config`
+- `netq lcm show netq-config`
 
 - - -
 

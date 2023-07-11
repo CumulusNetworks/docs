@@ -23,19 +23,18 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 - Adaptive routing enhancements include:
   - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Multiple adaptive routing profiles">}}
-  - BGP WCMP for adaptive routing enabled traffic
-  - Adaptive routing on VXLAN interfaces
+  - BGP WCMP support for adaptive routing enabled traffic
+  - Cumulus Linux now supports adaptive routing on VXLAN interfaces
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
-- Indication for secure firmware boot failure
 - Deterministic warm boot switchover
 - {{<link url="Monitoring-System-Hardware" text="Fan direction">}} now shows in NVUE and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
-- Service password-encryption support for BGP and OSPF in FRR - integration
 - {{<link url="Precision-Time-Protocol-PTP#clock-correction-mode" text="PTP one-step clock correction mode">}}
 - NVUE enhancements include:
   - PVST and PVRST with VLAN-aware bridges
   - {{<link url="EVPN-Enhancements/#timer-settings" text="ARP and ND timer configuration">}}
   - Support templating SSH service options
-  - VRRP operational data
+  - New command to enable password encryption for BGP and OSPF
+  - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
   - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and Disable external API access">}}
   - Clear operation for all routing protocols
   - IGMP commands

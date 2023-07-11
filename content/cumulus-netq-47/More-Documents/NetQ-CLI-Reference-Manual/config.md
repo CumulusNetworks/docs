@@ -1366,6 +1366,8 @@ None
 
 ```
 cumulus@switch:~$ netq config select cli premise Boston
+Input premise Boston
+Switched to premise Boston
 ```
 
 ### Related Commands
@@ -1554,7 +1556,7 @@ api-logging  False            False
 
 ## netq config show cli premises
 
-Displays the configuration of the NetQ CLI on a switch.
+Displays the configuration of the NetQ CLI across premises.
 
 ### Syntax
 
@@ -1577,22 +1579,17 @@ None
 
 ```
 cumulus@switch:~$ netq config show cli premises
-netq-cli     value            default
------------  ---------------  ---------
-server       192.168.200.250  127.0.0.1
-netq-user
-premises     0
-port         32708            32708
-count        2000             2000
-vrf          default          default
-api-logging  False            False
+Name                   OPID  Timezone      Namespace  Tag    CLI Status
+---------------  ----------  ----------  -----------  -----  ------------
+OPID0                     0  IST                 nan  TAG0   selected
+premise1              20001  PST                 nan  US     not selected
+premise2              20002  PST                 nan  US     not selected
 ()
 ```
 
 ### Related Commands
 
-- `netq config show agent`
-- `netq config show all`
+- `netq config select cli premise`
 
 - - -
 

@@ -40,7 +40,7 @@ To configure a single UI to monitor multiple premises:
 
 You can also reduce the number of premises that can be displayed in the UI by hovering over a deployment and selecting {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete**.
 
-To view the premises you just added, return to the home workbench and select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown in the top-right corner of the screen.
+To view the premises you just added, return to the home workbench and select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown in the top-right corner of the screen. Alternately, run the {{<link title="config/#netq-config-show-cli-premises" text="netq config show cli premises">}} command.
 
 
 ### Full NetQ Deployment at Primary Premises and Smaller Deployments at Secondary Premises
@@ -75,7 +75,7 @@ To create and add secondary premises:
 
 {{<figure src="/images/netq/new-premises-config-key.png" alt="dialog displaying configuration key with options to copy or share the key" width="650">}}
 
-To view the premises you just added, return to the home workbench and select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown at the top-right corner of the screen.
+To view the premises you just added, return to the home workbench and select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown at the top-right corner of the screen. Alternately, run the {{<link title="config/#netq-config-show-cli-premises" text="netq config show cli premises">}} command.
 
 ## Rename a Premises
 

@@ -17,7 +17,7 @@ NetQ 4.7.0 includes the following new features and improvements:
 - {{<link title="Configure and Monitor What Just Happened/#suppress-events-with-filters" text="Create WJH suppression rules">}} based on IP addresses
 - WIP: {{<link title="Configure and Monitor What Just Happened/#vew-what-just-happenned-metrics" text="">}} aggregate duplicate WJH L1 errors on the same port
 - WIP: monitor CPU and memory utilization for services and processes, create TCA rules to limit CPU and memory usage by services/processes
-- WIP: Performance improvements to the NetQ Agent (that limit CPU usage to 50%)
+- WIP: Performance improvements to the NetQ Agent (that limit CPU usage to a maximum of 50%).
 ## Upgrade Paths
 
 You can {{<link title="Upgrade NetQ" text="upgrade directly to NetQ 4.7.0">}} if your deployment is currently running version 4.5.0 or later.

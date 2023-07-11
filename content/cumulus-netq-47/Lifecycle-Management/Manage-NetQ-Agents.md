@@ -196,7 +196,8 @@ cumulus@switch:~$ netq config restart agent
 
 ### Configure a NetQ Agent to Limit Switch CPU Usage
 
-You can restrict the NetQ Agent from using more than a configurable amount of the CPU resources. This setting requires a switch running Cumulus Linux versions 3.7, 4.1, or later.
+You can limit the NetQ Agent to use only a certain percentage of CPU resources on a switch. This setting requires a switch running Cumulus Linux versions 3.7, 4.1, or later. The NetQ Agent 4.7.0 limits its CPU usage to a maximum of 50% by default.
+
 
 For more detail about this feature, refer to this [Knowledge Base article]({{<ref "knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches">}}).
 

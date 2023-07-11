@@ -176,10 +176,21 @@ vrrp 44 ipv6 2001:0db8::1
 
 ### Show VRRP Configuration
 
-To show virtual router configuration and operational information, run the NVUE `nv show router vrrp` command or the vtysh `show vrrp` command. For example:
+To show global VRRP configuration, run the NVUE `nv show router vrrp` command:
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@switch:~$ nv show router vrrp
+                        applied
+----------------------  -------
+enable                  on     
+advertisement-interval  1000   
+preempt                 on     
+priority                100    
+```
+
+The vtysh `show vrrp` command shows VRRP configuration and operational data:
+
+```
 ...
 switch# show vrrp
  Virtual Router ID                       44                          
@@ -220,3 +231,128 @@ switch# show vrrp
  IPv6 Addresses                          1                           
  ..................................      2001:db8::1
 ```
+
+To show configuration and operational information about all configured VRRP virtual routers, run the NVUE `nv show interface <interface-id> ip vrrp virtual-router` command or the vtysh `show vrrp` command.
+
+Add `-o json` at the end of the NVUE command to see the output in a more readable format:
+
+```
+cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router -o json
+{
+  "44": {
+    "accept-mode": "on",
+    "address-family": {
+      "ipv4": {
+        "counters": {
+          "adv-rx": 0,
+          "adv-tx": 4663,
+          "garp-tx": 1,
+          "state-transitions": 2
+        },
+        "down-interval": 15030,
+        "master-adv-interval": 5000,
+        "primary-addr": "10.0.0.2",
+        "priority": 254,
+        "skew-time": 30,
+        "status": "Master",
+        "virtual-addresses": {
+          "10.0.0.1": {}
+        },
+        "vmac": "00:00:5e:00:01:2c",
+        "vrrp-interface": "vrrp4-3-44"
+      },
+      "ipv6": {
+        "counters": {
+          "adv-rx": 0,
+          "adv-tx": 4662,
+          "neigh-adv-tx": 1,
+          "state-transitions": 2
+        },
+        "down-interval": 15030,
+        "master-adv-interval": 5000,
+        "primary-addr": "fe80::42cc:fd5c:fb48:76a8",
+        "priority": 254,
+        "skew-time": 30,
+        "status": "Master",
+        "virtual-addresses": {
+          "2001:db8::1": {}
+        },
+        "vmac": "00:00:5e:00:02:2c",
+        "vrrp-interface": "vrrp6-3-44"
+      }
+    },
+    "advertisement-interval": 5000,
+    "auto-config": "off",
+    "interface": "swp1",
+    "is-shutdown": "off",
+    "preempt": "on",
+    "priority": 254,
+    "version": 3
+  }
+}
+```
+
+To show configuration information about a specific VRRP virtual router, run the NVUE `nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id>` command or the vtysh `show vrrp <virtual-router-id>` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44
+                        operational  applied
+----------------------  -----------  ------------
+advertisement-interval  5000         5000
+preempt                 on           auto
+priority                254          254
+version                 3            3
+[address]                            10.0.0.1
+[address]                            2001:0db8::1
+accept-mode             on
+auto-config             off
+interface               swp1
+is-shutdown             off
+[address-family]        ipv4
+[address-family]        ipv6
+```
+
+The vtysh `show vrrp <virtual-router-id>` command shows operational information in addition to configuration information:
+
+```
+...
+switch# show vrrp  44
+
+ Virtual Router ID                       44                          
+ Protocol Version                        3                           
+ Autoconfigured                          No                          
+ Shutdown                                No                          
+ Interface                               swp1                        
+ VRRP interface (v4)                     vrrp4-3-44                  
+ VRRP interface (v6)                     vrrp6-3-44                  
+ Primary IP (v4)                         10.0.0.2                    
+ Primary IP (v6)                         fe80::42cc:fd5c:fb48:76a8   
+ Virtual MAC (v4)                        00:00:5e:00:01:2c           
+ Virtual MAC (v6)                        00:00:5e:00:02:2c           
+ Status (v4)                             Master                      
+ Status (v6)                             Master                      
+ Priority                                254                         
+ Effective Priority (v4)                 254                         
+ Effective Priority (v6)                 254                         
+ Preempt Mode                            Yes                         
+ Accept Mode                             Yes                         
+ Advertisement Interval                  5000 ms                     
+ Master Advertisement Interval (v4) Rx   5000 ms (stale)             
+ Master Advertisement Interval (v6) Rx   5000 ms (stale)             
+ Advertisements Tx (v4)                  4710                        
+ Advertisements Tx (v6)                  4709                        
+ Advertisements Rx (v4)                  0                           
+ Advertisements Rx (v6)                  0                           
+ Gratuitous ARP Tx (v4)                  1                           
+ Neigh. Adverts Tx (v6)                  1                           
+ State transitions (v4)                  2                           
+ State transitions (v6)                  2                           
+ Skew Time (v4)                          30 ms                       
+ Skew Time (v6)                          30 ms                       
+ Master Down Interval (v4)               15030 ms                    
+ Master Down Interval (v6)               15030 ms                    
+ IPv4 Addresses                          1                           
+ ..................................      10.0.0.1                    
+ IPv6 Addresses                          1                           
+ ..................................      2001:db8::1 
+ ```

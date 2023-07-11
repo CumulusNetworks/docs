@@ -489,7 +489,7 @@ Use the following commands to manage the NetQ system itself:
 - **bootstrap**: Loads the installation program onto the network switches and hosts in either a single server or server cluster arrangement.
 - **decommission**: Decommissions a switch or host.
 - **install**: Installs NetQ in standalone or cluster deployments; also used to install patch software.
-- **upgrade bundle**: Upgrades NetQ on NetQ On-premises Appliances or VMs.
+- **upgrade bundle**: Upgrades NetQ on NetQ on-premises appliances or VMs.
 
 The following example shows how to decommission a switch named leaf01:
 
@@ -505,7 +505,7 @@ The notification configuration commands can add, remove, and show notification v
 #### Threshold-based Event Notification Commands
 <!-- vale on -->
 
-NetQ supports {{<link title="Configure Threshold-Crossing Event Notifications" text="TCA events">}}, a set of events that <!--vale off -->are triggered<!-- vale on --> by crossing a user-defined threshold. Configure and manage TCA events using the following commands:
+NetQ supports {{<link title="Configure and Monitor Threshold-Crossing Events" text="TCA events">}}, a set of events that <!--vale off -->are triggered<!-- vale on --> by crossing a user-defined threshold. Configure and manage TCA events using the following commands:
 
 ```
 netq add tca

@@ -24,7 +24,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - Adaptive routing enhancements include:
   - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Multiple adaptive routing profiles">}}
   - BGP WCMP for adaptive routing enabled traffic
-  - Adaptive routing for RoCE with VXLAN
+  - Adaptive routing on VXLAN interfaces
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
 - Indication for secure firmware boot failure
 - Deterministic warm boot switchover
@@ -33,7 +33,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - {{<link url="Precision-Time-Protocol-PTP#clock-correction-mode" text="PTP one-step clock correction mode">}}
 - NVUE enhancements include:
   - PVST and PVRST with VLAN-aware bridges
-  - ARP and ND Timer configuration
+  - {{<link url="EVPN-Enhancements/#timer-settings" text="ARP and ND timer configuration">}}
   - Support templating SSH service options
   - VRRP operational data
   - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and Disable external API access">}}

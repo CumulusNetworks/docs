@@ -339,6 +339,8 @@ You can use flexible snippets to add configuration to the following files:
 |`/etc/cumulus/datapath/traffic.conf`| Configuration file for forwarding table profiles. Changes to this file require a `switchd` restart.|
 |`/etc/cumulus/switchd.conf`| Configuration file for `switchd`. Changes to this file require a `switchd` restart. |
 
+To add configuration to the `/etc/network/interfaces`, `/etc/frr/frr.conf`, and `/etc/frr/daemons` files, use traditional snippets.
+
 Flexible snippets do *not* support:
 - Binary files.
 - Symbolic links.

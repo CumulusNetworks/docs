@@ -440,6 +440,87 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
+### Global Timer Settings
+
+Cumulus Linux provides timer settings for neighbor entry garbage collection. You can configure the following timer settings.
+
+| <div style="width:250px">NVUE Command| <div style="width:200px">Linux Parameter| Description  |
+|------- |------- |------- |
+| `nv set system global nd garbage-collection-threshold minimum` |`net.ipv6.neigh.default.gc_thresh1`| The minimum number of entries to keep in the ARP cache. The garbage collector does not run if there are fewer than this number of entries in the ARP cache. You can specify a value between 0 and 2147483647. The default value is 128.|
+|`nv set system global nd garbage-collection-threshold effective`| `net.ipv6.neigh.default.gc_thresh2`| The soft maximum number of entries to keep in the ARP cache.  The garbage collector allows the number of entries to exceed this value for five seconds before collection. You can specify a value between 0 and 2147483647. The default value is 17920.|
+| `nv set system global nd garbage-collection-threshold maximum`| `net.ipv6.neigh.default.gc_thresh3`| The hard maximum number of entries to keep in the ARP cache. The garbage collector always runs if there are more than this number of entries in the ARP cache. You can specify a value between 0 and 2147483647. The default value is 20480. |
+|`nv set system global nd base-reachable-time`| `net.ipv6.neigh.default.base_reachable_time_ms`| Specifies how long in milliseconds an ARP cache entry is valid. The entry is considered valid for at least a value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 0 and 4294967295. The default value is 1080000.|
+| `nv set system global nd locktime` | `net.ipv6.neigh.default.locktime`| The minimum number of jiffies to keep an ARP entry in the cache. You can specify a value between 0 and 4294967295. The default value is 10.|
+
+The NVUE commands write to the `/etc/sysctl.d/neigh.conf` file.
+
+{{%notice note%}}
+When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment.
+{{%/notice%}}
+
+### Example Commands
+
+{{< tabs "TabID531 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set system global nd garbage-collection-threshold minimum 200
+cumulus@leaf01:~$ nv set system global nd garbage-collection-threshold effective 30000
+cumulus@leaf01:~$ nv set system global nd garbage-collection-threshold maximum 50000
+cumulus@leaf01:~$ nv set system global nd base-reachable-time 2080000
+cumulus@leaf01:~$ nv set system global nd locktime 100
+```
+
+- To set the minimum, effective, and maximum threshold values to the default settings, run the `nv unset system global nd garbage-collection-threshold` command.
+- To set the base reachable time to the default setting, run the `nv unset system global nd base-reachable-time` command.
+- To set the locktime value to the default setting, run the `nv unset system global nd locktime` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/sysctl.d/neigh.conf` file and change the `net.ipv6.neigh.default` parameter values:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/sysctl.d/neigh.conf
+...
+net.ipv6.neigh.default.gc_thresh2=30000
+net.ipv6.neigh.default.gc_thresh3=50000
+net.ipv6.neigh.default.base_reachable_time_ms=2080000
+net.ipv6.neigh.default.locktime=100
+net.ipv6.neigh.default.gc_thresh1=200
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Show Global Timer Settings
+
+To show all the timer settings, run the `nv show system global nd` command:
+
+```
+nv show system global arp
+                              operational
+----------------------------  -----------
+base-reachable-time           2080000    
+locktime                      100        
+garbage-collection-threshold             
+  effective                   55000      
+  maximum                     70000      
+  minimum                     200        
+```
+
+To show the minimum, effective, and maximum threshold settings, run the `nv show system global nd garbage-collection-threshold` command.
+
+```
+cumulus@leaf01:~$ nv show system global nd garbage-collection-threshold
+           operational  applied
+---------  -----------  -------
+effective  55000               
+maximum    70000               
+minimum    200     
+```
+
 ## Troubleshooting
 
 To show the ND settings for an interface, run the NVUE `nv show interface <interface-id> ip neighbor-discovery` command:

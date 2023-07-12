@@ -39,7 +39,7 @@ netq show services
 
 ## View Switch Inventory in the UI
 
-Add the Inventory/Switches card to your workbench to monitor the hardware and software component inventory on switches running NetQ in your network. To add this card to your workbench, select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Inventory** > **Inventory/Switches card** > **Open cards**. Select the dropdown to view additional inventory information.
+Add the Inventory/Switches card to your workbench to monitor the hardware and software component inventory on switches running NetQ in your network. To add this card to your workbench, select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card**&nbsp;<span aria-label="and then">></span> **Inventory**&nbsp;<span aria-label="and then">></span> **Inventory/Switches card**&nbsp;<span aria-label="and then">></span> **Open cards**. Select the dropdown to view additional inventory information.
 
 {{<img src="/images/netq/inventory-switches-updated.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switches-dropdown.png" width="200">}}
 
@@ -54,8 +54,8 @@ Expand the Inventory/Switches card to full-screen to view, filter or export info
 - ASICs
 - Motherboards
 - CPUs
-- Disks
 - Memory
+- Disks
 - Operating system
 
 {{<figure src="/images/netq/switch-inventory-full-460.png" alt="" width="1200">}}

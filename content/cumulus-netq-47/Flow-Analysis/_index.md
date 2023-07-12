@@ -182,6 +182,9 @@ Select **Show all drops** to display a list of all WJH drops for the device:
 
 {{<figure src="/images/netq/wjh-all-drops-panel-42.png" alt="WJH statistics for all drops, including tabular information on count, drop type, drop reason, severity, and corrective action" width="600">}}
 
+<!-- hiding this until the simulation works
 ## Related Information
 
 You can run a flow analysis in a simulated environment with NVIDIA Air. Launch the {{<exlink url="https://air.nvidia.com/marketplace?demo_id=649868d2-8c6c-4817-a4c3-fc904f4b0f8f" text="flow analysis demo">}} to try it out.
+
+-->

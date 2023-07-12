@@ -15,8 +15,8 @@ NetQ 4.7.0 includes the following new features and improvements:
 
 - {{<link title="Focus Your Monitoring Using Workbenches" text="Create workbenches">}} that can be accessed from an individual premises or that are available globally, across premises
 - {{<link title="Configure and Monitor What Just Happened/#suppress-events-with-filters" text="Create WJH suppression rules">}} based on IP addresses
-- WIP: {{<link title="Configure and Monitor What Just Happened/#view-what-just-happened-metrics" text="">}} aggregate duplicate WJH L1 errors on the same port
-- WIP: monitor CPU and memory utilization for services and processes, create TCA rules to limit CPU and memory usage by services/processes
+- WIP: {{<link title="Configure and Monitor What Just Happened/#view-what-just-happened-metrics" text="">}} aggregate WJH L1 errors that occur on the same port
+- WIP: {{<link title="Switches/#monitor-resource-utilization-for-processes-and-services" text="">}} monitor CPU and memory utilization for services and processes, create TCA rules to limit CPU and memory usage by services/processes
 - WIP: Performance improvements to the NetQ Agent (that limit CPU usage to a maximum of 50%).
 ## Upgrade Paths
 

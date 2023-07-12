@@ -9,7 +9,7 @@ With the NetQ UI and NetQ CLI, you can monitor the health of individual switches
 NetQ reports switch performance metrics for the following categories:
 
 - **System configuration**: events, interfaces, IP and MAC addresses, VLANs, IP routes, IP neighbors, and installed software packages
-- **Utilization statistics**: CPU, memory, disk, ACL and forwarding resources, SSD, and BTRFS
+- **Utilization statistics**: CPU, memory, disk, ACL and forwarding resources, SSD, BTRFS, and processes
 - **Physical sensing**: digital optics and switch sensors
 - **RoCE** and **Precision Time Protocol**
 
@@ -40,6 +40,18 @@ Hover over the top of the card and select the appropriate icon to view utilizati
 Expand the Switch card to full-screen to view, filter, or export information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, software packages, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, digital optics, PTP, and process monitoring: 
 
 {{<figure src="/images/netq/switch-full-470.png" width="1200">}}
+
+## Monitor Resource Utilization for Processes and Services
+
+To visualize CPU and memory utilization at the process level, open a large switch card and navigate to the **Utilization** tab. Then select **Show process monitoring data**. The UI depicts two charts---one each for CPU and memory utilization---along with a list of services and processes.
+
+Select a process from the **Process name** column for its usage data to be reflected in the CPU and memory utilization charts. The following graphs depict CPU and memory usage over a 6-hour time period from the *smond* service. The process whose data is reflected in the charts is indicated by an icon {{<img src="/images/netq/analytics-bars.svg" alt="" height="18" width="18">}} next to the name of the process.
+
+{{<figure src="/images/netq/procmon-470.png" alt="CPU and memory utilization info for the smond service" width="1200">}}
+
+To actively monitor process-level CPU and memory utilization, you can create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}}. These rules generate events when a process exceeds the limit you define when creating the rule. Refer to the {{<link title="Threshold-Crossing Events Reference/#resource-utilization" text="Threshold-Crossing Events Reference">}} for more information about CPU and memory utilization rules for services.
+
+The {{<kb_link latest="cl" url="System-Configuration/Services-and-Daemons-in-Cumulus-Linux.md" text="Cumulus Linux documentation">}} includes detailed information about services and processes, including a list of important services.
 
 ## Switch Commands
 

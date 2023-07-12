@@ -248,9 +248,9 @@ The configuration above does not persist if you reboot the switch. To make the c
     cumulus@switch:~$ sudo systemctl restart neighmgrd
     ```
 
-### Global Timer Settings
+## Global Timer Settings
 
-Cumulus Linux provides timer settings for neighbor entry garbage collection. You can configure the following timer settings.
+Cumulus Linux provides timer settings for neighbor entry garbage collection. You can configure timer settings either with NVUE commands or by editing the `/etc/sysctl.d/neigh.conf` file.
 
 | <div style="width:250px">NVUE Command| <div style="width:200px">Linux Parameter| Description  |
 |------- |------- |------- |
@@ -266,7 +266,7 @@ The NVUE commands write to the `/etc/sysctl.d/neigh.conf` file.
 When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment.
 {{%/notice%}}
 
-### Example Commands
+### Example Configuration Commands
 
 {{< tabs "TabID531 ">}}
 {{< tab "NVUE Commands ">}}

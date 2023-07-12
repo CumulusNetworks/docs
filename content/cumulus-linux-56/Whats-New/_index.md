@@ -33,7 +33,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - PVST and PVRST with VLAN-aware bridges
   - {{<link url="Address-Resolution-Protocol-ARP/#global-timer-settings" text="ARP global timer configuration">}} and {{<link url="Neighbor-Discovery-ND/#global-timer-settings" text="ND global timer configuration">}}
   - Support templating SSH service options
-  - New command to enable password encryption for BGP and OSPF
+  - Command to show encrypted {{<link url="Optional-BGP-Configuration/#encrypted-bgp-peer-passwords" text="BGP peer passwords">}} and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#encrypted-bgp-peer-passwords" text="OSPF peer passwords">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
   - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and Disable external API access">}}
   - Clear operation for all routing protocols

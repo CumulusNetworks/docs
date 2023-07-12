@@ -334,21 +334,21 @@ Read thread: on  Write thread: on  FD used: 27
 Cumulus Linux does not enforce the MD5 password configured against a BGP listen-range peer group (used to accept and create dynamic BGP neighbors) and accepts connections from peers that do not specify a password.
 {{%/notice%}}
 
-## Encrypted Passwords
+### Password Obfuscation
 
-By default, when you set passwords for BGP peers, Cumulus Linux shows the passwords as clear text in the NVUE `nv config show` command output, vtysh `show running-config output`, and in the `/etc/frr/frr.conf` file. To configure BGP to show encrypted passwords instead of clear text passwords:
+By default, when you set passwords for BGP neighbors, Cumulus Linux shows the passwords in clear text in the NVUE `nv config show` command output, vtysh `show running-config output`, and in the `/etc/frr/frr.conf` file. To configure BGP to obfuscate the passwords instead of showing them in clear text:
 
 {{< tabs "340 ">}}
 {{< tab "NVUE Commands ">}}
 
-To configure BGP to show encrypted BGP peer passwords:
+To enable password obfuscation (show encrypted passwords):
 
 ```
 cumulus@leaf01:~$ nv set router password-obfuscation enabled
 cumulus@leaf01:~$ nv config apply
 ```
 
-To disable configuration for encrypted BGP peer passwords and show passwords in clear text:
+To disable password obfuscation (show clear text passwords):
 
 ```
 cumulus@leaf01:~$ nv set router password-obfuscation disabled
@@ -358,7 +358,7 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-To configure BGP to show encrypted BGP peer passwords:
+To enable password obfuscation (show encrypted passwords):
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -370,7 +370,7 @@ switch# write memory
 switch# exit
 ```
 
-To disable configuration for encrypted BGP peer passwords and show passwords in clear text:
+To disable password obfuscation (show clear text passwords):
 
 ```
 cumulus@switch:~$ sudo vtysh

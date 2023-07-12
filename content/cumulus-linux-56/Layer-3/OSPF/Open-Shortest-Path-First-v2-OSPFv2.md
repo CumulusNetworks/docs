@@ -997,6 +997,57 @@ router ospf
 {{< /tab >}}
 {{< /tabs >}}
 
+### Encrypted OSPF Peer Passwords
+
+You can configure OSPF to show encrypted OSPF peer passwords instead of clear text passwords in the NVUE `nv config show` command output, vtysh `show running-config output`, and in the `/etc/frr/frr.conf` file.
+
+{{< tabs "340 ">}}
+{{< tab "NVUE Commands ">}}
+
+To configure OSPF to show encrypted OSPF peer passwords:
+
+```
+cumulus@leaf01:~$ nv set router password-obfuscation enabled
+cumulus@leaf01:~$ nv config apply
+```
+
+To disable configuration for encrypted OSPF peer passwords and show passwords in clear text:
+
+```
+cumulus@leaf01:~$ nv set router password-obfuscation disabled
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To configure OSPF to show encrypted OSPF peer passwords:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# conf t
+switch(config)# service password-obfuscation
+switch(config)# end
+switch# write memory
+switch# exit
+```
+
+To disable configuration for encrypted OSPF peer passwords and show passwords in clear text:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# conf t
+switch(config)# no service password-obfuscation
+switch(config)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Topology Changes and OSPF Reconvergence
 
 When you remove a router or OSPF interface, <span style="background-color:#F5F5DC">[LSA](## "Link-State Advertisement")</span> updates trigger throughout the network to inform all routers of the topology change. When the switch receives the LSA and runs OSPF, a routing update occurs. This can cause short-duration outages while the network detects the failure and updates the OSPF database.

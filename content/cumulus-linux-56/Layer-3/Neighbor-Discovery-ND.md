@@ -15,6 +15,7 @@ Cumulus Linux provides options to configure:
 - DNS Search Lists
 - Home Agents
 - MTU for neighbor discovery messages
+- Global timer settings
 
 ## Router Advertisement
 <!-- vale off -->

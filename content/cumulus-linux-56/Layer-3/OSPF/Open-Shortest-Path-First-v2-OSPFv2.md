@@ -680,6 +680,57 @@ interface swp1
 To remove existing MD5 authentication hashes, run the vtysh `no ip ospf` command (`no ip ospf message-digest-key 1 md5 thisisthekey`).
 {{%/notice%}}
 
+#### Password Obfuscation
+
+By default, when you set MD5 authentication for OSPF neighbors, Cumulus Linux shows the keys in clear text in the NVUE `nv config show` command output, vtysh `show running-config output`, and in the `/etc/frr/frr.conf` file. To configure OSPF to obfuscate the keys instead of showing them in clear text:
+
+{{< tabs "340 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable password obfuscation (show encrypted passwords):
+
+```
+cumulus@leaf01:~$ nv set router password-obfuscation enabled
+cumulus@leaf01:~$ nv config apply
+```
+
+To disable password obfuscation (show clear text passwords):
+
+```
+cumulus@leaf01:~$ nv set router password-obfuscation disabled
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To enable password obfuscation (show encrypted passwords):
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# conf t
+switch(config)# service password-obfuscation
+switch(config)# end
+switch# write memory
+switch# exit
+```
+
+To disable password obfuscation (show clear text passwords):
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# conf t
+switch(config)# no service password-obfuscation
+switch(config)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Summarization and Prefix Range
 
 By default, an <span style="background-color:#F5F5DC">[ABR](## "Area Border Router")</span> creates a summary (type-3) <span style="background-color:#F5F5DC">[LSA](## "Link-State Advertisement")</span> for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes. OSPF only allows for route summarization between areas on a ABR.
@@ -992,57 +1043,6 @@ router ospf
   ospf router-id 10.10.10.1
   distance ospf intra-area 150 inter-area 150 external 220
 ...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Encrypted OSPF Peer Passwords
-
-You can configure OSPF to show encrypted OSPF peer passwords instead of clear text passwords in the NVUE `nv config show` command output, vtysh `show running-config output`, and in the `/etc/frr/frr.conf` file.
-
-{{< tabs "340 ">}}
-{{< tab "NVUE Commands ">}}
-
-To configure OSPF to show encrypted OSPF peer passwords:
-
-```
-cumulus@leaf01:~$ nv set router password-obfuscation enabled
-cumulus@leaf01:~$ nv config apply
-```
-
-To disable configuration for encrypted OSPF peer passwords and show passwords in clear text:
-
-```
-cumulus@leaf01:~$ nv set router password-obfuscation disabled
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-To configure OSPF to show encrypted OSPF peer passwords:
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# conf t
-switch(config)# service password-obfuscation
-switch(config)# end
-switch# write memory
-switch# exit
-```
-
-To disable configuration for encrypted OSPF peer passwords and show passwords in clear text:
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# conf t
-switch(config)# no service password-obfuscation
-switch(config)# end
-switch# write memory
-switch# exit
 ```
 
 {{< /tab >}}

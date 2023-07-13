@@ -675,57 +675,6 @@ router ospf6
 ...
 ```
 
-### Encrypted OSPF Peer Passwords
-
-You can configure OSPF to show encrypted OSPF peer passwords instead of clear text passwords in the NVUE `nv config show` command output, vtysh `show running-config output`, and in the `/etc/frr/frr.conf` file.
-
-{{< tabs "340 ">}}
-{{< tab "NVUE Commands ">}}
-
-To configure OSPF to show encrypted OSPF peer passwords:
-
-```
-cumulus@leaf01:~$ nv set router password-obfuscation enabled
-cumulus@leaf01:~$ nv config apply
-```
-
-To disable configuration for encrypted OSPF peer passwords and show passwords in clear text:
-
-```
-cumulus@leaf01:~$ nv set router password-obfuscation disabled
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-To configure OSPF to show encrypted OSPF peer passwords:
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# conf t
-switch(config)# service password-obfuscation
-switch(config)# end
-switch# write memory
-switch# exit
-```
-
-To disable configuration for encrypted OSPF peer passwords and show passwords in clear text:
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# conf t
-switch(config)# no service password-obfuscation
-switch(config)# end
-switch# write memory
-switch# exit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 ## Troubleshooting
 
 Cumulus Linux provides several OSPFv3 troubleshooting commands:

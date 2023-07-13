@@ -336,7 +336,7 @@ Cumulus Linux does not enforce the MD5 password configured against a BGP listen-
 
 ### Password Obfuscation
 
-By default, when you set passwords for BGP neighbors, Cumulus Linux shows the passwords in clear text in the NVUE `nv config show` command output, vtysh `show running-config output`, and in the `/etc/frr/frr.conf` file. To configure BGP to obfuscate the passwords instead of showing them in clear text:
+By default, when you set MD5 authentication for BGP peers, Cumulus Linux shows the passwords in clear text in the NVUE `nv config show` command output, vtysh `show running-config output`, and in the `/etc/frr/frr.conf` file. To configure BGP to obfuscate the passwords instead of showing them in clear text:
 
 {{< tabs "340 ">}}
 {{< tab "NVUE Commands ">}}

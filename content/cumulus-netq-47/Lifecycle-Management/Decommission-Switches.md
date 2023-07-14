@@ -27,7 +27,7 @@ Decommissioning the switch or host removes information about the switch or host 
 
 2. On the Switches card, select **Manage**.
 
-3. Select the devices to decommission, then select the decommission icon above the table:
+3. Select the devices to decommission, then select **Decommission switch** above the table:
 
 {{<figure src="/images/netq/decom-switch-box-450.png" alt="" width="600">}}
 

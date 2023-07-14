@@ -63,3 +63,4 @@ Expand the Inventory/Switches card to full-screen to view, filter or export info
 
 - {{<link title="Switches" text="Switch Monitoring">}}
 - {{<link title="Switch Management" text="Switch Lifecycle Management">}}
+- {{<link title="Decommission Switches">}}

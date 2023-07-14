@@ -31,6 +31,8 @@ Expand the card to its largest size to view, filter, and export detailed informa
 
 {{<figure src="/images/netq/dpu-inventory-l4-42.png" alt="fully expanded DPU inventory card displaying a table with data" width="1100">}}
 
+## Decommission a DPU
+
 ## Related Information
 
 To read more about NVIDIA BlueField DPUs and the DOCA Telemetry Service, refer to the {{<exlink url="https://docs.nvidia.com/doca/sdk/doca-telemetry-service/index.html" text="DOCA SDK Documentation">}}.

@@ -5,9 +5,7 @@ weight: 760
 toc: 4
 ---
 
-Use the UI or CLI to view your data processing unit (DPU) inventory. 
-
-For DPU performance information, refer to {{<link title="DPUs" text="DPU Monitoring">}}.
+Use the UI or CLI to view your data processing unit (DPU) inventory. For DPU performance information, refer to {{<link title="DPUs" text="DPU Monitoring">}}.
 
 ## DPU Inventory Commands
 

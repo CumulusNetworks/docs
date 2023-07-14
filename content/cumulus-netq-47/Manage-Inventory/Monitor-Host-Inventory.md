@@ -58,8 +58,8 @@ To decommission a host:
 1. Stop and disable the NetQ Agent service on the host:
 
     ```
-    cumulus@switch:~$ sudo systemctl stop netq-agent
-    cumulus@switch:~$ sudo systemctl disable netq-agent
+    cumulus@host:~$ sudo systemctl stop netq-agent
+    cumulus@host:~$ sudo systemctl disable netq-agent
     ```
 
 2. On the NetQ appliance or VM, decommission the host:

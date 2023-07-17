@@ -14,8 +14,8 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 NetQ 4.7.0 includes the following new features and improvements:
 
 - View network interface controller (NIC) {{<link title="NICs" text="telemetry">}} and {{<link title="NIC Inventory" text="inventory">}} data in the UI 
-- Decommission {{<link title="Host Inventory/#decommission-a-host" text="hosts">}} NICs, and DPUs from the UI or CLI
-- {{<link title="Focus Your Monitoring Using Workbenches" text="Create workbenches">}} that can be accessed from an individual premises or that are available globally, across premises
+- Decommission {{<link title="Host Inventory/#decommission-a-host" text="hosts">}}, {{<link title="NIC Inventory/#decommission-a-nic" text="NICs">}}, and {{<link title="DPU Inventory/#decommission-a-dpu" text="DPUs">}} from the UI or CLI
+- {{<link title="Focus Your Monitoring Using Workbenches" text="Create workbenches">}} that can be accessed from an individual premises or that are available globally, across multiple premises
 - {{<link title="Configure and Monitor What Just Happened/#suppress-events-with-filters" text="Create WJH suppression rules">}} based on IP addresses
 - WIP: Visualize egress queue lengths in histograms in the UI 
 - WIP: {{<link title="Configure and Monitor What Just Happened/#view-what-just-happened-metrics" text="">}} aggregate WJH L1 errors that occur on the same port

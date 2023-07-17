@@ -33,5 +33,47 @@ To view data from an individual NIC, select it from the table, then select <img 
 
 You can expand this card to large or full-screen to view detailed interface statistics, including frame and carrier errors. 
 
+## Decommission a NIC
 
+Decommissioning NICs removes information about the NIC from the NetQ database. The NetQ Agent must be disabled and in a 'rotten' state to complete the decommissioning process.
+
+{{<tabs "TabID29" >}}
+
+{{<tab "NetQ UI">}}
+
+1. Locate the Inventory/Devices card on your workbench and expand it to full-screen.
+
+2. From the **NICs** tab, locate the **Agent state** column.  
+
+    {{<figure src="/images/netq/decom-host-agent-470.png" alt="list of hosts displaying a fresh netq agent" width="1200">}}
+
+If the NetQ Agents is in a 'fresh' state, you must stop and disable the NetQ Agent and wait until it reflects a 'rotten' state. To disable the agent, stop the DTS container on the server with the following command:
+
+```
+docker stop doca_telemetry
+```
+{{<notice info>}}
+It may take up to 30 minutes for the agent's new state to be reflected in the UI.
+{{</notice>}}
+3. After you have confirmed that the agent is in a 'rotten' state, select the host you'd like to decommission, then select **Decommission device** above the table.
+
+    {{<figure src="/images/netq/decom-hosts-470.png" alt="" width="1200">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+To decommission a NIC:
+
+1. 
+
+2. On the NetQ appliance or VM, decommission the NIC:
+
+    ```
+    cumulus@netq-appliance:~$ netq decommission <hostname-to-decommission>
+    ```
+
+{{</tab>}}
+
+{{</tabs>}}
 

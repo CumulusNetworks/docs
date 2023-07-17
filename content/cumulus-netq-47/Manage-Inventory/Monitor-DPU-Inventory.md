@@ -33,6 +33,53 @@ Expand the card to its largest size to view, filter, and export detailed informa
 
 ## Decommission a DPU
 
+Decommissioning DPUs removes information about the DPU from the NetQ database. The NetQ Agent must be disabled and in a 'rotten' state to complete the decommissioning process.
+
+{{<tabs "TabID29" >}}
+
+{{<tab "NetQ UI">}}
+
+1. Locate the Inventory/Devices card on your workbench and expand it to full-screen.
+
+2. From the **DPUs** tab, locate the **Agent state** column.  
+
+    {{<figure src="/images/netq/decom-host-agent-470.png" alt="list of hosts displaying a fresh netq agent" width="1200">}}
+
+If the NetQ Agents is in a 'fresh' state, you must stop and disable the NetQ Agent and wait until it reflects a 'rotten' state. To disable the agent, run the following commands on the DPU you want to decommission. Replace *<netq_server>* with the IP address of your NetQ VM:
+
+```
+sed -i s'/<netq_server>/127.0.0.1/g' /etc/kubelet.d/doca_telemetry_standalone.yaml
+```
+
+{{<notice info>}}
+It may take up to 30 minutes for the agent's new state to be reflected in the UI.
+{{</notice>}}
+3. After you have confirmed that the agent is in a 'rotten' state, select the DPU you'd like to decommission, then select **Decommission device** above the table.
+
+    {{<figure src="/images/netq/decom-hosts-470.png" alt="" width="1200">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+To decommission a host:
+
+1. Stop and disable the NetQ Agent service on the host:
+
+    ```
+    sed -i s'/<netq_server>/127.0.0.1/g' /etc/kubelet.d/doca_telemetry_standalone.yaml
+    ```
+
+2. On the NetQ appliance or VM, decommission the DPU:
+
+    ```
+    cumulus@netq-appliance:~$ netq decommission <hostname-to-decommission>
+    ```
+
+{{</tab>}}
+
+{{</tabs>}}
+
 ## Related Information
 
 To read more about NVIDIA BlueField DPUs and the DOCA Telemetry Service, refer to the {{<exlink url="https://docs.nvidia.com/doca/sdk/doca-telemetry-service/index.html" text="DOCA SDK Documentation">}}.

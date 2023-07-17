@@ -223,6 +223,16 @@ switch# write memory
 switch# exit
 ```
 
+## UCMP and Adaptive Routing
+
+Cumulus Linux supports UCMP with adaptive routing for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-ucmp" text="above.">}}
+
+- NVIDIA recommends using UCMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
+- Cumulus Linux supports a maximum of 48 adaptive routing enabled ports in a single ECMP group.
+- Cumulus Linux establishes the neighbor group based on the neighbor MAC address; you must provide all the switches with a unique base MAC address. `switchd` automatically assigns the base MAC address to all of the adaptive routing enabled ports in a particular node.
+- The UCMP weight-based nexthop pruning algorithm works effectively when you use only Cumulus Linux switches in the adaptive routing enabled network.
+- Both adaptive routing traffic and non adaptive routing traffic goes over the same ECMP group, which adjusts according to the UCMP weight; therefore, the reduced capacity applies to both adaptive routing and non adaptive routing traffic. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.
+
 ## Troubleshooting
 
 To show the extended community in a received or local route, run the vtysh `show bgp` command or the `net show bgp` command.

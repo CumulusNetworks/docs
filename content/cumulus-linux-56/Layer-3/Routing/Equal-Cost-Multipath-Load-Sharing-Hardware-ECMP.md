@@ -425,6 +425,8 @@ With adaptive routing, packets route to the less loaded path on a per packet bas
 
 The change decision for port selection is set to one microsecond; you cannot change it.
 
+Cumulus Linux supports UCMP with adaptive routing; see {{<link title="Unequal Cost Multipath with BGP Link Bandwidth/#ucmp-and-adaptive-routing" text="Unequal Cost Multipath with BGP Link Bandwidth. ">}}
+
 {{%notice note%}}
 You must configure adaptive routing on *all* ports that are part of the same ECMP route. Make sure the ports are physical uplink ports.
 {{%/notice%}}

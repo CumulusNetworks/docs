@@ -21,6 +21,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 ### New Features and Enhancements
 
+- {{<link url="Switch-Port-Attributes/#breakout-ports" text="PAM4 encoding ">}} support for the NVIDIA SN4410 switch
 - Adaptive routing enhancements include:
   - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Multiple adaptive routing profiles">}}
   - BGP WCMP support for adaptive routing enabled traffic

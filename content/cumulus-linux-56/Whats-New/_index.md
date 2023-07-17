@@ -39,7 +39,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - Clear operation for all routing protocols
   - IGMP commands
   - Commands to set the time
-  - Platform keyword presentation
+  - Changes to `nv show platform` command outputs to improve readability
 
 {{< expand "Changed Commands" >}}
 | Previous Command | New Command |

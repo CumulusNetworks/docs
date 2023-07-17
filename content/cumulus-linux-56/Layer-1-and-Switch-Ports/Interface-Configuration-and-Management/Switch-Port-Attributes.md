@@ -1114,7 +1114,7 @@ Maximum 50G ports: 80
 {{< /tab >}}
 {{< tab "100G ">}}
 
-- 48x100G - 24xQSFP28-DD break out into 2x (using special 2xQSFP28-DD breakout cable)
+- 48x100G - 24xQSFP28-DD break out into 2x
 - 32x100G - 8xQSFP-DD break out into 4x
 
 Maximum 100G ports: 80

@@ -1052,13 +1052,15 @@ Maximum 200G ports: 32
 {{< /tabs >}}
 {{< tab "SN4410">}}
 
-SN4410 24xQSFP28-DD (100GbE) interfaces [ports 1-24] only support NRZ encoding with all speeds down to 1G.
+SN4410 24xQSFP28-DD interfaces [ports 1-24] support both PAM4 and NRZ encoding with all speeds from 200G down to 1G.
 
-The 8xQSFP-DD (400GbE) interfaces [ports 25-32] support both PAM4 and NRZ encodings with all speeds down to 1G.
+The 8xQSFP-DD (400GbE) interfaces [ports 25-32] support both PAM4 and NRZ encodings with all speeds from 400G down to 1G.
 
 For lower speeds, PAM4 is automatically converted to NRZ encoding.
 
-The 24xQSFP28-DD ports can break out into 2xQSFP28 (2x100GbE) using special 2x100GbE breakout cable, or 4xSFP28 (4x25GbE).
+The top 12xQSFP28-DD ports can break out into 8xSFP56 (8x50GbE). But, in this case, the adjacent QSFP28-DD ports are blocked.
+
+The 24xQSFP28-DD ports can break out into 2xQSFP28 (2x100GbE), 2xQSFP56 (2x200G), 4xSFP28 (4x25GbE), 4xSFP56 (4x50GbE), or 4xQSFP28 (4x100GbE).
 
 The top 4xQSFP-DD ports can break out into 8xSFP56 (8x50GbE). But, in this case, the adjacent 4xQSFP-DD ports are blocked.
 

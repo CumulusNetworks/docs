@@ -24,12 +24,12 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - {{<link url="Switch-Port-Attributes/#breakout-ports" text="PAM4 encoding ">}} support for the NVIDIA SN4410 switch
 - Adaptive routing enhancements include:
   - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Multiple adaptive routing profiles">}}
-  - BGP WCMP support for adaptive routing enabled traffic
-  - Cumulus Linux now supports adaptive routing on VXLAN interfaces
+  - {{<link title="Unequal Cost Multipath with BGP Link Bandwidth/#ucmp-and-adaptive-routing" text="BGP UCMP support for adaptive routing ">}}
+  - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive routing on VXLAN interfaces">}}
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
-- Deterministic warm boot switchover
 - {{<link url="Monitoring-System-Hardware" text="Fan direction">}} now shows in NVUE and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
 - {{<link url="Precision-Time-Protocol-PTP#clock-correction-mode" text="PTP one-step clock correction mode">}}
+- Deterministic warm boot switchover
 - NVUE enhancements include:
   - PVST and PVRST with VLAN-aware bridges
   - {{<link url="Address-Resolution-Protocol-ARP/#global-timer-settings" text="ARP global timer configuration">}} and {{<link url="Neighbor-Discovery-ND/#global-timer-settings" text="ND global timer configuration">}}

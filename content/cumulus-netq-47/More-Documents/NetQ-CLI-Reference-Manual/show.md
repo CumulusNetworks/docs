@@ -1721,7 +1721,7 @@ netq [<hostname>] show inventory os
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| brief | NA | Only display summary information: hostname, switch, OS, CPU architecture, ASIC vendor, ports |
+| brief | NA | Only display summary information: hostname, switch, OS, CPU architecture, ASIC vendor, ports, NICs |
 | asic | NA | Only display ASIC information: hostname, vendor, model, model ID, core bandwidth, ports |
 | board | NA | Only display motherboard information: hostname, vendor, model, base MAC address, serial number, part number, revision, manufacturing date |
 | cpu | NA | Only display processor information: hostname, architecture, model, frequency, number of cores |

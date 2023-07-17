@@ -7,6 +7,10 @@ toc: 3
 
 With the NetQ UI, you can view the attributes of individual network interface controllers (NICs), including their connection adapters and firmware versions. For NIC inventory information, refer to {{<link title="NIC Inventory" text="NIC Inventory">}}.
 
+{{<notice note>}}
+You must have the DOCA Telemetry Service (DTS) enabled to display NIC data in NetQ.
+{{</notice>}}
+
 ## View NIC Attributes in the UI
 
 To view attributes per NIC, open a NIC device card:
@@ -17,7 +21,7 @@ To view attributes per NIC, open a NIC device card:
 
 3. Click **Add** to open an individual NIC card on your workbench, displaying ports, packets, and bytes information:
 
-{{<figure src="/images/netq/ind-nic-res-470.png" alt="" width="300">}}
+{{<figure src="/images/netq/ind-nic-res-470.png" alt="" width="250">}}
 
 For a quick look at the key attributes of a particular NIC, expand the NIC card. Attributes are displayed as the default tab on the large NIC card. Select the **Interface stats** tab at the top of the card to view detailed interface statistics, including frame and carrier errors. 
 

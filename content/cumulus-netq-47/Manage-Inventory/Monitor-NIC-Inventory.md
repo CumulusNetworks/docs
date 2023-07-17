@@ -7,13 +7,17 @@ toc: 4
 
 Use the UI or CLI to view your network interface controller (NIC) inventory. For NIC performance information, refer to {{<link title="NICs" text="NIC Monitoring">}}.
 
+{{<notice note>}}
+You must have the DOCA Telemetry Service (DTS) enabled to display NIC data in NetQ.
+{{</notice>}}
+
 
 ## NIC Inventory Commands
 
-Several forms of this command are available based on the inventory component you'd like to view. See the {{<link title="show/#netq-show-inventory" text="command line reference">}} for additional options, definitions, and examples.
+Run the {{<link title="show/#netq-show-inventory" text="netq show inventory brief">}} command to display an inventory summary, including a list of NICs.
 
 ```
-netq show inventory (brief | asic | board | cpu | disk | memory | license | os)
+netq show inventory brief
 ```
 ## View NIC Inventory in the UI
 
@@ -29,7 +33,7 @@ Expand the card to full-screen to view a list of hosts and their associated NICs
 
 To view data from an individual NIC, select it from the table, then select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** above the table. An individual {{<link title="NICs" text="NIC monitoring card">}} opens on your workbench, displaying ports, packets, and bytes information:
 
-{{<figure src="/images/netq/ind-nic-470.png" alt="" width="200">}}
+{{<figure src="/images/netq/ind-nic-res-470.png" alt="" width="200">}}
 
 You can expand this card to large or full-screen to view detailed interface statistics, including frame and carrier errors. 
 
@@ -47,7 +51,7 @@ Decommissioning NICs removes information about the NIC from the NetQ database. T
 
     {{<figure src="/images/netq/decom-host-agent-470.png" alt="list of hosts displaying a fresh netq agent" width="1200">}}
 
-If the NetQ Agents is in a 'fresh' state, you must stop and disable the NetQ Agent and wait until it reflects a 'rotten' state. To disable the agent, stop the DTS container on the server with the following command:
+If the NetQ Agent is in a 'fresh' state, you must stop and disable the NetQ Agent and wait until it reflects a 'rotten' state. To disable the agent, stop the DTS container with the following command:
 
 ```
 docker stop doca_telemetry
@@ -55,9 +59,11 @@ docker stop doca_telemetry
 {{<notice info>}}
 It may take up to 30 minutes for the agent's new state to be reflected in the UI.
 {{</notice>}}
-3. After you have confirmed that the agent is in a 'rotten' state, select the host you'd like to decommission, then select **Decommission device** above the table.
+3. After you have confirmed that the agent is in a 'rotten' state, select the NIC you'd like to decommission, then select **Decommission device** above the table.
 
     {{<figure src="/images/netq/decom-hosts-470.png" alt="" width="1200">}}
+
+4. (Optional) After you decommission the NIC, restart the DOCA Telemetry Service.
 
 {{</tab>}}
 
@@ -65,7 +71,11 @@ It may take up to 30 minutes for the agent's new state to be reflected in the UI
 
 To decommission a NIC:
 
-1. 
+1. Stop the DTS container with the following command:
+
+    ```
+    docker stop doca_telemetry
+    ```
 
 2. On the NetQ appliance or VM, decommission the NIC:
 
@@ -73,7 +83,12 @@ To decommission a NIC:
     cumulus@netq-appliance:~$ netq decommission <hostname-to-decommission>
     ```
 
+3. (Optional) After you decommission the NIC, restart the DOCA Telemetry Service.
 {{</tab>}}
 
 {{</tabs>}}
+
+## Related Information
+
+- {{<link title="NICs" text="NIC Monitoring">}}
 

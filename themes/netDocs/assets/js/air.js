@@ -40,7 +40,7 @@ class Simulation {
     this.autoLoad = autoLoad;
     this.id = undefined;
     this.air = new Air();
-    this.initLoadingContainers();
+    // this.initLoadingContainers(); // Only needed for legacy Air UI
   };
 
   initLoadingContainers() {
@@ -52,7 +52,7 @@ class Simulation {
   async loadConsoles() {
     const loadingContainers = document.getElementsByName(`loading-container-${this.refName}`);
     const containers = document.getElementsByName(`console-container-${this.refName}`);
-    let src = `${this.air.air_url}/Terminal`;
+    let src = `${this.air.air_url}/terminal`;
     src += `?simulation_id=${this.id}&hideOOB=true&autoLoad=${this.autoLoad}`;
     containers.forEach((container, idx) => {
       container.addEventListener('load', () => {

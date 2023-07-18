@@ -43,7 +43,7 @@ Decommissioning DPUs removes information about the DPU from the NetQ database. T
 
 2. From the **DPUs** tab, locate the **Agent state** column.  
 
-If the NetQ Agents is in a 'fresh' state, you must stop and disable the NetQ Agent and wait until it reflects a 'rotten' state. To disable the agent, run the following command on the DPU you want to decommission. Replace *<netq_server>* with the IP address of your NetQ VM:
+If the NetQ Agent is in a 'fresh' state, you must stop and disable the NetQ Agent and wait until it reflects a 'rotten' state. To disable the agent, run the following command on the DPU you want to decommission. Replace *<netq_server>* with the IP address of your NetQ VM:
 
 ```
 sed -i s'/<netq_server>/127.0.0.1/g' /etc/kubelet.d/doca_telemetry_standalone.yaml

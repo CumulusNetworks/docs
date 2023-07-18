@@ -17,25 +17,22 @@ In UCMP, along with the ECMP flow-based hash, Cumulus Linux associates a weight 
 {{< img src = "/images/cumulus-linux/ucmp-example.png" >}}
 
 The above example shows how traffic towards 192.168.10.1/32 is load balanced when you use UCMP routing:
-
-- Leaf01 has two ECMP paths to 192.168.10.1/32 (via Server01 and Server03) whereas Leaf03 and Leaf04 have a single path to Server04.
-- Leaf01, Leaf02, Leaf03, and Leaf04 generate a BGP link bandwidth based on the number of BGP multipaths for a prefix.
-- When announcing the prefix to the spines, Leaf01 and Leaf02 generate a link bandwidth of two while Leaf03 and Leaf04 generate a link bandwidth of one.
-- Each spine advertises the 192.168.10.1/32 prefix to the border leafs with an accumulated bandwidth of 6. This combines the value of 2 from Leaf01, 2 from Leaf02, 1 from Leaf03 and 1 from Leaf04.
+- leaf01 has two ECMP paths to 192.168.10.1/32 (through server01 and server03) whereas leaf03 and leaf04 have a single path to server04.
+- leaf01, leaf02, leaf03, and leaf04 generate a BGP link bandwidth based on the number of BGP multipaths for a prefix.
+- When announcing the prefix to the spines, leaf01 and leaf02 generate a link bandwidth of two while leaf03 and leaf04 generate a link bandwidth of one.
+- Each spine advertises the 192.168.10.1/32 prefix to the border leafs with an accumulated bandwidth of 6. This combines the value of 2 from leaf01, 2 from leaf02, 1 from leaf03 and 1 from leaf04.
 
 Now, each spine has four UCMP routes:
-
-- through Leaf01 with weight 2
-- through Leaf02 with weight 2
-- through Leaf03 with weight 1
-- through Leaf04 with weight 1
+- through leaf01 with weight 2
+- through leaf02 with weight 2
+- through leaf03 with weight 1
+- through leaf04 with weight 1
 
 The border leafs also have four UCMP routes:
-
-- through Spine01 with weight 6
-- through Spine02 with weight 6
-- through Spine03 with weight 6
-- through Spine04 with weight 6
+- through spine01 with weight 6
+- through spine02 with weight 6
+- through spine03 with weight 6
+- through spine04 with weight 6
 
 The border leafs balance traffic equally; all weights are equal to the spines. Only the spines have unequal load sharing based on the weight values.
 

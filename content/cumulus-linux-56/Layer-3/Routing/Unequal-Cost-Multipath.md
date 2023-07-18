@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-You use <span style="background-color:#F5F5DC">[UCMP](## "Unequal Cost Multipath")</span> in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports UCMP by using the <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
+You use <span style="background-color:#F5F5DC">[UCMP](## "Unequal Cost Multipath")</span> (also called <span style="background-color:#F5F5DC">[WCMP](## "Weighted Cost Multipath")</span>) in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports UCMP by using the <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
 
 ## UCMP Routing
 
@@ -48,7 +48,6 @@ The BGP link bandwidth extended community uses bytes-per-second. To convert the 
 Cumulus Linux accepts the bandwidth extended community by default. You do not need to configure transit devices where UCMP routes are not originated.
 
 {{%notice note%}}
-- Cumulus Linux does not provide NVUE commands for UCMP configuration.
 - The bandwidth used in the extended community has no impact on or relation to port bandwidth.
 - You can only apply the route weight information on the outbound direction to a peer; you cannot apply route weight information on the inbound direction from peers advertising routes to the switch.
 {{%/notice%}}
@@ -56,6 +55,19 @@ Cumulus Linux accepts the bandwidth extended community by default. You do not ne
 ### Set the BGP Link Bandwidth Extended Community Against All Prefixes
 
 The following command examples show how you can set the BGP link bandwidth extended community against **all** prefixes.
+
+{{< tabs "TabID59 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 action permit 
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 set ext-community-bw multipaths
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound route-map ucmp-route-map 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -84,9 +96,29 @@ route-map ucmp-route-map permit 10
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Set the BGP Link Bandwidth Extended Community Against Certain Prefixes
 
 The following command examples show how you can set the BGP link bandwidth extended community for anycast servers in the 192.168/16 IP address range.
+
+{{< tabs "TabID102 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set router policy prefix-list anycast_ip type ipv4
+cumulus@switch:~$ nv set router policy prefix-list anycast_ip rule 1 match 192.168.0.0/16 max-prefix-len 30
+cumulus@switch:~$ nv set router policy prefix-list anycast_ip rule 1 action permit
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 1 action permit 
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 1 match ip-prefix-list anycast_ip
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 1 set ext-community-bw multipaths
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound prefix-list anycast_ip 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -118,9 +150,25 @@ route-map ucmp-route-map permit 10
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### EVPN Configuration
 
 For <span style="background-color:#F5F5DC">[EVPN](## "Ethernet Virtual Private Network")</span> configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
+
+{{< tabs "TabID160 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 action permit 
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 set ext-community-bw multipaths
+cumulus@switch:~$ nv set vrf default router bgp neighbor l2vpn address-family ipv4-unicast policy outbound route-map ucmp-route-map 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -151,6 +199,9 @@ route-map ucmp-route-map permit 10
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Control UCMP on the Receiving Switch
 
 To control UCMP on the receiving switch, you can:
@@ -168,7 +219,22 @@ By default, if some of the multipaths do not have link bandwidth, Cumulus Linux 
 
 Change this setting per BGP instance for both IPv4 and IPv6 unicast routes in the BGP instance. For EVPN, set the options on the tenant VRF.
 
-Run the vtysh `bgp bestpath bandwidth ignore|skip-missing|default-weight-for-missing` command.
+{{< tabs "TabID223 ">}}
+{{< tab "NVUE Commands">}}
+
+Run the NVUE `nv set vrf <vrf> router bgp path-selection multipath bandwidth ignore`, `nv set vrf <vrf> router bgp path-selection multipath bandwidth skip-missing`, or `nv set vrf <vrf> router bgp path-selection multipath bandwidth default-weight-for-missing` command.
+
+The following commands set link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
+
+```
+cumulus@switch:~$ nv set vrf default router bgp path-selection multipath bandwidth skip-missing
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Run the vtysh `bgp bestpath bandwidth ignore`, `bgp bestpath bandwidth skip-missing`, or `bgp bestpath bandwidth default-weight-for-missing` command.
 
 The following commands set link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
 
@@ -202,6 +268,9 @@ router bgp 65011
  ...
  ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### BGP Link Bandwidth Outside a Domain
 
 The BGP link bandwidth extended community is automatically passed on with the prefix to <span style="background-color:#F5F5DC">[eBGP](## "external BGP")</span> peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
@@ -211,6 +280,17 @@ You cannot disable just the BGP link bandwidth extended community from advertisi
 {{%/notice%}}
 
 To disable all BGP extended communities on a peer or peer group (per address family), run the vtysh `no neighbor <neighbor> send-community extended` command:
+
+{{< tabs "TabID284 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast community-advertise extended off
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -223,13 +303,16 @@ switch# write memory
 switch# exit
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## UCMP and Adaptive Routing
 
 Cumulus Linux supports UCMP with adaptive routing for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-ucmp" text="above.">}}
 
 - NVIDIA recommends using UCMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
 - Cumulus Linux supports a maximum of 48 adaptive routing enabled ports in a single ECMP group.
-- Cumulus Linux establishes the neighbor group based on the neighbor MAC address; you must provide all the switches with a unique base MAC address. `switchd` automatically assigns the base MAC address to all of the adaptive routing enabled ports in a particular node.
+- Cumulus Linux establishes the neighbor group based on the neighbor MAC address.`switchd` automatically assigns the base MAC address to all of the adaptive routing enabled ports in a particular node.
 - The UCMP weight-based nexthop pruning algorithm works effectively when you use only Cumulus Linux switches in the adaptive routing enabled network.
 - Both adaptive routing traffic and non adaptive routing traffic goes over the same ECMP group, which adjusts according to the UCMP weight; therefore, the reduced capacity applies to both adaptive routing and non adaptive routing traffic. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.
 

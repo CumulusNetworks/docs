@@ -88,7 +88,9 @@ Refer to the {{<link title="show/#netq-show-services" text="command line referen
 
 To visualize CPU and memory utilization at the process level, open a large switch card and navigate to the **Utilization** tab. Then select **Show process monitoring data**. The UI depicts two charts---one each for CPU and memory utilization---along with a list of services and processes.
 
-Select a process from the **Process name** column for its usage data to be reflected in the CPU and memory utilization charts. The following graphs depict CPU and memory usage over a 6-hour time period from the *smond* service. The data presented is aggregated over a 5-minute period; NetQ lists the process consuming the most CPU resources (aggregated over a 5-minute period or the **CPU 5min** column) from highest to lowest. The process whose data is reflected in the charts is indicated by an icon {{<img src="/images/netq/analytics-bars.svg" alt="" height="18" width="18">}} next to the name of the process.
+Select a process from the **Process name** column for its usage data to be reflected in the CPU and memory utilization charts. The data presented is aggregated over a 5-minute period; NetQ lists the process consuming the most CPU resources (aggregated over a 5-minute period or the **CPU 5min** column) from highest to lowest. The process whose data is reflected in the charts is indicated by an icon {{<img src="/images/netq/analytics-bars.svg" alt="" height="18" width="18">}} next to the name of the process.
+
+The following graphs depict CPU and memory usage over a 6-hour time period from the system monitor daemon, *smond* .
 
 {{<figure src="/images/netq/procmon-470.png" alt="CPU and memory utilization info for the smond service" width="1200">}}
 

@@ -41,7 +41,7 @@ The border leafs balance traffic equally; all weights are equal to the spines. O
 
 ## Configure UCMP
 
-Use the `set extcommunity bandwidth num-multipaths` command in a route map to set the extended community against all prefixes, or against a specific or set of prefixes using the match clause of the route map. Apply the route map at the first device to receive the prefix; against the BGP neighbor that generated this prefix.
+Set the BGP link bandwidth extended community in a route map against all prefixes, a specific prefix, or set of prefixes using the match clause of the route map. Apply the route map on the first device to receive the prefix; against the BGP neighbor that generated this prefix.
 
 The BGP link bandwidth extended community uses bytes-per-second. To convert the number of ECMP paths, Cumulus Linux uses a reference bandwidth of 1024Kbps. For example, if there are four ECMP paths to an anycast IP, the encoded bandwidth in the extended community is 512,000. The actual value is not important, as long as all routers originating the link bandwidth convert the number of ECMP paths in the same way.
 
@@ -54,7 +54,7 @@ Cumulus Linux accepts the bandwidth extended community by default. You do not ne
 
 ### Set the BGP Link Bandwidth Extended Community Against All Prefixes
 
-The following command examples show how you can set the BGP link bandwidth extended community against **all** prefixes.
+The following example sets the BGP link bandwidth extended community against **all** prefixes.
 
 {{< tabs "TabID59 ">}}
 {{< tab "NVUE Commands">}}
@@ -101,7 +101,7 @@ route-map ucmp-route-map permit 10
 
 ### Set the BGP Link Bandwidth Extended Community Against Certain Prefixes
 
-The following command examples show how you can set the BGP link bandwidth extended community for anycast servers in the 192.168/16 IP address range.
+The following example sets the BGP link bandwidth extended community for anycast servers in the 192.168/16 IP address range.
 
 {{< tabs "TabID102 ">}}
 {{< tab "NVUE Commands">}}
@@ -224,7 +224,7 @@ Change this setting per BGP instance for both IPv4 and IPv6 unicast routes in th
 
 Run the NVUE `nv set vrf <vrf> router bgp path-selection multipath bandwidth ignore`, `nv set vrf <vrf> router bgp path-selection multipath bandwidth skip-missing`, or `nv set vrf <vrf> router bgp path-selection multipath bandwidth default-weight-for-missing` command.
 
-The following commands set link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
+The following example sets link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp path-selection multipath bandwidth skip-missing
@@ -236,7 +236,7 @@ cumulus@switch:~$ nv config apply
 
 Run the vtysh `bgp bestpath bandwidth ignore`, `bgp bestpath bandwidth skip-missing`, or `bgp bestpath bandwidth default-weight-for-missing` command.
 
-The following commands set link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
+The following example sets link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -273,13 +273,13 @@ router bgp 65011
 
 ### BGP Link Bandwidth Outside a Domain
 
-The BGP link bandwidth extended community is automatically passed on with the prefix to <span style="background-color:#F5F5DC">[eBGP](## "external BGP")</span> peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
+The BGP link bandwidth extended community is passed on automatically with the prefix to <span style="background-color:#F5F5DC">[eBGP](## "external BGP")</span> peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
 
 {{%notice note%}}
 You cannot disable just the BGP link bandwidth extended community from advertising to a neighbor; you either send all BGP extended communities, or none.
 {{%/notice%}}
 
-To disable all BGP extended communities on a peer or peer group (per address family), run the vtysh `no neighbor <neighbor> send-community extended` command:
+The following example disables all BGP extended communities on a peer:
 
 {{< tabs "TabID284 ">}}
 {{< tab "NVUE Commands">}}

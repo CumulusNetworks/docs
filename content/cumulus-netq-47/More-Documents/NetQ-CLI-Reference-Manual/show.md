@@ -1756,27 +1756,16 @@ Display an inventory summary:
 ```
 cumulus@switch:~$ netq show inventory brief
 Matching inventory records:
-Hostname          Switch               OS              CPU      ASIC            Ports
------------------ -------------------- --------------- -------- --------------- -----------------------------------
-border01          VX                   CL              x86_64   VX              N/A
-border02          VX                   CL              x86_64   VX              N/A
-fw1               VX                   CL              x86_64   VX              N/A
-fw2               VX                   CL              x86_64   VX              N/A
-leaf01            VX                   CL              x86_64   VX              N/A
-leaf02            VX                   CL              x86_64   VX              N/A
-leaf03            VX                   CL              x86_64   VX              N/A
-oob-mgmt-server   N/A                  Ubuntu          x86_64   N/A             N/A
-server01          N/A                  Ubuntu          x86_64   N/A             N/A
-server02          N/A                  Ubuntu          x86_64   N/A             N/A
-server03          N/A                  Ubuntu          x86_64   N/A             N/A
-server04          N/A                  Ubuntu          x86_64   N/A             N/A
-server05          N/A                  Ubuntu          x86_64   N/A             N/A
-server06          N/A                  Ubuntu          x86_64   N/A             N/A
-server07          N/A                  Ubuntu          x86_64   N/A             N/A
-spine01           VX                   CL              x86_64   VX              N/A
-spine02           VX                   CL              x86_64   VX              N/A
-spine03           VX                   CL              x86_64   VX              N/A
-spine04           VX                   CL              x86_64   VX              N/A
+Hostname          Switch               OS              CPU      ASIC            Ports                               NIC
+----------------- -------------------- --------------- -------- --------------- ----------------------------------- -----------------------------------
+neo-switch01      SN3700C              CL              x86_64   Spectrum-2      32 x 100G-QSFP28                    N/A
+neo-switch02      SN3700C              CL              x86_64   Spectrum-2      32 x 100G-QSFP28                    N/A
+r-3420-01         SN3420               CL              x86_64   Spectrum-2      48 x 25G-SFP28 & 12 x 100G-QSFP28   N/A
+r-3700-01         SN3700V              CL              x86_64   Spectrum-2      32 x 200G-QSFP56                    N/A
+r-3700-02         SN3700C              CL              x86_64   Spectrum-2      32 x 100G-QSFP28                    N/A
+r-3700-03         SN3700C              CL              x86_64   Spectrum-2      32 x 100G-QSFP28                    N/A
+ufm-switch19      MSN2700              CL              x86_64   Spectrum        32 x 100G-QSFP28                    N/A
+ufm-switch29      SN3700C              CL              x86_64   Spectrum-2      32 x 100G-QSFP28                    N/A
 ```
 
 Display ASIC information for all devices with a vendor of *NVIDIA*:
@@ -4174,6 +4163,7 @@ Supported services include:
 - **pmon**: Process monitor service
 - **portwd**: Port watch daemon
 - **ptmd**: PTM (Prescriptive Topology Manager) daemon
+- **ptp41**: PTP (Precision Time Protocol) service
 - **pwmd**: Password manager daemon
 - **radv**: Route advertiser service
 - **rsyslog**: Rocket-fast system event logging processing service
@@ -4250,18 +4240,19 @@ cumulus@switch:~$ netq show services
 Matching services records:
 Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
 ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
-border01          netqd                28693 mgmt            yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          netq-agent           28621 default         yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          pwmd                 549   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          ntp                  n/a   mgmt            yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          zebra                14427 default         yes     yes    yes       ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          clagd                1215  default         yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          neighmgrd            796   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          ntp                  n/a   default         no      no     yes       n/a              Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          ssh                  9611  default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          mstpd                345   default         yes     yes    yes       ok               Tue Dec  8 21:18:49 2020  Tue Dec  8 21:18:49 2020
-border01          bgpd                 14432 default         yes     yes    yes       ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          lldpd                870   default         yes     yes    yes       ok               Tue Dec  8 21:19:19 2020  Tue Dec  8 21:19:19 2020
+neo-switch01      pwmd                 11405 default         yes     yes    no        ok               72 day 8h ago             Tue Jul 18 13:59:28 2023
+neo-switch01      lldpd                15988 default         yes     yes    yes       ok               50 day 10h ago            Tue Jul 18 13:59:42 2023
+neo-switch01      docker               n/a   default         no      no     no        n/a              n/a                       Tue Jul 18 13:59:28 2023
+neo-switch01      smond                11323 default         yes     yes    yes       ok               72 day 8h ago             Tue Jul 18 14:00:15 2023
+neo-switch01      ssh                  1837  default         yes     yes    no        ok               72 day 8h ago             Tue Jul 18 13:59:28 2023
+neo-switch01      dhcrelay             n/a   default         no      no     no        n/a              n/a                       Tue Jul 18 13:59:28 2023
+neo-switch01      snmpd                n/a   default         no      no     no        n/a              n/a                       Tue Jul 18 13:59:28 2023
+neo-switch01      mstpd                3671  default         yes     yes    yes       ok               72 day 8h ago             Tue Jul 18 14:00:14 2023
+neo-switch01      netq-agent           16111 default         yes     yes    yes       ok               4h 56min ago              Tue Jul 18 13:59:28 2023
+neo-switch01      switchd              15073 default         yes     yes    no        ok               50 day 10h ago            Tue Jul 18 13:59:28 2023
+neo-switch01      bgpd                 2721  default         yes     yes    yes       ok               50 day 10h ago            Tue Jul 18 13:59:28 2023
+neo-switch01      wd_keepalive         3471  default         yes     yes    no        ok               72 day 8h ago             Tue Jul 18 13:59:28 2023
+neo-switch01      sx_sdk               13193 default         yes     yes    no        ok               50 day 10h ago            Tue Jul 18 13:59:28 2023
 ...
 ```
 

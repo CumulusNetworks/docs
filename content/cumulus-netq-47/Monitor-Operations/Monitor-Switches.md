@@ -15,7 +15,11 @@ NetQ reports switch performance metrics for the following categories:
 
 For switch inventory information (ASIC, platform, CPU, memory, disk, and OS), refer to {{<link title="Switch Inventory">}}.
 
-## View Switch Metrics and Attributes in the UI
+## View Switch Metrics and Attributes
+
+{{<tabs "TabID20" >}}
+
+{{<tab "NetQ UI" >}}
 
 To view events, metrics, and attributes per switch, open the Switch card:
 
@@ -41,19 +45,9 @@ Expand the Switch card to full-screen to view, filter, or export information abo
 
 {{<figure src="/images/netq/switch-full-470.png" width="1200">}}
 
-## Monitor Resource Utilization for Processes and Services
+{{</tab>}}
 
-To visualize CPU and memory utilization at the process level, open a large switch card and navigate to the **Utilization** tab. Then select **Show process monitoring data**. The UI depicts two charts---one each for CPU and memory utilization---along with a list of services and processes.
-
-Select a process from the **Process name** column for its usage data to be reflected in the CPU and memory utilization charts. The following graphs depict CPU and memory usage over a 6-hour time period from the *smond* service. The process whose data is reflected in the charts is indicated by an icon {{<img src="/images/netq/analytics-bars.svg" alt="" height="18" width="18">}} next to the name of the process.
-
-{{<figure src="/images/netq/procmon-470.png" alt="CPU and memory utilization info for the smond service" width="1200">}}
-
-To actively monitor process-level CPU and memory utilization, you can create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}}. These rules generate events when a process exceeds the limit you define when creating the rule. Refer to the {{<link title="Threshold-Crossing Events Reference/#resource-utilization" text="Threshold-Crossing Events Reference">}} for more information about CPU and memory utilization rules for services.
-
-The {{<kb_link latest="cl" url="System-Configuration/Services-and-Daemons-in-Cumulus-Linux.md" text="Cumulus Linux documentation">}} includes detailed information about services and processes, including a list of important services.
-
-## Switch Commands
+{{<tab "NetQ CLI" >}}
 
 The information available in the UI can also be displayed via the CLI with a corresponding {{<link title="show" text="netq show">}} command. Each command that begins with `netq show` includes the option `<hostname>`. When the `<hostname>` option is included in the command, the output displays results limited to the switch or host you specified.
 
@@ -76,297 +70,67 @@ leaf01            btrfsinfo                error            data storage efficie
 Refer to the command line reference for a comprehensive list of {{<link title="show" text="netq show commands">}}.
 
 
+{{</tab>}}
 
+{{</tabs>}}
 
-<!--the following are UI instructions that need to be incorporated into this page. This documentation was previously in Networkwide Inventory
+## Monitor CPU and Memory Utilization for Processes and Services
 
-### View Sensor Information
+Use the UI or CLI to view the amount of CPU and memory utilization by various services and processes. By default, NetQ monitors the following services: *bgpd*, *clagd*, *lldpd*, *mstpd*, *netq-agent*, *netqd*, *ntpd*, *nvued*, *pwmd*, *smond*, *switchd*, *sx_sdk*, *wd_keepalive*, *zebra*
 
-Fan, power supply unit (PSU), and temperature sensors are available to provide additional data about the NetQ system operation.
+Using the CLI, you can configure NetQ to monitor CPU and memory utilization for additional services, including *docker*, *dhcp_relay*, *neighmgrd*, *ptmd*, *ptp4l*, *rsyslog*, *snmpd*, *sshd* 
 
-#### Power Supply Unit Information
+Refer to the {{<link title="show/#netq-show-services" text="command line reference">}} for more information about the services.
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Sensors**.
+{{<tabs "TabID46" >}}
 
-2. The PSU tab is displayed by default.
+{{<tab "NetQ UI" >}}
 
-    {{<figure src="/images/netq/main-menu-ntwk-sensors-psu-310.png" width="700">}}
+To visualize CPU and memory utilization at the process level, open a large switch card and navigate to the **Utilization** tab. Then select **Show process monitoring data**. The UI depicts two charts---one each for CPU and memory utilization---along with a list of services and processes.
 
-<div style="padding-left: 18px;">
-<table>
-<thead>
-<tr>
-<th>PSU Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hostname</td>
-<td>Name of the switch or host where the power supply is installed</td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>Date and time the data was captured</td>
-</tr>
-<tr>
-<td>Message Type</td>
-<td>Type of sensor message; always <em>PSU</em> in this table</td>
-</tr>
-<tr>
-<td>PIn(W)</td>
-<td>Input power (Watts) for the PSU on the switch or host</td>
-</tr>
-<tr>
-<td>POut(W)</td>
-<td>Output power (Watts) for the PSU on the switch or host</td>
-</tr>
-<tr>
-<td>Sensor Name</td>
-<td>User-defined name for the PSU</td>
-</tr>
-<tr>
-<td>Previous State</td>
-<td>State of the PSU when data was captured in previous window</td>
-</tr>
-<tr>
-<td>State</td>
-<td>State of the PSU when data was last captured</td>
-</tr>
-<tr>
-<td>VIn(V)</td>
-<td>Input voltage (Volts) for the PSU on the switch or host</td>
-</tr>
-<tr>
-<td>VOut(V)</td>
-<td>Output voltage (Volts) for the PSU on the switch or host</td>
-</tr>
-</tbody>
-</table>
-</div>
+Select a process from the **Process name** column for its usage data to be reflected in the CPU and memory utilization charts. The following graphs depict CPU and memory usage over a 6-hour time period from the *smond* service. The data presented is aggregated over a 5-minute period; NetQ lists the process consuming the most CPU resources (aggregated over a 5-minute period or the **CPU 5min** column) from highest to lowest. The process whose data is reflected in the charts is indicated by an icon {{<img src="/images/netq/analytics-bars.svg" alt="" height="18" width="18">}} next to the name of the process.
 
-#### Fan Information
+{{<figure src="/images/netq/procmon-470.png" alt="CPU and memory utilization info for the smond service" width="1200">}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Sensors** in the **Network** heading.
+{{</tab>}}
 
-2. Click **Fan**.
+{{<tab "NetQ CLI" >}}
 
-    {{<figure src="/images/netq/main-menu-ntwk-sensors-fan-320.png" width="700">}}
+The information displayed in the UI can be viewed using the CLI with the {{<link title="show/#netq-show-services" text="netq show services resource-util">}} command:
 
-<div style="padding-left: 18px;">
-<table>
-<thead>
-<tr>
-<th>Fan Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hostname</td>
-<td>Name of the switch or host where the fan is installed</td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>Date and time the data was captured</td>
-</tr>
-<tr>
-<td>Message Type</td>
-<td>Type of sensor message; always <em>Fan</em> in this table</td>
-</tr>
-<tr>
-<td>Description</td>
-<td>User specified description of the fan</td>
-</tr>
-<tr>
-<td>Speed (RPM)</td>
-<td>Revolution rate of the fan (revolutions per minute)</td>
-</tr>
-<tr>
-<td>Max</td>
-<td>Maximum speed (RPM)</td>
-</tr>
-<tr>
-<td>Min</td>
-<td>Minimum speed (RPM)</td>
-</tr>
-<tr>
-<td>Message</td>
-<td>Message</td>
-</tr>
-<tr>
-<td>Sensor Name</td>
-<td>User-defined name for the fan</td>
-</tr>
-<tr>
-<td>Previous State</td>
-<td>State of the fan when data was captured in previous window</td>
-</tr>
-<tr>
-<td>State</td>
-<td>State of the fan when data was last captured</td>
-</tr>
-</tbody>
-</table>
-</div>
+```
+cumulus@switch:~$ netq show services resource-util
 
-#### Temperature Information
+Matching services records:
+Hostname          Service              PID   VRF                  Enabled Active Uptime               CPU one Minute       CPU five Minute      Memory one Minute    Memory five Minute   Last Updated
+----------------- -------------------- ----- -------------------- ------- ------ -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+r-3700-02         sx_sdk               19012 default              yes     yes    81 day 17h ago       7.7                  24.65                9.44                 9.44                 Tue Jul 18 18:49:19 2023
+r-3700-03         sx_sdk               13627 default              yes     yes    81 day 18h ago       0                    17.82                9.44                 9.44                 Tue Jul 18 18:49:19 2023
+r-3700-02         switchd              21100 default              yes     yes    81 day 17h ago       56.77                15.07                1.13                 1.13                 Tue Jul 18 18:49:19 2023
+r-3700-03         switchd              15768 default              yes     yes    81 day 18h ago       0                    8.28                 1.11                 1.11                 Tue Jul 18 18:49:19 2023
+neo-switch02      sx_sdk               1841  default              yes     yes    2h 29min ago         30.1                 6.55                 9.67                 9.67                 Tue Jul 18 18:49:19 2023
+ufm-switch19      sx_sdk               2343  default              yes     yes    21h 3min ago         5.22                 5.73                 2.84                 2.84                 Tue Jul 18 18:49:19 2023
+ufm-switch29      sx_sdk               2135  default              yes     yes    8 day 4h ago         2.88                 5.73                 9.54                 9.54                 Tue Jul 18 18:49:19 2023
+r-3420-01         sx_sdk               1885  default              yes     yes    9 day 3h ago         5.28                 5.01                 9.3                  9.3                  Tue Jul 18 18:49:19 2023
+ufm-switch29      clagd                7095  default              no      yes    8 day 4h ago         23.57                4.71                 0.63                 0.63                 Tue Jul 18 18:49:19 2023
+r-3700-01         smond                7301  default              yes     yes    9 day 3h ago         0                    4.7                  0.2                  0.2                  Tue Jul 18 18:49:19 2023
+... 
+```
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Sensors** in the **Network** heading.
+To display a list of processes and services that the NetQ Agent is currently monitoring, run {{<link title="config/#netq-config-show-agent" text="netq config show agent services">}}. 
 
-2. Click **Temperature**.
+To configure the agent to monitor additional services or processes, run {{<link title="config/#netq-config-add-agent-services" text="netq config add agent services">}} with the name of the service(s) included in the command.
 
-    {{<figure src="/images/netq/main-menu-ntwk-sensors-temp-320.png" width="700">}}
+To stop the agent from monitoring services or processes, run {{<link title="config/#netq-config-del-agent" text="netq config del agent services">}}. The services that NetQ monitors by default cannot be deleted.
 
-<div style="padding-left: 18px;">
-<table>
-<thead>
-<tr>
-<th>Temperature Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hostname</td>
-<td>Name of the switch or host where the temperature sensor is installed</td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>Date and time the data was captured</td>
-</tr>
-<tr>
-<td>Message Type</td>
-<td>Type of sensor message; always <em>Temp</em> in this table</td>
-</tr>
-<tr>
-<td>Critical</td>
-<td>Current critical maximum temperature (&deg;C) threshold setting</td>
-</tr>
-<tr>
-<td>Description</td>
-<td>User specified description of the temperature sensor</td>
-</tr>
-<tr>
-<td>Lower Critical</td>
-<td>Current critical minimum temperature (&deg;C) threshold setting</td>
-</tr>
-<tr>
-<td>Max</td>
-<td>Maximum temperature threshold setting</td>
-</tr>
-<tr>
-<td>Min</td>
-<td>Minimum temperature threshold setting</td>
-</tr>
-<tr>
-<td>Message</td>
-<td>Message</td>
-</tr>
-<tr>
-<td>Sensor Name</td>
-<td>User-defined name for the temperature sensor</td>
-</tr>
-<tr>
-<td>Previous State</td>
-<td>State of the fan when data was captured in previous window</td>
-</tr>
-<tr>
-<td>State</td>
-<td>State of the fan when data was last captured</td>
-</tr>
-<tr>
-<td>Temperature(Celsius)</td>
-<td>Current temperature (&deg;C) measured by sensor</td>
-</tr>
-</tbody>
-</table>
-</div>
+{{</tab>}}
 
-### View Digital Optics Information
+{{</tabs>}}
 
+To actively monitor process-level CPU and memory utilization, you can create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}}. These rules generate events when a process or service exceeds the utilization limit you defined when creating the rule. Refer to the {{<link title="Threshold-Crossing Events Reference/#resource-utilization" text="resource utilization table in the TCA Events Reference">}} for service memory and service CPU utilization event IDs.
 
-Use the filter option to view laser power and bias current for a given interface and channel on a switch, and temperature and voltage for a given module. Select the relevant tab to view the data.
+## Related Information
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Digital Optics**.
-
-2. The **Laser Rx Power** tab is displayed by default.
-
-    {{<figure src="/images/netq/main-menu-ntwk-dom-laserrx-power-310.png" width="700">}}
-
-<div style="padding-left: 18px;">
-<table>
-<thead>
-<tr>
-<th>Laser Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hostname</td>
-<td>Name of the switch or host where the digital optics module resides</td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>Date and time the data was captured</td>
-</tr>
-<tr>
-<td>If Name</td>
-<td>Name of interface where the digital optics module is installed</td>
-</tr>
-<tr>
-<td>Units</td>
-<td>Measurement unit for the power (mW) or current (mA)</td>
-</tr>
-<tr>
-<td>Channel 1&ndash;8</td>
-<td>Value of the power or current on each channel where the digital optics module is transmitting</td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<thead>
-<tr>
-<th>Module Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hostname</td>
-<td>Name of the switch or host where the digital optics module resides</td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>Date and time the data was captured</td>
-</tr>
-<tr>
-<td>If Name</td>
-<td>Name of interface where the digital optics module is installed</td>
-</tr>
-<tr>
-<td>Degree C</td>
-<td>Current module temperature, measured in degrees Celsius</td>
-</tr>
-<tr>
-<td>Degree F</td>
-<td>Current module temperature, measured in degrees Fahrenheit</td>
-</tr>
-<tr>
-<td>Units</td>
-<td>Measurement unit for module voltage; Volts</td>
-</tr>
-<tr>
-<td>Value</td>
-<td>Current module voltage</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-3. Click each of the other Laser or Module tabs to view that information for all devices.
-
--->
-
+- {{<link title="Switch Inventory">}}
+- {{<link title="Switch Management" text="Switch Lifecycle Management">}}
+- {{<link title="Decommission Switches">}}

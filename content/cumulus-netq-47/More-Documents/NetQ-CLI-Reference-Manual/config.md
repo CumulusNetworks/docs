@@ -453,6 +453,25 @@ Restarting netq-agent... Success!
 
 - - -
 
+## netq config add agent services
+
+Configures the NetQ Agent to monitor processes and services.
+
+### Syntax
+
+### Required Arguments
+
+### Options
+
+### Sample Usage
+
+### Related Commands
+
+- `netq config show agent services`
+- `netq config del agent services`
+
+- - -
+
 ## netq config add agent stats
 
 Configures the NetQ Agent to collect and send interface statistics.
@@ -981,7 +1000,7 @@ WJH: Disables the NetQ Agent from collecting What Just Happened events on a swit
 
 ```
 netq config del agent 
-    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|kubernetes-monitor|loglevel|server|ssl|stats|wjh] 
+    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|kubernetes-monitor|loglevel|server|services|ssl|stats|wjh] 
     [json]
 ```
 ### Required Arguments
@@ -999,6 +1018,7 @@ None
 | kubernetes-monitor | NA | Stop the NetQ Agent from monitoring Kubernetes containers |
 | loglevel | NA | Stop the NetQ Agent from logging events about the agent |
 | server | NA | Delete the current destination of NetQ Agent data and API requests |
+| services | NA | Stop the NetQ Agent from monitoring specified services |
 | ssl | NA | Delete SSL configuration |
 | stats | NA | Stop the NetQ Agent from collecting interface statistics |
 | wjh | NA | Stop the NetQ Agent from collecting WJH information |
@@ -1384,7 +1404,7 @@ Displays the configuration of the NetQ Agent on a switch. Several forms of this 
 
 ```
 netq config show agent 
-    [asic-monitor|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|ssl|stats|wjh|wjh-threshold] 
+    [asic-monitor|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|services|ssl|stats|wjh|wjh-threshold] 
     [json]
 ```
 ### Required Arguments
@@ -1400,6 +1420,7 @@ None
 | frr-monitor | NA | Display FRR monitoring configuration |
 | kubernetes-monitor | NA | Display the Kubernetes monitoring configuration |
 | loglevel | NA | Display the NetQ Agent logging level configuration |
+| services | NA | Display services and processes configuration |
 | ssl | NA | Display SSL configuration |
 | stats | NA | Display status of interface statistics |
 | wjh | NA | Display NetQ Agent What Just Happened monitoring configuration |
@@ -1407,21 +1428,27 @@ None
 | json | NA | Display the output in JSON format |
 ### Sample Usage
 
-<!--need updated example-->
-
 ```
 cumulus@switch:~$ netq config show agent 
-netq-agent             value      default
----------------------  ---------  ---------
+netq-agent                value      default
+------------------------  ---------  ---------
 exhibitport
 exhibiturl
-server                 127.0.0.1  127.0.0.1
-cpu-limit              100        100
+server                    127.0.0.1  127.0.0.1
+cpu-limit                 50         50
 agenturl
-enable-opta-discovery  False      False
-agentport              8981       8981
-port                   31980      31980
-vrf                    default    default
+wjh                                  Enabled
+asic-monitor                         Enabled
+enable-opta-discovery     False      False
+agentport                 8981       8981
+port                      31980      31980
+vrf                       default    default
+is-gnmi-enabled           False      False
+netq_stream_port          7680       7680
+netq_stream_address       127.0.0.1  127.0.0.1
+is-ssl-enabled            False      False
+ssl-cert
+generate-unique-hostname  False      False
 ()
 ```
 ### Related Commands

@@ -160,7 +160,7 @@ For <span style="background-color:#F5F5DC">[EVPN](## "Ethernet Virtual Private N
 ```
 cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 action permit 
 cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 set ext-community-bw multipaths
-cumulus@switch:~$ nv set vrf default router bgp neighbor l2vpn address-family ipv4-unicast policy outbound route-map ucmp-route-map 
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy outbound route-map ucmp-route-map 
 cumulus@switch:~$ nv config apply
 ```
 

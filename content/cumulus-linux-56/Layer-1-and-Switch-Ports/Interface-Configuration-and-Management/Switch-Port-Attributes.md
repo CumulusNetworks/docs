@@ -1058,13 +1058,10 @@ The 8xQSFP-DD (400GbE) interfaces [ports 25-32] support both PAM4 and NRZ encodi
 
 For lower speeds, PAM4 is automatically converted to NRZ encoding.
 
-The top 12xQSFP28-DD ports can break out into 8xSFP56 (8x50GbE). But, in this case, the adjacent QSFP28-DD ports are blocked.
-
-The 24xQSFP28-DD ports can break out into 2xQSFP28 (2x100GbE), 2xQSFP56 (2x200G), 4xSFP28 (4x25GbE), 4xSFP56 (4x50GbE), or 4xQSFP28 (4x100GbE).
-
-The top 4xQSFP-DD ports can break out into 8xSFP56 (8x50GbE). But, in this case, the adjacent 4xQSFP-DD ports are blocked.
-
-All the 8xQSFP-DD ports can break out into 4xQSFP56 (4x100GbE), or 2xQSFP56 (2x200GbE) without blocking ports.
+You can split ports #1 to #32 into:
+- 2x ports with PAM 4 and NRZ encoding with no limitations.
+- 4x ports with PAM 4 and NRZ encoding with no limitations.
+- 8x ports with PAM 4 and NRZ encoding but this forces blocking of an adjacent port (the total available number of MAC addresses is 128)
 
 {{< tabs "4410_ports ">}}
 {{< tab "1G ">}}

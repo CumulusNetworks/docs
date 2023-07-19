@@ -76,9 +76,9 @@ Refer to the command line reference for a comprehensive list of {{<link title="s
 
 ## Monitor CPU and Memory Utilization for Processes and Services
 
-Use the UI or CLI to view the amount of CPU and memory utilization by various services and processes. By default, NetQ monitors the following services: *bgpd*, *clagd*, *lldpd*, *mstpd*, *netq-agent*, *netqd*, *ntpd*, *nvued*, *pwmd*, *smond*, *switchd*, *sx_sdk*, *wd_keepalive*, *zebra*
+Use the UI or CLI to view CPU and memory usage by various services and processes. By default, NetQ monitors the following services: *clagd*, *frr*, *lldpd*, *mstpd*, *netq-agent*, *netqd*, *nvued*, *pwmd*, *quagga*, *smond*
 
-Using the CLI, you can configure NetQ to monitor CPU and memory utilization for additional services, including *docker*, *dhcp_relay*, *neighmgrd*, *ptmd*, *ptp4l*, *rsyslog*, *snmpd*, *sshd* 
+Using the CLI, you can configure NetQ to monitor CPU and memory utilization for additional services, including *docker*, *dhcp_relay*, *neighmgrd*, *ptmd*, *ptp4l*, *rsyslog*, *snmpd*, *ssh* 
 
 Refer to the {{<link title="show/#netq-show-services" text="command line reference">}} for more information about the services.
 
@@ -90,7 +90,7 @@ To visualize CPU and memory utilization at the process level, open a large switc
 
 Select a process from the **Process name** column for its usage data to be reflected in the CPU and memory utilization charts. The data presented is aggregated over a 5-minute period; NetQ lists the process consuming the most CPU resources (aggregated over a 5-minute period or the **CPU 5min** column) from highest to lowest. The process whose data is reflected in the charts is indicated by an icon {{<img src="/images/netq/analytics-bars.svg" alt="" height="18" width="18">}} next to the name of the process.
 
-The following graphs depict CPU and memory usage over a 6-hour time period from the system monitor daemon, *smond* .
+The following graphs depict CPU and memory usage over a 6-hour time period from the system monitor daemon, *smond*.
 
 {{<figure src="/images/netq/procmon-470.png" alt="CPU and memory utilization info for the smond service" width="1200">}}
 

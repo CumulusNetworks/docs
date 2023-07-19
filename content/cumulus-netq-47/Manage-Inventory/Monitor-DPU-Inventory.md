@@ -48,10 +48,6 @@ If the NetQ Agent is in a 'fresh' state, you must stop and disable the NetQ Agen
 ```
 sed -i s'/<netq_server>/127.0.0.1/g' /etc/kubelet.d/doca_telemetry_standalone.yaml
 ```
-
-{{<notice info>}}
-It may take up to 30 minutes for the agent's new state to be reflected in the UI.
-{{</notice>}}
 3. After you have confirmed that the agent is in a 'rotten' state, select the DPU you'd like to decommission, then select **Decommission device** above the table.
 
 {{</tab>}}

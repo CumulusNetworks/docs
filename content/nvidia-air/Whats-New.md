@@ -9,10 +9,13 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## July 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0717-011
+- Updated user authorization process
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0706-012
 - Fixed an issue when deleting a topology associated with active simulations
 - Fixed an issue where links could be connected to the same interface on both ends
-<!-- Air:WhatsNew -->
 
 ## June 2023
 ### 82.2023.0622-012

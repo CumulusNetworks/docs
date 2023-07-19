@@ -17,31 +17,28 @@ In UCMP, along with the ECMP flow-based hash, Cumulus Linux associates a weight 
 {{< img src = "/images/cumulus-linux/ucmp-example.png" >}}
 
 The above example shows how traffic towards 192.168.10.1/32 is load balanced when you use UCMP routing:
-
-- Leaf01 has two ECMP paths to 192.168.10.1/32 (via Server01 and Server03) whereas Leaf03 and Leaf04 have a single path to Server04.
-- Leaf01, Leaf02, Leaf03, and Leaf04 generate a BGP link bandwidth based on the number of BGP multipaths for a prefix.
-- When announcing the prefix to the spines, Leaf01 and Leaf02 generate a link bandwidth of two while Leaf03 and Leaf04 generate a link bandwidth of one.
-- Each spine advertises the 192.168.10.1/32 prefix to the border leafs with an accumulated bandwidth of 6. This combines the value of 2 from Leaf01, 2 from Leaf02, 1 from Leaf03 and 1 from Leaf04.
+- leaf01 has two ECMP paths to 192.168.10.1/32 (through server01 and server03) whereas leaf03 and leaf04 have a single path to server04.
+- leaf01, leaf02, leaf03, and leaf04 generate a BGP link bandwidth based on the number of BGP multipaths for a prefix.
+- When announcing the prefix to the spines, leaf01 and leaf02 generate a link bandwidth of two while leaf03 and leaf04 generate a link bandwidth of one.
+- Each spine advertises the 192.168.10.1/32 prefix to the border leafs with an accumulated bandwidth of 6. This combines the value of 2 from leaf01, 2 from leaf02, 1 from leaf03 and 1 from leaf04.
 
 Now, each spine has four UCMP routes:
-
-- through Leaf01 with weight 2
-- through Leaf02 with weight 2
-- through Leaf03 with weight 1
-- through Leaf04 with weight 1
+- through leaf01 with weight 2
+- through leaf02 with weight 2
+- through leaf03 with weight 1
+- through leaf04 with weight 1
 
 The border leafs also have four UCMP routes:
-
-- through Spine01 with weight 6
-- through Spine02 with weight 6
-- through Spine03 with weight 6
-- through Spine04 with weight 6
+- through spine01 with weight 6
+- through spine02 with weight 6
+- through spine03 with weight 6
+- through spine04 with weight 6
 
 The border leafs balance traffic equally; all weights are equal to the spines. Only the spines have unequal load sharing based on the weight values.
 
 ## Configure UCMP
 
-Use the `set extcommunity bandwidth num-multipaths` command in a route map to set the extended community against all prefixes, or against a specific or set of prefixes using the match clause of the route map. Apply the route map at the first device to receive the prefix; against the BGP neighbor that generated this prefix.
+Set the BGP link bandwidth extended community in a route map against all prefixes, a specific prefix, or set of prefixes using the match clause of the route map. Apply the route map on the first device to receive the prefix; against the BGP neighbor that generated this prefix.
 
 The BGP link bandwidth extended community uses bytes-per-second. To convert the number of ECMP paths, Cumulus Linux uses a reference bandwidth of 1024Kbps. For example, if there are four ECMP paths to an anycast IP, the encoded bandwidth in the extended community is 512,000. The actual value is not important, as long as all routers originating the link bandwidth convert the number of ECMP paths in the same way.
 
@@ -55,7 +52,20 @@ Cumulus Linux accepts the bandwidth extended community by default. You do not ne
 
 ### Set the BGP Link Bandwidth Extended Community Against All Prefixes
 
-The following command examples show how you can set the BGP link bandwidth extended community against **all** prefixes.
+The following example sets the BGP link bandwidth extended community against **all** prefixes.
+
+{{< tabs "TabID59 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 action permit 
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 set ext-community-bw multipaths
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound route-map ucmp-route-map 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -84,9 +94,29 @@ route-map ucmp-route-map permit 10
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Set the BGP Link Bandwidth Extended Community Against Certain Prefixes
 
-The following command examples show how you can set the BGP link bandwidth extended community for anycast servers in the 192.168/16 IP address range.
+The following example sets the BGP link bandwidth extended community for anycast servers in the 192.168/16 IP address range.
+
+{{< tabs "TabID102 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set router policy prefix-list anycast_ip type ipv4
+cumulus@switch:~$ nv set router policy prefix-list anycast_ip rule 1 match 192.168.0.0/16 max-prefix-len 30
+cumulus@switch:~$ nv set router policy prefix-list anycast_ip rule 1 action permit
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 1 action permit 
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 1 match ip-prefix-list anycast_ip
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 1 set ext-community-bw multipaths
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound prefix-list anycast_ip 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -118,9 +148,25 @@ route-map ucmp-route-map permit 10
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### EVPN Configuration
 
 For <span style="background-color:#F5F5DC">[EVPN](## "Ethernet Virtual Private Network")</span> configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
+
+{{< tabs "TabID160 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 action permit 
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 set ext-community-bw multipaths
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy outbound route-map ucmp-route-map 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -151,6 +197,9 @@ route-map ucmp-route-map permit 10
 ...
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Control UCMP on the Receiving Switch
 
 To control UCMP on the receiving switch, you can:
@@ -168,9 +217,24 @@ By default, if some of the multipaths do not have link bandwidth, Cumulus Linux 
 
 Change this setting per BGP instance for both IPv4 and IPv6 unicast routes in the BGP instance. For EVPN, set the options on the tenant VRF.
 
-Run the vtysh `bgp bestpath bandwidth ignore|skip-missing|default-weight-for-missing` command.
+{{< tabs "TabID223 ">}}
+{{< tab "NVUE Commands">}}
 
-The following commands set link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
+Run the NVUE `nv set vrf <vrf> router bgp path-selection multipath bandwidth ignore`, `nv set vrf <vrf> router bgp path-selection multipath bandwidth skip-missing`, or `nv set vrf <vrf> router bgp path-selection multipath bandwidth default-weight-for-missing` command.
+
+The following example sets link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
+
+```
+cumulus@switch:~$ nv set vrf default router bgp path-selection multipath bandwidth skip-missing
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Run the vtysh `bgp bestpath bandwidth ignore`, `bgp bestpath bandwidth skip-missing`, or `bgp bestpath bandwidth default-weight-for-missing` command.
+
+The following example sets link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -202,15 +266,29 @@ router bgp 65011
  ...
  ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### BGP Link Bandwidth Outside a Domain
 
-The BGP link bandwidth extended community is automatically passed on with the prefix to <span style="background-color:#F5F5DC">[eBGP](## "external BGP")</span> peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
+The BGP link bandwidth extended community is passed on automatically with the prefix to <span style="background-color:#F5F5DC">[eBGP](## "external BGP")</span> peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
 
 {{%notice note%}}
 You cannot disable just the BGP link bandwidth extended community from advertising to a neighbor; you either send all BGP extended communities, or none.
 {{%/notice%}}
 
-To disable all BGP extended communities on a peer or peer group (per address family), run the vtysh `no neighbor <neighbor> send-community extended` command:
+The following example disables all BGP extended communities on a peer:
+
+{{< tabs "TabID284 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast community-advertise extended off
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -222,6 +300,9 @@ switch(config-router)# end
 switch# write memory
 switch# exit
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Troubleshooting
 

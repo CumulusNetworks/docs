@@ -198,7 +198,7 @@ interface hostbond3
   es-sys-mac 44:38:39:ff:ff:01
 ```
 
-These commands also create the following configuration in the `/etc/frr/frr.conf` file.
+These commands create the following configuration in the `/etc/frr/frr.conf` file.
 
 ```
 !

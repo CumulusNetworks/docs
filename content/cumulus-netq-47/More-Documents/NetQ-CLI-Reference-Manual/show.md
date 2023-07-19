@@ -4163,7 +4163,7 @@ Supported services include:
 - **pmon**: Process monitor service
 - **portwd**: Port watch daemon
 - **ptmd**: PTM (Prescriptive Topology Manager) daemon
-- **ptp41**: PTP (Precision Time Protocol) service
+- **ptp4l**: PTP (Precision Time Protocol) service
 - **pwmd**: Password manager daemon
 - **radv**: Route advertiser service
 - **rsyslog**: Rocket-fast system event logging processing service

@@ -25,7 +25,7 @@ The Inventory/NIC card displays the hardware- and software-component inventory o
 
 To add this card to your workbench, select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card**&nbsp;<span aria-label="and then">></span> **Inventory**&nbsp;<span aria-label="and then">></span> **Inventory/NICs card**&nbsp;<span aria-label="and then">></span> **Open cards**. Select the dropdown on the card to display either connection adapters or firmware versions.
 
-{{<figure src="/images/netq/inventory-nics-med-470.png" alt="NIC inventory card displaying firmware version" width="200">}}
+{{<figure src="/images/netq/invent-nic-470.png" alt="NIC inventory card displaying firmware version" width="200">}}
 
 Expand the card to full-screen to view a list of hosts and their associated NICs:
 
@@ -39,27 +39,25 @@ You can expand this card to large or full-screen to view detailed interface stat
 
 ## Decommission a NIC
 
-Decommissioning NICs removes information about the NIC from the NetQ database. The NetQ Agent must be disabled and in a 'rotten' state to complete the decommissioning process.
+Decommissioning removes information about the NIC from the NetQ database.
 
 {{<tabs "TabID29" >}}
 
 {{<tab "NetQ UI">}}
 
-1. Locate the Inventory/Devices card on your workbench and expand it to full-screen.
+1. Stop the DTS container on the NIC's host with the following command:
 
-2. From the **NICs** tab, locate the **Agent state** column.  
+    ```
+    docker stop doca_telemetry
+    ```
+
+2. Locate the Inventory/Devices card on your workbench and expand it to full-screen.
+
+3. Navigate to the **NICs** tab.  
 
     {{<figure src="/images/netq/decom-nics-rotten-470.png" alt="list of nics displaying a rotten netq agent" width="1200">}}
 
-If the NetQ Agent is in a 'fresh' state, you must stop and disable the NetQ Agent and wait until it reflects a 'rotten' state. To disable the agent, stop the DTS container with the following command:
-
-```
-docker stop doca_telemetry
-```
-{{<notice info>}}
-It may take up to 30 minutes for the agent's new state to be reflected in the UI.
-{{</notice>}}
-3. After you have confirmed that the agent is in a 'rotten' state, select the NIC you'd like to decommission, then select **Decommission device** above the table.
+4. Select the NIC you'd like to decommission, then select **Decommission device** above the table.
 
     {{<figure src="/images/netq/decom-nics-icon-470.png" alt="" width="1200">}}
 
@@ -69,7 +67,7 @@ It may take up to 30 minutes for the agent's new state to be reflected in the UI
 
 To decommission a NIC:
 
-1. Stop the DTS container with the following command:
+1. Stop the DTS container on the NIC's host with the following command:
 
     ```
     docker stop doca_telemetry

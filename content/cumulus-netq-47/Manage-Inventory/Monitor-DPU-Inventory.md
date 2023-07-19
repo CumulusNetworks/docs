@@ -41,7 +41,9 @@ Decommissioning DPUs removes information about the DPU from the NetQ database. T
 
 1. Locate the Inventory/Devices card on your workbench and expand it to full-screen.
 
-2. From the **DPUs** tab, locate the **Agent state** column.  
+2. From the **DPUs** tab, locate the **Agent state** column.
+
+    {{<figure src="/images/netq/dpu-decom-fresh-470.png" alt="list of DPUs displaying a fresh agent" width="1200">}}
 
 If the NetQ Agent is in a 'fresh' state, you must stop and disable the NetQ Agent and wait until it reflects a 'rotten' state. To disable the agent, run the following command on the DPU you want to decommission. Replace *<netq_server>* with the IP address of your NetQ VM:
 

@@ -78,7 +78,7 @@ Refer to the command line reference for a comprehensive list of {{<link title="s
 
 Use the UI or CLI to view CPU and memory usage by various services and processes. By default, NetQ monitors the following services: *clagd*, *frr*, *lldpd*, *mstpd*, *netq-agent*, *netqd*, *nvued*, *pwmd*, *quagga*, *smond*
 
-Using the CLI, you can configure NetQ to monitor CPU and memory utilization for additional services, including *docker*, *dhcp_relay*, *neighmgrd*, *ptmd*, *ptp4l*, *rsyslog*, *snmpd*, *ssh* 
+Using the CLI, you can configure NetQ to monitor CPU and memory utilization for additional services, inclsclark uding *docker*, *dhcp_relay*, *neighmgrd*, *ptmd*, *ptp4l*, *rsyslog*, *snmpd*, *ssh* 
 
 Refer to the {{<link title="show/#netq-show-services" text="command line reference">}} for more information about the services.
 

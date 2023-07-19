@@ -40,7 +40,6 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - Show IGMP commands
   - Commands to set the time
   - Changes to `nv show platform` command outputs to improve readability
-  - Improvements to warm boot mode
 
 {{< expand "Changed Commands" >}}
 | Previous Command | New Command |

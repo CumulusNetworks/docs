@@ -36,7 +36,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
   - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and Disable external API access">}}
   - Clear operation for all routing protocols
-  - Show IGMP commands
+  - {{<link url="Protocol-Independent-Multicast-PIM/#pim-show-commands" text="IGMP group show commands ">}}: `nv show interface <interface-id> ip igmp group` and `nv show interface <interface-id> ip igmp group <static-group-id>`
   - Commands to set the time
   - Changes to `nv show platform` command outputs to improve readability
 

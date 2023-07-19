@@ -1182,7 +1182,7 @@ Active Source           Group            RPT  IIF               OIL
 1      10.1.10.101      239.1.1.1        n    vlan10 
 ```
 
-To verify that the receiver is sending IGMP reports (joins) for the group, run the vtysh `show ip igmp groups` command or the `net show igmp groups` command.
+To verify that the receiver is sending IGMP reports (joins) for the group, run the NVUE `nv show interface <interface> ip igmp group` command or the vtysh `show ip igmp groups` command.
 
 ```
 cumulus@lhr:~$ sudo vtysh

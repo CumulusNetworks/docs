@@ -965,9 +965,6 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Edit /etc/cumulus/control-plane/policers.conf ">}}
 
-{{< /tab >}}
-{{< /tabs >}}
-
 1. Edit the `/etc/cumulus/control-plane/policers.conf` file:
 
    - To tune the PIM forwarding and burst rate, change the `copp.pim_ospf_rip.rate` and `copp.pim_ospf_rip.burst` parameters.
@@ -993,6 +990,9 @@ cumulus@switch:~$ nv config apply
    ```
    cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/policers.conf
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
@@ -1182,7 +1182,7 @@ Active Source           Group            RPT  IIF               OIL
 1      10.1.10.101      239.1.1.1        n    vlan10 
 ```
 
-To verify that the receiver is sending IGMP reports (joins) for the group, run the vtysh `show ip igmp groups` command or the `net show igmp groups` command.
+To verify that the receiver is sending IGMP reports (joins) for the group, run the NVUE `nv show interface <interface> ip igmp group` command or the vtysh `show ip igmp groups` command.
 
 ```
 cumulus@lhr:~$ sudo vtysh

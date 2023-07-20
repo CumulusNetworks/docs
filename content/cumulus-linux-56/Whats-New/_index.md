@@ -31,7 +31,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - {{<link url="Precision-Time-Protocol-PTP#clock-correction-mode" text="PTP one-step clock correction mode">}}
 - NVUE enhancements include:
   - {{<link url="Address-Resolution-Protocol-ARP/#global-timer-settings" text="ARP global timer configuration">}} and {{<link url="Neighbor-Discovery-ND/#global-timer-settings" text="ND global timer configuration">}}
-  - SSH commands
+  - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="Optional-BGP-Configuration/#password-obfuscation" text="BGP Password Obfuscation">}} and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#password-obfuscation" text="OSPF Password Obfuscation">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
   - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and Disable external API access">}}

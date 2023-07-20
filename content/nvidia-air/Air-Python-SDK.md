@@ -398,6 +398,11 @@ ssh -p 15502 ubuntu@worker.air.nvidia.com
 {{< /tab >}}
 {{< /tabs >}}
 
+Use the oob-mgmt-server as a jump host, and ssh through the oob-mgmt-server to another node in the simulation:
+```
+>>> ssh -J ubuntu@worker.air.nvidia.com:15738 user@hostname
+```
+
 ### Upload Image and Create a Topology
 Upload a custom Image and create a Topology using that Image
 

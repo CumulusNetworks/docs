@@ -1185,13 +1185,15 @@ Active Source           Group            RPT  IIF               OIL
 To verify that the receiver is sending IGMP reports (joins) for the group, run the NVUE `nv show interface <interface> ip igmp group` command or the vtysh `show ip igmp groups` command.
 
 ```
-cumulus@lhr:~$ sudo vtysh
-...
-lhr# show ip igmp groups
-Total IGMP groups: 1
-Watermark warn limit(Not Set): 0
-Interface   Address      Group        Mode Timer      Srcs V   Uptime  
-vlan20      10.2.10.1    239.1.1.1    EXCL 00:02:18   1    3   05:27:33 
+cumulus@lhr:~$ nv show interface swp3 ip igmp group
+StaticGroupID  filter-mode  source-count  timer     uptime    version  Summary
+-------------  -----------  ------------  --------  --------  -------  -------------------------
+225.1.101.1    exclude      1             00:02:43  00:02:56  3        source-address:         *
+225.1.101.2    exclude      1             00:02:43  00:02:56  3        source-address:         *
+225.1.101.3    exclude      1             00:02:43  00:02:56  3        source-address:         *
+225.1.101.4    exclude      1             00:02:43  00:02:56  3        source-address:         *
+225.1.101.5    exclude      1             00:02:43  00:02:56  3        source-address:         *
+232.1.1.99     include      1             --:--:--  00:00:02  3        source-address: 10.1.10.1
 ```
 
 To show IGMP source information, run the vtysh `show ip igmp sources` command or the `net show igmp sources` command.

@@ -30,7 +30,7 @@ The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in
 
 1. On your NetQ VM, edit the `targets-config` ConfigMap with the `kubectl edit cm targets-config` command.
 
-Add the desired adapter IP addresses to the `targets` stanza, maintaining `yaml` indentation:
+Add the desired host IP addresses to the `targets` stanza, maintaining `yaml` indentation. Multiple entries must be separated by commas, and the port is 9100:
 
 ```
 data:
@@ -41,7 +41,7 @@ data:
         "job": "node"
       },
       "targets": [
-         "10.10.10.10:9100"
+         "10.10.10.10:9100","10.10.10.11:9100"
         ]
       }
     ]

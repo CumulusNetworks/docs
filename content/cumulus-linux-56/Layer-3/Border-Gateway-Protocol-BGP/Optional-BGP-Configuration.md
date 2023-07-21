@@ -1556,38 +1556,84 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-<!-- ## BGP Clear
+## Reset BGP Sessions
 
-You can clear a BGP session with all neighbors, a specific BGP neighbor, or a peer group, which forces neighbors to restart so that BGP can receive all prefixes from the neighbors again.
+When you change the BGP routing policy, you need to reset the BGP session for the new policy takes effect. You can either:
+- Clear BGP sessions, which forces the neighbors to restart so that BGP can receive all prefixes from the neighbors again.
+- Reconfigure and activate routing tables without clearing the BGP session.
 
-{{< tabs "1511 ">}}
+You can reset BGP sessions globally or for a specific VRF.
+
+{{< tabs "1567 ">}}
 {{< tab "NVUE Commands ">}}
 
-To clear BGP sessions with all neighbors:
+To clear both inbound and outbound BGP sessions with all neighbors, forcing the neighbors to restart:
 
 ```
-cumulus@leaf01:~$ nv action clear bgp all
+cumulus@leaf01:~$ nv action clear router bgp
 cumulus@leaf01:~$ nv config apply
 ```
 
-To clear a BGP session with a specific neighbor:
+To clear both inbound and outbound BGP sessions with all neighbors in a VRF, run the  `nv action clear vrf <vrf> router bgp` command.
+
+To clear all inbound BGP sessions with all neighbors, forcing the neighbors to restart:
 
 ```
-cumulus@leaf01:~$ nv action clear bgp 10.10.10.101
+cumulus@leaf01:~$ nv action clear router bgp in
 cumulus@leaf01:~$ nv config apply
 ```
 
-To clear BGP sessions with a peer group:
+To clear all inbound BGP sessions with all neighbors in a VRF, run the `nv action clear vrf <vrf> router bgp in` command.
+
+To clear all inbound BGP sessions??????
 
 ```
-cumulus@leaf01:~$ nv action clear bgp SPINES
+cumulus@leaf01:~$ nv action clear router bgp in prefix-filter
 cumulus@leaf01:~$ nv config apply
 ```
+
+To clear all inbound BGP sessions?????? in a VRF, run the `nv action clear vrf <vrf> router bgp in prefix-filter` command.
+
+To clear all outbound BGP sessions with all neighbors, forcing the neighbors to restart:
+
+```
+cumulus@leaf01:~$ nv action clear router bgp out
+cumulus@leaf01:~$ nv config apply
+```
+
+To clear all outbound BGP sessions with all neighbors in a VRF, run the `nv action clear vrf <vrf> router bgp out` command.
+
+To reconfigure and activate all routing tables for inbound and outbound BGP sessions without clearing the sessions:
+
+```
+cumulus@leaf01:~$ nv action clear router bgp soft
+cumulus@leaf01:~$ nv config apply
+```
+
+To reconfigure and activate all routing tables for inbound and outbound BGP sessions in a VRF, run the `nv action clear vrf <vrf> router bgp soft` command.
+
+To reconfigure and activate all routing tables for inbound and outbound BGP sessions without clearing the sessions:
+
+```
+cumulus@leaf01:~$ nv action clear router bgp soft in
+cumulus@leaf01:~$ nv config apply
+```
+
+To reconfigure and activate all routing tables for inbound BGP sessions in a VRF, run the `nv action clear vrf <vrf> router bgp soft in` command.
+
+To reconfigure and activate all routing tables for outbound BGP sessions without clearing the sessions:
+
+```
+cumulus@leaf01:~$ nv action clear router bgp soft out
+cumulus@leaf01:~$ nv config apply
+```
+
+To reconfigure and activate all routing tables for outbound BGP sessions in a VRF, run the `nv action clear vrf <vrf> router bgp soft out` command.
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-To clear BGP sessions with all neighbors:
+To clear both inbound and outbound BGP sessions with all neighbors, forcing the neighbors to restart:
 
 ```
 cumulus@spine01:~$ sudo vtysh
@@ -1597,22 +1643,62 @@ spine01# write memory
 spine01# exit
 ```
 
-To clear a BGP session with a specific neighbor:
+To clear all inbound BGP sessions with all neighbors, forcing the neighbors to restart:
 
 ```
 cumulus@spine01:~$ sudo vtysh
 ...
-spine01# clear bgp 10.10.10.101
+spine01# clear bgp * in
 spine01# write memory
 spine01# exit
 ```
 
-To clear BGP sessions with a peer group:
+To clear all inbound BGP sessions with all neighbors??????
 
 ```
 cumulus@spine01:~$ sudo vtysh
 ...
-spine01# clear bgp SPINES
+spine01# clear bgp * in prefix-filter
+spine01# write memory
+spine01# exit
+```
+
+To clear all outbound BGP sessions with all neighbors, forcing the neighbors to restart:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# clear bgp * out
+spine01# write memory
+spine01# exit
+```
+
+To reconfigure and activate all routing tables for inbound and outbound BGP sessions without clearing the sessions:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# clear bgp * soft
+spine01# write memory
+spine01# exit
+```
+
+To reconfigure and activate all routing tables for inbound BGP sessions without clearing the sessions:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# clear bgp * soft in
+spine01# write memory
+spine01# exit
+```
+
+To reconfigure and activate all routing tables for outbound BGP sessions without clearing the sessions:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# clear bgp * soft out
 spine01# write memory
 spine01# exit
 ```
@@ -1620,32 +1706,6 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-## BGP Debug
-
-To enable BGP debugging to show information about BGP processing:
-
-{{< tabs "1549 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv action debug bgp
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@spine01:~$ sudo vtysh
-...
-spine01# debug bgp
-spine01# write memory
-spine01# exit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 ## BGP Neighbor Shutdown
 
 You can shut down all active BGP sessions with a neighbor and remove all associated routing information without removing its associated configuration. When shut down, the neighbor goes into an administratively idle state.

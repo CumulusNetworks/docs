@@ -355,6 +355,18 @@ cumulus@switch:~$ sudo chmod 0644 /run/tacacs_client_map
 <td>5.5.0-5.5.1</td>
 </tr>
 <tr>
+<td>3448984</td>
+<td>If you use NVUE to apply a configuration when the optional TACACS+ packages are not installed on the switch, you might see messages similar to the following in the {{/var/log/syslog}} file when {{auditd}} restarts (for example, when the switch reboots):
+
+audispd: Unable to stat /sbin/audisp-tacplus (No such file or directory)
+
+
+audispd: Skipping audisp-tacplus.conf plugin due to errors
+
+These messages do not affect the functionality of the switch.</td>
+<td>5.5.0-5.5.1</td>
+</tr>
+<tr>
 <td>3447762</td>
 <td>If the NVUE {{startup.yaml}} configuration file is invalid,  the {{nv config apply startup}} command times out without providing details on the error.</td>
 <td>5.4.0-5.5.1</td>
@@ -410,11 +422,6 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td>5.4.0-5.5.1</td>
 </tr>
 <tr>
-<td>3433577</td>
-<td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
-<td>5.5.0-5.5.1</td>
-</tr>
-<tr>
 <td>3428677</td>
 <td>In certain cases, Cumulus Linux does not process next hop updates because the {{zebra}} IP routing manager thinks the state of the next hops is unchanged. As a result, route installation fails and remains in a rejected state.</td>
 <td>5.3.0-5.5.1</td>
@@ -432,6 +439,11 @@ This error message is benign and has no functional impact.</td>
 <td>3413785</td>
 <td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.1</td>
+</tr>
+<tr>
+<td>3408301</td>
+<td>The NVUE {{nv show router nexthop rib}} command shows duplicate entries in the Summary section for a nexthop group. To work around this issue, run the vtysh {{show nexthop-group rib}} command instead. </td>
+<td>5.5.0-5.5.1</td>
 </tr>
 <tr>
 <td>3336808</td>

@@ -961,14 +961,6 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 <td></td>
 </tr>
 <tr>
-<td>3145224</td>
-<td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
-
-To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo rm /etc/cumulus/datapath/nvue_traffic.conf}} command.</td>
-<td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3145204</td>
 <td>On the NVIDIA Spectrum-1 switch, the {{nv show system forwarding}} command shows GTP hashing  output, which is not supported on this switch.</td>
 <td>5.2.0-5.4.0</td>

@@ -13,16 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3499177</td>
-<td>{{snmpwalk}} results in the following error because the SNMP index does not increase and contains duplicate indexes.
-
-Error: OID not increasing: TCP-MIB::tcpListenerProcess.ipv4."0.0.0.0".179
-&gt;= TCP-MIB::tcpListenerProcess.ipv4."0.0.0.0".179
-</td>
-<td>5.5.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3496931</td>
 <td>When you update a prefix list associated with an RP,  the {{pimd}} service might crash if the prefix list exists without any prefixes. To work around this issue, ensure that any prefix list associated with an RP includes at least one prefix at all times.</td>
 <td>5.3.1-5.5.1</td>
@@ -208,6 +198,12 @@ This error message is benign and has no functional impact.</td>
 <td></td>
 </tr>
 <tr>
+<td>3408301</td>
+<td>The NVUE {{nv show router nexthop rib}} command shows duplicate entries in the Summary section for a nexthop group. To work around this issue, run the vtysh {{show nexthop-group rib}} command instead. </td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3405024</td>
 <td>You cannot remove PBR map configuration with source and destination rules. To work around this issue, delete the entire PBR map clause.</td>
 <td>5.5.0-5.5.1</td>
@@ -360,14 +356,6 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 <tr>
 <td>3145869</td>
 <td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
-<td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3145224</td>
-<td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
-
-To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo rm /etc/cumulus/datapath/nvue_traffic.conf}} command.</td>
 <td>5.2.0-5.5.1</td>
 <td></td>
 </tr>
@@ -557,16 +545,6 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <td>3511640</td>
 <td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
 <td>5.4.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3499177</td>
-<td>{{snmpwalk}} results in the following error because the SNMP index does not increase and contains duplicate indexes.
-
-Error: OID not increasing: TCP-MIB::tcpListenerProcess.ipv4."0.0.0.0".179
-&gt;= TCP-MIB::tcpListenerProcess.ipv4."0.0.0.0".179
-</td>
-<td>5.5.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -761,6 +739,12 @@ This error message is benign and has no functional impact.</td>
 <td></td>
 </tr>
 <tr>
+<td>3408301</td>
+<td>The NVUE {{nv show router nexthop rib}} command shows duplicate entries in the Summary section for a nexthop group. To work around this issue, run the vtysh {{show nexthop-group rib}} command instead. </td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3405024</td>
 <td>You cannot remove PBR map configuration with source and destination rules. To work around this issue, delete the entire PBR map clause.</td>
 <td>5.5.0-5.5.1</td>
@@ -913,14 +897,6 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 <tr>
 <td>3145869</td>
 <td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
-<td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3145224</td>
-<td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
-
-To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo rm /etc/cumulus/datapath/nvue_traffic.conf}} command.</td>
 <td>5.2.0-5.5.1</td>
 <td></td>
 </tr>

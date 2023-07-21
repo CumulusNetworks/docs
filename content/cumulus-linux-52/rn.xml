@@ -429,14 +429,6 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
 <td></td>
 </tr>
 <tr>
-<td>3145224</td>
-<td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
-
-To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo rm /etc/cumulus/datapath/nvue_traffic.conf}} command.</td>
-<td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3145222</td>
 <td>The NVUE {{nv show system forwarding --output json}} command does not provide any output. To work around this issue, run the {{nv show system forwarding}} command.</td>
 <td>5.2.0-5.3.1</td>
@@ -1204,14 +1196,6 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
 <tr>
 <td>3145869</td>
 <td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
-<td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3145224</td>
-<td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
-
-To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo rm /etc/cumulus/datapath/nvue_traffic.conf}} command.</td>
 <td>5.2.0-5.5.1</td>
 <td></td>
 </tr>

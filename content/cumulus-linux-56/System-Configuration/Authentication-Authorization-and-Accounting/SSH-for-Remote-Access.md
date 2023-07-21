@@ -109,9 +109,50 @@ The following example adds an authorized key file from the account `cumulus` on 
    Last login: Thu Sep 29 16:56:54 2016
    ```
 
-#### Root User
+## Permission Settings
 
-By default, the root account cannot use SSH to log in. To add an authorized SSH key to the root account:
+### Root User
+
+By default, the root account cannot use SSH to log in.
+
+To allow the root account to use SSH to log in:
+
+{{< tabs "TabID118 ">}}
+{{< tab "NVUE Commands ">}}
+
+To allow the root account to use SSH to log in with a password:
+
+```
+cumulus@switch:~$ nv set system ssh-server permit-root-login enabled
+cumulus@switch:~$ nv config apply
+```
+
+Run the `nv set system ssh-server permit-root-login disabled` command to disable SSH login for the root account with a password.
+
+To allow the root account to use SSH to log in using authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive (this is the default setting):
+
+```
+cumulus@switch:~$ nv set system ssh-server permit-root-login prohibit-password
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To allow the root account to use SSH to log in using a password, edit the `/etc/ssh/sshd_config` file and set the `PermitRootLogin` option to `yes`:
+
+```
+cumulus@switch:~$ sudo cat /etc/ssh/sshd_config
+...
+# Authentication:
+LoginGraceTime 2m
+PermitRootLogin yes
+...
+```
+
+Set the `PermitRootLogin` command to `no` to disable SSH login for the root account with a password.
+
+To allow the root account to use SSH to log in using authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive (this is the default setting):
 
 1. Create an `.ssh` directory for the root user.
 
@@ -135,6 +176,48 @@ By default, the root account cannot use SSH to log in. To add an authorized SSH 
    cumulus@switch:~$ sudo cp <SSH public key file> /root/.ssh/authorized_keys 
    cumulus@switch:~$ sudo chmod 0644 /root/.ssh/authorized_keys
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Allow and Deny Users
+
+{{< tabs "TabID187 ">}}
+{{< tab "NVUE Commands ">}}
+
+To allow certain users to establish an SSH session:
+
+```
+cumulus@switch:~$ nv set system ssh-server allow-users user1 user2 user3
+cumulus@switch:~$ nv config apply
+```
+
+To deny certain users to establish an SSH session:
+
+```
+cumulus@switch:~$ nv set system ssh-server deny-users user4 user5
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To allow certain users to establish an SSH session, edit the `/etc/ssh/sshd_config` file and add the users to the `AllowUsers` parameter:
+
+```
+cumulus@switch:~$ sudo cat /etc/ssh/sshd_config
+...
+```
+
+To deny certain users to establish an SSH session, edit the `/etc/ssh/sshd_config` file and add the users to the `DenyUsers` parameter:
+
+```
+cumulus@switch:~$ sudo cat /etc/ssh/sshd_config
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## SSH and VRFs
 

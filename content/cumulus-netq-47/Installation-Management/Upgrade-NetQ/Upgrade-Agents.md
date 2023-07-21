@@ -59,7 +59,7 @@ cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 
 {{</tab>}}
 
-{{<tab "Ubuntu 18.04">}}
+{{<tab "Ubuntu">}}
 
 ```
 root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent

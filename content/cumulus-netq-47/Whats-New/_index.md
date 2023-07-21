@@ -15,7 +15,8 @@ NetQ 4.7.0 includes the following new features and improvements:
 
 - View network interface controller (NIC) {{<link title="NICs" text="telemetry">}} and {{<link title="NIC Inventory" text="inventory">}} data in the UI 
 - WIP: Decommission {{<link title="Host Inventory/#decommission-a-host" text="hosts">}}, {{<link title="NIC Inventory/#decommission-a-nic" text="NICs">}}, and {{<link title="DPU Inventory/#decommission-a-dpu" text="DPUs">}} from the UI or CLI
-- {{<link title="Switches/#monitor-cpu-and-memory-utilization-for-processes-and-services" text="Monitor CPU and memory utilization">}} for services and processes; create threshold-crossing rules that generate events when a process or service exceeds the limit you defined
+- {{<link title="Switches/#view-cpu-and-memory-utilization-for-processes-and-services" text="Monitor CPU and memory utilization">}} for services and processes; create threshold-crossing rules that generate events when a process or service exceeds the limit you defined
+- {{<link title="Switches/#view-queue-lengths-in-histograms" text="View queue lengths in the form of histograms">}}
 - {{<link title="Focus Your Monitoring Using Workbenches" text="Create workbenches">}} that can be accessed from an individual premises or that are available globally, across multiple premises
 - {{<link title="Configure and Monitor What Just Happened/#suppress-events-with-filters" text="Create WJH suppression rules">}} based on IP addresses
 - WIP: Visualize egress queue lengths in histograms in the UI 
@@ -33,11 +34,13 @@ Upgrades from releases earlier than NetQ 4.3.0 require an incremental {{<exlink 
 
 NetQ 4.6.0 is compatible with NetQ Agent versions 4.5.0 and later. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 4.3.0 and later (Broadcom switches)
-- Cumulus Linux 4.4.0 and later (Spectrum switches)
+- Cumulus Linux 4.3.0 and above (Broadcom switches)
+- Cumulus Linux 4.4.0 and above (Spectrum switches)
 - SONiC 202012
+- SONiC 202106
 - CentOS 7
 - RHEL 7.1
 - Ubuntu 18.04
+- Ubuntu 20.04
 
 You must upgrade to the latest agent version to enable 4.7 features.

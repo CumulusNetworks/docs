@@ -74,7 +74,7 @@ Refer to the command line reference for a comprehensive list of {{<link title="s
 
 {{</tabs>}}
 
-## Monitor CPU and Memory Utilization for Processes and Services
+## View CPU and Memory Utilization for Processes and Services
 
 Use the UI or CLI to view CPU and memory usage by various services and processes. By default, NetQ monitors the following services: *clagd*, *frr*, *lldpd*, *mstpd*, *netq-agent*, *netqd*, *nvued*, *pwmd*, *quagga*, *smond*
 
@@ -130,6 +130,51 @@ To stop the agent from monitoring services or processes, run {{<link title="conf
 {{</tabs>}}
 
 To actively monitor process-level CPU and memory utilization, you can create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}}. These rules generate events when a process or service exceeds the utilization limit you defined when creating the rule. Refer to the {{<link title="Threshold-Crossing Events Reference/#resource-utilization" text="resource utilization table in the TCA Events Reference">}} for service memory and service CPU utilization event IDs.
+
+## View Queue Lengths in Histograms
+
+Monitoring queue lengths in your network’s fabric is useful for detecting microbursts which can lead to higher packet latency, as well as buffer congestion, which can lead to packet drops. The {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-monitoring.md" text="Cumulus Linux documentation">}} provides a detailed description of ASIC monitoring, including example configurations. 
+
+{{<notice note>}}
+
+Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 and above.
+
+{{</notice>}}
+
+<!--
+
+{{<tabs "TabID151" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
+
+2. Under the traffic histogram section, select **Queue histogram**.
+
+Devices are {{<link title="Switch Management/#role-management" text="grouped according to their roles">}}: superspine, leaf, spine, or exit.
+
+(pic of devices categorized into groups)
+
+Each device contains its name, the port with the max level, standard deviation, P95 value, and average queue length. Hover over the port to view.... 
+
+The histograms bins update when you change the time parameters using the controls at the top of the screen.
+
+(pic of individual device with hover over max port)
+
+Select view more to open a full-screen view of the histogram. From here, you can select a device to 
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+netq <hostname> show histogram interface <ifname> queue [past <10 secs to 1 minute>] [around <text-time>] 
+
+
+{{</tab>}}
+
+{{</tabs>}}
+
+-->
 
 ## Related Information
 

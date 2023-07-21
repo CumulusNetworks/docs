@@ -10,9 +10,11 @@ After installing the NetQ software, you should install the NetQ Agents on each s
 - Cumulus Linux 4.3.0 and above (Broadcom switches)
 - Cumulus Linux 4.4.0 and above (Spectrum switches)
 - SONiC 202012
+- SONiC 202106
 - CentOS 7
 - RHEL 7.1
-- Ubuntu 18.04, Ubuntu 20.04
+- Ubuntu 18.04
+- Ubuntu 20.04
 
 ## Prepare for NetQ Agent Installation
 

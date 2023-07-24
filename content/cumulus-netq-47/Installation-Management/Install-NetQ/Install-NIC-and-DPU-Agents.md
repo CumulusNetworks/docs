@@ -22,6 +22,12 @@ To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/
 ```
 export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.13.2-doca2.0.2-host
 docker run -v "/opt/mellanox/doca/services/telemetry/config:/config" --rm --name doca-telemetry-init -ti $DTS_IMAGE /bin/bash -c "DTS_CONFIG_DIR=host_netq /usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh -i=10.10.10.1 -p=24224"
+docker run -d --net=host                                                              \
+              --privileged                                                            \
+              -v "/opt/mellanox/doca/services/telemetry/config:/config"               \
+              -v "/opt/mellanox/doca/services/telemetry/ipc_sockets:/tmp/ipc_sockets" \
+              -v "/opt/mellanox/doca/services/telemetry/data:/data"                   \
+              --rm --name doca-telemetry -it $DTS_IMAGE /usr/bin/telemetry-run.sh
 ```
 
 ### Configure Prometheus Targets for ConnectX Adapters
@@ -85,16 +91,4 @@ wget --content-disposition https://api.ngc.nvidia.com/v2/resources/nvidia/doca/d
 This step replaces the default configuration of `command: ["/bin/bash", "-c", "/usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh"]`.
 {{%/notice%}}
 
-4. Run the DTS container with docker on the DPU. Use the image path obtained in step 1 for the **DTS_IMAGE** variable:
-
-```
-export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.13.2-doca2.0.2-host
-docker run -d --net=host                                                              \
-              --privileged                                                            \
-              -v "/opt/mellanox/doca/services/telemetry/config:/config"               \
-              -v "/opt/mellanox/doca/services/telemetry/ipc_sockets:/tmp/ipc_sockets" \
-              -v "/opt/mellanox/doca/services/telemetry/data:/data"                   \
-              --rm --name doca-telemetry -it $DTS_IMAGE /usr/bin/telemetry-run.sh
-```
-
-5. Restart the DPE service with the `service restart dpe` command.
+4. Restart the DPE service with the `service restart dpe` command.

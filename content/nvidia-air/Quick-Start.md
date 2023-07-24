@@ -230,3 +230,7 @@ For an account using a non-company email, a user is granted the following limits
 - 55GB memory
 - 350GB storage
 - 1 running simulation
+
+## Other Notes
+
+- Using {{<link url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Cumulus-Linux-in-a-Virtual-Environment/" text="Cumulus Linux in a Virtual Environment">}}

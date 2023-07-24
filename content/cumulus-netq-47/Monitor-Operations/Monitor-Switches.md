@@ -133,7 +133,7 @@ To actively monitor process-level CPU and memory utilization, you can create {{<
 
 ## View Queue Lengths in Histograms
 
-Monitoring queue lengths in your network’s fabric is useful for detecting microbursts which can lead to higher packet latency or buffer congestion. The {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-monitoring.md" text="Cumulus Linux documentation">}} provides a detailed description of ASIC monitoring, including example bin configurations and information on interpreting histogram queue lengths. 
+Monitoring queue lengths in your network’s fabric is useful for detecting microbursts which can lead to higher packet latency or buffer congestion. The {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="Cumulus Linux documentation">}} provides a detailed description of ASIC monitoring, including example bin configurations and information on interpreting histogram queue lengths. 
 
 {{<notice note>}}
 

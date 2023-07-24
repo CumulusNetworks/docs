@@ -1399,6 +1399,132 @@ Source                Group               RP   Local    SPT      Uptime
 10.1.10.101       239.1.1.2    100.10.10.101       n      n    00:00:25
 ```
 
+### Reset PIM Statistics
+
+You can reset:
+- Statistics for all PIM interfaces in a VRF
+- Statistics for all interface traffic in a VRF
+- Statistics for the PIM OIL (output interface list) in a VRF
+- All PIM statistics or all PIM statistics in a VRF
+- Statistics for all IGMP interfaces
+
+{{< tabs "TabID1404 ">}}
+{{< tab "NVUE Commands ">}}
+
+To reset statistics for PIM interfaces in a VRF:
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim interfaces
+Running handle_clear_vrf_pim_interfaces default
+Action succeeded
+```
+
+To reset statistics for all PIM interface traffic in a VRF:
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim interface-traffic
+Running handle_clear_vrf_pim_interface_traffic default
+Action succeeded
+```
+
+To rescan the PIM OIL in a VRF:
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim oil
+Running handle_clear_vrf_pim_oil default
+Action succeeded
+```
+
+To reset PIM statistics in a VRF:
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim statistics
+Running handle_clear_vrf_pim_statistics default
+Action succeeded
+```
+
+To reset all PIM statistics:
+
+```
+cumulus@switch:~$ nv action clear router pim statistics
+Running handle_clear_pim_statistics
+Action succeeded
+```
+
+To reset statistics for all IGMP interfaces:
+
+```
+cumulus@switch:~$ nv action clear router igmp interfaces
+Running handle_clear_igmp_interfaces
+Action succeeded
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To reset statistics for all PIM interfaces in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim vrf default interfaces
+switch# write memory
+switch# exit
+```
+
+To reset statistics for all PIM interface traffic in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim vrf default interface traffic
+switch# write memory
+switch# exit
+```
+
+To rescan the PIM OIL (output interface list) in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim vrf default oil
+switch# write memory
+switch# exit
+```
+
+To reset PIM statistics in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim statistics vrf default
+switch# write memory
+switch# exit
+```
+
+To reset all PIM statistics:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim statistics
+switch# write memory
+switch# exit
+```
+
+To reset statistics for all IGMP interfaces:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip igmp interfaces
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Configuration Example
 
 The following example configures PIM and BGP on leaf01, leaf02, and spine01.

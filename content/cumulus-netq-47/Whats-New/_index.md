@@ -19,7 +19,7 @@ NetQ 4.7.0 includes the following new features and improvements:
 - {{<link title="Switches/#view-queue-lengths-in-histograms" text="View queue lengths in the form of histograms">}}
 - {{<link title="Focus Your Monitoring Using Workbenches" text="Create workbenches">}} that can be accessed from an individual premises or that are available globally, across multiple premises
 - {{<link title="Configure and Monitor What Just Happened/#suppress-events-with-filters" text="Create WJH suppression rules">}} based on IP addresses
-- WIP: Visualize egress queue lengths in histograms in the UI 
+- WIP: {{<link title="Switches/#view-queue-lengths-in-histograms" text="Visualize egress queue lengths">}} in histograms in the UI 
 - WIP: {{<link title="Configure and Monitor What Just Happened/#view-what-just-happened-metrics" text="">}} aggregate WJH L1 errors that occur on the same port
 - Performance improvements to the NetQ Agent that limit its CPU usage
 

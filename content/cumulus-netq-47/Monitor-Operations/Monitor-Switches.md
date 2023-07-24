@@ -151,7 +151,7 @@ Devices are {{<link title="Switch Management/#role-management" text="grouped acc
 
 {{<figure src="/images/netq/queue-hist-un-470.png" alt="dashboard displaying 6 devices with egress queue lengths as histograms" width="1100">}}
 
-Each device is represented by a card that displays its hostname, the port with the longest queue length (displayed horizontally, divided into bins), standard deviation, P95 value, and average queue length. The data updates when you change the time parameters using the controls at the top of the screen. The values reflected in the bins are color-coded, with higher values displayed in darker colors and lower values in lighter colors. Hover over a bin to view its corresponing queue length count.
+Each device is represented by a card that displays its hostname, the port with the longest queue length (displayed horizontally, divided into bins), standard deviation, P95 value, and average queue length. The data updates when you change the time parameters using the controls at the top of the screen. The values reflected in the bins are color-coded, with higher values displayed in darker colors and lower values in lighter colors. Hover over a bin to view its corresponding queue length count.
 
 {{<figure src="/images/netq/single-queue-470.png" alt="dashboard displaying 6 devices with egress queue lengths as histograms" width="250">}}
 

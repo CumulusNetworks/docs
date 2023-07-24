@@ -31,11 +31,11 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - {{<link url="Precision-Time-Protocol-PTP#clock-correction-mode" text="PTP one-step clock correction mode">}}
 - NVUE enhancements include:
   - {{<link url="Address-Resolution-Protocol-ARP/#global-timer-settings" text="ARP global timer configuration">}} and {{<link url="Neighbor-Discovery-ND/#global-timer-settings" text="ND global timer configuration">}}
-  - SSH commands
+  - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="Optional-BGP-Configuration/#password-obfuscation" text="BGP Password Obfuscation">}} and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#password-obfuscation" text="OSPF Password Obfuscation">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
   - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and Disable external API access">}}
-  - Clear operation for all routing protocols
+  - {{<link url="Optional-BGP-Configuration/#reset-bgp-sessions" text="Reset BGP sessions">}}, clear PIM interfaces and statistics, and clear duplicate EVPN addresses
   - {{<link url="Protocol-Independent-Multicast-PIM/#pim-show-commands" text="IGMP group show commands ">}}: `nv show interface <interface-id> ip igmp group` and `nv show interface <interface-id> ip igmp group <static-group-id>`
   - Commands to set the time
   - Changes to `nv show platform` command outputs to improve readability

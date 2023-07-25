@@ -1086,14 +1086,14 @@ cumulus@switch:~$ nv action clear evpn vni
 Action succeeded
 ```
 
-To clear IP address 10.0.0.9 for VNI 10:
+To clear duplicate IP address 10.0.0.9 for VNI 10:
 
 ```
 cumulus@switch:~$ nv action clear evpn vni 10 host 10.0.0.9
 Action succeeded
 ```
 
-To clear MAC address 00:e0:ec:20:12:62 for VNI 10:
+To clear duplicate MAC address 00:e0:ec:20:12:62 for VNI 10:
 
 ```
 cumulus@switch:~$ nv action clear evpn vni 10 mac 00:e0:ec:20:12:62
@@ -1103,7 +1103,7 @@ Action succeeded
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-To clear duplicate addresses for all VNIs, run the following command:
+To clear duplicate addresses for all VNIs:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1112,7 +1112,7 @@ switch# clear evpn dup-addr vni all
 switch# exit
 ```
 
-To clear IP address 10.0.0.9 for VNI 10.
+To clear duplicate IP address 10.0.0.9 for VNI 10:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1121,7 +1121,7 @@ switch# clear evpn dup-addr vni 10 ip 10.0.0.9
 switch# exit
 ```
 
-To clear MAC address 00:e0:ec:20:12:62 for VNI 10.
+To clear duplicate MAC address 00:e0:ec:20:12:62 for VNI 10:
 
 ```
 cumulus@switch:~$ sudo vtysh

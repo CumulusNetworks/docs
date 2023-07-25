@@ -7,8 +7,38 @@ right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
 ---
-<!-- vale NVIDIA.HeadingTitles = NO -->
-<!-- vale off -->
+
+<!-- alpha for 4.7
+## netq show adaptive-routing config
+
+### Syntax
+
+```
+netq [<hostname>] show adaptive-routing config global [profile <text-profilename>] 
+[between <text-time> and <text-endtime>] 
+[around <text-time>]
+[json]
+```
+```
+netq [<hostname>] show adaptive-routing config interface [<text-ifname>] 
+[between <text-time> and <text-endtime>] 
+[around <text-time>] 
+[json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+
+### Sample Usage
+-->
 ## netq show address-history
 <!-- vale on -->
 

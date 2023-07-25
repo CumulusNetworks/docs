@@ -1074,40 +1074,59 @@ switch# exit
 
 ### Clear Duplicate Addresses
 
-You can clear a duplicate MAC or IP address (and unfreeze a frozen address). The following example command clears IP address 10.0.0.9 for VNI 101.
+You can clear duplicate addresses for all VNIs, or clear a duplicate MAC or IP address (and unfreeze a frozen address).
 
 {{< tabs "TabID1175 ">}}
 {{< tab "NVUE Commands ">}}
 
-You cannot run NVUE commands to clear a duplicate MAC or IP address.
+To clear duplicate addresses for all VNIs:
+
+```
+cumulus@switch:~$ nv action clear evpn vni
+Action succeeded
+```
+
+To clear IP address 10.0.0.9 for VNI 10:
+
+```
+cumulus@switch:~$ nv action clear evpn vni 10 host 10.0.0.9
+Action succeeded
+```
+
+To clear MAC address 00:e0:ec:20:12:62 for VNI 10:
+
+```
+cumulus@switch:~$ nv action clear evpn vni 10 mac 00:e0:ec:20:12:62
+Action succeeded
+```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# clear evpn dup-addr vni 101 ip 10.0.0.9
-switch# exit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 To clear duplicate addresses for all VNIs, run the following command:
-
-{{< tabs "TabID1203 ">}}
-{{< tab "NVUE Commands ">}}
-
-You cannot run NVUE commands to clear duplicate addresses.
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
 ...
 switch# clear evpn dup-addr vni all
+switch# exit
+```
+
+To clear IP address 10.0.0.9 for VNI 10.
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear evpn dup-addr vni 10 ip 10.0.0.9
+switch# exit
+```
+
+To clear MAC address 00:e0:ec:20:12:62 for VNI 10.
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear evpn dup-addr vni 10 mac 00:e0:ec:20:12:62
 switch# exit
 ```
 

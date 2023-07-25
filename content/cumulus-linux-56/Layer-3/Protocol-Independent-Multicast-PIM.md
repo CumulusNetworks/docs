@@ -1401,7 +1401,7 @@ Source                Group               RP   Local    SPT      Uptime
 
 ### Clear PIM State and Statistics
 
-If you are troubleshooting or making changes your multicast environment, you can:
+If you are troubleshooting or making changes to your multicast environment, you can:
 - Clear PIM neighbors for all PIM interfaces in a VRF.
 - Clear traffic statistics for all PIM interfaces in a VRF.
 - Rescan the PIM OIL to update the output interface list in a VRF.
@@ -1462,7 +1462,6 @@ To clear PIM neighbors for all PIM interfaces in a VRF:
 cumulus@switch:~$ sudo vtysh
 ...
 switch# clear ip pim vrf default interfaces
-switch# write memory
 switch# exit
 ```
 
@@ -1472,7 +1471,6 @@ To clear traffic statistics for all PIM interfaces in a VRF:
 cumulus@switch:~$ sudo vtysh
 ...
 switch# clear ip pim vrf default interface traffic
-switch# write memory
 switch# exit
 ```
 
@@ -1482,7 +1480,6 @@ To rescan the PIM OIL to update the output interface list in a VRF:
 cumulus@switch:~$ sudo vtysh
 ...
 switch# clear ip pim vrf default oil
-switch# write memory
 switch# exit
 ```
 
@@ -1492,7 +1489,6 @@ To clear all PIM process statistics in a VRF:
 cumulus@switch:~$ sudo vtysh
 ...
 switch# clear ip pim statistics vrf default
-switch# write memory
 switch# exit
 ```
 
@@ -1502,7 +1498,6 @@ To clear all PIM process statistics:
 cumulus@switch:~$ sudo vtysh
 ...
 switch# clear ip pim statistics
-switch# write memory
 switch# exit
 ```
 
@@ -1512,7 +1507,6 @@ To clear the IGMP interface state:
 cumulus@switch:~$ sudo vtysh
 ...
 switch# clear ip igmp interfaces
-switch# write memory
 switch# exit
 ```
 

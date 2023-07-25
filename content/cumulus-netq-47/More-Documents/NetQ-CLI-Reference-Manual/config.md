@@ -452,19 +452,29 @@ Restarting netq-agent... Success!
 - `netq config restart agent`
 
 - - -
-
+<!-- need to test for 4.7 docs-->
 ## netq config add agent services
 
 Configures the NetQ Agent to monitor processes and services.
 
 ### Syntax
 
+```
+netq config add agent services <text-service-name-list>
+```
+
 ### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| services | <text-service-name-list\> | Configure the NetQ Agent to monitor services. Format this value as a comma-separated list, without spaces. Services include *ptmd,neighmgrd,ptp4l,docker,snmpd,rsyslog,ssh,dhcrelay* |
 
 ### Options
 
+None
+<!--
 ### Sample Usage
-
+-->
 ### Related Commands
 
 - `netq config show agent services`
@@ -552,7 +562,7 @@ Restarting netq-agent... Success!
 
 ## netq config add agent wjh-drop-filter
 
-Filters the WJH events at the NetQ Agent before the NetQ system processes them. NetQ performs the filtering on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons, severities, or source/destination IP addresses. You must restart the agent after applying a filter with the `netq config restart agent` command. 
+Filters the WJH events at the NetQ Agent before the NetQ system processes and displays them. NetQ performs the filtering on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons, severities, or source/destination IP addresses. You must restart the agent after applying a filter with the `netq config restart agent` command. 
 
 WJH commands are only supported by NVIDIA Spectrum switches.
 
@@ -563,6 +573,9 @@ netq config add agent wjh-drop-filter
     drop-type <text-wjh-drop-type> 
     [drop-reasons <text-wjh-drop-reasons>]
     [severity <text-drop-severity-list>]
+
+netq config add agent wjh-drop-filter 
+    ips [<text-wjh-ips>]
 ```
 
 ### Required Arguments
@@ -578,6 +591,7 @@ netq config add agent wjh-drop-filter
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| ips | \<text-wjh-drop-type\> | Collect and send WJH events based on a comma-separated list of IP addresses |
 | drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. To specify more than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}}. |
 | severity | \<text-drop-severity-list\> | Only collect and send WJH events with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
@@ -971,36 +985,13 @@ Netq Command factory reset successful
 - - -
 ## netq config del agent
 
-Disables or removes NetQ Agent configurations on a switch. Several forms of this command are available.
+Disables or removes NetQ Agent configurations on a switch.
 
-<!--
-
-Cluster Servers: For deployments using a cluster server configuration, this command removes the IP addresses of all cluster servers configured to receive NetQ Agent data.
-
-CPU Limit: Removes the CPU usage limit for the NetQ Agent on this device.
-
-FRR Monitor: Disables NetQ Agent from monitoring FRR running in a Docker container. This *does not* disable NetQ Agent from monitoring FRR running as a service.
-
-Kubernetes Monitor: Disables NetQ Agent from monitoring Kubernetes container activity on a switch.
-
-Log level: Disables NetQ Agent logging on a switch.
-
-Sensors: Disables NetQ Agent from collecting fan, power supply unit, and temperature sensors for a switch chassis.
-
-Server: Removes the destination (NetQ appliance or VM) for the data collected by the NetQ Agent and for API requests.
-
-SSL: 
-
-Stats: Disables the NetQ Agent from collecting interface statistics on a switch.
-
-WJH: Disables the NetQ Agent from collecting What Just Happened events on a switch.
-
--->
 ### Syntax
 
 ```
 netq config del agent 
-    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|kubernetes-monitor|loglevel|server|services|ssl|stats|wjh] 
+    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|kubernetes-monitor|loglevel|server|ssl|stats|wjh] 
     [json]
 ```
 ### Required Arguments
@@ -1018,7 +1009,6 @@ None
 | kubernetes-monitor | NA | Stop the NetQ Agent from monitoring Kubernetes containers |
 | loglevel | NA | Stop the NetQ Agent from logging events about the agent |
 | server | NA | Delete the current destination of NetQ Agent data and API requests |
-| services | NA | Stop the NetQ Agent from monitoring specified services |
 | ssl | NA | Delete SSL configuration |
 | stats | NA | Stop the NetQ Agent from collecting interface statistics |
 | wjh | NA | Stop the NetQ Agent from collecting WJH information |
@@ -1042,6 +1032,35 @@ cumulus@switch:~$ netq config restart agent
 
 - - -
 
+## netq config del agent services
+
+Stops the NetQ Agent from monitoring processes and services.
+
+### Syntax
+
+```
+netq config del agent services <text-service-name-list>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| services | <text-service-name-list\> | Stops the NetQ Agent from monitoring specified services. Format this value as a comma-separated list, without spaces. Services include *ptmd,neighmgrd,ptp4l,docker,snmpd,rsyslog,ssh,dhcrelay* |
+
+### Options
+
+None
+<!--
+### Sample Usage
+-->
+### Related Commands
+
+- `netq config show agent services`
+- `netq config add agent services`
+
+- - -
+
 ## netq config del agent wjh-drop-filter
 
 Delete a What Just Happened event filter on a switch.
@@ -1053,6 +1072,9 @@ netq config del agent wjh-drop-filter
     drop-type <text-wjh-drop-type> 
     [drop-reasons <text-wjh-drop-reasons>]
     [severity <text-drop-severity-list>]
+
+netq config del agent wjh-drop-filter 
+    ips [<text-wjh-ips>]
 ```
 
 ### Required Arguments
@@ -1069,6 +1091,7 @@ netq config del agent wjh-drop-filter
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. To specify than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}}. |
+| ips | \<text-wjh-drop-type\> | Delete WJH events filter for these IP addresses (comma-separated list) |
 | severity | \<text-drop-severity-list\> | Delete WJH event filter with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
 ### Sample Usage
@@ -1404,7 +1427,7 @@ Displays the configuration of the NetQ Agent on a switch. Several forms of this 
 
 ```
 netq config show agent 
-    [asic-monitor|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|services|ssl|stats|wjh|wjh-threshold] 
+    [asic-monitor|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|services|ssl|stats|wjh|wjh-drop-filter|wjh-threshold] 
     [json]
 ```
 ### Required Arguments
@@ -1416,7 +1439,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | asic-monitor | NA | Display NetQ Agent ASIC monitoring configuration |
-| cpu-limit | NA | View the maximum percentage of CPU resource that the NetQ Agent can use |
+| cpu-limit | NA | View the maximum percentage of CPU resources that the NetQ Agent can use |
 | frr-monitor | NA | Display FRR monitoring configuration |
 | kubernetes-monitor | NA | Display the Kubernetes monitoring configuration |
 | loglevel | NA | Display the NetQ Agent logging level configuration |
@@ -1424,6 +1447,7 @@ None
 | ssl | NA | Display SSL configuration |
 | stats | NA | Display status of interface statistics |
 | wjh | NA | Display NetQ Agent What Just Happened monitoring configuration |
+| wjh-drop-filter | NA | Display NetQ Agent WJH filter configuration |
 | wjh-threshold | NA | Display NetQ Agent WJH latency and congestion thresholds configuration |
 | json | NA | Display the output in JSON format |
 ### Sample Usage
@@ -1661,6 +1685,8 @@ Displays the operational status of the NetQ Agent on a switch.
 
 ```
 netq config status agent
+    [verbose] 
+    [json]
 ```
 
 ### Required Arguments
@@ -1669,7 +1695,10 @@ None
 
 ### Options
 
-None
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| verbose | NA | Display detailed output |
+| json | NA | Display the output in JSON format |
 ### Sample Usage
 
 ```
@@ -1678,7 +1707,6 @@ netq-agent... Running
 
 cumulus@switch:~$ netq config status agent 
 netq-agent...stopped
-
 ```
 
 ### Related Commands

@@ -724,65 +724,6 @@ spine02         80                      576                             2880    
 - ```netq show cl-btrfs-info```
 
 - - -
-
-## netq show clag
-
-Displays the health of all CLAG sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
-
-- The peer nodes for a given node
-- The system MAC address used for the session between the nodes
-- The operational state of the session (up or down)
-- The operational state of the backup IP address (up or down)
-- The total number of bonds
-- The number of dual-connected bonds
-- When the last change occurred for any of these items
-
-If the total number of bonds does not match the number of dual-connected bonds, there might be a configuration issue.
-
-### Syntax
-
-```
-netq [<hostname>] show clag
-    [around <text-time>]
-    [json]
-```
-
-### Required Arguments
-
-None
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON format |
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq show clag
-Matching clag records:
-Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
-                                                                         s
------------------ ----------------- ------------------ ---------- ------ ----- ----- -------------------------
-border01(P)       border02          44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:33:48 2020
-border02          border01(P)       44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:29:24 2020
-leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:29:16 2020
-leaf02            leaf01(P)         44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:39:27 2020
-leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:10:35 2020
-leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:11:24 2020
-```
-
-### Related Commands
-
-- ```netq show unit-tests clag```
-- ```netq show events```
-- ```netq check clag```
-
-- - -
-
 ## netq show dom
 
 Displays the performance degradation or complete outage of any digital optics modules (DOMs) on one or all devices. You can filter the output by interface for laser and module types, and by channel for laser type.
@@ -988,7 +929,7 @@ Event querying is supported for a 72-hour window within the past 30 days.
 ```
 netq [<hostname>] show events
     [severity info | severity error]
-    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_wjh|trace|vlan|vxlan]
+    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_services|tca_wjh|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
 ```
@@ -1003,7 +944,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | severity | info, error| Only display events with this severity level |
-| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
+| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_services, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON format |
 
@@ -4278,7 +4219,14 @@ netq [<hostname>] show services
     [around <text-time>]
     [json]
 ```
+Use the following command to display the total CPU and memory usage from services:
 
+```
+netq [<hostname>] show services resource-util
+    [<service-name>] 
+    [around <text-time>] 
+    [json]
+```
 ### Required Arguments
 
 | Argument | Value | Description |
@@ -4347,6 +4295,26 @@ leaf02            snmpd                10098 mgmt            yes     yes    no  
 leaf02            rsyslog              11937 default         yes     yes    no        ok               Tue Dec  8 21:15:00 2020  Tue Dec  8 21:15:00 2020
 ```
 
+Display service CPU and memory usage:
+
+```
+cumulus@switch:~$ netq show services resource-util
+
+Matching services records:
+Hostname          Service              PID   VRF                  Enabled Active Uptime               CPU one Minute       CPU five Minute      Memory one Minute    Memory five Minute   Last Updated
+----------------- -------------------- ----- -------------------- ------- ------ -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+r-3700-02         sx_sdk               19012 default              yes     yes    81 day 17h ago       7.7                  24.65                9.44                 9.44                 Tue Jul 18 18:49:19 2023
+r-3700-03         sx_sdk               13627 default              yes     yes    81 day 18h ago       0                    17.82                9.44                 9.44                 Tue Jul 18 18:49:19 2023
+r-3700-02         switchd              21100 default              yes     yes    81 day 17h ago       56.77                15.07                1.13                 1.13                 Tue Jul 18 18:49:19 2023
+r-3700-03         switchd              15768 default              yes     yes    81 day 18h ago       0                    8.28                 1.11                 1.11                 Tue Jul 18 18:49:19 2023
+neo-switch02      sx_sdk               1841  default              yes     yes    2h 29min ago         30.1                 6.55                 9.67                 9.67                 Tue Jul 18 18:49:19 2023
+ufm-switch19      sx_sdk               2343  default              yes     yes    21h 3min ago         5.22                 5.73                 2.84                 2.84                 Tue Jul 18 18:49:19 2023
+ufm-switch29      sx_sdk               2135  default              yes     yes    8 day 4h ago         2.88                 5.73                 9.54                 9.54                 Tue Jul 18 18:49:19 2023
+r-3420-01         sx_sdk               1885  default              yes     yes    9 day 3h ago         5.28                 5.01                 9.3                  9.3                  Tue Jul 18 18:49:19 2023
+ufm-switch29      clagd                7095  default              no      yes    8 day 4h ago         23.57                4.71                 0.63                 0.63                 Tue Jul 18 18:49:19 2023
+r-3700-01         smond                7301  default              yes     yes    9 day 3h ago         0                    4.7                  0.2                  0.2                  Tue Jul 18 18:49:19 2023
+... 
+```
 ### Related Commands
 
 - `netq show events`
@@ -4671,10 +4639,6 @@ netq show unit-tests bgp
     [check_filter_id <text-check-filter-id>] 
     [json]
 
-netq show unit-tests clag 
-    [check_filter_id <text-check-filter-id>] 
-    [json]
-
 netq show unit-tests cl-version 
     [check_filter_id <text-check-filter-id>] 
     [json]
@@ -4724,7 +4688,7 @@ netq show unit-tests vxlan
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| <!-- vale off -->address, agent, bgp, clag, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
+| <!-- vale off -->address, agent, bgp, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
 
 ### Options
 
@@ -4757,7 +4721,7 @@ Configured per test result filters:
 
 ## netq show validation settings
 
-Displays one or all scheduled validations, including their name, type, cadence, when the validation began, its creation time, and whether it is currently active. This is useful for obtaining the name of a scheduled validations for use in other validation commands.
+Displays one or all scheduled validations, including their name, type, cadence, when the validation began, its creation time, and whether it is currently active. This is useful for obtaining the name of a scheduled validation for use in other validation commands.
 
 ### Syntax
 
@@ -5119,6 +5083,14 @@ netq [<hostname>] show wjh-drop <text-drop-type>
     [between <text-time> and <text-endtime>] 
     [around <text-time>] 
     [json]
+
+netq [<hostname>] show wjh-drop l1 
+    [ingress-port <text-ingress-port>] 
+    [severity <text-severity>]
+    [reason <text-reason>] 
+    [port-aggregate <text-port-aggregate>] 
+    [between <text-time> and <text-endtime>] 
+    [around <text-time>] [json]
 ```
 <!-- vale on -->
 
@@ -5136,6 +5108,7 @@ netq [<hostname>] show wjh-drop <text-drop-type>
 | severity | \<text-severity\> | Only display drops with this severity; *error*, *warning*, or *notice* |
 | details | NA | Display drop count and reason for all drop types |
 | ingress-port | \<text-ingress-port\> | Only display drops for the ingress port with this name |
+| port-aggregate | \<text-port-aggregate\> | Aggregate drops according to their respective ports (True) or list all ports (False) |
 | reason | \<text-reason\> | Only display drops with this reason |
 | src-ip | \<text-src-ip\> | Only display drops with this source IP address |
 | dst-ip | \<text-dst-ip\> | Only display drops with this destination IP address |

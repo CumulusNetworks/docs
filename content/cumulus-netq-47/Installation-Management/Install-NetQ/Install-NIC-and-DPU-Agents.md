@@ -73,7 +73,7 @@ To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/
 
 1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC">}}. Select the **Get Container** menu and copy the image path.
 
-2. Retrieve the container `yaml` configuration file onto the host. Use the path in the instructions on {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC">}}. Copy it to `/etc/kubelet.d/doca_telemetry_standalone.yaml`:
+2. Retrieve the container `yaml` configuration file onto the host. Use the path {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="specified in the NGC instructions">}}. Copy it to `/etc/kubelet.d/doca_telemetry_standalone.yaml`:
 
 ```
 wget --content-disposition https://api.ngc.nvidia.com/v2/resources/nvidia/doca/doca_container_configs/versions/2.0.2v1/files/configs/2.0.2/doca_telemetry.yaml

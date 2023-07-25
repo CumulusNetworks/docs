@@ -101,6 +101,7 @@ netq install cluster full
     [config-key <text-opta-key>]
     [pod-ip-range <text-pod-ip-range>]
     workers <text-worker-01> <text-worker-02>
+    [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
 
 ### Required Arguments
@@ -119,6 +120,9 @@ netq install cluster full
 | ---- | ---- | ---- |
 | conifg-key | \<text-opta-key\> | Use this unique key to install the server cluster |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
+| s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
+| s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
+
 
 ### Sample Usage
 
@@ -369,6 +373,7 @@ netq install opta standalone full
     config-key <text-opta-key>
     [pod-ip-range <text-pod-ip-range>]
     [proxy-host <text-proxy-host> proxy-port<text-proxy-port>]
+    [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
 
 ### Required Arguments
@@ -388,6 +393,8 @@ netq install opta standalone full
 | proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the VM; you must also specify a port |
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the VM; you must also specify a proxy host |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
+| s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
+| s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 
 ### Sample Usage
 
@@ -487,6 +494,7 @@ netq install standalone full
     bundle <text-bundle-url>
     [config-key <text-opta-key>]
     [pod-ip-range <text-pod-ip-range>]
+    [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
 
 ### Required Arguments
@@ -504,6 +512,8 @@ netq install standalone full
 | ---- | ---- | ---- |
 | conifg-key | \<text-opta-key\> | Use this unique key to activate the software |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
+| s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
+| s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 
 ### Sample Usage
 

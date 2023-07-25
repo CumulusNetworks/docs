@@ -893,17 +893,13 @@ Displays the results of a switch discovery job, including a summary of the job i
 ### Syntax
 
 ```
-netq lcm show
-    discovery-job <text-discovery-job-id>
+netq lcm show discovery-jobs
     [json]
 ```
 
 ### Required Arguments
 
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| discovery-job | \<text-discovery-job-id\> | Display results of discovery job with this identifier |
-
+None
 ### Options
 
 | Option | Value | Description |
@@ -939,7 +935,7 @@ fw2               192.168.200.62            44:38:39:00:01:8E  x86_64   4.2.0   
 
 ### Related Commands
 
-- ```netq lcm discover```
+- `netq lcm discover`
 
 - - -
 

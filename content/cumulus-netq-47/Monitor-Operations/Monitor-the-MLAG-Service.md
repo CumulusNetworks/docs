@@ -13,9 +13,6 @@ You use Multi-Chassis Link Aggregation (MLAG) to enable a server or switch with 
 Other vendors refer to the Cumulus Linux implementation of MLAG as MLAG, MC-LAG or VPC. The NetQ UI uses the MLAG terminology predominantly. However, the management daemon, named `clagd`, and other options in the code, such as `clag-id`, remain for historical purposes.
 
 {{%/notice%}}
-{{%notice tip%}}
-Any prior scripts or automation that use the older `netq show clag` command continue to work as the command still exists in the operating system.
-{{%/notice%}}
 
 ## MLAG Commands
 

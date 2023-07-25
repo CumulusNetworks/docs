@@ -141,9 +141,7 @@ Queue length monitoring is supported on Spectrum switches running Cumulus Linux 
 
 {{</notice>}}
 
-{{<tabs "TabID151" >}}
-
-{{<tab "NetQ UI" >}}
+The information available in the UI can also be displayed via the CLI with the {{<link title="show/#netq-show-histogram" text="netq show histogram">}} command. To view queue histograms in the UI:
 
 1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**. Under the traffic histogram section, select **Queue histogram**.
 
@@ -158,17 +156,6 @@ Each device is represented by a card that displays its hostname, the port with t
 Select **View more** to open a dashboard that displays the full range of ports configured to send histogram data along with their associated devices. From this view, you can compare devices against each other or the same devices over a different time period. For example, the following view displays switch *r-qa-sw-eth-2231* with queue length data from the past minute in the top panel and the past 30 minutes in the bottom panel.
 
 {{<figure src="/images/netq/compare-queue-hist-470.png" alt="histogram comparison of the same device with different time parameters" width="1100">}}
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
-netq <hostname> show histogram interface <ifname> queue [past <10 secs to 1 minute>] [around <text-time>] 
-
-
-{{</tab>}}
-
-{{</tabs>}}
 
 ## Related Information
 

@@ -1223,6 +1223,42 @@ leaf04            4001       10.0.1.2         L3               Vrf RED        ye
 - `netq check evpn`
 <!-- vale on -->
 - - -
+## netq show histogram
+
+<!--need to update definition-->
+
+Displays egress queue lengths for a switch across the network fabric. For more information, refer to {{<link title="Switches/#view-queue-lengths-in-histograms" text="Monitoring Switches">}}.
+
+### Syntax
+
+```
+netq <hostname> show histogram interface <text-ifname> queue 
+[around <text-time>] 
+[between <text-time> and <text-endtime>] 
+[json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch with this name |
+| interface | \<text-ifname\> | Only display results for the interface with this name |
+| diff | NA | Only display the differences associated with each change |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| json | NA | Display the output in JSON format |
+
+<!--
+### Sample Usage
+-->
+
+- - -
 
 ## netq show interfaces
 

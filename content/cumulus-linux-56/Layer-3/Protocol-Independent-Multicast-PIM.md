@@ -1399,70 +1399,64 @@ Source                Group               RP   Local    SPT      Uptime
 10.1.10.101       239.1.1.2    100.10.10.101       n      n    00:00:25
 ```
 
-### Reset PIM Statistics
+### Clear PIM State and Statistics
 
-You can reset:
-- Statistics for all PIM interfaces in a VRF
-- Statistics for all interface traffic in a VRF
-- Statistics for the PIM OIL (output interface list) in a VRF
-- All PIM statistics or all PIM statistics in a VRF
-- Statistics for all IGMP interfaces
+If you are troubleshooting or making changes your multicast environment, you can:
+- Clear PIM neighbors for all PIM interfaces in a VRF.
+- Clear traffic statistics for all PIM interfaces in a VRF.
+- Rescan the PIM OIL to update the output interface list in a VRF.
+- Clear all PIM process statistics or all PIM process statistics in a VRF, such as PIM bootstrap message counters.
+- Clear IGMP interface state.
 
 {{< tabs "TabID1404 ">}}
 {{< tab "NVUE Commands ">}}
 
-To reset statistics for PIM interfaces in a VRF:
+To clear PIM neighbors for all PIM interfaces in a VRF:
 
 ```
 cumulus@switch:~$ nv action clear vrf default router pim interfaces
-Running handle_clear_vrf_pim_interfaces default
 Action succeeded
 ```
 
-To reset statistics for all PIM interface traffic in a VRF:
+To clear traffic statistics for all PIM interfaces in a VRF:
 
 ```
 cumulus@switch:~$ nv action clear vrf default router pim interface-traffic
-Running handle_clear_vrf_pim_interface_traffic default
 Action succeeded
 ```
 
-To rescan the PIM OIL in a VRF:
+To rescan the PIM OIL to update the output interface list in a VRF:
 
 ```
 cumulus@switch:~$ nv action clear vrf default router pim oil
-Running handle_clear_vrf_pim_oil default
 Action succeeded
 ```
 
-To reset PIM statistics in a VRF:
+To clear all PIM process statistics in a VRF:
 
 ```
 cumulus@switch:~$ nv action clear vrf default router pim statistics
-Running handle_clear_vrf_pim_statistics default
 Action succeeded
 ```
 
-To reset all PIM statistics:
+To clear all PIM process statistics:
 
 ```
 cumulus@switch:~$ nv action clear router pim statistics
-Running handle_clear_pim_statistics
 Action succeeded
 ```
 
-To reset statistics for all IGMP interfaces:
+To clear the IGMP interface state:
 
 ```
 cumulus@switch:~$ nv action clear router igmp interfaces
-Running handle_clear_igmp_interfaces
 Action succeeded
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
-To reset statistics for all PIM interfaces in a VRF:
+To clear PIM neighbors for all PIM interfaces in a VRF:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1472,7 +1466,7 @@ switch# write memory
 switch# exit
 ```
 
-To reset statistics for all PIM interface traffic in a VRF:
+To clear traffic statistics for all PIM interfaces in a VRF:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1482,7 +1476,7 @@ switch# write memory
 switch# exit
 ```
 
-To rescan the PIM OIL (output interface list) in a VRF:
+To rescan the PIM OIL to update the output interface list in a VRF:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1492,7 +1486,7 @@ switch# write memory
 switch# exit
 ```
 
-To reset PIM statistics in a VRF:
+To clear all PIM process statistics in a VRF:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1502,7 +1496,7 @@ switch# write memory
 switch# exit
 ```
 
-To reset all PIM statistics:
+To clear all PIM process statistics:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1512,7 +1506,7 @@ switch# write memory
 switch# exit
 ```
 
-To reset statistics for all IGMP interfaces:
+To clear the IGMP interface state:
 
 ```
 cumulus@switch:~$ sudo vtysh

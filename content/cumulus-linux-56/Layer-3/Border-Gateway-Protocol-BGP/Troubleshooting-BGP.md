@@ -727,7 +727,9 @@ Cumulus Linux records the changes that a neighbor goes through in `syslog` and i
 
 ## Clear BGP Routes
 
-NVUE provides commands to clear and refresh routes in the BGP table. You can clear routes for the IPv4, IPv6, and EVPN address families. The BGP clear commands do not clear counters in the kernel or hardware.
+NVUE provides commands to clear and refresh routes in the BGP table. You can clear all routes in the BGP table, or all routes for an address family (IPv4, IPv6, or EVPN) in a VRF.
+
+The BGP clear commands do not clear counters in the kernel or hardware.
 
 {{%notice note%}}
 - BGP clear route commands that specify a direction (`in` or `out`) do not reset BGP neighbor adjacencies.
@@ -737,7 +739,10 @@ NVUE provides commands to clear and refresh routes in the BGP table. You can cle
 - BGP soft clear commands that do not specify a direction (`in` or `out`) do not reset BGP neighbor adjacencies, and affect both inbound and outbound routes as described above depending on whether `soft-reconfiguration inbound` is enabled.
 {{%/notice%}}
 
-To clear and refresh all IP4 inbound routes:
+{{< tabs "742 ">}}
+{{< tab "NVUE Commands ">}}
+
+To clear and refresh all IPv4 inbound routes:
 
 ```
 cumulus@leaf01:~$ nv action clear vrf default router bgp address-family ipv4-unicast soft in
@@ -773,14 +778,102 @@ To clear and resend outbound routes for all address families (IPv4, IPv6, and l2
 cumulus@leaf01:~$ nv action clear vrf default router bgp peer-group SPINES out
 ```
 
-To clear and refresh the inbound 10.10.10.1/32 routes from the BGP neighbor 10.10.10.1:
+To clear and refresh all IPv4 inbound routes for all VRFs and address families:
 
 ```
-cumulus@leaf01:~$ nv action clear vrf default router bgp neighbor 10.10.10.1 soft in 10.10.10.1/32
+cumulus@switch:~$ nv action clear router bgp soft in
+Action succeeded
 ```
 
-To clear and refresh the inbound 10.1.10.0/24 IPv4 prefix routes from the BGP peer group SPINES:
+To clear and refresh inbound routes for all neighbors, address families, and VRFs and to refresh the outbound route filtering prefix-list:
 
 ```
-cumulus@leaf01:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv4-unicast in 10.1.10.0/24
+cumulus@switch:~$ nv action clear router bgp in prefix-filter
+Action succeeded
 ```
+
+To clear BGP sessions with all neighbors, forcing the neighbors to restart:
+
+```
+cumulus@switch:~$ nv action clear router bgp
+Action succeeded
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To clear and refresh all IPv4 inbound routes:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+switch# clear bgp vrf default ipv4 unicast * soft in
+switch# exit
+```
+
+To clear and resend all IPv6 outbound routes:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+switch# clear bgp vrf default ipv6 unicast * soft out
+switch# exit
+```
+
+To clear and refresh all EVPN inbound routes:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+switch# clear bgp vrf default l2vpn evpn * soft in
+switch# exit
+```
+
+To clear and resend all outbound IPv4 routes:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+switch# clear bgp vrf default ipv4 unicast * soft out
+switch# exit
+```
+
+To clear and resend all IPv6 outbound routes to BGP neighbor 10.10.10.101:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+switch# clear bgp vrf default ipv6 unicast 10.10.10.101 out
+switch# exit
+```
+
+To clear and resend outbound routes for all address families (IPv4, IPv6, and l2vpn-evpn) for the BGP peer group SPINES:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+switch# clear bgp vrf default peer-group SPINES out
+switch# exit
+```
+
+To clear and refresh inbound routes for all neighbors, address families, and VRFs and to refresh the outbound route filtering prefix-list:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+switch# clear bgp in prefix-filter
+switch# exit
+```
+
+To clear BGP sessions with all neighbors, forcing the neighbors to restart:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear bgp *
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}

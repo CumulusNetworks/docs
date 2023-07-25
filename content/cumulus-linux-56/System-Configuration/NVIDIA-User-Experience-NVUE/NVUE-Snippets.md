@@ -273,46 +273,7 @@ The following example creates a file called `traffic_conf_snippet.yaml` and enab
    !---- NVUE snippets ----
    resilient_hash_enable = TRUE
    ```
-<!--
-### /etc/ssh/sshd_config Snippets
 
-To add SSH daemon configuration for the Cumulus Linux SSH service that NVUE does not yet support, create a `sshd_config` snippet; for example:
-
-1. Create a `.yaml` file and add the following traditional snippet:
-
-   ```
-   cumulus@switch:~$ sudo nano sshd_config_snippet.yaml
-   - set:
-       system:
-         config:
-           snippet:
-             sshd_config: |
-               PermitRootLogin yes
-               X11Forwarding yes
-               Match User anoncvs
-                  X11Forwarding no
-                  AllowTcpForwarding no
-                  ForceCommand cvs server
-   ```
-
-2. Run the following command to patch the configuration:
-
-   ```
-   cumulus@switch:~$ nv config patch sshd_config_snippet.yaml
-   ```
-
-3. Run the `nv config apply` command to apply the configuration:
-
-   ```
-   cumulus@switch:~$ nv config apply
-   ```
-
-4. Verify that the configuration exists at the beginning of the `/etc/ssh/sshd_config` file:
-
-   ```
-   cumulus@switch:~$ sudo cat /etc/ssh/sshd_config
-   ```
--->
 ## Flexible Snippets
 
 Flexible snippets are an extension of traditional snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file, then add content. Cumulus Linux runs flexible snippets as root.
@@ -335,7 +296,7 @@ You can use flexible snippets to add configuration to the following files:
 |`/etc/dhcp/dhcpd6-<VRF>.conf`| Configuration file for the `dhcpd` service for IPv6. Changes to this file require a `dhcpd6@<VRF>.service` restart |
 |`/etc/ntp.conf`| Configuration file for NTP servers. Changes to this file require an `ntp` service restart.|
 |`/etc/default/isc-dhcp-relay6-<VRF>`| Configuration file for DHCP relay for IPv6. Changes to this file require a `dhcrelay6@<VRF>.service` restart.|
-|`etc/snmp/snmpd.conf`| Configuration file for SNMP. Changes to this file require an `snmpd` restart.|
+|`/etc/snmp/snmpd.conf`| Configuration file for SNMP. Changes to this file require an `snmpd` restart.|
 |`/etc/cumulus/datapath/traffic.conf`| Configuration file for forwarding table profiles. Changes to this file require a `switchd` restart.|
 |`/etc/cumulus/switchd.conf`| Configuration file for `switchd`. Changes to this file require a `switchd` restart. |
 
@@ -431,3 +392,15 @@ The following example flexible snippet called `apt-flex-snippet` creates a new f
               deb [arch=amd64] https://packages.microsoft.com/debian/10/prod buster main
             permissions: "0644"
 ```
+
+{{%notice note%}}
+If you try to apply a flexible snippet to a file that NVUE does not allow, you see an error message similar to the following:
+
+```
+cumulus@leaf01:mgmt:~$ nv config apply
+Invalid config [rev_id: 8]
+  Flexible snippets are not allowed to be configured on the file '/etc/cumulus/ports.conf’.
+  Flexible snippets are not allowed to be configured on the file '/etc/cumulus/ports_width.conf’.
+  ```
+
+{{%/notice%}}

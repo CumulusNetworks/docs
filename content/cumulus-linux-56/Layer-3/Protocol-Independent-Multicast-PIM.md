@@ -1399,6 +1399,120 @@ Source                Group               RP   Local    SPT      Uptime
 10.1.10.101       239.1.1.2    100.10.10.101       n      n    00:00:25
 ```
 
+### Clear PIM State and Statistics
+
+If you are troubleshooting or making changes to your multicast environment, you can:
+- Clear PIM neighbors for all PIM interfaces in a VRF.
+- Clear traffic statistics for all PIM interfaces in a VRF.
+- Rescan the PIM OIL to update the output interface list in a VRF.
+- Clear all PIM process statistics or all PIM process statistics in a VRF, such as PIM bootstrap message counters.
+- Clear IGMP interface state.
+
+{{< tabs "TabID1404 ">}}
+{{< tab "NVUE Commands ">}}
+
+To clear PIM neighbors for all PIM interfaces in a VRF:
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim interfaces
+Action succeeded
+```
+
+To clear traffic statistics for all PIM interfaces in a VRF:
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim interface-traffic
+Action succeeded
+```
+
+To rescan the PIM OIL to update the output interface list in a VRF:
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim oil
+Action succeeded
+```
+
+To clear all PIM process statistics in a VRF:
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim statistics
+Action succeeded
+```
+
+To clear all PIM process statistics:
+
+```
+cumulus@switch:~$ nv action clear router pim statistics
+Action succeeded
+```
+
+To clear the IGMP interface state:
+
+```
+cumulus@switch:~$ nv action clear router igmp interfaces
+Action succeeded
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To clear PIM neighbors for all PIM interfaces in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim vrf default interfaces
+switch# exit
+```
+
+To clear traffic statistics for all PIM interfaces in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim vrf default interface traffic
+switch# exit
+```
+
+To rescan the PIM OIL to update the output interface list in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim vrf default oil
+switch# exit
+```
+
+To clear all PIM process statistics in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim statistics vrf default
+switch# exit
+```
+
+To clear all PIM process statistics:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim statistics
+switch# exit
+```
+
+To clear the IGMP interface state:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip igmp interfaces
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Configuration Example
 
 The following example configures PIM and BGP on leaf01, leaf02, and spine01.

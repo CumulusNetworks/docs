@@ -8,16 +8,16 @@ toc: 5
 Installing NetQ telemetry agents on your hosts with NVIDIA ConnectX adapters and NVIDIA Bluefield DPUs allows you to track inventory data and statistics across devices. The DOCA Telemetry Service (DTS) is the agent that runs on hosts and DPUs to collect data.
 
 {{<notice note>}}
-NIC Telemetry for ConnectX adapters is supported only for on-premises NetQ deployments.
+NIC telemetry for ConnectX adapters is supported only for on-premises NetQ deployments.
 {{</notice>}}
 
 ## Install DTS on ConnectX Hosts
 
 To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="DOCA Telemetry Service">}} container on a host with ConnectX adapters, perform the following steps:
 
-1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC">}}. Drop down the **Get Container** menu and copy the image path.
+1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC">}}. Select the **Get Container** menu and copy the image path.
 
-2. Run the DTS container with docker on the host. Use the image path obtained in step 1 for the **DTS_IMAGE** variable and configure the IP address of your NetQ server for the `-i` option:
+2. Run the DTS container with Docker on the host. Use the image path obtained in the previous step for the **DTS_IMAGE** variable and configure the IP address of your NetQ server for the `-i` option:
 
 ```
 export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.13.2-doca2.0.2-host
@@ -53,9 +53,9 @@ data:
     ]
 ```
 
-2. Restart the `netq-prom-adapter` pod:
+2. Restart the `netq-prom-adapter` pod.
 
-Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command.
+Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
 
 ```
 cumulus@netq-server:~$ kubectl get pods | grep netq-prom
@@ -71,7 +71,7 @@ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz
 
 To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="DOCA Telemetry Service">}} container on a DPU, perform the following steps:
 
-1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC">}}. Drop down the **Get Container** menu and copy the image path.
+1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC">}}. Select the **Get Container** menu and copy the image path.
 
 2. Retrieve the container `yaml` configuration file onto the host. Use the path in the instructions on {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC">}}. Copy it to `/etc/kubelet.d/doca_telemetry_standalone.yaml`:
 
@@ -92,3 +92,8 @@ This step replaces the default configuration of `command: ["/bin/bash", "-c", "/
 {{%/notice%}}
 
 4. Restart the DPE service with the `service restart dpe` command.
+
+## Related Information
+
+- {{<link title="DPU Inventory" text="DPU inventory">}} and {{<link title="DPUs" text="monitoring">}}
+- {{<link title="NIC Inventory" text="NIC inventory">}} and {{<link title="NICs" text="monitoring">}}

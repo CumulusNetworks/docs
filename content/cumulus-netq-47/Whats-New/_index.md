@@ -18,10 +18,10 @@ NetQ 4.7.0 includes the following new features and improvements:
 - {{<link title="Switches/#view-cpu-and-memory-utilization-for-processes-and-services" text="Monitor CPU and memory utilization">}} for services and processes; create threshold-crossing rules that generate events when a process or service exceeds the limit you defined
 - {{<link title="Switches/#view-queue-lengths-in-histograms" text="View queue lengths in the form of histograms">}}
 - {{<link title="Focus Your Monitoring Using Workbenches" text="Create workbenches">}} that can be accessed from an individual premises or that are available globally, across multiple premises
-- {{<link title="Configure and Monitor What Just Happened/#suppress-events-with-filters" text="Create WJH suppression rules">}} based on IP addresses
-- WIP: {{<link title="Switches/#view-queue-lengths-in-histograms" text="Visualize egress queue lengths">}} in histograms in the UI 
+- {{<link title="Configure and Monitor What Just Happened/#suppress-events-with-filters" text="Create WJH suppression rules">}} based on IP addresses 
 - WIP: {{<link title="Configure and Monitor What Just Happened/#view-what-just-happened-metrics" text="">}} aggregate WJH L1 errors that occur on the same port
 - Performance improvements to the NetQ Agent that limit its CPU usage
+- New instructions for installing the {{<link title="Install NIC and DPU Agents" text="DOCA Telemetry Service on hosts and DPUs">}} 
 
 ## Upgrade Paths
 

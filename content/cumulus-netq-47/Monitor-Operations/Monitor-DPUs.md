@@ -7,6 +7,10 @@ toc: 3
 
 With the NetQ UI, you can monitor hardware resources of individual data processing units (DPUs), including CPU utilization, disk usage, and memory utilization. For DPU inventory information, refer to {{<link title="DPU Inventory" text="DPU Inventory">}}.
 
+{{<notice note>}}
+You must install and configure {{<link title="Install NIC and DPU Agents/#install-dts-on-dpus" text="install and configure DOCA Telemetry Service">}} to display DPU data in NetQ.
+{{</notice>}}
+
 ## View Overall Health of a DPU
 
 For an overview of the current or past health of DPU hardware resources, open the DPU device card. To open a DPU device card:

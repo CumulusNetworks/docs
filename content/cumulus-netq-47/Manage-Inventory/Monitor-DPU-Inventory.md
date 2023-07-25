@@ -7,6 +7,10 @@ toc: 4
 
 Use the UI or CLI to view your data processing unit (DPU) inventory. For DPU performance information, refer to {{<link title="DPUs" text="DPU Monitoring">}}.
 
+{{<notice note>}}
+You must install and configure {{<link title="Install NIC and DPU Agents/#install-dts-on-dpus" text="install and configure DOCA Telemetry Service">}} to display DPU data in NetQ.
+{{</notice>}}
+
 ## DPU Inventory Commands
 
 Several forms of this command are available based on the inventory component you'd like to view. See the {{<link title="show/#netq-show-inventory" text="command line reference">}} for additional options, definitions, and examples.

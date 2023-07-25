@@ -495,32 +495,11 @@ Cumulus Linux provides these adaptive routing profiles:
 
 If you want to make changes to a profile, you must configure the custom profile by editing the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file. NVUE does not provide commands.
 
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf
-## Supported AR profile mode : FREE (0:FREE, 1:TIME_BOUND, 2:RANDOM) 
-adaptive_routing.profile0.mode = 0 
-## Maximum value for buffer-congestion threshold is 16777216. Unit is in cells 
-adaptive_routing.congestion_threshold.low = 100 
-adaptive_routing.congestion_threshold.medium = 2000 
-adaptive_routing.congestion_threshold.high = 20000 
-## AR shaper attributes [unit is in 100ns (Ex: 1=100ns; 10=1us)] 
-adaptive_routing.shaper_to = 10 
-adaptive_routing.shaper_from = 10 
-## Adaptive-routing profile0 parameters 
-adaptive_routing.profile0.bind_time = 0 
-adaptive_routing.profile0.free_threshold = 4 
-adaptive_routing.profile0.busy_threshold = 0 
-adaptive_routing.profile0.shaper_from_enable = TRUE 
-adaptive_routing.profile0.shaper_to_enable = TRUE 
-adaptive_routing.profile0.elephant_flow = TRUE 
-#adaptive_routing.ecmp_size = 64. >>>>>Any change in this value needs switchd restart by user. 
-```
-
 After changing parameter values and saving the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 If you change the `adaptive_routing.ecmp_size` parameter, you must **restart** `switchd` with the `systemctl restart switchd` command.
 
-To apply the adaptive routing profile:
+To apply an adaptive routing profile:
 
 {{< tabs "TabID581 ">}}
 {{< tab "NVUE Commands ">}}

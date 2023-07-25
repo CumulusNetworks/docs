@@ -625,13 +625,12 @@ This command only checks the physical interfaces; it does not check bridges, bon
 
 ```
 netq check interfaces
-    [label <text-label-name> | hostnames <text-list-hostnames>]
+    [hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>]
     [include <interface-number-range-list> | exclude <interface-number-range-list>]
     [around <text-time>]
     [json | summary]
 ```
-
 ### Required Arguments
 
 None
@@ -640,7 +639,6 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
@@ -1250,7 +1248,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 
 ```
 netq check sensors
-    [label <text-label-name> | hostnames <text-list-hostnames>]
+    [hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>]
     [include <sensors-number-range-list> | exclude <sensors-number-range-list>]
     [around <text-time>]
@@ -1265,7 +1263,6 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |

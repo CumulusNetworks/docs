@@ -35,7 +35,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - {{<link url="Optional-BGP-Configuration/#password-obfuscation" text="BGP">}} and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#password-obfuscation" text="OSPF">}} password obfuscation
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
   - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and Disable external API access">}}
-  - Additional {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="clear BGP route">}} commands to clear BGP sessions with all neighbors and to refresh routes for all neighbors
+  - Additional {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors
   - {{<link url="Protocol-Independent-Multicast-PIM/#clear-pim-state-and-statistics" text="Clear PIM state and statistics">}} commands
   - {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="Clear EVPN duplicate address">}} commands
   - {{<link url="Protocol-Independent-Multicast-PIM/#pim-show-commands" text="IGMP group show commands ">}}: `nv show interface <interface-id> ip igmp group` and `nv show interface <interface-id> ip igmp group <static-group-id>`

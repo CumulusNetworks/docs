@@ -329,6 +329,8 @@ bond           evpn           lldp           qos            synce
 bridge         ip             pluggable      router         tunnel
 ```
 
+To view the NVUE command reference for Cumulus Linux, which describes all the NVUE CLI commands and provides examples, go to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvue-reference/" text="NVUE Command Reference">}}.
+
 ## NVUE Configuration File
 
 When you save network configuration, NVUE writes the configuration to the `/etc/nvue.d/startup.yaml` file.
@@ -367,10 +369,6 @@ NVUE manages the following configuration files:
 | `/etc/ntp.conf` | Configures NTP settings. |
 | `/etc/ptp4l.conf` | Configures PTP settings.|
 | `/etc/snmp/snmpd.conf`| Configures SNMP settings.|
-
-{{%notice note%}}
-When you configure the switch with NVUE commands, NVUE overwrites the settings in any file it manages. Do not run NVUE commands and manually edit the configuration files at the same time to configure the switch. Either configure the switch with NVUE commands only or manually edit the configuration files.
-{{%/notice%}}
 
 ## Search for a Specific Configuration
 

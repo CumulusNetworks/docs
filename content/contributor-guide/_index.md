@@ -84,7 +84,3 @@ This Code of Conduct is adapted from the [Contributor Covenant Code of Conduct](
 
 For answers to common questions about this code of conduct, read the
 [Contributor Covenant FAQ](https://www.contributor-covenant.org/faq).
-
-## Documentation License
-
-The Cumulus Networks user documentation is [licensed]({{<ref "/license" >}}) under the Creative Commons [Attribution-NonCommercial-ShareAlike 4.0 International](http://github.com/idleberg/Creative-Commons-Markdown/blob/master/4.0/by-nc-sa.markdown) license.

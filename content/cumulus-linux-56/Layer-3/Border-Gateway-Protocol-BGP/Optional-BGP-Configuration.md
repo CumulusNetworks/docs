@@ -333,7 +333,7 @@ Read thread: on  Write thread: on  FD used: 27
 {{%notice note%}}
 Cumulus Linux does not enforce the MD5 password configured against a BGP listen-range peer group (used to accept and create dynamic BGP neighbors) and accepts connections from peers that do not specify a password.
 {{%/notice%}}
-
+<!-- asked not to document in 5.6
 ### Password Obfuscation
 
 By default, when you set MD5 authentication for BGP peers, Cumulus Linux shows the passwords in clear text in the NVUE `nv config show` command output, vtysh `show running-config output`, and in the `/etc/frr/frr.conf` file. To configure BGP to obfuscate the passwords instead of showing them in clear text:
@@ -384,7 +384,7 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## Remove Private BGP ASNs
 
 If you use private ASNs in the data center, any routes you send out to the internet contain your private ASNs. You can remove all the private ASNs from routes to a specific neighbor.

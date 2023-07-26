@@ -16,6 +16,7 @@ Upgrades NetQ on NetQ On-premises Appliances or VMs. For detailed instructions, 
 
 ```
 netq upgrade bundle <text-bundle-url>
+    [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
 
 ### Required Arguments
@@ -26,7 +27,10 @@ netq upgrade bundle <text-bundle-url>
 
 ### Options
 
-None
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
+| s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 
 ### Sample Usage
 

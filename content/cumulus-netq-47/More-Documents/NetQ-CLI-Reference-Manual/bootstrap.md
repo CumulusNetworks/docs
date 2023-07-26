@@ -15,6 +15,7 @@ type: nojsscroll
 netq bootstrap refresh 
     <text-tarball-name> 
     [ecr-access-key <text-ecr-access-key> ecr-secret-key <text-ecr-secret-key>]
+    [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
 
 ### Required Arguments
@@ -29,8 +30,13 @@ netq bootstrap refresh
 | ---- | ---- | ---- |
 | ecr-access-key | \<text-ecr-access-key\> | AWS access key ID |
 | ecr-secret-key| \<text-ecr-secret-key\>| AWS secret key ID |
+| s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
+| s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 
+<!--
 ### Sample Usage
+
+-->
 
 ### Related Commands
 

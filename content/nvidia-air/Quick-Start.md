@@ -248,3 +248,7 @@ Organizations have a much higher resource budget than an individual user account
 - 15 running simulations
 
 The budgets for organizations can be adjusted based on the needs of that organization. If a resource budget for an organization needs to be expanded. Please contact the Air Support team via the option to "Report An Issue" from air.nvidia.com.
+
+## Other Notes
+
+- Using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Cumulus-Linux-in-a-Virtual-Environment/" text="Cumulus Linux in a Virtual Environment">}}

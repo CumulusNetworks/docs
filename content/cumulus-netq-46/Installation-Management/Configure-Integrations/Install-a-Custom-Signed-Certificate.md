@@ -13,7 +13,7 @@ If you already have a certificate installed and want to change or update it, run
 
 You need the following items to perform the certificate installation:
 
-- A valid X509 certificate.
+- A valid X509 certificate, containing a Subject Alternative Name (SAN) attribute.
 - A private key file for the certificate.
 - A DNS record name configured to access the NetQ UI.
 

@@ -106,7 +106,7 @@ You can view the current configuration of a NetQ Agent to determine what data it
 
 ```
 netq config show agent 
-    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|ssl|stats||wjh|wjh-threshold] 
+    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|ssl|stats|wjh|wjh-threshold] 
     [json]
 ```
 
@@ -196,7 +196,7 @@ cumulus@switch:~$ netq config restart agent
 
 ### Configure a NetQ Agent to Limit Switch CPU Usage
 
-You can restrict the NetQ Agent from using more than a configurable amount of the CPU resources. This setting requires a switch running Cumulus Linux versions 3.7, 4.1, or later.
+You can limit the NetQ Agent to use only a certain percentage of CPU resources on a switch. This setting requires a switch running Cumulus Linux versions 3.7, 4.1, or later.
 
 For more detail about this feature, refer to this [Knowledge Base article]({{<ref "knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches">}}).
 

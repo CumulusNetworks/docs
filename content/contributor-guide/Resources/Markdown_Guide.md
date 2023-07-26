@@ -1,6 +1,6 @@
 ---
 title: Markdown Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 210
 ---
 This topic provides additional Markdown usage guidelines and more detail about selected Markdown editing capabilities already covered in the {{< link title="Make a Larger Contribution" >}} topic.
@@ -44,10 +44,9 @@ This type of link is used to reference content in another section within the sam
 The \<section-title\> must be in all lower case, and dashes must be used to replace any spaces, regardless of the formatting of the actual title.
 {{%/notice%}}
 
-
 ## Image References
 
-In general, Cumulus Networks uses the *img* and *figure*  shortcodes to reference static images; however, you can also use inline Markdown.
+In general, Cumulus uses the *img* and *figure*  shortcodes to reference static images; however, you can also use inline Markdown.
 
 \!\[Reference Text\](/path)
 

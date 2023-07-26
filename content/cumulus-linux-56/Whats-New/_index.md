@@ -22,17 +22,16 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 ### New Features and Enhancements
 
 - {{<link url="Switch-Port-Attributes/#breakout-ports" text="PAM4 encoding ">}} support for the NVIDIA SN4410 switch
-- Adaptive routing enhancements include:
+- {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive routing">}} is now generally available and includes these enhancements:
   - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Multiple adaptive routing profiles">}}
-  - {{<link title="Unequal Cost Multipath with BGP Link Bandwidth/#ucmp-and-adaptive-routing" text="BGP UCMP support for adaptive routing ">}}
-  - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive routing on VXLAN interfaces">}}
+  - {{<link title="Unequal Cost Multipath with BGP Link Bandwidth/#ucmp-and-adaptive-routing" text="BGP UCMP support">}}
+  - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="VXLAN interface support">}}
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
-- {{<link url="Monitoring-System-Hardware" text="Fan direction">}} now shows in NVUE and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
+- {{<link url="Monitoring-System-Hardware" text="Fan airflow direction">}} now shows in NVUE `nv show platform environment fan` command output and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
 - {{<link url="Precision-Time-Protocol-PTP#clock-correction-mode" text="PTP one-step clock correction mode">}}
 - NVUE enhancements include:
   - {{<link url="Address-Resolution-Protocol-ARP/#global-timer-settings" text="ARP global timer configuration">}} and {{<link url="Neighbor-Discovery-ND/#global-timer-settings" text="ND global timer configuration">}}
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
-  - {{<link url="Optional-BGP-Configuration/#password-obfuscation" text="BGP">}} and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#password-obfuscation" text="OSPF">}} password obfuscation
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
   - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and Disable external API access">}}
   - Additional {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors

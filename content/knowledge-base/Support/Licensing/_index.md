@@ -1,6 +1,6 @@
 ---
 title: Licensing
-author: Cumulus Networks
+author: NVIDIA
 weight: 61
 toc: 3
 ---

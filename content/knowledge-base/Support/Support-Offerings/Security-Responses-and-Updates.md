@@ -1,13 +1,13 @@
 ---
 title: Security Responses and Updates
-author: Cumulus Networks
+author: NVIDIA
 weight: 705
 toc: 4
 ---
 
 NVIDIA believes in the Linux model of security through transparency. NVIDIA constantly monitors security advisories and provides updated packages and notifies users when major vulnerabilities affect Cumulus Linux.
 
-<!--Subscribe to the {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="Cumulus Networks Security Announcements">}} mailing list so you can receive notification from NVIDIA whenever the team discovers a security issue.-->
+<!--Subscribe to the {{<exlink url="https://lists.cumulusnetworks.com/listinfo/cumulus-security-announce" text="Cumulus Security Announcements">}} mailing list so you can receive notification from NVIDIA whenever the team discovers a security issue.-->
 
 ## Security Policy
 <!-- vale off -->

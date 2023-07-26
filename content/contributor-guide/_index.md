@@ -1,12 +1,12 @@
 ---
 title: Contributor Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 1
 cascade:
   siteSlug: contributor-guide
   product: Documentation Contributor Guide
 ---
-Welcome to the Cumulus Networks documentation Contributor Guide!
+Welcome to the Contributor Guide!
 All of the technical user documentation for {{<kb_link text="NVIDIA Cumulus Linux" latest="cl" url="_index.md" >}},
 {{<kb_link text="NVIDIA NetQ" latest="netq" url="_index.md" >}}, {{<kb_link text="NVIDIA Cumulus VX" url="cumulus-vx/_index.md" >}} and our other products are now included in a public-facing [GitHub repository](https://github.com/CumulusNetworks/docs). This enables you to provide suggestions for improvements and new content using a GitHub workflow.
 
@@ -14,7 +14,7 @@ This guide explains how to set up a local environment in which to make your sugg
 
 ## Get Started
 
-The first step in providing feedback on the Cumulus Networks documentation is to decide what level of input you want to provide. For smaller issues, like misspellings or broken links, there are several easy options for notifying us. For larger or more complex input, like new topics or restructuring of existing content, it is more efficient to develop the new content locally and submit a pull request through GitHub.
+The first step in providing feedback on the Cumulus Linux and NVIDIA NetQ documentation is to decide what level of input you want to provide. For smaller issues, like misspellings or broken links, there are several easy options for notifying us. For larger or more complex input, like new topics or restructuring of existing content, it is more efficient to develop the new content locally and submit a pull request through GitHub.
 
 Based on the feedback you want to give:
 

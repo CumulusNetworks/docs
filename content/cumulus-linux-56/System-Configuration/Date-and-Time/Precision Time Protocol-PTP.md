@@ -178,6 +178,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    priority2               128
    domainNumber            0
    
+   twoStepFlag             1
    dscp_event              46
    dscp_general            46
    network_transport              L2
@@ -349,6 +350,8 @@ cumulus@switch:~$ nv set service ptp 1 two-step off
 cumulus@switch:~$ nv config apply
 ```
 
+To revert the clock correction mode to the default setting (two-step mode), run the `nv set service ptp 1 two-step on` command.  
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -374,6 +377,8 @@ dscp_general            43
 ```
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
+
+To revert the clock correction mode to the default setting (two-step mode), change the `twoStepFlag` setting to 1.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -452,6 +457,7 @@ priority1                      128
 priority2                      128
 domainNumber                   28
 
+twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
 network_transport              L2
@@ -498,6 +504,7 @@ priority1               200
 priority2               200
 domainNumber            3
 
+twoStepFlag             1
 dscp_event              22
 dscp_general            22
 ...
@@ -1072,7 +1079,8 @@ slaveOnly                      0
 priority1                      128
 priority2                      128
 domainNumber                   24
- 
+
+twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
 dataset_comparison             G.8275.x
@@ -1099,7 +1107,8 @@ slaveOnly                      0
 priority1                      128
 priority2                      128
 domainNumber                   24
- 
+
+twoStepFlag                    1 
 dscp_event                     46
 dscp_general                   46
 network_transport              UDPv4
@@ -1129,6 +1138,7 @@ priority1                      128
 priority2                      128
 domainNumber                   0
 
+twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
 network_transport              UDPv4
@@ -1182,6 +1192,7 @@ priority1                      128
 priority2                      128
 domainNumber                   28
 
+twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
 network_transport              L2
@@ -1844,6 +1855,7 @@ priority1                      254
 priority2                      254
 domainNumber                   3
 
+twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
 
@@ -1891,7 +1903,7 @@ time_stamping                  software
 # if an interface does not have an ip address
 # the ptp4l will not work as expected.
 
-[swp41
+[swp1]
 udp_ttl                      1
 masterOnly                   0
 delay_mechanism              E2E

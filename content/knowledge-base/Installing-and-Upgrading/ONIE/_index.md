@@ -1,6 +1,6 @@
 ---
 title: ONIE
-author: Cumulus Networks
+author: NVIDIA
 weight: 27
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: Advanced Configuration
-author: Cumulus Networks
+author: NVIDIA
 weight: 46
 product: Cumulus VX
 version: '5.x'
@@ -220,4 +220,4 @@ This procedure assumes you are on a system running Linux and have a Vagrant <!--
 
 To explore the topology converter further, read the documentation and take a look at the selection of example topologies included with the source code you downloaded.
 
-If you encounter any issues, you can file them directly in the {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab topology converter project">}}. You can also go to {{<exlink url="https://cumulusnetworks.slack.com/" text="Cumulus Networks community slack">}} to discuss issues or ask questions.
+If you encounter any issues, you can file them directly in the {{<exlink url="https://gitlab.com/cumulus-consulting/tools/topology_converter/" text="gitlab topology converter project">}}.

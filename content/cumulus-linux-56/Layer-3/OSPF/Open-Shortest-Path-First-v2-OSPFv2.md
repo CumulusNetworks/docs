@@ -679,7 +679,7 @@ interface swp1
 {{%notice note%}}
 To remove existing MD5 authentication hashes, run the vtysh `no ip ospf` command (`no ip ospf message-digest-key 1 md5 thisisthekey`).
 {{%/notice%}}
-
+<!-- asked not to document in 5.6
 #### Password Obfuscation
 
 By default, when you set MD5 authentication for OSPF neighbors, Cumulus Linux shows the keys in clear text in the NVUE `nv config show` command output, vtysh `show running-config output`, and in the `/etc/frr/frr.conf` file. To configure OSPF to obfuscate the keys instead of showing them in clear text:
@@ -730,7 +730,7 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ### Summarization and Prefix Range
 
 By default, an <span style="background-color:#F5F5DC">[ABR](## "Area Border Router")</span> creates a summary (type-3) <span style="background-color:#F5F5DC">[LSA](## "Link-State Advertisement")</span> for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes. OSPF only allows for route summarization between areas on a ABR.

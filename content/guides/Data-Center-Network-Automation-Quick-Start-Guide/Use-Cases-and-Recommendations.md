@@ -1,8 +1,8 @@
 ---
 title: Use Cases and Recommendations
-author: Cumulus Networks
+author: NVIDIA
 weight: 40
-product: Cumulus Networks Guides
+product: Technical Guides
 imgData: guides
 ---
 In the world of data center automation and deployment, Day 0, Day 1, Day 2 and Day N are widely used terms to determine the stage of the device configuration and usage. The classification determines when the configurations are applied.

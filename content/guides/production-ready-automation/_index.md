@@ -2,8 +2,8 @@
 title: Production Ready Automation Guide
 weight: 40
 cascade:
-    product: Cumulus Networks Guides
-    author: Cumulus Networks
+    product: Technical Guides
+    author: NVIDIA
 ---
 
 The Production Ready Automation package from NVIDIA provides several examples of a fully operationalized, automated data center and includes:

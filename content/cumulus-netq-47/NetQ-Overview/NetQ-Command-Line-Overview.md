@@ -522,10 +522,10 @@ LCM commands allow you to:
 - Manage network OS and NetQ images in a local repository
 - Configure switch access credentials for installations and upgrades
 - Manage switch inventory and roles
-- Upgrade NetQ (Agents and CLI) on switches with NetQ Agents
-- Install or upgrade NetQ Agents and CLI on switches with or without NetQ Agents
+- Install or upgrade NetQ Agents and CLI on switches
 - Upgrade the network OS on switches with NetQ Agents
 - View a result history of upgrade attempts
+- Add or delete NetQ configuration profiles
 
 The following example shows the NetQ configuration profiles:
 

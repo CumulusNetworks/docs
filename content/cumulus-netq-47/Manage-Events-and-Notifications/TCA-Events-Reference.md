@@ -36,14 +36,11 @@ This reference lists the threshold-based events that NetQ supports. You can view
 <!-- vale off -->
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| BGP connection drop |  | Increase in drop count for a BGP session exceeding the threshold |
-| BGP packet queue length |  | Packet queue length being persistently non-zero for more than the threshold duration (in seconds) |
+| BGP connection drop | TCA_BGP_CONN_DROP | Increase in drop count for a BGP session exceeding the threshold |
+| BGP packet queue length | TCA_BGP_PACKET_QUEUE_LENGTH | Packet queue length being persistently non-zero for more than the threshold duration (in seconds) |
 
 ## Digital Optics
 
-{{<notice info>}}
-Some of the event IDs have changed. If you have TCA rules configured for digital optics for a NetQ 3.1.0 deployment or earlier, verify that they are using the correct event IDs. You might need to remove and recreate some of the events.
-{{</notice>}}
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
@@ -73,7 +70,7 @@ Some of the event IDs have changed. If you have TCA rules configured for digital
 <!-- vale off -->
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| ECMP imbalance |  | ECMP path utilization imbalance greater than the threshold |
+| ECMP imbalance | TCA_ECMP_IMBALANCE | ECMP path utilization imbalance greater than the threshold |
 
 
 ## Forwarding Resources
@@ -114,7 +111,7 @@ Some of the event IDs have changed. If you have TCA rules configured for digital
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| Link flap errors | TCA_LINK | Number of link flaps user-defined maximum threshold |
+| Link flap errors | TCA_LINK_FLAP_UPPER | Number of link flaps user-defined maximum threshold |
 
 ## Resource Utilization
 

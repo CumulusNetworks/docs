@@ -12,9 +12,11 @@ After installing the NetQ software and agent on each switch you want to monitor,
 - Cumulus Linux 4.3.0 and above (Broadcom switches)
 - Cumulus Linux 4.4.0 and above (Spectrum switches)
 - SONiC 202012
+- SONiC 202106
 - CentOS 7
 - RHEL 7.1
-- Ubuntu 18.04, Ubuntu 20.04
+- Ubuntu 18.04
+- Ubuntu 20.04
 
 {{<notice note>}}
 If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NetQ repository.

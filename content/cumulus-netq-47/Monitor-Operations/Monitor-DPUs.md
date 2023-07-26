@@ -5,9 +5,11 @@ weight: 810
 toc: 3
 ---
 
-With the NetQ UI, you can monitor hardware resources of individual data processing units (DPUs), including CPU utilization, disk usage, and memory utilization.
+With the NetQ UI, you can monitor hardware resources of individual data processing units (DPUs), including CPU utilization, disk usage, and memory utilization. For DPU inventory information, refer to {{<link title="DPU Inventory" text="DPU Inventory">}}.
 
-For DPU inventory information, refer to {{<link title="DPU Inventory" text="DPU Inventory">}}.
+{{<notice note>}}
+You must install and configure {{<link title="Install NIC and DPU Agents/#install-dts-on-dpus" text="install and configure DOCA Telemetry Service">}} to display DPU data in NetQ.
+{{</notice>}}
 
 ## View Overall Health of a DPU
 
@@ -29,7 +31,7 @@ Attributes are displayed as the default tab on the large DPU card. You can view 
 
 {{<figure src="/images/netq/dev-dpu-large-attributes-tab-42.png" alt="large DPU card displaying static DPU information" width="700">}}
 
-To view a larger display of hardware resource utilization, select {{<img src="/images/netq/analytics-bars.svg" alt="large DPU card displaying hardware utilization data" height="18" width="18">}} **Utilization**.
+To view a larger display of hardware resource utilization, select {{<img src="/images/netq/analytics-bars.svg" alt="" height="18" width="18">}} **Utilization**.
 
 {{<figure src="/images/netq/dev-dpu-large-utilization-42.png" width="700">}}
 ## View Installed Packages

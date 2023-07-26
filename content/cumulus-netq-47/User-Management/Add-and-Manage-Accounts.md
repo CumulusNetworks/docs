@@ -84,12 +84,7 @@ To delete one or more accounts:
 
 ## View Account Activity
 
-Administrators can view account activity in the activity log.
-
-To view the log, expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="menu" height="18" width="18"/> **Menu** on the NetQ dashboard and select **Management**. Select **Activity log** to open a table listing account activity. Use the controls above the table to filter or export the data.
-
-{{<figure src="/images/netq/activity-log-460.png" alt="activity log table" width="1100" >}}
-
+Administrators can view account activity in the activity log. To get there, expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" alt="menu" height="18" width="18"/> **Menu** and select **Activity log**. Use the controls above the table to filter or export the data.
 
 ## Manage Login Policies
 

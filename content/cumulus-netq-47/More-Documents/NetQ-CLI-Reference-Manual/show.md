@@ -7,8 +7,38 @@ right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
 ---
-<!-- vale NVIDIA.HeadingTitles = NO -->
-<!-- vale off -->
+
+<!-- alpha for 4.7
+## netq show adaptive-routing config
+
+### Syntax
+
+```
+netq [<hostname>] show adaptive-routing config global [profile <text-profilename>] 
+[between <text-time> and <text-endtime>] 
+[around <text-time>]
+[json]
+```
+```
+netq [<hostname>] show adaptive-routing config interface [<text-ifname>] 
+[between <text-time> and <text-endtime>] 
+[around <text-time>] 
+[json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+
+### Sample Usage
+-->
 ## netq show address-history
 <!-- vale on -->
 
@@ -694,65 +724,6 @@ spine02         80                      576                             2880    
 - ```netq show cl-btrfs-info```
 
 - - -
-
-## netq show clag
-
-Displays the health of all CLAG sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
-
-- The peer nodes for a given node
-- The system MAC address used for the session between the nodes
-- The operational state of the session (up or down)
-- The operational state of the backup IP address (up or down)
-- The total number of bonds
-- The number of dual-connected bonds
-- When the last change occurred for any of these items
-
-If the total number of bonds does not match the number of dual-connected bonds, there might be a configuration issue.
-
-### Syntax
-
-```
-netq [<hostname>] show clag
-    [around <text-time>]
-    [json]
-```
-
-### Required Arguments
-
-None
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON format |
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq show clag
-Matching clag records:
-Hostname          Peer              SysMac             State      Backup #Bond #Dual Last Changed
-                                                                         s
------------------ ----------------- ------------------ ---------- ------ ----- ----- -------------------------
-border01(P)       border02          44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:33:48 2020
-border02          border01(P)       44:38:39:be:ef:ff  up         up     3     3     Thu Nov 19 22:29:24 2020
-leaf01(P)         leaf02            44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:29:16 2020
-leaf02            leaf01(P)         44:38:39:be:ef:aa  up         up     8     8     Thu Nov 19 22:39:27 2020
-leaf03(P)         leaf04            44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:10:35 2020
-leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8     Fri Nov 20 11:11:24 2020
-```
-
-### Related Commands
-
-- ```netq show unit-tests clag```
-- ```netq show events```
-- ```netq check clag```
-
-- - -
-
 ## netq show dom
 
 Displays the performance degradation or complete outage of any digital optics modules (DOMs) on one or all devices. You can filter the output by interface for laser and module types, and by channel for laser type.
@@ -958,7 +929,7 @@ Event querying is supported for a 72-hour window within the past 30 days.
 ```
 netq [<hostname>] show events
     [severity info | severity error]
-    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_wjh|trace|vlan|vxlan]
+    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_services|tca_wjh|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
 ```
@@ -973,7 +944,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | severity | info, error| Only display events with this severity level |
-| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
+| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_services, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON format |
 
@@ -1222,6 +1193,42 @@ leaf04            4001       10.0.1.2         L3               Vrf RED        ye
 - `netq show unit-tests evpn`
 - `netq check evpn`
 <!-- vale on -->
+- - -
+## netq show histogram
+
+<!--need to update definition-->
+
+Displays egress queue lengths for a switch across the network fabric. For more information, refer to {{<link title="Switches/#view-queue-lengths-in-histograms" text="Monitoring Switches">}}.
+
+### Syntax
+
+```
+netq <hostname> show histogram interface <text-ifname> queue 
+[around <text-time>] 
+[between <text-time> and <text-endtime>] 
+[json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch with this name |
+| interface | \<text-ifname\> | Only display results for the interface with this name |
+| diff | NA | Only display the differences associated with each change |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
+| json | NA | Display the output in JSON format |
+
+<!--
+### Sample Usage
+-->
+
 - - -
 
 ## netq show interfaces
@@ -1721,7 +1728,7 @@ netq [<hostname>] show inventory os
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| brief | NA | Only display summary information: hostname, switch, OS, CPU architecture, ASIC vendor, ports |
+| brief | NA | Only display summary information: hostname, switch, OS, CPU architecture, ASIC vendor, ports, NICs |
 | asic | NA | Only display ASIC information: hostname, vendor, model, model ID, core bandwidth, ports |
 | board | NA | Only display motherboard information: hostname, vendor, model, base MAC address, serial number, part number, revision, manufacturing date |
 | cpu | NA | Only display processor information: hostname, architecture, model, frequency, number of cores |
@@ -1756,27 +1763,16 @@ Display an inventory summary:
 ```
 cumulus@switch:~$ netq show inventory brief
 Matching inventory records:
-Hostname          Switch               OS              CPU      ASIC            Ports
------------------ -------------------- --------------- -------- --------------- -----------------------------------
-border01          VX                   CL              x86_64   VX              N/A
-border02          VX                   CL              x86_64   VX              N/A
-fw1               VX                   CL              x86_64   VX              N/A
-fw2               VX                   CL              x86_64   VX              N/A
-leaf01            VX                   CL              x86_64   VX              N/A
-leaf02            VX                   CL              x86_64   VX              N/A
-leaf03            VX                   CL              x86_64   VX              N/A
-oob-mgmt-server   N/A                  Ubuntu          x86_64   N/A             N/A
-server01          N/A                  Ubuntu          x86_64   N/A             N/A
-server02          N/A                  Ubuntu          x86_64   N/A             N/A
-server03          N/A                  Ubuntu          x86_64   N/A             N/A
-server04          N/A                  Ubuntu          x86_64   N/A             N/A
-server05          N/A                  Ubuntu          x86_64   N/A             N/A
-server06          N/A                  Ubuntu          x86_64   N/A             N/A
-server07          N/A                  Ubuntu          x86_64   N/A             N/A
-spine01           VX                   CL              x86_64   VX              N/A
-spine02           VX                   CL              x86_64   VX              N/A
-spine03           VX                   CL              x86_64   VX              N/A
-spine04           VX                   CL              x86_64   VX              N/A
+Hostname          Switch               OS              CPU      ASIC            Ports                               NIC
+----------------- -------------------- --------------- -------- --------------- ----------------------------------- -----------------------------------
+neo-switch01      SN3700C              CL              x86_64   Spectrum-2      32 x 100G-QSFP28                    N/A
+neo-switch02      SN3700C              CL              x86_64   Spectrum-2      32 x 100G-QSFP28                    N/A
+r-3420-01         SN3420               CL              x86_64   Spectrum-2      48 x 25G-SFP28 & 12 x 100G-QSFP28   N/A
+r-3700-01         SN3700V              CL              x86_64   Spectrum-2      32 x 200G-QSFP56                    N/A
+r-3700-02         SN3700C              CL              x86_64   Spectrum-2      32 x 100G-QSFP28                    N/A
+r-3700-03         SN3700C              CL              x86_64   Spectrum-2      32 x 100G-QSFP28                    N/A
+ufm-switch19      MSN2700              CL              x86_64   Spectrum        32 x 100G-QSFP28                    N/A
+ufm-switch29      SN3700C              CL              x86_64   Spectrum-2      32 x 100G-QSFP28                    N/A
 ```
 
 Display ASIC information for all devices with a vendor of *NVIDIA*:
@@ -4174,6 +4170,7 @@ Supported services include:
 - **pmon**: Process monitor service
 - **portwd**: Port watch daemon
 - **ptmd**: PTM (Prescriptive Topology Manager) daemon
+- **ptp4l**: PTP (Precision Time Protocol) service
 - **pwmd**: Password manager daemon
 - **radv**: Route advertiser service
 - **rsyslog**: Rocket-fast system event logging processing service
@@ -4222,7 +4219,14 @@ netq [<hostname>] show services
     [around <text-time>]
     [json]
 ```
+Use the following command to display the total CPU and memory usage from services:
 
+```
+netq [<hostname>] show services resource-util
+    [<service-name>] 
+    [around <text-time>] 
+    [json]
+```
 ### Required Arguments
 
 | Argument | Value | Description |
@@ -4250,18 +4254,19 @@ cumulus@switch:~$ netq show services
 Matching services records:
 Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
 ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
-border01          netqd                28693 mgmt            yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          netq-agent           28621 default         yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          pwmd                 549   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          ntp                  n/a   mgmt            yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          zebra                14427 default         yes     yes    yes       ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          clagd                1215  default         yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          neighmgrd            796   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          ntp                  n/a   default         no      no     yes       n/a              Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          ssh                  9611  default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          mstpd                345   default         yes     yes    yes       ok               Tue Dec  8 21:18:49 2020  Tue Dec  8 21:18:49 2020
-border01          bgpd                 14432 default         yes     yes    yes       ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          lldpd                870   default         yes     yes    yes       ok               Tue Dec  8 21:19:19 2020  Tue Dec  8 21:19:19 2020
+neo-switch01      pwmd                 11405 default         yes     yes    no        ok               72 day 8h ago             Tue Jul 18 13:59:28 2023
+neo-switch01      lldpd                15988 default         yes     yes    yes       ok               50 day 10h ago            Tue Jul 18 13:59:42 2023
+neo-switch01      docker               n/a   default         no      no     no        n/a              n/a                       Tue Jul 18 13:59:28 2023
+neo-switch01      smond                11323 default         yes     yes    yes       ok               72 day 8h ago             Tue Jul 18 14:00:15 2023
+neo-switch01      ssh                  1837  default         yes     yes    no        ok               72 day 8h ago             Tue Jul 18 13:59:28 2023
+neo-switch01      dhcrelay             n/a   default         no      no     no        n/a              n/a                       Tue Jul 18 13:59:28 2023
+neo-switch01      snmpd                n/a   default         no      no     no        n/a              n/a                       Tue Jul 18 13:59:28 2023
+neo-switch01      mstpd                3671  default         yes     yes    yes       ok               72 day 8h ago             Tue Jul 18 14:00:14 2023
+neo-switch01      netq-agent           16111 default         yes     yes    yes       ok               4h 56min ago              Tue Jul 18 13:59:28 2023
+neo-switch01      switchd              15073 default         yes     yes    no        ok               50 day 10h ago            Tue Jul 18 13:59:28 2023
+neo-switch01      bgpd                 2721  default         yes     yes    yes       ok               50 day 10h ago            Tue Jul 18 13:59:28 2023
+neo-switch01      wd_keepalive         3471  default         yes     yes    no        ok               72 day 8h ago             Tue Jul 18 13:59:28 2023
+neo-switch01      sx_sdk               13193 default         yes     yes    no        ok               50 day 10h ago            Tue Jul 18 13:59:28 2023
 ...
 ```
 
@@ -4290,6 +4295,26 @@ leaf02            snmpd                10098 mgmt            yes     yes    no  
 leaf02            rsyslog              11937 default         yes     yes    no        ok               Tue Dec  8 21:15:00 2020  Tue Dec  8 21:15:00 2020
 ```
 
+Display service CPU and memory usage:
+
+```
+cumulus@switch:~$ netq show services resource-util
+
+Matching services records:
+Hostname          Service              PID   VRF                  Enabled Active Uptime               CPU one Minute       CPU five Minute      Memory one Minute    Memory five Minute   Last Updated
+----------------- -------------------- ----- -------------------- ------- ------ -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+r-3700-02         sx_sdk               19012 default              yes     yes    81 day 17h ago       7.7                  24.65                9.44                 9.44                 Tue Jul 18 18:49:19 2023
+r-3700-03         sx_sdk               13627 default              yes     yes    81 day 18h ago       0                    17.82                9.44                 9.44                 Tue Jul 18 18:49:19 2023
+r-3700-02         switchd              21100 default              yes     yes    81 day 17h ago       56.77                15.07                1.13                 1.13                 Tue Jul 18 18:49:19 2023
+r-3700-03         switchd              15768 default              yes     yes    81 day 18h ago       0                    8.28                 1.11                 1.11                 Tue Jul 18 18:49:19 2023
+neo-switch02      sx_sdk               1841  default              yes     yes    2h 29min ago         30.1                 6.55                 9.67                 9.67                 Tue Jul 18 18:49:19 2023
+ufm-switch19      sx_sdk               2343  default              yes     yes    21h 3min ago         5.22                 5.73                 2.84                 2.84                 Tue Jul 18 18:49:19 2023
+ufm-switch29      sx_sdk               2135  default              yes     yes    8 day 4h ago         2.88                 5.73                 9.54                 9.54                 Tue Jul 18 18:49:19 2023
+r-3420-01         sx_sdk               1885  default              yes     yes    9 day 3h ago         5.28                 5.01                 9.3                  9.3                  Tue Jul 18 18:49:19 2023
+ufm-switch29      clagd                7095  default              no      yes    8 day 4h ago         23.57                4.71                 0.63                 0.63                 Tue Jul 18 18:49:19 2023
+r-3700-01         smond                7301  default              yes     yes    9 day 3h ago         0                    4.7                  0.2                  0.2                  Tue Jul 18 18:49:19 2023
+... 
+```
 ### Related Commands
 
 - `netq show events`
@@ -4614,10 +4639,6 @@ netq show unit-tests bgp
     [check_filter_id <text-check-filter-id>] 
     [json]
 
-netq show unit-tests clag 
-    [check_filter_id <text-check-filter-id>] 
-    [json]
-
 netq show unit-tests cl-version 
     [check_filter_id <text-check-filter-id>] 
     [json]
@@ -4667,7 +4688,7 @@ netq show unit-tests vxlan
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| <!-- vale off -->address, agent, bgp, clag, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
+| <!-- vale off -->address, agent, bgp, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
 
 ### Options
 
@@ -4700,7 +4721,7 @@ Configured per test result filters:
 
 ## netq show validation settings
 
-Displays one or all scheduled validations, including their name, type, cadence, when the validation began, its creation time, and whether it is currently active. This is useful for obtaining the name of a scheduled validations for use in other validation commands.
+Displays one or all scheduled validations, including their name, type, cadence, when the validation began, its creation time, and whether it is currently active. This is useful for obtaining the name of a scheduled validation for use in other validation commands.
 
 ### Syntax
 
@@ -5062,6 +5083,14 @@ netq [<hostname>] show wjh-drop <text-drop-type>
     [between <text-time> and <text-endtime>] 
     [around <text-time>] 
     [json]
+
+netq [<hostname>] show wjh-drop l1 
+    [ingress-port <text-ingress-port>] 
+    [severity <text-severity>]
+    [reason <text-reason>] 
+    [port-aggregate <text-port-aggregate>] 
+    [between <text-time> and <text-endtime>] 
+    [around <text-time>] [json]
 ```
 <!-- vale on -->
 
@@ -5079,6 +5108,7 @@ netq [<hostname>] show wjh-drop <text-drop-type>
 | severity | \<text-severity\> | Only display drops with this severity; *error*, *warning*, or *notice* |
 | details | NA | Display drop count and reason for all drop types |
 | ingress-port | \<text-ingress-port\> | Only display drops for the ingress port with this name |
+| port-aggregate | \<text-port-aggregate\> | Aggregate drops according to their respective ports (True) or list all ports (False) |
 | reason | \<text-reason\> | Only display drops with this reason |
 | src-ip | \<text-src-ip\> | Only display drops with this source IP address |
 | dst-ip | \<text-dst-ip\> | Only display drops with this destination IP address |

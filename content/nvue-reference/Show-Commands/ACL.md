@@ -53,7 +53,6 @@ type               ipv4
 
 rule
 =======
-
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -145,29 +144,6 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action deny</h>
-
-Shows the deny action for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action deny
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show acl \<acl-id\> rule \<rule-id\> action erspan</h>
 
 Shows the ERSPAN session for the specified ACL rule.
@@ -187,52 +163,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action erspan
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action log</h>
-
-Shows logs for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action log
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action permit</h>
-
-Shows the permit action for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action permit
+     operational  applied  pending
+---  -----------  -------  -------
+ttl                        200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -256,29 +189,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action police
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action set</h>
-
-Shows the set action for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action set
+       operational  applied
+-----  -----------  -------
+burst               200    
+mode                packet 
+rate                400
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -302,6 +217,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match
+            operational  applied
+----------  -----------  -------
+ip                              
+  protocol               tcp 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -325,6 +244,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip
+             operational  applied
+-----------  -----------  -------
+protocol                  tcp    
+[dest-port]               200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -348,53 +271,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port \<ip-port-id\></h>
-
-Shows destination port match criteria for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-| `<ip-port-id>` |  The IP port number or protocol. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port http
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip ecn</h>
-
-Shows ECN match criteria for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.2.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip ecn
+Ports
+-----
+200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -418,29 +297,12 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip ecn flags
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip fragment</h>
-
-Shows ip fragment packet match criteria for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip fragment
+ operational  applied
+  -----------  -------
+               tcp-cwr
+               tcp-ece
+               tcp-cwr
+               tcp-ece
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -463,54 +325,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip source-port \<ip-port-id\></h>
-
-Shows the match criteria for a specific port for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-| `<ip-port-id>` | The IP port number or protocol. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip tcp</h>
-
-Shows TCP match criteria for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip tcp
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip source-port
+Ports
+-----
+200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -534,6 +352,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip tcp flags
+   operational  applied
+   -----------  -------
+                syn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -557,6 +378,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip tcp mask
+   operational  applied
+   -----------  -------
+                syn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -580,6 +404,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match mac
+                 operational  applied          
+---------------  -----------  -----------------
+dest-mac                      08:9e:01:ce:e2:04
+dest-mac-mask                 ff:ff:ff:ff:ff:ff
+source-mac                    00:00:00:00:00:12
+source-mac-mask               ff:ff:ff:ff:ff:ff
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -602,6 +432,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl
+ACL Name  Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
+--------  -------  ----------  --------  -----------  ---------
+EXAMPLE1  10                             0            0 
+
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -625,6 +459,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1
+Statistics
+=============
+    Rule  In Packet  In Byte  Out Packet  Out Byte  Summary                
+    ----  ---------  -------  ----------  --------  -----------------------
+    10                        0           0 Bytes   match.ip.dest-port: 200
+                                                    match.ip.protocol:  tcp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -693,7 +533,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 outbound
+cumulus@switch:~$ nv show interface swp2 acl EXAMPLE1 outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -740,6 +580,10 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 statistics
+Rule  In Packet  In Byte  Out Packet  Out Byte  Summary                
+----  ---------  -------  ----------  --------  -----------------------
+10                        0           0 Bytes   match.ip.dest-port: 200
+                                                match.ip.protocol:  tcp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -763,6 +607,15 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 statistics 10
+                 operational  applied
+---------------  -----------  -------
+match                                
+  ip                                 
+    protocol     tcp                 
+    [dest-port]  200                 
+outbound                             
+  byte           0 Bytes             
+  packet         0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -779,6 +632,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system acl
+      applied
+----  -------
+mode  atomic 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -795,6 +651,35 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system control-plane
+trap
+=======
+policer
+==========
+    Policer        State  Policer Rate  Policer Burst  Summary            
+    -------------  -----  ------------  -------------  -------------------
+    acl-log        on     100           100            Policer CBS:      7
+                                                       Policer CIR:    100
+                                                       Policer Id:       6
+                                                       To CPU Bytes:     0
+                                                       To CPU Pkts:      0
+                                                       Trap Group:      18
+                                                       Violated Packets: 0
+    arp            on     800           800            Policer CBS:     10
+                                                       Policer CIR:    800
+                                                       Policer Id:       9
+                                                       To CPU Bytes:     0
+                                                       To CPU Pkts:      0
+                                                       Trap Group:      13
+                                                       Violated Packets: 0
+    bfd            on     2000          2000           Policer CBS:     11
+                                                       Policer CIR:   2000
+                                                       Policer Id:      10
+                                                       To CPU Bytes:     0
+                                                       To CPU Pkts:      0
+                                                       Trap Group:      17
+                                                       Violated Packets: 0
+    bgp            on     2000          2000           Policer CBS:     11
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -813,9 +698,9 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@switch:~$ nv show system control-plane acl
 ACL Name   Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
 ---------  -------  ----------  --------  -----------  ---------
-acl1       1        0           0         0            0
+ACL1       1        0           0         0            0
            65535    0           0         0            0
-acl2       1        0           0         0            0
+ACL2       1        0           0         0            0
            65535    0           0         0            0
 ```
 
@@ -839,50 +724,6 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show system control-plane acl ACL1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system control-plane acl \<acl-id\> inbound</h>
-
-Shows configuration information for the specified inbound control plane ACL.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system control-plane acl ACL1 inbound
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show system control-plane acl \<acl-id\> outbound</h>
-
-Shows configuration information for the specified outbound control plane ACL.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show system control-plane acl ACL1 outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -934,7 +775,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system control-plane acl ACL1 statistics 10
+cumulus@switch:~$ nv show system control-plane acl ACL1 statistics 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -951,6 +792,24 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system control-plane policer
+Policer        State  Policer Rate  Policer Burst  Summary            
+-------------  -----  ------------  -------------  -------------------
+acl-log        on     100           100            Policer CBS:      7
+                                                   Policer CIR:    100
+                                                   Policer Id:       6
+                                                   To CPU Bytes:     0
+                                                   To CPU Pkts:      0
+                                                   Trap Group:      18
+                                                   Violated Packets: 0
+arp            on     800           800            Policer CBS:     10
+                                                   Policer CIR:    800
+                                                   Policer Id:       9
+                                                   To CPU Bytes:     0
+                                                   To CPU Pkts:      0
+                                                   Trap Group:      13
+                                                   Violated Packets: 0
+bfd            on     2000          2000           Policer CBS:     11
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -973,6 +832,19 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system control-plane policer bfd
+                 operational  applied
+---------------  -----------  -------
+burst            2000                
+rate             2000                
+state            on                  
+statistics                           
+  policer-cbs    11                  
+  policer-cir    2000                
+  policer-id     10                  
+  to-cpu-bytes   0                   
+  to-cpu-pkts    0                   
+  trap-group-id  17                  
+  violated-pkts  0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -995,6 +867,15 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system control-plane policer bfd statistics
+               operational  applied
+-------------  -----------  -------
+policer-cbs    11                  
+policer-cir    2000                
+policer-id     10                  
+to-cpu-bytes   0                   
+to-cpu-pkts    0                   
+trap-group-id  17                  
+violated-pkts  0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1033,4 +914,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system control-plane trap l3-mtu-err
+       operational  applied
+-----  -----------  -------
+state  off          off
 ```

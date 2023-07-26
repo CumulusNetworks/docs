@@ -27,7 +27,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip igmp
+cumulus@switch:~$ nv show interface vlan10 ip igmp
+        operational  applied  pending
+------  -----------  -------  -------
+enable               on      on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -49,7 +52,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip igmp static-group
+cumulus@switch:~$ nv show interface vlan10 ip igmp static-group
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -72,7 +75,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip igmp static-group 224.10.0.0
+cumulus@switch:~$ nv show interface vlan10 ip igmp static-group 224.10.0.0
+                  operational  applied   
+----------------  -----------  ----------
+[source-address]               10.10.10.4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -89,4 +95,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router igmp
+        applied  pending
+------  -------  -------
+enable  on      off
 ```

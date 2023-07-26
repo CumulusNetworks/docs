@@ -132,7 +132,7 @@ netq upgrade bundle /mnt/installables/NetQ-4.6.0-opta.tgz
 
 {{</tabs>}}
 
-2. After the upgrade completes, confirm the upgrade was successful.
+2. After the upgrade command completes, confirm the upgrade was successful.
 
 On-premises VM:
 
@@ -153,6 +153,32 @@ Cloud VM:
     APPLIANCE_VERSION=4.6.0
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```
+
+3. To complete the upgrade to 4.6.0, retag and restart the following pods:
+
+Cloud VM:
+
+```
+sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
+```
+
+On-premises VM:
+
+```
+sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
+
+sudo docker tag localhost:5000/cp-schema-registry:7.2.0 docker-registry:5000/cp-schema-registry:7.2.0
+sudo docker push docker-registry:5000/cp-schema-registry:7.2.0
+sudo kubectl get pods -n default|grep -i cp-schema-registry|awk '{print $1}'|xargs kubectl delete pod -n default
+
+sudo docker tag localhost:5000/cp-kafka:7.2.0 docker-registry:5000/cp-kafka:7.2.0
+sudo docker push docker-registry:5000/cp-kafka:7.2.0
+sudo kubectl get pods -n default|grep -i kafka-broker|awk '{print $1}'|xargs kubectl delete pod -n default
+```
 
 ## Upgrading from Earlier Releases
 

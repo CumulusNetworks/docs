@@ -155,7 +155,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp static-group 234.10.10.10 source
 
 ## <h>nv set interface \<interface-id\> ip igmp version</h>
 
-Configures the IGMP version. You can specify version 2 or version 3. The default setting is `2`.
+Configures the IGMP version on the specified interface. You can specify version 2 or version 3. The default setting is `3`.
 
 ### Command Syntax
 
@@ -170,7 +170,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip igmp version 3
+cumulus@switch:~$ nv set interface swp1 ip igmp version 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

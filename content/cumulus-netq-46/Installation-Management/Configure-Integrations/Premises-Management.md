@@ -38,7 +38,7 @@ To configure a single UI to monitor multiple premises:
 
     {{<figure src="/images/netq/additional-external-premises.png" alt="dialog displaying two premises" width="350">}}
 
-You can also reduce the number of premises that can be displayed in the UI by hovering over a deployment and selecting {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} Delete.
+You can also reduce the number of premises that can be displayed in the UI by hovering over a deployment and selecting {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete**.
 
 To view the premises you just added, return to the home workbench and select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown in the top-right corner of the screen.
 
@@ -86,6 +86,8 @@ To rename an existing premises:
 1. Select a premises to rename, then click {{<img src="/images/old_doc_images/pencil-2.png" width="16">}} **Edit**.
 
 1. Enter the new name for the premises, then click **Done**.
+
+4. (Optional) {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="Reconfigure the NetQ CLI">}} by generating new AuthKeys. You must complete this step after renaming a premises for the CLI to be functional.
 
 <!--Need to find new place for this
 

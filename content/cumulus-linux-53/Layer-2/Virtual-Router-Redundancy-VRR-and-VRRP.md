@@ -154,6 +154,46 @@ iface vlan30
 Make sure to set the same VRR MAC address on both MLAG peers.
 {{%/notice%}}
 
+### EVPN Routing with VRR
+
+In an EVPN routing environment, if you want to configure multiple subnets as VRR addresses on a VLAN, you must configure them with the same VRR MAC address.
+
+The following example commands configure both 10.1.10.1/24 and 10.1.11.1/24 on VLAN 10 using the default fabric-wide VRR MAC address 00:00:5e:00:01:01.
+
+{{< tabs "TabID164 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr adress 10.1.10.1/24
+cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr adress 10.1.11.1/24
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file; for example:
+
+```
+cumulus@switch:mgmt:~$ sudo nano /etc/network/interfaces
+auto vlan10
+iface vlan10
+    address 10.1.10.2/24
+    address 10.1.11.2/24
+    address-virtual 00:00:5e:00:01:01 10.1.10.1/24 10.1.11.1/24
+    hwaddress 44:38:39:22:01:7a
+    vlan-raw-device br_default
+    vlan-id 10
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+To reduce BGP EVPN processing during convergence, NVIDIA recommends that you use the same fabric-wide MAC address across all VLANs and VRR subnets.
+{{%/notice%}}
+
 ### Configure the Servers
 
 Each server must have two network interfaces. The switches configure the interfaces as bonds running <span style="background-color:#F5F5DC">[LACP](## "Link Aggregation Control Protocol")</span>; the servers must also configure the two interfaces using teaming, port aggregation, port group, or EtherChannel running LACP. Configure the servers either statically or with DHCP, with a gateway address that is the IP address of the virtual router; this default gateway address never changes.

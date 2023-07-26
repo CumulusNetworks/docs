@@ -90,6 +90,24 @@ The following commands show you which files changed after the previous Cumulus L
 - Run the `egrep -v '^$|^#|=""$' /etc/default/isc-dhcp-*` command to see if any of the generated `/etc/default/isc-*` files have changes.
 {{%/notice%}}
 
+### Create a cl-support File
+
+**Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
+
+1. Create the `cl-support` archive file with the `cl-support` command:
+
+   ```
+   cumulus@switch:~$ sudo cl-support
+   ```
+
+2. Copy the `cl-support` file off the switch to a different location.
+
+3. After upgrade is complete, run the `cl-support` command again to create a new archive file:
+
+   ```
+   cumulus@switch:~$ sudo cl-support
+   ```
+
 ## Upgrade Cumulus Linux
 
 You can upgrade Cumulus Linux in one of two ways:
@@ -270,11 +288,13 @@ The bonding driver changes how it derives the *actor port key*, which causes the
     cumulus@switch:~$ sudo ip link set peerlink down
     ```
 
-4. Run the `onie-install -a -i <image-location>` command to boot the switch into ONIE. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
+4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
 
     ```
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.1.0-mlx-amd64.bin
     ```
+
+   To upgrade the switch with package upgrade instead of booting into ONIE, run the `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands; see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
 5. Reboot the switch:
 
@@ -282,33 +302,35 @@ The bonding driver changes how it derives the *actor port key*, which causes the
     cumulus@switch:~$ sudo reboot
     ```
 
-6. Verify STP convergence across both switches:
+6. If you installed a new image on the switch, restore the configuration files to the new release.
+
+7. Verify STP convergence across both switches:
 
     ```
     cumulus@switch:~$ mstpctl showall
     ```
 
-7. Verify core uplinks and peer links are UP:
+8. Verify core uplinks and peer links are UP:
 
     ```
     cumulus@switch:~$ net show interface
     ```
 
-8. Verify MLAG convergence:
+9. Verify MLAG convergence:
 
     ```
     cumulus@switch:~$ clagctl status
     ```
 
-9. Make this secondary switch the primary:
+10. Make this secondary switch the primary:
 
     ```
     cumulus@switch:~$ clagctl priority 2048
     ```
 
-10. Verify the other switch is now in the secondary role.
-11. Repeat steps 2-8 on the new secondary switch.
-12. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
+11. Verify the other switch is now in the secondary role.
+12. Repeat steps 2-9 on the new secondary switch.
+13. Remove the priority 2048 and restore the priority back to 32768 on the current primary switch:
 
     ```
     cumulus@switch:~$ clagctl priority 32768

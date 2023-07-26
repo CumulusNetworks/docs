@@ -231,6 +231,24 @@ For an account using a non-company email, a user is granted the following limits
 - 350GB storage
 - 1 running simulation
 
+NVIDIA users are granted the following limits:
+
+- 100 vCPUs
+- 100GB memory
+- 1TB storage
+- 5 running simulations
+
+Individual user account resources are great for running demos and smaller simulations but to run larger simulations it is best to use {{<link title="Organizations">}}.
+Organizations have a much higher resource budget than an individual user account. The default resource budget for an organization is:
+
+- 300 vCPUs
+- 300GB memory
+- 3TB storage
+- 10GB Image Storage
+- 15 running simulations
+
+The budgets for organizations can be adjusted based on the needs of that organization. If a resource budget for an organization needs to be expanded. Please contact the Air Support team via the option to "Report An Issue" from air.nvidia.com.
+
 ## Other Notes
 
 - Using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Cumulus-Linux-in-a-Virtual-Environment/" text="Cumulus Linux in a Virtual Environment">}}

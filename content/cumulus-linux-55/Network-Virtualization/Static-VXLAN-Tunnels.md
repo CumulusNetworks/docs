@@ -480,9 +480,7 @@ iface br_default
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL54 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
-
-This simulation is running Cumulus Linux 5.4. The Cumulus Linux 5.5 simulation is coming soon.
+    {{< simulation name="Try It CL55 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
 This simulation starts with the example static VXLAN configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
@@ -529,9 +527,9 @@ For traditional VXLAN devices:
 
 ```
 cumulus@leaf01:~$ sudo bridge fdb show | grep 00:00:00:00:00:00
-00:00:00:00:00:00 dev vni-10 dst 10.10.10.4 self permanent
-00:00:00:00:00:00 dev vni-10 dst 10.10.10.2 self permanent
-00:00:00:00:00:00 dev vni-10 dst 10.10.10.3 self permanent
+00:00:00:00:00:00 dev vni10 dst 10.10.10.3 self permanent
+00:00:00:00:00:00 dev vni10 dst 10.10.10.2 self permanent
+00:00:00:00:00:00 dev vni20 dst 10.10.10.4 self permanent
 ```
 
 For a single VXLAN devices:

@@ -49,7 +49,6 @@ br_defa…  1800    802.1Q            off        off       32768      up        
                                                                                                              vlan:   20
                                                                                                              vlan:   30
                                                                                                              vlan: 3000
-
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -262,6 +261,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default router-port
+  ageing-timer  interface  type     
+-  ------------  ---------  ---------
+1     0.00       peerlink   permanent
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -595,6 +597,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default vlan 10 vni 10 flooding head-end-replication
+IP Address
+----------
+10.0.1.34
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -706,7 +711,7 @@ cumulus@switch:~$ nv show interface bond3 bridge domain br_default stp
 -----------  -----------  -------  -------
 admin-edge   off          off      off    
 auto-edge    on           on       on     
-bpdu-filter  off          off      off    
+bpdu-filter  off          off      off
 bpdu-guard   off          off      off    
 network      off          off      off    
 restrrole    off          off      off

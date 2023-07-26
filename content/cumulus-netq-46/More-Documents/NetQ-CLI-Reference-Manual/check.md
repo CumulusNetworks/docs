@@ -11,8 +11,8 @@ type: nojsscroll
 
 Three sets of validation commands are available, all for verifying the health and performance of network protocols and services:
 
-- `netq check` commands. These commands validate various elements in your network fabric. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results appear in the NetQ CLI. Commands with a `streaming` option run streaming checks by default to return results faster. To run a non-streaming validation, include the `legacy` option.  
-- `netq add validation` commands. Use {{<link url="add/#netq-add-validation-name" text="these commands">}} to validate various elements in your network fabric. The results appear in the Validation Result cards in the UI, where you can filter them.
+- `netq check` commands. These commands check whether your network's devices, hosts, network protocols, and services are operating as expected. They 'validate' your network against an ideal setup and report mismatches and recommendations. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. Commands with a `streaming` option run streaming checks by default to return results faster. To run a non-streaming validation, include the `legacy` option.  
+- `netq add validation` commands. Use {{<link url="add/#netq-add-validation" text="these commands">}} to validate various elements in your network fabric. The results appear in the Validation Result cards in the UI, where you can filter them.
 - Validation management commands. `netq show validation settings` displays a list of all jobs and job settings and `netq del validation` allows you to remove validations.
 
 Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation.
@@ -218,31 +218,61 @@ None
 
 ### Sample Usage
 
+The following example reports 8 errors from the 'session establishment' test. To fix these errors, bring up the items that are in a down state. Then rerun the command to verify the new configuration.
+
 ```
 cumulus@switch:~$ netq check bgp
 bgp check result summary:
 
-Total nodes         : 10
-Checked nodes       : 10
-Failed nodes        : 0
+Total nodes         : 13
+Checked nodes       : 13
+Failed nodes        : 2
 Rotten nodes        : 0
 Warning nodes       : 0
+Skipped nodes       : 0
 
 Additional summary:
-Total Sessions      : 54
-Failed Sessions     : 0
+Failed Sessions     : 8
+Total Sessions      : 228
 
-Session Establishment Test   : passed
+
+Session Establishment Test   : 0 warnings, 8 errors
 Address Families Test        : passed
 Router ID Test               : passed
+Hold Time Test               : passed
+Keep Alive Interval Test     : passed
+Ipv4 Stale Path Time Test    : passed
+Ipv6 Stale Path Time Test    : passed
+Interface MTU Test           : passed
+
+
+Session Establishment Test details:
+Hostname          VRF             Peer Name         Peer Hostname     Reason                                        Last Changed
+----------------- --------------- ----------------- ----------------- --------------------------------------------- -------------------------
+spine-1           DataVrf1080     swp7.2            tor-1             BGP session with peer tor-1 (swp7.2 vrf DataV Wed May  3 11:12:35 2023
+                                                                      rf1080) failed, reason: BFD down received
+spine-1           DataVrf1081     swp7.3            tor-1             BGP session with peer tor-1 (swp7.3 vrf DataV Wed May  3 11:12:35 2023
+                                                                      rf1081) failed, reason: BFD down received
+spine-1           DataVrf1082     swp7.4            tor-1             BGP session with peer tor-1 (swp7.4 vrf DataV Wed May  3 11:12:35 2023
+                                                                      rf1082) failed, reason: BFD down received
+spine-1           default         swp7              tor-1             BGP session with peer tor-1 (swp7 vrf default Wed May  3 11:12:34 2023
+                                                                      ) failed, reason: BFD down received
+tor-1             DataVrf1080     swp3.2            spine-1           BGP session with peer spine-1 (swp3.2 vrf Dat Wed May  3 11:12:38 2023
+                                                                      aVrf1080) failed, reason: Link Admin Down
+tor-1             DataVrf1081     swp3.3            spine-1           BGP session with peer spine-1 (swp3.3 vrf Dat Wed May  3 11:12:38 2023
+                                                                      aVrf1081) failed, reason: Link Admin Down
+tor-1             DataVrf1082     swp3.4            spine-1           BGP session with peer spine-1 (swp3.4 vrf Dat Wed May  3 11:12:38 2023
+                                                                      aVrf1082) failed, reason: Link Admin Down
+tor-1             default         swp3              spine-1           BGP session with peer spine-1 (swp3 vrf defau Wed May  3 11:12:38 2023
+                                                                      lt) failed, reason: Link Admin Down
 ```
 
 ### Related Commands
-<!-- vale off -->
-- ```netq show bgp```
-- ```netq show unit-tests bgp```
-- ```netq add validation```
-<!-- vale on -->
+
+- `netq show bgp`
+- `netq show unit-tests bgp`
+- `netq add validation`
+
 - - -
 
 <!-- vale off -->
@@ -539,37 +569,46 @@ None
 
 ### Sample Usage
 
+The following example reports an error for the 'EVPN-BGP session' test. To fix the error, bring up the interface that is in a down state. Run the test again to verify the new configuration.
+
 ```
-cumulus@switch:~$ netq check evpn
+cumulus@switch:~$: netq check evpn
 evpn check result summary:
 
 Total nodes         : 6
 Checked nodes       : 6
-Failed nodes        : 0
+Failed nodes        : 1
 Rotten nodes        : 0
 Warning nodes       : 0
+Skipped nodes       : 0
 
 Additional summary:
-Total VNIs          : 5
-Failed BGP Sessions : 0
-Total Sessions      : 30
+Total VNIs          : 13
+Failed EVPN Sessions: 1
+Total EVPN Sessions : 47
 
-EVPN BGP Session Test            : passed
+
+EVPN BGP Session Test            : 0 warnings, 1 errors
 EVPN VNI Type Consistency Test   : passed
 EVPN Type 2 Test                 : skipped
 EVPN Type 3 Test                 : passed
 EVPN Session Test                : passed
 Vlan Consistency Test            : passed
 Vrf Consistency Test             : passed
-L3 VNI RMAC Test                 : skipped
-```
 
+
+EVPN BGP Session Test details:
+Hostname          Peer Name         Peer Hostname     Reason                                        Last Changed
+----------------- ----------------- ----------------- --------------------------------------------- -------------------------
+tor-1             swp3              spine-1           BGP session with peer spine-1 (swp3 vrf defau Wed May  3 11:12:34 2023
+                                                      lt) failed, reason: Interface down
+```
 ### Related Commands
-<!-- vale off -->
-- ```netq show evpn```
-- ```netq show unit-tests evpn```
-- ```netq add validation```
-<!-- vale on -->
+
+- `netq show evpn`
+- `netq show unit-tests evpn`
+- `netq add validation`
+
 - - -
 
 ## netq check interfaces
@@ -765,84 +804,67 @@ None
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 ### Sample Usage
 
+The following example runs a check on two devices: `noc-se` and `noc-pr`. The output reports several errors, including a peerlink MTU mismatch, a bond MTU mismatch, a bond in a conflicted state, and a singly-connected bond. To resolve these errors, reconfigure the mismatched values and bring up the bond interface that is in a down state. Then run the command again to verify the new configurations.
+
 ```
-cumulus@switch:~$ netq check mlag
-clag check result summary:
+cumulus@switch:~$ netq check mlag hostnames noc-se,noc-pr
+mlag check result summary:
 
-Total nodes         : 6
-Checked nodes       : 6
-Failed nodes        : 0
-Rotten nodes        : 0
-Warning nodes       : 0
+Total nodes                             : 2
+Checked nodes                           : 2
+Failed nodes                            : 2
+Rotten nodes                            : 0
+Warning nodes                           : 0
+Skipped nodes                           : 0
+Checked nodes hostname                  : noc-se, noc-pr
 
-Peering Test             : passed
+
+Peering Test             : 0 warnings, 2 errors
 Backup IP Test           : passed
 Clag SysMac Test         : passed
 VXLAN Anycast IP Test    : passed
 Bridge Membership Test   : passed
 Spanning Tree Test       : passed
-Dual Home Test           : passed
+Dual Home Test           : 0 warnings, 2 errors
 Single Home Test         : passed
-Conflicted Bonds Test    : passed
+Conflicted Bonds Test    : 0 warnings, 5 errors
 ProtoDown Bonds Test     : passed
 SVI Test                 : passed
+
+
+Peering Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+noc-pr            Peerlink peerlink-1.4094 MTU mismatch        
+noc-se            Peerlink peerlink-1.4094 MTU mismatch        
+
+
+Dual Home Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+noc-pr            Dually connected bond NetQBond-3 MTU mismatch
+                  with peer noc-se:NetQBond-3                  
+noc-se            Dually connected bond NetQBond-3 MTU mismatch
+                  with peer noc-pr:NetQBond-3                  
+Conflicted Bonds Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+noc-pr            Bond NetQBond-1 in Conflicted state due to ma
+                  tching clagid not configured on peer         
+noc-pr            Bond NetQBond-2 in Conflicted state due to ma
+                  tching clagid not configured on peer         
+noc-pr            Bond NetQBond-4 in Conflicted state due to no
+                  t found in peer                              
+noc-se            Bond NetQBond-1 in Conflicted state due to ma
+                  tching clagid not configured on peer         
+noc-se            Bond NetQBond-2 in Conflicted state due to ma
+                  tching clagid not configured on peer 
 ```
-
-Validate only selected devices:
-
-```
-cumulus@switch:~$ netq check mlag hostnames leaf01,leaf02
-clag check result summary:
-
-Total nodes         : 2
-Checked nodes       : 2
-Failed nodes        : 0
-Rotten nodes        : 0
-Warning nodes       : 0
-
-Peering Test             : passed
-Backup IP Test           : passed
-Clag SysMac Test         : passed
-VXLAN Anycast IP Test    : passed
-Bridge Membership Test   : passed
-Spanning Tree Test       : passed
-Dual Home Test           : passed
-Single Home Test         : passed
-Conflicted Bonds Test    : passed
-ProtoDown Bonds Test     : passed
-SVI Test                 : passed
-```
-
-Exclude selected validation tests:
-
-```
-cumulus@switch:~$ netq check mlag exclude 2
-clag check result summary:
-
-Total nodes         : 6
-Checked nodes       : 6
-Failed nodes        : 0
-Rotten nodes        : 0
-Warning nodes       : 0
-
-Peering Test             : passed
-Backup IP Test           : passed
-Clag SysMac Test         : skipped
-VXLAN Anycast IP Test    : passed
-Bridge Membership Test   : passed
-Spanning Tree Test       : passed
-Dual Home Test           : passed
-Single Home Test         : passed
-Conflicted Bonds Test    : passed
-ProtoDown Bonds Test     : passed
-SVI Test                 : passed
-```
-
 ### Related Commands
 
-- ```netq show mlag```
-- ```netq show unit-tests mlag```
-- ```netq add validation```
+- `netq show mlag`
+- `netq show unit-tests mlag`
+- `netq add validation`
 
 - - -
 
@@ -1138,7 +1160,7 @@ Searches for consistent RoCE and QoS configurations across nodes.
 
 {{<notice note>}}
 
-This command captures additional mismatches on NVUE-enabled switches running Cumulus Linux 5.0 or later and NetQ Agent 4.6.0. Priority code point (PCP) monitoring requires a switch running NetQ Agent 4.5 or later.
+This command captures mismatches on NVUE-enabled switches running Cumulus Linux 5.0 or later and NetQ Agent 4.6.0. Priority code point (PCP) validations require a switch running NetQ Agent 4.5 or later.
 
 {{</notice>}}
 ### Syntax
@@ -1171,22 +1193,24 @@ None
 
 ### Sample Usage
 
+The following example displays several RoCE errors in the network's fabric. The 'RoCE mode test' indicates that switches are running in both lossy and lossless modes, which must be reconciled. The other errors report configuration mismatches along with the expected configurations. To fix these errors, reconfigure RoCE according to the recommendations reported in the output. Then run the command again to verify its accuracy.
+
 ```
 cumulus@switch:mgmt:~$ netq check roce
 roce check result summary:
 
-Total nodes         : 2
-Checked nodes       : 2
-Failed nodes        : 2
-Rotten nodes        : 0
-Warning nodes       : 0
-Skipped nodes       : 0
-
+Total nodes                             : 2
+Checked nodes                           : 2
+Failed nodes                            : 2
+Rotten nodes                            : 0
+Warning nodes                           : 0
+Skipped nodes                           : 0
+Checked nodes hostname                  : mlx-3700c-23, mlx-3700c-24
 
 RoCE mode Test                 : 0 warnings, 1 errors
-RoCE Classification Test       : 0 warnings, 6 errors
-RoCE Congestion Control Test   : passed
-RoCE Flow Control Test         : 0 warnings, 3 errors
+RoCE Classification Test       : 0 warnings, 3 errors
+RoCE Congestion Control Test   : 0 warnings, 2 errors
+RoCE Flow Control Test         : 0 warnings, 2 errors
 RoCE ETS mode Test             : passed
 
 
@@ -1195,36 +1219,32 @@ Hostname          Reason
 ----------------- ---------------------------------------------
 mlx-3700c-24      RoCE Lossy mode inconsistent with mlx-3700c-2
                   3                                            
-
-
 RoCE Classification Test details:
 Hostname          Reason
 ----------------- ---------------------------------------------
-mlx-3700c-23      DSCP mapping config invalid for switch-prio 2.
-                  Expected DSCP: 16,17,18,19,20,21,22,23.  
-                  DSCP mapping config invalid for switch-prio 3.
-                  Expected DSCP: 24,25,26,27,28,29,30,31.        
 mlx-3700c-23      Invalid traffic-class mapping for switch-prio
-                  rity 3.Expected 3 Got 2                      
-mlx-3700c-23      RoCE SP->DSCP mapping 2->26 inconsistent with
-                  mlx-3700c-24                                 
-mlx-3700c-23      RoCE SP->PCP mapping 2->2 inconsistent with m
-                  lx-3700c-24                                  
-mlx-3700c-23      RoCE SP->TC mapping 2->0 inconsistent with ml
-                  x-3700c-24                                   
-mlx-3700c-24      RoCE SP->PG mapping 3->1 inconsistent with ml
-                  x-3700c-23                                   
-
-
+                  rity 4.Expected 0 Got 3                      
+mlx-3700c-24      DSCP mapping config invalid for switch-prio 3
+                  .Expected DSCP: 24,25,26,27,28,29,30,31.  
+                  DSCP mapping config invalid for switch-prio 5.
+                  Expected DSCP: 40,41,42,43,44,45,46,47.        
+mlx-3700c-24      PCP mapping config invalid for switch-prio 3.
+                  Expected PCP: 3. PCP mapping config invalid f
+                  or switch-prio 4.Expected PCP: 4.            
+RoCE Congestion Control Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+mlx-3700c-23      Congestion Config TC Mismatch.Expected enable
+                  d-tc: 0,3.                                   
+mlx-3700c-23      Congestion Config mode Mismatch.Expected cong
+                  estion-mode: ECN.                            
 RoCE Flow Control Test details:
 Hostname          Reason
 ----------------- ---------------------------------------------
 mlx-3700c-23      Invalid RoCE PFC rx-enabled flag.Expected: en
                   abled.                                       
 mlx-3700c-23      RoCE PFC Priority Mismatch.Expected pfc-prior
-                  ity: 3.                                      
-mlx-3700c-23      RoCE PFC cable-length Mismatch.Expected cable
-                  -length: 100. 
+                  ity: 3.
 ```
 ### Related Commands
 

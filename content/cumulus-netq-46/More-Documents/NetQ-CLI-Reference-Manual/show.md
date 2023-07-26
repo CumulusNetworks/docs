@@ -321,10 +321,12 @@ leaf02            swp51(spine01)               default         65101      65199 
 <!-- vale on -->
 - - -
 
-<!--
+
 ## netq show check-filter
 
-Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for more information about filters for `netq check` commands. 
+Displays filters currently applied to `netq check` commands. Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for more information about suppressing tests associated with `netq check` commands.
+
+Use this command to display check filter IDs, which must be specified when adding filters to a `netq check` command.
 
 ### Syntax
 
@@ -342,22 +344,30 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| check_filter_id | \<text-check-filter-id\> | |
-| check_name | \<text-check-name-anchor\> |  |
-| show-check-catalog | NA |  |
-| show-reason-catalog | NA |  |
+| check_filter_id | \<text-check-filter-id\> | Only display filters with a given ID |
+| check_name | \<text-check-name-anchor\> |  Only display filters for a given validation test (for example, EVPN, BGP, etc.) |
+| show-check-catalog | NA | Display conditions for the check type |
+| show-reason-catalog | NA | Display the explanation associated with validation test errors and warnings  |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq show check-filter
+Matching config_check records:
+Check Filter ID      Check Name           Test Name            Scope                                                        Active Suppress Until
+-------------------- -------------------- -------------------- ------------------------------------------------------------ ------ --------------------
+roce_3               roce                 RoCE Classification  [{"Reason":"Invalid traffic-class mapping for switch-priority 4.Expected 0 Got 3"}]          
+True   Sun May  4 09:20:54 2025   
+```
+
 ### Related Commands
 
-- netq add check-filter
-- netq del check-filter
+- `netq add check-filter`
+- `netq check`
+- `netq del check-filter`
 
 - - -
-
--->
 ## netq show cl-btrfs-info
 
 

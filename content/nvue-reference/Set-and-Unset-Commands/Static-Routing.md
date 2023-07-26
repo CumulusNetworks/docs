@@ -22,29 +22,6 @@ Cumulus Linux adds static routes to the FRR routing table and then to the kernel
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router static \<route-id\> address-family</h>
-
-Enables and disables the address family (`ipv4-unicast` or `ipv6-unicast`) for the static route in the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IPv4 or IPv6 prefix. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 address-family ipv6-unicast
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\></h>
 
 Configures static route settings with the destination path distance.
@@ -171,7 +148,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 type interface
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.10.10.1 type interface
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -197,7 +174,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 vrf RED
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.10.10.1 vrf RED
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -244,7 +221,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -268,7 +245,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 flag onlink 
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.10.10.1 flag onlink 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -293,7 +270,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 interface swp1
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.10.10.1 interface swp1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -317,7 +294,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 type interface
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.10.10.1 type interface
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -342,5 +319,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 vrf RED
+cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 via 10.10.10.1 vrf RED
 ```

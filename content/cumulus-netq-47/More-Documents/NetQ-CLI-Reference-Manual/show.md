@@ -1196,17 +1196,15 @@ leaf04            4001       10.0.1.2         L3               Vrf RED        ye
 - - -
 ## netq show histogram
 
-<!--need to update definition-->
-
-Displays egress queue lengths for a switch across the network fabric. For more information, refer to {{<link title="Switches/#view-queue-lengths-in-histograms" text="Monitoring Switches">}}.
+Displays a device's egress queue lengths as a histogram, grouped into bins. For more information, refer to {{<link title="Switches/#view-queue-lengths-in-histograms" text="Monitoring Switches">}}.
 
 ### Syntax
 
 ```
 netq <hostname> show histogram interface <text-ifname> queue 
-[around <text-time>] 
-[between <text-time> and <text-endtime>] 
-[json]
+    [around <text-time>] 
+    [between <text-time> and <text-endtime>] 
+    [json]
 ```
 
 ### Required Arguments
@@ -1215,7 +1213,6 @@ netq <hostname> show histogram interface <text-ifname> queue
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch with this name |
 | interface | \<text-ifname\> | Only display results for the interface with this name |
-| diff | NA | Only display the differences associated with each change |
 
 ### Options
 
@@ -1225,9 +1222,52 @@ netq <hostname> show histogram interface <text-ifname> queue
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON format |
 
-<!--
+
 ### Sample Usage
--->
+
+Display the past minute of data on *leaf01* for the interface *swp1*:
+
+```
+cumulus@switch:~$ netq leaf01 show histogram interface swp1 queue around 1m
+
+Matching queue_histograms records:
+Time                           Bin0     Bin1     Bin2     Bin3     Bin4     Bin5     Bin6     Bin7     Bin8     Bin9
+------------------------------ -------- -------- -------- -------- -------- -------- -------- -------- -------- --------
+Wed Jul 26 02:40:02 2023       1023899  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:40:01 2023       1047648  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:40:00 2023       1051783  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:59 2023       1052589  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:58 2023       1052910  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:57 2023       1050464  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:55 2023       1052236  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:54 2023       1056959  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:53 2023       1051966  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:52 2023       1053585  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:51 2023       1051696  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:50 2023       1019176  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:49 2023       1038337  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:48 2023       1031497  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:47 2023       1031590  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:46 2023       1054147  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:45 2023       1049402  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:44 2023       1059154  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:43 2023       1050751  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:42 2023       1067754  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:40 2023       1050482  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:39 2023       1081382  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:38 2023       1052506  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:37 2023       1082057  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:36 2023       1048727  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:35 2023       1016215  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:34 2023       1052371  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:33 2023       1013239  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:32 2023       1023089  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:31 2023       1011890  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:30 2023       1051966  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:29 2023       1053111  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:28 2023       1050751  0        0        0        0        0        0        0        0        0
+Wed Jul 26 02:39:27 2023       1052005  0        0        0        0        0        0        0        0        0
+```
 
 - - -
 

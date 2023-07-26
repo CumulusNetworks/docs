@@ -14,8 +14,8 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 NetQ 4.7.0 includes the following new features and improvements:
 
 - View network interface controller (NIC) {{<link title="NICs" text="telemetry">}} and {{<link title="NIC Inventory" text="inventory">}} data in the UI 
-- WIP: Decommission {{<link title="Host Inventory/#decommission-a-host" text="hosts">}}, {{<link title="NIC Inventory/#decommission-a-nic" text="NICs">}}, and {{<link title="DPU Inventory/#decommission-a-dpu" text="DPUs">}} from the UI or CLI
-- {{<link title="Switches/#view-cpu-and-memory-utilization-for-processes-and-services" text="Monitor CPU and memory utilization">}} for services and processes; create threshold-crossing rules that generate events when a process or service exceeds the limit you defined
+- Decommission {{<link title="Host Inventory/#decommission-a-host" text="hosts">}}, {{<link title="NIC Inventory/#decommission-a-nic" text="NICs">}}, and {{<link title="DPU Inventory/#decommission-a-dpu" text="DPUs">}} from the UI or CLI
+- WIP: {{<link title="Switches/#view-cpu-and-memory-utilization-for-processes-and-services" text="Monitor CPU and memory utilization">}} for services and processes; create threshold-crossing rules that generate events when a process or service exceeds the limit you defined
 - {{<link title="Switches/#view-queue-lengths-in-histograms" text="View queue lengths in the form of histograms">}}
 - {{<link title="Focus Your Monitoring Using Workbenches" text="Create workbenches">}} that can be accessed from an individual premises or that are available globally, across multiple premises
 - {{<link title="Configure and Monitor What Just Happened/#suppress-events-with-filters" text="Create WJH suppression rules">}} based on IP addresses 

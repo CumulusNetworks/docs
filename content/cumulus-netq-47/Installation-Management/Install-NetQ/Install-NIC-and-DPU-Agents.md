@@ -21,7 +21,7 @@ To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/
 
 ```
 export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.13.2-doca2.0.2-host
-docker run -v "/opt/mellanox/doca/services/telemetry/config:/config" --rm --name doca-telemetry-init -ti $DTS_IMAGE /bin/bash -c "DTS_CONFIG_DIR=host_netq /usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh -i=10.10.10.1 -p=24224"
+docker run -v "/opt/mellanox/doca/services/telemetry/config:/config" --rm --name doca-telemetry-init -ti $DTS_IMAGE /bin/bash -c "DTS_CONFIG_DIR=host_netq /usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh -i=10.10.10.1 -p=30001"
 docker run -d --net=host                                                              \
               --privileged                                                            \
               -v "/opt/mellanox/doca/services/telemetry/config:/config"               \

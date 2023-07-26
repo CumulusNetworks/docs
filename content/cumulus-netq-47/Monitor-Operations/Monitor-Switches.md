@@ -76,11 +76,7 @@ Refer to the command line reference for a comprehensive list of {{<link title="s
 
 ## View CPU and Memory Utilization for Processes and Services
 
-Use the UI or CLI to view CPU and memory usage by various services and processes. By default, NetQ monitors the following services: *clagd*, *frr*, *lldpd*, *mstpd*, *netq-agent*, *netqd*, *nvued*, *pwmd*, *quagga*, *smond*
-
-Using the CLI, you can configure NetQ to monitor CPU and memory utilization for additional services, inclsclark uding *docker*, *dhcp_relay*, *neighmgrd*, *ptmd*, *ptp4l*, *rsyslog*, *snmpd*, *ssh* 
-
-Refer to the {{<link title="show/#netq-show-services" text="command line reference">}} for more information about the services.
+NetQ monitors the amount of compute resource usage for the following services: monclagd, mstpd, lldpd, frr (including zebra, bgpd, ospfd), netqd, netq-agent, wd_keepalive, nvued, switchd, sx_sdk, ntpd, pwmd, and smond. The following services are also monitored by default, but you can configure the agent using the CLI to stop monitoring them: neighmgrd, ptmd, ptp4l, docker, snmpd, rsyslog, sshd, and dhcp_relay.
 
 {{<tabs "TabID46" >}}
 
@@ -119,11 +115,9 @@ r-3700-01         smond                7301  default              yes     yes   
 ... 
 ```
 
-To display a list of processes and services that the NetQ Agent is currently monitoring, run {{<link title="config/#netq-config-show-agent" text="netq config show agent services">}}. 
+To configure the NetQ Agent to stop monitoring optional services, run {{<link title="config/#netq-config-add-agent-services" text="netq config add agent services">}}, specifying the services you want the agent to monitor in the command. After you run the command, the NetQ Agent stops monitoring neighmgrd, ptmd, ptp4l, docker, snmpd, rsyslog, sshd, and dhcp_relay, then starts monitoring the service(s) you specified. Run {{<link title="config/#netq-config-show-agent" text="netq config show agent services">}} to display a list of the optional services that you configured the NetQ Agent to monitor.
 
-To configure the agent to monitor additional services or processes, run {{<link title="config/#netq-config-add-agent-services" text="netq config add agent services">}} with the name of the service(s) included in the command.
-
-To stop the agent from monitoring services or processes, run {{<link title="config/#netq-config-del-agent" text="netq config del agent services">}}. The services that NetQ monitors by default cannot be deleted.
+To stop the agent from monitoring services or processes that you configured and reset it back to its default monitoring settings, run {{<link title="config/#netq-config-del-agent" text="netq config del agent services">}}.
 
 {{</tab>}}
 

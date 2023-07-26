@@ -452,10 +452,9 @@ Restarting netq-agent... Success!
 - `netq config restart agent`
 
 - - -
-<!-- need to test for 4.7 docs-->
 ## netq config add agent services
 
-Configures the NetQ Agent to monitor processes and services.
+Configures the NetQ Agent to stop monitoring CPU and memory utilization for neighmgrd, ptmd, ptp4l, docker, snmpd, rsyslog, sshd, and dhcp_relay. The NetQ Agent will monitor the services you specify with this command in addition to the services that are monitored by default.
 
 ### Syntax
 
@@ -1034,7 +1033,7 @@ cumulus@switch:~$ netq config restart agent
 
 ## netq config del agent services
 
-Stops the NetQ Agent from monitoring processes and services.
+Removes the custom services monitoring configured with the `netq config add agent services` command and resets the agent to monitor monclagd, mstpd, lldpd, frr (including zebra, bgpd, ospfd), netqd, netq-agent, wd_keepalive, nvued, switchd, sx_sdk, ntpd, pwmd, smond, neighmgrd, ptmd, ptp4l, docker, snmpd, rsyslog, sshd, and dhcp_relay.
 
 ### Syntax
 
@@ -1443,7 +1442,7 @@ None
 | frr-monitor | NA | Display FRR monitoring configuration |
 | kubernetes-monitor | NA | Display the Kubernetes monitoring configuration |
 | loglevel | NA | Display the NetQ Agent logging level configuration |
-| services | NA | Display services and processes configuration |
+| services | NA | Display custom services and processes configuration |
 | ssl | NA | Display SSL configuration |
 | stats | NA | Display status of interface statistics |
 | wjh | NA | Display NetQ Agent What Just Happened monitoring configuration |

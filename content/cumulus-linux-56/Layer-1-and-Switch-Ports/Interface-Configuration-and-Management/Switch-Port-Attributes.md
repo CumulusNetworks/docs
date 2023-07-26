@@ -989,7 +989,7 @@ Maximum 100G ports: 32
 {{< /tab >}}
 
 {{< /tabs >}}
-{{< tab "SN3700">}}
+{{< tab "SN3700 and SN3750SX">}}
 
 32x QSFP56 200G interfaces support both PAM4 and NRZ encodings. You can set all speeds down to 1G.
 
@@ -1101,17 +1101,15 @@ Maximum 40G ports: 32
 {{< /tab >}}
 {{< tab "50G ">}}
 
-- 48x50G - 24xQSFP28-DD break out into 2x
-- 32x50G - 4 top QSFP-DD break out into 8x (bottom 4xQSFP-DD blocked*)
+- 96x50G - 24xQSFP28-DD/QSFP56 break out into 4x
+- 32x50G - 8xQSFP-DD break out into 4x
 
 Maximum 50G ports: 128
-
-*Other QSFP-DD breakout combinations are available up to maximum of 80x ports.
 
 {{< /tab >}}
 {{< tab "100G ">}}
 
-- 48x100G - 24xQSFP28-DD break out into 2x
+- 96x100G - 24xQSFP28-DD/QSFP56 break out into 4x
 - 32x100G - 8xQSFP-DD break out into 4x
 
 Maximum 100G ports: 128
@@ -1119,7 +1117,8 @@ Maximum 100G ports: 128
 {{< /tab >}}
 {{< tab "200G ">}}
 
-16x200G - 8xQSFP-DD break out into 2x
+- 48x200G - 24xQSFP28-DD/QSFP56 break out into 2x
+- 16x200G - 8xQSFP-DD break out into 2x
 
 Maximum 200G ports: 64
 

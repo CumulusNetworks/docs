@@ -1,8 +1,8 @@
 ---
 title: Extending the EVPN/VXLAN Fabric with DCI
-author: Cumulus Networks
+author: NVIDIA
 weight: 30
-product: Cumulus Networks Guides
+product: Technical Guides
 imgData: guides
 ---
 

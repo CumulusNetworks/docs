@@ -2,7 +2,7 @@
 title: Cumulus Linux Configuration Guide for Ethernet Storage Fabrics
 author: NVIDIA Networking
 weight: 50
-product: Cumulus Networks Guides
+product: Technical Guides
 ---
 
 [NVIDIA Spectrum](https://www.nvidia.com/en-us/networking/ethernet-switching/) switches with the [Cumulus Linux](https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-linux/) network operating system allow you to create predictable, low latency, high throughput networks. The combination of best-in-class hardware and software enables you to deploy an efficient, redundant, and ESF ([Ethernet Storage Fabrics](https://www.nvidia.com/en-us/networking/guide-to-ethernet-storage-fabrics/)) optimized network with minimum effort. ESF includes complete, hybrid, or HCI storage fabrics and the storage backend for AI systems.

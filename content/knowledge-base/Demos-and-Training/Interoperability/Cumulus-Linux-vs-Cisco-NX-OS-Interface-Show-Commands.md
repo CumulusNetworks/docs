@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux vs Cisco NX-OS Interface Show Commands
-author: Cumulus Networks
+author: NVIDIA
 weight: 513
 toc: 4
 ---

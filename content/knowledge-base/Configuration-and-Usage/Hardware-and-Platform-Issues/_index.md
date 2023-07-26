@@ -1,6 +1,6 @@
 ---
 title: Hardware and Platform Issues
-author: Cumulus Networks
+author: NVIDIA
 weight: 35
 toc: 3
 ---

@@ -1,6 +1,6 @@
 ---
 title: NetQ License Agreement
-author: Cumulus Networks
+author: NVIDIA
 weight: 615
 toc: 4
 bookhidden: true

@@ -1,6 +1,6 @@
 ---
 title: Monitor Interface Administrative State and Physical State on Cumulus Linux
-author: Cumulus Networks
+author: NVIDIA
 weight: 373
 toc: 4
 ---

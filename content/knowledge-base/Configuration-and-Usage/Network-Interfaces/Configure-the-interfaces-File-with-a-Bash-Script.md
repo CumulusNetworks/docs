@@ -1,6 +1,6 @@
 ---
 title: Configure the interfaces File with a Bash Script
-author: Cumulus Networks
+author: NVIDIA
 weight: 412
 toc: 4
 ---

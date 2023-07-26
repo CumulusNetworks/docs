@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux License Key
-author: Cumulus Networks
+author: NVIDIA
 weight: 611
 toc: 4
 ---

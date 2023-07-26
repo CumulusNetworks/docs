@@ -76,7 +76,9 @@ Refer to the command line reference for a comprehensive list of {{<link title="s
 
 ## View CPU and Memory Utilization for Processes and Services
 
-NetQ monitors the amount of compute resource usage for the following services: monclagd, mstpd, lldpd, frr (including zebra, bgpd, ospfd), netqd, netq-agent, wd_keepalive, nvued, switchd, sx_sdk, ntpd, pwmd, and smond. The following services are also monitored by default, but you can configure the agent using the CLI to stop monitoring them: neighmgrd, ptmd, ptp4l, docker, snmpd, rsyslog, sshd, and dhcp_relay.
+Use the UI or CLI to visualize which services and processes are consuming the most CPU and memory on a switch.
+
+NetQ monitors CPU and memory usage for the following services: monclagd, mstpd, lldpd, frr (including zebra, bgpd, ospfd), netqd, netq-agent, wd_keepalive, nvued, switchd, sx_sdk, ntpd, pwmd, and smond. The following services are also monitored by default, but you can configure the agent using the CLI to stop monitoring them: neighmgrd, ptmd, ptp4l, docker, snmpd, rsyslog, sshd, and dhcp_relay.
 
 {{<tabs "TabID46" >}}
 

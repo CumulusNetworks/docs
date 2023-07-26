@@ -466,14 +466,25 @@ netq config add agent services <text-service-name-list>
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| services | <text-service-name-list\> | Configure the NetQ Agent to monitor services. Format this value as a comma-separated list, without spaces. Services include *ptmd,neighmgrd,ptp4l,docker,snmpd,rsyslog,ssh,dhcrelay* |
+| services | <text-service-name-list\> | Configure the NetQ Agent to monitor services. Format this value as a comma-separated list, without spaces. |
 
 ### Options
 
 None
-<!--
+
 ### Sample Usage
--->
+
+```
+cumulus@switch:~$ netq config add agent services dnsmasq
+Successfully added services for netq-agent. Please restart netq-agent (netq config restart agent)
+
+
+cumulus@switch:~$ netq config show agent services
+Services Enabled
+----------------------------------------
+dnsmasq.service
+```
+
 ### Related Commands
 
 - `netq config show agent services`

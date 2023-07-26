@@ -1,6 +1,6 @@
 ---
 title: Add New Content
-author: Cumulus Networks
+author: NVIDIA
 weight: 100
 ---
 Now that you have installed Hugo, cloned the GitHub repository, and run the local server,

@@ -1,8 +1,8 @@
 ---
 title: Automation with Cumulus Linux
-author: Cumulus Networks
+author: NVIDIA
 weight: 30
-product: Cumulus Networks Guides
+product: Technical Guides
 imgData: guides
 ---
 NVUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the NVUE software.

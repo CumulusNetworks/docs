@@ -1,6 +1,6 @@
 ---
 title: Use netconsole with syslog on Cumulus Linux Switches
-author: Cumulus Networks
+author: NVIDIA
 weight: 380
 toc: 4
 ---

@@ -1,8 +1,8 @@
 ---
 title: Overview
-author: Cumulus Networks
+author: NVIDIA
 weight: 20
-product: Cumulus Networks Guides
+product: Technical Guides
 imgData: guides
 ---
 Data center networking is an integral part of modern enterprise networks. As data centers evolve from physical on-premises to digitized cloud infrastructures, there is a need for advancement in the methods network teams take to operate their data center networks. There is an increased interest in automating data center networks to expand agility and operational efficiency.

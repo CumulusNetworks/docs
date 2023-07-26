@@ -1,8 +1,8 @@
 ---
 title: Data Center Interconnect Reference Design Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 10
-product: Cumulus Networks Guides
+product: Technical Guides
 imgData: guides
 ---
 Data centers of all sizes host significant amounts of business-critical data---data that grows by the day, hour, and millisecond. Maintaining this data creates multiple challenges for a network architect, who must consider data resiliency, traffic, and storage. To mitigate network issues, data is split into pieces or replicated and then dispersed across an area, country, or even around the world. Traditional applications that generate traffic in and out of the data center (north-south traffic) are now a thing of the past, having given up their position to modern successors that move traffic horizontally (east-west) within the data center.  

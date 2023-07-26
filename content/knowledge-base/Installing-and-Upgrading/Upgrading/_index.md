@@ -1,6 +1,6 @@
 ---
 title: Upgrading
-author: Cumulus Networks
+author: NVIDIA
 weight: 29
 toc: 3
 ---

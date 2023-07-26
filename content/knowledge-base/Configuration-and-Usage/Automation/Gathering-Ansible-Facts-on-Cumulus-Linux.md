@@ -1,6 +1,6 @@
 ---
 title: Gathering Ansible Facts on Cumulus Linux
-author: Cumulus Networks
+author: NVIDIA
 weight: 322
 toc: 4
 ---
@@ -15,7 +15,7 @@ This article outlines the process for using {{<exlink url="http://www.ansible.co
 
 ## How to Gather Facts from the CLI
 
-1.  Make sure the hostname is in DNS. Ping the DNS hostname of the Cumulus Linux switch:
+1. Make sure the hostname is in DNS. Ping the DNS hostname of the Cumulus Linux switch:
 
         user at server in ~
         $ ping sw1
@@ -29,11 +29,11 @@ This article outlines the process for using {{<exlink url="http://www.ansible.co
         user at server in ~
         $
 
-2.  Utilize the {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/setup_module.html" text="Ansible setup command">}}, where sw1 is the DNS name of your switch1, where `-m` means which module you are selecting to run, `--ask-pass` prompts you for the password (most automation environments {{<exlink url="https://wiki.archlinux.org/index.php/SSH_Keys#Simple_method" text="utilize SSH keys for authentication">}} instead of passwords), `-vvvv` gives you all the debugs (it is not needed but does help you troubleshoot) and `-u root` makes the user root instead of your username to the host device running Ansible.
+2. Use the {{<exlink url="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/setup_module.html" text="Ansible setup command">}}, where sw1 is the DNS name of your switch1, where `-m` means which module you are selecting to run, `--ask-pass` prompts you for the password (most automation environments {{<exlink url="https://wiki.archlinux.org/index.php/SSH_Keys#Simple_method" text="utilize SSH keys for authentication">}} instead of passwords), `-vvvv` gives you all the debugs (it is not needed but does help you troubleshoot) and `-u root` makes the user root instead of your username to the host device running Ansible.
 
         ansible sw1 -m setup --ask-pass -vvvv -u root
 
-3.  Ansible connects to the switch utilizing the provided user (in this case, root) and the provided password. This should be the exact same way a user would connect to the switch via SSH. If able to connect, Ansible runs the setup module and gather facts about the Cumulus switch.
+3. Ansible connects to the switch utilizing the provided user (in this case, root) and the provided password. This should be the exact same way a user would connect to the switch via SSH. If able to connect, Ansible runs the setup module and gather facts about the Cumulus switch.
 <!-- vale off -->
 ## What Facts Are Gathered?
 <!-- vale on -->

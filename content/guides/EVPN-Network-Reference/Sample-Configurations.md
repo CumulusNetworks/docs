@@ -2,8 +2,8 @@
 title: Sample Configurations
 weight: 50
 cascade:
-    product: Cumulus Networks Guides
-    author: Cumulus Networks
+    product: Technical Guides
+    author: NVIDIA
 ---
 ## Access to Common Services and Internet Connectivity
 

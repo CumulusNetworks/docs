@@ -2,8 +2,8 @@
 title: Data Center Networking Concepts
 weight: 30
 cascade:
-    product: Cumulus Networks Guides
-    author: Cumulus Networks
+    product: Technical Guides
+    author: NVIDIA
 ---
 ## Overlay, Underlay, and Tunneling
 

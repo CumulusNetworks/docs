@@ -2,8 +2,8 @@
 title: Cumulus Linux VXLAN and EVPN Network Reference Design Guide
 weight: 10
 cascade:
-    product: Cumulus Networks Guides
-    author: Cumulus Networks
+    product: Technical Guides
+    author: NVIDIA
 ---
 This reference design guide discusses the following topics:
 

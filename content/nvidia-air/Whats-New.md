@@ -9,9 +9,13 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## July 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0724-011
+- Updated API to support ordering
+- Fixed an issue related to interface count limitations on certain platforms
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0717-011
 - Updated user authorization process
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0706-012
 - Fixed an issue when deleting a topology associated with active simulations

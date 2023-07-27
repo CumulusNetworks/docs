@@ -156,6 +156,10 @@ cumulus@leaf01:~$ nv config apply
 
 The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique.
 
+{{%notice note%}}
+In Cumulus Linux 5.6, NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
+{{%/notice%}}
+
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2

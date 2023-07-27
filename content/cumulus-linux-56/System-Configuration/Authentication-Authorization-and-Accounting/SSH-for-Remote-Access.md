@@ -6,9 +6,9 @@ toc: 4
 ---
 Cumulus Linux uses the OpenSSH package to provide access to the system using the Secure Shell (SSH) protocol. With SSH, you can use key pairs instead of passwords to gain access to the system.
 
-This section describes how to generate an SSH key pair on one system and install the key as an authorized key in another system.
-
 ## Generate and Install an SSH Key Pair
+
+This section describes how to generate an SSH key pair on one system and install the key as an authorized key on another system.
 
 ### Generate an SSH Key Pair
 
@@ -115,7 +115,9 @@ The following example adds an authorized key file from the account `cumulus` on 
 
 By default, the root account cannot use SSH to log in.
 
-To allow the root account to use SSH to log in:
+You can configure the root account to use SSH to log into the switch and either use:
+- A password
+- A public key or any allowed mechanism that is *not* a password and not keyboardinteractive. This is the default setting.
 
 {{< tabs "TabID118 ">}}
 {{< tab "NVUE Commands ">}}
@@ -129,7 +131,7 @@ cumulus@switch:~$ nv config apply
 
 Run the `nv set system ssh-server permit-root-login disabled` command to disable SSH login for the root account with a password.
 
-To allow the root account to use SSH to log in using authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive (this is the default setting):
+To allow the root account to use SSH to log in using authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive:
 
 ```
 cumulus@switch:~$ nv set system ssh-server permit-root-login prohibit-password
@@ -152,7 +154,7 @@ PermitRootLogin yes
 
 Set the `PermitRootLogin` command to `no` to disable SSH login for the root account with a password.
 
-To allow the root account to use SSH to log in using authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive (this is the default setting):
+To allow the root account to use SSH to log in using authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive:
 
 1. Create an `.ssh` directory for the root user.
 

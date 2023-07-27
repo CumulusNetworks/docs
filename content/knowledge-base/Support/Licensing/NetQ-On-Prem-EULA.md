@@ -1,6 +1,6 @@
 ---
 title: NetQ On-Premises End User License Agreement
-author: Cumulus Networks
+author: NVIDIA
 weight: 615
 toc: 4
 ---

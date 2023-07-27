@@ -1,6 +1,6 @@
 ---
 title: VirtualBox
-author: Cumulus Networks
+author: NVIDIA
 weight: 25
 product: Cumulus VX
 version: '5.x'

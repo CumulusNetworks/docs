@@ -1,6 +1,6 @@
 ---
 title: Perpetual Licenses General Questions
-author: Cumulus Networks
+author: NVIDIA
 weight: 612
 toc: 4
 ---

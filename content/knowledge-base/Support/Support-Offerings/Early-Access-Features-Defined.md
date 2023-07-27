@@ -1,6 +1,6 @@
 ---
 title: Early Access Features Defined
-author: Cumulus Networks
+author: NVIDIA
 weight: 709
 toc: 4
 ---

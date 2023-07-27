@@ -1,6 +1,6 @@
 ---
 title: Upgrades - Network Device and Linux Host Worldview Comparison
-author: Cumulus Networks
+author: NVIDIA
 weight: 291
 toc: 4
 ---

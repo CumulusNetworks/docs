@@ -485,7 +485,7 @@ The IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" te
 
 Be sure to run the `sudo ifreload -a` command after you set the STP parameter in the `/etc/network/interfaces` file.
 
-## PVRST Mode
+## PVRST Mode for a VLAN-aware Bridge
 
 By default, STP for a VLAN-aware bridge operates in RSTP mode. To configure your VLAN-aware bridge to use PVRST mode:
 
@@ -504,11 +504,32 @@ To revert the mode to the default setting (RSTP), run the `nv unset bridge domai
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
+Configure the ??? under the ??? stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
 ```
-cumulus@switch:~$ mstpctl setmode pvrst
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+
+...
 ```
 
-To revert the mode to the default setting (RSTP), run the `mstpctl clearmode pvrst` command.
+```
+cumulus@switch:~$ ifreload -a
+```
+
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+To set STP mode to PVRST at runtime:
+
+```
+cumulus@switch:~$ sudo mstpctl setmode pvrst
+```
+
+To revert the mode to the default setting (RSTP), run the `sudo mstpctl clearmode pvrst` command.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -530,10 +551,29 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Run the `mstpctl setvlanprio <bridge> <vlan> <priority>` command:
+Configure the ??? under the ??? stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 ```
-cumulus@switch:~$ mstpctl setvlanprio br_default 10 4096
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+
+...
+```
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+To set the tree priority for VLAN 10 to 4096 at runtime:
+
+```
+cumulus@switch:~$ sudo mstpctl setvlanprio br_default 10 4096
 ```
 
 {{< /tab >}}
@@ -573,7 +613,33 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file and add the ??? parameter to the VLAN stanza
+Configure the hello time, forward delay, and max age under the ??? stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+
+...
+```
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+To set the hello time to 4 seconds, the forward delay to 4 seconds, and the max age to 6 seconds at runtime:
+
+```
+cumulus@switch:~$ sudo mstpctl sethello br_default 10 4
+cumulus@switch:~$ sudo mstpctl setfdelay br_default 10 4
+cumulus@switch:~$ sudo mstpctl setmaxage br_default 10 6
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 

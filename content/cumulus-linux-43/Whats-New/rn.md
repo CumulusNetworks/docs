@@ -275,6 +275,7 @@ pdfhidden: True
 ### Fixed Issues in 4.3.2
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="3534654"></a> [3534654](#3534654) <a name="3534654"></a> <br /> | On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart <code>switchd</code> after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge. | 4.3.1 | |
 | <a name="3486888"></a> [3486888](#3486888) <a name="3486888"></a> <br />None | If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database. | 4.3.0-4.3.1 | |
 | <a name="3479967"></a> [3479967](#3479967) <a name="3479967"></a> <br /> | When you remove VRF configuration, the <code>systemctl reload frr.service</code> command returns a non zero exit code after erroneously running the invalid command <code>no exit-vrf</code>. | 4.3.1 | |
 | <a name="3455998"></a> [3455998](#3455998) <a name="3455998"></a> <br /> | When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the <code>bgpun_pp.py</code> pass persist script in the <code>/etc/snmpd/snmpd.conf</code> file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the <code>sudo chmod +x /usr/share/snmp/bgpun_pp.py</code> command. | 4.3.1 | |
@@ -303,6 +304,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3534654"></a> [3534654](#3534654) <a name="3534654"></a> <br /> | On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart <code>switchd</code> after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge. | 4.3.1-4.4.5 | |
 | <a name="3486888"></a> [3486888](#3486888) <a name="3486888"></a> <br />None | If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database. | 4.3.0-4.4.5 | |
 | <a name="3479967"></a> [3479967](#3479967) <a name="3479967"></a> <br /> | When you remove VRF configuration, the <code>systemctl reload frr.service</code> command returns a non zero exit code after erroneously running the invalid command <code>no exit-vrf</code>. | 4.3.1-4.4.5 | |
 | <a name="3474391"></a> [3474391](#3474391) <a name="3474391"></a> <br /> | The SNMP MIB definition file <code>/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt</code> does not  define INDEX of <code>bgpPeerEntry</code> correctly. This issue does not impact SNMP functionality for this MIB. | 4.3.1-4.4.5, 5.0.0-5.5.1 | |

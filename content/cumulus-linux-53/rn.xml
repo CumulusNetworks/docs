@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3541912</td>
+<td>Collecting a {{cl-support}} file in a high VNI and interface environment can result in an out-of-memory (OOM) event on the switch. An OOM event can cause critical services to restart and might impact traffic.</td>
+<td>5.1.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3496931</td>
 <td>When you update a prefix list associated with an RP,  the {{pimd}} service might crash if the prefix list exists without any prefixes. To work around this issue, ensure that any prefix list associated with an RP includes at least one prefix at all times.</td>
 <td>5.3.1-5.5.1</td>
@@ -700,6 +706,12 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3541912</td>
+<td>Collecting a {{cl-support}} file in a high VNI and interface environment can result in an out-of-memory (OOM) event on the switch. An OOM event can cause critical services to restart and might impact traffic.</td>
+<td>5.1.0-5.5.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3491259</td>

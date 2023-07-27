@@ -45,7 +45,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 {{< expand "Changed Commands" >}}
 | Previous Command | New Command |
 | ---------------- | ----------- |
-| | |
+| `nv set router policy route-map <route-map-id> rule <rule-id> set metric (1-4294967295\|metric-plus\|metric-minus\|rtt\|rtt-plus\|rtt-minus)`|`nv set router policy route-map <route-map-id> rule <rule-id> set metric (1-4294967295\|rtt\|rtt-plus\|rtt-minus)`</br>(`metric-plus` and `metric-minus` have been removed) |
 
 {{< /expand >}}
 

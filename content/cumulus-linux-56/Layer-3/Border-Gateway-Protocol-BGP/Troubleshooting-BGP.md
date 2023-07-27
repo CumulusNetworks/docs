@@ -727,7 +727,7 @@ Cumulus Linux records the changes that a neighbor goes through in `syslog` and i
 
 ## Clear BGP Routes
 
-NVUE provides commands to clear and refresh routes in the BGP table. You can clear all routes in the BGP table, or all routes for an address family (IPv4, IPv6, or EVPN) in a VRF.
+NVUE provides commands to clear and refresh routes in the BGP table. You can clear all routes in the BGP table or all routes for an address family (IPv4, IPv6, or EVPN) in a VRF.
 
 The BGP clear commands do not clear counters in the kernel or hardware.
 

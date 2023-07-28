@@ -30,6 +30,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - {{<link url="Monitoring-System-Hardware" text="Fan airflow direction">}} now shows in NVUE `nv show platform environment fan` command output and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
 - {{<link url="Precision-Time-Protocol-PTP#clock-correction-mode" text="PTP one-step clock correction mode">}}
 - NVUE enhancements include:
+  - {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVST and PVRST with VLAN-aware bridges ">}}
   - {{<link url="Address-Resolution-Protocol-ARP/#global-timer-settings" text="ARP global timer configuration">}} and {{<link url="Neighbor-Discovery-ND/#global-timer-settings" text="ND global timer configuration">}}
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
@@ -40,11 +41,12 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - {{<link url="Protocol-Independent-Multicast-PIM/#pim-show-commands" text="IGMP group show commands ">}}: `nv show interface <interface-id> ip igmp group` and `nv show interface <interface-id> ip igmp group <static-group-id>`
   - Commands to set the time
   - Changes to `nv show platform` command outputs to improve readability
+  - EVPN multihoming configuration with NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
 
 {{< expand "Changed Commands" >}}
 | Previous Command | New Command |
 | ---------------- | ----------- |
-| | |
+| `nv set router policy route-map <route-map-id> rule <rule-id> set metric (1-4294967295\|metric-plus\|metric-minus\|rtt\|rtt-plus\|rtt-minus)`|`nv set router policy route-map <route-map-id> rule <rule-id> set metric (1-4294967295\|rtt\|rtt-plus\|rtt-minus)`</br>(`metric-plus` and `metric-minus` have been removed) |
 
 {{< /expand >}}
 

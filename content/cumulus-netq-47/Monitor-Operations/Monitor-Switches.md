@@ -76,15 +76,19 @@ Refer to the command line reference for a comprehensive list of {{<link title="s
 
 ## View CPU and Memory Utilization for Processes and Services
 
-Use the UI or CLI to visualize which services and processes are consuming the most CPU and memory on a switch.
+Use the UI or CLI to visualize which services and processes are consuming the most CPU and memory on a switch. You can add or remove certain services that NetQ monitors using the CLI.
 
-NetQ monitors CPU and memory usage for the following services: monclagd, mstpd, lldpd, frr (including zebra, bgpd, ospfd), netqd, netq-agent, wd_keepalive, nvued, switchd, sx_sdk, ntpd, pwmd, and smond. The following services are also monitored by default, but you can configure the agent using the CLI to stop monitoring them: neighmgrd, ptmd, ptp4l, docker, snmpd, rsyslog, sshd, and dhcp_relay.
+{{<notice note>}}
+
+Process monitoring is only supported on Spectrum switches. 
+
+{{</notice>}}
 
 {{<tabs "TabID46" >}}
 
 {{<tab "NetQ UI" >}}
 
-To visualize CPU and memory utilization at the process level, open a large switch card and navigate to the **Utilization** tab. Then select **Show process monitoring data**. The UI depicts two charts---one each for CPU and memory utilization---along with a list of services and processes.
+To visualize CPU and memory utilization at the process level, open a large device card and navigate to the **Utilization** tab. Then select **Show process monitoring data**. The UI depicts two charts---one each for CPU and memory utilization---along with a list of services and processes.
 
 Select a process from the **Process name** column for its usage data to be reflected in the CPU and memory utilization charts. The data presented is aggregated over a 5-minute period; NetQ lists the process consuming the most CPU resources (aggregated over a 5-minute period or the **CPU 5min** column) from highest to lowest. The process whose data is reflected in the charts is indicated by an icon {{<img src="/images/netq/analytics-bars.svg" alt="" height="18" width="18">}} next to the name of the process.
 
@@ -117,9 +121,9 @@ r-3700-01         smond                7301  default              yes     yes   
 ... 
 ```
 
-To configure the NetQ Agent to stop monitoring optional services, run {{<link title="config/#netq-config-add-agent-services" text="netq config add agent services">}}, specifying the services you want the agent to monitor in the command. After you run the command, the NetQ Agent stops monitoring neighmgrd, ptmd, ptp4l, docker, snmpd, rsyslog, sshd, and dhcp_relay, then starts monitoring the service(s) you specified. Run {{<link title="config/#netq-config-show-agent" text="netq config show agent services">}} to display a list of the optional services that you configured the NetQ Agent to monitor.
+To configure the NetQ Agent to start monitoring additional services, run {{<link title="config/#netq-config-add-agent-services" text="netq config add agent services">}}, specifying the services you want the agent to monitor in the command. Restart the agent, then run {{<link title="config/#netq-config-show-agent" text="netq config show agent services">}} to display a list of services that the NetQ Agent is monitoring for CPU and memory usage.
 
-To stop the agent from monitoring services or processes that you configured and reset it back to its default monitoring settings, run {{<link title="config/#netq-config-del-agent" text="netq config del agent services">}}.
+To stop the agent from monitoring a service run {{<link title="config/#netq-config-del-agent-services" text="netq config del agent services">}}. Some services and processes cannot be excluded from monitoring.
 
 {{</tab>}}
 
@@ -133,7 +137,7 @@ Monitoring queue lengths in your network’s fabric is useful for detecting micr
 
 {{<notice note>}}
 
-Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 and above and NetQ 4.7.
+Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 and above.
 
 {{</notice>}}
 

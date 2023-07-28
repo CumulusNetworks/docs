@@ -4278,7 +4278,7 @@ netq [<hostname>] show services resource-util
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | \<service-name\> | Only display results for the service with this name (refer to above list) |
+| NA | \<service-name\> | Only display results for the service with this name |
 | vrf | \<vrf\> | Only display results for services using this VRF |
 | active | NA | Only display results for currently running services |
 | monitored | NA | Only display results for monitored services |
@@ -4335,7 +4335,7 @@ leaf02            snmpd                10098 mgmt            yes     yes    no  
 leaf02            rsyslog              11937 default         yes     yes    no        ok               Tue Dec  8 21:15:00 2020  Tue Dec  8 21:15:00 2020
 ```
 
-Display service CPU and memory usage:
+Display service CPU and memory usage from services across all switches:
 
 ```
 cumulus@switch:~$ netq show services resource-util

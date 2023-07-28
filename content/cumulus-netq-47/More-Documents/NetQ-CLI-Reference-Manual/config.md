@@ -454,7 +454,9 @@ Restarting netq-agent... Success!
 - - -
 ## netq config add agent services
 
-Configures the NetQ Agent to stop monitoring CPU and memory utilization for neighmgrd, ptmd, ptp4l, docker, snmpd, rsyslog, sshd, and dhcp_relay. The NetQ Agent will monitor the services you specify with this command in addition to the services that are monitored by default.
+Configures the NetQ Agent to {{<link title="Switches/#view-cpu-and-memory-utilization-for-processes-and-services" text="monitor CPU and memory usage">}} for services specified in the command. The service you configure the agent to monitor using this command will be added to the list of services displayed in the UI.
+
+This command is only supported on Spectrum switches.
 
 ### Syntax
 
@@ -466,7 +468,7 @@ netq config add agent services <text-service-name-list>
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| services | <text-service-name-list\> | Configure the NetQ Agent to monitor services. Format this value as a comma-separated list, without spaces. |
+| services | <text-service-name-list\> | Configure the NetQ Agent to monitor services. Format this value as a comma-separated list, without spaces. You can add up to 10 services. |
 
 ### Options
 
@@ -482,7 +484,7 @@ Successfully added services for netq-agent. Please restart netq-agent (netq conf
 cumulus@switch:~$ netq config show agent services
 Services Enabled
 ----------------------------------------
-dnsmasq.service
+dnsmasq
 ```
 
 ### Related Commands
@@ -1044,7 +1046,9 @@ cumulus@switch:~$ netq config restart agent
 
 ## netq config del agent services
 
-Removes the custom services monitoring configured with the `netq config add agent services` command and resets the agent to monitor monclagd, mstpd, lldpd, frr (including zebra, bgpd, ospfd), netqd, netq-agent, wd_keepalive, nvued, switchd, sx_sdk, ntpd, pwmd, smond, neighmgrd, ptmd, ptp4l, docker, snmpd, rsyslog, sshd, and dhcp_relay.
+Configures the NetQ Agent to stop {{<link title="Switches/#view-cpu-and-memory-utilization-for-processes-and-services" text="monitoring CPU and memory usage">}} for services specified in the command. The service you configure the agent to monitor using this command will be removed from the list of services displayed in the UI. The following services are *always* monitored and cannot be deleted: monclagd, mstpd, lldpd, frr (including zebra, bgpd, ospfd), netqd, netq-agent, wd_keepalive, nvued, switchd, sx_sdk, ntpd, pwmd, and smond.
+
+This command is only supported on Spectrum switches.
 
 ### Syntax
 
@@ -1056,7 +1060,7 @@ netq config del agent services <text-service-name-list>
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| services | <text-service-name-list\> | Stops the NetQ Agent from monitoring specified services. Format this value as a comma-separated list, without spaces. Services include *ptmd,neighmgrd,ptp4l,docker,snmpd,rsyslog,ssh,dhcrelay* |
+| services | <text-service-name-list\> | Stops the NetQ Agent from monitoring specified services. Format this value as a comma-separated list, without spaces. |
 
 ### Options
 

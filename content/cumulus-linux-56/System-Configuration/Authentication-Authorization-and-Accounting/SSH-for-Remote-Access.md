@@ -115,9 +115,10 @@ The following example adds an authorized key file from the account `cumulus` on 
 
 By default, the root account cannot use SSH to log in.
 
-You can configure the root account to use SSH to log into the switch and either use:
+You can configure the root account to use SSH to log into the switch and use:
 - A password
 - A public key or any allowed mechanism that is *not* a password and not keyboardinteractive. This is the default setting.
+- A set of commands defined in the `authorized_keys` file.
 
 {{< tabs "TabID118 ">}}
 {{< tab "NVUE Commands ">}}
@@ -135,6 +136,13 @@ To allow the root account to use SSH to log in using authenticate with a public 
 
 ```
 cumulus@switch:~$ nv set system ssh-server permit-root-login prohibit-password
+cumulus@switch:~$ nv config apply
+```
+
+To allow the root account to use SSH to log into the switch and to only run a set of commands defined in the `authorized_keys` file:
+
+```
+cumulus@switch:~$ nv set system ssh-server permit-root-login forced-commands-only
 cumulus@switch:~$ nv config apply
 ```
 
@@ -190,32 +198,48 @@ To allow the root account to use SSH to log in using authenticate with a public 
 To allow certain users to establish an SSH session:
 
 ```
-cumulus@switch:~$ nv set system ssh-server allow-users user1 user2 user3
+cumulus@switch:~$ nv set system ssh-server allow-users user1
 cumulus@switch:~$ nv config apply
 ```
 
 To deny certain users to establish an SSH session:
 
 ```
-cumulus@switch:~$ nv set system ssh-server deny-users user4 user5
+cumulus@switch:~$ nv set system ssh-server deny-users user4
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To allow certain users to establish an SSH session, edit the `/etc/ssh/sshd_config` file and add the users to the `AllowUsers` parameter:
+To allow certain users to establish an SSH session, edit the `/etc/ssh/sshd_config` file and add the `AllowUsers` parameter:
 
 ```
 cumulus@switch:~$ sudo cat /etc/ssh/sshd_config
 ...
+...
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+# X11Forwarding no
+# AllowTcpForwarding no
+# PermitTTY no
+# ForceCommand cvs server
+AllowUsers = user1
 ```
 
-To deny certain users to establish an SSH session, edit the `/etc/ssh/sshd_config` file and add the users to the `DenyUsers` parameter:
+To deny certain users to establish an SSH session, edit the `/etc/ssh/sshd_config` file and add the `DenyUsers` parameter:
 
 ```
 cumulus@switch:~$ sudo cat /etc/ssh/sshd_config
 ...
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+# X11Forwarding no
+# AllowTcpForwarding no
+# PermitTTY no
+# ForceCommand cvs server
+AllowUsers = user1
+DenyUsers  = user4
 ```
 
 {{< /tab >}}
@@ -326,11 +350,18 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ssh/sshd_config` file and change the `authentication-retries` option to 10 and the `login-timeout` option to 200:
+Edit the `/etc/ssh/sshd_config` file and change the `MaxAuthTries` parameter in the `Authentication` section to 10 and the `LoginGraceTime` parameter to 200:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
+...
+# Authentication:
 
+LoginGraceTime 200s
+PermitRootLogin prohibit-password
+#StrictModes yes
+MaxAuthTries 10
+MaxSessions 10
 ```
 
 {{< /tab >}}
@@ -349,11 +380,16 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ssh/sshd_config` file and change the `port` option to 443:
+Edit the `/etc/ssh/sshd_config` file and add the `Port` parameter:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
-
+...
+Port 443
+#AddressFamily any
+#ListenAddress 0.0.0.0
+#ListenAddress ::
+...
 ```
 
 {{< /tab >}}
@@ -373,39 +409,53 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ssh/sshd_config` file and change the `inactive-timeout` option to 5 and the `max-sessions-per-connection` option to 5:
+Edit `Authentication` section of the `/etc/ssh/sshd_config` file and change the `???` parameter to 5 and the `MaxSessions` parameter to 5:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
+...
+# Authentication:
 
+LoginGraceTime 120s
+PermitRootLogin prohibit-password
+#StrictModes yes
+MaxAuthTries 10
+MaxSessions 5
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
 The following example configures:
-- The maximum number of unauthenticated SSH sessions allowed to 20.
 - The number of unauthenticated SSH sessions allowed before throttling starts to 5.
-- The starting percentage of connections to reject above the throttle start count before reaching the session count limit to 20.
+- The starting percentage of connections to reject above the throttle start count before reaching the session count limit to 22.
+- The maximum number of unauthenticated SSH sessions allowed to 20.
 
 {{< tabs "TabID269 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system ssh-server max-unauthenticated session-count 20
 cumulus@switch:~$ nv set system ssh-server max-unauthenticated throttle-start 5
-cumulus@switch:~$ nv set system ssh-server max-unauthenticated throttle-percent 20
+cumulus@switch:~$ nv set system ssh-server max-unauthenticated throttle-percent 22
+cumulus@switch:~$ nv set system ssh-server max-unauthešticated session-count 20
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ssh/sshd_config` file and change the `session-count` option to 20, the `throttle-start` option to 5, and the `throttle-percent` to 20:
+Edit the `/etc/ssh/sshd_config` file and change the `MaxStartups` parameter.
+
+The following example configures:
+- The number of unauthenticated SSH sessions allowed before throttling starts to 5.
+- The starting percentage of connections to reject above the throttle start count before reaching the session count limit to 22.
+- The maximum number of unauthenticated SSH sessions allowed to 20.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
-
+...
+MaxStartups 5:22:20
+...
 ```
 
 {{< /tab >}}
@@ -417,10 +467,9 @@ To show the current number of active SSH sessions, run the NVUE `nv show system 
 
 ```
 cumulus@switch:~$ nv show system ssh-server active-sessions
- TTY  User    Source     Login Time Idle  Current Activity
------ ---- ------------- ---------- ----- ------------------
-pts/1 root 10.188.108.80 Tue18      2.00s ssh root@localhost
-pts/2 root ...
+Peer Address:Port    Local Address:Port      State
+-------------------  ----------------------  -----
+192.168.200.1:46528  192.168.200.11%mgmt:22  ESTAB
 ```
 
 ```
@@ -431,4 +480,19 @@ cumulus  ttyS0    -                Wed15   19:19m  0.03s  0.02s -bash
 cumulus  pts/0    192.168.200.1    07:27    3:43m  0.03s  0.03s -bash
 cumulus  pts/1    192.168.200.1    10:01    1:09m  0.02s  0.02s -bash
 cumulus  pts/2    192.168.200.1    11:10    1.00s  0.03s  0.00s w
+```
+
+To show the users that are allowed or denied to establish an SSH session, run the `nv show system ssh-server allow-users` command or the `nv show system ssh-server deny-users` command. You can also show information for a specific user with the `nv show system ssh-server allow-users <user>` command and the `nv show system ssh-server deny-users <user>` command.
+
+To show the TCP port numbers that listen for incoming SSH sessions, run the `nv show system ssh-server port` command. You can also show information for a specific port with the `nv show system ssh-server port <port>` command.
+
+To show the SSH timer and session information, run the `nv show system ssh-server max-unauthenticated` command:
+
+```
+cumulus@switch:~$ nv show system ssh-server max-unauthenticated
+                  applied
+----------------  -------
+session-count     20     
+throttle-percent  22     
+throttle-start    5
 ```

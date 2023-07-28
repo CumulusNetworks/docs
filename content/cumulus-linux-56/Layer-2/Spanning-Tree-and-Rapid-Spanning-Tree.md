@@ -21,7 +21,7 @@ Exercise caution when changing the STP settings below to prevent STP loop avoida
 
 {{%notice note%}}
 - For maximum interoperability, when connected to a switch that has a native VLAN configuration, you **must** configure the native VLAN to VLAN 1.
-- NVUE does not support traditional mode bridges.
+- There are no NVUE commands to configure a traditional mode bridge.
 {{%/notice%}}
 
 <!-- vale off -->
@@ -57,6 +57,195 @@ Configure the root bridge within the MST domain by changing the priority on the 
 ### RSTP with MLAG
 
 More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> on the switches connected to the <span style="background-color:#F5F5DC">[MST](## "Multiple Spanning Tree")</span> or <span style="background-color:#F5F5DC">[PVST](## "Per-VLAN Spanning Tree")</span> domain and set up these interfaces as an MLAG port. The PVST or MST domain thinks it connects to a single switch and utilizes all the links connected to it. Load balancing depends on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to the PVST or MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
+
+### PVRST Mode
+
+By default, STP for a VLAN-aware bridge operates in RSTP mode. To configure your VLAN-aware bridge to use PVRST mode:
+
+{{< tabs "TabID492 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set bridge domain <bridge> stp mode pvrst` command.
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp mode pvrst
+cumulus@switch:~$ nv config apply
+```
+
+To revert the mode to the default setting (RSTP), run the `nv unset bridge domain <bridge> stp mode pvrst` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Add `mstpctl-pvrst-mode yes` under the bridge stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto br_default
+iface br_default
+    bridge-ports swp1 swp2
+    hwaddress 44:38:39:22:01:b1
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+    bridge-stp yes
+    mstpctl-pvrst-mode yes
+...
+```
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+To set STP mode to PVRST at runtime:
+
+```
+cumulus@switch:~$ sudo mstpctl setmode pvrst
+```
+
+To revert the mode to the default setting (RSTP), run the `sudo mstpctl clearmode pvrst` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+#### PVRST Tree Priority
+
+You can set the spanning tree priority for a VLAN. The priority must be a number between 4096 and 61440.
+
+The following example sets the tree priority for VLAN 10 to 4096:
+
+{{< tabs "TabID520 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 bridge-priority 4096
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Add the `bridge-stp-vlan-priority` parameter under the bridge stanza of the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto br_default
+iface br_default
+    bridge-ports swp1 swp2
+    hwaddress 44:38:39:22:01:b1
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+    bridge-stp yes
+    mstpctl-pvrst-mode yes
+    bridge-stp-vlan-priority 10=4096
+...
+```
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+To set the tree priority for VLAN 10 to 4096 at runtime:
+
+```
+cumulus@switch:~$ sudo mstpctl setvlanprio br_default 10 4096
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+#### PVRST Timers
+
+You can set the following PVRST timers:
+- *Hello time*, which is how often to broadcast hello messages to other switches. You can set a value between 1 and 10 seconds.
+- *Forward delay*, which is the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds.
+- *Max age*, which is the maximum amount of time STP information is retained before it is discarded. You can set a value between 6 and 40 seconds.
+
+{{< tabs "TabID549 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets the hello time to 4 seconds:
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 hello-time 4 
+cumulus@switch:~$ nv config apply
+```
+
+The following example sets the forward delay to 4 seconds:
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 forward-delay 4
+cumulus@switch:~$ nv config apply
+```
+
+The following example sets the max age to 6 seconds:
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 max-age 6
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Add the `bridge-stp-vlan-hello`, `bridge-stp-vlan-fdelay`, and `bridge-stp-vlan-maxage` parameters under the bridge stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+The following example sets the hello time to 4 seconds, the forward delay to 4 seconds, and the max age to 6 seconds for for VLAN 10.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto br_default
+iface br_default
+    bridge-ports swp1 swp2
+    hwaddress 44:38:39:22:01:b1
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+    bridge-stp yes
+    mstpctl-pvrst-mode yes
+    bridge-stp-vlan-priority 10=4096
+    bridge-stp-vlan-hello 10=4
+    bridge-stp-vlan-fdelay 10=4
+    bridge-stp-vlan-maxage 10=6
+...
+```
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+To set the hello time to 4 seconds, the forward delay to 4 seconds, and the max age to 6 seconds at runtime:
+
+```
+cumulus@switch:~$ sudo mstpctl sethello br_default 10 4
+cumulus@switch:~$ sudo mstpctl setfdelay br_default 10 4
+cumulus@switch:~$ sudo mstpctl setmaxage br_default 10 6
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Spanning Tree Priority
 
@@ -471,9 +660,9 @@ The IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" te
 
 | Parameter | Description |
 |-----------|----------|
-| `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
-| `mstpctl-ageing` | Sets the MAC address ageing time for the bridge in seconds when the running version is STP, but not RSTP or MSTP. The default is 1800.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
-| `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. The bridge forward delay must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
+| `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in VRSTP mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.|
+| `mstpctl-ageing` | Sets the MAC address ageing time for the bridge in seconds when the running version is STP, but not RSTP or MSTP. The default is 1800.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in VRSTP mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}. |
+| `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. The bridge forward delay must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. <br>{{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.|
 | `mstpctl-maxhops` | Sets the maximum hops for the bridge. The default is 20.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
 | `mstpctl-txholdcount` | Sets the bridge transmit hold count. The default value is 6 seconds.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
 | `mstpctl-forcevers` | Sets the force STP version of the bridge to either RSTP/STP. The default is RSTP.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
@@ -485,167 +674,9 @@ The IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" te
 
 Be sure to run the `sudo ifreload -a` command after you set the STP parameter in the `/etc/network/interfaces` file.
 
-## PVRST Mode for a VLAN-aware Bridge
-
-By default, STP for a VLAN-aware bridge operates in RSTP mode. To configure your VLAN-aware bridge to use PVRST mode:
-
-{{< tabs "TabID492 ">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv set bridge domain <bridge> stp mode pvrst` command.
-
-```
-cumulus@switch:~$ nv set bridge domain br_default stp mode pvrst
-cumulus@switch:~$ nv config apply
-```
-
-To revert the mode to the default setting (RSTP), run the `nv unset bridge domain <bridge> stp mode pvrst` command.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Configure the ??? under the ??? stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-
-...
-```
-
-```
-cumulus@switch:~$ ifreload -a
-```
-
-**Runtime Configuration (Advanced)**
-
-{{%notice warning%}}
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-{{%/notice%}}
-
-To set STP mode to PVRST at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setmode pvrst
-```
-
-To revert the mode to the default setting (RSTP), run the `sudo mstpctl clearmode pvrst` command.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### PVRST Tree Priority
-
-You can set the spanning tree priority for a VLAN. The priority must be a number between 4096 and 61440.
-
-{{< tabs "TabID520 ">}}
-{{< tab "NVUE Commands ">}}
-
-The following example sets the tree priority for VLAN 10 to 4096:
-
-```
-cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 bridge-priority 4096
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Configure the ??? under the ??? stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-
-...
-```
-
-```
-cumulus@switch:~$ ifreload -a
-```
-
-**Runtime Configuration (Advanced)**
-
-{{%notice warning%}}
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-{{%/notice%}}
-
-To set the tree priority for VLAN 10 to 4096 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setvlanprio br_default 10 4096
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### PVRST Timers
-
-You can set the following PVRST timers:
-- *Hello time*, which is how often to broadcast hello messages to other switches. You can set a value between 1 and 10 seconds.
-- *Forward delay*, which is the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds.
-- *Max age*, which is the maximum amount of time STP information is retained before it is discarded. You can set a value between 6 and 40 seconds.
-
-{{< tabs "TabID549 ">}}
-{{< tab "NVUE Commands ">}}
-
-The following example sets the hello time to 4 seconds:
-
-```
-cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 hello-time 4 
-cumulus@switch:~$ nv config apply
-```
-
-The following example sets the forward delay to 4 seconds:
-
-```
-cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 forward-delay 4
-cumulus@switch:~$ nv config apply
-```
-
-The following example sets the max age to 6 seconds:
-
-```
-cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 max-age 6
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Configure the hello time, forward delay, and max age under the ??? stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-
-...
-```
-
-```
-cumulus@switch:~$ ifreload -a
-```
-
-**Runtime Configuration (Advanced)**
-
-{{%notice warning%}}
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-{{%/notice%}}
-
-To set the hello time to 4 seconds, the forward delay to 4 seconds, and the max age to 6 seconds at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl sethello br_default 10 4
-cumulus@switch:~$ sudo mstpctl setfdelay br_default 10 4
-cumulus@switch:~$ sudo mstpctl setmaxage br_default 10 6
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 ## Troubleshooting
 
-To check STP status for a bridge:
+To show STP status for a bridge:
 
 {{< tabs "TabID584 ">}}
 {{< tab "NVUE Commands ">}}
@@ -656,6 +687,116 @@ cumulus@switch:~$ nv show bridge domain br_default stp
 --------  -----------  -------  ---------------------------------------------------------------------
 priority  32768        32768    stp priority. The priority value must be a number between 4096 and...
 state     up           up       The state of STP on the bridge
+```
+
+To show STP information for bridge domain VLANs:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp vlan
+Bridge Vlan: 1
+--------------------------------------------------------------------------
+Bridge ID                priority    : 32769   mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 32769   mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 2s      forward-delay     : 15s                 max-age    : 20s
+Topology Change Network  count       : 0       time since change : 1152s
+                         change port : None    last change port  : None
+
+Bridge Vlan: 10
+--------------------------------------------------------------------------
+Bridge ID                priority    : 4106    mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 4106    mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 4s      forward-delay     : 4s                  max-age    : 6s
+Topology Change Network  count       : 1       time since change : 1147s
+                         change port : swp2    last change port  : swp1
+
+Bridge Vlan: 20
+--------------------------------------------------------------------------
+Bridge ID                priority    : 32788   mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 32788   mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 2s      forward-delay     : 15s                 max-age    : 20s
+Topology Change Network  count       : 1       time since change : 1147s
+                         change port : swp2    last change port  : swp1
+```
+
+To show STP information for a specific bridge domain VLAN:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp vlan 10
+Bridge ID                priority    : 4106    mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 4106    mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 4s      forward-delay     : 4s                  max-age    : 6s
+Topology Change Network  count       : 1       time since change : 1174s
+                         change port : swp2    last change port  : swp1
+
+Interface info: swp1
+---------------------------------
+port-id            : 8.001
+role               : Designated
+state              : forwarding
+port-path-cost     : 20000
+tx-hold-count      : 6
+port-hello-time    : 4s
+fdb-flush          : no
+disputed           : no
+
+Interface info: swp2
+---------------------------------
+port-id            : 8.002
+role               : Designated
+state              : forwarding
+port-path-cost     : 20000
+tx-hold-count      : 6
+port-hello-time    : 4s
+fdb-flush          : no
+disputed           : no
+```
+
+To show STP information for a bridge domain port:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp port
+Interface Info: swp1
+--------------------------------------------------------------------------
+enabled         : yes         admin-edge-port      : no
+restricted-tcn  : no          bpdu-guard-port      : no
+restricted-role : no          bpdu-guard-error     : no
+port-path-cost  : 20000       bpdu-filter-port     : no
+oper-edge-port  : yes         ba-inconsistent      : no
+network-port    : no          auto-edge-port       : yes
+mcheck          : no          admin-port-path-cost : 0
+
+Interface Info: swp2
+--------------------------------------------------------------------------
+enabled         : yes         admin-edge-port      : no
+restricted-tcn  : no          bpdu-guard-port      : no
+restricted-role : no          bpdu-guard-error     : no
+port-path-cost  : 20000       bpdu-filter-port     : no
+oper-edge-port  : yes         ba-inconsistent      : no
+network-port    : no          auto-edge-port       : yes
+mcheck          : no          admin-port-path-cost : 0
+```
+
+To show STP information for a specific bridge domain port:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp port swp1
+enabled         : yes       admin-edge-port      : no
+restricted-tcn  : no          bpdu-guard-port      : no
+restricted-role : no          bpdu-guard-error     : no
+port-path-cost  : 20000       bpdu-filter-port     : no
+oper-edge-port  : yes         ba-inconsistent      : no
+network-port    : no          auto-edge-port       : yes
+mcheck          : no          admin-port-path-cost : 0
+```
+
+To show STP counters for a bridge domain:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp counters
+port  tx-bpdu  rx-bpdu  tx-tcn  rx-tcn  fwd-trans  blk-trans  tx-pvst-tnl-bpdu  rx-pvst-tnl-bpdu
+----  -------  -------  ------  ------  ---------  ---------  ----------------  ----------------
+swp1  1270     0        4       0       3          2          1653              0               
+swp2  1270     0        4       0       3          2          1653              0 
 ```
 
 {{< /tab >}}
@@ -686,6 +827,35 @@ cumulus@switch:~$ sudo mstpctl showport bridge
   E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
     swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
   E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
+```
+
+To show STP information for a bridge domain, including STP counters:
+
+```
+cumulus@switch:~$ sudo mstpctl showall 
+
+Global info 
+  debug level       2
+
+BRIDGE: br_default, Br_index: 67
+br_default CIST info
+  enabled         yes
+  bridge id       2.000.44:38:39:22:01:B1
+  designated root 2.000.44:38:39:22:01:B1
+  regional root   2.000.44:38:39:22:01:B1
+  root port       none
+  path cost     0          internal path cost   0
+  max age       20         bridge max age       20
+  forward delay 15         bridge forward delay 15
+  tx hold count 6          max hops             20
+  hello time    2          ageing time          300
+  force protocol version     rstp
+  time since topology change 14s
+  topology change count      0
+  topology change            no
+  topology change port       None
+  last topology change port  None
+...
 ```
 
 {{< /tab >}}

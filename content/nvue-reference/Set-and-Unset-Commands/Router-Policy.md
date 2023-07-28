@@ -1732,11 +1732,11 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set metric rtt
 ```
-
+<!--
 {{%notice note%}}
 In Cumulus Linux 5.5 and earlier, you can also set the metric value to `metric-plus` or `metric-minus`. Cumulus 5.6 and later does not provide the `metric-plus` and `metric-minus` options.
 {{%/notice%}}
-
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric type</h>

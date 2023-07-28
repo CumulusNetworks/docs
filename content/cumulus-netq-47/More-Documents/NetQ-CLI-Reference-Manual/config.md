@@ -574,7 +574,7 @@ Restarting netq-agent... Success!
 
 ## netq config add agent wjh-drop-filter
 
-Filters the WJH events at the NetQ Agent before the NetQ system processes and displays them. NetQ performs the filtering on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons, severities, or source/destination IP addresses. You must restart the agent after applying a filter with the `netq config restart agent` command. 
+Filters the WJH events at the NetQ Agent before the NetQ system processes and displays them. NetQ performs the filtering on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons, severities, or source/destination IP addresses. You must restart the agent after applying a filter with the `netq config restart agent` command. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}} for a comprehensive list of drop types, reasons, and severities.
 
 WJH commands are only supported by NVIDIA Spectrum switches.
 
@@ -595,7 +595,6 @@ netq config add agent wjh-drop-filter
 <!-- vale off -->
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| wjh-drop-filter | NA | Collect and send WJH events filtered by drop type, reason, or severity |
 | drop-type | \<text-wjh-drop-type\> | Only collect and send WJH events with this drop type. Valid drop types include *acl*, *buffer*, *l1*, *l2*, *router*, and *tunnel*. |
 <!-- vale on -->
 
@@ -603,9 +602,9 @@ netq config add agent wjh-drop-filter
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| ips | \<text-wjh-drop-type\> | Collect and send WJH events based on a comma-separated list of IP addresses |
 | drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. To specify more than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}}. |
 | severity | \<text-drop-severity-list\> | Only collect and send WJH events with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
+| ips | \<text-wjh-drop-ips\> | Collect and send WJH events based on a comma-separated list of IP addresses |
 
 ### Sample Usage
 

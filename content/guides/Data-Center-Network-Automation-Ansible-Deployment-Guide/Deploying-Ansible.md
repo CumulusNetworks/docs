@@ -18,11 +18,13 @@ The NVUE ansible modules have been certified by RedHat and are available on Ansi
 ### Installing from Ansible Galaxy
 
 You can install the NVIDIA NVUE collection with the Ansible Galaxy CLI:
+
 ```
 cumulus@oob-management:~$ ansible-galaxy collection install nvidia.nvue
 ```
 
 You can also include the NVIDIA NVUE collection in a `requirements.yml` file and install it with `ansible-galaxy collection install -r requirements.yml`, using the format:
+
 ```
 ---
 collections:
@@ -30,13 +32,17 @@ collections:
 ```
 
 ### Installing from git
+
 You can install the NVIDIA NVUE collection using the git URL:
+
 ```
 cumulus@oob-management:~$ ansible-galaxy collection install git+https://gitlab.com/nvidia-networking/systems-engineering/nvue.git
 ```
 
 ## Verifying the installation
+
 You can verify the installation using the following ansible-galaxy command:
+
 ```
 cumulus@oob-management:~$ ansible-galaxy collection list
 
@@ -63,4 +69,3 @@ check_point.mgmt              4.0.0
 chocolatey.chocolatey         1.4.0
 ...
 ```
-

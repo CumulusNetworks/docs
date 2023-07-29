@@ -11,9 +11,11 @@ imgData: guides
     overflow-y: auto;
   }
 </style>
+
 ## Enable the NVUE API
 
 Cumulus Linux 5.5 and later disables the NVUE REST API by default. If you want to use any of the object specific modules or the `api` module, you need to enable the NVUE REST API with the following commands on the switch:
+
 ```
 cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf 
 
@@ -22,7 +24,8 @@ cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 i
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
 
-You can find a sample playbook that enables the NVUE REST API across all of the switches {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/blob/main/examples/playbooks/enable-nvue-api.yml" text="here">}}. Download the file and run it against the switches. 
+You can find a sample playbook that enables the NVUE REST API across all of the switches {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/blob/main/examples/playbooks/enable-nvue-api.yml" text="here">}}. Download the file and run it against the switches.
+ 
 ```
 cumulus@oob-management:~$ curl -o enable-nvue-api.yml https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/raw/main/examples/playbooks/enable-nvue-api.yml
 

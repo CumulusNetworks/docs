@@ -123,23 +123,21 @@ To show general information about the switch, run the `nv show platform hardware
 
 ```
 cumulus@switch:~$ nv show platform hardware
-              operational                         applied  pending  description
--------------  ----------------------------------  -------  -------  -----------------------------------------
-asic-model     Spectrum-2                                            System on Chip (SOC) model
-asic-vendor    Mellanox                                              System On Chip (SOC) vendor
-base-mac       1C:34:DA:26:DB:00                                     The base mac address provided by eeprom
-cpu            x86_64 Intel Xeon D D-1527 2.20GHz                    System CPU Arch
-disk-size      28.00 GB                                              Hard Disk Size
-manufacturer   Mellanox                                              The platform's manufacturer
-memory         15.29 GB                                              Hardware RAM
-model          MSN3700                                               The platform's model identifier
-onie-version   2019.11-5.2.0020-115200                               onie version
-part-number    MSN3700-VS2FO                                         System part number
-platform-name  x86_64-mlnx_msn3700-r0                                Hardware platform name
-port-layout    32 x 200G-QSFP56                                      System port layout
-product-name   MSN3700                                               Product Name
-serial-number  MT2046X13056                                          System serial number
-system-mac     1c:34:da:26:db:fd                                     The MAC provided by eeprom for system-mac
+              operational      
+-------------  -----------------
+base-mac       44:38:39:22:01:7A
+cpu            n/a              
+disk-size      n/a              
+manufacturer   Cumulus          
+memory         1758728 kB       
+model          VX               
+part-number    5.6.0            
+port-layout    n/a              
+product-name   VX               
+serial-number  44:38:39:22:01:7a
+system-mac     44:38:39:22:01:b1
+asic-model     n/a              
+asic-vendor    n/a
 ```
 <!-- vale off -->
 ## Diagnostics Using cl-support

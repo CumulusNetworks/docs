@@ -65,7 +65,7 @@ By default, STP for a VLAN-aware bridge operates in RSTP mode. To configure your
 {{< tabs "TabID492 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv set bridge domain <bridge> stp mode pvrst` command.
+The following example sets PVRST mode on the br_default bridge:
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default stp mode pvrst
@@ -205,7 +205,7 @@ cumulus@switch:~$ nv config apply
 
 Add the `bridge-stp-vlan-hello`, `bridge-stp-vlan-fdelay`, and `bridge-stp-vlan-maxage` parameters under the bridge stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
-The following example sets the hello time to 4 seconds, the forward delay to 4 seconds, and the max age to 6 seconds for for VLAN 10.
+The following example sets the hello time to 4 seconds, the forward delay to 4 seconds, and the max age to 6 seconds for VLAN 10.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -660,12 +660,12 @@ The IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" te
 
 | Parameter | Description |
 |-----------|----------|
-| `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in VRSTP mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.|
-| `mstpctl-ageing` | Sets the MAC address ageing time for the bridge in seconds when the running version is STP, but not RSTP or MSTP. The default is 1800.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in VRSTP mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}. |
-| `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. The bridge forward delay must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. <br>{{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.|
+| `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.|
+| `mstpctl-ageing` | Sets the MAC address ageing time for the bridge in seconds when the running version is STP, but not RSTP or MSTP. The default is 1800.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}. |
+| `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. The bridge forward delay must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.|
 | `mstpctl-maxhops` | Sets the maximum hops for the bridge. The default is 20.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
 | `mstpctl-txholdcount` | Sets the bridge transmit hold count. The default value is 6 seconds.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
-| `mstpctl-forcevers` | Sets the force STP version of the bridge to either RSTP/STP. The default is RSTP.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
+| `mstpctl-forcevers` | Sets the force STP version of the bridge to either RSTP or STP. The default is RSTP.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
 | `mstpctl-hello` | Sets the bridge hello time in seconds. The default is 2.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
 | `mstpctl-portpathcost` | Sets the port cost of the interface in the bridge. The default is 0.<br>`mstpd` supports only long mode; 32 bits for the path cost.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file. |
 | `mstpctl-portp2p` | Enables or disables point-to-point detection mode of the interface in the bridge.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|

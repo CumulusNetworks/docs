@@ -5,7 +5,7 @@ weight: 630
 toc: 4
 ---
 
-Upon installation, lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. From the inventory list, you can assign access profiles and roles to switches, and select switches for software installation and upgrades.
+Upon installation, lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. From the inventory list, you can assign access profiles and roles to switches, and select switches for software installation and upgrades. You can also decommission switches, which removes them from the NetQ database.
 
 ## View the LCM Switch Inventory
 
@@ -46,8 +46,8 @@ For additional details, refer to the {{<link title="lcm/#netq-lcm-show-switches"
 This list is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
 - Verify the missing switches are reachable using `ping`
-- Verify the NetQ Agent is fresh and version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} **Menu**, then click **Agents** or run `netq show agents`)
 - {{<link title="Install NetQ Agents" text="Install NetQ on the switch">}}
+- Verify the NetQ Agent is fresh and running version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} **Menu**, then click **Agents** or run `netq show agents`)
 - {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)
 
 ## Attach a Profile to a Switch
@@ -272,6 +272,50 @@ To assign multiple switches to the same role, separate the hostnames with commas
 cumulus@switch:~$ netq lcm add role exit switches border01,border02
 ```
 
+{{</tab>}}
+
+{{</tabs>}}
+
+## Decommission a Switch with LCM
+
+Decommissioning the switch or host removes information about the switch or host from the NetQ database. When the NetQ Agent restarts at a later date, it sends a connection request back to the database, so NetQ can monitor the switch or host again.
+
+{{<tabs "TabID22" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. From the LCM dashboard, navigate to the **Switch management** tab.
+
+2. On the Switches card, select **Manage**.
+
+3. Select the devices to decommission, then select **Decommission switch** above the table:
+
+{{<figure src="/images/netq/decom-switch-box-450.png" alt="" width="600">}}
+
+If you attempt to decommission a switch that is assigned a default, unmodified access profile, the process will fail. {{<link title="Credentials and Profiles" text="Create a unique access profile">}} (or update the default with unique credentials), then {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="attach the profile">}} to the switch you want to decommission.
+
+4. Confirm the devices you want to decommission.
+
+5. Wait for the decommission process to complete, then select **Done**.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+To decommission a switch or host:
+
+1. On the given switch or host, stop and disable the NetQ Agent service:
+
+    ```
+    cumulus@switch:~$ sudo systemctl stop netq-agent
+    cumulus@switch:~$ sudo systemctl disable netq-agent
+    ```
+
+2. On the NetQ appliance or VM, decommission the switch or host:
+
+    ```
+    cumulus@netq-appliance:~$ netq decommission <hostname-to-decommission>
+    ```
 {{</tab>}}
 
 {{</tabs>}}

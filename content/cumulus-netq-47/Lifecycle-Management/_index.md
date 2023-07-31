@@ -19,7 +19,6 @@ Using the NetQ UI or CLI, lifecycle management (LCM) allows you to:
 - {{<link title="NetQ and Network OS Images" text="Manage Cumulus Linux and NetQ images">}}
 - {{<link title="Credentials and Profiles" text="Configure switch access credentials and profiles">}} (required for installations and upgrades)
 - {{<link title="Network Snapshots" text="Create snapshots">}} of the network state at various times
-- {{<link title="Decommission Switches" text="Decommission switches">}}
 - View a history of upgrade attempts
 
 ## Access Lifecycle Management in the UI

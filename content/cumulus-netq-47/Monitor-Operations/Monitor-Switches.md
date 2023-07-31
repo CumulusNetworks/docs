@@ -161,4 +161,3 @@ Select **View more** to open a dashboard that displays the full range of ports c
 
 - {{<link title="Switch Inventory">}}
 - {{<link title="Switch Management" text="Switch Lifecycle Management">}}
-- {{<link title="Decommission Switches">}}

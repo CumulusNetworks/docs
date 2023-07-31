@@ -116,6 +116,7 @@ To enable the NVUE REST API:
 cumulus@switch:~$ nv set system api state enabled
 cumulus@switch:~$ nv set system api port 8888
 cumulus@switch:~$ nv set system api listening-address localhost
+cumulus@switch:~$ nv config apply
 ```
 
 To disable the NVUE REST API, run the `nv set system api state disabled` command.
@@ -137,8 +138,9 @@ To show REST API port configuration, state (enabled or disabled), and connection
 cumulus@switch:~$ nv show system api
                   operational     applied
 --------------    -----------     -------
-port              8888            8888
-state             enabled         enabled
+port                 8888         8888     
+state                enabled      enabled  
+[listening-address]  localhost    localhost
 connections
   accepted        31
   active          1

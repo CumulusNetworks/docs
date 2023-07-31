@@ -123,7 +123,7 @@ You can configure the root account to use SSH to log into the switch and use:
 {{< tabs "TabID118 ">}}
 {{< tab "NVUE Commands ">}}
 
-To allow the root account to use SSH to log in with a password:
+To allow the root account to use SSH to log into the switch with a password:
 
 ```
 cumulus@switch:~$ nv set system ssh-server permit-root-login enabled
@@ -132,14 +132,14 @@ cumulus@switch:~$ nv config apply
 
 Run the `nv set system ssh-server permit-root-login disabled` command to disable SSH login for the root account with a password.
 
-To allow the root account to use SSH to log in using authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive:
+To allow the root account to use SSH to log into the switch and authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive:
 
 ```
 cumulus@switch:~$ nv set system ssh-server permit-root-login prohibit-password
 cumulus@switch:~$ nv config apply
 ```
 
-To allow the root account to use SSH to log into the switch and to only run a set of commands defined in the `authorized_keys` file:
+To allow the root account to use SSH to log into the switch and only run a set of commands defined in the `authorized_keys` file:
 
 ```
 cumulus@switch:~$ nv set system ssh-server permit-root-login forced-commands-only

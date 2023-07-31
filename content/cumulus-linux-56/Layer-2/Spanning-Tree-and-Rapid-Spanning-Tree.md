@@ -661,7 +661,6 @@ The IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" te
 | Parameter | Description |
 |-----------|----------|
 | `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.|
-| `mstpctl-ageing` | Sets the MAC address ageing time for the bridge in seconds when the running version is STP, but not RSTP or MSTP. The default is 1800.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}. |
 | `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. The bridge forward delay must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.|
 | `mstpctl-maxhops` | Sets the maximum hops for the bridge. The default is 20.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
 | `mstpctl-txholdcount` | Sets the bridge transmit hold count. The default value is 6 seconds.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
@@ -676,20 +675,44 @@ Be sure to run the `sudo ifreload -a` command after you set the STP parameter in
 
 ## Troubleshooting
 
-To show STP status for a bridge:
-
 {{< tabs "TabID584 ">}}
 {{< tab "NVUE Commands ">}}
 
+To the show STP status for a bridge:
+
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp
-          operational  applied  description
---------  -----------  -------  ---------------------------------------------------------------------
-priority  32768        32768    stp priority. The priority value must be a number between 4096 and...
-state     up           up       The state of STP on the bridge
+Bridge
+    mode    : rstp
+    priority: 8192
+    state   : up
+Bridge ID                priority    : 8192    mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 8192    mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 2s      forward-delay     : 15s                 max-age    : 20s
+Max Hops                 max-hops    : 20      
+Topology Change Network  count       : 0       time since change : 46439s
+                         change port : None    last change port  : None
+
+Interface info: swp1
+---------------------------------
+port-id            : 8.001
+role               : Designated
+state              : forwarding
+port-path-cost     : 20000
+fdb-flush          : no
+disputed           : no
+
+Interface info: swp2
+---------------------------------
+port-id            : 8.002
+role               : Designated
+state              : forwarding
+port-path-cost     : 20000
+fdb-flush          : no
+disputed           : no
 ```
 
-To show STP information for bridge domain VLANs:
+To show STP information for the VLANs in a bridge:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp vlan
@@ -718,7 +741,7 @@ Topology Change Network  count       : 1       time since change : 1147s
                          change port : swp2    last change port  : swp1
 ```
 
-To show STP information for a specific bridge domain VLAN:
+To show STP information for a specific bridge VLAN:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp vlan 10
@@ -751,7 +774,7 @@ fdb-flush          : no
 disputed           : no
 ```
 
-To show STP information for a bridge domain port:
+To show STP information for the ports in a bridge:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp port
@@ -776,7 +799,7 @@ network-port    : no          auto-edge-port       : yes
 mcheck          : no          admin-port-path-cost : 0
 ```
 
-To show STP information for a specific bridge domain port:
+To show STP information for a specific bridge port:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp port swp1
@@ -789,7 +812,7 @@ network-port    : no          auto-edge-port       : yes
 mcheck          : no          admin-port-path-cost : 0
 ```
 
-To show STP counters for a bridge domain:
+To show STP counters for a bridge:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp counters

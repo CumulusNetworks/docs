@@ -5,7 +5,7 @@ weight: 340
 toc: 5
 ---
 
-Installing NetQ telemetry agents on your hosts with NVIDIA ConnectX adapters and NVIDIA Bluefield DPUs allows you to track inventory data and statistics across devices. The DOCA Telemetry Service (DTS) is the agent that runs on hosts and DPUs to collect data.
+Installing NetQ telemetry agents on your hosts with NVIDIA ConnectX adapters and {{<exlink url="https://www.nvidia.com/en-us/networking/products/data-processing-unit/" text="NVIDIA BlueField data processing units">}} (DPUs) allows you to track inventory data and statistics across devices. The DOCA Telemetry Service (DTS) is the agent that runs on hosts and DPUs to collect data.
 
 {{<notice note>}}
 NIC telemetry for ConnectX adapters is supported only for on-premises NetQ deployments.
@@ -15,7 +15,7 @@ NIC telemetry for ConnectX adapters is supported only for on-premises NetQ deplo
 
 To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="DOCA Telemetry Service">}} container on a host with ConnectX adapters, perform the following steps:
 
-1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC">}}. Select the **Get Container** menu and copy the image path.
+1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select the **Get Container** menu and copy the image path.
 
 2. Run the DTS container with Docker on the host. Use the image path obtained in the previous step for the **DTS_IMAGE** variable and configure the IP address of your NetQ server for the `-i` option:
 
@@ -71,7 +71,7 @@ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz
 
 To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="DOCA Telemetry Service">}} container on a DPU, perform the following steps:
 
-1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC">}}. Select the **Get Container** menu and copy the image path.
+1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select the **Get Container** menu and copy the image path.
 
 2. Retrieve the container `yaml` configuration file onto the host. Use the path {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="specified in the NGC instructions">}}. Copy it to `/etc/kubelet.d/doca_telemetry_standalone.yaml`:
 

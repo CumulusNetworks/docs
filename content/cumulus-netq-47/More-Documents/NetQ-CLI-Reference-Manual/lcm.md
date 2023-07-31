@@ -172,6 +172,8 @@ netq lcm add netq-config config-profile-name <text-config-profile>
 
 ### Sample Usage
 
+The following example creates a configuration called 'test-set-all.' The agent is configured not to consume more than 60% of CPU resources, the logging level is set to error, the VRF is set to management, and WJH events are enabled.
+
 ```
 cumulus@switch:~$ netq lcm add netq-config config-profile-name test-set-all access-key KEY secret-key SKEY cpu-limit 60 log-level error vrf mgmt wjh enable
 NetQ config profile test-set-all successfully added
@@ -941,7 +943,7 @@ fw2               192.168.200.62            44:38:39:00:01:8E  x86_64   4.2.0   
 
 ## netq lcm show netq-config
 
-Displays the configuration of all NetQ configuration profiles created in the NetQ UI, including the name and identifier, which is the default profile, VRF used, whether you enabled What Just Happened or CPU usage limiting, and logging level.
+Displays the configuration of all NetQ configuration profiles, including the name and identifier, the default profile, VRF, What Just Happened status, CPU usage limit, and logging level.
 
 ### Syntax
 
@@ -952,9 +954,7 @@ netq lcm show netq-config
 
 ### Required Arguments
 
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| netq-config | NA | Display results of discovery job with this identifier |
+None
 
 ### Options
 
@@ -980,7 +980,8 @@ a0dd
 
 ### Related Commands
 
-None
+- `netq lcm add netq-config`
+- `netq lcm del netq-config`
 
 - - -
 

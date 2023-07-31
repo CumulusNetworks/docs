@@ -1,7 +1,7 @@
 ---
 title: Switch Management
 author: NVIDIA
-weight: 650
+weight: 630
 toc: 4
 ---
 

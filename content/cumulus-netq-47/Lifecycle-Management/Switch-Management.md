@@ -58,7 +58,7 @@ After creating {{<link title="Credentials and Profiles" text="access profiles">}
 
 {{<tab "NetQ UI" >}}
 
-1. On the Switches card, select **Manage**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**. On the Switches card, select **Manage**.
 
 2. The table displays a list of switches. The **Access type** column specifies whether the type of authentication is basic or SSH. The **Profile name** column displays the access profile that is assigned to the switch.
 

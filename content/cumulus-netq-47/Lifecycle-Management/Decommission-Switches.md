@@ -17,7 +17,7 @@ Decommissioning the switch or host removes information about the switch or host 
 
 {{%/notice%}}
 
-## Decommission a Switch
+## Decommission a Switch with LCM
 
 {{<tabs "TabID22" >}}
 

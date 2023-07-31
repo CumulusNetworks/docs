@@ -535,6 +535,7 @@ cumulus@switch:~$ nv set bridge domain br_default untagged 1
 
 ## Resources
 
-- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-Snippets/" text="NVIDIA User Experience Documentation">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-55/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVIDIA User Experience Documentation">}}
 - {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/guides/production-ready-automation/" text="Production Ready Automation">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/guides/Data-Center-Network-Automation-Ansible-Deployment-Guide/" text="Data Center Network Automation with Ansible">}}
 - {{<exlink url="https://docs.nvidia.com/networking-ethernet-soft" text="NVUE API Swagger Documentation">}}

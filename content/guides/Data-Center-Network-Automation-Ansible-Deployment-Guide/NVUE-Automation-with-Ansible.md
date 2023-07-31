@@ -1,5 +1,5 @@
 ---
-title: Automation with Ansible
+title: NVUE Automation with Ansible
 author: NVIDIA
 weight: 30
 product: Technical Guides

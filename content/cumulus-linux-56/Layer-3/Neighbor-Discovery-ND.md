@@ -429,7 +429,7 @@ interface swp1
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!--
 ## Global Timer Settings
 
 Cumulus Linux provides timer settings for neighbor entry garbage collection. You can configure timer settings either with NVUE commands or by editing the `/etc/sysctl.d/neigh.conf` file.
@@ -508,7 +508,7 @@ effective  55000
 maximum    70000               
 minimum    200     
 ```
-
+-->
 ## Disable ND
 
 To disable ND, run the NVUE `nv set interface <interface> ip neighbor-discovery enable off` command:

@@ -514,7 +514,7 @@ If you install the modified installation image and specify installer command lin
 Secure Boot validates each binary image loaded during system boot with key signatures that correspond to a stored trusted key in firmware.
 
 {{%notice note%}}
-Secure Boot is only on the NVIDIA SN3700C-S switch.
+Secure Boot is only on the NVIDIA SN3700C-S switch and switches with the Spectrum-4 ASIC.
 {{%/notice%}}
 <!-- vale off -->
 Secure Boot settings are in the BIOS Security menu. To access BIOS, press `Ctrl+B` through the serial console during system boot while the BIOS version prints:

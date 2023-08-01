@@ -58,7 +58,7 @@ A public key is a text file with three space separated fields:
 | `<key string>` | A base64 format string for the key. |
 | `<comment>` | A single word string. By default, this is the name of the system that generated the key. NVUE uses the `<comment>` field as the key name. |
 
-The procedure to install an authorized SSH key is different based on whether the user is an NVUE managed user, a non-NVUE managed user, or the root user.
+The procedure to install an authorized SSH key is different based on whether the user is an NVUE managed user, a non-NVUE managed user, or the root user. To install an authorized SSH key for a root user, see {{<link url="#root-user-settings" text="Root User Settings">}}.
 
 #### NVUE Managed User
 
@@ -109,9 +109,7 @@ The following example adds an authorized key file from the account `cumulus` on 
    Last login: Thu Sep 29 16:56:54 2016
    ```
 
-## Permission Settings
-
-### Root User
+## Root User Settings
 
 By default, the root account cannot use SSH to log in.
 
@@ -162,7 +160,7 @@ PermitRootLogin yes
 
 Set the `PermitRootLogin` command to `no` to disable SSH login for the root account with a password.
 
-To allow the root account to use SSH to log in using authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive:
+To allow the root account to use SSH to log in and authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive:
 
 1. Create an `.ssh` directory for the root user.
 
@@ -190,7 +188,7 @@ To allow the root account to use SSH to log in using authenticate with a public 
 {{< /tab >}}
 {{< /tabs >}}
 
-### Allow and Deny Users
+## Allow and Deny Users
 
 {{< tabs "TabID187 ">}}
 {{< tab "NVUE Commands ">}}
@@ -395,7 +393,7 @@ Port 443
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example configures the number of minutes a session can be inactive before the SSH server terminates the connection to 5 and the maximum number of SSH sessions allowed per TCP connection to 5:
+The following example configures the amount of time a session can be inactive before the SSH server terminates the connection to 5 minutes (300 seconds) and the maximum number of SSH sessions allowed per TCP connection to 5:
 
 {{< tabs "TabID249 ">}}
 {{< tab "NVUE Commands ">}}
@@ -409,7 +407,9 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit `Authentication` section of the `/etc/ssh/sshd_config` file and change the `???` parameter to 5 and the `MaxSessions` parameter to 5:
+Edit `Authentication` section of the `/etc/ssh/sshd_config` file.
+- To configure the amount of time (in seconds) a session can be inactive before the SSH server terminates the connection, change the `ClientAliveInterval` parameter. 
+- To configure the maximum number of SSH sessions allowed per TCP connection, change the `MaxSessions` parameter.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
@@ -421,6 +421,21 @@ PermitRootLogin prohibit-password
 #StrictModes yes
 MaxAuthTries 10
 MaxSessions 5
+...
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+X11Forwarding yes
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PermitTTY yes
+PrintMotd no
+#PrintLastLog yes
+#TCPKeepAlive yes
+#PermitUserEnvironment no
+#Compression delayed
+ClientAliveInterval 300
+...
 ```
 
 {{< /tab >}}

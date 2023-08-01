@@ -4542,7 +4542,7 @@ None
 Show all TCA event configurations:
 
 ```
-cumulus@switch:~$ netq show tca:
+cumulus@switch:~$ netq show tca
 Matching config_tca records:
 TCA Name                     Event Name           Scope                      Severity Channel/s          Active Threshold          Unit     Threshold Type Suppress Until
 ---------------------------- -------------------- -------------------------- -------- ------------------ ------ ------------------ -------- -------------- ----------------------------

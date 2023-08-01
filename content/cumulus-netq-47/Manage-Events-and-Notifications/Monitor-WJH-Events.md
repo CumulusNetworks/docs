@@ -270,7 +270,7 @@ Before configuring the NetQ Agent to filter WJH drops, you must generate AuthKey
 
 {{<tab "NetQ CLI">}}
 
-To configure the NetQ Agent to filter WJH drops, run:
+To configure the NetQ Agent to filter WJH drops, run {{<link title="config/#netq-config-add-agent-wjh-drop-filter" text="netq config add agent wjh-drop-filter">}}. Use tab completion to view the available drop type, drop reason, and severity values.
 
 ```
 netq config add agent wjh-drop-filter 
@@ -278,64 +278,15 @@ netq config add agent wjh-drop-filter
    [drop-reasons <text-wjh-drop-reasons>] 
    [severity <text-drop-severity-list>]
 ```
-
-Use tab complete to view the available drop type, drop reason, and severity values. To display filter configurations, run {{<link title="config/#netq-config-show-agent" text="netq config show agent wjh-drop-filter">}}. To delete a filter, run {{<link title="config/#netq-config-del-agent-wjh-drop-filter" text="netq config del agent wjh-drop-filter">}}.
-
-<!-- for 4.7, need to move most of these examples to the command line reference-->
-
-The following example configures the NetQ Agent to ignore all L1 drops:
-
-```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type l1
-```
-
 To configure the NetQ Agent to ignore WJH drops based on IP addresses (both source and destination), run:
 
 ```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips [<text-wjh-ips>]
+netq config add agent wjh-drop-filter 
+   ips [<text-wjh-ips>]
 ```
 
-The following example configures the NetQ Agent to ignore all drops that contain the IP address 192.168.0.15 as a source or destination IP.
+To display filter configurations, run {{<link title="config/#netq-config-show-agent" text="netq config show agent wjh-drop-filter">}}. To delete a filter, run {{<link title="config/#netq-config-del-agent-wjh-drop-filter" text="netq config del agent wjh-drop-filter">}}.
 
-```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15
-```
-
-This example configures the NetQ Agent to suppress all drops that contain 192.168.0.15 or 192.168.0.45 as source or destination IPs (as a comma-separated list).
-
-``` 
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15,192.168.0.45
-```
-
-This example configures the NetQ Agent to ignore all drops that source/destination IP include in 192.168.0.15/16 prefix network.
- 
-```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15/16
-```
-
-To remove the source/destination IP address filter, run:
-
-```
-cumulus@switch:~$netq config del agent wjh-drop-filter ips [<text-wjh-ips>]
-```
-
-This example remove NetQ Agent configuration from drop all drops that source/destination IP is 192.168.0.15.
-
-```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15
-```
- 
-This example remove NetQ Agent configuration from drop all drops that source/destination IP is 192.168.0.15 or 192.168.0.45.
-
-```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15,192.168.0.45
-```
- 
-This example remove all IPs from NetQ Agent configuration drop
-
-```
-cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips
-``` 
 {{</tab>}}
 
 {{</tabs>}}

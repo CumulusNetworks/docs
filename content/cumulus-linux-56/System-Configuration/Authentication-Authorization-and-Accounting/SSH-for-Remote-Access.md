@@ -115,7 +115,7 @@ The following example adds an authorized key file from the account `cumulus` on 
 
 By default, the root account cannot use SSH to log in.
 
-You can configure the root account to use SSH to log into the switch and use:
+You can configure the root account to use SSH to log into the switch with:
 - A password
 - A public key or any allowed mechanism that is *not* a password and not keyboardinteractive. This is the default setting.
 - A set of commands defined in the `authorized_keys` file.

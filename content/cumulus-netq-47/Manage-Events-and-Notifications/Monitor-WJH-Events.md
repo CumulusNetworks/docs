@@ -133,6 +133,16 @@ netq [<hostname>] show wjh-drop <text-drop-type>
     [around <text-time>] 
     [json]
 ```
+An additional command is available that aggregates WJH L1 errors that occur on the same ingress port.
+```
+netq [<hostname>] show wjh-drop l1 
+    [ingress-port <text-ingress-port>] 
+    [severity <text-severity>]
+    [reason <text-reason>] 
+    [port-aggregate <text-port-aggregate>] 
+    [between <text-time> and <text-endtime>] 
+    [around <text-time>] [json]
+```
 
 This example uses the first form of the command to show drops on switch leaf03 for the past week.
 

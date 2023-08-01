@@ -16,7 +16,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 ### Platforms
 
-- NVIDIA SN5600 (800G Spectrum-4). This switch only supports 1G on the bonus port.
+- NVIDIA SN5600 (800G Spectrum-4) - does not support 1G
 - NVIDIA SN3750-SX (200G Spectrum-2) is now generally available
 
 ### New Features and Enhancements
@@ -26,19 +26,19 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Multiple adaptive routing profiles">}}
   - {{<link title="Unequal Cost Multipath with BGP Link Bandwidth/#ucmp-and-adaptive-routing" text="BGP UCMP support">}}
   - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="VXLAN interface support">}}
+- {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST with VLAN-aware bridges ">}}
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
-- {{<link url="Monitoring-System-Hardware" text="Fan airflow direction">}} now shows in NVUE `nv show platform environment fan` command output and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
+- {{<link url="Monitoring-System-Hardware" text="Fan airflow direction">}} in NVUE `nv show platform environment fan` and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
 - {{<link url="Precision-Time-Protocol-PTP#clock-correction-mode" text="PTP one-step clock correction mode">}}
 - NVUE enhancements include:
-  - {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST with VLAN-aware bridges ">}}
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
-  - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and Disable external API access">}}
-  - Additional {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors
+  - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and disable external API access">}}
+  - {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="Clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors
   - {{<link url="Protocol-Independent-Multicast-PIM/#clear-pim-state-and-statistics" text="Clear PIM state and statistics">}} commands
   - {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="Clear EVPN duplicate address">}} commands
-  - {{<link url="Protocol-Independent-Multicast-PIM/#pim-show-commands" text="IGMP group show commands ">}}: `nv show interface <interface-id> ip igmp group` and `nv show interface <interface-id> ip igmp group <static-group-id>`
-  - {{<link url="VLAN-aware-Bridge-Mode/#troubleshooting" text="Bridge show commands">}} to see the ports mapped to a bridge and the VLANs mapped to bridge ports
+  - {{<link url="Protocol-Independent-Multicast-PIM/#pim-show-commands" text="Show IGMP group commands ">}}
+  - {{<link url="VLAN-aware-Bridge-Mode/#troubleshooting" text="Show commands">}} to see the ports mapped to a bridge and the VLANs mapped to bridge ports
   - Changes to `nv show platform` command outputs to improve readability
   - EVPN multihoming configuration with NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
   <!-- - Command to set the time -->

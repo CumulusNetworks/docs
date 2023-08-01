@@ -211,6 +211,13 @@ restart-time                  120                Amount of time taken to restart
 stale-routes-time             360                Specifies an upper-bounds on how long we retain routes from a resta...
 ```
 
+{{%notice note%}}
+If you run NVUE show commands and the corresponding FRR routing daemons are not running on the switch, you either see an error message or an empty value; for example:
+- If PIM and IGMP are disabled when you run the `nv show interface <interface> ip igmp -o json` command, NVUE returns `Error: The requested item does not exist` because the PIM daemon is not running in FRR.
+- If PIM is enabled but IGMP is disabled when you the `nv show interface <interface> ip igmp group -o json` command, NVUE returns empty { } as a response.
+- If OSPF is disabled when you run the `nv show vrf <vrf-id> ospf` commands, NVUE returns `Error: The requested item does not exist` because the OSPF deamon is not running in FRR.  
+{{%/notice%}}
+
 ### Net Show commands
 
 In addition to the `nv show` commands, Cumulus Linux continues to provide a subset of the NCLU `net show` commands. Use these commands to get additional views of various parts of your network configuration.

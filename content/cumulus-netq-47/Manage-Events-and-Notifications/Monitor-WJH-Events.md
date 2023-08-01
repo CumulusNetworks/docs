@@ -242,9 +242,9 @@ Refer to the {{<link title="config/#netq-config-add-agent-wjh-threshold" text="c
 
 ## Suppress Events with Filters
 
-You can create filters to prevent WJH from generating events. Filters can be applied to a drop category (such as layer 1 drops or buffer drops), a drop reason (for example, "decapsulation error" or "multicast MAC mismatch"), or according to severity level (notice, warning, or error). For a complete list of drop types, reasons, and severity levels, refer to the {{<link title="WJH Events Reference">}}.
+You can create filters with the UI or CLI to prevent WJH from generating events. Filters can be applied to a drop category (such as layer 1 drops or buffer drops), a drop reason (for example, "decapsulation error" or "multicast MAC mismatch"), or according to severity level (notice, warning, or error). With the CLI, you can create filters to suppress events according to their source or destination IP addresses. 
 
-You can use the CLI to create filters to suppress events related to source and destination IP addresses.
+For a complete list of drop types, reasons, and severity levels, refer to the {{<link title="WJH Events Reference">}}.
 
 {{<tabs "WJH Filters">}}
 

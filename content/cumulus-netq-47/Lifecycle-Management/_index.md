@@ -4,22 +4,23 @@ author: NVIDIA
 weight: 900
 toc: 3
 ---
-{{<notice info>}}
-
-Lifecycle management is enabled for on-premises deployments by default and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
-
-Only administrative users can perform the tasks described in this topic.
-
-{{</notice>}}
 
 Using the NetQ UI or CLI, lifecycle management (LCM) allows you to:
 
-- {{<link title="Switch Management" text="Manage switch inventory and roles">}}
+- {{<link title="Switch Management" text="Manage switch inventory">}}
 - Install or {{<link title="Upgrade NetQ Agent" text="upgrade NetQ (Agents and CLI)">}} and {{<link title="Upgrade Cumulus Linux" text="Cumulus Linux">}} on switches running Cumulus Linux
 - {{<link title="NetQ and Network OS Images" text="Manage Cumulus Linux and NetQ images">}}
 - {{<link title="Credentials and Profiles" text="Configure switch access credentials and profiles">}} (required for installations and upgrades)
 - {{<link title="Network Snapshots" text="Create snapshots">}} of the network state at various times
 - View a history of upgrade attempts
+
+{{<notice note>}}
+
+Lifecycle management is enabled for on-premises deployments and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
+
+Only administrative users can perform the tasks described in this topic.
+
+{{</notice>}}
 
 ## Access Lifecycle Management in the UI
 

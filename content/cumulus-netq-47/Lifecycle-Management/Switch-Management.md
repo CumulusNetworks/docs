@@ -35,9 +35,7 @@ netq lcm show switches
     [netq-version <text-netq-version>]
     [json]
 ```
-Use the `version` options to display switches with a given OS version, X.Y.Z.
-
-For additional details, refer to the {{<link title="lcm/#netq-lcm-show-switches" text="command line reference">}}.
+Use the `version` options to display switches with a given OS version. For additional details, refer to the {{<link title="lcm/#netq-lcm-show-switches" text="command line reference">}}.
 
 {{</tab>}}
 
@@ -46,6 +44,7 @@ For additional details, refer to the {{<link title="lcm/#netq-lcm-show-switches"
 This list is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
 - Verify the missing switches are reachable using `ping`
+- Run a {{<link title="Upgrade Cumulus Linux/#upgrade-cumulus-linux-on-switches-without-netq-agent-installed" text="switch discovery">}}, which locates all switches running Cumulus Linux in your network's fabric
 - {{<link title="Install NetQ Agents" text="Install NetQ on the switch">}}
 - Verify the NetQ Agent is fresh and running version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} **Menu**, then click **Agents** or run `netq show agents`)
 - {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)

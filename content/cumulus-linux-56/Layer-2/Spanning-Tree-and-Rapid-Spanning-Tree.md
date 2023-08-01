@@ -119,13 +119,14 @@ To revert the mode to the default setting (RSTP), run the `sudo mstpctl clearmod
 
 You can set the spanning tree priority for a VLAN. The priority must be a number between 4096 and 61440.
 
-The following example sets the tree priority for VLAN 10 to 4096:
+The following example sets the tree priority for VLAN 10 to 4096 and VLAN 20 to 61440:
 
 {{< tabs "TabID520 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 bridge-priority 4096
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 20 bridge-priority 61440
 cumulus@switch:~$ nv config apply
 ```
 
@@ -146,7 +147,7 @@ iface br_default
     bridge-pvid 1
     bridge-stp yes
     mstpctl-pvrst-mode yes
-    bridge-stp-vlan-priority 10=4096
+    bridge-stp-vlan-priority 10=4096 20=61440
 ...
 ```
 
@@ -160,10 +161,11 @@ cumulus@switch:~$ ifreload -a
 A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
 {{%/notice%}}
 
-To set the tree priority for VLAN 10 to 4096 at runtime:
+To set the tree priority for VLAN 10 to 4096 and VLAN 20 to 61440 at runtime:
 
 ```
 cumulus@switch:~$ sudo mstpctl setvlanprio br_default 10 4096
+cumulus@switch:~$ sudo mstpctl setvlanprio br_default 20 61440
 ```
 
 {{< /tab >}}

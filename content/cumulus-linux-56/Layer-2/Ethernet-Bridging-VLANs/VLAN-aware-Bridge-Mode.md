@@ -646,7 +646,7 @@ cumulus@switch:~$ sudo bridge fdb show
 
 ## Troubleshooting
 
-To show the bridge domain to port mapping, run the NVUE `nv show bridge port` command or the Linux `bridge link show` command:
+To show the ports mapped to each bridge, run the NVUE `nv show bridge port` command or the Linux `bridge link show` command:
 
 ```
 cumulus@switch:~$ nv show bridge port
@@ -655,7 +655,7 @@ domain                       port
 br_default      swp1,swp2,swp3
 ```
 
-To show port information for a bridge domain, run the NVUE `nv show bridge domain <domain-name> port` command:
+To show port information for a specific bridge, run the NVUE `nv show bridge domain <domain-name> port` command:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default port
@@ -666,7 +666,7 @@ swp2  flood,learning,mcast_flood  forwarding
 swp3  flood,learning,mcast_flood  forwarding
 ```
 
-To show the bridge domain to port VLAN mapping, run the NVUE `nv show bridge port-vlan` command or the Linux `bridge vlan show` command:
+To show the VLANs mapped to each bridge port, run the NVUE `nv show bridge port-vlan` command or the Linux `bridge vlan show` command:
 
 ```
 cumulus@switch:~$ nv show bridge port-vlan
@@ -683,7 +683,7 @@ br_default    swp1              10    untagged
                                 30      tagged
 ```
 
-To show the bridge port VLAN information for a bridge domain, run the NVUE `nv show bridge domain <domain-name> port vlan` command or the Linux `bridge -d vlan show` command:
+To show VLAN information for a specific bridge, run the NVUE `nv show bridge domain <domain-name> port vlan` command or the Linux `bridge -d vlan show` command:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default port vlan
@@ -698,26 +698,6 @@ swp3  1     untagged   forwarding
       10    tagged     forwarding
       20    tagged     forwarding
       30    tagged     forwarding
-```
-
-To show the bridge domain to VLAN mapping, run Linux `bridge vlan show` command:
-
-```
-cumulus@switch:~$ bridge vlan show
-port     vlan ids
-swp1     10 PVID Egress Untagged
-
-swp2     1 PVID Egress Untagged
-   10
-   20
-   30
-
-swp3     1 PVID Egress Untagged
-   10
-   20
-   30
-
-br_default  1 PVID Egress Untagged
 ```
 
 ## Example Configuration

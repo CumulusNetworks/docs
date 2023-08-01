@@ -644,6 +644,82 @@ cumulus@switch:~$ sudo bridge fdb show
 12:12:12:12:12:12 dev bridge master bridge permanent
 ```
 
+## Troubleshooting
+
+To show the bridge domain to port mapping, run the NVUE `nv show bridge port` command or the Linux `bridge link show` command:
+
+```
+cumulus@switch:~$ nv show bridge port
+domain                       port             
+--------        ------------------------------
+br_default      swp1,swp2,swp3
+```
+
+To show port information for a bridge domain, run the NVUE `nv show bridge domain <domain-name> port` command:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default port
+port  flags                       state     
+----  --------------------------  ----------
+swp1  flood,learning,mcast_flood  forwarding
+swp2  flood,learning,mcast_flood  forwarding
+swp3  flood,learning,mcast_flood  forwarding
+```
+
+To show the bridge domain to port VLAN mapping, run the NVUE `nv show bridge port-vlan` command or the Linux `bridge vlan show` command:
+
+```
+cumulus@switch:~$ nv show bridge port-vlan
+domain        port            vlan   tag-state
+-------    ---------     ---------   ---------
+br_default    swp1              10    untagged
+              swp2               1    untagged
+                                10      tagged
+                                20      tagged
+                                30      tagged
+              swp3               1    untagged
+                                10      tagged
+                                20      tagged
+                                30      tagged
+```
+
+To show the bridge port VLAN information for a bridge domain, run the NVUE `nv show bridge domain <domain-name> port vlan` command or the Linux `bridge -d vlan show` command:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default port vlan
+port  vlan  tag-state  fwd-state 
+----  ----  ---------  ----------
+swp1  10    untagged   forwarding
+swp2  1     untagged   forwarding
+      10    tagged     forwarding
+      20    tagged     forwarding
+      30    tagged     forwarding
+swp3  1     untagged   forwarding
+      10    tagged     forwarding
+      20    tagged     forwarding
+      30    tagged     forwarding
+```
+
+To show the bridge domain to VLAN mapping, run Linux `bridge vlan show` command:
+
+```
+cumulus@switch:~$ bridge vlan show
+port     vlan ids
+swp1     10 PVID Egress Untagged
+
+swp2     1 PVID Egress Untagged
+   10
+   20
+   30
+
+swp3     1 PVID Egress Untagged
+   10
+   20
+   30
+
+br_default  1 PVID Egress Untagged
+```
+
 ## Example Configuration
 
 The following example configuration contains an access port (swp51), a trunk carrying all VLANs (swp3 thru swp48), and a trunk pruning some VLANs from a switch port (swp2).
@@ -793,9 +869,8 @@ iface br_default
 
 ### Spanning Tree Protocol (STP)
 
-- STP runs on a per-bridge basis.
+- By default, STP runs in RSTP mode on a per-bridge basis. To configure STP to run in PVRST mode, where each VLAN runs its own instance of STP, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.
 - `mstpd` remains the user space protocol daemon.
-- Cumulus Linux supports {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Rapid Spanning Tree Protocol (RSTP)">}}.
 
 ### VLAN Translation
 

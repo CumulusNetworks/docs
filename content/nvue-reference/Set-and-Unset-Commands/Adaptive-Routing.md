@@ -43,7 +43,7 @@ cumulus@switch:~$ nv set interface swp1 router adaptive-routing enable on
 ## <h>nv set interface \<interface-id\> router adaptive-routing link-utilization-threshold</h>
 
 Configures the link utilization threshold percentage at which adaptive routing considers the port congested. You can specify a value between 1 and 100. The default setting is `70`.
-<!--
+<!-- CL56
 {{%notice note%}}
 Cumulus Linux 5.6 and later allows a value between 1 and 200.
 {{%/notice%}}
@@ -88,7 +88,7 @@ cumulus@switch:~$ nv set router adaptive-routing enable on
 <!-- CL56
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router adaptive-routing link-utilization-threshold
+## <h>nv set router adaptive-routing link-utilization-threshold</h>
 
 Turns on link utilization. The default setting is off. When link utilization is on, the default link utilization threshold percentage for an adaptive routing interface is 70. YOu can change the threshold percentage with the `nv set interface <interface> router adaptive-routing link-utilization-threshold` command.
 
@@ -110,7 +110,7 @@ cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set router adaptive-routing profile
+## <h>nv set router adaptive-routing profile</h>
 
 Applies the adaptive routing profile you want to use. Cumulus Linux provides these adaptive routing profiles:
 - `ar-profile-1` is the default profile for a switch with the Spectrum-2 and Spectrum-3 ASIC.

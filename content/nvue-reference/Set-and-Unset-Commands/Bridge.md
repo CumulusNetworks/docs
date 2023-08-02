@@ -160,6 +160,30 @@ cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier ena
 
 Configures STP on the bridge domain.
 
+<!-- CL56
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> stp mode</h>
+
+Configures STP mode on the bridge. You can specify PVRST or RSTP mode. RSTP is the default mode.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp mode pvrst
+```
+-->
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set bridge domain \<domain-id\> stp priority</h>
@@ -203,6 +227,99 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set bridge domain br_default stp state up
 ```
+<!-- CL56
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> stp vlan <vid> bridge-priority</h>
+
+Configures the spanning tree priority for a VLAN when in PVRST mode. You can set a value between 4096 and 61440.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The name of the bridge domain. |
+| `<vid>`   |  The VLAN identifier.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 bridge-priority 4096
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> stp vlan <vid> hello-time</h>
+
+Configures the hello timer for a VLAN when in PVRST mode. The hello timer sets how often to broadcast hello messages to other switches. You can set a value between 1 and 10 seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The name of the bridge domain. |
+| `<vid>`   |  The VLAN identifier.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 hello-time 4 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> stp vlan <vid> forward-delay</h>
+
+Configures the forward delay for a VLAN when in PVRST mode. The forward delay sets the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The name of the bridge domain. |
+| `<vid>`   |  The VLAN identifier.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 forward-delay 4 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> stp vlan <vid> max-age</h>
+
+Configures the max age for a VLAN when in PVRST mode. The max age sets the maximum amount of time STP information is retained before it is discarded. You can set a value between 6 and 40 seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The name of the bridge domain. |
+| `<vid>`   |  The VLAN identifier.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 max-age 6
+```
+-->
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -259,7 +376,7 @@ Configures the VLAN tag identifier.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<domain-id>` |  The name of the bridge domain. |
-| `<vid>`   |  The VLAN identifier.
+| `<vid>`   |  The VLAN identifier.|
 
 ### Version History
 

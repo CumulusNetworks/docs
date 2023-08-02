@@ -247,7 +247,7 @@ The configuration above does not persist if you reboot the switch. To make the c
     ```
     cumulus@switch:~$ sudo systemctl restart neighmgrd
     ```
-
+<!--
 ## Global Timer Settings
 
 Cumulus Linux provides timer settings for neighbor entry garbage collection. You can configure timer settings either with NVUE commands or by editing the `/etc/sysctl.d/neigh.conf` file.
@@ -326,7 +326,7 @@ effective  55000
 maximum    70000               
 minimum    200     
 ```
-
+-->
 ## ARP Refresh
 
 Cumulus Linux does not interact directly with end systems as much as end systems interact with each another. Therefore, after ARP places a neighbor into a reachable state, if Cumulus Linux does not interact with the client again for a long enough period of time, the neighbor can move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before removing them from the Linux kernel and from hardware forwarding. The `neighmgrd` process adds a neighbor if the sender IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).

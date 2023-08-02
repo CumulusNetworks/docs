@@ -459,18 +459,16 @@ Enabling or disabling adaptive routing restarts the `switchd` service, which cau
 
 Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
 - Set the `adaptive_routing.enable` parameter to `TRUE` to enable the adaptive routing feature.
-- Set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE` to enable adaptive routing on the specified ports.
+- Set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE` in the `Per-port configuration` section to enable adaptive routing on the specified ports.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
-## Global adaptive-routing enable/disable setting 
-adaptive_routing.enable = TRUE 
-adaptive_routing.profile = ar-profile-1
-adaptive_routing.link_util_threshold_disabled = TRUE 
-## Per-port configuration for adaptive-routing
+## Global adaptive-routing enable/disable setting
+adaptive_routing.enable = TRUE
+...
+## Per-port configuration
 interface.swp51.adaptive_routing.enable = TRUE
 interface.swp51.adaptive_routing.link_util_thresh = 70
-
 interface.swp52.adaptive_routing.enable = TRUE
 interface.swp52.adaptive_routing.link_util_thresh = 70
 ...
@@ -527,13 +525,15 @@ When you set the profile, NVUE reloads `switchd`.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `adaptive_routing.profile` parameter.
+Edit the `## Global AR profile config` section of the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `adaptive_routing.profile` parameter.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
-# Global adaptive-routing enable/disable setting 
-adaptive_routing.enable = TRUE 
-adaptive_routing.profile = ar-profile-custom      
+## Global adaptive-routing enable/disable setting
+adaptive_routing.enable = TRUE
+
+## Global AR profile config
+adaptive_routing.profile = ar-profile-custom
 ```
 
 Reload `switchd` with the `sudo systemctl reload switchd.service` command.
@@ -582,14 +582,18 @@ Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
-## Global adaptive-routing enable/disable setting 
-adaptive_routing.enable = TRUE 
-adaptive_routing.profile = ar-profile-1 
-adaptive_routing.link_util_threshold_disabled = FALSE 
+## Global adaptive-routing enable/disable setting
+adaptive_routing.enable = TRUE
 
-## Per-port configuration for adaptive-routing 
-interface.swp1.adaptive_routing.enable = TRUE 
-interface.swp1.adaptive_routing.link_util_thresh = 100 
+## Global AR profile config
+adaptive_routing.profile = ar-profile-custom
+
+## Global Link-utilization-threshold on/off
+adaptive_routing.link_utilization_threshold_disabled = FALSE
+
+## Per-port configuration
+interface.swp51.adaptive_routing.enable = TRUE
+interface.swp51.adaptive_routing.link_util_thresh = 100
 ```
 
 Reload `switchd` with the `sudo systemctl reload switchd.service` command.
@@ -625,14 +629,18 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example enables adaptive routing with the default profile for a switch with the Spectrum-4 ASIC (`ar-profile-2`) on swp1 and swp2. Global link utilization is off (the default setting).
+The following example enables adaptive routing with the default profile for a switch with the Spectrum-4 ASIC (`ar-profile-2`) on swp51 and swp52. Global link utilization is off (the default setting).
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ad.aptive_routing.conf
 ## Global adaptive-routing enable/disable setting 
-adaptive_routing.enable = TRUE 
+adaptive_routing.enable = TRUE
+
+## Global AR profile config
 adaptive_routing.profile = ar-profile-2 
-adaptive_routing.link_util_threshold_disabled = FALSE
+
+## Global Link-utilization-threshold on/off
+adaptive_routing.link_util_threshold_disabled = TRUE
 
 ## Per-port configuration for adaptive-routing 
 interface.swp51.adaptive_routing.enable = TRUE 
@@ -649,17 +657,21 @@ The following example enables adaptive routing with the custom profile `ar_profi
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
-## Global adaptive-routing enable/disable setting 
-adaptive_routing.enable = TRUE 
-adaptive_routing.profile = ar-profile-custom 
-adaptive_routing.link_util_threshold_disabled = TRUE 
+## Global adaptive-routing enable/disable setting
+adaptive_routing.enable = TRUE
 
-## Per-port configuration for adaptive-routing 
-interface.swp51.adaptive_routing.enable = TRUE 
+## Global AR profile config
+adaptive_routing.profile = ar-profile-custom
+
+## Global Link-utilization-threshold on/off
+adaptive_routing.link_utilization_threshold_disabled = FALSE
+
+## Per-port configuration
+interface.swp51.adaptive_routing.enable = TRUE
 interface.swp51.adaptive_routing.link_util_thresh = 100
-
-interface.swp52.adaptive_routing.enable = TRUE 
+interface.swp52.adaptive_routing.enable = TRUE
 interface.swp52.adaptive_routing.link_util_thresh = 100
+
 ```
 
 Reload `switchd` with the `sudo systemctl reload switchd.service` command.

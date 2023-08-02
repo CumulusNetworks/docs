@@ -435,6 +435,8 @@ You must configure adaptive routing on *all* ports that are part of the same ECM
 
 When you enable adaptive routing, Cumulus Linux uses the default profile for your switch ASIC type (`ar-profile-2` for Spectum-4 or `ar-profile-1` for Spectrum-3 and earlier). To change the adaptive routing profile, see {{<link url="#adaptive-routing-profiles" text="Adaptive Routing Profiles">}}, below.
 
+To enable adaptive routing:
+
 {{< tabs "TabID436 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -497,7 +499,7 @@ If you want to make changes to a profile, you must configure the custom profile 
 
 After changing parameter values and saving the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
-If you change the `adaptive_routing.ecmp_size` parameter, you must **restart** `switchd` with the `systemctl restart switchd` command.
+If you change the `adaptive_routing.ecmp_size` parameter in the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must **restart** `switchd` with the `systemctl restart switchd` command.
 
 To apply an adaptive routing profile:
 

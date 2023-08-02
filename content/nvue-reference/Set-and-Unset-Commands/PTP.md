@@ -1007,6 +1007,60 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 transport ipv6
 ```
 
+<!-- CL56
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service ptp \<instance-id\> profile \<profile-id\> two-step</h>
+
+Configures clock correction mode for a custom profile. Specify `off` to use one-step mode or `on` to use two-step mode. The default value is `on`.
+
+In one-step mode, PTP time stamps the packet as it egresses the port and there is no need for a follow-up packet.
+In two-step mode, PTP notes the time when the packet egresses the port and sends it in a separate follow-up message.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+| `<profile-id>` |  The custom profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 two-step off
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service ptp \<instance-id\> two-step</h>
+
+Configures clock correction mode. Specify `off` to use one-step mode or `on` to use two-step mode. The default value is `on`.
+
+In one-step mode, PTP time stamps the packet as it egresses the port and there is no need for a follow-up packet.
+In two-step mode, PTP notes the time when the packet egresses the port and sends it in a separate follow-up message.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service ptp 1 two-step off
+```
+-->
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service ptp \<instance-id\> unicast-master \<table-id\></h>

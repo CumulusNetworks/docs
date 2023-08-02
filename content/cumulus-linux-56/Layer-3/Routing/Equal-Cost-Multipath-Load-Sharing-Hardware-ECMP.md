@@ -614,10 +614,10 @@ cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
 cumulus@switch:~$ nv config apply 
 ```
 
-The following example enables adaptive routing with the custom profile `ar_profile_custom` on swp51 and swp52, sets the link utilization threshold percentage to 100 on both swp51 and swp52, and enables global link utilization:
+The following example enables adaptive routing with the custom profile `ar-profile-custom` on swp51 and swp52, sets the link utilization threshold percentage to 100 on both swp51 and swp52, and enables global link utilization:
 
 ```
-cumulus@switch:~$ nv set router adaptive-routing profile ar_profile_custom
+cumulus@switch:~$ nv set router adaptive-routing profile ar-profile-custom
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
 cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing link-utilization-threshold 100
@@ -633,21 +633,20 @@ The following example enables adaptive routing with the default profile for a sw
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ad.aptive_routing.conf
-## Global adaptive-routing enable/disable setting 
+## Global adaptive-routing enable/disable setting
 adaptive_routing.enable = TRUE
 
 ## Global AR profile config
-adaptive_routing.profile = ar-profile-2 
+adaptive_routing.profile = ar-profile-2
 
 ## Global Link-utilization-threshold on/off
-adaptive_routing.link_util_threshold_disabled = TRUE
+adaptive_routing.link_utilization_threshold_disabled = TRUE
 
-## Per-port configuration for adaptive-routing 
-interface.swp51.adaptive_routing.enable = TRUE 
-interface.swp51.adaptive_routing.link_util_thresh = 70
-
-interface.swp52.adaptive_routing.enable = TRUE 
-interface.swp52.adaptive_routing.link_util_thresh = 70
+## Per-port configuration
+interface.swp51.adaptive_routing.enable = TRUE
+interface.swp51.adaptive_routing.link_util_thresh = 0
+interface.swp52.adaptive_routing.enable = TRUE
+interface.swp52.adaptive_routing.link_util_thresh = 0
 ... 
 ```
 

@@ -1298,6 +1298,47 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show interface swp5 qos roce status tc-map
 ```
 
+<!-- CL56
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos pfc-watchdog</h>
+
+Shows if PFC watchdog is enabled and shows the state for each traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog
+                 operational  applied 
+---------------  -----------  ------- 
+state            enabled      enabled 
+
+PFC WD Status 
+=========================== 
+    traffic-class  status    deadlock-count 
+    -------------  --------  -------------- 
+
+    0              OK        0 
+    1              OK        3 
+    2              DEADLOCK  2  
+    3              OK        0 
+    4              OK        0 
+    5              OK        0 
+    6              OK        0 
+    7              DEADLOCK  3
+```
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show qos</h>

@@ -554,7 +554,7 @@ In Cumulus Linux 5.5 and earlier, link utilization is on by default. If you conf
 {{< tabs "TabID624 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example changes enables link utilization and uses the default link utilization threshold percentage of 70:
+The following example enables link utilization and uses the default link utilization threshold percentage of 70:
 
 ```
 cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on

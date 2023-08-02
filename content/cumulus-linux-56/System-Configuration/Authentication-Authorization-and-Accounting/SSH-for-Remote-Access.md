@@ -144,7 +144,7 @@ DenyUsers  = user4
 
 ### SSH and VRFs
 
-The SSH service runs in the default VRF on the switch but listens on all interfaces in all VRFs. To limit SSH to listen on just one VRF:
+The SSH service runs in the default VRF on the switch but listens on all interfaces in all VRFs. You can limit SSH to listen on just one VRF.
 
 The following example configures SSH to listen only on the management VRF:
 

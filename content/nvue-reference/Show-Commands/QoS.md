@@ -1338,6 +1338,29 @@ PFC WD Status
     6              OK        0 
     7              DEADLOCK  3
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> qos pfc-watchdog status \<qos-tc-id\></h>
+
+Shows PFC watchdog data for a specific traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+| `<qos-tc-id>` | The Traffic class. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog status 0
+```
 -->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

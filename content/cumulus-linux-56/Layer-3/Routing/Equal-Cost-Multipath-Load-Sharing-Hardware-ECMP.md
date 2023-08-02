@@ -543,7 +543,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 ### Link Utilization
 
-Adaptive routing considers a port congested based on the link utilization threshold. The default link utilization threshold percentage on an interface is 70. You can change the link utilization threshold percentage for an interface to a value between 1 and 100.
+Adaptive routing considers a port congested based on the link utilization threshold. The default link utilization threshold percentage on an interface is 70. You can change the link utilization threshold percentage for an interface to a value between 1 and 200.
 
 Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 

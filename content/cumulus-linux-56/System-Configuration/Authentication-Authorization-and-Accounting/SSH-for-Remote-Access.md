@@ -8,7 +8,7 @@ Cumulus Linux uses the OpenSSH package to provide access to the system using the
 
 ## Configure SSH
 
-You can configure SSH to provide login access to the root user and to specific user accounts, limit SSH to listen on a specific VRF, and configure tiemouts and session options.
+You can configure SSH to provide login access to the root user and to specific user accounts, limit SSH to listen on a specific VRF, and configure timeouts and session options.
 
 ### Root User Settings
 

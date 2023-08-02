@@ -545,6 +545,10 @@ Adaptive routing considers a port congested based on the link utilization thresh
 
 Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
+{{%notice note%}}
+In Cumulus Linux 5.5 and earlier, link utilization is on by default. If you configured link utilization in a previous release, be sure to enable link utilization after you upgrade to Cumulus Linux 5.6.
+{{%/notice%}}
+
 {{< tabs "TabID624 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -622,7 +626,7 @@ cumulus@switch:~$ nv config apply
 The following example enables adaptive routing with the default profile for a switch with the Spectrum-4 ASIC (`ar-profile-2`) on swp1 and swp2. Global link utilization is off (the default setting).
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ad.aptive_routing.conf
 ## Global adaptive-routing enable/disable setting 
 adaptive_routing.enable = TRUE 
 adaptive_routing.profile = ar-profile-2 

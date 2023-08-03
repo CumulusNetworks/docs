@@ -47,7 +47,7 @@ cumulus@netq-appliance:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 4. In the directory you copied the `vm-backuprestore.sh` script, run:
 
 {{%notice note%}}
-The `vm-backuprestore.sh` script is impactful and stops NetQ pods during operation. Run the script with the `--start-pods` option to restart them after the backup completes. 
+The `vm-backuprestore.sh` script stops NetQ pods during operation. Run the script with the `--start-pods` option to restart them after the backup completes. 
 {{%/notice%}}
 
 ```
@@ -82,7 +82,7 @@ cumulus@netq-appliance:~$
 1. Run the backup script `/usr/sbin/vm-backuprestore.sh`:
 
 {{%notice note%}}
-The `vm-backuprestore.sh` script is impactful and stops NetQ pods during operation. Run the script with the `--start-pods` option to restart them after the backup completes. 
+The `vm-backuprestore.sh` script stops NetQ pods during operation. Run the script with the `--start-pods` option to restart them after the backup completes. 
 {{%/notice%}}
 
 ```

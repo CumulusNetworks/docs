@@ -20,14 +20,14 @@ After installing the NetQ software, you should install the NetQ Agents on each s
 
 For switches running Cumulus Linux and SONiC, you need to:
 
-- Install and configure NTP, if needed
+- Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
 For servers running RHEL, CentOS, or Ubuntu, you need to:
 
 - Verify you installed the minimum package versions
 - Verify the server is running `lldpd`
-- Install and configure NTP, if needed
+- Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
 {{<notice note>}}
@@ -62,10 +62,9 @@ If NTP is not running:
 - Verify the IP address or hostname of the NTP server in the `/etc/ntp.conf` file, and then
 - Reenable and start the NTP service using the `systemctl [enable|start] ntp` commands
 
-{{<notice tip>}}
+   {{<notice tip>}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
-{{</notice>}}
-
+   {{</notice>}}
 ### Obtain NetQ Agent Software Package
 
 Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upgrade the NetQ Agent to the latest version: 

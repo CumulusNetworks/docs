@@ -5,8 +5,6 @@ weight: 470
 toc: 4
 ---
 
-Upgrading the NetQ CLI is optional, but recommended.
-
 To upgrade the NetQ CLI:
 
 1. Log in to your switch or host.

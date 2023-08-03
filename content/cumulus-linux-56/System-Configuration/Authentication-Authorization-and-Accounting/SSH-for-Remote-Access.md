@@ -146,28 +146,47 @@ DenyUsers  = user4
 
 ### SSH and VRFs
 
-The SSH service runs in the default VRF on the switch but listens on all interfaces in all VRFs. You can limit SSH to listen on just one VRF.
-
-The following example configures SSH to listen only on the management VRF:
+The SSH service runs in the default VRF on the switch but listens on all interfaces in all VRFs. You can limit SSH to listen on specific VRFs.
 
 {{< tabs "TabID143 ">}}
 {{< tab "NVUE Commands ">}}
+
+The following example configures SSH to listen only on the management VRF:
 
 ```
 cumulus@switch:~$ nv set system ssh-server vrf mgmt
 cumulus@switch:~$ nv config apply
 ```
 
+The following example configures SSH to listen on the management VRF and VRF RED:
+
+```
+cumulus@switch:~$ nv set system ssh-server vrf mgmt
+cumulus@switch:~$ nv set system ssh-server vrf RED
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Bind the SSH service to the VRF:
+Bind the SSH service to the VRF. The following example configures SSH to listen only on the management VRF:
 
 ```
 cumulus@switch:~$ sudo systemctl stop ssh.service
 cumulus@switch:~$ sudo systemctl disable ssh.service
 cumulus@switch:~$ sudo systemctl start ssh@mgmt.service
 cumulus@switch:~$ sudo systemctl enable ssh@mgmt.service
+```
+
+The following example configures SSH to listen on the management VRF and VRF RED:
+
+```
+cumulus@switch:~$ sudo systemctl stop ssh.service
+cumulus@switch:~$ sudo systemctl disable ssh.service
+cumulus@switch:~$ sudo systemctl start ssh@mgmt.service
+cumulus@switch:~$ sudo systemctl enable ssh@mgmt.service
+cumulus@switch:~$ sudo systemctl start ssh@RED.service
+cumulus@switch:~$ sudo systemctl enable ssh@RED.service
 ```
 
 To configure SSH to listen to only one IP address or a subnet in a VRF, you need to bind the service to that VRF (as above), then set the `ListenAddress` parameter in the `/etc/ssh/sshd_config` file to the IP address or subnet in that VRF.
@@ -184,10 +203,6 @@ ListenAddress 10.10.10.6
 
 {{< /tab >}}
 {{< /tabs >}}
-
-{{%notice note%}}
-You can only run one SSH service on the switch at a time.
-{{%/notice%}}
 
 ### Enable and Disable the SSH Server
 

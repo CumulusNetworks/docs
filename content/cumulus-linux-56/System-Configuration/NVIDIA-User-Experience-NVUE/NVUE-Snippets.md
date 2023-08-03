@@ -312,6 +312,7 @@ Flexible snippets do *not* support:
 Use caution when creating flexible snippets:
 - If you configure flexible snippets incorrectly, they might impact switch functionality. For example, even though flexible snippet validation allows you to only add textual content, Cumulus Linux does not prevent you from creating a flexible snippet that adds to sensitive text files, such as `/boot/grub.cfg` and `/etc/fstab`  or add corrupt contents. Such snippets might render the switch unusable or create a potential security vulnerability (the NVUE service (`nvued`) runs with superuser privileges).
 - Do not manually update configuration files to which you add flexible snippets.
+- Any sensitive data in plain text (such as passwords) appears in the NVUE-managed configuration files as plain text.
 {{%/notice%}}
 
 ### Create a Flexible Snippet

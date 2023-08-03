@@ -786,6 +786,8 @@ PFC WD Status
     7              DEADLOCK  3 
 ```
 
+To show PFC watchdog data for a specific traffic class, run the `nv show interface <interface> qos pfc-watchdog status <traffic-class>` command.
+
 ### Explicit Congestion Notification (ECN)
 
 Unlike link pause or PFC, ECN is an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.

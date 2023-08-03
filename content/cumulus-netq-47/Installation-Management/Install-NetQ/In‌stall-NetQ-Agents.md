@@ -42,7 +42,7 @@ If your network uses a proxy server for external connections, you should first {
 ### Verify NTP Is Installed and Configured
 <!-- vale on -->
 
-Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be synchronized with the NetQ appliance to enable useful statistical analysis.
+Verify that {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-55/System-Configuration/Date-and-Time/Network-Time-Protocol-NTP/" text="NTP">}} is running on the switch. The switch system clock must be synchronized with the NetQ appliance to enable useful statistical analysis. Alternatively, you can configure {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-55/System-Configuration/Date-and-Time/Precision-Time-Protocol-PTP/" text="PTP">}} for time synchronization.
 
 ```
 cumulus@switch:~$ sudo systemctl status ntp

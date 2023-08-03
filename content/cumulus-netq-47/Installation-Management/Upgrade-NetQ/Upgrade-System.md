@@ -35,27 +35,21 @@ You can upgrade to NetQ 4.7.0 if your deployment is currently running version 4.
 
 {{<link title="Back Up and Restore NetQ" text="Backing up your NetQ data">}} is an optional step for on-premises deployments. NetQ cloud deployments create backups automatically.
 
-<!--### Download Software and Update Debian Packages
+### Update NetQ Debian Packages
 
-1. Download the relevant software.
-
-    {{<netq-install/upgrade-image version="4.6">}}
-
-2. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
-
-3. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.6 as follows:
+1. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.7:
 
     ```
     cat /etc/apt/sources.list.d/cumulus-netq.list
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.6
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.7
     ```
 
-4. Update the NetQ `debian` packages.
+2. Update the NetQ `debian` packages.
 
     ```
     cumulus@<hostname>:~$ sudo apt-get update
     Get:1 https://apps3.cumulusnetworks.com/repos/deb focal InRelease [13.8 kB]
-    Get:2 https://apps3.cumulusnetworks.com/repos/deb focal/netq-4.6 amd64 Packages [758 B]
+    Get:2 https://apps3.cumulusnetworks.com/repos/deb focal/netq-4.7 amd64 Packages [758 B]
     Hit:3 http://archive.ubuntu.com/ubuntu focal InRelease
     Get:4 http://security.ubuntu.com/ubuntu focal-security InRelease [88.7 kB]
     Get:5 http://archive.ubuntu.com/ubuntu focal-updates InRelease [88.7 kB]
@@ -83,7 +77,6 @@ You can upgrade to NetQ 4.7.0 if your deployment is currently running version 4.
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
 
--->
 
 ### Download the Upgrade Tarball
 

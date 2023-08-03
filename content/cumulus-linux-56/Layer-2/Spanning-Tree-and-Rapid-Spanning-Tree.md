@@ -72,7 +72,7 @@ cumulus@switch:~$ nv set bridge domain br_default stp mode pvrst
 cumulus@switch:~$ nv config apply
 ```
 
-To revert the mode to the default setting (RSTP), run the `nv unset bridge domain <bridge> stp mode pvrst` command.
+To revert the mode to the default setting (RSTP), run the `nv unset bridge domain <bridge> stp mode` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -117,7 +117,7 @@ To revert the mode to the default setting (RSTP), run the `sudo mstpctl clearmod
 
 #### PVRST Tree Priority
 
-You can set the spanning tree priority for a VLAN. The priority must be a number between 4096 and 61440.
+You can set the spanning tree priority for a VLAN. The priority must be a number between 4096 and 61440 and must be a multiple of 4096.
 
 The following example sets the tree priority for VLAN 10 to 4096 and VLAN 20 to 61440:
 

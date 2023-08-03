@@ -543,7 +543,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 ### Link Utilization
 
-Adaptive routing considers a port congested based on the link utilization threshold. The default link utilization threshold percentage on an interface is 70. You can change the link utilization threshold percentage for an interface to a value between 1 and 100.
+Adaptive routing considers a port congested based on the link utilization threshold. The default link utilization threshold percentage on an interface is 70. You can change the link utilization threshold percentage for an interface to a value between 1 and 200.
 
 Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
@@ -554,7 +554,7 @@ In Cumulus Linux 5.5 and earlier, link utilization is on by default. If you conf
 {{< tabs "TabID624 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example changes enables link utilization and uses the default link utilization threshold percentage of 70:
+The following example enables link utilization and uses the default link utilization threshold percentage of 70:
 
 ```
 cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on

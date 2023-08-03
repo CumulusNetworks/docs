@@ -340,10 +340,12 @@ The Cumulus Linux switch provides the following clock correction modes:
 - *One-step* mode, where the PTP time stamps the packet as it egresses the port and there is no need for a follow-up packet.
 - *Two-step* mode, where PTP notes the time when the packet egresses the port and sends it in a separate follow-up message.
 
-Two-step mode is the default configuration. To configure the switch to use one-step mode:
+Two-step mode is the default configuration.
 
 {{< tabs "TabID345 ">}}
 {{< tab "NVUE Commands ">}}
+
+The following example commands configure one-step mode when a profile is not set:
 
 ```
 cumulus@switch:~$ nv set service ptp 1 two-step off
@@ -351,6 +353,8 @@ cumulus@switch:~$ nv config apply
 ```
 
 To revert the clock correction mode to the default setting (two-step mode), run the `nv set service ptp 1 two-step on` command.  
+
+To set the clock correction mode for a custom profile based on a Telecom profile (ITU 8275-1 or ITU 8275-2), run the `nv set service ptp <instance-id> profile <profile-id> two-step` command. For example, to set one-step mode for the custom profile called CUSTOM1, run `nv set service ptp 1 profile CUSTOM1 two-step off`.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

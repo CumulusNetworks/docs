@@ -658,9 +658,11 @@ To apply a custom profile to specific interfaces, see [Port Groups](#pfc).
 
 ### PFC Watchdog
 
-PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled. In lossless Ethernet, PFC and link pause instruct the link partner to pause sending packets to avoid back pressure that spreads to the whole network causing the network to stop forwarding traffic. PFC watchdog detects abnormal back pressure caused by receiving excessive pause frames and disables PFC and link pause temporarily.
+PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
 
-When you enable PFC watchdog, the switch detects a lossless queue if it receives a pause storm from its link partner and the queue is in a paused state for three 100 millisecond intervals (robustness * poll interval) even when the queue is empty.
+In lossless Ethernet, PFC and link pause instruct the link partner to pause sending packets, which generates back pressure that spreads to the whole network causing the network to stop forwarding traffic. PFC watchdog detects abnormal back pressure caused by receiving excessive pause frames and disables PFC and link pause temporarily.
+
+When you enable PFC watchdog, the switch detects a lossless queue if it receives a pause storm from its link partner and the queue is in a paused state during the robustness * poll interval even when the queue is empty.
 
 After detecting a pause storm, the watchdog dicards all subsequent `pause` packets received, all existing new incoming packets in the egress queue on the port, and subsequent packets destined to the output queue. As a result, the switch does not generate any pause frames to its neighbour due to this output queue congestion. The peer switch becomes decongested and the switch stops receiving pause frames in the ingress direction on the port where storm mitigation occurs.
 
@@ -668,7 +670,7 @@ The watchdog continues to count pause frames received on the port. If there are 
 
 {{%notice note%}}
 - PFC watchdog only works for lossless traffic queues.
-- You can only use PFC watchdog if you configure PFC or link pause on the switch.
+- You can only configure PFC watchdog on a port with PFC or link pause configuration.
 - You can only enable PFC watchdog on a physical interface (swp).
 {{%/notice%}}
 
@@ -680,10 +682,12 @@ To enable PFC watchdog:
 Enable PFC watchdog on the interfaces where you enable PFC or link pause:
 
 ```
-cumulus@switch:~$ nv set interface swp1 qos pfc-watchdog state enable
-cumulus@switch:~$ nv set interface swp3 qos pfc-watchdog state enable
+cumulus@switch:~$ nv set interface swp1 qos pfc-watchdog
+cumulus@switch:~$ nv set interface swp3 qos pfc-watchdog
 cumulus@switch:~$ nv config apply
 ```
+
+To disable PFC watchdog, run the `nv unset interface <interface> qos pfc-watchdog` command or the `nv set interface <interface> qos pfc-watchdog state disable` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -704,45 +708,15 @@ pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp2
 {{< /tab >}}
 {{< /tabs >}}
 
-You can control the PFC watchdog polling interval. The default polling interval is 100 milliseconds.
+You can control the PFC watchdog polling interval and how many polling intervals the PFC watchdog must wait before it mitigates the storm condition. The default polling interval is 100 milliseconds.  The default number of polling intervals is 3.
 
-The following example sets the PFC watchdog polling interval to 200 milliseconds:
+The following example sets the PFC watchdog polling interval to 200 milliseconds and the number of polling intervals to 5:
 
 {{< tabs "TabID712 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set qos pfc-watchdog polling-interval 200
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `PFC Watchdog Configuration` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file and set the `pfc_watchdog.pfc_wd_poll-interval` parameter.
-
-```
-...
-# PFC Watchdog Configuration
-# Add the port to the port_group_list where you want to enable PFC Watchdog
-# It will enable PFC Watchdog on all the traffic-class corresponding to
-# the lossless switch-priority configured on the port.
-pfc_watchdog.port_group_list = [pfc_wd_port_group] 
-pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp3
-pfc_watchdog.pfc_wd_poll-interval = 200
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-You can control how many polling intervals the PFC watchdog must wait before it mitigates the storm condition. The default number of polling intervals is 3.
-
-The following example sets the number of polling intervals to 5:
-
-{{< tabs "TabID727 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
 cumulus@switch:~$ nv set qos pfc-watchdog robustness 5
 cumulus@switch:~$ nv config apply
 ```
@@ -750,14 +724,16 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `PFC WD` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file  and set the `pfc_watchdog.pfc_wd_robustness` parameter.
+Edit the `/etc/cumulus/switchd.conf` file and set the `pfc_wd.poll_interval` parameter and the `pfc_wd.robustness` parameter.
 
 ```
 ...
-# PFC WD 
-pfc_watchdog.port_group_list = [pfc_wd_port_group] 
-pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp3
-pfc_watchdog.pfc_wd_robustness = 5
+# PFC Watchdog poll interval (in msec)
+#pfc_wd.poll_interval = 200
+
+# PFC Watchdog robustness (# of iterations)
+#pfc_wd.robustness = 5
+...
 ```
 
 {{< /tab >}}

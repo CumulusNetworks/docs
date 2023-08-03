@@ -191,7 +191,7 @@ hash_config.dport = false
 Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 {{%/notice%}}
 
-## GTP Hashing
+### GTP Hashing
 
 <span style="background-color:#F5F5DC">[GTP](## "GPRS Tunneling Protocol")</span> carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP <span style="background-color:#F5F5DC">[TEID](## "Tunnel Endpoint Identifier")</span>. Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
 
@@ -259,7 +259,31 @@ gtp-teid           on       GTP-U TEID
 ...
 ```
 
-## Unique Hash Seed
+### ECMP Hash Buckets
+
+When there are multiple routes in the routing table, Cumulus Linux assigns each route to an ECMP *bucket*. When the ECMP hash executes, the result of the hash determines which bucket to use.
+
+In the following example, four next hops exist. Three different flows hash to different hash buckets. Each next hop goes to a unique hash bucket.
+
+{{< img src = "/images/cumulus-linux/ecmp-hash-bucket.png" >}}
+
+The addition of a next hop creates a new hash bucket. The assignment of next hops to hash buckets, as well as the hash result, sometimes changes with the addition of next hops.
+
+{{< img src = "/images/cumulus-linux/ecmp-hash-bucket-added.png" >}}
+
+With the addition of a new next hop, there is a new hash bucket. As a result, the hash and hash bucket assignment changes, so the existing flows go to different next hops.
+
+When you remove a next hop, the remaining hash bucket assignments can change, which can also change the next hop selected for an existing flow.
+
+{{< img src = "/images/cumulus-linux/ecmp-hash-failure.png" >}}
+
+{{< img src = "/images/cumulus-linux/ecmp-hash-post-failure.png" >}}
+
+A next hop fails, which removes the next hop and hash bucket. It is possible that Cumulus Linux reassigns the remaining next hops.
+
+In most cases, modifying hash buckets has no impact on traffic flows as the switch forwards traffic to a single end host. In deployments where multiple end hosts use the same IP address (anycast), you must use *resilient hashing*.
+
+### Unique Hash Seed
 
 You can configure a unique hash seed for each switch to prevent *hash polarization*, a type of network congestion that occurs when multiple data flows try to reach a switch using the same switch ports.
 
@@ -300,7 +324,7 @@ ecmp_hash_seed = 50
 {{< /tab >}}
 {{< /tabs >}}
 
-## cl-ecmpcalc
+### cl-ecmpcalc
 <!-- vale on -->
 Run the `cl-ecmpcalc` command to determine a hardware hash result. For example, you can see which path a flow takes through a network. You must provide all fields in the hash, including the ingress interface, layer 3 source IP, layer 3 destination IP, layer 4 source port, and layer 4 destination port.
 

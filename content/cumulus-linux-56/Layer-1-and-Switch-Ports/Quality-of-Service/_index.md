@@ -708,7 +708,7 @@ pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp2
 {{< /tab >}}
 {{< /tabs >}}
 
-You can control the PFC watchdog polling interval and how many polling intervals the PFC watchdog must wait before it mitigates the storm condition. The default polling interval is 100 milliseconds.  The default number of polling intervals is 3.
+You can control the PFC watchdog polling interval and how many polling intervals the PFC watchdog must wait before it mitigates the storm condition. The default polling interval is 100 milliseconds. The default number of polling intervals is 3.
 
 The following example sets the PFC watchdog polling interval to 200 milliseconds and the number of polling intervals to 5:
 
@@ -763,6 +763,8 @@ PFC WD Status
 ```
 
 To show PFC watchdog data for a specific traffic class, run the `nv show interface <interface> qos pfc-watchdog status <traffic-class>` command.
+
+To clear the PFC watchdog `deadlock-count` on an interface, run the `nv action clear interface <interface> qos pfc-watchdog deadlock-count` command.
 
 ### Explicit Congestion Notification (ECN)
 

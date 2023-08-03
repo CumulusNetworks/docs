@@ -486,7 +486,7 @@ The benefits of using adaptive routing include:
 
 Cumulus Linux only supports adaptive routing with:
 - Switches with the Spectrum-4 ASIC.
-- For switches with the Spectrum-2 or Spectrum-3 ASIC, adaptive routing is a beta feature; do not use adaptive routing on Spectrum-2 or Spectrum-3 switches in a production environment.
+- For switches with the Spectrum-2 or Spectrum-3 ASIC, adaptive routing is a [beta feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. Do use adaptive routing with Spectrum-2 or Spectrum-3 switches in production.
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RDMA with lossless RoCEv2" >}} unicast traffic
 - Layer 3 interfaces and VNIs.
 - Next hop router interfaces in the default VRF.

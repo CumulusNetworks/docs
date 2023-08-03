@@ -13,7 +13,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale on -->
 NetQ 4.7.0 includes the following new features and improvements:
 
-- View network interface controller (NIC) {{<link title="NICs" text="telemetry">}} and {{<link title="NIC Inventory" text="inventory">}} data in the UI 
+- View ConnectX network interface controller (NIC) {{<link title="NICs" text="telemetry">}} and {{<link title="NIC Inventory" text="inventory">}} data in the UI 
 - Decommission {{<link title="Host Inventory/#decommission-a-host" text="hosts">}}, {{<link title="NIC Inventory/#decommission-a-nic" text="NICs">}}, and {{<link title="DPU Inventory/#decommission-a-dpu" text="DPUs">}} from the UI or CLI
 - {{<link title="Switches/#view-cpu-and-memory-utilization-for-processes-and-services" text="Monitor CPU and memory utilization">}} for services and processes; create threshold-crossing rules that generate events when a process or service exceeds the limit you defined
 - {{<link title="Switches/#view-queue-lengths-in-histograms" text="View queue lengths in the form of histograms">}}
@@ -24,7 +24,7 @@ NetQ 4.7.0 includes the following new features and improvements:
 
 ## Upgrade Paths
 
-If your deployment is currently running version 4.5.0 or 4.6.0, you can {{<link title="Upgrade NetQ" text="upgrade directly to NetQ 4.7.0">}}.
+If your deployment is running version 4.5.0 or 4.6.0, you can {{<link title="Upgrade NetQ" text="upgrade directly to NetQ 4.7.0">}}.
 
 If your deployment is running version 4.3.0, 4.4.0, or 4.4.1, you must {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your current NetQ data">}} and perform a new installation of NetQ 4.5.0. From version 4.5.0, you can {{<link title="Upgrade NetQ" text="upgrade directly to NetQ 4.7.0">}}.
 

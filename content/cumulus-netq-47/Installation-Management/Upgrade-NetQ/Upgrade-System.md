@@ -19,9 +19,9 @@ If your current NetQ version is:
 
 ## Upgrading from NetQ 4.4.1 or Earlier
 
-Upgrading to NetQ 4.7.0 from a NetQ version below 4.5.0 requires a new installation of the NetQ virtual machine. Perform the following steps to upgrade:
+Upgrading to NetQ 4.7.0 from NetQ 4.4.1 or earlier requires a new installation of the NetQ virtual machine. Perform the following steps to upgrade:
 
-1. For on-premises deployments, {{<link title="Back Up and Restore NetQ" text="back up your existing NetQ data">}}. NetQ Cloud Appliances and VMs create backups automatically.
+1. For on-premises deployments, {{<link title="Back Up and Restore NetQ" text="back up your existing NetQ data">}}. NetQ cloud deployments create backups automatically.
 
 2. Follow the {{<link title="Install the NetQ System" text="installation process">}} for your deployment model.
 
@@ -30,7 +30,7 @@ Upgrading to NetQ 4.7.0 from a NetQ version below 4.5.0 requires a new installat
 
 ## Upgrading from NetQ 4.5.0 or Later
 
-You can upgrade to NetQ 4.7.0 if your deployment is currently running version 4.5.0 or later.
+You can upgrade directly to NetQ 4.7.0 if your deployment is currently running version 4.5.0 or later.
 ### Back up your NetQ Data
 
 {{<link title="Back Up and Restore NetQ" text="Backing up your NetQ data">}} is an optional step for on-premises deployments. NetQ cloud deployments create backups automatically.

@@ -1039,7 +1039,7 @@ cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 two-step off
 
 ## <h>nv set service ptp \<instance-id\> two-step</h>
 
-Configures clock correction mode. Specify `off` to use one-step mode or `on` to use two-step mode. The default value is `on`.
+Configures clock correction mode if no profile is set. Specify `off` to use one-step mode or `on` to use two-step mode. The default value is `on`.
 
 In one-step mode, PTP time stamps the packet as it egresses the port and there is no need for a follow-up packet.
 In two-step mode, PTP notes the time when the packet egresses the port and sends it in a separate follow-up message.

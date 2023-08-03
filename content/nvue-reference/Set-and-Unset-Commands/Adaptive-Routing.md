@@ -43,11 +43,7 @@ cumulus@switch:~$ nv set interface swp1 router adaptive-routing enable on
 ## <h>nv set interface \<interface-id\> router adaptive-routing link-utilization-threshold</h>
 
 Configures the link utilization threshold percentage at which adaptive routing considers the port congested. You can specify a value between 1 and 100. The default setting is `70`.
-<!-- CL56
-{{%notice note%}}
-Cumulus Linux 5.6 and later allows a value between 1 and 200.
-{{%/notice%}}
--->
+
 ### Command Syntax
 
 | Syntax |  Description   |

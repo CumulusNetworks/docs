@@ -1,10 +1,10 @@
 ---
-title: Weighted Equal Cost Multipath
+title: BGP Weighted Equal Cost Multipath
 author: NVIDIA
 weight: 780
 toc: 3
 ---
-You use <span style="background-color:#F5F5DC">[W-ECMP](## "Weighted Equal Cost Multipath")</span> in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports W-ECMP by using the <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
+You use <span style="background-color:#F5F5DC">[W-ECMP](## "Weighted Equal Cost Multipath")</span> in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports BGP W-ECMP by using the <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
 
 ## W-ECMP Routing
 
@@ -303,9 +303,9 @@ switch# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-## W-ECMP and Adaptive Routing
+## BGP W-ECMP with Adaptive Routing
 
-Cumulus Linux supports W-ECMP with adaptive routing for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-wecmp" text="above.">}}
+Cumulus Linux supports BGP W-ECMP with adaptive routing for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-w-ecmp" text="above.">}}
 
 - NVIDIA recommends using W-ECMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
 - Cumulus Linux supports a maximum of 48 adaptive routing enabled ports in a single ECMP group.

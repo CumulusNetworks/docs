@@ -658,13 +658,13 @@ To apply a custom profile to specific interfaces, see [Port Groups](#pfc).
 
 ### PFC Watchdog
 
-PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled and restores traffic.
 
 In lossless Ethernet, PFC and link pause instruct the link partner to pause sending packets, which generates back pressure that spreads to the whole network causing the network to stop forwarding traffic. PFC watchdog detects abnormal back pressure caused by receiving excessive pause frames and disables PFC and link pause temporarily.
 
-When you enable PFC watchdog, the switch detects a lossless queue if it receives a pause storm from its link partner and the queue is in a paused state during the robustness * poll interval even when the queue is empty.
-
-After detecting a pause storm, the watchdog dicards all subsequent `pause` packets received, all existing new incoming packets in the egress queue on the port, and subsequent packets destined to the output queue. As a result, the switch does not generate any pause frames to its neighbour due to this output queue congestion. The peer switch becomes decongested and the switch stops receiving pause frames in the ingress direction on the port where storm mitigation occurs.
+When a lossless queue receives a pause storm from its link partner and the queue is in a paused state for a certain period of time, PFC watchdog mitigates the pause storm in the following ways:
+- For a PFC-enabled port, the watchdog stop processing received pause frames on every switch priority corresponding to the traffic class that detects the storm and sets the egress buffers to zero on the corresponding traffic class.
+- For a link pause-enabled port, the watchdog stops processing received pause frames on the egress port that detects the storm and sets the egress buffers to zero on every traffic class on the port.
 
 The watchdog continues to count pause frames received on the port. If there are no pause frames received in any polling interval period, it restores the PFC configuration on the port and stops dropping packets.
 
@@ -724,7 +724,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.conf` file and set the `pfc_wd.poll_interval` parameter and the `pfc_wd.robustness` parameter.
+Edit the `/etc/cumulus/switchd.conf` file to set the `pfc_wd.poll_interval` parameter and the `pfc_wd.robustness` parameter.
 
 ```
 ...
@@ -735,6 +735,8 @@ Edit the `/etc/cumulus/switchd.conf` file and set the `pfc_wd.poll_interval` par
 #pfc_wd.robustness = 5
 ...
 ```
+
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}

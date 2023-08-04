@@ -33,7 +33,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 |{{<link url="Quality-of-Service/#policing-and-shaping" text="QoS shaping ">}}| <font color="red">No</font> |
 |{{<link title="What Just Happened (WJH)" >}}| <font color="red">No</font> |
 |{{<link url="Network-Address-Translation-NAT" >}}| <font color="red">No</font> |
-|{{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive Routing" >}}| <font color="red">No</font> |
+|{{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive Routing" >}}| <font color="red">No</font> |
 |{{<link url="Storm-Control" text="Storm control ">}}|<font color="red">No</font>|
 
 <!--
@@ -50,5 +50,5 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 |{{<link url="Quality-of-Service/#policing-and-shaping" text="QoS shaping ">}}| <font color="red">No</font> | <font color="red">No</font> |
 |{{<link title="What Just Happened (WJH)" >}}| <font color="red">No</font> | <font color="green">yes</font> |
 |{{<link url="Network-Address-Translation-NAT" >}}| <font color="red">No</font> | <font color="green">yes</font>|
-|{{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" >}}| <font color="red">No</font> |
+|{{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" >}}| <font color="red">No</font> |
 -->

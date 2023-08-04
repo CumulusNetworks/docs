@@ -187,7 +187,7 @@ line vty
 
 This document describes dual-connected Linux hosts with static IP addresses.
 
-Configure a host with the same /32 IP address on its loopback and uplinks so that both leafs advertise the same /32 regardless of the interface. Cumulus Linux relies on {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}} to load balance across the interfaces southbound, and an equal cost static route (see the configuration below) to load balance northbound.
+Configure a host with the same /32 IP address on its loopback and uplinks so that both leafs advertise the same /32 regardless of the interface. Cumulus Linux relies on {{<link url="Equal-Cost-Multipath-Load-Sharing" text="ECMP">}} to load balance across the interfaces southbound, and an equal cost static route (see the configuration below) to load balance northbound.
 
 The loopback hosts the primary service IP address to which you can bind services.
 

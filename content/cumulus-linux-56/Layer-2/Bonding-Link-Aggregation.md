@@ -347,7 +347,7 @@ cumulus@switch:~$ echo 1 > /cumulus/switchd/ctrl/hash_config_reload
 Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 {{%/notice%}}
 
-You can also set a unique hash seed for each switch to avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#unique-hash-seed" text="Unique Hash Seed">}}.
+You can also set a unique hash seed for each switch to avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing#unique-hash-seed" text="Unique Hash Seed">}}.
 
 ## GTP Hashing
 
@@ -473,7 +473,7 @@ lag_hash_config.gtp_teid = false
 Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 {{%/notice%}}
 
-You can also set a unique hash seed for each switch to avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#unique-hash-seed" text="Unique Hash Seed">}}.
+You can also set a unique hash seed for each switch to avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing#unique-hash-seed" text="Unique Hash Seed">}}.
 
 ## GTP Hashing
 

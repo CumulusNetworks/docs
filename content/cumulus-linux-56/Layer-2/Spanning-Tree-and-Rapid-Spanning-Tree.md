@@ -249,6 +249,42 @@ cumulus@switch:~$ sudo mstpctl setmaxage br_default 10 6
 {{< /tab >}}
 {{< /tabs >}}
 
+#### PVRST Port Settings
+
+You can configure an interface port priority and path cost per VLAN to influence the spanning tree forwarding path. You can specify a path cost between 1 and 200000000. You can specify a priority between 0 and 240; the value must be a multiple of 16.
+
+The following examples set the path cost to 20 and the priority to 240.
+
+{{< tabs "TabID256 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp vlan 10 path-cost 20
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp vlan 10 priority 240
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Add the `mstpctl-port-vlan-path-cost` and `mstpctl-port-vlan-priority` parameters under the interface stanza of the `/etc/network/interfaces` file:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+    bridge-access 10
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-port-vlan-path-cost 10=200
+    mstpctl-port-vlan-priority 10=240
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Spanning Tree Priority
 
 If you are running STP for a VLAN-aware bridge in the default mode (RSTP) and you have a multiple spanning tree instance (MSTI 0, also known as a common spanning tree, or CST), you can set the tree priority for a bridge. The bridge with the lowest priority is the *root bridge*. The priority must be a number between *0* and *61440,* and must be a multiple of 4096. The default value is *32768*.
@@ -259,7 +295,7 @@ If you are running MLAG and have multiple bridges, the STP priority must be the 
 
 The following example sets the tree priority to 8192:
 
-{{< tabs "TabID71 ">}}
+{{< tabs "TabID288 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -680,38 +716,65 @@ Be sure to run the `sudo ifreload -a` command after you set the STP parameter in
 {{< tabs "TabID584 ">}}
 {{< tab "NVUE Commands ">}}
 
-To the show STP status for a bridge:
+To show the STP state for a bridge:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp state
+   operational  applied
+   -----------  -------
+   up           up
+```
+
+To show configuration information for a bridge interface:
+
+```
+cumulus@switch:~$ nv show interface swp1 bridge domain br_default
+               operational  applied
+-------------  -----------  -------
+access         10           10     
+learning       on           on     
+stp                                
+  admin-edge   on           on     
+  auto-edge    on           on     
+  bpdu-filter  off          off    
+  bpdu-guard   on           on     
+  network      off          off    
+  path-cost    20000               
+  restrrole    off          off    
+  [vlan]                           
+  state        forwarding 
+```
+
+To show STP configuration information for a bridge interface:
+
+```
+cumulus@switch:~$  nv show interface swp1 bridge domain br_default stp
+             operational  applied
+-----------  -----------  -------
+admin-edge   on           on     
+auto-edge    on           on     
+bpdu-filter  off          off    
+bpdu-guard   on           on     
+network      off          off    
+path-cost    20000               
+restrrole    off          off    
+[vlan]                           
+state        forwarding
+```
+
+To show the STP information for a bridge:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp
 Bridge
-    mode    : rstp
-    priority: 8192
-    state   : up
-Bridge ID                priority    : 8192    mac-address       : 44:38:39:22:01:B1   
-Designated Root ID       priority    : 8192    mac-address       : 44:38:39:22:01:B1   root-port  : -
-Timers                   hello-time  : 2s      forward-delay     : 15s                 max-age    : 20s
-Max Hops                 max-hops    : 20      
-Topology Change Network  count       : 0       time since change : 46439s
-                         change port : None    last change port  : None
-
-Interface info: swp1
----------------------------------
-port-id            : 8.001
-role               : Designated
-state              : forwarding
-port-path-cost     : 20000
-fdb-flush          : no
-disputed           : no
-
-Interface info: swp2
----------------------------------
-port-id            : 8.002
-role               : Designated
-state              : forwarding
-port-path-cost     : 20000
-fdb-flush          : no
-disputed           : no
+    mode    : pvrst
+Vlan              Bridge ID               HelloTime   MaxAge      FwdDly   
+        Priority         MAC-addr        (seconds)    (seconds)   (seconds)  
+-----  ------------------------------    ----------  ----------  ----------
+1      32769   44:38:39:22:01:7A            2           20          15     
+10     4106    44:38:39:22:01:7A            4           6           4      
+20     61460   44:38:39:22:01:7A            2           20          15     
+30     32798   44:38:39:22:01:7A            2           20          15 
 ```
 
 To show STP information for the VLANs in a bridge:
@@ -814,14 +877,28 @@ network-port    : no          auto-edge-port       : yes
 mcheck          : no          admin-port-path-cost : 0
 ```
 
+To show the root ID and root cost for the bridge:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp root
+instance             root-id                root-cost  hello-time  fwd-dly     max-age      root-port
+           Priority        MAC-addr                     (seconds)   (seconds)   (seconds)  
+-------- --------------------------------  ----------  ----------  ----------  ----------  ----------
+1        32769   44:38:39:22:01:7A            0           2           15          20          -      
+10       4106    44:38:39:22:01:7A            0           4           4           6           -      
+20       61460   44:38:39:22:01:7A            0           2           15          20          -      
+30       32798   44:38:39:22:01:7A            0           2           15          20          -    
+```
+
 To show STP counters for a bridge:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp counters
 port  tx-bpdu  rx-bpdu  tx-tcn  rx-tcn  fwd-trans  blk-trans  tx-pvst-tnl-bpdu  rx-pvst-tnl-bpdu
 ----  -------  -------  ------  ------  ---------  ---------  ----------------  ----------------
-swp1  1270     0        4       0       3          2          1653              0               
-swp2  1270     0        4       0       3          2          1653              0 
+swp1  182      0        0       0       1          0          91                0               
+swp2  296      0        2       0       2          1          297               0               
+swp3  296      0        7       0       4          7          539               0
 ```
 
 {{< /tab >}}

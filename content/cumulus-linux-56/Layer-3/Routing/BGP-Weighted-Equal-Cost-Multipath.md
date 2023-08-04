@@ -309,9 +309,7 @@ Cumulus Linux supports BGP W-ECMP with adaptive routing for high-performance Eth
 
 - NVIDIA recommends using W-ECMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
 - Cumulus Linux supports a maximum of 48 adaptive routing enabled ports in a single ECMP group.
-- Cumulus Linux establishes the neighbor group based on the neighbor MAC address. `switchd` automatically assigns the base MAC address to all of the adaptive routing enabled ports in a particular node.
-- W-ECMP with adaptive routing works only on Cumulus Linux switches in an adaptive routing enabled network.
-- Both adaptive routing traffic and non adaptive routing traffic goes over the same ECMP group, which adjusts according to the W-ECMP weight; therefore, the reduced capacity applies to both adaptive routing and non adaptive routing traffic. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.
+- Both adaptive routing eligible traffic and non adaptive routing eligible traffic goes over the same ECMP group, which adjusts according to the W-ECMP weight. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.
 
 ## Troubleshooting
 

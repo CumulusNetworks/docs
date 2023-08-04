@@ -658,7 +658,7 @@ To apply a custom profile to specific interfaces, see [Port Groups](#pfc).
 
 ### PFC Watchdog
 
-PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled and restores traffic.
+PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled, and restores traffic.
 
 In lossless Ethernet, PFC and link pause instruct the link partner to pause sending packets, which generates back pressure that spreads to the whole network causing the network to stop forwarding traffic. PFC watchdog detects abnormal back pressure caused by receiving excessive pause frames and disables PFC and link pause temporarily.
 

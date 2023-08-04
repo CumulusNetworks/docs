@@ -509,7 +509,7 @@ The benefits of using adaptive routing include:
 
 Cumulus Linux only supports adaptive routing with:
 - Switches with the Spectrum-4 ASIC.
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RDMA with lossless RoCEv2" >}} unicast traffic
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic
 - Layer 3 interfaces and VXLAN interfaces.
 - Next hop router interfaces in the default VRF.
 

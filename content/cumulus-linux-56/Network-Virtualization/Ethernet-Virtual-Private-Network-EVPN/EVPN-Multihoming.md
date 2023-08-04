@@ -623,85 +623,43 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
     "df-preference": 50000,
     "flags": {
       "bridge-port": "on",
+      "designated-forward": "on",
       "local": "on",
-      "nexthop-group-active": "on",
       "oper-up": "on",
-      "ready-for-bgp": "on",
-      "remote": "on"
+      "ready-for-bgp": "on"
     },
     "local-interface": "bond1",
-    "mac-count": 2,
+    "mac-count": 0,
     "nexthop-group-id": 536870913,
-    "remote-vtep": {
-      "10.10.10.2": {
-        "df-algorithm": "preference",
-        "df-preference": 50000,
-        "nexthop-group-id": 268435463
-      }
-    },
     "vni-count": 1
   },
   "03:44:38:39:be:ef:aa:00:00:02": {
     "df-preference": 50000,
     "flags": {
       "bridge-port": "on",
+      "designated-forward": "on",
       "local": "on",
-      "nexthop-group-active": "on",
       "oper-up": "on",
-      "ready-for-bgp": "on",
-      "remote": "on"
+      "ready-for-bgp": "on"
     },
     "local-interface": "bond2",
-    "mac-count": 2,
+    "mac-count": 0,
     "nexthop-group-id": 536870914,
-    "remote-vtep": {
-      "10.10.10.2": {
-        "df-algorithm": "preference",
-        "df-preference": 50000,
-        "nexthop-group-id": 268435463
-      }
-    },
     "vni-count": 1
   },
   "03:44:38:39:be:ef:aa:00:00:03": {
     "df-preference": 50000,
     "flags": {
       "bridge-port": "on",
+      "designated-forward": "on",
       "local": "on",
-      "nexthop-group-active": "on",
       "oper-up": "on",
-      "ready-for-bgp": "on",
-      "remote": "on"
+      "ready-for-bgp": "on"
     },
     "local-interface": "bond3",
-    "mac-count": 2,
+    "mac-count": 0,
     "nexthop-group-id": 536870915,
-    "remote-vtep": {
-      "10.10.10.2": {
-        "df-algorithm": "preference",
-        "df-preference": 50000,
-        "nexthop-group-id": 268435463
-      }
-    },
     "vni-count": 1
-  },
-  "03:44:38:39:be:ef:bb:00:00:01": {
-    "df-preference": 0,
-    "flags": {
-      "nexthop-group-active": "on",
-      "remote": "on"
-    },
-    "mac-count": 2,
-    "nexthop-group-id": 536870916,
-    "remote-vtep": {
-      "10.10.10.3": {
-        "nexthop-group-id": 268435461
-      },
-      "10.10.10.4": {
-        "nexthop-group-id": 268435462
-      }
-    },
-    "vni-count": 0
   }
 }
 ```
@@ -715,6 +673,25 @@ ESI                            Type ES-IF                 VTEPs
 03:44:38:39:be:ef:aa:00:00:01  LB   bond1                 
 03:44:38:39:be:ef:aa:00:00:02  LB   bond2                 
 03:44:38:39:be:ef:aa:00:00:03  LB   bond3
+```
+
+To show information about a specific ESI:
+
+```
+cumulus@switch:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:01
+                      operational
+--------------------  -----------
+df-preference         50000      
+local-interface       bond1      
+mac-count             0          
+nexthop-group-id      5.369e+08  
+vni-count             1          
+flags                            
+  bridge-port         on         
+  designated-forward  on         
+  local               on         
+  oper-up             on         
+  ready-for-bgp       on 
 ```
 
 ### Show Ethernet Segment per VNI Information

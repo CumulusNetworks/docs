@@ -1,34 +1,34 @@
 ---
-title: Unequal Cost Multipath with BGP Link Bandwidth
+title: Weighted Equal Cost Multipath
 author: NVIDIA
 weight: 780
 toc: 3
 ---
-You use <span style="background-color:#F5F5DC">[UCMP](## "Unequal Cost Multipath")</span> (also called <span style="background-color:#F5F5DC">[WCMP](## "Weighted Cost Multipath")</span>) in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports UCMP by using the <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
+You use <span style="background-color:#F5F5DC">[W-ECMP](## "Weighted Equal Cost Multipath")</span>) in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports W-ECMP by using the <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
 
-## UCMP Routing
+## W-ECMP Routing
 
 In <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path")</span>, the route to a destination has multiple next hops and traffic distributes across them equally. Flow-based hashing ensures that all traffic associated with a particular flow uses the same next hop and the same path across the network.
 
-In UCMP, along with the ECMP flow-based hash, Cumulus Linux associates a weight with each next hop and distributes traffic across the next hops in proportion to their weight. The BGP link bandwidth extended community carries information about the anycast server distribution through the network, which maps to the weight of the corresponding next hop. The mapping factors the bandwidth value of a particular path against the total bandwidth values of all possible paths, mapped to the range 1 to 100. The BGP best path selection algorithm and the multipath computation algorithm that determines which paths you can use for load balancing does not change.
+In W-ECMP, along with the ECMP flow-based hash, Cumulus Linux associates a weight with each next hop and distributes traffic across the next hops in proportion to their weight. The BGP link bandwidth extended community carries information about the anycast server distribution through the network, which maps to the weight of the corresponding next hop. The mapping factors the bandwidth value of a particular path against the total bandwidth values of all possible paths, mapped to the range 1 to 100. The BGP best path selection algorithm and the multipath computation algorithm that determines which paths you can use for load balancing does not change.
 
-## UCMP Example
+## W-ECMP Example
 
 {{< img src = "/images/cumulus-linux/ucmp-example.png" >}}
 
-The above example shows how traffic towards 192.168.10.1/32 is load balanced when you use UCMP routing:
+The above example shows how traffic towards 192.168.10.1/32 is load balanced when you use W-ECMP routing:
 - leaf01 has two ECMP paths to 192.168.10.1/32 (through server01 and server03) whereas leaf03 and leaf04 have a single path to server04.
 - leaf01, leaf02, leaf03, and leaf04 generate a BGP link bandwidth based on the number of BGP multipaths for a prefix.
 - When announcing the prefix to the spines, leaf01 and leaf02 generate a link bandwidth of two while leaf03 and leaf04 generate a link bandwidth of one.
 - Each spine advertises the 192.168.10.1/32 prefix to the border leafs with an accumulated bandwidth of 6. This combines the value of 2 from leaf01, 2 from leaf02, 1 from leaf03 and 1 from leaf04.
 
-Now, each spine has four UCMP routes:
+Now, each spine has four W-ECMP routes:
 - through leaf01 with weight 2
 - through leaf02 with weight 2
 - through leaf03 with weight 1
 - through leaf04 with weight 1
 
-The border leafs also have four UCMP routes:
+The border leafs also have four W-ECMP routes:
 - through spine01 with weight 6
 - through spine02 with weight 6
 - through spine03 with weight 6
@@ -36,13 +36,13 @@ The border leafs also have four UCMP routes:
 
 The border leafs balance traffic equally; all weights are equal to the spines. Only the spines have unequal load sharing based on the weight values.
 
-## Configure UCMP
+## Configure W-ECMP
 
 Set the BGP link bandwidth extended community in a route map against all prefixes, a specific prefix, or set of prefixes using the match clause of the route map. Apply the route map on the first device to receive the prefix; against the BGP neighbor that generated this prefix.
 
 The BGP link bandwidth extended community uses bytes-per-second. To convert the number of ECMP paths, Cumulus Linux uses a reference bandwidth of 1024Kbps. For example, if there are four ECMP paths to an anycast IP, the encoded bandwidth in the extended community is 512,000. The actual value is not important, as long as all routers originating the link bandwidth convert the number of ECMP paths in the same way.
 
-Cumulus Linux accepts the bandwidth extended community by default. You do not need to configure transit devices where UCMP routes are not originated.
+Cumulus Linux accepts the bandwidth extended community by default. You do not need to configure transit devices where W-ECMP routes are not originated.
 
 {{%notice note%}}
 - The bandwidth used in the extended community has no impact on or relation to port bandwidth.
@@ -199,19 +199,19 @@ route-map ucmp-route-map permit 10
 {{< /tab >}}
 {{< /tabs >}}
 
-## Control UCMP on the Receiving Switch
+## Control W-ECMP on the Receiving Switch
 
-To control UCMP on the receiving switch, you can:
+To control W-ECMP on the receiving switch, you can:
 
-- Set default values for UCMP routes.
+- Set default values for W-ECMP routes.
 - Disable the advertisement of all BGP extended communities on specific peerings.
 
-### Set Default Values for UCMP Routes
+### Set Default Values for W-ECMP Routes
 
 By default, if some of the multipaths do not have link bandwidth, Cumulus Linux ignores the bestpath bandwidth value in any of the multipaths and performs ECMP. However, you can set one of the following options instead:
 
 - Ignore link bandwidth and perform ECMP.
-- Skip paths without link bandwidth and perform UCMP among the others (if at least some paths have link bandwidth).
+- Skip paths without link bandwidth and perform W-ECMP among the others (if at least some paths have link bandwidth).
 - Assign a low default weight (value 1) to paths that do not have link bandwidth.
 
 Change this setting per BGP instance for both IPv4 and IPv6 unicast routes in the BGP instance. For EVPN, set the options on the tenant VRF.
@@ -221,7 +221,7 @@ Change this setting per BGP instance for both IPv4 and IPv6 unicast routes in th
 
 Run the NVUE `nv set vrf <vrf> router bgp path-selection multipath bandwidth ignore`, `nv set vrf <vrf> router bgp path-selection multipath bandwidth skip-missing`, or `nv set vrf <vrf> router bgp path-selection multipath bandwidth default-weight-for-missing` command.
 
-The following example sets link bandwidth processing to skip paths without link bandwidth and perform UCMP among the other paths:
+The following example sets link bandwidth processing to skip paths without link bandwidth and perform W-ECMP among the other paths:
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp path-selection multipath bandwidth skip-missing
@@ -303,15 +303,15 @@ switch# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-## UCMP and Adaptive Routing
+## W-ECMP and Adaptive Routing
 
-Cumulus Linux supports UCMP with adaptive routing for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-ucmp" text="above.">}}
+Cumulus Linux supports W-ECMP with adaptive routing for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-wecmp" text="above.">}}
 
-- NVIDIA recommends using UCMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
+- NVIDIA recommends using W-ECMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
 - Cumulus Linux supports a maximum of 48 adaptive routing enabled ports in a single ECMP group.
 - Cumulus Linux establishes the neighbor group based on the neighbor MAC address. `switchd` automatically assigns the base MAC address to all of the adaptive routing enabled ports in a particular node.
-- The UCMP weight-based nexthop pruning algorithm works only on Cumulus Linux switches in an adaptive routing enabled network.
-- Both adaptive routing traffic and non adaptive routing traffic goes over the same ECMP group, which adjusts according to the UCMP weight; therefore, the reduced capacity applies to both adaptive routing and non adaptive routing traffic. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.
+- The W-ECMP weight-based nexthop pruning algorithm works only on Cumulus Linux switches in an adaptive routing enabled network.
+- Both adaptive routing traffic and non adaptive routing traffic goes over the same ECMP group, which adjusts according to the W-ECMP weight; therefore, the reduced capacity applies to both adaptive routing and non adaptive routing traffic. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.
 
 ## Troubleshooting
 
@@ -343,7 +343,7 @@ Paths: (2 available, best #2, table default)
 ```
 
 {{%notice note%}}
-The bandwidth value used by UCMP is only to determine the percentage of load to a given next hop and has no impact on actual link or flow bandwidth.
+The bandwidth value used by W-ECMP is only to determine the percentage of load to a given next hop and has no impact on actual link or flow bandwidth.
 {{%/notice%}}
 
 To show EVPN type-5 routes, run the `net show bgp l2vpn evpn route type prefix` command or the vtysh `show bgp l2vpn evpn route type prefix` command.
@@ -378,7 +378,7 @@ Routing entry for 192.168.10.1/32
 
 ## Considerations
 
-UCMP with BGP link bandwidth is only available for BGP-learned routes.
+W-ECMP with BGP link bandwidth is only available for BGP-learned routes.
 
 ## Related Information
 

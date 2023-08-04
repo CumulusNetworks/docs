@@ -1,14 +1,14 @@
 ---
-title: Equal Cost Multipath Load Sharing - Hardware ECMP
+title: Equal Cost Multipath Load Sharing
 author: NVIDIA
 weight: 770
 toc: 3
 ---
-Cumulus Linux enables hardware <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
+Cumulus Linux enables <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for all IPv4 and IPv6 routes with multiple installed next hops.
 
 ## How Does ECMP Work?
 
-ECMP operates only on equal cost routes in the Linux routing table. In the following example, the 10.10.10.3/32 route has four possible next hops installed in the routing table:
+ECMP operates only on equal cost routes in the RIB. In the following example, the 10.10.10.3/32 route has four possible next hops installed in the RIB:
 
 ```
 cumulus@leaf01:mgmt:~$ net show route 10.10.10.3/32
@@ -500,19 +500,18 @@ cumulus@switch:~$ systemctl status frr
 
 ## Adaptive Routing
 
-Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.
+Adaptive routing is a load balancing mechanism that improves network utilization for eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.
 
 The benefits of using adaptive routing include:
-- The switch can forward RoCE traffic over all the available ECMP member ports to maximize the total traffic throughput.
-- For leaf to spine traffic flows, the switch distributes incoming traffic equally between the available spines, which helps to minimize latency and congestion on network resources.
-- If the cumulative rate of one or more RoCE traffic streams exceeds the link bandwidth of the individual uplink port, adaptive routing can distribute the traffic dynamically between multiple uplink ports; the available bandwidth for RoCE traffic is not limited to the link bandwidth of the individual uplink port.
-- If the link bandwidth of the individual uplink ports is lower than that of the ingress port, RoCE traffic can flow through; the switch distributes the traffic between the available ECMP member ports without affecting the existing traffic.
+- The switch can forward adaptive routing eligible IP packets over all the available ECMP member ports to maximize the total traffic throughput, while removing potential ECMP flow collisions.
+- The switch distributes incoming traffic equally (or according to their weights) between the available IP next hops, which helps to minimize latency and network congestion.
+- If the cumulative rate of one or more flows exceeds the link bandwidth of the individual uplink port, adaptive routing can distribute the traffic dynamically between multiple uplink ports; the available bandwidth for these flows is not limited to the link bandwidth of an individual uplink port.
 
 Cumulus Linux only supports adaptive routing with:
 - Switches with the Spectrum-4 ASIC.
 - For switches with the Spectrum-2 or Spectrum-3 ASIC, adaptive routing is a [beta feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. Do use adaptive routing with Spectrum-2 or Spectrum-3 switches in production.
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RDMA with lossless RoCEv2" >}} unicast traffic
-- Layer 3 interfaces and VNIs.
+- Layer 3 interfaces and VXLAN interfaces.
 - Next hop router interfaces in the default VRF.
 
 {{%notice note%}}
@@ -520,11 +519,11 @@ Cumulus Linux only supports adaptive routing with:
 - You *cannot* configure adaptive routing on bonds or ports that are part of a bond.
 {{%/notice%}}
 
-With adaptive routing, packets route to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.
+With adaptive routing, the switch forwards packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration.
 
 The change decision for port selection is set to one microsecond; you cannot change it.
 
-Cumulus Linux supports UCMP with adaptive routing; see {{<link title="Unequal Cost Multipath with BGP Link Bandwidth/#ucmp-and-adaptive-routing" text="Unequal Cost Multipath with BGP Link Bandwidth. ">}}
+Cumulus Linux supports W-ECMP with adaptive routing; see {{<link title="Weighted Equal Cost Multipath/#wecmp-and-adaptive-routing" text="Weighted Equal Cost Multipath. ">}}
 
 {{%notice note%}}
 You must configure adaptive routing on *all* ports that are part of the same ECMP route. Make sure the ports are physical uplink ports.

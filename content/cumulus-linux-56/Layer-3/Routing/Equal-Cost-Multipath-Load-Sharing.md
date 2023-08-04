@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 770
 toc: 3
 ---
-Cumulus Linux enables <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for all IPv4 and IPv6 routes with multiple installed next hops.
+Cumulus Linux enables <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for IPv4 and IPv6 routes with multiple installed next hops. The hardware or the routing protocol configuration determines the maximum number of routes for which load sharing occurs.
 
 ## How Does ECMP Work?
 

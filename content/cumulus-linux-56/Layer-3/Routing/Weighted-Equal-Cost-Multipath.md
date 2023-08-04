@@ -64,7 +64,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -115,7 +115,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -165,7 +165,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -229,7 +229,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{< tab "vtysh Commands ">}}
 
 Run the vtysh `bgp bestpath bandwidth ignore`, `bgp bestpath bandwidth skip-missing`, or `bgp bestpath bandwidth default-weight-for-missing` command.
 
@@ -287,7 +287,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh

@@ -522,7 +522,7 @@ With adaptive routing, the switch forwards packets to the less loaded path on a 
 
 The change decision for port selection is set to one microsecond; you cannot change it.
 
-Cumulus Linux supports W-ECMP with adaptive routing; see {{<link title="Weighted Equal Cost Multipath/#wecmp-and-adaptive-routing" text="Weighted Equal Cost Multipath. ">}}
+Cumulus Linux supports BGP W-ECMP with adaptive routing; see {{<link title="BGP Weighted Equal Cost Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP Weighted Equal Cost Multipath. ">}}
 
 {{%notice note%}}
 You must configure adaptive routing on *all* ports that are part of the same ECMP route. Make sure the ports are physical uplink ports.

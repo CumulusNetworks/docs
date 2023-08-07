@@ -26,9 +26,9 @@ NetQ 4.7.0 includes the following new features and improvements:
 
 If your deployment is running version 4.5.0 or 4.6.0, you can {{<link title="Upgrade NetQ" text="upgrade directly to NetQ 4.7.0">}}.
 
-If your deployment is running version 4.3.0, 4.4.0, or 4.4.1, you must {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your current NetQ data">}} and perform a new installation of NetQ 4.5.0. From version 4.5.0, you can {{<link title="Upgrade NetQ" text="upgrade directly to NetQ 4.7.0">}}.
+If your deployment is running version 4.3.0, 4.4.0, or 4.4.1, you must {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your current NetQ data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.7.0">}}.
 
-Upgrades from version 4.2.0 or earlier require an incremental {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="upgrade to version 4.3.0">}} before you {{<link title="Upgrade NetQ" text="back up your data">}} and perform a new installation of NetQ 4.5.0. From version 4.5.0, you can {{<link title="Upgrade NetQ" text="upgrade directly to NetQ 4.7.0">}}.
+Upgrades from version 4.2.0 or earlier require an incremental {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="upgrade to version 4.3.0">}} before you {{<link title="Upgrade NetQ" text="back up your data">}} and perform a{{<link title="Install NetQ" text="new installation of NetQ 4.7.0">}}.
 ## Compatible Agent Versions
 
 NetQ 4.6.0 is compatible with NetQ Agent versions 4.5.0 and later. You can install NetQ Agents on switches and servers running:

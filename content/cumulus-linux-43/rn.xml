@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>3474391</td>
-<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define INDEX of {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -1529,10 +1529,11 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -2075,6 +2076,11 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>4.3.0-4.3.1</td>
 </tr>
 <tr>
+<td>3334036</td>
+<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
+<td>4.3.0-4.3.1</td>
+</tr>
+<tr>
 <td>3319919</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
@@ -2165,7 +2171,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 </tr>
 <tr>
 <td>3474391</td>
-<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define INDEX of {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -2265,8 +2271,8 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <tr>
 <td>3334036</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
+<td>4.3.0-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3334031</td>
@@ -3887,10 +3893,11 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>

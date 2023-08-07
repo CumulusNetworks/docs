@@ -68,7 +68,7 @@
 </tr>
 <tr>
 <td>3496889</td>
-<td>When PTP is not enabled on switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
+<td>When PTP is not enabled on the switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
 <td>5.3.1-5.5.1</td>
 <td></td>
 </tr>
@@ -100,7 +100,7 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 </tr>
 <tr>
 <td>3474391</td>
-<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define INDEX of {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -271,7 +271,7 @@ This error message is benign and has no functional impact.</td>
 </tr>
 <tr>
 <td>3368217</td>
-<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.5.1</td>
 <td></td>
 </tr>
@@ -442,7 +442,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -567,11 +567,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>2671652</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>4.4.0-4.4.5, 5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -651,7 +658,7 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 </tr>
 <tr>
 <td>3496889</td>
-<td>When PTP is not enabled on switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
+<td>When PTP is not enabled on the switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
 <td>5.3.1-5.5.1</td>
 <td></td>
 </tr>
@@ -683,7 +690,7 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 </tr>
 <tr>
 <td>3474391</td>
-<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define INDEX of {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -860,7 +867,7 @@ This error message is benign and has no functional impact.</td>
 </tr>
 <tr>
 <td>3368217</td>
-<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.5.1</td>
 <td></td>
 </tr>
@@ -1031,7 +1038,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -1156,11 +1163,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>2671652</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>4.4.0-4.4.5, 5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>

@@ -514,6 +514,38 @@ cumulus@switch:~$
 For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs).
 {{%/notice%}}
 
+## Clear Statistics
+
+You can clear route map and prefix list statistics.
+
+- To clear all prefix list statistics, run the `nv action clear router policy prefix-list` command.
+- To clear statistics for a specific prefix list, run the `nv action clear router policy prefix-list <prefix-list-id>` command.
+- To clear statistics for a specific prefix list rule number and match ID, run the `nv action clear router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>` command.
+
+The following example clears statistics for the prefix list called prefixlist1:
+
+```
+cumulus@switch:~$ nv action clear router policy prefix-list prefixlist1
+Action succeeded
+```
+
+The following example clears statistics for prefixlist1 rule 10 with match criteria 10.0.0.0/16:
+
+```
+cumulus@switch:~$ nv action clear router policy prefix-list prefixlist1 rule 10 match 10.0.0.0/16
+Action succeeded
+```
+
+- To clear all route map statistics, run the `nv action clear router policy route-map` command.
+- To clear statistics for a specific route map, run the `nv action clear router policy route-map <route-map-id>` command.
+
+The following example clears statistics for the route map called routemap1:
+
+```
+cumulus@switch:~$ nv action clear router policy route-map routemap1 
+Action succeeded
+```
+
 ## Configuration Examples
 
 This section shows the `/etc/frr/frr.conf` file configuration for example route filters and redistribution.

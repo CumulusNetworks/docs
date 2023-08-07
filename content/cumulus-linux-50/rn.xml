@@ -14,7 +14,7 @@
 </tr>
 <tr>
 <td>3474391</td>
-<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define INDEX of {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -99,12 +99,6 @@ ERR cannot allocate vlan for sub-interface
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
 <td>5.3.0-5.5.1</td>
-</tr>
-<tr>
-<td>3234085</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>5.0.1-5.3.1</td>
-<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3228899</td>
@@ -310,7 +304,7 @@ end vrf
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -873,10 +867,11 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -909,7 +904,7 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 </tr>
 <tr>
 <td>3474391</td>
-<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define INDEX of {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -1149,7 +1144,7 @@ end vrf
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -1600,10 +1595,11 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>

@@ -45,10 +45,20 @@ To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.
 <th> Affects </th>
 </tr>
 <tr>
+<td>3491935</td>
+<td>NetQ might generate continuous TCA events for the NetQ VM squashfs mounts when disk utilization TCA rules are configured for all hosts.  </td>
+<td>4.5.0-4.6.0</td>
+</tr>
+<tr>
 <td>3454057</td>
 <td>When you configure more than one TCA rule referencing the same TCA event type, adding additional TCA rules fails with the following message:
 
 Failed to add/update TCA http status_code: 409</td>
+<td>4.5.0-4.6.0</td>
+</tr>
+<tr>
+<td>3448057</td>
+<td>NetQ NTP validations will report time syncronization failures for switches running the NTP service in the default VRF.</td>
 <td>4.5.0-4.6.0</td>
 </tr>
 <tr>

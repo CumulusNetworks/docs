@@ -1612,6 +1612,122 @@ cumulus@switch:~$ /usr/cumulus/bin/validate-ports -f /etc/cumulus/ports.conf
 
 This section shows basic commands for troubleshooting switch ports. For a more comprehensive troubleshooting guide, see {{<link url="Troubleshoot-Layer-1">}}.
 
+### Interface Settings
+
+To see all settings for an interface, run the `nv show interface <interface>` command:
+
+```
+cumulus@switch:~$ nv show interface swp1                          operational        applied
+------------------------  -----------------  -------
+type                      swp                swp    
+[acl]                                               
+evpn                                                
+  multihoming                                       
+    uplink                                   off    
+ptp                                                 
+  enable                                     off    
+router                                              
+  adaptive-routing                                  
+    enable                                   off    
+  ospf                                              
+    enable                                   off    
+  ospf6                                             
+    enable                                   off    
+  pbr                                               
+    [map]                                           
+  pim                                               
+    enable                                   off    
+synce                                               
+  enable                                     off    
+ip                                                  
+  igmp                                              
+    enable                                   off    
+  ipv4                                              
+    forward                                  on     
+  ipv6                                              
+    enable                                   on     
+    forward                                  on     
+  neighbor-discovery                                
+    enable                                   on     
+    [dnssl]                                         
+    home-agent                                      
+      enable                                 off    
+    [prefix]                                        
+    [rdnss]                                         
+    router-advertisement                            
+      enable                                 off    
+  vrrp                                              
+    enable                                   off    
+  vrf                                        default
+  [gateway]                                         
+link                                                
+  auto-negotiate          off                on     
+  duplex                  full               full   
+  speed                   1G                 auto   
+  fec                                        auto   
+  mtu                     9000               9216   
+  fast-linkup             off                       
+  [breakout]                                        
+  state                   up                 up     
+  stats                                             
+    carrier-transitions   4                         
+    in-bytes              600 Bytes                 
+    in-drops              5                         
+    in-errors             0                         
+    in-pkts               10                        
+    out-bytes             2.11 MB                   
+    out-drops             0                         
+    out-errors            0                         
+    out-pkts              33143                     
+  mac                     48:b0:2d:39:3f:83         
+ifindex                   3
+```
+
+You can add the `--view` option to show different views: `acl-statistics`, `brief`, `detail`, `lldp`, `mac`, `mlag-cc`, `pluggables`, `qos-profile`, and `small`. For example, the `nv show interface --view=small` command lists the interfaces on the switch. The `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port. The `nv show interface --view=mac` command shows the MAC address of each interface.
+
+The description column only shows in the output when you use the `--view=detail` option.
+
+The following example shows the MAC address of each interface on the switch:
+
+```
+cumulus@switch:~$ nv show interface --view=mac
+Interface   State  Speed  MTU    MAC                Type    
+----------  -----  -----  -----  -----------------  --------
+BLUE        up            65575  2a:f9:b5:3c:74:b8  vrf     
+RED         up            65575  8e:91:ed:ed:d5:76  vrf     
+bond1       up     1G     9000   48:b0:2d:39:3f:83  bond    
+bond2       up     1G     9000   48:b0:2d:b3:5e:18  bond    
+bond3       up     1G     9000   48:b0:2d:c2:9d:47  bond    
+br_default  up            9216   44:38:39:22:01:7a  bridge  
+br_l3vni    up            9216   44:38:39:22:01:7a  bridge  
+eth0        up     1G     1500   44:38:39:22:01:7a  eth     
+lo          up            65536  00:00:00:00:00:00  loopback
+mgmt        up            65575  8a:58:d0:25:47:7d  vrf     
+swp1        up     1G     9000   48:b0:2d:39:3f:83  swp     
+swp2        up     1G     9000   48:b0:2d:b3:5e:18  swp     
+swp3        up     1G     9000   48:b0:2d:c2:9d:47  swp     
+swp4        down          1500   48:b0:2d:c2:7e:cd  swp     
+swp5        down          1500   48:b0:2d:6e:bc:c1  swp     
+swp6        down          1500   48:b0:2d:2d:89:16  swp 
+...
+```
+
+You can filter the `nv show interface` command output on specific columns. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.
+
+You can filter on multiple column outputs (enclose the filter types in parentheses); for example, `nv show interface --filter "type=bridge&mtu=9216"` shows data for bridges with MTU 9216.
+
+You can filter on all revisions (operational, applied, and pending); for example, `nv show interface --filter mtu=1500 --rev=applied` shows only the interfaces with MTU set to 1500 in the applied revision.
+
+The following example shows information for bridges configured on the switch with MTU 9216:
+
+```
+cumulus@switch:~$ nv show interface --filter "type=bridge&mtu=9216"
+Interface   State  Speed  MTU   Type    Remote Host  Remote Port  Summary                                
+----------  -----  -----  ----  ------  -----------  -----------  ---------------------------------------
+br_default  up            9216  bridge                            IP Address: fe80::4638:39ff:fe22:17a/64
+br_l3vni    up            9216  bridge                            IP Address: fe80::4638:39ff:fe22:17a/64
+```
+
 ### Statistics
 
 To show interface statistics, run the NVUE `nv show interface <interface> counters` command or the Linux `sudo ethtool -S <interface>` command.
@@ -1634,7 +1750,7 @@ out-pkts             43945
 
 For more information about showing and clearing interface counters, refer to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE" text="Monitoring Interfaces and Transceivers with NVUE">}}.
 
-### Show SFP Port Information
+### SFP Port Information
 
 To verify SFP settings, run the NVUE `nv show interface <interface> pluggable` command or the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
 

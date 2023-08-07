@@ -516,6 +516,7 @@ Cumulus Linux only supports adaptive routing with:
 {{%notice note%}}
 - Adaptive routing does not make use of resilient hashing.
 - You *cannot* configure adaptive routing on bonds or ports that are part of a bond.
+- The Spectrum-4 switch does not support adaptive routing on 800G links.
 {{%/notice%}}
 
 With adaptive routing, the switch forwards packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration.

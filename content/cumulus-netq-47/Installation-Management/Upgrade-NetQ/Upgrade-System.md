@@ -7,16 +7,13 @@ toc: 4
 
 This page describes how to upgrade your NetQ virtual machines. Note that the upgrade instructions vary depending on NetQ version you’re currently running.
 
+For deployments running:
+
+- 4.6.0 or 4.5.0: {{<link title="Upgrade NetQ/#upgrading-from-netq-4.5.0-or-later" text="upgrade directly">}} to NetQ 4.7.0
+- 4.4.1, 4.4.0, or 4.3.0: {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your NetQ data">}} and perform a new installation of NetQ 4.5.0. From version 4.5.0, you can {{<link title="Upgrade NetQ/#upgrading-from-netq-4.5.0-or-later" text="upgrade directly">}} to NetQ 4.7.0
+- 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Upgrade NetQ" text="back up your data">}} and perform a new installation of NetQ 4.5.0. From version 4.5.0, you can {{<link title="Upgrade NetQ" text="upgrade directly to NetQ 4.7.0">}}.
+
 <!--
-
-If your current NetQ version is:
-
-- **4.2.0 or earlier**: perform an incremental {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="upgrade to version 4.3.0">}} before you {{<link title="Upgrade NetQ" text="back up your data">}} and perform a new installation of NetQ 4.5.0. Then {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-4.5.0-or-later" text="follow the steps below">}}.
-- **4.3.0 to 4.4.1**: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-4.4.1-or-earlier" text="follow these steps">}}.
-- **4.5.0 or later**: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-4.5.0-or-later" text="Follow these steps">}}.
-
--->
-
 ## Upgrading from NetQ 4.4.1 or Earlier
 
 Upgrading to NetQ 4.7.0 from NetQ 4.4.1 or earlier requires a new installation of the NetQ virtual machine. Perform the following steps to upgrade:
@@ -26,14 +23,14 @@ Upgrading to NetQ 4.7.0 from NetQ 4.4.1 or earlier requires a new installation o
 2. Follow the {{<link title="Install the NetQ System" text="installation process">}} for your deployment model.
 
 3. For on-premises deployments, {{<link title="Back Up and Restore NetQ/#restore-your-netq-data" text="restore your NetQ data">}}.
-
+-->
 
 ## Upgrading from NetQ 4.5.0 or Later
 
-You can upgrade directly to NetQ 4.7.0 if your deployment is currently running version 4.5.0 or later.
+You can upgrade directly to NetQ 4.7.0 if your deployment is currently running version 4.5.0 or 4.6.0.
 ### Back up your NetQ Data
 
-{{<link title="Back Up and Restore NetQ" text="Backing up your NetQ data">}} is an optional step for on-premises deployments. NetQ cloud deployments create backups automatically.
+Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}. This is an optional step for on-premises deployments. NetQ cloud deployments create backups automatically.
 
 ### Update NetQ Debian Packages
 
@@ -96,9 +93,9 @@ Perform the following steps using the `cumulus` user account.
 
 Verify the following items before upgrading NetQ. For cluster deployments, verify steps 1 and 4 on all nodes in the cluster:
 
-1. Confirm your VM is configured with 16 vCPUs. If your VM is configured with fewer than 16 vCPUs, power off your VM, reconfigure your hypervisor to allocate 16 vCPUs, then power the VM on before proceeding with the following steps.
+1. Confirm your VM is configured with 16 vCPUs. If your VM is configured with fewer than 16 vCPUs, power off your VM, reconfigure your hypervisor to allocate 16 vCPUs, then power the VM on before proceeding.
 
-2. Check if enough disk space is available before you proceed with the upgrade:
+2. Check if there is sufficient disk space:
 
 ```
 cumulus@<hostname>:~$ df -h /
@@ -126,7 +123,7 @@ sudo sed -i 's/client-key.*/client-key: \/var\/lib\/kubelet\/pki\/kubelet-client
 sudo systemctl restart kubelet
 ```
 
-Check if the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
+Confirm that the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
 
 #### Upgrade Using the NetQ CLI
 
@@ -257,3 +254,7 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 {{</tab>}}
 
 {{</tabs>}}
+
+## Next Steps
+
+- {{<link title="Upgrade NetQ Agents">}}

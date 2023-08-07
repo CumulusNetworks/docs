@@ -13,6 +13,7 @@ import tarfile
 import os
 from os import listdir
 import requests
+import csv
 
 def product_string(product):
     '''
@@ -95,17 +96,16 @@ def build_foss_license_markdown(csv_file, version, product):
     output = []
     header = True
     f = open(csv_file, "r")
-    for line in f:
-        split_line = line.replace("\"", "").split(",")
-        license_string = format_license_string(split_line[2])
-
+    f_csv = csv.reader(f)
+    for row in f_csv:
+        license_string = format_license_string(row[2])
         if header:
-            output.append("| {} | {} | {} |\n".format(split_line[0], split_line[1].strip(), license_string))
+            output.append("| {} | {} | {} |\n".format(row[0], row[1].strip(), license_string))
         else:
             if product == "cl":
-                output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-linux-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), license_string))
+                output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-linux-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(row[0], version_string(version).replace(".", ""), row[0], row[1].strip(), license_string))
             if product == "netq":
-                output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-netq-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), license_string))
+                output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-netq-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(row[0], version_string(version).replace(".", ""), row[0], row[1].strip(), license_string))
         if header:
             output.append("|---	        |---	        |---	    |\n")
             header = False
@@ -299,7 +299,7 @@ def get_products():
     netq_exclude_list = ["4.1.0", "4.2.0", "4.3.0", "4.4.0", "4.5.0", "4.6.0"]
 
     session = requests.Session()
-    url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"
+    url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list_stage.json"
     response = session.get(url)
     if response.status_code != 200:
         print("Unable to download JSON releases file to determine products and versions for FOSS licenses.")

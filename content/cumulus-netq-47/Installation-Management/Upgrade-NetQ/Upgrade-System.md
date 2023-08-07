@@ -229,7 +229,7 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 
 {{</tabs>}}
 
-3. After the upgrade command completes, confirm the upgrade was successful.
+3. Confirm the upgrade was successful:
 
 {{<tabs "TabID230" >}}
 

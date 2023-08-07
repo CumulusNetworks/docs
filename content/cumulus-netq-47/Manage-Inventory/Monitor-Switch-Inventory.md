@@ -41,26 +41,58 @@ netq show services
 
 Add the Inventory/Switches card to your workbench to monitor the hardware and software component inventory on switches running NetQ in your network. To add this card to your workbench, select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card**&nbsp;<span aria-label="and then">></span> **Inventory**&nbsp;<span aria-label="and then">></span> **Inventory/Switches card**&nbsp;<span aria-label="and then">></span> **Open cards**. Select the dropdown to view additional inventory information.
 
-{{<img src="/images/netq/inventory-switches-updated.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switches-dropdown.png" width="200">}}
+{{<img src="/images/netq/inventory-switches-updated.png" alt="medium switch card displaying disk information for 15 switches" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switches-dropdown.png" alt="" width="200">}}
 
 ## View Distribution and Component Counts
 
 Open the large Inventory/Switches card to display more granular information about software and hardware distribution. By default, the card displays data for fresh switches. Select **Rotten switches** from the dropdown to display information for switches that are in a down state. Hover over the top of the card and select a category to restrict the view to ASICs, platform, or software.
 
-{{<figure src="/images/netq/switch-inventory-large-update.png" width="600">}}
+{{<img src="/images/netq/switch-inventory-large-update.png" alt="switch software and hardware information" width="600">}}
 
-Expand the Inventory/Switches card to full-screen to view, filter or export information about:
+Expand the Inventory/Switches card to full-screen to view, filter or export information about ASICs, motherboards, CPUs, memory, disks, and operating system.
 
-- ASICs
-- Motherboards
-- CPUs
-- Memory
-- Disks
-- Operating system
+{{<img src="/images/netq/switch-inventory-full-460.png" alt="" width="1200">}}
 
-{{<figure src="/images/netq/switch-inventory-full-460.png" alt="" width="1200">}}
+## Decommission a Switch
+
+Decommissioning a switch or host removes information about the switch or host from the NetQ database. When the NetQ Agent restarts at a later date, it sends a connection request back to the database, so NetQ can monitor the switch or host again.
+
+{{<tabs "TabID64" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. Locate the Inventory/Switches card on your workbench and expand it to full-screen.
+
+2. Select the switches to decommission, then select **Decommission device** above the table.
+
+    If you attempt to decommission a switch that is assigned a default, unmodified access profile, the process will fail. {{<link title="Credentials and Profiles" text="Create a unique access profile">}} (or update the default with unique credentials), then {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="attach the profile">}} to the switch you want to decommission.
+
+4. Confirm the devices you want to decommission.
+
+5. Wait for the decommission process to complete, then select **Done**.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+To decommission a switch or host:
+
+1. On the given switch or host, stop and disable the NetQ Agent service:
+
+    ```
+    cumulus@switch:~$ sudo systemctl stop netq-agent
+    cumulus@switch:~$ sudo systemctl disable netq-agent
+    ```
+
+2. On the NetQ appliance or VM, decommission the switch or host:
+
+    ```
+    cumulus@netq-appliance:~$ netq decommission <hostname-to-decommission>
+    ```
+{{</tab>}}
+
+{{</tabs>}}
 ## Related Information
 
 - {{<link title="Switches" text="Switch Monitoring">}}
 - {{<link title="Switch Management" text="Switch Lifecycle Management">}}
-- {{<link title="Decommission Switches">}}

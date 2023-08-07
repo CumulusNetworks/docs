@@ -452,10 +452,11 @@ Restarting netq-agent... Success!
 - `netq config restart agent`
 
 - - -
-<!-- need to test for 4.7 docs-->
 ## netq config add agent services
 
-Configures the NetQ Agent to monitor processes and services.
+Configures the NetQ Agent to {{<link title="Switches/#view-cpu-and-memory-utilization-for-processes-and-services" text="monitor CPU and memory usage">}} for services specified in the command. The service you configure the agent to monitor using this command will be added to the list of services displayed in the UI.
+
+This command is only supported on Spectrum switches.
 
 ### Syntax
 
@@ -467,14 +468,25 @@ netq config add agent services <text-service-name-list>
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| services | <text-service-name-list\> | Configure the NetQ Agent to monitor services. Format this value as a comma-separated list, without spaces. Services include *ptmd,neighmgrd,ptp4l,docker,snmpd,rsyslog,ssh,dhcrelay* |
+| services | <text-service-name-list\> | Configure the NetQ Agent to monitor services. Format this value as a comma-separated list, without spaces. You can add up to 10 services. |
 
 ### Options
 
 None
-<!--
+
 ### Sample Usage
--->
+
+```
+cumulus@switch:~$ netq config add agent services dnsmasq
+Successfully added services for netq-agent. Please restart netq-agent (netq config restart agent)
+
+
+cumulus@switch:~$ netq config show agent services
+Services Enabled
+----------------------------------------
+dnsmasq
+```
+
 ### Related Commands
 
 - `netq config show agent services`
@@ -564,7 +576,7 @@ Restarting netq-agent... Success!
 
 Filters the WJH events at the NetQ Agent before the NetQ system processes and displays them. NetQ performs the filtering on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons, severities, or source/destination IP addresses. You must restart the agent after applying a filter with the `netq config restart agent` command. 
 
-WJH commands are only supported by NVIDIA Spectrum switches.
+Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}} for a comprehensive list of drop types, reasons, and severities. WJH commands are only supported by NVIDIA Spectrum switches.
 
 ### Syntax
 
@@ -583,27 +595,27 @@ netq config add agent wjh-drop-filter
 <!-- vale off -->
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| wjh-drop-filter | NA | Collect and send WJH events filtered by drop type, reason, or severity |
-| drop-type | \<text-wjh-drop-type\> | Only collect and send WJH events with this drop type. Valid drop types include *acl*, *buffer*, *l1*, *l2*, *router*, and *tunnel*. |
+| drop-type | \<text-wjh-drop-type\> | Ignore WJH events with this drop type. Valid drop types include *acl*, *buffer*, *l1*, *l2*, *router*, and *tunnel*. |
 <!-- vale on -->
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| ips | \<text-wjh-drop-type\> | Collect and send WJH events based on a comma-separated list of IP addresses |
-| drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. To specify more than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}}. |
-| severity | \<text-drop-severity-list\> | Only collect and send WJH events with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
+| drop-reasons | \<text-wjh-drop-reasons\> | Ignore WJH events with these drop reasons. To specify more than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}}. |
+| severity | \<text-drop-severity-list\> | Ignore WJH events with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
+| ips | \<text-wjh-drop-ips\> | Ignore WJH events for these IP addresses. Format this value as a comma-separated list.  |
+
 
 ### Sample Usage
 
-```
-cumulus@switch:~$ netq config add agent wjh-drop-filter drop-type l1 drop-reasons PORT_ADMIN_DOWN,BAD_SIGNAL_INTEGRITY
+The following example configures the NetQ Agent to ignore all L1 drops:
 
-cumulus@switch:~$ netq config restart agent
-Restarting netq-agent... Success!
 ```
-This example configures the NetQ Agent to drop only the L1 drops with bad signal integrity.
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type l1
+```
+
+This example configures the NetQ Agent to ignore L1 drops with bad signal integrity:
 
 ```
 cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type l1 drop-reasons BAD_SIGNAL_INTEGRITY
@@ -612,22 +624,33 @@ cumulus@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 
-This example configures the NetQ Agent to drop only router drops with warning severity.
+This example configures the NetQ Agent to ignore router drops with a 'warning' severity level:
 
 ```
 cumulus@switch:~$ sudo netq config add agent wjh-drop-filter drop-type router severity Warning
 ```
 
-This example configures the NetQ Agent to drop only router drops due to blackhole routes.
+This example configures the NetQ Agent to ignore router drops that are due to blackhole routes:
 
 ```
-cumulus@netq-ts:~$ netq config add agent wjh-drop-filter drop-type router drop-reasons BLACKHOLE_ROUTE
+cumulus@netq-ts:~$ sudo netq config add agent wjh-drop-filter drop-type router drop-reasons BLACKHOLE_ROUTE
 ```
 
-This example configures the NetQ Agent to drop only router drops when the source IP is a class E address.
+The following example configures the NetQ Agent to ignore all drops that contain 192.168.0.15 as a source or destination IP address:
 
 ```
-cumulus@netq-ts:~$ netq config add agent wjh-drop-filter drop-type router drop-reasons SRC_IP_IS_IN_CLASS_E
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15
+```
+This example configures the NetQ Agent to ignore all drops that contain 192.168.0.15 or 192.168.0.45 as source or destination IP address:
+
+``` 
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15,192.168.0.45
+```
+
+This example configures the NetQ Agent to ignore all drops that contain 192.168.0.15/16 prefix network as a source or destination IP address:
+ 
+```
+cumulus@switch:~$ sudo netq config add agent wjh-drop-filter ips 192.168.0.15/16
 ```
 
 ### Related Commands
@@ -635,7 +658,7 @@ cumulus@netq-ts:~$ netq config add agent wjh-drop-filter drop-type router drop-r
 - `netq config del agent wjh-drop-filter`
 - `netq config add agent wjh`
 - `netq config add agent wjh-threshold`
-- `netq config restart agent`
+- `netq config show agent wjh-drop-filter`
 
 - - -
 
@@ -1034,7 +1057,9 @@ cumulus@switch:~$ netq config restart agent
 
 ## netq config del agent services
 
-Stops the NetQ Agent from monitoring processes and services.
+Configures the NetQ Agent to stop {{<link title="Switches/#view-cpu-and-memory-utilization-for-processes-and-services" text="monitoring CPU and memory usage">}} for services specified in the command. The service you configure the agent to monitor using this command will be removed from the list of services displayed in the UI. The following services are *always* monitored and cannot be deleted: monclagd, mstpd, lldpd, frr (including zebra, bgpd, ospfd), netqd, netq-agent, wd_keepalive, nvued, switchd, sx_sdk, ntpd, pwmd, and smond.
+
+This command is only supported on Spectrum switches.
 
 ### Syntax
 
@@ -1046,7 +1071,7 @@ netq config del agent services <text-service-name-list>
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| services | <text-service-name-list\> | Stops the NetQ Agent from monitoring specified services. Format this value as a comma-separated list, without spaces. Services include *ptmd,neighmgrd,ptp4l,docker,snmpd,rsyslog,ssh,dhcrelay* |
+| services | <text-service-name-list\> | Stops the NetQ Agent from monitoring specified services. Format this value as a comma-separated list, without spaces. |
 
 ### Options
 
@@ -1063,7 +1088,7 @@ None
 
 ## netq config del agent wjh-drop-filter
 
-Delete a What Just Happened event filter on a switch.
+Deletes a What Just Happened event filter on a switch. Run the `netq show agent wjh-drop-filter` command for a list of WJH filter configurations.
 
 ### Syntax
 
@@ -1082,7 +1107,6 @@ netq config del agent wjh-drop-filter
 <!-- vale off -->
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| wjh-drop-filter | NA | Delete existing WJH event filter |
 | drop-type | \<text-wjh-drop-type\> | Delete WJH event filter with this drop type. Valid drop types include *acl*, *buffer*, *l1*, *l2*, *router*, and *tunnel*. |
 <!-- vale on -->
 
@@ -1091,24 +1115,39 @@ netq config del agent wjh-drop-filter
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. To specify than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}}. |
-| ips | \<text-wjh-drop-type\> | Delete WJH events filter for these IP addresses (comma-separated list) |
 | severity | \<text-drop-severity-list\> | Delete WJH event filter with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
+| ips | \<text-wjh-drop-type\> | Delete WJH events filter for these IP addresses (comma-separated list) |
 
 ### Sample Usage
 
+Remove L1 filter for specified drop reasons:
+
 ```
-cumulus@switch:~$ netq config del agent wjh-drop-filter drop-type l1 drop-reasons PORT_ADMIN_DOWN,BAD_SIGNAL_INTEGRITY
+cumulus@switch:~$ sudo netq config del agent wjh-drop-filter drop-type l1 drop-reasons PORT_ADMIN_DOWN,BAD_SIGNAL_INTEGRITY
 
 cumulus@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
+Remove all WJH IP-based filters: 
+
+```
+cumulus@switch:~$ sudo netq config del agent wjh-drop-filter ips
+``` 
+ 
+Remove WJH filter where the source or destination IP address is 192.168.0.15 or 192.168.0.45:
+
+```
+cumulus@switch:~$ sudo netq config del agent wjh-drop-filter ips 192.168.0.15,192.168.0.45
+```
+ 
+
 
 ### Related Commands
 
 - `netq config add agent wjh-drop-filter`
 - `netq config add/del agent wjh`
 - `netq config del agent wjh-threshold`
-- `netq config restart agent`
+- `netq config show agent wjh-drop-filter`
 
 - - -
 ## netq config del agent wjh-threshold
@@ -1443,7 +1482,7 @@ None
 | frr-monitor | NA | Display FRR monitoring configuration |
 | kubernetes-monitor | NA | Display the Kubernetes monitoring configuration |
 | loglevel | NA | Display the NetQ Agent logging level configuration |
-| services | NA | Display services and processes configuration |
+| services | NA | Display custom services and processes configuration |
 | ssl | NA | Display SSL configuration |
 | stats | NA | Display status of interface statistics |
 | wjh | NA | Display NetQ Agent What Just Happened monitoring configuration |

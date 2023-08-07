@@ -224,25 +224,23 @@ Click **Remove** if you decide to use a different file or want to use IP address
     - **Discovered without NetQ**: Switches found without NetQ installed
     - **Discovered with NetQ**: Switches found with some version of NetQ installed
     - **Discovered but Rotten**: Switches found that are unreachable
-    - **Incorrect Credentials**: Switches found that cannot are unreachable because the provided access credentials do not match those for the switches
-    - **OS not Supported**: Switches found that are running Cumulus Linux version not supported by the LCM upgrade feature
+    - **Incorrect Credentials**: Switches found that are unreachable because the provided access credentials do not match those for the switches
+    - **OS not Supported**: Switches found that are running a Cumulus Linux version not supported by LCM upgrades
     - **Not Discovered**: IP addresses which did not have an associated Cumulus Linux switch
 
     If the discovery process does not find any switches for a particular category, then it does not display that category.
 
-7. Select which switches you want to upgrade from each category by clicking the checkbox on each switch card.
+7. Select which switches you want to upgrade from each category by clicking the checkbox on each switch card. Then click **Next**.
 
     {{<figure src="/images/netq/switch-discovery-selected-450.png" width="500">}}
 
-8. Click **Next**.
+8. Accept the default NetQ version or click **Custom** and select an alternate version.
 
-9. Accept the default NetQ version or click **Custom** and select an alternate version.
+9. By default, the NetQ Agent and CLI are upgraded on the selected switches. If you *do not* want to upgrade the NetQ CLI, click **Advanced** and change the selection to **No**.
 
-10. By default, the NetQ Agent and CLI are upgraded on the selected switches. If you *do not* want to upgrade the NetQ CLI, click **Advanced** and change the selection to **No**.
+10. Click **Next**.
 
-11. Click **Next**.
-
-12. NetQ performs several checks to eliminate preventable problems during the upgrade process. When all of the pre-checks pass, select **Install**.
+11. NetQ performs several checks to eliminate preventable problems during the upgrade process. When all of the pre-checks pass, select **Install**.
 
     After starting the upgrade you can monitor the progress from the preview page or the Upgrade History page.
 

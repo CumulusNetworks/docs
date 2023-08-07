@@ -7,6 +7,10 @@ toc: 3
 
 Use the UI or CLI to monitor Open Shortest Path First (OSPF) your switches and hosts. For each device, you can view its associated interfaces, areas, peers, state, and type of OSPF running (numbered or unnumbered). 
 
+{{%notice note%}}
+On switches running Cumulus Linux 5.4.0 and later, NetQ supports OSPF monitoring only on interfaces configured for point-to-point mode and a single IP subnet in the default VRF. 
+{{%/notice%}}
+
 ## OSPF Commands
 
 Monitor OSPF with the following commands. See the {{<link title="show/#netq-show-ospf" text="command line reference">}} for additional options, definitions, and examples.

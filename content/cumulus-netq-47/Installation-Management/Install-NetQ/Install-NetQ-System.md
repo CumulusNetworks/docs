@@ -5,39 +5,6 @@ weight: 200
 toc: 3
 ---
 <!--
-You can install NetQ either on your premises or as a remote, SaaS solution. The If you are unsure which option is best for your network, refer to the {{<link title="Before You Install" text="Before You Install">}}.
-
-## On-premises Installation
-### KVM
-
-| Server Arrangement | Requirements & Installation |
-| --- | :---: |
-| Single server | {{<link title="Set Up Your KVM Virtual Machine for a Single On-premises Server" text="Start Install" >}} |
-| Server cluster | {{<link title="Set Up Your KVM Virtual Machine for an On-premises Server Cluster" text="Start Install" >}} |
-
-### VMWare
-
-| Server Arrangement | Requirements & Installation |
-| --- | :---: |
-| Single server | {{<link title="Set Up Your VMware Virtual Machine for a Single On-premises Server" text="Start Install" >}} |
-| Server cluster | {{<link title="Set Up Your VMware Virtual Machine for an On-premises Server Cluster" text="Start Install" >}} |
-
-
-## Telemetry Aggregator (OPTA for NetQ Cloud) Installation
-### KVM
-
-| Server Arrangement | Requirements & Installation |
-| --- | :---: |
-| Single server | {{<link title="Set Up Your KVM Virtual Machine for a Single Cloud Server" text="Start Install" >}} |
-| Server cluster | {{<link title="Set Up Your KVM Virtual Machine for a Cloud Server Cluster" text="Start Install" >}} |
-
-### VMWare
-
-| Server Arrangement | Requirements & Installation |
-| --- | :---: |
-| Single server | {{<link title="Set Up Your VMware Virtual Machine for a Single Cloud Server" text="Start Install" >}} |
-| Server cluster | {{<link title="Set Up Your VMware Virtual Machine for a Cloud Server Cluster" text="Start Install" >}} |
-
 - - -
 
 You can install NetQ either on your premises or as a remote, SaaS solution. If you are unsure which option is best for your network, refer to the {{<link title="Before You Install" text="Before You Install">}}.
@@ -74,5 +41,3 @@ You can install NetQ either on your premises or as a remote, SaaS solution. If y
 | OPTA | Single server | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Single Cloud Server" text="Start Install" >}} |
 | OPTA | Server cluster | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Cloud Server Cluster" text="Start Install" >}} |
 | OPTA | Server cluster | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Cloud Server Cluster" text="Start Install" >}} |
-
-- - -

@@ -395,8 +395,7 @@ A TCA event notification configuration must contain one rule. Each rule must con
 Two forms of the command are available: one that uses the `event_id` argument used to create the notification, and one that uses the `tca_id` argument used to modify an existing notification.
 
 ```
-netq add tca event_id
-    <text-event-id-anchor>
+netq add tca event_id <text-event-id-anchor>
     [scope <text-scope-anchor>]
     [severity info | severity error]
     [is_active true | is_active false]
@@ -405,8 +404,7 @@ netq add tca event_id
     [threshold <text-threshold-value>]
     [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]
 
-netq add tca tca_id
-    <text-tca-id-anchor>
+netq add tca tca_id <text-tca-id-anchor>
     [scope <text-scope-anchor>]
     [severity info | severity error]
     [is_active true | is_active false]
@@ -452,6 +450,13 @@ Create threshold-based event notification and deliver to an existing syslog chan
 cumulus@switch:~$ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 threshold 32 channel syslog-netq-events
 Successfully added/updated tca
 ```
+
+Change the threshold for the rule *TCA_CPU_UTILIZATION_UPPER_1* to a value of 96 percent. *This overwrites the existing threshold value.*
+
+```
+cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 threshold 96
+```
+
 
 ### Related Commands
 

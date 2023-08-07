@@ -28,7 +28,7 @@ For servers running RHEL 7, CentOS or Ubuntu OS, you need to:
 
 - Verify you installed the minimum service packages versions
 - Verify the server is running `lldpd`
-- Install and configure NTP, if needed
+- Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
 These steps are not required for Cumulus Linux or SONiC.
@@ -104,7 +104,7 @@ If NTP is not already installed and configured, follow these steps:
 
 {{<tab "RHEL7 or CentOS">}}
 
-1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ appliance or VM to enable useful statistical analysis.
+1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be synchronized with the NetQ appliance or VM to enable useful statistical analysis.
 
     ```
     root@rhel7:~# sudo yum install ntp
@@ -488,7 +488,7 @@ To generate AuthKeys:
 
 2. Enter your username and password.
 
-3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, and under **Admin**, select **Management**.
+3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, then select **Management**.
 
     {{<figure src="/images/netq/main-menu-admin-mgmt-selected-410.png" alt="" width="300">}}
 
@@ -563,7 +563,7 @@ To generate AuthKeys:
 
 2. Enter your username and password.
 
-3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, and under **Admin**, select **Management**.
+3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, then select **Management**.
 
     {{<figure src="/images/netq/main-menu-admin-mgmt-selected-410.png" width="300">}}
 

@@ -296,10 +296,10 @@ def get_products():
     # Some versions are included in the JSON file that don't have correct licenses
     # This is the list of versions to exclude from processing
     cl_exclude_list = ["3.7.12", "4.1.0", "4.1.1", "4.2.0", "4.3.0", "4.3.1", "4.4.0", "4.4.1", "4.4.1", "4.4.2", "4.4.3", "4.4.4", "4.4.5", "5.0.1", "5.1.0", "5.2.0", "5.3.0", "5.3.1", "5.4.0", "5.5.0", "5.5.1"]
-    netq_exclude_list = ["4.1.0", "4.2.0", "4.3.0", "4.4.0", "4.5.0", "4.6.0"]
+    netq_exclude_list = ["4.1.0", "4.2.0", "4.3.0", "4.4.0", "4.5.0", "4.6.0", "4.7.0"]
 
     session = requests.Session()
-    url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list_stage.json"
+    url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"
     response = session.get(url)
     if response.status_code != 200:
         print("Unable to download JSON releases file to determine products and versions for FOSS licenses.")

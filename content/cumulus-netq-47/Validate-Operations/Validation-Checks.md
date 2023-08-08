@@ -117,7 +117,7 @@ The OSPF validation tests look for indications of the service health and configu
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | Router ID | Checks for OSPF router ID conflicts in the network |
-| 1 | Adjacency | Checks or OSPF adjacencies in a down or unknown state |
+| 1 | Adjacency | Checks for OSPF adjacencies in a down or unknown state |
 | 2 | Timers | Checks for consistency of OSPF timer values in an OSPF adjacency |
 | 3 | Network Type | Checks for consistency of network type configuration in an OSPF adjacency |
 | 4 | Area ID | Checks for consistency of area ID configuration in an OSPF adjacency |
@@ -135,6 +135,7 @@ The RoCE validation tests look for consistent RoCE and QoS configurations across
 | 2 | Congestion Control | Checks for consistency of ECN and RED threshold settings |
 | 3 | Flow Control | Checks for consistency of PFC configuration for RoCE lossless mode |
 | 4 | ETS | Checks for consistency of Enhanced Transmission Selection settings |
+| 5 | RoCE Miscellaneous | Checks for consistency across related services |
 ## Sensor Validation Tests
 
 The sensor validation tests looks for chassis power supply, fan, and temperature sensors that are not operating as expected.

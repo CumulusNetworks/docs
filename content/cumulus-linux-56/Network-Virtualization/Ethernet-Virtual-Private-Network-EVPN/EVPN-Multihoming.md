@@ -625,12 +625,21 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
       "bridge-port": "on",
       "designated-forward": "on",
       "local": "on",
+      "nexthop-group-active": "on",
       "oper-up": "on",
-      "ready-for-bgp": "on"
+      "ready-for-bgp": "on",
+      "remote": "on"
     },
     "local-interface": "bond1",
-    "mac-count": 0,
+    "mac-count": 2,
     "nexthop-group-id": 536870913,
+    "remote-vtep": {
+      "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
+        "nexthop-group-id": 268435462
+      }
+    },
     "vni-count": 1
   },
   "03:44:38:39:be:ef:aa:00:00:02": {
@@ -639,12 +648,21 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
       "bridge-port": "on",
       "designated-forward": "on",
       "local": "on",
+      "nexthop-group-active": "on",
       "oper-up": "on",
-      "ready-for-bgp": "on"
+      "ready-for-bgp": "on",
+      "remote": "on"
     },
     "local-interface": "bond2",
-    "mac-count": 0,
+    "mac-count": 2,
     "nexthop-group-id": 536870914,
+    "remote-vtep": {
+      "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
+        "nexthop-group-id": 268435462
+      }
+    },
     "vni-count": 1
   },
   "03:44:38:39:be:ef:aa:00:00:03": {
@@ -653,13 +671,40 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
       "bridge-port": "on",
       "designated-forward": "on",
       "local": "on",
+      "nexthop-group-active": "on",
       "oper-up": "on",
-      "ready-for-bgp": "on"
+      "ready-for-bgp": "on",
+      "remote": "on"
     },
     "local-interface": "bond3",
-    "mac-count": 0,
+    "mac-count": 2,
     "nexthop-group-id": 536870915,
+    "remote-vtep": {
+      "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
+        "nexthop-group-id": 268435462
+      }
+    },
     "vni-count": 1
+  },
+  "03:44:38:39:be:ef:bb:00:00:01": {
+    "df-preference": 0,
+    "flags": {
+      "nexthop-group-active": "on",
+      "remote": "on"
+    },
+    "mac-count": 2,
+    "nexthop-group-id": 536870916,
+    "remote-vtep": {
+      "10.10.10.3": {
+        "nexthop-group-id": 268435461
+      },
+      "10.10.10.4": {
+        "nexthop-group-id": 268435463
+      }
+    },
+    "vni-count": 0
   }
 }
 ```
@@ -670,9 +715,10 @@ cumulus@switch:~$ sudo vtysh
 switch# show evpn es
 Type: B bypass, L local, R remote, N non-DF
 ESI                            Type ES-IF                 VTEPs
-03:44:38:39:be:ef:aa:00:00:01  LB   bond1                 
-03:44:38:39:be:ef:aa:00:00:02  LB   bond2                 
-03:44:38:39:be:ef:aa:00:00:03  LB   bond3
+03:44:38:39:be:ef:aa:00:00:01  LR   bond1                 10.10.10.2
+03:44:38:39:be:ef:aa:00:00:02  LR   bond2                 10.10.10.2
+03:44:38:39:be:ef:aa:00:00:03  LR   bond3                 10.10.10.2
+03:44:38:39:be:ef:bb:00:00:01  R    -                     10.10.10.3,10.10.10.4
 ```
 
 To show information about a specific ESI:
@@ -683,7 +729,7 @@ cumulus@switch:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:01
 --------------------  -----------
 df-preference         50000      
 local-interface       bond1      
-mac-count             0          
+mac-count             2          
 nexthop-group-id      5.369e+08  
 vni-count             1          
 flags                            
@@ -691,7 +737,9 @@ flags
   designated-forward  on         
   local               on         
   oper-up             on         
-  ready-for-bgp       on 
+  ready-for-bgp       on
+  remote              on         
+[remote-vtep]         10.10.10.2 
 ```
 
 ### Show Ethernet Segment per VNI Information
@@ -703,7 +751,6 @@ cumulus@switch:~$ sudo vtysh
 ...
 switch# show evpn es-evi
 Type: L local, R remote
-Type: L local, R remote
 VNI      ESI                            Type
 20       03:44:38:39:be:ef:aa:00:00:02  L   
 30       03:44:38:39:be:ef:aa:00:00:03  L   
@@ -714,9 +761,9 @@ To display the Ethernet segments for a specific VNI, run the NVUE `nv show evpn 
 
 ```
 cumulus@switch:~$ nv show evpn vni 10 multihoming esi
-                               type.local  type.remote
------------------------------  ----------  -----------
-03:44:38:39:be:ef:aa:00:00:01  on
+ESI                            Local  Remote
+-----------------------------  -----  ------
+03:44:38:39:be:ef:aa:00:00:01  yes    no
 ```
 
 ### Show BGP Ethernet Segment Information

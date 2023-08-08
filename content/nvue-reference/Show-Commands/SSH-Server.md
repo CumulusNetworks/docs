@@ -40,7 +40,7 @@ max-unauthenticated
 
 ## <h>nv show system ssh-server max-unauthenticated</h>
 
-Shows SSH timer and session information.
+Shows the number of unauthenticated SSH sessions allowed before throttling starts, the starting percentage of connections to reject above the throttle start count before reaching the session count limit, and the maximum number of unauthenticated SSH sessions allowed.
 
 ### Version History
 
@@ -108,7 +108,7 @@ Introduced in Cumulus Linux 5.6.0
 ### Example
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ nv show system ssh-server allow-users
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

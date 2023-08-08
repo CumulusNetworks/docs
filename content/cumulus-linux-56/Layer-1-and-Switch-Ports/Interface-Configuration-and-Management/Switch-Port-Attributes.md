@@ -1326,6 +1326,73 @@ Maximum 400G ports: 32
 {{< /tab >}}
 {{< /tab >}}
 
+{{< /tabs >}}
+{{< tab "SN5600">}}
+
+{{< tabs "5600_ports ">}}
+{{< tab "1G ">}}
+
+Not supported.
+
+{{< /tab >}}
+{{< tab "10G ">}}
+
+256x 10G
+
+Maximum 10G ports: 256
+
+{{< /tab >}}
+{{< tab "25G ">}}
+
+256x 25G
+
+Maximum 25G ports: 256
+
+{{< /tab >}}
+{{< tab "40G ">}}
+
+128x 40G
+
+Maximum 40G ports: 128
+
+{{< /tab >}}
+{{< tab "50G ">}}
+
+256x 50G - 256x QSFP-DD break out into 8x - You must disable the adjacent QSFP-DD port.
+
+Maximum 50G ports: 256
+
+{{< /tab >}}
+{{< tab "100G ">}}
+
+256x 100G - 256x QSFP-DD break out into 8x - You must disable the adjacent QSFP-DD port.
+
+Maximum 100G ports: 256
+
+{{< /tab >}}
+{{< tab "200G ">}}
+
+256x 200G - 256x QSFP-DD break out into 4x
+
+Maximum 200G ports: 64
+
+{{< /tab >}}
+{{< tab "400G ">}}
+
+128x 400G - 128x QSFP-DD break out into 2x
+
+Maximum 400G ports: 32
+
+{{< /tab >}}
+{{< tab "800G ">}}
+
+64x 400G - 32x OSFP (native speed)
+
+Maximum 400G ports: 64
+
+{{< /tab >}}
+{{< /tab >}}
+
 {{< /tab >}}
 {{< /tabs >}}
 <!-- vale on -->

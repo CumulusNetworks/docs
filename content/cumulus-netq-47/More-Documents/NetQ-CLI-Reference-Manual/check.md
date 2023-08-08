@@ -15,7 +15,7 @@ Three sets of validation commands are available, all for verifying the health an
 - `netq add validation` commands. Use {{<link url="add/#netq-add-validation" text="these commands">}} to validate various elements in your network fabric. The results appear in the Validation Result cards in the UI, where you can filter them.
 - Validation management commands. `netq show validation settings` displays a list of all jobs and job settings and `netq del validation` allows you to remove validations.
 
-Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation.
+Refer to the {{<link title="Validation Tests Reference">}} for a description of the tests run as part of each validation.
 
 - - -
 ## netq check addresses

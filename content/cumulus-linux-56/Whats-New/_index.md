@@ -42,28 +42,175 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - Changes to `nv show platform` command outputs to improve readability
   - The `nv show interface` command provides a {{<link url="NVUE-CLI/#monitoring-commands" text="--filter option">}} to filter output data
   - EVPN multihoming configuration with NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
-  <!-- - Command to set the time -->
-
-{{< expand "Changed Commands" >}}
-| Previous Command | New Command |
-| ---------------- | ----------- |
-|  |  |
-
-{{< /expand >}}
 
 {{< expand "New Commands" >}}
 
 {{< tabs "TabID40 ">}}
 {{< tab "nv show commands ">}}
 
+```
+nv show bridge domain <domain-id> port
+nv show bridge domain <domain-id> stp counters
+nv show bridge domain <domain-id> stp port
+nv show bridge domain <domain-id> stp port <interface-id>
+nv show bridge domain <domain-id> stp vlan
+nv show bridge domain <domain-id> stp vlan <vid>
+nv show evpn vni <vni-id> remote-vtep
+nv show qos pfc-watchdog
+nv show interface <interface-id> ip igmp group
+nv show interface <interface-id> ip igmp group <static-group-id>
+nv show interface <interface-id> bridge domain <domain-id> stp vlan
+nv show interface <interface-id> bridge domain <domain-id> stp vlan <vid>
+nv show interface <interface-id> qos pfc-watchdog
+nv show interface <interface-id> qos pfc-watchdog status
+nv show interface <interface-id> qos pfc-watchdog status <qos-tc-id>
+nv show service ptp <instance-id> counters
+nv show system api
+nv show system api listening-address
+nv show system api listening-address <listening-address-id>
+nv show system api connections
+nv show system ssh-server
+nv show system ssh-server max-unauthenticated
+nv show system ssh-server vrf
+nv show system ssh-server vrf <vrf-id>
+nv show system ssh-server allow-users
+nv show system ssh-server allow-users <user-id>
+nv show system ssh-server deny-users
+nv show system ssh-server deny-users <user-id>
+nv show system ssh-server port
+nv show system ssh-server port <port-id>
+nv show system ssh-server active-sessions
+```
+
 {{< /tab >}}
 {{< tab "nv set commands ">}}
+
+```
+nv set router adaptive-routing profile (ar-profile-1|ar-profile-2|ar-profile-custom)
+nv set router adaptive-routing link-utilization-threshold (on|off)
+nv set router password-obfuscation (enabled|disabled)
+nv set bridge domain <domain-id> stp vlan <vid>
+nv set bridge domain <domain-id> stp vlan <vid> bridge-priority 4096-61440
+nv set bridge domain <domain-id> stp vlan <vid> hello-time 1-10
+nv set bridge domain <domain-id> stp vlan <vid> forward-delay 4-30
+nv set bridge domain <domain-id> stp vlan <vid> max-age 6-40
+nv set bridge domain <domain-id> stp mode (rstp|pvrst)
+nv set evpn dad
+nv set evpn dad duplicate-action
+nv set evpn dad duplicate-action freeze
+nv set qos pfc-watchdog polling-interval 100-5000
+nv set qos pfc-watchdog robustness 1-1000
+nv set interface <interface-id> router adaptive-routing link-utilization-threshold 1-100
+nv set interface <interface-id> bridge domain <domain-id> stp vlan <vid>
+nv set interface <interface-id> bridge domain <domain-id> stp vlan <vid> priority 0-240
+nv set interface <interface-id> bridge domain <domain-id> stp vlan <vid> path-cost
+nv set interface <interface-id> bridge domain <domain-id> stp path-cost 1-200000000 
+nv set interface <interface-id> qos pfc-watchdog state (enable|disable)
+nv set service ptp <instance-id> profile <profile-id> two-step (on|off)
+nv set service ptp <instance-id> two-step (on|off)
+nv set system api listening-address <listening-address-id>
+nv set system api state (enabled|disabled)
+nv set system api port 1-65535
+nv set system ssh-server max-unauthenticated session-count 1-10000
+nv set system ssh-server max-unauthenticated throttle-percent 1-100
+nv set system ssh-server max-unauthenticated throttle-start 1-10000
+nv set system ssh-server vrf <vrf-id>
+nv set system ssh-server allow-users <user-id>
+nv set system ssh-server deny-users <user-id>
+nv set system ssh-server port <port-id>
+nv set system ssh-server authentication-retries 3-100
+nv set system ssh-server login-timeout 1-600
+nv set system ssh-server inactive-timeout <value>
+nv set system ssh-server permit-root-login (disabled|prohibit-password|forced-commands-only|enabled)
+nv set system ssh-server max-sessions-per-connection 1-100
+nv set system ssh-server state (enabled|disabled)
+```
 
 {{< /tab >}}
 {{< tab "nv unset commands ">}}
 
+```
+nv unset router adaptive-routing profile
+nv unset router adaptive-routing link-utilization-threshold
+nv unset router password-obfuscation
+nv unset bridge domain <domain-id> stp vlan
+nv unset bridge domain <domain-id> stp vlan <vid>
+nv unset bridge domain <domain-id> stp vlan <vid> bridge-priority
+nv unset bridge domain <domain-id> stp vlan <vid> hello-time
+nv unset bridge domain <domain-id> stp vlan <vid> forward-delay
+nv unset bridge domain <domain-id> stp vlan <vid> max-age
+nv unset bridge domain <domain-id> stp mode
+nv unset qos pfc-watchdog
+nv unset qos pfc-watchdog polling-interval
+nv unset qos pfc-watchdog robustness
+nv unset interface <interface-id> ip igmp fast-leave
+nv unset interface <interface-id> ip igmp last-member-query-count
+nv unset interface <interface-id> bridge domain <domain-id> stp vlan
+nv unset interface <interface-id> bridge domain <domain-id> stp vlan <vid>
+nv unset interface <interface-id> bridge domain <domain-id> stp vlan <vid> priority
+nv unset interface <interface-id> bridge domain <domain-id> stp vlan <vid> path-cost
+nv unset interface <interface-id> bridge domain <domain-id> stp path-cost
+nv unset interface <interface-id> qos pfc-watchdog
+nv unset interface <interface-id> qos pfc-watchdog state
+nv unset service ptp <instance-id> profile <profile-id> two-step
+nv unset service ptp <instance-id> two-step
+nv unset system api
+nv unset system api listening-address
+nv unset system api listening-address <listening-address-id>
+nv unset system api state
+nv unset system api port
+nv unset system ssh-server
+nv unset system ssh-server max-unauthenticated
+nv unset system ssh-server max-unauthenticated session-count
+nv unset system ssh-server max-unauthenticated throttle-percent
+nv unset system ssh-server max-unauthenticated throttle-start
+nv unset system ssh-server vrf
+nv unset system ssh-server vrf <vrf-id>
+nv unset system ssh-server allow-users
+nv unset system ssh-server allow-users <user-id>
+nv unset system ssh-server deny-users
+nv unset system ssh-server deny-users <user-id>
+nv unset system ssh-server port
+nv unset system ssh-server port <port-id>
+nv unset system ssh-server authentication-retries
+nv unset system ssh-server login-timeout
+nv unset system ssh-server inactive-timeout
+nv unset system ssh-server permit-root-login
+nv unset system ssh-server max-sessions-per-connection
+nv unset system ssh-server state
+```
+
 {{< /tab >}}
 {{< tab "nv action commands ">}}
+
+```
+nv action clear router policy prefix-list
+nv action clear router policy prefix-list <prefix-list-id>
+nv action clear router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
+nv action clear router bgp
+nv action clear router bgp in [prefix-filter]
+nv action clear router bgp out
+nv action clear router bgp soft
+nv action clear router bgp soft in
+nv action clear router bgp soft out
+nv action clear router pim statistics
+nv action clear router igmp interfaces
+nv action clear evpn vni
+nv action clear evpn vni <vni-id>
+nv action clear evpn vni <vni-id> mac <mac-address-id>
+nv action clear evpn vni <vni-id> host <ip-address-id>
+nv action clear interface <interface-id> counters
+nv action clear interface <interface-id> qos pfc-watchdog deadlock-count
+nv action clear vrf <vrf-id> router bgp in [prefix-filter]
+nv action clear vrf <vrf-id> router bgp out
+nv action clear vrf <vrf-id> router bgp soft
+nv action clear vrf <vrf-id> router bgp soft in
+nv action clear vrf <vrf-id> router bgp soft out
+nv action clear vrf <vrf-id> router pim interfaces
+nv action clear vrf <vrf-id> router pim interface-traffic
+nv action clear vrf <vrf-id> router pim oil
+nv action clear vrf <vrf-id> router pim statistics
+```
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -41,7 +41,7 @@ Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back 
     deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.7
     ```
 
-2. Update the NetQ `debian` packages.
+2. Update the NetQ `debian` packages. In cluster deployments, update the packages on the master and all worker nodes.
 
     ```
     cumulus@<hostname>:~$ sudo apt-get update

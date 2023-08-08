@@ -36,63 +36,48 @@ The following shows example output for the `nv show bridge domain <domain> mac-t
 -->
 ```
 cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table
-    age     bridge-domain  entry-type  interface   last-update  MAC address      src-vni  vlan  vni   Summary          
---  ------  -------------  ----------  ----------  -----------  --------------…  -------  ----  ----  ----------------…
-0   32107   br_default                 vxlan48     32107        44:38:39:22:01…           4036  None                   
-1   32107   br_default                 vxlan48     32107        44:38:39:22:01…           4036  None                   
-2   32107   br_default                 vxlan48     32107        44:38:39:22:01…           4036  None                   
-3   32107   br_default                 vxlan48     32107        44:38:39:be:ef…           4036  None  remote-dst:      
-                                                                                                      10.0.1.34        
-4   32107   br_default                 vxlan48     32107        44:38:39:22:01…           4036  None                   
-5   32107   br_default                 vxlan48     32107        44:38:39:22:01…           4036  None                   
-6   32107   br_default                 vxlan48     32107        44:38:39:22:01…           10    None                   
-7   32107   br_default                 vxlan48     32107        48:b0:2d:b4:4e…           10    None  remote-dst:      
-                                                                                                      10.0.1.34        
-8   32107   br_default                 vxlan48     32107        48:b0:2d:93:17…           10    None  remote-dst:      
-                                                                                                      10.0.1.34        
-9   32107   br_default     static      vxlan48     32107        44:38:39:22:01…           10    None                   
-10  32107   br_default                 vxlan48     32107        44:38:39:22:01…           30    None                   
-11  32107   br_default                 vxlan48     32107        48:b0:2d:64:0b…           30    None  remote-dst:      
-                                                                                                      10.0.1.34        
-12  32107   br_default                 vxlan48     32107        48:b0:2d:33:52…           30    None  remote-dst:      
-                                                                                                      10.0.1.34        
-13  32107   br_default     static      vxlan48     32107        44:38:39:22:01…           30    None                   
-14  32107   br_default                 vxlan48     32107        44:38:39:22:01…           20    None                   
-15  32107   br_default                 vxlan48     32107        48:b0:2d:c8:93…           20    None  remote-dst:      
-                                                                                                      10.0.1.34        
-16  32107   br_default                 vxlan48     32107        48:b0:2d:08:5b…           20    None  remote-dst:      
-                                                                                                      10.0.1.34        
-17  32107   br_default     static      vxlan48     32107        44:38:39:22:01…           20    None                   
-18  32107   br_default                 vxlan48     32107        44:38:39:22:01…           4024  None  remote-dst:      
-                                                                                                      10.10.10.64      
-19  32107   br_default                 vxlan48     32107        44:38:39:22:01…           4024  None  remote-dst:      
-                                                                                                      10.10.10.63      
-20  32107   br_default                 vxlan48     32107        44:38:39:22:01…           4024  None  remote-dst:      
-                                                                                                      10.0.1.34        
-                                                                                                      remote-dst:      
-                                                                                                      10.10.10.4       
-21  32107   br_default                 vxlan48     32107        44:38:39:22:01…           4024  None  remote-dst:      
-                                                                                                      10.0.1.34        
-                                                                                                      remote-dst:      
-                                                                                                      10.10.10.3       
-22  32107   br_default                 vxlan48     32107        44:38:39:22:01…           4024  None  remote-dst:      
-                                                                                                      10.10.10.2       
-23  170012  br_default     permanent   vxlan48     170012       62:a9:08:f4:f6…                 None                   
-24  32107                  permanent   vxlan48     32107        00:00:00:00:00…  20             None  remote-dst:      
-                                                                                                      10.0.1.34        
-25  170012  br_default     permanent   peerlink    170012       48:b0:2d:b2:89…                                        
-26  121     br_default                 bond2       31625        48:b0:2d:29:8f…           20                           
-27  6       br_default                 bond2       169980       48:b0:2d:44:90…           20                           
-28  170012  br_default     permanent   bond2       170012       48:b0:2d:b2:35…                                        
-29  121     br_default                 bond3       31625        48:b0:2d:a9:57…           30                           
-30  15      br_default                 bond3       169970       48:b0:2d:f5:cf…           30                           
-31  170012  br_default     permanent   bond3       170012       48:b0:2d:2c:b6…                                        
-32  121     br_default                 bond1       31625        48:b0:2d:d8:33…           10                           
-33  14      br_default                 bond1       169976       48:b0:2d:fd:48…           10                           
-34  170012  br_default     permanent   bond1       170012       48:b0:2d:2b:8b…                                        
-35                         permanent   br_default               00:00:00:00:00…                                        
-36                         permanent   br_default               44:38:39:be:ef…                                        
-37                         permanent   br_default               00:00:00:00:00… 
+entry-id  age    bridge-domain  entry-type    interface   last-update  MAC address        remote-dst       src-vni  vlan
+--------  -----  -------------  ------------  ----------  -----------  -----------------  ---------------  -------  ----
+1         12562  br_default     static        bond1       12562        48:b0:2d:98:61:d4                            10  
+2         22     br_default     static        bond1       10550        48:b0:2d:72:9d:99                            10  
+3         12777  br_default     permanent     bond1       12777        48:b0:2d:4c:da:d9                                
+4         12562  br_default     extern_learn  vxlan48     12562        48:b0:2d:aa:b7:0c                            10  
+5         12573  br_default     extern_learn  vxlan48     10549        48:b0:2d:ff:b8:07                            10  
+6         12773  br_default     extern_learn  vxlan48     12773        44:38:39:22:01:8a                            10  
+7         12773  br_default     extern_learn  vxlan48     12773        44:38:39:22:01:8a                            30  
+8         12773  br_default     extern_learn  vxlan48     12773        44:38:39:22:01:8a                            20  
+9         12773  br_default     extern_learn  vxlan48     116          44:38:39:22:01:78                            10  
+10        12773  br_default     extern_learn  vxlan48     98           44:38:39:22:01:78                            30  
+11        12773  br_default     extern_learn  vxlan48     86           44:38:39:22:01:78                            20  
+12        12774  br_default     extern_learn  vxlan48     12556        44:38:39:22:01:84                            20  
+13        12774  br_default     extern_learn  vxlan48     12566        44:38:39:22:01:84                            30  
+14        12774  br_default     extern_learn  vxlan48     12774        44:38:39:22:01:84                            10  
+15        12777  br_default     permanent     vxlan48     12777        76:2e:db:01:52:0e                                
+16        12773                 extern_learn  vxlan48     116          44:38:39:22:01:78  10.10.10.2       10           
+17        12562                 extern_learn  vxlan48     12562        48:b0:2d:aa:b7:0c  nhid: 536870916  10           
+18        12773                 extern_learn  vxlan48     12773        44:38:39:22:01:8a  10.10.10.4       30           
+19        12773                 extern_learn  vxlan48     86           44:38:39:22:01:78  10.10.10.2       20           
+20        12774                 extern_learn  vxlan48     12774        44:38:39:22:01:84  10.10.10.3       10           
+21        12773                 extern_learn  vxlan48     98           44:38:39:22:01:78  10.10.10.2       30           
+22        12573                 extern_learn  vxlan48     10549        48:b0:2d:ff:b8:07  nhid: 536870916  10           
+23        12774                 extern_learn  vxlan48     12566        44:38:39:22:01:84  10.10.10.3       30           
+24        12774                 extern_learn  vxlan48     12556        44:38:39:22:01:84  10.10.10.3       20           
+25        12773                 extern_learn  vxlan48     12773        44:38:39:22:01:8a  10.10.10.4       10           
+26        12773                 permanent     vxlan48     25           00:00:00:00:00:00  10.10.10.3       20           
+27        12773                 permanent     vxlan48     25           00:00:00:00:00:00  10.10.10.2       20           
+28        12773                 permanent     vxlan48     25           00:00:00:00:00:00  10.10.10.4       20           
+29        12773                 permanent     vxlan48     41           00:00:00:00:00:00  10.10.10.3       30           
+30        12773                 permanent     vxlan48     41           00:00:00:00:00:00  10.10.10.2       30           
+31        12773                 permanent     vxlan48     41           00:00:00:00:00:00  10.10.10.4       30           
+32        12773                 permanent     vxlan48     47           00:00:00:00:00:00  10.10.10.3       10           
+33        12773                 permanent     vxlan48     47           00:00:00:00:00:00  10.10.10.2       10           
+34        12773                 permanent     vxlan48     47           00:00:00:00:00:00  10.10.10.4       10           
+35        12773                 extern_learn  vxlan48     12773        44:38:39:22:01:8a  10.10.10.4       20           
+36        12562  br_default     static        bond2       12562        48:b0:2d:ac:01:da                            20  
+37        21     br_default     static        bond2       12556        48:b0:2d:8f:4b:ff                            20  
+38        12777  br_default     permanent     bond2       12777        48:b0:2d:f9:41:f5                                
+39        12562  br_default     static        bond3       12562        48:b0:2d:2d:8b:15                            30  
+40        21     br_default     static        bond3       12566        48:b0:2d:56:1a:96                            30
 ...
 ```
 
@@ -288,21 +273,17 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10
 route-advertise                        
   default-gateway  off                 
   svi-ip           off                 
+[remote-vtep]      10.10.10.2          
+[remote-vtep]      10.10.10.3          
+[remote-vtep]      10.10.10.4          
 bridge-domain      br_default          
-host-count         3                   
+host-count         4                   
 local-vtep         10.10.10.1          
-mac-count          7                   
-remote-vtep-count  2                   
+mac-count          8                   
+remote-vtep-count  3                   
 tenant-vrf         RED                 
 vlan               10                  
 vxlan-interface    vxlan48
-
-remote-vtep
-==============
-               flood
-    ---------  -----
-    10.0.1.12  HER  
-    10.0.1.34  HER  
 ```
 
 To show VNI BGP information run the NVUE `nv show evpn vni <id> bgp-info` and `nv show vrf <vrf_id> evpn bgp-info` commands, or the vtysh `show bgp l2vpn evpn vni <vni>` command.
@@ -387,19 +368,6 @@ fe80::74ed:2aff:fe8a:6724 local        active   76:ed:2a:8a:67:24               
 
 Run the vtysh `show evpn arp-cache vni all` command or the `net show evpn arp-cache vni all` command to examine neighbor entries for all VNIs.
 
-<!--## Show Statistics for a VNI
-
-For a single VXLAN device, you can show VNI statistics, such as the number of received and transmitted bytes, packets, packet drops and errors.
-
-- To show statistics for all VNIs in a single VXLAN device, run the `nv show nve counters` command.
-- To show statistics for a specific VNI in a single VXLAN device, run the `nv show nve counters vni <vni>` command.
-
-The following example command shows statistics for VNI 10:
-
-```
-cumulus@leaf01:mgmt:~$ nv show nve counters vni 10
-```
--->
 ## Examine Remote Router MAC Addresses
 
 To examine the router MAC addresses corresponding to all remote VTEPs for symmetric routing, run the NVUE `nv show vrf <vrf> evpn remote-router-mac` command or the vtysh `show evpn rmac vni all` command. This command is only relevant for a layer 3 VNI:
@@ -463,16 +431,13 @@ To show access VLANs on the switch and their corresponding VNI, run the NVUE `nv
 
 ```
 cumulus@border01:mgmt:~$ nv show evpn access-vlan-info vlan
-Vlan-id  member-interface-count  vni  vni-count  vxlan-interface  Summary                   
--------  ----------------------  ---  ---------  ---------------  --------------------------
-1        2                                                        member-interface:    bond3
-                                                                  member-interface: peerlink
-101      2                                                        member-interface:    bond3
-                                                                  member-interface: peerlink
-102      2                                                        member-interface:    bond3
-                                                                  member-interface: peerlink
-4024                                  1          vxlan48                                    
-4036                                  1          vxlan48      
+Vlan-id  member-interface-count  vni  vni-count  vxlan-interface  Summary                
+-------  ----------------------  ---  ---------  ---------------  -----------------------
+10       1                       10   1          vxlan48          member-interface: bond1
+20       1                       20   1          vxlan48          member-interface: bond2
+30       1                       30   1          vxlan48          member-interface: bond3
+220                                   1          vxlan99                                 
+297                                   1          vxlan99      
 ```
 
 You can drill down and show information about a specific vlan with the `nv show evpn access-vlan-info vlan <vlan>` command.

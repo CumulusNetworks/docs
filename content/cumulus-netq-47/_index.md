@@ -9,7 +9,6 @@ cascade:
     version: "4.7"
     imgData: cumulus-netq
     siteSlug: cumulus-netq
-    draft: true
    
 ---
 

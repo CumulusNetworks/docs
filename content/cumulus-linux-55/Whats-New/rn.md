@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3549138"></a> [3549138](#3549138) <a name="3549138"></a> <br /> | In an EVPN environment with ARP suppression enabled, when a host sends a unicast ARP request to a remote host, the ARP reply is duplicated. It is replied once by the remote host and once by the VTEP. | 5.5.0-5.5.1 | |
 | <a name="3541912"></a> [3541912](#3541912) <a name="3541912"></a> <br /> | Collecting a <code>cl-support</code> file in a high VNI and interface environment can result in an out-of-memory (OOM) event on the switch. An OOM event can cause critical services to restart and might impact traffic. | 5.1.0-5.5.1 | |
 | <a name="3538497"></a> [3538497](#3538497) <a name="3538497"></a> <br /> | In an EVPN symmetric routing configuration, after rebooting a switch that uses VLAN 1 for a layer 3 VNI, traffic forwarding for VLAN 1 fails. To work around this issue, restart the FRR service with the <code>sudo systemctl restart frr.service</code> command. | 5.5.0-5.5.1 | |
 | <a name="3528359"></a> [3528359](#3528359) <a name="3528359"></a> <br /> | A <code>switchd</code> assertion crash occurs after KVD resource exhaustion in the SDK because entries are in a pending delete state, which causes an ECMP allocation failure. | 5.5.0-5.5.1 | |
@@ -110,6 +111,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3549138"></a> [3549138](#3549138) <a name="3549138"></a> <br /> | In an EVPN environment with ARP suppression enabled, when a host sends a unicast ARP request to a remote host, the ARP reply is duplicated. It is replied once by the remote host and once by the VTEP. | 5.5.0-5.5.1 | |
 | <a name="3541912"></a> [3541912](#3541912) <a name="3541912"></a> <br /> | Collecting a <code>cl-support</code> file in a high VNI and interface environment can result in an out-of-memory (OOM) event on the switch. An OOM event can cause critical services to restart and might impact traffic. | 5.1.0-5.5.1 | |
 | <a name="3538497"></a> [3538497](#3538497) <a name="3538497"></a> <br /> | In an EVPN symmetric routing configuration, after rebooting a switch that uses VLAN 1 for a layer 3 VNI, traffic forwarding for VLAN 1 fails. To work around this issue, restart the FRR service with the <code>sudo systemctl restart frr.service</code> command. | 5.5.0-5.5.1 | |
 | <a name="3528359"></a> [3528359](#3528359) <a name="3528359"></a> <br /> | A <code>switchd</code> assertion crash occurs after KVD resource exhaustion in the SDK because entries are in a pending delete state, which causes an ECMP allocation failure. | 5.5.0-5.5.1 | |

@@ -368,7 +368,7 @@ The following example configures:
 ```
 cumulus@switch:~$ nv set system ssh-server max-unauthenticated throttle-start 5
 cumulus@switch:~$ nv set system ssh-server max-unauthenticated throttle-percent 22
-cumulus@switch:~$ nv set system ssh-server max-unauthešticated session-count 20
+cumulus@switch:~$ nv set system ssh-server max-unauthenticated session-count 20
 cumulus@switch:~$ nv config apply
 ```
 

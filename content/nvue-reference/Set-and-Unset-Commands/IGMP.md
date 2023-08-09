@@ -37,6 +37,51 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set interface swp1 ip igmp enable on
 ```
+<!--
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> ip igmp fast-leave</h>
+
+Turns fast leave processing on or off on the interface. The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> ip igmp last-member-query-count</h>
+
+Sets the number of group-specific queries that a querier sends after receiving a leave message on the interface. You can set a value between 1 and 255. The default setting is 10 seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-count 5
+```
+-->
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

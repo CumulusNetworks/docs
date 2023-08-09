@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3541912</td>
+<td>Collecting a {{cl-support}} file in a high VNI and interface environment can result in an out-of-memory (OOM) event on the switch. An OOM event can cause critical services to restart and might impact traffic.</td>
+<td>5.1.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3491259</td>
+<td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
+<td>5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3445841</td>
 <td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}}) is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
 <td>5.0.0-5.5.1</td>
@@ -94,12 +112,6 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
 <td>5.3.0-5.5.1</td>
-</tr>
-<tr>
-<td>3234085</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>5.0.1-5.3.1</td>
-<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3227677</td>
@@ -369,7 +381,7 @@ end vrf
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -386,10 +398,16 @@ end vrf
 <td>5.2.0-5.5.1</td>
 </tr>
 <tr>
+<td>3082463</td>
+<td>On the NVIDIA SN4800 switch,  the LED on the line cards does not match the CLI command output.</td>
+<td>5.1.0</td>
+<td>5.2.0-5.5.1</td>
+</tr>
+<tr>
 <td>3081232</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up. To work around this issue, disable, then enable the port.</td>
-<td>5.0.0-5.2.1</td>
-<td>4.4.4-4.4.5, 5.3.0-5.5.1</td>
+<td>5.0.0-5.1.0</td>
+<td>4.4.4-4.4.5, 5.2.0-5.5.1</td>
 </tr>
 <tr>
 <td>3077736</td>
@@ -774,10 +792,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>

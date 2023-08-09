@@ -7,8 +7,82 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3474352</td>
-<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap between the upper and lower four lanes on a port, the firmware gets stuck.</td>
+<td>3541912</td>
+<td>Collecting a {{cl-support}} file in a high VNI and interface environment can result in an out-of-memory (OOM) event on the switch. An OOM event can cause critical services to restart and might impact traffic.</td>
+<td>5.1.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3511640</td>
+<td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3498939</td>
+<td>In an EVPN environment, VM migration (IP and MAC address migration) might not work because the new local VTEP to which the VM migrates does not install the entry in the kenel. To work around this issue, restart the {{switchd}} service.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3496931</td>
+<td>When you update a prefix list associated with an RP,  the {{pimd}} service might crash if the prefix list exists without any prefixes. To work around this issue, ensure that any prefix list associated with an RP includes at least one prefix at all times.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3496889</td>
+<td>When PTP is not enabled on the switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3495630</td>
+<td>The NVUE {{nv show service ptp &lt;instance&gt; current}} command output shows an incorrect value. To work around this issue, run the {{nv show service ptp &lt;instance&gt; monitor timestamp-log}} command or the Linux {{pmc}} utility.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3491259</td>
+<td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
+<td>5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3484058</td>
+<td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
+<td>5.3.0-5.4.0</td>
+<td>5.5.0-5.5.1</td>
+</tr>
+<tr>
+<td>3479786</td>
+<td>The {{switchd}} service does not handle certain route and next hop updates, which causes a synchronization loop. For example, in a VRF route leaking configuration, where a next hop group spans across multiple VRFs, when one of the routes is withdrawn and the next hop is no longer used, {{switchd}} has problems synchronizing other next hops in the group.
+
+To work around this issue, disable next hop groups in zebra with the vtysh {{zebra nexthop proto only}} command, and then reboot the switch.</td>
+<td>5.3.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3472865</td>
+<td>The json output for the vtysh {{-c ‘show bgp all json}} command is missing a string key in front of the list of routes under the {{l2vpnevpn}} address family.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3471052</td>
+<td>On certain QSFP-DD and OSFP optical modules, the {{ethtool -m}} command, and the related NCLU and NVUE commands that display optical module information fail.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3470941</td>
+<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap the upper and lower four lanes on a port, the firmware gets stuck.</td>
 <td>5.3.0-5.5.0</td>
 <td>5.5.1</td>
 </tr>
@@ -217,7 +291,7 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 </tr>
 <tr>
 <td>3368217</td>
-<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.5.1</td>
 <td></td>
 </tr>
@@ -328,9 +402,9 @@ cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 <td></td>
 </tr>
 <tr>
-<td>3331929</td>
-<td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf &lt;vrf&gt; router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
-<td>5.4.0-5.5.1</td>
+<td>3334275</td>
+<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>5.2.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -444,14 +518,6 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 <td></td>
 </tr>
 <tr>
-<td>3145224</td>
-<td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
-
-To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo rm /etc/cumulus/datapath/nvue_traffic.conf}} command.</td>
-<td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3145204</td>
 <td>On the NVIDIA Spectrum-1 switch, the {{nv show system forwarding}} command shows GTP hashing  output, which is not supported on this switch.</td>
 <td>5.2.0-5.4.0</td>
@@ -513,7 +579,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -657,10 +723,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -718,6 +785,16 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <td>3329096</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
+</tr>
+<tr>
+<td>3322944</td>
+<td>The {{ptmd}} service causes memory leaks.</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3320571</td>
+<td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
+<td>4.2.1-5.3.1</td>
 </tr>
 <tr>
 <td>3308248</td>
@@ -821,7 +898,7 @@ Vlan: 0
 <tr>
 <td>3234085</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>5.0.1-5.3.1</td>
+<td>4.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3226525</td>

@@ -7,91 +7,106 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3491935</td>
+<td>NetQ might generate continuous TCA events for the NetQ VM squashfs mounts when disk utilization TCA rules are configured for all hosts.  </td>
+<td>4.5.0-4.6.0</td>
+<td>4.7.0</td>
+</tr>
+<tr>
+<td>3454057</td>
+<td>When you configure more than one TCA rule referencing the same TCA event type, adding additional TCA rules fails with the following message:
+
+Failed to add/update TCA http status_code: 409</td>
+<td>4.5.0-4.6.0</td>
+<td>4.7.0</td>
+</tr>
+<tr>
+<td>3448057</td>
+<td>NetQ NTP validations will report time syncronization failures for switches running the NTP service in the default VRF.</td>
+<td>4.5.0-4.6.0</td>
+<td>4.7.0</td>
+</tr>
+<tr>
+<td>3446351</td>
+<td>When you perform an apt upgrade from NetQ 4.5.0 to version 4.6.0, the {{sudo apt upgrade}} command fails with the following message: 
+
+
+Setting up shim-signed (1.40.9+15.7-0ubuntu1) ...
+
+mount: /var/lib/grub/esp: special device /dev/vda15 does not exist.
+
+dpkg: error processing package shim-signed (--configure):
+
+installed shim-signed package post-installation script subprocess returned error exit status 32
+
+Errors were encountered while processing:
+
+shim-signed
+
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+
+
+To work around this issue, run the {{sudo apt remove -y shim-signed grub-efi-amd64-bin --allow-remove-essential}} command and rerun the {{sudo apt upgrade}} command.</td>
+<td>4.5.0-4.6.0</td>
+<td>4.7.0</td>
+</tr>
+<tr>
 <td>3442456</td>
 <td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
 <td>4.2.0-4.6.0</td>
-<td></td>
+<td>4.7.0</td>
 </tr>
 <tr>
 <td>3436299</td>
 <td>RoCE validations might not display data in the NetQ UI and CLI for Cumulus Linux switches when the NVUE service is not running. This issue will resolve itself within 24 hours after the next full status update from the NetQ agent. </td>
 <td>4.6.0</td>
+<td>4.7.0</td>
+</tr>
+<tr>
+<td>3435373</td>
+<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command fail with the following message: 
+
+
+Job upgrade failed or timed out.
+
+
+To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.</td>
+<td>4.5.0-4.7.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3431386</td>
+<td>When you upgrade your NetQ VM from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command, certain pods are not correctly retagged. To work around this issue, retag and restart the affected pods with the following commands for your deployment after upgrading:
+
+On-premises VMs:
+
+sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
+
+sudo docker tag localhost:5000/cp-schema-registry:7.2.0 docker-registry:5000/cp-schema-registry:7.2.0
+sudo docker push docker-registry:5000/cp-schema-registry:7.2.0
+sudo kubectl get pods -n default|grep -i cp-schema-registry|awk '{print $1}'|xargs kubectl delete pod -n default
+
+sudo docker tag localhost:5000/cp-kafka:7.2.0 docker-registry:5000/cp-kafka:7.2.0
+sudo docker push docker-registry:5000/cp-kafka:7.2.0
+sudo kubectl get pods -n default|grep -i kafka-broker|awk '{print $1}'|xargs kubectl delete pod -n default
+
+
+Cloud VMs:
+
+sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
+sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
+
+</td>
+<td>4.5.0-4.6.0</td>
+<td>4.7.0</td>
 </tr>
 <tr>
 <td>3429528</td>
 <td>EVPN and RoCE validation cards in the NetQ UI might not display data when Cumulus Linux switches are configured with high VNI scale.</td>
-<td>4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3303284</td>
-<td>When you run the  {{netq show opta-health}} command, it might fail and produce the following error:
-
-
-ERROR: Expecting value: line 1 column 1 (char 0)
-</td>
-<td>4.3.0-4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3226405</td>
-<td>TLS versions 1.0 and 1.1 are enabled for the OPTA API Gateway listening on TCP port 32708. Only TLS versions 1.2 and 1.3 should be enabled.</td>
-<td>4.3.0-4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3216161</td>
-<td>In an OPTA clustered environment, NetQ agents might appear as rotten after upgrading to NetQ 4.3.0. To work around this issue, configure the {{spice: false}} parameter in {{/etc/netq/netq.yml}}.</td>
-<td>4.3.0-4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3211317</td>
-<td>Upgrading Cumulus Linux with NetQ LCM fails when you upgrade a switch with the MLAG primary role.</td>
-<td>4.3.0-4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3205778</td>
-<td>In some high scale environments, NetQ agents might appear as rotten during high load.</td>
-<td>4.3.0-4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3179145</td>
-<td>The NetQ agent does not collect VLAN information from WJH data. This has been resolved, however when you upgrade to a NetQ version with the fix, historical WJH data will not be displayed in the UI.</td>
-<td>4.3.0-4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3157803</td>
-<td>The {{netq show}} commands to view MACs, IP addresses, neighbors, and routes might show a higher value compared to the corresponding entries in the NetQ UI. The {{netq show}} commands display additional values from the NetQ server or OPTA in addition to monitored devices in the NetQ inventory.</td>
-<td>4.2.0-4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3131311</td>
-<td>Sensor validation checks might still reflect a failure in NetQ after the sensor failure has recovered.</td>
-<td>4.2.0-4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3085064</td>
-<td>When you attempt to install NetQ on a device using LCM and configure the incorrect VRF, the installation will be reflected as successful but the switch will not be present in the inventory in the LCM UI.</td>
-<td>4.1.0-4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3053143</td>
-<td>The MLAG Session card might not show all MLAG events.</td>
-<td>4.2.0-4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3015875</td>
-<td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
-<td>4.1.0-4.6.0</td>
+<td>4.6.0-4.7.0</td>
 <td></td>
 </tr>
 <tr>
@@ -104,13 +119,7 @@ ERROR: Expecting value: line 1 column 1 (char 0)
    torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021
                                                          torc-21:vx-282 and torc-11:peerlink-3
    </td>
-<td>4.1.0-4.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2605545</td>
-<td>Sort functionality is disabled when the number of records exceeds 10,000 entries in a full-screen, tabular view. </td>
-<td>4.3.0-4.6.0</td>
+<td>4.1.0-4.7.0</td>
 <td></td>
 </tr>
 </table>
@@ -136,12 +145,12 @@ This is due to an expired key in the installation tarball. For assistance workin
 <tr>
 <td>3395385</td>
 <td>When you use NetQ LCM to upgrade a Cumulus Linux switch in an MLAG pair, the upgrade might fail.</td>
-<td></td>
+<td>4.4.1-4.5.0</td>
 </tr>
 <tr>
 <td>3367267</td>
 <td>When you upgrade a switch with NetQ LCM using the {{root}} user, the upgrade fails with the following message:  Destination /home/root does not exist.  To work around this issue, perform the upgrade using a different user account.</td>
-<td></td>
+<td>4.5.0</td>
 </tr>
 <tr>
 <td>3362224</td>
@@ -152,12 +161,12 @@ Expecting value: line 1 column 1 (char 0)
 
 
 To work around this issue, use the NetQ UI to configure the access profile.</td>
-<td></td>
+<td>4.5.0</td>
 </tr>
 <tr>
 <td>3360627</td>
 <td>When the switch RoCE egress pool buffer limit is configured as unlimited, the maximum buffer usage for RoCE counters might display incorrect values in the NetQ UI.</td>
-<td></td>
+<td>4.4.1-4.5.0</td>
 </tr>
 </table>
 </tables>

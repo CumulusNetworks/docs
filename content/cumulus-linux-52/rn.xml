@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3541912</td>
+<td>Collecting a {{cl-support}} file in a high VNI and interface environment can result in an out-of-memory (OOM) event on the switch. An OOM event can cause critical services to restart and might impact traffic.</td>
+<td>5.1.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3491259</td>
+<td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
+<td>5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3466703</td>
 <td>In rare cases when there is high load, the {{clagd}} service might experience a buffer overflow and MLAG bonds stay in a proto-down state on the secondary switch. You see a "NetlinkThread: Netlink overflow" log message and the MLAG state indicates VLAN conflicts between peers. To work around this issue, restart the {{clagd}} service with the {{sudo systemctl restart clagd}} command on the switch that reports the overflow log message.</td>
 <td>5.2.0-5.5.1</td>
@@ -67,7 +85,7 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 </tr>
 <tr>
 <td>3368217</td>
-<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.5.1</td>
 <td></td>
 </tr>
@@ -100,6 +118,12 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
 <td>5.4.0-5.5.1</td>
+</tr>
+<tr>
+<td>3334275</td>
+<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>5.2.0-5.5.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -194,12 +218,6 @@ ethtool (-S): unknown parameter 'clear'
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
 <td>5.3.0-5.5.1</td>
-</tr>
-<tr>
-<td>3234085</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>5.0.1-5.3.1</td>
-<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3227905</td>
@@ -365,6 +383,12 @@ Invalid Command: set router policy route-map GLOBAL rule 10 description global
 <td></td>
 </tr>
 <tr>
+<td>3171316</td>
+<td>Various FRR show commands do not have json output. This applies to BGP show commands ending in {{prefix-list}}, {{route-map}}, {{dampening}} parameters, and longer-prefixes. FRR {{show bgp detail}} output contains a summary instead of details on each prefix. FRR {{show bgp ... neighbor routes}} and {{show bgp ... neighbor received-routes}} both incorrectly use a json key of {{advertisedRoutes}}.</td>
+<td>5.2.0-5.2.1</td>
+<td>5.3.0-5.5.1</td>
+</tr>
+<tr>
 <td>3166746</td>
 <td>FRR does not install EVPN type-2 routes correctly after the specific operation that deletes and adds all non-uplink ports.  The routes show as rejected in the zebra RIB. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>5.1.0-5.2.1</td>
@@ -401,14 +425,6 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
 <tr>
 <td>3145869</td>
 <td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
-<td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3145224</td>
-<td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
-
-To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo rm /etc/cumulus/datapath/nvue_traffic.conf}} command.</td>
 <td>5.2.0-5.5.1</td>
 <td></td>
 </tr>
@@ -518,7 +534,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -527,12 +543,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
-</tr>
-<tr>
-<td>3081232</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up. To work around this issue, disable, then enable the port.</td>
-<td>5.0.0-5.2.1</td>
-<td>4.4.4-4.4.5, 5.3.0-5.5.1</td>
 </tr>
 <tr>
 <td>3074390</td>
@@ -729,10 +739,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -760,6 +771,24 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3541912</td>
+<td>Collecting a {{cl-support}} file in a high VNI and interface environment can result in an out-of-memory (OOM) event on the switch. An OOM event can cause critical services to restart and might impact traffic.</td>
+<td>5.1.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3491259</td>
+<td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
+<td>5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3466703</td>
@@ -849,6 +878,12 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
 <td>5.4.0-5.5.1</td>
+</tr>
+<tr>
+<td>3334275</td>
+<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>5.2.0-5.5.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -949,12 +984,6 @@ ethtool (-S): unknown parameter 'clear'
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
 <td>5.3.0-5.5.1</td>
-</tr>
-<tr>
-<td>3234085</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>5.0.1-5.3.1</td>
-<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3227905</td>
@@ -1126,6 +1155,12 @@ Invalid Command: set router policy route-map GLOBAL rule 10 description global
 <td></td>
 </tr>
 <tr>
+<td>3171316</td>
+<td>Various FRR show commands do not have json output. This applies to BGP show commands ending in {{prefix-list}}, {{route-map}}, {{dampening}} parameters, and longer-prefixes. FRR {{show bgp detail}} output contains a summary instead of details on each prefix. FRR {{show bgp ... neighbor routes}} and {{show bgp ... neighbor received-routes}} both incorrectly use a json key of {{advertisedRoutes}}.</td>
+<td>5.2.0-5.2.1</td>
+<td>5.3.0-5.5.1</td>
+</tr>
+<tr>
 <td>3166746</td>
 <td>FRR does not install EVPN type-2 routes correctly after the specific operation that deletes and adds all non-uplink ports.  The routes show as rejected in the zebra RIB. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>5.1.0-5.2.1</td>
@@ -1162,14 +1197,6 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
 <tr>
 <td>3145869</td>
 <td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
-<td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3145224</td>
-<td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
-
-To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo rm /etc/cumulus/datapath/nvue_traffic.conf}} command.</td>
 <td>5.2.0-5.5.1</td>
 <td></td>
 </tr>
@@ -1279,7 +1306,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -1288,12 +1315,6 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
-</tr>
-<tr>
-<td>3081232</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up. To work around this issue, disable, then enable the port.</td>
-<td>5.0.0-5.2.1</td>
-<td>4.4.4-4.4.5, 5.3.0-5.5.1</td>
 </tr>
 <tr>
 <td>3074390</td>
@@ -1490,10 +1511,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -1648,6 +1670,16 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>3082662</td>
 <td>{{syslog}} writes {{phcsync phc_ctl set clock time}} messages continuously every minute even when {{supervisord}} is not running, which prevents critical information from being logged.</td>
 <td>5.1.0</td>
+</tr>
+<tr>
+<td>3082463</td>
+<td>On the NVIDIA SN4800 switch,  the LED on the line cards does not match the CLI command output.</td>
+<td>5.1.0</td>
+</tr>
+<tr>
+<td>3081232</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up. To work around this issue, disable, then enable the port.</td>
+<td>5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>3077736</td>

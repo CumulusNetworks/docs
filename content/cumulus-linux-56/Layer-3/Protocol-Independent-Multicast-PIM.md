@@ -994,6 +994,87 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+### Optional IGMP Settings
+
+You can set the following IGMP settings on a PIM interface:
+- The last member query interval, which is the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 100.
+- The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 1000.
+- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255 seconds. The default setting is 100.
+- How often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 65535 seconds. The default setting is 100.
+- Fast leave processing, where the switch immediately removes a port from the forwarding entry for a multicast group when the port receives a leave message. The default setting is on.
+
+{{< tabs "TabID356 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets the last member query interval to 80, the maximum response time for IGMP general queries to 120 seconds, the number of group-specific queries that a querier can send to 5, and configures IGMP to send query-host messages every 180 seconds:
+
+```
+cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-interval 80
+cumulus@switch:~$ nv set interface swp1 ip igmp query-max-response-time 120
+cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-count 5
+cumulus@switch:~$ nv set interface swp1 ip igmp query-interval 180
+cumulus@switch:~$ nv config apply
+```
+
+The following example disables fast leave processing:
+
+```
+cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave off
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux and vtysh Commands ">}}
+
+The following example sets the last member query interval to 80, the maximum response time for IGMP general queries to 120 seconds, the number of group-specific queries that a querier sends to 5, and configures IGMP to send query-host messages every 180 seconds:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# 
+switch(config)# interface vlan10
+leaf02(config-if)# ip igmp last-member-query-interval 80
+leaf02(config-if)# ip igmp query-max-response-time 120
+leaf02(config-if)# ip igmp last-member-query-count 5
+leaf02(config-if)# ip igmp query-interval 180
+leaf02(config-if)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh `ip igmp last-member-query-count` command adds the configuration to the `/etc/frr/frr.conf file`:
+
+```
+cumulus@switch:~$ sudo nano /etc/frr/frr.conf
+...
+ip igmp
+ip igmp version 3
+ip igmp query-interval 180
+ip igmp last-member-query-interval 80
+ip igmp last-member-query-count 5
+ip igmp query-max-response-time 120
+...
+```
+
+To enable fast leave processing, edit the `/etc/network/interfaces` file and add the `bridge-portmcfl yes` parameter under the interface stanza:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto vlan10
+iface vlan10
+    address 10.1.10.1/24
+    hwaddress 44:38:39:22:01:b1
+    bridge-portmcfl yes
+    vlan-raw-device br_default
+    vlan-id 10
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
 ## PIM Active-active with MLAG

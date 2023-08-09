@@ -95,11 +95,10 @@ nv set bridge domain <domain-id> stp vlan <vid> hello-time 1-10
 nv set bridge domain <domain-id> stp vlan <vid> forward-delay 4-30
 nv set bridge domain <domain-id> stp vlan <vid> max-age 6-40
 nv set bridge domain <domain-id> stp mode (rstp|pvrst)
-nv set evpn dad
-nv set evpn dad duplicate-action
-nv set evpn dad duplicate-action freeze
 nv set qos pfc-watchdog polling-interval 100-5000
 nv set qos pfc-watchdog robustness 1-1000
+nv set interface <interface-id> ip igmp fast-leave
+nv set interface <interface-id> ip igmp last-member-query-count
 nv set interface <interface-id> router adaptive-routing link-utilization-threshold 1-100
 nv set interface <interface-id> bridge domain <domain-id> stp vlan <vid>
 nv set interface <interface-id> bridge domain <domain-id> stp vlan <vid> priority 0-240

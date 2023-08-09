@@ -7,16 +7,13 @@ toc: 4
 
 This page describes how to upgrade your NetQ virtual machines. Note that the upgrade instructions vary depending on NetQ version you’re currently running.
 
+For deployments running:
+
+- 4.6.0 or 4.5.0: {{<link title="Upgrade NetQ/#upgrading-from-netq-4.5.0-or-later" text="upgrade directly">}} to NetQ 4.7.0
+- 4.4.1, 4.4.0, or 4.3.0: {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your NetQ data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.7.0">}}
+- 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Upgrade NetQ" text="back up your data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.7.0">}}.
+
 <!--
-
-If your current NetQ version is:
-
-- **4.2.0 or earlier**: perform an incremental {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="upgrade to version 4.3.0">}} before you {{<link title="Upgrade NetQ" text="back up your data">}} and perform a new installation of NetQ 4.5.0. Then {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-4.5.0-or-later" text="follow the steps below">}}.
-- **4.3.0 to 4.4.1**: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-4.4.1-or-earlier" text="follow these steps">}}.
-- **4.5.0 or later**: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-4.5.0-or-later" text="Follow these steps">}}.
-
--->
-
 ## Upgrading from NetQ 4.4.1 or Earlier
 
 Upgrading to NetQ 4.7.0 from NetQ 4.4.1 or earlier requires a new installation of the NetQ virtual machine. Perform the following steps to upgrade:
@@ -26,14 +23,14 @@ Upgrading to NetQ 4.7.0 from NetQ 4.4.1 or earlier requires a new installation o
 2. Follow the {{<link title="Install the NetQ System" text="installation process">}} for your deployment model.
 
 3. For on-premises deployments, {{<link title="Back Up and Restore NetQ/#restore-your-netq-data" text="restore your NetQ data">}}.
-
+-->
 
 ## Upgrading from NetQ 4.5.0 or Later
 
-You can upgrade directly to NetQ 4.7.0 if your deployment is currently running version 4.5.0 or later.
+You can upgrade directly to NetQ 4.7.0 if your deployment is currently running version 4.5.0 or 4.6.0.
 ### Back up your NetQ Data
 
-{{<link title="Back Up and Restore NetQ" text="Backing up your NetQ data">}} is an optional step for on-premises deployments. NetQ cloud deployments create backups automatically.
+Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}. This is an optional step for on-premises deployments. NetQ cloud deployments create backups automatically.
 
 ### Update NetQ Debian Packages
 
@@ -44,7 +41,7 @@ You can upgrade directly to NetQ 4.7.0 if your deployment is currently running v
     deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.7
     ```
 
-2. Update the NetQ `debian` packages.
+2. Update the NetQ `debian` packages. In cluster deployments, update the packages on the master and all worker nodes.
 
     ```
     cumulus@<hostname>:~$ sudo apt-get update
@@ -68,11 +65,11 @@ You can upgrade directly to NetQ 4.7.0 if your deployment is currently running v
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (4.6.0-ub20.04u42~1682429296.e13e0426) ...
+    Unpacking netq-agent (4.7.0-ub20.04u43~1690981360.9d32c7a0) ...
     ...
-    Unpacking netq-apps (4.6.0-ub20.04u42~1682429296.e13e0426) ...
-    Setting up netq-apps (4.6.0-ub20.04u42~1682429296.e13e0426) ...
-    Setting up netq-agent (4.6.0-ub20.04u42~1682429296.e13e0426) ...
+    Unpacking netq-apps (4.7.0-ub20.04u43~1690981360.9d32c7a0) ...
+    Setting up netq-apps (4.7.0-ub20.04u43~1690981360.9d32c7a0) ...
+    Setting up netq-agent (4.7.0-ub20.04u43~1690981360.9d32c7a0) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
@@ -96,9 +93,9 @@ Perform the following steps using the `cumulus` user account.
 
 Verify the following items before upgrading NetQ. For cluster deployments, verify steps 1 and 4 on all nodes in the cluster:
 
-1. Confirm your VM is configured with 16 vCPUs. If your VM is configured with fewer than 16 vCPUs, power off your VM, reconfigure your hypervisor to allocate 16 vCPUs, then power the VM on before proceeding with the following steps.
+1. Confirm your VM is configured with 16 vCPUs. If your VM is configured with fewer than 16 vCPUs, power off your VM, reconfigure your hypervisor to allocate 16 vCPUs, then power the VM on before proceeding.
 
-2. Check if enough disk space is available before you proceed with the upgrade:
+2. Check if there is sufficient disk space:
 
 ```
 cumulus@<hostname>:~$ df -h /
@@ -126,7 +123,7 @@ sudo sed -i 's/client-key.*/client-key: \/var\/lib\/kubelet\/pki\/kubelet-client
 sudo systemctl restart kubelet
 ```
 
-Check if the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
+Confirm that the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
 
 #### Upgrade Using the NetQ CLI
 
@@ -229,7 +226,7 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 
 {{</tabs>}}
 
-3. After the upgrade command completes, confirm the upgrade was successful.
+3. Confirm the upgrade was successful:
 
 {{<tabs "TabID230" >}}
 
@@ -237,9 +234,9 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.6.0
-    APPLIANCE_MANIFEST_HASH=1c3b0266c12606d2bd4ce482afa30d118a2c84a07850fda3376c716514edce05
-    APPLIANCE_VERSION=4.6.0
+    BOOTSTRAP_VERSION=4.7.0
+    APPLIANCE_MANIFEST_HASH=5e8a63a61e9842e9aa94785f945aaf44bf78eb7622db5f2845dff141f8cfbab2
+    APPLIANCE_VERSION=4.7.0
     APPLIANCE_NAME=NetQ On-premises Appliance
     ```
 {{</tab>}}
@@ -249,11 +246,15 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.6.0
-    APPLIANCE_MANIFEST_HASH=9a654b495a3175500f9a09f5af52e6f79c33706143a39f54b980a43a254fa2dd
-    APPLIANCE_VERSION=4.6.0
+    BOOTSTRAP_VERSION=4.7.0
+    APPLIANCE_MANIFEST_HASH=0f282bd6eb5ac43c6b7b7a2a0df42281b20912ffead1eb2ba8afafd5a428db7c
+    APPLIANCE_VERSION=4.7.0
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```
 {{</tab>}}
 
 {{</tabs>}}
+
+## Next Steps
+
+- {{<link title="Upgrade NetQ Agents">}}

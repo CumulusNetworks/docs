@@ -7,6 +7,30 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3534654</td>
+<td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3486888</td>
+<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3479967</td>
+<td>When you remove VRF configuration, the {{systemctl reload frr.service}} command returns a non zero exit code after erroneously running the invalid command {{no exit-vrf}}.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3455998</td>
 <td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
 <td>4.3.1-4.4.5</td>
@@ -95,7 +119,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 </tr>
 <tr>
 <td>3368217</td>
-<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.5.1</td>
 <td></td>
 </tr>
@@ -128,12 +152,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.4.0-5.5.1</td>
 </tr>
 <tr>
-<td>3334036</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3334031</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>4.3.0-4.4.5</td>
@@ -160,7 +178,25 @@ ip route 128.0.0.0/1 10.1.1.1
 <tr>
 <td>3321391</td>
 <td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
-<td>4.2.1-4.4.5</td>
+<td>4.2.1-5.3.1</td>
+<td>5.4.0-5.5.1</td>
+</tr>
+<tr>
+<td>3303105</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.4.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -245,8 +281,8 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <tr>
 <td>3240406</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.4.2-4.4.5</td>
-<td></td>
+<td>4.3.0-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3236366</td>
@@ -316,6 +352,16 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
 </td>
 <td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3216759</td>
+<td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
+
+hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
+
+To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -454,12 +500,6 @@ end vrf
 <td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
 <td>4.4.4-5.1.0</td>
 <td>5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -976,6 +1016,12 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2671652</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>4.4.0-4.4.5, 5.5.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1736,10 +1782,11 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -2209,6 +2256,30 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3534654</td>
+<td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3486888</td>
+<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3479967</td>
+<td>When you remove VRF configuration, the {{systemctl reload frr.service}} command returns a non zero exit code after erroneously running the invalid command {{no exit-vrf}}.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3455998</td>
 <td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
 <td>4.3.1-4.4.5</td>
@@ -2297,7 +2368,7 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 </tr>
 <tr>
 <td>3368217</td>
-<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.5.1</td>
 <td></td>
 </tr>
@@ -2330,12 +2401,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.4.0-5.5.1</td>
 </tr>
 <tr>
-<td>3334036</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3334031</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>4.3.0-4.4.5</td>
@@ -2362,8 +2427,8 @@ ip route 128.0.0.0/1 10.1.1.1
 <tr>
 <td>3321391</td>
 <td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
+<td>4.2.1-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3303105</td>
@@ -2380,8 +2445,8 @@ ip route 128.0.0.0/1 10.1.1.1
        File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
          msgData.ParseFromString(msgHdr.data)
      google.protobuf.message.DecodeError: Error parsing message</td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3293110</td>
@@ -2459,8 +2524,8 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <tr>
 <td>3240406</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.4.2-4.4.5</td>
-<td></td>
+<td>4.3.0-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3236365</td>
@@ -2533,8 +2598,8 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
-<td>3.7.15-4.4.4</td>
-<td>4.4.5</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3211359</td>
@@ -2678,12 +2743,6 @@ end vrf
 <td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
 <td>4.4.4-5.1.0</td>
 <td>5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -3200,6 +3259,12 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2671652</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>4.4.0-4.4.5, 5.5.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -3960,10 +4025,11 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -4453,7 +4519,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 </tr>
 <tr>
@@ -4469,7 +4535,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 <tr>
 <td>3078202</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up. To work around this issue, disable, then enable the port.</td>
-<td>5.0.0-5.2.1</td>
+<td>5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>3077737</td>
@@ -4566,6 +4632,30 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3534654</td>
+<td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3486888</td>
+<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3479967</td>
+<td>When you remove VRF configuration, the {{systemctl reload frr.service}} command returns a non zero exit code after erroneously running the invalid command {{no exit-vrf}}.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3455998</td>
@@ -4683,12 +4773,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.4.0-5.5.1</td>
 </tr>
 <tr>
-<td>3334036</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3334031</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>4.3.0-4.4.5</td>
@@ -4715,8 +4799,8 @@ ip route 128.0.0.0/1 10.1.1.1
 <tr>
 <td>3321391</td>
 <td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
+<td>4.2.1-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3303105</td>
@@ -4733,8 +4817,8 @@ ip route 128.0.0.0/1 10.1.1.1
        File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
          msgData.ParseFromString(msgHdr.data)
      google.protobuf.message.DecodeError: Error parsing message</td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3297171</td>
@@ -4818,8 +4902,8 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <tr>
 <td>3240406</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.4.2-4.4.5</td>
-<td></td>
+<td>4.3.0-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3236365</td>
@@ -4880,8 +4964,8 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
-<td>3.7.15-4.4.4</td>
-<td>4.4.5</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3211359</td>
@@ -5000,12 +5084,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.5.1</td>
 </tr>
 <tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3094082</td>
 <td>If you apply a PBR policy with a next hop group but the next hop is not reachable, the PBR service crashes.</td>
 <td>4.4.0-4.4.3</td>
@@ -5031,7 +5109,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -5623,6 +5701,12 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td></td>
 </tr>
 <tr>
+<td>2671652</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>4.4.0-4.4.5, 5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2669858</td>
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
@@ -6380,10 +6464,11 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -6891,6 +6976,30 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3534654</td>
+<td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3486888</td>
+<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3479967</td>
+<td>When you remove VRF configuration, the {{systemctl reload frr.service}} command returns a non zero exit code after erroneously running the invalid command {{no exit-vrf}}.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3455998</td>
 <td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
 <td>4.3.1-4.4.5</td>
@@ -7006,12 +7115,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.4.0-5.5.1</td>
 </tr>
 <tr>
-<td>3334036</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3334031</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>4.3.0-4.4.5</td>
@@ -7038,8 +7141,8 @@ ip route 128.0.0.0/1 10.1.1.1
 <tr>
 <td>3321391</td>
 <td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
+<td>4.2.1-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3303105</td>
@@ -7056,8 +7159,8 @@ ip route 128.0.0.0/1 10.1.1.1
        File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
          msgData.ParseFromString(msgHdr.data)
      google.protobuf.message.DecodeError: Error parsing message</td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3297171</td>
@@ -7134,8 +7237,8 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <tr>
 <td>3240406</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.4.2-4.4.5</td>
-<td></td>
+<td>4.3.0-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3236365</td>
@@ -7190,8 +7293,8 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
-<td>3.7.15-4.4.4</td>
-<td>4.4.5</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3211054</td>
@@ -7291,12 +7394,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
 <td>4.4.0-4.4.3</td>
 <td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3094082</td>
@@ -7933,6 +8030,12 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2671652</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>4.4.0-4.4.5, 5.5.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -8693,10 +8796,11 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -9359,7 +9463,7 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734107</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.4.1</td>
+<td>3.7.12-4.3.0, 4.4.0-4.4.1</td>
 </tr>
 <tr>
 <td>2728205</td>
@@ -9394,6 +9498,30 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3534654</td>
+<td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3486888</td>
+<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3479967</td>
+<td>When you remove VRF configuration, the {{systemctl reload frr.service}} command returns a non zero exit code after erroneously running the invalid command {{no exit-vrf}}.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3455998</td>
@@ -9511,12 +9639,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.4.0-5.5.1</td>
 </tr>
 <tr>
-<td>3334036</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3334031</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>4.3.0-4.4.5</td>
@@ -9543,8 +9665,8 @@ ip route 128.0.0.0/1 10.1.1.1
 <tr>
 <td>3321391</td>
 <td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
+<td>4.2.1-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3303105</td>
@@ -9561,8 +9683,8 @@ ip route 128.0.0.0/1 10.1.1.1
        File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
          msgData.ParseFromString(msgHdr.data)
      google.protobuf.message.DecodeError: Error parsing message</td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3291548</td>
@@ -9608,6 +9730,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>If you have a lot of inbound route maps that match lists with many regex statements, a large number of updates from the peer can cause the system to run out of memory. To work around this issue, reduce the number of regex matches in inbound route maps.</td>
 <td>4.4.0-5.2.1</td>
 <td>5.3.0-5.5.1</td>
+</tr>
+<tr>
+<td>3240406</td>
+<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
+<td>4.3.0-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3236365</td>
@@ -9662,8 +9790,8 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
-<td>3.7.15-4.4.4</td>
-<td>4.4.5</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3209699</td>
@@ -9748,12 +9876,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
 <td>4.4.0-4.4.3</td>
 <td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3094082</td>
@@ -10413,8 +10535,8 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734107</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.4.1</td>
-<td>4.4.2-4.4.5</td>
+<td>3.7.12-4.3.0, 4.4.0-4.4.1</td>
+<td>4.3.1, 4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2734103</td>
@@ -10538,6 +10660,12 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2671652</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>4.4.0-4.4.5, 5.5.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -11298,10 +11426,11 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>

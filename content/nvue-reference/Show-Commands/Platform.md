@@ -115,7 +115,13 @@ cumulus@switch:~$ nv show platform environment
 
 ## <h>nv show platform environment fan</h>
 
-Shows information about the fans on the switch.
+Shows information about the fans on the switch, such as the minimum, maximum and current speed, the fan state.
+
+<!--
+{{%notice note%}}
+In Cumulus 5.6, the `nv show platform environment fan` command also shows the fan direction.
+{{%/notice%}}
+-->
 
 ### Version History
 
@@ -136,6 +142,22 @@ Fan6                      29000      2500       6000                 ok
 PSU1Fan1                  29000      2500       6000                 ok       
 PSU2Fan1                  29000      2500       6000                 ok
 ```
+
+<!--
+```
+cumulus@switch:~$ nv show platform environment fan
+Name      Fan Direction  Limit variance  Max Speed  Min Speed  Current Speed (RPM)  Fan State
+--------  -------------  --------------  ---------  ---------  -------------------  ---------
+Fan1      F2B            15              29000      2500       6000                 ok       
+Fan2      F2B            15              29000      2500       6000                 ok       
+Fan3      F2B            15              29000      2500       6000                 ok       
+Fan4      F2B            15              29000      2500       6000                 ok       
+Fan5      F2B            15              29000      2500       6000                 ok       
+Fan6      F2B            15              29000      2500       6000                 ok       
+PSU1Fan1  F2B            15              29000      2500       6000                 ok       
+PSU2Fan1  F2B            15              29000      2500       6000                 ok    
+```
+-->
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

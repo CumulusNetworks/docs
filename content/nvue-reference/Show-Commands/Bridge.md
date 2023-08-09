@@ -292,6 +292,33 @@ priority  32768        32768    32768
 state     up           up       up
 ```
 
+<!-- CL56
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> stp counters</h>
+
+Shows STP counters for a bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp counters
+port  tx-bpdu  rx-bpdu  tx-tcn  rx-tcn  fwd-trans  blk-trans  tx-pvst-tnl-bpdu  rx-pvst-tnl-bpdu
+----  -------  -------  ------  ------  ---------  ---------  ----------------  ----------------
+swp1  1270     0        4       0       3          2          1653              0               
+swp2  1270     0        4       0       3          2          1653              0 
+```
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show bridge domain \<domain-id\> stp state</h>
@@ -316,6 +343,175 @@ cumulus@switch:~$ nv show bridge domain br_default stp state
   -----------  -------  -------
   up           up       up
 ```
+
+<!-- CL56
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> stp port</h>
+
+Shows STP information for the ports in a bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp port
+Interface Info: swp1
+--------------------------------------------------------------------------
+enabled         : yes         admin-edge-port      : no
+restricted-tcn  : no          bpdu-guard-port      : no
+restricted-role : no          bpdu-guard-error     : no
+port-path-cost  : 20000       bpdu-filter-port     : no
+oper-edge-port  : yes         ba-inconsistent      : no
+network-port    : no          auto-edge-port       : yes
+mcheck          : no          admin-port-path-cost : 0
+
+Interface Info: swp2
+--------------------------------------------------------------------------
+enabled         : yes         admin-edge-port      : no
+restricted-tcn  : no          bpdu-guard-port      : no
+restricted-role : no          bpdu-guard-error     : no
+port-path-cost  : 20000       bpdu-filter-port     : no
+oper-edge-port  : yes         ba-inconsistent      : no
+network-port    : no          auto-edge-port       : yes
+mcheck          : no          admin-port-path-cost : 0 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> stp port \<port\></h>
+
+Shows STP information for a specific bridge port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+| `<port>` | The bridge port. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp port swp1
+enabled         : yes         admin-edge-port      : no
+restricted-tcn  : no          bpdu-guard-port      : no
+restricted-role : no          bpdu-guard-error     : no
+port-path-cost  : 20000       bpdu-filter-port     : no
+oper-edge-port  : yes         ba-inconsistent      : no
+network-port    : no          auto-edge-port       : yes
+mcheck          : no          admin-port-path-cost : 0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> stp vlan</h>
+
+Shows STP information for the VLANs in a bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp vlan
+Bridge Vlan: 1
+--------------------------------------------------------------------------
+Bridge ID                priority    : 32769   mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 32769   mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 2s      forward-delay     : 15s                 max-age    : 20s
+Topology Change Network  count       : 0       time since change : 1152s
+                         change port : None    last change port  : None
+
+Bridge Vlan: 10
+--------------------------------------------------------------------------
+Bridge ID                priority    : 4106    mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 4106    mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 4s      forward-delay     : 4s                  max-age    : 6s
+Topology Change Network  count       : 1       time since change : 1147s
+                         change port : swp2    last change port  : swp1
+
+Bridge Vlan: 20
+--------------------------------------------------------------------------
+Bridge ID                priority    : 32788   mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 32788   mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 2s      forward-delay     : 15s                 max-age    : 20s
+Topology Change Network  count       : 1       time since change : 1147s
+                         change port : swp2    last change port  : swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> stp vlan \<vid\></h>
+
+Shows STP information for a specific bridge VLAN.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+| `<vid>` | The VLAN identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp vlan 10
+Bridge ID                priority    : 4106    mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 4106    mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 4s      forward-delay     : 4s                  max-age    : 6s
+Topology Change Network  count       : 1       time since change : 1174s
+                         change port : swp2    last change port  : swp1
+
+Interface info: swp1
+---------------------------------
+port-id            : 8.001
+role               : Designated
+state              : forwarding
+port-path-cost     : 20000
+tx-hold-count      : 6
+port-hello-time    : 4s
+fdb-flush          : no
+disputed           : no
+
+Interface info: swp2
+---------------------------------
+port-id            : 8.002
+role               : Designated
+state              : forwarding
+port-path-cost     : 20000
+tx-hold-count      : 6
+port-hello-time    : 4s
+fdb-flush          : no
+disputed           : no
+```
+-->
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

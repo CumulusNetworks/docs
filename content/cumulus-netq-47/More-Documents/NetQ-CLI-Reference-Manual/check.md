@@ -998,12 +998,6 @@ tor-2             uplink-2                  0.0.0.20                  27.0.0.20 
 ## netq check roce
 
 Searches for consistent RoCE and QoS configurations across nodes.
-
-{{<notice note>}}
-
-This command captures mismatches on NVUE-enabled switches running Cumulus Linux 5.0 or later and NetQ Agent 4.6.0. Priority code point (PCP) validations require a switch running NetQ Agent 4.5 or later.
-
-{{</notice>}}
 ### Syntax
 
 ```

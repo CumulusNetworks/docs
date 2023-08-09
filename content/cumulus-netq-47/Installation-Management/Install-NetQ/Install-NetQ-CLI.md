@@ -524,7 +524,7 @@ secret-key: <user-secret-key-value-here>
 
 8. Restart the CLI to activate the configuration.
 
-    The following example uses the individual access key, a premises of *datacenterwest*,  and the default Cloud address, port and VRF.  **Replace the key values with your generated keys if you are using this example on your server.**
+    The following example uses the individual access key, a premises of *datacenterwest*, and the default Cloud address, port and VRF.  **Replace the key values with your generated keys if you are using this example on your server.**
 
     ```
     sudo netq config add cli server netqhostname.labtest.net access-key 123452d9bc2850a1726f55534279dd3c8b3ec55e8b25144d4739dfddabe8149e secret-key /vAGywae2E4xVZg8F+HtS6h6yHliZbBP6HXU3J98765= premises datacenterwest

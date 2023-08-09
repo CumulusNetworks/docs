@@ -124,9 +124,9 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add default-version cl-images 5.3.0
+cumulus@switch:~$ netq lcm add default-version cl-images 5.5.0
 
-cumulus@switch:~$ netq lcm add default-version netq-images 4.6.0
+cumulus@switch:~$ netq lcm add default-version netq-images 4.7.0
 ```
 
 ### Related Commands

@@ -7,6 +7,30 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3534654</td>
+<td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3486888</td>
+<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3479967</td>
+<td>When you remove VRF configuration, the {{systemctl reload frr.service}} command returns a non zero exit code after erroneously running the invalid command {{no exit-vrf}}.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3455998</td>
 <td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
 <td>4.3.1-4.4.5</td>
@@ -102,8 +126,8 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <tr>
 <td>3334036</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
+<td>4.3.0-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3334031</td>
@@ -126,8 +150,8 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <tr>
 <td>3321391</td>
 <td>On the NVIDIA SN2410 switch, ports with optical transceivers show FAULT errors in the {{sensor}} command output.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
+<td>4.2.1-5.3.1</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3319919</td>
@@ -222,8 +246,8 @@ ValueError: invalid literal for int() with base 10: ‘0t
 hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
-<td>3.7.15-4.4.4</td>
-<td>4.4.5</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3191517</td>
@@ -273,12 +297,6 @@ On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scal
 <td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -616,12 +634,6 @@ Fixed: 241-7~deb10u8</td>
 <td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
 <td>4.3.0-4.4.5</td>
 <td>5.0.0-5.5.1</td>
-</tr>
-<tr>
-<td>2734107</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.4.1</td>
-<td>4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2734103</td>
@@ -1736,10 +1748,11 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>

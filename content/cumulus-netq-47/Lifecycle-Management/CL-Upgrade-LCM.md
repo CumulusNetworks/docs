@@ -5,22 +5,17 @@ weight: 680
 toc: 4
 ---
 
-Lifecycle management lets you upgrade Cumulus Linux on one or more switches in your network via the NetQ UI or the CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time.
+ Lifecycle management (LCM) lets you upgrade Cumulus Linux on one or more switches in your network via the NetQ UI or the CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time.
 
 You can upgrade Cumulus Linux from:
-
 - 4.3.0 to later versions of Cumulus Linux 4.3 (Broadcom switches)
-- 4.4.0 or later to Cumulus Linux 5 releases (Spectrum switches)
 - 5.0.0 or later to subsequent versions of Cumulus Linux 5 (Spectrum switches)
 
+You can upgrade switches running Cumulus Linux 5.0.0 or later that are managed with flat configuration files or with NVUE.
+
 {{<notice warning>}}
-When upgrading to Cumulus Linux 5.0.0 or later, LCM backs up and restores flat file configurations in Cumulus Linux. After you upgrade to Cumulus Linux 5, running NVUE configuration commands replaces any configuration restored by NetQ LCM. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} for additional information.
+When you upgrade a switch that has not been configured using NVUE, LCM backs up and restores flat file configurations in Cumulus Linux. After you upgrade a switch that has been managed with flat files and subsequently run NVUE configuration commands, NVUE will overwrite the configuration restored by NetQ LCM. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} for additional information.
 {{</notice>}}
-
-{{<notice info>}}
-When NVUE is enabled, LCM supports upgrades from Cumulus Linux 5.0.0 to later versions of Cumulus Linux 5. Upgrading from earlier versions of Cumulus Linux is not supported when NVUE is enabled. 
-{{</notice>}}
-
 ## Prepare for a Cumulus Linux Upgrade
 
 If the NetQ Agent is already installed on the switches you'd like to upgrade, follow the steps below. If the NetQ Agent is *not* installed on the switches you'd like to upgrade, run a {{<link title="Upgrade Cumulus Linux/#Upgrade-Cumulus-Linux-on-Switches-Without NetQ-Agent-Installed" text="switch discovery">}}, then proceed with the upgrade.
@@ -96,7 +91,7 @@ If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetw
 Perform the upgrade using the `netq lcm upgrade cl-image` command, providing a name for the upgrade job, the Cumulus Linux and NetQ version, and a comma-separated list of the hostname(s) to be upgraded:
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-430 cl-version 4.3.0 netq-version 4.6.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-470 cl-version 5.5.0 netq-version 4.7.0 hostnames spine01,spine02
 ```
 
 ### Create a Network Snapshot
@@ -104,7 +99,7 @@ cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-430 cl-version 4.3.
 You can also generate a network snapshot before and after the upgrade by adding the `run-snapshot-before-after` option to the command:
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-430 cl-version 4.3.0 netq-version 4.6.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-snapshot-before-after
+cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-470 cl-version 5.5.0 netq-version 4.7.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-snapshot-before-after
 ```
 
 ### Restore upon an Upgrade Failure
@@ -112,7 +107,7 @@ cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-430 cl-version 4.3.
 (Recommended) You can restore the previous version of Cumulus Linux if the upgrade job fails by adding the `run-restore-on-failure` option to the command.
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-530 cl-version 5.3.0 netq-version 4.6.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-restore-on-failure
+cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-540 cl-version 5.4.0 netq-version 4.7.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-restore-on-failure
 ```
 
 {{</tab>}}

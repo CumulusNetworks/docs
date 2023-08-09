@@ -1,3 +1,37 @@
+{{- if eq (.Get "version") "4.7.0" -}}
+
+You should see version 4.7.0 and update 43 in the results.
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<ul>
+        <ul>
+            <li>netq-agent_<strong>4.7.0</strong>-cl4u<strong>43</strong>~1690984862.9d32c7a0_armel.deb</li>
+            <li>netq-agent_<strong>4.7.0</strong>-cl4u<strong>43</strong>~1690981360.9d32c7a0_amd64.deb</li>
+        </ul>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>Ubuntu 20.04: netq-agent_<strong>4.7.0</strong>-ub20.04u<strong>43</strong>~1690989421.9d32c7a0_amd64.deb</li> 
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "rh" -}}
+
+<ul>
+    <li>netq-agent-<strong>4.7.0</strong>-rh7u<strong>43</strong>~1690982790.9d32c7a.x86_64.rpm</li>
+</ul>
+
+{{ end }}
+
+{{ end }}
+
+
 {{- if eq (.Get "version") "4.6.0" -}}
 
 You should see version 4.6.0 and update 42 in the results.

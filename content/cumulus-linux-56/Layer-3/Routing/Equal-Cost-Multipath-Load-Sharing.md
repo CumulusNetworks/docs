@@ -507,9 +507,11 @@ The benefits of using adaptive routing include:
 - The switch distributes incoming traffic equally (or according to their weights) between the available IP next hops, which helps to minimize latency and network congestion.
 - If the cumulative rate of one or more flows exceeds the link bandwidth of the individual uplink port, adaptive routing can distribute the traffic dynamically between multiple uplink ports; the available bandwidth for these flows is not limited to the link bandwidth of an individual uplink port.
 
-Cumulus Linux only supports adaptive routing with:
+With adaptive routing, the switch forwards packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion. The change decision for port selection is set to one microsecond; you cannot change it.
+
+Cumulus Linux supports adaptive routing with:
 - Switches with the Spectrum-4 ASIC.
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic.
 - Layer 3 interfaces and VXLAN interfaces.
 - Next hop router interfaces in the default VRF.
 
@@ -519,15 +521,7 @@ Cumulus Linux only supports adaptive routing with:
 - The Spectrum-4 switch does not support adaptive routing on 800G links.
 {{%/notice%}}
 
-With adaptive routing, the switch forwards packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration.
-
-The change decision for port selection is set to one microsecond; you cannot change it.
-
-Cumulus Linux supports BGP W-ECMP with adaptive routing; see {{<link title="BGP Weighted Equal Cost Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP Weighted Equal Cost Multipath. ">}}
-
-{{%notice note%}}
-You must configure adaptive routing on *all* ports that are part of the same ECMP route. Make sure the ports are physical uplink ports.
-{{%/notice%}}
+Cumulus Linux also supports BGP W-ECMP with adaptive routing; see {{<link title="BGP Weighted Equal Cost Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP Weighted Equal Cost Multipath. ">}}
 
 ### Enable Adaptive Routing
 
@@ -557,7 +551,7 @@ Enabling or disabling adaptive routing restarts the `switchd` service, which cau
 
 Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
 - Set the `adaptive_routing.enable` parameter to `TRUE` to enable the adaptive routing feature.
-- Set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE` in the `Per-port configuration` section to enable adaptive routing on the specified ports.
+- Set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE` in the `Per-port configuration` section to enable adaptive routing on all the ports that are part of the same ECMP route.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
@@ -591,11 +585,14 @@ Cumulus Linux provides these adaptive routing profiles:
 - `ar-profile-2` is the default profile for a switch with the Spectrum-4 ASIC.
 - `ar-profile-custom` includes adaptive routing settings you can change.
 
-If you want to make changes to a profile, you must configure the custom profile by editing the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file. NVUE does not provide commands.
+You cannot make changes to the default profiles. You can customize the custom profile by editing the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file. NVUE does not provide commands.
 
 After changing parameter values and saving the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
-If you change the `adaptive_routing.ecmp_size` parameter in the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must **restart** `switchd` with the `systemctl restart switchd` command.
+{{%notice note%}}
+- Use caution when making changes to the custom profile settings; modifications might impact traffic.
+- If you change the `adaptive_routing.ecmp_size` parameter in the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must **restart** `switchd` with the `systemctl restart switchd` command.
+{{%/notice%}}
 
 To apply an adaptive routing profile:
 
@@ -617,7 +614,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-When you set the profile, NVUE reloads `switchd`.
+When you set the profile to the custom profile, NVUE reloads `switchd`.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -638,6 +635,10 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+If you modify the `adaptive_routing.ecmp_size` parameter in the custom profile, then revert to the default profile for the switch, you must restart `switchd`.
+{{%/notice%}}
 
 ### Link Utilization
 
@@ -782,11 +783,11 @@ To show adaptive routing settings, run the `nv show router adaptive-routing` com
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
-                           operational        applied          
---------------------------  -----------------  -----------------
-enable                      on                 on               
-link-utilization-threshold  on                 on               
-profile                     ar-profile-custom  ar-profile-custom 
+                            operational   applied
+--------------------------  ------------  -------
+enable                      on            on     
+link-utilization-threshold  off           off    
+profile                     ar-profile-1
 ```
 
 To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing` command:

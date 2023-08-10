@@ -994,9 +994,9 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-### Optional IGMP Settings
+### IGMP Settings
 
-You can set the following IGMP settings on a PIM interface:
+You can set the following optional IGMP settings on a PIM interface:
 - The last member query interval, which is the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 100.
 - The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 1000.
 - The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255 seconds. The default setting is 100.
@@ -1022,6 +1022,8 @@ The following example disables fast leave processing:
 cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave off
 cumulus@switch:~$ nv config apply
 ```
+
+To enable fast leave processing, run the `nv set interface <interface> ip igmp fast-leave on` command.
 
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
@@ -1057,7 +1059,7 @@ ip igmp query-max-response-time 120
 ...
 ```
 
-To enable fast leave processing, edit the `/etc/network/interfaces` file and add the `bridge-portmcfl yes` parameter under the interface stanza:
+To disable fast leave processing, edit the `/etc/network/interfaces` file and add the `bridge-portmcfl no` parameter under the interface stanza:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -1066,11 +1068,13 @@ auto vlan10
 iface vlan10
     address 10.1.10.1/24
     hwaddress 44:38:39:22:01:b1
-    bridge-portmcfl yes
+    bridge-portmcfl no
     vlan-raw-device br_default
     vlan-id 10
 ...
 ```
+
+To enable fast leave processing, edit the `/etc/network/interfaces` file and set the `bridge-portmcfl yes` parameter under the interface stanza.
 
 {{< /tab >}}
 {{< /tabs >}}

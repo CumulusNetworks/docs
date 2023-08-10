@@ -208,7 +208,6 @@ nv action clear vrf <vrf-id> router bgp soft in
 nv action clear vrf <vrf-id> router bgp soft out
 nv action clear vrf <vrf-id> router pim interfaces
 nv action clear vrf <vrf-id> router pim interface-traffic
-nv action clear vrf <vrf-id> router pim oil
 nv action clear vrf <vrf-id> router pim statistics
 ```
 

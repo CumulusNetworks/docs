@@ -358,7 +358,7 @@ cumulus@switch:~$ nv config apply
 
 To revert the clock time stamp mode to the default setting (two-step mode), run the `nv set service ptp 1 two-step on` command.  
 
-To set the clock time stamp mode for a custom profile based on a profile (IEEE1588, ITU 8275-1 or ITU 8275-2), run the `nv set service ptp <instance-id> profile <profile-id> two-step` command. For example, to set one-step mode for the custom profile called CUSTOM1, run `nv set service ptp 1 profile CUSTOM1 two-step off`.
+To set the clock time stamp mode for a custom profile based on IEEE1588, ITU 8275-1 or ITU 8275-2, run the `nv set service ptp <instance-id> profile <profile-id> two-step` command. For example, to set one-step mode for the custom profile called CUSTOM1, run the `nv set service ptp 1 profile CUSTOM1 two-step off` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

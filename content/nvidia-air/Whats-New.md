@@ -5,7 +5,7 @@ weight: 20
 product: NVIDIA Air
 ---
 <!-- vale off -->
-Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
+Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
 ## July 2023
 <!-- Air:WhatsNew -->

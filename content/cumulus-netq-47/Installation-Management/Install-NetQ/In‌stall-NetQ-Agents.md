@@ -8,26 +8,24 @@ toc: 4
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
 - Cumulus Linux 4.3.0 and above (Broadcom switches)
-- Cumulus Linux 4.4.0 and above (Spectrum switches)
+- Cumulus Linux 5.0.0 and above (Spectrum switches)
 - SONiC 202012
-- SONiC 202106
 - CentOS 7
 - RHEL 7.1
-- Ubuntu 18.04
 - Ubuntu 20.04
 
 ## Prepare for NetQ Agent Installation
 
 For switches running Cumulus Linux and SONiC, you need to:
 
-- Install and configure NTP, if needed
+- Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
 For servers running RHEL, CentOS, or Ubuntu, you need to:
 
 - Verify you installed the minimum package versions
 - Verify the server is running `lldpd`
-- Install and configure NTP, if needed
+- Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
 {{<notice note>}}
@@ -42,7 +40,7 @@ If your network uses a proxy server for external connections, you should first {
 ### Verify NTP Is Installed and Configured
 <!-- vale on -->
 
-Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be synchronized with the NetQ appliance to enable useful statistical analysis.
+Verify that {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-55/System-Configuration/Date-and-Time/Network-Time-Protocol-NTP/" text="NTP">}} is running on the switch. The switch system clock must be synchronized with the NetQ appliance to enable useful statistical analysis. Alternatively, you can configure {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-55/System-Configuration/Date-and-Time/Precision-Time-Protocol-PTP/" text="PTP">}} for time synchronization.
 
 ```
 cumulus@switch:~$ sudo systemctl status ntp
@@ -62,10 +60,9 @@ If NTP is not running:
 - Verify the IP address or hostname of the NTP server in the `/etc/ntp.conf` file, and then
 - Reenable and start the NTP service using the `systemctl [enable|start] ntp` commands
 
-{{<notice tip>}}
+   {{<notice tip>}}
 If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
-{{</notice>}}
-
+   {{</notice>}}
 ### Obtain NetQ Agent Software Package
 
 Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upgrade the NetQ Agent to the latest version: 
@@ -469,7 +466,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.6.0" opsys="cl">}}
+    {{<netq-install/agent-version version="4.7.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -525,7 +522,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -qa | grep -i netq
     ```
 
-    {{<netq-install/agent-version version="4.6.0" opsys="rh">}}
+    {{<netq-install/agent-version version="4.7.0" opsys="rh">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -554,7 +551,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.6.0" opsys="ub">}}
+    {{<netq-install/agent-version version="4.7.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 

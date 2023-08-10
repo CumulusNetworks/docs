@@ -15,7 +15,7 @@ Three sets of validation commands are available, all for verifying the health an
 - `netq add validation` commands. Use {{<link url="add/#netq-add-validation" text="these commands">}} to validate various elements in your network fabric. The results appear in the Validation Result cards in the UI, where you can filter them.
 - Validation management commands. `netq show validation settings` displays a list of all jobs and job settings and `netq del validation` allows you to remove validations.
 
-Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation.
+Refer to the {{<link title="Validation Tests Reference">}} for a description of the tests run as part of each validation.
 
 - - -
 ## netq check addresses
@@ -998,12 +998,6 @@ tor-2             uplink-2                  0.0.0.20                  27.0.0.20 
 ## netq check roce
 
 Searches for consistent RoCE and QoS configurations across nodes.
-
-{{<notice note>}}
-
-This command captures mismatches on NVUE-enabled switches running Cumulus Linux 5.0 or later and NetQ Agent 4.6.0. Priority code point (PCP) validations require a switch running NetQ Agent 4.5 or later.
-
-{{</notice>}}
 ### Syntax
 
 ```

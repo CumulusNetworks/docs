@@ -76,17 +76,19 @@ Refer to the command line reference for a comprehensive list of {{<link title="s
 
 ## View CPU and Memory Utilization for Processes and Services
 
-Use the UI or CLI to view CPU and memory usage by various services and processes. By default, NetQ monitors the following services: *clagd*, *frr*, *lldpd*, *mstpd*, *netq-agent*, *netqd*, *nvued*, *pwmd*, *quagga*, *smond*
+Use the UI or CLI to visualize which services and processes are consuming the most CPU and memory on a switch. You can add or remove certain services that NetQ monitors using the CLI.
 
-Using the CLI, you can configure NetQ to monitor CPU and memory utilization for additional services, inclsclark uding *docker*, *dhcp_relay*, *neighmgrd*, *ptmd*, *ptp4l*, *rsyslog*, *snmpd*, *ssh* 
+{{<notice note>}}
 
-Refer to the {{<link title="show/#netq-show-services" text="command line reference">}} for more information about the services.
+Process monitoring is only supported on Spectrum switches. 
+
+{{</notice>}}
 
 {{<tabs "TabID46" >}}
 
 {{<tab "NetQ UI" >}}
 
-To visualize CPU and memory utilization at the process level, open a large switch card and navigate to the **Utilization** tab. Then select **Show process monitoring data**. The UI depicts two charts---one each for CPU and memory utilization---along with a list of services and processes.
+To visualize CPU and memory utilization at the process level, open a large device card and navigate to the **Utilization** tab. Then select **Show process monitoring data**. The UI depicts two charts---one each for CPU and memory utilization---along with a list of services and processes.
 
 Select a process from the **Process name** column for its usage data to be reflected in the CPU and memory utilization charts. The data presented is aggregated over a 5-minute period; NetQ lists the process consuming the most CPU resources (aggregated over a 5-minute period or the **CPU 5min** column) from highest to lowest. The process whose data is reflected in the charts is indicated by an icon {{<img src="/images/netq/analytics-bars.svg" alt="" height="18" width="18">}} next to the name of the process.
 
@@ -119,11 +121,9 @@ r-3700-01         smond                7301  default              yes     yes   
 ... 
 ```
 
-To display a list of processes and services that the NetQ Agent is currently monitoring, run {{<link title="config/#netq-config-show-agent" text="netq config show agent services">}}. 
+To configure the NetQ Agent to start monitoring additional services, run {{<link title="config/#netq-config-add-agent-services" text="netq config add agent services">}}, specifying the services you want the agent to monitor in the command. Restart the agent, then run {{<link title="config/#netq-config-show-agent" text="netq config show agent services">}} to display a list of services that the NetQ Agent is monitoring for CPU and memory usage.
 
-To configure the agent to monitor additional services or processes, run {{<link title="config/#netq-config-add-agent-services" text="netq config add agent services">}} with the name of the service(s) included in the command.
-
-To stop the agent from monitoring services or processes, run {{<link title="config/#netq-config-del-agent" text="netq config del agent services">}}. The services that NetQ monitors by default cannot be deleted.
+To stop the agent from monitoring a service run {{<link title="config/#netq-config-del-agent-services" text="netq config del agent services">}}. Some services and processes cannot be excluded from monitoring.
 
 {{</tab>}}
 
@@ -137,7 +137,7 @@ Monitoring queue lengths in your network’s fabric is useful for detecting micr
 
 {{<notice note>}}
 
-Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 and above and NetQ 4.7.
+Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 and above.
 
 {{</notice>}}
 
@@ -161,4 +161,3 @@ Select **View more** to open a dashboard that displays the full range of ports c
 
 - {{<link title="Switch Inventory">}}
 - {{<link title="Switch Management" text="Switch Lifecycle Management">}}
-- {{<link title="Decommission Switches">}}

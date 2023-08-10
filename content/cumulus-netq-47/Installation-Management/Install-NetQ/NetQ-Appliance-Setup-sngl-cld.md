@@ -89,11 +89,11 @@ Now that the appliance is up and running, verify that the software is available 
 
 1. Verify that the required packages are present and reflect the most current version.
 
-    {{<netq-install/verify-pkgs version="4.6" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="7" platform="appliance">}}
 
 2. Verify the installation images are present and reflect the most current version.
 
-    {{<netq-install/verify-image deployment="cloud" version="4.6">}}
+    {{<netq-install/verify-image deployment="cloud" version="4.7">}}
 
 3. Verify the appliance is ready for installation. Fix any errors before installing the NetQ software.
 
@@ -101,6 +101,6 @@ Now that the appliance is up and running, verify that the software is available 
 
 4. Install and activate the NetQ software using the CLI:
 
-{{<netq-install/install-with-cli version="4.6" deployment="cloud-single">}}
+{{<netq-install/install-with-cli version="4.7" deployment="cloud-single">}}
 
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

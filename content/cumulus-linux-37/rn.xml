@@ -54,8 +54,8 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
-<td>3.7.15-4.4.4</td>
-<td>4.4.5</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3209699</td>
@@ -82,12 +82,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
 <td>3.7.15-5.1.0</td>
 <td>5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -353,12 +347,6 @@ MemoryError
 </tr>
 <tr>
 <td>2734107</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.4.1</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2730225</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-4.3.0, 4.4.0-4.4.1</td>
 <td>4.3.1, 4.4.2-4.4.5</td>
@@ -2550,8 +2538,8 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
-<td>3.7.15-4.4.4</td>
-<td>4.4.5</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3209699</td>
@@ -2578,12 +2566,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
 <td>3.7.15-5.1.0</td>
 <td>5.2.0-5.5.1</td>
-</tr>
-<tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3093966</td>
@@ -3306,12 +3288,6 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2734107</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.4.1</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2730225</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-4.3.0, 4.4.0-4.4.1</td>
 <td>4.3.1, 4.4.2-4.4.5</td>
@@ -5543,12 +5519,6 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>4.3.1, 5.3.0-5.5.1</td>
 </tr>
 <tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3073668</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
@@ -6010,12 +5980,6 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2734107</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.4.1</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2730225</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-4.3.0, 4.4.0-4.4.1</td>
 <td>4.3.1, 4.4.2-4.4.5</td>
@@ -8243,12 +8207,6 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>4.3.1, 5.3.0-5.5.1</td>
 </tr>
 <tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3073668</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
@@ -8673,12 +8631,6 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2734107</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.4.1</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2730225</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-4.3.0, 4.4.0-4.4.1</td>
 <td>4.3.1, 4.4.2-4.4.5</td>
@@ -11309,12 +11261,6 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>4.3.1, 5.3.0-5.5.1</td>
 </tr>
 <tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3073668</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
@@ -11739,12 +11685,6 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2734107</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.4.1</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2730225</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-4.3.0, 4.4.0-4.4.1</td>
 <td>4.3.1, 4.4.2-4.4.5</td>
@@ -14430,12 +14370,6 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>4.3.1, 5.3.0-5.5.1</td>
 </tr>
 <tr>
-<td>3098936</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3073668</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
@@ -14853,12 +14787,6 @@ Fixed: 2.8.17-1+deb8u8</td>
 </tr>
 <tr>
 <td>2734107</td>
-<td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
-<td>3.7.12-4.4.1</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
-<td>2730225</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-4.3.0, 4.4.0-4.4.1</td>
 <td>4.3.1, 4.4.2-4.4.5</td>

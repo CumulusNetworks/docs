@@ -5,7 +5,7 @@ weight: 420
 toc: 4
 ---
 
-To upgrade the NetQ Agent:
+After upgrading your {{<link title="Upgrade NetQ Virtual Machines" text="NetQ VM">}}, upgrade the NetQ Agent:
 
 1. Log in to your switch or host.
 
@@ -55,7 +55,7 @@ Run the following command to view the NetQ Agent version.
 cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-{{<netq-install/agent-version version="4.6.0" opsys="cl">}}
+{{<netq-install/agent-version version="4.7.0" opsys="cl">}}
 
 {{</tab>}}
 
@@ -65,7 +65,7 @@ cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-{{<netq-install/agent-version version="4.6.0" opsys="ub">}}
+{{<netq-install/agent-version version="4.7.0" opsys="ub">}}
 
 {{</tab>}}
 
@@ -75,7 +75,7 @@ root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 root@rhel7:~# rpm -q -netq-agent
 ```
 
-{{<netq-install/agent-version version="4.6.0" opsys="rh">}}
+{{<netq-install/agent-version version="4.7.0" opsys="rh">}}
 
 {{</tab>}}
 
@@ -83,5 +83,6 @@ root@rhel7:~# rpm -q -netq-agent
 
 If you see an older version, upgrade the NetQ Agent, as described above.
 
-## Related Information
-- {{<link title="Manage NetQ Agents">}}
+## Next Steps
+
+- {{<link title="Upgrade NetQ CLI">}}

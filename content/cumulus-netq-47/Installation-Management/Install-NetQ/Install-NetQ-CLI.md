@@ -10,12 +10,10 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
 - Cumulus Linux 4.3.0 and above (Broadcom switches)
-- Cumulus Linux 4.4.0 and above (Spectrum switches)
+- Cumulus Linux 5.0.0 and above (Spectrum switches)
 - SONiC 202012
-- SONiC 202106
 - CentOS 7
 - RHEL 7.1
-- Ubuntu 18.04
 - Ubuntu 20.04
 
 {{<notice note>}}
@@ -28,7 +26,7 @@ For servers running RHEL 7, CentOS or Ubuntu OS, you need to:
 
 - Verify you installed the minimum service packages versions
 - Verify the server is running `lldpd`
-- Install and configure NTP, if needed
+- Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
 These steps are not required for Cumulus Linux or SONiC.
@@ -104,7 +102,7 @@ If NTP is not already installed and configured, follow these steps:
 
 {{<tab "RHEL7 or CentOS">}}
 
-1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be in time synchronization with the NetQ appliance or VM to enable useful statistical analysis.
+1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be synchronized with the NetQ appliance or VM to enable useful statistical analysis.
 
     ```
     root@rhel7:~# sudo yum install ntp
@@ -357,7 +355,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.6" opsys="cl">}}
+{{<netq-install/cli-version version="4.7" opsys="cl">}}
 <!-- vale on -->
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -391,9 +389,9 @@ To obtain the NetQ CLI package:
     admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
-    You should see version 4.6.0 and update 41 in the results. For example:
+    You should see version 4.7.0 and update 43 in the results. For example:
 
-    - netq-apps_<strong>4.6.0</strong>-deb10u<strong>41</strong>~1682430128.e13e0426_amd64.deb
+    - netq-apps_<strong>4.7.0</strong>-deb10u<strong>43</strong>~1690984858.9d32c7a0_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -439,7 +437,7 @@ To obtain the NetQ CLI package:
     root@rhel7:~# rpm -q -netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.6" opsys="rh">}}
+{{<netq-install/cli-version version="4.7" opsys="rh">}}
 <!-- vale on -->
 5. Continue with the next section.
 
@@ -460,7 +458,7 @@ To obtain the NetQ CLI package:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.6" opsys="ub">}}
+{{<netq-install/cli-version version="4.7" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 
@@ -488,7 +486,7 @@ To generate AuthKeys:
 
 2. Enter your username and password.
 
-3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, and under **Admin**, select **Management**.
+3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, then select **Management**.
 
     {{<figure src="/images/netq/main-menu-admin-mgmt-selected-410.png" alt="" width="300">}}
 
@@ -525,7 +523,7 @@ secret-key: <user-secret-key-value-here>
 
 8. Restart the CLI to activate the configuration.
 
-    The following example uses the individual access key, a premises of *datacenterwest*,  and the default Cloud address, port and VRF.  **Replace the key values with your generated keys if you are using this example on your server.**
+    The following example uses the individual access key, a premises of *datacenterwest*, and the default Cloud address, port and VRF.  **Replace the key values with your generated keys if you are using this example on your server.**
 
     ```
     sudo netq config add cli server netqhostname.labtest.net access-key 123452d9bc2850a1726f55534279dd3c8b3ec55e8b25144d4739dfddabe8149e secret-key /vAGywae2E4xVZg8F+HtS6h6yHliZbBP6HXU3J98765= premises datacenterwest
@@ -563,7 +561,7 @@ To generate AuthKeys:
 
 2. Enter your username and password.
 
-3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, and under **Admin**, select **Management**.
+3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, then select **Management**.
 
     {{<figure src="/images/netq/main-menu-admin-mgmt-selected-410.png" width="300">}}
 

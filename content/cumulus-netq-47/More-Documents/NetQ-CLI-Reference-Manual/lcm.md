@@ -124,9 +124,9 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add default-version cl-images 5.3.0
+cumulus@switch:~$ netq lcm add default-version cl-images 5.5.0
 
-cumulus@switch:~$ netq lcm add default-version netq-images 4.6.0
+cumulus@switch:~$ netq lcm add default-version netq-images 4.7.0
 ```
 
 ### Related Commands
@@ -171,6 +171,8 @@ netq lcm add netq-config config-profile-name <text-config-profile>
 | wjh | enable, disable | Enable or disable What Just Happened events |
 
 ### Sample Usage
+
+The following example creates a configuration called 'test-set-all.' The agent is configured not to consume more than 60% of CPU resources, the logging level is set to error, the VRF is set to management, and WJH events are enabled.
 
 ```
 cumulus@switch:~$ netq lcm add netq-config config-profile-name test-set-all access-key KEY secret-key SKEY cpu-limit 60 log-level error vrf mgmt wjh enable
@@ -941,7 +943,7 @@ fw2               192.168.200.62            44:38:39:00:01:8E  x86_64   4.2.0   
 
 ## netq lcm show netq-config
 
-Displays the configuration of all NetQ configuration profiles created in the NetQ UI, including the name and identifier, which is the default profile, VRF used, whether you enabled What Just Happened or CPU usage limiting, and logging level.
+Displays the configuration of all NetQ configuration profiles, including the name and identifier, the default profile, VRF, What Just Happened status, CPU usage limit, and logging level.
 
 ### Syntax
 
@@ -952,9 +954,7 @@ netq lcm show netq-config
 
 ### Required Arguments
 
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| netq-config | NA | Display results of discovery job with this identifier |
+None
 
 ### Options
 
@@ -980,7 +980,8 @@ a0dd
 
 ### Related Commands
 
-None
+- `netq lcm add netq-config`
+- `netq lcm del netq-config`
 
 - - -
 
@@ -1169,10 +1170,10 @@ netq lcm show switches
 cumulus@switch:~$ netq lcm show switches cl-version 5.2.0
 Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Credential Profile                   Last Changed
 ----------------- ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ------------------------------------ -------------------------
-noc-se                       192.168.0.15              00:01:00:00:12:00  x86_64   5.2.0       4.6.0-cl4u42~ []                           Netq-Default                         Fri Feb  3 20:50:40 2023
+noc-se                       192.168.0.15              00:01:00:00:12:00  x86_64   5.2.0       4.7.0-cl4u43~ []                           Netq-Default                         Fri Feb  3 20:50:40 2023
                                                                                                1675445092.42
                                                                                                fbac0a
-spine-1                      192.168.0.15              00:01:00:00:13:00  x86_64   5.2.0       4.6.0-cl4u42~ []                           n-2000                               Fri Feb  3 22:28:25 2023
+spine-1                      192.168.0.15              00:01:00:00:13:00  x86_64   5.2.0       4.7.0-cl4u43~ []                           n-2000                               Fri Feb  3 22:28:25 2023
                                                                                                1675445092.42
                                                                                                fbac0a
 ```

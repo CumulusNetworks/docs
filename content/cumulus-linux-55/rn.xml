@@ -7,6 +7,122 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3549138</td>
+<td>In an EVPN environment with ARP suppression enabled, when a host sends a unicast ARP request to a remote host, the ARP reply is duplicated. It is replied once by the remote host and once by the VTEP.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3541912</td>
+<td>Collecting a {{cl-support}} file in a high VNI and interface environment can result in an out-of-memory (OOM) event on the switch. An OOM event can cause critical services to restart and might impact traffic.</td>
+<td>5.1.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3538497</td>
+<td>In an EVPN symmetric routing configuration, after rebooting a switch that uses VLAN 1 for a layer 3 VNI, traffic forwarding for VLAN 1 fails. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3528359</td>
+<td>A {{switchd}} assertion crash occurs after KVD resource exhaustion in the SDK because entries are in a pending delete state, which causes an ECMP allocation failure.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3526004</td>
+<td>For layer 3 VNIs, Cumulus Linux automatically creates an SVI name that includes an underscore (for example, {{vlan4036_l3}}), which is not allowed in SVI names. As a result, commands such as {{nv show interface}} for the SVI show an error. The underscore (_) character is now allowed in SVI names.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3520511</td>
+<td>If you apply EVPN multihoming configuration such as {{es-df-pref}}, {{es-id}} and {{es-sys-mac}} with vtysh after you remove a bond interface that is part of a bridge and run {{ifreload -a}}, FRR crashes. To work around this issue, do not remove a bond from a bridge before you configure EVPN multihoming with vtysh.</td>
+<td>5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3517376</td>
+<td>When you use CMIS specification based optics,  the {{l1-show}} command output provides incorrect values for digital diagnostics (TX Power and RX Power). To work around this issue, run the {{mlxlink}} command with either the {{-m}} or {{--cable --ddm}} flags.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3511640</td>
+<td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3509445</td>
+<td>If a BGP numbered session is in a non-established state, SNMP walk commands to the system might time out when the BGPVRF MIB is included in the OIDs to collect. In addition, FRR might report warnings about AgentX in the log files.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3498939</td>
+<td>In an EVPN environment, VM migration (IP and MAC address migration) might not work because the new local VTEP to which the VM migrates does not install the entry in the kenel. To work around this issue, restart the {{switchd}} service.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3496931</td>
+<td>When you update a prefix list associated with an RP,  the {{pimd}} service might crash if the prefix list exists without any prefixes. To work around this issue, ensure that any prefix list associated with an RP includes at least one prefix at all times.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3496889</td>
+<td>When PTP is not enabled on the switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3495630</td>
+<td>The NVUE {{nv show service ptp &lt;instance&gt; current}} command output shows an incorrect value. To work around this issue, run the {{nv show service ptp &lt;instance&gt; monitor timestamp-log}} command or the Linux {{pmc}} utility.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3491259</td>
+<td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
+<td>5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3486102</td>
+<td>SNMP and TACACS secrets are shown in cleartext.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3479786</td>
+<td>The {{switchd}} service does not handle certain route and next hop updates, which causes a synchronization loop. For example, in a VRF route leaking configuration, where a next hop group spans across multiple VRFs, when one of the routes is withdrawn and the next hop is no longer used, {{switchd}} has problems synchronizing other next hops in the group.
+
+To work around this issue, disable next hop groups in zebra with the vtysh {{zebra nexthop proto only}} command, and then reboot the switch.</td>
+<td>5.3.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3472865</td>
+<td>The json output for the vtysh {{-c ‘show bgp all json}} command is missing a string key in front of the list of routes under the {{l2vpnevpn}} address family.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3471052</td>
+<td>On certain QSFP-DD and OSFP optical modules, the {{ethtool -m}} command, and the related NCLU and NVUE commands that display optical module information fail.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3467890</td>
 <td>BGP aggregate routers are not advertised after learning the same route from another protocol. To work around this issue, restart the FRR service or, if possible, don't learn the route from another protocol (use route maps instead).</td>
 <td>5.3.0-5.5.1</td>
@@ -64,12 +180,6 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td></td>
 </tr>
 <tr>
-<td>3452688</td>
-<td>When you use NVUE to configure a named extended community list with a route target, Cumulus Linux defines it as expanded instead of standard. As a result, routes do not match the expected community list. </td>
-<td>5.5.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3452681</td>
 <td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see the following error:
 
@@ -105,12 +215,6 @@ These messages do not affect the functionality of the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>3442569</td>
-<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
-<td>5.5.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3436595</td>
 <td>When using WJH, if you export dropped packets to a file in PCAP format, the file contains custom WJH header data. As a result, certain tools, such as Wireshark, cannot decode the data. To work around this issue, use the {{--no_metadata}} option with the export command:
 
@@ -126,15 +230,37 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td></td>
 </tr>
 <tr>
+<td>3433577</td>
+<td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3428677</td>
 <td>In certain cases, Cumulus Linux does not process next hop updates because the {{zebra}} IP routing manager thinks the state of the next hops is unchanged. As a result, route installation fails and remains in a rejected state.</td>
 <td>5.3.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
+<td>3419940</td>
+<td>When generating a {{cl-support}} file either manually or when an issue occurs on the system, you see the following kernel error messages:
+
+&apos;Register access failed (reg_id=0x9029, status=0x4)&apos; followed by a hex dump of a few lines.
+
+This error message is benign and has no functional impact.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3413785</td>
 <td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3408301</td>
+<td>The NVUE {{nv show router nexthop rib}} command shows duplicate entries in the Summary section for a nexthop group. To work around this issue, run the vtysh {{show nexthop-group rib}} command instead. </td>
+<td>5.5.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -151,7 +277,7 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 </tr>
 <tr>
 <td>3368217</td>
-<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.5.1</td>
 <td></td>
 </tr>
@@ -199,9 +325,9 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
-<td>3331929</td>
-<td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf &lt;vrf&gt; router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
-<td>5.4.0-5.5.1</td>
+<td>3334275</td>
+<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>5.2.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -294,14 +420,6 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 <td></td>
 </tr>
 <tr>
-<td>3145224</td>
-<td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
-
-To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo rm /etc/cumulus/datapath/nvue_traffic.conf}} command.</td>
-<td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3135952</td>
 <td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
@@ -330,7 +448,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -455,11 +573,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>2671652</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>4.4.0-4.4.5, 5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>
@@ -471,8 +596,8 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Affects </th>
 </tr>
 <tr>
-<td>3474352</td>
-<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap between the upper and lower four lanes on a port, the firmware gets stuck.</td>
+<td>3470941</td>
+<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap the upper and lower four lanes on a port, the firmware gets stuck.</td>
 <td>5.3.0-5.5.0</td>
 </tr>
 </table>
@@ -484,8 +609,118 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3474352</td>
-<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap between the upper and lower four lanes on a port, the firmware gets stuck.</td>
+<td>3549138</td>
+<td>In an EVPN environment with ARP suppression enabled, when a host sends a unicast ARP request to a remote host, the ARP reply is duplicated. It is replied once by the remote host and once by the VTEP.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3541912</td>
+<td>Collecting a {{cl-support}} file in a high VNI and interface environment can result in an out-of-memory (OOM) event on the switch. An OOM event can cause critical services to restart and might impact traffic.</td>
+<td>5.1.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3538497</td>
+<td>In an EVPN symmetric routing configuration, after rebooting a switch that uses VLAN 1 for a layer 3 VNI, traffic forwarding for VLAN 1 fails. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3528359</td>
+<td>A {{switchd}} assertion crash occurs after KVD resource exhaustion in the SDK because entries are in a pending delete state, which causes an ECMP allocation failure.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3526004</td>
+<td>For layer 3 VNIs, Cumulus Linux automatically creates an SVI name that includes an underscore (for example, {{vlan4036_l3}}), which is not allowed in SVI names. As a result, commands such as {{nv show interface}} for the SVI show an error. The underscore (_) character is now allowed in SVI names.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3517376</td>
+<td>When you use CMIS specification based optics,  the {{l1-show}} command output provides incorrect values for digital diagnostics (TX Power and RX Power). To work around this issue, run the {{mlxlink}} command with either the {{-m}} or {{--cable --ddm}} flags.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3511640</td>
+<td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3509445</td>
+<td>If a BGP numbered session is in a non-established state, SNMP walk commands to the system might time out when the BGPVRF MIB is included in the OIDs to collect. In addition, FRR might report warnings about AgentX in the log files.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3498939</td>
+<td>In an EVPN environment, VM migration (IP and MAC address migration) might not work because the new local VTEP to which the VM migrates does not install the entry in the kenel. To work around this issue, restart the {{switchd}} service.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3496931</td>
+<td>When you update a prefix list associated with an RP,  the {{pimd}} service might crash if the prefix list exists without any prefixes. To work around this issue, ensure that any prefix list associated with an RP includes at least one prefix at all times.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3496889</td>
+<td>When PTP is not enabled on the switch, NVUE {{nv show ptp}} commands freeze. This might cause other NVUE commands to fail and the NVUE service to restart.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3495630</td>
+<td>The NVUE {{nv show service ptp &lt;instance&gt; current}} command output shows an incorrect value. To work around this issue, run the {{nv show service ptp &lt;instance&gt; monitor timestamp-log}} command or the Linux {{pmc}} utility.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3491259</td>
+<td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
+<td>5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3486102</td>
+<td>SNMP and TACACS secrets are shown in cleartext.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3479786</td>
+<td>The {{switchd}} service does not handle certain route and next hop updates, which causes a synchronization loop. For example, in a VRF route leaking configuration, where a next hop group spans across multiple VRFs, when one of the routes is withdrawn and the next hop is no longer used, {{switchd}} has problems synchronizing other next hops in the group.
+
+To work around this issue, disable next hop groups in zebra with the vtysh {{zebra nexthop proto only}} command, and then reboot the switch.</td>
+<td>5.3.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3474391</td>
+<td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
+<td>4.3.1-4.4.5, 5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3472865</td>
+<td>The json output for the vtysh {{-c ‘show bgp all json}} command is missing a string key in front of the list of routes under the {{l2vpnevpn}} address family.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3471052</td>
+<td>On certain QSFP-DD and OSFP optical modules, the {{ethtool -m}} command, and the related NCLU and NVUE commands that display optical module information fail.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3470941</td>
+<td>On the NVIDIA SN4700 switch, reversing the upper four lanes on a port does not work and might cause link degradation. If you swap the upper and lower four lanes on a port, the firmware gets stuck.</td>
 <td>5.3.0-5.5.0</td>
 <td>5.5.1</td>
 </tr>
@@ -547,12 +782,6 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td></td>
 </tr>
 <tr>
-<td>3452688</td>
-<td>When you use NVUE to configure a named extended community list with a route target, Cumulus Linux defines it as expanded instead of standard. As a result, routes do not match the expected community list. </td>
-<td>5.5.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3452681</td>
 <td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see the following error:
 
@@ -588,12 +817,6 @@ These messages do not affect the functionality of the switch.</td>
 <td></td>
 </tr>
 <tr>
-<td>3442569</td>
-<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
-<td>5.5.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3436595</td>
 <td>When using WJH, if you export dropped packets to a file in PCAP format, the file contains custom WJH header data. As a result, certain tools, such as Wireshark, cannot decode the data. To work around this issue, use the {{--no_metadata}} option with the export command:
 
@@ -609,15 +832,37 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td></td>
 </tr>
 <tr>
+<td>3433577</td>
+<td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3428677</td>
 <td>In certain cases, Cumulus Linux does not process next hop updates because the {{zebra}} IP routing manager thinks the state of the next hops is unchanged. As a result, route installation fails and remains in a rejected state.</td>
 <td>5.3.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
+<td>3419940</td>
+<td>When generating a {{cl-support}} file either manually or when an issue occurs on the system, you see the following kernel error messages:
+
+&apos;Register access failed (reg_id=0x9029, status=0x4)&apos; followed by a hex dump of a few lines.
+
+This error message is benign and has no functional impact.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3413785</td>
 <td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3408301</td>
+<td>The NVUE {{nv show router nexthop rib}} command shows duplicate entries in the Summary section for a nexthop group. To work around this issue, run the vtysh {{show nexthop-group rib}} command instead. </td>
+<td>5.5.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -634,7 +879,7 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 </tr>
 <tr>
 <td>3368217</td>
-<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.5.1</td>
 <td></td>
 </tr>
@@ -682,9 +927,9 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
-<td>3331929</td>
-<td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf &lt;vrf&gt; router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
-<td>5.4.0-5.5.1</td>
+<td>3334275</td>
+<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>5.2.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>
@@ -777,14 +1022,6 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 <td></td>
 </tr>
 <tr>
-<td>3145224</td>
-<td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
-
-To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo rm /etc/cumulus/datapath/nvue_traffic.conf}} command.</td>
-<td>5.2.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3135952</td>
 <td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
@@ -813,7 +1050,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3084476</td>
-<td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.5.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -938,11 +1175,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>2671652</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>4.4.0-4.4.5, 5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>2543915</td>
-<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
 
 Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
-</td>
+
+You can safely ignore this warning.</td>
 <td>4.0.0-4.4.5, 5.0.0-5.5.1</td>
 <td></td>
 </tr>

@@ -999,9 +999,9 @@ cumulus@switch:~$ nv config apply
 You can set the following optional IGMP settings on a PIM interface:
 - The last member query interval, which is the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 100.
 - The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 1000.
-- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255 seconds. The default setting is 100.
+- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255 seconds. The default setting is 2.
 - How often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 65535 seconds. The default setting is 100.
-- Fast leave processing, where the switch immediately removes a port from the forwarding entry for a multicast group when the port receives a leave message. The default setting is on.
+- Fast leave processing, where the switch immediately removes a port from the forwarding entry for a multicast group when the port receives a leave message. The default setting is off.
 
 {{< tabs "TabID356 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1016,14 +1016,14 @@ cumulus@switch:~$ nv set interface swp1 ip igmp query-interval 180
 cumulus@switch:~$ nv config apply
 ```
 
-The following example disables fast leave processing:
+The following example enables fast leave processing:
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave off
+cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave on
 cumulus@switch:~$ nv config apply
 ```
 
-To enable fast leave processing, run the `nv set interface <interface> ip igmp fast-leave on` command.
+To disable fast leave processing, run the `nv set interface <interface> ip igmp fast-leave off` command.
 
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
@@ -1059,7 +1059,7 @@ ip igmp query-max-response-time 120
 ...
 ```
 
-To disable fast leave processing, edit the `/etc/network/interfaces` file and add the `bridge-portmcfl no` parameter under the interface stanza:
+To enable fast leave processing, edit the `/etc/network/interfaces` file and add the `bridge-portmcfl yes` parameter under the interface stanza:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -1068,13 +1068,13 @@ auto vlan10
 iface vlan10
     address 10.1.10.1/24
     hwaddress 44:38:39:22:01:b1
-    bridge-portmcfl no
+    bridge-portmcfl yes
     vlan-raw-device br_default
     vlan-id 10
 ...
 ```
 
-To enable fast leave processing, edit the `/etc/network/interfaces` file and set the `bridge-portmcfl yes` parameter under the interface stanza.
+To disable fast leave processing, edit the `/etc/network/interfaces` file and set the `bridge-portmcfl no` parameter under the interface stanza.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1489,9 +1489,8 @@ Source                Group               RP   Local    SPT      Uptime
 If you are troubleshooting or making changes to your multicast environment, you can:
 - Clear PIM neighbors for all PIM interfaces in a VRF.
 - Clear traffic statistics for all PIM interfaces in a VRF.
-- Rescan the PIM OIL to update the output interface list in a VRF.
-- Clear all PIM process statistics or all PIM process statistics in a VRF, such as PIM bootstrap message counters.
-- Clear IGMP interface state.
+- Clear all PIM process statistics or PIM process statistics in a VRF, such as PIM bootstrap message counters.
+- Clear the IGMP interface state.
 
 {{< tabs "TabID1404 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1507,13 +1506,6 @@ To clear traffic statistics for all PIM interfaces in a VRF:
 
 ```
 cumulus@switch:~$ nv action clear vrf default router pim interface-traffic
-Action succeeded
-```
-
-To rescan the PIM OIL to update the output interface list in a VRF:
-
-```
-cumulus@switch:~$ nv action clear vrf default router pim oil
 Action succeeded
 ```
 

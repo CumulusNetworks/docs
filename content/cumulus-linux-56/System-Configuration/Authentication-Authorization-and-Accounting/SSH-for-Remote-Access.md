@@ -16,13 +16,13 @@ By default, the root account cannot use SSH to log in.
 
 You can configure the root account to use SSH to log into the switch with:
 - A password
-- A public key or any allowed mechanism that is *not* a password and not keyboardinteractive. This is the default setting.
+- A public key or any allowed mechanism that is *not* a password and not keyboard interactive. This is the default setting.
 - A set of commands defined in the `authorized_keys` file.
 
 {{< tabs "TabID118 ">}}
 {{< tab "NVUE Commands ">}}
 
-To allow the root account to use SSH to log into the switch with a password:
+To allow the root account to SSH into the switch with a password:
 
 ```
 cumulus@switch:~$ nv set system ssh-server permit-root-login enabled
@@ -31,14 +31,14 @@ cumulus@switch:~$ nv config apply
 
 Run the `nv set system ssh-server permit-root-login disabled` command to disable SSH login for the root account with a password.
 
-To allow the root account to use SSH to log into the switch and authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive:
+To allow the root account to SSH into the switch and authenticate with a public key or any allowed mechanism that is *not* a password and not keyboard interactive:
 
 ```
 cumulus@switch:~$ nv set system ssh-server permit-root-login prohibit-password
 cumulus@switch:~$ nv config apply
 ```
 
-To allow the root account to use SSH to log into the switch and only run a set of commands defined in the `authorized_keys` file:
+To allow the root account to SSH into the switch and only run a set of commands defined in the `authorized_keys` file:
 
 ```
 cumulus@switch:~$ nv set system ssh-server permit-root-login forced-commands-only
@@ -48,7 +48,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To allow the root account to use SSH to log in using a password, edit the `/etc/ssh/sshd_config` file and set the `PermitRootLogin` option to `yes`:
+To allow the root account to SSH into the switch using a password, edit the `/etc/ssh/sshd_config` file and set the `PermitRootLogin` option to `yes`:
 
 ```
 cumulus@switch:~$ sudo cat /etc/ssh/sshd_config
@@ -59,9 +59,9 @@ PermitRootLogin yes
 ...
 ```
 
-Set the `PermitRootLogin` command to `no` to disable SSH login for the root account with a password.
+Set the `PermitRootLogin` command to `no` to disable SSH login with a password.
 
-To allow the root account to use SSH to log in and authenticate with a public key or any allowed mechanism that is *not* a password and not keyboardinteractive:
+To allow the root account to SSH into the switch and authenticate with a public key or any allowed mechanism that is *not* a password and not keyboard interactive:
 
 1. Create an `.ssh` directory for the root user.
 
@@ -446,7 +446,8 @@ A public key is a text file with three space separated fields:
 
 The procedure to install an authorized SSH key is different based on whether the user is an NVUE managed user or a non-NVUE managed user.
 
-#### NVUE Managed User
+{{< tabs "TabID449 ">}}
+{{< tab "NVUE Managed User ">}}
 
 The following example adds an authorized key named `prod_key` to the user `admin2`. The content of the public key file is `ssh-rsa 1234 prod_key`.
 
@@ -455,9 +456,10 @@ cumulus@leaf01:~$ nv set user admin2 ssh authorized-key prod_key key 1234
 cumulus@leaf01:~$ nv set user admin2 ssh authorized-key prod_key type ssh-rsa
 cumulus@leaf01:~$ nv config apply
 ```
-<!-- vale off -->
-#### Non-NVUE Managed User
-<!-- vale on -->
+
+{{< /tab >}}
+{{< tab "Non-NVUE Managed User ">}}
+
 The following example adds an authorized key file from the account `cumulus` on a host to the `cumulus` account on the switch:
 
 1. To copy a previously generated public key to the desired location, run the `ssh-copy-id` command and follow the prompts:
@@ -494,6 +496,9 @@ The following example adds an authorized key file from the account `cumulus` on 
    the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide basis. 
    Last login: Thu Sep 29 16:56:54 2016
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Troubleshooting
 

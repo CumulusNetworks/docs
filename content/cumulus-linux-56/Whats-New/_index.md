@@ -38,6 +38,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - {{<link url="Protocol-Independent-Multicast-PIM/#clear-pim-state-and-statistics" text="Clear PIM state and statistics">}} commands
   - {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="Clear EVPN duplicate address">}} commands
   - {{<link url="Protocol-Independent-Multicast-PIM/#pim-show-commands" text="Show IGMP group commands ">}}
+  - {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="IGMP fast leave processing">}} and {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="last member query count">}} commands
   - {{<link url="VLAN-aware-Bridge-Mode/#troubleshooting" text="Show commands">}} to see the ports mapped to a bridge and the VLANs mapped to bridge ports
   - Changes to `nv show platform` command outputs to improve readability
   - The `nv show interface` command provides a {{<link url="NVUE-CLI/#monitoring-commands" text="--filter option">}} to filter output data

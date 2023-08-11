@@ -351,13 +351,13 @@ Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
 
 You can configure the path cost for an interface in the bridge to influence the spanning tree forwarding path. You can specify a value between 1 and 200000000.
 
-The following examples set the path cost to 4000 and the priority to 240.
+The following example sets the path cost to 4000.
 
 {{< tabs "TabID256 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp path-cost 200
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp path-cost 4000
 cumulus@switch:~$ nv config apply
 ```
 
@@ -373,7 +373,7 @@ auto swp1
 iface swp1
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
-    mstpctl-portpathcost 200
+    mstpctl-portpathcost 4000
 ...
 ```
 
@@ -386,7 +386,7 @@ A runtime configuration is non-persistent, which means the configuration you cre
 To set path cost to 4000 at runtime:
 
 ```
-cumulus@switch:~$ sudo mstpctl setvlantreeportcost br_default swp1 10 4000
+cumulus@switch:~$ sudo mstpctl setvlantreeportcost br_default swp1 4000
 ```
 
 {{< /tab >}}

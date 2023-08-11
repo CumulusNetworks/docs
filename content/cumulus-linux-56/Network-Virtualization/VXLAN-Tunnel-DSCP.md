@@ -95,6 +95,26 @@ After you modify `/etc/cumulus/switchd.conf` file, you must restart `switchd` fo
 {{< /tab >}}
 {{< /tabs >}}
 
+## Show the DSCP Setting
+
+To show the VXLAN encapsulation DSCP setting, run the `nv show nve vxlan encapsulation dscp` command:
+
+```
+cumulus@switch:~$ nv show nve vxlan encapsulation dscp 
+        operational  applied  pending
+------  -----------  -------  -------
+action                        copy 
+```
+
+To show the VXLAN decapsulation DSCP setting, run the `nv show nve vxlan decapsulation dscp` command.
+
+```
+cumulus@switch:~$ nv show nve vxlan decapsulation dscp
+        operational  applied  pending
+------  -----------  -------  -------
+action                        derive 
+```
+
 ## Considerations
 
 You can only set the VXLAN encapsulation and decapsulation DSCP actions globally. Cumulus Linux does not support per-VXLAN or per-tunnel settings.

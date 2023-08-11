@@ -431,7 +431,7 @@ cumulus@switch:~$ nv config apply
 Configure PortAdminEdge and BPDU guard under the switch port interface stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 ```
-cumulus@switch:~$ sudo nano /etc/netowrk/interfaces
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto swp5
 iface swp5

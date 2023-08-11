@@ -340,6 +340,18 @@ iface bridge
 cumulus@switch:~$ ifreload -a
 ```
 
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+Run the `sudo mstpctl settreeprio <bridge> <MSTI> <priority>` command:
+
+```
+cumulus@switch:~$ sudo mstpctl settreeprio br_default 0 8192
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -364,7 +376,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Add the `mstpctl-port-vlan-path-cost` parameter under the interface stanza of the `/etc/network/interfaces` file.
+Add the `mstpctl-portpathcost` parameter under the interface stanza of the `/etc/network/interfaces` file.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces

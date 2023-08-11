@@ -107,10 +107,10 @@ A runtime configuration is non-persistent, which means the configuration you cre
 To set STP mode to PVRST at runtime:
 
 ```
-cumulus@switch:~$ sudo mstpctl setmode pvrst
+cumulus@switch:~$ sudo mstpctl setmodepvrst
 ```
 
-To revert the mode to the default setting (RSTP), run the `sudo mstpctl clearmode pvrst` command.
+To revert the mode to the default setting (RSTP), run the `sudo mstpctl clearmodepvrst` command.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -164,8 +164,8 @@ A runtime configuration is non-persistent, which means the configuration you cre
 To set the tree priority for VLAN 10 to 4096 and VLAN 20 to 61440 at runtime:
 
 ```
-cumulus@switch:~$ sudo mstpctl setvlanprio br_default 10 4096
-cumulus@switch:~$ sudo mstpctl setvlanprio br_default 20 61440
+cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10 4096
+cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 20 61440
 ```
 
 {{< /tab >}}
@@ -174,12 +174,19 @@ cumulus@switch:~$ sudo mstpctl setvlanprio br_default 20 61440
 #### PVRST Timers
 
 You can set the following PVRST timers:
+- *Max age*, which is the maximum amount of time STP information is retained before it is discarded. You can set a value between 6 and 40 seconds.
 - *Hello time*, which is how often to broadcast hello messages to other switches. You can set a value between 1 and 10 seconds.
 - *Forward delay*, which is the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds.
-- *Max age*, which is the maximum amount of time STP information is retained before it is discarded. You can set a value between 6 and 40 seconds.
 
 {{< tabs "TabID549 ">}}
 {{< tab "NVUE Commands ">}}
+
+The following example sets the max age to 6 seconds:
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 max-age 6
+cumulus@switch:~$ nv config apply
+```
 
 The following example sets the hello time to 4 seconds:
 
@@ -195,19 +202,12 @@ cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 forward-delay 4
 cumulus@switch:~$ nv config apply
 ```
 
-The following example sets the max age to 6 seconds:
-
-```
-cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 max-age 6
-cumulus@switch:~$ nv config apply
-```
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Add the `bridge-stp-vlan-hello`, `bridge-stp-vlan-fdelay`, and `bridge-stp-vlan-maxage` parameters under the bridge stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+Add the `bridge-stp-vlan-maxage`, `bridge-stp-vlan-hello`, and `bridge-stp-vlan-fdelay` parameters under the bridge stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
-The following example sets the hello time to 4 seconds, the forward delay to 4 seconds, and the max age to 6 seconds for VLAN 10.
+The following example sets the max age to 6 seconds, the hello time to 4 seconds, and the forward delay to 4 seconds for VLAN 10.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -222,9 +222,9 @@ iface br_default
     bridge-stp yes
     mstpctl-pvrst-mode yes
     bridge-stp-vlan-priority 10=4096
+    bridge-stp-vlan-maxage 10=6
     bridge-stp-vlan-hello 10=4
     bridge-stp-vlan-fdelay 10=4
-    bridge-stp-vlan-maxage 10=6
 ...
 ```
 
@@ -238,12 +238,12 @@ cumulus@switch:~$ ifreload -a
 A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
 {{%/notice%}}
 
-To set the hello time to 4 seconds, the forward delay to 4 seconds, and the max age to 6 seconds at runtime:
+To set the max age to 6 seconds, the hello time to 4 seconds, and the forward delay to 4 seconds at runtime:
 
 ```
-cumulus@switch:~$ sudo mstpctl sethello br_default 10 4
-cumulus@switch:~$ sudo mstpctl setfdelay br_default 10 4
-cumulus@switch:~$ sudo mstpctl setmaxage br_default 10 6
+cumulus@switch:~$ sudo mstpctl setvlan-maxage br_default 10 6
+cumulus@switch:~$ sudo mstpctl setvlan-hello br_default 10 4
+cumulus@switch:~$ sudo mstpctl setvlan-fdelay br_default 10 4
 ```
 
 {{< /tab >}}
@@ -253,13 +253,13 @@ cumulus@switch:~$ sudo mstpctl setmaxage br_default 10 6
 
 You can configure an interface port priority and path cost per VLAN to influence the spanning tree forwarding path. You can specify a path cost between 1 and 200000000. You can specify a priority between 0 and 240; the value must be a multiple of 16.
 
-The following examples set the path cost to 20 and the priority to 240.
+The following examples set the path cost to 4000 and the priority to 240.
 
 {{< tabs "TabID256 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp vlan 10 path-cost 20
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp vlan 10 path-cost 4000
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp vlan 10 priority 240
 cumulus@switch:~$ nv config apply
 ```
@@ -277,9 +277,22 @@ iface swp1
     bridge-access 10
     mstpctl-bpduguard yes
     mstpctl-portadminedge yes
-    mstpctl-port-vlan-path-cost 10=200
+    mstpctl-port-vlan-path-cost 10=4000
     mstpctl-port-vlan-priority 10=240
 ...
+```
+
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+To set path cost to 4000 and the priority to 240 at runtime:
+
+```
+cumulus@switch:~$ sudo mstpctl setvlantreeportcost br_default swp1 10 4000
+cumulus@switch:~$ sudo mstpctl setvlantreeportprio br_default swp1 10 240
 ```
 
 {{< /tab >}}
@@ -327,12 +340,69 @@ iface bridge
 cumulus@switch:~$ ifreload -a
 ```
 
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+Run the `sudo mstpctl settreeprio <bridge> <MSTI> <priority>` command:
+
+```
+cumulus@switch:~$ sudo mstpctl settreeprio br_default 0 8192
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
 {{%notice note%}}
 Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
 {{%/notice%}}
+
+## Port Path Cost
+
+You can configure the path cost for an interface in the bridge to influence the spanning tree forwarding path. You can specify a value between 1 and 200000000.
+
+The following example sets the path cost to 4000.
+
+{{< tabs "TabID356 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp path-cost 4000
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Add the `mstpctl-portpathcost` parameter under the interface stanza of the `/etc/network/interfaces` file.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portpathcost 4000
+...
+```
+
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+To set path cost to 4000 at runtime:
+
+```
+cumulus@switch:~$ sudo mstpctl setportpathcost br_default swp1 4000
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## PortAdminEdge (PortFast Mode)
 
@@ -361,7 +431,7 @@ cumulus@switch:~$ nv config apply
 Configure PortAdminEdge and BPDU guard under the switch port interface stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 ```
-cumulus@switch:~$ sudo nano /etc/netowrk/interfaces
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto swp5
 iface swp5
@@ -704,7 +774,6 @@ The IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" te
 | `mstpctl-txholdcount` | Sets the bridge transmit hold count. The default value is 6 seconds.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
 | `mstpctl-forcevers` | Sets the force STP version of the bridge to either RSTP or STP. The default is RSTP.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
 | `mstpctl-hello` | Sets the bridge hello time in seconds. The default is 2.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
-| `mstpctl-portpathcost` | Sets the port cost of the interface in the bridge. The default is 0.<br>`mstpd` supports only long mode; 32 bits for the path cost.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file. |
 | `mstpctl-portp2p` | Enables or disables point-to-point detection mode of the interface in the bridge.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
 | `mstpctl-portrestrtcn` | Enables or disables the interface in the bridge to propagate received topology change notifications. The default is no.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
 | `mstpctl-treeportcost` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
@@ -904,28 +973,10 @@ swp3  296      0        7       0       4          7          539               
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The `mstpctl` utility provided by the `mstpd` service configures STP. The `mstpd` daemon is an open source project used by Cumulus Linux to implement IEEE802.1D 2004 and IEEE802.1Q 2011.
-
-The `mstpd` daemon starts by default when the switch boots and logs errors to `/var/log/syslog`.
-
-{{%notice warning%}}
-`mstpd` is the preferred utility for interacting with STP on Cumulus Linux. `brctl` also provides certain tools for configuring STP; however, they are not as complete and output from `brctl` is sometimes misleading.
-{{%/notice%}}
-
-To show the bridge state, run the `brctl show` command:
+To show the `mstpd` bridge port state, run the `mstpctl showport <bridge>` command:
 
 ```
-cumulus@switch:~$ sudo brctl show
-  bridge name     bridge id               STP enabled     interfaces
-  bridge          8000.001401010100       yes             swp1
-                                                          swp4
-                                                          swp5
-```
-
-To show the `mstpd` bridge port state, run the `mstpctl showport bridge` command:
-
-```
-cumulus@switch:~$ sudo mstpctl showport bridge
+cumulus@switch:~$ sudo mstpctl showport br_default
   E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
     swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
   E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
@@ -959,6 +1010,20 @@ br_default CIST info
   last topology change port  None
 ...
 ```
+
+To show the bridge state, run the `brctl show` command:
+
+```
+cumulus@switch:~$ sudo brctl show
+  bridge name     bridge id               STP enabled     interfaces
+  br_default      8000.001401010100       yes             swp1
+                                                          swp4
+                                                          swp5
+```
+
+{{%notice note%}}
+`mstpd` is the preferred utility for interacting with STP on Cumulus Linux. `brctl` also provides certain tools for STP; however, they are not as complete and output from `brctl` is sometimes misleading.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -29,7 +29,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST with VLAN-aware bridges ">}}
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
 - {{<link url="Monitoring-System-Hardware" text="Fan airflow direction">}} in NVUE `nv show platform environment fan` and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
-- {{<link url="Precision-Time-Protocol-PTP#clock-time-stamp-mode" text="PTP one-step clock time stamp mode">}}
+- {{<link url="Precision-Time-Protocol-PTP#clock-time-stamp-mode" text="PTP one-step clock time stamp mode">}} for Spectrum-2 and Spectrum-3
 - NVUE enhancements include:
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
@@ -208,7 +208,6 @@ nv action clear vrf <vrf-id> router bgp soft in
 nv action clear vrf <vrf-id> router bgp soft out
 nv action clear vrf <vrf-id> router pim interfaces
 nv action clear vrf <vrf-id> router pim interface-traffic
-nv action clear vrf <vrf-id> router pim oil
 nv action clear vrf <vrf-id> router pim statistics
 ```
 

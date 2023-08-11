@@ -1785,11 +1785,11 @@ swp6        down          1500   48:b0:2d:2d:89:16  swp
 
 You can filter the `nv show interface` command output on specific columns. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.
 
-You can filter on multiple column outputs (enclose the filter types in parentheses); for example, `nv show interface --filter "type=bridge&mtu=9216"` shows data for bridges with MTU 9216.
+To filter on multiple column outputs, enclose the filter types in parentheses; for example, `nv show interface --filter "type=bridge&mtu=9216"` shows data for bridges with MTU 9216.
 
 You can filter on all revisions (operational, applied, and pending); for example, `nv show interface --filter mtu=1500 --rev=applied` shows only the interfaces with MTU set to 1500 in the applied revision.
 
-The following example shows information for bridges configured on the switch with MTU 9216:
+The following example shows information for all bridges configured on the switch with MTU 9216:
 
 ```
 cumulus@switch:~$ nv show interface --filter "type=bridge&mtu=9216"

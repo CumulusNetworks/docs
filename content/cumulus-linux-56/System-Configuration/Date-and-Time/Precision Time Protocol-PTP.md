@@ -343,7 +343,7 @@ The Cumulus Linux switch provides the following clock time stamp modes:
 One-step mode significantly reduces the number of PTP messages. Two-step mode is the default configuration.
 
 {{%notice note%}}
-Cumulus Linux supports one-step mode on switches with Spectrum 2 and later.
+Cumulus Linux supports one-step mode on switches with the Spectrum 2 and Spectrum-3 ASIC only.
 {{%/notice%}}
 
 {{< tabs "TabID345 ">}}
@@ -1722,24 +1722,27 @@ protocol-version           2                        The PTP version in use on th
 
 ### Show PTP Counters
 
-To show PTP counters for an interface, run the `nv show interface <interface> counters ptp` command:
+To show all PTP counters, run the `nv show service ptp <instance> counters` command:
 
 ```
-cumulus@switch:~$ nv show interface swp1 counters ptp
-Packet Type          Received  Transmitted
--------------------  --------  -----------
-Announce             0         10370      
-Delay Request        0         0          
-Delay Response       0         0          
-Follow-up            0         20731      
-Management           0         0          
-Peer Delay Request   0         0          
-Peer Delay Response  0         0          
-Signaling            0         0          
-Sync                 0         20731  
+cumulus@switch:~$ nv show service ptp 1 counters
+Packet Type              Received       Transmitted    
+---------------------    ------------   ------------   
+Port swp4
+  Announce                 0              10370            
+  Sync                     0              20731             
+  Follow-up                0              20731            
+  Delay Request            0              0              
+  Delay Response           0              0              
+  Peer Delay Request       0              0              
+  Peer Delay Response      0              0              
+  Management               0              0              
+  Signaling                0              0
 ```
 
-To clear PTP counters for an interface, run the `nv action clear interface <interface> counters ptp` command.
+To show PTP counters for an interface, run the `nv show interface <interface> counters ptp` command.
+
+To clear PTP counters for an interface, run the `nv action clear interface <interface> counters ptp` command:
 
 ```
 cumulus@switch:~$ nv action clear interface swp1 counters ptp

@@ -353,7 +353,7 @@ You can configure the path cost for an interface in the bridge to influence the 
 
 The following example sets the path cost to 4000.
 
-{{< tabs "TabID256 ">}}
+{{< tabs "TabID356 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -386,7 +386,7 @@ A runtime configuration is non-persistent, which means the configuration you cre
 To set path cost to 4000 at runtime:
 
 ```
-cumulus@switch:~$ sudo mstpctl setvlantreeportcost br_default swp1 4000
+cumulus@switch:~$ sudo mstpctl setportpathcost br_default swp1 4000
 ```
 
 {{< /tab >}}

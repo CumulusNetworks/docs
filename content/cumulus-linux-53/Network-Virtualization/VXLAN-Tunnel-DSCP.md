@@ -12,7 +12,7 @@ The configuration options propagate <span style="background-color:#F5F5DC">[ECN]
 
 You can set the following DSCP operations:
 - The VXLAN encapsulation DSCP action. The action can be `copy` if the inner packet is IP, `set` to configure a specific value, or `derive` to derive the value from the switch priority. The default setting is `derive`.
-- The VXLAN decapsulation DSCP or COS action. The action can be `copy` if the inner packet is IP, `preserve` (the inner DSCP does not change), or `derive` to derive the value from the switch priority. The default setting is `derive`.
+- The VXLAN decapsulation DSCP or COS action. The action can be `copy` to copy the DSCP value from the outer packet (underlay), `preserve` to keep the values configured in the inner packet (overlay), or `derive` to derive the value from the switch priority. The default setting is `derive`.
 
 {{< tabs "TabID27 ">}}
 {{< tab "NVUE Commands ">}}
@@ -94,6 +94,26 @@ After you modify `/etc/cumulus/switchd.conf` file, you must restart `switchd` fo
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Show the DSCP Setting
+
+To show the VXLAN encapsulation DSCP setting, run the `nv show nve vxlan encapsulation dscp` command:
+
+```
+cumulus@switch:~$ nv show nve vxlan encapsulation dscp 
+       operational  applied
+------  -----------  -------
+action  copy         copy
+```
+
+To show the VXLAN decapsulation DSCP setting, run the `nv show nve vxlan decapsulation dscp` command.
+
+```
+cumulus@switch:~$ nv show nve vxlan decapsulation dscp
+        operational  applied
+------  -----------  --------
+action  preserve     preserve
+```
 
 ## Considerations
 

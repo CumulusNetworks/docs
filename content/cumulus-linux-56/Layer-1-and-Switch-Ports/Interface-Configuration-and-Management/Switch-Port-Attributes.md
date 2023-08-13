@@ -1333,6 +1333,8 @@ SN5600 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all 
 
 For lower speeds, PAM4 is automatically converted to NRZ encoding.
 
+Bonus port #65 supports 1G, 10G, and 25G but does not support breakouts.
+
 {{< tabs "5600_ports ">}}
 {{< tab "1G ">}}
 
@@ -1362,28 +1364,28 @@ Maximum 40G ports: 128
 {{< /tab >}}
 {{< tab "50G ">}}
 
-256x 50G - 32x QSFP-DD break out into 8x - You must disable the adjacent QSFP-DD port.
+256x 50G - 32x OSFP break out into 8x - You must disable the adjacent QSFP-DD port.
 
 Maximum 50G ports: 256
 
 {{< /tab >}}
 {{< tab "100G ">}}
 
-256x 100G - 32x QSFP-DD break out into 8x - You must disable the adjacent QSFP-DD port.
+256x 100G - 32x OSFP break out into 8x - You must disable the adjacent QSFP-DD port.
 
 Maximum 100G ports: 256
 
 {{< /tab >}}
 {{< tab "200G ">}}
 
-256x 200G - 64x QSFP-DD break out into 4x
+256x 200G - 64x OSFP break out into 4x
 
 Maximum 200G ports: 256
 
 {{< /tab >}}
 {{< tab "400G ">}}
 
-128x 400G - 64x QSFP-DD break out into 2x
+128x 400G - 64x OSFP break out into 2x
 
 Maximum 400G ports: 128
 
@@ -1392,7 +1394,7 @@ Maximum 400G ports: 128
 
 64x 800G
 
-Maximum 400G ports: 64
+Maximum 800G ports: 64
 
 {{< /tab >}}
 {{< /tab >}}

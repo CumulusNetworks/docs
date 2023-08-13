@@ -34,6 +34,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
   - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and disable external API access">}}
+  - {{<link url="Address-Resolution-Protocol-ARP/#arp-cache-entry-setting" text="ARP base reachable time">}} and {{<link url="Neighbor-Discovery-ND/#nd-cache-entry-setting" text="ND base reachable time">}} commands
   - {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="Clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors
   - {{<link url="Protocol-Independent-Multicast-PIM/#clear-pim-state-and-statistics" text="Clear PIM state and statistics">}} commands
   - {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="Clear EVPN duplicate address">}} commands
@@ -70,6 +71,8 @@ nv show system api
 nv show system api listening-address
 nv show system api listening-address <listening-address-id>
 nv show system api connections
+nv show system global arp
+nv show system global nd
 nv show system ssh-server
 nv show system ssh-server max-unauthenticated
 nv show system ssh-server vrf
@@ -111,6 +114,8 @@ nv set service ptp <instance-id> two-step (on|off)
 nv set system api listening-address <listening-address-id>
 nv set system api state (enabled|disabled)
 nv set system api port 1-65535
+nv set system global arp base-reachable-time
+nv set system global nd base-reachable-time
 nv set system ssh-server max-unauthenticated session-count 1-10000
 nv set system ssh-server max-unauthenticated throttle-percent 1-100
 nv set system ssh-server max-unauthenticated throttle-start 1-10000
@@ -159,6 +164,9 @@ nv unset system api listening-address
 nv unset system api listening-address <listening-address-id>
 nv unset system api state
 nv unset system api port
+nv unset system api port 1-65535
+nv unset system global arp base-reachable-time
+nv unset system global nd base-reachable-time
 nv unset system ssh-server
 nv unset system ssh-server max-unauthenticated
 nv unset system ssh-server max-unauthenticated session-count

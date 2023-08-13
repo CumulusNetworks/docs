@@ -247,86 +247,51 @@ The configuration above does not persist if you reboot the switch. To make the c
     ```
     cumulus@switch:~$ sudo systemctl restart neighmgrd
     ```
-<!--
-## Global Timer Settings
 
-Cumulus Linux provides timer settings for neighbor entry garbage collection. You can configure timer settings either with NVUE commands or by editing the `/etc/sysctl.d/neigh.conf` file.
+## ARP Cache Entry Setting
 
-| <div style="width:250px">NVUE Command| <div style="width:200px">Linux Parameter| Description  |
-|------- |------- |------- |
-| `nv set system global arp garbage-collection-threshold minimum` |`net.ipv4.neigh.default.gc_thresh1`| The minimum number of entries to keep in the ARP cache. The garbage collector does not run if there are fewer than this number of entries in the ARP cache. You can specify a value between 0 and 2147483647. The default value is 128.|
-|`nv set system global arp garbage-collection-threshold effective`| `net.ipv4.neigh.default.gc_thresh2`| The soft maximum number of entries to keep in the ARP cache.  The garbage collector allows the number of entries to exceed this value for five seconds before collection. You can specify a value between 0 and 2147483647. The default value is 35840.|
-| `nv set system global arp garbage-collection-threshold maximum`| `net.ipv4.neigh.default.gc_thresh3`| The hard maximum number of entries to keep in the ARP cache. The garbage collector always runs if there are more than this number of entries in the ARP cache. You can specify a value between 0 and 2147483647. The default value is 40960. |
-|`nv set system global arp base-reachable-time`| `net.ipv4.neigh.default.base_reachable_time_ms`| Specifies how long in milliseconds an ARP cache entry is valid. The entry is considered valid for at least a value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 0 and 4294967295. The default value is 1080000.|
-| `nv set system global arp locktime` | `net.ipv4.neigh.default.locktime`| The minimum number of jiffies to keep an ARP entry in the cache. You can specify a value between 0 and 4294967295. The default value is 10.|
+You can set how long in milliseconds an ARP cache entry is valid. The entry is considered valid for at least a value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483. The default value is 1080000 milliseconds.
 
-The NVUE commands write to the `/etc/sysctl.d/neigh.conf` file.
-
-{{%notice note%}}
-When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment.
-{{%/notice%}}
-
-The following example commands configure the timer settings.
+The following example configures the base reachable time to 2080000.
 
 {{< tabs "TabID531 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set system global arp garbage-collection-threshold minimum 200
-cumulus@leaf01:~$ nv set system global arp garbage-collection-threshold effective 55000
-cumulus@leaf01:~$ nv set system global arp garbage-collection-threshold maximum 70000
 cumulus@leaf01:~$ nv set system global arp base-reachable-time 2080000
-cumulus@leaf01:~$ nv set system global arp locktime 100
+cumulus@leaf01:~$ nv config apply
 ```
 
-- To set the minimum, effective, and maximum threshold values to the default settings, run the `nv unset system global arp garbage-collection-threshold` command.
-- To set the base reachable time to the default setting, run the `nv unset system global arp base-reachable-time` command.
-- To set the locktime value to the default setting, run the `nv unset system global arp locktime` command.
+To set the base reachable time to the default setting, run the `nv unset system global arp base-reachable-time` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/sysctl.d/neigh.conf` file and change the `net.ipv4.neigh.default.` parameter values:
+Edit the `/etc/sysctl.d/neigh.conf` file and change the `net.ipv4.neigh.default.base_reachable_time_ms` parameter:
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/sysctl.d/neigh.conf
 ...
-net.ipv4.neigh.default.gc_thresh2=55000
-net.ipv4.neigh.default.gc_thresh3=70000
 net.ipv4.neigh.default.base_reachable_time_ms=2080000
-net.ipv4.neigh.default.locktime=100
-net.ipv4.neigh.default.gc_thresh1=200
 ...
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-To show all the timer settings, run the `nv show system global arp` command:
+To show the base reachable time setting, run the `nv show system global arp` command:
 
 ```
-nv show system global arp
-                              operational
-----------------------------  -----------
-base-reachable-time           2080000    
-locktime                      100        
-garbage-collection-threshold             
-  effective                   55000      
-  maximum                     70000      
-  minimum                     200        
+cumulus@leaf02:mgmt:~$ nv show system global arp
+                              operational  applied
+----------------------------  -----------  -------
+base-reachable-time           2080000      2080000   
+garbage-collection-threshold                      
+  effective                   35840               
+  maximum                     40960               
+  minimum                     128            
 ```
 
-To show the minimum, effective, and maximum threshold settings, run the `nv show system global arp garbage-collection-threshold` command.
-
-```
-cumulus@leaf01:~$ nv show system global arp garbage-collection-threshold
-           operational  applied
----------  -----------  -------
-effective  55000               
-maximum    70000               
-minimum    200     
-```
--->
 ## ARP Refresh
 
 Cumulus Linux does not interact directly with end systems as much as end systems interact with each another. Therefore, after ARP places a neighbor into a reachable state, if Cumulus Linux does not interact with the client again for a long enough period of time, the neighbor can move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before removing them from the Linux kernel and from hardware forwarding. The `neighmgrd` process adds a neighbor if the sender IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).

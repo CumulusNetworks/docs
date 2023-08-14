@@ -259,7 +259,7 @@ cumulus@leaf01:~$ nv set system global arp base-reachable-time 50
 cumulus@leaf01:~$ nv config apply
 ```
 
-To set the neighbor base reachable timer to the default setting, run the `nv unset system global arp base-reachable-time` command.
+To reset the neighbor base reachable timer to the default setting, run the `nv unset system global arp base-reachable-time` command.
 
 To show the neighbor base reachable timer setting, run the `nv show system global arp` command:
 

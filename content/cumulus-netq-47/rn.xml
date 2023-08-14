@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3555031</td>
+<td>NetQ incorrectly reports a low health SSD event on SN5600 switches. To work around this issue, configure an event suppression rule for {{ssdutil}} messages from SN5600 switches in your network.</td>
+<td>4.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3549217</td>
+<td>If you upgrade the {{netq-agent}} version on a switch or host before upgrading your NetQ VM to the same version, the device will be declared as rotten in the NetQ UI.</td>
+<td>4.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3530739</td>
+<td>Queue histogram data received from switches might encounter a delay before appearing in the NetQ UI.</td>
+<td>4.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3435373</td>
 <td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command fail with the following message: 
 

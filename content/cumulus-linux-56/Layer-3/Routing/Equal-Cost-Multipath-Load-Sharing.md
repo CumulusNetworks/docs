@@ -620,7 +620,7 @@ When you set the profile to the custom profile, NVUE reloads `switchd`.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `## Global AR profile config` section of the `/etc/cumulus/switchd.d/adaptive_routing.conf` file to set the `adaptive_routing.profile` parameter.
+Add the `adaptive_routing.profile` parameter to the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf

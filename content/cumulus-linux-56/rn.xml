@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3433577</td>
+<td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3405024</td>
 <td>You cannot remove PBR map configuration with source and destination rules. To work around this issue, delete the entire PBR map clause.</td>
 <td>5.5.0-5.6.0</td>
@@ -442,11 +448,6 @@ These messages do not affect the functionality of the switch.</td>
 <td>5.4.0-5.5.1</td>
 </tr>
 <tr>
-<td>3445841</td>
-<td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}}) is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
-<td>5.0.0-5.5.1</td>
-</tr>
-<tr>
 <td>3444668</td>
 <td>If the SDK becomes stuck and not able to process API calls, the {{systemd}} watchdog stops {{switchd}} and Cumulus Linux generates a {{cl-support}} file. {{switchd}} restarts after the watchdog timeout and then runs without issues.
 </td>
@@ -509,11 +510,6 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 
 This error message is benign and has no functional impact.</td>
 <td>5.5.0-5.5.1</td>
-</tr>
-<tr>
-<td>3413785</td>
-<td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
-<td>5.0.0-5.5.1</td>
 </tr>
 <tr>
 <td>3408301</td>

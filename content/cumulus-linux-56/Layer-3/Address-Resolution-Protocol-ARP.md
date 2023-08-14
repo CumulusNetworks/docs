@@ -250,7 +250,7 @@ The configuration above does not persist if you reboot the switch. To make the c
 
 ## Neighbor Base Reachable Timer
 
-You can set how long a neighbor cache entry is valid with the NVUE `nv set system global arp base-reachable-time` command. The entry is considered valid for at least the value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483 seconds.
+You can set how long a neighbor cache entry is valid with the NVUE `nv set system global arp base-reachable-time` command. The entry is considered valid for at least the value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483 seconds. The default value is `auto`; NVUE derives the value for `auto` from the `/etc/sysctl.d/neigh.conf` file.
 
 The following example configures the neighbor base reachable timer to 50 seconds.
 
@@ -260,6 +260,10 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 To reset the neighbor base reachable timer to the default setting, run the `nv unset system global arp base-reachable-time` command.
+
+{{%notice note%}}
+NVIDIA recommends that you run the NVUE command to change the neighbor base reachable timer instead of modifying the `/etc/sysctl.d/neigh.conf` file manually.
+{{%/notice%}}
 
 To show the neighbor base reachable timer setting, run the `nv show system global arp` command:
 

@@ -677,8 +677,8 @@ cumulus@switch:~$ nv config apply
 
 Edit the `Default interface options` section of the `/etc/ptp4l.conf` file:
 
-- To set the announce interval between successive Announce messages on swp1 to -1, change the `logAnnounceInterval` setting for the interface to -1.
-- To set the mean sync-interval for multicast messages on swp1 to -5, change the `logSyncInterval` setting for the interface to -5.
+- To set the announce interval between successive Announce messages on swp1 to -1, add `logAnnounceInterval  -1` under the interface stanza.
+- To set the mean sync-interval for multicast messages on swp1 to -5, add `logSyncInterval  -5` under the interface stanza.
 
 After you edit the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
 

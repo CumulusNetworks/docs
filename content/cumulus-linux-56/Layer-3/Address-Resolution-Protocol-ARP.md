@@ -248,44 +248,30 @@ The configuration above does not persist if you reboot the switch. To make the c
     cumulus@switch:~$ sudo systemctl restart neighmgrd
     ```
 
-## ARP Cache Entry Setting
+## Neighbor Base Reachable Timer
 
-You can set how long in milliseconds an ARP cache entry is valid. The entry is considered valid for at least a value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483. The default value is 1080000 milliseconds.
+You can set how long a neighbor cache entry is valid with the NVUE `nv set system global arp base-reachable-time` command. The entry is considered valid for at least the value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483 seconds. The default value is `auto`; NVUE derives the value for `auto` from the `/etc/sysctl.d/neigh.conf` file.
 
-The following example configures the base reachable time to 2080000.
-
-{{< tabs "TabID531 ">}}
-{{< tab "NVUE Commands ">}}
+The following example configures the neighbor base reachable timer to 50 seconds.
 
 ```
-cumulus@leaf01:~$ nv set system global arp base-reachable-time 2080000
+cumulus@leaf01:~$ nv set system global arp base-reachable-time 50
 cumulus@leaf01:~$ nv config apply
 ```
 
-To set the base reachable time to the default setting, run the `nv unset system global arp base-reachable-time` command.
+To reset the neighbor base reachable timer to the default setting, run the `nv unset system global arp base-reachable-time` command.
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{%notice note%}}
+NVIDIA recommends that you run the NVUE command to change the neighbor base reachable timer instead of modifying the `/etc/sysctl.d/neigh.conf` file manually.
+{{%/notice%}}
 
-Edit the `/etc/sysctl.d/neigh.conf` file and change the `net.ipv4.neigh.default.base_reachable_time_ms` parameter:
-
-```
-cumulus@leaf01:~$ sudo nano /etc/sysctl.d/neigh.conf
-...
-net.ipv4.neigh.default.base_reachable_time_ms=2080000
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To show the base reachable time setting, run the `nv show system global arp` command:
+To show the neighbor base reachable timer setting, run the `nv show system global arp` command:
 
 ```
 cumulus@leaf02:mgmt:~$ nv show system global arp
                               operational  applied
 ----------------------------  -----------  -------
-base-reachable-time           2080000      2080000   
+base-reachable-time           50           50   
 garbage-collection-threshold                      
   effective                   35840               
   maximum                     40960               

@@ -430,44 +430,26 @@ interface swp1
 {{< /tab >}}
 {{< /tabs >}}
 
-## ND Cache Entry Setting
+## Neighbor Base Reachable Timer
 
-You can set how long in milliseconds an ND cache entry is valid. The entry is considered valid for at least a value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483. The default value is 1080000 milliseconds.
+You can set how long a neighbor cache entry is valid with the NVUE `nv set system global nd base-reachable-time` command. The entry is considered valid for at least the value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483 seconds.
 
-The following example configures the base reachable time to 2080000.
-
-{{< tabs "TabID531 ">}}
-{{< tab "NVUE Commands ">}}
+The following example configures the neighbor base reachable timer to 50 seconds.
 
 ```
-cumulus@leaf01:~$ nv set system global nd base-reachable-time 2080000
+cumulus@leaf01:~$ nv set system global nd base-reachable-time 50
 cumulus@leaf01:~$ nv config apply
 ```
 
-To set the base reachable time to the default setting, run the `nv unset system global nd base-reachable-time` command.
+To set the neighbor base reachable timer to the default setting, run the `nv unset system global nd base-reachable-time` command.
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/sysctl.d/neigh.conf` file and change the `net.ipv6.neigh.default.base_reachable_time_ms` parameter:
-
-```
-cumulus@leaf01:~$ sudo nano /etc/sysctl.d/neigh.conf
-...
-net.ipv6.neigh.default.base_reachable_time_ms=2080000
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To show the base reachable time setting, run the `nv show system global nd` command:
+To show the neighbor base reachable timer setting, run the `nv show system global nd` command:
 
 ```
 cumulus@leaf01:~$ nv show system global nd
                               operational  applied  
 ----------------------------  -----------  ------- 
-base-reachable-time           2080000      2080000      
+base-reachable-time           50           50      
 garbage-collection-threshold                               
   effective                   17920                        
   maximum                     20480                        

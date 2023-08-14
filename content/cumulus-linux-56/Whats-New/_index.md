@@ -34,7 +34,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
   - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and disable external API access">}}
-  - {{<link url="Address-Resolution-Protocol-ARP/#arp-cache-entry-setting" text="ARP base reachable time">}} and {{<link url="Neighbor-Discovery-ND/#nd-cache-entry-setting" text="ND base reachable time">}} commands
+  - {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="ARP Neighbor Base Reachable Timer">}} and {{<link url="Neighbor-Discovery-ND/#neighbor-base-reachable-timer" text="ND Neighbor Base Reachable Timer">}} commands
   - {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="Clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors
   - {{<link url="Protocol-Independent-Multicast-PIM/#clear-pim-state-and-statistics" text="Clear PIM state and statistics">}} commands
   - {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="Clear EVPN duplicate address">}} commands

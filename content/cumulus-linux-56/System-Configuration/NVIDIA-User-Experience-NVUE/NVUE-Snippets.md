@@ -272,43 +272,95 @@ The following example creates a file called `traffic_conf_snippet.yaml` and enab
    resilient_hash_enable = TRUE
    ```
 
-## /etc/snmp/snmpd.conf Snippets
+### /etc/snmp/snmpd.conf Snippets
 
 To add Cumulus Linux SNMP agent configuration not yet available with NVUE commands, create an `snmpd.conf` snippet.
 
-The following example creates a file called `traffic_conf_snippet.yaml`.
+The following example creates a file called `snmpd.conf_snippet.yaml`, and sets the read only community string and the listening address to run in the mgmt VRF.
 
-```
-cumulus@switch:~$ sudo nano traffic_conf_snippet.yaml
-- set:
-    system:
-      config:
-        snippet:
-          snmpd.conf: |
-            rocommunity cumuluspassword default
-            agentaddress udp:@mgmt:161
-```
+1. Create a `.yaml` file and add the following traditional snippet:
 
-## /etc/ssh/sshd_config Snippets
+   ```
+   cumulus@switch:~$ sudo nano snmpd.conf_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             snmpd.conf: |
+               rocommunity cumuluspassword default
+               agentaddress udp:@mgmt:161
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch snmpd.conf_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the end of the `/etc/snmp/snmpd.conf` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/snmp/snmpd.conf
+   ...
+   !---- NVUE SNMP Server Snippets ----
+   rocommunity cumuluspassword default
+   agentaddress udp:@mgmt:161
+   ```
+
+### /etc/ssh/sshd_config Snippets
 
 To add SSH service configuration not yet available with NVUE commands, create an `sshd_config` snippet.
 
-The following example creates a file called `sshd_config_snippet.yaml`.
+The following example creates a file called `sshd_config_snippet.yaml` to allow root login and enable X11 forwarding for all users except user `anoncvs`. The snippet also disables TCP forwarding for the `anoncvs` user and runs the `cvs server` command when `anoncvs` logs in.
 
-```
-cumulus@switch:~$ sudo nano sshd_config_snippet.yaml
-- set:
-    system:
-      config:
-        snippet:
-          sshd_config: |
-            PermitRootLogin yes
-            X11Forwarding yes
-            Match User anoncvs
-               X11Forwarding no
-               AllowTcpForwarding no
-               ForceCommand cvs server
-```
+1. Create a `.yaml` file and add the following traditional snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano sshd_config_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             sshd_config: |
+               PermitRootLogin yes
+               X11Forwarding yes
+               Match User anoncvs
+                  X11Forwarding no
+                  AllowTcpForwarding no
+                  ForceCommand cvs server
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch sshd_config_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the end of the `/etc/ssh/sshd_config` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/ssh/sshd_config
+   ...
+   !---- NVUE snippets ----
+   PermitRootLogin yes
+   X11Forwarding yes
+   Match User anoncvs
+      X11Forwarding no
+      AllowTcpForwarding no
+      ForceCommand cvs server
+   ```
 
 ## Flexible Snippets
 

@@ -6,18 +6,15 @@ toc: 3
 ---
 <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> identifies links in the network and shuts down redundant links, preventing possible network loops and broadcast radiation on a bridged network. STP also provides redundant links for automatic failover when an active link fails. Cumulus Linux enables STP by default for both VLAN-aware and traditional bridges.
 
-Cumulus Linux supports <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span> and <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span>:
-
-- *{{<link url="Traditional-Bridge-Mode" text="Traditional bridges">}}* operate in PVST or PVRST mode. PVRST is the default mode. Each traditional bridge has its own separate STP instance.
-- *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}* operate in RSTP or PVRST mode. The default is RSTP.
-
 {{%notice note%}}
 Exercise caution when changing the STP settings below to prevent STP loop avoidance issues.
 {{%/notice%}}
 
 ## STP for a Traditional Mode Bridge
 
-<span style="background-color:#F5F5DC">[PVST](## "Per-VLAN Spanning Tree")</span> creates a spanning tree instance for a bridge. <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span> supports <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span> enhancements for each spanning tree instance. To use PVRST with a traditional bridge, you must create a bridge corresponding to the untagged native VLAN and all the physical switch ports must be part of the same VLAN.
+{{<link url="Traditional-Bridge-Mode" text="Traditional bridges">}} operate in <span style="background-color:#F5F5DC">[PVST](## "Per-VLAN Spanning Tree")</span> or <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span> mode. PVRST is the default mode.
+
+PVST creates a spanning tree instance for a bridge. PVRST supports <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span> enhancements for each spanning tree instance. To use PVRST with a traditional bridge, you must create a bridge corresponding to the untagged native VLAN and all the physical switch ports must be part of the same VLAN.
 
 {{%notice note%}}
 - For maximum interoperability, when connected to a switch that has a native VLAN configuration, you **must** configure the native VLAN to VLAN 1.
@@ -27,7 +24,7 @@ Exercise caution when changing the STP settings below to prevent STP loop avoida
 <!-- vale off -->
 ## STP for a VLAN-aware Bridge
 <!-- vale on -->
-VLAN-aware bridges operate in RSTP or PVRST mode. RSTP is the default mode.
+{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} operate in <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span> or <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span> mode. RSTP is the default mode.
 
 ### RSTP and STP Interoperability
 
@@ -266,7 +263,7 @@ cumulus@switch:~$ nv set bridge domain br_default stp vlan 10,20,30 forward-dela
 cumulus@switch:~$ nv config apply
 ```
 
-To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `nv set bridge domain br_default stp vlan 10,20,30 max-age 6`.
+To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `nv set bridge domain br_default stp vlan 10-30 max-age 6`.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -433,7 +430,7 @@ Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
 
 You can configure the path cost for an interface in the bridge to influence the spanning tree forwarding path. You can specify a value between 1 and 200000000.
 
-For PVRST Mode, the port cost for a VLAN takes preference over the cost for a port. If you do not configure the port cost for a VLAN, Cumulus Linux applies the port cost to all the ports in the VLAN. If you do not configure either the port cost for a VLAN or the cost for a port, the port cost is based on the link speed.
+For PVRST mode, the port cost for a VLAN takes precedence over the cost for a port. If you do not configure the port cost for a VLAN, Cumulus Linux applies the port cost to all the interfaces in the VLAN. If you do not configure either the port cost for a VLAN or the cost for a port, Cumulus Linux bases the port cost on the link speed.
 
 The following example sets the path cost to 4000.
 
@@ -840,14 +837,14 @@ The IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" te
 
 | Parameter | Description |
 |-----------|----------|
-| `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age timer must be equal to or less than two times the forward delay minus one second (bridge max age <= 2 * bridge foward delay - 1 second).<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.|
+| `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age timer must be equal to, or less than, two times the forward delay minus one second (bridge max age <= 2 * bridge foward delay - 1 second).<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.|
 | `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. Two times the forward delay minus one second must be more than or equal to the maximum age (2 * bridge foward delay - 1 second  >= bridge max age).<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.|
-| `mstpctl-maxhops` | Sets the maximum hops for the bridge. The default is 20.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
-| `mstpctl-txholdcount` | Sets the bridge transmit hold count. The default value is 6 seconds.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
-| `mstpctl-hello` | Sets the bridge hello time in seconds. The default is 2.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
+| `mstpctl-maxhops` | Sets the maximum hops for the bridge. The default is 20.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>This parameter does not apply to PVRST mode.|
+| `mstpctl-txholdcount` | Sets the bridge transmit hold count. The default value is 6 seconds.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>In PVRST mode, the transmit hold count applies to each of the per VLAN tree ports.  |
+| `mstpctl-hello` | Sets the bridge hello time in seconds. The default is 2.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}. |
 | `mstpctl-portp2p` | Enables or disables point-to-point detection mode for the interface in the bridge.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
 | `mstpctl-portrestrtcn` | Enables or disables the interface in the bridge to propagate received topology change notifications. The default is no.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
-| `mstpctl-treeportcost` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
+| `mstpctl-treeportcost` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.<br>This parameter applies to RSTP mode only.|
 
 Be sure to run the `sudo ifreload -a` command after you set the STP parameter in the `/etc/network/interfaces` file.
 
@@ -902,7 +899,9 @@ restrrole    off          off
 state        forwarding
 ```
 
-To show the STP information for a bridge:
+To show the STP information for a bridge, run the `nv show bridge domain br_default stp` command.
+
+The following example shows PVRST mode:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp
@@ -917,7 +916,33 @@ Vlan              Bridge ID               HelloTime   MaxAge      FwdDly
 30     32798   44:38:39:22:01:7A            2           20          15 
 ```
 
-To show STP information for the VLANs in a bridge:
+The following example shows RSTP mode:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp
+Bridge
+    mode    : rstp
+    priority: 32768
+    state   : up
+Bridge ID                priority    : 32768   mac-address       : 44:38:39:22:01:8A   
+Designated Root ID       priority    : 32768   mac-address       : 44:38:39:22:01:8A   root-port  : -
+Timers                   hello-time  : 2s      forward-delay     : 15s                 max-age    : 20s
+Max Hops                 max-hops    : 20      
+Topology Change Network  count       : 1       time since change : 838s
+                         change port : swp3    last change port  : swp2
+
+Interface info: swp1
+---------------------------------
+port-id            : 128.1(priority: 128, num: 1)
+role               : Designated
+state              : forwarding
+port-path-cost     : 20000
+fdb-flush          : no
+disputed           : no
+...
+```
+
+To show PVRST information for the VLANs in a bridge:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp vlan
@@ -946,7 +971,7 @@ Topology Change Network  count       : 1       time since change : 1147s
                          change port : swp2    last change port  : swp1
 ```
 
-To show STP information for a specific bridge VLAN:
+To show PVRST information for a specific bridge VLAN:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp vlan 10
@@ -1017,7 +1042,9 @@ network-port    : no          auto-edge-port       : yes
 mcheck          : no          admin-port-path-cost : 0
 ```
 
-To show the root ID and root cost for the bridge:
+To show the root ID and root cost for the bridge, run the `nv show bridge domain <bridge> stp root` command.
+
+The following command output shows PVRST mode:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp root
@@ -1028,6 +1055,16 @@ instance             root-id                root-cost  hello-time  fwd-dly     m
 10       4106    44:38:39:22:01:7A            0           4           4           6           -      
 20       61460   44:38:39:22:01:7A            0           2           15          20          -      
 30       32798   44:38:39:22:01:7A            0           2           15          20          -    
+```
+
+The following command output shows STP mode:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp root
+instance             root-id                root-cost  hello-time  fwd-dly     max-age      root-port
+          Priority        MAC-addr                     (seconds)   (seconds)   (seconds)  
+-------- --------------------------------  ----------  ----------  ----------  ----------  ----------
+CIST     32768      44:38:39:22:01:8A            0           2           15          20          -      
 ```
 
 To show STP counters for a bridge:
@@ -1041,45 +1078,146 @@ swp2  296      0        2       0       2          1          297               
 swp3  296      0        7       0       4          7          539               0
 ```
 
+To show all blocked ports in the bridge:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default blocked-ports
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To show the `mstpd` bridge port state, run the `mstpctl showport <bridge>` command:
+To show the `mstpd` bridge port state, run the `mstpctl showstpport <bridge>` command.
+
+The following output shows RSTP mode:
 
 ```
-cumulus@switch:~$ sudo mstpctl showport br_default
-  E swp1 8.001 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.001 Desg
-    swp4 8.002 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.002 Desg
-  E swp5 8.003 forw F.000.00:14:01:01:01:00 F.000.00:14:01:01:01:00 8.003 Desg
+cumulus@switch:~$ sudo mstpctl showstpport br_default
+ E swp1  8.001 forw 8.000.44:38:39:22:01:8A 8.000.44:38:39:22:01:8A 8.001 Desg
+ E swp2  8.002 forw 8.000.44:38:39:22:01:8A 8.000.44:38:39:22:01:8A 8.002 Desg
+ E swp3  8.003 forw 8.000.44:38:39:22:01:8A 8.000.44:38:39:22:01:8A 8.003 Desg
 ```
 
-To show STP information for a bridge domain, including STP counters:
+The following output shows PVRST mode:
 
 ```
-cumulus@switch:~$ sudo mstpctl showall 
+cumulus@switch:~$ sudo mstpctl showstpport br_default
+ E swp1 
+  ---PTP Info---
+Port: swp1 vid: 1
+8.001  8.001.44:38:39:22:01:8A 8.001.44:38:39:22:01:8A 8.001 Desg
+state: forw
+  ---PTP Info---
+Port: swp1 vid: 10
+8.001  1.00A.44:38:39:22:01:8A 1.00A.44:38:39:22:01:8A 8.001 Desg
+state: forw
+  ---PTP Info---
+Port: swp1 vid: 20
+8.001  F.014.44:38:39:22:01:8A F.014.44:38:39:22:01:8A 8.001 Desg
+state: forw
+  ---PTP Info---
+Port: swp1 vid: 30
+8.001  8.01E.44:38:39:22:01:8A 8.01E.44:38:39:22:01:8A 8.001 Desg
+state: forw
+ E swp2 
+...
+```
+
+To show STP information for a bridge domain, including STP counters, run the `sudo mstpctl showstpall` command.
+
+The following command output shows RSTP mode:
+
+```
+cumulus@switch:~$ sudo mstpctl showstpall 
 
 Global info 
   debug level       2
 
-BRIDGE: br_default, Br_index: 67
-br_default CIST info
-  enabled         yes
-  bridge id       2.000.44:38:39:22:01:B1
-  designated root 2.000.44:38:39:22:01:B1
-  regional root   2.000.44:38:39:22:01:B1
-  root port       none
-  path cost     0          internal path cost   0
-  max age       20         bridge max age       20
-  forward delay 15         bridge forward delay 15
-  tx hold count 6          max hops             20
-  hello time    2          ageing time          300
+BRIDGE: br_default, Br_index: 58
+
+Spanning-tree enabled protocol rstp
+Bridge Parameters for br_default
+  enabled                    yes
   force protocol version     rstp
-  time since topology change 14s
+  tx hold count              6
+  hello time                 2s
+  bridge forward delay       15s
+  bridge max age             20s
+  max hops                   20
+  migrate_time               3s
+  ageing time                300s
+  if_index: 58, name: br_default, up: yes, vlan_filter: yes uptime: 1244
+---CIST info---
+  bridge id       8.000.44:38:39:22:01:8A
+  designated root 8.000.44:38:39:22:01:8A
+  regional root   8.000.44:38:39:22:01:8A
+  path cost     0          internal path cost   0
+
+  root port         none
+  root max age       20        s
+  root forward delay 15        s
+  time since topology change 1239s
+  topology change count      1
+  topology change            no
+  topology change port       swp3
+  last topology change port  swp2
+  PRSSM_state: role_selection
+...
+```
+
+The following command output shows PVRST mode:
+
+```
+cumulus@switch:~$ sudo mstpctl showstpall 
+
+Global info 
+  debug level       2
+
+BRIDGE: br_default, Br_index: 58
+
+Spanning-tree enabled protocol rapid-pvst
+Bridge Parameters for br_default
+  enabled                    yes
+  force protocol version     rstp
+  tx hold count              6
+  migrate_time               3s
+  ageing time                300s
+  if_index: 58, name: br_default, up: yes, vlan_filter: yes uptime: 141
+---Bridge Vlan 1---
+  bridge id       8.001.44:38:39:22:01:8A
+  priority      32769      
+  forward delay       15         
+  Max_Age       20         
+  Hello_Time       2          
+  designated root 8.001.44:38:39:22:01:8A
+  root path cost     0          
+  root port         none
+  root max age       20        s
+  root forward delay 15        s
+  time since topology change 141s
   topology change count      0
   topology change            no
   topology change port       None
   last topology change port  None
-...
+  PRSSM_state: role_selection
+---Bridge Vlan 10---
+  bridge id       1.00A.44:38:39:22:01:8A
+  priority      4106       
+  forward delay       4          
+  Max_Age       6          
+  Hello_Time       4          
+  designated root 1.00A.44:38:39:22:01:8A
+  root path cost     0          
+  root port         none
+  root max age       6         s
+  root forward delay 4         s
+  time since topology change 136s
+  topology change count      1
+  topology change            no
+  topology change port       swp3
+  last topology change port  swp2
+  PRSSM_state: role_selection
+  ...
 ```
 
 To show the bridge state, run the `brctl show` command:
@@ -1088,8 +1226,8 @@ To show the bridge state, run the `brctl show` command:
 cumulus@switch:~$ sudo brctl show
   bridge name     bridge id               STP enabled     interfaces
   br_default      8000.001401010100       yes             swp1
-                                                          swp4
-                                                          swp5
+                                                          swp2
+                                                          swp3
 ```
 
 {{%notice note%}}
@@ -1098,12 +1236,3 @@ cumulus@switch:~$ sudo brctl show
 
 {{< /tab >}}
 {{< /tabs >}}
-
-## Related Information
-
-- {{<exlink url="https://github.com/mstpd/mstpd" text="GitHub - mstpd project">}}
-- brctl(8)
-- bridge-utils-interfaces(5)
-- ifupdown-addons-interfaces(5)
-- mstpctl(8)
-- mstpctl-utils-interfaces(5)

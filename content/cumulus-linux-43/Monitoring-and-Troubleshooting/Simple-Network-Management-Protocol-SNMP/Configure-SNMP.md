@@ -165,7 +165,7 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
-By default, `snmpd` only responds to `localhost` requests in the `default` VRF. You can configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell. To configure the `snmpd` daemon to listen on `localhost` in the `mgmt` VRF , run:
+By default, `snmpd` only responds to `localhost` requests in the `default` VRF. You can configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell. To configure the `snmpd` daemon to listen on `localhost` in the `mgmt` VRF, run:
 
 ```
 cumulus@switch:~$ net del snmp-server listening-address 127.0.0.1

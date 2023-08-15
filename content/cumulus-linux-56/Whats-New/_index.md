@@ -33,6 +33,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - FRR upgrade to version 8.4.3
 - PTP stack upgrade to linuxptp 4.0
 - NVUE enhancements include:
+  - Commands to enable the {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="NVUE REST API">}}
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
   - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and disable external API access">}}

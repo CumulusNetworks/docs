@@ -116,7 +116,7 @@ FRR provides a command-line interface (CLI) called vtysh for configuring and dis
 ```
 cumulus@switch:~$ sudo vtysh
 
-Hello, this is FRRouting (version 0.99.23.1+cl3u2).
+Hello, this is FRRouting (version 8.4.3).
 Copyright 1996-2005 Kunihiro Ishiguro, et al.
 
 switch#

@@ -6,10 +6,10 @@ toc: 3
 ---
 <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> identifies links in the network and shuts down redundant links, preventing possible network loops and broadcast radiation on a bridged network. STP also provides redundant links for automatic failover when an active link fails. Cumulus Linux enables STP by default for both VLAN-aware and traditional bridges.
 
-Cumulus Linux supports <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span>, <span style="background-color:#F5F5DC">[PVST](## "Per-VLAN Spanning Tree")</span>, and <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span> modes:
+Cumulus Linux supports <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span> and <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span>:
 
-- *{{<link url="Traditional-Bridge-Mode" text="Traditional bridges">}}* operate in both PVST and PVRST mode. The default is PVRST. Each traditional bridge has its own separate STP instance.
-- *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}* operate in RSTP, PVST, or PVRST mode. The default is RSTP.
+- *{{<link url="Traditional-Bridge-Mode" text="Traditional bridges">}}* operate in PVST or PVRST mode. PVRST is the default mode. Each traditional bridge has its own separate STP instance.
+- *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}}* operate in RSTP or PVRST mode. The default is RSTP.
 
 {{%notice note%}}
 Exercise caution when changing the STP settings below to prevent STP loop avoidance issues.
@@ -27,24 +27,20 @@ Exercise caution when changing the STP settings below to prevent STP loop avoida
 <!-- vale off -->
 ## STP for a VLAN-aware Bridge
 <!-- vale on -->
-VLAN-aware bridges operate in RSTP, PVST, or PVRST mode. RSTP is the default mode.
-
-{{%notice note%}}
-You cannot configure PVST or PVRST mode for multiple VLAN-aware bridges or with MLAG.
-{{%/notice%}}
+VLAN-aware bridges operate in RSTP or PVRST mode. RSTP is the default mode.
 
 ### RSTP and STP Interoperability
 
 If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU, it falls back to 802.1D automatically.
 
-### RSTP and PVST Interoperability
+### RSTP and PVRST Interoperability
 
-The RSTP domain sends <span style="background-color:#F5F5DC">[BPDUs](## "Bridge Protocol Data Units")</span> on the native VLAN, whereas PVST sends BPDUs on a per VLAN basis. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVST domain; the spanning tree builds according to the native VLAN parameters.
+The RSTP domain sends <span style="background-color:#F5F5DC">[BPDUs](## "Bridge Protocol Data Units")</span> on the native VLAN, whereas PVRST sends BPDUs on a per VLAN basis. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVRST domain; the spanning tree builds according to the native VLAN parameters.
 
-The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs across the network, enabling the PVST domain to maintain its spanning-tree topology and provide a loop-free network.
-- To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVST domain on the link between the RSTP and PVST domains.
-- When using RSTP together with an existing PVST network, you need to define the root bridge on the PVST domain. Either lower the priority on the PVST domain or change the priority of the RSTP switches to a higher number.
-- When connecting a VLAN-aware bridge to a proprietary PVST+ switch using STP, you must allow VLAN 1 on all 802.1Q trunks that interconnect them, regardless of the configured *native* VLAN. Only VLAN 1 enables the switches to address the BPDU frames to the IEEE multicast MAC address.
+The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs across the network, enabling the PVRST domain to maintain its spanning-tree topology and provide a loop-free network.
+- To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVRST domain on the link between the RSTP and PVRST domains.
+- When using RSTP together with an existing PVRST network, you need to define the root bridge on the PVRST domain. Either lower the priority on the PVRST domain or change the priority of the RSTP switches to a higher number.
+- When connecting a VLAN-aware bridge to a proprietary PVST+ switch using RSTP mode, you must allow VLAN 1 on all 802.1Q trunks that interconnect them, regardless of the configured *native* VLAN. Only VLAN 1 enables the switches to address the BPDU frames to the IEEE multicast MAC address.
 
 ### RSTP and MST Interoperability
 
@@ -56,11 +52,15 @@ Configure the root bridge within the MST domain by changing the priority on the 
 
 ### RSTP with MLAG
 
-More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> on the switches connected to the <span style="background-color:#F5F5DC">[MST](## "Multiple Spanning Tree")</span> or <span style="background-color:#F5F5DC">[PVST](## "Per-VLAN Spanning Tree")</span> domain and set up these interfaces as an MLAG port. The PVST or MST domain thinks it connects to a single switch and utilizes all the links connected to it. Load balancing depends on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to the PVST or MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
+More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> on the switches connected to the <span style="background-color:#F5F5DC">[MST](## "Multiple Spanning Tree")</span> domain and set up these interfaces as an MLAG port. The MST domain thinks it connects to a single switch and utilizes all the links connected to it. Load balancing depends on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
 
-### PVRST Mode
+### PVRST Mode for a VLAN-aware Bridge
 
-By default, STP for a VLAN-aware bridge operates in RSTP mode. To configure your VLAN-aware bridge to use PVRST mode:
+By default, STP for a VLAN-aware bridge operates in RSTP mode. You can configure your VLAN-aware bridge to use PVRST mode.
+
+{{%notice note%}}
+You cannot configure PVRST mode for multiple VLAN-aware bridges or with MLAG.
+{{%/notice%}}
 
 {{< tabs "TabID492 ">}}
 {{< tab "NVUE Commands ">}}
@@ -115,14 +115,14 @@ To revert the mode to the default setting (RSTP), run the `sudo mstpctl clearmod
 {{< /tab >}}
 {{< /tabs >}}
 
-#### PVRST Tree Priority
+#### PVRST Bridge Priority for a VLAN
 
-You can set the spanning tree priority for a VLAN. The priority must be a number between 4096 and 61440 and must be a multiple of 4096.
-
-The following example sets the tree priority for VLAN 10 to 4096 and VLAN 20 to 61440:
+You can set the spanning tree bridge priority for a VLAN. The priority must be a number between 4096 and 61440 and must be a multiple of 4096. The default value is 32768.
 
 {{< tabs "TabID520 ">}}
 {{< tab "NVUE Commands ">}}
+
+The following example sets the bridge priority to 4096 for VLAN 10 and to 61440 for VLAN 20:
 
 ```
 cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 bridge-priority 4096
@@ -130,10 +130,26 @@ cumulus@switch:~$ nv set bridge domain br_default stp vlan 20 bridge-priority 61
 cumulus@switch:~$ nv config apply
 ```
 
+The following example sets the bridge priority to 61440 for VLAN 10, 20, and 30:
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10,20,30 bridge-priority 61440
+cumulus@switch:~$ nv config apply
+```
+
+To set the bridge priority for a range of VLANs, use a hyphen (-). For example, to set the bridge priority to 61440 for VLAN 10 through VLAN 30:
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10-30 bridge-priority 61440
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Add the `bridge-stp-vlan-priority` parameter under the bridge stanza of the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+The following example sets the bridge priority to 4096 for VLAN 10 and to 61440 for VLAN 20:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -155,17 +171,73 @@ iface br_default
 cumulus@switch:~$ ifreload -a
 ```
 
+The following example sets the bridge priority to 61440 for VLAN 10, 20, and 30:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto br_default
+iface br_default
+    bridge-ports swp1 swp2
+    hwaddress 44:38:39:22:01:b1
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+    bridge-stp yes
+    mstpctl-pvrst-mode yes
+    bridge-stp-vlan-priority 10=61440 20=61440 30=61440
+...
+```
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+To set the bridge priority for a range of VLANs, use a hyphen (-). For example, to set the bridge priority to 61440 for VLAN 10 through VLAN 30:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto br_default
+iface br_default
+    bridge-ports swp1 swp2
+    hwaddress 44:38:39:22:01:b1
+    bridge-vlan-aware yes
+    bridge-vids 10 20
+    bridge-pvid 1
+    bridge-stp yes
+    mstpctl-pvrst-mode yes
+    bridge-stp-vlan-priority 10-30=61440
+...
+```
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
 **Runtime Configuration (Advanced)**
 
 {{%notice warning%}}
 A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
 {{%/notice%}}
 
-To set the tree priority for VLAN 10 to 4096 and VLAN 20 to 61440 at runtime:
+To set the bridge priority to 4096 for VLAN 10 and  to 61440 for VLAN 20 at runtime:
 
 ```
 cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10 4096
 cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 20 61440
+```
+
+To set the bridge priority to 61440 for VLAN 10, 20, and 30 at runtime:
+
+```
+cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10,20,30 61440
+```
+
+To set the bridge priority for a range of VLANs, use a hyphen (-). For example, to set the bridge priority to 61440 for VLAN 10 through VLAN 30 at runtime:
+
+```
+cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10-30 61440
 ```
 
 {{< /tab >}}
@@ -174,40 +246,34 @@ cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 20 61440
 #### PVRST Timers
 
 You can set the following PVRST timers:
-- *Max age*, which is the maximum amount of time STP information is retained before it is discarded. You can set a value between 6 and 40 seconds.
-- *Hello time*, which is how often to broadcast hello messages to other switches. You can set a value between 1 and 10 seconds.
-- *Forward delay*, which is the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds.
+- *Max age*, which is the maximum amount of time STP information is retained before it is discarded. You can set a value between 6 and 40 seconds. The default value is 20 seconds.
+- *Hello time*, which is how often to broadcast hello messages to other switches. You can set a value between 1 and 10 seconds. The default value is 2 seconds.
+- *Forward delay*, which is the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds. The default value is 15 seconds.
+
+{{%notice note%}}
+The max age timer must be equal to or less than two times the forward delay minus one second (`bridge max age <= 2 * bridge foward delay - 1 second`).
+{{%/notice%}}
 
 {{< tabs "TabID549 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example sets the max age to 6 seconds:
+The following example sets the max age to 6 seconds, the hello time to 4 seconds, and the forward delay to 4 seconds for VLAN 10, 20, and 30.
 
 ```
-cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 max-age 6
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10,20,30 max-age 6
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10,20,30 hello-time 4 
+cumulus@switch:~$ nv set bridge domain br_default stp vlan 10,20,30 forward-delay 4
 cumulus@switch:~$ nv config apply
 ```
 
-The following example sets the hello time to 4 seconds:
-
-```
-cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 hello-time 4 
-cumulus@switch:~$ nv config apply
-```
-
-The following example sets the forward delay to 4 seconds:
-
-```
-cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 forward-delay 4
-cumulus@switch:~$ nv config apply
-```
+To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `nv set bridge domain br_default stp vlan 10,20,30 max-age 6`.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Add the `bridge-stp-vlan-maxage`, `bridge-stp-vlan-hello`, and `bridge-stp-vlan-fdelay` parameters under the bridge stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
-The following example sets the max age to 6 seconds, the hello time to 4 seconds, and the forward delay to 4 seconds for VLAN 10.
+The following example sets the max age to 6 seconds, the hello time to 4 seconds, and the forward delay to 4 seconds for VLAN 10, 20, and 30.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -222,9 +288,9 @@ iface br_default
     bridge-stp yes
     mstpctl-pvrst-mode yes
     bridge-stp-vlan-priority 10=4096
-    bridge-stp-vlan-maxage 10=6
-    bridge-stp-vlan-hello 10=4
-    bridge-stp-vlan-fdelay 10=4
+    bridge-stp-vlan-hello 10=4 20=4 30=4
+    bridge-stp-vlan-fdelay 10=4 20=4 30=4
+    bridge-stp-vlan-maxage 10=6 20=6 30=6
 ...
 ```
 
@@ -232,19 +298,23 @@ iface br_default
 cumulus@switch:~$ ifreload -a
 ```
 
+To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `bridge-stp-vlan-hello 10-30=4`.
+
 **Runtime Configuration (Advanced)**
 
 {{%notice warning%}}
 A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
 {{%/notice%}}
 
-To set the max age to 6 seconds, the hello time to 4 seconds, and the forward delay to 4 seconds at runtime:
+To set the max age to 6 seconds, the hello time to 4 seconds, and the forward delay to 4 seconds for VLAN 10, 20, and 30 at runtime:
 
 ```
-cumulus@switch:~$ sudo mstpctl setvlan-maxage br_default 10 6
-cumulus@switch:~$ sudo mstpctl setvlan-hello br_default 10 4
-cumulus@switch:~$ sudo mstpctl setvlan-fdelay br_default 10 4
+cumulus@switch:~$ sudo mstpctl setvlan-maxage br_default 10,20,30 6
+cumulus@switch:~$ sudo mstpctl setvlan-hello br_default 10,20,30 4
+cumulus@switch:~$ sudo mstpctl setvlan-fdelay br_default 10,20,30 4
 ```
+
+To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `sudo mstpctl setvlan-maxage br_default 10-30 6`.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -253,7 +323,7 @@ cumulus@switch:~$ sudo mstpctl setvlan-fdelay br_default 10 4
 
 You can configure an interface port priority and path cost per VLAN to influence the spanning tree forwarding path. You can specify a path cost between 1 and 200000000. You can specify a priority between 0 and 240; the value must be a multiple of 16.
 
-The following examples set the path cost to 4000 and the priority to 240.
+The following examples set the path cost to 4000 and the priority to 240 for VLAN 10.
 
 {{< tabs "TabID256 ">}}
 {{< tab "NVUE Commands ">}}
@@ -288,7 +358,7 @@ iface swp1
 A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
 {{%/notice%}}
 
-To set path cost to 4000 and the priority to 240 at runtime:
+To set path cost to 4000 and the priority to 240 for VLAN 10 at runtime:
 
 ```
 cumulus@switch:~$ sudo mstpctl setvlantreeportcost br_default swp1 10 4000
@@ -362,6 +432,8 @@ Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
 ## Port Path Cost
 
 You can configure the path cost for an interface in the bridge to influence the spanning tree forwarding path. You can specify a value between 1 and 200000000.
+
+For PVRST Mode, the port cost for a VLAN takes preference over the cost for a port. If you do not configure the port cost for a VLAN, Cumulus Linux applies the port cost to all the ports in the VLAN. If you do not configure either the port cost for a VLAN or the cost for a port, the port cost is based on the link speed.
 
 The following example sets the path cost to 4000.
 
@@ -768,13 +840,12 @@ The IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" te
 
 | Parameter | Description |
 |-----------|----------|
-| `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.|
-| `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. The bridge forward delay must meet the condition 2 * (Bridge Forward Delay - 1 second) >= Bridge Max Age.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.|
+| `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age timer must be equal to or less than two times the forward delay minus one second (bridge max age <= 2 * bridge foward delay - 1 second).<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.|
+| `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. Two times the forward delay minus one second must be more than or equal to the maximum age (2 * bridge foward delay - 1 second  >= bridge max age).<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.|
 | `mstpctl-maxhops` | Sets the maximum hops for the bridge. The default is 20.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
 | `mstpctl-txholdcount` | Sets the bridge transmit hold count. The default value is 6 seconds.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.  |
-| `mstpctl-forcevers` | Sets the force STP version of the bridge to either RSTP or STP. The default is RSTP.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
 | `mstpctl-hello` | Sets the bridge hello time in seconds. The default is 2.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file. |
-| `mstpctl-portp2p` | Enables or disables point-to-point detection mode of the interface in the bridge.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
+| `mstpctl-portp2p` | Enables or disables point-to-point detection mode for the interface in the bridge.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
 | `mstpctl-portrestrtcn` | Enables or disables the interface in the bridge to propagate received topology change notifications. The default is no.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
 | `mstpctl-treeportcost` | Sets the spanning tree port cost to a value from 0 to 255. The default is 0.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
 

@@ -272,15 +272,55 @@ The following example creates a file called `traffic_conf_snippet.yaml` and enab
    resilient_hash_enable = TRUE
    ```
 
+## /etc/snmp/snmpd.conf Snippets
+
+To add Cumulus Linux SNMP agent configuration not yet available with NVUE commands, create an `snmpd.conf` snippet.
+
+The following example creates a file called `traffic_conf_snippet.yaml`.
+
+```
+cumulus@switch:~$ sudo nano traffic_conf_snippet.yaml
+- set:
+    system:
+      config:
+        snippet:
+          snmpd.conf: |
+            rocommunity cumuluspassword default
+            agentaddress udp:@mgmt:161
+```
+
+## /etc/ssh/sshd_config Snippets
+
+To add SSH service configuration not yet available with NVUE commands, create an `sshd_config` snippet.
+
+The following example creates a file called `sshd_config_snippet.yaml`.
+
+```
+cumulus@switch:~$ sudo nano sshd_config_snippet.yaml
+- set:
+    system:
+      config:
+        snippet:
+          sshd_config: |
+            PermitRootLogin yes
+            X11Forwarding yes
+            Match User anoncvs
+               X11Forwarding no
+               AllowTcpForwarding no
+               ForceCommand cvs server
+```
+
 ## Flexible Snippets
 
-Flexible snippets are an extension of traditional snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file, then add content. Cumulus Linux runs flexible snippets as root.
+Flexible snippets are an extension of traditional snippets that let you manage any text file on the system.
+- You can create new files or modify existing files that NVUE does not manage.
+- You can add configuration to files that NVUE manages.
 
 To configure and manage flexible snippets, your user account must be in the sudo group, which includes the NVUE `system-admin` role, or you must be the root user.
 
-### Files You Can Manage
+### Files NVUE Manages
 
-You can use flexible snippets to add configuration to the following files:
+You can use flexible snippets to add configuration to the following files that NVUE Manages:
 
 | <div style="width:350px">Filename  | Description |
 | --------- | ----------- |
@@ -403,3 +443,5 @@ Invalid config [rev_id: 8]
   ```
 
 {{%/notice%}}
+
+You can also create a flexible snippet with the REST API. See {{<link url="NVUE-API" text="NVUE API">}}.

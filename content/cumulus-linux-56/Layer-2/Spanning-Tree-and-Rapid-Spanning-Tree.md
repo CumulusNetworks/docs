@@ -250,7 +250,7 @@ You can set the following PVRST timers:
 - *Hello time*, which is how often to broadcast hello messages to other switches. You can set a value between 1 and 10 seconds. The default value is 2 seconds.
 - *Forward delay*, which is the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds. The default value is 15 seconds.
 
-The following formula applies to PVRST timers: `2 * bridge foward delay - 1 second >= bridge max age`.
+The max age timer must be equal to or less than two times the forward delay minus one second (`bridge max age <= 2 * bridge foward delay - 1 second`).
 
 {{< tabs "TabID549 ">}}
 {{< tab "NVUE Commands ">}}

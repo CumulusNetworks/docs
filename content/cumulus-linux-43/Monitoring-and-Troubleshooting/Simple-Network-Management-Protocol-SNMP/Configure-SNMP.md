@@ -18,12 +18,6 @@ The SNMPv3 username is the recommended option instead of the read-only community
 
 Before you can use SNMP, you need to enable and start the `snmpd` service.
 
-{{%notice note%}}
-
-If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service.
-
-{{%/notice%}}
-
 To start the SNMP daemon:
 
 1. Start the `snmpd` daemon:
@@ -70,7 +64,7 @@ The `snmpd` daemon uses the `/etc/snmp/snmpd.conf` configuration file for most o
 
 ### Configure the Listening IP Addresses
 
-For security reasons, the listening address is set to the localhost by default so that the SNMP agent only responds to requests originating on the switch itself. You can also configure listening only on the IPv6 localhost address. When using IPv6 addresses or localhost, you can use a `readonly-community-v6` for SNMPv1 and SNMPv2c requests. For SNMPv3 requests, you can use the `username` command to restrict access. See {{<link url="#configure-the-snmpv3-username" text="Configure the SNMPv3 Username">}} below.
+The listening address is set to `localhost` by default so that the SNMP agent only responds to requests originating on the switch itself in the `default` vrf. To configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell, see {{<link url="#snmp-and-vrfs" text="SNMP and VRFs">}}. You can also configure listening only on the IPv6 localhost address. When using IPv6 addresses or localhost, you can use a `readonly-community-v6` for SNMPv1 and SNMPv2c requests. For SNMPv3 requests, you can use the `username` command to restrict access. See {{<link url="#configure-the-snmpv3-username" text="Configure the SNMPv3 Username">}} below.
 
 The IP address must exist on an interface that has link UP on the switch where `snmpd` is being used. By default, this is set to `udp:127.0.0.1:161`, so `snmpd` only responds to requests (such as `snmpwalk`, `snmpget`, `snmpgetnext`) originating from the switch. A wildcard setting of *udp:161,udp6:161* forces `snmpd` to listen on all IPv4 and IPv6 interfaces for incoming SNMP requests.
 
@@ -80,7 +74,7 @@ You can configure multiple IP addresses and bind to a particular IP address with
 
 {{< tab "NCLU Commands" >}}
 
-To configure the `snmpd` daemon to listen on the localhost IPv4 and IPv6 interfaces, run:
+To configure the `snmpd` daemon to listen on the localhost IPv4 and IPv6 interfaces in the `default` VRF, run:
 
 ```
 cumulus@switch:~$ net add snmp-server listening-address localhost
@@ -171,6 +165,15 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
+By default, `snmpd` only responds to `localhost` requests in the `default` VRF. You can configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell. To configure the `snmpd` daemon to listen on `localhost` in the `mgmt` VRF , run:
+
+```
+cumulus@switch:~$ net del snmp-server listening-address 127.0.0.1
+cumulus@switch:~$ net add snmp-server listening-address 127.0.0.1 vrf mgmt
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
 {{< /tab >}}
 
 {{< tab "Linux Commands" >}}
@@ -184,6 +187,51 @@ agentAddress 192.168.200.11@mgmt
 agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 ...
 ```
+
+By default, `snmpd` only responds to `localhost` requests in the `default` VRF. You can configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell. Edit the `/etc/snmp/snmpd.conf` file and add `@mgmt` to the `agentaddress` configuration:
+
+```
+cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
+...
+agentaddress 127.0.0.1@mgmt
+...
+```
+
+Then restart `snmpd` with the `sudo systemctl restart snmpd` command.
+
+{{< /tab >}}
+
+{{< /tabs >}}
+
+
+
+{{< tabs "localhost in VRF mgmt" >}}
+
+{{< tab "NCLU Commands" >}}
+
+By default, `snmpd` only responds to `localhost` requests in the `default` VRF. You can configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell. To configure the `snmpd` daemon to listen on `localhost` in the `mgmt` VRF , run:
+
+```
+cumulus@switch:~$ net del snmp-server listening-address 127.0.0.1
+cumulus@switch:~$ net add snmp-server listening-address 127.0.0.1 vrf mgmt
+cumulus@switch:~$ net pending
+cumulus@switch:~$ net commit
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Commands" >}}
+
+By default, `snmpd` only responds to `localhost` requests in the `default` VRF. You can configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell. Edit the `/etc/snmp/snmpd.conf` file and add `@mgmt` to the `agentaddress` configuration:
+
+```
+cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
+...
+agentaddress 127.0.0.1@mgmt
+...
+```
+
+Then restart `snmpd` with the `sudo systemctl restart snmpd` command.
 
 {{< /tab >}}
 

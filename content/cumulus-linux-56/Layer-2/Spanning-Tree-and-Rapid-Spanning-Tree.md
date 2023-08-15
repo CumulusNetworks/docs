@@ -250,7 +250,9 @@ You can set the following PVRST timers:
 - *Hello time*, which is how often to broadcast hello messages to other switches. You can set a value between 1 and 10 seconds. The default value is 2 seconds.
 - *Forward delay*, which is the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds. The default value is 15 seconds.
 
+{{%notice note%}}
 The max age timer must be equal to or less than two times the forward delay minus one second (`bridge max age <= 2 * bridge foward delay - 1 second`).
+{{%/notice%}}
 
 {{< tabs "TabID549 ">}}
 {{< tab "NVUE Commands ">}}
@@ -431,7 +433,7 @@ Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
 
 You can configure the path cost for an interface in the bridge to influence the spanning tree forwarding path. You can specify a value between 1 and 200000000.
 
-For PVRST Mode, the port cost for a VLAN takes preference over the cost for a port. If you do not configure the port cost for a VLAN, Cumulus Linux applies the port cost to all the VLAN tree ports. If you do not configure either the port cost for a VLAN or the cost for a port, the port cost for all the VLAN tree ports is based on the link speed.
+For PVRST Mode, the port cost for a VLAN takes preference over the cost for a port. If you do not configure the port cost for a VLAN, Cumulus Linux applies the port cost to all the ports in the VLAN. If you do not configure either the port cost for a VLAN or the cost for a port, the port cost is based on the link speed.
 
 The following example sets the path cost to 4000.
 

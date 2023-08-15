@@ -2132,8 +2132,8 @@ ERR cannot allocate vlan for sub-interface
 </tr>
 <tr>
 <td>3389994</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
-<td>4.2.1-4.4.5</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>5.0.0-5.4.0</td>
 </tr>
 <tr>
 <td>3333064</td>
@@ -2317,12 +2317,6 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <td>5.5.0-5.5.1</td>
 </tr>
 <tr>
-<td>3413826</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3401121</td>
 <td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
 
@@ -2331,12 +2325,6 @@ psample { group=1 }
 </td>
 <td>4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3389994</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
-<td>4.2.1-5.4.0</td>
-<td>5.5.0-5.5.1</td>
 </tr>
 <tr>
 <td>3387852</td>
@@ -4572,12 +4560,6 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <td>5.5.0-5.5.1</td>
 </tr>
 <tr>
-<td>3413826</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3401121</td>
 <td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
 
@@ -4586,12 +4568,6 @@ psample { group=1 }
 </td>
 <td>4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3389994</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
-<td>4.2.1-5.4.0</td>
-<td>5.5.0-5.5.1</td>
 </tr>
 <tr>
 <td>3387852</td>
@@ -6956,12 +6932,6 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <td>5.5.0-5.5.1</td>
 </tr>
 <tr>
-<td>3413826</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3401121</td>
 <td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
 
@@ -6970,12 +6940,6 @@ psample { group=1 }
 </td>
 <td>4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3389994</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
-<td>4.2.1-5.4.0</td>
-<td>5.5.0-5.5.1</td>
 </tr>
 <tr>
 <td>3387852</td>
@@ -9304,12 +9268,6 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <td>5.5.0-5.5.1</td>
 </tr>
 <tr>
-<td>3413826</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3401121</td>
 <td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
 
@@ -9318,12 +9276,6 @@ psample { group=1 }
 </td>
 <td>4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3389994</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
-<td>4.2.1-5.4.0</td>
-<td>5.5.0-5.5.1</td>
 </tr>
 <tr>
 <td>3387852</td>
@@ -11834,12 +11786,6 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <td>5.5.0-5.5.1</td>
 </tr>
 <tr>
-<td>3413826</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3401121</td>
 <td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
 
@@ -11848,12 +11794,6 @@ psample { group=1 }
 </td>
 <td>4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3389994</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
-<td>4.2.1-5.4.0</td>
-<td>5.5.0-5.5.1</td>
 </tr>
 <tr>
 <td>3387852</td>
@@ -14235,12 +14175,6 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <td>5.5.0-5.5.1</td>
 </tr>
 <tr>
-<td>3413826</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3401121</td>
 <td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
 
@@ -14249,12 +14183,6 @@ psample { group=1 }
 </td>
 <td>4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3389994</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
-<td>4.2.1-5.4.0</td>
-<td>5.5.0-5.5.1</td>
 </tr>
 <tr>
 <td>3387852</td>

@@ -1,7 +1,7 @@
 ---
 title: VXLAN Devices
 author: NVIDIA
-weight: 605
+weight: 600
 toc: 3
 ---
 Cumulus Linux supports both single and traditional <span style="background-color:#F5F5DC">[VXLAN](## "Virtual Extensible LAN")</span> devices.
@@ -344,6 +344,34 @@ iface br_default
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## VXLAN UDP Port
+
+You can change the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4879.
+
+The following example changes the UDP port for VXLAN encapsulation to 1024:
+
+```
+cumulus@switch:mgmt:~$ nv set nve vxlan port 1024
+```
+
+When you use a different VXLAN UDP port than the default IANA port 4789, you must install additional filters manually on the VTEPs to protect against VXLAN hopping vulnerabilities, where a compromised host sends a malicious VXLAN packet to a VTEP.
+
+Add a filter for each VLAN interface on the VTEP. If you have VRR configured on the VLAN, add a similar filter targeting the VRR device.
+
+The following example installs an IPv4 and an IPv6 filter on vlan10:
+
+```
+cumulus@switch:mgmt:~$ tc filter add dev vlan10 prio 1 protocol ip ingress flower ip_proto udp dst_port 1024 action drop
+cumulus@switch:mgmt:~$ tc filter add dev vlan10 prio 2 protocol ipv6 ingress flower ip_proto udp dst_port 1024 action drop
+```
+
+The following example installs an IPv4 and an IPv6 filter on VRR device vlan10-v0:
+
+```
+cumulus@switch:mgmt:~$ tc filter add dev vlan10-v0 prio 1 protocol ip ingress flower ip_proto udp dst_port 1024 action drop
+cumulus@switch:mgmt:~$ tc filter add dev vlan10-v0 prio 2 protocol ipv6 ingress flower ip_proto udp dst_port 1024 action drop
+```
 
 ## Related Information
 

@@ -849,7 +849,7 @@ iface br_default
 
 ### Spanning Tree Protocol (STP)
 
-- By default, STP runs in RSTP mode on a per-bridge basis. To configure STP to run in PVRST mode, where each VLAN runs its own instance of STP, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode" text="PVRST Mode">}}.
+- By default, STP runs in RSTP mode on a per-bridge basis. To configure STP to run in PVRST mode, where each VLAN runs its own instance of STP, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.
 - `mstpd` remains the user space protocol daemon.
 
 ### VLAN Translation

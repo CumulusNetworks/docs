@@ -355,9 +355,7 @@ The following example changes the UDP port for VXLAN encapsulation to 1024:
 cumulus@switch:mgmt:~$ nv set nve vxlan port 1024
 ```
 
-When you use a different VXLAN UDP port than the default IANA port 4789, you must install additional filters manually on the VTEPs to protect against VXLAN hopping vulnerabilities, where a compromised host sends a malicious VXLAN packet to a VTEP.
-
-Add a filter for each VLAN interface on the VTEP. If you have VRR configured on the VLAN, add a similar filter targeting the VRR device.
+Cumulus Linux protects against VXLAN hopping vulnerabilities by default for the standard UDP port 4789. NVIDIA recommends you run TC filter commands to install rules to protect other ports. Add a filter for each VLAN interface on the VTEP. If you have VRR configured on the VLAN, add a similar rule targeting the VRR device.
 
 The following example installs an IPv4 and an IPv6 filter on vlan10:
 

@@ -33,10 +33,9 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - FRR upgrade to version 8.4.3
 - PTP stack upgrade to linuxptp 4.0
 - NVUE enhancements include:
-  - Commands to enable the {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="NVUE REST API">}}
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
-  - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and disable external API access">}}
+  - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and disable external API access">}} commands
   - {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="ARP Neighbor Base Reachable Timer">}} and {{<link url="Neighbor-Discovery-ND/#neighbor-base-reachable-timer" text="ND Neighbor Base Reachable Timer">}} commands
   - {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="IGMP fast leave processing">}} and {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="last member query count">}} commands
   - {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="Clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors

@@ -190,7 +190,7 @@ Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
 
 You can configure the path cost for an interface in the bridge to influence the spanning tree forwarding path. You can specify a value between 1 and 200000000.
 
-For PVRST mode, the port cost for a VLAN takes precedence over the per port cost. If you do not configure the port cost for a VLAN, Cumulus Linux applies per port cost to all the per VLAN tree ports. If you do not configure either the port cost for a VLAN or the cost for a port, Cumulus Linux bases the port cost on the link speed.
+For PVRST mode, the port cost for a VLAN takes precedence over the cost for a port. If you do not configure the port cost for a VLAN, Cumulus Linux applies the port cost to all the interfaces in the VLAN. If you do not configure either the port cost for a VLAN or the cost for a port, Cumulus Linux bases the port cost on the link speed.
 
 The following example sets the path cost to 4000.
 

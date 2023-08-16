@@ -10,50 +10,19 @@ toc: 3
 Exercise caution when changing the STP settings below to prevent STP loop avoidance issues.
 {{%/notice%}}
 
-## STP for a Traditional Mode Bridge
+## STP Modes
 
-{{<link url="Traditional-Bridge-Mode" text="Traditional bridges">}} operate in <span style="background-color:#F5F5DC">[PVST](## "Per-VLAN Spanning Tree")</span> or <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span> mode. PVRST is the default mode.
+Cumulus Linux supports STP for VLAN-aware and traditional bridges.
 
-PVST creates a spanning tree instance for a bridge. PVRST supports <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span> enhancements for each spanning tree instance. To use PVRST with a traditional bridge, you must create a bridge corresponding to the untagged native VLAN and all the physical switch ports must be part of the same VLAN.
+### STP Modes for a VLAN-aware Bridge
 
-{{%notice note%}}
-- For maximum interoperability, when connected to a switch that has a native VLAN configuration, you **must** configure the native VLAN to VLAN 1.
-- There are no NVUE commands to configure a traditional mode bridge.
-{{%/notice%}}
+{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} operate in:
+- <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span> mode, which creates a single instance of spanning tree across all VLANs. RSTP is the default mode.
+- <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span> mode, which creates a single instance of spanning tree for every VLAN.
 
-<!-- vale off -->
-## STP for a VLAN-aware Bridge
-<!-- vale on -->
-{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} operate in <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span> or <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span> mode. RSTP is the default mode.
+### Configure the Mode for a VLAN-aware Bridge
 
-### RSTP and STP Interoperability
-
-If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU, it falls back to 802.1D automatically.
-
-### RSTP and PVRST Interoperability
-
-The RSTP domain sends <span style="background-color:#F5F5DC">[BPDUs](## "Bridge Protocol Data Units")</span> on the native VLAN, whereas PVRST sends BPDUs on a per VLAN basis. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVRST domain; the spanning tree builds according to the native VLAN parameters.
-
-The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs across the network, enabling the PVRST domain to maintain its spanning-tree topology and provide a loop-free network.
-- To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVRST domain on the link between the RSTP and PVRST domains.
-- When using RSTP together with an existing PVRST network, you need to define the root bridge on the PVRST domain. Either lower the priority on the PVRST domain or change the priority of the RSTP switches to a higher number.
-- When connecting a VLAN-aware bridge to a proprietary PVST+ switch using RSTP mode, you must allow VLAN 1 on all 802.1Q trunks that interconnect them, regardless of the configured *native* VLAN. Only VLAN 1 enables the switches to address the BPDU frames to the IEEE multicast MAC address.
-
-### RSTP and MST Interoperability
-
-RSTP works with <span style="background-color:#F5F5DC">[MST](## "Multiple Spanning Tree")</span> seamlessly, creating a single instance of spanning tree that transmits BPDUs on the native VLAN.
-
-RSTP treats the MST domain as one giant switch, whereas MST treats the RSTP domain as a different region. To ensure proper communication between the regions, MST creates a <span style="background-color:#F5F5DC">[CST](## "Common Spanning Tree")</span> that connects all the boundary switches and forms the overall view of the MST domain. Because changes in the CST must reflect in all regions, the RSTP tree exists is in the CST to ensure that changes on the RSTP domain are in the CST domain. Topology changes on the RSTP domain impact the rest of the network but inform the MST domain of every change occurring in the RSTP domain, ensuring a loop-free network.
-
-Configure the root bridge within the MST domain by changing the priority on the relevant MST switch. When MST detects an RSTP link, it falls back into RSTP mode. The MST domain chooses the switch with the lowest cost to the CST root bridge as the CIST root bridge.
-
-### RSTP with MLAG
-
-More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> on the switches connected to the <span style="background-color:#F5F5DC">[MST](## "Multiple Spanning Tree")</span> domain and set up these interfaces as an MLAG port. The MST domain thinks it connects to a single switch and utilizes all the links connected to it. Load balancing depends on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
-
-### PVRST Mode for a VLAN-aware Bridge
-
-By default, STP for a VLAN-aware bridge operates in RSTP mode. You can configure your VLAN-aware bridge to use PVRST mode.
+RSTP is the default mode for a VLAN-aware bridge. You can change the mode to PVRST.
 
 {{%notice note%}}
 You cannot configure PVRST mode for multiple VLAN-aware bridges or with MLAG.
@@ -112,7 +81,159 @@ To revert the mode to the default setting (RSTP), run the `sudo mstpctl clearmod
 {{< /tab >}}
 {{< /tabs >}}
 
-#### PVRST Bridge Priority for a VLAN
+### STP Modes for a Traditional Bridge
+
+{{<link url="Traditional-Bridge-Mode" text="Traditional bridges">}} operate in:
+- <span style="background-color:#F5F5DC">[PVST](## "Per-VLAN Spanning Tree")</span> mode, which creates a spanning tree instance for a bridge.
+- <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span> mode, which supports <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span> enhancements for each spanning tree instance. To use PVRST with a traditional bridge, you must create a bridge corresponding to the untagged native VLAN and all the physical switch ports must be part of the same VLAN.
+
+{{%notice note%}}
+- For maximum interoperability, when connected to a switch that has a native VLAN configuration, you **must** configure the native VLAN to VLAN 1.
+- There are no NVUE commands to configure a traditional mode bridge.
+{{%/notice%}}
+
+## STP Interoperability
+
+This section discusses STP interoperability.
+
+### RSTP and STP Interoperability
+
+If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU, it falls back to 802.1D automatically.
+
+### RSTP and PVRST Interoperability
+
+The RSTP domain sends <span style="background-color:#F5F5DC">[BPDUs](## "Bridge Protocol Data Units")</span> on the native VLAN, whereas PVRST sends BPDUs on a per VLAN basis along with IEEE BPDUS. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVRST domain; the spanning tree builds according to the native VLAN parameters.
+
+The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs across the network, enabling the PVRST domain to maintain its spanning-tree topology and provide a loop-free network.
+- To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVRST domain on the link between the RSTP and PVRST domains.
+- When using RSTP together with an existing PVRST network, you need to define the root bridge on the PVRST domain. Either lower the priority on the PVRST domain or change the priority of the RSTP switches to a higher number.
+- When connecting a VLAN-aware bridge to a proprietary PVST+ switch using RSTP mode, you must allow VLAN 1 on all 802.1Q trunks that interconnect them, regardless of the configured *native* VLAN. Only VLAN 1 enables the switches to address the BPDU frames to the IEEE multicast MAC address.
+
+### RSTP and MST Interoperability
+
+RSTP works with <span style="background-color:#F5F5DC">[MST](## "Multiple Spanning Tree")</span> seamlessly, creating a single instance of spanning tree that transmits BPDUs on the native VLAN.
+
+RSTP treats the MST domain as one giant switch, whereas MST treats the RSTP domain as a different region. To ensure proper communication between the regions, MST creates a <span style="background-color:#F5F5DC">[CST](## "Common Spanning Tree")</span> that connects all the boundary switches and forms the overall view of the MST domain. Because changes in the CST must reflect in all regions, the RSTP tree exists is in the CST to ensure that changes on the RSTP domain are in the CST domain. Topology changes on the RSTP domain impact the rest of the network but inform the MST domain of every change occurring in the RSTP domain, ensuring a loop-free network.
+
+Configure the root bridge within the MST domain by changing the priority on the relevant MST switch. When MST detects an RSTP link, it falls back into RSTP mode. The MST domain chooses the switch with the lowest cost to the CST root bridge as the CIST root bridge.
+
+### RSTP with MLAG
+
+More than one spanning tree instance enables switches to load balance and use different links for different VLANs. With RSTP, there is only one instance of spanning tree. To better utilize the links, you can configure <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> on the switches connected to the <span style="background-color:#F5F5DC">[MST](## "Multiple Spanning Tree")</span> domain and set up these interfaces as an MLAG port. The MST domain thinks it connects to a single switch and utilizes all the links connected to it. Load balancing depends on the port channel hashing mechanism instead of different spanning tree instances and uses all the links between the RSTP to MST domains. For information about configuring MLAG, see {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="Multi-Chassis Link Aggregation - MLAG">}}.
+
+## Optional Configuration
+
+The following section provides optional configuration commands.
+
+### Spanning Tree Priority
+
+If you are running STP for a VLAN-aware bridge in the default mode (RSTP) and you have a multiple spanning tree instance (MSTI 0, also known as a common spanning tree, or CST), you can set the tree priority for a bridge. The bridge with the lowest priority is the *root bridge*. The priority must be a number between *0* and *61440,* and must be a multiple of 4096. The default value is *32768*.
+
+{{%notice note%}}
+If you are running MLAG and have multiple bridges, the STP priority must be the same on all bridges on both peer switches.
+{{%/notice%}}
+
+The following example sets the tree priority to 8192:
+
+{{< tabs "TabID288 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp priority 8192
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Configure the tree priority (`mstpctl-treeprio`) under the *bridge* stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto bridge
+iface bridge
+    # bridge-ports includes all ports related to VxLAN and CLAG.
+    # does not include the Peerlink.4094 subinterface
+    bridge-ports bond01 bond02 peerlink vni13 vni24 vxlan4001
+    bridge-pvid 1
+    bridge-vids 13 24
+    bridge-vlan-aware yes
+    mstpctl-treeprio 8192
+...
+```
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+Run the `sudo mstpctl settreeprio <bridge> <MSTI> <priority>` command:
+
+```
+cumulus@switch:~$ sudo mstpctl settreeprio br_default 0 8192
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
+{{%/notice%}}
+
+### Port Path Cost
+
+You can configure the path cost for an interface in the bridge to influence the spanning tree forwarding path. You can specify a value between 1 and 200000000.
+
+For PVRST mode, the port cost for a VLAN takes precedence over the per port cost. If you do not configure the port cost for a VLAN, Cumulus Linux applies per port cost to all the per VLAN tree ports. If you do not configure either the port cost for a VLAN or the cost for a port, Cumulus Linux bases the port cost on the link speed.
+
+The following example sets the path cost to 4000.
+
+{{< tabs "TabID356 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp path-cost 4000
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Add the `mstpctl-portpathcost` parameter under the interface stanza of the `/etc/network/interfaces` file.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+    mstpctl-bpduguard yes
+    mstpctl-portadminedge yes
+    mstpctl-portpathcost 4000
+...
+```
+
+**Runtime Configuration (Advanced)**
+
+{{%notice warning%}}
+A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
+{{%/notice%}}
+
+To set path cost to 4000 at runtime:
+
+```
+cumulus@switch:~$ sudo mstpctl setportpathcost br_default swp1 4000
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### PVRST Bridge Priority
 
 You can set the spanning tree bridge priority for a VLAN. The priority must be a number between 4096 and 61440 and must be a multiple of 4096. The default value is 32768.
 
@@ -211,7 +332,7 @@ iface br_default
 ```
 cumulus@switch:~$ ifreload -a
 ```
-
+<!--
 **Runtime Configuration (Advanced)**
 
 {{%notice warning%}}
@@ -236,11 +357,11 @@ To set the bridge priority for a range of VLANs, use a hyphen (-). For example, 
 ```
 cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10-30 61440
 ```
-
+-->
 {{< /tab >}}
 {{< /tabs >}}
 
-#### PVRST Timers
+### PVRST Timers
 
 You can set the following PVRST timers:
 - *Max age*, which is the maximum amount of time STP information is retained before it is discarded. You can set a value between 6 and 40 seconds. The default value is 20 seconds.
@@ -296,7 +417,7 @@ cumulus@switch:~$ ifreload -a
 ```
 
 To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `bridge-stp-vlan-hello 10-30=4`.
-
+<!--
 **Runtime Configuration (Advanced)**
 
 {{%notice warning%}}
@@ -312,11 +433,11 @@ cumulus@switch:~$ sudo mstpctl setvlan-fdelay br_default 10,20,30 4
 ```
 
 To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `sudo mstpctl setvlan-maxage br_default 10-30 6`.
-
+-->
 {{< /tab >}}
 {{< /tabs >}}
 
-#### PVRST Port Settings
+### PVRST Port Settings
 
 You can configure an interface port priority and path cost per VLAN to influence the spanning tree forwarding path. You can specify a path cost between 1 and 200000000. You can specify a priority between 0 and 240; the value must be a multiple of 16.
 
@@ -348,7 +469,7 @@ iface swp1
     mstpctl-port-vlan-priority 10=240
 ...
 ```
-
+<!--
 **Runtime Configuration (Advanced)**
 
 {{%notice warning%}}
@@ -361,119 +482,11 @@ To set path cost to 4000 and the priority to 240 for VLAN 10 at runtime:
 cumulus@switch:~$ sudo mstpctl setvlantreeportcost br_default swp1 10 4000
 cumulus@switch:~$ sudo mstpctl setvlantreeportprio br_default swp1 10 240
 ```
-
+-->
 {{< /tab >}}
 {{< /tabs >}}
 
-## Spanning Tree Priority
-
-If you are running STP for a VLAN-aware bridge in the default mode (RSTP) and you have a multiple spanning tree instance (MSTI 0, also known as a common spanning tree, or CST), you can set the tree priority for a bridge. The bridge with the lowest priority is the *root bridge*. The priority must be a number between *0* and *61440,* and must be a multiple of 4096. The default value is *32768*.
-
-{{%notice note%}}
-If you are running MLAG and have multiple bridges, the STP priority must be the same on all bridges on both peer switches.
-{{%/notice%}}
-
-The following example sets the tree priority to 8192:
-
-{{< tabs "TabID288 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set bridge domain br_default stp priority 8192
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Configure the tree priority (`mstpctl-treeprio`) under the *bridge* stanza in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-auto bridge
-iface bridge
-    # bridge-ports includes all ports related to VxLAN and CLAG.
-    # does not include the Peerlink.4094 subinterface
-    bridge-ports bond01 bond02 peerlink vni13 vni24 vxlan4001
-    bridge-pvid 1
-    bridge-vids 13 24
-    bridge-vlan-aware yes
-    mstpctl-treeprio 8192
-...
-```
-
-```
-cumulus@switch:~$ ifreload -a
-```
-
-**Runtime Configuration (Advanced)**
-
-{{%notice warning%}}
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-{{%/notice%}}
-
-Run the `sudo mstpctl settreeprio <bridge> <MSTI> <priority>` command:
-
-```
-cumulus@switch:~$ sudo mstpctl settreeprio br_default 0 8192
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice note%}}
-Cumulus Linux supports MSTI 0 only. It does not support MSTI 1 through 15.
-{{%/notice%}}
-
-## Port Path Cost
-
-You can configure the path cost for an interface in the bridge to influence the spanning tree forwarding path. You can specify a value between 1 and 200000000.
-
-For PVRST mode, the port cost for a VLAN takes precedence over the cost for a port. If you do not configure the port cost for a VLAN, Cumulus Linux applies the port cost to all the interfaces in the VLAN. If you do not configure either the port cost for a VLAN or the cost for a port, Cumulus Linux bases the port cost on the link speed.
-
-The following example sets the path cost to 4000.
-
-{{< tabs "TabID356 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp1 bridge domain br_default stp path-cost 4000
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Add the `mstpctl-portpathcost` parameter under the interface stanza of the `/etc/network/interfaces` file.
-
-```
-cumulus@switch:~$ sudo nano /etc/network/interfaces
-...
-auto swp1
-iface swp1
-    mstpctl-bpduguard yes
-    mstpctl-portadminedge yes
-    mstpctl-portpathcost 4000
-...
-```
-
-**Runtime Configuration (Advanced)**
-
-{{%notice warning%}}
-A runtime configuration is non-persistent, which means the configuration you create here does not persist after you reboot the switch.
-{{%/notice%}}
-
-To set path cost to 4000 at runtime:
-
-```
-cumulus@switch:~$ sudo mstpctl setportpathcost br_default swp1 4000
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-## PortAdminEdge (PortFast Mode)
+### PortAdminEdge (PortFast Mode)
 
 *PortAdminEdge* is equivalent to the PortFast feature offered by other vendors. It enables or disables the *initial edge state* of a port in a bridge. All ports with PortAdminEdge bypass the listening and learning states and go straight to forwarding.
 
@@ -529,7 +542,7 @@ cumulus@switch:~$ sudo mstpctl setbpduguard br2 swp1 yes
 {{< /tab >}}
 {{< /tabs >}}
 
-## PortAutoEdge
+### PortAutoEdge
 
 *PortAutoEdge* is an enhancement to the standard PortAdminEdge (PortFast) mode, which allows for the automatic detection of edge ports. PortAutoEdge enables and disables the *auto transition* to and from the edge state of a port in a bridge.
 
@@ -592,7 +605,7 @@ Edit the switch port interface stanza in the `/etc/network/interfaces` file to r
 {{< /tab >}}
 {{< /tabs >}}
 
-## BPDU Guard
+### BPDU Guard
 
 You can configure *BPDU guard* to protect the spanning tree topology from an unauthorized device affecting the forwarding path. For example, if you add a new host to an access port off a leaf switch and the host sends an STP <span style="background-color:#F5F5DC">[BPDU](## "Bridge Protocol Data Unit")</span>, BPDU guard protects against undesirable topology changes in the environment.
 
@@ -686,7 +699,7 @@ cumulus@switch:~$ mstpctl clearbpduguardviolation bridge swp5
 Bringing up the disabled port does not correct the problem if the configuration on the connected end station does not resolve.
 {{%/notice%}}
 
-## Bridge Assurance
+### Bridge Assurance
 
 On a point-to-point link where RSTP is running, if you want to detect unidirectional links and put the port in a discarding state, you can enable bridge assurance on the port by enabling a port type network. The port is then in a bridge assurance inconsistent state until it receives a BPDU from the peer. You need to configure the port type network on both ends of the link for bridge assurance.
 
@@ -745,7 +758,7 @@ cumulus@switch:~$ sudo grep -in assurance /var/log/syslog | grep mstp
   1365:Jun 25 18:03:17 mstpd: br1007:swp1.1007 Bridge assurance inconsistent
 ```
 
-## BPDU Filter
+### BPDU Filter
 
 You can enable `bpdufilter` on a switch port, which filters BPDUs in both directions. This disables STP on the port as no BPDUs are transiting.
 
@@ -796,7 +809,7 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 {{< /tab >}}
 {{< /tabs >}}
 
-## Restricted Role
+### Restricted Role
 
 To enable the interface in the bridge to take the restricted role:
 
@@ -829,7 +842,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-## Additional STP Settings
+### Additional STP Settings
 
 The table below describes additional STP configuration parameters available in Cumulus Linux. You can set these optional parameters manually by editing the `/etc/network/interfaces` file. Cumulus Linux does not provide NVUE commands for these parameters.
 
@@ -901,7 +914,7 @@ state        forwarding
 
 To show the STP information for a bridge, run the `nv show bridge domain br_default stp` command.
 
-The following example shows PVRST mode:
+The following example shows the output in PVRST mode:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp
@@ -916,7 +929,7 @@ Vlan              Bridge ID               HelloTime   MaxAge      FwdDly
 30     32798   44:38:39:22:01:7A            2           20          15 
 ```
 
-The following example shows RSTP mode:
+The following example shows the output in RSTP mode:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp
@@ -1044,7 +1057,7 @@ mcheck          : no          admin-port-path-cost : 0
 
 To show the root ID and root cost for the bridge, run the `nv show bridge domain <bridge> stp root` command.
 
-The following command output shows PVRST mode:
+The following command shows the output in PVRST mode:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp root
@@ -1057,7 +1070,7 @@ instance             root-id                root-cost  hello-time  fwd-dly     m
 30       32798   44:38:39:22:01:7A            0           2           15          20          -    
 ```
 
-The following command output shows STP mode:
+The following command shows the output in RSTP mode:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp root
@@ -1089,7 +1102,7 @@ cumulus@switch:~$ nv show bridge domain br_default blocked-ports
 
 To show the `mstpd` bridge port state, run the `mstpctl showstpport <bridge>` command.
 
-The following output shows RSTP mode:
+The following command shows the output in RSTP mode:
 
 ```
 cumulus@switch:~$ sudo mstpctl showstpport br_default
@@ -1098,7 +1111,7 @@ cumulus@switch:~$ sudo mstpctl showstpport br_default
  E swp3  8.003 forw 8.000.44:38:39:22:01:8A 8.000.44:38:39:22:01:8A 8.003 Desg
 ```
 
-The following output shows PVRST mode:
+The following command shows the output in PVRST mode:
 
 ```
 cumulus@switch:~$ sudo mstpctl showstpport br_default
@@ -1125,7 +1138,7 @@ state: forw
 
 To show STP information for a bridge domain, including STP counters, run the `sudo mstpctl showstpall` command.
 
-The following command output shows RSTP mode:
+The following command shows the output in RSTP mode:
 
 ```
 cumulus@switch:~$ sudo mstpctl showstpall 
@@ -1165,7 +1178,7 @@ Bridge Parameters for br_default
 ...
 ```
 
-The following command output shows PVRST mode:
+The following command shows the output in PVRST mode:
 
 ```
 cumulus@switch:~$ sudo mstpctl showstpall 
@@ -1236,3 +1249,21 @@ cumulus@switch:~$ sudo brctl show
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Considerations
+
+You must remove PVRST VLAN configuration before you remove the VLANs on the interface or bridge.
+
+The following example removes PVRST VLAN 10 configuration, then removes VLAN 10 from the bridge:
+
+```
+cumulus@switch:~$ nv unset bridge domain br_default stp vlan 10
+cumulus@switch:~$ nv unset bridge domain br_default vlan 10
+```
+
+The following example removes PVRST VLAN 10 configuration, then removes VLAN 10 from swp1:
+
+```
+cumulus@switch:~$ nv unset interface swp1 bridge domain br_default stp vlan 10
+cumulus@switch:~$ nv unset interface swp1 bridge domain br_default vlan 10
+```

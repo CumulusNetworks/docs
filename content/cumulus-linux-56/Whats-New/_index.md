@@ -26,7 +26,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing-profiles" text="Adaptive routing profiles">}}
   - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP W-ECMP support">}}
   - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="VXLAN interface support">}}
-- {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST with VLAN-aware bridges ">}}
+- {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#configure-the-mode-for-a-vlan-aware-bridge" text="PVRST with VLAN-aware bridges ">}}
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
 - {{<link url="Monitoring-System-Hardware" text="Fan airflow direction">}} in NVUE `nv show platform environment fan` and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
 - {{<link url="Precision-Time-Protocol-PTP#clock-time-stamp-mode" text="PTP one-step clock time stamp mode">}} for Spectrum-2 and Spectrum-3
@@ -44,7 +44,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - {{<link url="Protocol-Independent-Multicast-PIM/#pim-show-commands" text="Show IGMP group commands ">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#troubleshooting" text="Show commands">}} to see the ports mapped to a bridge and the VLANs mapped to bridge ports
   - Changes to `nv show platform` command outputs to improve readability
-  - The `nv show interface` command provides a {{<link url="NVUE-CLI/#monitoring-commands" text="--filter option">}} to filter output data
+  - The `nv show` commands provide a {{<link url="NVUE-CLI/#monitoring-commands" text="--filter option">}} to filter output data
   - EVPN multihoming configuration with NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
 
 {{< expand "New Commands" >}}

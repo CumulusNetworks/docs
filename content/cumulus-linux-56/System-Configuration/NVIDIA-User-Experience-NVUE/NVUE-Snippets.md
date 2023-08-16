@@ -368,11 +368,11 @@ Flexible snippets are an extension of traditional snippets that let you manage a
 - You can create new files or modify existing files that NVUE does not manage.
 - You can add configuration to files that NVUE manages.
 
-To configure and manage flexible snippets, your user account must be in the sudo group, which includes the NVUE `system-admin` role, or you must be the root user.
+The account you use through the CLI or the REST API to configure and manage flexible snippets must be in the sudo group, which includes the NVUE `system-admin` role, or you must be the root user.
 
 ### Files NVUE Manages
 
-You can use flexible snippets to add configuration to the following files that NVUE Manages:
+You can use flexible snippets to add configuration to the following files that NVUE manages:
 
 | <div style="width:350px">Filename  | Description |
 | --------- | ----------- |
@@ -389,8 +389,6 @@ You can use flexible snippets to add configuration to the following files that N
 |`/etc/snmp/snmpd.conf`| Configuration file for SNMP. Changes to this file require an `snmpd` restart.|
 |`/etc/cumulus/datapath/traffic.conf`| Configuration file for forwarding table profiles. Changes to this file require a `switchd` restart.|
 |`/etc/cumulus/switchd.conf`| Configuration file for `switchd`. Changes to this file require a `switchd` restart. |
-
-To add configuration to the `/etc/network/interfaces`, `/etc/frr/frr.conf`, and `/etc/frr/daemons` files, use traditional snippets.
 
 Flexible snippets do *not* support:
 - Binary files.
@@ -493,6 +491,14 @@ Invalid config [rev_id: 8]
   Flexible snippets are not allowed to be configured on the file '/etc/cumulus/ports.conf’.
   Flexible snippets are not allowed to be configured on the file '/etc/cumulus/ports_width.conf’.
   ```
+
+If you try to apply a flexible snippet to a file that supports traditional snippets, you see an error message similar to the following:
+
+```
+cumulus@leaf01:mgmt:~$ nv config apply
+Invalid config [rev_id: 1]
+  Flexible snippet cannot be used to modify the file '/etc/ssh/sshd_config'. Traditional snippets (for e.g., 'sshd_config') are supported on this file. Consult NVIDIA NVUE documentation for further information on snippets.
+```
 
 {{%/notice%}}
 

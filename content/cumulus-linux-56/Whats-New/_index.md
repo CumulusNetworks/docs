@@ -26,7 +26,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing-profiles" text="Adaptive routing profiles">}}
   - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP W-ECMP support">}}
   - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="VXLAN interface support">}}
-- {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST with VLAN-aware bridges ">}}
+- {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#configure-the-mode-for-a-vlan-aware-bridge" text="PVRST with VLAN-aware bridges ">}}
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
 - {{<link url="Monitoring-System-Hardware" text="Fan airflow direction">}} in NVUE `nv show platform environment fan` and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
 - {{<link url="Precision-Time-Protocol-PTP#clock-time-stamp-mode" text="PTP one-step clock time stamp mode">}} for Spectrum-2 and Spectrum-3

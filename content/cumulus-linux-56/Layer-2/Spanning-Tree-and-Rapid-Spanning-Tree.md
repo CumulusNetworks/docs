@@ -102,7 +102,7 @@ If a bridge running RSTP (802.1w) receives a common STP (802.1D) BPDU, it falls 
 
 ### RSTP and PVRST Interoperability
 
-The RSTP domain sends <span style="background-color:#F5F5DC">[BPDUs](## "Bridge Protocol Data Units")</span> on the native VLAN, whereas PVRST sends BPDUs on a per VLAN basis along with IEEE BPDUS. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVRST domain; the spanning tree builds according to the native VLAN parameters.
+The RSTP domain sends <span style="background-color:#F5F5DC">[BPDUs](## "Bridge Protocol Data Units")</span> on the native VLAN, whereas PVRST sends BPDUs on each VLAN along with IEEE BPDUS. For both protocols to work together, you need to enable the native VLAN on the link between the RSTP to PVRST domain; the spanning tree builds according to the native VLAN parameters.
 
 The RSTP protocol does not send or parse BPDUs on other VLANs, but floods BPDUs across the network, enabling the PVRST domain to maintain its spanning-tree topology and provide a loop-free network.
 - To enable proper BPDU exchange across the network, be sure to allow all VLANs participating in the PVRST domain on the link between the RSTP and PVRST domains.
@@ -439,7 +439,7 @@ To set the PVRST timers for a range of VLANs, use a hyphen (-). For example `sud
 
 ### PVRST Port Settings
 
-You can configure an interface port priority and path cost per VLAN to influence the spanning tree forwarding path. You can specify a path cost between 1 and 200000000. You can specify a priority between 0 and 240; the value must be a multiple of 16.
+You can configure an interface port priority and path cost for each VLAN to influence the spanning tree forwarding path. You can specify a path cost between 1 and 200000000. You can specify a priority between 0 and 240; the value must be a multiple of 16.
 
 The following examples set the path cost to 4000 and the priority to 240 for VLAN 10.
 
@@ -853,7 +853,7 @@ The IEEE {{<exlink url="https://standards.ieee.org/standard/802_1D-2004.html" te
 | `mstpctl-maxage` | Sets the maximum age of the bridge in seconds. The default is 20. The maximum age timer must be equal to, or less than, two times the forward delay minus one second (bridge max age <= 2 * bridge foward delay - 1 second).<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.|
 | `mstpctl-fdelay` | Sets the bridge forward delay time in seconds. The default value is 15. Two times the forward delay minus one second must be more than or equal to the maximum age (2 * bridge foward delay - 1 second  >= bridge max age).<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}.|
 | `mstpctl-maxhops` | Sets the maximum hops for the bridge. The default is 20.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>This parameter does not apply to PVRST mode.|
-| `mstpctl-txholdcount` | Sets the bridge transmit hold count. The default value is 6 seconds.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>In PVRST mode, the transmit hold count applies to each of the per VLAN tree ports.  |
+| `mstpctl-txholdcount` | Sets the bridge transmit hold count. The default value is 6 seconds.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>In PVRST mode, the transmit hold count applies to each interface in the VLAN.  |
 | `mstpctl-hello` | Sets the bridge hello time in seconds. The default is 2.<br>Add this parameter to the bridge stanza of the `/etc/network/interfaces` file.<br>If you are running STP in PVRST mode, see {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#pvrst-mode-for-a-vlan-aware-bridge" text="PVRST Mode for a VLAN-aware Bridge">}}. |
 | `mstpctl-portp2p` | Enables or disables point-to-point detection mode for the interface in the bridge.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|
 | `mstpctl-portrestrtcn` | Enables or disables the interface in the bridge to propagate received topology change notifications. The default is no.<br>Add this parameter to the interface stanza of the `/etc/network/interfaces` file.|

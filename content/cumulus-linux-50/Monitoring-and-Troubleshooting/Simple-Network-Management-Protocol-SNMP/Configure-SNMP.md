@@ -62,7 +62,7 @@ The `snmpd` daemon uses the `/etc/snmp/snmpd.conf` configuration file for most o
 
 ### Configure the Listening IP Addresses
 
-For security reasons, the listening address is the localhost by default so that the SNMP agent only responds to requests originating on the switch itself. You can also configure listening only on the IPv6 localhost address. When using IPv6 addresses or localhost, you can use a `readonly-community-v6` for SNMPv1 and SNMPv2c requests. For SNMPv3 requests, you can use the `username` command to restrict access. See {{<link url="#configure-the-snmpv3-username" text="Configure the SNMPv3 Username">}} below.
+The listening address is `localhost` by default so that the SNMP agent only responds to requests originating on the switch itself in the `default` VRF. To configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell, see {{<link url="#snmp-and-vrfs" text="SNMP and VRFs">}}. You can also configure listening only on the IPv6 localhost address. When using IPv6 addresses or localhost, you can use a `readonly-community-v6` for SNMPv1 and SNMPv2c requests. For SNMPv3 requests, you can use the `username` command to restrict access. See {{<link url="#configure-the-snmpv3-username" text="Configure the SNMPv3 Username">}} below.
 
 The IP address must exist on an interface that has link UP on the switch where you use `snmpd`. By default, the IP address is `udp:127.0.0.1:161`, so `snmpd` only responds to requests (such as `snmpwalk`, `snmpget`, `snmpgetnext`) that originate from the switch. A wildcard setting of *udp:161,udp6:161* forces `snmpd` to listen on all IPv4 and IPv6 interfaces for incoming SNMP requests.
 
@@ -91,17 +91,37 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 
 #### SNMP and VRFs
 
-Cumulus Linux provides a listening address for VRFs along with trap and inform support. You can configure `snmpd` to listen to a specific IPv4 or IPv6 address on an interface within a particular VRF. With VRFs, identical IP addresses can exist in different VRF tables. This command restricts listening to a particular IP address within a particular VRF. If you do not provide a VRF name, Cumulus Linux uses the default VRF.
+Cumulus Linux provides a listening address for VRFs together with trap and inform support. You can configure `snmpd` to listen to a specific IPv4 or IPv6 address on an interface within a particular VRF. With VRFs, identical IP addresses can exist in different VRF tables. This command restricts listening to a particular IP address within a particular VRF. If you do not provide a VRF name, Cumulus Linux uses the default VRF.
 
 {{< tabs "SNMP and VRFs" >}}
 {{< tab "NVUE Commands" >}}
 
-NVUE commands are not supported.
+The following command configures snmpd to listen to IP address 10.10.10.10 on eth0, the management interface in the management VRF:
+
+```
+cumulus@switch:~$ nv set service snmp-server listening-address 10.10.10.10 vrf mgmt
+cumulus@switch:~$ nv config apply
+```
+
+By default, `snmpd` does not cross VRF table boundaries. To listen on IP addresses in different VRF tables, use multiple `listening-address` commands each with a VRF name:
+
+```
+cumulus@switch:~$ nv set service snmp-server listening-address 10.10.10.10 vrf rocket
+cumulus@switch:~$ nv set service snmp-server listening-address 10.10.10.20 vrf turtle
+cumulus@switch:~$ nv config apply
+```
+
+By default, `snmpd` only responds to `localhost` requests in the `default` VRF. You can configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell. To configure the `snmpd` daemon to listen on `localhost` in the `mgmt` VRF, run:
+
+```
+cumulus@switch:~$ nv set service snmp-server listening-address localhost vrf mgmt
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-To bind to a particular IP address within a particular VRF table, edit the `/etc/snmp/snmpd.conf` file and append an *@* and the name of the VRF table to the IP address (for example, *192.168.200.11@mgmt*).
+To bind to a particular IP address within a particular VRF table, edit the `/etc/snmp/snmpd.conf` file and append `@` and the name of the VRF table to the IP address (for example, `192.168.200.11@mgmt`).
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -110,6 +130,16 @@ agentAddress 192.168.200.11@mgmt
 agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 ...
 ```
+
+By default, `snmpd` only responds to `localhost` requests in the `default` VRF. You can configure the switch to respond to requests sent to `localhost` in a `mgmt` VRF shell. Edit the `/etc/snmp/snmpd.conf` file and add `@mgmt` to the `agentaddress` configuration:
+
+```
+cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
+...
+agentaddress 127.0.0.1@mgmt
+...
+```
+Then restart `snmpd` with the `sudo systemctl restart snmpd` command.
 
 {{< /tab >}}
 {{< /tabs >}}

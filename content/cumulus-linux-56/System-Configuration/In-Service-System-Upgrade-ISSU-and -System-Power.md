@@ -266,13 +266,13 @@ Current System Mode: Maintenance since Tue Jan  5 00:13:37 2021 (Duration: 00:00
 
 ## System Power
 
-In certain situations, you might need to power off the switch instead of rebooting. To power off the switch, you can run the Linux `poweroff` or `shutdown` commands.
+In certain situations, you might need to power off the switch instead of rebooting. To power off the switch, you can run the Linux `poweroff` command.
 
 ```
 cumulus@switch:~$ sudo poweroff
 ```
 
-On the following switches, when you run the Linux `poweroff` and `shutdown` commands, the switches reboot instead of powering off. To power off these switches, run the `cl-poweroff` command instead. The `cl-poweroff` command performs a hard *abrupt* power down instead of a graceful power down.
+On the following switches, when you run the Linux `poweroff` command, the switches reboot instead of powering off. To power off these switches, run the `cl-poweroff` command instead. The `cl-poweroff` command performs a hard *abrupt* power down instead of a graceful power down.
 
 SN2201
 

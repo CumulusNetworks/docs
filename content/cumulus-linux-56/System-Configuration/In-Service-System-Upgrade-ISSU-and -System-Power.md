@@ -1,5 +1,5 @@
 ---
-title: In Service System Upgrade - ISSU
+title: In Service System Upgrade - ISSU and System Power
 author: NVIDIA
 weight: 275
 toc: 3
@@ -263,12 +263,16 @@ Current System Mode: Maintenance since Tue Jan  5 00:13:37 2021 (Duration: 00:00
  frr     : Maintenance, down
  switchd : Maintenance, down 
 ```
-<!--
-## Considerations
 
-In certain situations, you might need to power off the switch instead of rebooting. To power off the switch, you can run the Linux `poweroff` or `shutdown` commands.
+## System Power
 
-On the following switches, when you run the Linux `poweroff` and `shutdown` commands, the switches seem to shut down but then reboot shortly afterwards. To power off these switches, run the `cl-poweroff` command instead.
+In certain situations, you might need to power off the switch instead of rebooting. To power off the switch, you can run the Linux `poweroff` command.
+
+```
+cumulus@switch:~$ sudo poweroff
+```
+
+On the following switches, when you run the Linux `poweroff` command, the switches reboot instead of powering off. To power off these switches, run the `cl-poweroff` command instead. The `cl-poweroff` command performs a hard *abrupt* power down instead of a graceful power down.
 
 SN2201
 
@@ -291,6 +295,3 @@ SN4600c
 SN4600
 
 SN4700
-
-For switches that are not in the above list, you can run the Linux `poweroff` or `shutdown` command to power down the switch.
--->

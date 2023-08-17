@@ -63,8 +63,8 @@ The procedure to install an authorized SSH key is different based on whether the
 The following example adds an authorized key named `prod_key` to the user `admin2`. The content of the public key file is `ssh-rsa 1234 prod_key`.
 
 ```
-cumulus@leaf01:~$ nv set user admin2 ssh authorized-key prod_key key 1234
-cumulus@leaf01:~$ nv set user admin2 ssh authorized-key prod_key type ssh-rsa
+cumulus@leaf01:~$ nv set system aaa user admin2 ssh authorized-key prod_key key XABDB3NzaC1yc2EAAAADAQABAAABgQCvjs/RFPhxLQMkckONg+1RE1PTIO2JQhzFN9TRg7ox7o0tfZ+IzSB99lr2dmmVe8FRWgxVjc...
+cumulus@leaf01:~$ nv set system aaa user admin2 ssh authorized-key prod_key type ssh-rsa
 cumulus@leaf01:~$ nv config apply
 ```
 

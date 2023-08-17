@@ -167,7 +167,7 @@ You can upgrade Cumulus Linux in one of two ways:
 - Install a Cumulus Linux image of the new release, using ONIE.
 - Upgrade only the changed packages using the `sudo -E apt-get update` and `sudo -E apt-get upgrade` command.
 
-Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="ISSU">}}.
+Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU-and-System-Power" text="In-Service-System-Upgrade-ISSU">}}.
 
 {{%notice note%}}
 - To upgrade to Cumulus Linux 5.6.0 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.

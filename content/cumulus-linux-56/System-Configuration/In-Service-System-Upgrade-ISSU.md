@@ -263,3 +263,34 @@ Current System Mode: Maintenance since Tue Jan  5 00:13:37 2021 (Duration: 00:00
  frr     : Maintenance, down
  switchd : Maintenance, down 
 ```
+<!--
+## Considerations
+
+In certain situations, you might need to power off the switch instead of rebooting. To power off the switch, you can run the Linux `poweroff` or `shutdown` commands.
+
+On the following switches, when you run the Linux `poweroff` and `shutdown` commands, the switches seem to shut down but then reboot shortly afterwards. To power off these switches, run the `cl-poweroff` command instead.
+
+SN2201
+
+SN2010
+
+SN2100
+
+SN2100B
+
+SN3420
+
+SN3700
+
+SN3700c
+
+SN4410
+
+SN4600c
+
+SN4600
+
+SN4700
+
+For switches that are not in the above list, you can run the Linux `poweroff` or `shutdown` command to power down the switch.
+-->

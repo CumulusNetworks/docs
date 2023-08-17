@@ -10,5 +10,5 @@ This section describes how to configure the following system settings:
 - {{<link url="Netfilter-ACLs" text="Access Control Lists">}} (ACLs)
 - {{<link url="Services-and-Daemons-in-Cumulus-Linux" text="Services and daemons">}}
 - {{<link url="Configuring-switchd" text="switchd">}}
-- {{<link url="In-Service-System-Upgrade-ISSU-and-System-Power" text="In Service System Upgrade">}} (ISSU)
+- {{<link url="In-Service-System-Upgrade-ISSU" text="In Service System Upgrade">}} (ISSU)
 - {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience">}} (NVUE)

@@ -89,7 +89,7 @@ Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support
 | Cumulus Linux Version | ESR Start Date    | End of Life Date  |
 | --------------------- | ----------------- | ----------------- |
 | 5.0.z                 | N/A               | N/A    |
-| 5.7.z                 | November 2023     | November 2026     |
+| 5.8.z                 | January 2024      | January 2027     |
 
 Cumulus Linux 5.y.z supports Spectrum based switches only.
 

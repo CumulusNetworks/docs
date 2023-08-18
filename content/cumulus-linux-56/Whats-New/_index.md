@@ -198,7 +198,7 @@ nv action clear router policy prefix-list
 nv action clear router policy prefix-list <prefix-list-id>
 nv action clear router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
 nv action clear router bgp
-nv action clear router bgp in [prefix-filter]
+nv action clear router bgp in prefix-filter
 nv action clear router bgp out
 nv action clear router bgp soft
 nv action clear router bgp soft in
@@ -210,14 +210,13 @@ nv action clear evpn vni <vni-id>
 nv action clear evpn vni <vni-id> mac <mac-address-id>
 nv action clear evpn vni <vni-id> host <ip-address-id>
 nv action clear interface <interface-id> qos pfc-watchdog deadlock-count
-nv action clear vrf <vrf-id> router bgp in [prefix-filter]
+nv action clear vrf <vrf-id> router bgp in prefix-filter
 nv action clear vrf <vrf-id> router bgp out
 nv action clear vrf <vrf-id> router bgp soft
 nv action clear vrf <vrf-id> router bgp soft in
 nv action clear vrf <vrf-id> router bgp soft out
 nv action clear vrf <vrf-id> router pim interfaces
 nv action clear vrf <vrf-id> router pim interface-traffic
-nv action clear vrf <vrf-id> router pim statistics
 ```
 
 {{< /tab >}}

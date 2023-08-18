@@ -316,7 +316,7 @@ Introduced in Cumulus Linux 5.4.0
 ```
 cumulus@switch:~$ nv set interface swp1 qos remark profile MYPROFILE
 ```
-<!-- CL56
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> qos pfc-watchdog state</h>
@@ -338,7 +338,7 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv set interface swp1 qos qos pfc-watchdog state enable
 ```
--->
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set qos</h>
@@ -2251,7 +2251,6 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv set qos traffic-pool 3
 ```
 
-<!-- CL56
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set qos pfc-watchdog polling-interval</h> 
@@ -2283,4 +2282,3 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv set qos pfc-watchdog robustness 5
 ```
--->

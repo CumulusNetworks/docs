@@ -1298,8 +1298,6 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv show interface swp5 qos roce status tc-map
 ```
 
-<!-- CL56
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show interface \<interface-id\> qos pfc-watchdog</h>
@@ -1361,7 +1359,7 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog status 0
 ```
--->
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show qos</h>

@@ -81,7 +81,7 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@switch:~$ nv set router adaptive-routing enable on
 ```
-<!-- CL56
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router adaptive-routing link-utilization-threshold</h>
@@ -122,4 +122,3 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv set router adaptive-routing profile ar-profile-custom
 ```
--->

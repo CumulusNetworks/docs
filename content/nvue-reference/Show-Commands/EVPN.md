@@ -647,6 +647,8 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
 ...
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show evpn multihoming esi \<esi-id\></h>
 
 Shows information about the specified EVPN multihoming Ethernet segment ID.
@@ -682,6 +684,8 @@ flags
   remote                on                           
 [remote-vtep]           10.10.10.2
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show evpn multihoming esi \<esi-id\> remote-vtep</h>
 

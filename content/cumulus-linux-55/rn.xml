@@ -258,12 +258,6 @@ This error message is benign and has no functional impact.</td>
 <td></td>
 </tr>
 <tr>
-<td>3408301</td>
-<td>The NVUE {{nv show router nexthop rib}} command shows duplicate entries in the Summary section for a nexthop group. To work around this issue, run the vtysh {{show nexthop-group rib}} command instead. </td>
-<td>5.5.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3405024</td>
 <td>You cannot remove PBR map configuration with source and destination rules. To work around this issue, delete the entire PBR map clause.</td>
 <td>5.5.0-5.5.1</td>
@@ -309,6 +303,12 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <tr>
 <td>3345054</td>
 <td>The NVUE {{nv show interface &lt;interface&gt; qos}} command takes a significant time to show output or times out. To work around this issue, use specific QoS commands. For example, to show congestion control information, run the {{nv show interface &lt;interface&gt; qos congestion-control}} command.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3344846</td>
+<td>The Spectrum-3 hardware configuration is not optimized for the best PTP accuracy when using 25GbE.  You might see higher than expected PTP offsets on this platforms and interface speed.</td>
 <td>5.4.0-5.5.1</td>
 <td></td>
 </tr>
@@ -860,12 +860,6 @@ This error message is benign and has no functional impact.</td>
 <td></td>
 </tr>
 <tr>
-<td>3408301</td>
-<td>The NVUE {{nv show router nexthop rib}} command shows duplicate entries in the Summary section for a nexthop group. To work around this issue, run the vtysh {{show nexthop-group rib}} command instead. </td>
-<td>5.5.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3405024</td>
 <td>You cannot remove PBR map configuration with source and destination rules. To work around this issue, delete the entire PBR map clause.</td>
 <td>5.5.0-5.5.1</td>
@@ -911,6 +905,12 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <tr>
 <td>3345054</td>
 <td>The NVUE {{nv show interface &lt;interface&gt; qos}} command takes a significant time to show output or times out. To work around this issue, use specific QoS commands. For example, to show congestion control information, run the {{nv show interface &lt;interface&gt; qos congestion-control}} command.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3344846</td>
+<td>The Spectrum-3 hardware configuration is not optimized for the best PTP accuracy when using 25GbE.  You might see higher than expected PTP offsets on this platforms and interface speed.</td>
 <td>5.4.0-5.5.1</td>
 <td></td>
 </tr>

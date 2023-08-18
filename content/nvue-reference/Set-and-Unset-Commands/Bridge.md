@@ -160,7 +160,6 @@ cumulus@switch:~$ nv set bridge domain br_default multicast snooping querier ena
 
 Configures STP on the bridge domain.
 
-<!-- CL56
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set bridge domain \<domain-id\> stp mode</h>
@@ -182,7 +181,6 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv set bridge domain br_default stp mode pvrst
 ```
--->
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -227,7 +225,7 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set bridge domain br_default stp state up
 ```
-<!-- CL56
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set bridge domain \<domain-id\> stp vlan <vid> bridge-priority</h>
@@ -319,7 +317,6 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 max-age 6
 ```
--->
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

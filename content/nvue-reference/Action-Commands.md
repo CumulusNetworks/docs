@@ -148,7 +148,6 @@ cumulus@switch:~$ nv action clear interface swp1 qos roce counters
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-<!--
 ## <h>nv action clear interface \<interface-id\> synce counters</h>
 
 Clears SyncE counters on the specified interface.
@@ -171,7 +170,6 @@ cumulus@switch:~$ nv action clear interface swp1 synce counters
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
--->
 ## <h>nv action clear mlag lacp-conflict</h>
 
 Clears the MLAG LACP conflict. A conflict can be an LACP partner MAC address mismatch or a duplicate LACP partner MAC address.
@@ -216,6 +214,71 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv action clear qos buffer pool 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router policy prefix-list</h>
+
+Clears all IP prefix list statistics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router policy prefix-list
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router policy prefix-list \<prefix-list-id\></h>
+
+Clears statistics for the specified prefix list.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<prefix-list-id>` | The name of the prefix list whose statistics you want to clear. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router policy prefix-list prefixlist1
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\></h>
+
+Clears statistics for a specific prefix list rule number and match ID.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<prefix-list-id>` | The name of the prefix list whose statistics you want to clear. |
+| `<rule-id>` | The prefix list rule number. |
+| `<match-id>` | The prefix list match criteria. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router policy prefix-list prefixlist1 rule 10 match 10.0.0.0/16
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

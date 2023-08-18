@@ -1468,6 +1468,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf default router bgp autonomous-system 65101
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp enable</h>
 
 Turns BGP on or off for the specified VRF.
@@ -1847,6 +1849,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf RED router bgp rd 10.1.20.2:5
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp router-id</h>
 
@@ -4516,6 +4520,8 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 description SPINE01
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> enforce-first-as</h>
 
 Configures BGP to check that the first AS matches the peer's AS when BGP updates are received from eBGP peers with this configuration. You can specify `on` or `off`.
@@ -5472,6 +5478,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 enable on
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> shutdown</h>
 
 Administratively shuts down a specific neighbor in the specified VRF. You can specify `on` or `off`.
@@ -5492,6 +5500,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 shutdown on
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers</h>
 

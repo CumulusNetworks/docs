@@ -292,7 +292,6 @@ priority  32768        32768    32768
 state     up           up       up
 ```
 
-<!-- CL56
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show bridge domain \<domain-id\> stp counters</h>
@@ -318,7 +317,7 @@ port  tx-bpdu  rx-bpdu  tx-tcn  rx-tcn  fwd-trans  blk-trans  tx-pvst-tnl-bpdu  
 swp1  1270     0        4       0       3          2          1653              0               
 swp2  1270     0        4       0       3          2          1653              0 
 ```
--->
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show bridge domain \<domain-id\> stp state</h>
@@ -343,8 +342,6 @@ cumulus@switch:~$ nv show bridge domain br_default stp state
   -----------  -------  -------
   up           up       up
 ```
-
-<!-- CL56
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -511,7 +508,6 @@ port-hello-time    : 4s
 fdb-flush          : no
 disputed           : no
 ```
--->
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

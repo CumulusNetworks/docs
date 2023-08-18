@@ -7,6 +7,46 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3511640</td>
+<td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3452732</td>
+<td>The {{nv set router policy ext-community-list &lt;policy-name&gt; rule &lt;rule-number&gt; ext-community rt &lt;route-target&gt;}} command does not generate the standard based BGP community list. As a result, routes do not match the expected community list. To work around this issue, create a snippet to add the policy configuration to the {{/etc/frr/frr.conf}} file, then patch the configuration. For example:
+
+cumulus@switch:~$ sudo nano frr_policy.yaml
+- set:
+    system:
+      config:
+        snippet:
+          frr.conf: |
+            bgp extcommunity-list standard EXTCOMMUNITY1 seq 10 permit rt 65102:10
+
+
+cumulus@switch:~$ nv config patch frr_policy.yaml
+</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3452681</td>
+<td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see the following error:
+
+cumulus@switch:~$ nv show system aaa tacacs authorization 1
+Error: GET /nvue_v1/system/aaa/tacacs/authorization/1?rev=operational responded with 404 NOT FOUND
+</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3445841</td>
+<td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}}) is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
+<td>5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3433577</td>
 <td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
 <td>5.5.0-5.6.0</td>
@@ -62,9 +102,21 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
+<td>3341214</td>
+<td>If you use the NVUE REST API to configure a local user with a hashed password, the user cannot log in and the {{/etc/nvue.d/startup.yaml}} file shows the password as plain text.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3329518</td>
 <td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} (files is listed before tacplus), a user that is present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch. NVIDIA recommends that when using TACACS+, you list {{tacplus}} before {{files}} in {{/etc/nsswitch.conf}}.  When using NVUE, ensure that {{tacacs}} has priority over {{local}}.</td>
 <td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -86,6 +138,18 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
+<td>3258232</td>
+<td>If you use NVUE to configure multiple SNMP listener addresses at the same time, the SNMP service fails to start. To work around this issue, configure multiple SNMP listener addresses one at a time.</td>
+<td>5.3.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3241567</td>
+<td>When you apply switch configuration for the first time on a freshly booted switch, you might see the error message {{Failed to start Hostname Service}} when you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
+<td>5.3.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3232091</td>
 <td>The NVUE {{nv unset interface &lt;interface&gt; link lanes}} command does not restore the port lane setting to the default value. To work around this issue, run the {{nv set interface &lt;interface&gt; link lanes &lt;value&gt;}} command.</td>
 <td>5.4.0-5.6.0</td>
@@ -95,6 +159,18 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td>3226506</td>
 <td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
 <td>5.3.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3221628</td>
+<td>Cumulus Linux 5.2.0 and 5.2.1 VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
+<td>5.2.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3172682</td>
+<td>On rare occasions, when you query the system hostname through the {{hostnamctl}} application, you see a timeout. NVUE uses the {{hostnamctl}} application to determine the system hostname, which can result in an {{nv config apply}} command failure.</td>
+<td>5.2.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -157,6 +233,12 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>3084027</td>
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3071652</td>
+<td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
+<td>4.4.4-4.4.5, 5.1.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -512,9 +594,14 @@ This error message is benign and has no functional impact.</td>
 <td>5.5.0-5.5.1</td>
 </tr>
 <tr>
-<td>3408301</td>
-<td>The NVUE {{nv show router nexthop rib}} command shows duplicate entries in the Summary section for a nexthop group. To work around this issue, run the vtysh {{show nexthop-group rib}} command instead. </td>
-<td>5.5.0-5.5.1</td>
+<td>3413785</td>
+<td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
+<td>5.0.0-5.5.1</td>
+</tr>
+<tr>
+<td>3344846</td>
+<td>The Spectrum-3 hardware configuration is not optimized for the best PTP accuracy when using 25GbE.  You might see higher than expected PTP offsets on this platforms and interface speed.</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3336808</td>

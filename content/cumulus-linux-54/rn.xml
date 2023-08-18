@@ -818,6 +818,12 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
+<td>3344846</td>
+<td>The Spectrum-3 hardware configuration is not optimized for the best PTP accuracy when using 25GbE.  You might see higher than expected PTP offsets on this platforms and interface speed.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3341214</td>
 <td>If you use the NVUE REST API to configure a local user with a hashed password, the user cannot log in and the {{/etc/nvue.d/startup.yaml}} file shows the password as plain text.</td>
 <td>5.4.0-5.5.1</td>

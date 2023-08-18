@@ -38,6 +38,24 @@ The maximum transmission unit (MTU) size for a virtual network interface should 
 
 A layer 3 VNI and a layer 2 VNI cannot have the same ID. If the VNI IDs are the same, the layer 2 VNI does not get created.
 
+### TC Filters
+
+NVIDIA recommends you run TC filter commands on each VLAN interface on the VTEP to install rules to protect the UDP port that Cumulus Linux uses for VXLAN encapsulation against VXLAN hopping vulnerabilities. If you have VRR configured on the VLAN, add a similar rule for the VRR device.
+
+The following example installs an IPv4 and an IPv6 filter on vlan10 to protect the default port 4879:
+
+```
+cumulus@switch:mgmt:~$ tc filter add dev vlan10 prio 1 protocol ip ingress flower ip_proto udp dst_port 4879 action drop
+cumulus@switch:mgmt:~$ tc filter add dev vlan10 prio 2 protocol ipv6 ingress flower ip_proto udp dst_port 4879 action drop
+```
+
+The following example installs an IPv4 and an IPv6 filter on VRR device vlan10-v0 to protect port 4879:
+
+```
+cumulus@switch:mgmt:~$ tc filter add dev vlan10-v0 prio 1 protocol ip ingress flower ip_proto udp dst_port 4879 action drop
+cumulus@switch:mgmt:~$ tc filter add dev vlan10-v0 prio 2 protocol ipv6 ingress flower ip_proto udp dst_port 4879 action drop
+```
+
 ## Useful Links
 
 - {{<exlink url="https://tools.ietf.org/html/rfc7348" text="VXLAN - RFC 7348">}}

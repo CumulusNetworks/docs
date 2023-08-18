@@ -1,7 +1,7 @@
 ---
 title: VXLAN Routing
 author: NVIDIA
-weight: 600
+weight: 605
 toc: 3
 ---
 <span style="background-color:#F5F5DC">[VXLAN](## "Virtual Extensible LAN")</span> routing, sometimes referred to as *inter-VXLAN routing*, provides IP routing between VXLAN VNIs in overlay networks. Cumulus Linux routes traffic using the inner header or the overlay tenant IP address.

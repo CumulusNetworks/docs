@@ -209,7 +209,6 @@ nv action clear evpn vni
 nv action clear evpn vni <vni-id>
 nv action clear evpn vni <vni-id> mac <mac-address-id>
 nv action clear evpn vni <vni-id> host <ip-address-id>
-nv action clear interface <interface-id> counters
 nv action clear interface <interface-id> qos pfc-watchdog deadlock-count
 nv action clear vrf <vrf-id> router bgp in [prefix-filter]
 nv action clear vrf <vrf-id> router bgp out

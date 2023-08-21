@@ -946,7 +946,7 @@ All 32x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 {{< tabs "SN3700C_ports ">}}
 {{< tab "1G ">}}
 
-128x 1G - 32XQSFP28 break out into 4x and set to 1G
+128x1G - 32XQSFP28 break out into 4x and set to 1G
 
 Max 1G ports: 128
 
@@ -960,7 +960,7 @@ Maximum 10G ports: 128
 {{< /tab >}}
 {{< tab "25G ">}}
 
-128x 25G - 32x QSFP28 break out into 4x
+128x25G - 32x QSFP28 break out into 4x
 
 Maximum 25G ports: 128
 
@@ -1035,7 +1035,7 @@ Maximum 50G ports: 128
 {{< /tab >}}
 {{< tab "100G ">}}
 
-64x 100G - 32x QSFP56 break out into 2x
+64x100G - 32x QSFP56 break out into 2x
 
 Maximum 100G ports: 64
 
@@ -1074,8 +1074,8 @@ Max 1G ports: 128
 {{< /tab >}}
 {{< tab "10G ">}}
 
-- 96x10G - 24xQSFP28-DD break out into 4x and set to 10G
-- 32x10G - 4 top QSFP-DD break out into 8x and set to 10G (bottom 4xQSFP-DD blocked*)
+- 96x 10G - 24xQSFP28-DD break out into 4x and set to 10G
+- 32x 10G - 4 top QSFP-DD break out into 8x and set to 10G (bottom 4xQSFP-DD blocked*)
 
 Maximum 10G ports: 128
 
@@ -1084,8 +1084,8 @@ Maximum 10G ports: 128
 {{< /tab >}}
 {{< tab "25G ">}}
 
-- 96x25G - 24xQSFP28-DD break out into 4x
-- 32x25G - 4 top QSFP-DD break out into 8x and set to 25G (bottom 4xQSFP-DD blocked*)
+- 96x 25G - 24xQSFP28-DD break out into 4x
+- 32x 25G - 4 top QSFP-DD break out into 8x and set to 25G (bottom 4xQSFP-DD blocked*)
 
 Maximum 25G ports: 128
 
@@ -1094,32 +1094,32 @@ Maximum 25G ports: 128
 {{< /tab >}}
 {{< tab "40G ">}}
 
-48x40G - 24xQSFP28-DD breakout into 2x and set to 40G
-16x40G – 8xQSFP-DD breakout into 2x and set to 40G
+- 48x 40G - 24xQSFP28-DD breakout into 2x and set to 40G
+- 16x 40G – 8xQSFP-DD breakout into 2x and set to 40G
 
 Maximum 40G ports: 64
 
 {{< /tab >}}
 {{< tab "50G ">}}
 
-- 96x50G - 24xQSFP28-DD/QSFP56 break out into 4x
-- 32x50G - 8xQSFP-DD break out into 4x
+- 96x 50G - 24xQSFP28-DD/QSFP56 break out into 4x
+- 32x 50G - 8xQSFP-DD break out into 4x
 
 Maximum 50G ports: 128
 
 {{< /tab >}}
 {{< tab "100G ">}}
 
-- 96x100G - 24xQSFP28-DD/QSFP56 break out into 4x
-- 32x100G - 8xQSFP-DD break out into 4x
+- 96x 100G - 24xQSFP28-DD/QSFP56 break out into 4x
+- 32x 100G - 8xQSFP-DD break out into 4x
 
 Maximum 100G ports: 128
 
 {{< /tab >}}
 {{< tab "200G ">}}
 
-- 48x200G - 24xQSFP28-DD/QSFP56 break out into 2x
-- 16x200G - 8xQSFP-DD break out into 2x
+- 48x 200G - 24xQSFP28-DD/QSFP56 break out into 2x
+- 16x 200G - 8xQSFP-DD break out into 2x
 
 Maximum 200G ports: 64
 
@@ -1236,8 +1236,8 @@ Maximum 50G ports: 128
 {{< /tab >}}
 {{< tab "100G ">}}
 
-- 128x100G - 64xQSFP56 break out into 2x
-- 64x100G - 64xQSFP28 set to 100G
+- 128x 100G - 64xQSFP56 break out into 2x
+- 64x 100G - 64xQSFP28 set to 100G
 
 Maximum 100G ports: 128
 
@@ -1365,7 +1365,7 @@ Maximum 40G ports: 128
 {{< /tab >}}
 {{< tab "50G ">}}
 
-256x 50G - 32x OSFP break out into 8x - You must disable the adjacent QSFP-DD port.
+256x 50G - 32x OSFP break out into 8x - You must disable the adjacent OSFP port.
 
 Maximum 50G ports: 256
 

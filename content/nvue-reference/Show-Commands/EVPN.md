@@ -1435,6 +1435,31 @@ cumulus@switch:~$ nv show evpn vni 10 route-target import 65102:10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show evpn vni \<vni-id\> remote-vtep</h>
+
+Shows the remote VTEPs that connect to the switch.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vni-id>` | The VNI name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show evpn vni 10 remote-vtep
+           flood
+---------  -----
+10.0.1.34  HER
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> evpn</h>
 
 Shows EVPN control plane configuration for the specified interface.

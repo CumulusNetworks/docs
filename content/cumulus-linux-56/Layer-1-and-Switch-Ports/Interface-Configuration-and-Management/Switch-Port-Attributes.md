@@ -1066,8 +1066,8 @@ You can split ports #1 to #32 into:
 {{< tabs "4410_ports ">}}
 {{< tab "1G ">}}
 
-- 96x 10G - 24XQSFP28-DD break out into 4x and set to 1G
-- 32x 10G - Top 4XQSFP-DD break out into 8x and set to 1G (bottom 4XQSFP-DD blocked*)
+- 96x 1G - 24XQSFP28-DD break out into 4x and set to 1G
+- 32x 1G - Top 4XQSFP-DD break out into 8x and set to 1G (bottom 4XQSFP-DD blocked*)
 
 Max 1G ports: 128
 
@@ -1094,9 +1094,10 @@ Maximum 25G ports: 128
 {{< /tab >}}
 {{< tab "40G ">}}
 
-32x40G - 24xQSFP28-DD and 8xQSFP-DD set to 40G
+48x40G - 24xQSFP28-DD breakout into 2x and set to 40G
+16x40G – 8xQSFP-DD breakout into 2x and set to 40G
 
-Maximum 40G ports: 32
+Maximum 40G ports: 64
 
 {{< /tab >}}
 {{< tab "50G ">}}
@@ -1371,7 +1372,7 @@ Maximum 50G ports: 256
 {{< /tab >}}
 {{< tab "100G ">}}
 
-256x 100G - 32x OSFP break out into 8x - You must disable the adjacent QSFP-DD port.
+256x 100G - 32x OSFP break out into 8x - You must disable the adjacent OSFP port.
 
 Maximum 100G ports: 256
 

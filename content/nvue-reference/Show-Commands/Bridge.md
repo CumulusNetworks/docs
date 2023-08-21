@@ -243,6 +243,32 @@ enable  off          off      off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show bridge domain \<domain-id\> port</h>
+
+Shows port information on the specified bridge domain.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default port
+port  flags                       state     
+----  --------------------------  ----------
+swp1  flood,learning,mcast_flood  forwarding
+swp2  flood,learning,mcast_flood  forwarding
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show bridge domain \<domain-id\> router-port</h>
 
 Shows the multicast router ports for the specified bridge domain.
@@ -320,34 +346,9 @@ swp2  1270     0        4       0       3          2          1653              
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show bridge domain \<domain-id\> stp state</h>
-
-Shows the STP state (up or down) of the specified bridge domain.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show bridge domain br_default stp state
-  operational  applied  pending
-  -----------  -------  -------
-  up           up       up
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show bridge domain \<domain-id\> stp port</h>
 
-Shows STP information for the ports in a bridge.
+Shows STP information for all the ports in a bridge.
 
 ### Command Syntax
 
@@ -415,6 +416,29 @@ mcheck          : no          admin-port-path-cost : 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> stp state</h>
+
+Shows the STP state (up or down) of the specified bridge domain.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp state
+  operational  applied  pending
+  -----------  -------  -------
+  up           up       up
+```
 
 ## <h>nv show bridge domain \<domain-id\> stp vlan</h>
 

@@ -34,7 +34,7 @@ snippet: {}
 
 ## <h>nv show system config apply</h>
 
-Shows the system configuration apply settings in json format.
+Shows the system configuration apply settings in json format. The output shows if any configuration is ignored and the current overwrite setting:  `all`, which overwrites all files (whether modified by NVUE or locally modified by any other user) or `controlled`, which overwrites only the files that NVUE last modified.
 
 ### Version History
 

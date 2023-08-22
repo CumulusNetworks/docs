@@ -693,7 +693,7 @@ To disable PFC watchdog, run the `nv unset interface <interface> qos pfc-watchdo
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `PFC Watchdog Configuration` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file, then restart `switchd`.
+Edit the `PFC Watchdog Configuration` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file, then reload `switchd`.
 
 ```
 ...
@@ -729,7 +729,19 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Run the following commands:
+Edit the `/etc/cumulus/switchd.conf` file to set the `pfc_wd.poll_interval` parameter and the `pfc_wd.robustness` parameter.
+
+```
+...
+# PFC Watchdog poll interval (in msec)
+#pfc_wd.poll_interval = 200
+
+# PFC Watchdog robustness (# of iterations)
+#pfc_wd.robustness = 5
+...
+```
+
+Run the following commands to apply the configuration:
 
 ```
 cumulus@switch:~$ echo 5 > /cumulus/switchd/config/pfc_wd/robustness

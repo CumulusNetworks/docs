@@ -660,7 +660,7 @@ To apply a custom profile to specific interfaces, see [Port Groups](#pfc).
 
 PFC watchdog detects and mitigates pause storms on ports where PFC is enabled.
 
-In lossless Ethernet, the switch sends PFC PAUSE frames to instruct the link partner to pause sending packets on a traffic class. This back pressure might propagate across the network and, if it persists, can cause the network to stop forwarding traffic. PFC watchdog detects abnormal back pressure caused by receiving excessive pause frames and disables PFC temporarily.
+In lossless Ethernet, the switch sends PFC PAUSE frames to instruct the link partner to pause sending packets on a traffic class. This back pressure might propagate across the network and, if it persists, can cause the network to stop forwarding traffic. PFC watchdog detects abnormal back pressure caused by receiving an excessive number of pause frames and disables PFC temporarily.
 
 When a lossless queue receives a pause storm from its link partner and the queue is in a paused state for a certain period of time, PFC watchdog mitigates the pause storm. The watchdog stops processing received pause frames on every switch priority corresponding to the traffic class that detects the storm and sets the egress buffers to zero on the corresponding traffic class.
 

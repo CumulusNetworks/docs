@@ -658,19 +658,19 @@ To apply a custom profile to specific interfaces, see [Port Groups](#pfc).
 
 ### PFC Watchdog
 
-PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+PFC watchdog detects and mitigates pause storms on ports where PFC is enabled.
 
-In lossless Ethernet, the switch sends PFC PAUSE frames to instruct the link partner to pause sending packets on a traffic class. This back pressure might propagate across the network and, if it persists, can cause the network to stop forwarding traffic. PFC watchdog detects abnormal back pressure caused by receiving excessive pause frames and disables PFC and link pause temporarily.
+In lossless Ethernet, the switch sends PFC PAUSE frames to instruct the link partner to pause sending packets on a traffic class. This back pressure might propagate across the network and, if it persists, can cause the network to stop forwarding traffic. PFC watchdog detects abnormal back pressure caused by receiving excessive pause frames and disables PFC temporarily.
 
-When a lossless queue receives a pause storm from its link partner and the queue is in a paused state for a certain period of time, PFC watchdog mitigates the pause storm in the following ways:
-- For a PFC-enabled port, the watchdog stops processing received pause frames on every switch priority corresponding to the traffic class that detects the storm and sets the egress buffers to zero on the corresponding traffic class.
-- For a link pause-enabled port, the watchdog stops processing received pause frames on the egress port that detects the storm and sets the egress buffers to zero on every traffic class on the port.
+When a lossless queue receives a pause storm from its link partner and the queue is in a paused state for a certain period of time, PFC watchdog mitigates the pause storm. The watchdog stops processing received pause frames on every switch priority corresponding to the traffic class that detects the storm and sets the egress buffers to zero on the corresponding traffic class.
 
 The watchdog continues to count pause frames received on the port. If there are no pause frames received in any polling interval period, it restores the PFC configuration on the port and stops dropping packets.
 
+PFC watchdog also detects and mitigates pause storms on ports where link pause is enabled. The watchdog configuration for link pause-enabled ports is the same as the configuration for PFC-enabled ports. For a link pause-enabled port, the watchdog stops processing received pause frames on the egress port that detects the storm and sets the egress buffers to zero on every traffic class on the port.
+
 {{%notice note%}}
 - PFC watchdog only works for lossless traffic queues.
-- You can only configure PFC watchdog on a port with PFC or link pause configuration.
+- You can only configure PFC watchdog on a port with PFC (or link pause) configuration.
 - You can only enable PFC watchdog on a physical interface (swp).
 {{%/notice%}}
 
@@ -679,7 +679,7 @@ To enable PFC watchdog:
 {{< tabs "TabID694 ">}}
 {{< tab "NVUE Commands ">}}
 
-Enable PFC watchdog on the interfaces where you enable PFC or link pause:
+Enable PFC watchdog on the interfaces where you enable PFC:
 
 ```
 cumulus@switch:~$ nv set interface swp1 qos pfc-watchdog
@@ -692,7 +692,7 @@ To disable PFC watchdog, run the `nv unset interface <interface> qos pfc-watchdo
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `PFC Watchdog Configuration` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+Edit the `PFC Watchdog Configuration` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file, then restart `switchd`.
 
 ```
 ...
@@ -703,6 +703,10 @@ Edit the `PFC Watchdog Configuration` section of the `/etc/cumulus/datapath/qos/
 pfc_watchdog.port_group_list = [pfc_wd_port_group]
 pfc_watchdog.pfc_wd_port_group.port_set = swp1,swp2
 ...
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd
 ```
 
 {{< /tab >}}
@@ -724,19 +728,12 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.conf` file to set the `pfc_wd.poll_interval` parameter and the `pfc_wd.robustness` parameter.
+Run the following commands:
 
 ```
-...
-# PFC Watchdog poll interval (in msec)
-#pfc_wd.poll_interval = 200
-
-# PFC Watchdog robustness (# of iterations)
-#pfc_wd.robustness = 5
-...
+cumulus@switch:~$ echo 5 > /cumulus/switchd/config/pfc_wd/robustness
+cumulus@switch:~$ echo 200 > /cumulus/switchd/config/pfc_wd/poll_interval
 ```
-
-Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}

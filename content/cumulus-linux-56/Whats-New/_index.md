@@ -209,7 +209,6 @@ nv action clear router bgp out
 nv action clear router bgp soft
 nv action clear router bgp soft in
 nv action clear router bgp soft out
-nv action clear router pim statistics
 nv action clear router igmp interfaces
 nv action clear evpn vni
 nv action clear evpn vni <vni-id>

@@ -7,12 +7,18 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## July 2023
+## August 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0822-011
+- Fixed an issue during creation of the configuration file for the Air agent on some nodes
+- Fixed an issue where parallel jobs could result in an invalid simulation state
+- Fixed an issue where stalled requests could prevent API access by some clients
+<!-- Air:WhatsNew -->
+
+## July 2023
 ### 82.2023.0724-011
 - Updated API to support ordering
 - Fixed an issue related to interface count limitations on certain platforms
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0717-011
 - Updated user authorization process

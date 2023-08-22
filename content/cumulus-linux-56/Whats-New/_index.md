@@ -135,7 +135,6 @@ nv set system ssh-server inactive-timeout <value>
 nv set system ssh-server permit-root-login (disabled|prohibit-password|forced-commands-only|enabled)
 nv set system ssh-server max-sessions-per-connection 1-100
 nv set system ssh-server state (enabled|disabled)
-nv set system aaa tacacs debug-level 0-2
 ```
 
 {{< /tab >}}
@@ -193,7 +192,6 @@ nv unset system ssh-server inactive-timeout
 nv unset system ssh-server permit-root-login
 nv unset system ssh-server max-sessions-per-connection
 nv unset system ssh-server state
-nv unset system aaa tacacs debug-level
 ```
 
 {{< /tab >}}

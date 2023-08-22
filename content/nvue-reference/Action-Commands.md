@@ -36,6 +36,24 @@ cumulus@switch:~$ nv action clear interface counters
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear acl counters</h>
+
+Clears all ACL counters.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear acl counters
+acl counters cleared.
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear interface \<interface\> bond mlag lacp-conflict</h>
 
 Clears the MLAG LACP conflict on the specified interface bond. A conflict can be an LACP partner MAC address mismatch or a duplicate LACP partner MAC address.
@@ -2068,7 +2086,7 @@ cumulus@switch:~$ nv action clear vrf default router pim interface-traffic
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action disconnect system aaa user \<user\>
+## <h>nv action disconnect system aaa user \<user\></h>
 
 Disconnects authenticated and authorized users.
 
@@ -2086,6 +2104,25 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv action disconnect system aaa user admin2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action reboot system</h>
+
+Reboots the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reboot system
+Rebooting System in cold mode
+True
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

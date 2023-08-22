@@ -832,6 +832,85 @@ cumulus@switch:~$ nv set interface swp1 bridge domain default stp restrrole
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp vlan \<vid\></h>
+
+Configures PVRST settings for an interface.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp vlan \<vid\> priority</h>
+
+Configures the interface port priority for a VLAN. You can specify a priority between 0 and 240; the value must be a multiple of 16.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The name of the bridge domain. |
+| `<vid>` | The VLAN identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 bridge domain default stp vlan 10 priority 240
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp vlan \<vid\> path-cost</h>
+
+Configures the interface path cost for a VLAN to influence the spanning tree forwarding path. You can specify a path cost between 1 and 200000000.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The name of the bridge domain. |
+| `<vid>` | The VLAN identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 bridge domain default stp vlan 10 path-cost 4000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> stp path-cost</h>
+
+Configures the path cost for an interface in the bridge to influence the spanning tree forwarding path. You can specify a value between 1 and 200000000.
+
+For PVRST mode, the port cost for a VLAN takes precedence over the cost for a port. If you do not configure the port cost for a VLAN, Cumulus Linux applies the port cost to all the interfaces in the VLAN. If you do not configure either the port cost for a VLAN or the cost for a port, Cumulus Linux bases the port cost on the link speed.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 bridge domain default stp path-cost 4000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> bridge domain \<domain-id\> untagged</h>
 
 Configures the VLAN in which untagged packets ingress this bridged interface. Egress packets are always tagged. You can set a value between 1 and 4094, `none`, or `auto`. If you specify `none`, the switch drops untagged packets.

@@ -672,6 +672,7 @@ PFC watchdog also detects and mitigates pause storms on ports where link pause i
 - PFC watchdog only works for lossless traffic queues.
 - You can only configure PFC watchdog on a port with PFC (or link pause) configuration.
 - You can only enable PFC watchdog on a physical interface (swp).
+- You cannot enable the watchdog on a bond (for example, bond0) but you can enable the watchdog on a port that is a member of a bond (for example, swp1).
 {{%/notice%}}
 
 To enable PFC watchdog:

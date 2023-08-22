@@ -4,15 +4,6 @@ author: NVIDIA
 weight: 830
 toc: 3
 ---
-<!-- vale off -->
-The NetQ Agent is supported on the following Linux hosts:
-<!-- vale on -->
-
-- CentOS 7
-- Red Hat Enterprise Linux 7.1
-- Ubuntu 18.04
-
-You need to {{<link url="Install-NetQ" text="install the NetQ Agent">}} on every host you want to monitor with NetQ.
 
 The NetQ Agent monitors the following on Linux hosts:
 
@@ -20,9 +11,9 @@ The NetQ Agent monitors the following on Linux hosts:
 - Layer 2: LLDP and VLAN-aware bridge
 - Layer 3: IPv4, IPv6
 - systemctl for services
-- Docker containers---refer to {{<link title="Monitor Container Environments Using Kubernetes API Server">}} for more information.
+- Docker containers (refer to {{<link title="Monitor Container Environments Using Kubernetes API Server">}} for more information)
 
-Using NetQ on a Linux host is the same as using it on a Cumulus Linux switch. For example, if you want to check LLDP neighbor information about a given host, run:
+Using NetQ on a Linux host is the same as using it on a Cumulus Linux switch. For example, if you want to check LLDP neighbor information for a given host, run {{<link title="show/#netq show lldp" text="netq show lldp">}} and specify the hostname:
 
 ```
 cumulus@host:~$ netq server01 show lldp
@@ -34,7 +25,7 @@ server01          eth1                      leaf01            swp1              
 server01          eth2                      leaf02            swp1                      Thu Sep 17 20:28:21 2020
 ```
 
-Then, to see LLDP from the switch perspective:
+Then, to see LLDP from the switch perspective run the same command, specifying the hostname of the switch:
 
 ```
 cumulus@switch:~$ netq leaf01 show lldp
@@ -53,10 +44,10 @@ leaf01            swp1                      server01          mac:44:38:39:00:00
 leaf01            swp3                      server03          mac:44:38:39:00:00:36     Thu Sep 17 20:28:14 2020
 ```
 
-To get the routing table for a server, run:
+To view the routing table for a server, run {{<link title="show/#netq show ip routes" text="netq show ip routes">}}:
 
 ```
-cumulus@host:~$ netq server01 show ip route
+cumulus@host:~$ netq server01 show ip routes
 Matching routes records:
 Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
 ------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------

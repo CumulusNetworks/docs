@@ -108,7 +108,7 @@ Last Changed              Hostname          Ifname       Prefix                 
 Mon Nov 23 22:28:42 2020  leaf03            lo           10.10.10.3                     32       default
 ```
 
-The following example displays a full chronology of changes for an IP address. If a caret (^) notation appeared, it would indicate that there was no change in value from the row above.
+The following example displays a full chronology of changes for an IP address. A caret (^) notation indicates that the value from the row preceding it has not changed.
 
 ```
 cumulus@switch:~$ netq show address-history 10.1.10.2/24
@@ -135,7 +135,7 @@ Last Changed              Hostname          Ifname       Prefix                 
 ------------------------- ----------------- ------------ ------------------------------ -------- ---------------
 Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104                    24       default
 ```
-The following example displays the history of an IP address between now and two hours ago. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
+The following example displays the history of an IP address between now and two hours ago. A caret (^) notation indicates that the value from the row preceding it has not changed.
 
 ```
 cumulus@switch:~$ netq show address-history 10.1.10.2/24 between 2h and now
@@ -3230,7 +3230,7 @@ None
 
 ### Sample Usage
 
-The following example displays a full chronology of changes for an IP address neighbor. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
+The following example displays a full chronology of changes for an IP address neighbor. A caret (^) notation indicates that the value from the row preceding it has not changed.
 
 ```
 cumulus@switch:~$ netq show neighbor-history 10.1.10.2

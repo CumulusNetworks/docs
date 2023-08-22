@@ -29,7 +29,7 @@ Refer to the {{<link title="Configure Premises" text="premises management chapte
 
 3. (Optional) Set the workbench as your home workbench, which opens when you log in to NetQ from the same premises.
 
-4. Select the cards you would like displayed on your new workbench.
+4. Select the cards you want to display on your new workbench.
 
       {{<figure src="/images/netq/new-wb-470.png" alt="interface displaying the cards a user can select to add to their workbench" width="800">}}
 

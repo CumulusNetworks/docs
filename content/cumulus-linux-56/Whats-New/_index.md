@@ -53,6 +53,8 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 {{< tab "nv show commands ">}}
 
 ```
+nv show router pbr nexthop-group
+nv show router pbr nexthop-group <nexthop-group-id>
 nv show bridge domain <domain-id> port
 nv show bridge domain <domain-id> stp counters
 nv show bridge domain <domain-id> stp port
@@ -74,7 +76,9 @@ nv show system api listening-address
 nv show system api listening-address <listening-address-id>
 nv show system api connections
 nv show system global arp
+nv show system global arp garbage-collection-threshold
 nv show system global nd
+nv show system global nd garbage-collection-threshold
 nv show system ssh-server
 nv show system ssh-server max-unauthenticated
 nv show system ssh-server vrf
@@ -116,8 +120,8 @@ nv set service ptp <instance-id> two-step (on|off)
 nv set system api listening-address <listening-address-id>
 nv set system api state (enabled|disabled)
 nv set system api port 1-65535
-nv set system global arp base-reachable-time
-nv set system global nd base-reachable-time
+nv set system global arp base-reachable-time (30-2147483|auto)
+nv set system global nd base-reachable-time (30-2147483|auto)
 nv set system ssh-server max-unauthenticated session-count 1-10000
 nv set system ssh-server max-unauthenticated throttle-percent 1-100
 nv set system ssh-server max-unauthenticated throttle-start 1-10000
@@ -131,6 +135,7 @@ nv set system ssh-server inactive-timeout <value>
 nv set system ssh-server permit-root-login (disabled|prohibit-password|forced-commands-only|enabled)
 nv set system ssh-server max-sessions-per-connection 1-100
 nv set system ssh-server state (enabled|disabled)
+nv set system aaa tacacs debug-level 0-2
 ```
 
 {{< /tab >}}
@@ -188,6 +193,7 @@ nv unset system ssh-server inactive-timeout
 nv unset system ssh-server permit-root-login
 nv unset system ssh-server max-sessions-per-connection
 nv unset system ssh-server state
+nv unset system aaa tacacs debug-level
 ```
 
 {{< /tab >}}
@@ -203,7 +209,6 @@ nv action clear router bgp out
 nv action clear router bgp soft
 nv action clear router bgp soft in
 nv action clear router bgp soft out
-nv action clear router pim statistics
 nv action clear router igmp interfaces
 nv action clear evpn vni
 nv action clear evpn vni <vni-id>

@@ -559,26 +559,17 @@ switch# show pbr map
 
 To see information about a policy, its matches, and associated interface, run the vtysh `show pbr map <map-name>` command.
 
-To see information about all next hop groups, run the vtysh `show pbr nexthop-group` command.
+To see information about all next hop groups, run the NVUE `nv show router pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# show pbr nexthop-group
-Nexthop-Group: map1701 Table: 10004 Valid: yes Installed: yes
-Valid: yes nexthop 10.1.1.2
-Nexthop-Group: map1700 Table: 10003 Valid: yes Installed: yes
-Valid: yes nexthop 10.1.1.2
-Nexthop-Group: group1 Table: 10000 Valid: yes Installed: yes
-Valid: yes nexthop 192.168.10.0 bond1
-Valid: yes nexthop 192.168.10.2
-Valid: yes nexthop 192.168.10.3 vlan70
-Nexthop-Group: group2 Table: 10001 Valid: yes Installed: yes
-Valid: yes nexthop 192.168.8.1
-Valid: yes nexthop 192.168.8.2
-Valid: yes nexthop 192.168.8.3
+cumulus@switch:~$ nv show router pbr nexthop-group
+Nexthop-groups  installed  valid    Summary         
+--------------  ---------  -----    ----------------
+group1          yes         yes     Nexthop-index: 1
+                                    Nexthop-index: 2
 ```
 
-To see information about a specific next hop group, run the vtysh `show pbr nexthop-group group1` command.
+To see information about a specific next hop group, run the NVUE `nv show router pbr nexthop-group <nexthop-group>` command or the vtysh `show pbr nexthop-group <nexthop-group>` command.
 
 {{%notice note%}}
 Each next hop and next hop group uses a new Linux routing table ID.

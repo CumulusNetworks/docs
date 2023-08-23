@@ -14,7 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set system api listening-address \<listening-address-id\></h>
 
-Configures the API listening address; you can specify an IPv4 address or localhost. If you do not specify a listening address, NGINX listens on all addresses for the target port.
+Configures the NVUE REST API listening address; you can specify an IPv4 address or localhost. If you do not specify a listening address, NGINX listens on all addresses for the target port.
 
 ### Command Syntax
 
@@ -52,7 +52,7 @@ cumulus@switch:~$ nv set system api state enabled
 
 ## <h>nv set system api port</h>
 
-Configures the API port. You can set a value between 1 and 65535. If you do not set a port, Cumulus Linux uses the default port 8765.
+Configures the NVUE REST API port. You can set a value between 1 and 65535. If you do not set a port, Cumulus Linux uses the default port 8765.
 
 ### Version History
 

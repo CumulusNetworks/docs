@@ -1509,20 +1509,6 @@ cumulus@switch:~$ nv action clear vrf default router pim interface-traffic
 Action succeeded
 ```
 
-To clear all PIM process statistics in a VRF:
-
-```
-cumulus@switch:~$ nv action clear vrf default router pim statistics
-Action succeeded
-```
-
-To clear all PIM process statistics:
-
-```
-cumulus@switch:~$ nv action clear router pim statistics
-Action succeeded
-```
-
 To clear the IGMP interface state:
 
 ```

@@ -269,6 +269,36 @@ swp2  flood,learning,mcast_flood  forwarding
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show bridge domain \<domain-id\> port vlan</h>
+
+Shows VLAN information for a specific bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default port vlan
+port  vlan  tag-state  fwd-state 
+----  ----  ---------  ----------
+swp1  1     untagged   forwarding
+      10    tagged     forwarding
+      20    tagged     forwarding
+swp2  1     untagged   forwarding
+      10    tagged     forwarding
+      20    tagged     forwarding
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show bridge domain \<domain-id\> router-port</h>
 
 Shows the multicast router ports for a bridge.
@@ -843,6 +873,49 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.0.1.34
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge port</h>
+
+Shows the ports mapped to each bridge on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge port
+domain                       port             
+--------        ------------------------------
+br_default      swp1,swp2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge port-vlan</h>
+
+Shows the VLANs mapped to each bridge port on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge port-vlan
+domain        port            vlan   tag-state
+-------    ---------     ---------   ---------
+br_default    swp1               1    untagged
+                                10      tagged
+                                20      tagged
+              swp2               1    untagged
+                                10      tagged
+                                20      tagged
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

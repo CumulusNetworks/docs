@@ -22,6 +22,10 @@ Provides commands to configure adaptive routing on the specified interface. Adap
 
 Turns adaptive routing on the specified interface on or off. The default setting is `off`.
 
+{{%notice note%}}
+NVUE must restart `switchd` to apply the setting.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -71,6 +75,10 @@ Provides commands to configure adaptive routing globally on the switch. Adaptive
 ## <h>nv set router adaptive-routing enable</h>
 
 Turns adaptive routing on or off globally. The default setting is `off`.
+
+{{%notice note%}}
+NVUE must restart `switchd` to apply the setting.
+{{%/notice%}}
 
 ### Version History
 

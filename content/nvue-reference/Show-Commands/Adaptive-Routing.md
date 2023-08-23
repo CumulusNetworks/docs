@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show interface \<interface-id\> router adaptive-routing</h>
 
-Shows if adaptive routing is enabled on the interface and the link utilization threshold (as a percentage).
+Shows adaptive routing configuration settings on the interface.
 
 ### Command Syntax
 
@@ -38,7 +38,7 @@ link-utilization-threshold  50
 
 ## <h>nv show router adaptive-routing</h>
 
-Shows if adaptive routing is enabled globally.
+Shows if adaptive routing is enabled globally on the switch.
 
 ### Version History
 

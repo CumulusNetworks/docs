@@ -34,9 +34,15 @@ Introduced in Cumulus Linux 5.0.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain br_default ageing</h>
+## <h>nv set bridge domain \<domain-id\> ageing</h>
 
 Configures the number of seconds that Cumulus Linux stores MAC addresses in the Ethernet switching table. You can set a value between 0 and 65535. The default setting is 1800 seconds (30 minutes). A value of 0 turns MAC ageing off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<domain-id>` |  The name of the bridge domain. |
 
 ### Version History
 

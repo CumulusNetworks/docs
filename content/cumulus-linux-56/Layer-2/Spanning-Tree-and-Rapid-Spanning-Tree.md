@@ -81,6 +81,61 @@ To revert the mode to the default setting (RSTP), run the `sudo mstpctl clearmod
 {{< /tab >}}
 {{< /tabs >}}
 
+### PVRST Scale
+
+The maximum number of PVRST instances you can configure is 300 VLANs with 24 ports. The default forwarding rate and burst rate for the `rpvst` trap group is 2000 pps, as shown with the `nv show system control-plane policer rpvst` command ouput below:
+
+```
+cumulus@switch:~$ nv show system control-plane policer rpvst
+                 operational  applied
+---------------  -----------  -------
+burst            2000         2000
+rate             2000         2000
+state            on           on
+statistics
+  policer-cbs    11
+  policer-cir    2000
+  policer-id     22
+  to-cpu-bytes   0
+  to-cpu-pkts    0
+  trap-group-id  4
+  violated-pkts  0
+```
+
+You must modify the `rpvst` trap group settings to scale to the maximum number of PVRST instances by setting the forwarding rate and the burst rate to 7200 pps:
+
+{{< tabs "107 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system control-plane policer rpvst rate 7200
+cumulus@switch:~$ nv set system control-plane policer rpvst burst 7200
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/cumulus/control-plane/policers.conf` file to change the `copp.rpvst.rate` and `copp.rpvst.burst` parameters to 7200:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/control-plane/policers.conf
+   ...
+   copp.rpvst.enable = TRUE
+   copp.rpvst.rate = 7200
+   copp.rpvst.burst = 7200
+   ...
+   ```
+
+2. Run the following command to apply the change:
+
+   ```
+   cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/policers.conf
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### STP Modes for a Traditional Bridge
 
 {{<link url="Traditional-Bridge-Mode" text="Traditional bridges">}} operate in:

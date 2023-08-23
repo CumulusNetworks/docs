@@ -440,9 +440,11 @@ cumulus@switch:~$ nv show bridge domain br_default stp state
   up           up       up
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show bridge domain \<domain-id\> stp vlan</h>
 
-Shows STP information for the VLANs in a bridge.
+Shows PVRST information for the VLANs the bridge.
 
 ### Command Syntax
 
@@ -487,7 +489,7 @@ Topology Change Network  count       : 1       time since change : 1147s
 
 ## <h>nv show bridge domain \<domain-id\> stp vlan \<vid\></h>
 
-Shows STP information for a specific bridge VLAN.
+Shows PVRST information for a specific bridge VLAN.
 
 ### Command Syntax
 
@@ -566,7 +568,7 @@ cumulus@switch:~$ nv show bridge domain br_default vlan
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\></h>
 
-Shows configuration settings for a specific VLAN on the specified bridge domain.
+Shows configuration settings for a specific bridge VLAN.
 
 ### Command Syntax
 
@@ -598,7 +600,7 @@ ptp
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> multicast</h>
 
-Shows the multicast configuration settings for the specified VLAN.
+Shows the multicast configuration settings for the specified bridge VLAN.
 
 ### Command Syntax
 
@@ -935,9 +937,37 @@ restrrole    off          off      off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> bridge domain \<domain-id\> stp vlan \<vid\></h>
+
+Shows interface PVRST settings for a specific bridge domain.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+| `<domain-id>`  | The name of the bridge domain. |
+| `<vid>` | The VLAN ID. You can also specify `all` to show settings for all VLANs. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface bond3 bridge domain br_default stp vlan 10
+           applied
+---------  -------
+path-cost  4000   
+priority   240    
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\></h>
 
-Shows configuration settings for a specific VLAN on the specified bridge domain.
+Shows configuration settings for a specific bridge VLAN.
 
 ### Command Syntax
 

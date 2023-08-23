@@ -102,7 +102,7 @@ statistics
   violated-pkts  0
 ```
 
-You must modify the `rpvst` trap group settings to scale to the maximum number of PVRST instances by setting the forwarding rate and the burst rate to 7200 pps:
+If you enable PVRST mode, you must modify the `rpvst` trap group settings to scale to the maximum number of PVRST instances by setting the forwarding rate and the burst rate to 7200 pps:
 
 {{< tabs "107 ">}}
 {{< tab "NVUE Commands ">}}

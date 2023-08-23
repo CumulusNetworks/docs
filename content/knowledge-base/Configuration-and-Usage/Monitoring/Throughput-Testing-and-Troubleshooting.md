@@ -48,7 +48,7 @@ This is a complete rewrite of the original iPerf tool. It has many of the same f
 
 {{%notice note%}}
 
-NVIDIA tested iPerf3 and identified some functionality issues on Debian Wheezy 7.9, while NVIDIA noticed no issues on Debian Jessie 8.3. iPerf versions 1 and 2 work on Debian Wheezy.
+NVIDIA tested iPerf3 and identified some functionality issues on Debian Wheezy 7.9, while NVIDIA noticed no issues on Debian Jessie 8.3. iPerf versions 1 and 2 work on Debian Wheezy. Nvidia does not provide support for installation or usage of 3rd party tools.  The information here is provided as a courtesy.
 
 {{%/notice%}}
 

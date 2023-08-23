@@ -1489,7 +1489,6 @@ Source                Group               RP   Local    SPT      Uptime
 If you are troubleshooting or making changes to your multicast environment, you can:
 - Clear PIM neighbors for all PIM interfaces in a VRF.
 - Clear traffic statistics for all PIM interfaces in a VRF.
-- Clear all PIM process statistics or PIM process statistics in a VRF, such as PIM bootstrap message counters.
 - Clear the IGMP interface state.
 
 {{< tabs "TabID1404 ">}}
@@ -1506,20 +1505,6 @@ To clear traffic statistics for all PIM interfaces in a VRF:
 
 ```
 cumulus@switch:~$ nv action clear vrf default router pim interface-traffic
-Action succeeded
-```
-
-To clear all PIM process statistics in a VRF:
-
-```
-cumulus@switch:~$ nv action clear vrf default router pim statistics
-Action succeeded
-```
-
-To clear all PIM process statistics:
-
-```
-cumulus@switch:~$ nv action clear router pim statistics
 Action succeeded
 ```
 

@@ -234,7 +234,13 @@ cumulus@switch:~$ nv set bridge domain br_default stp state up
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> stp vlan <vid> bridge-priority</h>
+## <h>nv set bridge domain \<domain-id\> stp vlan \<vid\></h>
+
+Configures PVRST settings for a VLAN.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set bridge domain \<domain-id\> stp vlan \<vid\> bridge-priority</h>
 
 Configures the spanning tree priority for a VLAN when in PVRST mode. You can set a value between 4096 and 61440.
 
@@ -257,7 +263,7 @@ cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 bridge-priority 40
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> stp vlan <vid> hello-time</h>
+## <h>nv set bridge domain \<domain-id\> stp vlan \<vid\> hello-time</h>
 
 Configures the hello timer for a VLAN when in PVRST mode. The hello timer sets how often to broadcast hello messages to other switches. You can set a value between 1 and 10 seconds.
 
@@ -280,7 +286,7 @@ cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 hello-time 4
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> stp vlan <vid> forward-delay</h>
+## <h>nv set bridge domain \<domain-id\> stp vlan \<vid\> forward-delay</h>
 
 Configures the forward delay for a VLAN when in PVRST mode. The forward delay sets the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds.
 
@@ -303,7 +309,7 @@ cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 forward-delay 4
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> stp vlan <vid> max-age</h>
+## <h>nv set bridge domain \<domain-id\> stp vlan \<vid\> max-age</h>
 
 Configures the max age for a VLAN when in PVRST mode. The max age sets the maximum amount of time STP information is retained before it is discarded. You can set a value between 6 and 40 seconds.
 

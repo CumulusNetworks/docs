@@ -459,23 +459,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear router pim statistics</h>
-
-Clears all PIM process statistics.
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear router pim statistics
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action clear router policy prefix-list</h>
 
 Clears all IP prefix list statistics.

@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3511640</td>
-<td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
-<td>5.4.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3452732</td>
 <td>The {{nv set router policy ext-community-list &lt;policy-name&gt; rule &lt;rule-number&gt; ext-community rt &lt;route-target&gt;}} command does not generate the standard based BGP community list. As a result, routes do not match the expected community list. To work around this issue, create a snippet to add the policy configuration to the {{/etc/frr/frr.conf}} file, then patch the configuration. For example:
 
@@ -578,11 +572,6 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td>3433944</td>
 <td>The {{wjh_dissector.lua}} WJH packet decoder script provided with Cumulus Linux might fail to decode all WJH packets.</td>
 <td>5.4.0-5.5.1</td>
-</tr>
-<tr>
-<td>3428677</td>
-<td>In certain cases, Cumulus Linux does not process next hop updates because the {{zebra}} IP routing manager thinks the state of the next hops is unchanged. As a result, route installation fails and remains in a rejected state.</td>
-<td>5.3.0-5.5.1</td>
 </tr>
 <tr>
 <td>3419940</td>

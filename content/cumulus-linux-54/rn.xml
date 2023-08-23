@@ -468,12 +468,6 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <td></td>
 </tr>
 <tr>
-<td>3511640</td>
-<td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
-<td>5.4.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3498939</td>
 <td>In an EVPN environment, VM migration (IP and MAC address migration) might not work because the new local VTEP to which the VM migrates does not install the entry in the kenel. To work around this issue, restart the {{switchd}} service.</td>
 <td>5.4.0-5.5.1</td>

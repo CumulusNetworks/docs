@@ -49,12 +49,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3511640</td>
-<td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
-<td>5.4.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3509445</td>
 <td>If a BGP numbered session is in a non-established state, SNMP walk commands to the system might time out when the BGPVRF MIB is included in the OIDs to collect. In addition, FRR might report warnings about AgentX in the log files.</td>
 <td>5.5.0-5.5.1</td>
@@ -642,12 +636,6 @@ You can safely ignore this warning.</td>
 <td>3517376</td>
 <td>When you use CMIS specification based optics,  the {{l1-show}} command output provides incorrect values for digital diagnostics (TX Power and RX Power). To work around this issue, run the {{mlxlink}} command with either the {{-m}} or {{--cable --ddm}} flags.</td>
 <td>5.5.0-5.5.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3511640</td>
-<td>When you run NVUE commands to enter strings, such as passwords that use special characters (&amp;, %, $, and so on), NVUE splits the command into two parts so that Linux can interpret the special character. As a result, the intended string you enter is not actually what is set. To workaround this issue, encapsulate the password string that contains a special character in single quotes ('); for example, {{nv set vrf vrf1 router bgp neighbor 1.1.1.1. password 'BGP-Auth-To-IT_$25255'}}.</td>
-<td>5.4.0-5.5.1</td>
 <td></td>
 </tr>
 <tr>

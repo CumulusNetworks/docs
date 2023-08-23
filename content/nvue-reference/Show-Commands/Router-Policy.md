@@ -56,7 +56,7 @@ cumulus@switch:~$ nv show router policy as-path-list mylist
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show router policy as-path-list \<list-id>\ rule</h>
+## <h>nv show router policy as-path-list \<list-id\> rule</h>
 
 Shows the specified AS path list policy rules.
 
@@ -78,7 +78,7 @@ cumulus@switch:~$ nv show router policy as-path-list mylist rule
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show router policy as-path-list \<list-id>\ rule \<rule-id\></h>
+## <h>nv show router policy as-path-list \<list-id\> rule \<rule-id\></h>
 
 Shows the specified AS path list policy rule configuration.
 

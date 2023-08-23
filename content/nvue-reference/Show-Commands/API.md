@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show system api</h>
 
-Shows REST API port configuration, state (enabled or disabled), and connection information.
+Shows the NVUE REST API port configuration, state (enabled or disabled), and connection information.
 
 ### Version History
 
@@ -41,7 +41,7 @@ connections
 
 ## <h>nv show system api listening-address</h>
 
-Shows the API listening address.
+Shows the NVUE REST API listening address.
 
 ### Version History
 
@@ -60,7 +60,7 @@ localhost
 
 ## <h>nv show system api listening-address \<listening-address-id\></h>
 
-Shows information about a specific listening address.
+Shows information about a specific NVUE REST API listening address.
 
 ### Command Syntax
 
@@ -82,7 +82,7 @@ cumulus@switch:~$ nv show system api listening-address localhost
 
 ## <h>nv show system api connections</h>
 
-Shows API connection information.
+Shows NVUE REST API connection information.
 
 ### Version History
 

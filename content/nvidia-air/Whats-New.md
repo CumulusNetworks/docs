@@ -9,11 +9,14 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## August 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0824-012
+- Added a new `link_id` field to the `/v1/interface/` API response
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0822-011
 - Fixed an issue during creation of the configuration file for the Air agent on some nodes
 - Fixed an issue where parallel jobs could result in an invalid simulation state
 - Fixed an issue where stalled requests could prevent API access by some clients
-<!-- Air:WhatsNew -->
 
 ## July 2023
 ### 82.2023.0724-011

@@ -181,7 +181,7 @@ The commands take the form of `netq check <network-protocol-or-service> [options
 
 {{< expand "Example check command" >}}
 
-The following example shows the output for the `netq check bgp` command. If there were any failures, they would appear below the summary results or in the *failedNodes* section, respectively.
+The following example shows the output for the `netq check bgp` command. Failed checks appear in the summary results or in the *failedNodes* section.
 
 ```
 cumulus@switch:~$ netq check bgp

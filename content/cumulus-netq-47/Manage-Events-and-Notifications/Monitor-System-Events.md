@@ -166,8 +166,8 @@ To remove suppressed event configurations:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then **Events**.
 2. Select **Show suppression rules** at the top of the page.
-3. Toggle between the **Single** and **All** tabs to view the suppression rules. Navigate to the rule you would like to delete or disable.
-4. Click the three-dot menu and select **Delete**. If you'd like to pause the rule instead of deleting it, click **Disable**.
+3. Toggle between the **Single** and **All** tabs to view the suppression rules. Navigate to the rule you want to delete or disable.
+4. Click the three-dot menu and select **Delete**. To pause the rule instead of deleting it, click **Disable**.
 
 {{</tab>}}
 

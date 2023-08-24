@@ -16,7 +16,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 ### Platforms
 
-- NVIDIA SN5600 (800G Spectrum-4) - does not support 1G
+- NVIDIA SN5600 (800G Spectrum-4) - (only supports 1G on the bonus port)
 - NVIDIA SN3750-SX (200G Spectrum-2) is now generally available
 
 ### New Features and Enhancements

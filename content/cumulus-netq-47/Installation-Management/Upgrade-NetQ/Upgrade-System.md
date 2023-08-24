@@ -127,9 +127,11 @@ Confirm that the kubelet process is running with the `sudo systemctl status kube
 
 #### Upgrade Using the NetQ CLI
 
-1. Prepare your NetQ VM for the upgrade:
+1. Prepare your NetQ VM for the upgrade. Run the following command to clear the current install state and save the current database.  In cluster deployments, run this command on the master and all worker VMs.
 
-Run the `netq bootstrap reset keep-db purge-images` command to clear the current install state and save the current database.  In cluster deployments, run this command on the master and all worker VMs.
+```
+cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images
+```
 
 2. Run the appropriate `netq install` command for your deployment.
 

@@ -128,17 +128,6 @@ cumulus@switch:~$ nv config find stp
                 forward-delay: 4
                 hello-time: 4
                 max-age: 6
-    interface:
-      swp1:
-        bridge:
-          domain:
-            br_default:
-              stp:
-                path-cost: 4000
-                vlan:
-                  '10':
-                    path-cost: 4000
-                    priority: 240
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

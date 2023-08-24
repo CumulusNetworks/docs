@@ -31,7 +31,7 @@ cumulus@switch:~$ nv show bridge
 
 ## <h>nv show bridge domain</h>
 
-Shows configuration settings for the all configured bridges.
+Shows configuration settings for all the bridges on the switch.
 
 ### Version History
 
@@ -271,7 +271,7 @@ swp2  flood,learning,mcast_flood  forwarding
 
 ## <h>nv show bridge domain \<domain-id\> port vlan</h>
 
-Shows VLAN information for a specific bridge.
+Shows VLAN information for a bridge.
 
 ### Command Syntax
 
@@ -449,7 +449,7 @@ mcheck          : no          admin-port-path-cost : 0
 
 ## <h>nv show bridge domain \<domain-id\> stp state</h>
 
-Shows the STP state (up or down) of a bridge.
+Shows the STP state (up or down) for a bridge.
 
 ### Command Syntax
 

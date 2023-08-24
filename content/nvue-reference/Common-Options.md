@@ -8,9 +8,6 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
-{{%notice note%}}
-This document is in beta.
-{{%/notice%}}
 
 All NVUE commands have `-h` and `--help` options that provide command description and usage.
 

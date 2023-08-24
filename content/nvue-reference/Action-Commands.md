@@ -8,9 +8,7 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
-{{%notice note%}}
-This document is in beta.
-{{%/notice%}}
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action
 
@@ -520,6 +518,22 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv action clear router policy prefix-list prefixlist1 rule 10 match 10.0.0.0/16
 Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router policy route-map</h>
+
+Clears all route map counters.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router policy route-map
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

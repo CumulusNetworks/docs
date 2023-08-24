@@ -1339,21 +1339,21 @@ Bonus port #65 supports 1G, 10G, and 25G but does not support breakouts.
 {{< tabs "5600_ports ">}}
 {{< tab "1G ">}}
 
-Not supported.
+Maximum 1G ports: 1 (bonus port)
 
 {{< /tab >}}
 {{< tab "10G ">}}
 
 256x 10G
 
-Maximum 10G ports: 256
+Maximum 10G ports: 257 (256 + 1 bonus port)
 
 {{< /tab >}}
 {{< tab "25G ">}}
 
 256x 25G
 
-Maximum 25G ports: 256
+Maximum 25G ports: 257 (256 + 1 bonus port)
 
 {{< /tab >}}
 {{< tab "40G ">}}

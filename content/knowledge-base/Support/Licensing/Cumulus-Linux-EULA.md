@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux EULA
+title: Cumulus Linux End User License Agreement
 author: NVIDIA
 weight: 612
 toc: 4

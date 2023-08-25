@@ -75,13 +75,30 @@ Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back 
     ```
 
 
-### Download the Upgrade Tarball
+### Download Upgrade Software
 
-1. Download the relevant software.
+1. Download the upgrade tarball.
 
     {{<netq-install/upgrade-image version="4.7">}}
 
-2. Copy the file to the `/mnt/installables/` directory on your NetQ VM.
+2. Copy the tarball to the `/mnt/installables/` directory on your NetQ VM.
+
+3. Download the configuration backup script `backup_restore_configs.py`:
+
+<p style="text-indent: 40px; display:inline">a. On the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}, log in to your account.<br></p>
+<p style="text-indent: 40px; display:inline">b. Select <b>NVIDIA Licensing Portal</b>.<br></p>
+<p style="text-indent: 40px; display:inline">c. Select <b>Software Downloads</b> from the menu.<br></p>
+<p style="text-indent: 40px; display:inline">d. Click <b>Product Family</b> and select <b>NetQ</b>.<br></p>
+<p style="text-indent: 40px; display:inline">e. Locate the NETQ CONFIGURATION BACKUP AND RESTORE file and select <b>Download</b>.<br></p>
+<p style="text-indent: 40px; display:inline">f. If prompted, agree to the license agreement and proceed with the download.<br></p>
+
+4. Copy the `backup_restore_configs.py` script to your NetQ server:
+
+```
+username@hostname:~$ scp ./backup_restore_configs.py cumulus@10.10.10.10:/home/cumulus/
+```
+
+
 ### Run the Upgrade
 
 {{%notice note%}}
@@ -127,13 +144,19 @@ Confirm that the kubelet process is running with the `sudo systemctl status kube
 
 #### Upgrade Using the NetQ CLI
 
-1. Prepare your NetQ VM for the upgrade. Run the following command to clear the current install state and save the current database.  In cluster deployments, run this command on the master and all worker VMs.
+1. Run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master and all worker VMs:
+
+```
+sudo ./backup_restore_configs.py --preupgrade
+```
+
+2. Run the following command to clear the current install state and save the current database.  In cluster deployments, run this command on the master and all worker VMs:
 
 ```
 cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images
 ```
 
-2. Run the appropriate `netq install` command for your deployment.
+3. Run the appropriate `netq install` command for your deployment.
 
 {{<tabs "CLI Upgrade">}}
 
@@ -228,7 +251,13 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 
 {{</tabs>}}
 
-3. Confirm the upgrade was successful:
+4. Run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master and all worker VMs:
+
+```
+sudo ./backup_restore_configs.py --postupgrade
+```
+
+5. Confirm the upgrade was successful:
 
 {{<tabs "TabID230" >}}
 

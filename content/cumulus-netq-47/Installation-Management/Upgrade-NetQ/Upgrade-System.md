@@ -75,7 +75,7 @@ Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back 
     ```
 
 
-### Download Upgrade Software
+### Download the Upgrade Software
 
 1. Download the upgrade tarball.
 
@@ -83,13 +83,13 @@ Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back 
 
 2. Copy the tarball to the `/mnt/installables/` directory on your NetQ VM.
 
-3. Download the configuration backup script `backup_restore_configs.py`:
+3. Download the configuration backup script, `backup_restore_configs.py`:
 
 <p style="text-indent: 40px; display:inline">a. On the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}, log in to your account.<br></p>
 <p style="text-indent: 40px; display:inline">b. Select <b>NVIDIA Licensing Portal</b>.<br></p>
 <p style="text-indent: 40px; display:inline">c. Select <b>Software Downloads</b> from the menu.<br></p>
 <p style="text-indent: 40px; display:inline">d. Click <b>Product Family</b> and select <b>NetQ</b>.<br></p>
-<p style="text-indent: 40px; display:inline">e. Locate the NETQ CONFIGURATION BACKUP AND RESTORE file and select <b>Download</b>.<br></p>
+<p style="text-indent: 40px; display:inline">e. Locate the <b>NetQ SW 4.7.0 Upgrade Backup Restore Configs Script</b> file and select <b>Download</b>.<br></p>
 <p style="text-indent: 40px; display:inline">f. If prompted, agree to the license agreement and proceed with the download.<br></p>
 
 4. Copy the `backup_restore_configs.py` script to your NetQ server:

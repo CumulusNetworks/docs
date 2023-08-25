@@ -1,0 +1,1 @@
+snmptrapd has no copyright file

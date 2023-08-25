@@ -144,13 +144,13 @@ Confirm that the kubelet process is running with the `sudo systemctl status kube
 
 #### Upgrade Using the NetQ CLI
 
-1. Run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master node only:
+1. Run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master node:
 
 ```
 sudo ./backup_restore_configs.py --preupgrade
 ```
 
-2. Run the following command to clear the current install state and save the current database.  In cluster deployments, run this command on the master and all worker VMs:
+2. Run the following command to clear the current install state and save the current database.  In cluster deployments, run this command on the master node:
 
 ```
 cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images
@@ -251,7 +251,7 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 
 {{</tabs>}}
 
-4. Run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master node only:
+4. Run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master node:
 
 ```
 sudo ./backup_restore_configs.py --postupgrade

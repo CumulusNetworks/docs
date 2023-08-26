@@ -18,7 +18,7 @@ For deployments running:
 
 Upgrading to NetQ 4.7.0 from NetQ 4.4.1 or earlier requires a new installation of the NetQ virtual machine. Perform the following steps to upgrade:
 
-1. For on-premises deployments, {{<link title="Back Up and Restore NetQ" text="back up your existing NetQ data">}}. NetQ cloud deployments create backups automatically.
+1. For on-premises deployments, {{<link title="Back Up and Restore NetQ" text="back up your existing NetQ data">}}. NetQ cloud deployments are backed up automatically by Nvidia.
 
 2. Follow the {{<link title="Install the NetQ System" text="installation process">}} for your deployment model.
 
@@ -125,7 +125,7 @@ sudo systemctl restart kubelet
 
 Confirm that the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
 
-#### Upgrade Using the NetQ CLI
+#### Upgrade NetQ
 
 1. Prepare your NetQ VM for the upgrade:
 
@@ -247,7 +247,7 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
     BOOTSTRAP_VERSION=4.7.0
-    APPLIANCE_MANIFEST_HASH=0f282bd6eb5ac43c6b7b7a2a0df42281b20912ffead1eb2ba8afafd5a428db7c
+    APPLIANCE_MANIFEST_HASH=8869b5423dfcc441ea56a3c89e680b1b2ad61f6887edccb11676bac893073beb
     APPLIANCE_VERSION=4.7.0
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```

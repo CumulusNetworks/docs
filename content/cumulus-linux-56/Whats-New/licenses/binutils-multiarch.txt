@@ -1,0 +1,1 @@
+binutils-multiarch has no copyright file

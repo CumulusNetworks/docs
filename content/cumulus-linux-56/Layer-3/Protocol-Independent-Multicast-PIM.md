@@ -997,10 +997,10 @@ cumulus@switch:~$ nv config apply
 ### IGMP Settings
 
 You can set the following optional IGMP settings on a PIM interface:
-- The last member query interval, which is the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 100.
-- The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 1000.
+- The last member query interval, which is the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 10.
+- The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 100.
 - The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255 seconds. The default setting is 2.
-- How often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 65535 seconds. The default setting is 100.
+- How often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 65535 seconds. The default setting is 125.
 - Fast leave processing, where the switch immediately removes a port from the forwarding entry for a multicast group when the port receives a leave message. The default setting is off.
 
 {{< tabs "TabID356 ">}}

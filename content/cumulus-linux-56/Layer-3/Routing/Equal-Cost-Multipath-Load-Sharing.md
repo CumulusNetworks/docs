@@ -500,6 +500,11 @@ cumulus@switch:~$ systemctl status frr
 
 ## Adaptive Routing
 
+{{%notice warning%}}
+- If you enabled adaptive routing with NVUE in Cumulus Linux 5.5 or earlier, using ISSU to upgrade to Cumulus Linux 5.6.0 results in traffic loss.
+- If you enabled adaptive routing in Cumulus Linux 5.5 or earlier by editing the `/etc/cumulus/switchd.d/adaptive_routing.conf` file, you must reconfigure adaptive routing for all the adaptive routing enabled interfaces with the new configuration described below after you upgrade to Cumulus Linux 5.6.0.  
+{{%/notice%}}
+
 Adaptive routing is a load balancing mechanism that improves network utilization for eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.
 
 The benefits of using adaptive routing include:

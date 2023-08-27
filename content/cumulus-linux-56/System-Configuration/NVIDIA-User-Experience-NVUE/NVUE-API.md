@@ -10,6 +10,10 @@ toc: 3
     overflow-y: auto;
   }
 </style>
+{{%notice warning%}}
+When you upgrade to Cumulus Linux 5.6 or later, the switch overwrites any manual configuration you performed by editing files in Cumulus Linux 5.5 or earlier, such as configuring the listening address, port, TLS, or certificate.
+{{%/notice%}}
+
 In addition to the CLI, NVUE supports a REST API. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL or a web browser.
 
 The `nvued` service provides access to the NVUE REST API. Cumulus Linux exposes the HTTP endpoint internally, which makes the NVUE REST API accessible locally within the Cumulus Linux switch. The NVUE CLI also communicates with the `nvued` service using internal APIs. To provide external access to the NVUE REST API, Cumulus Linux uses an HTTP reverse proxy server, and supports HTTPS and TLS connections from external REST API clients.
@@ -105,21 +109,24 @@ The NVUE CLI and the REST API are equivalent in functionality; you can run all m
 <!-- vale off -->
 NVUE follows a declarative model, removing context-specific commands and settings. The structure of NVUE is like a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are more branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
 <!-- vale on -->
-### Enable the NVUE REST API
 
-To enable the NVUE REST API:
-- Set the API state to `enabled`.
-- Set the API port. If you do not set a port, Cumulus Linux uses the default port 8765.
-- Specify the API listening address; you can specify an IPv4 address or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
+The NVUE REST API is enabled by default. To disable the NVUE REST API, run the `nv set system api state disabled` command.
+
+{{%notice note%}}
+To use the NVUE REST API in Cumulus Linux 5.6, you must {{<link url="/User-Accounts" text="change the password for the cumulus user">}}; otherwise you see 403 responses when you run commands.
+{{%/notice%}}
+
+### API Port and Listening Address
+
+This section discusses how to:
+- Set the NVUE REST API port. If you do not set a port, Cumulus Linux uses the default port 8765.
+- Specify the NVUE REST API listening address; you can specify an IPv4 address or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
 
 ```
-cumulus@switch:~$ nv set system api state enabled
 cumulus@switch:~$ nv set system api port 8888
 cumulus@switch:~$ nv set system api listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
-
-To disable the NVUE REST API, run the `nv set system api state disabled` command.
 
 {{%notice note%}}
 - You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the the management VRF and to swp1 on VRF BLUE.
@@ -131,6 +138,8 @@ cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 i
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
 -->
+
+### Show NVUE REST API Information
 
 To show REST API port configuration, state (enabled or disabled), and connection information, run the `nv show system api` command:
 

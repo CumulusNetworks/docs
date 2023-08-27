@@ -36,7 +36,11 @@ cumulus@switch:~$ nv set system api listening-address localhost
 
 ## <h>nv set system api state</h>
 
-Enables or disables the NVUE REST API. The default setting is `disabled`.
+Enables or disables the NVUE REST API. The default setting is `enabled`.
+
+{{%notice note%}}
+To use the NVUE REST API in Cumulus Linux 5.6, you must change the password for the cumulus user; otherwise you see 403 responses when you run commands.
+{{%/notice%}}
 
 ### Version History
 

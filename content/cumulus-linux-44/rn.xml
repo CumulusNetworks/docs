@@ -7,6 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3544701</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-4.4.6</td>
+<td></td>
+</tr>
+<tr>
 <td>3534654</td>
 <td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
 <td>4.3.1-4.4.6</td>
@@ -115,6 +125,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1-4.4.6</td>
+<td></td>
+</tr>
+<tr>
+<td>3364996</td>
+<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
+<td>4.3.0-4.4.6</td>
 <td></td>
 </tr>
 <tr>
@@ -243,6 +259,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>The {{net show interface &lt;interface&gt; detail}} command output shows {{Type=Unknown}} for the specified interface.</td>
 <td>4.4.3-4.4.6</td>
 <td></td>
+</tr>
+<tr>
+<td>3218207</td>
+<td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.5.1</td>
 </tr>
 <tr>
 <td>3216922</td>
@@ -2238,6 +2260,16 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3544701</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3534654</td>
 <td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
 <td>4.3.1-4.4.5</td>
@@ -2352,6 +2384,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3364996</td>
+<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2565,6 +2603,12 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
 <td>4.4.0-5.1.0</td>
 <td>5.2.0-5.5.1</td>
+</tr>
+<tr>
+<td>3218207</td>
+<td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.5.1</td>
 </tr>
 <tr>
 <td>3216922</td>
@@ -4481,6 +4525,16 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3544701</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3534654</td>
 <td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
 <td>4.3.1-4.4.5</td>
@@ -4595,6 +4649,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3364996</td>
+<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -4796,6 +4856,12 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
 <td>4.4.0-5.1.0</td>
 <td>5.2.0-5.5.1</td>
+</tr>
+<tr>
+<td>3218207</td>
+<td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.5.1</td>
 </tr>
 <tr>
 <td>3216922</td>
@@ -6853,6 +6919,16 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3544701</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3534654</td>
 <td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
 <td>4.3.1-4.4.5</td>
@@ -6961,6 +7037,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3364996</td>
+<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -7156,6 +7238,12 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
 <td>4.4.0-5.1.0</td>
 <td>5.2.0-5.5.1</td>
+</tr>
+<tr>
+<td>3218207</td>
+<td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.5.1</td>
 </tr>
 <tr>
 <td>3216922</td>
@@ -9189,6 +9277,16 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3544701</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3534654</td>
 <td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
 <td>4.3.1-4.4.5</td>
@@ -9297,6 +9395,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3364996</td>
+<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -9479,6 +9583,12 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
 <td>4.4.0-5.1.0</td>
 <td>5.2.0-5.5.1</td>
+</tr>
+<tr>
+<td>3218207</td>
+<td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.5.1</td>
 </tr>
 <tr>
 <td>3216922</td>
@@ -11707,6 +11817,16 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3544701</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3534654</td>
 <td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
 <td>4.3.1-4.4.5</td>
@@ -11815,6 +11935,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3364996</td>
+<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -11970,6 +12096,12 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
 <td>4.4.0-5.1.0</td>
 <td>5.2.0-5.5.1</td>
+</tr>
+<tr>
+<td>3218207</td>
+<td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.5.1</td>
 </tr>
 <tr>
 <td>3216922</td>
@@ -14096,6 +14228,16 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3544701</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3534654</td>
 <td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
 <td>4.3.1-4.4.5</td>
@@ -14204,6 +14346,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3364996</td>
+<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -14359,6 +14507,12 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
 <td>4.4.0-5.1.0</td>
 <td>5.2.0-5.5.1</td>
+</tr>
+<tr>
+<td>3218207</td>
+<td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.5.1</td>
 </tr>
 <tr>
 <td>3216922</td>

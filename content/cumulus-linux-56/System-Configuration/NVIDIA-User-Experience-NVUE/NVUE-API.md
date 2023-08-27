@@ -106,17 +106,17 @@ The NVUE CLI and the REST API are equivalent in functionality; you can run all m
 NVUE follows a declarative model, removing context-specific commands and settings. The structure of NVUE is like a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are more branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
 <!-- vale on -->
 
-## Set the API Port and Listening Address
-
-The NVUE REST API is enabled by default.
+The NVUE REST API is enabled by default. To disable the NVUE REST API, run the `nv set system api state disabled` command.
 
 {{%notice note%}}
-To use the NVUE REST API in Cumulus Linux 5.6, you must change the password for the cumulus user; otherwise you see 403 responses.
+To use the NVUE REST API in Cumulus Linux 5.6, you must {{<link url="/User-Accounts" text="change the password for the cumulus user">}}; otherwise you see 403 responses when you run commands.
 {{%/notice%}}
 
-The following example shows you how to:
-- Set the API port. If you do not set a port, Cumulus Linux uses the default port 8765.
-- Specify the API listening address; you can specify an IPv4 address or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
+### API Port and Listening Address
+
+This section discusses how to:
+- Set the NVUE REST API port. If you do not set a port, Cumulus Linux uses the default port 8765.
+- Specify the NVUE REST API listening address; you can specify an IPv4 address or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
 
 ```
 cumulus@switch:~$ nv set system api state enabled
@@ -124,8 +124,6 @@ cumulus@switch:~$ nv set system api port 8888
 cumulus@switch:~$ nv set system api listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
-
-To disable the NVUE REST API, run the `nv set system api state disabled` command.
 
 {{%notice note%}}
 - You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the the management VRF and to swp1 on VRF BLUE.
@@ -137,6 +135,8 @@ cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 i
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
 -->
+
+### Show NVUE REST API Information
 
 To show REST API port configuration, state (enabled or disabled), and connection information, run the `nv show system api` command:
 
@@ -3210,6 +3210,8 @@ The full object model download is available {{<mib_link url="cumulus-linux-55/ap
 
 ## Considerations
 
+- When you upgrade to Cumulus Linux 5.6 from an earlier release, the switch overwrites any manual configuration you performed by editing files, such as changing the IP address, ports, TLS, or certificates.
+Any TLS and certificate related configurations.
 - Unlike the NVUE CLI, the NVUE API does not support configuring a plain text password for a user account; you must configure a hashed password for a user account with the NVUE API.
 - If you need to make multiple updates on the switch, NVIDIA recommends you use a root patch, which can make configuration changes with fewer round trips to the switch. Running many specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
 

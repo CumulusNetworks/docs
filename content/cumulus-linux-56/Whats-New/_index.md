@@ -35,7 +35,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - NVUE enhancements include:
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
-  - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and disable external API access">}} commands
+  - {{<link url="NVUE-API/#enable-the-nvue-rest-api" text="Enable and disable external API access">}} commands (in Cumulus Linux 5.6 and later, the NVUE REST API is enabled by default; be sure to disable or secure the API if needed.)
   - {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="ARP Neighbor Base Reachable Timer">}} and {{<link url="Neighbor-Discovery-ND/#neighbor-base-reachable-timer" text="ND Neighbor Base Reachable Timer">}} commands
   - {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="IGMP fast leave processing">}} and {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="last member query count">}} commands
   - {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="Clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors

@@ -10,6 +10,10 @@ toc: 3
     overflow-y: auto;
   }
 </style>
+{{%notice warning%}}
+When you upgrade to Cumulus Linux 5.6 or later, the switch overwrites any manual configuration you performed by editing files in Cumulus Linux 5.5 or earlier, such as configuring the listening address, port, TLS, or certificate.
+{{%/notice%}}
+
 In addition to the CLI, NVUE supports a REST API. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL or a web browser.
 
 The `nvued` service provides access to the NVUE REST API. Cumulus Linux exposes the HTTP endpoint internally, which makes the NVUE REST API accessible locally within the Cumulus Linux switch. The NVUE CLI also communicates with the `nvued` service using internal APIs. To provide external access to the NVUE REST API, Cumulus Linux uses an HTTP reverse proxy server, and supports HTTPS and TLS connections from external REST API clients.
@@ -119,7 +123,6 @@ This section discusses how to:
 - Specify the NVUE REST API listening address; you can specify an IPv4 address or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
 
 ```
-cumulus@switch:~$ nv set system api state enabled
 cumulus@switch:~$ nv set system api port 8888
 cumulus@switch:~$ nv set system api listening-address localhost
 cumulus@switch:~$ nv config apply
@@ -3210,8 +3213,6 @@ The full object model download is available {{<mib_link url="cumulus-linux-55/ap
 
 ## Considerations
 
-- When you upgrade to Cumulus Linux 5.6 from an earlier release, the switch overwrites any manual configuration you performed by editing files, such as changing the IP address, ports, TLS, or certificates.
-Any TLS and certificate related configurations.
 - Unlike the NVUE CLI, the NVUE API does not support configuring a plain text password for a user account; you must configure a hashed password for a user account with the NVUE API.
 - If you need to make multiple updates on the switch, NVIDIA recommends you use a root patch, which can make configuration changes with fewer round trips to the switch. Running many specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
 

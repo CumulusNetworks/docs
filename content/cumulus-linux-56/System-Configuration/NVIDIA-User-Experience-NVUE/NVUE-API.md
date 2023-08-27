@@ -105,10 +105,16 @@ The NVUE CLI and the REST API are equivalent in functionality; you can run all m
 <!-- vale off -->
 NVUE follows a declarative model, removing context-specific commands and settings. The structure of NVUE is like a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are more branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
 <!-- vale on -->
-### Enable the NVUE REST API
 
-To enable the NVUE REST API:
-- Set the API state to `enabled`.
+## Set the API Port and Listening Address
+
+The NVUE REST API is enabled by default.
+
+{{%notice note%}}
+To use the NVUE REST API in Cumulus Linux 5.6, you must change the password for the cumulus user; otherwise you see 403 responses.
+{{%/notice%}}
+
+The following example shows you how to:
 - Set the API port. If you do not set a port, Cumulus Linux uses the default port 8765.
 - Specify the API listening address; you can specify an IPv4 address or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
 

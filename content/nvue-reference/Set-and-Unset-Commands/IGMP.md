@@ -86,11 +86,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-count 5
 
 ## <h>nv set interface \<interface-id\> ip igmp last-member-query-interval</h>
 
-Configures the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 255 seconds. The default setting is 10.
-
-In Cumulus Linux 5.6 and later, you can specify a value between 1 and 6553 seconds. The default setting is 100.
-
-In Cumulus Linux 5.5 and earlier, you can specify a value between 1 and 255 seconds. The default setting is 10.
+Configures the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 125.
 
 ### Command Syntax
 
@@ -138,11 +134,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp query-interval 1000
 
 ## <h>nv set interface \<interface-id\> ip igmp query-max-response-time</h>
 
-Configures the maximum response time for IGMP general queries. You can specify a value between 10 and 250 seconds. The default setting is 100.
-
-In Cumulus Linux 5.6 and later, you can specify a value between 1 and 6553 seconds. The default setting is 1000.
-
-In Cumulus Linux 5.5 and earlier, you can specify a value between 10 and 250 seconds. The default setting is 100.
+Configures the maximum response time for IGMP general queries. You can specify a value between 10 and 6553 seconds. The default setting is 100.
 
 ### Command Syntax
 

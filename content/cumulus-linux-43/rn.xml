@@ -43,6 +43,12 @@
 <td>5.0.0-5.5.1</td>
 </tr>
 <tr>
+<td>3218207</td>
+<td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.5.1</td>
+</tr>
+<tr>
 <td>3216921</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
 </td>
@@ -1984,6 +1990,15 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
+<td>3544701</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-4.3.1</td>
+</tr>
+<tr>
 <td>3534654</td>
 <td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
 <td>4.3.1</td>
@@ -2070,6 +2085,11 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>4.3.1</td>
 </tr>
 <tr>
+<td>3364996</td>
+<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
+<td>4.3.0-4.3.1</td>
+</tr>
+<tr>
 <td>3336590</td>
 <td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
 <td>4.3.0-4.3.1</td>
@@ -2149,6 +2169,16 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3544701</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3534654</td>
@@ -2253,6 +2283,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3364996</td>
+<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2362,6 +2398,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3234031</td>
 <td>If BGP {{neighbor &lt;name&gt; allowas-in}} is set, negating with no {{no neighbor &lt;name&gt; allowas-in}} does not disable the setting. To work around this issue and disable the setting, restart the FRR service.</td>
 <td>4.2.1-5.2.1</td>
+<td>5.3.0-5.5.1</td>
+</tr>
+<tr>
+<td>3218207</td>
+<td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
+<td>4.3.0-5.2.1</td>
 <td>5.3.0-5.5.1</td>
 </tr>
 <tr>

@@ -268,7 +268,7 @@ To monitor traffic mirrored to the CPU, run the `tcpcdump -i mirror` command.
 
 {{%notice note%}}
 - Cumulus Linux does not support egress mirroring for control plane generated traffic to the CPU port.
-- When you set the CPU port as a SPAN destination interface, Cumulus Linux mirrors packets that match the rule on *both* ingress and egress only once to the destination interface.
+- When you set the CPU port as a SPAN destination interface, Cumulus Linux mirrors packets that match the rule on *both* ingress and egress only one time to the destination interface.
 {{%/notice%}}
 
 {{< tabs "TabID271 ">}}

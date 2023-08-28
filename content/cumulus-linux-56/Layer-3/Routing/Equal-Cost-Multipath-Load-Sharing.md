@@ -323,7 +323,7 @@ ecmp_hash_seed = 50
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 ### cl-ecmpcalc
 <!-- vale on -->
 Run the `cl-ecmpcalc` command to determine a hardware hash result. For example, you can see which path a flow takes through a network. You must provide all fields in the hash, including the ingress interface, layer 3 source IP, layer 3 destination IP, layer 4 source port, and layer 4 destination port.

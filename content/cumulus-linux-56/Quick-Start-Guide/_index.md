@@ -15,7 +15,7 @@ You must have access to a Linux or UNIX shell. If you are running Windows, use a
 
 ## Get Started
 
-Cumulus Linux is installed on the switch by default. To upgrade to a different Cumulus Linux release or re-install Cumulus Linux, refer to {{<link url="Installation-Management" text="Installation Management">}}. To show the Cumulus Linux release installed on the switch, run the NVUE `nv show system` command.
+Cumulus Linux is on the switch by default. To upgrade to a different Cumulus Linux release or re-install Cumulus Linux, refer to {{<link url="Installation-Management" text="Installation Management">}}. To show the current Cumulus Linux release on the switch, run the NVUE `nv show system` command.
 
 When starting Cumulus Linux for the first time, the management port makes a DHCPv4 request. To determine the IP address of the switch, you can cross reference the MAC address of the switch with your DHCP server. The MAC address is typically located on the side of the switch or on the <!-- vale off -->box<!-- vale on --> in which the unit ships.
 

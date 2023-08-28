@@ -145,7 +145,7 @@ Confirm that the kubelet process is running with the `sudo systemctl status kube
 
 #### Upgrade Using the NetQ CLI
 
-1. For on-premises deployments, run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master node:
+1. For on-premises deployments, run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-the-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master node:
 
 ```
 sudo /home/cumulus/./backup_restore_configs.py --preupgrade

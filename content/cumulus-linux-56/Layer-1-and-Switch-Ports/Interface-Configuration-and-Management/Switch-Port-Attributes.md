@@ -1853,6 +1853,11 @@ If auto-negotiation is off on 100G and 25G interfaces, you must set FEC to *OFF*
 If auto-negotiation is on and you set the link speed for a port, Cumulus Linux disables auto-negotiation and uses the port speed setting you configure.
 <!-- vale off -->
 <!-- Vale issue #253 -->
+
+### Auto-negotiation with the Spectrum-4 Switch
+
+When you connect an NVIDIA Spectrum-4 switch to another NVIDIA Spectrum-4 switch with PAM4 modulation, you must enable auto-negotiation with copper cables.
+
 ### 1000BASE-T SFP Modules Supported Only on Certain 25G Platforms
 <!-- vale on -->
 The following  25G switches support 1000BASE-T SFP modules:
@@ -1874,6 +1879,10 @@ modprobe -r igb
 sleep 20
 modprobe igb
 ```
+
+### NVIDIA SN5600 Switch and Force Mode
+
+When you configure force mode on NVIDIA SN5600 switch ports 10 through 50, the Rx precoding setting must be the same between local and peer ports to get the optimal Signal-Integrity of the link.
 
 ### Delay in Reporting Interface as Operational Down
 

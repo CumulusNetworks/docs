@@ -215,9 +215,9 @@ stale-routes-time             360                Specifies an upper-bounds on ho
 **Monitoring Commands and FRR Daemons**
 
 If you run an NVUE show command but the corresponding FRR routing daemons are not running on the switch, you see an error message; for example:
-- If OSPF is disabled when you run `nv show vrf <vrf-id> ospf` commands, NVUE returns `Error: The requested item does not exist` because the OSPF deamon is not running in FRR.
-- If PIM and IGMP are disabled when you run the `nv show interface <interface> ip igmp -o json` command, NVUE returns `Error: The requested item does not exist` because the PIM daemon is not running in FRR.
-- If PIM is enabled but IGMP is disabled when you the `nv show interface <interface> ip igmp group -o json` command, NVUE does not return an error message but shows an empty { } response.
+- If OSPF is not running when you run `nv show vrf <vrf-id> ospf` commands, NVUE returns `Error: The requested item does not exist` because the OSPF deamon is not running in FRR.
+- If PIM and IGMP are not running when you run the `nv show interface <interface> ip igmp -o json` command, NVUE returns `Error: The requested item does not exist` because the PIM daemon is not running in FRR.
+- If PIM is running but IGMP is not running when you the `nv show interface <interface> ip igmp group -o json` command, NVUE does not return an error message but shows an empty { } response.
 
 ### Net Show commands
 
@@ -363,7 +363,7 @@ NVUE manages the following configuration files:
 | `/etc/network/interfaces` | Configures the network interfaces available on your system.|
 | `/etc/frr/frr.conf` | Configures FRRouting.|
 | `/etc/cumulus/switchd.conf` |  Configures `switchd` options.|
-| `/etc/cumulus/switchd.d/ptp.conf` | Configures PTP time stamping.|
+| `/etc/cumulus/switchd.d/ptp.conf` | Configures PTP timestamping.|
 | `/etc/frr/daemons` | Configures FRRouting services.|
 | `/etc/hosts` | Configures the hostname of the switch. |
 | `/etc/default/isc-dhcp-relay-default`| Configures DHCP relay options.|

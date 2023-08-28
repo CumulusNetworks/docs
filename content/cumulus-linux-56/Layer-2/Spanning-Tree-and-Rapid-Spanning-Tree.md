@@ -13,15 +13,15 @@ Exercise caution when changing the STP settings below to prevent STP loop avoida
 ## STP Modes
 
 Cumulus Linux supports STP for VLAN-aware and traditional bridges.
-
+<!-- vale off -->
 ### STP Modes for a VLAN-aware Bridge
-
+<!-- vale on -->
 {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} operate in:
 - <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span> mode, which creates a single instance of spanning tree across all VLANs. RSTP is the default mode.
 - <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span> mode, which creates a single instance of spanning tree for every VLAN.
-
+<!-- vale off -->
 ### Configure the Mode for a VLAN-aware Bridge
-
+<!-- vale on -->
 RSTP is the default mode for a VLAN-aware bridge. You can change the mode to PVRST.
 
 {{%notice note%}}
@@ -144,7 +144,7 @@ cumulus@switch:~$ nv config apply
 
 {{%notice note%}}
 - For maximum interoperability, when connected to a switch that has a native VLAN configuration, you **must** configure the native VLAN to VLAN 1.
-- There are no NVUE commands to configure a traditional mode bridge.
+- NVUE does not provide commands to configure a traditional mode bridge.
 {{%/notice%}}
 
 ## STP Interoperability
@@ -419,7 +419,7 @@ cumulus@switch:~$ sudo mstpctl setvlan-priority br_default 10-30 61440
 ### PVRST Timers
 
 You can set the following PVRST timers:
-- *Max age*, which is the maximum amount of time STP information is retained before it is discarded. You can set a value between 6 and 40 seconds. The default value is 20 seconds.
+- *Max age*, which is the maximum amount of time the switch retains STP information before discarding it. You can set a value between 6 and 40 seconds. The default value is 20 seconds.
 - *Hello time*, which is how often to broadcast hello messages to other switches. You can set a value between 1 and 10 seconds. The default value is 2 seconds.
 - *Forward delay*, which is the delay before changing the spanning tree state from blocking to forwarding. You can set a value between 4 and 30 seconds. The default value is 15 seconds.
 

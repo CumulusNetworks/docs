@@ -30,7 +30,7 @@ Upgrading to NetQ 4.7.0 from NetQ 4.4.1 or earlier requires a new installation o
 You can upgrade directly to NetQ 4.7.0 if your deployment is currently running version 4.5.0 or 4.6.0.
 ### Back up your NetQ Data
 
-Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}. This is an optional step for on-premises deployments. NetQ cloud deployments create backups automatically.
+Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
 
 ### Update NetQ Debian Packages
 

@@ -140,8 +140,16 @@ To backup and restore the configuration commands:
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
-### Create a cl-support File
+{{%notice note%}}
+As NVUE supports more features and introduces new syntax, {{<link url="NVUE-Snippets" text="snippets and flexible snippets">}} become invalid.
 
+Before you upgrade Cumulus Linux to a new release, make sure to:
+- Review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax.
+- If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.
+{{%/notice%}}
+<!-- vale off -->
+### Create a cl-support File
+<!-- vale on -->
 **Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
 
 1. Create the `cl-support` archive file with the `cl-support` command:

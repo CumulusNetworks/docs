@@ -521,7 +521,7 @@ cumulus  pts/1    192.168.200.1    10:01    1:09m  0.02s  0.02s -bash
 cumulus  pts/2    192.168.200.1    11:10    1.00s  0.03s  0.00s w
 ```
 
-To show the users that are allowed or denied to establish an SSH session, run the `nv show system ssh-server allow-users` command or the `nv show system ssh-server deny-users` command. You can also show information for a specific user with the `nv show system ssh-server allow-users <user>` command and the `nv show system ssh-server deny-users <user>` command.
+To show which users can establish an SSH session, run the `nv show system ssh-server allow-users` command. To show which users *cannot* establish an SSH session, run the `nv show system ssh-server deny-users` command. You can also show information for a specific user with the `nv show system ssh-server allow-users <user>` command and the `nv show system ssh-server deny-users <user>` command.
 
 To show the TCP port numbers that listen for incoming SSH sessions, run the `nv show system ssh-server port` command. You can also show information for a specific port with the `nv show system ssh-server port <port>` command.
 

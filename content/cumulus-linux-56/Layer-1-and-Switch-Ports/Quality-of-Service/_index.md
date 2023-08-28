@@ -658,7 +658,7 @@ To apply a custom profile to specific interfaces, see [Port Groups](#pfc).
 
 ### PFC Watchdog
 
-PFC watchdog detects and mitigates pause storms on ports where PFC is enabled.
+PFC watchdog detects and mitigates pause storms on PFC-enabled ports.
 
 In lossless Ethernet, the switch sends PFC PAUSE frames to instruct the link partner to pause sending packets on a traffic class. This back pressure might propagate across the network and, if it persists, can cause the network to stop forwarding traffic. PFC watchdog detects abnormal back pressure caused by receiving an excessive number of pause frames and disables PFC temporarily.
 
@@ -666,7 +666,7 @@ When a lossless queue receives a pause storm from its link partner and the queue
 
 The watchdog continues to count pause frames received on the port. If there are no pause frames received in any polling interval period, it restores the PFC configuration on the port and stops dropping packets.
 
-PFC watchdog also detects and mitigates pause storms on ports where link pause is enabled. The watchdog configuration for link pause-enabled ports is the same as the configuration for PFC-enabled ports. For a link pause-enabled port, the watchdog stops processing received pause frames on the egress port that detects the storm and sets the egress buffers to zero on every traffic class on the port.
+PFC watchdog also detects and mitigates pause storms on link pause-enabled ports. The watchdog configuration for link pause-enabled ports is the same as the configuration for PFC-enabled ports. For a link pause-enabled port, the watchdog stops processing received pause frames on the egress port that detects the storm and sets the egress buffers to zero on every traffic class on the port.
 
 {{%notice note%}}
 - PFC watchdog only works for lossless traffic queues.
@@ -751,7 +751,7 @@ cumulus@switch:~$ echo 200 > /cumulus/switchd/config/pfc_wd/poll_interval
 {{< /tab >}}
 {{< /tabs >}}
 
-To show if PFC watchdog is enabled and to show the status for each traffic class, run the `nv show interface <interface> qos pfc-watchdog` command:
+To show if PFC watchdog is on and to show the status for each traffic class, run the `nv show interface <interface> qos pfc-watchdog` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog
@@ -1634,7 +1634,7 @@ Reference the table below to view the mappings between the default traffic pool 
 | `mc-lossy` | `memory-percent` | `ingress-pool 2`<br>`egress-pool 2` | `memory-percent` |
 | `mc-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group service2 switch-priority` |
 
-For example, to assign 20 percent of memory to a new static service pool, you must allow 20 percent of memory to be available from the default traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to allocate the memory to `ingress-pool 3`:
+For example, to assign 20 percent of memory to a new static service pool, you must allow 20 percent of memory to be available from the default traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to assign the memory to `ingress-pool 3`:
 
 ```
 cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 80

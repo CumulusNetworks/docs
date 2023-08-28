@@ -243,7 +243,7 @@ Undersize Errors  0        n/a
 
 {{%notice note%}}
 - NVUE does not show detailed statistics for logical interfaces, such as bonds, VLAN interfaces or subinterfaces. To see basic statistics for logical interfaces, run the `nv show interface <interface> link stats` command.
-- On Mellanox switches, Cumulus Linux updates physical counters to the kernel every two seconds and virtual interfaces (such as VLAN interfaces) every ten seconds. You cannot change these values. Because the update process takes a lower priority than other `switchd` processes, the interval might be longer when the system is under a heavy load.
+- On NVIDIA Spectrum switches, Cumulus Linux updates physical counters to the kernel every two seconds and virtual interfaces (such as VLAN interfaces) every ten seconds. You cannot change these values. Because the update process takes a lower priority than other `switchd` processes, the interval might be longer when the system is under a heavy load.
 {{%/notice%}}
 
 ## Clear Interface Counters

@@ -271,9 +271,9 @@ The following example creates a file called `traffic_conf_snippet.yaml` and enab
    !---- NVUE snippets ----
    resilient_hash_enable = TRUE
    ```
-
+<!-- vale off -->
 ### /etc/snmp/snmpd.conf Snippets
-
+<!-- vale on -->
 To add Cumulus Linux SNMP agent configuration not yet available with NVUE commands, create an `snmpd.conf` snippet.
 
 The following example creates a file called `snmpd.conf_snippet.yaml`, and sets the read only community string and the listening address to run in the mgmt VRF.
@@ -503,3 +503,11 @@ Invalid config [rev_id: 1]
 {{%/notice%}}
 
 You can also create a flexible snippet with the REST API. See {{<link url="NVUE-API" text="NVUE API">}}.
+
+## Considerations
+
+As NVUE supports more features and introduces new syntax, snippets and flexible snippets become invalid.
+
+Before you upgrade Cumulus Linux to a new release, make sure to:
+- Review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax.
+- If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.

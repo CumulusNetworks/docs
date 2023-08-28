@@ -28,8 +28,8 @@ Cumulus Linux supports:
 - PTP on layer 3 interfaces, trunk ports, bonds, and switch ports belonging to a VLAN.
 - Multicast, unicast, and mixed message mode.
 - End-to-End delay mechanism only. Cumulus Linux does not support Peer-to-Peer.
-- One-step and two-step clock time stamp mode.
-- Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
+- One-step and two-step clock timestamp mode.
+- Hardware timestamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
 {{%notice note%}}
 - On NVIDIA switches with Spectrum-2 and later, PTP is not supported on 1G interfaces.
@@ -57,7 +57,7 @@ The basic configuration shown below uses the *default* PTP settings:
 - {{<link url="#Forced-master-mode" text="Announce messages from any master are accepted">}}.
 - {{<link url="#Message-mode" text="The PTP Interface Message Mode">}} is multicast.
 - The delay mechanism is End-to-End (E2E), where the slave measures the delay between itself and the master. The master and slave send delay request and delay response messages between each other to measure the delay.
-- The clock time stamp mode is two-step.
+- The clock timestamp mode is two-step.
 
 To configure other settings, such as the PTP profile, domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
 
@@ -334,9 +334,9 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-### Clock Time Stamp Mode
+### Clock Timestamp Mode
 
-The Cumulus Linux switch provides the following clock time stamp modes:
+The Cumulus Linux switch provides the following clock timestamp modes:
 - *One-step*, where PTP adds the precise time that the Sync packet egresses the port to the packet. There is no need for a follow up packet.
 - *Two-step*, where PTP notes the precise time when the Sync packet egresses the port and sends it in a separate follow up message.
 
@@ -356,9 +356,9 @@ cumulus@switch:~$ nv set service ptp 1 two-step off
 cumulus@switch:~$ nv config apply
 ```
 
-To revert the clock time stamp mode to the default setting (two-step mode), run the `nv set service ptp 1 two-step on` command.  
+To revert the clock timestamp mode to the default setting (two-step mode), run the `nv set service ptp 1 two-step on` command.  
 
-To set the clock time stamp mode for a custom profile based on IEEE1588, ITU 8275-1 or ITU 8275-2, run the `nv set service ptp <instance-id> profile <profile-id> two-step` command. For example, to set one-step mode for the custom profile called CUSTOM1, run the `nv set service ptp 1 profile CUSTOM1 two-step off` command.
+To set the clock timestamp mode for a custom profile based on IEEE1588, ITU 8275-1 or ITU 8275-2, run the `nv set service ptp <instance-id> profile <profile-id> two-step` command. For example, to set one-step mode for the custom profile called CUSTOM1, run the `nv set service ptp 1 profile CUSTOM1 two-step off` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -386,7 +386,7 @@ dscp_general            43
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
-To revert the clock time stamp mode to the default setting (two-step mode), change the `twoStepFlag` setting to 1.
+To revert the clock timestamp mode to the default setting (two-step mode), change the `twoStepFlag` setting to 1.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -439,7 +439,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 Use the local priority when you create a custom profile based on a Telecom profile (ITU 8275-1 or ITU 8275-2). Modify the local priority in a custom profile to set the local priority of the local clock. You can set a value between 0 and 255. The default priority is 128.
 
-The following example command configures the local priority to 10 for the custom profile called CUSTOM1, which is based on ITU 8275-2:
+The following example command configures the local priority to 10 for the custom profile called CUSTOM1, based on ITU 8275-2:
 
 {{< tabs "TabID387 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1415,9 +1415,9 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 Cumulus Linux provides the following optional PTP monitoring configuration.
 
-### Configure Clock Time Stamp and Path Delay Thresholds
+### Configure Clock TimeStamp and Path Delay Thresholds
 
-Cumulus Linux monitors clock time stamp and path delay against thresholds, and generates counters when PTP reaches the set thresholds. You can see the counters in the NVUE `nv show` command output and in log messages.
+Cumulus Linux monitors clock timestamp and path delay against thresholds, and generates counters when PTP reaches the set thresholds. You can see the counters in the NVUE `nv show` command output and in log messages.
 
 You can configure the following monitor settings:
 
@@ -1480,7 +1480,7 @@ mean_path_delay_threshold          300
 
 ### Configure PTP Logging
 
-A log set contains the log entries for clock time stamp and path delay violations at different times. You can set the number of entries to log and the interval between successive violation logs.
+A log set contains the log entries for clock timestamp and path delay violations at different times. You can set the number of entries to log and the interval between successive violation logs.
 
 {{< tabs "TabID1450 ">}}
 {{< tab "NVUE Commands ">}}

@@ -503,3 +503,11 @@ Invalid config [rev_id: 1]
 {{%/notice%}}
 
 You can also create a flexible snippet with the REST API. See {{<link url="NVUE-API" text="NVUE API">}}.
+
+## Considerations
+
+As NVUE supports more features and introduces new syntax, snippets and flexible snippets become invalid.
+
+Before you upgrade Cumulus Linux to a new release, make sure to:
+- Review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax.
+- If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.

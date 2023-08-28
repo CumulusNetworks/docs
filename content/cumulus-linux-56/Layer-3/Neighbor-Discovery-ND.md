@@ -432,7 +432,7 @@ interface swp1
 
 ## Neighbor Base Reachable Timer
 
-You can set how long a neighbor cache entry is valid with the NVUE `nv set system global nd base-reachable-time` command. The entry is considered valid for at least the value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483 seconds. The default value is `auto`; NVUE derives the value for `auto` from the `/etc/sysctl.d/neigh.conf` file.
+You can set how long a neighbor cache entry is valid with the NVUE `nv set system global nd base-reachable-time` command. The entry is valid for at least the value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483 seconds. The default value is `auto`; NVUE derives the value for `auto` from the `/etc/sysctl.d/neigh.conf` file.
 
 The following example configures the neighbor base reachable timer to 50 seconds.
 

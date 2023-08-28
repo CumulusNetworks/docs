@@ -110,7 +110,7 @@ The NVUE CLI and the REST API are equivalent in functionality; you can run all m
 NVUE follows a declarative model, removing context-specific commands and settings. The structure of NVUE is like a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are more branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
 <!-- vale on -->
 
-The NVUE REST API is enabled by default. To disable the NVUE REST API, run the `nv set system api state disabled` command.
+Cumulus Linux enables the NVUE REST API by default. To disable the NVUE REST API, run the `nv set system api state disabled` command.
 
 {{%notice note%}}
 To use the NVUE REST API in Cumulus Linux 5.6, you must {{<link url="/User-Accounts" text="change the password for the cumulus user">}}; otherwise you see 403 responses when you run commands.
@@ -129,7 +129,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-- You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the the management VRF and to swp1 on VRF BLUE.
+- You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the management VRF and to swp1 on VRF BLUE.
 {{%/notice%}}
 <!--
 ```

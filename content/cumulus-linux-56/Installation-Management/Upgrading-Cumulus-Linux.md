@@ -147,9 +147,9 @@ Before you upgrade Cumulus Linux to a new release, make sure to:
 - Review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax.
 - If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.
 {{%/notice%}}
-
+<!-- vale off -->
 ### Create a cl-support File
-
+<!-- vale on -->
 **Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
 
 1. Create the `cl-support` archive file with the `cl-support` command:

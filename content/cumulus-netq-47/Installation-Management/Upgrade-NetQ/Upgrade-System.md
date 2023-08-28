@@ -83,7 +83,7 @@ Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back 
 
 2. Copy the tarball to the `/mnt/installables/` directory on your NetQ VM.
 
-3. For an on-premises deployment, download the configuration backup script, `backup_restore_configs.py`:
+3. For on-premises deployments, download the configuration backup script, `backup_restore_configs.py`:
 
 <p style="text-indent: 40px; display:inline">a. On the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}, log in to your account.<br></p>
 <p style="text-indent: 40px; display:inline">b. Select <b>NVIDIA Licensing Portal</b>.<br></p>
@@ -92,7 +92,7 @@ Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back 
 <p style="text-indent: 40px; display:inline">e. Locate the <b>NetQ SW 4.7.0 Upgrade Backup Restore Configs Script</b> file and select <b>Download</b>.<br></p>
 <p style="text-indent: 40px; display:inline">f. If prompted, agree to the license agreement and proceed with the download.<br></p>
 
-4.  For an on-premises deployment, copy the `backup_restore_configs.py` script to `/home/cumulus/` on your NetQ server and change the permissions:
+4.  For on-premises deployments, copy the `backup_restore_configs.py` script to `/home/cumulus/` on your NetQ server and change the permissions:
 
 ```
 username@hostname:~$ scp ./backup_restore_configs.py cumulus@10.10.10.10:/home/cumulus/

@@ -47,7 +47,7 @@ asic-model     n/a
 asic-vendor    n/a
 ```
 
-The following example shows the `nv show platform environment fan` command output:
+The following example shows the `nv show platform environment fan` command output. The fan direction must be the same for all fans. If Cumulus Linux detects that the fan air flow direction is not uniform, it logs a message in the `var/log/syslog` file.
 
 ```
 cumulus@switch:~$ nv show platform environment fan

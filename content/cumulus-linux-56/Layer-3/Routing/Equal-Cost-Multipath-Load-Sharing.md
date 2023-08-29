@@ -517,12 +517,12 @@ With adaptive routing, the switch forwards packets to the less loaded path on a 
 Cumulus Linux supports adaptive routing with:
 - Switches with the Spectrum-4 ASIC.
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic.
-- Layer 3 interfaces and VXLAN interfaces.
+- Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
 
 {{%notice note%}}
 - Adaptive routing does not make use of resilient hashing.
-- You *cannot* configure adaptive routing on bonds or ports that are part of a bond.
+- Cumulus Linux does not support adaptive routing on layer 3 subinterfaces, SVIs, bonds or bond members.
 - The Spectrum-4 switch does not support adaptive routing on 800G links.
 {{%/notice%}}
 

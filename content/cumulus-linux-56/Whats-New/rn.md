@@ -9,7 +9,7 @@ type: rn
 pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-linux-55" >}}
-## 5.5.0 Release Notes
+## 5.6.0 Release Notes
 ### Open Issues in 5.6.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |

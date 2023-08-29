@@ -63,6 +63,10 @@ PSU1Fan1  F2B            15              29000      2500       6000             
 PSU2Fan1  F2B            15              29000      2500       6000                 ok    
 ```
 
+{{%notice note%}}
+If the airflow for all fans is not in the same direction (front to back or back to front), cooling is suboptimal for the switch, rack, and even the entire data center.
+{{%/notice%}}
+
 <!-- vale off -->
 ## decode-syseeprom Command
 <!-- vale on -->

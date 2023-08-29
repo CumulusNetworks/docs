@@ -1267,6 +1267,25 @@ Active Source           Group            RPT  IIF               OIL
 1      10.1.10.101      239.1.1.1        n    vlan10 
 ```
 
+To show the IGMP configuration settings for an interface, run the `nv show interface <interface> ip igmp` command
+
+```
+cumulus@lhr:~$ nv show interface swp3 ip igmp
+                            operational  applied
+--------------------------  -----------  -------
+enable                                   on     
+fast-leave                               off    
+last-member-query-count                  2      
+last-member-query-interval               10     
+query-interval                           125    
+query-max-response-time                  100    
+version                                  3      
+[static-group]                                  
+[group]           
+```
+
+To show IGMP operational data for an interface, run the NVUE `nv show interface <interface> ip igmp -o json` command or the vtysh `show ip igmp statistics` command.
+
 To verify that the receiver is sending IGMP reports (joins) for the group, run the NVUE `nv show interface <interface> ip igmp group` command or the vtysh `show ip igmp groups` command.
 
 ```

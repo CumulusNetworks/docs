@@ -132,11 +132,11 @@ The `apt-cache` command shows information about all the packages available in th
 
 ```
 cumulus@switch:~$ nv show platform software installed
-                                       description                                                                                                                   package                                version
--------------------------------------  ----------------------------------------------------------------------------------------------------------------------------  -------------------------------------  ----------------------------------------------
-acpi                                   displays information on ACPI devices                                                                                          acpi                                   1.7-1.1
-acpi-support-base                      scripts for handling base ACPI events such as the power button                                                                acpi-support-base                      0.142-8
-acpid                                  Advanced Configuration and Power Interface event daemon                                                                       acpid                                  1:2.0.31-1
+Installed Package   description                                                      package                  version
+-----------------   -------------------                                              ----------               --------------------
+acpi                displays information on ACPI devices                             acpi                     1.7-1.1
+acpi-support-base   scripts for handling base ACPI events such as the power button   acpi-support-base        0.142-8
+acpid               Advanced Configuration and Power Interface event daemon          acpid                    1:2.0.31-1
 ...
 ```
 
@@ -178,7 +178,7 @@ cumulus@switch:~$ nv show platform software installed vrf
 -----------  -------------------  -------  -------  -----------
 description  Linux tools for VRF                    Description
 package      vrf                                    Package
-version      1.0-cl4.4.0u0                         Version
+version      1.0-cl5.6.0u9                         Version
 ```
 
 {{< /tab >}}
@@ -193,7 +193,7 @@ Desired=Unknown/Install/Remove/Purge/Hold
 |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
 ||/ Name       Version      Architecture Description
 +++-==========-============-============-=================================
-ii  vrf        1.0-cl4.4.0u0    amd64        Linux tools for VRF
+ii  vrf        1.0-cl5.6.0u9    amd64        Linux tools for VRF
 ```
 
 {{< /tab >}}

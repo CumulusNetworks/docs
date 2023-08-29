@@ -120,7 +120,7 @@ cumulus@switch:~$ nv show platform environment
 Shows information about the fans on the switch, such as the minimum, maximum and current speed, the fan state.
 
 {{%notice note%}}
-In Cumulus 5.6, the `nv show platform environment fan` command also shows the fan direction.
+In Cumulus 5.6, the `nv show platform environment fan` command also shows the fan direction. If the airflow for all fans is not in the same direction (front to back or back to front), cooling is suboptimal for the switch, rack, and even the entire data center.
 {{%/notice%}}
 
 ### Version History

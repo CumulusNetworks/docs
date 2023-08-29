@@ -51,8 +51,6 @@ The NetQ Agents running on hosts gather the same information as that for switche
 
 The NetQ Agent obtains container information by listening to the Kubernetes orchestration tool.
 
-The NetQ Agent is supported on hosts running Ubuntu 18.04, Red Hat® Enterprise Linux 7, and CentOS 7.
-
 ## NetQ Core
 
 The NetQ core performs the data collection, storage, and processing for delivery to various user interfaces. It consists of a collection of scalable components running entirely within a single server. The NetQ software queries this server, rather than individual devices, enabling greater system scalability.

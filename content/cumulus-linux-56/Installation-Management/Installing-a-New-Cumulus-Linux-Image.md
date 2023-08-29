@@ -572,6 +572,10 @@ cumulus@leaf01:mgmt:~$ mokutil --sb-state
 SecureBoot enabled
 ```
 
+{{%notice note%}}
+On a switch with the Spectrum-4 ASIC, if the ASIC firmware fails to boot, you see a message alerting you to contact NVIDIA Customer Support for further options.
+{{%/notice%}}
+
 ## Related Information
 
 - {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/" text="ONIE Design Specification">}}

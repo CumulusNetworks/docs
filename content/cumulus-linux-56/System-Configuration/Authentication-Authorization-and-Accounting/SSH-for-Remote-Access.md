@@ -148,6 +148,10 @@ DenyUsers  = user4
 
 The SSH service runs in the default VRF on the switch but listens on all interfaces in all VRFs. You can limit SSH to listen on specific VRFs.
 
+{{%notice note%}}
+You cannot run SSH in the default VRF and other VRFs at the same time.
+{{%/notice%}}
+
 {{< tabs "TabID143 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -501,6 +505,24 @@ The following example adds an authorized key file from the account `cumulus` on 
 {{< /tabs >}}
 
 ## Troubleshooting
+
+To show all the current SSH server configuration settings, run the NVUE `nv show system ssh-server` command:
+
+```
+cumulus@switch:~$ nv show system ssh-server
+                             applied          
+---------------------------  -----------------
+authentication-retries       6                
+inactive-timeout             0                
+login-timeout                120              
+max-sessions-per-connection  10               
+permit-root-login            prohibit-password
+state                        enabled          
+max-unauthenticated                           
+  session-count              100              
+  throttle-percent           30               
+  throttle-start             10
+```
 
 To show the current number of active SSH sessions, run the NVUE `nv show system ssh-server active-sessions` command or the Linux `w` command:
 

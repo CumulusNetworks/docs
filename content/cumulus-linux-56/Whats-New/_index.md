@@ -35,7 +35,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - NVUE enhancements include:
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
-  - {{<link url="NVUE-API/#use-the-api" text="Enable and disable external API access">}} commands (Cumulus Linux 5.6 and later enables the NVUE REST API by default; be sure to disable or secure the API if needed.)
+  - {{<link url="NVUE-API/#use-the-api" text="Enable and disable external API access">}} commands (Cumulus Linux 5.6 and later enables the NVUE REST API by default; be sure to disable or secure the API if needed)
   - {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="ARP Neighbor Base Reachable Timer">}} and {{<link url="Neighbor-Discovery-ND/#neighbor-base-reachable-timer" text="ND Neighbor Base Reachable Timer">}} commands
   - {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="IGMP fast leave processing">}} and {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="last member query count">}} commands
   - {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="Clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors
@@ -43,9 +43,15 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="Clear EVPN duplicate address">}} commands
   - {{<link url="Protocol-Independent-Multicast-PIM/#pim-show-commands" text="Show IGMP group commands ">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#troubleshooting" text="Show commands">}} to see the ports mapped to a bridge and the VLANs mapped to bridge ports
-  - Changes to `nv show platform` command outputs to improve readability
+  - Changes to the `nv show platform` command outputs to improve readability:
+    - Shows a concise summary of all sensors
+    - Improved memory format
+    - Modified disk size output from KB to GB
+    - Output fields display `n/a` for VX models where needed
+    - Removed the `applied` column from the `nv show platform hardware component device` command
+    - Removed the `applied` and `pending` columns from the `nv show platform software installed python3-nvue` command
   - The `nv show` commands provide a {{<link url="NVUE-CLI/#monitoring-commands" text="--filter option">}} to filter output data
-  - EVPN multihoming configuration with NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
+  - EVPN multihoming configuration with NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value
 
 {{< expand "New Commands" >}}
 

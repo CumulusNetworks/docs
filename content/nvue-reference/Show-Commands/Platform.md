@@ -83,32 +83,34 @@ Shows a list of sensors, fans, LEDs, and PSUs on the switch.
 
 Introduced in Cumulus Linux 5.0.0
 
+In Cumulus Linux 5.6 and later, the command output shows the state of each item.
+
 ### Example
 
 ```
 cumulus@switch:~$ nv show platform environment
-          operational                         applied  pending
---------  ----------------------------------  -------  -------
-[sensor]  Board Sensor Near Virtual Switch                    
-[sensor]  Board Sensor at Front Left Corner                   
-[sensor]  Board Sensor at Front Right Corner                  
-[sensor]  Board Sensor near CPU                               
-[sensor]  Board Sensor near Fan                               
-[sensor]  PSU1 Temp Sensor                                    
-[sensor]  PSU2 Temp Sensor                                    
-[fan]     Fan1                                                
-[fan]     Fan2                                                
-[fan]     Fan3                                                
-[fan]     Fan4                                                
-[fan]     Fan5                                                
-[fan]     Fan6                                                
-[fan]     PSU1Fan1                                            
-[fan]     PSU2Fan1                                            
-[led]     Fan                                                 
-[led]     Power                                               
-[led]     System                                              
-[psu]     PSU1                                                
-[psu]     PSU2
+[TYPE] Name         State
+------------------  -----
+[FAN] FAN1          ok   
+[FAN] FAN2          ok   
+[FAN] FAN3          ok   
+[FAN] FAN4          ok   
+[FAN] FAN5          ok   
+[FAN] FAN6          ok   
+[FAN] PSU1FAN1      ok   
+[FAN] PSU2FAN1      ok   
+[LED] FAN           ok   
+[LED] POWER         ok   
+[LED] SYSTEM        ok   
+[PSU] PSU1          ok   
+[PSU] PSU2          ok   
+[SENSOR] PSU1TEMP1  ok   
+[SENSOR] PSU2TEMP1  ok   
+[SENSOR] TEMP1      ok   
+[SENSOR] TEMP2      ok   
+[SENSOR] TEMP3      ok   
+[SENSOR] TEMP4      ok   
+[SENSOR] TEMP5      ok   
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -127,6 +129,8 @@ Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
+Cumulus Linux 5.5 and earlier:
+
 ```
 cumulus@switch:~$ nv show platform environment fan
 Name      Limit variance  Max Speed  Min Speed  Current Speed (RPM)  Fan State
@@ -140,6 +144,8 @@ Fan6                      29000      2500       6000                 ok
 PSU1Fan1                  29000      2500       6000                 ok       
 PSU2Fan1                  29000      2500       6000                 ok
 ```
+
+Cumulus Linux 5.6 and later (includes the fan direction):
 
 ```
 cumulus@switch:~$ nv show platform environment fan
@@ -183,6 +189,8 @@ speed      6000
 state      ok
 ```
 
+In Cumulus Linux 5.6 and later, the command output also shows the limit variance.
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show platform environment led</h>
@@ -224,8 +232,8 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform environment led Fan
-       operational  applied  pending
------  -----------  -------  -------
+       operational  applied
+-----  -----------  -------
 color  green
 ```
 
@@ -269,8 +277,8 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform environment psu PSU1
-       operational  applied  pending
------  -----------  -------  -------
+       operational  applied
+-----  -----------  -------
 state  ok
 ```
 
@@ -288,8 +296,8 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show platform environment sensor
-Sensor Name                         Critical Temp  Max Temp  Min Temp  Sensor State  Current temperature (°C)
-----------------------------------  -------------  --------  --------  ------------  ------------------------
+Sensor Name                         Critical Temp  Max Temp  Min Temp  Sensor State  Current Temp (°C)
+----------------------------------  -------------  --------  --------  ------------  ----------------
 Board Sensor Near Virtual Switch    85.0           80.0      5         ok            25.0                    
 Board Sensor at Front Left Corner   85.0           80.0      5         ok            25.0                    
 Board Sensor at Front Right Corner  85.0           80.0      5         ok            25.0                    
@@ -409,7 +417,7 @@ cumulus@switch:~$ nv show platform software
 Installed Software
 =====================
     Installed software          description                 package                      version                     
-    -------------------------…  -------------------------…  --------------------------…  ---------------------------…
+    -------------------------…  -------------------------   --------------------------    -----------------------
     acpi                        displays information on     acpi                         1.7-1.1                     
                                 ACPI devices                                                                         
     acpi-support-base           scripts for handling base   acpi-support-base            0.142-8                     
@@ -486,5 +494,5 @@ cumulus@switch:~$ nv show platform software installed what-just-happened
 -----------  ---------------------------------------------------------------  -------  -------
 description  Package containing what-just-happened feature for Cumulus Linux                  
 package      what-just-happened                                                               
-version      2.1.1-cl5.5.0u3
+version      2.3.0-cl5.6.0u3
 ```

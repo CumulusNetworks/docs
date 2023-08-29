@@ -556,28 +556,27 @@ The following example command shows the running, applied, and pending swp1 inter
 
 ```
 cumulus@leaf01:~$ nv show interface swp1
-                         operational  applied  description
------------------------  -----------  -------  ----------------------------------------------------------------------
-t                         operational        applied  pending
------------------------  -----------------  -------  -------
-type                     swp                                
-ip                                                          
-  [address]                                                 
-link                                                        
-  auto-negotiate         off                                
-  mtu                    1500                               
-  state                  down                               
-  stats                                                     
-    carrier-transitions  2                                  
-    in-bytes             0 Bytes                            
-    in-drops             0                                  
-    in-errors            0                                  
-    in-pkts              0                                  
-    out-bytes            0 Bytes                            
-    out-drops            0                                  
-    out-errors           0                                  
-    out-pkts             0                                  
-  mac                    48:b0:2d:16:d8:82               
+                          operational        applied   
+------------------------  -----------------  ----------
+type                      swp                swp       
+[acl]                                                  
+bridge                                                 
+  [domain]                br_default         br_default
+evpn                                                   
+  multihoming                                          
+    uplink                                   off       
+ptp                                                    
+  enable                                     off       
+router                                                 
+  adaptive-routing                                     
+    enable                                   off       
+  ospf                                                 
+    enable                                   off       
+  ospf6                                                
+    enable                                   off       
+  pbr                                                  
+    [map]                                              
+  pim            
 ...
 ```
 

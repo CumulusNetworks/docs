@@ -151,7 +151,16 @@ Confirm that the kubelet process is running with the `sudo systemctl status kube
 sudo /home/cumulus/./backup_restore_configs.py --preupgrade
 ```
 
-2. Run the following command to clear the current install state and save the current database.  In cluster deployments, run this command on the master node:
+2. Run the following command to clear the current install state and save the current database.  In cluster deployments, run this command on the master node.
+
+{{%notice note%}}
+If you are upgrading a NetQ cloud appliance that is several versions behind the latest release, install the latest NetQ package on the older cloud appliance before running the <code>netq bootstrap reset</code> command:
+```
+wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add
+echo "deb https://apps3.cumulusnetworks.com/repos/deb "$(. /etc/os-release && echo "$VERSION_CODENAME")" netq-latest" | sudo tee -a /etc/apt/sources.list.d/netq.list
+sudo apt-get update && sudo apt-get install -y netq-apps netq-agent
+```
+{{%/notice%}}
 
 ```
 cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images

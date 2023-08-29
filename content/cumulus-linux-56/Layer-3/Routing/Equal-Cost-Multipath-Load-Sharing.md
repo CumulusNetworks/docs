@@ -517,6 +517,7 @@ With adaptive routing, the switch forwards packets to the less loaded path on a 
 Cumulus Linux supports adaptive routing with:
 - Switches with the Spectrum-4 ASIC.
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic.
+- VXLAN-encapsulated RoCE traffic
 - Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
 

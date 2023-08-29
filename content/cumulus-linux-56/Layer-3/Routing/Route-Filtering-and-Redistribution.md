@@ -15,6 +15,8 @@ This section discusses the following route filtering methods:
 
 Prefix lists are access lists for route advertisements that match routes instead of traffic. Prefix lists are typically used with route maps and other filtering methods. A prefix list can match the prefix (the network itself) and the prefix length (the length of the subnet mask).
 
+### Configure a Prefix List
+
 The following example commands configure a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30. For networks 10.0.0.0/24, 10.10.10.0/24, and 10.0.0.10/32, only 10.0.0.0/24 matches (10.10.10.0/24 has a different prefix and 10.0.0.10/32 has a greater subnet mask).
 
 {{< tabs "TabID22 ">}}
@@ -102,6 +104,28 @@ match ip address prefix-list prefixlist1
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Clear Matches Shown Against a Prefix List
+
+You can clear prefix list statistics.
+
+- To clear the number of matches shown against all prefix lists, run the `nv action clear router policy prefix-list` command.
+- To clear the number of matches shown against a specific prefix list, run the `nv action clear router policy prefix-list <prefix-list-id>` command.
+- To clear the number of matches shown against a specific prefix list rule number and match ID, run the `nv action clear router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>` command.
+
+The following example clears the number of matches shown against prefix list `prefixlist1`:
+
+```
+cumulus@switch:~$ nv action clear router policy prefix-list prefixlist1
+Action succeeded
+```
+
+The following example clears the number of matches shown against prefixlist1 rule 10 with match criteria 10.0.0.0/16:
+
+```
+cumulus@switch:~$ nv action clear router policy prefix-list prefixlist1 rule 10 match 10.0.0.0/16
+Action succeeded
+```
 
 ## Route Maps
 
@@ -444,13 +468,15 @@ cumulus@switch:~$ nv config apply
 
 To clear the number of matches shown against a route map, run the `nv action clear router policy route-map <route-map>` command.
 
-The following example clears the number of matches shown against the route map called ROUTEMAP1.
+The following example clears the number of matches shown against route map `ROUTEMAP1`.
 
 ```
 cumulus@switch:~$ nv action clear router policy route-map ROUTEMAP1
 Running handle_clear_route_map ROUTEMAP1
 Action succeeded
 ```
+
+To clear the number of matches shown against all route maps, run the `nv action clear router policy route-map` command.
 
 ## Route Redistribution
 
@@ -513,38 +539,6 @@ cumulus@switch:~$
 {{%notice note%}}
 For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs).
 {{%/notice%}}
-
-## Clear Statistics
-
-You can clear route map and prefix list statistics.
-
-- To clear all prefix list statistics, run the `nv action clear router policy prefix-list` command.
-- To clear statistics for a specific prefix list, run the `nv action clear router policy prefix-list <prefix-list-id>` command.
-- To clear statistics for a specific prefix list rule number and match ID, run the `nv action clear router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>` command.
-
-The following example clears statistics for the prefix list called prefixlist1:
-
-```
-cumulus@switch:~$ nv action clear router policy prefix-list prefixlist1
-Action succeeded
-```
-
-The following example clears statistics for prefixlist1 rule 10 with match criteria 10.0.0.0/16:
-
-```
-cumulus@switch:~$ nv action clear router policy prefix-list prefixlist1 rule 10 match 10.0.0.0/16
-Action succeeded
-```
-
-- To clear all route map statistics, run the `nv action clear router policy route-map` command.
-- To clear statistics for a specific route map, run the `nv action clear router policy route-map <route-map-id>` command.
-
-The following example clears statistics for the route map called routemap1:
-
-```
-cumulus@switch:~$ nv action clear router policy route-map routemap1 
-Action succeeded
-```
 
 ## Configuration Examples
 

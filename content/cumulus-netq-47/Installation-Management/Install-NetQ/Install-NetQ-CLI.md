@@ -59,15 +59,15 @@ Before you install the NetQ CLI on a server, make sure you install and run at le
 
 {{</tabs>}}
 
-### Verify What CentOS and Ubuntu Are Running
+### Verify That CentOS and Ubuntu Are Running lldpd
 
-For CentOS and Ubuntu, make sure you are running lldp**d**, not lldp**ad**. CentOS and Ubuntu do not include `lldpd` by default, even though the installation requires it. In addition, CentOS does not include `wget`, even though the installation requires it.
+For CentOS and Ubuntu, make sure you are running lldp**d**, not lldp**ad**. CentOS and Ubuntu do not include `lldpd` by default, even though the installation requires it. You must also install the Wget utility on CentOS distributions.
 
 {{<tabs "Configure NetQ CLI">}}
 
 {{<tab "CentOS">}}
 
-To install this package, run the following commands:
+To install the packages, run the following commands:
 
 ```
 root@centos:~# sudo yum -y install epel-release

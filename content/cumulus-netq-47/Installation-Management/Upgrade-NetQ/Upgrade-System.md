@@ -30,7 +30,7 @@ Upgrading to NetQ 4.7.0 from NetQ 4.4.1 or earlier requires a new installation o
 You can upgrade directly to NetQ 4.7.0 if your deployment is currently running version 4.5.0 or 4.6.0.
 ### Back up your NetQ Data
 
-Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}. This is an optional step for on-premises deployments. NetQ cloud deployments create backups automatically.
+Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
 
 ### Update NetQ Debian Packages
 
@@ -75,13 +75,31 @@ Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back 
     ```
 
 
-### Download the Upgrade Tarball
+### Download the Upgrade Software
 
-1. Download the relevant software.
+1. Download the upgrade tarball.
 
     {{<netq-install/upgrade-image version="4.7">}}
 
-2. Copy the file to the `/mnt/installables/` directory on your NetQ VM.
+2. Copy the tarball to the `/mnt/installables/` directory on your NetQ VM.
+
+3. For on-premises deployments, download the configuration backup script, `backup_restore_configs.py`:
+
+<p style="text-indent: 40px; display:inline">a. On the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}, log in to your account.<br></p>
+<p style="text-indent: 40px; display:inline">b. Select <b>NVIDIA Licensing Portal</b>.<br></p>
+<p style="text-indent: 40px; display:inline">c. Select <b>Software Downloads</b> from the menu.<br></p>
+<p style="text-indent: 40px; display:inline">d. Click <b>Product Family</b> and select <b>NetQ</b>.<br></p>
+<p style="text-indent: 40px; display:inline">e. Locate the <b>NetQ SW 4.7.0 Upgrade Backup Restore Configs Script</b> file and select <b>Download</b>.<br></p>
+<p style="text-indent: 40px; display:inline">f. If prompted, agree to the license agreement and proceed with the download.<br></p>
+
+4.  For on-premises deployments, copy the `backup_restore_configs.py` script to `/home/cumulus/` on your NetQ server and change the permissions:
+
+```
+username@hostname:~$ scp ./backup_restore_configs.py cumulus@10.10.10.10:/home/cumulus/
+username@hostname:~$ sudo chmod +x /home/cumulus/backup_restore_configs.py
+```
+
+
 ### Run the Upgrade
 
 {{%notice note%}}
@@ -127,11 +145,19 @@ Confirm that the kubelet process is running with the `sudo systemctl status kube
 
 #### Upgrade Using the NetQ CLI
 
-1. Prepare your NetQ VM for the upgrade:
+1. For on-premises deployments, run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-the-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master node:
 
-Run the `netq bootstrap reset keep-db purge-images` command to clear the current install state and save the current database.  In cluster deployments, run this command on the master and all worker VMs.
+```
+sudo /home/cumulus/./backup_restore_configs.py --preupgrade
+```
 
-2. Run the appropriate `netq install` command for your deployment.
+2. Run the following command to clear the current install state and save the current database.  In cluster deployments, run this command on the master node:
+
+```
+cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images
+```
+
+3. Run the appropriate `netq install` command for your deployment.
 
 {{<tabs "CLI Upgrade">}}
 
@@ -226,7 +252,13 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 
 {{</tabs>}}
 
-3. Confirm the upgrade was successful:
+4. For on-premises deployments, run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master node:
+
+```
+sudo /home/cumulus/./backup_restore_configs.py --postupgrade
+```
+
+5. Confirm the upgrade was successful:
 
 {{<tabs "TabID230" >}}
 
@@ -235,7 +267,7 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
     BOOTSTRAP_VERSION=4.7.0
-    APPLIANCE_MANIFEST_HASH=5e8a63a61e9842e9aa94785f945aaf44bf78eb7622db5f2845dff141f8cfbab2
+    APPLIANCE_MANIFEST_HASH=8869b5423dfcc441ea56a3c89e680b1b2ad61f6887edccb11676bac893073beb
     APPLIANCE_VERSION=4.7.0
     APPLIANCE_NAME=NetQ On-premises Appliance
     ```

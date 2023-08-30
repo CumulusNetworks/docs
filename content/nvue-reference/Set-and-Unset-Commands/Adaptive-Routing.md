@@ -113,22 +113,3 @@ cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set router adaptive-routing profile</h>
-
-Applies the adaptive routing profile you want to use. Cumulus Linux provides these adaptive routing profiles:
-- `ar-profile-1` is the default profile for a switch with the Spectrum-2 and Spectrum-3 ASIC.
-- `ar-profile-2` is the default profile for a switch with the Spectrum-4 ASIC.
-- `ar-profile-custom` includes adaptive routing settings you can change (advanced users).
-
-You cannot make changes to the default profiles. If you are an advanced user, you can customize the custom profile by editing the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file. NVUE does not provide commands.
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router adaptive-routing profile ar-profile-custom
-```

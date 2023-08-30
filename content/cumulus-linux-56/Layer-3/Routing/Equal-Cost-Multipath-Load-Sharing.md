@@ -505,7 +505,7 @@ cumulus@switch:~$ systemctl status frr
 - If you enable adaptive routing in Cumulus Linux 5.5 or earlier by editing the `/etc/cumulus/switchd.d/adaptive_routing.conf` file, you must reconfigure adaptive routing for all the adaptive routing enabled interfaces with the new configuration described below after you upgrade to Cumulus Linux 5.6.0.  
 {{%/notice%}}
 
-Adaptive routing is a load balancing mechanism that improves network utilization for eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.
+Adaptive routing is a load balancing feature that improves network utilization for eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.
 
 The benefits of using adaptive routing include:
 - The switch can forward adaptive routing eligible IP packets over all the available ECMP member ports to maximize the total traffic throughput, while removing potential ECMP flow collisions.
@@ -515,7 +515,7 @@ The benefits of using adaptive routing include:
 With adaptive routing, the switch forwards packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion. The change decision for port selection is set to one microsecond; you cannot change it.
 
 Cumulus Linux supports adaptive routing with:
-- Switches with the Spectrum-4 ASIC.
+- Switches with the Spectrum-4 ASIC (generally available) and switches with the Spectrum-3 ASIC and earlier (beta).
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic.
 - VXLAN-encapsulated RoCE traffic
 - Layer 3 interfaces.

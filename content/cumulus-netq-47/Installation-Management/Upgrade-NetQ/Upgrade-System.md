@@ -150,11 +150,12 @@ Confirm that the kubelet process is running with the `sudo systemctl status kube
 ```
 sudo /home/cumulus/./backup_restore_configs.py --preupgrade
 ```
+2. {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="Generate new AuthKeys and configure the CLI">}} according to your deployment model.
 
-2. Run the following command to clear the current install state and save the current database.  In cluster deployments, run this command on the master node.
+3. Run the following command to clear the current install state and save the current database.  In cluster deployments, run this command on the master node.
 
 {{%notice note%}}
-If you are upgrading a NetQ cloud appliance that is several versions behind the latest release, install the latest NetQ package on the older cloud appliance before running the <code>netq bootstrap reset</code> command:
+If you are upgrading a NetQ cloud appliance, install the latest NetQ package on the appliance before running the <code>netq bootstrap reset</code> command:
 ```
 wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add
 echo "deb https://apps3.cumulusnetworks.com/repos/deb "$(. /etc/os-release && echo "$VERSION_CODENAME")" netq-latest" | sudo tee -a /etc/apt/sources.list.d/netq.list
@@ -166,7 +167,7 @@ sudo apt-get update && sudo apt-get install -y netq-apps netq-agent
 cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images
 ```
 
-3. Run the appropriate `netq install` command for your deployment.
+4. Run the appropriate `netq install` command for your deployment.
 
 {{<tabs "CLI Upgrade">}}
 
@@ -261,13 +262,13 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 
 {{</tabs>}}
 
-4. For on-premises deployments, run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master node:
+5. For on-premises deployments, run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-upgrade-software" text="NetQ configuration backup script">}}. In cluster deployments, run this command on the master node:
 
 ```
 sudo /home/cumulus/./backup_restore_configs.py --postupgrade
 ```
 
-5. Confirm the upgrade was successful:
+6. Confirm the upgrade was successful:
 
 {{<tabs "TabID230" >}}
 

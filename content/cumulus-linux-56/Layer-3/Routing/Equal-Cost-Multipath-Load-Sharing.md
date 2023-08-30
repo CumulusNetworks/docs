@@ -517,7 +517,7 @@ With adaptive routing, the switch forwards packets to the less loaded path on a 
 Cumulus Linux supports adaptive routing with:
 - Switches with the Spectrum-4 ASIC (generally available) and switches with the Spectrum-3 ASIC and earlier (beta).
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic.
-- VXLAN-encapsulated RoCE traffic
+- VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
 
@@ -530,8 +530,6 @@ Cumulus Linux supports adaptive routing with:
 Cumulus Linux also supports BGP W-ECMP with adaptive routing; see {{<link title="BGP Weighted Equal Cost Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP Weighted Equal Cost Multipath. ">}}
 
 ### Enable Adaptive Routing
-
-When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type (`profile-2` for Spectum-4 or `profile-1` for Spectrum-3 and earlier). You cannot change the profile.
 
 To enable adaptive routing:
 
@@ -583,6 +581,8 @@ To disable adaptive routing on a specific port, set the `interface.<port>.adapti
 
 {{< /tab >}}
 {{< /tabs >}}
+
+When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type (`profile-2` for Spectum-4 or `profile-1` for Spectrum-3 and earlier). You cannot change the profile.
 
 <!--### Adaptive Routing Profiles
 

@@ -52,6 +52,8 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 {{< expand "New Commands" >}}
 
+For descriptions and examples of all NVUE commands, refer to the [Cumulus Linux Command Reference]({{<ref "/nvue-reference" >}})
+
 {{< tabs "TabID40 ">}}
 {{< tab "nv show ">}}
 

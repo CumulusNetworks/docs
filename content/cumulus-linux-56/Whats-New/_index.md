@@ -23,7 +23,6 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 - {{<link url="Switch-Port-Attributes/#breakout-ports" text="PAM4 encoding ">}} support for the NVIDIA SN4410 switch
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive routing">}} is generally available for a switch with the Spectrum-4 ASIC and includes the following enhancements (see the {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive Routing">}} section for important upgrade information).
-  - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing-profiles" text="Adaptive routing profiles">}}
   - Support for {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="VXLAN-encapsulated RoCE traffic">}}
   - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP W-ECMP support">}}
 - {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#configure-the-mode-for-a-vlan-aware-bridge" text="PVRST with VLAN-aware bridges ">}}
@@ -102,7 +101,6 @@ nv show system ssh-server active-sessions
 {{< tab "nv set commands ">}}
 
 ```
-nv set router adaptive-routing profile (ar-profile-1|ar-profile-2|ar-profile-custom)
 nv set router adaptive-routing link-utilization-threshold (on|off)
 nv set router password-obfuscation (enabled|disabled)
 nv set bridge domain <domain-id> stp vlan <vid>
@@ -147,7 +145,6 @@ nv set system ssh-server state (enabled|disabled)
 {{< tab "nv unset commands ">}}
 
 ```
-nv unset router adaptive-routing profile
 nv unset router adaptive-routing link-utilization-threshold
 nv unset router password-obfuscation
 nv unset bridge domain <domain-id> stp vlan

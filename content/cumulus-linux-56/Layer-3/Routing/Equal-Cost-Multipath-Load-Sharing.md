@@ -582,7 +582,7 @@ To disable adaptive routing on a specific port, set the `interface.<port>.adapti
 {{< /tab >}}
 {{< /tabs >}}
 
-When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type (`profile-2` for Spectum-4 or `profile-1` for Spectrum-3 and earlier). You cannot change the profile.
+When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type (`profile-2` for Spectum-4 or `profile-1` for Spectrum-3 and earlier). You cannot change the profile settings.
 
 <!--### Adaptive Routing Profiles
 

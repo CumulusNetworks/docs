@@ -53,7 +53,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 {{< expand "New Commands" >}}
 
 {{< tabs "TabID40 ">}}
-{{< tab "nv show commands ">}}
+{{< tab "nv show ">}}
 
 ```
 nv show router pbr nexthop-group
@@ -96,7 +96,7 @@ nv show system ssh-server active-sessions
 ```
 
 {{< /tab >}}
-{{< tab "nv set commands ">}}
+{{< tab "nv set ">}}
 
 ```
 nv set router adaptive-routing link-utilization-threshold (on|off)
@@ -140,7 +140,7 @@ nv set system ssh-server state (enabled|disabled)
 ```
 
 {{< /tab >}}
-{{< tab "nv unset commands ">}}
+{{< tab "nv unset ">}}
 
 ```
 nv unset router adaptive-routing link-utilization-threshold
@@ -196,7 +196,7 @@ nv unset system ssh-server state
 ```
 
 {{< /tab >}}
-{{< tab "nv action commands ">}}
+{{< tab "nv action ">}}
 
 ```
 nv action clear router policy prefix-list

@@ -50,9 +50,9 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - The `nv show` commands provide a {{<link url="NVUE-CLI/#monitoring-commands" text="--filter option">}} to filter output data
   - EVPN multihoming configuration with NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value
 
-{{< expand "New Commands" >}}
+{{< expand "New NVUE Commands" >}}
 
-For descriptions and examples of all NVUE commands, refer to the [Cumulus Linux Command Reference]({{<ref "/nvue-reference" >}})
+For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 
 {{< tabs "TabID40 ">}}
 {{< tab "nv show ">}}

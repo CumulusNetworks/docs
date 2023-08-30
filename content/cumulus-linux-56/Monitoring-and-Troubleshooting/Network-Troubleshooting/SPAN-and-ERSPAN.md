@@ -180,7 +180,7 @@ To match UDP packets coming in on bond1 and mirror the traffic to swp53 when a m
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip protocol udp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 span swp53
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action span swp53
 cumulus@switch:~$ nv set interface bond1 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```

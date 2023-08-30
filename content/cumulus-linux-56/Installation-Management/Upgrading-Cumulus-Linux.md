@@ -237,6 +237,29 @@ Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where y
 
 When you use package upgrade to upgrade your switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
 
+#### Disk Space Requirements
+
+Make sure you have enough disk space to perform a package upgrade. Cumulus Linux 5.6.0 requires:
+- 1.5GB of free disk space to upgrade from 5.4
+- ??GB of free disk space to upgrade from 5.5
+
+Before you upgrade, run the `sudo df -h` command to show how much disk space you are currently using on the switch.
+
+```
+cumulus@switch:~$ sudo df -h
+Filesystem      Size   Used   Avail   Use%    Mounted on
+udev            7.7G      0    7.7G     0%    /dev
+tmpfs           1.6G    18M    1.6G     2%    /run
+/dev/sda4        28G   7.9G     18G    31%    /
+tmpfs           7.7G   277M    7.4G     4%    /dev/shm
+tmpfs           5.0M      0    5.0M     0%    /run/lock
+tmpfs           7.7G      0    7.7G     0%    /sys/fs/cgroup
+tmpfs           7.7G    16K    7.7G     1%    /tmp
+overlay          28G   7.9G     18G    31%   
+```
+
+#### Upgrade the Switch
+
 To upgrade the switch using package upgrade:
 
 1. Back up the configurations from the switch.

@@ -32,7 +32,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - NVUE enhancements include:
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="NVUE-API/#use-the-api" text="Enable and disable external API access">}} commands (Cumulus Linux 5.6 and later enables the NVUE REST API by default; be sure to disable or secure the API if needed)
-  - {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="ARP Neighbor Base Reachable Timer">}} and {{<link url="Neighbor-Discovery-ND/#neighbor-base-reachable-timer" text="ND Neighbor Base Reachable Timer">}} commands
+  - {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="ARP neighbor base reachable timer">}} and {{<link url="Neighbor-Discovery-ND/#neighbor-base-reachable-timer" text="ND neighbor base reachable timer">}} commands
   - {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="IGMP fast leave processing">}} and {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="last member query count">}} commands
   - {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="Clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors
   - {{<link url="Protocol-Independent-Multicast-PIM/#clear-pim-state-and-statistics" text="Clear PIM state and statistics">}} commands

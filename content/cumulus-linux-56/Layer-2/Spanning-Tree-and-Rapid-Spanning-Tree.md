@@ -18,7 +18,7 @@ Cumulus Linux supports STP for VLAN-aware and traditional bridges.
 <!-- vale on -->
 {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridges">}} operate in:
 - <span style="background-color:#F5F5DC">[RSTP](## "Rapid Spanning Tree Protocol")</span> mode, which creates a single instance of spanning tree across all VLANs. RSTP is the default mode.
-- <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span> mode, which creates a single instance of spanning tree for every VLAN.
+- <span style="background-color:#F5F5DC">[PVRST](## "Per-VLAN Rapid Spanning Tree")</span> mode, which creates a single instance of spanning tree for every VLAN and provides improved link bandwidth utilization.
 <!-- vale off -->
 ### Configure the Mode for a VLAN-aware Bridge
 <!-- vale on -->

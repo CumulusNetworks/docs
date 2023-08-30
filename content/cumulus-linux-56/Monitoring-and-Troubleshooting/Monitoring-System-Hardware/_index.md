@@ -47,7 +47,7 @@ asic-model     n/a
 asic-vendor    n/a
 ```
 
-The following example shows the `nv show platform environment fan` command output:
+The following example shows the `nv show platform environment fan` command output. The airflow direction must be the same for all fans. If Cumulus Linux detects that the fan airflow direction is not uniform, it logs a message in the `var/log/syslog` file.
 
 ```
 cumulus@switch:~$ nv show platform environment fan
@@ -62,6 +62,10 @@ Fan6      F2B            15              29000      2500       6000             
 PSU1Fan1  F2B            15              29000      2500       6000                 ok       
 PSU2Fan1  F2B            15              29000      2500       6000                 ok    
 ```
+
+{{%notice note%}}
+If the airflow direction for all fans is not in the same (front to back or back to front), cooling is suboptimal for the switch, rack, and even the entire data center.
+{{%/notice%}}
 
 <!-- vale off -->
 ## decode-syseeprom Command

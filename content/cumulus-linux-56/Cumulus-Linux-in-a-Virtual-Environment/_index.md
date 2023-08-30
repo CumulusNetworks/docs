@@ -31,6 +31,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 |{{<link url="Quality-of-Service/#mark-and-remark-traffic" text="Packet marking and remarking">}}| <font color="red">No</font> |
 |{{<link url="Quality-of-Service" text="QoS buffer management and buffer monitoring">}}| <font color="red">No</font> |
 |{{<link url="Quality-of-Service/#policing-and-shaping" text="QoS shaping ">}}| <font color="red">No</font> |
+|{{<link url="Quality-of-Service/#pfc-watchdog" text="PFC watchdog ">}}| <font color="red">No</font> |
 |{{<link title="What Just Happened (WJH)" >}}| <font color="red">No</font> |
 |{{<link url="Network-Address-Translation-NAT" >}}| <font color="red">No</font> |
 |{{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive Routing" >}}| <font color="red">No</font> |

@@ -176,7 +176,7 @@ On the same appliance, {{<link title="Install NetQ CLI/#configure-the-netq-cli" 
 Next, clear the install state and save the database from the decommissioned appliance. In cluster deployments, run this command on the master node:
 
 ```
-cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images
+cumulus@<hostname>:~$ netq bootstrap reset
 ```
 
 {{</tab>}}

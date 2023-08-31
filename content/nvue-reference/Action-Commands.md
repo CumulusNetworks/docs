@@ -34,6 +34,87 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear evpn vni</h>
+
+Clears duplicate addresses for all VNIs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear evpn vni
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear evpn vni \<vni-id\></h>
+
+Clears duplicate addresses for the specified VNI.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear evpn vni 10
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear evpn vni \<vni-id\> host \<host-id\></h>
+
+Clears the duplicate host address for the specified VNI
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI ID.|
+| `<host-id>` | The IP address of the host. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear evpn vni 10 host 10.0.0.9
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear evpn vni \<vni\> mac \<mac-address\></h>
+
+Clears the duplicate MAC address for the specified VNI.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear evpn vni 10 mac 00:e0:ec:20:12:62
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear interface counters</h>
 
 Clears all interface-specific counters from all interfaces. Interface counters provide information about an interface, such as the number of packets intentionally or intentionally dropped, the number of inbound and outbound packets discarded even though the switch detected no errors, the number of inbound and outbound packets not transmitted because of errors, and so on.
@@ -360,87 +441,6 @@ Introduced in Cumulus Linux 5.6.0
 
 ```
 cumulus@switch:~$ nv action clear router bgp soft out
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear evpn vni</h>
-
-Clears duplicate addresses for all VNIs.
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear evpn vni
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear evpn vni \<vni-id\></h>
-
-Clears duplicate addresses for the specified VNI.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vni-id>` |  The VNI ID.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear evpn vni 10
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear evpn vni \<vni-id\> host \<host-id\></h>
-
-Clears the duplicate host address for the specified VNI
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vni-id>` |  The VNI ID.|
-| `<host-id>` | The IP address of the host. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear evpn vni 10 host 10.0.0.9
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear evpn vni \<vni\> mac \<mac-address\></h>
-
-Clears the duplicate MAC address for the specified VNI.
-
-### Version History
-
-Introduced in Cumulus Linux 5.6.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear evpn vni 10 mac 00:e0:ec:20:12:62
 Action succeeded
 ```
 

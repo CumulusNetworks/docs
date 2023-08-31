@@ -59,15 +59,15 @@ Before you install the NetQ CLI on a server, make sure you install and run at le
 
 {{</tabs>}}
 
-### Verify What CentOS and Ubuntu Are Running
+### Verify That CentOS and Ubuntu Are Running lldpd
 
-For CentOS and Ubuntu, make sure you are running lldp**d**, not lldp**ad**. CentOS and Ubuntu do not include `lldpd` by default, even though the installation requires it. In addition, CentOS does not include `wget`, even though the installation requires it.
+For CentOS and Ubuntu, make sure you are running lldp**d**, not lldp**ad**. CentOS and Ubuntu do not include `lldpd` by default, even though the installation requires it. You must also install the Wget utility on CentOS distributions.
 
 {{<tabs "Configure NetQ CLI">}}
 
 {{<tab "CentOS">}}
 
-To install this package, run the following commands:
+To install the packages, run the following commands:
 
 ```
 root@centos:~# sudo yum -y install epel-release
@@ -488,11 +488,11 @@ To generate AuthKeys:
 
 3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, then select **Management**.
 
-    {{<figure src="/images/netq/main-menu-admin-mgmt-selected-410.png" alt="" width="300">}}
+    {{<figure src="/images/netq/side-nav-man-470.png" alt="" width="300">}}
 
 4. Select **Manage** on the User Accounts card.
 
-5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> above the table.
+5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> **Generate keys** above the table.
 
 6. Copy these keys to a safe place. Select `Copy` to obtain the CLI configuration command to use on your devices. 
 
@@ -563,11 +563,11 @@ To generate AuthKeys:
 
 3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, then select **Management**.
 
-    {{<figure src="/images/netq/main-menu-admin-mgmt-selected-410.png" width="300">}}
+    {{<figure src="/images/netq/side-nav-man-470.png" alt="" width="300">}}
 
 4. Select **Manage** on the User Accounts card.
 
-5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> above the table.
+5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> **Generate keys** above the table.
 
 6. Copy these keys to a safe place. Select `Copy` to obtain the CLI configuration command to use on your devices. 
 

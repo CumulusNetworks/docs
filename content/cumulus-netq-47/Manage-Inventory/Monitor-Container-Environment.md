@@ -14,7 +14,7 @@ This topic assumes a reasonable familiarity with Kubernetes terminology and arch
 
 ## Use NetQ with Kubernetes Clusters
 
-The NetQ Agent interfaces with the Kubernetes API server and listens to Kubernetes events. The NetQ Agent monitors network identity and physical network connectivity of Kubernetes resources like pods, daemon sets, services, and so forth. NetQ works with any container network interface (CNI), such as Calico or Flannel.
+The NetQ Agent interfaces with the Kubernetes API server and listens to Kubernetes events. The NetQ Agent monitors network identity and physical network connectivity of Kubernetes resources like pods, daemon sets, services, and so forth. NetQ works with any container network interface (CNI), including Calico and Flannel.
 
 The NetQ Kubernetes integration enables network administrators to:
 

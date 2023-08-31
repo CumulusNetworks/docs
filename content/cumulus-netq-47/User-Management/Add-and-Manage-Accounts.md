@@ -18,7 +18,8 @@ To create a new account:
 
 2. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" alt="add" height="18" width="18">}} **Add** to add an account.
 
-    {{< figure src="/images/netq/add-new-user.png" alt="card with empty fields prompting admin to create an account" width="250" >}}
+    {{<img src="/images/netq/add-user-470.png" alt="" width="250">}}
+    <div style="margin-top: 20px;"></div>
 
 3. Enter the fields and select **Save**.
 
@@ -96,7 +97,7 @@ To configure these login policies:
 
 2. Select how long an account can be logged in before requiring a user to log in again:
 
-    {{<figure src="/images/netq/login-management-card.png" alt="" width="450" >}}
+    {{<figure src="/images/netq/login-management-470.png" alt="" width="450" >}}
 
 3. Click **Update** to save the changes.
 

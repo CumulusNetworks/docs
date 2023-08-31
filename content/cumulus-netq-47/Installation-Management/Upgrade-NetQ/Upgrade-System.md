@@ -173,7 +173,7 @@ sudo apt-get update && sudo apt-get install -y netq-apps netq-agent
 ```
 On the same appliance, {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="generate new AuthKeys and configure the CLI">}}.
 
-Next, clear the install state and save the database from the decommissioned appliance. In cluster deployments, run this command on the master node:
+Next, clear the install state from the decommissioned appliance. In cluster deployments, run this command on the master node:
 
 ```
 cumulus@<hostname>:~$ netq bootstrap reset

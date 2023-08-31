@@ -323,6 +323,11 @@ cumulus@switch:~$ nv set interface swp1 qos remark profile MYPROFILE
 
 Enables or disables PFC watchdog on the interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled. The default setting is `disable`.
 
+- PFC watchdog only works for lossless traffic queues.
+- You can only configure PFC watchdog on a port with PFC (or link pause) configuration.
+- You can only enable PFC watchdog on a physical interface (swp).
+- You cannot enable the watchdog on a bond (for example, bond0) but you can enable the watchdog on a port that is a member of a bond (for example, swp1).
+
 ### Command Syntax
 
 | Syntax |  Description   |

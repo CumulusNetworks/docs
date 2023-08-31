@@ -154,7 +154,7 @@ Run the following command in the directory that contains the {{<link title="Upgr
 ```
 sudo /home/cumulus/./backup_restore_configs.py --preupgrade
 ```
-Next, clear the current install state and save the current database. In cluster deployments, run this command on the master node:
+Next, clear the install state and save the database from the decommissioned appliance. In cluster deployments, run this command on the master node:
 
 ```
 cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images
@@ -164,7 +164,7 @@ cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images
 
 {{<tab "Cloud Deployments" >}}
 
-Install the latest NetQ packages on your current NetQ cloud appliance with the following commands:
+On the NetQ cloud appliance that you're planning to decommission, install the latest NetQ packages:
 
 ```
 wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add
@@ -173,7 +173,7 @@ sudo apt-get update && sudo apt-get install -y netq-apps netq-agent
 ```
 On the same appliance, {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="generate new AuthKeys and configure the CLI">}}.
 
-Next, clear the current install state and save the current database. In cluster deployments, run this command on the master node:
+Next, clear the install state and save the database from the decommissioned appliance. In cluster deployments, run this command on the master node:
 
 ```
 cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images

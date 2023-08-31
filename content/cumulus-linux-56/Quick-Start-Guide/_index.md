@@ -24,9 +24,9 @@ To get started:
 - Configure Cumulus Linux. This quick start guide provides instructions on changing the hostname of the switch, setting the date and time, and configuring switch ports and a loopback interface.
 
 {{%notice warning%}}
-You can choose to configure Cumulus Linux either with NVUE commands **or** Linux commands (with vtysh or by manually editing configuration files). Do **not** run both NVUE configuration commands (such as `nv set`, `nv unset`, `nv action`, and `nv config`) and Linux commands to configure the switch. NVUE commands replace the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, and remove any configuration you add manually or with automation tools like Ansible, Chef, or Puppet.
+You can choose to configure Cumulus Linux either with NVUE commands **or** Linux commands (with vtysh or by manually editing configuration files). Do **not** run both NVUE configuration commands (such as `nv set`, `nv unset`, `nv action`, `nv config`) and Linux commands to configure the switch. NVUE commands replace the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, and remove any configuration you add manually or with automation tools like Ansible, Chef, or Puppet.
 
-If you choose to configure Cumulus Linux with NVUE, you can configure features that do not yet support the NVUE Object Model by creating snippets. See {{<link url="NVUE-Snippets" text="NVUE Snippets">}}.
+If you choose to configure Cumulus Linux with NVUE, you can configure features that do not yet support the NVUE Object Model by creating {{<link url="NVUE-Snippets" text="NVUE Snippets">}}.
 {{%/notice%}}
 
 ### Login Credentials
@@ -185,7 +185,7 @@ For more information about setting the system time, see {{<link url="Setting-the
 
 ## Configure Breakout Ports with Splitter Cables
 
-If you are using 4x10G DAC or AOC cables, or you want to break out 100G or 40G switch ports, configure the breakout ports. For more details, see {{<link url="Switch-Port-Attributes/#breakout-ports">}}.
+If you are using 4x10G DAC or AOC cables, or you want to break out (split) switch ports, configure the breakout ports; see {{<link url="Switch-Port-Attributes/#breakout-ports">}}.
 
 ## Test Cable Connectivity
 
@@ -194,14 +194,14 @@ By default, Cumulus Linux disables all data plane ports (every Ethernet port exc
 {{< tabs "TabID260 ">}}
 {{< tab "NVUE Commands ">}}
 
-To administratively enable a port:
+To enable a port administratively:
 
 ```
 cumulus@switch:~$ nv set interface swp1
 cumulus@switch:~$ nv config apply
 ```
 
-To administratively enable all physical ports on a switch that has ports numbered from swp1 to swp52:
+To enable all physical ports administratively on a switch that has ports numbered from swp1 to swp52:
 
 ```
 cumulus@switch:~$ nv set interface swp1-52
@@ -213,13 +213,13 @@ To view link status, run the `nv show interface` command.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To administratively enable a port:
+To enable a port administratively:
 
 ```
 cumulus@switch:~$ sudo ip link set swp1 up
 ```
 
-To administratively enable all physical ports, run the following bash script:
+To enable all physical ports administratively, run the following bash script:
 
 ```
 cumulus@switch:~$ sudo su -
@@ -354,13 +354,13 @@ cumulus@switch:~$ sudo ifup -a
 
 ## Configure a Loopback Interface
 
-Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface, called *lo*, is up and assigned an IP address of 127.0.0.1.
+Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface, called `lo`, is up and assigned an IP address of 127.0.0.1.
 
 {{%notice note%}}
-The loopback interface *lo* must always exist on the switch and must always be up. To check the status of the loopback interface, run the NVUE `nv show interface lo` command or the Linux `ip addr show lo` command.
+The loopback interface `lo` must always exist on the switch and must always be up. To check the status of the loopback interface, run the NVUE `nv show interface lo` command or the Linux `ip addr show lo` command.
 {{%/notice%}}
 
-To add an IP address to a loopback interface, configure the *lo* interface:
+To add an IP address to a loopback interface, configure the `lo` interface:
 
 {{< tabs "TabID510 ">}}
 {{< tab "NVUE Commands ">}}
@@ -391,7 +391,7 @@ If you configure an IP address without a subnet mask, it becomes a /32 IP addres
 You can add multiple loopback addresses. For more information, see {{<link url="Interface-Configuration-and-Management/#loopback-interface" text="Interface Configuration and Management">}}.
 
 {{%notice info%}}
-If you run NVUE Commands to configure the switch, run the `nv config save` command before you reboot. The command saves the applied configuration to the startup configuration so that the changes persist after the reboot.
+If you run NVUE commands to configure the switch, run the `nv config save` command before you reboot. The command saves the applied configuration to the startup configuration so that the changes persist after the reboot.
 
 ```
 cumulus@switch:~$ nv config save
@@ -405,6 +405,6 @@ cumulus@switch:~$ nv config save
 
 ## Next Steps
 
-You are now ready to configure the switch according to your needs. This guide provides separate sections that describe how to configure {{<link url="System-Configuration" text="system">}}, {{<link url="Layer-1-and-Switch-Ports" text="layer 1">}}, {{<link url="Layer-2" text="layer 2">}}, {{<link url="Layer-3" text="layer 3">}}, and {{<link url="Network-Virtualization" text="network virtualization">}} settings. Each section includes example configurations and pre-built demos.
+You are now ready to configure the switch according to your needs. This guide provides separate sections that describe how to configure {{<link url="System-Configuration" text="system">}}, {{<link url="Layer-1-and-Switch-Ports" text="layer 1">}}, {{<link url="Layer-2" text="layer 2">}}, {{<link url="Layer-3" text="layer 3">}}, and {{<link url="Network-Virtualization" text="network virtualization">}} settings. Each section includes example configurations and {{<link url="Try-It-Pre-built-Demos" text="pre-built demos">}}.
 
 For a deep dive into the NVUE object model that provides a CLI to simplify configuration, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVUE">}}.

@@ -21,27 +21,25 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 ### New Features and Enhancements
 
-- {{<link url="Switch-Port-Attributes/#breakout-ports" text="PAM4 encoding ">}} support for the NVIDIA SN4410 switch
-- {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive routing">}} is generally available for a switch with the Spectrum-4 ASIC and includes the following enhancements (see the {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive Routing">}} section for important upgrade information).
-  - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="VXLAN-encapsulated RoCE traffic support">}}
-  - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP W-ECMP support">}}
-- {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#configure-the-mode-for-a-vlan-aware-bridge" text="PVRST with VLAN-aware bridges ">}}
-- {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
-- {{<link url="Monitoring-System-Hardware" text="Fan airflow direction">}} in NVUE `nv show platform environment fan` and Linux `smonctl -v` command output, and a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
-- {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one-step clock timestamp mode">}} for Spectrum-2 and Spectrum-3
 - FRR upgrade to version 8.4.3
 - PTP stack upgrade to linuxptp 4.0
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive routing">}} is generally available for a switch with the Spectrum-4 ASIC and provides enhancements that include support for {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="VXLAN-encapsulated RoCE traffic">}} and {{<link url="BGP-Weighted-Equal-Cost-Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP W-ECMP">}} (see the {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive Routing">}} section for important upgrade information)
+- {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#configure-the-mode-for-a-vlan-aware-bridge" text="PVRST with VLAN-aware bridges ">}}
+- {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
+- {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one-step clock timestamp mode">}} for Spectrum-2 and Spectrum-3
+- {{<link url="Switch-Port-Attributes/#breakout-ports" text="PAM4 encoding ">}} support for the NVIDIA SN4410 switch
+- {{<link url="Monitoring-System-Hardware" text="Fan airflow direction">}} in NVUE `nv show platform environment fan` and Linux `smonctl -v` command output; a {{<link url="Monitoring-Best-Practices#hardware" text="fan direction mismatch">}} triggers a log message
 - NVUE enhancements include:
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
-  - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} show configuration and operational data
   - {{<link url="NVUE-API/#use-the-api" text="Enable and disable external API access">}} commands (Cumulus Linux 5.6 and later enables the NVUE REST API by default; be sure to disable or secure the API if needed)
-  - {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="ARP Neighbor Base Reachable Timer">}} and {{<link url="Neighbor-Discovery-ND/#neighbor-base-reachable-timer" text="ND Neighbor Base Reachable Timer">}} commands
+  - {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="ARP neighbor base reachable timer">}} and {{<link url="Neighbor-Discovery-ND/#neighbor-base-reachable-timer" text="ND neighbor base reachable timer">}} commands
   - {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="IGMP fast leave processing">}} and {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="last member query count">}} commands
   - {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="Clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors
   - {{<link url="Protocol-Independent-Multicast-PIM/#clear-pim-state-and-statistics" text="Clear PIM state and statistics">}} commands
   - {{<link url="EVPN-Enhancements/#clear-duplicate-addresses" text="Clear EVPN duplicate address">}} commands
   - {{<link url="Protocol-Independent-Multicast-PIM/#pim-show-commands" text="Show IGMP group commands ">}}
   - {{<link url="VLAN-aware-Bridge-Mode/#troubleshooting" text="Show commands">}} to see the ports mapped to a bridge and the VLANs mapped to bridge ports
+  - {{<link url="Virtual-Router-Redundancy-Protocol-VRRP/#show-vrrp-configuration" text="VRRP show commands ">}} include operational data
   - Changes to the `nv show platform` command outputs to improve readability:
     - Shows a concise summary of all sensors
     - Improved memory format
@@ -52,10 +50,12 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - The `nv show` commands provide a {{<link url="NVUE-CLI/#monitoring-commands" text="--filter option">}} to filter output data
   - EVPN multihoming configuration with NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value
 
-{{< expand "New Commands" >}}
+{{< expand "New NVUE Commands" >}}
+
+For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 
 {{< tabs "TabID40 ">}}
-{{< tab "nv show commands ">}}
+{{< tab "nv show ">}}
 
 ```
 nv show router pbr nexthop-group
@@ -98,7 +98,7 @@ nv show system ssh-server active-sessions
 ```
 
 {{< /tab >}}
-{{< tab "nv set commands ">}}
+{{< tab "nv set ">}}
 
 ```
 nv set router adaptive-routing link-utilization-threshold (on|off)
@@ -142,7 +142,7 @@ nv set system ssh-server state (enabled|disabled)
 ```
 
 {{< /tab >}}
-{{< tab "nv unset commands ">}}
+{{< tab "nv unset ">}}
 
 ```
 nv unset router adaptive-routing link-utilization-threshold
@@ -198,7 +198,7 @@ nv unset system ssh-server state
 ```
 
 {{< /tab >}}
-{{< tab "nv action commands ">}}
+{{< tab "nv action ">}}
 
 ```
 nv action clear router policy prefix-list

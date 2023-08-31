@@ -32,7 +32,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 - NVUE enhancements include:
   - {{<link url="SSH-for-Remote-Access" text="SSH commands">}}
   - {{<link url="NVUE-API/#use-the-api" text="Enable and disable external API access">}} commands (Cumulus Linux 5.6 and later enables the NVUE REST API by default; be sure to disable or secure the API if needed)
-  - {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="ARP Neighbor Base Reachable Timer">}} and {{<link url="Neighbor-Discovery-ND/#neighbor-base-reachable-timer" text="ND Neighbor Base Reachable Timer">}} commands
+  - {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="ARP neighbor base reachable timer">}} and {{<link url="Neighbor-Discovery-ND/#neighbor-base-reachable-timer" text="ND neighbor base reachable timer">}} commands
   - {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="IGMP fast leave processing">}} and {{<link url="Protocol-Independent-Multicast-PIM/#igmp-settings" text="last member query count">}} commands
   - {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="Clear BGP route">}} commands to clear all BGP sessions and to refresh routes for all neighbors
   - {{<link url="Protocol-Independent-Multicast-PIM/#clear-pim-state-and-statistics" text="Clear PIM state and statistics">}} commands
@@ -50,10 +50,12 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
   - The `nv show` commands provide a {{<link url="NVUE-CLI/#monitoring-commands" text="--filter option">}} to filter output data
   - EVPN multihoming configuration with NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value
 
-{{< expand "New Commands" >}}
+{{< expand "New NVUE Commands" >}}
+
+For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 
 {{< tabs "TabID40 ">}}
-{{< tab "nv show commands ">}}
+{{< tab "nv show ">}}
 
 ```
 nv show router pbr nexthop-group
@@ -96,7 +98,7 @@ nv show system ssh-server active-sessions
 ```
 
 {{< /tab >}}
-{{< tab "nv set commands ">}}
+{{< tab "nv set ">}}
 
 ```
 nv set router adaptive-routing link-utilization-threshold (on|off)
@@ -140,7 +142,7 @@ nv set system ssh-server state (enabled|disabled)
 ```
 
 {{< /tab >}}
-{{< tab "nv unset commands ">}}
+{{< tab "nv unset ">}}
 
 ```
 nv unset router adaptive-routing link-utilization-threshold
@@ -196,7 +198,7 @@ nv unset system ssh-server state
 ```
 
 {{< /tab >}}
-{{< tab "nv action commands ">}}
+{{< tab "nv action ">}}
 
 ```
 nv action clear router policy prefix-list

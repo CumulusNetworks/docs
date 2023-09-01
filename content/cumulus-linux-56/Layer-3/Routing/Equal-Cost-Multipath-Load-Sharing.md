@@ -510,7 +510,7 @@ The benefits of using adaptive routing include:
 With adaptive routing, the switch forwards packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion. The change decision for port selection is set to one microsecond; you cannot change it.
 
 Cumulus Linux supports adaptive routing with:
-- Switches with the Spectrum-4 ASIC. In 5.5 and earlier, adaptive routing for switches with the Spectrum-3 and Spectrum-2 ASIC is a beta feature.
+- Switches with the Spectrum-4 ASIC.
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic.
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.

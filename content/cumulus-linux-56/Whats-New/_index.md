@@ -23,7 +23,7 @@ Cumulus Linux 5.6.0 supports new platforms, contains several new features and im
 
 - FRR upgrade to version 8.4.3
 - PTP stack upgrade to linuxptp 4.0
-- {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive routing">}} is generally available for a switch with the Spectrum-4 ASIC and provides enhancements that include support for {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="VXLAN-encapsulated RoCE traffic">}} and {{<link url="BGP-Weighted-Equal-Cost-Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP W-ECMP">}} (see the {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive Routing">}} section for important upgrade information)
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Adaptive routing">}} is generally available for a switch with the Spectrum-4 ASIC and provides enhancements that include support for {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="VXLAN-encapsulated RoCE traffic">}} and {{<link url="BGP-Weighted-Equal-Cost-Multipath/#bgp-w-ecmp-with-adaptive-routing" text="BGP W-ECMP">}}
 - {{<link title="Spanning Tree and Rapid Spanning Tree - STP/#configure-the-mode-for-a-vlan-aware-bridge" text="PVRST with VLAN-aware bridges ">}}
 - {{<link url="Quality-of-Service/#pfc-watchdog" text="QOS PFC watchdog">}} for lossless queues
 - {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one-step clock timestamp mode">}} for Spectrum-2 and Spectrum-3

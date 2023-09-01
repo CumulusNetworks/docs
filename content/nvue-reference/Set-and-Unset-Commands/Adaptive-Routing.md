@@ -16,6 +16,11 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Provides commands to configure adaptive routing on the specified interface. Adaptive routing is a load balancing feature that improves network utilization for eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.
 
+{{%notice note%}}
+Cumulus Linux 5.6 supports adaptive routing on Spectrum-4.
+Cumulus Linux 5.5 and earlier supports adaptive routing on Spectrum-3 and Spectrum-2 as a beta feature for evaluation.
+{{%/notice%}}
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> router adaptive-routing enable</h>

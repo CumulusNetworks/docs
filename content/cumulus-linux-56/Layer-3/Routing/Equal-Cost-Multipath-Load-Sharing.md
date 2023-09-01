@@ -500,11 +500,6 @@ cumulus@switch:~$ systemctl status frr
 
 ## Adaptive Routing
 
-{{%notice warning%}}
-- If you enable adaptive routing with NVUE in Cumulus Linux 5.5 or earlier, the switch does not support ISSU upgrade to Cumulus Linux 5.6.0.
-- If you enable adaptive routing in Cumulus Linux 5.5 or earlier by editing the `/etc/cumulus/switchd.d/adaptive_routing.conf` file, you must reconfigure adaptive routing for all the adaptive routing enabled interfaces with the new configuration described below after you upgrade to Cumulus Linux 5.6.0.  
-{{%/notice%}}
-
 Adaptive routing is a load balancing feature that improves network utilization for eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization.
 
 The benefits of using adaptive routing include:
@@ -515,7 +510,7 @@ The benefits of using adaptive routing include:
 With adaptive routing, the switch forwards packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion. The change decision for port selection is set to one microsecond; you cannot change it.
 
 Cumulus Linux supports adaptive routing with:
-- Switches with the Spectrum-4 ASIC (generally available) and switches with the Spectrum-3 ASIC and earlier (beta).
+- Switches with the Spectrum-4 ASIC.
 - {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic.
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
@@ -645,7 +640,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{%notice note%}}
 If you modify the `adaptive_routing.ecmp_size` parameter in the custom profile, then revert to the default profile for the switch, you must restart `switchd`.
 {{%/notice%}}
--->
+
 ### Link Utilization
 
 Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. You can change the percentage to a value between 1 and 100.
@@ -745,7 +740,7 @@ interface.swp51.adaptive_routing.enable = TRUE
 interface.swp51.adaptive_routing.link_util_thresh = 0
 interface.swp52.adaptive_routing.enable = TRUE
 interface.swp52.adaptive_routing.link_util_thresh = 0
-... 
+...
 ```
 
 Reload `switchd` with the `sudo systemctl reload switchd.service` command.
@@ -772,7 +767,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ### Show Adaptive Routing Settings
 
 To show adaptive routing settings, run the `nv show router adaptive-routing` command:
@@ -786,12 +781,4 @@ link-utilization-threshold  off           off
 profile                     profile-1
 ```
 
-To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing` command:
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface swp51 router adaptive-routing
-                            applied
---------------------------  -------
-enable                      on     
-link-utilization-threshold  100
-```
+To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing`.

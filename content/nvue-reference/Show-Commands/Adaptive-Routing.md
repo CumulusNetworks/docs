@@ -31,7 +31,7 @@ cumulus@switch:~$ nv show interface swp1 router adaptive-routing
                             applied
 --------------------------  -------
 enable                      on     
-link-utilization-threshold  50  
+link-utilization-threshold  70  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

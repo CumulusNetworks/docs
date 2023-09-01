@@ -44,7 +44,7 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@switch:~$ nv set interface swp1 router adaptive-routing enable on
 ```
-
+<!--
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> router adaptive-routing link-utilization-threshold</h>
@@ -66,7 +66,7 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@switch:~$ nv set interface swp1 router adaptive-routing link-utilization-threshold 50
 ```
-
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router adaptive-routing</h>
@@ -92,7 +92,7 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@switch:~$ nv set router adaptive-routing enable on
 ```
-
+<!--
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router adaptive-routing link-utilization-threshold</h>
@@ -114,5 +114,4 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+-->

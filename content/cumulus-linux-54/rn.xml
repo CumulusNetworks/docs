@@ -709,6 +709,12 @@ ERR cannot allocate vlan for sub-interface
 <td>5.5.0-5.5.1</td>
 </tr>
 <tr>
+<td>3394674</td>
+<td>If you restart FRR with the log file debugging level set to {{informational}}, BGP crashes.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3393866</td>
 <td>On a VX, NVUE commands with an argument parameter that can be multiple types (such as IPv4 and IPv6) do not provide auto complete or additional options when you use a question mark.</td>
 <td>5.4.0</td>

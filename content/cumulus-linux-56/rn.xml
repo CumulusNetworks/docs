@@ -37,9 +37,21 @@
 <td></td>
 </tr>
 <tr>
+<td>3549798</td>
+<td>If you add a VRF, then SSH into that VRF, which is a generated service (for example, {{sshd@vrfname.service}}), the service fails as the VRF is not created in time. To work around this issue, configure the VRF first, apply the configuration, then enable the SSH service on the VRF.</td>
+<td>5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3538321</td>
 <td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the Slave state and one of the ports might remain in an Uncalibrated state. To work around this issue, toggle the port that is in the Uncalibrated state up and down to recover the PTP state so that one of the ports is selected as the Slave.</td>
 <td>5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3534718</td>
+<td>The BGP command to suppress longer prefixes inside the aggregate address before sending updates ({{nv set vrf &lt;vrf&gt; router bgp address-family &lt;address-family&gt; aggregate-route &lt;address&gt; summary-only}} or vtysh {{router bgp &lt;asn&gt; aggregate-address &lt;address&gt; summary-only}}) does not suppress more specific routes from being exported into the EVPN routing table and advertised as EVPN type-5 routes. To work around this issue, announce EVPN type-5 routes by adding an additional outbound policy or export policy to filter out the more specific routes.</td>
+<td>5.5.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -666,6 +678,11 @@ This error message is benign and has no functional impact.</td>
 <td>3413785</td>
 <td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.1</td>
+</tr>
+<tr>
+<td>3394674</td>
+<td>If you restart FRR with the log file debugging level set to {{informational}}, BGP crashes.</td>
+<td>5.4.0-5.5.1</td>
 </tr>
 <tr>
 <td>3378733</td>

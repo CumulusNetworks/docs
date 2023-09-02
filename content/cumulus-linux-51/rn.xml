@@ -358,7 +358,13 @@ To avoid allocating next hop counters for any new ECMP next hop list update, set
 </tr>
 <tr>
 <td>3135714</td>
-<td>The {{tacplus}} package does not create the correct tacacs0-15 users in the right groups. NVUE commands are rejected with the error: "You do not have permission to execute that command."</td>
+<td>The {{tacplus}} package does not create the correct tacacs0-15 users in the right groups. NVUE commands are rejected with the error: "You do not have permission to execute that command." To work around this issue, add tacacs15 to the {{nvapply}} group. Also, add tacacs0 through 14 to the {{nvshow}} group:
+
+sudo usermod -a -G nvapply tacacs15
+sudo usermod -a -G nvshow tacacs0
+...
+sudo usermod -a -G nvshow tacacs14
+</td>
 <td>5.1.0-5.2.1</td>
 <td>5.3.0-5.5.1</td>
 </tr>

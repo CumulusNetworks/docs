@@ -73,6 +73,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3534718</td>
+<td>The BGP command to suppress longer prefixes inside the aggregate address before sending updates ({{nv set vrf &lt;vrf&gt; router bgp address-family &lt;address-family&gt; aggregate-route &lt;address&gt; summary-only}} or vtysh {{router bgp &lt;asn&gt; aggregate-address &lt;address&gt; summary-only}}) does not suppress more specific routes from being exported into the EVPN routing table and advertised as EVPN type-5 routes. To work around this issue, announce EVPN type-5 routes by adding an additional outbound policy or export policy to filter out the more specific routes.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3528359</td>
 <td>A {{switchd}} assertion crash occurs after KVD resource exhaustion in the SDK because entries are in a pending delete state, which causes an ECMP allocation failure.</td>
 <td>5.5.0-5.5.1</td>
@@ -314,6 +320,12 @@ This error message is benign and has no functional impact.</td>
 <tr>
 <td>3395489</td>
 <td>On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3394674</td>
+<td>If you restart FRR with the log file debugging level set to {{informational}}, BGP crashes.</td>
 <td>5.4.0-5.5.1</td>
 <td></td>
 </tr>
@@ -729,6 +741,12 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
+<td>3534718</td>
+<td>The BGP command to suppress longer prefixes inside the aggregate address before sending updates ({{nv set vrf &lt;vrf&gt; router bgp address-family &lt;address-family&gt; aggregate-route &lt;address&gt; summary-only}} or vtysh {{router bgp &lt;asn&gt; aggregate-address &lt;address&gt; summary-only}}) does not suppress more specific routes from being exported into the EVPN routing table and advertised as EVPN type-5 routes. To work around this issue, announce EVPN type-5 routes by adding an additional outbound policy or export policy to filter out the more specific routes.</td>
+<td>5.5.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3528359</td>
 <td>A {{switchd}} assertion crash occurs after KVD resource exhaustion in the SDK because entries are in a pending delete state, which causes an ECMP allocation failure.</td>
 <td>5.5.0-5.5.1</td>
@@ -970,6 +988,12 @@ This error message is benign and has no functional impact.</td>
 <tr>
 <td>3395489</td>
 <td>On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.</td>
+<td>5.4.0-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3394674</td>
+<td>If you restart FRR with the log file debugging level set to {{informational}}, BGP crashes.</td>
 <td>5.4.0-5.5.1</td>
 <td></td>
 </tr>

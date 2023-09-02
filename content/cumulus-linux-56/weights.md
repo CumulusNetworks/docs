@@ -7,5 +7,4 @@ product: Cumulus Linux
 version: "5.6"
 bookhidden: true
 pdfhidden: true
-draft: true
 ---

@@ -662,11 +662,11 @@ PFC watchdog detects and mitigates pause storms on PFC-enabled ports.
 
 In lossless Ethernet, the switch sends PFC PAUSE frames to instruct the link partner to pause sending packets on a traffic class. This back pressure might propagate across the network and, if it persists, can cause the network to stop forwarding traffic. PFC watchdog detects abnormal back pressure caused by receiving an excessive number of pause frames and disables PFC temporarily.
 
-When a lossless queue receives a pause storm from its link partner and the queue is in a paused state for a certain period of time, PFC watchdog mitigates the pause storm. The watchdog stops processing received pause frames on every switch priority corresponding to the traffic class that detects the storm and sets the egress buffers to zero on the corresponding traffic class.
+When a lossless queue receives a pause storm from its link partner and the queue is in a paused state for a certain period of time, PFC watchdog mitigates the pause storm. The watchdog stops processing received pause frames on every switch priority corresponding to the traffic class that detects the storm and discards new incoming packets to this egress queue.
 
 The watchdog continues to count pause frames received on the port. If there are no pause frames received in any polling interval period, it restores the PFC configuration on the port and stops dropping packets.
 
-PFC watchdog also detects and mitigates pause storms on link pause-enabled ports. The watchdog configuration for link pause-enabled ports is the same as the configuration for PFC-enabled ports. For a link pause-enabled port, the watchdog stops processing received pause frames on the egress port that detects the storm and sets the egress buffers to zero on every traffic class on the port.
+PFC watchdog also detects and mitigates pause storms on link pause-enabled ports. The watchdog configuration for link pause-enabled ports is the same as the configuration for PFC-enabled ports. For a link pause-enabled port, the watchdog stops processing received pause frames on the egress port that detects the storm and discards new incoming packets to all egress queues on the port until congestion diminishes.
 
 {{%notice note%}}
 - PFC watchdog only works for lossless traffic queues.

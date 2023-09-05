@@ -334,6 +334,59 @@ source-ip  0.0.0.0/0    0.0.0.0/0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show router pbr nexthop-group </h>
+
+Shows the PBR next hop groups configured on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router pbr nexthop-group
+Nexthop-groups  installed  valid    Summary         
+--------------  ---------  -----    ----------------
+group1          yes         yes     Nexthop-index: 1
+                                    Nexthop-index: 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show router pbr nexthop-group \<nexthop-group-id\></h>
+
+Shows information about a specific PBR next hop group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<nexthop-group-id>` | The next hop group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router pbr nexthop-group group1
+           operational  applied
+---------  -----------  -------
+installed  no                  
+valid      no                  
+
+nexthop
+==========
+    Nexthop-index  label  nexthop       target-vrf  valid  vrf   weight
+    -------------  -----  ------------  ----------  -----  ----  ------
+    1                     192.168.0.22              no                 
+    2                     192.168.0.21              no     swp1 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system global reserved routing-table pbr</h>
 
 Shows the PBR reserved routing table ranges.

@@ -4,10 +4,6 @@ author: Cumulus Networks
 weight: 30
 type: nojsscroll
 ---
-{{%notice note%}}
-This document is in beta.
-{{%/notice%}}
-
 This section describes all the `nv set` and `nv unset` commands. The commands are organized by functionality, such as adaptive routing, ACLs, BGP, OSPF, and so on.
 
 - To see common options for the all commands, refer to {{<link url="Common-Options" text="Common Options">}}.

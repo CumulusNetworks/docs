@@ -37,6 +37,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3567708</td>
+<td>In an EVPN multihoming environment with VRRP, when the master VRRP router fails, the standby router takes around 30 seconds to become active.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3562767</td>
 <td>ACLs do not process inbound DHCP packets and the packets do not contribute to ACL counters</td>
 <td>5.2.0-5.5.1</td>
@@ -701,6 +707,12 @@ You can safely ignore this warning.</td>
 <tr>
 <td>3573800</td>
 <td>After you apply a change to the router MAC address on an SVI with the {{ifreload -a}} command, the old router MAC address still remains in the FDB table. To work around this issue, remove the old router MAC address with the {{sudo bridge fdb del &lt;old_mac&gt; dev bridge vlan &lt;vlan_id&gt;}} command.</td>
+<td>5.3.1-5.5.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3567708</td>
+<td>In an EVPN multihoming environment with VRRP, when the master VRRP router fails, the standby router takes around 30 seconds to become active.</td>
 <td>5.3.1-5.5.1</td>
 <td></td>
 </tr>

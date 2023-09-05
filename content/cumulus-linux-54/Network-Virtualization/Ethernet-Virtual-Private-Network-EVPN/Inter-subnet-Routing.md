@@ -247,7 +247,7 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# router bgp 65101 vrf RED
 leaf01(config-router)# address-family l2vpn evpn
-leaf01(config-router-af)# 10.1.20.2:5
+leaf01(config-router-af)# rd 10.1.20.2:5
 leaf01(config-router-af)# route-target import 65102:4001
 leaf01(config-router-af)# end
 leaf01# write memory

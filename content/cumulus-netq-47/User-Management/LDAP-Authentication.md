@@ -6,7 +6,7 @@ toc: 3
 ---
 
 <!-- vale off -->
-As an administrator, you can integrate the NetQ role-based access control (RBAC) with your lightweight directory access protocol (LDAP) server in on-premises deployments. NetQ maintains control over role-based permissions for the NetQ application. There are two roles, *admin* and *user*. With the RBAC integration, LDAP handles account authentication and your directory service (such as Microsoft Active Directory, Kerberos, OpenLDAP, and Red Hat Directory Service). A copy of each account from LDAP is stored in the local NetQ database.
+As an administrator, you can integrate the NetQ role-based access control (RBAC) with your lightweight directory access protocol (LDAP) server in on-premises deployments. NetQ maintains control over role-based permissions for the NetQ application. With the RBAC integration, LDAP handles account authentication and your directory service (such as Microsoft Active Directory, Kerberos, OpenLDAP, and Red Hat Directory Service). A copy of each account from LDAP is stored in the local NetQ database.
 <!-- vale on -->
 
 Integrating with an LDAP server does not prevent you from configuring local accounts (stored and managed in the NetQ database) as well.
@@ -24,7 +24,7 @@ To connect to your LDAP server, you need the URI and bind credentials. The URI i
 There are two types of user authentication: anonymous and basic.
 
 - **Anonymous**: LDAP client does not require any authentication. The user can access all resources anonymously. This is not commonly used for production environments.
-- **Basic**: (Also called Simple) LDAP client must provide a bind DN and password to authenticate the connection. When selected, the **Admin** credentials appear: Bind DN and Bind Password. You define the distinguished name (DN) using a string of variables. Some common variables include:
+- **Basic** (also called Simple): LDAP client must provide a bind DN and password to authenticate the connection. When selected, the **Admin** credentials appear: Bind DN and Bind Password. You define the distinguished name (DN) using a string of variables. Some common variables include:
 
     | Syntax | Description or Usage |
     | -------- | -------------------------- |

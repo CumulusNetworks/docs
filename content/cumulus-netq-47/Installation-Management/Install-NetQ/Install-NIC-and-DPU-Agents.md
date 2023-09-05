@@ -70,11 +70,11 @@ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz
 
 ## Install DTS on DPUs
 
-To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="DOCA Telemetry Service">}} container on a DPU, perform the following steps:
+To install and configure the DOCA Telemetry Service container on a DPU, perform the following steps:
 
 1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container** and copy the image path.
 
-2. Retrieve the container `yaml` configuration file onto the host. Use the path {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="specified in the NGC instructions">}}. Copy it to `/etc/kubelet.d/doca_telemetry_standalone.yaml`:
+2. Retrieve the container `yaml` configuration file onto the host. Use the path specified in the *Adjusting the .yaml Configuration* section in the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC instructions">}}. Copy it to `/etc/kubelet.d/doca_telemetry_standalone.yaml`:
 
 ```
 wget --content-disposition https://api.ngc.nvidia.com/v2/resources/nvidia/doca/doca_container_configs/versions/2.0.2v1/files/configs/2.0.2/doca_telemetry.yaml

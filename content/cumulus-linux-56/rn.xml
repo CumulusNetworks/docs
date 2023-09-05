@@ -25,6 +25,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3567708</td>
+<td>In an EVPN multihoming environment with VRRP, when the master VRRP router fails, the standby router takes around 30 seconds to become active.</td>
+<td>5.3.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3565254</td>
 <td>Spectrum-4 switches do not support adaptive routing on 800Gbps links. Spectrum-3 switches do not support adaptive routing on 400Gbps links.</td>
 <td>5.6.0</td>

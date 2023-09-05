@@ -647,6 +647,8 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
 ...
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show evpn multihoming esi \<esi-id\></h>
 
 Shows information about the specified EVPN multihoming Ethernet segment ID.
@@ -682,6 +684,8 @@ flags
   remote                on                           
 [remote-vtep]           10.10.10.2
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show evpn multihoming esi \<esi-id\> remote-vtep</h>
 
@@ -1427,6 +1431,31 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show evpn vni 10 route-target import 65102:10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show evpn vni \<vni-id\> remote-vtep</h>
+
+Shows the remote VTEPs that connect to the switch.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vni-id>` | The VNI name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show evpn vni 10 remote-vtep
+           flood
+---------  -----
+10.0.1.34  HER
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

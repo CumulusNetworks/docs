@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show interface \<interface-id\> router adaptive-routing</h>
 
-Shows if adaptive routing is enabled on the interface and the link utilization threshold (as a percentage).
+Shows adaptive routing configuration settings on a specific interface.
 
 ### Command Syntax
 
@@ -31,14 +31,19 @@ cumulus@switch:~$ nv show interface swp1 router adaptive-routing
                             applied
 --------------------------  -------
 enable                      on     
-link-utilization-threshold  50  
+link-utilization-threshold  70  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show router adaptive-routing</h>
 
-Shows if adaptive routing is enabled globally.
+Shows if adaptive routing is `on` or `off` on the switch.
+
+{{%notice note%}}
+Cumulus Linux 5.6 supports adaptive routing on Spectrum-4.
+Cumulus Linux 5.5 and earlier supports adaptive routing on Spectrum-3 and Spectrum-2 as a beta feature for evaluation.
+{{%/notice%}}
 
 ### Version History
 

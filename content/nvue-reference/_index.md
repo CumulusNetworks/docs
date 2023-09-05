@@ -9,10 +9,6 @@ cascade:
   type: nojsscroll
 toc: 1
 ---
-{{%notice note%}}
-This document is in beta.
-{{%/notice%}}
-
 NVUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the NVUE software.
 
 This document is a reference for the Cumulus Linux NVUE CLI commands.

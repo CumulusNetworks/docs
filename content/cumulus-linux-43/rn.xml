@@ -7,6 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3544701</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3534654</td>
 <td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
 <td>4.3.1-4.4.5</td>
@@ -80,10 +90,10 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <td></td>
 </tr>
 <tr>
-<td>3413826</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5</td>
-<td></td>
+<td>3410952</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-5.4.0</td>
+<td>5.5.0-5.5.1</td>
 </tr>
 <tr>
 <td>3401121</td>
@@ -94,12 +104,6 @@ psample { group=1 }
 </td>
 <td>4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3389994</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
-<td>4.2.1-5.4.0</td>
-<td>5.5.0-5.5.1</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -115,6 +119,12 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3364996</td>
+<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -224,6 +234,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3234031</td>
 <td>If BGP {{neighbor &lt;name&gt; allowas-in}} is set, negating with no {{no neighbor &lt;name&gt; allowas-in}} does not disable the setting. To work around this issue and disable the setting, restart the FRR service.</td>
 <td>4.2.1-5.2.1</td>
+<td>5.3.0-5.5.1</td>
+</tr>
+<tr>
+<td>3218207</td>
+<td>Certain routes on tenant VRFs have missing next hop entries because the router MAC address is missing in the bridge forwarding database table that corresponds to the remote VTEP. As a result, traffic forwarding is affected for these routes.</td>
+<td>4.3.0-5.2.1</td>
 <td>5.3.0-5.5.1</td>
 </tr>
 <tr>

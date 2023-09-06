@@ -418,7 +418,9 @@ def build_rn_markdown_files(product, version_list):
 
     for version in version_list:
     #### Stop processing NetQ 4.6.0 automatically on subsequent runs until Redmine is fixed for NetQ projects (May 1 2023)
-        if version == ("4.6.0") or ("4.7.0"):
+        if version == "4.6.0":
+            continue
+        if version == "4.7.0":
             continue
         if version_string(version) in major_minor:
             major_minor[version_string(version)].append(version)

@@ -132,6 +132,7 @@ cumulus@switch:~$ ifreload -a
 - Make sure the name of the bond adheres to Linux interface naming conventions and is unique within the switch.
 - Do not use a dash (-) in the bond name.
 - Cumulus Linux does not support bond members at 200G or greater.
+- NVUE does not accept a bond name starting with an interface type ID, such as `sw`, `eth`, `vlan`, `lo`, `ib`, `fnm`, or `vrrp`. For example, you cannot name a bond `login123`, `eth2`, `sw1`, or `vlan10`.
 {{%/notice%}}
 
 When you start networking, the switch creates bond0 as MASTER and interfaces swp1 thru swp4 come up in SLAVE mode:

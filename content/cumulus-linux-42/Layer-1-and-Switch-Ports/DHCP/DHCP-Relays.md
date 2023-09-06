@@ -260,7 +260,15 @@ cumulus@leaf01:~$ net add dhcp relay giaddr-interface swp2 10.0.0.4
 {{< /tabs >}}
 
 {{%notice note%}}
-When enabling RFC 3527 support, you can specify an interface such as the loopback interface or swp interface for the gateway address. The interface you use must be reachable in the tenant VRF that it is servicing and must be unique to the switch. In EVPN symmetric routing, fabrics running an anycast gateway that uses the same SVI IP address on multiple leaf switches, need a unique IP address for the VRF interface and must include the layer 3 VNI for this VRF in the DHCP Relay configuration.
+When enabling RFC 3527 support, you can specify an interface such as the loopback interface or swp interface for the gateway address. The interface you use must be reachable in the tenant VRF that it is servicing and must be unique to the switch. In EVPN symmetric routing, fabrics running an anycast gateway that use the same SVI IP address on multiple leaf switches need a unique IP address for the VRF interface and must include the layer 3 VNI for this VRF in the DHCP Relay configuration. For example:
+
+```
+cumulus@leaf01:mgmt:~$ cat /etc/default/isc-dhcp-relay-RED
+SERVERS="10.1.10.104"
+INTF_CMD=" -i vlan10 -i vlan20 -i vlan4001"
+OPTIONS="-U RED"
+```
+
 {{%/notice%}}
 
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)

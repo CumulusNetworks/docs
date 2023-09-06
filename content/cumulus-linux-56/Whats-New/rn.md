@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3590053"></a> [3590053](#3590053) <a name="3590053"></a> <br /> | If you connect a 1G BaseT module to the service port on the NVIDIA SN5600 switch when its peer is down, the link shows as active on one side while its peer is disabled. | 5.6.0 | |
 | <a name="3576961"></a> [3576961](#3576961) <a name="3576961"></a> <br /> | The NVUE command to clear all ACL counters at once is not available. To work around this issue, run the <code>cl-acltool -Z all</code> command to reset the statistics for all ACL rules. | 5.5.1-5.6.0 | |
 | <a name="3576949"></a> [3576949](#3576949) <a name="3576949"></a> <br /> | When you run the NVUE <code>nv set service snmp listening-address localhost vrf <vrf-name></code> or <code>nv set service snmp listening-address localhost-v6 vrf <vrf-name></code> command to configure the SNMP listening address, Cumulus Linux applies the listening address to the default VRF instead of the VRF you specify. | 5.3.0-5.6.0 | |
 | <a name="3573800"></a> [3573800](#3573800) <a name="3573800"></a> <br /> | After you apply a change to the router MAC address on an SVI with the <code>ifreload -a</code> command, the old router MAC address still remains in the FDB table. To work around this issue, remove the old router MAC address with the <code>sudo bridge fdb del <old_mac> dev bridge vlan <vlan_id></code> command. | 5.3.1-5.6.0 | |

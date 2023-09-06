@@ -282,9 +282,6 @@ alt-priority  255          255
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-<!--
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show service ptp \<instance-id\> counters</h>
 
 Shows all PTP counters, such as the number of received and transmitted announce, sync, followup, and delay request and response packets.
@@ -316,7 +313,8 @@ Port swp4
   Management               0              0              
   Signaling                0              0
 ```
--->
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show service ptp \<instance-id\> current</h>
 

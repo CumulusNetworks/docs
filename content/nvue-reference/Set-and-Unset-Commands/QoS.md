@@ -316,12 +316,17 @@ Introduced in Cumulus Linux 5.4.0
 ```
 cumulus@switch:~$ nv set interface swp1 qos remark profile MYPROFILE
 ```
-<!-- CL56
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> qos pfc-watchdog state</h>
 
 Enables or disables PFC watchdog on the interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled. The default setting is `disable`.
+
+- PFC watchdog only works for lossless traffic queues.
+- You can only configure PFC watchdog on a port with PFC (or link pause) configuration.
+- You can only enable PFC watchdog on a physical interface (swp).
+- You cannot enable the watchdog on a bond (for example, bond0) but you can enable the watchdog on a port that is a member of a bond (for example, swp1).
 
 ### Command Syntax
 
@@ -338,7 +343,7 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv set interface swp1 qos qos pfc-watchdog state enable
 ```
--->
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set qos</h>
@@ -2251,7 +2256,6 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@switch:~$ nv set qos traffic-pool 3
 ```
 
-<!-- CL56
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set qos pfc-watchdog polling-interval</h> 
@@ -2283,4 +2287,3 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv set qos pfc-watchdog robustness 5
 ```
--->

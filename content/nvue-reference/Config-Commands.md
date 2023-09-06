@@ -8,9 +8,7 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
-{{%notice note%}}
-This document is in beta.
-{{%/notice%}}
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv config apply </h>
 
@@ -62,43 +60,6 @@ cumulus@switch:~$ nv config apply 5 --y
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv config save</h>
-
-Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv config save
-```
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv config replace \<nvue-file\></h>
-
-Replaces the pending configuration with the specified YAML configuration file.
-
-### Command Syntax
-
-| <div style="width:250px">Syntax   |  Description  |
-| ----------   | ------------  |
-| `<nvue-file>` | The NVUE YAML file you want to use to replace the pending configuration. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv config replace myconfig.yaml
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv config detach</h>
 
 Detaches the configuration from the current pending configuration. When you run this command, NVUE discards all configuration changes between the last `nv config apply` command and the `nv config detach` command.”
@@ -138,31 +99,9 @@ cumulus@switch:~$ nv config diff 1 2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv config show</h>
+## <h>nv config find</h>
 
-Shows the currently applied configuration in YAML format.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv config show
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv config patch \<nvue-file\></h>
-
-Updates the pending configuration with an NVUE configuration file in YAML format.
-
-### Command Syntax
-
-| <div style="width:250px">Syntax   |  Description  |
-| ----------   | ------------  |
-| `<cue-file>` | The NVUE YAML file you want to use to update the pending configuration. |
+Finds a portion of the applied configuration according to the search string you provide.
 
 ### Version History
 
@@ -171,7 +110,24 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv config patch myconfig.yaml
+cumulus@switch:~$ nv config find stp
+- set:
+    bridge:
+      domain:
+        br_default:
+          stp:
+            mode: pvrst
+            vlan:
+              '10':
+                bridge-priority: 4096
+                forward-delay: 4
+                hello-time: 4
+                max-age: 6
+              '20':
+                bridge-priority: 61440
+                forward-delay: 4
+                hello-time: 4
+                max-age: 6
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -210,4 +166,80 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv config history 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv config patch \<nvue-file\></h>
+
+Updates the pending configuration with an NVUE configuration file in YAML format.
+
+### Command Syntax
+
+| <div style="width:250px">Syntax   |  Description  |
+| ----------   | ------------  |
+| `<cue-file>` | The NVUE YAML file you want to use to update the pending configuration. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config patch myconfig.yaml
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv config replace \<nvue-file\></h>
+
+Replaces the pending configuration with the specified YAML configuration file.
+
+### Command Syntax
+
+| <div style="width:250px">Syntax   |  Description  |
+| ----------   | ------------  |
+| `<nvue-file>` | The NVUE YAML file you want to use to replace the pending configuration. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config replace myconfig.yaml
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv config save</h>
+
+Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config save
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv config show</h>
+
+Shows the currently applied configuration in YAML format.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config show
 ```

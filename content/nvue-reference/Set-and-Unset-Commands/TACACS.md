@@ -112,11 +112,14 @@ cumulus@switch:~$ nv set system aaa tacacs authentication per-user-homedir on
 
 ## <h>nv set system aaa tacacs debug-level</h>
 
-Configures the debugging level for troubleshooting. You can specify a value between 0 and 2.
+Configures the debugging level for troubleshooting:
+- 0 disables debugging.
+- 1 enables debugging and sends log messages to syslog.
+- 2 enables debugging and sends some additional log messages to syslog.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0 (beta)
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 

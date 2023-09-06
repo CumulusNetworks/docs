@@ -72,7 +72,7 @@ cumulus@switch:~$ nv show service snmp-server listening-address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server listening-address \<listening-address-id>\</h>
+## <h>nv show service snmp-server listening-address \<listening-address-id\></h>
 
 Shows information about the specified SNMP server listening address.
 
@@ -110,7 +110,7 @@ cumulus@switch:~$ nv show service snmp-server username
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\</h>
+## <h>nv show service snmp-server username \<username-id\></h>
 
 Shows information about the specified SNMP server username.
 
@@ -135,7 +135,7 @@ cumulus@switch:~$ nv show service snmp-server username testusernoauth
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-none</h>
+## <h>nv show service snmp-server username \<username-id\> auth-none</h>
 
 Shows information about the specified SNMP server username with no authentication password.
 
@@ -157,7 +157,7 @@ cumulus@switch:~$ nv show service snmp-server username testusernoauth auth-none
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-md5</h>
+## <h>nv show service snmp-server username \<username-id\> auth-md5</h>
 
 Shows information about the specified SNMP server username with an MD5 password.
 
@@ -179,7 +179,7 @@ cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\</h>
+## <h>nv show service snmp-server username \<username-id\> auth-md5 \<auth-id\></h>
 
 Shows information about the specified SNMP server username and MD5 password.
 
@@ -202,7 +202,7 @@ cumulus@switch:~$ nv show nv show service snmp-server username testuserauth auth
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des</h>
+## <h>nv show service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des</h>
 
 Shows information about the specified SNMP server username and MD5 password that also includes an AES or DES encryption password to encrypt the contents of the request and response packets.
 
@@ -225,7 +225,7 @@ cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 mya
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\</h>
+## <h>nv show service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\></h>
 
 Shows information about the specified SNMP server username and MD5 password and the AES or DES encryption password.
 
@@ -249,7 +249,7 @@ cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 mya
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes</h>
+## <h>nv show service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes</h>
 
 Shows information about the specified SNMP server username and MD5 password that also includes an AES encryption password to encrypt the contents of the request and response packets.
 
@@ -272,7 +272,7 @@ cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 mya
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\</h>
+## <h>nv show service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\></h>
 
 Shows information about the specified SNMP server username and MD5 password and the AES encryption password.
 
@@ -296,7 +296,7 @@ cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 mya
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-sha</h>
+## <h>nv show service snmp-server username \<username-id\> auth-sha</h>
 
 Shows information about the specified SNMP server username with an SHA authentication password.
 
@@ -318,7 +318,7 @@ cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\</h>
+## <h>nv show service snmp-server username \<username-id\> auth-sha \<auth-id\></h>
 
 Shows information about the specified SNMP server username and SHA authentication password.
 
@@ -341,7 +341,7 @@ cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHA
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-des</h>
+## <h>nv show service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des</h>
 
 Shows information about the specified SNMP server username and SHA authentication password that also includes an AES or DES encryption password to encrypt the contents of the request and response packets.
 
@@ -364,7 +364,7 @@ cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHA
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\</h>
+## <h>nv show service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\></h>
 
 Shows information about the SNMP server username with the SHA authentication password and AES or DES encryption password.
 
@@ -388,7 +388,7 @@ cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHA
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes</h>
+## <h>nv show service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes</h>
 
 Shows information about the specified SNMP server username and SHA authentication password that also includes an AES encryption password to encrypt the contents of the request and response packets.
 
@@ -411,7 +411,7 @@ cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHA
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\</h>
+## <h>nv show service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\></h>
 
 Shows information about the SNMP server username with the SHA authentication password and AES encryption password.
 
@@ -467,7 +467,7 @@ cumulus@switch:~$ nv show service snmp-server viewname
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server viewname \<viewname-id>\</h>
+## <h>nv show service snmp-server viewname \<viewname-id\></h>
 
 Shows information about the specified SNMP server view name.
 
@@ -505,7 +505,7 @@ cumulus@switch:~$ nv show service snmp-server readonly-community
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server readonly-community \<readonly-community-id>\</h>
+## <h>nv show service snmp-server readonly-community \<readonly-community-id\></h>
 
 Shows information about the specified SNMP server readonly community string.
 
@@ -527,7 +527,7 @@ cumulus@switch:~$ nv show service snmp-server readonly-community simplepassword
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server readonly-community \<readonly-community-id>\ access</h>
+## <h>nv show service snmp-server readonly-community \<readonly-community-id\> access</h>
 
 Shows the SNMP server readonly community string access settings.
 
@@ -549,7 +549,7 @@ cumulus@switch:~$ nv show service snmp-server readonly-community simplepassword 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server readonly-community \<readonly-community-id>\ access \<access-id>\</h>
+## <h>nv show service snmp-server readonly-community \<readonly-community-id\> access \<access-id\></h>
 
 Shows the SNMP server readonly community string access settings for the specified subnet.
 
@@ -588,7 +588,7 @@ cumulus@switch:~$ nv show service snmp-server readonly-community-v6
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server readonly-community-v6 \<readonly-community-id>\</h>
+## <h>nv show service snmp-server readonly-community-v6 \<readonly-community-id\></h>
 
 Shows information about the specified IPv6 SNMP server readonly community string.
 
@@ -610,7 +610,7 @@ cumulus@switch:~$ nv show service snmp-server readonly-community-v6 showitall
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server readonly-community-v6 \<readonly-community-id>\ access</h>
+## <h>nv show service snmp-server readonly-community-v6 \<readonly-community-id\> access</h>
 
 Shows the IPv6 SNMP server readonly community string access settings.
 
@@ -632,7 +632,7 @@ cumulus@switch:~$ nv show service snmp-server readonly-community-v6 showitall ac
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server readonly-community-v6 \<readonly-community-id>\ access \<access-id>\</h>
+## <h>nv show service snmp-server readonly-community-v6 \<readonly-community-id\> access \<access-id\></h>
 
 Shows the IPv6 SNMP server readonly community string access settings for the specified subnet.
 
@@ -738,7 +738,7 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\</h>
+## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id\></h>
 
 Shows the SNMP traps generated when the CPU load average for the one-minute interval exceeds a certain percentage.
 
@@ -760,7 +760,7 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute</h>
+## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id\> five-minute</h>
 
 Shows the SNMP traps generated when the CPU load average for the one-minute interval exceeds a certain percentage and reaches the five-minute interval.
 
@@ -782,7 +782,7 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute \<five-minute-id>\</h>
+## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id\> five-minute \<five-minute-id\></h>
 
 Shows the SNMP traps generated when the CPU load average for the one-minute interval and the five-minute interval exceed a certain percentage.
 
@@ -805,7 +805,7 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute \<five-minute-id>\ fifteen-minute</h>
+## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id\> five-minute \<five-minute-id\> fifteen-minute</h>
 
 Shows the SNMP traps generated when the CPU load average for the one-minute interval and the five-minute interval exceed a certain percentage and reaches the fifteen-minute interval.
 
@@ -828,7 +828,7 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute \<five-minute-id>\ fifteen-minute \<fifteen-minute-id>\</h>
+## <h>nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id\> five-minute \<five-minute-id\> fifteen-minute \<fifteen-minute-id\></h>
 
 Shows the SNMP traps generated when the CPU load average for the one-minute interval, the five-minute interval, and the fifteen-minute interval exceed a certain percentage.
 
@@ -868,7 +868,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\></h>
 
 Shows information about the specified SNMP trap destination.
 
@@ -890,7 +890,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ community-password</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> community-password</h>
 
 Shows the community password for the SNMP trap destination.
 
@@ -912,7 +912,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost communi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ community-password \<community-password-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> community-password \<community-password-id\></h>
 
 Shows information about the specified community password for the SNMP trap destination.
 
@@ -935,7 +935,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost communi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf</h>
 
 Shows the SNMP server trap destinations configured for all VRFs.
 
@@ -957,7 +957,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\></h>
 
 Shows the SNMP server trap destinations configured for the specified VRF.
 
@@ -980,7 +980,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ community-password</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> community-password</h>
 
 Shows the community password for the SNMP server trap destinations configured for the specified VRF.
 
@@ -1003,7 +1003,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ community-password \<community-password-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> community-password \<community-password-id\></h>
 
 Shows the community password settings for the SNMP server trap destinations configured for the specified VRF.
 
@@ -1027,7 +1027,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username</h>
 
 Shows the usernames for the SNMP trap destination in the specified VRF.
 
@@ -1050,7 +1050,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\></h>
 
 Shows configuration settings for the SNMP trap destination username for the specified VRF.
 
@@ -1074,7 +1074,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5</h>
 
 Shows SNMP trap destination MD5 authentications for the specified VRF.
 
@@ -1098,7 +1098,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\></h>
 
 Shows information for the SNMP trap destination MD5 authentication for the specified VRF.
 
@@ -1123,7 +1123,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id</h>
 
 Shows the engine IDs for the SNMP trap destination username and password for the specified VRF.
 
@@ -1148,7 +1148,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id \<engine-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\></h>
 
 Shows information for the specified engine ID associated with the SNMP trap destination username and MD5 password for the specified VRF.
 
@@ -1174,7 +1174,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des</h>
 
 Shows the DES encryptions for MD5 authentication for the SNMP trap destination username and MD5 password.
 
@@ -1199,7 +1199,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\></h>
 
 Shows information about the DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
 
@@ -1225,7 +1225,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id</h>
 
 Shows the engine ID for the DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
 
@@ -1252,7 +1252,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\></h>
 
 Shows information about the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
 
@@ -1279,7 +1279,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha</h>
 
 Shows the SHA authentications for the user specified for the SNMP trap destination.
 
@@ -1303,7 +1303,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\></h>
 
 Shows information about the specified SHA authentication for the user specified for the SNMP trap destination.
 
@@ -1328,7 +1328,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id</h>
 
 Shows the engine IDs for the SNMP trap destination username and SHA password.
 
@@ -1353,7 +1353,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id \<engine-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\></h>
 
 Shows information about the engine ID for the SNMP trap destination username and SHA password.
 
@@ -1379,7 +1379,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-des</h>
 
 Shows the DES encryptions for the SNMP trap destination username and SHA password.
 
@@ -1404,7 +1404,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\></h>
 
 Shows information about the DES encryption for SHA authentication for the SNMP trap destination username and SHA password.
 
@@ -1430,7 +1430,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id</h>
 
 Shows the engine ID for the DES encryption for SHA authentication for the SNMP trap destination username and SHA password.
 
@@ -1456,7 +1456,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\></h>
 
 Shows information for the engine ID for the DES encryption for SHA authentication for the SNMP trap destination username and SHA password.
 
@@ -1483,7 +1483,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username</h>
 
 Shows the list of usernames for the SNMP trap destination.
 
@@ -1506,7 +1506,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\></h>
 
 Shows information about the specified username for the SNMP trap destination.
 
@@ -1529,7 +1529,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5</h>
 
 Shows the MD5 password for the specified username for the SNMP trap destination.
 
@@ -1552,7 +1552,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\></h>
 
 Shows information about the specified username and MD5 password for the SNMP trap destination.
 
@@ -1576,7 +1576,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id</h>
 
 Shows the engine ID for the SNMP trap destination username and MD5 password.
 
@@ -1601,7 +1601,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id \<engine-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\></h>
 
 Shows information for the engine ID for MD5 authentication for the SNMP trap destination username and MD5 password.
 
@@ -1626,7 +1626,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des</h>
 
 Shows the DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
 
@@ -1650,7 +1650,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\></h>
 
 Shows information about the DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
 
@@ -1675,7 +1675,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id</h>
 
 Shows the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
 
@@ -1700,7 +1700,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\></h>
 
 Shows information about the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
 
@@ -1726,7 +1726,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha</h>
 
 Shows the SHA authentications for the user specified for the SNMP trap destination.
 
@@ -1749,7 +1749,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\></h>
 
 Shows information about the specified SHA authentication for the user specified for the SNMP trap destination.
 
@@ -1773,7 +1773,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id</h>
 
 Shows the engine IDs for the SNMP trap destination username and SHA password.
 
@@ -1797,7 +1797,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id \<engine-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\></h>
 
 Shows information about the engine ID for the SNMP trap destination username and SHA password.
 
@@ -1822,7 +1822,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des</h>
 
 Shows the DES encryptions for the SNMP trap destination username and SHA password.
 
@@ -1846,7 +1846,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\></h>
 
 Shows information about the DES encryptions for the SNMP trap destination username and SHA password.
 
@@ -1871,7 +1871,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id</h>
 
 Shows the engine IDs for the DES encryptions for the SNMP trap destination username and SHA password.
 
@@ -1896,7 +1896,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\</h>
+## <h>nv show service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\></h>
 
 Shows information about the engine ID for the DES encryptions for the SNMP trap destination username and SHA password.
 

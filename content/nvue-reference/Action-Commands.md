@@ -8,13 +8,110 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
-{{%notice note%}}
-This document is in beta.
-{{%/notice%}}
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action
 
 Resets counters for interfaces, BGP, QoS buffers and pools, removes conflicts from protodown MLAG bonds, and disconnects system users.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear acl counters</h>
+
+Clears all ACL counters.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear acl counters
+acl counters cleared.
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear evpn vni</h>
+
+Clears duplicate addresses for all VNIs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear evpn vni
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear evpn vni \<vni-id\></h>
+
+Clears duplicate addresses for the specified VNI.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear evpn vni 10
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear evpn vni \<vni-id\> host \<host-id\></h>
+
+Clears the duplicate host address for the specified VNI
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI ID.|
+| `<host-id>` | The IP address of the host. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear evpn vni 10 host 10.0.0.9
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear evpn vni \<vni\> mac \<mac-address\></h>
+
+Clears the duplicate MAC address for the specified VNI.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear evpn vni 10 mac 00:e0:ec:20:12:62
+Action succeeded
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -32,6 +129,8 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear interface counters
+all interface counters cleared.
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -53,7 +152,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action clear interface swp1 bond mlag lacp-conflict 
+cumulus@switch:~$ nv action clear interface swp1 bond mlag lacp-conflict
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -78,6 +177,8 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear interface swp1 counters
+swp1 counters cleared.
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -100,6 +201,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear interface swp1 counters ptp
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -122,6 +224,30 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear interface swp1 qos buffer
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear interface \<interface-id\> qos pfc-watchdog deadlock-count</h>
+
+Clears the QoS PFC watchdog deadlock count on the specified interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<interface-id>` | The interface on which you want to clear the PFC watchdog deadlock count. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface swp1 qos pfc-watchdog deadlock-count
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -148,7 +274,6 @@ cumulus@switch:~$ nv action clear interface swp1 qos roce counters
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-<!--
 ## <h>nv action clear interface \<interface-id\> synce counters</h>
 
 Clears SyncE counters on the specified interface.
@@ -171,7 +296,6 @@ cumulus@switch:~$ nv action clear interface swp1 synce counters
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
--->
 ## <h>nv action clear mlag lacp-conflict</h>
 
 Clears the MLAG LACP conflict. A conflict can be an LACP partner MAC address mismatch or a duplicate LACP partner MAC address.
@@ -220,6 +344,207 @@ cumulus@switch:~$ nv action clear qos buffer pool
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear router bgp</h>
+
+Clears BGP sessions with all neighbors.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router bgp
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router bgp in prefix-filter</h>
+
+Clears and refreshes inbound routes for all neighbors, address families, and VRFs and refreshes the outbound route filtering prefix list.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router bgp in prefix-filter
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router bgp out</h>
+
+Clears and refreshes outbound routes for all neighbors, address families, and VRFs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router bgp out
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router bgp soft</h>
+
+Clears all routes with all neighbors, address families, and VRFs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router bgp soft
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router bgp soft in</h>
+
+Clears and refreshes all inbound routes with all neighbors, address families, and VRFs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router bgp soft in
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router bgp soft out</h>
+
+Clears and resends all outbound routes with all neighbors, address families, and VRFs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router bgp soft out
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router igmp interfaces</h>
+
+Clears the IGMP interface state.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router igmp interfaces
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router policy prefix-list</h>
+
+Clears all IP prefix list statistics.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router policy prefix-list
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router policy prefix-list \<prefix-list-id\></h>
+
+Clears statistics for the specified prefix list.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<prefix-list-id>` | The name of the prefix list whose statistics you want to clear. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router policy prefix-list prefixlist1
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\></h>
+
+Clears statistics for a specific prefix list rule number and match ID.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<prefix-list-id>` | The name of the prefix list whose statistics you want to clear. |
+| `<rule-id>` | The prefix list rule number. |
+| `<match-id>` | The prefix list match criteria. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router policy prefix-list prefixlist1 rule 10 match 10.0.0.0/16
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear router policy route-map</h>
+
+Clears all route map counters.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear router policy route-map
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear router policy route-map \<route-map-id\></h>
 
 Clears counters for the specified route map.
@@ -238,6 +563,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear router policy route-map ROUTEMAP1
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -260,6 +586,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear service ptp 1 monitor violations log max-offset
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -282,6 +609,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear service ptp 1 monitor violations log min-offset
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -304,6 +632,122 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear service ptp 1 monitor violations log path-delay
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router bgp in prefix-filter</h>
+
+Clears and refreshes inbound routes for all neighbors and address families in the specified VRF and refreshes the outbound route filtering prefix list.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router bgp in prefix-filter
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router bgp out</h>
+
+Clears and refreshes outbound routes for all neighbors and address families in the specified VRF.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router bgp out
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router bgp soft</h>
+
+Clears all routes with all neighbors and address families in the specified VRF.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router bgp soft
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router bgp soft in</h>
+
+Clears and refreshes all inbound routes with all neighbors and address families in the specified VRF.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router bgp soft in
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router bgp soft out</h>
+
+Clears and resends all outbound routes with all neighbors and address families in the specified VRF.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router bgp soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -331,6 +775,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family ipv4-unicast in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -358,6 +803,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family ipv4-unicast in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -386,6 +832,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family soft in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -415,6 +862,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -442,6 +890,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family ipv6-unicast in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -469,6 +918,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family ipv6-unicast out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -497,6 +947,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family ipv6-unicast soft in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -526,6 +977,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family ipv6-unicast soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -553,6 +1005,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family l2vpn-evpn in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -580,6 +1033,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family l2vpn-evpn out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -608,6 +1062,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family l2vpn-evpn soft in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -637,6 +1092,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp address-family l2vpn-evpn soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -665,6 +1121,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -693,6 +1150,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -722,6 +1180,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 soft in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -752,6 +1211,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -780,6 +1240,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv4-unicast in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -808,6 +1269,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv4-unicast out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -837,6 +1299,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv4-unicast soft in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -867,6 +1330,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv4-unicast soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -895,6 +1359,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv6-unicast in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -923,6 +1388,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv6-unicast out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -952,6 +1418,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv6-unicast soft in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -982,6 +1449,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv6-unicast soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1010,6 +1478,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family l2vpn-evpn in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1038,6 +1507,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family l2vpn-evpn out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1067,6 +1537,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family l2vpn-evpn soft in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1097,6 +1568,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family l2vpn-evpn soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1125,6 +1597,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1153,6 +1626,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1182,6 +1656,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES soft in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1212,6 +1687,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1240,6 +1716,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv4-unicast in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1268,6 +1745,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv4-unicast out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1297,6 +1775,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv4-unicast soft in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1327,6 +1806,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv4-unicast soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1355,6 +1835,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv6-unicast in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1383,6 +1864,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv6-unicast out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1412,6 +1894,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv6-unicast soft in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1442,6 +1925,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv6-unicast soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1470,6 +1954,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family l2vpn-evpn in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1498,6 +1983,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family l2vpn-evpn out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1527,6 +2013,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family l2vpn-evpn soft in
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1557,6 +2044,7 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family l2vpn-evpn soft out
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1602,11 +2090,58 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router ospf interface swp2
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action disconnect system aaa user \<user\>
+## <h>nv action clear vrf \<vrf-id\> router pim interfaces</h>
+
+Clears PIM neighbors for all PIM interfaces in the specified VRF.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim interfaces
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router pim interface-traffic</h>
+
+Clears traffic statistics for all PIM interfaces in the specified VRF.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim interface-traffic
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action disconnect system aaa user \<user\></h>
 
 Disconnects authenticated and authorized users.
 
@@ -1628,6 +2163,25 @@ cumulus@switch:~$ nv action disconnect system aaa user admin2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action reboot system</h>
+
+Reboots the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action reboot system
+Rebooting System in cold mode
+True
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show action</h>
 
 Shows actions, such as cleared interface counters and routes, removed protodown MLAG bond conflicts, and disconnected system users.
@@ -1640,6 +2194,14 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show action
+id  state         
+--  --------------
+1   action_success
+2   action_error  
+3   action_success
+4   action_success 
+5   action_success
+6   action_success
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1662,4 +2224,11 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show action 3
+detail: acl counters cleared.
+http_status: 200
+issue: []
+state: action_success
+status: acl counters cleared.
+timeout: 60
+type: ''
 ```

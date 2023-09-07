@@ -14,6 +14,7 @@ Cumulus Linux supports two bonding modes:
 Cumulus Linux uses version 1 of the LAG control protocol (LACP).
 
 {{%notice note%}}
+- NVUE does not accept a bond name starting with an interface type ID, such as `sw`, `eth`, `vlan`, `lo`, `ib`, `fnm`, or `vrrp`. For example, you cannot name a bond `login123`, `eth2`, `sw1`, or `vlan10`.
 - An interface cannot belong to multiple bonds.
 - A bond can have subinterfaces, but subinterfaces cannot have a bond.
 - A bond cannot enslave VLAN subinterfaces.

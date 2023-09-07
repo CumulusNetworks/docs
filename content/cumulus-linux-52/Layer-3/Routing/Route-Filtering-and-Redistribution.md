@@ -414,3 +414,11 @@ route-map EXTERNAL-2-1K permit 10
  set metric 1000
  set metric-type type-1
 ```
+
+## Considerations
+
+When you configure a route map to match a prefix list, community list, or aspath list, the permit or deny actions in the list determine the criteria to evaluate in each route map sequence; for example:
+- If you match a list in a route map permit sequence, Cumulus Linux matches the permitted routes in the list for that route map sequence and the policy permits them. Denied routes in the list do not match and Cumulus Linux evaluates them in later route map sequences.
+- If you match a list in a route map deny sequence, Cumulus Linux matches the permitted routes in the list for that route map sequence and the policy denies them. Denied routes in the list do not match and Cumulus Linux evaluates them in later route map sequences.
+
+NVIDIA recommends you always configure a community list as `permit`, and permit or deny routes using route map sequences.

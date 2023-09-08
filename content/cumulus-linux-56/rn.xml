@@ -37,6 +37,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3566980</td>
+<td>When running DHCP relay for IPv6 and a downstream interface flaps more than once, relaying might stop working. To recover, restart the {{dhcrelay6}} service, making sure the specified downstream interfaces are up and running.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3565254</td>
 <td>Spectrum-4 switches do not support adaptive routing on 800Gbps links. Spectrum-3 switches do not support adaptive routing on 400Gbps links.</td>
 <td>5.6.0</td>

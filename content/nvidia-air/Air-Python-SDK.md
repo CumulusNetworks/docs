@@ -516,7 +516,7 @@ Find the simulation nodes for the simulation, and get the specific simulation no
 >>> simnodes = air.simulation_nodes.list(simulation=simulation)
 >>> for simnode in simnodes:
 >>>    if 'sample-node' == simnode.name:
->>>        sample-node = simnode
+>>>        sample_node = simnode
 ```
 
 Edit /etc/network/interfaces on the sample-node and apply config with ifreload:
@@ -525,21 +525,29 @@ Edit /etc/network/interfaces on the sample-node and apply config with ifreload:
 >>> eni_contents = '<string_containing_desired_etc_network_interfaces_content>''
 >>> post_cmd = 'ifreload -a'
 >>> data = {'/etc/network/interfaces': eni_contents, 'post_cmd': post_cmd}
->>> sample-node.create_instructions(data=json.dumps(data), executor='file')
+>>> sample_node.create_instructions(data=json.dumps(data), executor='file')
 ```
 
 Edit frr.conf on the sample-node and restart frr:
 ```
->>> frr_contents = '<frr_conf_config_here>''
+>>> frr_contents = '<frr_conf_config_here>'
 >>> post_cmd = 'systemctl restart frr'
 >>> data = {'/etc/frr/frr.conf': frr_contents, 'post_cmd':post_cmd}
->>> sample-node.create_instructions(data=json.dumps(data), executor='file')
+>>> sample_node.create_instructions(data=json.dumps(data), executor='file')
 ```
 
 To execute a command instead of populating the contents of a file, use the `shell` executor instead of `file`:
 ```
 >>> data = 'ip link set swp1 ip address 192.168.100.2/24'
->>> sample-node.create_instructions(data=data, executor='shell')
+>>> sample_node.create_instructions(data=data, executor='shell')
+```
+
+Add a ZTP script to the node called oob-mgmt-server:
+```
+>>> oob_mgmt_server = air.simulation_nodes.list(simulation=simulation, name='oob-mgmt-server')[0]
+>>> ztp_contents = '<ztp_script_content_here>'
+>>> data = {'/var/www/html/cumulus-ztp': ztp_contents}
+>>> oob_mgmt_server.create_instructions(data=json.dumps(data), executor='file')
 ```
 
 Finally, start the simulation:

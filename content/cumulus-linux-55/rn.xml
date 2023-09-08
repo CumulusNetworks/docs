@@ -43,6 +43,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3566980</td>
+<td>When running DHCP relay for IPv6 and a downstream interface flaps more than once, relaying might stop working. To recover, restart the {{dhcrelay6}} service, making sure the specified downstream interfaces are up and running.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3562767</td>
 <td>ACLs do not process inbound DHCP packets and the packets do not contribute to ACL counters</td>
 <td>5.2.0-5.5.1</td>
@@ -714,6 +720,12 @@ You can safely ignore this warning.</td>
 <td>3567708</td>
 <td>In an EVPN multihoming environment with VRRP, when the master VRRP router fails, the standby router takes around 30 seconds to become active.</td>
 <td>5.3.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3566980</td>
+<td>When running DHCP relay for IPv6 and a downstream interface flaps more than once, relaying might stop working. To recover, restart the {{dhcrelay6}} service, making sure the specified downstream interfaces are up and running.</td>
+<td>5.5.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>

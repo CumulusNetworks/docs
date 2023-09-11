@@ -162,7 +162,7 @@ On NVIDIA Spectrum-2 switches and later, if you enable multiple VLAN-aware bridg
 
   Increasing the `broadcast_domain.max_vlans` parameter can affect layer 2 multicast scale support.
 {{%/notice%}}
-
+<!--
 ## Reserved VLAN Range
 
 For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux reserves a range of VLANs by default; the reserved range is 3725-3999.
@@ -199,7 +199,7 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## VLAN Pruning
 
 By default, the bridge port inherits the bridge VIDs, however, you can configure a port to override the bridge VIDs.
@@ -859,3 +859,7 @@ You cannot enable VLAN translation on a bridge in VLAN-aware mode. Only traditio
 ### Bridge Conversion
 
 You cannot convert traditional mode bridges automatically to and from a VLAN-aware bridge. You must delete the original configuration and bring down all member switch ports before creating a new bridge.
+
+## Reserved VLAN range
+
+The VLAN IDs in your configuration must **not** overlap with the internal reserved VLAN ranges. See [Reserved VLAN Range and Limitations]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/Reserved-VLAN-Range-and-Limitations" >}}).

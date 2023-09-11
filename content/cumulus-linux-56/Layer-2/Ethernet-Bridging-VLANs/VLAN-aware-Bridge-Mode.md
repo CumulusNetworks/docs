@@ -860,6 +860,6 @@ You cannot enable VLAN translation on a bridge in VLAN-aware mode. Only traditio
 
 You cannot convert traditional mode bridges automatically to and from a VLAN-aware bridge. You must delete the original configuration and bring down all member switch ports before creating a new bridge.
 
-## Reserved VLAN range
+### Reserved VLAN range
 
 The VLAN IDs in your configuration must **not** overlap with the internal reserved VLAN ranges. See [Reserved VLAN Range and Limitations]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/Reserved-VLAN-Range-and-Limitations" >}}).

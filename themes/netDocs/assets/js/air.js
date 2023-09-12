@@ -25,7 +25,7 @@ class Air {
   async autoprovision(sim) {
     let id;
     try {
-      const res = await this._post(`/simulation/autoprovision/?simulation=${sim.refName}`);
+      const res = await this._post(`/simulation/autoprovision/?simulation=${sim.refName}&source=docs`);
       id = res['simulation']['id'];
     } catch (err) {
       console.error(err);

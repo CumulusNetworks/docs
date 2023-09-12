@@ -1,0 +1,88 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: trace-cmd
+Upstream-Contact: Steven Rostedt <rostedt@goodmis.org>
+Source: git://git.kernel.org/pub/scm/linux/kernel/git/rostedt/trace-cmd.git
+
+Files: *
+Copyright: 2008-2010 Red Hat Inc, Steven Rostedt <srostedt@redhat.com>
+License: GPL-2
+
+Files: list.h parse-* plugin_* trace-cmd.h trace-cmd.local
+       trace-compat.[ch] trace-ftrace.c trace-input.c trace-output.c
+       trace-record.c trace-seq.c trace-util.c util.h
+Copyright: 2008-2010 Red Hat Inc, Steven Rostedt <srostedt@redhat.com>
+License: LGPL-2.1
+
+Files: event-parse.c
+Copyright: 2009, 2010 Red Hat Inc, Steven Rostedt <srostedt@redhat.com>
+           2009 Frederic Weisbecker
+License: LGPL-2.1
+
+Files: plugin_hrtimer.c
+Copyright: 2009 Red Hat Inc, Steven Rostedt <srostedt@redhat.com>
+           2009 Johannes Berg <johannes@sipsolutions.net>
+License: LGPL-2.1
+
+Files: plugin_mac80211.c
+Copyright: 2009 Johannes Berg <johannes@sipsolutions.net>
+License: LGPL-2.1
+
+Files: trace-view-store.c
+Copyright: 2009, 2010 Red Hat Inc, Steven Rostedt <srostedt@redhat.com>
+           2010 Darren Hart <dvhltc@us.ibm.com>
+License: GPL-2
+
+Files: tracecmdgui.py tracecmd.py
+Copyright: 2009 International Business Machines Corp.
+License: GPL-2
+
+Files: Documentation/trace-cmd-check-events.1.txt
+Copyright: 2011 Google, Inc.
+License: GPL-2
+
+Files: debian/*
+Copyright: 2010 Chase Douglas <chase.douglas@canonical.com>
+           2013 Seth Forshee <seth.forshee@canonical.com>
+License: GPL-2
+
+License: GPL-2
+ This program is free software; you can redistribute it
+ and/or modify it under the terms of the GNU General Public
+ License version 2 as published by the Free Software
+ Foundation.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA 02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+
+License: LGPL-2.1
+ This library is free software; you can redistribute it
+ and/or modify it under the terms of the GNU Lesser General
+ Public License version 2.1 as published by the Free
+ Software Foundation.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU Lesser General Public License for
+ more details.
+ .
+ You should have received a copy of the GNU Lesser General
+ Public License along with this package; if not, write to
+ the Free Software Foundation, Inc., 51 Franklin St, Fifth
+ Floor, Boston, MA 02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU Lesser General
+ Public License version 2.1 can be found in the file
+ `/usr/share/common-licenses/LGPL-2.1'.

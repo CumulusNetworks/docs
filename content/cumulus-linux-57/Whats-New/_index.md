@@ -26,23 +26,24 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - Ethernet AI | Buffer and Bandwidth histograms with GUI
 - ISSU: Warmboot support for VXLAN EVPN (Single Homed, NO EVPN Mlag or EVPN MH Support)
 - Route Server Support for EVPN
-- Support 802.1x on Cumulus and Spectrum Hardware
-- Support for Maintenance Mode  (NCLU Parity )
-- Add support for MAC address translation
+- 802.1x support
+- MAC address translation support
 - SyncE (Phase adjustment support)
 - GA | NVUE | PTP PPS In or Out Support
-- NVUE | PVST & PVRST with Vlan Aware Bridges - Clag Support
-- Using NVUE for Port Security 
-- NVUE | SB-327 Compliance | First-Use API to Change Password
 - New forwarding profile - l2-heavy-4
 - NVUE enhancements include:
-  - RADIUS AAA commands
-  - Add Admin State to `nv show interface` output
+  - {{<link url="Port-Security" text="Port Security commands">}}
   - NAT commands
+  - ISSU maintenance mode commands
+  - RADIUS AAA commands
+  - MLAG support for PVST & PVRST VLAN-aware bridge mode
+  - SB-327 Compliance | First-Use API to Change Password
+  - Add Admin State to `nv show interface` output
   - Link flap protection commands
   - Command to set the time
+  - PIM show commands to show PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
   - Show Command for VLAN/VNI/Bridge Mapping
-  - Replace net show Neighbor
+  - Replace net show neighbor
   - 'mlag' keyword Presentation
   - User Permissions
   - Allow Unset Operations with a Key and Value

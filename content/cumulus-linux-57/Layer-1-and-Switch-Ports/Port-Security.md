@@ -5,9 +5,9 @@ weight: 380
 toc: 3
 ---
 Port security is a layer 2 traffic control feature that enables you to limit port access to:
+- A specific number of MAC addresses.
 - Specific MAC addresses so that the port does not forward ingress traffic from undefined source addresses.
 - The first learned MAC address on the port (sticky MAC) so that the device with that MAC address has full bandwidth. You can provide a timeout so that the MAC address on that port no longer has access after a certain time.
-- A specific number of MAC addresses.
 
 You can configure what action to take when there is a port security violation (drop packets or put the port into ADMIN down state) and add a timeout for the action to take effect.
 

@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3549217</td>
-<td>If you upgrade the {{netq-agent}} version on a switch or host before upgrading your NetQ VM to the same version, the device will be declared as rotten in the NetQ UI.</td>
-<td>4.7.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3530739</td>
 <td>Queue histogram data received from switches might encounter a delay before appearing in the NetQ UI.</td>
 <td>4.7.0</td>

@@ -5,6 +5,15 @@ cascade:
     product: Technical Guides
     author: NVIDIA
 ---
+## Troubleshooting
+
+You can refer to the following documents for help with troubleshooting EVPN configurations:
+
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Troubleshooting-EVPN/" text="Troubleshooting EVPN">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing/#verify-configuration" text="EVPN Downstream VNI Configuration">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-Multihoming/#troubleshooting" text="Troubleshooting EVPN Multihoming">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-PIM/#verify-evpn-pim" text="Verify EVPN-PIM">}}
+
 ## RDMA over Converged Ethernet (RoCE)
 
 <span style="background-color:#F5F5DC">[RoCE](## "RDMA over Converged Ethernet")</span> is a network protocol that leverages RDMA capabilities to accelerate communications between applications hosted on clusters of servers and storage arrays. RoCE is a remote memory management capability that allows server-to-server data movement directly between application memory without any CPU involvement. Both the transport processing and the memory translation and placement are performed by hardware resulting in lower latency, higher throughput, and better performance compared to software-based protocols. 

@@ -13,6 +13,4 @@ This reference design guide discusses the following topics:
 - {{<link url="Sample-Configurations" text="Sample Configurations">}}
 - {{<link url="Additional-Information" text="Additional Information">}}
 
-To view this document in PDF format, click {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/PDFs/Cumulus-Linux-Network-Reference-Design-Guide.pdf" text="here">}}.
-
 To view the Cumulus Linux user guide, click {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-53/" text="here">}}.

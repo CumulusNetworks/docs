@@ -4,6 +4,42 @@ author: NVIDIA
 weight: 1200
 toc: 3
 ---
+{{%notice important%}}
+In Cumulus Linux 5.6, you can't reset the root password by booting into Cumulus Linux single-user recovery mode. To work around this issue, reset the cumulus or root user password as follows:
+
+1. Use `df /` to determine which device is mounted on `/`. If you cannot access the switch but another switch with the same hardware is available, use `df /` on that switch to find the device.
+2. Reboot the switch.
+3. In the GRUB menu, select `ONIE`, then in the GRUB ONIE menu, select `ONIE Rescue`.
+4. When prompted, press enter.
+5. Mount the device in step 1 with the `mount $DEVICE /mnt` command.
+
+   If you did not determine the mount point in step 1, you can use the `df` command to determine which devices to try; for example, if `/mnt/onie-boot` is on `/dev/sda2`, try `mount /dev/sda4 /mnt`. If this is the correct device, `ls /mnt` shows a root file system and `ls /mnt/etc/shadow` shows a file.
+
+6. Run `chroot /mnt`, then run `passwd cumulus` or `passwd root`.
+7. Exit, then reboot.
+
+To avoid using the above workaround and to ensure that the Cumulus Linux single-user recovery mode boots, you can do the following **before** you upgrade to Cumulus Linux 5.6.
+
+1. Change directories to `/lib/systemd/system`.
+
+   ```
+   cumulus@switch:~$ cd /lib/systemd/system
+   ```
+
+2. Remove the symlink `rescue.service`
+
+   ```
+   cumulus@switch:~$ sudo rm rescue.service
+   ```
+
+3. Rename `rescue.service.cumulus` to `rescue.service`:
+
+   ```
+   cumulus@switch:~$ sudo cp rescue.service.cumulus rescue.service
+   ```
+
+{{%/notice%}}
+
 Use single user mode to assist in troubleshooting system boot issues or for password recovery.
 
 To enter single user mode:

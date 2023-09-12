@@ -1,6 +1,6 @@
 class Air {
   constructor() {
-    this.air_url = 'https://air-stage.nvidia.com/alpha';
+    this.air_url = 'https://air.nvidia.com';
     this.api_url = `${this.air_url}/api/v1`;
   }
 

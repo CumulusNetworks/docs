@@ -17,7 +17,7 @@ frontend:
         # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL>
         # If PDF/XLS generation is failing, comment out the following line to build the site.
         # COMMENTED OUT BELOW AFTER 04-28 master build failures
-        #- if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://stage.d1l3582pfvms7p.amplifyapp.com/networking-ethernet-software/ x x ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://stage.d1l3582pfvms7p.amplifyapp.com/networking-ethernet-software/ x x ; fi
         #
         # Don't minify in non-prod branches to simplify troubleshooting
         - if [ "${AWS_BRANCH}" != "master" ]; then hugo -D --baseURL $BASEURL -d public/networking-ethernet-software/ ; fi

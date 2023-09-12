@@ -25,6 +25,12 @@
 <td>5.6.0</td>
 </tr>
 <tr>
+<td>3488136</td>
+<td>When zebra receives route updates that include both a route with a recursive next hop and the route used to resolve that next hop, zebra might mark the route with the recursive next hop as inactive. To work around this issue, reprocess the route updates by running the appropriate clear command for the protocol in use. For example, for BGP, clear inbound routes from the relevant neighbor using the {{nv action clear vrf &lt;vrf&gt; router bgp neighbor &lt;neighbor&gt; address-family &lt;address-family&gt; in}} command.</td>
+<td>4.2.1-5.5.1</td>
+<td>5.6.0</td>
+</tr>
+<tr>
 <td>3474391</td>
 <td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-5.5.1</td>

@@ -5,7 +5,7 @@ weight: 630
 toc: 4
 ---
 
-Upon installation, lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. From the inventory list, you can assign access profiles and roles to switches, and select switches for software installation and upgrades. You can also decommission switches, which removes them from the NetQ database.
+Lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. From the inventory list, you can assign access profiles and roles to switches, and select switches for software installation and upgrades. You can also decommission switches, which removes them from the NetQ database.
 
 ## View the LCM Switch Inventory
 
@@ -15,7 +15,7 @@ Upon installation, lifecycle management displays an inventory of switches that a
 
 From the LCM dashboard, select the **Switch management** tab. The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
 
-{{<figure src="/images/netq/lcm-dashboard-switches-450.png" alt="switches card displaying 14 discovered switches with Cumulus Linux version 4.4.4" width="400">}}
+{{<figure src="/images/netq/lcm-dashboard-switches-450.png" alt="switches card displaying 15 discovered switches with Cumulus Linux version 4.4.4" width="400">}}
 
 To view a table of all discovered switches and their attributes, select **Manage** on the Switches card.
 

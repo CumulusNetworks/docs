@@ -375,6 +375,10 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement enable off
 ```
 
+{{%notice note%}}
+In Cumulus Linux 5.5 and later, the NVUE command to enable router advertisment for an interface is `nv set interface swp1 ip neighbor-discovery router-advertisement enable on`.
+{{%/notice%}}
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery router-advertisement fast-retransmit</h>

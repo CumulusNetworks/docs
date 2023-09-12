@@ -8,8 +8,7 @@ cascade:
     version: "5.6"
 toc: 1
 ---
-NVIDIA® Cumulus Linux is the first full-featured {{<exlink url="https://www.debian.org/releases/buster/" text="Debian Buster" >}}-based,
-Linux operating system for the networking industry.
+NVIDIA® Cumulus Linux is the first full-featured {{<exlink url="https://www.debian.org/releases/buster/" text="Debian Buster" >}}-based, Linux operating system for the networking industry.
 
 This user guide provides in-depth documentation on the Cumulus Linux installation process, system configuration and management, network solutions, and monitoring and troubleshooting recommendations. In addition, the quick start guide provides an end-to-end setup process to get you started.
 

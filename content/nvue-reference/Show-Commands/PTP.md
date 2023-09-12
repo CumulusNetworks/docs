@@ -282,6 +282,40 @@ alt-priority  255          255
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show service ptp \<instance-id\> counters</h>
+
+Shows all PTP counters, such as the number of received and transmitted announce, sync, followup, and delay request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>`  | The PTP instance number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service ptp 1 counters
+Packet Type              Received       Transmitted    
+---------------------    ------------   ------------   
+Port swp4
+  Announce                 0              10370            
+  Sync                     0              20731             
+  Follow-up                0              20731            
+  Delay Request            0              0              
+  Delay Response           0              0              
+  Peer Delay Request       0              0              
+  Peer Delay Response      0              0              
+  Management               0              0              
+  Signaling                0              0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show service ptp \<instance-id\> current</h>
 
 Shows the local states learned from the exchange of PTP messages for the specified PTP instance.

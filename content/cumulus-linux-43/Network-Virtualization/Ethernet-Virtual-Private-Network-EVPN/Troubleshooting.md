@@ -547,9 +547,9 @@ Displayed 4 paths for requested prefix
 ## Show the per-VNI EVPN Routing Table
 
 Received EVPN routes are maintained in the global EVPN routing table (described above), even if there are no appropriate local VNIs to **import** them into. For example, a spine switch maintains the global EVPN routing table even though there are no VNIs present on it. When local VNIs are present, received EVPN routes are imported into the per-VNI routing tables based on the route target attributes. You can examine the per-VNI routing table with the `net show bgp l2vpn evpn route vni <vni>` command. 
-<!--
+{{%notice note%}}
 In 4.3.0 and earlier, the equivalent vtysh command is `show bgp l2vpn evpn route vni <vni>` command. In 4.3.1 and later, the equivalent vtysh command is `show bgp vni <vni>`.
--->
+{{%/notice%}}
 ```
 cumulus@leaf01:mgmt:~$ net show bgp l2vpn evpn route vni 10
 BGP table version is 16, local router ID is 10.10.10.1

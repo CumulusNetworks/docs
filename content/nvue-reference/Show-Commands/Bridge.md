@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show bridge</h>
 
-Shows the configured bridge domains on the switch.
+Shows the configured bridges on the switch.
 
 ### Version History
 
@@ -31,7 +31,7 @@ cumulus@switch:~$ nv show bridge
 
 ## <h>nv show bridge domain</h>
 
-Shows configuration settings for the all configured bridge domains.
+Shows configuration settings for all the bridges on the switch.
 
 ### Version History
 
@@ -55,7 +55,7 @@ br_defa…  1800    802.1Q            off        off       32768      up        
 
 ## <h>nv show bridge domain \<domain-id\></h>
 
-Shows configuration settings for the specified bridge domain.
+Shows configuration settings for a specific bridge.
 
 ### Command Syntax
 
@@ -100,7 +100,7 @@ stp
 
 ## <h>nv show bridge domain \<domain-id\> mac-table</h>
 
-Shows the layer 2 forwarding database for the specified bridge domain.
+Shows the layer 2 forwarding database for a specific bridge.
 
 ### Command Syntax
 
@@ -143,7 +143,7 @@ cumulus@switch:~$ nv show bridge domain br_default mac-table
 
 ## <h>nv show bridge domain \<domain-id\> mdb</h>
 
-Shows the MDB entries in the specified bridge domain.
+Shows the MDB entries for a specific bridge.
 
 ### Command Syntax
 
@@ -165,7 +165,7 @@ cumulus@switch:~$ nv show bridge domain br_default mdb
 
 ## <h>nv show bridge domain \<domain-id\> multicast</h>
 
-Shows the multicast configuration settings on the specified bridge domain.
+Shows the multicast configuration settings on a bridge.
 
 ### Command Syntax
 
@@ -193,7 +193,7 @@ snooping
 
 ## <h>nv show bridge domain \<domain-id\> multicast snooping</h>
 
-Shows the IGMP or MLD snooping configuration settings on the specified bridge domain.
+Shows the IGMP or MLD snooping configuration settings on a bridge.
 
 ### Command Syntax
 
@@ -220,7 +220,7 @@ querier
 
 ## <h>nv show bridge domain \<domain-id\> multicast snooping querier</h>
 
-Shows the IGMP or MLD querier configuration settings on the specified bridge domain.
+Shows the IGMP or MLD querier configuration settings for a bridge.
 
 ### Command Syntax
 
@@ -243,9 +243,65 @@ enable  off          off      off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show bridge domain \<domain-id\> port</h>
+
+Shows port information for a bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default port
+port  flags                       state     
+----  --------------------------  ----------
+swp1  flood,learning,mcast_flood  forwarding
+swp2  flood,learning,mcast_flood  forwarding
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> port vlan</h>
+
+Shows VLAN information for a bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default port vlan
+port  vlan  tag-state  fwd-state 
+----  ----  ---------  ----------
+swp1  1     untagged   forwarding
+      10    tagged     forwarding
+      20    tagged     forwarding
+swp2  1     untagged   forwarding
+      10    tagged     forwarding
+      20    tagged     forwarding
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show bridge domain \<domain-id\> router-port</h>
 
-Shows the multicast router ports for the specified bridge domain.
+Shows the multicast router ports for a bridge.
 
 ### Command Syntax
 
@@ -270,7 +326,7 @@ cumulus@switch:~$ nv show bridge domain br_default router-port
 
 ## <h>nv show bridge domain \<domain-id\> stp</h>
 
-Shows the STP settings for the specified bridge domain.
+Shows the STP settings for a bridge.
 
 ### Command Syntax
 
@@ -294,9 +350,106 @@ state     up           up       up
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show bridge domain \<domain-id\> stp counters</h>
+
+Shows STP counters for a bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp counters
+port  tx-bpdu  rx-bpdu  tx-tcn  rx-tcn  fwd-trans  blk-trans  tx-pvst-tnl-bpdu  rx-pvst-tnl-bpdu
+----  -------  -------  ------  ------  ---------  ---------  ----------------  ----------------
+swp1  1270     0        4       0       3          2          1653              0               
+swp2  1270     0        4       0       3          2          1653              0 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> stp port</h>
+
+Shows STP information for all the ports in a bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp port
+Interface Info: swp1
+--------------------------------------------------------------------------
+enabled         : yes         admin-edge-port      : no
+restricted-tcn  : no          bpdu-guard-port      : no
+restricted-role : no          bpdu-guard-error     : no
+port-path-cost  : 20000       bpdu-filter-port     : no
+oper-edge-port  : yes         ba-inconsistent      : no
+network-port    : no          auto-edge-port       : yes
+mcheck          : no          admin-port-path-cost : 0
+
+Interface Info: swp2
+--------------------------------------------------------------------------
+enabled         : yes         admin-edge-port      : no
+restricted-tcn  : no          bpdu-guard-port      : no
+restricted-role : no          bpdu-guard-error     : no
+port-path-cost  : 20000       bpdu-filter-port     : no
+oper-edge-port  : yes         ba-inconsistent      : no
+network-port    : no          auto-edge-port       : yes
+mcheck          : no          admin-port-path-cost : 0 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> stp port \<port\></h>
+
+Shows STP information for a specific bridge port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+| `<port>` | The bridge port. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp port swp1
+enabled         : yes         admin-edge-port      : no
+restricted-tcn  : no          bpdu-guard-port      : no
+restricted-role : no          bpdu-guard-error     : no
+port-path-cost  : 20000       bpdu-filter-port     : no
+oper-edge-port  : yes         ba-inconsistent      : no
+network-port    : no          auto-edge-port       : yes
+mcheck          : no          admin-port-path-cost : 0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show bridge domain \<domain-id\> stp state</h>
 
-Shows the STP state (up or down) of the specified bridge domain.
+Shows the STP state (up or down) for a bridge.
 
 ### Command Syntax
 
@@ -319,9 +472,104 @@ cumulus@switch:~$ nv show bridge domain br_default stp state
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show bridge domain \<domain-id\> stp vlan</h>
+
+Shows PVRST information for all bridge VLANs.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp vlan
+Bridge Vlan: 1
+--------------------------------------------------------------------------
+Bridge ID                priority    : 32769   mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 32769   mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 2s      forward-delay     : 15s                 max-age    : 20s
+Topology Change Network  count       : 0       time since change : 1152s
+                         change port : None    last change port  : None
+
+Bridge Vlan: 10
+--------------------------------------------------------------------------
+Bridge ID                priority    : 4106    mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 4106    mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 4s      forward-delay     : 4s                  max-age    : 6s
+Topology Change Network  count       : 1       time since change : 1147s
+                         change port : swp2    last change port  : swp1
+
+Bridge Vlan: 20
+--------------------------------------------------------------------------
+Bridge ID                priority    : 32788   mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 32788   mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 2s      forward-delay     : 15s                 max-age    : 20s
+Topology Change Network  count       : 1       time since change : 1147s
+                         change port : swp2    last change port  : swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> stp vlan \<vid\></h>
+
+Shows PVRST information for a specific bridge VLAN.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+| `<vid>` | The VLAN identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp vlan 10
+Bridge ID                priority    : 4106    mac-address       : 44:38:39:22:01:B1   
+Designated Root ID       priority    : 4106    mac-address       : 44:38:39:22:01:B1   root-port  : -
+Timers                   hello-time  : 4s      forward-delay     : 4s                  max-age    : 6s
+Topology Change Network  count       : 1       time since change : 1174s
+                         change port : swp2    last change port  : swp1
+
+Interface info: swp1
+---------------------------------
+port-id            : 8.001
+role               : Designated
+state              : forwarding
+port-path-cost     : 20000
+tx-hold-count      : 6
+port-hello-time    : 4s
+fdb-flush          : no
+disputed           : no
+
+Interface info: swp2
+---------------------------------
+port-id            : 8.002
+role               : Designated
+state              : forwarding
+port-path-cost     : 20000
+tx-hold-count      : 6
+port-hello-time    : 4s
+fdb-flush          : no
+disputed           : no
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show bridge domain \<domain-id\> vlan</h>
 
-Shows the VLANs on the specified bridge domain.
+Shows all the VLANs for a bridge.
 
 ### Command Syntax
 
@@ -350,7 +598,7 @@ cumulus@switch:~$ nv show bridge domain br_default vlan
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\></h>
 
-Shows configuration settings for a specific VLAN on the specified bridge domain.
+Shows configuration settings for a specific bridge VLAN.
 
 ### Command Syntax
 
@@ -382,7 +630,7 @@ ptp
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> multicast</h>
 
-Shows the multicast configuration settings for the specified VLAN.
+Shows the multicast configuration settings for a specific bridge VLAN.
 
 ### Command Syntax
 
@@ -410,7 +658,7 @@ snooping
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> multicast snooping</h>
 
-Shows the IGMP or MLD snooping configuration settings for the specified VLAN.
+Shows the IGMP or MLD snooping configuration settings for a specific VLAN.
 
 ### Command Syntax
 
@@ -437,7 +685,7 @@ querier
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier</h>
 
-Shows the IGMP or MLD querier configuration settings for the specified VLAN.
+Shows the IGMP or MLD querier configuration settings for a specific VLAN.
 
 ### Command Syntax
 
@@ -463,7 +711,7 @@ source-ip  0.0.0.0      0.0.0.0  0.0.0.0
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> ptp</h>
 
-Shows the PTP configuration settings for the specified VLAN.
+Shows the PTP configuration settings for a specific VLAN.
 
 ### Command Syntax
 
@@ -489,7 +737,7 @@ enable  off          off      off
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni</h>
 
-Shows VNIs on a specific VLAN on the specified bridge domain.
+Shows all VNIs for a specific bridge VLAN.
 
 ### Command Syntax
 
@@ -517,7 +765,7 @@ cumulus@switch:~$ nv show bridge domain br_default vlan 10 vni
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\></h>
 
-Shows configuration settings for a specific VLAN VNI on the specified bridge domain.
+Shows configuration settings for a specific bridge VLAN VNI.
 
 ### Command Syntax
 
@@ -549,7 +797,7 @@ flooding
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding</h>
 
-Shows configuration settings for BUM traffic flooding for the specified VNI.
+Shows configuration settings for BUM traffic flooding for a specific bridge VLAN VNI.
 
 ### Command Syntax
 
@@ -579,7 +827,7 @@ enable                  auto         auto     auto
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication</h>
 
-Shows the head-end-replication settings for the specified VNI.
+Shows the head-end-replication settings for a specific VLAN VNI.
 
 ### Command Syntax
 
@@ -606,7 +854,7 @@ IP Address
 
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication \<hrep-id\></h>
 
-Shows specific head-end-replication settings for the specified VNI.
+Shows specific head-end-replication settings for a specific VLAN VNI.
 
 ### Command Syntax
 
@@ -629,9 +877,52 @@ cumulus@switch:~$ nv show bridge domain br_default vlan 10 vni 10 flooding head-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show bridge port</h>
+
+Shows the ports mapped to each bridge on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge port
+domain                       port             
+--------        ------------------------------
+br_default      swp1,swp2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge port-vlan</h>
+
+Shows the VLANs mapped to each bridge port on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge port-vlan
+domain        port            vlan   tag-state
+-------    ---------     ---------   ---------
+br_default    swp1               1    untagged
+                                10      tagged
+                                20      tagged
+              swp2               1    untagged
+                                10      tagged
+                                20      tagged
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> bridge</h>
 
-Shows the bridge domain on the specified interface.
+Shows the bridge on the specified interface.
 
 ### Command Syntax
 
@@ -656,7 +947,7 @@ cumulus@switch:~$ nv show interface bond3 bridge
 
 ## <h>nv show interface \<interface-id\> bridge domain \<domain-id\></h>
 
-Shows configuration settings for the specified bridge domain on the specified interface.
+Shows configuration settings for a specific bridge interface.
 
 ### Command Syntax
 
@@ -690,7 +981,7 @@ stp
 
 ## <h>nv show interface \<interface-id\> bridge domain \<domain-id\> stp</h>
 
-Shows STP configuration settings for a specific bridge domain on the specified interface.
+Shows STP configuration settings for a specific bridge interface.
 
 ### Command Syntax
 
@@ -719,9 +1010,37 @@ restrrole    off          off      off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> bridge domain \<domain-id\> stp vlan \<vid\></h>
+
+Shows interface PVRST settings for a bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+| `<domain-id>`  | The name of the bridge domain. |
+| `<vid>` | The VLAN ID. You can also specify `all` to show settings for all VLANs. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface bond3 bridge domain br_default stp vlan 10
+           applied
+---------  -------
+path-cost  4000   
+priority   240    
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\></h>
 
-Shows configuration settings for a specific VLAN on the specified bridge domain.
+Shows configuration settings for a bridge VLAN.
 
 ### Command Syntax
 

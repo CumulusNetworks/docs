@@ -156,6 +156,10 @@ cumulus@leaf01:~$ nv config apply
 
 The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique.
 
+{{%notice note%}}
+In Cumulus Linux 5.6, NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
+{{%/notice%}}
+
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond2 bond member swp2
@@ -170,72 +174,76 @@ cumulus@leaf01:~$ nv config apply
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
-Configure the ESI on each bond interface with the local Ethernet segment ID and the system MAC address:
+1. Configure the ESI on each bond interface with the local Ethernet segment ID and the system MAC address:
 
-```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# configure terminal
-leaf01(config)# interface bond1
-leaf01(config-if)# evpn mh es-df-pref 50000
-leaf01(config-if)# evpn mh es-id 1
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
-leaf01(config-if)# exit
-leaf01(config)# interface bond2
-leaf01(config-if)# evpn mh es-df-pref 50000
-leaf01(config-if)# evpn mh es-id 2
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
-leaf01(config-if)# exit
-leaf01(config)# interface bond3
-leaf01(config-if)# evpn mh es-df-pref 50000
-leaf01(config-if)# evpn mh es-id 3
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
-leaf01(config-if)# exit
-leaf01(config)# write memory
-leaf01(config)# exit
-leaf01# exit
-cumulus@leaf01:~$
-```
+   ```
+   cumulus@leaf01:~$ sudo vtysh
+   leaf01# configure terminal
+   leaf01(config)# interface bond1
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 1
+   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   leaf01(config-if)# exit
+   leaf01(config)# interface bond2
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 2
+   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   leaf01(config-if)# exit
+   leaf01(config)# interface bond3
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 3
+   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   leaf01(config-if)# exit
+   leaf01(config)# write memory
+   leaf01(config)# exit
+   leaf01# exit
+   cumulus@leaf01:~$
+   ```
 
-The vtysh commands create the following configuration in the `/etc/network/interfaces` file.
+   The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file.
 
-```
-cumulus@leaf01:~$ sudo cat /etc/network/interfaces
-...
-interface bond1
-  bond-slaves swp1
-  es-sys-mac 44:38:39:BE:EF:AA
+   ```
+   cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+   ...
+   !
+   interface bond1
+    evpn mh es-df-pref 50000
+    evpn mh es-id 1
+    evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   !
+   interface bond2
+    evpn mh es-df-pref 50000
+    evpn mh es-id 2
+    evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   !
+   interface bond3
+    evpn mh es-df-pref 50000
+    evpn mh es-id 3
+    evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   !
+   ```
 
-interface bond2
-  bond-slaves swp2
-  es-sys-mac 44:38:39:BE:EF:AA
+2. Add the system MAC address to the bond interfaces in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
-interface bond3
-  bond-slaves swp3
-  es-sys-mac 44:38:39:BE:EF:AA
-```
+   ```
+   cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+   ...
+   interface bond1
+     bond-slaves swp1
+     es-sys-mac 44:38:39:BE:EF:AA
+   
+   interface bond2
+     bond-slaves swp2
+     es-sys-mac 44:38:39:BE:EF:AA
+   
+   interface bond3
+     bond-slaves swp3
+     es-sys-mac 44:38:39:BE:EF:AA
+   ```
 
-The vtysh commands also create the following configuration in the `/etc/frr/frr.conf` file.
-
-```
-cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
-...
-!
-interface bond1
- evpn mh es-df-pref 50000
- evpn mh es-id 1
- evpn mh es-sys-mac 44:38:39:BE:EF:AA
-!
-interface bond2
- evpn mh es-df-pref 50000
- evpn mh es-id 2
- evpn mh es-sys-mac 44:38:39:BE:EF:AA
-!
-interface bond3
- evpn mh es-df-pref 50000
- evpn mh es-id 3
- evpn mh es-sys-mac 44:38:39:BE:EF:AA
-!
-```
+   ```
+   cumulus@leaf01:~$ sudo ifreload -a
+   ```
 
 {{</tab>}}
 {{</tabs>}}
@@ -615,6 +623,7 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
     "df-preference": 50000,
     "flags": {
       "bridge-port": "on",
+      "designated-forward": "on",
       "local": "on",
       "nexthop-group-active": "on",
       "oper-up": "on",
@@ -628,7 +637,7 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
       "10.10.10.2": {
         "df-algorithm": "preference",
         "df-preference": 50000,
-        "nexthop-group-id": 268435463
+        "nexthop-group-id": 268435462
       }
     },
     "vni-count": 1
@@ -637,6 +646,7 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
     "df-preference": 50000,
     "flags": {
       "bridge-port": "on",
+      "designated-forward": "on",
       "local": "on",
       "nexthop-group-active": "on",
       "oper-up": "on",
@@ -650,7 +660,7 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
       "10.10.10.2": {
         "df-algorithm": "preference",
         "df-preference": 50000,
-        "nexthop-group-id": 268435463
+        "nexthop-group-id": 268435462
       }
     },
     "vni-count": 1
@@ -659,6 +669,7 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
     "df-preference": 50000,
     "flags": {
       "bridge-port": "on",
+      "designated-forward": "on",
       "local": "on",
       "nexthop-group-active": "on",
       "oper-up": "on",
@@ -672,7 +683,7 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
       "10.10.10.2": {
         "df-algorithm": "preference",
         "df-preference": 50000,
-        "nexthop-group-id": 268435463
+        "nexthop-group-id": 268435462
       }
     },
     "vni-count": 1
@@ -690,7 +701,7 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
         "nexthop-group-id": 268435461
       },
       "10.10.10.4": {
-        "nexthop-group-id": 268435462
+        "nexthop-group-id": 268435463
       }
     },
     "vni-count": 0
@@ -704,9 +715,31 @@ cumulus@switch:~$ sudo vtysh
 switch# show evpn es
 Type: B bypass, L local, R remote, N non-DF
 ESI                            Type ES-IF                 VTEPs
-03:44:38:39:be:ef:aa:00:00:01  LB   bond1                 
-03:44:38:39:be:ef:aa:00:00:02  LB   bond2                 
-03:44:38:39:be:ef:aa:00:00:03  LB   bond3
+03:44:38:39:be:ef:aa:00:00:01  LR   bond1                 10.10.10.2
+03:44:38:39:be:ef:aa:00:00:02  LR   bond2                 10.10.10.2
+03:44:38:39:be:ef:aa:00:00:03  LR   bond3                 10.10.10.2
+03:44:38:39:be:ef:bb:00:00:01  R    -                     10.10.10.3,10.10.10.4
+```
+
+To show information about a specific ESI:
+
+```
+cumulus@switch:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:01
+                      operational
+--------------------  -----------
+df-preference         50000      
+local-interface       bond1      
+mac-count             2          
+nexthop-group-id      5.369e+08  
+vni-count             1          
+flags                            
+  bridge-port         on         
+  designated-forward  on         
+  local               on         
+  oper-up             on         
+  ready-for-bgp       on
+  remote              on         
+[remote-vtep]         10.10.10.2 
 ```
 
 ### Show Ethernet Segment per VNI Information
@@ -718,7 +751,6 @@ cumulus@switch:~$ sudo vtysh
 ...
 switch# show evpn es-evi
 Type: L local, R remote
-Type: L local, R remote
 VNI      ESI                            Type
 20       03:44:38:39:be:ef:aa:00:00:02  L   
 30       03:44:38:39:be:ef:aa:00:00:03  L   
@@ -729,9 +761,9 @@ To display the Ethernet segments for a specific VNI, run the NVUE `nv show evpn 
 
 ```
 cumulus@switch:~$ nv show evpn vni 10 multihoming esi
-                               type.local  type.remote
------------------------------  ----------  -----------
-03:44:38:39:be:ef:aa:00:00:01  on
+ESI                            Local  Remote
+-----------------------------  -----  ------
+03:44:38:39:be:ef:aa:00:00:01  yes    no
 ```
 
 ### Show BGP Ethernet Segment Information

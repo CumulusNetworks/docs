@@ -5,7 +5,7 @@ weight: 920
 toc: 3
 ---
 
-Use the UI or CLI to monitor Open Shortest Path First (OSPF) your switches and hosts. For each device, you can view its associated interfaces, areas, peers, state, and type of OSPF running (numbered or unnumbered). 
+Use the UI or CLI to monitor Open Shortest Path First (OSPF) on your switches and hosts. For each device, you can view its associated interfaces, areas, peers, state, and type of OSPF running (numbered or unnumbered). 
 
 ## OSPF Commands
 

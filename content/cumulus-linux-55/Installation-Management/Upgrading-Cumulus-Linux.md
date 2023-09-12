@@ -140,6 +140,14 @@ To backup and restore the configuration commands:
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
+{{%notice note%}}
+As NVUE supports more features and introduces new syntax, {{<link url="NVUE-Snippets" text="snippets and flexible snippets">}} become invalid.
+
+Before you upgrade Cumulus Linux to a new release, make sure to:
+- Review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax.
+- If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.
+{{%/notice%}}
+
 ### Create a cl-support File
 
 **Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
@@ -339,12 +347,14 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
     ```
     cumulus@switch:~$ nv set interface swp1 link state down
+    cumulus@switch:~$ nv config apply
     ```
 
 3. Shut down the peer link:
 
     ```
     cumulus@switch:~$ nv set interface peerlink link state down
+    cumulus@switch:~$ nv config apply
     ```
 
 4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
@@ -355,13 +365,21 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
    To upgrade the switch with package upgrade instead of booting into ONIE, run the `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands; see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
-5. Reboot the switch:
+5. Save the changes to the NVUE configuration from steps 2-3 and reboot the switch:
 
     ```
+    cumulus@switch:~$ nv config save
     cumulus@switch:~$ nv action reboot system
     ```
 
-6. If you installed a new image on the switch, restore the configuration files to the new release.
+6. If you installed a new image on the switch, restore the configuration files to the new release. If you performed an upgrade with `apt`, bring the uplink and peer link interfaces you shut down in steps 2-3 up:
+
+    ```
+    cumulus@switch:~$ nv set interface swp1 link state up
+    cumulus@switch:~$ nv set interface peerlink link state down
+    cumulus@switch:~$ nv config apply
+    cumulus@switch:~$ nv config save
+    ```
 
 7. Verify STP convergence across both switches with the Linux `mstpctl showall` command. NVUE does not provide an equivalent command.
 

@@ -497,9 +497,9 @@ For traditional VXLAN devices:
 
 ```
 cumulus@leaf01:~$ sudo bridge fdb show | grep 00:00:00:00:00:00
-00:00:00:00:00:00 dev vni-10 dst 10.10.10.4 self permanent
-00:00:00:00:00:00 dev vni-10 dst 10.10.10.2 self permanent
-00:00:00:00:00:00 dev vni-10 dst 10.10.10.3 self permanent
+00:00:00:00:00:00 dev vni10 dst 10.10.10.3 self permanent
+00:00:00:00:00:00 dev vni10 dst 10.10.10.2 self permanent
+00:00:00:00:00:00 dev vni20 dst 10.10.10.4 self permanent
 ```
 
 For a single VXLAN devices:

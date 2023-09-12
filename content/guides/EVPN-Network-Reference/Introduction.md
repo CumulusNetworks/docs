@@ -2,8 +2,8 @@
 title: Introduction
 weight: 20
 cascade:
-    product: Cumulus Networks Guides
-    author: Cumulus Networks
+    product: Technical Guides
+    author: NVIDIA
 ---
 ## Overview
 

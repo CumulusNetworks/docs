@@ -144,29 +144,6 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action deny</h>
-
-Shows the deny action for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action deny
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show acl \<acl-id\> rule \<rule-id\> action erspan</h>
 
 Shows the ERSPAN session for the specified ACL rule.
@@ -189,52 +166,6 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action erspan
      operational  applied  pending
 ---  -----------  -------  -------
 ttl                        200
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action log</h>
-
-Shows logs for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action log
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action permit</h>
-
-Shows the permit action for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action permit
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -263,29 +194,6 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action police
 burst               200    
 mode                packet 
 rate                400
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action set</h>
-
-Shows the set action for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action set
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -370,9 +278,9 @@ Ports
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port \<ip-port-id\></h>
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port \<port-id\></h>
 
-Shows destination port match criteria for the specified ACL rule.
+Shows information about a specific destination port match criteria for the specified ACL rule.
 
 ### Command Syntax
 
@@ -380,7 +288,7 @@ Shows destination port match criteria for the specified ACL rule.
 | --------- | -------------- |
 | `<acl-id>` | The ACL name.|
 | `<rule-id>` | The rule number.|
-| `<ip-port-id>` |  The IP port number or protocol. |
+| `<port-id>` | The port match, which be ANY, bgp, dhcp-client, http, ldaps, smtp, telnet, bfd, bootpc, dhcp-server, https, msdp, snmp, tftp, bfd-echo bootps,  domain, imap2, ntp, snmp-trap, bfd-multihop, clag, ftp, ldap, pop3, or ssh.|
 
 ### Version History
 
@@ -389,30 +297,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port 200
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip ecn</h>
-
-Shows ECN match criteria for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.2.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip ecn
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port bgp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -446,29 +331,6 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip ecn flags
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip fragment</h>
-
-Shows ip fragment packet match criteria for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip fragment
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip source-port</h>
 
 Shows the source port match criteria for the specified ACL rule.
@@ -488,53 +350,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip source-port
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip source-port \<ip-port-id\></h>
-
-Shows the match criteria for a specific port for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-| `<ip-port-id>` | The IP port number or protocol. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip tcp</h>
-
-Shows TCP match criteria for the specified ACL rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
-| `<rule-id>` | The rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip tcp
+Ports
+-----
+200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -558,6 +376,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip tcp flags
+   operational  applied
+   -----------  -------
+                syn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -581,6 +402,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip tcp mask
+   operational  applied
+   -----------  -------
+                syn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -733,7 +557,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 outbound
+cumulus@switch:~$ nv show interface swp2 acl EXAMPLE1 outbound
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

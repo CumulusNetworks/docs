@@ -1,8 +1,8 @@
 ---
 title: Cumulus Linux Security Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 30
-product: Cumulus Networks Guides
+product: Technical Guides
 ---
 Cumulus Linux is a powerful operating system for routers that comes with secure defaults and is ready to use. This document discusses additional security measures that enable you to further secure your switch to meet corporate, regulatory, and governmental standards. It focuses on three types of security measures:
 

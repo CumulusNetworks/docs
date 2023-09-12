@@ -748,6 +748,18 @@ cumulus@leaf01:~$ nv set interface peerlink.4094 router ospf area 0.0.0.1
 cumulus@leaf01:~$ nv config apply
 ```
 
+### MLAG Routing Support
+
+In addition to the routing adjacency over the [peer link](#peer-link-routing), Cumulus Linux supports routing adjacencies from attached network devices to MLAG switches under the following conditions:
+
+- Routers can not be attached with dual-connected MLAG bonds. Routing adjacencies must be built over single interfaces.
+
+- The attached router must peer directly to a local address on the physically connected MLAG switch. Routing adjacencies can not extend from a connected router through an MLAG switch over the peer link.
+
+- Routers can not form routing adjacencies to a virtual address (VRR or VRRP).
+
+{{< figure src="/images/cumulus-linux/mlag-supported-routing.png" width="700" >}}
+
 ## Troubleshooting
 
 Use the following troubleshooting tips to check MLAG configuration.

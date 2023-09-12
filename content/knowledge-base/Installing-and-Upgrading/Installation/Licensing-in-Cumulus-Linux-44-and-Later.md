@@ -1,6 +1,6 @@
 ---
 title: Licensing in Cumulus Linux 4.4 and Later
-author: Cumulus Networks
+author: NVIDIA
 weight: 252
 toc: 4
 ---

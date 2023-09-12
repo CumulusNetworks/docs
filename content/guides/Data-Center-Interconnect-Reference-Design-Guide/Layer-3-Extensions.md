@@ -1,8 +1,8 @@
 ---
 title: Layer 3 Extensions
-author: Cumulus Networks
+author: NVIDIA
 weight: 50
-product: Cumulus Networks Guides
+product: Technical Guides
 imgData: guides
 ---
 <style>

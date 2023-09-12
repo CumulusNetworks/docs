@@ -1,7 +1,7 @@
 ---
 title: VXLAN Devices
 author: NVIDIA
-weight: 605
+weight: 600
 toc: 3
 ---
 Cumulus Linux supports both single and traditional [VXLAN](## "Virtual Extensible LAN") devices.
@@ -344,6 +344,34 @@ iface br_default
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## VXLAN UDP Port
+
+You can change the UDP port that Cumulus Linux uses for VXLAN encapsulation. The default port is 4879.
+
+The following example changes the UDP port for VXLAN encapsulation to 1024:
+
+```
+cumulus@switch:mgmt:~$ nv set nve vxlan port 1024
+```
+
+## TC Filters
+
+NVIDIA recommends you run TC filter commands on each VLAN interface on the VTEP to install rules to protect the UDP port that Cumulus Linux uses for VXLAN encapsulation against VXLAN hopping vulnerabilities. If you have VRR configured on the VLAN, add a similar rule for the VRR device.
+
+The following example installs an IPv4 and an IPv6 filter on vlan10 to protect the default port 4879:
+
+```
+cumulus@switch:mgmt:~$ tc filter add dev vlan10 prio 1 protocol ip ingress flower ip_proto udp dst_port 4879 action drop
+cumulus@switch:mgmt:~$ tc filter add dev vlan10 prio 2 protocol ipv6 ingress flower ip_proto udp dst_port 4879 action drop
+```
+
+The following example installs an IPv4 and an IPv6 filter on VRR device vlan10-v0 to protect port 4879:
+
+```
+cumulus@switch:mgmt:~$ tc filter add dev vlan10-v0 prio 1 protocol ip ingress flower ip_proto udp dst_port 4879 action drop
+cumulus@switch:mgmt:~$ tc filter add dev vlan10-v0 prio 2 protocol ipv6 ingress flower ip_proto udp dst_port 4879 action drop
+```
 
 ## Related Information
 

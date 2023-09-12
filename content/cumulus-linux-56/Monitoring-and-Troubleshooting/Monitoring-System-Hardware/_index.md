@@ -30,33 +30,42 @@ The following example shows the `nv show platform hardware` command output:
 
 ```
 cumulus@switch:~$ nv show platform hardware
-                operational        applied
--------------  -----------------  -------
-base-mac       44:38:39:22:01:7A         
-manufacturer   Cumulus                   
-memory         1.69 GB                   
-model          VX                        
-part-number    5.5.0                     
-product-name   VX                        
-serial-number  44:38:39:22:01:7a         
+               operational      
+-------------  -----------------
+base-mac       44:38:39:22:01:7A
+cpu            n/a              
+disk-size      n/a              
+manufacturer   Cumulus          
+memory         1758728 kB       
+model          VX               
+part-number    5.6.0            
+port-layout    n/a              
+product-name   VX               
+serial-number  44:38:39:22:01:7a
 system-mac     44:38:39:22:01:b1
+asic-model     n/a              
+asic-vendor    n/a
 ```
 
-The following example shows the `nv show platform fan` command output:
+The following example shows the `nv show platform environment fan` command output. The airflow direction must be the same for all fans. If Cumulus Linux detects that the fan airflow direction is not uniform, it logs a message in the `var/log/syslog` file.
 
 ```
-cumulus@switch:~$ nv show platform fan
+cumulus@switch:~$ nv show platform environment fan
 Name      Fan Direction  Limit variance  Max Speed  Min Speed  Current Speed (RPM)  Fan State
 --------  -------------  --------------  ---------  ---------  -------------------  ---------
-Fan1      F2B                            29000      2500       6000                 ok       
-Fan2      F2B                            29000      2500       6000                 ok       
-Fan3      F2B                            29000      2500       6000                 ok       
-Fan4      F2B                            29000      2500       6000                 ok       
-Fan5      F2B                            29000      2500       6000                 ok       
-Fan6      F2B                            29000      2500       6000                 ok       
-PSU1Fan1  F2B                            29000      2500       6000                 ok       
-PSU2Fan1  F2B                            29000      2500       6000                 ok    
+Fan1      F2B            15              29000      2500       6000                 ok       
+Fan2      F2B            15              29000      2500       6000                 ok       
+Fan3      F2B            15              29000      2500       6000                 ok       
+Fan4      F2B            15              29000      2500       6000                 ok       
+Fan5      F2B            15              29000      2500       6000                 ok       
+Fan6      F2B            15              29000      2500       6000                 ok       
+PSU1Fan1  F2B            15              29000      2500       6000                 ok       
+PSU2Fan1  F2B            15              29000      2500       6000                 ok    
 ```
+
+{{%notice note%}}
+If the airflow direction for all fans is not in the same (front to back or back to front), cooling is suboptimal for the switch, rack, and even the entire data center.
+{{%/notice%}}
 
 <!-- vale off -->
 ## decode-syseeprom Command
@@ -146,7 +155,7 @@ The following command example shows detailed information about FAN6 on the switc
 ```
 cumulus@switch:~$ smonctl -s FAN6 -v
 Fan6(Fan Tray 3 Rear):  OK 
-fan:8282 RPM   (max = 25000 RPM, min = 4500 RPM, limit_variance = 15%, dir = F2B)
+fan:8282 RPM   (max = 25000 RPM, min = 4500 RPM, limit_variance = 15 direction = F2B)
 ```
 
 For more information, read `man smond` and `man smonctl`.

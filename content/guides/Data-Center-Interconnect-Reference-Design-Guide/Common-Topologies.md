@@ -1,8 +1,8 @@
 ---
 title: DCI Topologies
-author: Cumulus Networks
+author: NVIDIA
 weight: 20
-product: Cumulus Networks Guides
+product: Technical Guides
 imgData: guides
 ---
 This section of the document discusses DCI topologies.

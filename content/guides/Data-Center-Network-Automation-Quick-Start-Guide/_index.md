@@ -1,8 +1,8 @@
 ---
 title: Data Center Network Automation Quick Start Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 10
-product: Cumulus Networks Guides
+product: Technical Guides
 imgData: guides
 ---
 This Quick Start guide provides information about data center network automation. The guide gives an overview of the tools used for data center automation, discusses how to use the NVUE object model, and provides use cases and recommendations.

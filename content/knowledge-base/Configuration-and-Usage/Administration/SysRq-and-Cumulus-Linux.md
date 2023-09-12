@@ -1,6 +1,6 @@
 ---
 title: SysRq and Cumulus Linux
-author: Cumulus Networks
+author: NVIDIA
 weight: 322
 toc: 4
 ---

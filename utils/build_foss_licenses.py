@@ -13,6 +13,7 @@ import tarfile
 import os
 from os import listdir
 import requests
+import csv
 
 def product_string(product):
     '''
@@ -95,17 +96,16 @@ def build_foss_license_markdown(csv_file, version, product):
     output = []
     header = True
     f = open(csv_file, "r")
-    for line in f:
-        split_line = line.replace("\"", "").split(",")
-        license_string = format_license_string(split_line[2])
-
+    f_csv = csv.reader(f)
+    for row in f_csv:
+        license_string = format_license_string(row[2])
         if header:
-            output.append("| {} | {} | {} |\n".format(split_line[0], split_line[1].strip(), license_string))
+            output.append("| {} | {} | {} |\n".format(row[0], row[1].strip(), license_string))
         else:
             if product == "cl":
-                output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-linux-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), license_string))
+                output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-linux-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(row[0], version_string(version).replace(".", ""), row[0], row[1].strip(), license_string))
             if product == "netq":
-                output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-netq-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(split_line[0], version_string(version).replace(".", ""), split_line[0], split_line[1].strip(), license_string))
+                output.append("| {{{{<foss_file text=\"{}\" url=\"cumulus-netq-{}/Whats-New/licenses/{}.txt\" >}}}} | {} | {} |\n".format(row[0], version_string(version).replace(".", ""), row[0], row[1].strip(), license_string))
         if header:
             output.append("|---	        |---	        |---	    |\n")
             header = False
@@ -295,8 +295,8 @@ def get_products():
     '''
     # Some versions are included in the JSON file that don't have correct licenses
     # This is the list of versions to exclude from processing
-    cl_exclude_list = ["3.7.12", "4.1.0", "4.1.1", "4.2.0", "4.3.0", "4.3.1", "4.4.0", "4.4.2", "4.4.3", "4.4.4", "4.4.5", "5.0.1", "5.1.0", "5.2.0", "5.3.0", "5.3.1", "5.4.0", "5.5.0", "5.5.1"]
-    netq_exclude_list = ["4.1.0", "4.2.0", "4.3.0", "4.4.0", "4.5.0", "4.6.0"]
+    cl_exclude_list = ["3.7.12", "4.1.0", "4.1.1", "4.2.0", "4.3.0", "4.3.1", "4.4.0", "4.4.1", "4.4.1", "4.4.2", "4.4.3", "4.4.4", "4.4.5", "5.0.1", "5.1.0", "5.2.0", "5.3.0", "5.3.1", "5.4.0", "5.5.0", "5.5.1", "5.6.0"]
+    netq_exclude_list = ["4.1.0", "4.2.0", "4.3.0", "4.4.0", "4.5.0", "4.6.0", "4.7.0"]
 
     session = requests.Session()
     url = "https://d2whzysjlaya8k.cloudfront.net/release_notes_and_license_list.json"

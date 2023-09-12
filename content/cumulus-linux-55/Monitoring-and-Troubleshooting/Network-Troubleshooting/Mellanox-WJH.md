@@ -5,17 +5,19 @@ weight: 1130
 toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
-- The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-44" >}}).
-- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, and tunnel related issues. Cumulus Linux enables and runs the WJH service by default.
+- The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools such as [NVIDIA NetQ]({{<ref "/cumulus-netq-44" >}}).
+- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, tunnel, buffer and ACL related issues. Cumulus Linux enables and runs the WJH service by default.
 
 ## Configure WJH
 
-You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories (layer 1, layer 2, layer 3, and tunnel) you want to monitor.
+You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories (layer 1, layer 2, layer 3, tunnel, buffer and ACL ) you want to monitor.
+
+NVUE does not provide commands to set the buffer and ACL packet drop categories. You must edit the `/etc/what-just-happened/what-just-happened.json` file. See the Linux Commands tab.
 
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example configures two separate channels (these are the default settings):
+The following example configures two separate channels:
 - The `forwarding` channel monitors layer 2, layer 3, and tunnel packet drops.
 - The `layer-1` channel monitors layer 1 packet drops.
 
@@ -50,9 +52,7 @@ Edit the `/etc/what-just-happened/what-just-happened.json` file:
 
 After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
 
-The following example configures two separate channels (these are the default settings):
-- The `forwarding` channel monitors layer 2, layer 3, and tunnel packet drops.
-- The `layer-1` channel monitors layer 1 packet drops.
+The following example configures a channel to monitor layer 2, layer 3, and tunnel packet drops and a channel to monitor layer 1 packet drops.
 
 ```
 cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
@@ -76,7 +76,27 @@ cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
 }
 ```
 
-Restart the `what-just-happened` service:
+```
+cumulus@switch:~$ sudo systemctl restart what-just-happened
+```
+
+The following example configures a channel to monitor buffer packet drops and a channel to monitor ACL packet drops.
+
+```
+cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
+{
+    "what-just-happened": {
+        "channels": {
+            "buffer": {
+                "drop_category_list": ["buffer"]
+            },
+            "acl": {
+                "drop_category_list": ["acl"]
+            }
+        }
+    }
+}
+```
 
 ```
 cumulus@switch:~$ sudo systemctl restart what-just-happened
@@ -98,6 +118,18 @@ You can also show the WJH configuration on the switch:
 - To show the configuration for a channel, run the `nv show system wjh channel <channel>` command. For example, `nv show system wjh channel forwarding`.
 - To show the configuration for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command. For example, `nv show system wjh channel forwarding trigger`.
 
+The following example shows information about layer 1 packet drops:
+
+```
+cumulus@switch:~$ nv show system wjh packet-buffer
+#   dMAC  dPort  Dst IP:Port  EthType  Drop group  IP Proto  Drop reason - Recommended action                         Severity  sMAC  sPort    Src IP:Port  Timestamp              VLAN
+--  ----  -----  -----------  -------  ----------  --------  -------------------------------------------------------  --------  ----  -------  -----------  ---------------------  ----
+1   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp17    N/A          22/11/03 01:00:35.458  N/A
+2   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp18    N/A          22/11/03 01:00:35.458  N/A
+3   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp19    N/A          22/11/03 01:00:35.458  N/A
+4   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp20    N/A          22/11/03 01:00:35.458  N/A
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -113,25 +145,8 @@ You can run the following commands from the command line.
 
 Run the `what-just-happened -h` command to see all the WJH command options.
 
-{{< /tab >}}
-{{< /tabs >}}
-
-### Command Examples
-
 To show all dropped packets and the reason for the drop, run the NVUE `nv show system wjh packet-buffer` command or the `what-just-happened poll` command.
 
-The following example shows information about layer 1 packet drops:
-
-```
-cumulus@switch:~$ nv show system wjh packet-buffer
-#   dMAC  dPort  Dst IP:Port  EthType  Drop group  IP Proto  Drop reason - Recommended action                         Severity  sMAC  sPort    Src IP:Port  Timestamp              VLAN
---  ----  -----  -----------  -------  ----------  --------  -------------------------------------------------------  --------  ----  -------  -----------  ---------------------  ----
-1   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp17    N/A          22/11/03 01:00:35.458  N/A
-2   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp18    N/A          22/11/03 01:00:35.458  N/A
-3   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp19    N/A          22/11/03 01:00:35.458  N/A
-4   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp20    N/A          22/11/03 01:00:35.458  N/A
-
-```
 
 The following example shows that packets drop five times because the source MAC address equals the destination MAC address:
 
@@ -160,7 +175,15 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 4    21/06/16 12:03:12.745  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Considerations
+
+### Buffer Packet Drop Monitoring
+
+- Buffer packet drop monitoring is available on a switch with Spectrum-2 and later.
+- Buffer packet drop monitoring uses a SPAN destination. If you configure SPAN, ensure that you do not exceed the total number of SPAN destinations allowed for your switch ASIC type; see {{<link url="SPAN-and-ERSPAN" text="SPAN and ERSPAN">}}. If you need to remove the SPAN destination that buffer packet drop monitoring uses, delete the buffer monitoring drop category from the `/etc/what-just-happened/what-just-happened.json` file and reload the `what-just-happened` service.
 
 ### Cumulus Linux and Docker
 

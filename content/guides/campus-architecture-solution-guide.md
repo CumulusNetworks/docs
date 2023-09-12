@@ -1,8 +1,8 @@
 ---
 title: Campus Architecture Solution Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 20
-product: Cumulus Networks Guides
+product: Technical Guides
 draft: true
 ---
 

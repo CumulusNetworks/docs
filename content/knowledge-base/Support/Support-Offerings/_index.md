@@ -1,6 +1,6 @@
 ---
 title: Support Offerings
-author: Cumulus Networks
+author: NVIDIA
 weight: 70
 toc: 3
 ---

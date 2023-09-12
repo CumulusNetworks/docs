@@ -594,3 +594,19 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertisement router-preference high
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system global nd base-reachable-time</h>
+
+Configures how long a neighbor cache entry is valid. The entry is considered valid for at least the value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483 seconds. The default value is auto; NVUE derives the value for auto from the `/etc/sysctl.d/neigh.conf` file.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system global nd base-reachable-time 50
+```

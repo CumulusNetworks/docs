@@ -683,3 +683,9 @@ Cumulus Linux requires the following information at the beginning of the AAA seq
 For non-local users (users not in the local password file) you need to send a TACACS+ authorization request as the first communication with the TACACS+ server, before authentication and before the user logging in requests a password.
 
 You need to configure certain TACACS+ servers to allow authorization requests before authentication. Contact your TACACS+ server vendor for information.
+
+### Multiple Servers with Different User Accounts
+
+If you configure multiple TACACS+ servers that have different user accounts:
+- TACACS+ *authentication* allows for fall through; if the first reachable server does not authenticate the user, the client tries the second server, and so on.
+- TACACS *authorization* does not fall through. If the first reachable server returns an *unauthorized* result, the command is unauthorized and the client does not try the next server.

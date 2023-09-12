@@ -1,6 +1,6 @@
 ---
 title: NVIDIA AIR
-author: Cumulus Networks
+author: NVIDIA
 weight: 10
 product: Cumulus VX
 version: '5.x'

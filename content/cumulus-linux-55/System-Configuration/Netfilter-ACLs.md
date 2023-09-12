@@ -655,7 +655,7 @@ To rate limit traffic using the `/etc/cumulus/control-plane/policers.conf` file,
 - Set the policer rate in packets per second. The forwarding rate is the maximum rate in kilobytes (KB) or packets.
 - Set the policer burst rate in packets per second. The burst rate is the number of packets or kilobytes (KB) allowed to arrive sequentially.
 
-After you edit the `/etc/cumulus/control-plane/policers.conf` file, you must reload the file with the `switchdctl --load /etc/cumulus/control-plane/policers.conf` command.
+After you edit the `/etc/cumulus/control-plane/policers.conf` file, you must reload the file with the `/usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/policers.conf` command.
 
 {{%notice note%}}
 When `enable` is FALSE for a trap group, the trap group and `catch-all` trap group have a shared policer. When `enable` is TRUE, Cumulus Linux creates an individual policer for the trap group.
@@ -677,7 +677,7 @@ copp.igmp.burst = 200
 ```
 
 ```
-cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
+cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/policers.conf
 ```
 
 {{< /tab >}}

@@ -12,8 +12,8 @@ enableRobotsTXT: True
 disableKinds: ["RSS", "taxonomy", "term"]
 
 Params:
-  cl_latest: "cumulus-linux-55"
-  netq_latest: "cumulus-netq-46"
+  cl_latest: "cumulus-linux-56"
+  netq_latest: "cumulus-netq-47"
   sonic_latest: "sonic-202012"
   nvue_latest: "nvue-reference"
   air_latest: "nvidia-air"

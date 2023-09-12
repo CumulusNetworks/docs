@@ -51,7 +51,7 @@ Log in by creating a new account.
 
 ## Add a NetCI Workflow
 
-After the first login, click **GET STARTED** to start the configuration wizard:
+After the first login, click **Get Started** to start the configuration wizard:
 
 {{<img src="/images/guides/nvidia-air/NetCI-GetStarted.png" width="800px">}}
 

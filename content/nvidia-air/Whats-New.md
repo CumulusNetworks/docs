@@ -5,15 +5,40 @@ weight: 20
 product: NVIDIA Air
 ---
 <!-- vale off -->
-Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
+Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
+
+## August 2023
+<!-- Air:WhatsNew -->
+### 82.2023.0824-012
+- Added a new `link_id` field to the `/v1/interface/` API response
+<!-- Air:WhatsNew -->
+
+### 82.2023.0822-011
+- Fixed an issue during creation of the configuration file for the Air agent on some nodes
+- Fixed an issue where parallel jobs could result in an invalid simulation state
+- Fixed an issue where stalled requests could prevent API access by some clients
+
+## July 2023
+### 82.2023.0724-011
+- Updated API to support ordering
+- Fixed an issue related to interface count limitations on certain platforms
+
+### 82.2023.0717-011
+- Updated user authorization process
+
+### 82.2023.0706-012
+- Fixed an issue when deleting a topology associated with active simulations
+- Fixed an issue where links could be connected to the same interface on both ends
 
 ## June 2023
-<!-- Air:WhatsNew -->
+### 82.2023.0622-012
+- Fixed an issue that caused the oob-mgmt-switch to lose the default route after reboot
+- Increased resource budget limits for non-company emails
+
 ### 82.2023.0612-011
 - Fixed an error encountered by the agent when a node woke up from sleep
 - Added Cumulus Linux 5.5.1 to OS dropdown in the builder
 - Added support for IPv4 based services
-<!-- Air:WhatsNew -->
 
 ## May 2023
 ### 82.2023.0525-012

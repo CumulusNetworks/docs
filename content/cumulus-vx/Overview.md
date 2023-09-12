@@ -1,6 +1,6 @@
 ---
 title: Overview
-author: Cumulus Networks
+author: NVIDIA
 weight: 5
 product: Cumulus VX
 version: 5.x
@@ -51,45 +51,25 @@ Cumulus VX supports all software functions like BGP, spanning-tree, and SNMP, as
 | -----------| ------------- |
 | {{< img src="/images/cumulus-vx/cumulus-vx.png" width="450" >}}| {{< img src="/images/cumulus-vx/cumulus-linux.png" width="450" >}}|
 
-The following table outlines the similarities and differences between Cumulus VX and Cumulus Linux:
+## Unsupported Features in a VX
 
-| <div style="width:300px">Feature or Functionality | Cumulus Linux | Cumulus VX |
-| ------------------------ | -------------------------------- | -------------------------------- |
-| Upgrade available using an ONIE binary or with APT | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| Line rate packet forwarding  | <font color="green">Yes</font> via switch ASIC | <font color="red">No</font> |
-| Software license install | <font color="green">Yes</font> | <font color="red">No</font> |
-| Temperature and sensor outputs   | <font color="green">Yes</font> | <font color="red">No</font><sup>1</sup> |
-| ACL and routing entry limits   | Limited depending on switch ASIC | Only limited by VM memory |
-| Designed and tested for production | <font color="green">Yes</font> | <font color="red">No</font> |
-| Layer 2 VLANs         | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| Layer 2 bridging         | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| Spanning tree         | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| Layer 3 routing       | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| Routing protocols (BGP, OSPF) | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| VXLAN   | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| ECMP | <font color="green">Yes</font>, based on hardware hashing | <font color="green">Yes</font>, based on Linux kernel hashing |
-| Packet marking and remarking | <font color="green">Yes</font> | <font color="red">No</font><sup>2</sup> |
-| QoS buffer management | <font color="green">Yes</font> | <font color="red">No</font> |
-| QoS buffer monitoring | <font color="green">Yes</font> | <font color="red">No</font> |
-| QoS shaping | <font color="green">Yes</font> | <font color="red">No</font> |
-| What Just Happened (WJH) | <font color="green">Yes</font> | <font color="red">No</font> |
-| ACLs | <font color="green">Yes</font> | <font color="red">No</font><sup>3</sup> | 
-| 802.1x | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| Cumulus NetQ | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| Zero Touch Provisioning | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| Third party Linux packages | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| DHCP and DHCP relay | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| LLDP | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| LAG and MLAG | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| Multicast, IGMP and PIM | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| BFD | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| VRFs, management VRF | <font color="green">Yes</font> | <font color="green">Yes</font> |
-| NAT | <font color="green">Yes</font> | <font color="red">No</font><sup>4</sup> |
+Due to hardware specific implementations, virtual environments do **not** support certain Cumulus Linux features.
 
-<sub>1. Cumulus VX provides artificial temperature and sensor outputs for simulation. You can control and test monitoring tools using these artificial sensors.</sub>  
-<sub>2. Cumulus VX supports marking and remarking using kernel and Traffic Control (TC) commands, Cumulus Linux does not support them in the same way.</sub>  
-<sub>3. Cumulus VX supports ACLs using `iptables`, but it does not support the `cl-acltool` command.</sub>  
-<sub>4. Cumulus VX supports NAT using `iptables` but not with `cl-acltool`. Using NAT within Cumulus VX is not the same as Cumulus Linux.</sub>  
+| Feature | Supported in a Virtual Environment |
+| -----------------------------------------------------| ------------|
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Netfilter-ACLs" text="ACL configuration ">}}|<font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/In-Service-System-Upgrade-ISSU" text="In Service System Upgrade - ISSU ">}}| <font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Date-and-Time/Precision-Time-Protocol-PTP" text="Precision Time Protocol - PTP">}}| <font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Port-Security" text="Port Security">}}| <font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Network-Troubleshooting/SPAN-and-ERSPAN" text="SPAN and ERSPAN">}}| <font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Monitoring-System-Hardware/#sensors-command" text="Temperature and sensor outputs">}}| Artificial temperature and sensor outputs for simulation. You can control and test monitoring tools using these artificial sensors.|
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/#mark-and-remark-traffic" text="QoS Packet marking and remarking">}}| <font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service" text="QoS buffer management and buffer monitoring">}}| <font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/#policing-and-shaping" text="QoS shaping ">}}| <font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Network-Troubleshooting/Mellanox-WJH" text="What Just Happened (WJH)">}}| <font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Network-Address-Translation-NAT" text="Network Address Translation (NAT)">}}| <font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Routing/Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive Routing" >}}| <font color="red">No</font> |
+|{{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-2/Storm-Control" text="Storm control ">}}|<font color="red">No</font>|
 
 ## Support Policy
 

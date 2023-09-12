@@ -11,7 +11,7 @@ This project provides a Python SDK for interacting with the [NVIDIA Air API](htt
 ## SDK Usage
 ### Prerequisite for the SDK
 
-The SDK requires python 3.7 or later. The safest way to install the SDK is to set up a virtual environment in python3.7. For example:
+The SDK requires Python 3.7 or later. The safest way to install the SDK is to set up a virtual environment in Python 3.7. For example:
 
 ```
 $ apt-get install python3.7
@@ -30,13 +30,13 @@ $ python3 -m pip install air-sdk
 
 ## Authentication Options
 
-Authentication requires the use of either an API token, a username/password, or a bearer token.
+Authentication requires an API token, a username/password, or a bearer token.
 
 ### API token
 
-To use an API token, one must first be generated. The easiest way to do this is via the [Air UI](https://air.nvidia.com/settings/api-tokens).
+The easiest way to generate an API token is with the [Air UI](https://air.nvidia.com/settings/api-tokens).
 
-Once a token is generated:
+After a token is generated:
 
 {{< tabs "TabID5555 ">}}
 {{< tab "SDK ">}}
@@ -65,7 +65,7 @@ curl --location --request <http_request>' \
 
 ### Username/Password
 
-Username/Password authentication is only valid for Air Service Accounts, which can only be created by NVIDIA Air administrators. Once the administrator provides the username and password:
+Username/password authentication is only valid for Air Service Accounts, which can only be created by NVIDIA Air administrators. After the administrator provides the username and password:
 
 ```
 >>> air = AirApi(username='<username>', password='<password>')
@@ -73,7 +73,7 @@ Username/Password authentication is only valid for Air Service Accounts, which c
 
 ### Bearer token
 
-For SDK use it's recommended to use an [API Token](#api-token) over a bearer token. However, a bearer token might be used for testing or quick-and-dirty operations that might not need a long term API token. To use a bearer token, the calling user must have a nvidia.com account and have previously approved access for NVIDIA Air. Once a token is obtained:
+For SDK use, NVIDIA recommends using an [API token](#api-token) over a bearer token. However, a bearer token can be used for testing and performing operations that do not require a long term API token. To use a bearer token, the calling user must have an nvidia.com account and have previously approved access for NVIDIA Air. After you have obtained the token:
 
 {{< tabs "TabID5593 ">}}
 {{< tab "SDK ">}}
@@ -94,9 +94,9 @@ curl --location --request GET 'https://air.nvidia.com/api/v1/simulation/' \
 
 ## Examples
 
-### List All Simulations
+### List all Simulations
 
-The SDK provides various helper methods for interacting with the API. The example below shows how to list all Simulations with the SDK and with the API using cURL:
+The SDK provides various helper methods for interacting with the API. The example below shows how to list all simulations with the SDK and with the API using cURL:
 
 
 {{< tabs "TabID5463 ">}}
@@ -118,9 +118,9 @@ curl --request GET 'https://air.nvidia.com/api/v1/simulation/' \
 {{< /tab >}}
 {{< /tabs >}}
 
-### Get a specific Simulation: 
+### Get a Specific Simulation 
 
-To get a Simulation with ID c51b49b6-94a7-4c93-950c-e7fa4883591:
+To get a simulation with ID c51b49b6-94a7-4c93-950c-e7fa4883591:
 
 {{< tabs "TabID5388 ">}}
 {{< tab "SDK ">}}
@@ -143,7 +143,7 @@ curl --request GET 'https://air.nvidia.com/api/v1/simulation/?id=c51b49b6-94a7-4
 {{< /tabs >}}
 
 ### Create a Simulation 
-Create a Simulation Using a custom Topology and custom Organization
+Create a simulation using a custom topology and custom organization.
 
 Example topology.dot file:
 ```
@@ -154,7 +154,7 @@ graph "sample_topology" {
     "cumulus0":"swp2" -- "cumulus1":"swp2"
 }
 ```
-Create the Topology, Organization, and Simulation, then start the Simulation:
+Create the topology, organization, and simulation, then start the simulation:
 
 {{< tabs "TabID55113 ">}}
 {{< tab "SDK ">}}
@@ -174,7 +174,12 @@ Create the Topology, Organization, and Simulation, then start the Simulation:
 ```
 {{< /tab >}}
 {{< tab "cURL ">}}
-Create the Organization:
+
+
+Create the organization:
+{{<notice note>}}
+Organization creation is currently only supported for NVIDIA users. 
+{{</notice>}}
 ```
 curl --location --request POST 'https://air.nvidia.com/api/v1/organization/' \
 --header 'Accept: application/json' \
@@ -189,10 +194,7 @@ curl --location --request POST 'https://air.nvidia.com/api/v1/organization/' \
   ]
 }'
 ```
-Note - Organization creation is currently only supported for NVIDIA users. 
-
-
-Create the Topology:
+Create the topology:
 ```
 curl --location --request POST 'https://air.nvidia.com/api/v1/topology/' \
 --header 'Accept: application/json' \
@@ -205,7 +207,7 @@ curl --location --request POST 'https://air.nvidia.com/api/v1/topology/' \
   }'
 ```
 
-Create the Simulation:
+Create the simulation:
 ```
 curl --location --request POST 'https://air.nvidia.com/api/v1/simulation/' \
 --header 'Authorization: Bearer <bearer_token>' \
@@ -219,7 +221,7 @@ curl --location --request POST 'https://air.nvidia.com/api/v1/simulation/' \
   "organization": "<organization_uuid>"
 }'
 ```
-Start the Simulation:
+Start the simulation:
 ```
 curl --location --request POST 'https://air.nvidia.com/api/v1/simulation/<simulation_uuid>/control/' \
 --header 'Authorization: Bearer <bearer_token>' \
@@ -246,12 +248,12 @@ curl --location --request POST 'https://air.nvidia.com/api/v1/simulation/<simula
 {{< /tab >}}
 {{< tab "cURL">}}
 
-Find the Simulation:
+Find the simulation:
 ```
 curl --request GET 'https://air.nvidia.com/api/v1/simulation/?id=<simulation_uuid>' \
 --header 'Authorization: Bearer <bearer_token>'
 ```
-Delete the Simulation:
+Delete the simulation:
 ```
 curl --request POST 'https://air.nvidia.com/api/v1/simulation/<simulation_uuid>/control/' \
 --header 'Authorization: Bearer <bearer_token>' \
@@ -265,9 +267,9 @@ curl --request POST 'https://air.nvidia.com/api/v1/simulation/<simulation_uuid>/
 {{< /tabs >}}
 
 ### Enable SSH Service
-Wake up a sleeping Simulation and enable SSH to the oob-mgmt-server
+Wake up a sleeping simulation and enable SSH to the oob-mgmt-server
 
-Find, and load the Simulation:
+Find and load the simulation:
 {{< tabs "TabID55195 ">}}
 {{< tab "SDK ">}}
 
@@ -280,7 +282,7 @@ Find, and load the Simulation:
 
 {{< /tab >}}
 {{< tab "cURL">}}
-Load the Simulation:
+Load the simulation:
 ```
 curl --request POST 'https://air.nvidia.com/api/v1/simulation/<simulation_id>/control/' \
 --header 'Authorization: Bearer <bearer_token>' \
@@ -290,7 +292,7 @@ curl --request POST 'https://air.nvidia.com/api/v1/simulation/<simulation_id>/co
   "start": true
 }'
 ```
-Note - The Simulation id will be used again later. 
+Note that the simulation ID will be used again later. 
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -311,14 +313,14 @@ ssh -p 15738 ubuntu@worker.air.nvidia.com
 {{< /tab >}}
 {{< tab "cURL">}}
 
-In order to enable SSH to a Node's Interface, the API requires the specific Simulation-Interface object's uuid or resource url to be provided. Assume for this example the simulation_id is 47c91cdd-93d2-42b7-9c94-1580a9e49a88 and the Simulation-Interface is eth0 on the oob-mgmt-server Node.
+To enable SSH to a node's interface, the API requires the specific simulation-interface object's uuid or resource url. In this example, the simulation_id is 47c91cdd-93d2-42b7-9c94-1580a9e49a88 and the simulation-interface is eth0 on the oob-mgmt-server node.
 
-To find the Simulation Interface uuid, first find the Node object:
+To find the simulation interface uuid, first find the node object:
 ```
 curl --request GET 'https://air.nvidia.com/api/v1/node/?name=oob-mgmt-server&simulation=47c91cdd-93d2-42b7-9c94-1580a9e49a88' \
 --header 'Authorization: Bearer <bearer_token>' 
 ```
-This will return a list containing one Node. The Node will have a list of interfaces. For example:
+This will return a list containing one node. The node will have a list of interfaces:
 ```
 [{
     "url": "https://air.nvidia.com/api/v1/node/f2b54dc7-2ec0-40de-b04f-8a2b8655814a/",
@@ -338,7 +340,7 @@ This will return a list containing one Node. The Node will have a list of interf
     "topology": "https://air.nvidia.com/api/v1/topology/0fbdfdef-c284-4287-85aa-1499fef18a3b/"
 }]
 ```
-Find the Interface id and use it to resolve the Simulation-Interface:
+Find the interface ID and use it to resolve the simulation-interface:
 ```
 curl --request GET 'https://air.nvidia.com/api/v1/simulation-interface/?original=fc92eb67-0abb-4a36-8458-2ecf5cc8ec75' \
 --header 'Authorization: Bearer <bearer_token>'
@@ -357,7 +359,7 @@ curl --request GET 'https://air.nvidia.com/api/v1/simulation-interface/?original
 }]
 ```
 
-Finally, use the Simulation-Interface's ID in the interface param and the Simulation id to create the ssh Service:
+Finally, use the simulation-interface's ID in the interface param and the simulation ID to create the ssh service:
 ```
 curl --request POST 'https://air.nvidia.com/api/v1/service/' \
 --header 'Authorization: Bearer <bearer_token>' \
@@ -369,7 +371,7 @@ curl --request POST 'https://air.nvidia.com/api/v1/service/' \
   "dest_port": 22
 }'
 ```
-The response will be something like the following:
+The response will resemble the following:
 ```{
     "url": "https://air.nvidia.com/api/v1/service/af474fff-4bc9-4590-9f68-0cd3c3b021da/",
     "id": "af474fff-4bc9-4590-9f68-0cd3c3b021da",
@@ -398,12 +400,19 @@ ssh -p 15502 ubuntu@worker.air.nvidia.com
 {{< /tab >}}
 {{< /tabs >}}
 
-### Upload Image and Create a Topology
-Upload a custom Image and create a Topology using that Image
+Use the oob-mgmt-server as a jump host, and ssh through the oob-mgmt-server to another node in the simulation:
+```
+>>> ssh -J ubuntu@worker.air.nvidia.com:15738 user@hostname
+```
 
-Note - Image upload is currently only supported for NVIDIA users. 
+### Upload an Image and Create a Topology
+Upload a custom image and create a topology using that image.
 
-Upload and create the Image object:
+{{<notice note>}}
+Image upload is currently only supported for NVIDIA users. 
+{{</notice>}}
+
+Upload and create the image object:
 {{< tabs "TabID55242 ">}}
 {{< tab "SDK ">}}
 
@@ -427,7 +436,7 @@ Upload and create the Image object:
 {{< /tab >}}
 {{< tab "cURL">}}
 
-Create the Image object:
+Create the image object:
 ```
 curl --request POST 'https://air.nvidia.com/api/v1/image/' \
 --header 'Accept: application/json' \
@@ -444,7 +453,7 @@ curl --request POST 'https://air.nvidia.com/api/v1/image/' \
   "provider": "VM"
 }'
 ```
-The response will contain an Image upload URL:
+The response will contain an image upload URL:
 ```
 {
     "url": "https://air.nvidia.co,/api/v1/image/3d9a34e6-fd64-47bc-a65d-8a30f9f3ddc7/",
@@ -454,7 +463,7 @@ The response will contain an Image upload URL:
     ...
 }
 ```
-Use the provided upload_url to upload a local Image file to Air:
+Use the provided upload_url to upload a local image file to Air:
 ```
 curl --request PUT 'https://air.nvidia.com/api/v1/image/3d9a34e6-fd64-47bc-a65d-8a30f9f3ddc7/upload/' -F filename='@/Users/admin/fake_image.qcow2' \
 --header 'Authorization: Bearer <bearer_token>'
@@ -465,7 +474,7 @@ curl --request PUT 'https://air.nvidia.com/api/v1/image/3d9a34e6-fd64-47bc-a65d-
 {{< /tabs >}}
 
 
-Use the Created Image in a custom Topology:
+Use the image you created in a custom topology:
 {{< tabs "TabID55269 ">}}
 {{< tab "SDK ">}}
 
@@ -495,19 +504,19 @@ curl --request POST 'https://air.nvidia.com/api/v1/topology/' \
 {{< /tabs >}}
 
 ### Using Node Instructions
-Simulation Nodes that have the Air Agent installed can be configured via the API using Node Instructions. The Air Agent is present in Simulation Nodes that use Images where the agent_enabled flag is set to True.
+Simulation nodes that have the Air agent installed can be configured via the API using node instructions. The Air agent is present in simulation nodes that use images where the agent_enabled flag is set to true.
 
-After creating (but not starting) a simulation, first get the ID of the Simulation Node to be configured. 
+After creating (but not starting) a simulation, get the ID of the simulation node that you want to configure: 
 
 {{< tabs "TabID55000 ">}}
 {{< tab "SDK ">}}
 
-Find the Simulation Nodes for the Simulation, and get the specific Simulation Node to be configured. In this instance the Node is named "sample-node":
+Find the simulation nodes for the simulation, and get the specific simulation node to be configured. In this example the node is named *sample-node*:
 ```
 >>> simnodes = air.simulation_nodes.list(simulation=simulation)
 >>> for simnode in simnodes:
 >>>    if 'sample-node' == simnode.name:
->>>        sample-node = simnode
+>>>        sample_node = simnode
 ```
 
 Edit /etc/network/interfaces on the sample-node and apply config with ifreload:
@@ -516,21 +525,29 @@ Edit /etc/network/interfaces on the sample-node and apply config with ifreload:
 >>> eni_contents = '<string_containing_desired_etc_network_interfaces_content>''
 >>> post_cmd = 'ifreload -a'
 >>> data = {'/etc/network/interfaces': eni_contents, 'post_cmd': post_cmd}
->>> sample-node.create_instructions(data=json.dumps(data), executor='file')
+>>> sample_node.create_instructions(data=json.dumps(data), executor='file')
 ```
 
 Edit frr.conf on the sample-node and restart frr:
 ```
->>> frr_contents = '<frr_conf_config_here>''
+>>> frr_contents = '<frr_conf_config_here>'
 >>> post_cmd = 'systemctl restart frr'
 >>> data = {'/etc/frr/frr.conf': frr_contents, 'post_cmd':post_cmd}
->>> sample-node.create_instructions(data=json.dumps(data), executor='file')
+>>> sample_node.create_instructions(data=json.dumps(data), executor='file')
 ```
 
-To execute a command instead of populating the contents of a file, use the "shell" executor instead of "file":
+To execute a command instead of populating the contents of a file, use the `shell` executor instead of `file`:
 ```
 >>> data = 'ip link set swp1 ip address 192.168.100.2/24'
->>> sample-node.create_instructions(data=data, executor='shell')
+>>> sample_node.create_instructions(data=data, executor='shell')
+```
+
+Add a ZTP script to the node called oob-mgmt-server:
+```
+>>> oob_mgmt_server = air.simulation_nodes.list(simulation=simulation, name='oob-mgmt-server')[0]
+>>> ztp_contents = '<ztp_script_content_here>'
+>>> data = {'/var/www/html/cumulus-ztp': ztp_contents}
+>>> oob_mgmt_server.create_instructions(data=json.dumps(data), executor='file')
 ```
 
 Finally, start the simulation:
@@ -540,13 +557,13 @@ Finally, start the simulation:
 {{< /tab >}}
 {{< tab "cURL">}}
 
-Find the Simulation's Simulation Nodes:
+Find the simulation's simulation nodes:
 ```
 curl --request GET 'https://air.nvidia.com/api/v1/simulation-node/?simulation=<simulation_id>' \
 --header 'Authorization: Bearer <bearer_token>'
 ```
 
-Create and send the Node Instruction:
+Create and send the node instruction:
 ```
 curl --request POST 'https://air.nvidia.com/api/v1/simulation-node/<simulation_node_id>/instructions/' \
 --header 'Authorization: Bearer <bearer_token>' \
@@ -556,7 +573,7 @@ curl --request POST 'https://air.nvidia.com/api/v1/simulation-node/<simulation_n
     "data": "{'\''/etc/frr/frr.conf'\'': '\''<frr.conf contents>'\'', '\''post_cmd'\'':,'\''systemctl restart frr'\''}"
 }'
 ```
-Or, use the shell executor instead of file to run a command:
+Alternately, use the shell executor instead of file to run a command:
 
 ```
 curl --request POST 'https://air.nvidia.com/api/v1/simulation-node/<simulation_node_id>/instructions/' \
@@ -571,7 +588,9 @@ curl --request POST 'https://air.nvidia.com/api/v1/simulation-node/<simulation_n
 {{< /tab >}}
 {{< /tabs >}}
 
-Note: To avoid a race condition on Cumulus Linux nodes running a version prior to 5.0.0, schedule the Node Instructions prior to starting the simulation. Otherwise instructions may fail to complete. 
+{{<notice info>}}
+To avoid a race condition on Cumulus Linux nodes running a version prior to 5.0.0, schedule the node instructions prior to starting the simulation. If you do not perform the steps in this order, the instructions might fail to complete. 
+{{</notice>}}
 
 ## Developing
 

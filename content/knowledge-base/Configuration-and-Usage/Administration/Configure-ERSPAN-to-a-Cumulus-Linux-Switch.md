@@ -1,6 +1,6 @@
 ---
 title: Configure ERSPAN to a Cumulus Linux Switch
-author: Cumulus Networks
+author: NVIDIA
 weight: 312
 toc: 4
 ---

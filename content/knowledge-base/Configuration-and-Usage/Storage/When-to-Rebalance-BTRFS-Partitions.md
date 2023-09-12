@@ -1,6 +1,6 @@
 ---
 title: When to Rebalance BTRFS Partitions
-author: Cumulus Networks
+author: NVIDIA
 weight: 451
 toc: 4
 ---

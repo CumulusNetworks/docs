@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux Command Reference Guide
-author: Cumulus Networks
+author: NVIDIA
 weight: 102
 toc: 3
 ---

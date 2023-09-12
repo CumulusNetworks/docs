@@ -2,8 +2,8 @@
 title: EVPN Deployment Scenarios
 weight: 40
 cascade:
-    product: Cumulus Networks Guides
-    author: Cumulus Networks
+    product: Technical Guides
+    author: NVIDIA
 ---
 ## EVPN for L2 Deployments
 

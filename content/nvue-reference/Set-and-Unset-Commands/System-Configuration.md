@@ -43,8 +43,8 @@ cumulus@switch:~$ nv set system config apply ignore /etc/ptp4l.conf
 ## <h>nv set system config apply overwrite</h>
 
 Configures which files NVUE overwrites during `nv config apply`. You can specify:
-- `all` to overwrite all files. If you modify a file locally, you see a warning when you try to apply the configuration and you can stop the apply before NVUE overwrites the local modification. This is the default setting.
-- `controlled` overwrites only the files that NVUE most recently changes. If you change a file locally, you see a warning but NVUE does not overwrite the file.
+- `all` to overwrite all files. If you modified a file locally, you see a warning when you try to apply the configuration and you can stop the apply before NVUE overwrites the local modification. This is the default setting.
+- `controlled` overwrites only the files that NVUE most recently changed. If you changed a file locally, you see a warning but NVUE does not overwrite the file.
 
 ### Version History
 

@@ -965,9 +965,6 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Edit /etc/cumulus/control-plane/policers.conf ">}}
 
-{{< /tab >}}
-{{< /tabs >}}
-
 1. Edit the `/etc/cumulus/control-plane/policers.conf` file:
 
    - To tune the PIM forwarding and burst rate, change the `copp.pim_ospf_rip.rate` and `copp.pim_ospf_rip.burst` parameters.
@@ -991,8 +988,96 @@ cumulus@switch:~$ nv config apply
 2. Run the following command:
 
    ```
-   cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
+   cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/policers.conf
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### IGMP Settings
+
+You can set the following optional IGMP settings on a PIM interface:
+- The last member query interval, which is the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 10.
+- The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 100.
+- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255 seconds. The default setting is 2.
+- How often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 65535 seconds. The default setting is 125.
+- Fast leave processing, where the switch immediately removes a port from the forwarding entry for a multicast group when the port receives a leave message. The default setting is off.
+
+{{< tabs "TabID356 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets the last member query interval to 80, the maximum response time for IGMP general queries to 120 seconds, the number of group-specific queries that a querier can send to 5, and configures IGMP to send query-host messages every 180 seconds:
+
+```
+cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-interval 80
+cumulus@switch:~$ nv set interface swp1 ip igmp query-max-response-time 120
+cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-count 5
+cumulus@switch:~$ nv set interface swp1 ip igmp query-interval 180
+cumulus@switch:~$ nv config apply
+```
+
+The following example enables fast leave processing:
+
+```
+cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave on
+cumulus@switch:~$ nv config apply
+```
+
+To disable fast leave processing, run the `nv set interface <interface> ip igmp fast-leave off` command.
+
+{{< /tab >}}
+{{< tab "Linux and vtysh Commands ">}}
+
+The following example sets the last member query interval to 80, the maximum response time for IGMP general queries to 120 seconds, the number of group-specific queries that a querier sends to 5, and configures IGMP to send query-host messages every 180 seconds:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# 
+switch(config)# interface vlan10
+leaf02(config-if)# ip igmp last-member-query-interval 80
+leaf02(config-if)# ip igmp query-max-response-time 120
+leaf02(config-if)# ip igmp last-member-query-count 5
+leaf02(config-if)# ip igmp query-interval 180
+leaf02(config-if)# end
+switch# write memory
+switch# exit
+```
+
+The vtysh `ip igmp last-member-query-count` command adds the configuration to the `/etc/frr/frr.conf file`:
+
+```
+cumulus@switch:~$ sudo nano /etc/frr/frr.conf
+...
+ip igmp
+ip igmp version 3
+ip igmp query-interval 180
+ip igmp last-member-query-interval 80
+ip igmp last-member-query-count 5
+ip igmp query-max-response-time 120
+...
+```
+
+To enable fast leave processing, edit the `/etc/network/interfaces` file and add the `bridge-portmcfl yes` parameter under the interface stanza:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto vlan10
+iface vlan10
+    address 10.1.10.1/24
+    hwaddress 44:38:39:22:01:b1
+    bridge-portmcfl yes
+    vlan-raw-device br_default
+    vlan-id 10
+...
+```
+
+To disable fast leave processing, edit the `/etc/network/interfaces` file and set the `bridge-portmcfl no` parameter under the interface stanza.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
@@ -1182,16 +1267,37 @@ Active Source           Group            RPT  IIF               OIL
 1      10.1.10.101      239.1.1.1        n    vlan10 
 ```
 
-To verify that the receiver is sending IGMP reports (joins) for the group, run the vtysh `show ip igmp groups` command or the `net show igmp groups` command.
+To show the IGMP configuration settings for an interface, run the `nv show interface <interface> ip igmp` command
 
 ```
-cumulus@lhr:~$ sudo vtysh
-...
-lhr# show ip igmp groups
-Total IGMP groups: 1
-Watermark warn limit(Not Set): 0
-Interface   Address      Group        Mode Timer      Srcs V   Uptime  
-vlan20      10.2.10.1    239.1.1.1    EXCL 00:02:18   1    3   05:27:33 
+cumulus@lhr:~$ nv show interface swp3 ip igmp
+                            operational  applied
+--------------------------  -----------  -------
+enable                                   on     
+fast-leave                               off    
+last-member-query-count                  2      
+last-member-query-interval               10     
+query-interval                           125    
+query-max-response-time                  100    
+version                                  3      
+[static-group]                                  
+[group]           
+```
+
+To show IGMP operational data for an interface, run the NVUE `nv show interface <interface> ip igmp -o json` command or the vtysh `show ip igmp statistics` command.
+
+To verify that the receiver is sending IGMP reports (joins) for the group, run the NVUE `nv show interface <interface> ip igmp group` command or the vtysh `show ip igmp groups` command.
+
+```
+cumulus@lhr:~$ nv show interface swp3 ip igmp group
+StaticGroupID  filter-mode  source-count  timer     uptime    version  Summary
+-------------  -----------  ------------  --------  --------  -------  -------------------------
+225.1.101.1    exclude      1             00:02:43  00:02:56  3        source-address:         *
+225.1.101.2    exclude      1             00:02:43  00:02:56  3        source-address:         *
+225.1.101.3    exclude      1             00:02:43  00:02:56  3        source-address:         *
+225.1.101.4    exclude      1             00:02:43  00:02:56  3        source-address:         *
+225.1.101.5    exclude      1             00:02:43  00:02:56  3        source-address:         *
+232.1.1.99     include      1             --:--:--  00:00:02  3        source-address: 10.1.10.1
 ```
 
 To show IGMP source information, run the vtysh `show ip igmp sources` command or the `net show igmp sources` command.
@@ -1396,6 +1502,97 @@ Source                Group               RP   Local    SPT      Uptime
 10.1.10.101       239.1.1.1     10.10.10.101       n      n    00:00:40
 10.1.10.101       239.1.1.2    100.10.10.101       n      n    00:00:25
 ```
+
+### Clear PIM State and Statistics
+
+If you are troubleshooting or making changes to your multicast environment, you can:
+- Clear PIM neighbors for all PIM interfaces in a VRF.
+- Clear traffic statistics for all PIM interfaces in a VRF.
+- Clear the IGMP interface state.
+
+{{< tabs "TabID1404 ">}}
+{{< tab "NVUE Commands ">}}
+
+To clear PIM neighbors for all PIM interfaces in a VRF:
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim interfaces
+Action succeeded
+```
+
+To clear traffic statistics for all PIM interfaces in a VRF:
+
+```
+cumulus@switch:~$ nv action clear vrf default router pim interface-traffic
+Action succeeded
+```
+
+To clear the IGMP interface state:
+
+```
+cumulus@switch:~$ nv action clear router igmp interfaces
+Action succeeded
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To clear PIM neighbors for all PIM interfaces in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim vrf default interfaces
+switch# exit
+```
+
+To clear traffic statistics for all PIM interfaces in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim vrf default interface traffic
+switch# exit
+```
+
+To rescan the PIM OIL to update the output interface list in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim vrf default oil
+switch# exit
+```
+
+To clear all PIM process statistics in a VRF:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim statistics vrf default
+switch# exit
+```
+
+To clear all PIM process statistics:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip pim statistics
+switch# exit
+```
+
+To clear the IGMP interface state:
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# clear ip igmp interfaces
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Configuration Example
 

@@ -1,6 +1,6 @@
 ---
 title: Set up a Basic Ansible Lab
-author: Cumulus Networks
+author: NVIDIA
 weight: 321
 toc: 4
 ---

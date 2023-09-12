@@ -1,6 +1,6 @@
 ---
 title: Default Open Ports in Cumulus Linux and NetQ
-author: Cumulus Networks
+author: NVIDIA
 weight: 106
 toc: 3
 ---

@@ -1,8 +1,8 @@
 ---
 title: Layer 3 Extensions with VRF Route Leaking
-author: Cumulus Networks
+author: NVIDIA
 weight: 60
-product: Cumulus Networks Guides
+product: Technical Guides
 imgData: guides
 ---
 <style>

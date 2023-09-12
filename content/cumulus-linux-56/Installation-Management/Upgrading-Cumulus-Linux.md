@@ -140,8 +140,16 @@ To backup and restore the configuration commands:
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
-### Create a cl-support File
+{{%notice note%}}
+As NVUE supports more features and introduces new syntax, {{<link url="NVUE-Snippets" text="snippets and flexible snippets">}} become invalid.
 
+Before you upgrade Cumulus Linux to a new release, make sure to:
+- Review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax.
+- If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.
+{{%/notice%}}
+<!-- vale off -->
+### Create a cl-support File
+<!-- vale on -->
 **Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
 
 1. Create the `cl-support` archive file with the `cl-support` command:
@@ -167,7 +175,7 @@ You can upgrade Cumulus Linux in one of two ways:
 - Install a Cumulus Linux image of the new release, using ONIE.
 - Upgrade only the changed packages using the `sudo -E apt-get update` and `sudo -E apt-get upgrade` command.
 
-Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="ISSU">}}.
+Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
 
 {{%notice note%}}
 - To upgrade to Cumulus Linux 5.6.0 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
@@ -228,6 +236,29 @@ To upgrade the switch:
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
 
 When you use package upgrade to upgrade your switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
+
+#### Disk Space Requirements
+
+Make sure you have enough disk space to perform a package upgrade. Cumulus Linux 5.6.0 requires:
+- 0.6GB GB of free disk space to upgrade from 5.5
+- 1.5GB of free disk space to upgrade from 5.4
+
+Before you upgrade, run the `sudo df -h` command to show how much disk space you are currently using on the switch.
+
+```
+cumulus@switch:~$ sudo df -h
+Filesystem      Size   Used   Avail   Use%    Mounted on
+udev            7.7G      0    7.7G     0%    /dev
+tmpfs           1.6G    18M    1.6G     2%    /run
+/dev/sda4        28G   7.9G     18G    31%    /
+tmpfs           7.7G   277M    7.4G     4%    /dev/shm
+tmpfs           5.0M      0    5.0M     0%    /run/lock
+tmpfs           7.7G      0    7.7G     0%    /sys/fs/cgroup
+tmpfs           7.7G    16K    7.7G     1%    /tmp
+overlay          28G   7.9G     18G    31%   
+```
+
+#### Upgrade the Switch
 
 To upgrade the switch using package upgrade:
 
@@ -339,12 +370,14 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
     ```
     cumulus@switch:~$ nv set interface swp1 link state down
+    cumulus@switch:~$ nv config apply
     ```
 
 3. Shut down the peer link:
 
     ```
     cumulus@switch:~$ nv set interface peerlink link state down
+    cumulus@switch:~$ nv config apply
     ```
 
 4. To boot the switch into ONIE, run the `onie-install -a -i <image-location>` command. The following example command installs the image from a web server. There are additional ways to install the Cumulus Linux image, such as using FTP, a local file, or a USB drive. For more information, see {{<link title="Installing a New Cumulus Linux Image">}}.
@@ -355,13 +388,21 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
    To upgrade the switch with package upgrade instead of booting into ONIE, run the `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands; see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
-5. Reboot the switch:
+5. Save the changes to the NVUE configuration from steps 2-3 and reboot the switch:
 
     ```
+    cumulus@switch:~$ nv config save
     cumulus@switch:~$ nv action reboot system
     ```
 
-6. If you installed a new image on the switch, restore the configuration files to the new release.
+6. If you installed a new image on the switch, restore the configuration files to the new release. If you performed an upgrade with `apt`, bring the uplink and peer link interfaces you shut down in steps 2-3 up:
+
+    ```
+    cumulus@switch:~$ nv set interface swp1 link state up
+    cumulus@switch:~$ nv set interface peerlink link state down
+    cumulus@switch:~$ nv config apply
+    cumulus@switch:~$ nv config save
+    ```
 
 7. Verify STP convergence across both switches with the Linux `mstpctl showall` command. NVUE does not provide an equivalent command.
 

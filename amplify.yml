@@ -12,7 +12,7 @@ frontend:
     build:
       commands:
         # Install docraptor and requests libraries
-        - if [ "${AWS_BRANCH}" = "master" ]; then pip3 install --upgrade docraptor requests ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then pip3 install urllib3==1.26.12 docraptor requests ; fi
         # This only runs in the master branch, and assumes that stage was merged into master to trigger the build
         # build_pdfs.py <DOCRAPTOR_API_KEY> <BASE_URL>
         # If PDF/XLS generation is failing, comment out the following line to build the site.

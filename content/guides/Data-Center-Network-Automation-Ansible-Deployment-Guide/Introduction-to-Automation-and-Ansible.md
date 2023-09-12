@@ -24,7 +24,7 @@ The CLI and the REST API are equivalent in functionality; you can run all manage
 ## Ansible
 
 Ansible® is an open-source IT automation tool that automates provisioning, configuration management, application deployment, orchestration, and many other manual IT processes. Ansible works by connecting to your automation target and pushing programs that execute instructions that you typically do manually. These programs utilize Ansible modules written based on the specific expectations of endpoint connectivity, interface, and commands.
-An Ansible playbook is a blueprint of automation tasks, which are complex IT actions executed with no need for human involvement. You write Ansible playbooks in human-readable {{<exlink url="https://www.redhat.com/en/topics/automation/what-is-yaml" text="YAML">}} format and execute them on a set, group, or classification of hosts, which together make up an Ansible inventory.
+An Ansible playbook is a blueprint of automation tasks, which are complex IT actions executed with no need for human involvement. You write Ansible playbooks in human readable {{<exlink url="https://www.redhat.com/en/topics/automation/what-is-yaml" text="YAML">}} format and execute them on a set, group, or classification of hosts, which together make up an Ansible inventory.
 
 ### Terminology
 
@@ -34,7 +34,7 @@ An online distribution server for finding and sharing Ansible community content,
 
 **Collections**
 
-A packaging format for bundling and distributing Ansible content, including plugins, roles, modules, and more. Collections are release independent of other collections or ansible-core so features can be available sooner. Some collections are packaged with Ansible (version 2.10 or later). You can install other collections (or other versions of collections) with `ansible-galaxy collection install <namespace.collection>`.
+A packaging format for bundling and distributing Ansible content, including plugins, roles, modules, and more. Collections are release-independent of other collections or ansible-core so features can be available sooner. Some collections are packaged with Ansible (version 2.10 or later). You can install other collections (or other versions of collections) with `ansible-galaxy collection install <namespace.collection>`.
 
 **Collection name**
 
@@ -58,7 +58,7 @@ A file (by default, Ansible uses a simple INI format) that describes {{<exlink u
 
 **Inventory Script**
 
-A very simple program (or a complicated one) that looks up {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Host" text="hosts">}}, {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Group" text="group">}} membership for hosts, and variable information from an external resource –  an SQL database, a CMDB solution, or a solution similar to LDAP. This concept is adapted from Puppet (where it is called an External Nodes Classifier) and works in more or less the same way.
+A very simple program (or a complicated one) that looks up {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Host" text="hosts">}}, {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Group" text="group">}} membership for hosts, and variable information from an external resource – an SQL database, a CMDB solution, or a solution similar to LDAP. This concept is adapted from Puppet (where it is called an External Nodes Classifier) and works in more or less the same way.
 
 **Jinja2**
 
@@ -66,7 +66,7 @@ Jinja2 is the preferred templating language of the Ansible template module. It i
 
 **Modules**
 
-Modules are the units of work that Ansible ships out to remote machines. Modules are kicked off by either `/usr/bin/ansible` or `/usr/bin/ansible-playbook` (where multiple tasks use lots of different modules). You can implement modules in any language, including Perl, Bash, or Ruby  you can take advantage of some useful communal library code if written in Python. Modules just have to return {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-JSON" text="JSON">}}. After you execute modules on remote machines, they are removed, so that no long running daemons are used. Ansible refers to the collection of available modules as a {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Library" text="library">}}.
+Modules are the units of work that Ansible ships out to remote machines. Modules are kicked off by either `/usr/bin/ansible` or `/usr/bin/ansible-playbook` (where multiple tasks use lots of different modules). You can implement modules in any language, including Perl, Bash, or Ruby. You can take advantage of some useful communal library code if written in Python. Modules just have to return {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-JSON" text="JSON">}}. After you execute modules on remote machines, they are removed, so that no long running daemons are used. Ansible refers to the collection of available modules as a {{<exlink url="https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html#term-Library" text="library">}}.
 
 **Playbooks**
 

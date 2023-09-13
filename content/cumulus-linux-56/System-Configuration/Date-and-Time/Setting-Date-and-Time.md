@@ -98,4 +98,4 @@ See `man hwclock(8)` for more information.
 
 ## Related Information
 
-- {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="Debian System Administrator's Manual - Time">}}
+- {{<exlink url="https://www.debian.org/doc/manuals/debian-handbook/sect.config-misc.en.html#sect.timezone" text="Debian System Administrator's Manual - Time">}}

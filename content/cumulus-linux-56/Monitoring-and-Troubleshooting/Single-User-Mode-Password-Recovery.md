@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1200
 toc: 3
 ---
-{{%notice important%}}
+{{%notice warning%}}
 In Cumulus Linux 5.6, you can't reset the root password by booting into Cumulus Linux single-user recovery mode. To work around this issue, reset the cumulus or root user password as follows:
 
 1. Use `df /` to determine which device is mounted on `/`. If you cannot access the switch but another switch with the same hardware is available, use `df /` on that switch to find the device.

@@ -18,26 +18,6 @@ In Cumulus Linux 5.6, you can't reset the root password by booting into Cumulus 
 6. Run `chroot /mnt`, then run `passwd cumulus` or `passwd root`.
 7. Exit, then reboot.
 
-To avoid using the above workaround and to ensure that the Cumulus Linux single-user recovery mode boots, you can do the following **before** you upgrade to Cumulus Linux 5.6.
-
-1. Change directories to `/lib/systemd/system`.
-
-   ```
-   cumulus@switch:~$ cd /lib/systemd/system
-   ```
-
-2. Remove the symlink `rescue.service`
-
-   ```
-   cumulus@switch:~$ sudo rm rescue.service
-   ```
-
-3. Rename `rescue.service.cumulus` to `rescue.service`:
-
-   ```
-   cumulus@switch:~$ sudo cp rescue.service.cumulus rescue.service
-   ```
-
 {{%/notice%}}
 
 Use single user mode to assist in troubleshooting system boot issues or for password recovery.

@@ -63,66 +63,65 @@ To show detailed information about the configured buffers, utilization and DSCP 
 
 ```
 cumulus@switch:mgmt:~$ nv show qos roce
-                    operational  applied   description
-------------------  -----------  --------  ------------------------------------------------------
-enable                           on        Turn the feature 'on' or 'off'.  The default is 'off'.
-mode                lossless     lossless  Roce Mode
-cable-length        100          100       Cable Length(in meters) for Roce Lossless Config
-congestion-control
-  congestion-mode   ECN                    Congestion config mode
-  enabled-tc        0,3                    Congestion config enabled Traffic Class
-  max-threshold     1.43 MB                Congestion config max-threshold
-  min-threshold     146.48 KB              Congestion config min-threshold
-pfc
-  pfc-priority      3                      switch-prio on which PFC is enabled
-  rx-enabled        enabled                PFC Rx Enabled status
-  tx-enabled        enabled                PFC Tx Enabled status
-trust
-  trust-mode        pcp,dscp               Trust Setting on the port for packet classification
- 
- 
+                   operational  applied 
+------------------  -----------  --------
+enable                           on      
+mode                lossless     lossless
+congestion-control                       
+  congestion-mode   ECN                  
+  enabled-tc        0,3                  
+  max-threshold     1.43 MB              
+  min-threshold     146.48 KB            
+  probability       100                  
+lldp-app-tlv                             
+  priority          3                    
+  protocol-id       4791                 
+  selector          UDP                  
+pfc                                      
+  pfc-priority      3                    
+  rx-enabled        enabled              
+  tx-enabled        enabled              
+trust                                    
+  trust-mode        pcp,dscp             
+
 RoCE PCP/DSCP->SP mapping configurations
 ===========================================
-        pcp  dscp                     switch-prio
-    --  ---  -----------------------  -----------
-    0   0    0,1,2,3,4,5,6,7          0
-    1   1    8,9,10,11,12,13,14,15    1
-    2   2    16,17,18,19,20,21,22,23  2
-    3   3    24,25,26,27,28,29,30,31  3
-    4   4    32,33,34,35,36,37,38,39  4
-    5   5    40,41,42,43,44,45,46,47  5
-    6   6    48,49,50,51,52,53,54,55  6
-    7   7    56,57,58,59,60,61,62,63  7
- 
- 
+       pcp  dscp                     switch-prio
+    -  ---  -----------------------  -----------
+    0  0    0,1,2,3,4,5,6,7          0          
+    1  1    8,9,10,11,12,13,14,15    1          
+    2  2    16,17,18,19,20,21,22,23  2          
+    3  3    24,25,26,27,28,29,30,31  3          
+    4  4    32,33,34,35,36,37,38,39  4          
+    5  5    40,41,42,43,44,45,46,47  5          
+    6  6    48,49,50,51,52,53,54,55  6          
+    7  7    56,57,58,59,60,61,62,63  7          
+
 RoCE SP->TC mapping and ETS configurations
 =============================================
-        switch-prio  traffic-class  scheduler-weight
-    --  -----------  -------------  ----------------
-    0   0            0              DWRR-50%
-    1   1            0              DWRR-50%
-    2   2            0              DWRR-50%
-    3   3            3              DWRR-50%
-    4   4            0              DWRR-50%
-    5   5            0              DWRR-50%
-    6   6            6              strict-priority
-    7   7            0              DWRR-50%
- 
- 
+       switch-prio  traffic-class  scheduler-weight
+    -  -----------  -------------  ----------------
+    0  0            0              DWRR-50%        
+    1  1            0              DWRR-50%        
+    2  2            0              DWRR-50%        
+    3  3            3              DWRR-50%        
+    4  4            0              DWRR-50%        
+    5  5            0              DWRR-50%        
+    6  6            6              strict-priority 
+    7  7            0              DWRR-50%        
+
 RoCE pool config
 ===================
-        name                   mode     size   switch-priorities  traffic-class
-    --  ---------------------  -------  -----  -----------------  -------------
-    0   lossy-default-ingress  Dynamic  50.0%  0,1,2,4,5,6,7      -
-    1   roce-reserved-ingress  Dynamic  50.0%  3                  -
-    2   lossy-default-egress   Dynamic  50.0%  -                  0,6
-    3   roce-reserved-egress   Dynamic  inf    -                  3
- 
- 
+       name                   mode     size  switch-priorities  traffic-class
+    -  ---------------------  -------  ----  -----------------  -------------
+    0  lossy-default-ingress  Dynamic  50%   0,1,2,4,5,6,7      -            
+    1  roce-reserved-ingress  Dynamic  50%   3                  -            
+    2  lossy-default-egress   Dynamic  50%   -                  0,6          
+    3  roce-reserved-egress   Dynamic  inf   -                  3            
+
 Exception List
 =================
-        description
-    --  -----------
+No Data
 ```
 
 To show detailed RoCE information about a single interface, run the `nv show interface qos roce status` command.

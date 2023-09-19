@@ -1762,6 +1762,11 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>4.4.2-4.4.3</td>
 </tr>
 <tr>
+<td>2802859</td>
+<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
+<td>4.4.0-4.4.5</td>
+</tr>
+<tr>
 <td>2799575</td>
 <td>When next hop tracking fails for a global next hop, BGP invalidates the entire path instead of only invalidating the global next hop.</td>
 <td>4.4.0-4.4.5</td>

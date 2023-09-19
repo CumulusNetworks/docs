@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3605618</td>
+<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3544701</td>
 <td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
 
@@ -806,6 +812,12 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2802859</td>
+<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
+<td>4.4.0-4.4.5</td>
+<td>5.0.0-5.6.0</td>
 </tr>
 <tr>
 <td>2799575</td>
@@ -2278,6 +2290,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3605618</td>
+<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3544701</td>
 <td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
 
@@ -3071,6 +3089,12 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2802859</td>
+<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
+<td>4.4.0-4.4.5</td>
+<td>5.0.0-5.6.0</td>
 </tr>
 <tr>
 <td>2799575</td>
@@ -4678,6 +4702,12 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3605618</td>
+<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3544701</td>
 <td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
 
@@ -5532,6 +5562,12 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2802859</td>
+<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
+<td>4.4.0-4.4.5</td>
+<td>5.0.0-5.6.0</td>
 </tr>
 <tr>
 <td>2799575</td>
@@ -7042,6 +7078,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3605618</td>
+<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3544701</td>
 <td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
 
@@ -7886,6 +7928,12 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2802859</td>
+<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
+<td>4.4.0-4.4.5</td>
+<td>5.0.0-5.6.0</td>
 </tr>
 <tr>
 <td>2799575</td>
@@ -9588,6 +9636,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3605618</td>
+<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3544701</td>
 <td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
 
@@ -10399,6 +10453,12 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2802859</td>
+<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
+<td>4.4.0-4.4.5</td>
+<td>5.0.0-5.6.0</td>
 </tr>
 <tr>
 <td>2802207</td>

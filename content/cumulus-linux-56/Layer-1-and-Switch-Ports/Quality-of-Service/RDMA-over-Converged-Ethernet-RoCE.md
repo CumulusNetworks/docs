@@ -135,6 +135,11 @@ congestion-control
   enabled-tc        0,3                     Congestion config enabled Traffic Class
   max-threshold     1.43 MB                 Congestion config max-threshold
   min-threshold     153.00 KB               Congestion config min-threshold
+  probability       100                  
+lldp-app-tlv                             
+  priority          3                    
+  protocol-id       4791                 
+  selector          UDP
 pfc
   pfc-priority      3                       switch-prio on which PFC is enabled
   rx-enabled        yes                     PFC Rx Enabled status

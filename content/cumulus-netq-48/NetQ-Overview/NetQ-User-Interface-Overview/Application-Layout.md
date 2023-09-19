@@ -7,7 +7,7 @@ toc: 4
 The NetQ UI contains two main areas:
 
 - **Application Header**: Contains the main menu, NetQ version, search, validation summary, local time zone, premises list, and account information.
-{{<figure src="/images/netq/application-header.png" alt="" width="1300">}}
+{{<figure src="/images/netq/versionless-top-470.png" alt="" width="1300">}}
 
 
 - **Workbench**: Contains a task bar and cards that display operative status and network configuration information.

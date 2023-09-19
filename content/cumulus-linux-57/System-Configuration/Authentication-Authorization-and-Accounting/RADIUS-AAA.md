@@ -31,7 +31,63 @@ During package installation:
 
 ## Configure the RADIUS Client
 
-To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf` file:
+To configure the RADIUS client:
+
+{{< tabs "TabID34 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Add the hostname or IP address of at least one RADIUS server (such as a *{{<exlink url="http://freeradius.org/" text="freeradius">}}* server on Linux), and the shared secret used to authenticate and encrypt communication with each server.
+
+   ```
+   cumulus@switch:~$ nv set system aaa radius server 192.168.0.254
+   cumulus@switch:~$ nv set system aaa radius server secret secretkey
+   cumulus@switch:~$ nv config apply
+   ```
+
+    {{%notice tip%}}
+You must be able to resolve the hostname of the switch to an IP address. If for some reason you cannot find the hostname in DNS, you can add the hostname to the `/etc/hosts` file manually. However, this can cause problems because DHCP assigns the IP address, which can change at any time.
+{{%/notice%}}
+
+    Multiple server configuration lines are verified in the order listed. Other than memory, there is no limit to the number of RADIUS servers you can use.
+
+    The server port number or name is optional.
+
+2. If the server is slow or latencies are high, change the `timeout` setting. The setting defaults to 3 seconds.
+
+   ```
+   cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 timeout 2
+   cumulus@switch:~$ nv config apply
+   ```
+
+3. If you want to use a specific interface to reach the RADIUS server, run the `nv set system aaa radius server 192.168.0.254 source-ip` command. You can specify the hostname of the interface, or an IPv4 or IPv6 address. If you specify a specific interface, you must also specify the `timeout` option.
+
+   ```
+   cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ip 192.168.1.10
+   cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 timeout 2
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Set the VRF. This is typically set to *mgmt* if you are using a {{<link url="Management-VRF" text="management VRF">}}. You cannot specify more than one VRF.
+
+   ```
+   cumulus@switch:~$ nv set system aaa radius vrf mgmt
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{%notice tip%}}
+If this is the first time you are configuring the RADIUS client, enable the debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, disable the debug option.
+
+   ```
+   cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 debug enable
+   cumulus@switch:~$ nv config apply
+   ```
+
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/pam_radius_auth.conf` file:
 
 1. Add the hostname or IP address of at least one RADIUS server (such as a *{{<exlink url="http://freeradius.org/" text="freeradius">}}* server on Linux), and the shared secret used to authenticate and encrypt communication with each server.
 
@@ -63,9 +119,7 @@ vrf-name mgmt
 ```
 
 {{%notice tip%}}
-
 If this is the first time you are configuring the RADIUS client, uncomment the `debug` line for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, comment out the `debug` line.
-
 {{%/notice%}}
 
 As an optional step, you can set PAM configuration keywords by editing the `/usr/share/pam-configs/radius` file. After you edit the file, you must run the `pam-auth-update --package` command. The `pam_radius_auth (8)` man page describes the PAM configuration keywords.
@@ -83,6 +137,9 @@ Cisco-AVPair += "shell:priv-lvl=15"
 The VSA vendor name (Cisco-AVPair in the example above) can have any content. The RADIUS client only checks for the string `shell:priv-lvl`.
 
 {{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Enable Login without Local Accounts
 

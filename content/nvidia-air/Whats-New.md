@@ -9,10 +9,16 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## September 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0911-012
+- Improved messaging when a resource budget is exceeded
+- Fixed a bug related to display of the NIC model for Ubuntu nodes
+- Fixed a bug where new members of an organization were not allocated the appropriate resource budgets
+- Updated config migrator to use Cumulus Linux 5.6.0
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0918-011
 - Updated oob-mgmt-switch image
 - Fixed an issue related to logging level of the Air Agent
-<!-- Air:WhatsNew -->
 
 ## August 2023
 ### 82.2023.0824-012

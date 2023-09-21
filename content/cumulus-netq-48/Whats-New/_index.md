@@ -14,9 +14,12 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 NetQ 4.8.0 includes the following new features and improvements:
 
 - Performance improvements to the NetQ Agent that limit its CPU usage to 50% on Cumulus switches
-- In-band deployments now support lifecycle management features
+- In-band deployments now support lifecycle management
 - High-availability improvements for on-premises cluster deployments: you can now access the NetQ UI via a virtual IP address in the event of a node failure 
 - NVLink support
+- Security updates
+- RoCE monitoring for DPUs and NICs
+- Adaptive routing monitoring for switches
 
 
 ## Upgrade Paths

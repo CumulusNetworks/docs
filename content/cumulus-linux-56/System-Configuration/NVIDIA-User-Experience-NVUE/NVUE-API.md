@@ -3208,8 +3208,8 @@ To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/mark
 
 ## Resources
 
-For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-55/api/index.html" text="NVUE API Swagger documentation.">}}
-The full object model download is available {{<mib_link url="cumulus-linux-55/api/openapi.json" text="here.">}}
+For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-56/api/index.html" text="NVUE API Swagger documentation.">}}
+The full object model download is available {{<mib_link url="cumulus-linux-56/api/openapi.json" text="here.">}}
 
 ## Considerations
 

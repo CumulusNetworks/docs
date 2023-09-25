@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3600588</td>
+<td>You can't reset the root password by booting into Cumulus Linux single-user recovery mode. To work around this issue, follow the steps in https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/Monitoring-and-Troubleshooting/Single-User-Mode-Password-Recovery/.</td>
+<td>5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3590053</td>
 <td>If you connect a 1G BaseT module to the service port on the NVIDIA SN5600 switch when its peer is down, the link shows as active on one side while its peer is disabled.</td>
 <td>5.6.0</td>
@@ -43,12 +49,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3565254</td>
-<td>Spectrum-4 switches do not support adaptive routing on 800Gbps links. Spectrum-3 switches do not support adaptive routing on 400Gbps links.</td>
-<td>5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3560622</td>
 <td>When you configure a route distinguisher (RD) or a route target (RT) manually for layer 2 VNIs, type-1 routes are not properly updated, type-1 EVI routes with the old RD are not properly withdrawn, and type-1 ES routes do not have the corresponding layer 2 VNI route target updated.</td>
 <td>5.0.0-5.6.0</td>
@@ -70,6 +70,12 @@
 <td>3534718</td>
 <td>The BGP command to suppress longer prefixes inside the aggregate address before sending updates ({{nv set vrf &lt;vrf&gt; router bgp address-family &lt;address-family&gt; aggregate-route &lt;address&gt; summary-only}} or vtysh {{router bgp &lt;asn&gt; aggregate-address &lt;address&gt; summary-only}}) does not suppress more specific routes from being exported into the EVPN routing table and advertised as EVPN type-5 routes. To work around this issue, announce EVPN type-5 routes by adding an additional outbound policy or export policy to filter out the more specific routes.</td>
 <td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3533272</td>
+<td>If you set an OSPF network and define the subnet using a host address (such as 10.1.1.2/24) instead of the (starting) subnet network address (such as 10.1.1.0/24), you can't unset the prefix with the {{nv unset vrf default router ospf area &lt;area&gt; network}} command. Avoid defining the subnet using a host address when setting an OSPF network.</td>
+<td>5.6.0</td>
 <td></td>
 </tr>
 <tr>

@@ -88,8 +88,8 @@ Cumulus Linux and Cumulus RMP 3.7.12 have transitioned into the extended support
 
 | Cumulus Linux Version | ESR Start Date    | End of Life Date  |
 | --------------------- | ----------------- | ----------------- |
-| 5.0.z                 | N/A               | N/A    |
-| 5.8.z                 | January 2024      | January 2027     |
+| 5.0.z                 | N/A               | N/A               |
+| 5.9.z                 | April 2024        | April 2027        |
 
 Cumulus Linux 5.y.z supports Spectrum based switches only.
 
@@ -120,4 +120,4 @@ All Cumulus Linux 2.y.z releases reached end of life on February 2019 and are no
 
 ## Upgrade Process
 
-For information regarding upgrading from previous Cumulus Linux releases, refer to the [Cumulus Linux upgrade documentation]({{<ref "/cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux" >}}).
+For information regarding upgrading from previous Cumulus Linux releases, refer to the [Cumulus Linux upgrade documentation]({{<ref "/cumulus-linux-56/Installation-Management/Upgrading-Cumulus-Linux" >}}).

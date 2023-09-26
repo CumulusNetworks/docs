@@ -21,89 +21,57 @@ After installation is complete, either reboot the switch or run the `sudo system
 
 The `libpam-radius-auth` package supplied with the Cumulus Linux RADIUS client is a newer version than the one in {{<exlink url="https://packages.debian.org/buster/libpam-radius-auth" text="Debian Buster">}}. This package contains support for IPv6, the `src_ip` option described below, as well as bug fixes and minor features. The package also includes VRF support, provides man pages describing the PAM and RADIUS configuration, and sets the `SUDO_PROMPT` environment variable to the login name for RADIUS mapping support.
 
-The `libnss-mapuser` package is specific to Cumulus Linux and supports the `getgrent`, `getgrnam` and `getgrgid` library interfaces. These interfaces add logged in RADIUS users to the group member list for groups that contain the `mapped_user` (`radius_user`) if the RADIUS account does not have privileges, and add privileged RADIUS users to the group member list for groups that contain the `mapped_priv_user` (`radius_priv_user`) during the group lookups.
+The `libnss-mapuser` package is specific to Cumulus Linux and supports the `getgrent`, `getgrnam` and `getgrgid` library interfaces. These interfaces add logged in RADIUS users to the group member list for groups that contain the `mapped_user` (`radius_user`) if the RADIUS account does not have privileges. The interfaces also add privileged RADIUS users to the group member list for groups that contain the `mapped_priv_user` (`radius_priv_user`) during the group lookups.
 
 During package installation:
 
 - The PAM configuration updates automatically using `pam-auth-update (8)`, and the NSS configuration file `/etc/nsswitch.conf` adds the `mapuser` and `mapuid` plugins. If you remove or purge the packages, these files remove the configuration for these plugins.
 - The `radius_shell` package installs the `/sbin/radius_shell` and `setcap cap_setuid` program for the login shell for RADIUS accounts. The package adjusts the `UID` when needed, then runs the bash shell with the same arguments. When installed, the package changes the shell of the RADIUS accounts to `/sbin//radius_shell`, and to `/bin/shell` if you remove the package. You need this package to enable privileged RADIUS users. You do not need this package for regular RADIUS clients.
-- The `nvshow` group includes the `radius_user` account, the `nvset` and `nvapply` groups and `sudo` groups include the `radius_priv_user` account. This change enables all RADUS logins to run NVUE `nv show` commands and all privileged RADIUS users to also run `nv set`, `nv unset`, and `nv apply` commands, and to use `sudo`.
+- The `nvshow` group includes the `radius_user` account, and the `nvset` and `nvapply` groups. The `sudo` groups include the `radius_priv_user` account. This change enables all RADUS logins to run NVUE `nv show` commands and all privileged RADIUS users to also run `nv set`, `nv unset`, and `nv apply` commands, and to use `sudo`.
 
-## Configure the RADIUS Client
+## Required RADIUS Client Configuration
 
-To configure the RADIUS client:
+After you install the required RADIUS packages, configure the following required settings on the switch (the RADIUS client).
+- Set the IP address or hostname of at least one RADIUS server. You can specify a port for the server (optional). The default port number is 1812.
+- Set the secret (key) shared between the RADIUS server and client. If you include special characters in the key (such as $), you must enclose the key in single quotes (').
+- Set the VRF you want to use to communicate with the RADIUS server. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. You cannot specify more than one VRF.
 
-{{< tabs "TabID34 ">}}
+If you use NVUE commands to configure RADIUS, you must also set the priority for the authentication order for local and RADIUS users, and enable RADIUS.
+
+{{< tabs "TabID41 ">}}
 {{< tab "NVUE Commands ">}}
 
-1. Add the hostname or IP address of at least one RADIUS server (such as a *{{<exlink url="http://freeradius.org/" text="freeradius">}}* server on Linux), and the shared secret used to authenticate and encrypt communication with each server.
+The following example commmands set:
+- The IP address of the RADIUS server to 192.168.0.254 and the port to 42.
+- The secret to `'myradius$key'`.
+- The VRF to `mgmt`.
+- The authentication order so that RADIUS authentication has priority over local (the lower number has priority).
+- RADIUS to enabled.
 
-   ```
-   cumulus@switch:~$ nv set system aaa radius server 192.168.0.254
-   cumulus@switch:~$ nv set system aaa radius server secret secretkey
-   cumulus@switch:~$ nv config apply
-   ```
-
-    {{%notice tip%}}
-You must be able to resolve the hostname of the switch to an IP address. If for some reason you cannot find the hostname in DNS, you can add the hostname to the `/etc/hosts` file manually. However, this can cause problems because DHCP assigns the IP address, which can change at any time.
-{{%/notice%}}
-
-    Multiple server configuration lines are verified in the order listed. Other than memory, there is no limit to the number of RADIUS servers you can use.
-
-    The server port number or name is optional.
-
-2. If the server is slow or latencies are high, change the `timeout` setting. The setting defaults to 3 seconds.
-
-   ```
-   cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 timeout 2
-   cumulus@switch:~$ nv config apply
-   ```
-
-3. If you want to use a specific interface to reach the RADIUS server, run the `nv set system aaa radius server 192.168.0.254 source-ip` command. You can specify the hostname of the interface, or an IPv4 or IPv6 address. If you specify a specific interface, you must also specify the `timeout` option.
-
-   ```
-   cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ip 192.168.1.10
-   cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 timeout 2
-   cumulus@switch:~$ nv config apply
-   ```
-
-4. Set the VRF. This is typically set to *mgmt* if you are using a {{<link url="Management-VRF" text="management VRF">}}. You cannot specify more than one VRF.
-
-   ```
-   cumulus@switch:~$ nv set system aaa radius vrf mgmt
-   cumulus@switch:~$ nv config apply
-   ```
-
-{{%notice tip%}}
-If this is the first time you are configuring the RADIUS client, enable the debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, disable the debug option.
-
-   ```
-   cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 debug enable
-   cumulus@switch:~$ nv config apply
-   ```
-
-{{%/notice%}}
+```
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 port 42
+cumulus@switch:~$ nv set system aaa radius server secret 'myradius$key'
+cumulus@switch:~$ nv set system aaa radius vrf mgmt
+cumulus@switch:~$ nv set system aaa authentication-order 10 radius
+cumulus@switch:~$ nv set system aaa authentication-order 20 local
+cumulus@switch:~$ nv set system aaa radius enable on
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/pam_radius_auth.conf` file:
+Edit the `/etc/pam_radius_auth.conf` file to set the following options:
 
-1. Add the hostname or IP address of at least one RADIUS server (such as a *{{<exlink url="http://freeradius.org/" text="freeradius">}}* server on Linux), and the shared secret used to authenticate and encrypt communication with each server.
+- The hostname or IP address of at least one RADIUS server (such as a *{{<exlink url="http://freeradius.org/" text="freeradius">}}* server on Linux), and the shared secret used to authenticate and encrypt communication with each server.
 
-    {{%notice tip%}}
+   You must be able to resolve the hostname of the switch to an IP address. If for some reason you cannot find the hostname in DNS, you can add the hostname to the `/etc/hosts` file manually. However, this can cause problems because DHCP assigns the IP address, which can change at any time.
 
-You must be able to resolve the hostname of the switch to an IP address. If for some reason you cannot find the hostname in DNS, you can add the hostname to the `/etc/hosts` file manually. However, this can cause problems because DHCP assigns the IP address, which can change at any time.
+   Multiple server configuration lines are verified in the order listed. Other than memory, there is no limit to the number of RADIUS servers you can use.
 
-{{%/notice%}}
+   The server port number or name is optional. The system looks up the port in the `/etc/services` file. However, you can override the ports in the `/etc/pam_radius_auth.conf` file.
 
-    Multiple server configuration lines are verified in the order listed. Other than memory, there is no limit to the number of RADIUS servers you can use.
-    
-    The server port number or name is optional. The system looks up the port in the `/etc/services` file. However, you can override the ports in the `/etc/pam_radius_auth.conf` file.
-
-2. If the server is slow or latencies are high, change the `timeout` setting. The setting defaults to 3 seconds.
-3. If you want to use a specific interface to reach the RADIUS server, specify the `src_ip` option. You can specify the hostname of the interface, an IPv4, or an IPv6 address. If you specify the `src_ip` option, you must also specify the `timeout` option.
-4. Set the `vrf-name` field. This is typically set to *mgmt* if you are using a {{<link url="Management-VRF" text="management VRF">}}. You cannot specify more than one VRF.
+- The `vrf-name` field. This is typically set to *mgmt* if you are using a {{<link url="Management-VRF" text="management VRF">}}. You cannot specify more than one VRF.
 
 The configuration file includes the `mapped_priv_user` field that sets the account used for privileged RADIUS users and the `priv-lvl` field that sets the minimum value for the privilege level to be a privileged login (the default value is 15). If you edit these fields, make sure the values match those set in the `/etc/nss_mapuser.conf` file.
 
@@ -118,13 +86,56 @@ other-server       othersecret     3               192.168.1.10
 vrf-name mgmt
 ```
 
-{{%notice tip%}}
-If this is the first time you are configuring the RADIUS client, uncomment the `debug` line for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, comment out the `debug` line.
-{{%/notice%}}
+{{< /tab >}}
+{{< /tabs >}}
 
-As an optional step, you can set PAM configuration keywords by editing the `/usr/share/pam-configs/radius` file. After you edit the file, you must run the `pam-auth-update --package` command. The `pam_radius_auth (8)` man page describes the PAM configuration keywords.
+## Optional RADIUS Configuration
 
-{{%notice note%}}
+You can configure the following optional settings:
+- The maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out.
+- The priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
+- The timeout value if a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers.
+- A specific interface to reach the RADIUS server. You can specify the hostname of the interface, or an IPv4 or IPv6 address. If you specify a specific interface, you must also specify the `timeout` option. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers.
+- The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, disable the debug option. If you configure multiple RADIUS servers, you can enable the debug option globally for all the servers.
+
+{{< tabs "TabID34 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets:
+- The priority at which Cumulus Linux contacts RADIUS server 192.168.0.254 for load balancing to 10.
+- The interface on which to reach RADIUS server 192.168.0.254 to 192.168.1.10 with a timeout of 10 seconds (the timeout is required).
+- The debug option for RADIUS server 192.168.0.254 to `enable`.
+
+```
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 10
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ip 192.168.1.10
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 timeout 10
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 debug enable
+cumulus@switch:~$ nv config apply
+```
+
+The following example:
+- Sets the maximum number of retransmission attempts allowed to 42 (this is a global option only; you cannot set the number of retransmission attempts for specific servers).
+- Sets the global interface on which to reach all RADIUS servers to 192.168.1.10.
+- Sets the global timeout for all RADIUS servers to 10.
+- Enables the debug option globally for all RADIUS servers.
+
+```
+cumulus@switch:~$ nv set system aaa radius retransmit 42
+cumulus@switch:~$ nv set system aaa radius source-ip 192.168.1.10
+cumulus@switch:~$ nv set system aaa radius timeout 10
+cumulus@switch:~$ nv set system aaa radius debug enable
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/pam_radius_auth.conf` file to set the following options:
+- If the server is slow or latencies are high, change the `timeout` setting. The setting defaults to 3 seconds.
+- If you want to use a specific interface to reach the RADIUS server, specify the `src_ip` option. You can specify the hostname of the interface, an IPv4, or an IPv6 address. If you specify the `src_ip` option, you must also specify the `timeout` option.
+- If this is the first time you are configuring the RADIUS client, uncomment the `debug` line for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, comment out the `debug` line.
+- Set PAM configuration keywords by editing the `/usr/share/pam-configs/radius` file. After you edit the file, you must run the `pam-auth-update --package` command. The `pam_radius_auth (8)` man page describes the PAM configuration keywords.
 
 The value of the VSA (Vendor Specific Attribute) `shell:priv-lvl` determines the privilege level for the user on the switch. If the attribute does not return, the user does not have privileges. The following shows an example using the `freeradius` server for a fully privileged user.
 
@@ -135,8 +146,6 @@ Cisco-AVPair += "shell:priv-lvl=15"
 ```
 
 The VSA vendor name (Cisco-AVPair in the example above) can have any content. The RADIUS client only checks for the string `shell:priv-lvl`.
-
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

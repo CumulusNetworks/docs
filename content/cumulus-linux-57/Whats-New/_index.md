@@ -24,18 +24,17 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - Ethernet AI | Adaptive routing | Shared AR ECMP containers
 - Ethernet AI | Parity with Onyx | Telemetry – buffer histograms and gaps in CLI for the ASIC Monitoring Service 
 - Ethernet AI | Buffer and Bandwidth histograms with GUI
-- ISSU: Warmboot support for VXLAN EVPN (Single Homed, NO EVPN Mlag or EVPN MH Support)
 - Route Server Support for EVPN
 - 802.1x support
 - MAC address translation support
 - SyncE (Phase adjustment support)
 - GA | NVUE | PTP PPS In or Out Support
-- New forwarding profile - l2-heavy-4
+- New forwarding profile: {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}}
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port Security commands">}}
   - NAT commands
   - ISSU maintenance mode commands
-  - RADIUS AAA commands
+  - {{<link url="RADIUS-AAA" text="RADIUS AAA">}} commands
   - MLAG support for PVST & PVRST VLAN-aware bridge mode
   - SB-327 Compliance | First-Use API to Change Password
   - Add Admin State to `nv show interface` output

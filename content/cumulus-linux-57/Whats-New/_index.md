@@ -38,7 +38,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - MLAG support for PVST & PVRST VLAN-aware bridge mode
   - SB-327 Compliance | First-Use API to Change Password
   - Add Admin State to `nv show interface` output
-  - Link flap protection commands
+  - {{<link url="Interface-Configuration-and-Management/#link-flap-protection" text="Link flap protection ">}} commands
   - Command to set the time
   - PIM show commands to show PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
   - Show Command for VLAN/VNI/Bridge Mapping

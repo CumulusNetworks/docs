@@ -33,7 +33,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port Security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
-  - ISSU maintenance mode commands
+  - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="ISSU maintenance mode commands">}}
   - {{<link url="RADIUS-AAA" text="RADIUS AAA">}} commands
   - MLAG support for PVST & PVRST VLAN-aware bridge mode
   - SB-327 Compliance | First-Use API to Change Password

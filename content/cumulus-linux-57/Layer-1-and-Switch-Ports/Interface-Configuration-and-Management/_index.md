@@ -512,7 +512,7 @@ The following examples adds a command to an interface to enable proxy ARP:
 {{< tabs "TabID640 ">}}
 {{< tab "NVUE Commands ">}}
 
-The NVUE command is not supported.
+NVUE does not provide commands to configure this feature.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

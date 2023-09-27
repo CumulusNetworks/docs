@@ -212,7 +212,7 @@ cumulus@leaf01:~$ nv set mlag backup 10.10.10.2 vrf mgmt
 cumulus@leaf01:~$ nv config apply
 ```
 
-To configure the {{<link url="Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode" text="anycast MAC address">}} to be used as the MLAG system mac address:
+To configure the {{<link url="Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode" text="anycast MAC address">}} as the MLAG system mac address:
 
 ```
 nv set system global anycast-mac 44:38:39:BE:EF:AA
@@ -234,6 +234,12 @@ To configure the backup link to a VRF, include the name of the VRF with the back
 ```
 cumulus@leaf02:~$ nv set mlag backup 10.10.10.1 vrf mgmt
 cumulus@leaf02:~$ nv config apply
+```
+
+To configure the {{<link url="Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode" text="anycast MAC address">}} as the MLAG system mac address:
+
+```
+nv set system global anycast-mac 44:38:39:BE:EF:AA
 ```
 
 {{< /tab >}}

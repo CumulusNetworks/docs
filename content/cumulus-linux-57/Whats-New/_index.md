@@ -32,7 +32,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - New forwarding profile: {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}}
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port Security commands">}}
-  - NAT commands
+  - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
   - ISSU maintenance mode commands
   - {{<link url="RADIUS-AAA" text="RADIUS AAA">}} commands
   - MLAG support for PVST & PVRST VLAN-aware bridge mode

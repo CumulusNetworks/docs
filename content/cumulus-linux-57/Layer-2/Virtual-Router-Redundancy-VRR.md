@@ -809,7 +809,7 @@ iface bond1.30
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL55 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
+    {{< simulation name="Try It CL56 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
 
 This simulation is running Cumulus Linux 5.6. The Cumulus Linux 5.7 simulation is coming soon.
 

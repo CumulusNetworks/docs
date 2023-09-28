@@ -31,8 +31,8 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="ISSU maintenance mode commands">}}
   - {{<link url="RADIUS-AAA" text="RADIUS AAA commands">}}
   - {{<link url="Interface-Configuration-and-Management/#link-flap-protection" text="Link flap protection ">}} commands
-  - {{<link url="Setting-Date-and-Time/#set-the-date-and-time" text="Set time command">}}
   - MLAG support for PVST & PVRST VLAN-aware bridge mode
+  - {{<link title="Setting the Date and Time/#set-the-date-and-time" text="Set time command">}}
   - Add admin state to `nv show interface` output
   - PIM show commands for PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}

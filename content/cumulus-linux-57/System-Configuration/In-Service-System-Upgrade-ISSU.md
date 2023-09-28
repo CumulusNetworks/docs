@@ -21,7 +21,7 @@ You can configure the switch to restart in one of the following modes.
 
 - **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The restart process maintains the forwarding entries of the switching ASIC and the data plane is not affected. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
-- **warm** restarts the system with no interruption to traffic for existing route entries. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
+- **warm** restarts the system with no interruption to traffic for existing route entries. Warm mode restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
 
    When you restart the switch in warm mode, BGP performs a graceful restart if the BGP Graceful Restart option is on. To enable BGP Graceful Restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
@@ -184,7 +184,7 @@ cumulus@switch:~$ sudo csmgrctl -d
 
 ## Maintenance Mode
 
-Maintenance mode isolates the system from the rest of the network so that you can perform intrusive troubleshooting tasks and data collection or perform system changes, such as break out ports and replace optics or cables with minimal disruption.
+Maintenance mode isolates the system from the rest of the network so that you can perform intrusive troubleshooting tasks and data collection or perform system changes with minimal disruption, such as split ports and replace optics or cables.
 
 {{%notice note%}}
 - Cumulus Linux supports maintenance mode with BGP and MLAG only.
@@ -198,7 +198,9 @@ Run the following command to enable maintenance mode. When maintenance mode is o
 {{< tabs "150 ">}}
 {{< tab "NVUE Command ">}}
 
-The NVUE command is not supported.
+```
+cumulus@switch:~$ nv action change system maintenance mode enabled
+```
 
 {{< /tab >}}
 {{< tab "csmgrctl Command ">}}
@@ -215,7 +217,9 @@ You can run additional commands to bring all the ports down, then up to restore 
 {{< tabs "176 ">}}
 {{< tab "NVUE Command ">}}
 
-The NVUE command is not supported.
+```
+cumulus@switch:~$ nv action change system maintenance ports enabled
+```
 
 {{< /tab >}}
 {{< tab "csmgrctl Commands ">}}
@@ -239,7 +243,9 @@ Run the following command to disable maintenance mode and restore normal operati
 {{< tabs "210 ">}}
 {{< tab "NVUE Command ">}}
 
-The NVUE command is not supported.
+```
+cumulus@switch:~$ nv action change system maintenance mode disabled
+```
 
 {{< /tab >}}
 {{< tab "csmgrctl Command ">}}

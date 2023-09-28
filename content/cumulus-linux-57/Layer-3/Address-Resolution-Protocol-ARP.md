@@ -132,7 +132,7 @@ The following example commands enable proxy ARP on swp1.
 {{< tabs "TabID137 ">}}
 {{< tab "NVUE Commands ">}}
 
-Cumulus Linux does not provide NVUE commands for this setting.
+NVUE does not provide commands for this setting.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

@@ -23,7 +23,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - Buffer and bandwidth histograms
 - 802.1x support
 - PTP PPS In or Out Support
-- New forwarding profile: {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}}
+- {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}} forwarding profile
 - Route server support for EVPN
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port Security commands">}}
@@ -35,7 +35,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Command to set the time
   - Add admin state to `nv show interface` output
   - PIM show commands show PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
-  - VLAN/VNI/Bridge Mapping show commands 
+  - VLAN/VNI/Bridge Mapping show commands
   - Replace net show neighbor
   - mlag keyword presentation
   - User permissions

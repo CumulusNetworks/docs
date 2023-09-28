@@ -832,7 +832,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL55 - GRE" showNodes="leaf01,leaf03,spine01,spine02,server01,server04" >}}
+    {{< simulation name="Try It CL56 - GRE" showNodes="leaf01,leaf03,spine01,spine02,server01,server04" >}}
 
 This simulation is running Cumulus Linux 5.6. The Cumulus Linux 5.7 simulation is coming soon.
 

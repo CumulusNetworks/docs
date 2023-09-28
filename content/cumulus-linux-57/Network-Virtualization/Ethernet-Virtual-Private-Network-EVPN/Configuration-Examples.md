@@ -9890,7 +9890,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL55 - EVPN Symmetric" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,spine03,spine04,border01,border02,fw1,server01,server02,server03,server04,server05,server06" >}}
+    {{< simulation name="Try It CL56 - EVPN Symmetric" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,spine03,spine04,border01,border02,fw1,server01,server02,server03,server04,server05,server06" >}}
     
 This simulation is running Cumulus Linux 5.6. The Cumulus Linux 5.7 simulation is coming soon.
 

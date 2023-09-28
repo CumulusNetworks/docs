@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3609128</td>
+<td>When you use {{vi}} with root or sudo, visual mode is enabled by default due to a missing {{vimrc}} configuration file. This makes it difficult to copy and paste into {{vi}} and might introduce a security issue.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3585467</td>
+<td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
+<td>5.5.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3576961</td>
 <td>The NVUE command to clear all ACL counters at once is not available. To work around this issue, run the {{cl-acltool -Z all}} command to reset the statistics for all ACL rules.</td>
 <td>5.5.1-5.6.0</td>
@@ -35,6 +47,12 @@
 <td>The NVUE {{nv action}} commands are missing from {{nv list-commands}} output.</td>
 <td>5.5.1</td>
 <td>5.6.0</td>
+</tr>
+<tr>
+<td>3569484</td>
+<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, either remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address &lt;address&gt;}} command (only remove the loopback address if you are not running NTP; NTP requires a loopback address to work) or change the {{ping}} command to use a source address, such as an SVI address, with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3567708</td>
@@ -711,6 +729,12 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3609128</td>
+<td>When you use {{vi}} with root or sudo, visual mode is enabled by default due to a missing {{vimrc}} configuration file. This makes it difficult to copy and paste into {{vi}} and might introduce a security issue.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3576949</td>
 <td>When you run the NVUE {{nv set service snmp listening-address localhost vrf &lt;vrf-name&gt;}} or {{nv set service snmp listening-address localhost-v6 vrf &lt;vrf-name&gt;}} command to configure the SNMP listening address, Cumulus Linux applies the listening address to the default VRF instead of the VRF you specify.</td>
 <td>5.3.0-5.6.0</td>
@@ -720,6 +744,12 @@ You can safely ignore this warning.</td>
 <td>3573800</td>
 <td>After you apply a change to the router MAC address on an SVI with the {{ifreload -a}} command, the old router MAC address still remains in the FDB table. To work around this issue, remove the old router MAC address with the {{sudo bridge fdb del &lt;old_mac&gt; dev bridge vlan &lt;vlan_id&gt;}} command.</td>
 <td>5.3.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3569484</td>
+<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, either remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address &lt;address&gt;}} command (only remove the loopback address if you are not running NTP; NTP requires a loopback address to work) or change the {{ping}} command to use a source address, such as an SVI address, with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
+<td>5.5.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>

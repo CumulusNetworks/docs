@@ -651,6 +651,29 @@ cumulus@switch:~$ ip link
 
 ### Clear the Interface Protodown State and Reason
 
+To clear the protodown state and the reason:
+
+{{< tabs "TabID654 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv action clear interface swp1 link protodown link-flap 
+```
+
+After a few seconds the port state returns to `up`. Run the `nv show <interface> link state` command to verify that the interface is no longer in a protodown state and that the reason clears:
+
+```
+cumulus@switch:~$ nv show swp1 link state
+operational    applied
+  -----------    -------
+  up             up
+```
+
+To clear all the interfaces from a protodown state, run the `nv action clear system link protodown link-flap`.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 The `ifdown` and `ifup` commands do not clear the protodown state. You must clear the protodown state and the reason manually using the `sudo ip link set <interface> protodown_reason linkflap off` and `sudo ip link set <interface> protodown off` commands.
 
 ```
@@ -666,14 +689,85 @@ cumulus@switch:~$ ip link show swp2
   link/ether 1c:34:da:ba:bb:2a brd ff:ff:ff:ff:ff:ff
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Change Link Flap Protection Settings
 
-You can change link flap protection settings in the `/etc/cumulus/switchd.conf` file:
-- To change the duration during which a link must flap the number of times set in the link flap threshold before link flap protection triggers, change the `link_flap_window` setting.
-- To change the number of times the link must flap within the link flap window before link flap protection triggers, change the `link_flap_threshold` setting.
-- To disable link flap protection, set the `link_flap_window` and `link_flap_threshold` parameters to 0 (zero).
+You can change the following link flap protection settings:
+- The duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (off) and 60. The default setting is 10.
+- The number of times the link must flap within the link flap window before link flap protection triggers. You can specify a value between 0 (off) and 30. The default setting is 5.
+
+The following example configures the link flap duration to 30 and the number of times the link must flap to 8.
+
+{{< tabs "TabID671 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system link flap-protection time-interval 30
+cumulus@switch:~$ nv set system link flap-protection threshold 8 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.conf` file to change the `link_flap_window` and `link_flap_threshold` settings.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+link_flap_window = 30
+link_flap_threshold = 8
+...
+```
 
 After you change the link flap settings, you must restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Disable Link Flap Protection
+
+To disable link flap protection:
+
+{{< tabs "TabID682 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 link flap-protection enable off
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.conf` file, and set the `link_flap_window` and `link_flap_threshold` parameters to 0 (zero).
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+link_flap_window = 0
+link_flap_threshold = 0
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Show Link Flap Protection Configuration
+
+To show the link flap protection time interval and threshold settings:
+
+```
+cumulus@switch:~$ nv show system link flap-protection time-interval
+cumulus@switch:~$ nv show system link flap-protection threshold
+```
+
+To show the link flap protection configuration for an interface, run the `nv show interface <interface> link flap-protection` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 link flap-protection
+```
 
 ## Mako Templates
 

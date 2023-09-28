@@ -1682,7 +1682,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL55 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
+    {{< simulation name="Try It CL56 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
 
 This simulation is running Cumulus Linux 5.6. The Cumulus Linux 5.7 simulation is coming soon.
 

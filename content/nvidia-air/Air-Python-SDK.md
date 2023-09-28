@@ -1802,7 +1802,7 @@ List all instructions for a `SimulationNode`
 **Example**:
 
 ```
->>> simulation_node.instructions.list()
+>>> simulation_node.list_instructions()
 [{'id': '56abc69b-489f-429a-aed9-600f26afc956'}, {'id': '7c9c3449-f071-4bbc-bb42-bef04e44d74e'}]
 ```
 
@@ -1819,7 +1819,7 @@ Delete all instructions for a `SimulationNode`
 **Example**:
 
 ```
->>> simulation_node.instructions.delete()
+>>> simulation_node.delete_instructions()
 ```
 
 <a name="air_sdk.simulation_node.SimulationNode.control"></a>

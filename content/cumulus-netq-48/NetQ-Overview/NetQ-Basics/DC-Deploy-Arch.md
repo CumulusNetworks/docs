@@ -49,12 +49,9 @@ These switches connect to each physical network device through a virtual network
 ## In-band Management Deployment
 <!-- vale on -->
 
-While not recommended, you can implement NetQ within your data network. In this scenario, there is no overlay and all traffic to and from the NetQ Agents and the NetQ Platform traverses the data paths along with your regular network traffic. The roles of the switches in the Clos network are the same, except that the NetQ Platform performs the aggregation function that the OOB management switch performed. If your network goes down, you might not have access to the NetQ Platform for troubleshooting.
+While not recommended, you can implement NetQ within your data network. In this scenario, there is no overlay and all traffic to and from the NetQ Agents and the NetQ Platform traverses the data paths along with your regular network traffic. The roles of the switches in the Clos network are the same, except that the NetQ Platform performs the aggregation function that the OOB management switch performed. If your network goes down, you might not have access to the NetQ Platform for troubleshooting. Certain features—such as lifecycle management—require additional configurations for in-band deployments.  
 
 {{<img src="/images/netq/deploy-arch-ib-example-230.png" alt="diagram of an in-band management deployment." ewidth="700">}}
-<div style="margin-top: 20px;"></div>
-Certain features—such as lifecycle management—require additional configurations for in-band deployments.  
-
 ## High Availability Deployment
 
 NetQ supports a high availability deployment for users who prefer a solution in which the collected data and processing provided by the NetQ Platform remains available through alternate equipment should the platform fail for any reason. In this configuration, three NetQ Platforms are deployed, with one as the master and two as workers (or replicas). NetQ Agents send data to all three switches so that if the master NetQ Platform fails, one of the replicas automatically becomes the master and continues to store and provide the telemetry data. The following example is based on an OOB-management configuration, and modified to support high availability for NetQ.

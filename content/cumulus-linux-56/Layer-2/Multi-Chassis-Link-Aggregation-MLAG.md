@@ -176,7 +176,8 @@ iface bridge
    - The peer link IP address is a link-local address that provides layer 3 connectivity between the peer switches.
    - NVIDIA provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network.
       - Do not to use a multicast MAC address.
-      - Do not use the same MAC address for different MLAG pairs; make sure you specify a different MAC address for each MLAG pair in the network.  
+      - Do not use the same MAC address for different MLAG pairs; make sure you specify a different MAC address for each MLAG pair in the network. 
+      - The MLAG system MAC address inherits the value of the {{<link url="Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode" text="anycast MAC address">}} by default. In EVPN symmetric routing deployments, NVIDIA recommends configuring the anycast MAC address instead of the MLAG MAC address. 
    - The backup IP address is any layer 3 backup interface for the peer link, which the switch uses when the peer link goes down. You must add the backup IP address, which **must** be different than the peer link IP address. Make sure that any route that does not use the peer link can reach the backup IP address. Use the loopback or management IP address of the switch.
       {{< expand "Loopback or Management IP Address?" >}}
 - If your MLAG configuration has **bridged uplinks** (such as a campus network or a large, flat layer 2 network), use the peer switch **eth0** address. When the peer link is down, the secondary switch routes towards the eth0 address using the OOB network (provided you have implemented an OOB network).
@@ -211,6 +212,12 @@ cumulus@leaf01:~$ nv set mlag backup 10.10.10.2 vrf mgmt
 cumulus@leaf01:~$ nv config apply
 ```
 
+To configure the {{<link url="Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode" text="anycast MAC address">}} as the MLAG system mac address:
+
+```
+nv set system global anycast-mac 44:38:39:BE:EF:AA
+```
+
 {{< /tab >}}
 {{< tab "leaf02 ">}}
 
@@ -227,6 +234,12 @@ To configure the backup link to a VRF, include the name of the VRF with the back
 ```
 cumulus@leaf02:~$ nv set mlag backup 10.10.10.1 vrf mgmt
 cumulus@leaf02:~$ nv config apply
+```
+
+To configure the {{<link url="Inter-subnet-Routing#advertise-primary-ip-address-vxlan-active-active-mode" text="anycast MAC address">}} as the MLAG system mac address:
+
+```
+nv set system global anycast-mac 44:38:39:BE:EF:AA
 ```
 
 {{< /tab >}}
@@ -1659,9 +1672,7 @@ iface swp2
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL55 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
-
-This simulation is running Cumulus Linux 5.5. The Cumulus Linux 5.6 simulation is coming soon.
+    {{< simulation name="Try It CL56 - MLAGv2" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
 
 This simulation starts with the example MLAG configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

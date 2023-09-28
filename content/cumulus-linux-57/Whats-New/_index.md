@@ -18,37 +18,31 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 
 ### New Features and Enhancements
 
-- Upgrade to Python 3.x
-- Support Debian 12 (kernel 6.1.x) with its applicable Release kernel
-- Flash PSID automatically during Installation of Cumulus Linux
-- Ethernet AI | Adaptive routing | Shared AR ECMP containers
-- Ethernet AI | Parity with Onyx | Telemetry – buffer histograms and gaps in CLI for the ASIC Monitoring Service 
-- Ethernet AI | Buffer and Bandwidth histograms with GUI
-- Route Server Support for EVPN
+- Support for Debian 12
+- Shared ECMP containers for adaptive routing
+- Buffer and bandwidth histograms
 - 802.1x support
-- MAC address translation support
-- SyncE (Phase adjustment support)
-- GA | NVUE | PTP PPS In or Out Support
+- PTP PPS In or Out Support
 - New forwarding profile: {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}}
+- Route server support for EVPN
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port Security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
   - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="ISSU maintenance mode commands">}}
-  - {{<link url="RADIUS-AAA" text="RADIUS AAA">}} commands
+  - {{<link url="RADIUS-AAA" text="RADIUS AAA commands">}}
   - MLAG support for PVST & PVRST VLAN-aware bridge mode
-  - SB-327 Compliance | First-Use API to Change Password
-  - Add Admin State to `nv show interface` output
   - {{<link url="Interface-Configuration-and-Management/#link-flap-protection" text="Link flap protection ">}} commands
   - Command to set the time
-  - PIM show commands to show PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
-  - Show Command for VLAN/VNI/Bridge Mapping
+  - Add admin state to `nv show interface` output
+  - PIM show commands show PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
+  - VLAN/VNI/Bridge Mapping show commands 
   - Replace net show neighbor
-  - 'mlag' keyword Presentation
-  - User Permissions
-  - Allow Unset Operations with a Key and Value
-  - Enhance Show Config History Output
-  - API Support
-  - Provide Interface Summary View with filtering
+  - mlag keyword presentation
+  - User permissions
+  - Allow unset operations with a Key and value
+  - Enhance show config history output
+  - API support
+  - Provide interface summary view with filtering
 
 {{< expand "New NVUE Commands" >}}
 

@@ -25,7 +25,7 @@ Cumulus Linux supports STP for VLAN-aware and traditional bridges.
 RSTP is the default mode for a VLAN-aware bridge. You can change the mode to PVRST.
 
 {{%notice note%}}
-You cannot configure PVRST mode for multiple VLAN-aware bridges or with MLAG.
+You cannot configure PVRST mode for multiple VLAN-aware bridges.
 {{%/notice%}}
 
 {{< tabs "TabID492 ">}}

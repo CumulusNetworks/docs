@@ -13,6 +13,8 @@ You can use various NVUE or Linux commands to examine interfaces, VLAN mappings 
 - `ip [-d] link show type vxlan` (Linux)
 - `nv show bridge domain <domain> mac-table` (NVUE) or `bridge [-s] fdb show` (Linux)
 - `nv show bridge domain <domain> vlan` (NVUE) or `bridge vlan show` (Linux)
+- `nv show bridge vlan-vni-map` (NVUE)
+- `nv show bridge domain <bridge> vlan-vni-map` (NVUE)
 - `ip neighbor show` (Linux)
 - `ip route show [table <vrf-name>]` (Linux)
 
@@ -108,6 +110,39 @@ Neighbor                   MAC                Interface      AF    STATE
 10.1.10.101                26:76:e6:93:32:78  vlan10         IPv4  REACHABLE
 10.1.10.3                  c0:8a:e6:03:96:d0  vlan10         IPv4  PERMANENT
 ...
+```
+
+The following command shows the VLAN to VNI mapping for all bridges:
+
+```
+cumulus@switch:mgmt:~$ nv show bridge vlan-vni-map
+br_default  VLAN-VNI-Offset: None 
+
+VLAN  VNI
+----  -----   
+10    10  
+20    20  
+30    30  
+
+br1   VLAN-VNI-Offset: None 
+
+VLAN  VNI     
+----  -----   
+40   40   
+50   50
+```
+
+The following command shows the VLAN to VNI mapping for a specific bridge:
+
+```
+cumulus@switch:mgmt:~$ nv show bridge domain br_default vlan-vni-map
+br_default  VLAN-VNI-Offset: None 
+
+VLAN  VNI
+----  -----   
+10    10
+20    20   
+30    30   
 ```
 
 ## General BGP Commands

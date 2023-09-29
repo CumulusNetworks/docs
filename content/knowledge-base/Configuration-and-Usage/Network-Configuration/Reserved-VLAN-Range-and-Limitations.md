@@ -34,8 +34,8 @@ The minimum number of VLAN IDs required in the reserved VLAN range depends on th
 
 ## Determine the Reserved VLAN Range
 
-- NVIDIA Spectrum switches running Cumulus 5.0 and later require a reserved VLAN for every bridge and QinQ interface plus 2.
-- NVIDIA Spectrum switches running Cumulus 4.4 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 sub interface, and QinQ interface plus 1.
+- NVIDIA Spectrum switches running Cumulus Linux 5.0 and later require a reserved VLAN for every bridge and QinQ interface, plus 2.
+- NVIDIA Spectrum switches running Cumulus Linux 4.4 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 sub interface, and QinQ interface, plus 1.
 
 The example below provides Linux-type shell commands to help you determine the in-use and configured VLAN counts and values. These commands are only a guide. Follow the guidelines below to determine how to best calculate the values.
 

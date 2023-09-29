@@ -1026,15 +1026,12 @@ cumulus@leaf01:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.2/24
 cumulus@leaf01:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@leaf01:~$ nv set interface vlan10 ip vrr state up
 cumulus@leaf01:~$ nv set interface vlan20 ip address 10.1.20.2/24
 cumulus@leaf01:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@leaf01:~$ nv set interface vlan20 ip vrr state up
 cumulus@leaf01:~$ nv set interface vlan30 ip address 10.1.30.2/24
 cumulus@leaf01:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf01:~$ nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
 cumulus@leaf01:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf01:~$ nv set vrf RED
 cumulus@leaf01:~$ nv set vrf BLUE
@@ -1097,15 +1094,12 @@ cumulus@leaf02:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf02:~$ nv set interface vlan10 ip address 10.1.10.3/24
 cumulus@leaf02:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf02:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@leaf02:~$ nv set interface vlan10 ip vrr state up
 cumulus@leaf02:~$ nv set interface vlan20 ip address 10.1.20.3/24
 cumulus@leaf02:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf02:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@leaf02:~$ nv set interface vlan20 ip vrr state up
 cumulus@leaf02:~$ nv set interface vlan30 ip address 10.1.30.3/24
 cumulus@leaf02:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf02:~$ nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
 cumulus@leaf02:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf02:~$ nv set vrf RED
 cumulus@leaf02:~$ nv set vrf BLUE
@@ -1168,15 +1162,12 @@ cumulus@leaf03:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf03:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf03:~$ nv set interface vlan10 ip address 10.1.10.4/24
 cumulus@leaf03:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf03:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@leaf03:~$ nv set interface vlan10 ip vrr state up
 cumulus@leaf03:~$ nv set interface vlan20 ip address 10.1.20.4/24
 cumulus@leaf03:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf03:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@leaf03:~$ nv set interface vlan20 ip vrr state up
 cumulus@leaf03:~$ nv set interface vlan30 ip address 10.1.30.4/24
 cumulus@leaf03:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf03:~$ nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
 cumulus@leaf03:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf03:~$ nv set vrf RED
 cumulus@leaf03:~$ nv set vrf BLUE
@@ -1239,15 +1230,12 @@ cumulus@leaf04:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf04:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf04:~$ nv set interface vlan10 ip address 10.1.10.5/24
 cumulus@leaf04:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf04:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@leaf04:~$ nv set interface vlan10 ip vrr state up
 cumulus@leaf04:~$ nv set interface vlan20 ip address 10.1.20.5/24
 cumulus@leaf04:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf04:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@leaf04:~$ nv set interface vlan20 ip vrr state up
 cumulus@leaf04:~$ nv set interface vlan30 ip address 10.1.30.5/24
 cumulus@leaf04:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf04:~$ nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
 cumulus@leaf04:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf04:~$ nv set vrf RED
 cumulus@leaf04:~$ nv set vrf BLUE
@@ -1443,7 +1431,6 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.10.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:10
             state:
               up: {}
         type: svi
@@ -1457,7 +1444,6 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.20.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:20
             state:
               up: {}
         type: svi
@@ -1471,7 +1457,6 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.30.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:30
             state:
               up: {}
         type: svi
@@ -1667,7 +1652,6 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.10.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:10
             state:
               up: {}
         type: svi
@@ -1681,7 +1665,6 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.20.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:20
             state:
               up: {}
         type: svi
@@ -1695,7 +1678,6 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.30.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:30
             state:
               up: {}
         type: svi
@@ -1891,7 +1873,6 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.10.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:10
             state:
               up: {}
         type: svi
@@ -1905,7 +1886,6 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.20.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:20
             state:
               up: {}
         type: svi
@@ -1919,7 +1899,6 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.30.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:30
             state:
               up: {}
         type: svi
@@ -2115,7 +2094,6 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.10.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:10
             state:
               up: {}
         type: svi
@@ -2129,7 +2107,6 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.20.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:20
             state:
               up: {}
         type: svi
@@ -2143,7 +2120,6 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.30.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:30
             state:
               up: {}
         type: svi
@@ -2415,7 +2391,7 @@ iface bond3
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
-    address-virtual 00:00:00:00:00:10 10.1.10.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.10.1/24
     hwaddress 44:38:39:22:01:b1
     vrf RED
     vlan-raw-device br_default
@@ -2423,7 +2399,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
-    address-virtual 00:00:00:00:00:20 10.1.20.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.20.1/24
     hwaddress 44:38:39:22:01:b1
     vrf RED
     vlan-raw-device br_default
@@ -2431,7 +2407,7 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.2/24
-    address-virtual 00:00:00:00:00:30 10.1.30.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.30.1/24
     hwaddress 44:38:39:22:01:b1
     vrf BLUE
     vlan-raw-device br_default
@@ -2533,7 +2509,7 @@ iface bond3
 auto vlan10
 iface vlan10
     address 10.1.10.3/24
-    address-virtual 00:00:00:00:00:10 10.1.10.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.10.1/24
     hwaddress 44:38:39:22:01:af
     vrf RED
     vlan-raw-device br_default
@@ -2541,7 +2517,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.3/24
-    address-virtual 00:00:00:00:00:20 10.1.20.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.20.1/24
     hwaddress 44:38:39:22:01:af
     vrf RED
     vlan-raw-device br_default
@@ -2549,7 +2525,7 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.3/24
-    address-virtual 00:00:00:00:00:30 10.1.30.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.30.1/24
     hwaddress 44:38:39:22:01:af
     vrf BLUE
     vlan-raw-device br_default
@@ -2651,7 +2627,7 @@ iface bond3
 auto vlan10
 iface vlan10
     address 10.1.10.4/24
-    address-virtual 00:00:00:00:00:10 10.1.10.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.10.1/24
     hwaddress 44:38:39:22:01:bb
     vrf RED
     vlan-raw-device br_default
@@ -2659,7 +2635,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.4/24
-    address-virtual 00:00:00:00:00:20 10.1.20.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.20.1/24
     hwaddress 44:38:39:22:01:bb
     vrf RED
     vlan-raw-device br_default
@@ -2667,7 +2643,7 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.4/24
-    address-virtual 00:00:00:00:00:30 10.1.30.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.30.1/24
     hwaddress 44:38:39:22:01:bb
     vrf BLUE
     vlan-raw-device br_default
@@ -2769,7 +2745,7 @@ iface bond3
 auto vlan10
 iface vlan10
     address 10.1.10.5/24
-    address-virtual 00:00:00:00:00:10 10.1.10.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.10.1/24
     hwaddress 44:38:39:22:01:c1
     vrf RED
     vlan-raw-device br_default
@@ -2777,7 +2753,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.5/24
-    address-virtual 00:00:00:00:00:20 10.1.20.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.20.1/24
     hwaddress 44:38:39:22:01:c1
     vrf RED
     vlan-raw-device br_default
@@ -2785,7 +2761,7 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.5/24
-    address-virtual 00:00:00:00:00:30 10.1.30.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.30.1/24
     hwaddress 44:38:39:22:01:c1
     vrf BLUE
     vlan-raw-device br_default
@@ -3585,7 +3561,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL56 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
+    {{< simulation name="Try It CL56 - EVPN Multihomingv2" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
 
 This simulation starts with the EVPN-MH with Head End Replication configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

@@ -16,7 +16,7 @@ Use caution when configuring VLANs; Cumulus Linux does not prevent reserved VLAN
 
 ## Reserved VLAN Count
 
-The minimum number of VLAN IDs required in the reserved VLAN range depends on the Cumulus Linux version, and feature configuration. You might need to change the reserved VLAN range to increase the number of VLANs reserved for certain features.
+The minimum number of VLAN IDs required in the reserved VLAN range depends on the Cumulus Linux version and the feature you configure. You might need to change the reserved VLAN range to increase the number of VLANs reserved for certain features.
 
 {{%notice note%}}
 - NVIDIA does not recommend you change the number of reserved VLANs unless absolutely necessary.
@@ -64,17 +64,16 @@ cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/int
 cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/interfaces.d/*.intf | sort -u | wc -l
 ```
 
-4. If your switch is running Cumulus Linux 5.0 or later, go to step 5. If your switch is running Cumulus Linux 4.4 and earlier,determine the total number of layer 3 sub interfaces in the configuration. The example below uses the `vlan-raw-device` statement as a counting key.
+4. If your switch is running Cumulus Linux 5.0 or later, go to step 5. If your switch is running Cumulus Linux 4.4 and earlier, determine the total number of layer 3 sub interfaces in the configuration. The example below uses the `vlan-raw-device` statement as a counting key.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces | grep "vlan-raw-device" | wc -l
 cumulus@switch:~$ sudo cat /etc/network/interfaces.d/*.intf | grep "vlan-raw-device" | wc -l
 ```
 
-5. Add the totals from Steps 1 through 4 according to your platform.
-
-   - NVIDIA Spectrum switches running 5.0 and later: Bridges + (implied QinQ bridges) + 2 = MINIMUM for configuration
-   - NVIDIA Spectrum switches running 4.4 and earlier: Interfaces + bridges + (implied QinQ bridges) + layer 3 sub interfaces + 1 = MINIMUM for configuration
+5. Add the totals from step 1 through step 4.
+   - Fpr NVIDIA Spectrum switches running 5.0 and later: Bridges + (implied QinQ bridges) + 2 = MINIMUM for configuration
+   - For NVIDIA Spectrum switches running 4.4 and earlier: Interfaces + bridges + (implied QinQ bridges) + layer 3 sub interfaces + 1 = MINIMUM for configuration
 
 Never exceed this count, even temporarily, so that you have room for future expansion, in-process operations, and automation. For example, an automation system can modify a bridge by adding, then removing the old bridge. Cumulus does not guarantee minimal usage of reserved VLANs when doing multi-step operations.
 

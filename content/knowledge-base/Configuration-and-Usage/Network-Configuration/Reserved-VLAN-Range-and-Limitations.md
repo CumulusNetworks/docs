@@ -36,12 +36,12 @@ The minimum number of VLAN IDs required in the reserved VLAN range depends on th
 
 ## Determine the Reserved VLAN Range
 
-- NVIDIA Spectrum switches running Cumulus 5.x require a reserved VLAN for every physical interface and bridge plus 2.
-- Broadcom switches running Cumulus 4.3.x require a reserved VLAN for every physical interface, layer 3 sub interface, and bridge plus 1.
+- NVIDIA Spectrum switches running Cumulus 5.0 and later require a reserved VLAN for every bridge and QinQ interface plus 2.
+- NVIDIA Spectrum switches Cumulus 4.4 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 sub interface, and QinQ interface plus 1.
 
 The example below provides Linux-type shell commands to help you determine the in-use and configured VLAN counts and values. These commands are only a guide. Follow the guidelines below to determine how to best calculate the values.
 
-1. Broadcom only. Determine the total number of physical interfaces that your platform supports. For example, an NVIDIA SN2700 switch has a total of 32 QSFP ports that you can break out into 2x or 4x.
+1. **NVIDIA Spectrum switches running 4.4 and earlier**. Determine the total number of physical interfaces that your platform supports. For example, an NVIDIA SN2700 switch has a total of 32 QSFP ports that you can break out into 2x or 4x.
 
    At the maximum breakout (4x), there are 128 physical ports. Cumulus Linux **always** uses this number of reserved VLANs regardless of configuration:
    - 32 x 1 = 32 Reserved VLAN IDs on the switch with no breakout
@@ -64,7 +64,7 @@ cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/int
 cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/interfaces.d/*.intf | sort -u | wc -l
 ```
 
-4. Broadcom only. Determine the total number of layer 3 sub interfaces in the configuration. The example below uses the `vlan-raw-device` statement as a counting key.
+4. **NVIDIA Spectrum switches running 4.4 and earlier**. Determine the total number of layer 3 sub interfaces in the configuration. The example below uses the `vlan-raw-device` statement as a counting key.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces | grep "vlan-raw-device" | wc -l
@@ -73,8 +73,8 @@ cumulus@switch:~$ sudo cat /etc/network/interfaces.d/*.intf | grep "vlan-raw-dev
 
 5. Add the totals from Steps 1 through 4 according to your platform.
 
-   - NVIDIA Spectrum: Bridges + (implied QinQ bridges) + 2 = MINIMUM for configuration
-   - Broadcom: Interfaces + bridges + (implied QinQ bridges) + layer 3 sub interfaces + 1 = MINIMUM for configuration
+   - NVIDIA Spectrum switches running 5.0 and later: Bridges + (implied QinQ bridges) + 2 = MINIMUM for configuration
+   - NVIDIA Spectrum switches running 4.4 and earlier: Interfaces + bridges + (implied QinQ bridges) + layer 3 sub interfaces + 1 = MINIMUM for configuration
 
 Never exceed this count, even temporarily, so that you have room for future expansion, in-process operations, and automation. For example, an automation system can modify a bridge by adding, then removing the old bridge. Cumulus does not guarantee minimal usage of reserved VLANs when doing multi-step operations.
 

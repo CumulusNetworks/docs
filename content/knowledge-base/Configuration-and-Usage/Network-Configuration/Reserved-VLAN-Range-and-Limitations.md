@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 394
 toc: 4
 ---
-Cumulus reserves a single contiguous set of VLAN IDs (the reserved VLAN range) for internal data plane operation. If you configure VLAN IDs that are within the reserved VLAN range, a scenario called *reserved VLAN overlap* occurs, which can result in unexpected traffic patterns.
+Cumulus reserves a single contiguous set of VLAN IDs (the reserved VLAN range) for internal data plane operations. If you configure VLAN IDs that are within the reserved VLAN range, a scenario called *reserved VLAN overlap* occurs, which can result in unexpected traffic patterns.
 
 To prevent a reserved VLAN overlap, you might need to change the reserved VLAN range.
 
@@ -70,7 +70,7 @@ cumulus@switch:~$ sudo cat /etc/network/interfaces.d/*.intf | grep "vlan-raw-dev
 ```
 
 5. Add the totals from step 1 through step 4.
-   - Fpr NVIDIA Spectrum switches running 5.0 and later: Bridges + (implied QinQ bridges) + 2 = MINIMUM for configuration
+   - For NVIDIA Spectrum switches running 5.0 and later: Bridges + (implied QinQ bridges) + 2 = MINIMUM for configuration
    - For NVIDIA Spectrum switches running 4.4 and earlier: Interfaces + bridges + (implied QinQ bridges) + layer 3 sub interfaces + 1 = MINIMUM for configuration
 
 Never exceed this count, even temporarily, so that you have room for future expansion, in-process operations, and automation. For example, an automation system can modify a bridge by adding, then removing the old bridge. Cumulus does not guarantee minimal usage of reserved VLANs when doing multi-step operations.

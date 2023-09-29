@@ -4,9 +4,7 @@ author: NVIDIA
 weight: 394
 toc: 4
 ---
-Cumulus reserves a single contiguous set of VLAN IDs for internal data plane operations; the reserved VLAN range.
-
-The reserved VLAN range is a single contiguous set of VLAN IDs that you cannot use when configuring the switch. If you configure VLAN IDs that are within the reserved VLAN range, a scenario called *reserved VLAN overlap* occurs, which can result in unexpected traffic patterns.
+Cumulus reserves a single contiguous set of VLAN IDs (the reserved VLAN range) for internal data plane operation. If you configure VLAN IDs that are within the reserved VLAN range, a scenario called *reserved VLAN overlap* occurs, which can result in unexpected traffic patterns.
 
 To prevent a reserved VLAN overlap, you might need to change the reserved VLAN range.
 

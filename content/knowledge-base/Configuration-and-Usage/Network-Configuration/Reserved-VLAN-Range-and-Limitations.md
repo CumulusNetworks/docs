@@ -16,7 +16,7 @@ Use caution when configuring VLANs; Cumulus Linux does not prevent reserved VLAN
 
 ## Reserved VLAN Count
 
-The minimum number of VLAN IDs required in the reserved VLAN range depends on the switch ASIC, the Cumulus Linux version, and feature configuration. You might need to change the reserved VLAN range to increase the number of VLANs reserved for certain features.
+The minimum number of VLAN IDs required in the reserved VLAN range depends on the Cumulus Linux version, and feature configuration. You might need to change the reserved VLAN range to increase the number of VLANs reserved for certain features.
 
 {{%notice note%}}
 - NVIDIA does not recommend you change the number of reserved VLANs unless absolutely necessary.
@@ -37,11 +37,11 @@ The minimum number of VLAN IDs required in the reserved VLAN range depends on th
 ## Determine the Reserved VLAN Range
 
 - NVIDIA Spectrum switches running Cumulus 5.0 and later require a reserved VLAN for every bridge and QinQ interface plus 2.
-- NVIDIA Spectrum switches Cumulus 4.4 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 sub interface, and QinQ interface plus 1.
+- NVIDIA Spectrum switches running Cumulus 4.4 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 sub interface, and QinQ interface plus 1.
 
 The example below provides Linux-type shell commands to help you determine the in-use and configured VLAN counts and values. These commands are only a guide. Follow the guidelines below to determine how to best calculate the values.
 
-1. **NVIDIA Spectrum switches running 4.4 and earlier**. Determine the total number of physical interfaces that your platform supports. For example, an NVIDIA SN2700 switch has a total of 32 QSFP ports that you can break out into 2x or 4x.
+1. If your switch is running Cumulus Linux 5.0 or later, go to step 2. If your switch is running Cumulus Linux 4.4 and earlier, determine the total number of physical interfaces that your platform supports. For example, the NVIDIA SN2700 switch has a total of 32 QSFP ports that you can break out into 2x or 4x.
 
    At the maximum breakout (4x), there are 128 physical ports. Cumulus Linux **always** uses this number of reserved VLANs regardless of configuration:
    - 32 x 1 = 32 Reserved VLAN IDs on the switch with no breakout
@@ -64,7 +64,7 @@ cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/int
 cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/interfaces.d/*.intf | sort -u | wc -l
 ```
 
-4. **NVIDIA Spectrum switches running 4.4 and earlier**. Determine the total number of layer 3 sub interfaces in the configuration. The example below uses the `vlan-raw-device` statement as a counting key.
+4. If your switch is running Cumulus Linux 5.0 or later, go to step 5. If your switch is running Cumulus Linux 4.4 and earlier,determine the total number of layer 3 sub interfaces in the configuration. The example below uses the `vlan-raw-device` statement as a counting key.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces | grep "vlan-raw-device" | wc -l

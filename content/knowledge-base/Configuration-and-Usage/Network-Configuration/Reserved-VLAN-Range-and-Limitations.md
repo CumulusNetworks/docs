@@ -39,7 +39,7 @@ The minimum number of VLAN IDs required in the reserved VLAN range depends on th
 
 The example below provides Linux-type shell commands to help you determine the in-use and configured VLAN counts and values. These commands are only a guide. Follow the guidelines below to determine how to best calculate the values.
 
-1. If your switch is running Cumulus Linux 5.0 or later, go to step 2. If your switch is running Cumulus Linux 4.4 and earlier, determine the total number of physical interfaces that your platform supports. For example, the NVIDIA SN2700 switch has a total of 32 QSFP ports that you can break out into 2x or 4x.
+1. If your switch is running Cumulus Linux 5.0 or later, go to step 2. If your switch is running Cumulus Linux 4.4 or earlier, determine the total number of physical interfaces that your platform supports. For example, the NVIDIA SN2700 switch has a total of 32 QSFP ports that you can break out into 2x or 4x.
 
    At the maximum breakout (4x), there are 128 physical ports. Cumulus Linux **always** uses this number of reserved VLANs regardless of configuration:
    - 32 x 1 = 32 Reserved VLAN IDs on the switch with no breakout
@@ -62,7 +62,7 @@ cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/int
 cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/interfaces.d/*.intf | sort -u | wc -l
 ```
 
-4. If your switch is running Cumulus Linux 5.0 or later, go to step 5. If your switch is running Cumulus Linux 4.4 and earlier, determine the total number of layer 3 sub interfaces in the configuration. The example below uses the `vlan-raw-device` statement as a counting key.
+4. If your switch is running Cumulus Linux 5.0 or later, go to step 5. If your switch is running Cumulus Linux 4.4 or earlier, determine the total number of layer 3 sub interfaces in the configuration. The example below uses the `vlan-raw-device` statement as a counting key.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces | grep "vlan-raw-device" | wc -l

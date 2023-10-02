@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3609128</td>
+<td>When you use {{vi}} with root or sudo, visual mode is enabled by default due to a missing {{vimrc}} configuration file. This makes it difficult to copy and paste into {{vi}} and might introduce a security issue.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3600588</td>
 <td>You can't reset the root password by booting into Cumulus Linux single-user recovery mode. To work around this issue, follow the steps in https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/Monitoring-and-Troubleshooting/Single-User-Mode-Password-Recovery/.</td>
 <td>5.6.0</td>
@@ -16,6 +22,12 @@
 <td>3590053</td>
 <td>If you connect a 1G BaseT module to the service port on the NVIDIA SN5600 switch when its peer is down, the link shows as active on one side while its peer is disabled.</td>
 <td>5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3585467</td>
+<td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
+<td>5.5.1-5.6.0</td>
 <td></td>
 </tr>
 <tr>

@@ -1722,9 +1722,7 @@ timers throttle spf 0 100 6000
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL55 - OSPFv2" showNodes="leaf01,leaf02,spine01,spine02,border01,border02,server01,server02,server03,server07,server08" >}}
-
-This simulation is running Cumulus Linux 5.5. The Cumulus Linux 5.6 simulation is coming soon.
+    {{< simulation name="Try It CL56 - OSPFv2" showNodes="leaf01,leaf02,spine01,spine02,border01,border02,server01,server02,server03,server07,server08" >}}
 
 This simulation starts with the example OSPF configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

@@ -2188,7 +2188,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL55 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
+    {{< simulation name="Try It CL56 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 This simulation is running Cumulus Linux 5.6. The Cumulus Linux 5.7 simulation is coming soon.
 

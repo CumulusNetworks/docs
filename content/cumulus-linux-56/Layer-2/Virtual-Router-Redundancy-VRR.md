@@ -247,7 +247,7 @@ cumulus@leaf01:mgmt:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf01:mgmt:~$ nv set interface bond3 bond mlag id 3
 cumulus@leaf01:mgmt:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf01:mgmt:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:mgmt:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:mgmt:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2
 cumulus@leaf01:mgmt:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
@@ -277,7 +277,7 @@ cumulus@leaf02:mgmt:~$ nv set interface bond2 bond mlag id 2
 cumulus@leaf02:mgmt:~$ nv set interface bond3 bond mlag id 3
 cumulus@leaf02:mgmt:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf02:mgmt:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf02:mgmt:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:mgmt:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf02:mgmt:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:mgmt:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:mgmt:~$ nv set bridge domain br_default vlan 10,20,30
@@ -419,6 +419,8 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       vrr:
         enable: on
     system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:AA
       hostname: leaf01
 ```
 
@@ -542,6 +544,8 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       vrr:
         enable: on
     system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:AA
       hostname: leaf02
 ```
 
@@ -809,9 +813,7 @@ iface bond1.30
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL55 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
-
-This simulation is running Cumulus Linux 5.5. The Cumulus Linux 5.6 simulation is coming soon.
+    {{< simulation name="Try It CL56 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
 
 This demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

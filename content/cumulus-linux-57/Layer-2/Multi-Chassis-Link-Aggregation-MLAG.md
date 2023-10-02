@@ -1190,7 +1190,7 @@ cumulus@leaf01:~$ nv set interface vlan30 ip address 10.1.30.2/24
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf01:~$ nv set interface bond1-3 bridge domain br_default 
 cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
 cumulus@leaf01:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:~$ nv set mlag init-delay 100
@@ -1215,7 +1215,7 @@ cumulus@leaf02:~$ nv set interface vlan30 ip address 10.1.30.3/24
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf02:~$ nv set interface bond1-3 bridge domain br_default
 cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:~$ nv set mlag init-delay 100
@@ -1333,8 +1333,10 @@ cumulus@spine01:~$ nv config apply
         10.10.10.2: {}
       enable: on
       init-delay: 100
-      mac-address: 44:38:39:BE:EF:AA
       peer-ip: linklocal
+    system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:AA
 ```
 
 {{< /tab >}}
@@ -1433,8 +1435,10 @@ cumulus@spine01:~$ nv config apply
         10.10.10.1: {}
       enable: on
       init-delay: 100
-      mac-address: 44:38:39:BE:EF:AA
       peer-ip: linklocal
+    system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:AA
 ```
 
 {{< /tab >}}
@@ -1659,7 +1663,7 @@ iface swp2
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL55 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
+    {{< simulation name="Try It CL56 - MLAGv2" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
 
 This simulation is running Cumulus Linux 5.6. The Cumulus Linux 5.7 simulation is coming soon.
 

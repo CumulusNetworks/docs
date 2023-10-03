@@ -36,8 +36,8 @@ This reference lists the threshold-based events that NetQ supports. You can view
 <!-- vale off -->
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| BGP connection drop | TCA_BGP_CONN_DROP | Increase in drop count for a BGP session exceeding the threshold |
-| BGP packet queue length | TCA_BGP_PACKET_QUEUE_LENGTH | Packet queue length being persistently non-zero for more than the threshold duration (in seconds) |
+| BGP connection drop | TCA_BGP_CONN_DROP | Increase in drop count for a BGP session exceeding user-defined threshold |
+| BGP packet queue length | TCA_BGP_PACKET_QUEUE_LENGTH | Packet queue length persistently non-zero for more than the threshold duration (in seconds) |
 
 ## Digital Optics
 
@@ -49,9 +49,9 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | Laser Rx power warning upper | TCA_DOM_RX_POWER_WARNING_UPPER | Transceiver Input power (mW) for the digital optical module on a given switch or host exceeded user-defined specified warning threshold |
 | Laser Rx power warning lower | TCA_DOM_RX_POWER_WARNING_LOWER | Transceiver Input power (mW) for the digital optical module on a given switch or host exceeded user-defined minimum warning threshold |
 | Laser bias current alarm upper | TCA_DOM_BIAS_CURRENT_ALARM_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined maximum alarm threshold |
-| Laser bias current alarm lower | TCA_DOM_BIAS__CURRENT_ALARM_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
+| Laser bias current alarm lower | TCA_DOM_BIAS_CURRENT_ALARM_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
 | Laser bias current warning upper | TCA_DOM_BIAS_CURRENT_WARNING_UPPER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined maximum warning threshold |
-| Laser bias current warning lower | TCA_DOM_BIAS__CURRENT_WARNING_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined minimum warning threshold |
+| Laser bias current warning lower | TCA_DOM_BIAS_CURRENT_WARNING_LOWER | Laser bias current (mA) for the digital optical module on a given switch or host exceeded user-defined minimum warning threshold |
 | Laser output power alarm upper | TCA_DOM_OUTPUT_POWER_ALARM_UPPER | Laser output power (mW) for the digital optical module on a given switch or host exceeded user-defined maximum alarm threshold |
 | Laser output power alarm lower | TCA_DOM_OUTPUT_POWER_ALARM_LOWER | Laser output power (mW) for the digital optical module on a given switch or host exceeded user-defined minimum alarm threshold |
 | Laser output power alarm upper | TCA_DOM_OUTPUT_POWER_WARNING_UPPER | Laser output power (mW) for the digital optical module on a given switch or host exceeded user-defined maximum warning threshold |
@@ -65,6 +65,15 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | Laser module voltage warning upper | TCA_DOM_MODULE_VOLTAGE_WARNING_UPPER | Transceiver voltage (V) on a given switch or host exceeded user-defined maximum warning threshold |
 | Laser module voltage warning lower | TCA_DOM_MODULE_VOLTAGE_WARNING_LOWER | Transceiver voltage (V) on a given switch or host exceeded user-defined minimum warning threshold |
 
+<!-- for 4.8
+## DPU RoCE
+
+| NetQ UI Name | NetQ CLI Event ID | Description |
+| --- | --- | --- |
+|Rx prior0 cong discard | x_prio[p]_cong_discard | The number of packets discarded by device due to per host congestion. |
+|Tx discard phy | x_prio[p]_cong_discard | The number of packets discarded by device due to per host congestion. |
+
+-->
 ## ECMP
 
 <!-- vale off -->
@@ -98,14 +107,14 @@ This reference lists the threshold-based events that NetQ supports. You can view
 
 ## Interface Statistics
 
-| NetQ UI Name | NetQ CLI Event ID | Description | Example Message |
-| --- | --- | --- | --- |
-| Broadcast received bytes | TCA_RXBROADCAST_UPPER  |  Number of broadcast receive bytes per second exceeded user-defined maximum threshold on a switch interface | RX broadcast upper threshold breached for host leaf04 ifname:swp45 value: 40200 |
-| Received bytes | TCA_RXBYTES_UPPER |  Number of receive bytes exceeded user-defined maximum threshold on a switch interface | RX bytes upper threshold breached for host spine02 ifname:swp4 value: 20000 |
+| NetQ UI Name | NetQ CLI Event ID | Description |
+| --- | --- | --- |
+| Broadcast received bytes | TCA_RXBROADCAST_UPPER  |  Number of broadcast receive bytes per second exceeded user-defined maximum threshold on a switch interface |
+| Received bytes | TCA_RXBYTES_UPPER |  Number of receive bytes exceeded user-defined maximum threshold on a switch interface |
 | Multicast received bytes | TCA_RXMULTICAST_UPPER |  rx_multicast per second on a given switch or host exceeded user-defined maximum threshold |
-| Broadcast transmitted bytes | TCA_TXBROADCAST_UPPER |  Number of broadcast transmit bytes per second exceeded user-defined maximum threshold on a switch interface | TX broadcast upper threshold breached for host leaf04 ifname:swp45 value: 40200 |
-| Transmitted bytes | TCA_TXBYTES_UPPER | Number of transmit bytes exceeded user-defined maximum threshold on a switch interface | TX bytes upper threshold breached for host spine02 ifname:swp4 value: 20000 |
-| Multicast transmitted bytes | TCA_TXMULTICAST_UPPER | Number of multicast transmit bytes per second exceeded user-defined maximum threshold on a switch interface | TX multicast upper threshold breached for host leaf04 ifname:swp45 value: 30000 |
+| Broadcast transmitted bytes | TCA_TXBROADCAST_UPPER |  Number of broadcast transmit bytes per second exceeded user-defined maximum threshold on a switch interface |
+| Transmitted bytes | TCA_TXBYTES_UPPER | Number of transmit bytes exceeded user-defined maximum threshold on a switch interface |
+| Multicast transmitted bytes | TCA_TXMULTICAST_UPPER | Number of multicast transmit bytes per second exceeded user-defined maximum threshold on a switch interface |
 
 ## Link Flaps
 
@@ -115,13 +124,13 @@ This reference lists the threshold-based events that NetQ supports. You can view
 
 ## Resource Utilization
 
-| NetQ UI Name | NetQ CLI Event ID | Description | Example Message |
-| --- | --- | --- | --- |
-| Service memory utilization | TCA_SERVICE_MEMORY_UTILIZATION_UPPER | Percentage of service memory utilization exceeded user-defined maximum threshold on a switch | Service Memory Utilization upper threshold breached for hostname noc-se service clagd value: 95.4 |
-| Disk utilization | TCA_DISK_UTILIZATION_UPPER  |  Percentage of disk utilization exceeded user-defined maximum threshold on a switch or host | Disk Utilization for host leaf11 exceed configured mark 90 |
-| CPU utilization | TCA_CPU_UTILIZATION_UPPER | Percentage of CPU utilization exceeded user-defined maximum threshold on a switch or host | CPU Utilization for host leaf11 exceed configured mark 85 |
-| Service CPU utilization | TCA_SERVICE_CPU_UTILIZATION_UPPER | Percentage of service CPU utilization exceeded user-defined maximum threshold on a switch | Service CPU Utilization upper threshold breached for hostname noc-se service clagd value: 95.4 |
-| Memory utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Percentage of memory utilization exceeded user-defined maximum threshold on a switch or host | Memory Utilization for host leaf11 exceed configured mark 95 |
+| NetQ UI Name | NetQ CLI Event ID | Description |
+| --- | --- | --- |
+| Service memory utilization | TCA_SERVICE_MEMORY_UTILIZATION_UPPER | Percentage of service memory utilization exceeded user-defined maximum threshold on a switch |
+| Disk utilization | TCA_DISK_UTILIZATION_UPPER  |  Percentage of disk utilization exceeded user-defined maximum threshold on a switch or host |
+| CPU utilization | TCA_CPU_UTILIZATION_UPPER | Percentage of CPU utilization exceeded user-defined maximum threshold on a switch or host |
+| Service CPU utilization | TCA_SERVICE_CPU_UTILIZATION_UPPER | Percentage of service CPU utilization exceeded user-defined maximum threshold on a switch |
+| Memory utilization | TCA_MEMORY_UTILIZATION_UPPER  |  Percentage of memory utilization exceeded user-defined maximum threshold on a switch or host |
 
 ## RoCE 
 
@@ -147,12 +156,12 @@ This reference lists the threshold-based events that NetQ supports. You can view
 
 ## Sensors
 
-| NetQ UI Name | NetQ CLI Event ID | Description | Example Message |
-| --- | --- | --- | --- |
-| Fan speed | TCA_SENSOR_FAN_UPPER  |  Fan speed exceeded user-defined maximum threshold on a switch | Sensor for spine03 exceeded threshold fan speed 700 for sensor fan2 |
-| Power supply watts | TCA_SENSOR_POWER_UPPER| Power supply output exceeded user-defined maximum threshold on a switch | Sensor for leaf14 exceeded threshold power 120 watts for sensor psu1 |
-| Power supply volts | TCA_SENSOR_VOLTAGE_UPPER  | Power supply voltage exceeded user-defined maximum threshold on a switch | Sensor for leaf14 exceeded threshold voltage 12 volts for sensor psu2 |
-| Switch temperature | TCA_SENSOR_TEMPERATURE_UPPER  | Temperature (&deg; C) exceeded user-defined maximum threshold on a switch | Sensor for leaf14 exceeded threshold temperature 90 for sensor temp1 |
+| NetQ UI Name | NetQ CLI Event ID | Description |
+| --- | --- | --- |
+| Fan speed | TCA_SENSOR_FAN_UPPER  |  Fan speed exceeded user-defined maximum threshold on a switch |
+| Power supply watts | TCA_SENSOR_POWER_UPPER| Power supply output exceeded user-defined maximum threshold on a switch |
+| Power supply volts | TCA_SENSOR_VOLTAGE_UPPER  | Power supply voltage exceeded user-defined maximum threshold on a switch |
+| Switch temperature | TCA_SENSOR_TEMPERATURE_UPPER  | Temperature (&deg; C) exceeded user-defined maximum threshold on a switch |
 
 ## What Just Happened
 
@@ -209,7 +218,7 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Router | TTL value is too small | Packet has TTL value of 1 |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Router | Unicast destination IP but multicast destination MAC | Cannot read packet with IP unicast address when destination MAC address is not unicast (FF:FF:FF:FF:FF:FF) |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Router | Unresolved neighbor/next-hop  | The next hop in the route is unknown |
-| Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Decapsulation error | De-capsulation produced incorrect format of packet. For example, encapsulation of packet with many VLANs or IP options on the underlay can cause de-capsulation to result in a short packet. |
+| Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Decapsulation error | Decapsulation produced incorrect format of packet. For example, encapsulation of packet with many VLANs or IP options on the underlay can cause de-capsulation to result in a short packet. |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Overlay switch - Source MAC equals destination MAC | Overlay packet's source MAC address is the same as the destination MAC address |
 | Drop aggregate upper | TCA_WJH_DROP_AGG_UPPER | Tunnel | Overlay switch - Source MAC is multicast | Overlay packet's source MAC address is multicast |
 | Symbol error upper | TCA_WJH_SYMBOL_ERROR_UPPER | L1 | Auto-negotiation failure | Negotiation of port speed with peer has failed |

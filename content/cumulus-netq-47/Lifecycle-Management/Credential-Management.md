@@ -29,9 +29,13 @@ You cannot delete default profiles.
 
 {{<tab "SSH">}}
 
-{{<notice info>}}
-You must have sudoer permission to configure switches when using the SSH key method.
-{{</notice>}}
+{{%notice info%}}
+The SSH user must have sudoer permission to configure switches when using the SSH key method. To provide sudo access to the SSH user on a switch, create a file in the `/etc/sudoers.d/` directory with the following content. Replace `<USER>` with the SSH access profile username:
+
+```
+“<USER>” ALL=(ALL) NOPASSWD: ALL
+```
+{{%/notice%}}
 
 4. Create a pair of SSH private and public keys on the NetQ appliance:
 

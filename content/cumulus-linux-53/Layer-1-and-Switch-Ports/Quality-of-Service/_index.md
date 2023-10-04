@@ -16,7 +16,7 @@ Cumulus Linux supports several different <span style="background-color:#F5F5DC">
 
 Cumulus Linux uses two configuration files for QoS:
 - `/etc/cumulus/datapath/qos/qos_features.conf` includes all standard QoS configuration, such as marking, shaping and flow control.
-- `/etc/mlx/datapath/qos/qos_infra.conf` includes all platform specific configurations, such as buffer allocations and [Alpha values](https://community.mellanox.com/s/article/understanding-the-alpha-parameter-in-the-buffer-configuration-of-mellanox-spectrum-switches).
+- `/etc/mlx/datapath/qos/qos_infra.conf` includes all platform specific configurations, such as buffer allocations and [Alpha values](https://enterprise-support.nvidia.com/s/article/understanding-the-alpha-parameter-in-the-buffer-configuration-of-mellanox-spectrum-switches).
 
 {{% notice note %}}
 Cumulus Linux 5.0 and later does not use the `traffic.conf` and `datapath.conf` files but uses the `qos_features.conf` and `qos_infra.conf` files instead. Before upgrading Cumulus Linux, review your existing QoS configuration to determine the changes you need to make.

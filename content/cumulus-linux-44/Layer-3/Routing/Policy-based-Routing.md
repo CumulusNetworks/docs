@@ -35,6 +35,10 @@ To configure a PBR policy:
 {{< tabs "TabID35 ">}}
 {{< tab "NCLU Commands ">}}
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as PBR, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 1. Configure the policy map.
 
     The example commands below configure a policy map called `map1` with sequence number 1, that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.

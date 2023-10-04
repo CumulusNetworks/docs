@@ -28,6 +28,21 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface vlan10 router pim
+                            applied    
+--------------------------  -----------
+enable                      on         
+active-active               off        
+dr-priority                 1          
+address-family                         
+  ipv4-unicast                         
+    multicast-boundary-oil  MyPrefixLis
+    use-source              none       
+    allow-rp                           
+      enable                off        
+bfd                                    
+  enable                    off        
+timers                                 
+  hello-interval            auto
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -50,6 +65,13 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface vlan10 router pim address-family
+                          applied    
+------------------------  -----------
+ipv4-unicast                         
+  multicast-boundary-oil  MyPrefixLis
+  use-source              none       
+  allow-rp                           
+    enable                off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -72,6 +94,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface vlan10 router pim address-family ipv4-unicast
+                        applied    
+----------------------  -----------
+multicast-boundary-oil  MyPrefixLis
+use-source              none       
+allow-rp                           
+  enable                off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -94,6 +122,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface vlan10 router pim address-family ipv4-unicast allow-rp
+        applied
+------  -------
+enable  on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -116,6 +147,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface vlan10 router pim bfd
+        applied
+------  -------
+enable  off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -138,6 +172,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface vlan10 router pim timers
+                applied
+--------------  -------
+hello-interval  auto
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -154,6 +191,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router pim
+                       applied
+---------------------  -------
+enable                 on     
+packets                3      
+timers                        
+  hello-interval       30     
+  join-prune-interval  100    
+  keep-alive           10000  
+  register-suppress    20000  
+  rp-keep-alive        185
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -170,6 +217,13 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router pim timers
+                     applied
+-------------------  -------
+hello-interval       30     
+join-prune-interval  100    
+keep-alive           10000  
+register-suppress    20000  
+rp-keep-alive        185
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -192,6 +246,24 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router pim
+                          applied         
+------------------------  ----------------
+enable                    on              
+address-family                            
+  ipv4-unicast                            
+    register-accept-list  none            
+    send-v6-secondary     on              
+    ssm-prefix-list       MyCustomSSMrange
+    [rp]                  10.10.10.101    
+    spt-switchover                        
+      action              infinity        
+      prefix-list         SPTrange        
+ecmp                                      
+  enable                  on              
+  rebalance               on              
+timers                                    
+  keep-alive              auto            
+  rp-keep-alive           auto
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -214,6 +286,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router pim address-family
+                       applied         
+----------------------  ----------------
+ipv4-unicast                            
+  register-accept-list  none            
+  send-v6-secondary     on              
+  ssm-prefix-list       MyCustomSSMrange
+  [rp]                  10.10.10.101    
+  spt-switchover                        
+    action              infinity        
+    prefix-list         SPTrange
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -236,28 +318,15 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp</h>
-
-Shows the IPv4 PIM <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp
+                      applied         
+--------------------  ----------------
+register-accept-list  none            
+send-v6-secondary     on              
+ssm-prefix-list       MyCustomSSMrange
+[rp]                  10.10.10.101    
+spt-switchover                        
+  action              infinity        
+  prefix-list         SPTrange
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -281,6 +350,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.10.10.101
+               applied    
+-------------  -----------
+[group-range]  224.0.0.0/4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -350,6 +422,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast spt-switchover
+             applied 
+-----------  --------
+action       infinity
+prefix-list  SPTrange
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -372,6 +448,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router pim ecmp
+           applied
+---------  -------
+enable     on     
+rebalance  on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -486,4 +566,8 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router pim timers
+               applied
+-------------  -------
+keep-alive     auto   
+rp-keep-alive  auto
 ```

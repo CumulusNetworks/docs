@@ -22,6 +22,30 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa
+                        operational       applied
+----------------------  ----------------  -------
+[authentication-order]  1                        
+[authentication-order]  2                        
+[authentication-order]                    5      
+[authentication-order]                    10     
+tacacs                                           
+  enable                on                on     
+  timeout               5                 5      
+  vrf                   mgmt              mgmt   
+  accounting                                     
+    enable              off               off    
+  authentication                                 
+    mode                pap               pap    
+    per-user-homedir    off               off    
+  [authorization]       0                 0      
+  [server]              5                 5      
+[user]                  _apt                     
+[user]                  _lldpd                   
+[user]                  backup                   
+[user]                  bin                      
+[user]                  cumulus                  
+[user]                  daemon
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -38,6 +62,10 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa authentication-order
+Index  Method
+-----  ------
+1      tacacs
+2      local
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -60,6 +88,7 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa authentication-order 5
+
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -76,6 +105,11 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa role
+Role          groups      
+------------  ------------
+nvue-admin    nvapply     
+nvue-monitor  nvshow      
+system-admin  sudo,nvapply
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -98,6 +132,9 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa role nvue-monitor
+        operational  applied
+------  -----------  -------
+groups  nvshow
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -114,6 +151,20 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa user
+Username          Full-name                                     Role     enable  Summary
+----------------  --------------------------------------------  -------  ------  -------
+_apt                                                            Unknown  system         
+_lldpd                                                          Unknown  system         
+backup            backup                                        Unknown  system         
+bin               bin                                           Unknown  system         
+cumulus           cumulus,,,                                    Unknown  on             
+daemon            daemon                                        Unknown  system         
+dnsmasq           dnsmasq,,,                                    Unknown  system         
+frr               Frr routing suite,,,                          Unknown  system         
+games             games                                         Unknown  system         
+gnats             Gnats Bug-Reporting System (admin)            Unknown  system         
+irc               ircd                                          Unknown  system
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -135,7 +186,15 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system aaa user admin2
+cumulus@switch:~$ nv show system aaa user cumulus
+                    operational  applied
+------------------  -----------  -------
+full-name           cumulus,,,          
+hashed-password     *                   
+role                Unknown             
+ssh                                     
+  [authorized-key]                      
+enable              on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

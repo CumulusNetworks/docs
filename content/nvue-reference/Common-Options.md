@@ -8,9 +8,6 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
-{{%notice note%}}
-This document is in beta.
-{{%/notice%}}
 
 All NVUE commands have `-h` and `--help` options that provide command description and usage.
 
@@ -31,6 +28,7 @@ The NVUE `nv show` commands have these common options.
 | <div style="width:200px">Option | Description |
 | ------ | ----------- |
 |`--view <view>`<br>`-w <view>` | Shows these different views: brief, lldp, mac, pluggables, and small. This option is available for the `nv show interface` command only. For example, the `nv show interface --view=small` command shows a list of the interfaces on the switch and the `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port. |
+| `--filter <filter>` | Filters on column output data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.</br>To filter on multiple column outputs, enclose the filter types in parentheses; for example, `nv show interface --filter "type=bridge&mtu=9216"` shows data for bridges with MTU 9216.</br>You can use wildcards; for example, `nv show interface swp1 --filter "ip.address=1*"` shows all IP addresses that start with 1 for swp1.</br>You can filter on all revisions (operational, applied, and pending); for example, `nv show interface --filter "ip.address=1*" --rev=applied` shows all IP addresses that start with 1 for swp1 in the applied revision. |
 
 ## Output Options
 

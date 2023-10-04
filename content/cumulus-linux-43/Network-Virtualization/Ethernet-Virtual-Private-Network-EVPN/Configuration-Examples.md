@@ -2619,7 +2619,7 @@ iface BLUE
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
-    bridge-vids 10 20 30 4001 4002  
+    bridge-vids 10 20 30
     bridge-vlan-aware yes
 
 auto vni10
@@ -2823,7 +2823,7 @@ iface BLUE
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
-    bridge-vids 10 20 30 4001 4002  
+    bridge-vids 10 20 30
     bridge-vlan-aware yes
 
 auto vni10
@@ -3027,7 +3027,7 @@ iface BLUE
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
-    bridge-vids 10 20 30 4001 4002  
+    bridge-vids 10 20 30
     bridge-vlan-aware yes
 
 auto vni10
@@ -3231,7 +3231,7 @@ iface BLUE
 auto bridge
 iface bridge
     bridge-ports peerlink bond1 bond2 bond3 vni10 vni20 vni30 vniRED vniBLUE
-    bridge-vids 10 20 30 4001 4002  
+    bridge-vids 10 20 30 
     bridge-vlan-aware yes
 
 auto vni10

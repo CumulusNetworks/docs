@@ -28,6 +28,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 lldp
+                    operational  applied  pending
+-------------------  -----------  -------  -------
+dcbx-ets-config-tlv  off                          
+dcbx-ets-recomm-tlv  off                          
+dcbx-pfc-tlv         off                          
+[neighbor]           server01
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -50,6 +56,9 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp51 lldp neighbor
+Neighbor  Remote IP     Model  SW Version  Remote Port
+--------  ------------  -----  ----------  -----------
+spine01   10.10.10.101                     swp1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -73,6 +82,28 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp51 lldp neighbor spine01
+                           operational                                                    applied  pending
+-------------------------  ------------------------------------------------------------…  -------  -------
+age                        323055                                                                         
+bridge                                                                                                    
+  [vlan]                                                                                                  
+chassis                                                                                                   
+  chassis-id               44:38:39:22:01:82                                                              
+  management-address-ipv4  10.10.10.101                                                                   
+  management-address-ipv6  fe80::4638:39ff:fe22:182                                                       
+  system-description       Cumulus Linux version 5.5.0 running on QEMU Standard PC                        
+                           (i440FX + PIIX, 1996)                                                          
+  system-name              spine01                                                                        
+lldp-med                                                                                                  
+  device-type              Network Connectivity Device                                                    
+port                                                                                                      
+  description              swp1                                                                           
+  name                     swp1                                                                           
+  ttl                      120                                                                            
+  type                     ifname                                                                         
+  pmd-autoneg                                                                                             
+    [advertised]                                                                                          
+    mau-oper-type          1000BaseTFD - Four-pair Category 5 UTP, full duplex mode
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -96,6 +127,9 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp51 lldp neighbor spine01 bridge
+       operational  applied  pending
+------  -----------  -------  -------
+[vlan]
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -159,4 +193,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service lldp
+                        operational  applied  pending
+----------------------  -----------  -------  -------
+dot1-tlv                off          off      off    
+lldp-med-inventory-tlv  off          off      off    
+mode                    default      default  default
+tx-hold-multiplier      4            4        4      
+tx-interval             30           30       30
 ```

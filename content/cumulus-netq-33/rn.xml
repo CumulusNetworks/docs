@@ -10,7 +10,7 @@
 <td>2893000</td>
 <td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
 <td>2.4.0-4.0.1</td>
-<td>4.1.0-4.3.0</td>
+<td>4.1.0-4.7.0</td>
 </tr>
 <tr>
 <td>2690469</td>
@@ -18,31 +18,31 @@
 To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
 &apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
 <td>3.2.1-4.0.1</td>
-<td>4.1.0-4.3.0</td>
+<td>4.1.0-4.7.0</td>
 </tr>
 <tr>
 <td>2556754</td>
 <td>netq-agent installed on Cumulus Linux might slowly leak memory during sustained layer two network events at high scale.</td>
 <td>3.3.0-3.3.1</td>
-<td>4.0.0-4.3.0</td>
+<td>4.0.0-4.7.0</td>
 </tr>
 <tr>
 <td>2555197</td>
 <td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
 <td>3.3.0-3.3.1</td>
-<td>4.0.0-4.3.0</td>
+<td>4.0.0-4.7.0</td>
 </tr>
 <tr>
 <td>2553453</td>
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>
-<td>4.0.0-4.3.0</td>
+<td>4.0.0-4.7.0</td>
 </tr>
 <tr>
 <td>2549319</td>
 <td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
 <td>3.0.0-3.3.1</td>
-<td>4.0.0-4.3.0</td>
+<td>4.0.0-4.7.0</td>
 </tr>
 </table>
 <table name="Fixed Issues in 3.3.1">
@@ -249,7 +249,7 @@ Save the file.</td>
 <td>2893000</td>
 <td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
 <td>2.4.0-4.0.1</td>
-<td>4.1.0-4.3.0</td>
+<td>4.1.0-4.7.0</td>
 </tr>
 <tr>
 <td>2690469</td>
@@ -257,13 +257,13 @@ Save the file.</td>
 To work around this issue, run the following command on the NetQ telemetry server, then start the upgrade again:
 &apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
 <td>3.2.1-4.0.1</td>
-<td>4.1.0-4.3.0</td>
+<td>4.1.0-4.7.0</td>
 </tr>
 <tr>
 <td>2556754</td>
 <td>netq-agent installed on Cumulus Linux might slowly leak memory during sustained layer two network events at high scale.</td>
 <td>3.3.0-3.3.1</td>
-<td>4.0.0-4.3.0</td>
+<td>4.0.0-4.7.0</td>
 </tr>
 <tr>
 <td>2556545</td>
@@ -467,19 +467,19 @@ Save the file.</td>
 <td>2555197</td>
 <td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
 <td>3.3.0-3.3.1</td>
-<td>4.0.0-4.3.0</td>
+<td>4.0.0-4.7.0</td>
 </tr>
 <tr>
 <td>2553453</td>
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>
-<td>4.0.0-4.3.0</td>
+<td>4.0.0-4.7.0</td>
 </tr>
 <tr>
 <td>2549319</td>
 <td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
 <td>3.0.0-3.3.1</td>
-<td>4.0.0-4.3.0</td>
+<td>4.0.0-4.7.0</td>
 </tr>
 </table>
 <table name="Fixed Issues in 3.3.0">

@@ -334,6 +334,10 @@ Cumulus Linux does not provide NVUE commands for this setting.
 
 ## Adaptive Routing
 
+{{%notice warning%}}
+Adaptive routing is a [beta feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. This feature is not currently intended to run in production and is not supported through NVIDIA networking support.
+{{%/notice%}}
+
 Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.
 
 The benefits of using adaptive routing include:

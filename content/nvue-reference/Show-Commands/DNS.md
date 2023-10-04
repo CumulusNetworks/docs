@@ -8,21 +8,6 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show service dns</h>
-
-Shows <span style="background-color:#F5F5DC">[DNS](## "Domain Name Service")</span> configuration settings.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show service dns
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -44,6 +29,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dns default
+          operational  applied   
+--------  -----------  ----------
+[search]               nvidia.com
+[server]               192.0.2.44
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -66,5 +55,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service dns default server 192.0.2.1
+cumulus@switch:~$ nv show service dns default server 192.0.2.44
 ```

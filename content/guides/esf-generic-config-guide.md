@@ -2,7 +2,7 @@
 title: Cumulus Linux Configuration Guide for Ethernet Storage Fabrics
 author: NVIDIA Networking
 weight: 50
-product: Cumulus Networks Guides
+product: Technical Guides
 ---
 
 [NVIDIA Spectrum](https://www.nvidia.com/en-us/networking/ethernet-switching/) switches with the [Cumulus Linux](https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-linux/) network operating system allow you to create predictable, low latency, high throughput networks. The combination of best-in-class hardware and software enables you to deploy an efficient, redundant, and ESF ([Ethernet Storage Fabrics](https://www.nvidia.com/en-us/networking/guide-to-ethernet-storage-fabrics/)) optimized network with minimum effort. ESF includes complete, hybrid, or HCI storage fabrics and the storage backend for AI systems.
@@ -15,7 +15,7 @@ ESF environments with NVMe over Fabrics ([NVMeOF](https://nvmexpress.org/wp-cont
 
 In addition, NVIDIA Spectrum ASIC telemetry capabilities, including the unique What Just Happened ([WJH]({{<ref "/cumulus-linux-50/Monitoring-and-Troubleshooting/Network-Troubleshooting/Mellanox-WJH" >}})) feature, provide real-time visibility into the network. You can look at flow latency events, buffer occupancy, and dropped packets to discover, diagnose, and resolve network problems. WJH monitoring supports all events and traffic types, including layer 1, layer 2, ACLs, layer 3, tunneling, buffers, and RoCE.
 
-Network simulation is essential to avoid manual CLI, and copy and paste configuration errors. [NVIDIA Air](https://www.nvidia.com/en-us/networking/air/) provides an online cloud-based network simulation platform where you can create a digital twin of your physical environment. You can build, simulate, and experience Cumulus Linux switches in AIR while testing your deployment configuration before applying it to production. Check out the [NVIDIA Air user guide]({{<ref "/guides/nvidia-air/" >}}) for more details.
+Network simulation is essential to avoid manual CLI, and copy and paste configuration errors. [NVIDIA Air](https://www.nvidia.com/en-us/networking/air/) provides an online cloud-based network simulation platform where you can create a digital twin of your physical environment. You can build, simulate, and experience Cumulus Linux switches in AIR while testing your deployment configuration before applying it to production. Check out the [NVIDIA Air user guide]({{<ref "/nvidia-air/" >}}) for more details.
 
 There might be different specifications for each storage vendor deployment. You can always check out [Cumulus Linux documentation]({{<ref "/cumulus-linux-50" >}}) to explore more details and match the configuration for your deployment.
 

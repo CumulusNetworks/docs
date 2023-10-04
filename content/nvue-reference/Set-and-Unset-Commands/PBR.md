@@ -141,7 +141,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router pbr map map1 rule 1 action vrf RED
+cumulus@switch:~$ nv set router pbr map map1 rule 10 action vrf RED
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -165,7 +165,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
+cumulus@switch:~$ nv set router pbr map map1 rule 10 action nexthop-group group1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -189,7 +189,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router pbr map map1 rule 1 action vrf RED
+cumulus@switch:~$ nv set router pbr map map1 rule 10 action vrf RED
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -242,7 +242,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router pbr map map1 rule 1 match dscp 10
+cumulus@switch:~$ nv set router pbr map map1 rule 10 match dscp 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -265,7 +265,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router pbr map map1 rule 1 match ecn 3
+cumulus@switch:~$ nv set router pbr map map1 rule 10 match ecn 3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

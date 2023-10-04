@@ -22,6 +22,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system port-mirror
+           operational  applied
+---------  -----------  -------
+[session]  1            1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -30,6 +33,10 @@ cumulus@switch:~$ nv show system port-mirror
 
 Shows information about SPAN and ERSPAN sessions.
 
+{{%notice note%}}
+Add `-o json` at the end of the command to see the output in a more readable format.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -37,7 +44,25 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system port-mirror session
+cumulus@switch:~$ nv show system port-mirror session -o json
+{
+  "1": {
+    "erspan": {
+      "destination": {
+        "dest-ip": {
+          "10.10.10.234": {}
+        },
+        "source-ip": {
+          "10.10.10.1": {}
+        }
+      },
+      "direction": "egress",
+      "source-port": {
+        "swp1": {}
+      }
+    }
+  }
+}
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -60,6 +85,19 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system port-mirror session 1
+                 operational   applied     
+---------------  ------------  ------------
+erspan                                     
+  enable                       on          
+  direction      egress        egress      
+  destination                              
+    [dest-ip]    10.10.10.234  10.10.10.234
+    [source-ip]  10.10.10.1    10.10.10.1  
+  [source-port]  swp1          swp1        
+  truncate                                 
+    enable                     off         
+span                                       
+  enable                       off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -82,6 +120,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system port-mirror session 1 erspan
+               operational   applied     
+-------------  ------------  ------------
+enable                       on          
+direction      egress        egress      
+destination                              
+  [dest-ip]    10.10.10.234  10.10.10.234
+  [source-ip]  10.10.10.1    10.10.10.1  
+[source-port]  swp1          swp1        
+truncate                                 
+  enable                     off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -104,6 +152,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system port-mirror session 1 erspan destination
+             operational   applied     
+-----------  ------------  ------------
+[dest-ip]    10.10.10.234  10.10.10.234
+[source-ip]  10.10.10.1    10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -126,6 +178,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system port-mirror session 1 erspan destination dest-ip
+            
+------------
+10.10.10.23
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -171,6 +226,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system port-mirror session 1 erspan destination source-ip
+          
+----------
+10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -216,6 +274,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system port-mirror session 1 erspan source-port
+    
+----
+swp1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -261,6 +322,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system port-mirror session 1 erspan truncate
+        operational  applied
+------  -----------  -------
+enable               on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -283,6 +347,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system port-mirror session 1 span
+        operational  applied
+------  -----------  -------
+enable               on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

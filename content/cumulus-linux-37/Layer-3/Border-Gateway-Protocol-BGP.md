@@ -102,6 +102,10 @@ Unlike OSPF, which has separate versions of the protocol to announce IPv4 and IP
 
 ## Configure BGP
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as BGP, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 The following example shows a basic BGP configuration. The rest of this chapter discusses how to configure other BGP features, such as unnumbered interfaces to route maps.
 
 1. Enable the BGP and Zebra daemons (`zebra` and `bgpd`), then enable the FRRouting service and start it, as described in {{<link url="Configuring-FRRouting">}}.

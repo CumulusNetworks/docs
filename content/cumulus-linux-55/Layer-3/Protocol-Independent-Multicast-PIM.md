@@ -965,9 +965,6 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Edit /etc/cumulus/control-plane/policers.conf ">}}
 
-{{< /tab >}}
-{{< /tabs >}}
-
 1. Edit the `/etc/cumulus/control-plane/policers.conf` file:
 
    - To tune the PIM forwarding and burst rate, change the `copp.pim_ospf_rip.rate` and `copp.pim_ospf_rip.burst` parameters.
@@ -994,6 +991,8 @@ cumulus@switch:~$ nv config apply
    cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
    ```
 
+{{< /tab >}}
+{{< /tabs >}}
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
 ## PIM Active-active with MLAG
@@ -1991,9 +1990,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL54 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
-
-This simulation is running Cumulus Linux 5.4. The Cumulus Linux 5.5 simulation is coming soon.
+    {{< simulation name="Try It CL55 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
 

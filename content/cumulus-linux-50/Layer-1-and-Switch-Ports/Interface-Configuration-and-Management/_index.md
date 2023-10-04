@@ -410,7 +410,9 @@ If you specify a subinterface, such as swp1.100, then run `ifup swp1.100`, Cumul
 
 You can specify both IPv4 and IPv6 addresses for the same interface.
 
-For IPv6 addresses, you can create or modify the IP address for an interface using either `::` or `0:0:0` notation. For example,both 2620:149:43:c109:0:0:0:5 and 2001:DB8::1/126 are valid.
+For IPv6 addresses:
+- You can create or modify the IP address for an interface using either `::` or `0:0:0` notation. For example,both 2620:149:43:c109:0:0:0:5 and 2001:DB8::1/126 are valid.
+- Cumulus Linux assigns the IPv6 address with all zeroes in the interface identifier (2001:DB8::/126) for each subnet; connected hosts cannot use this address.
 
 The following example commands configure three IP addresses for swp1; two IPv4 addresses and one IPv6 address.
 

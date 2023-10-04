@@ -184,6 +184,10 @@ The above command creates the following configuration in the
     # Additional options that are passed to the DHCP relay daemon?
     OPTIONS="-U 10.0.0.3%swp2"
 
+{{%notice note%}}
+When enabling RFC 3527 support, you can specify an interface such as the loopback interface or swp interface for the gateway address. The interface you use must be reachable in the tenant VRF that it is servicing and must be unique to the switch. In EVPN symmetric routing, fabrics running an anycast gateway that uses the same SVI IP address on multiple leaf switches, need a unique IP address for the VRF interface and must include the layer 3 VNI for this VRF in the DHCP Relay configuration.
+{{%/notice%}}
+
 ## Configure IPv6 DHCP Relays
 
 If you are configuring IPv6, the `/etc/default/isc-dhcp-relay6`

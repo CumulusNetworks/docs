@@ -449,7 +449,7 @@ Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce AR
 
 {{%notice note%}}
 - ARP and ND suppression only suppresses the flooding of known hosts. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
-- You must enable ARP and ND suppression on all VXLAN interfaces on the switch. You cannot enable ARP and ND suppression on some VXLAN interfaces but not on others.
+- NVIDIA recommends that you keep ARP and ND suppression enabled on all VXLAN interfaces on the switch. If you must disable suppression for a special use case, you can not disable ARP and ND suppression on some VXLAN interfaces but not others.
 {{%/notice%}}
 
 In a centralized routing deployment, you must configure layer 3 interfaces even if you configure the switch only for layer 2 (you are not using VXLAN routing). To avoid installing unnecessary layer 3 information, you can turn off IP forwarding.
@@ -828,7 +828,7 @@ To disable BUM flooding:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set nve vxlan flooding enable off
+cumulus@leaf01:~$ nv unset nve vxlan flooding
 cumulus@leaf01:~$ nv config apply
 ```
 

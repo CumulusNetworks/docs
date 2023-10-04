@@ -1,0 +1,99 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Contact: linux-btrfs@vger.kernel.org
+Source: https://git.kernel.org/pub/scm/linux/kernel/git/kdave/btrfs-progs.git
+
+Files: *
+Copyright: 2007-2012 Oracle <http://www.oracle.com/>
+License: GPL-2
+
+Files: kernel-lib/radix-tree.c
+Copyright: 2007-2009 Oracle <http://www.oracle.com/>
+           2001 Momchil Velikov
+           2001 Christoph Hellwig
+           2005 SGI, Christoph Lameter <clameter@sgi.com>
+License: GPL-2
+
+Files: kernel-lib/radix-tree.h
+Copyright: 2007-2009 Oracle <http://www.oracle.com/>
+           2001 Momchil Velikov
+           2001 Christoph Hellwig
+License: GPL-2
+
+Files: tests/sha.h tests/sha224-256.c tests/sha-private.h
+Copyright: 2011 IETF Trust
+License: TLP-4
+
+Files: debian/*
+Copyright: 2007-2013 Daniel Baumann <daniel.baumann@progress-technologies.net>
+           2013 <luk@debian.org>
+	   2013-2016 Dimitri John Ledkov <xnox@debian.org>, et al.
+License: GPL-2+
+
+License: GPL-2+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ The complete text of the GNU General Public License
+ can be found in /usr/share/common-licenses/GPL-2 file.
+
+License: GPL-2
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License v2 as published by
+ the Free Software Foundation.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ The complete text of the GNU General Public License
+ can be found in /usr/share/common-licenses/GPL-2 file.
+
+License: TLP-4
+ Copyright (c) 2011 IETF Trust and the persons identified as
+ authors of the code.  All rights reserved.
+ .
+ Redistribution and use in source and binary forms, with or
+ without modification, are permitted provided that the following
+ conditions are met:
+ .
+ - Redistributions of source code must retain the above
+   copyright notice, this list of conditions and
+   the following disclaimer.
+ .
+ - Redistributions in binary form must reproduce the above
+   copyright notice, this list of conditions and the following
+   disclaimer in the documentation and/or other materials provided
+   with the distribution.
+ .
+ - Neither the name of Internet Society, IETF or IETF Trust, nor
+   the names of specific contributors, may be used to endorse or
+   promote products derived from this software without specific
+   prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+ CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

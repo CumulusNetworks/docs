@@ -408,7 +408,8 @@ ARP/ND suppression is enabled by default on all VNIs in Cumulus Linux to reduce 
 
 {{%notice note%}}
 
-ARP/ND suppression will only suppress the flooding of known hosts. ARP/ND requests for unknown hosts will still be flooded. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
+- ARP/ND suppression will only suppress the flooding of known hosts. ARP/ND requests for unknown hosts will still be flooded. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
+- NVIDIA recommends that you keep ARP and ND suppression enabled on all VXLAN interfaces on the switch. If you must disable suppression for a special use case, you can not disable ARP and ND suppression on some VXLAN interfaces but not others.
 
 {{%/notice%}}
 
@@ -539,10 +540,6 @@ iface vni20
 ```
 cumulus@switch:~$ sudo ifreload -a
 ```
-
-{{%notice note%}}
-You must enable ARP and ND suppression on all VXLAN interfaces on the switch. You cannot enable ARP and ND suppression on some VXLAN interfaces but not on others.
-{{%/notice%}}
 
 ## Configure Static MAC Addresses
 

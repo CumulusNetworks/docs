@@ -8,6 +8,10 @@ Cumulus Linux gathers statistics for VXLANs and VLANs using virtual device count
 
 You can retrieve the data from these counters using tools like `ip -s link show`, `ifconfig`, `/proc/net/dev` or `netstat -i`.
 
+{{%notice note%}}
+On Mellanox switches, Cumulus Linux updates physical counters to the kernel every two seconds and virtual interfaces (such as VLAN interfaces) every ten seconds. You cannot change these values. Because the update process takes a lower priority than other `switchd` processes, the interval might be longer when the system is under a heavy load.
+{{%/notice%}}
+
 ## Sample VXLAN Statistics
 
 VXLAN statistics are available as follows:

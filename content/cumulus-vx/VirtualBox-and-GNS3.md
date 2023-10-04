@@ -1,6 +1,6 @@
 ---
 title: VirtualBox and GNS3
-author: Cumulus Networks
+author: NVIDIA
 weight: 30
 product: Cumulus VX
 version: '5.x'

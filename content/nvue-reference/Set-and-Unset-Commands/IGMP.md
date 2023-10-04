@@ -40,9 +40,53 @@ cumulus@switch:~$ nv set interface swp1 ip igmp enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> ip igmp fast-leave</h>
+
+Turns fast leave processing on or off on the interface. The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> ip igmp last-member-query-count</h>
+
+Sets the number of group-specific queries that a querier sends after receiving a leave message on the interface. You can set a value between 1 and 255. The default setting is 10 seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-count 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> ip igmp last-member-query-interval</h>
 
-Configures the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 255 seconds. The default setting is `1`.
+Configures the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 125.
 
 ### Command Syntax
 
@@ -57,14 +101,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-interval 10
+cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-interval 100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set interface \<interface-id\> ip igmp query-interval</h>
 
-Configures how often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 1800 seconds. The default setting is `125`.
+Configures how often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 1800 seconds. The default setting is 180.
+
+In Cumulus Linux 5.6 and later, you can specify a value between 1 and 65535 seconds. The default setting is 100.
+
+In Cumulus Linux 5.5 and earlier, you can specify a value between 1 and 1800 seconds. The default setting is 180.
 
 ### Command Syntax
 
@@ -86,7 +134,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp query-interval 1000
 
 ## <h>nv set interface \<interface-id\> ip igmp query-max-response-time</h>
 
-Configures the maximum response time for IGMP general queries. You can specify a value between 10 and 250 seconds. The default setting is `10`.
+Configures the maximum response time for IGMP general queries. You can specify a value between 10 and 6553 seconds. The default setting is 100.
 
 ### Command Syntax
 
@@ -101,7 +149,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip igmp query-max-response-time 100
+cumulus@switch:~$ nv set interface swp1 ip igmp query-max-response-time 200
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -155,7 +203,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp static-group 234.10.10.10 source
 
 ## <h>nv set interface \<interface-id\> ip igmp version</h>
 
-Configures the IGMP version. You can specify version 2 or version 3. The default setting is `2`.
+Configures the IGMP version on the specified interface. You can specify version 2 or version 3. The default setting is `3`.
 
 ### Command Syntax
 
@@ -170,7 +218,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 ip igmp version 3
+cumulus@switch:~$ nv set interface swp1 ip igmp version 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -1064,7 +1064,7 @@ cumulus@leaf01:~$
 
 {{< /tabs >}}
 
-When configured, the `graceful-shutdown` community is added to all paths from eBGP peers and the `local-pref` for that route is set to `0`. To see the configuration, run the NCLU command `net show bgp <route>` or the `vtysh` command `show ip bgp <route>`. For example:
+When configured, the `graceful-shutdown` community is added to all inbound and outbound routes from eBGP peers and the `local-pref` for that route is set to `0` (refer to {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8326" text="RFC8326">}}). To see the configuration, run the NCLU command `net show bgp <route>` or the `vtysh` command `show ip bgp <route>`. For example:
 
 ```
 cumulus@switch:~$ net show bgp 10.10.10.0/24

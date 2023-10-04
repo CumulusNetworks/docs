@@ -1,0 +1,1 @@
+libatomic1 has no copyright file

@@ -11,6 +11,7 @@ The primary use cases for VRF in a data center are similar to VLANs at layer 2: 
 VRF is fully supported in the Linux kernel, so it has the following characteristics:
 
 - The VRF is a layer 3 master network device with its own associated routing table.
+- You can associate any layer 3 interface with a VRF, such as an SVI, swp port or bond, or a VLAN subinterface of a swp port or bond.
 - The layer 3 interfaces (VLAN interfaces, bonds, switch virtual interfaces/SVIs) associated with the VRF belong to that VRF; IP rules direct FIB (forwarding information base) lookups to the routing table for the VRF device.
 - The VRF device can have its own IP address, known as a *VRF-local loopback*.
 - Applications can use existing interfaces to operate in a VRF context by binding sockets to the VRF device or passing the `ifindex` using `cmsg`. By default, applications on the switch run against the default VRF. Services started by `systemd` run in the default VRF unless you use the VRF instance. When you enable {{<link url="Management-VRF" text="management VRF">}}, logins to the switch default to the management VRF. This is a convenience so that you do not have to specify management VRF for each command. Cumulus Linux enables management VRF by default.

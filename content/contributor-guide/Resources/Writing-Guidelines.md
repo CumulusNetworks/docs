@@ -1,15 +1,15 @@
 ---
 title: Writing Guidelines
-author: Cumulus Networks
+author: NVIDIA
 weight: 220
 ---
-When we create our user documentation, we strive to provide easy-to-read, concise content with illustrations when useful. When you are editing existing or creating new content for Cumulus Networks technical user documentation, please follow these general guidelines.
+When we create our user documentation, we strive to provide easy-to-read, concise content with illustrations when useful. When you are editing existing or creating new content for Cumulus Linux and NetQ technical user documentation, please follow these general guidelines.
 
 ## Organization and Content
 
 - Cumulus is not a stuffy company so use a more casual, conversational writing style to match
-    - Good: The first step in providing feedback on the Cumulus Networks documentation is to decide what level of input you want to provide.
-    - Not so good: A user must first determine the complexity of the input he or she plans to submit for inclusion in the Cumulus Networks technical documentation.
+    - Good: The first step in providing feedback on the Cumulus Linux and NetQ documentation is to decide what level of input you want to provide.
+    - Not so good: A user must first determine the complexity of the input they plan to submit for inclusion in the Cumulus Linux and NetQ technical documentation.
 - Use an active rather than passive voice
     - Good: An administrator backs up our network configuration on a regular basis.
     - Not so good: Our network configuration will be backed up by an administrator on a regular basis.
@@ -46,7 +46,7 @@ When we create our user documentation, we strive to provide easy-to-read, concis
     - Good: Configure VRF Route Leaking
     - Not so good: Configuring a switch -- Vrf route Leaking
 
-All edits and new content are reviewed by the Cumulus Networks documentation team before publication, so if you are not sure about particular style issues, leave it to us.
+All edits and new content are reviewed by the Cumulus Linux and NetQ documentation team before publication, so if you are not sure about particular style issues, leave it to us.
 
 ## IP Addresses
 All unicast IP addresses used should be based on IPv4 [RFC 1918](https://tools.ietf.org/html/rfc1918) or [RFC 5737](https://tools.ietf.org/html/rfc5737) prefixes. Acceptable IPv4 address are between:

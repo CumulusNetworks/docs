@@ -1,8 +1,8 @@
 ---
 title: Automation with Cumulus Linux
-author: Cumulus Networks
+author: NVIDIA
 weight: 30
-product: Cumulus Networks Guides
+product: Technical Guides
 imgData: guides
 ---
 NVUE is an object-oriented, schema driven model of a complete Cumulus Linux system (hardware and software) providing a robust API that allows for multiple interfaces to both view (show) and configure (set and unset) any element within a system running the NVUE software.
@@ -182,13 +182,14 @@ You can find more information {{<exlink url="https://docs.nvidia.com/networking-
 
 ### Ansible Modules
 
-The NVIDIA NVUE Collection (`nvidia.nvue`) includes Ansible modules to help you interact with NVIDIA devices managed by NVUE. The modules are developed and validated using Ansible 2.11 and Python 3.6, and are supported on Cumulus Linux 5.x.
+{{<exlink url="https://galaxy.ansible.com/nvidia/nvue" text="The NVIDIA NVUE Collection">}} (`nvidia.nvue`) includes Ansible modules to help you interact with NVIDIA devices managed by NVUE. The modules are developed and validated using Ansible 2.11 and Python 3.6, and are supported on Cumulus Linux 5.x.
 
 {{%notice note%}}
-Ansible modules are in Beta as of the publication of this guide. The various modules available as of the publication of this guide are: 
-- The **CLI** is a wrapper around the `nv` command line tool with added templating and automated dialog prompting. You can find more information {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/tree/main" text="here">}}.
+The various modules available as of the publication of this guide are: 
+- The **CLI** is a wrapper around the `nv` command line tool with added templating and automated dialog prompting.
 - The **REST API** enables you to send and retrieve NVUE configuration.
-- **Object specific modules** are designed to work with the individual network objects and support various parameters that allow you to interact with them as required. The various modules supported include bridge, router, interface, evpn, mlag, system, vrf, and vxlan. These are available for download {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/tree/develop?ref_type=heads" text="here">}}, with instructions for usage {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/tree/develop/examples/nvair-demo" text="here">}}.
+- **Object specific modules** are designed to work with the individual network objects and support various parameters that allow you to interact with them as required. The various modules supported include bridge, router, interface, evpn, mlag, system, vrf, and vxlan. 
+You can find more details {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/guides/Data-Center-Network-Automation-Ansible-Deployment-Guide/" text="here">}}.
 {{%/notice%}}
 
 ## NVUE Migration Tool

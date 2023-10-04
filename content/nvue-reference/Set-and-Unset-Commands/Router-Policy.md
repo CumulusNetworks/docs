@@ -12,6 +12,8 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set router policy</h>
 
 Configures a router policy.
@@ -253,24 +255,7 @@ cumulus@switch:~$ nv set router policy ext-community-list mylist rule 10 action 
 
 ## <h>nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community</h>
 
-Configures the extended community name.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<list-id>` |  The extended community list name. |
-| `<rule-id>` | The extended community list rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set router policy ext-community-list mylist rule 10 ext-community 64510:2
-```
+Configures the extended community.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -625,17 +610,6 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10
 
 Configures the route map rule action; `permit` or `deny`.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` | The route map rule number.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action deny</h>
@@ -656,7 +630,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 deny
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action deny
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -702,7 +676,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 permit exit-policy
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -756,17 +730,6 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 description "this 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match</h>
 
 Configures the match criteria you want to use for the route map rule.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<route-map-id>` | The route map name. |
-| `<rule-id>` | The route map rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -911,7 +874,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 match interface sw
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> match ip-nexthop \<address\></h>
 
-Configures the route map to match the IP address of a nexthop.
+Configures the route map to match the IP address of a next hop.
 
 ### Command Syntax
 
@@ -1753,7 +1716,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set local-preferen
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric</h>
 
-Configures a set clause in the route map for the metric value for the destination routing protocol. You can set `metric-plus`, `metric-minus`, `rtt`, `rtt-plus`, or `rtt-minus`.
+Configures a set clause in the route map for the metric value for the destination routing protocol. You can set the value to `rtt`, `rtt-plus`, `rtt-minus`, or a value between 1 and 4294967295.
 
 ### Command Syntax
 
@@ -1769,14 +1732,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set metric metric-minus
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set metric rtt
 ```
+
+{{%notice note%}}
+In Cumulus Linux 5.5 and earlier, you can also set the metric value to `metric-plus` or `metric-minus`. Cumulus 5.6 and later does not provide the `metric-plus` and `metric-minus` options.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric type</h>
 
-Configures a set clause in the route map for the metric type for routes that match the map. The metric type is used by the OSPF protocol. You can set OSPF external type 1 metric or OSPF external type 2 metric.
+Configures a set clause in the route map for the metric type for routes that match the map. The OSPF protocol uses the metric type. You can set OSPF external type 1 metric or OSPF external type 2 metric.
 
 ### Command Syntax
 

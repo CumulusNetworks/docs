@@ -22,6 +22,13 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay
+           source-ip  Summary
+---------  ---------  -----------------------
++ default  auto       gateway-interface: lo
+  default             interface:        swp51
+  default             interface:        swp52
+  default             interface:        vlan10
+  default             server:    172.16.1.102
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -44,6 +51,15 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay default
+                     operational    applied      
+-------------------  -------------  -------------
+source-ip            auto           auto         
+[gateway-interface]  swp2           swp2         
+[interface]          peerlink.4094  peerlink.4094
+[interface]          swp51          swp51        
+[interface]          swp52          swp52        
+[interface]          vlan10         vlan10       
+[server]             172.16.1.102   172.16.1.102
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -70,7 +86,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service dhcp-relay default gateway-interface lo
+cumulus@switch:~$ nv show service dhcp-relay default gateway-interface swp2
+         operational  applied 
+-------  -----------  --------
+address  10.0.0.4     10.0.0.4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -133,6 +152,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay6
+         Summary                            
+-------  -----------------------------------
+default  interface.downstream: peerlink.4094
+         interface.downstream:        vlan10
+         interface.upstream:           swp51
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -155,6 +179,13 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay6 default
+                operational    applied      
+--------------  -------------  -------------
+interface                                   
+  [downstream]  peerlink.4094  peerlink.4094
+  [downstream]  vlan10         vlan10       
+  [upstream]    swp51          swp51        
+  [upstream]    swp52          swp52 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -176,7 +207,13 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service dhcp-relay6 default interface swp1
+cumulus@switch:~$ nv show service dhcp-relay6 default interface
+              operational    applied      
+------------  -------------  -------------
+[downstream]  peerlink.4094  peerlink.4094
+[downstream]  vlan10         vlan10       
+[upstream]    swp51          swp51        
+[upstream]    swp52          swp52
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -199,7 +236,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service dhcp-relay6 default interface downstream swp1
+cumulus@switch:~$ nv show service dhcp-relay6 default interface downstream vlan10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -223,6 +260,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay6 default interface upstream swp51
+                operational      applied        
+--------------  ---------------  ---------------
+server-address  2001:db8:100::2  2001:db8:100::2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -239,6 +279,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server
+         Summary           
+-------  ------------------
+default  interface:    swp1
+         pool: 10.1.10.0/24
+         static:    server1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -261,6 +306,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default
+          operational   applied     
+--------  ------------  ------------
+[interface]  swp1          swp1        
+[pool]       10.1.10.0/24  10.1.10.0/24
+[static]     server1       server1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -283,6 +333,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default domain-name
+             domain-name
+--------     -----------
+mydomain.com
+
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -305,7 +359,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service dhcp-server default domain-name my-domain
+cumulus@switch:~$ nv show service dhcp-server default domain-name mydomain.com
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -328,6 +382,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default domain-name-server
+
+--------------
+192.168.200.53
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -373,7 +430,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default interface
+
+----
+swp1
 ```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show service dhcp-server \<vrf-id\> interface \<interface-id\></h>
@@ -395,6 +456,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default interface swp1
+
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -417,6 +479,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default pool
+              cumulus-provision-url  default-url  lease-time  ping-check  pool-name  Summary                           
+------------  ---------------------  -----------  ----------  ----------  ---------  ----------------------------------
+10.1.10.0/24                                      200000                             domain-name:           example.com
+                                                                                     domain-name-server: 192.168.200.53
+                                                                                     gateway:                 10.1.10.1
+                                                                                     range:                 10.1.10.100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -440,6 +508,17 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24
+                       operational     applied        
+---------------------  --------------  ---------------
+cumulus-provision-url                                 
+default-url                                           
+lease-time             200000          200000         
+ping-check                             on             
+pool-name                              storage-servers
+[domain-name]          example.com     example.com    
+[domain-name-server]   192.168.200.53  192.168.200.53 
+[gateway]              10.1.10.1       10.1.10.1      
+[range]                10.1.10.100     10.1.10.100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -463,6 +542,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name
+             domain-name
+-----------  -----------
+example.com
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -510,6 +592,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name-server
+
+--------------
+192.168.200.53
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -557,6 +642,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24 gateway
+         
+---------
+10.1.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -604,6 +692,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24 range
+             to         
+-----------  -----------
+10.1.10.100  10.1.10.199
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -628,6 +719,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default pool 10.1.10.0/24 range 10.1.10.100
+    operational  applied    
+--  -----------  -----------
+to  10.1.10.199  10.1.10.199
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -650,6 +744,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default static
+         cumulus-provision-url  host-id-circuit-id  ip-address  MAC address      
+-------  ---------------------  ------------------  ----------  -----------------
+server1                                             10.0.0.2    44:38:39:00:01:7e
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -673,6 +770,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-server default static server1
+             operational        applied          
+-----------  -----------------  -----------------
+ip-address   10.0.0.2           10.0.0.2         
+mac-address  44:38:39:00:01:7e  44:38:39:00:01:7e
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1067,7 +1168,7 @@ Shows configuration for a specific static host served by the IPv6 DHCP server.
 | Syntax | Description |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
-| `<static-id>` | The IDN host name. |
+| `<static-id>` | The IDN hostname. |
 
 ### Version History
 

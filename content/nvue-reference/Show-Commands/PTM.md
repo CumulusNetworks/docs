@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show router ptm</h>
 
-Shows if PTM check link state is enabled. When enabled, PTM performs additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that `ptmd` defines.
+Shows if PTM check link state is on or off. When on, PTM performs additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that `ptmd` defines.
 
 ### Version History
 
@@ -22,4 +22,7 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show router ptm
+        applied  pending
+------  -------  -------
+enable  off      off
 ```

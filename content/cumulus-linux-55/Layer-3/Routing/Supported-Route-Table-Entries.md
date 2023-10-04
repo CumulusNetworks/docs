@@ -53,11 +53,13 @@ The values in the following tables reflect results from testing, which can diffe
 | lpm-balanced   | 16k           | 16k (IPv4) and 12k (IPv6) | 124k (IPv4), 124k (IPv6-long), 1K (IPv4-Mcast)|
 | ipmc-heavy     | 57k           | 41k (IPv4) and 20k (IPv6) | 82K (IPv4), 66K (IPv6-long), 8K (IPv4-Mcast) |
 | ipmc-max       | 41K           | 41k (IPv4) and 20k (IPv6) | 74K (IPv4), 66K (IPv6-long), 15K (IPv4-Mcast)|
-<!-- vale on -->
-<!-- | mpls           | 8k            | 8k (IPv4) and 8k (IPv6)   | 65k (IPv4), 32k (IPv6-long) |
-| l2-heavy-2     | 124k          | 132k (IPv4) and 12k (IPv6)| 16k (IPv4), 16k (IPv6-long), 1K (IPv4-Mcast)|
--->
+
 The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number is half of the /64 IPv6 prefix number.
+
+{{%notice note%}}
+For the ipmc-max profile, the `cl-resource-query` command output displays 33K instead of 15K as the maximum number of IPv4 multicast routes in `switchd`. 15K is the supported and validated value. You can use the higher value of 33K to test higher multicast scale in non-production environments.
+{{%/notice%}}
+
 <!-- vale on -->
 ## Change Forwarding Resource Profiles
 

@@ -11,6 +11,7 @@ You typically use VRFs in the data center to carry multiple isolated traffic str
 VRF is fully supported in the Linux kernel and has the following characteristics:
 
 - The VRF is a layer 3 master network device with its own associated routing table.
+- You can associate any layer 3 interface with a VRF, such as an SVI, swp port or bond, or a VLAN subinterface of a swp port or bond.
 - The layer 3 interfaces associated with the VRF belong to that VRF; IP rules direct [FIB](## "Forwarding Information Base") lookups to the routing table for the VRF device.
 - The VRF device can have its own IP address, known as a *VRF-local loopback*.
 - By default, applications on the switch run against the default VRF. Services started by `systemd` run in the default VRF unless you use the VRF instance.

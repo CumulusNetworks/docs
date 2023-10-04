@@ -36,17 +36,17 @@ cumulus@switch:~$ nv set router bgp autonomous-system 65101
 
 ## <h>nv set router bgp convergence-wait</h>
 
-Configures BGP read-only mode. Sometimes, as Cumulus Linux establishes BGP peers and receives updates, it installs prefixes in the RIB and advertises them to BGP peers before receiving and processing information from all the peers. Also, depending on the timing of the updates, Cumulus Linux sometimes installs prefixes, then withdraws and replaces them with new routing information. Read-only mode minimizes this BGP route churn in both the local RIB and with BGP peers.
+Configures BGP readonly mode. Sometimes, as Cumulus Linux establishes BGP peers and receives updates, it installs prefixes in the RIB and advertises them to BGP peers before receiving and processing information from all the peers. Also, depending on the timing of the updates, Cumulus Linux sometimes installs prefixes, then withdraws and replaces them with new routing information. Readonly mode minimizes this BGP route churn in both the local RIB and with BGP peers.
 
-Enable read-only mode to reduce CPU and network usage when restarting the BGP process. Because intermediate best paths are possible for the same prefix as peers establish and start receiving updates at different times, read-only mode is useful in topologies where BGP learns a prefix from a large number of peers and the network has a high number of prefixes.
+Enable readonly mode to reduce CPU and network usage when restarting the BGP process. Because intermediate best paths are possible for the same prefix as peers establish and start receiving updates at different times, readonly mode is useful in topologies where BGP learns a prefix from a large number of peers and the network has a high number of prefixes.
 
-While in read-only mode, BGP does not run best-path or generate any updates to its peers.
+While in readonly mode, BGP does not run best-path or generate any updates to its peers.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router bgp convergence-wait establish-wait-time</h>
 
-Configures BGP read-only mode by setting the establish wait time. You can set a value between 0 and 3600.
+Configures BGP readonly mode by setting the establish wait time. You can set a value between 0 and 3600.
 
 ### Version History
 
@@ -62,7 +62,7 @@ cumulus@switch:~$ nv set router bgp convergence-wait establish-wait-time 200
 
 ## <h>nv set router bgp convergence-wait time</h>
 
-Configures BGP read-only mode by setting the convergence wait time. You can set a value between 0 and 3600.
+Configures BGP readonly mode by setting the convergence wait time. You can set a value between 0 and 3600.
 
 ### Version History
 
@@ -185,7 +185,7 @@ cumulus@switch:~$ nv set router bgp graceful-shutdown on
 
 ## <h>nv set router bgp policy-update-timer</h>
 
-Configures the BGP policy update timer globally on the switch to wait the specified number of seconds before processing updates to policies to ensure that a series of changes are processed together. You can set a value between 0 and 600.
+Configures the BGP policy update timer globally on the switch to wait the specified number of seconds before processing updates to policies to ensure that a series of changes process together. You can set a value between 0 and 600.
 
 ### Version History
 
@@ -974,7 +974,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast admi
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id>\ router bgp address-family ipv6-unicast admin-distance internal</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast admin-distance internal</h>
 
 Configures the distance to apply to IPv6 routes from iBGP peers when installed into the RIB. You can specify a value between 1 and 255.
 
@@ -1468,6 +1468,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf default router bgp autonomous-system 65101
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp enable</h>
 
 Turns BGP on or off for the specified VRF.
@@ -1714,7 +1716,7 @@ cumulus@switch:~$ nv set vrf default router bgp path-selection multipath bandwid
 
 ## <h>nv set vrf \<vrf-id\> router bgp path-selection routerid-compare</h>
 
-Configures BGP to use the router ID to decide the best path when two identical routes are received from two different peers. The default setting is `off`.
+Configures BGP to use the router ID to decide the best path when the switch receives two identical routes from two different peers. The default setting is `off`.
 
 ### Command Syntax
 
@@ -1764,7 +1766,7 @@ cumulus@switch:~$ nv set vrf default router bgp route-reflection enable on
 
 ## <h>nv set vrf \<vrf-id\> router bgp route-reflection cluster-id</h>
 
-Configures the cluster ID to use during route reflection. This setting is required when route-reflection is on.
+Configures the cluster ID to use during route reflection. When route reflection is on, you must set the cluster ID.
 
 ### Command Syntax
 
@@ -1847,6 +1849,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf RED router bgp rd 10.1.20.2:5
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp router-id</h>
 
@@ -3226,7 +3230,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound aspath-filter myaspathlist
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound aspath-list myaspathlist
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4223,7 +4227,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp timers connection-retry 
+cumulus@switch:~$ nv set vrf default router bgp timers connection-retry 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -4515,6 +4519,8 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 description SPINE01
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> enforce-first-as</h>
 
@@ -4819,12 +4825,6 @@ Provides commands to configure options for handling the AS_PATH for prefixes to 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn</h>
-
-Turns the option for a received AS_PATH to contain the ASN of the local system on or off .
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn enable</h>
 
 Configures BGP to allow a received AS path to contain the ASN of the local system.
@@ -5125,7 +5125,24 @@ Provides commands to configure options for handling the AS_PATH for IPv6 prefixe
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath allow-my-asn</h>
 
-Turns on or off the option to allow the received AS_PATH to contain the ASN of the local system.
+Enables or disables the option to allow the received AS_PATH to contain the ASN of the local system.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath allow-my-asn enable on
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -5461,6 +5478,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 enable on
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> shutdown</h>
 
 Administratively shuts down a specific neighbor in the specified VRF. You can specify `on` or `off`.
@@ -5481,6 +5500,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 shutdown on
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers</h>
 

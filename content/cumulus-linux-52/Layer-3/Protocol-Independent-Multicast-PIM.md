@@ -965,9 +965,6 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Edit /etc/cumulus/control-plane/policers.conf ">}}
 
-{{< /tab >}}
-{{< /tabs >}}
-
 1. Edit the `/etc/cumulus/control-plane/policers.conf` file:
 
    - To tune the PIM forwarding and burst rate, change the `copp.pim_ospf_rip.rate` and `copp.pim_ospf_rip.burst` parameters.
@@ -994,6 +991,8 @@ cumulus@switch:~$ nv config apply
    cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
    ```
 
+{{< /tab >}}
+{{< /tabs >}}
 <!-- vale off -->
 <!-- vale.ai Issue #253 -->
 ## PIM Active-active with MLAG

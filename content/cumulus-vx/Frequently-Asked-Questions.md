@@ -1,6 +1,6 @@
 ---
 title: Frequently Asked Questions
-author: Cumulus Networks
+author: NVIDIA
 weight: 50
 product: Cumulus VX
 version: '5.x'
@@ -10,7 +10,7 @@ version: '5.x'
 ### From where do I download Cumulus VX images?
 <!-- vale on -->
 
-Cumulus VX is available as a free download on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/" text="Cumulus Networks website">}}. You must create an account and log in to download a Cumulus VX image. Images are available for all supported hypervisors.
+Cumulus VX is available as a free download on the {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}. You must create an account and log in to download a Cumulus VX image. Images are available for all supported hypervisors.
 
 ### Which Hypervisors does Cumulus VX support?
 

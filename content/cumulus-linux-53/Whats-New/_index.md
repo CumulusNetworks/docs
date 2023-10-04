@@ -42,6 +42,7 @@ The NVIDIA SN3750-SX switch is available for [early access]({{<ref "/knowledge-b
   - {{<link url="Prescriptive-Topology-Manager-PTM/#check-link-state" text="PTM enable command">}} to check link state
   - Support for hyphens in hostnames, VRF, route map, next hop groups, prefix list, AS path list, community list, and ACL names
   - {{<link url="Interface-Configuration-and-Management/#fast-linkup" text="Fast link up command">}} (`nv set interface <interface-id> link fast-linkup on`) to support fast link up between Spectrum1 switches and certain optic network interface cards that require links to come up fast
+  - Improved error handling when applying invalid interface configuration with NVUE
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}

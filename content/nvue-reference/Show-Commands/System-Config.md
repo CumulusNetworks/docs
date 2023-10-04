@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show system config</h>
 
-Shows the system configuration.
+Shows the system configuration in json format.
 
 ### Version History
 
@@ -22,13 +22,18 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system config
+apply:
+  ignore: {}
+  overwrite: all
+auto-save:
+  enable: off
+snippet: {}
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system config apply</h>
-
-Shows the system configuration apply settings.
+Shows the system configuration apply settings in json format. The output shows if any configuration is ignored and the current overwrite setting (`all`, which overwrites all files (whether modified by NVUE or locally modified by any other user) or `controlled`, which overwrites only the files that NVUE last modified.)
 
 ### Version History
 
@@ -38,6 +43,8 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system config apply
+ignore: {}
+overwrite: all
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -53,7 +60,8 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ nv show system config apply ignore 
+/etc/ptp4l.conf: {}
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -94,6 +102,7 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system config auto-save
+enable: off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -110,4 +119,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system config snippet
+switchd.conf: |
+  link_flap_window = 10
+  link_flap_threshold = 5
 ```

@@ -2,8 +2,8 @@
 title: EVPN Deployment Scenarios
 weight: 40
 cascade:
-    product: Cumulus Networks Guides
-    author: Cumulus Networks
+    product: Technical Guides
+    author: NVIDIA
 ---
 ## EVPN for L2 Deployments
 
@@ -28,7 +28,7 @@ Scenarios to consider using L2 EVPN:
 
 ## EVPN for L3 Deployments
 
-Traditionally, data centers have used L2 technologies such as STP and MLAG. As data centers evolve and expand, they tend to outgrow their limits; xSTP blocks ports, which locks out needed bandwidth, while MLAG may not provide enough redundancy. Additionally, a device outage is a significant event and larger modular-chassis devices use a lot of power.
+Traditionally, data centers have used L2 technologies such as STP and MLAG. As data centers evolve and expand, they tend to outgrow their limits; STP blocks ports, which locks out needed bandwidth, while MLAG may not provide enough redundancy. Additionally, a device outage is a significant event and larger modular-chassis devices use a lot of power.
 
 ### Routing Models
 
@@ -212,8 +212,7 @@ Points to consider:
 - Cumulus Linux does not leak routes in the management VRF with the next hop as eth0 or the management interface.
 - You can leak routes in a VRF that iBGP or multi-hop eBGP learns even if their next hops become unreachable. NVIDIA recommends route leaking for routes that BGP learns through single-hop eBGP.
 - You cannot configure VRF instances of BGP in multiple autonomous systems (AS) or an AS that is not the same as the global AS.
-- Do not use the default VRF as a shared service VRF. Create another VRF for shared services.
-- Run common services in a separate VRF (service VRF) instead of the default VRF to simplify configuration and avoid using route maps for filtering.
+- Do not use the default VRF as a shared service VRF. Create another VRF for shared services, for example service VRF, to simplify configuration and avoid using route maps for filtering.
 - To exclude certain prefixes from the import process, configure the prefixes in a route map.
 
 An EVPN symmetric routing configuration has certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has routes to VTEP addresses that you cannot leak to any tenant VRFs. If you need to leak routes between the default VRF and a non-default VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes.  

@@ -28,6 +28,29 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery
+                      applied              
+--------------------  ---------------------
+enable                on                   
+mtu                   1500                 
+[dnssl]               accounting.nvidia.com
+home-agent                                 
+  enable              on                   
+  lifetime            200                  
+  preference          0                    
+[prefix]              2001:db8:1::100/32   
+[rdnss]               2001:db8:1::100      
+router-advertisement                       
+  enable              off                  
+  fast-retransmit     off                  
+  hop-limit           64                   
+  interval            600000               
+  interval-option     off                  
+  lifetime            1800                 
+  managed-config      off                  
+  other-config        off                  
+  reachable-time      0                    
+  retransmit-time     0                    
+  router-preference   medium
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -73,6 +96,9 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
+          applied 
+--------  --------
+lifetime  infinite
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -95,6 +121,11 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery home-agent
+            applied
+----------  -------
+enable      on     
+lifetime    200    
+preference  0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -140,6 +171,13 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32
+                    applied   
+------------------  ----------
+autoconfig          on        
+off-link            on        
+preferred-lifetime  100000    
+router-address      on        
+valid-lifetime      2000000000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -185,6 +223,9 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
+          applied 
+--------  --------
+lifetime  infinite
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -207,4 +248,61 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery router-advertisement
+                   applied
+-----------------  -------
+enable             off    
+fast-retransmit    off    
+hop-limit          64     
+interval           600000 
+interval-option    off    
+lifetime           1800   
+managed-config     off    
+other-config       off    
+reachable-time     0      
+retransmit-time    0      
+router-preference  medium
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system global nd</h>
+
+Shows <span style="background-color:#F5F5DC">[ND](## "Neighbor Discovery")</span> settings, such as the neighbor base reachable timer and garbage collection settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system global nd
+                              operational  applied  
+----------------------------  -----------  ------- 
+base-reachable-time           50           50      
+garbage-collection-threshold                               
+  effective                   17920                        
+  maximum                     20480                        
+  minimum                     128           
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system global nd garbage-collection-threshold</h>
+
+Shows the <span style="background-color:#F5F5DC">[ND](## "Neighbor Discovery")</span> garbage collection threshold settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system global nd garbage-collection-threshold
+           operational  applied
+---------  -----------  -------
+effective  35840               
+maximum    40960               
+minimum    128           
 ```

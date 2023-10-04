@@ -322,7 +322,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service dhcp-server default domain-name-server 192.168.200.53.
+cumulus@switch:~$ nv set service dhcp-server default domain-name-server 192.168.200.53
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -364,6 +364,12 @@ Configures a DHCP pool.
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 
+```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -785,7 +791,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service dhcp-server6 default domain-name-server 2001:db8::1/128
+cumulus@switch:~$ nv set service dhcp-server6 default domain-name-server 2001:db8::
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1009,30 +1015,6 @@ cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 pool-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\></h>
-
-Configures the start of the DHCP pool range for IPv6.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-| `<pool-id>` | The DHCP6 pool subnet. |
-| `<range-id>`|  The start of the DHCP pool range. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 range 2002:a01:a64::
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\> to \<ipv6\></h>
 
 Configures the end of the DHCP pool range for IPv6.
@@ -1116,7 +1098,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service dhcp-server6 default static server1 ip-address 2001:db8::1/128
+cumulus@switch:~$ nv set service dhcp-server6 default static server1 ip-address 2001:db8::
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -479,7 +479,7 @@ cumulus@switch:~$ nv set router ospf enable on
 
 ## <h>nv set router ospf router-id</h>
 
-Configures the OSPF router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures the router ID for all VRFs if a common one is used; otherwise, you must set the router ID for every VRF.
+Configures the OSPF router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures the router ID for all VRFs if it is a common one; otherwise, you must set the router ID for every VRF.
 
 ### Version History
 
@@ -769,7 +769,7 @@ cumulus@switch:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24
 
 ## <h>nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\> cost</h>
 
-Configures the metric advertised for the specified address range. You can specify a value between 0 and 16777215, or `auto`. The default value is `auto` (the operational default value is derived from the components).
+Configures the metric advertised for the specified address range. You can specify a value between 0 and 16777215, or `auto`. The default value is `auto` (Cumulus Linux derives the operational default value from the components).
 
 ### Command Syntax
 
@@ -1204,7 +1204,7 @@ cumulus@switch:~$ nv set vrf default router ospf redistribute bgp metric 2000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router ospf redistribute bgp metric-type</h>
+## <h>nv set vrf \<vrf-id\> router ospf redistribute bgp metric-type \<type\></h>
 
 Configures the metric type for OSPF BGP route redistribution; 1 or 2.
 
@@ -1221,7 +1221,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf redistribute bgp metric-type
+cumulus@switch:~$ nv set vrf default router ospf redistribute bgp metric-type 2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1594,7 +1594,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router-id 10.10.10.1 
+cumulus@switch:~$ nv set vrf default router ospf router-id 10.10.10.1 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1744,5 +1744,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router ospf spf max-holdtime 3000
+cumulus@switch:~$ nv set vrf default router ospf timers spf max-holdtime 3000
 ```

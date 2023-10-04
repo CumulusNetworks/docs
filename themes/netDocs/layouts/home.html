@@ -50,6 +50,7 @@
             <li class="navSection primary">
               <a class="rootLink" href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a>
               <a class="rootLink" href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a>
+              <a class="rootLink" href={{ "nvidia-air" | absURL }}>NVIDIA Air</a>
               <a class="rootLink" href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a>
               <a class="rootLink" href={{ "knowledge-base" | absURL }}>Knowledge Base</a>
               <a class="rootLink" href={{ "guides" | absURL }}>Technical Guides</a>
@@ -68,6 +69,7 @@
         <ul>
           <li><a href={{ .Site.Params.cl_latest | absURL }}>NVIDIA Cumulus Linux</a></li>
           <li><a href={{ .Site.Params.netq_latest | absURL }}>NVIDIA NetQ</a></li>
+          <li><a href={{ "nvidia-air" | absURL }}>NVIDIA Air</a></li>
           <li><a href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a></li>
           <li><a href={{ "knowledge-base" | absURL }}>Knowledge Base</a></li>
       </div>
@@ -155,13 +157,12 @@
               </ul>
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
-            <a href={{ "cumulus-vx" | absURL }}><img src={{"home-products-cumulus-express.jpg" | absURL }} alt="Cumulus VX" class="mb-6"></a>
-            <h3>NVIDIA Cumulus VX</h3>
-            <p class="small">A free virtual appliance &mdash; download and build a virtual data center using any popular hypervisor</p>
+            <a href="{{ .Site.Params.air_latest | absURL }}"><img src={{"home-products-cumulus-express.jpg" | absURL }} alt="NVIDIA Air" class="mb-6"></a>
+            <h3>NVIDIA Air</h3>
+            <p class="small">A cloud hosted, network simulation platform that behaves exactly like a real world production environment</p>
             <ul>
-              <li><a href={{ "cumulus-vx" | absURL }}>What is Cumulus VX?</a></li>
-              <li><a href={{ printf "%s#supported-hypervisors" ("cumulus-vx/Overview" | absURL) }}>Supported Hypervisors</a></li>
-              <li><a href={{"cumulus-vx/Frequently-Asked-Questions" | absURL }}>Frequently Asked Questions</a></li>
+              <li><a href="{{ .Site.Params.air_latest | absURL }}/Quick-Start/">Quick start guide</a></li>
+              <li><a href="{{ .Site.Params.air_latest | absURL }}/Whats-New/">Whats new in NVIDIA Air</a></li>
             </ul>
           </div>
         </div>

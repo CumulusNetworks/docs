@@ -1122,6 +1122,20 @@ cumulus@switch:~$ net commit
 
 Be aware of an existing issue when you use NCLU to create an iBGP peering, it creates an eBGP peering instead. For more information, see {{<link title="Cumulus Linux 3.7 Release Notes#CM-23417" text="this release note">}}.
 
+### MLAG Routing Support
+
+In addition to the routing adjacency over the [peer link](#peer-link-routing), Cumulus Linux supports routing adjacencies from attached network devices to MLAG switches under the following conditions:
+- The router must physically attach to a single interface of a switch.
+- The attached router must peer directly to a local address on the physically connected switch.
+
+{{%notice note%}}
+The router cannot:
+- Attach to the switch over a MLAG bond interface.
+- Form routing adjacencies to a virtual address (VRR or VRRP).
+{{%/notice%}}
+
+{{< figure src="/images/cumulus-linux/mlag-supported-routing.png" width="700" >}}
+
 ## IGMP Snooping with MLAG
 
 {{<link url="IGMP-and-MLD-Snooping" text="IGMP snooping">}} processes IGMP reports received on a bridge port in a bridge to identify hosts that are configured to receive multicast traffic destined to that group. An IGMP query message received on a port is used to identify the port that is connected to a router and configured to receive multicast traffic.

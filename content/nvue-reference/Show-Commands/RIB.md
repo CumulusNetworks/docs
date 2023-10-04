@@ -28,6 +28,17 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router rib
+Address-family  Summary               
+--------------  ----------------------
+ipv4            Route:    10.0.0.10/32
+                Route:     10.0.0.9/32
+                Route:   10.10.10.1/32
+                Route: 10.10.10.101/32
+                Route: 10.10.10.102/32
+                Route:   10.10.10.2/32
+                Route:   10.10.10.3/32
+                Route:   10.10.10.4/32
+ipv6            Route:       fe80::/64
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -51,6 +62,19 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4
+
+route
+========
+    Route            Summary            
+    ---------------  -------------------
+    10.0.0.9/32      Protocol:       bgp
+    10.0.0.10/32     Protocol:       bgp
+    10.10.10.1/32    Protocol: connected
+    10.10.10.2/32    Protocol:       bgp
+    10.10.10.3/32    Protocol:       bgp
+    10.10.10.4/32    Protocol:       bgp
+    10.10.10.101/32  Protocol:       bgp
+    10.10.10.102/32  Protocol:       bgp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

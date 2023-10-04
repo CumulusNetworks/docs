@@ -319,6 +319,33 @@ cumulus@switch:~$ nv set interface swp1 qos remark profile MYPROFILE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> qos pfc-watchdog state</h>
+
+Enables or disables PFC watchdog on the interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled. The default setting is `disable`.
+
+- PFC watchdog only works for lossless traffic queues.
+- You can only configure PFC watchdog on a port with PFC (or link pause) configuration.
+- You can only enable PFC watchdog on a physical interface (swp).
+- You cannot enable the watchdog on a bond (for example, bond0) but you can enable the watchdog on a port that is a member of a bond (for example, swp1).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 qos qos pfc-watchdog state enable
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set qos</h>
 
 Configures global Quality of Service (QOS) settings.
@@ -2115,22 +2142,6 @@ cumulus@switch:~$ nv set qos remark default-global switch-priority 0 pcp 4
 
 Configures RDMA over Converged Ethernet lossless (RoCE).
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<profile-id>` |   The profile name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set qos egress-shaper shaper1 port-max-rate 200000
-```
-
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set qos roce cable-length</h>
@@ -2243,4 +2254,36 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv set qos traffic-pool 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc-watchdog polling-interval</h> 
+
+Configures the PFC watchdog polling interval. The default polling interval is 100 milliseconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog polling-interval 200
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos pfc-watchdog robustness</h> 
+
+Configures how many polling intervals the PFC watchdog must wait before it mitigates the storm condition. The default number of polling intervals is 3.
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos pfc-watchdog robustness 5
 ```

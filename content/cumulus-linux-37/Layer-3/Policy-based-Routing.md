@@ -80,6 +80,10 @@ If the IP address in the rule is `0.0.0.0/0 or ::/0`, any IP address is a match.
 3. Assign the PBR policy to an ingress interface with the `net add interface <interface> pbr-policy <name>` command.  
     The example command below assigns the PBR policy `map1` to interface swp51:
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as PBR, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 ```
 cumulus@switch:~$ net add interface swp51 pbr-policy map1
 cumulus@switch:~$ net pending

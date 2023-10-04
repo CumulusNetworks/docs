@@ -1,6 +1,6 @@
 ---
 title: Cumulus VX
-author: Cumulus Networks
+author: NVIDIA
 weight: -34
 subsection: true
 cascade:
@@ -25,6 +25,6 @@ NVIDIA also offers {{<exlink url="https://www.nvidia.com/en-us/networking/ethern
 ## How do I use Cumulus VX?
 <!-- vale on -->
 
-This document describes how to install Cumulus VX on a {{<link url="Overview#supported-hypervisors" text="supported hypervisor">}} and configure the created VMs using a simple two leaf and one spine topology. After you successfully install and configure the VMs, you can run basic commands to get up and running. You can then explore further using the [Cumulus Linux documentation]({{<ref "/cumulus-linux-54" >}}) as a resource.
+This document describes how to install Cumulus VX on a {{<link url="Overview#supported-hypervisors" text="supported hypervisor">}} and configure the created VMs using a simple two leaf and one spine topology. After you successfully install and configure the VMs, you can run basic commands to get up and running. You can then explore further using the [Cumulus Linux documentation]({{<ref "/cumulus-linux-55" >}}) as a resource.
 
 The {{<link url="Advanced-Configuration" text="Advanced Configuration">}} section of this document provides additional procedures to configure the two leaf, one spine topology for use with the {{<exlink url="https://www.nvidia.com/en-us/networking/linux-on-demand/" text="Cumulus Linux on demand">}} self-paced labs and to create your own topology with the topology converter for use with Vagrant and Libvirt.

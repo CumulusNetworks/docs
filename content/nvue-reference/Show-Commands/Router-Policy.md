@@ -22,22 +22,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router policy
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show router policy as-path-list</h>
-
-Shows the AS path list policy configuration. You use an AS path list to match BGP AS paths.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router policy as-path-list
+                      applied  pending   
+--------------------  -------  ----------
+[as-path-list]                 mylist    
+[community-list]               COMMUNITY1
+[ext-community-list]           mylist
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -59,12 +48,15 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router policy as-path-list mylist 
+cumulus@switch:~$ nv show router policy as-path-list mylist
+        applied  pending
+------  -------  -------
+[rule]           10 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show router policy as-path-list \<list-id>\ rule</h>
+## <h>nv show router policy as-path-list \<list-id\> rule</h>
 
 Shows the specified AS path list policy rules.
 
@@ -86,7 +78,7 @@ cumulus@switch:~$ nv show router policy as-path-list mylist rule
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show router policy as-path-list \<list-id>\ rule \<rule-id\></h>
+## <h>nv show router policy as-path-list \<list-id\> rule \<rule-id\></h>
 
 Shows the specified AS path list policy rule configuration.
 
@@ -105,6 +97,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router policy as-path-list mylist rule 10
+            applied  pending
+----------  -------  -------
+action               permit 
+aspath-exp           ^100_
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -143,6 +139,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router policy community-list COMMUNITY1
+        applied  pending
+------  -------  -------
+[rule]           10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -188,6 +187,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router policy community-list COMMUNITY1 rule 10
+             applied  pending
+-----------  -------  -------
+action                permit 
+[community]           100:100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -473,7 +476,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router policy large-community-list MYLARGECOMMUNITY 
+cumulus@switch:~$ nv show router policy large-community-list MYLARGECOMMUNITY
+        applied
+------  -------
+[rule]  10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -520,6 +526,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router policy large-community-list MYLARGECOMMUNITY rule 10
+                  applied         
+-----------------  ----------------
+action             permit          
+[large-community]  2914:65400:38016
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -606,6 +616,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router policy prefix-list MYPREFIXLIST
+      applied
+----  -------
+type  ipv4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -651,6 +664,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router policy prefix-list MYPREFIXLIST rule 10
+         applied    
+-------  -----------
+action   permit     
+[match]  10.0.0.0/16
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -698,6 +715,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router policy prefix-list MYPREFIXLIST rule 10 match 2001:100::1/64
+                applied
+--------------  -------
+max-prefix-len  30     
+min-prefix-len  30
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -719,7 +740,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ nv show router policy route-map
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -742,28 +763,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router policy route-map MYROUTEMAP
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show router policy route-map \<route-map-id\> rule</h>
-
-Shows the rules for the specified route map.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<route-map-id>` | The route map name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule
+        applied
+------  -------
+[rule]  10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -786,7 +788,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 
+cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10
+                   applied
+-----------------  -------
+match                     
+  evpn-route-type  macip  
+  evpn-vni         10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

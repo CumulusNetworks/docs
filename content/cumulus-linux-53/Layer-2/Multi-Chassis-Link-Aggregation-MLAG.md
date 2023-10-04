@@ -676,6 +676,20 @@ cumulus@leaf01:~$ nv set interface peerlink.4094 router ospf area 0.0.0.1
 cumulus@leaf01:~$ nv config apply
 ```
 
+### MLAG Routing Support
+
+In addition to the routing adjacency over the [peer link](#peer-link-routing), Cumulus Linux supports routing adjacencies from attached network devices to MLAG switches under the following conditions:
+- The router must physically attach to a single interface of a switch.
+- The attached router must peer directly to a local address on the physically connected switch.
+
+{{%notice note%}}
+The router cannot:
+- Attach to the switch over a MLAG bond interface.
+- Form routing adjacencies to a virtual address (VRR or VRRP).
+{{%/notice%}}
+
+{{< figure src="/images/cumulus-linux/mlag-supported-routing.png" width="700" >}}
+
 ## Troubleshooting
 
 Use the following troubleshooting tips to check MLAG configuration.
@@ -809,16 +823,15 @@ The following table shows the conflict types and actions that Cumulus Linux take
 | MLAG native VLAN | Interface | Protodown only the MLAG bonds on the secondary switch when there is a native VLAN mismatch. |
 | STP root bridge priority | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is an <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> priority mismatch across peers. |
 | MLAG system MAC address | Global  | Protodown the MLAG bonds and VNIs on the secondary switch when there is an MLAG system MAC address mismatch across peers.|
-| Peer IP | Global   | Protodown the MLAG bonds and VNIs on the secondary switch when there is a peer IP address mismatch. |
+| Peer IP | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is an IP address mismatch within the same subnet between peers. The consistency checker does not trigger an IP address mismatch between the linklocal keyword and a static IPv4 address, or between IPv4 addresses across subnets.|
 | Peer link MTU | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is a peer link MTU mismatch across peers. |
 | Peer link native VLAN | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is a peer link VLAN mismatch across peers.<br>Protodown the MLAG bonds and VNIs on the secondary switch when there is no PVID. |
 | VXLAN anycast IP address | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is an anycast IP address mismatch across peers.<br>Protodown the MLAG bonds and VNIs on the node where there is no configured anycast IP address. |
-| Peer link bridge member | Global | Protodown the MLAG bonds and VNIs on the MLAG switch where there is a peer link bridge member conflict. |
-| MLAG bond bridge member | Interface | Protodown the MLAG bonds and VNIs on the MLAG switch if the MLAG bond is not a bridge member. |
+| Peer link bridge member | Global | Protodown the MLAG bonds and VNIs on the MLAG switch where there is a peer link bridge member conflict.</div>{{%notice note%}}The peer value always displays `NOT-SYNCED` for this consistency check because Cumulus Linux does not enforce the same interface name for the peerlink and because of limitations with traditional bridges.{{%/notice%}} |
+| MLAG bond bridge member | Interface | Protodown the MLAG bonds and VNIs on the MLAG switch if the MLAG bond is not a bridge member.</div>{{%notice note%}}The peer value always displays `NOT-SYNCED` for this consistency check because Cumulus Linux does not enforce the same interface name for the peerlink and because of limitations with traditional bridges.{{%/notice%}} |
 | LACP partner MAC address | Interface | Protodown the MLAG bonds on the MLAG switch if there is an LACP partner MAC address mismatch or if there is a duplicate LACP partner MAC address. |
 | MLAG VLANs| Interface   |  Suspend the inconsistent VLANs on either MLAG peer if the VLANs are not part of the peer link or if there is mismatch of VLANs configured on the MLAG bonds between the MLAG peers. |
 | Peer link VLANs| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
-| VLAN on VXLAN interface | VXLAN | Suspend the inconsistent VLAN on either MLAG peer if there is a VLAN mismatch on VXLAN interfaces.|
 | MLAG protocol version | Global | The consistency check records an MLAG protocol version mismatch between the MLAG peers. Cumulus Linux does not take any distruptive action. |
 | MLAG package version | Global| The consistency check records an MLAG package version mismatch between the MLAG peers. Cumulus Linux does not take any disruptive action.|
 

@@ -59,6 +59,10 @@ To configure OSPF, specify the router ID, an IP subnet prefix, and an area addre
 
 The subnets can be as coarse as possible to cover the most number of interfaces on the router that should run OSPF.
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as OSPF, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 ```
 cumulus@switch:~$ net add ospf router-id 0.0.0.1
 cumulus@switch:~$ net add ospf network 10.0.0.0/16 area 0.0.0.0

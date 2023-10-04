@@ -22,6 +22,26 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show nve vxlan
+                          operational  applied 
+------------------------  -----------  --------
+enable                    on           on      
+arp-nd-suppress           on           on      
+mac-learning              off          off     
+mtu                       9216         9216    
+port                      4789         4789    
+decapsulation                                  
+  dscp                                         
+    action                derive       derive  
+encapsulation                                  
+  dscp                                         
+    action                derive       derive  
+flooding                                       
+  enable                  on           on      
+  [head-end-replication]  evpn         evpn    
+mlag                                           
+  shared-address          none         none    
+source                                         
+  address                 10.0.0.1     10.0.0.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -38,6 +58,10 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show nve vxlan decapsulation
+          operational  applied
+--------  -----------  -------
+dscp                          
+  action  derive       derive
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -54,6 +78,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show nve vxlan decapsulation dscp
+        operational  applied
+------  -----------  -------
+action  derive       derive
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -70,6 +97,10 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show nve vxlan encapsulation
+          operational  applied
+--------  -----------  -------
+dscp                          
+  action  derive       derive
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -86,6 +117,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show nve vxlan encapsulation dscp
+        operational  applied
+------  -----------  -------
+action  derive       derive 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -102,6 +136,10 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show nve vxlan flooding
+                        operational  applied
+----------------------  -----------  -------
+enable                  on           on     
+[head-end-replication]  evpn         evpn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -118,6 +156,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show nve vxlan flooding head-end-replication
+IP Address
+----------
+evpn
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -172,4 +213,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show nve vxlan source
+         operational  applied 
+-------  -----------  --------
+address  10.0.0.1     10.0.0.1
 ```

@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting Traditional Mode Bridges - VLANs
-author: Cumulus Networks
+author: NVIDIA
 weight: 315
 toc: 4
 ---

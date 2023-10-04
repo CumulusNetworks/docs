@@ -1,6 +1,6 @@
 ---
 title: VMware vSphere ESXi
-author: Cumulus Networks
+author: NVIDIA
 weight: 40
 product: Cumulus VX
 version: '5.x'

@@ -29,6 +29,10 @@ The following example commands configure OSPF numbered on leaf01 and spine01.
 {{< tabs "TabID35 ">}}
 {{< tab "NCLU Commands ">}}
 
+{{%notice info%}}
+When you commit a change that configures a new routing service such as OSPF, the FRR daemon restarts and might interrupt network operations for other configured routing services.
+{{%/notice%}}
+
 The configuration below uses the `network` command to configure the IP subnet prefix with an area address per network. You can also configure OSPF per interface. However, you *cannot* use both methods in the same configuration.
 
 {{< tabs "TabID38 ">}}

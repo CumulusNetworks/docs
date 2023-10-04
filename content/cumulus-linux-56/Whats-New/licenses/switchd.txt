@@ -1,0 +1,74 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: switchd
+Source: https://www.cumulusnetworks.com
+Disclaimer: Not part of Debian distributions.
+
+Files: *
+Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
+Copyright: 2013 Cumulus Networks
+           2014, 2015, 2016, 2017, 2018, 2019, 2020 Cumulus Networks, Inc.
+License: NVIDIA Cumulus Networks Proprietary
+ All Rights reserved.
+ .
+ The Cumulus Networks End User License Agreement can be found at the
+ following locations.
+ .
+ Internet: https://cumulusnetworks.com/downloads/eula/latest/view/
+ Cumulus Linux systems: /usr/share/cumulus/EULA.txt
+
+Files: debian/*
+Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
+Copyright: 2013 Cumulus Networks
+           2014, 2015, 2016, 2017, 2018, 2019, 2020 Cumulus Networks, Inc.
+License: GPL-2
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 of the License
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+Files: include/kvec.h
+Copyright: Copyright (c) 2008, by Attractive Chaos <attractivechaos@aol.co.uk>
+License: The MIT License
+ Permission is hereby granted, free of charge, to any person obtaining
+ a copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+Files: lib/ccan/*
+Copyright: none
+License: CC0-1.0
+ To the extent possible under law, the author(s) have dedicated all copyright
+ and related and neighboring rights to this software to the public domain
+ worldwide. This software is distributed without any warranty.
+ .
+ You should have received a copy of the CC0 Public Domain Dedication along with
+ this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+ .
+ On Debian systems, the complete text of the CC0 1.0 Universal license can be
+ found in ‘/usr/share/common-licenses/CC0-1.0’.
+

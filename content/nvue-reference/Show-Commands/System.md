@@ -22,6 +22,12 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show system
+          operational          applied
+--------  -------------------  -------
+hostname  leaf01               leaf01 
+build     Cumulus Linux 5.5.0         
+uptime    3 days, 18:40:31            
+timezone  Etc/UTC
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -38,6 +44,10 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system counter polling-interval
+                   applied
+------------------  -------
+logical-interface   0:00:05
+physical-interface  0:00:02
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -54,6 +64,11 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system cpu
+             operational                    applied
+-----------  -----------------------------  -------
+core-count   1                                     
+model        QEMU Virtual CPU version 2.5+         
+utilization  100.0%
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -86,6 +101,26 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system global
+                 operational        applied          
+---------------  -----------------  -----------------
+anycast-id       none               none             
+anycast-mac      44:38:39:BE:EF:AA  44:38:39:BE:EF:AA
+fabric-id        1                  1                
+fabric-mac       none               none             
+system-mac       44:38:39:22:01:7a  44:38:39:22:01:7a
+l3svd                                                
+  enable         off                off              
+reserved                                             
+  routing-table                                      
+    pbr                                              
+      begin      10000              10000            
+      end        4294966272         4294966272       
+  vlan                                               
+    internal                                         
+      range      3725-3999          3725-3999        
+    l3-vni-vlan                                      
+      begin      4000               4000             
+      end        4064               4064
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -102,6 +137,18 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system global reserved
+               operational  applied   
+-------------  -----------  ----------
+routing-table                         
+  pbr                                 
+    begin      10000        10000     
+    end        4294966272   4294966272
+vlan                                  
+  internal                            
+    range      3725-3999    3725-3999 
+  l3-vni-vlan                         
+    begin      4000         4000      
+    end        4064         4064
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -118,6 +165,11 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system global reserved routing-table
+         operational  applied   
+-------  -----------  ----------
+pbr                             
+  begin  10000        10000     
+  end    4294966272   4294966272
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -134,6 +186,13 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system global reserved vlan
+             operational  applied  
+-----------  -----------  ---------
+internal                           
+  range      3725-3999    3725-3999
+l3-vni-vlan                        
+  begin      4000         4000     
+  end        4064         4064
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -150,6 +209,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system global reserved vlan internal
+       operational  applied  
+-----  -----------  ---------
+range  3725-3999    3725-3999
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -166,6 +228,10 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system global reserved vlan l3-vni-vlan
+       operational  applied
+-----  -----------  -------
+begin  4000         4000   
+end    4064         4064
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -182,6 +248,10 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show system memory
+Type      Buffers   Cache      Free       Total    Used       Utilization
+--------  --------  ---------  ---------  -------  ---------  -----------
+Physical  36.32 MB  521.31 MB  236.07 MB  1.69 GB  935.82 MB  86.4%      
+Swap                           0 Bytes    0 Bytes  0 Bytes    0.0%
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -214,6 +284,13 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show system reboot
+          operational                       applied
+---------  --------------------------------  -------
+reason                                              
+  gentime  2023-04-26T15:47:34.033663+00:00         
+  reason   Unknown                                  
+  user     system/root                              
+mode       cold                              cold
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -230,6 +307,18 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system reboot history
+    gentime                           reason   user       
+--  --------------------------------  -------  -----------
+1   2023-04-26T15:47:34.033663+00:00  Unknown  system/root
+2   2023-04-26T15:38:12.317900+00:00  Unknown  system/root
+3   2023-04-26T15:38:09.769047+00:00  Unknown  system/root
+4   2023-04-26T15:38:02.208193+00:00  Unknown  system/root
+5   2023-04-25T01:30:36.145781+00:00  Unknown  system/root
+6   2023-04-25T01:30:32.430332+00:00  Unknown  system/root
+7   2023-04-25T01:30:22.843263+00:00  Unknown  system/root
+8   2023-04-25T01:26:10.124076+00:00  Unknown  system/root
+9   2023-04-25T01:26:06.517457+00:00  Unknown  system/root
+10  2023-04-25T01:25:53.811710+00:00  Unknown  system/root
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -246,4 +335,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system reboot reason
+        operational                       applied
+-------  --------------------------------  -------
+gentime  2023-04-26T15:47:34.033663+00:00         
+reason   Unknown                                  
+user     system/root
 ```

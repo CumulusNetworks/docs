@@ -78,6 +78,7 @@ The following features are not supported with EVPN-MH:
 - {{<link url="Traditional-Bridge-Mode" text="Traditional bridge mode">}}
 - {{<link url="Inter-subnet-Routing/#asymmetric-routing" text="Distributed asymmetric routing">}}
 - {{<link url="EVPN-Enhancements/#duplicate-address-detection" text="Duplicate address detection">}}
+- Multihomed networks, such as STP bridge domains that are MH connected. EVPN-MH bonds are intended for multihomed end-node device (server) connectivity.
 
 ## Basic Configuration
 
@@ -171,72 +172,76 @@ cumulus@leaf01:~$ nv config apply
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
-Configure the ESI on each bond interface with the local Ethernet segment ID and the system MAC address:
+1. Configure the ESI on each bond interface with the local Ethernet segment ID and the system MAC address:
 
-```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# configure terminal
-leaf01(config)# interface bond1
-leaf01(config-if)# evpn mh es-df-pref 50000
-leaf01(config-if)# evpn mh es-id 1
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
-leaf01(config-if)# exit
-leaf01(config)# interface bond2
-leaf01(config-if)# evpn mh es-df-pref 50000
-leaf01(config-if)# evpn mh es-id 2
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
-leaf01(config-if)# exit
-leaf01(config)# interface bond3
-leaf01(config-if)# evpn mh es-df-pref 50000
-leaf01(config-if)# evpn mh es-id 3
-leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
-leaf01(config-if)# exit
-leaf01(config)# write memory
-leaf01(config)# exit
-leaf01# exit
-cumulus@leaf01:~$
-```
+   ```
+   cumulus@leaf01:~$ sudo vtysh
+   leaf01# configure terminal
+   leaf01(config)# interface bond1
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 1
+   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   leaf01(config-if)# exit
+   leaf01(config)# interface bond2
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 2
+   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   leaf01(config-if)# exit
+   leaf01(config)# interface bond3
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 3
+   leaf01(config-if)# evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   leaf01(config-if)# exit
+   leaf01(config)# write memory
+   leaf01(config)# exit
+   leaf01# exit
+   cumulus@leaf01:~$
+   ```
 
-The vtysh commands create the following configuration in the `/etc/network/interfaces` file.
+   The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file.
 
-```
-cumulus@leaf01:~$ sudo cat /etc/network/interfaces
-...
-interface bond1
-  bond-slaves swp1
-  es-sys-mac 44:38:39:BE:EF:AA
+   ```
+   cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+   ...
+   !
+   interface bond1
+    evpn mh es-df-pref 50000
+    evpn mh es-id 1
+    evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   !
+   interface bond2
+    evpn mh es-df-pref 50000
+    evpn mh es-id 2
+    evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   !
+   interface bond3
+    evpn mh es-df-pref 50000
+    evpn mh es-id 3
+    evpn mh es-sys-mac 44:38:39:BE:EF:AA
+   !
+   ```
 
-interface bond2
-  bond-slaves swp2
-  es-sys-mac 44:38:39:BE:EF:AA
+2. Add the system MAC address to the bond interfaces in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
-interface bond3
-  bond-slaves swp3
-  es-sys-mac 44:38:39:BE:EF:AA
-```
+   ```
+   cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+   ...
+   interface bond1
+     bond-slaves swp1
+     es-sys-mac 44:38:39:BE:EF:AA
+   
+   interface bond2
+     bond-slaves swp2
+     es-sys-mac 44:38:39:BE:EF:AA
+   
+   interface bond3
+     bond-slaves swp3
+     es-sys-mac 44:38:39:BE:EF:AA
+   ```
 
-The vtysh commands also create the following configuration in the `/etc/frr/frr.conf` file.
-
-```
-cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
-...
-!
-interface bond1
- evpn mh es-df-pref 50000
- evpn mh es-id 1
- evpn mh es-sys-mac 44:38:39:BE:EF:AA
-!
-interface bond2
- evpn mh es-df-pref 50000
- evpn mh es-id 2
- evpn mh es-sys-mac 44:38:39:BE:EF:AA
-!
-interface bond3
- evpn mh es-df-pref 50000
- evpn mh es-id 3
- evpn mh es-sys-mac 44:38:39:BE:EF:AA
-!
-```
+   ```
+   cumulus@leaf01:~$ sudo ifreload -a
+   ```
 
 {{</tab>}}
 {{</tabs>}}

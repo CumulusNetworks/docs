@@ -1,6 +1,6 @@
 ---
 title: Account and User Management FAQ
-author: Cumulus Networks
+author: NVIDIA
 weight: 613
 toc: 4
 ---

@@ -28,7 +28,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show bridge domain br_default vlan 10 ptp
+cumulus@switch:~$ nv show bridge domain br_default vlan 10 ptp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -55,6 +55,21 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 counters ptp
+       operational  applied
+------  -----------  -------
+enable  on           on     
+cumulus@leaf03:mgmt:~$ nv show interface swp1 counters ptp
+Packet Type          Received  Transmitted
+-------------------  --------  -----------
+Announce             0         663        
+Delay Request        0         0          
+Delay Response       0         0          
+Follow-up            0         1325       
+Management           0         0          
+Peer Delay Request   0         0          
+Peer Delay Response  0         0          
+Signaling            0         0          
+Sync                 0         1325
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -76,7 +91,24 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show interface swp1 ptp
+cumulus@switch:~$ nv show interface swp1 ptp
+                          operational  applied  pending   
+------------------------  -----------  -------  ----------
+enable                                          on        
+acceptable-master                               off       
+delay-mechanism                                 end-to-end
+forced-master                                   off       
+instance                                        1         
+mixed-multicast-unicast                         off       
+ttl                                             1         
+unicast-request-duration                        300       
+shaper                                                    
+  enable                                        off       
+timers                                                    
+  announce-interval                             1         
+  announce-timeout                              3         
+  delay-req-interval                            0         
+  sync-interval                                 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -103,6 +135,9 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ptp shaper
+        operational  applied  pending
+------  -----------  -------  -------
+enable                        off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -125,6 +160,12 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show interface swp1 ptp timers
+                    operational  applied  pending
+------------------  -----------  -------  -------
+announce-interval                         1      
+announce-timeout                          3      
+delay-req-interval                        0      
+sync-interval                             0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -140,7 +181,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp
+cumulus@switch:~$ nv show service ptp
+id  Clock-id                 Enabled  Domain  Priority1  Priority2
+--  -----------------------  -------  ------  ---------  ---------
+1   48:b0:2d:ff:fe:0a:67:46  on       28      128        128
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -162,7 +206,36 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1
+cumulus@switch:~$ nv show service ptp 1
+cumulus@switch:~$ nv show service ptp 1
+                             operational  applied
+---------------------------  -----------  ------------------
+enable                       on           on
+current-profile                           default-itu-8275-2
+domain                                    0
+ip-dscp                                   46
+logging-level                             info
+priority1                                 128
+priority2                                 128
+[acceptable-master]
+monitor
+  max-offset-threshold                    50
+  max-timestamp-entries                   100
+  max-violation-log-entries               4
+  max-violation-log-sets                  2
+  min-offset-threshold                     -50
+  path-delay-threshold                    200
+  violation-log-interval                  1
+[profile]                                 abc
+[profile]                                 default-1588
+[profile]                                 default-itu-8275-1
+[profile]                                 default-itu-8275-2
+[unicast-master]                          1
+[unicast-master]                          2
+[unicast-master]                          3
+[unicast-master]                          4
+[unicast-master]
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -178,7 +251,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 acceptable-master
+cumulus@switch:~$ nv show service ptp 1 acceptable-master
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -201,7 +274,44 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
+cumulus@switch:~$ nv show service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
+              operational  applied
+------------  -----------  -------
+alt-priority  255          255
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show service ptp \<instance-id\> counters</h>
+
+Shows all PTP counters, such as the number of received and transmitted announce, sync, followup, and delay request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>`  | The PTP instance number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.6.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service ptp 1 counters
+Packet Type              Received       Transmitted    
+---------------------    ------------   ------------   
+Port swp4
+  Announce                 0              10370            
+  Sync                     0              20731             
+  Follow-up                0              20731            
+  Delay Request            0              0              
+  Delay Response           0              0              
+  Peer Delay Request       0              0              
+  Peer Delay Response      0              0              
+  Management               0              0              
+  Signaling                0              0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -223,7 +333,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 current
+cumulus@switch:~$ nv show service ptp 1 current
+                    operational  applied
+------------------  -----------  -------
+mean-path-delay     0                   
+offset-from-master  0                   
+steps-removed       0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -245,7 +360,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 clock-quality
+cumulus@switch:~$ nv show service ptp 1 clock-quality
+                            operational  applied
+--------------------------  -----------  -------
+clock-accuracy              254                 
+clock-class                 248                 
+offset-scaled-log-variance  65535
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -267,7 +387,16 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 monitor
+cumulus@switch:~$ nv show service ptp 1 monitor
+                           operational  applied
+-------------------------  -----------  -------
+max-offset-threshold       50           50     
+max-timestamp-entries      100          100    
+max-violation-log-entries  4            4      
+max-violation-log-sets     2            2      
+min-offset-threshold       -50          -50    
+path-delay-threshold       200          200    
+violation-log-interval     1            1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -289,7 +418,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 monitor timestamp-log
+cumulus@switch:~$ nv show service ptp 1 monitor timestamp-log
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -311,7 +440,16 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 monitor violations
+cumulus@switch:~$ nv show service ptp 1 monitor violations
+ cumulus@switch:~$ nv show service ptp 1 monitor violations
+                  operational                  applied
+----------------  ---------------------------  -------
+last-max-offset
+last-min-offset   2023-04-24T15:22:01.312295Z
+last-path-delay
+max-offset-count  0
+min-offset-count  2
+path-delay-count  0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -333,7 +471,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 monitor violations log
+cumulus@switch:~$ nv show service ptp 1 monitor violations log
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -355,7 +493,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$   nv show service ptp 1 monitor violations log acceptable-master
+cumulus@switch:~$ nv show service ptp 1 monitor violations log acceptable-master
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -377,7 +515,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 monitor violations log forced-master
+cumulus@switch:~$ nv show service ptp 1 monitor violations log forced-master
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -399,7 +537,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 monitor violations log max-offset
+cumulus@switch:~$ nv show service ptp 1 monitor violations log max-offset
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -421,7 +559,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 monitor violations log min-offset
+cumulus@switch:~$ nv show service ptp 1 monitor violations log min-offset
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -443,7 +581,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 monitor violations log path-delay
+cumulus@switch:~$ nv show service ptp 1 monitor violations log path-delay
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -465,7 +603,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 parent
+cumulus@switch:~$ nv show service ptp 1 parent
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -487,7 +625,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 parent grandmaster-clock-quality
+cumulus@switch:~$ nv show service ptp 1 parent grandmaster-clock-quality
+                            operational  applied
+--------------------------  -----------  -------
+clock-accuracy              254                 
+clock-class                 248                 
+offset-scaled-log-variance  65535
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -510,6 +653,11 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show service ptp 1 profile
+Profile Name        Type          Domain  Transport  Delay Mechanism
+------------------  ------------  ------  ---------  ---------------
+default-1588        ieee-1588     0       ipv4       end-to-end     
+default-itu-8275-1  itu-g-8275-1  24      802.3      end-to-end     
+default-itu-8275-2  itu-g-8275-2  44      ipv4       end-to-end 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -532,6 +680,19 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show service ptp 1 profile CUSTOM1
+                    operational   applied     
+------------------  ------------  ------------
+announce-interval   -3            -3          
+announce-timeout    3             3           
+delay-mechanism     end-to-end    end-to-end  
+delay-req-interval  -4            -4          
+domain              28            28          
+local-priority      128           128         
+priority1           128           128         
+priority2           128           128         
+profile-type        itu-g-8275-1  itu-g-8275-1
+sync-interval       -4            -4          
+transport           802.3         802.3
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -554,6 +715,12 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv show service ptp 1 status
+Port   Mode   State    Ustate                           Server
+-----  -----  -------  -------------------------------  -------
+swp9   Ucast  SLAVE    Sync and Delay Granted (H_SYDY)  9.9.9.2
+swp10  Ucast  PASSIVE  Initial State (WAIT)
+swp11  Ucast  PASSIVE  Initial State (WAIT)
+swp12  Ucast  PASSIVE  Initial State (WAIT)
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -575,7 +742,16 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 time-properties
+cumulus@switch:~$ nv show service ptp 1 time-properties
+                          operational  applied
+------------------------  -----------  -------
+current-utc-offset        37                  
+current-utc-offset-valid  off                 
+freq-traceable            off                 
+leap59                    off                 
+leap61                    off                 
+ptp-time-scale            off                 
+time-traceable            off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -597,7 +773,10 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show service ptp 1 unicast-master
+cumulus@switch:~$ nv show service ptp 1 unicast-master
+Table-id  Address     Peer-address  Query-interval
+--------  ----------  ------------  --------------
+1         10.10.10.1                4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -621,6 +800,10 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show service ptp 1 unicast-master 1
+                operational  applied   
+--------------  -----------  ----------
+query-interval  4            4         
+[address]       10.10.10.1   10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -644,6 +827,9 @@ Introduced in Cumulus Linux 5.2.0
 
 ```
 cumulus@switch:~$ nv show service ptp 1 unicast-master 1 address
+IP or MAC Address
+-----------------
+10.10.10.1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -689,5 +875,8 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$  nv show vrf default ptp
+cumulus@switch:~$ nv show vrf default ptp
+        operational  applied
+------  -----------  -------
+enable  on           on
 ```

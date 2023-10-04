@@ -1,6 +1,6 @@
 ---
 title: NetQ Cloud End User License Agreement
-author: Cumulus Networks
+author: NVIDIA
 weight: 617
 toc: 4
 ---

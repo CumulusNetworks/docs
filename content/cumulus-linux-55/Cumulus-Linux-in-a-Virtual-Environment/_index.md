@@ -10,7 +10,7 @@ Cumulus Linux in a virtual environment enables you to become familiar NVIDIA net
 
 NVIDIA provides these virtual environments:
 <!-- vale off -->
-- **NVIDIA Air** is a cloud hosted platform that works exactly like a real world production deployment. You can access NVIDIA Air {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="here">}} and reference the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/guides/nvidia-air/" text="NVIDIA Air User Guide">}} for help. To get a jumpstart on your network configuration, you can go to the {{<exlink url="https://air.nvidia.com/marketplace" text="Demo Marketplace">}} and run one of the pre-built feature demos, such as EVPN symmetric routing, EVPN centralized routing, EVPN multihoming, and more.
+- **NVIDIA Air** is a cloud hosted platform that works exactly like a real world production deployment. You can access NVIDIA Air {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="here">}} and reference the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvidia-air/" text="NVIDIA Air User Guide">}} for help. To get a jumpstart on your network configuration, you can go to the {{<exlink url="https://air.nvidia.com/marketplace" text="Demo Marketplace">}} and run one of the pre-built feature demos, such as EVPN symmetric routing, EVPN centralized routing, EVPN multihoming, and more.
 <!-- vale on -->
 - **Cumulus VX** is a free virtual appliance with the Cumulus Linux operating system. You can install Cumulus VX on a supported hypervisor and configure the VMs with the reference topology or create your own topology. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-vx/" text="Cumulus VX">}}.
 
@@ -22,7 +22,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 
 | Feature | Supported in a Virtual Environment |
 | -----------------------------------------------------| ------------|
-|{{<link url="Netfilter-ACLs" text="ACL configuration with the cl-acltool command ">}}|<font color="red">No</font> |
+|{{<link url="Netfilter-ACLs" text="ACL configuration ">}}|<font color="red">No</font> |
 |{{<link url="In-Service-System-Upgrade-ISSU" >}}| <font color="red">No</font> |
 |{{<link url="Precision-Time-Protocol-PTP" >}}| <font color="red">No</font> |
 |{{<link url="Port-Security" >}}| <font color="red">No</font> |
@@ -39,7 +39,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 <!--
 | Feature | In a Virtual Environment | In a Virtual Environment with Emulated ASIC |
 | -----------------------------------------------------| ------------| --------------|
-|{{<link url="Netfilter-ACLs" text="ACL configuration with the cl-acltool command ">}}|<font color="red">No</font> | <font color="green">yes</font>|
+|{{<link url="Netfilter-ACLs" text="ACL configuration ">}}|<font color="red">No</font> | <font color="green">yes</font>|
 |{{<link url="In-Service-System-Upgrade-ISSU" >}}| <font color="red">No</font> | <font color="red">No</font> |
 |{{<link url="Precision-Time-Protocol-PTP" >}}| <font color="red">No</font> | <font color="green">yes</font> |
 |{{<link url="Port-Security" >}}| <font color="red">No</font> | <font color="green">yes</font> |

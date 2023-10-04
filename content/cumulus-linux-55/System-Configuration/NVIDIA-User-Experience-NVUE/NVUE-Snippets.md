@@ -8,8 +8,6 @@ NVUE supports both traditional snippets and flexible snippets:
 - Use traditional snippets to add configuration to the `/etc/network/interfaces`, `/etc/frr/frr.conf`, `/etc/frr/daemons`, `/etc/cumulus/switchd.conf`, `/etc/cumulus/datapath/traffic.conf` or `/etc/ssh/sshd_config` files.
 - Use flexible snippets to manage any other text file on the system.
 
-Cumulus Linux stores all snippets in the `/system/config/snippet` directory.
-
 ## Traditional Snippets
 
 Use traditional snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format, then add the configuration to the file with the `nv config patch` command.
@@ -410,3 +408,11 @@ The following example flexible snippet called `apt-flex-snippet` creates a new f
               deb [arch=amd64] https://packages.microsoft.com/debian/10/prod buster main
             permissions: "0644"
 ```
+
+## Considerations
+
+As NVUE supports more features and introduces new syntax, snippets and flexible snippets become invalid.
+
+Before you upgrade Cumulus Linux to a new release, make sure to:
+- Review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax.
+- If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.

@@ -161,10 +161,6 @@ When enabling RFC 3527 support, you can specify an interface, such as the loopba
 RFC 3527 supports IPv4 DHCP relays only.
 {{%/notice%}}
 
-<!--The following illustration demonstrates how you can control the gateway address with RFC 3527.
-
-{{< img src = "/images/cumulus-linux/dhcp-relay-RFC3527.png" >}}-->
-
 To enable RFC 3527 support and control the gateway address:
 
 {{< tabs "TabID203 ">}}
@@ -244,6 +240,18 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+When enabling RFC 3527 support, you can specify an interface such as the loopback interface or swp interface for the gateway address. The interface you use must be reachable in the tenant VRF that it is servicing and must be unique to the switch. In EVPN symmetric routing, fabrics running an anycast gateway that use the same SVI IP address on multiple leaf switches need a unique IP address for the VRF interface and must include the layer 3 VNI for this VRF in the DHCP Relay configuration. For example:
+
+```
+cumulus@leaf01:mgmt:~$ cat /etc/default/isc-dhcp-relay-RED
+SERVERS="10.1.10.104"
+INTF_CMD=" -i vlan10 -i vlan20 -i vlan4001"
+OPTIONS="-U RED"
+```
+
+{{%/notice%}}
+
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
 
 You can configure the `dhcrelay` service to forward IPv4 (only) DHCP packets to a DHCP server and ensure that the source IP address of the relayed packet is the same as the gateway IP address.
@@ -258,7 +266,7 @@ To use the gateway IP address as the source IP address:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay default source-ip gateway
+cumulus@leaf01:~$ nv set service dhcp-relay default source-ip giaddress
 cumulus@leaf01:~$ nv config apply
 ```
 

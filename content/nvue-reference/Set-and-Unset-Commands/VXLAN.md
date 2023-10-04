@@ -138,7 +138,7 @@ cumulus@switch:~$ nv set nve vxlan flooding enable on
 
 ## <h>nv set nve vxlan flooding head-end-replication \<hrep-id\></h>
 
-Configures VXLAN head end replication where BUM traffic is replicated and individual copies sent to remote destinations.
+Configures VXLAN head end replication, where the switch replicates BUM traffic and sends individual copies to remote destinations.
 
 ### Command Syntax
 
@@ -160,7 +160,7 @@ cumulus@switch:~$ nv set nve vxlan flooding head-end-replication 10.10.10.2
 
 ## <h>nv set nve vxlan flooding multicast-group \<ipv4-multicast\></h>
 
-Configures the multicast group for VXLAN flooding. BUM traffic goes to the specified multicast group and is received by receivers that are interested in that group. This usually requires that you use PIM-SM in the network.
+Configures the multicast group for VXLAN flooding. BUM traffic goes to the specified multicast group, where receivers with an interest in that group receive the traffic. This usually requires that you use PIM-SM in the network.
 
 One multicast group per layer 2 VNI is optimal configuration for underlay bandwidth utilization. However, you can specify the same multicast group for more than one layer 2 VNI.
 

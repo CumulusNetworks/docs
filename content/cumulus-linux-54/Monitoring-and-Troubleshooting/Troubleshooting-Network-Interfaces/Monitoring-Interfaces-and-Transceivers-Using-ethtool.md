@@ -101,8 +101,10 @@ Cleared counters
 | `-v`|Prints `cl-netstat` version and exits. |
 
 {{%notice note%}}
-Some services, such as {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#large-packet-drops-on-the-peer-link-interface" text="MLAG">}} and {{<link url="DHCP-Relays/#considerations" text="DHCP">}} can cause drop counters to increment as expected and do not cause a problem on the switch.
+- Some services, such as {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#large-packet-drops-on-the-peer-link-interface" text="MLAG">}} and {{<link url="DHCP-Relays/#considerations" text="DHCP">}} can cause drop counters to increment as expected and do not cause a problem on the switch.
+- On Mellanox switches, Cumulus Linux updates physical counters to the kernel every two seconds and virtual interfaces (such as VLAN interfaces) every ten seconds. You cannot change these values. Because the update process takes a lower priority than other `switchd` processes, the interval might be longer when the system is under a heavy load.
 {{%/notice%}}
+
 ## Monitor Switch Port SFP/QSFP Hardware Information Using ethtool
 
 To see hardware capabilities and measurement information on the SFP or QSFP module in a particular port, use the `ethtool -m` command. If the SFP/QSFP supports Digital Optical Monitoring (the `Optical diagnostics support` field is *Yes* in the output below), the optical power levels and thresholds also show below the standard hardware details.

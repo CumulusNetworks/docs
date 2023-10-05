@@ -65,15 +65,49 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | Laser module voltage warning upper | TCA_DOM_MODULE_VOLTAGE_WARNING_UPPER | Transceiver voltage (V) on a given switch or host exceeded user-defined maximum warning threshold |
 | Laser module voltage warning lower | TCA_DOM_MODULE_VOLTAGE_WARNING_LOWER | Transceiver voltage (V) on a given switch or host exceeded user-defined minimum warning threshold |
 
-<!-- for 4.8
 ## DPU RoCE
+
+You can configure the following threshold-crossing events on host-extensible devices, including NICs and DPUs.
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-|Rx prior0 cong discard | x_prio[p]_cong_discard | The number of packets discarded by device due to per host congestion. |
-|Tx discard phy | x_prio[p]_cong_discard | The number of packets discarded by device due to per host congestion. |
+| Implied nak seq error | TCA_HOSTD_IMPLIED_NAK_SEQ_ERR | Count of implied sequence errors exceeded user-defined maximum threshold |
+| Out of buffer | TCA_HOSTD_OUT_OF_BUFFER | Count of out-of-buffer errors exceeded user-defined maximum threshold |
+| Outbound PCI stalled read | TCA_HOSTD_OUTBOUND_PCI_STALLED_RD | Percentage of outbound stalled read requests exceeded user-defined maximum threshold |
+| Outbound PCI stalled write | TCA_HOSTD_OUTBOUND_PCI_STALLED_WR | Percentage of outbound stalled write requests exceeded user-defined maximum threshold |
+| Packet seq err | TCA_HOSTD_PACKET_SEQ_ERR | Count of packet sequence errors exceeded user-defined maximum threshold |
+| Req CQE error | TCA_HOSTD_REQ_CQE_ERROR | Count of req <!--check this-->completion queue events (CQE) errors exceeded user-defined maximum threshold |
+| Req remote access errors | TCA_HOSTD_REQ_REMOTE_ACCESS_ERRORS| Count of remote access errors exceeded user-defined maximum threshold |
+| Resp CQE error | TCA_HOSTD_RESP_CQE_ERROR| Count of response completion queue events (CQE) errors exceeded user-defined maximum threshold |
+| Resp remote access errors | TCA_HOSTD_RESP_REMOTE_ACCESS_ERRORS | Count of response remote access errors exceeded user-defined maximum threshold |
+| RNR nak retry error |	TCA_HOSTD_RNR_NAK_RETRY_ERR	| Count of RNR retry errors exceeded user-defined maximum threshold |
+| Rx CRC errors phy | TCA_HOSTD_RX_CRC_ERRORS_PHY | Count of Rx CRC errors exceeded user-defined maximum threshold |
+| Rx discards phy |	TCA_HOSTD_RX_DISCARDS_PHY | Rate of Rx discards exceeded user-defined maximum threshold |
+| Rx PCI signal integrity |	TCA_HOSTD_RX_PCI_SIGNAL_INTEGRITY | Count of Rx PCIe signal integrity errors exceeded user-defined maximum threshold |
+| Rx pcs symbol err phy	| TCA_HOSTD_RX_PCS_SYMBOL_ERR_PHY | Count of Rx symbol errors exceeded user-defined maximum threshold |
+| Rx prio0 buf discard | TCA_HOSTD_RX_PRIO0_BUF_DISCARD | Rate of p0 buffer discards exceeded user-defined maximum threshold |
+| Rx prio0 cong discard | TCA_HOSTD_RX_PRIO0_CONG_DISCARD |	Rate of p0 congestion discards exceeded user-defined maximum threshold |
+| Rx prio1 buf discard | TCA_HOSTD_RX_PRIO1_BUF_DISCARD | Rate of p1 buffer discards exceeded user-defined maximum threshold |
+| Rx prio1 cong discard | TCA_HOSTD_RX_PRIO1_CONG_DISCARD |	Rate of p1 congestion discards exceeded user-defined maximum threshold |
+| Rx prio2 buf discard | TCA_HOSTD_RX_PRIO2_BUF_DISCARD | Rate of p2 buffer discards exceeded user-defined maximum threshold |
+| Rx prio2 cong discard | TCA_HOSTD_RX_PRIO2_CONG_DISCARD | Rate of p2 congestion discards exceeded user-defined maximum threshold |
+| Rx prio3 buf discard | TCA_HOSTD_RX_PRIO3_BUF_DISCARD | Rate of p3 buffer discards exceeded user-defined maximum threshold |
+| Rx prio3 cong discard | TCA_HOSTD_RX_PRIO3_CONG_DISCARD | Rate of p3 congestion discards exceeded user-defined maximum threshold |
+| Rx prio4 buf discard | TCA_HOSTD_RX_PRIO4_BUF_DISCARD | Rate of p4 buffer discards exceeded user-defined maximum threshold |
+| Rx prio4 cong discard | TCA_HOSTD_RX_PRIO4_CONG_DISCARD | Rate of p4 congestion discards exceeded user-defined maximum threshold |
+| Rx prio5 buf discard | TCA_HOSTD_RX_PRIO5_BUF_DISCARD | Rate of p5 buffer discards exceeded user-defined maximum threshold |
+| Rx prio5 cong discard | TCA_HOSTD_RX_PRIO5_CONG_DISCARD | Rate of p5 congestion discards exceeded user-defined maximum threshold |
+| Rx prio6 buf discard | TCA_HOSTD_RX_PRIO6_BUF_DISCARD | Rate of p6 buffer discards exceeded user-defined maximum threshold |
+| Rx prio6 cong discard | TCA_HOSTD_RX_PRIO6_CONG_DISCARD | Rate of p6 congestion discards exceeded user-defined maximum threshold |
+| Rx prio7 buf discard | TCA_HOSTD_RX_PRIO7_BUF_DISCARD | Rate of p7 buffer discards exceeded user-defined maximum threshold |
+| Rx prio7 cong discard | TCA_HOSTD_RX_PRIO7_CONG_DISCARD | Rate of p7 congestion discards exceeded user-defined maximum threshold |
+| Rx symbol err phy | TCA_HOSTD_RX_SYMBOL_ERR_PHY| Count of Rx symbol errors (physical coding errors) exceeded user-defined maximum threshold |
+| Tx discards phy | TCA_HOSTD_TX_DISCARDS_PHY | Rate of Tx discards exceeded user-defined maximum threshold |
+| Tx errors phy | TCA_HOSTD_TX_ERRORS_PHY | Count of Tx errors exceeded user-defined maximum threshold |
+| Tx pause storm error events |	TCA_HOSTD_TX_PAUSE_STORM_ERROR_EVENTS |	Count of pause error events exceeded user-defined maximum threshold |
+| Tx pause storm warning events | TCA_HOSTD_TX_PAUSE_STORM_WARNING_EVENTS | Count of pause warning events exceeded user-defined maximum threshold |
+| Tx PCI signal integrity |	TCA_HOSTD_TX_PCI_SIGNAL_INTEGRITY |	Count of Tx PCIe signal integrity errors exceeded user-defined maximum threshold |
 
--->
 ## ECMP
 
 <!-- vale off -->
@@ -120,7 +154,7 @@ This reference lists the threshold-based events that NetQ supports. You can view
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |
-| Link flap errors | TCA_LINK_FLAP_UPPER | Number of link flaps user-defined maximum threshold |
+| Link flap errors | TCA_LINK_FLAP_UPPER | Number of link flaps exceeded user-defined maximum threshold |
 
 ## Resource Utilization
 

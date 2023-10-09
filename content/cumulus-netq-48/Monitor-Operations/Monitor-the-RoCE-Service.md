@@ -5,7 +5,7 @@ weight: 940
 toc: 3
 ---
 
-Use the UI or CLI to monitor RDMA over Converged Ethernet (RoCE) in your network.
+Use the UI or CLI to monitor RDMA over Converged Ethernet (RoCE) for Spectrum switches, BlueField DPUs, and ConnectX SmartNICs.
 
 ## RoCE Commands
 
@@ -18,11 +18,6 @@ netq show roce-counters pool
 netq show events message_type tca_roce
 netq show events message_type roceconfig
 ```
-{{<notice note>}}
-
-Priority code point (PCP) monitoring requires a switch running NetQ Agent 4.5 or later.
-
-{{</notice>}}
 
 The {{<link title="check/#netq check roce" text="netq check roce">}} command checks for consistent RoCE and QoS configurations across all nodes in your network fabric.
 

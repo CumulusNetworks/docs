@@ -20,7 +20,7 @@ To configure the display settings:
 
 4. Select the **Theme** field and choose either dark or light. The following figure shows the light theme:
 
-    {{<figure src="/images/netq/light-theme-460.png" alt="NetQ workbench displayed in light theme" height="275" width="1000">}}
+    {{<figure src="/images/netq/light-theme-480.png" alt="NetQ workbench displayed in light theme" width="1000">}}
 
 5. Select the **Time zone** field to adjust the time zone.
     

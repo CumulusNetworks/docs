@@ -1270,7 +1270,118 @@ Wed Jul 26 02:39:27 2023       1052005  0        0        0        0        0   
 ```
 
 - - -
+## netq show impact kubernetes
 
+Displays the impact on pods, services, replica sets or deployments when a specific ToR switch becomes unavailable.
+
+{{<notice tip>}}
+You must enable Kubernetes monitoring on NetQ Agents. Refer to the <code>netq config add agent</code> command to enable monitoring.
+{{</notice>}}
+
+Outputs vary according to the component of the Kubernetes cluster you want to view. The output is color coded (not shown in the examples) so you can clearly see the impact: green shows no impact, yellow shows partial impact, and red shows full impact. Use the `netq config add color` command to view the colored output.
+
+### Syntax
+
+```
+netq  <hostname>  show impact kubernetes service
+    [master <kube-master-node>]
+    [name <kube-service-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-service-label>]
+    [service-cluster-ip <kube-service-cluster-ip>]
+    [service-external-ip <kube-service-external-ip>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show impact kubernetes replica-set
+    [master <kube-master-node>]
+    [name <kube-rs-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-rs-label>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show impact kubernetes deployment
+    [master <kube-master-node>]
+    [name <kube-deployment-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-deployment-label>]
+    [around <text-time>]
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| deployment | NA | Display results for Kubernetes deployments |
+| replica-set | NA | Display results for Kubernetes replica sets |
+| service | NA | Display results for Kubernetes services |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| master | \<kube-master-node\> | Only display results for the master node with this name |
+| name | \<kube-deployment-name\>, \<kube-rs-name\>, \<kube-service-name\> | Only display results for the Kubernetes component with this name |
+| cluster | \<kube-cluster-name\> | Only display results for the cluster with this name |
+| namespace | \<namespace\> | Only display results for clusters and nodes within this namespace |
+| label | \<kube-node-label\>, \<kube-ds-label\>, \<kube-deployment-label\>, \<kube-pod-label\>, \<kube-rc-label\>, \<kube-rs-label\>, \<kube-service-label\> | Only display results for components with this label |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON format |
+
+### Sample Usage
+
+Display the impact on service availability based on the loss of particular node:
+
+```
+cumulus@host:~$ netq server11 show impact kubernetes service name calico-etcd
+calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
+                                    -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
+                                    -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
+                                    -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
+```
+
+Display the impact on the Kubernetes deployment if a host or switch becomes unavailable:
+
+```
+cumulus@host:~$ netq torc-21 show impact kubernetes deployment name nginx
+nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
+                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
+        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
+                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
+                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
+        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
+                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+                                -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
+
+cumulus@server11:~$ netq server12 show impact kubernetes deployment name nginx
+nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
+                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
+        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
+                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
+                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
+        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
+                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+```
+
+### Related Commands
+
+- ```netq config add agent kubernetes-monitor```
+- ```netq config del agent kubernetes-monitor```
+- ```netq config show agent kubernetes-monitor```
+- ```netq config add color```
+- ```netq show kubernetes```
+
+- - -
 ## netq show interfaces
 
 Displays the health of all interfaces or a single interface on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter by the interface type, state of the interface, or the remote interface. For a given switch or host, you can view the total number of configured interfaces.
@@ -2634,119 +2745,6 @@ Refer to {{<link title="Monitor Container Environments Using Kubernetes API Serv
 - ```netq config del agent kubernetes-monitor```
 - ```netq config show agent kubernetes-monitor```
 - ```netq show impact kubernetes```
-
-- - -
-
-## netq show impact kubernetes
-
-Displays the impact on pods, services, replica sets or deployments when a specific ToR switch becomes unavailable.
-
-{{<notice tip>}}
-You must enable Kubernetes monitoring on NetQ Agents. Refer to the <code>netq config add agent</code> command to enable monitoring.
-{{</notice>}}
-
-Outputs vary according to the component of the Kubernetes cluster you want to view. The output is color coded (not shown in the examples) so you can clearly see the impact: green shows no impact, yellow shows partial impact, and red shows full impact. Use the `netq config add color` command to view the colored output.
-
-### Syntax
-
-```
-netq  <hostname>  show impact kubernetes service
-    [master <kube-master-node>]
-    [name <kube-service-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-service-label>]
-    [service-cluster-ip <kube-service-cluster-ip>]
-    [service-external-ip <kube-service-external-ip>]
-    [around <text-time>]
-    [json]
-
-netq <hostname> show impact kubernetes replica-set
-    [master <kube-master-node>]
-    [name <kube-rs-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-rs-label>]
-    [around <text-time>]
-    [json]
-
-netq <hostname> show impact kubernetes deployment
-    [master <kube-master-node>]
-    [name <kube-deployment-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-deployment-label>]
-    [around <text-time>]
-    [json]
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| deployment | NA | Display results for Kubernetes deployments |
-| replica-set | NA | Display results for Kubernetes replica sets |
-| service | NA | Display results for Kubernetes services |
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| master | \<kube-master-node\> | Only display results for the master node with this name |
-| name | \<kube-deployment-name\>, \<kube-rs-name\>, \<kube-service-name\> | Only display results for the Kubernetes component with this name |
-| cluster | \<kube-cluster-name\> | Only display results for the cluster with this name |
-| namespace | \<namespace\> | Only display results for clusters and nodes within this namespace |
-| label | \<kube-node-label\>, \<kube-ds-label\>, \<kube-deployment-label\>, \<kube-pod-label\>, \<kube-rc-label\>, \<kube-rs-label\>, \<kube-service-label\> | Only display results for components with this label |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON format |
-
-### Sample Usage
-
-Display the impact on service availability based on the loss of particular node:
-
-```
-cumulus@host:~$ netq server11 show impact kubernetes service name calico-etcd
-calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
-                                    -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
-                                    -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
-                                    -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
-```
-
-Display the impact on the Kubernetes deployment if a host or switch becomes unavailable:
-
-```
-cumulus@host:~$ netq torc-21 show impact kubernetes deployment name nginx
-nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
-                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
-                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
-                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
-        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
-                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
-                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
-        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
-                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
-                                -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
-
-cumulus@server11:~$ netq server12 show impact kubernetes deployment name nginx
-nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
-                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
-                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
-                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
-        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
-                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
-                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
-        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
-                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
-```
-
-### Related Commands
-
-- ```netq config add agent kubernetes-monitor```
-- ```netq config del agent kubernetes-monitor```
-- ```netq config show agent kubernetes-monitor```
-- ```netq config add color```
-- ```netq show kubernetes```
 
 - - -
 <!--

@@ -5,11 +5,7 @@ weight: 1152
 toc: 4
 ---
 
-NVOS images are managed with lifecycle management in the NetQ UI. This section details how to check for missing images, upload images, and specify default images.
-
-To complete the tasks outlined in this section, expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage switches**:
-
-{{<figure src="/images/netq/lcm-nvos-450.png" alt="" width="300">}}
+NVOS images are managed with lifecycle management in the NetQ UI. This section details how to check for missing images, upload images, and specify default images. To complete the tasks outlined in this section, expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** in the upper-left corner of the UI and select **Manage switches**.
 
 From the dashboard, select the **Image management** tab to display the NetQ and network OS images, including NVOS:
 
@@ -115,7 +111,7 @@ After you upgrade all your switches beyond a particular release, you can remove 
 
 2. On the **Uploaded** tab, select the images you want to remove. 
 
-3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> Delete.
+3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> **Delete**.
 
 {{</tab>}}
 

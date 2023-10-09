@@ -17,7 +17,7 @@ Before you upgrade, make sure you have {{<link title="NVOS Images/#upload-upgrad
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in any workbench header, then select **Manage switches**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** in the upper-left corner of the UI and select **Manage switches**.
 
 2. From the Switches card, select **Manage**:
 
@@ -41,7 +41,7 @@ To view the full history of NVOS upgrades:
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage switches**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**.
 
 2. Select the **Job history** tab:
 

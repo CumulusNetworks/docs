@@ -45,11 +45,12 @@ Examples for configuring one switch to delete all fluent destinations:
         ./netq_telemetry_agent_handler -delete_all -address 192.168.0.17 -user admin -password admin -domain_id 1 -domain my_domain
 ```
 
-The `netq_telemetry_agent_handler` application can be downloaded from {{<exlink url="https://apps.nvidia.com/pid/contentlibraries/detail?id=1097442" text="NVIDIA Product Information Delivery">}}.
+The `netq_telemetry_agent_handler` application can be downloaded from {{<exlink url="https://apps.nvidia.com/pid/contentlibraries/detail?id=1097442" text="NVIDIA Product Information Delivery Portal">}}.
 ## NVLink4 Fluentd Message Example
 
 The following examples show NVLink4 Fluentd message output in JSON format: 
 
+{{< expand "JSON example" >}}
 ```Node
 {
   "date": 1656408595.780359,
@@ -428,7 +429,7 @@ Dom
   ]
 }
 ```
-
+{{< /expand >}}
 ## Fluentd Collection
 
 You can use your own Fluent collector, or use {{<exlink url="https://fluentbit.io" text="Fluent Bit">}}:

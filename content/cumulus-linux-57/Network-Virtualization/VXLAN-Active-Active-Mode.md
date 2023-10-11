@@ -231,7 +231,7 @@ cumulus@leaf01:~$ nv set interface bond1 bond member swp1
 cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf01:~$ nv set interface bond1 bridge domain br_default 
 cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
 cumulus@leaf01:~$ nv set mlag peer-ip linklocal
 cumulus@leaf01:~$ nv set interface vlan10 
@@ -264,7 +264,7 @@ cumulus@leaf02:~$ nv set interface bond1 bond member swp1
 cumulus@leaf02:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf02:~$ nv set interface bond1 bridge domain br_default 
 cumulus@leaf02:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf02:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+cumulus@leaf02:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf02:~$ nv set mlag backup 10.10.10.1
 cumulus@leaf02:~$ nv set mlag peer-ip linklocal
 cumulus@leaf02:~$ nv set interface vlan10 
@@ -297,7 +297,7 @@ cumulus@leaf03:~$ nv set interface bond1 bond member swp1
 cumulus@leaf03:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf03:~$ nv set interface bond1 bridge domain br_default 
 cumulus@leaf03:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf03:~$ nv set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf03:~$ nv set system global anycast-mac 44:38:39:BE:EF:BB
 cumulus@leaf03:~$ nv set mlag backup 10.10.10.4
 cumulus@leaf03:~$ nv set mlag peer-ip linklocal
 cumulus@leaf03:~$ nv set interface vlan10 
@@ -330,7 +330,7 @@ cumulus@leaf04:~$ nv set interface bond1 bond member swp1
 cumulus@leaf04:~$ nv set interface bond1 bond mlag id 1
 cumulus@leaf04:~$ nv set interface bond1 bridge domain br_default 
 cumulus@leaf04:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf04:~$ nv set mlag mac-address 44:38:39:BE:EF:BB
+cumulus@leaf04:~$ nv set system global anycast-mac 44:38:39:BE:EF:BB
 cumulus@leaf04:~$ nv set mlag backup 10.10.10.3
 cumulus@leaf04:~$ nv set mlag peer-ip linklocal
 cumulus@leaf04:~$ nv set interface vlan10 
@@ -466,7 +466,6 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
       backup:
         10.10.10.2: {}
       enable: on
-      mac-address: 44:38:39:BE:EF:AA
       peer-ip: linklocal
     nve:
       vxlan:
@@ -479,6 +478,8 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
         enable: on
         router-id: 10.10.10.1
     system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:AA
       hostname: leaf01
     vrf:
       default:
@@ -581,7 +582,6 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
       backup:
         10.10.10.1: {}
       enable: on
-      mac-address: 44:38:39:BE:EF:AA
       peer-ip: linklocal
     nve:
       vxlan:
@@ -594,6 +594,8 @@ cumulus@leaf02:~$ sudo cat /etc/nvue.d/startup.yaml
         enable: on
         router-id: 10.10.10.2
     system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:AA
       hostname: leaf02
     vrf:
       default:
@@ -696,7 +698,6 @@ cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
       backup:
         10.10.10.4: {}
       enable: on
-      mac-address: 44:38:39:BE:EF:BB
       peer-ip: linklocal
     nve:
       vxlan:
@@ -709,6 +710,8 @@ cumulus@leaf03:~$ sudo cat /etc/nvue.d/startup.yaml
         enable: on
         router-id: 10.10.10.3
     system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:BB
       hostname: leaf03
     vrf:
       default:
@@ -811,7 +814,6 @@ cumulus@leaf04:~$ sudo cat /etc/nvue.d/startup.yaml
       backup:
         10.10.10.3: {}
       enable: on
-      mac-address: 44:38:39:BE:EF:BB
       peer-ip: linklocal
     nve:
       vxlan:
@@ -824,6 +826,8 @@ cumulus@leaf04:~$ sudo cat /etc/nvue.d/startup.yaml
         enable: on
         router-id: 10.10.10.4
     system:
+      global:
+        anycast-mac: 44:38:39:BE:EF:BB
       hostname: leaf04
     vrf:
       default:
@@ -1758,8 +1762,6 @@ exit-address-family
 {{< /tab >}}
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL56 - VXLAN Active-Active" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
-
-This simulation is running Cumulus Linux 5.6. The Cumulus Linux 5.7 simulation is coming soon.
 
 The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

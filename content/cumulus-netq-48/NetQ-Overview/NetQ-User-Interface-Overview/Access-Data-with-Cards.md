@@ -73,15 +73,13 @@ Cards are available in 4 sizes. The granularity of the content on a card varies 
 
 2. Select the card(s) you want to add to your workbench.
 
-3. When you have selected the cards you want to add to your workbench, select **Open cards**:
-
-      {{<figure src="/images/netq/access-cards-450.png" alt="1 selected card to be added to a workbench" width="1000">}}
+3. When you have selected the cards you want to add to your workbench, select **Open cards**.
 
 The cards are placed at the end of the set of cards currently on the workbench. You might need to scroll down to see them. Drag and drop the cards on the workbench to rearrange them.
 
 ### Add Switch Cards to Your Workbench
 
-You can add switch cards to a workbench through the Devices icon on the header or by searching for it in the Global Search field. To add a switch card from the header:
+You can add switch cards to a workbench by selecting {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in the header or by searching for it in the Global Search field. To add a switch card from the header:
 
 1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices**, then select **Open a device card**.
 

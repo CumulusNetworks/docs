@@ -36,7 +36,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Add admin state to `nv show interface` output
   - PIM show commands for PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
-  - Replace net show neighbor
+  - Set and show commands to configure and show the IP neighbor table
   - mlag keyword presentation
   - User permissions
   - Allow unset operations with a key and value

@@ -34,7 +34,7 @@ For deployments running:
 
 The NetQ 4.7.0 server is compatible with NetQ Agents 4.6.0 and 4.7.0. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 4.3.0 and above (Broadcom switches)
+- Cumulus Linux 4.3.0 and 4.3.1 (Broadcom switches)
 - Cumulus Linux 5.0.0 and above (Spectrum switches)
 - SONiC 202012
 - CentOS 7

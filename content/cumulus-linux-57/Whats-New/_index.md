@@ -18,13 +18,11 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 
 ### New Features and Enhancements
 
-- Support for Debian 12
 - Shared ECMP containers for adaptive routing
 - Buffer and bandwidth histograms
-- 802.1x support
+- {{<link url="802.1X-Interfaces" text="802.1x support">}}
 - PTP PPS In or Out Support
 - {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}} forwarding profile
-- Route server support for EVPN
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port Security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
@@ -32,11 +30,11 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link url="RADIUS-AAA" text="RADIUS AAA commands">}}
   - {{<link url="Interface-Configuration-and-Management/#link-flap-protection" text="Link flap protection ">}} commands
   - {{<link title="Spanning Tree and Rapid Spanning Tree - STP" text="MLAG support for PVST & PVRST VLAN-aware bridge mode">}}
-  - {{<link title="Setting the Date and Time/#set-the-date-and-time" text="Set time command">}}
-  - Add admin state to `nv show interface` output
+  - {{<link title="Setting the Date and Time/#set-the-date-and-time" text="Set date and time command">}}
+  - Admin state shows in `nv show interface` output
   - PIM show commands for PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
-  - Replace net show neighbor
+  - Set and show commands to configure and show the IP neighbor table
   - mlag keyword presentation
   - User permissions
   - Allow unset operations with a key and value

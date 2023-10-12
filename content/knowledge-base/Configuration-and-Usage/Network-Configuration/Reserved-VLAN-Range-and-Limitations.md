@@ -17,11 +17,13 @@ Use caution when configuring VLANs; Cumulus Linux does not prevent reserved VLAN
 The minimum number of VLAN IDs required in the reserved VLAN range depends on the Cumulus Linux version and the feature you configure. You might need to change the reserved VLAN range to increase the number of VLANs reserved for certain features.
 
 {{%notice note%}}
+- The reserved VLAN range is a single contiguous set of VLAN IDs that you cannot use when configuring the switch.
 - NVIDIA does not recommend you change the number of reserved VLANs unless absolutely necessary.
 - Do not reduce the number of VLANs below the defaults.
 - The number of required reserved VLAN IDs must never exceed the count configured in the reserved VLAN range; see the {{<link url="#default-reserved-VLAN-ranges" text="table">}} below.
 - Use caution when changing the number of reserved VLANs: Cumulus Linux does not prevent you from configuring features that might exceed the number of reserved VLANs.
 - Changing the reserved VLAN range requires a `switchd` restart.
+
 {{%/notice%}}
 
 ## Default Reserved VLAN Ranges
@@ -36,6 +38,7 @@ The minimum number of VLAN IDs required in the reserved VLAN range depends on th
 
 - NVIDIA Spectrum switches running Cumulus Linux 5.0 and later require a reserved VLAN for every bridge and QinQ interface, plus 2.
 - NVIDIA Spectrum switches running Cumulus Linux 4.4 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 sub interface, and QinQ interface, plus 1.
+- Broadcom switches running Cumulus Linux 4.3.x require a reserved VLAN for every physical interface, layer 3 sub interface, and bridge, plus 1.
 
 The example below provides Linux-type shell commands to help you determine the in-use and configured VLAN counts and values. These commands are only a guide. Follow the guidelines below to determine how to best calculate the values.
 

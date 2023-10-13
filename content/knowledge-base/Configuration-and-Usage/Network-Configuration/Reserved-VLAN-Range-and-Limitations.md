@@ -36,9 +36,9 @@ The minimum number of VLAN IDs required in the reserved VLAN range depends on th
 
 ## Determine the Reserved VLAN Range
 
-- NVIDIA Spectrum switches running Cumulus Linux 5.0 and later require a reserved VLAN for every bridge and QinQ interface, plus 2.
-- NVIDIA Spectrum switches running Cumulus Linux 4.4 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 sub interface, and QinQ interface, plus 1.
-- Broadcom switches running Cumulus Linux 4.3.x require a reserved VLAN for every physical interface, layer 3 sub interface, and bridge, plus 1.
+- NVIDIA Spectrum switches running Cumulus Linux 5.0 and later require a reserved VLAN for every bridge and QinQ bridge, plus 2.
+- NVIDIA Spectrum switches running Cumulus Linux 4.4 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 sub interface, and QinQ bridge, plus 1.
+- Broadcom switches running Cumulus Linux 4.3 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 sub interface, and QinQ bridge, plus 1.
 
 The example below provides Linux-type shell commands to help you determine the in-use and configured VLAN counts and values. These commands are only a guide. Follow the guidelines below to determine how to best calculate the values.
 
@@ -73,8 +73,9 @@ cumulus@switch:~$ sudo cat /etc/network/interfaces.d/*.intf | grep "vlan-raw-dev
 ```
 
 5. Add the totals from step 1 through step 4.
-   - For NVIDIA Spectrum switches running 5.0 and later: Bridges + (implied QinQ bridges) + 2 = MINIMUM for configuration
-   - For NVIDIA Spectrum switches running 4.4 and earlier: Interfaces + bridges + (implied QinQ bridges) + layer 3 sub interfaces + 1 = MINIMUM for configuration
+   - For NVIDIA Spectrum switches running 5.0 and later: Bridges + (implied QinQ bridges) + 2 = MINIMUM for configuration.
+   - For NVIDIA Spectrum switches running 4.4 and earlier: Interfaces + bridges + (implied QinQ bridges) + layer 3 sub interfaces + 1 = MINIMUM for configuration.
+   - For Broadcom switches running 4.3 and earlier: Interfaces + bridges + (implied QinQ bridges) + layer 3 sub interfaces + 1 = MINIMUM for configuration.
 
 Never exceed this count, even temporarily, so that you have room for future expansion, in-process operations, and automation. For example, an automation system can modify a bridge by adding, then removing the old bridge. Cumulus does not guarantee minimal usage of reserved VLANs when doing multi-step operations.
 

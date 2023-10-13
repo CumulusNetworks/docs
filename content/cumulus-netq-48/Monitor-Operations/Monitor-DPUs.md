@@ -23,7 +23,7 @@ For an overview of the current or past health of DPU hardware resources, open th
 
     {{<figure src="/images/netq/dev-medium-dpu-card-42.png" alt="DPU card displaying CPU, memory, and disk utilization statistics" width="200">}}
 
-### View DPU Attributes
+## View DPU Attributes
 
 For a quick look at the key attributes of a particular DPU, expand the DPU card.
 
@@ -34,11 +34,8 @@ Attributes are displayed as the default tab on the large DPU card. You can view 
 To view a larger display of hardware resource utilization, select {{<img src="/images/netq/analytics-bars.svg" alt="" height="18" width="18">}} **Utilization**.
 
 {{<figure src="/images/netq/dev-dpu-large-utilization-42.png" width="700">}}
-## View Installed Packages
 
-To view, filter, or export the list of installed packages on a particular DPU, expand the card to its largest size:
-
-{{<figure src="/images/netq/dpu-hwresources-l4-installed-packages-42.png" alt="list of packages installed on a DPU" width="1100">}}
+Expand the card to its largest size to view a list of installed packages and RoCE counters for a given DPU. 
 
 ## Related Information
 

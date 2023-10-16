@@ -64,7 +64,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp fast-leave on
 
 ## <h>nv set interface \<interface-id\> ip igmp last-member-query-count</h>
 
-Sets the number of group-specific queries that a querier sends after receiving a leave message on the interface. You can set a value between 1 and 255. The default setting is 10 seconds.
+Sets the number of group-specific queries that a querier sends after receiving a leave message on the interface. You can set a value between 1 and 255. The default setting is 2.
 
 ### Command Syntax
 
@@ -86,7 +86,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-count 5
 
 ## <h>nv set interface \<interface-id\> ip igmp last-member-query-interval</h>
 
-Configures the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 125.
+Configures the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 10.
 
 ### Command Syntax
 
@@ -108,7 +108,7 @@ cumulus@switch:~$ nv set interface swp1 ip igmp last-member-query-interval 100
 
 ## <h>nv set interface \<interface-id\> ip igmp query-interval</h>
 
-Configures how often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 1800 seconds. The default setting is 180.
+Configures how often IGMP sends query-host messages to discover which multicast groups have members on the attached networks.
 
 In Cumulus Linux 5.6 and later, you can specify a value between 1 and 65535 seconds. The default setting is 100.
 

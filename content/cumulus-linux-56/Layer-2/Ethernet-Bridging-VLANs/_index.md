@@ -74,6 +74,7 @@ cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
 - If you use both VLAN-aware and traditional bridges, if a traditional bridge includes a bond subinterface that is a normal interface in a VLAN-aware bridge, the bridge flaps when you bring down the bond subinterface in the traditional bridge.
 - You cannot enslave a VLAN raw device to a different master interface (you cannot edit the `vlan-raw-device` setting in the `/etc/network/interfaces` file). You need to delete the VLAN and recreate it.
 - Cumulus Linux enables MAC learning by default on traditional and VLAN-aware bridge interfaces. Do not disable MAC learning unless you are using EVPN. See {{<link title="Ethernet Virtual Private Network - EVPN">}}.
+- The VLAN IDs in your configuration must **not** overlap with the internal reserved VLAN ranges. See [Reserved VLAN Range and Limitations]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/Reserved-VLAN-Range-and-Limitations" >}}).
 
 ## Related Information
 

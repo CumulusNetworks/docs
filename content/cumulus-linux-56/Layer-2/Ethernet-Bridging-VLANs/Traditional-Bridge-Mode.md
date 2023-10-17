@@ -312,3 +312,9 @@ bridge name     bridge id               STP enabled     interfaces
 br_mix          8000.4438390032bd       yes             swp10.100
                                                         swp11.200
 ```
+
+## Considerations
+
+### Reserved VLAN range
+
+The VLAN IDs in your configuration must **not** overlap with the internal reserved VLAN ranges. See [Reserved VLAN Range and Limitations]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/Reserved-VLAN-Range-and-Limitations" >}}).

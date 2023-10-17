@@ -86,7 +86,7 @@ cumulus@switch:~$ nv set system control-plane acl API-PROTECT inbound
 
 ## Supported Objects
 
-The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-55/api/index.html" text="here.">}}
+The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-56/api/index.html" text="here.">}}
 
 | High-level Objects | Description |
 | ------------------ | ----------- |

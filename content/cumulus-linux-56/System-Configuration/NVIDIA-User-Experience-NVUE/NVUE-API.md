@@ -132,21 +132,17 @@ cumulus@switch:~$ nv set system api listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
-You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the management VRF and to swp1 on VRF BLUE:
+You can listen on multiple interfaces by specifying different listening addresses:
 
 ```
-cumulus@switch:~$ nv set system api port
-cumulus@switch:~$ nv set system api listening-address 
+cumulus@switch:~$ nv set system api listening-address 10.10.10.1
+cumulus@switch:~$ nv set system api listening-address 10.10.20.1
 cumulus@switch:~$ nv config apply
 ```
 
-<!--
-```
-cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
-cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
-cumulus@switch:~$ sudo systemctl restart nginx
-```
--->
+{{%notice note%}}
+You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the management VRF and to swp1 on VRF BLUE.
+{{%/notice%}}
 
 ### Show NVUE REST API Information
 

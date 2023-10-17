@@ -181,7 +181,7 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
 
-1. Configure VXLAN Interfaces. Edit the `/etc/network/interfaces` file to create the VXLAN interfaces, attach them to a bridge, map the VLANs to the VNIs, and set the VXLAN local tunnel IP address. The example below creates two VXLAN interfaces (vni10 and vni20), maps VLAN 10 to vni10 and VLAN 20 to vni20, and sets the VXLAN local tunnel IP address to 10.10.10.10.
+1. Edit the `/etc/network/interfaces` file to create a single VXLAN device, attach it to a bridge, map the VLANs to the VNIs, and set the VXLAN local tunnel IP address. The example below creates a single VXLAN interface (vxlan0), maps VLAN 10 to vni10 and VLAN 20 to vni20, and sets the VXLAN local tunnel IP address to 10.10.10.10.
 
    ```
    cumulus@leaf01:~$ sudo nano /etc/network/interfaces
@@ -190,36 +190,22 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
    iface lo inet loopback
            address 10.10.10.1/32
            vxlan-local-tunnelip 10.10.10.10
-
-   auto vni10
-   iface vni10
-           bridge-access 10
-           bridge-learning off
-           vxlan-id 10
-
-   auto vni20
-   iface vni20
-           bridge-access 20
-           bridge-learning off
-           vxlan-id 20
-
-   auto vlan10
-   iface vlan10
-       vlan-raw-device br_default
-       vlan-id 10
-
-   auto vlan20
-   iface vlan20
-       vlan-raw-device br_default
-       vlan-id 20
+  ...
+   auto vxlan0
+   iface vxlan0
+    bridge-vlan-vni-map 10=10 20=20
+    bridge-vids 10 20
+    bridge-learning off
 
    auto br_default
    iface br_default
-           bridge-ports vni10 vni20
+           bridge-ports swp1 swp2 vxlan0
            bridge-vlan-aware yes
            bridge-vids 10 20
            bridge-pvid 1
    ```
+
+To create a traditional VXLAN device, where each VNI represents a separate device instead of a set of VNIs in a single device model, see {{<link url="VXLAN-Devices" text="VXLAN-Devices">}}.
 
 2. Configure BGP with vtysh commands. The following example commands assign an ASN and router ID to leaf01 and spine01, specify the interfaces between the two BGP peers, and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
 

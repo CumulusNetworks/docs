@@ -205,6 +205,8 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
            bridge-pvid 1
    ```
 
+To create a traditional VXLAN device, where each VNI represents a separate device instead of a set of VNIs in a single device model, see {{<link url="VXLAN-Devices" text="VXLAN-Devices">}}.
+
 2. Configure BGP with vtysh commands. The following example commands assign an ASN and router ID to leaf01 and spine01, specify the interfaces between the two BGP peers, and the prefixes to originate. For complete information on how to configure BGP, see {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol - BGP">}}.
 
    {{< tabs "TabID299 ">}}

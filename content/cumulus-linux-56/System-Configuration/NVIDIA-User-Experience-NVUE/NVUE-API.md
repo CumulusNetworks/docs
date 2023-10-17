@@ -65,7 +65,11 @@ adduser automation nvapply
 
 ### Control Plane ACLs
 
-You can secure the API with control plane ACLs. The following example allows users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
+You can secure the API by configuring:
+- A listening address; see {{<link url="#api-port-and-listening-address" text="API Port and Listening Address">}} below.
+- Control plane ACLs; see the following example.
+
+This example shows how to create ACLs to allow users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
 
 ```
 cumulus@switch:~$ nv set acl API-PROTECT type ipv4 
@@ -128,16 +132,17 @@ cumulus@switch:~$ nv set system api listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
+You can listen on multiple interfaces by specifying different listening addresses:
+
+```
+cumulus@switch:~$ nv set system api listening-address 10.10.10.1
+cumulus@switch:~$ nv set system api listening-address 10.10.20.1
+cumulus@switch:~$ nv config apply
+```
+
 {{%notice note%}}
-- You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the management VRF and to swp1 on VRF BLUE.
+You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the management VRF and to swp1 on VRF BLUE.
 {{%/notice%}}
-<!--
-```
-cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
-cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
-cumulus@switch:~$ sudo systemctl restart nginx
-```
--->
 
 ### Show NVUE REST API Information
 
@@ -183,7 +188,7 @@ cumulus@switch:~$ nv show system api listening-address
 ---------
 localhost
 ```
-
+<!--
 ### Access the NVUE REST API from a Front Panel Port
 
 To access the NVUE REST API from a front panel port (swp) on the switch:
@@ -207,7 +212,7 @@ To access the NVUE REST API from a front panel port (swp) on the switch:
 - To access the REST API from the switch running `curl` locally, invoke the REST API client from the default VRF from the Cumulus Linux shell by prefixing the command with `ip vrf exec default curl`.
 - To access the NVUE REST API from a client on a peer Cumulus Linux switch or virtual appliance, or any other off-the-shelf Linux server or virtual machine, make sure the switch or appliance has the correct IP routing configuration so that the REST API HTTP packets arrive on the correct target interface and VRF.
 {{%/notice%}}
-
+-->
 ### Run cURL Commands
 
 You can run the cURL commands from the command line. Use the username and password for the switch. For example:

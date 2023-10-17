@@ -347,10 +347,10 @@ Source          Group           Proto   Input     Output     TTL  Uptime
 
 ### SSM Multicast Group Ranges
 
-For [SSM](## "Source Specific Multicast"), `232.0.0.0/8` is the default multicast group range. To change the multicast group range, define a prefix list and apply it. You can change the default group or add additional group ranges.
+232.0.0.0/8 is the default multicast group range reserved for <span style="background-color:#F5F5DC">[SSM](## "Source Specific Multicast")</span>. To modify the SSM multicast group range, define a prefix list and apply it. You can change (expand) the default group or add additional groups to this range.
 
 {{%notice note%}}
-You must include `232.0.0.0/8` in the prefix list. When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
+You must include 232.0.0.0/8 in the prefix list as this is the reserved SSM range. Using a prefix-list, you can expand the SSM range but all devices in the source tree must agree on the SSM range. When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
 {{%/notice%}}
 
 {{< tabs "TabID825 ">}}

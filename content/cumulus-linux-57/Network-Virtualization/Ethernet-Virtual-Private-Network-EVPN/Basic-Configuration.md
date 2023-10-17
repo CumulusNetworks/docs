@@ -190,7 +190,7 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
    iface lo inet loopback
            address 10.10.10.1/32
            vxlan-local-tunnelip 10.10.10.10
-  ...
+   ...
    auto vxlan0
    iface vxlan0
     bridge-vlan-vni-map 10=10 20=20

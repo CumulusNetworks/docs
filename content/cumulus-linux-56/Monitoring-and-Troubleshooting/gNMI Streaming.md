@@ -808,5 +808,5 @@ received sync response 'true' from '10.209.37.123:9339'
 ## Related Information
 
 - {{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}
-- {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMIc client">}}
+- {{<exlink url="https://gnmic.openconfig.net/" text="gNMIc client">}}
 - {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMI subscription mode documentation">}}

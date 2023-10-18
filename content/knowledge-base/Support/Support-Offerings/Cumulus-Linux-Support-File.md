@@ -7,7 +7,7 @@ toc: 4
 
 Cumulus Linux generates support files called `cl-support` whenever it detects issues.
 
-This file aids in troubleshooting customer issues. The NVIDIA global support staff often requests customers to provide this file when they open support tickets.
+This file aids in troubleshooting customer issues. The NVIDIA Enterprise Support team often requests customers to provide this file when they open support tickets.
 
 The `cl-support` command names the file `cl_support_xxx.txz` and writes it to the `/var/support` directory.
 

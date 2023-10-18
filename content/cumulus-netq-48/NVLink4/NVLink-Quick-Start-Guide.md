@@ -31,30 +31,15 @@ After creating a new password and accepting the Terms of Use, the default workbe
 
 ## Access NVLink4
 
-NVLink4 features are hidden by default in the NetQ UI. To access these features, run `netq features nvl4 enable` on your NetQ server's CLI. Return to the UI and refresh the page. The NVL4 icon should appear in the header:
+NVLink4 features are hidden by default in the NetQ UI. To access these features, run `netq features nvl4 enable` on your NetQ server's CLI. Return to the UI and refresh the page. The NVL4 icon should be visible in the header. Select this icon to display the NVLink management dashboard.
 
-{{<figure src="/images/netq/nvl4-header-450.png" alt="" width="950">}}
+{{<figure src="/images/netq/nvl4-header-480.png" alt="" width="950">}}
 
-When you select the NVL4 icon selected, NetQ loads the NVLink4 management dashboard.
-
-<!--insert pic of dashboard when you select the icon-->
-
-The top section displays the Global Fabric Manager (GFM) status
-Configuration tab
-Devices tab
-Connections tab
-
-
-<!--
-To verify that NVLink4 features are enabled, run `netq show features nvl4`.
-
-You can hide the NVLink4 features in the UI with `netq features nvl4 disable`.
-
--->
+To verify that NVLink4 features are enabled, run `netq show features nvl4`. You can also hide the NVLink4 features in the UI with `netq features nvl4 disable`.
 
 ## Intro to the NetQ UI
 
-You can read through the following sections to better understand the NetQ layout and functionality.
+If you are unfamiliar with NetQ, the following sections provide an overview of the NetQ layout and functionality.
 
 - {{<link title="NetQ User Interface Overview">}} 
 - {{<link title="Events and Notifications">}}

@@ -67,7 +67,6 @@ This reference lists the threshold-based events that NetQ supports. You can view
 
 ## DPU RoCE
 
-You can configure the following threshold-crossing events on host-extensible devices, including NICs and DPUs.
 
 | NetQ UI Name | NetQ CLI Event ID | Description |
 | --- | --- | --- |

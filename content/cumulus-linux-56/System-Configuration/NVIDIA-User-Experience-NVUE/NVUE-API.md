@@ -132,7 +132,7 @@ This section shows how to:
 The following example uses NVUE REST API port 8888 and listening address localhost:
 
 ```
-cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://localhost:8888/nvue_v1/...
+cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://localhost:8888/nvue_v1/
 ...
 ```
 
@@ -141,7 +141,7 @@ You can listen on multiple interfaces by specifying different listening addresse
 If you configure a VRF for an interface, NGINX listens on the VRF configured for that interface. The following example uses the default NVUE REST API port 8765 on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
 
 ```
-cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://172.0.24.0:8765/nvue_v1/...
+cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://172.0.24.0:8765/nvue_v1/
 ...
 ```
 

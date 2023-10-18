@@ -234,6 +234,7 @@ When you use route leaking:
 - You cannot configure VRF instances of BGP in multiple autonomous systems (AS) or an AS that is not the same as the global AS.
 - Do not use the default VRF as a shared service VRF. Create another VRF for shared services.
 - An EVPN symmetric routing configuration has certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has routes to VTEP addresses that you cannot leak to any tenant VRFs. If you need to leak routes between the default VRF and a non-default VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes. Use caution with such a configuration. Run common services in a separate VRF (service VRF) instead of the default VRF to simplify configuration and avoid using route maps for filtering.
+- Cumulus Linux does not copy extended communities to the destination VRF.
 
 In the following example commands, routes in the BGP routing table of VRF `BLUE` dynamically leak into VRF `RED`.
 

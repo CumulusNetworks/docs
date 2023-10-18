@@ -65,7 +65,11 @@ adduser automation nvapply
 
 ### Control Plane ACLs
 
-You can secure the API with control plane ACLs. The following example allows users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
+You can secure the API by configuring:
+- A listening address; see {{<link url="#api-port-and-listening-address" text="API Port and Listening Address">}} below.
+- Control plane ACLs; see the following example.
+
+This example shows how to create ACLs to allow users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
 
 ```
 cumulus@switch:~$ nv set acl API-PROTECT type ipv4 
@@ -120,7 +124,7 @@ To use the NVUE REST API in Cumulus Linux 5.6, you must {{<link url="/User-Accou
 
 This section shows how to:
 - Set the NVUE REST API port. If you do not set a port, Cumulus Linux uses the default port 8765.
-- Specify the NVUE REST API listening address; you can specify an IPv4 address or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
+- Specify the NVUE REST API listening address; you can specify an IPv4 address, IPv6 address, or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
 
 ```
 cumulus@switch:~$ nv set system api port 8888
@@ -128,16 +132,31 @@ cumulus@switch:~$ nv set system api listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
-- You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the management VRF and to swp1 on VRF BLUE.
-{{%/notice%}}
-<!--
+You can listen on multiple interfaces by specifying different listening addresses:
+
 ```
-cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
-cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
-cumulus@switch:~$ sudo systemctl restart nginx
+cumulus@switch:~$ nv set system api listening-address 10.10.10.1
+cumulus@switch:~$ nv set system api listening-address 10.10.20.1
+cumulus@switch:~$ nv config apply
 ```
--->
+
+If you configure a VRF for an interface, NGINX listens on the VRF configured for that interface. The following example configures VRF BLUE on swp1, which has IP address 10.10.20.1, then sets the API listening address to the IP address for swp1 (configured for VRF BLUE).
+
+```
+cumulus@switch:~$ nv set interface swp1 ip address 10.10.10.1/24
+cumulus@switch:~$ nv set interface swp1 ip vrf BLUE
+cumulus@switch:~$ nv config apply
+
+cumulus@switch:~$ nv set system api listening-address 10.10.10.1
+cumulus@switch:~$ nv config apply
+```
+
+To configure NGINX to listen on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
+
+```
+cumulus@switch:~$ nv set system api listening-address 172.0.24.0
+cumulus@switch:~$ nv config apply
+```
 
 ### Show NVUE REST API Information
 
@@ -183,7 +202,7 @@ cumulus@switch:~$ nv show system api listening-address
 ---------
 localhost
 ```
-
+<!--
 ### Access the NVUE REST API from a Front Panel Port
 
 To access the NVUE REST API from a front panel port (swp) on the switch:
@@ -207,7 +226,7 @@ To access the NVUE REST API from a front panel port (swp) on the switch:
 - To access the REST API from the switch running `curl` locally, invoke the REST API client from the default VRF from the Cumulus Linux shell by prefixing the command with `ip vrf exec default curl`.
 - To access the NVUE REST API from a client on a peer Cumulus Linux switch or virtual appliance, or any other off-the-shelf Linux server or virtual machine, make sure the switch or appliance has the correct IP routing configuration so that the REST API HTTP packets arrive on the correct target interface and VRF.
 {{%/notice%}}
-
+-->
 ### Run cURL Commands
 
 You can run the cURL commands from the command line. Use the username and password for the switch. For example:

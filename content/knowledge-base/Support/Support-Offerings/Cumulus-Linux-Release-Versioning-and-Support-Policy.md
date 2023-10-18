@@ -61,8 +61,8 @@ Consistent with this two-pronged approach, the mainline and ESR code branches ar
 </tr>
 <tr class="odd">
 <td>Support Duration (Software updates and support)</td>
-<td><p>ESR branch, before releasing ESR: Software updates and Global Support Services (GSS) support</p>
-<p>ESR branch, after releasing ESR: 12 months GSS support only from date of ESR release</p></td>
+<td><p>ESR branch, before releasing ESR: Software updates and NVIDIA support</p>
+<p>ESR branch, after releasing ESR: 12 months NVIDIA support only from date of ESR release</p></td>
 <td>3 years from release date of version</td>
 </tr>
 <tr class="even">

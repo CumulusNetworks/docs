@@ -73,7 +73,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 
 ## Support Policy
 
-As a Cumulus Linux customer, you can receive formal GSS support for Cumulus VX to:
+As a Cumulus Linux customer, you can receive formal NVIDIA support for Cumulus VX to:
 
 - Test and stage network topologies before deploying to production.
 - Analyze, troubleshoot, and correct issues with configurations and software bugs in Cumulus VX that might also apply to Cumulus Linux running on physical devices.

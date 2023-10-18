@@ -781,4 +781,4 @@ If the switch is operational again due to one of the above methods, but you have
 - Replace any module that has caused problems in the past.
 - Replace all modules in the switch.
 
-If needed, contact the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Cumulus Global Support Services team">}} for additional help.
+If needed, contact the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support team">}} for additional help.

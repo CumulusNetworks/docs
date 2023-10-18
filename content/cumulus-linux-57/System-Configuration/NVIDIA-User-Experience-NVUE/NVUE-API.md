@@ -126,67 +126,6 @@ This section shows how to:
 - Set the NVUE REST API port. If you do not set a port, Cumulus Linux uses the default port 8765.
 - Specify the NVUE REST API listening address; you can specify an IPv4 address, IPv6 address, or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
 
-{{< tabs "TabID129 ">}}
-{{< tab "Curl Command ">}}
-
-The following example uses NVUE REST API port 8888 and listening address localhost:
-
-```
-cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://localhost:8888/nvue_v1/
-...
-```
-
-You can listen on multiple interfaces by specifying different listening addresses.
-
-If you configure a VRF for an interface, NGINX listens on the VRF configured for that interface. The following example uses the default NVUE REST API port 8765 on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
-
-```
-cumulus@switch:~$ curl  -u 'cumulus:cumulus' --insecure https://172.0.24.0:8765/nvue_v1/
-...
-```
-
-{{< /tab >}}
-{{< tab "Python Code ">}}
-
-The following example uses NVUE REST API port 8888 and listening address localhost:
-
-```
-#!/usr/bin/env python3
-
-import requests
-from requests.auth import HTTPBasicAuth
-import json
-import time
-
-auth = HTTPBasicAuth(username="cumulus", password="password")
-nvue_end_point = "https://localhost:8888/nvue_v1"
-mime_header = {"Content-Type": "application/json"}
-...
-```
-
-You can listen on multiple interfaces by specifying different listening addresses.
-
-If you configure a VRF for an interface, NGINX listens on the VRF configured for that interface. The following example uses the default NVUE REST API port 8765 on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
-
-```
-#!/usr/bin/env python3
-
-import requests
-from requests.auth import HTTPBasicAuth
-import json
-import time
-
-auth = HTTPBasicAuth(username="cumulus", password="password")
-nvue_end_point = "https://172.0.24.0:8765/nvue_v1"
-mime_header = {"Content-Type": "application/json"}
-...
-```
-
-{{</ tab >}}
-{{< tab "NVUE CLI ">}}
-
-The following example sets the NVUE REST API port to 8888 and the listening address to localhost:
-
 ```
 cumulus@switch:~$ nv set system api port 8888
 cumulus@switch:~$ nv set system api listening-address localhost
@@ -218,9 +157,6 @@ To configure NGINX to listen on eth0, which has IP address 172.0.24.0 and uses t
 cumulus@switch:~$ nv set system api listening-address 172.0.24.0
 cumulus@switch:~$ nv config apply
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
 
 ### Show NVUE REST API Information
 

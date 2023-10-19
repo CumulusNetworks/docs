@@ -811,7 +811,7 @@ cumulus@<hostname>:~$ netq install standalone install-job bundle /mnt/installabl
 ## netq install update-settings
 <!-- vale on -->
 
-Overrides system variables after encountering issues during installation. File a {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="support ticket">}} with the NVIDIA Global Support Services team before using this command. They can provide the key/value pair needed to resolve your issue.
+Overrides system variables after encountering issues during installation. File a {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="support ticket">}} with the NVIDIA Enterprise Support team before using this command. They can provide the key/value pair needed to resolve your issue.
 
 ### Syntax
 

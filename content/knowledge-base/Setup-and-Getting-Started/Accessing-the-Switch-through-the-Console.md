@@ -5,7 +5,7 @@ weight: 101
 toc: 3
 ---
 
-You can access any switch on the NVIDIA {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} via the console. The standard command to use for console access depends on your host operating system.
+You can access any switch on the NVIDIA {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List">}} via the console. The standard command to use for console access depends on your host operating system.
 
 For MacOS:
 

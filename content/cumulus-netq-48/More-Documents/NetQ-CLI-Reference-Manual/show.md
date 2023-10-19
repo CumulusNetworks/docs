@@ -38,6 +38,42 @@ netq [<hostname>] show adaptive-routing config interface [<text-ifname>]
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 
 ### Sample Usage
+
+```
+cumulus@switch:~$ netq show adaptive-routing config global 
+
+Matching arconfig records: 
+
+Hostname          Is AR   Is RoCE  RoCE Mode Last Updated 
+
+                  Enabled Enabled 
+
+----------------- ------- -------- --------- -------------------------- 
+
+mlx-3700-45       True    False    None      Thu Aug 31 12:30:46 2023
+```
+
+```
+cumulus@mlx-3700-45:mgmt:/$ netq show adaptive-routing config interface 
+
+  
+
+Matching arconfig records: 
+
+Hostname          Interface Is AR   Link Util  Link Util  Last Updated 
+
+                            Enabled Threshold  Threshold 
+
+                                    Disabled 
+
+----------------- --------- ------- ---------- ---------- -------------------------- 
+
+mlx-3700-45       swp1s0    True    True       60         Thu Aug 31 13:46:56 2023 
+
+mlx-3700-45       swp1      True    True       70         Thu Aug 31 13:46:56 2023 
+
+mlx-3700-45       swp2      True    True       70         Thu Aug 31 13:46:56 2023 
+```
 -->
 ## netq show address-history
 <!-- vale on -->
@@ -929,7 +965,7 @@ Event querying is supported for a 72-hour window within the past 30 days.
 ```
 netq [<hostname>] show events
     [severity info | severity error]
-    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_services|tca_wjh|trace|vlan|vxlan]
+    [message_type adaptive-routing|agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_services|tca_wjh|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
 ```
@@ -944,7 +980,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | severity | info, error| Only display events with this severity level |
-| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_services, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
+| message_type | adaptive routing, agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_services, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON format |
 

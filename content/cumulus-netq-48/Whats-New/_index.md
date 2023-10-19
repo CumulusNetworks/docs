@@ -14,6 +14,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 NetQ 4.8.0 includes the following new features and improvements:
 
 - Lifecycle management support for in-band deployments
+- {{<link title="Adaptive Routing" text="Adaptive routing">}} monitoring for switches (beta)
 - High-availability improvements for on-premises cluster deployments: you can now access the NetQ UI via a virtual IP address in the event of a node failure 
 - NVLink support
 - RoCE monitoring for DPUs {{<link title="RoCE">}} and create threshold-crossing rules {{<link title="Threshold-Crossing Events Reference/#dpu-roce">}}

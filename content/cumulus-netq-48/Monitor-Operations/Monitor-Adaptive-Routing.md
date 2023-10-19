@@ -11,9 +11,13 @@ Adaptive routing monitoring is supported on Spectrum-2 switches and above. It re
 
 {{</notice>}}
 
-- Must enable RoCE lossless mode on the switch
-- To display queue histograms, you must enable and configure ASIC monitoring.  
-- Queue histogram collection for NetQ agent should be enabled. Note that it is by default enabled – if no explicit configuration is specified. 
+## Requirements
+
+To gather adaptive routing data, you must have the following:
+
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE lossless mode">}} enabled
+- To display queue histograms, you must configure the {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="ASIC monitoring service">}}
+- Queue histogram collection for NetQ agent should be enabled. Note that it is by default enabled – if no explicit configuration is specified.
 
 ## Adaptive Routing Commands
 

@@ -13,7 +13,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale on -->
 NetQ 4.8.0 includes the following new features and improvements:
 
-- Lifecycle management support for in-band deployments
+- Lifecycle management support for {{<link url="Lifecycle-Management/#lcm-support-and-in-band-management" text="in-band deployments">}}
 - {{<link title="Adaptive Routing" text="Adaptive routing">}} monitoring for switches (beta)
 - High-availability improvements for on-premises cluster deployments: you can now access the NetQ UI via a virtual IP address in the event of a node failure 
 - NVLink support

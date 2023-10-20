@@ -34,7 +34,7 @@ You can access the LCM dashboard in a few ways:
 
 Lifecycle management workflows use the `netq lcm` command set. Refer to the {{<link title="lcm" text="command line reference">}} for a comprehensive list of options and definitions.
 
-## LCM Support and In-band Management
+## LCM Support for In-band Management
 
 If you manage a switch using an in-band network interface, the `inband-interface` option must be specified in the {{<link url="Install-NetQ-Agents/#configure-netq-agents-using-the-netq-cli" text="agent configuration">}} for LCM operations:
 

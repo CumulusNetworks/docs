@@ -5,6 +5,8 @@ weight: 790
 toc: 3
 ---
 
+The adaptive routing dashboard allows you to view switches with adaptive routing enabled, events related to adaptive routing, and RoCE
+
 {{<notice note>}}
 
 Adaptive routing monitoring is supported on Spectrum-2 switches and above. It requires a switch fabric running Cumulus Linux 5.5.0 or above. This feature is in beta.
@@ -31,6 +33,8 @@ netq show events message_type adaptive-routing
 ## View Adaptive Routing in the UI
 
 {{<figure src="/images/netq/ar-dashboard-480.png" alt="" width="1100">}}
+
+{{<link title="Switches/#view-queue-lengths-in-histograms" text="View queue lengths in the form of histograms">}}
 
 The following details will be shown in AR summary page: 
 

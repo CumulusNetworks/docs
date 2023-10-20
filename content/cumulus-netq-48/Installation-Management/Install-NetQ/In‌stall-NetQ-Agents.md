@@ -601,7 +601,7 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
     - port: 31980 (default configuration)
     - server: IP address of the NetQ server where the agent should send its collected data
     - vrf: default (or one that you specify)
-    - inband-interface: For deployments where switches are managed through an in-band interface, the interface used to reach your NetQ server and used by LCM to connect to the switch
+    - inband-interface: the interface used to reach your NetQ server and used by lifecycle management to connect to the switch (for deployments where switches are managed through an in-band interface)
 
     Your configuration should be similar to this:
 
@@ -633,7 +633,7 @@ If you intend to use a VRF for agent communication (recommended), refer to {{<li
 Use the following command to configure the NetQ Agent:
 
 ```
-netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>] [inband-interface <interface-name>]
+sudo netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>] [inband-interface <interface-name>]
 ```
 
 This example uses a NetQ server IP address of *192.168.1.254*, the default port, and the `mgmt` VRF for a switch managed through an out-of-band connection:
@@ -674,7 +674,7 @@ If you later change the VRF configured for the NetQ Agent (using a lifecycle man
 
 ### Configure the Agent to Communicate over a Specific Port
 
-By default, NetQ uses port 31980 for communication between the NetQ appliance or VM and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ appliance or VM via a different port, you need to specify the port number when configuring the NetQ Agent, like this:
+By default, NetQ uses port 31980 for communication between the NetQ server and NetQ Agents for on-premises deployments and port 443 for cloud deployments. If you want the NetQ Agent to communicate with the NetQ sever via a different port, you need to specify the port number when configuring the NetQ Agent, like this:
 
 ```
 sudo netq config add agent server 192.168.1.254 port 7379

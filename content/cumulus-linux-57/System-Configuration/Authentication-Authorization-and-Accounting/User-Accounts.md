@@ -25,10 +25,12 @@ You can add additional user accounts as needed.
 - You can set a plain text password or a hashed password for the local user account. To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
 - You can provide a full name for the local user account (optional).
 
-{{< tabs "TabID30 ">}}
-{{< tab "NVUE Commands ">}}
+### Default Roles
 
-Use the following roles to set the permissions for local user accounts.
+Cumulus Linux provides the following default roles:
+
+{{< tabs "TabID32 ">}}
+{{< tab "NVUE ">}}
 
 | <div style="width:200px">Role | Permissions |
 |--------- |---------- |
@@ -36,8 +38,26 @@ Use the following roles to set the permissions for local user accounts.
 | `nvue-admin` | Allows the user to run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
 | `nvue-monitor` | Allows the user to run `nv show` commands only.|
 
+{{< /tab >}}
+{{< tab "Linux ">}}
+
+| <div style="width:200px">Role | Permissions |
+|--------- |---------- |
+| `sudo` | Allows the user to use `sudo` to run commands as the privileged user. |
+| `nvshow` | Allows the user to run `nv show` commands only. |
+| `nvset`  | Allows the user to run `nv show` commands, and run `nv set` and `nv unset` commands to stage configuration changes. |
+| `nvapply` | Allows the user to run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To add a new user account and assign the user a default role:
+
+{{< tabs "TabID58 ">}}
+{{< tab "NVUE Commands ">}}
+
 The following example:
-- Creates a new user account called `admin2` and sets the role to `system-admin` (permissions for `sudo`, `nv show`, `nv set` and `nvunset`, and `nv apply`).
+- Creates a new user account called `admin2` and sets the role to `system-admin`.
 - Sets a plain text password. NVUE hashes the plain text password and stores the value as a hashed password. To set a hashed password, see {{<link url="#hashed-passwords" text="Hashed Passwords">}}, below.
 - Adds the full name `FIRST LAST`. If the full name includes more than one name, either separate the names with a hyphen (`FIRST-LAST`) or enclose the full name in quotes (`"FIRST LAST"`).
 
@@ -59,18 +79,9 @@ If you are an NVUE-mangaged user, you can update your own password with the Linu
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Use the following groups to set permissions for local user accounts. To add users to these groups, use the `useradd(8)` or `usermod(8)` commands:
-
-| Group | Permissions |
-|--------- |---------- |
-| `sudo` | Allows the user to use `sudo` to run commands as the privileged user. |
-| `nvshow` | Allows the user to run `nv show` commands only. |
-| `nvset`  | Allows the user to run `nv show` commands, and run `nv set` and `nv unset` commands to stage configuration changes. |
-| `nvapply` | Allows the user to run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
-
 The following example:
 - Creates a new user account called `admin2`, adds the full name `First Last`, and sets the password to `CumulusLinux!`
-- Sets the group membership to `sudo` and `nvapply` (permissions to use `sudo`, `nv show`, `nv set`, and `nv apply`).
+- Sets the group membership (role) to `sudo` and `nvapply` (permissions to use `sudo`, `nv show`, `nv set`, and `nv apply`).
 
 ```
 cumulus@switch:~$ sudo useradd admin2 -c "First Last" -p CumulusLinux!
@@ -87,6 +98,65 @@ Only the following user accounts can create, modify, and delete other `system-ad
 - The root user.
 - Non NVUE-managed users that are in the `sudo` group.
 {{%/notice%}}
+
+### Custom Roles
+
+In addition to the default roles that Cumulus Linux provides, you can create your own roles to restrict authorization, giving you more granular control over what a user can manage on the switch. For example, you can assign a user the role of Network Manager and provide the user privileges for interface management, service management and system management. When the user logs in and executes an NVUE command, NVUE checks the user privileges and authorizes the user to run that command.
+
+Custom role-based access control consists of the following elements:
+
+| Element | Description |
+| ------- | ----------- |
+| Role | A virtual identifier for multiple classes (groups). You can assign only one role for a user. For example, for a user that can manage interfaces, you can create a role called `IFMgr`. |
+| Class | A class is similar in concept to a Linux group. Creating and managing classes is the simplest way to configure multiple users simultaneously, especially when configuring permissions. You can assign a maximum of 64 classes to a role.</br>A class consists of:</br>- Command paths, which are based on the objects in the NVUE declarative model and are the same as URI paths; for example; you can use the `interface/vrf*` command path to allow or deny a user access to all VRFs, or `/system/hostname` to allow or deny a user access to hostname configuration. You can configure a maximum of 128 command paths.</br>- Permissions for the command paths: (`ro`) to run show commands, (`rw`) to run set, unset, and apply commands, (`act`) to run action commands, or (`all`) to run all commands. The default permission setting is `all`.|
+| Action | The action for the class; `allow` or `deny`.  |
+
+To add a new user account and assign the user a custom role:
+- Assign a role to a user.
+- Assign a password for the user.
+- Create classes for the role. Add command paths and permissions for each class.
+- Assign the action (`allow` or `deny`) for each class.
+
+The following example assigns user1 the role of `switch-admin`. user1 can manage the entire switch except for authentication, authorization, and accounting settings (`system aaa`).
+
+```
+cumulus@switch:~$ nv set system aaa user user1 role switch-admin 
+cumulus@switch:~$ nv set system aaa user user1 password
+cumulus@switch:~$ nv set system aaa role switch-admin class nvapply 
+cumulus@switch:~$ nv set system aaa class nvapply action allow 
+cumulus@switch:~$ nv set system aaa class nvapply command-path * permission all 
+cumulus@switch:~$ nv set system aaa role switch-admin class nvshow
+cumulus@switch:~$ nv set system aaa class nvshow action allow 
+cumulus@switch:~$ nv set system aaa class nvshow command-path * permission all 
+cumulus@switch:~$ nv set system aaa role switch-admin class restrict 
+cumulus@switch:~$ nv set system aaa class restrict action deny 
+cumulus@switch:~$ nv set system aaa class restrict command-path /system/aaa/*
+cumulus@switch:~$ nv config apply
+```
+
+The following example assigns user2 the role of `IFMgr`. user2 can manage the loopback, management, eth0, and swp1 through 5 interfaces, and all VRFs.
+
+```
+cumulus@switch:~$ nv set system aaa user user2 role IFMgr 
+cumulus@switch:~$ nv set system aaa role IFMgr class InterfaceMgmt_1 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 action allow 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/lo permission all 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/mgmt permission all 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/eth0 permission all 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/vrf* permission all 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/swp[1-5]/* permission all
+cumulus@switch:~$ nv config apply
+```
+
+The following example assigns user3 the role of `OSPF`. user3 does **not** have permissions to manage OSPF on an interface.
+
+```
+cumulus@switch:~$ nv set system aaa user user3 role OSPF 
+cumulus@switch:~$ nv set system aaa role IFMgr class OSPF-DENY 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 action deny 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/.*/router/ospf permission all 
+cumulus@switch:~$ nv config apply
+```
 
 ### Hashed Passwords
 

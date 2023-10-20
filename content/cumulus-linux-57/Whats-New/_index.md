@@ -31,12 +31,12 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link url="Interface-Configuration-and-Management/#link-flap-protection" text="Link flap protection ">}} commands
   - {{<link title="Spanning Tree and Rapid Spanning Tree - STP" text="MLAG support for PVST & PVRST VLAN-aware bridge mode">}}
   - {{<link title="Setting the Date and Time/#set-the-date-and-time" text="Set date and time command">}}
+  - {{<link url="User-Accounts" text="Custom role-based access control">}} with more granularity
   - Admin state shows in `nv show interface` output
   - PIM show commands for PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Set and show commands to configure and show the IP neighbor table
   - mlag keyword presentation
-  - User permissions
   - Allow unset operations with a key and value
   - Enhanced show config history output
   - API support

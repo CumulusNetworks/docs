@@ -16,9 +16,9 @@ NetQ 4.8.0 includes the following new features and improvements:
 - Lifecycle management support for in-band deployments
 - High-availability improvements for on-premises cluster deployments: you can now access the NetQ UI via a virtual IP address in the event of a node failure 
 - NVLink support
-- RoCE monitoring for DPUs and NICs {{<link title="RoCE">}} and create threshold-crossing rules {{<link title="Threshold-Crossing Events Reference/#dpu-roce">}}
+- RoCE monitoring for DPUs {{<link title="RoCE">}} and create threshold-crossing rules {{<link title="Threshold-Crossing Events Reference/#dpu-roce">}}
 - Topology redesign {{<link title="Network Topology">}} to accommodate more devices
-- Performance improvements to the NetQ Agent that limit its CPU usage to 50% on Cumulus switches 
+- Performance improvements to the NetQ Agent
 - Security enhancements
 
 

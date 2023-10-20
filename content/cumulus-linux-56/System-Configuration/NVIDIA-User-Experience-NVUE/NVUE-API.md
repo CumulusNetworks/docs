@@ -126,6 +126,8 @@ This section shows how to:
 - Set the NVUE REST API port. If you do not set a port, Cumulus Linux uses the default port 8765.
 - Specify the NVUE REST API listening address; you can specify an IPv4 address, IPv6 address, or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
 
+The following example sets the port to 8888 and the listening address to localhost:
+
 ```
 cumulus@switch:~$ nv set system api port 8888
 cumulus@switch:~$ nv set system api listening-address localhost
@@ -140,7 +142,14 @@ cumulus@switch:~$ nv set system api listening-address 10.10.20.1
 cumulus@switch:~$ nv config apply
 ```
 
-If you configure a VRF for an interface, NGINX listens on the VRF configured for that interface. The following example configures VRF BLUE on swp1, which has IP address 10.10.20.1, then sets the API listening address to the IP address for swp1 (configured for VRF BLUE).
+The following example configures the listening address on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
+
+```
+cumulus@switch:~$ nv set system api listening-address 172.0.24.0
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures VRF BLUE on swp1, which has IP address 10.10.20.1, then sets the API listening address to the IP address for swp1 (configured for VRF BLUE).
 
 ```
 cumulus@switch:~$ nv set interface swp1 ip address 10.10.10.1/24
@@ -148,13 +157,6 @@ cumulus@switch:~$ nv set interface swp1 ip vrf BLUE
 cumulus@switch:~$ nv config apply
 
 cumulus@switch:~$ nv set system api listening-address 10.10.10.1
-cumulus@switch:~$ nv config apply
-```
-
-To configure NGINX to listen on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
-
-```
-cumulus@switch:~$ nv set system api listening-address 172.0.24.0
 cumulus@switch:~$ nv config apply
 ```
 

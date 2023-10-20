@@ -277,3 +277,48 @@ To log into the switch using root with SSH, either:
 
 - {{<exlink url="https://man7.org/linux/man-pages/man3/crypt.3.html" text="crypt man page">}}
 - {{<exlink url="https://www.cyberciti.biz/faq/understanding-etcshadow-file/" text="Understanding /etc/shadow file format on Linux">}}
+
+
+
+
+## Role-Based Access Control
+
+Role-based access control lets you restrict authorization based on user roles or privileges, giving you more granular control over what a user can configure and see. For example, you can assign a user the role of Network Manager and provide the user privileges for interface management, service management and system management on the switch. When the user logs in and executes an NVUE command, NVUE checks the user privileges and authorizes the user to use that command.
+
+To configure role based access control, you assign:
+- A role to a user. You can assign one role only to each user. 
+- Classes to a role. You can assign a maximum of 64 classes to a role.
+- Command paths and permissions for the role.
+  - Command paths are . You can configure a maximum of 128 command paths.
+  - Permissions to run show commands (`ro`), run set and unset commands (`rw`), run action commands (`act`), or run all commands (`all`). The default permission setting is `all`.
+- The action for the class; `allow` or `deny`.
+
+The following example:
+- Assigns the role `IFMgr` to user1
+- Assigns class `InterfaceMgmt_1` to the `IFMgr` role.
+- Configures the `InterfaceMgmt_1` class to allow user1 to run `set`, `unset`, `show`, and `action` commands for the loopback, management, eth0, and swp1 through 5 interfaces, and all VRFs.
+
+```
+cumulus@switch:~$ nv set system aaa user user1 role IFMgr 
+cumulus@switch:~$ nv set system aaa role IFMgr class InterfaceMgmt_1 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 action allow 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/lo permission all 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/mgmt permission all 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/eth0 permission all 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/vrf* permission all 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/swp[1-5]/*permission all
+cumulus@switch:~$ nv config apply
+```
+
+The following example:
+- Assigns the role `OSPF` to user2
+- Assigns class `OSPF-DENY` to the `OSPF` role.
+- Configures the `OSPF-DENY` class to restrict user2 from running `set`, `unset`, `show`, and `action` commands for all interfaces.
+
+```
+cumulus@switch:~$ nv set system aaa user user1 role OSPF 
+cumulus@switch:~$ nv set system aaa role IFMgr class OSPF-DENY 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 action deny 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/.*/router/ospf permission all 
+cumulus@switch:~$ nv config apply
+```

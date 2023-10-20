@@ -126,6 +126,8 @@ This section shows how to:
 - Set the NVUE REST API port. If you do not set a port, Cumulus Linux uses the default port 8765.
 - Specify the NVUE REST API listening address; you can specify an IPv4 address, IPv6 address, or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
 
+The following example sets the port to 8888 and the listening address to localhost:
+
 ```
 cumulus@switch:~$ nv set system api port 8888
 cumulus@switch:~$ nv set system api listening-address localhost

@@ -5,7 +5,7 @@ weight: 790
 toc: 3
 ---
 
-The adaptive routing dashboard allows you to view switches with adaptive routing enabled, events related to adaptive routing, and RoCE
+The adaptive routing dashboard allows you to view switches with adaptive routing enabled, events related to adaptive routing, RoCE settings, and egress queue lengths in the form of histograms.
 
 {{<notice note>}}
 
@@ -15,11 +15,10 @@ Adaptive routing monitoring is supported on Spectrum-2 switches and above. It re
 
 ## Requirements
 
-To gather adaptive routing data, you must have the following:
+To display adaptive routing data, you must have the following:
 
 - {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE lossless mode">}} enabled
-- To display queue histograms, you must configure the {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="ASIC monitoring service">}}
-- Queue histogram collection for NetQ agent should be enabled. Note that it is by default enabled – if no explicit configuration is specified.
+- {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="ASIC monitoring service">}} configured (to view queue histograms)
 
 ## Adaptive Routing Commands
 
@@ -30,32 +29,19 @@ netq show adaptive routing config
 netq show events message_type adaptive-routing
 ```
 
-## View Adaptive Routing in the UI
+## Access the Adaptive Routing Dashboard
 
-{{<figure src="/images/netq/ar-dashboard-480.png" alt="" width="1100">}}
+1. Select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-{{<link title="Switches/#view-queue-lengths-in-histograms" text="View queue lengths in the form of histograms">}}
+2. Under the Network section, select **Adaptive routing**.
 
-The following details will be shown in AR summary page: 
+The adaptive routing dashboard displays:
 
-Switch AR enabled status 
+- devices with adaptive routing enabled and their RoCE settings.
+- a summary of adaptive routing events, including ECMP traffic imbalances that can be investigated further by viewing their histograms.
+- a list of 10 switches, which can be sorted by highest P95 value, highest standard deviation, or widest deviation from the P95 value (aggregated over the past 3 minutes). From this panel, you can select **View more** in the **View histogram** column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.
 
-Switch AR profile distribution 
-
-Switch RoCE mode config and distribution 
-
-AR profile configuration 
-
-AR interface configuration 
-
-Top 10 switches with queue length in last 3 minutes 
-
-Top 10 switches exceeding deviation thresholds 
-
-Events for traffic imbalance across ECMP group based on P95. 
-
-Provide link to setup switch role definition 
-
+{{<figure src="/images/netq/ar-dashboard-480.png" alt="adaptive routing dashboard displaying two devices with AR enabled" width="1100">}}
 
 ## Related Information
 

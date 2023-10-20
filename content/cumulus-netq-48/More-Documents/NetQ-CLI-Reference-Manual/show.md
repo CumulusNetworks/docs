@@ -7,20 +7,20 @@ right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
 ---
-
-<!-- alpha for 4.7
 ## netq show adaptive-routing config
 
 ### Syntax
 
 ```
-netq [<hostname>] show adaptive-routing config global [profile <text-profilename>] 
+netq [<hostname>] show adaptive-routing config global 
+[profile <text-profilename>] 
 [between <text-time> and <text-endtime>] 
 [around <text-time>]
 [json]
 ```
 ```
-netq [<hostname>] show adaptive-routing config interface [<text-ifname>] 
+netq [<hostname>] show adaptive-routing config interface 
+[<text-ifname>] 
 [between <text-time> and <text-endtime>] 
 [around <text-time>] 
 [json]
@@ -38,7 +38,7 @@ netq [<hostname>] show adaptive-routing config interface [<text-ifname>]
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 
 ### Sample Usage
-
+<!--
 ```
 cumulus@switch:~$ netq show adaptive-routing config global 
 
@@ -56,8 +56,6 @@ mlx-3700-45       True    False    None      Thu Aug 31 12:30:46 2023
 ```
 cumulus@mlx-3700-45:mgmt:/$ netq show adaptive-routing config interface 
 
-  
-
 Matching arconfig records: 
 
 Hostname          Interface Is AR   Link Util  Link Util  Last Updated 
@@ -74,7 +72,13 @@ mlx-3700-45       swp1      True    True       70         Thu Aug 31 13:46:56 20
 
 mlx-3700-45       swp2      True    True       70         Thu Aug 31 13:46:56 2023 
 ```
+
 -->
+### Related Commands
+
+None
+
+- - -
 ## netq show address-history
 <!-- vale on -->
 

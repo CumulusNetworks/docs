@@ -7,6 +7,10 @@ toc: 4
 
 Lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. From the inventory list, you can assign access profiles and roles to switches, and select switches for software installation and upgrades. You can also decommission switches, which removes them from the NetQ database.
 
+{{%notice note%}}
+If you manage a switch using an in-band network interface, {{<link url="Lifecycle-Management/#lcm-support-and-in-band-management" text="additional configuration">}} is required for LCM operations.
+{{%/notice%}}
+
 ## View the LCM Switch Inventory
 
 {{<tabs "TabID13" >}}
@@ -49,7 +53,7 @@ This list is the starting point for network OS upgrades or NetQ installations an
 - Verify the NetQ Agent is fresh and running version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} **Menu**, then click **Agents** or run `netq show agents`)
 - {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)
 
-## Attach a Profile to a Switch
+## Attach an Access Profile to a Switch
 
 After creating {{<link title="Credentials and Profiles" text="access profiles">}} from your credentials, you can attach a profile to one or more switches.
 

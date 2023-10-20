@@ -158,18 +158,25 @@ Commands apply to one agent at a time, and you run them on the switch or host wh
 
 ### Add and Remove a NetQ Agent
 
-To add or remove a NetQ Agent, you must add or remove the IP address (and port and VRF when specified) from the NetQ configuration file (at */etc/netq/netq.yml*). This adds or removes the information about the appliance or VM where the agent sends the data it collects.
+To add or remove a NetQ Agent, you must add or remove the IP address (and port and VRF when specified) from the NetQ configuration file (at */etc/netq/netq.yml*). This adds or removes the information about the server where the agent sends the data it collects.
 
 To use the NetQ CLI to add or remove a NetQ Agent on a switch or host, run:
 
 ```
-netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
+netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>] [inband-interface <interface-name>]
 netq config del agent server
 ```
 
-If you want to use a specific port on the appliance or VM, use the `port` option. If you want the data sent over a particular virtual route interface, use the `vrf` option.
+If you want to use a specific port on the server, use the `port` option. If you want the data sent over a particular virtual route interface, use the `vrf` option.
 
-This example shows how to add a NetQ Agent and tell it to send the data it collects to the NetQ appliance or VM at the IPv4 address of 10.0.0.23 using the default port (port 31980 for on-premises and port 443 for cloud deployments) and vrf (default).
+This example shows how to add a NetQ Agent and tell it to send the data it collects to the NetQ server at the IPv4 address of 10.0.0.23 using the default port (port 31980 for on-premises and port 443 for cloud deployments) and vrf (mgmt):
+
+```
+cumulus@switch~:$ netq config add agent server 10.0.0.23
+cumulus@switch~:$ netq config restart agent
+```
+
+This example shows how to add a NetQ Agent and tell it to send the data it collects to the NetQ server at the IPv4 address of 10.0.0.23 using the default port (port 31980 for on-premises and port 443 for cloud deployments) and the `default` VRF for a switch managed through an in-band connection on interface `swp1`:
 
 ```
 cumulus@switch~:$ netq config add agent server 10.0.0.23

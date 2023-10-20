@@ -49,7 +49,7 @@ These switches connect to each physical network device through a virtual network
 ## In-band Management Deployment
 <!-- vale on -->
 
-While not recommended, you can implement NetQ within your data network. In this scenario, there is no overlay and all traffic to and from the NetQ Agents and the NetQ Platform traverses the data paths along with your regular network traffic. The roles of the switches in the Clos network are the same, except that the NetQ Platform performs the aggregation function that the OOB management switch performed. If your network goes down, you might not have access to the NetQ Platform for troubleshooting. Certain features—such as lifecycle management—require additional configurations for in-band deployments.  
+While not recommended, you can implement NetQ within your data network. In this scenario, there is no overlay and all traffic to and from the NetQ Agents and the NetQ Platform traverses the data paths along with your regular network traffic. The roles of the switches in the Clos network are the same, except that the NetQ Platform performs the aggregation function that the OOB management switch performed. If your network goes down, you might not have access to the NetQ Platform for troubleshooting. Certain features—such as lifecycle management—require {{<link url="Lifecycle-Management/#lcm-support-and-in-band-management" text="additional configurations">}} for in-band deployments.  
 
 {{<img src="/images/netq/deploy-arch-ib-example-230.png" alt="diagram of an in-band management deployment." ewidth="700">}}
 ## High Availability Deployment

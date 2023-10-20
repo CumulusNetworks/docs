@@ -14,13 +14,11 @@ Using the NetQ UI or CLI, lifecycle management (LCM) allows you to:
 - {{<link title="Network Snapshots" text="Create snapshots">}} of the network state at various times
 - View a history of upgrade attempts
 
-{{<notice note>}}
+{{%notice note%}}
 
-Lifecycle management is enabled for on-premises deployments and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
+- Lifecycle management is enabled for on-premises deployments and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
 
-Only administrative users can perform the tasks described in this topic.
-
-{{</notice>}}
+{{%/notice%}}
 
 ## Access Lifecycle Management in the UI
 
@@ -35,3 +33,23 @@ You can access the LCM dashboard in a few ways:
 ## Access Lifecycle Management with the CLI
 
 Lifecycle management workflows use the `netq lcm` command set. Refer to the {{<link title="lcm" text="command line reference">}} for a comprehensive list of options and definitions.
+
+## LCM Support and In-band Management
+
+If you manage a switch using an in-band network interface, the `inband-interface` option must be specified in the {{<link url="Install-NetQ-Agents/#configure-netq-agents-using-the-netq-cli" text="agent configuration">}} for LCM operations:
+
+- `/etc/netq/netq.yml` configuration file example:
+
+        ```
+        netq-agent:
+            inband-interface: swp1
+            port: 31980
+            server: 192.168.1.254
+            vrf: default
+        ```
+
+- CLI configuration example:
+
+    ```
+    sudo netq config add agent server 192.168.1.254 vrf default inband-interface swp1
+    ```

@@ -126,6 +126,9 @@ This section shows how to:
 - Set the NVUE REST API port. If you do not set a port, Cumulus Linux uses the default port 8765.
 - Specify the NVUE REST API listening address; you can specify an IPv4 address, IPv6 address, or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
 
+{{< tabs "TabID130 ">}}
+{{< tab "NVUE Commands ">}}
+
 The following example sets the port to 8888 and the listening address to localhost:
 
 ```
@@ -160,9 +163,38 @@ cumulus@switch:~$ nv set system api listening-address 10.10.10.1
 cumulus@switch:~$ nv config apply
 ```
 
+{{</ tab >}}
+{{< tab "Curl Command ">}}
+
+The following example sets the listening address to localhost and the port to 8888:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api?rev=rev_id -H 'Content-Type:application/json' -d '{"localhost": 8888 }'
+```
+
+You can listen on multiple interfaces by specifying different listening addresses:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api/listening-address?rev=rev_id -H 'Content-Type:application/json' -d '{ "10.10.10.1": {}, "10.10.20.1": {}}'
+```
+
+The following example configures the listening address on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api?rev=rev_id -H 'Content-Type:application/json' -d '{"172.0.24.0": {}}'
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Show NVUE REST API Information
 
-To show REST API port configuration, state (enabled or disabled), and connection information, run the `nv show system api` command:
+To show REST API port configuration, state (enabled or disabled), and connection information:
+
+{{< tabs "TabID194 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv show system api` command:
 
 ```
 cumulus@switch:~$ nv show system api
@@ -204,6 +236,59 @@ cumulus@switch:~$ nv show system api listening-address
 ---------
 localhost
 ```
+
+{{</ tab >}}
+{{< tab "Curl Command ">}}
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api?rev=rev_id -H "accept: application/json"
+{
+  "state": "enabled",
+  "port": 8765,
+  "listening-address": {
+    "10.10.10.1": {},
+    "10.10.20.1": {}
+  },
+  "connections": {
+    "active": 1,
+    "accepted": 31,
+    "handled": 0,
+    "requests": 28,
+    "reading": 0,
+    "writing": 1,
+    "waiting": 0
+  }
+}
+```
+
+To show connection information only:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/connections?rev=rev_id -H "accept: application/json"
+{
+  "active": 1,
+  "accepted": 31,
+  "handled": 0,
+  "requests": 28,
+  "reading": 0,
+  "writing": 1,
+  "waiting": 0
+}
+```
+
+To show the configured listening address:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/listening-address?rev=rev_id -H "accept: application/json"
+{
+  "10.10.10.1": {},
+  "10.10.20.1": {}
+}
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 <!--
 ### Access the NVUE REST API from a Front Panel Port
 

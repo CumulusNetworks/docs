@@ -13,29 +13,33 @@ type: nojsscroll
 
 ```
 netq [<hostname>] show adaptive-routing config global 
-[profile <text-profilename>] 
-[between <text-time> and <text-endtime>] 
-[around <text-time>]
-[json]
+    [profile <text-profilename>] 
+    [between <text-time> and <text-endtime>] 
+    [around <text-time>]
+    [json]
 ```
 ```
 netq [<hostname>] show adaptive-routing config interface 
-[<text-ifname>] 
-[between <text-time> and <text-endtime>] 
-[around <text-time>] 
-[json]
+    [<text-ifname>] 
+    [between <text-time> and <text-endtime>] 
+    [around <text-time>] 
+    [json]
 ```
 
 ### Required Arguments
 
-| Argument | Value | Description |
-| ---- | ---- | ---- |
+None
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
+| profile | \<text-profilename\> | Only display results for the ______ with this name |
+| ifname | \<text-ifname\> | Only display results for the interface with this name |
+| between | \<text-time\> and \<text-endtime\> | Only display results between the snapshots taken at these times |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 <!--

@@ -5,7 +5,7 @@ weight: 790
 toc: 3
 ---
 
-The adaptive routing dashboard allows you to view switches with adaptive routing enabled, events related to adaptive routing, RoCE settings, and egress queue lengths in the form of histograms.
+Adaptive routing is a load balancing feature that improves network utilization for eligible IP packets by selecting forwarding paths dynamically based on the state of the switch, such as queue occupancy and port utilization. You can use the adaptive routing dashboard to view switches with adaptive routing capabilities, events related to adaptive routing, RoCE settings, and egress queue lengths in the form of histograms.
 
 {{<notice note>}}
 
@@ -13,7 +13,7 @@ Adaptive routing monitoring is supported on Spectrum-2 switches and above. It re
 
 {{</notice>}}
 
-## Requirements
+## Prerequisites
 
 To display adaptive routing data, you must have the following:
 
@@ -37,9 +37,9 @@ netq show events message_type adaptive-routing
 
 The adaptive routing dashboard displays:
 
-- devices with adaptive routing enabled and their RoCE settings.
+- devices with adaptive routing (enabled or disabled) and their RoCE modes (lossy or lossless).
 - a summary of adaptive routing events, including ECMP traffic imbalances that can be investigated further by viewing their histograms.
-- a list of 10 switches, which can be sorted by highest P95 value, highest standard deviation, or widest deviation from the P95 value (aggregated over the past 3 minutes). From this panel, you can select **View more** in the **View histogram** column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.
+- a list of up to 10 switches, which can be sorted by highest P95 value, highest standard deviation, or widest deviation from the P95 value (aggregated over the past 3 minutes). From this panel, you can select **View more** in the **View histogram** column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.
 
 {{<figure src="/images/netq/ar-dashboard-480.png" alt="adaptive routing dashboard displaying two devices with AR enabled" width="1100">}}
 

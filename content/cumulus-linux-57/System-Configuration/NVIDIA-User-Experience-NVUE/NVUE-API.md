@@ -167,7 +167,8 @@ cumulus@switch:~$ nv show system api
                   operational     applied
 --------------    -----------     -------
 port                 8888         8888     
-state                enabled      enabled  
+state                enabled      enabled
+certificate          self-signed  self-signed  
 [listening-address]  localhost    localhost
 connections
   accepted        31

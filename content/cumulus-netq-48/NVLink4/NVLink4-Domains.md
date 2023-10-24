@@ -14,6 +14,8 @@ To run GFM, each domain needs a configuration file, a topology file, and an IP a
 
 ## Create a Domain
 
+This section outlines the steps to create a new domain using the UI. Advanced users can manually adjust GFM variables (beyond what is presented in the UI) by creating a new domain as outlined below, then following the {{<link title="Edit GFM Variables" text="steps to edit GFM configuration variables">}}. 
+
 1. Select the NVL4 icon in the header, then select **Add domain**.
 
 2. Fill out the fields in the UI, starting with the GFM configuration:
@@ -40,7 +42,7 @@ When toggled on, the **Create all nodes partition** switch creates a single, def
 
 7. Select **Next**.
 
-8. The final screen displays a summary of the domain's parameters. In addition to the summary, you can choose to start GFM after creating the domain. If you are not ready to start GFM, you can save the configuration and start it later.
+8. The final screen displays a summary of the domain's parameters. In addition to the summary, you can choose to start GFM after creating the domain. If you are not ready to start GFM or if you are planning to {{<link title="Edit GFM Variables" text="edit the GFM variables">}}, you can save the configuration and start it later.
 
 9. After reviewing the summary, select **Finish**. NetQ adds the domain to a list of all NVLink4 domains:
 
@@ -67,9 +69,8 @@ You can also perform the following actions:
  When you select the **View details** button on a given domain, you gain access to granular information about the domain's configuration:
 <!-- insert pic from functioning setup-->
  - The Configuration tab displays the domain's configuration information.
- - The Devices tab displays a full list of devices, including their IP address, the device health (healthy or unhealthy), LFM status, and other details. Many of the status columns include icons that reveal timestamps and additional information when you hover over them with your mouse. The timestamps update every 60 seconds.
- <!-- insert pic from functioning setup-->
- {{<figure src="/images/netq/nvlink4-unhealthy.png" alt="devices summary for selected domain, including timestamp for an unhealthy device" width="1050">}}
+ - The Devices tab displays a full list of devices, including their IP address, hostnames, LFM status, the device health (healthy or unhealthy), and other details. Many of the status columns include timestamp details (updated every 60 seconds) that you can access by hovering your mouse over the clock icon. The LED indicator column features a toggle that can be switched on to illuminate the blue locator LED on the switch. This is helpful for finding a particular switch in a data center full of switches.
+ {{<figure src="/images/netq/nvlink-devices-480.png" alt="devices summary for selected domain" width="1050">}}
  - The Connections tab displays differences that NetQ detected between the actual network topology and the expected network topology. The UI groups and displays missing, unexpected, or inactive optical connections for NVLink L1 and L2 switches. If NetQ does not detect connection anomalies, this screen will not contain data.
 {{<figure src="/images/netq/connections-diff-nvlink-480.png" alt="" width="1050">}}
 

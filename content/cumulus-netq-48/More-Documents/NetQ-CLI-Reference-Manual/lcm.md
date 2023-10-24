@@ -152,6 +152,7 @@ netq lcm add netq-config config-profile-name <text-config-profile>
     [log-level error | log-level warn | log-level info | log-level debug] 
     [vrf default | vrf mgmt | vrf <text-config-vrf>] 
     [wjh enable | wjh disable]
+    [inband-interface <text-interface-name>]
 ```
 ### Required Arguments
 

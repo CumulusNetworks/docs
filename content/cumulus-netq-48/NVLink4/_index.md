@@ -10,6 +10,7 @@ With NetQ, you can monitor the performance of your NVLink devices, manage NVOS u
 - {{<link title="Domain Management">}}: create and manage multiple NVLink4 domains. After you create and configure a domain, run Global Fabric Manager (GFM), then collect telemetry data which can be visualized in the UI.
 - {{<link title="NVLink4 Inventory" text="Inventory management">}}: manage your inventory of NVLink4 switches and GPU nodes, and view statistics and data for each device.
 - {{<link title="NVOS Management" text="NVOS image management">}}: check for missing images and upload NVOS images. Then upgrade NVLink4 switches and GPU nodes to the latest NVOS version.
+- {{<link title="Debugging Files" text="Debugging files">}}: download system dumps and GFM logs for troubleshooting
 - {{<exlink url="https://nvlink4-netq.d1pzhbszsr62xj.amplifyapp.com/networking-ethernet-software/cumulus-netq-45/api/index.html" text="API reference">}}: access a Swagger instance to view NVLink4 API options.
 - {{<link title="Fluentd Reference" text="Fluentd message reference">}}: view NVLink4 example messages in JSON format for Fluentd collectors.
  

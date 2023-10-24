@@ -16,7 +16,7 @@ To run GFM, each domain needs a configuration file, a topology file, and an IP a
 
 1. Select the NVL4 icon in the header, then select **Add domain**.
 
-2. Fill out the fields in UI, starting with the GFM configuration:
+2. Fill out the fields in the UI, starting with the GFM configuration:
 
 {{<figure src="/images/netq/domain-first-480.png" alt="wizard prompting user to configure GFM" width="550">}}
 
@@ -52,30 +52,31 @@ From the list of NVLink4 domains, you can view and manage multiple domains. Per 
 - Time a domain was created
 - Last time the domain was updated
 - Name of the user who created the domain
-- GFM status---starting, stopping, up, down, or failed. In the event of a 'failed' status, NetQ will also display the number of times it attempted to restart GFM via a 'GFM recovery' counter.
+- GFM status (starting, stopping, up, down, or failed). In the event of a 'failed' status, NetQ will also display the number of times it attempted to restart GFM via a 'GFM recovery' counter.
 - Differences in the expected versus actual topology, indicated by a topology icon <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg" height="18" width="18"/> that you can select to view the differences
 - Total number of nodes (GPU nodes and NVL4 switches), including their health status (healthy or unhealthy)
 
 You can also perform the following actions:
 
-- Generate GFM logs by selecting the **Fetch** button. You can download the logs or view them in the file manager. <!--link to file manager section-->
+- Generate GFM logs by selecting the **Fetch** button. You can view a list of logs and download them by selecting the {{<link title="Debugging Files" text="file manager">}}.
 - Stop and start GFM by selecting the stop and play buttons. When you stop GFM, monitoring operations are gradually shut down and the telemetry agent stops.
-- Review a domain's configuration, the devices associated with a domain, and any topology misconfigurations detected by NetQ by selecting the **View details** button:
+- Review a domain's configuration, the devices associated with a domain, and any topology misconfigurations detected by NetQ by selecting the **View details** button.
 
  ## View Additional Domain Information
 
  When you select the **View details** button on a given domain, you gain access to granular information about the domain's configuration:
 <!-- insert pic from functioning setup-->
- - The Configuration tab displays the parameters of the domain; 
+ - The Configuration tab displays the domain's configuration information.
  - The Devices tab displays a full list of devices, including their IP address, the device health (healthy or unhealthy), LFM status, and other details. Many of the status columns include icons that reveal timestamps and additional information when you hover over them with your mouse. The timestamps update every 60 seconds.
  <!-- insert pic from functioning setup-->
  {{<figure src="/images/netq/nvlink4-unhealthy.png" alt="devices summary for selected domain, including timestamp for an unhealthy device" width="1050">}}
- - The Connections tab displays differences that NetQ detected between the actual topology and the expected topology. The UI groups and displays missing, unexpected, or inactive optical connections for NVLink L1 and L2 switches. If NetQ does not detect connection anomalies, this screen will not contain data.
+ - The Connections tab displays differences that NetQ detected between the actual network topology and the expected network topology. The UI groups and displays missing, unexpected, or inactive optical connections for NVLink L1 and L2 switches. If NetQ does not detect connection anomalies, this screen will not contain data.
 {{<figure src="/images/netq/connections-diff-nvlink-480.png" alt="" width="1050">}}
 
 ## Edit a Domain
 
-To edit a domain, you must first stop the GFM by selecting the stop button. After GFM stops, select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}} **three-dot menu**, then select **Edit**. Note that this menu only appears when GFM is not running.
+To edit a domain, you must first stop the GFM by selecting the stop button. After GFM stops, select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}} **three-dot menu**, then select **Edit**. Note that this menu only appears when GFM is not running. To manually adjust and configure a broader range GFM variables that are unavailable in the NetQ UI, refer to {{<link title="Edit GFM Variables">}}.
+
 ## Delete a Domain
 
 To delete a domain, you must first stop the GFM by selecting the stop button. After GFM stops, select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}} **three-dot menu**, then select **Delete**. You cannot delete a topology file that is in use by a domain.

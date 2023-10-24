@@ -40,13 +40,13 @@ If you manage a switch using an in-band network interface, the `inband-interface
 
 - `/etc/netq/netq.yml` configuration file example:
 
-        ```
-        netq-agent:
-            inband-interface: swp1
-            port: 31980
-            server: 192.168.1.254
-            vrf: default
-        ```
+    ```
+    netq-agent:
+        inband-interface: swp1
+        port: 31980
+        server: 192.168.1.254
+        vrf: default
+    ```
 
 - CLI configuration example:
 

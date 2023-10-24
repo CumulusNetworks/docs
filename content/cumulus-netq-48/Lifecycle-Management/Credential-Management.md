@@ -5,15 +5,17 @@ weight: 640
 toc: 4
 ---
 
+## Access Profiles
+
 Authentication credentials are stored in access profiles which can be assigned to individual switches. You can create credentials with either basic (SSH username/password) or SSH (public/private key) authentication. This section describes how to create, edit, and delete access profiles. After you create a profile, {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="attach it to individual switches">}} so that you can perform upgrades on those switches. 
 
 {{<notice note>}}
-By default, NVIDIA supplies two access profiles: Netq-Default and Nvl4-Default (for NVLink devices). NVIDIA strongly recommends creating new access profiles or updating the default profiles with unique credentials. When you upgrade to NetQ 4.5 or later from 4.4, NetQ saves your 4.4 global access credentials to the Netq-Default profile.
+By default, NVIDIA supplies two access profiles: Netq-Default and Nvl4-Default (for NVLink devices). NVIDIA strongly recommends creating new access profiles or updating the default profiles with unique credentials. 
 
 You cannot delete default profiles.
 {{</notice>}}
 
-## Create Access Profiles
+### Create Access Profiles
 
 {{<tabs "TabID14">}}
 
@@ -88,7 +90,7 @@ The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinu
 To configure basic authentication, run:
 
 ```
-cumulus@switch:~$ netq lcm add credentials profile_name NEWPROFILE username cumulus password cumulus
+cumulus@netq-server:~$ netq lcm add credentials profile_name NEWPROFILE username cumulus password cumulus
 ```
 Specify a unique name for the configuration after `profile_name`. 
 
@@ -120,14 +122,14 @@ When prompted, hit the enter/return key.
 3. Add these credentials to the switch. Specify a unique name for the configuration after `profile_name`. 
 
     ```
-    cumulus@switch:~$ netq lcm add credentials profile_name NEWPROFILE username <USERNAME> ssh-key PUBLIC_SSH_KEY
+    cumulus@netq-server:~$ netq lcm add credentials profile_name NEWPROFILE username <USERNAME> ssh-key PUBLIC_SSH_KEY
     ```
 
 {{</tab>}}
 
 {{</tabs>}}
 
-## Edit Access Profiles
+### Edit Access Profiles
 
 {{<tabs "TabID175" >}}
 
@@ -148,7 +150,7 @@ When prompted, hit the enter/return key.
 The syntax for editing access profiles is:
 
 ```
-cumulus@switch:~$ netq lcm edit credentials 
+cumulus@netq-server:~$ netq lcm edit credentials 
     profile_id <text-switch-profile-id> 
     [profile_name <text-switch-profile-name>] 
     [auth-type <text-switch-auth-type>] 
@@ -174,14 +176,14 @@ To configure SSH authentication using a public/private key (requires sudoer perm
 3. Add these new credentials to the switch:
 
     ```
-    cumulus@switch:~$ netq lcm edit credentials ssh-key PUBLIC_SSH_KEY
+    cumulus@netq-server:~$ netq lcm edit credentials ssh-key PUBLIC_SSH_KEY
     ```
 
 {{</tab>}}
 
 {{</tabs>}}
 
-## Delete Access Profiles
+### Delete Access Profiles
 
 Any profile that is assigned to a switch can't be deleted. You must {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="attach a different profile to the switch">}} first. Note that *Netq-Default* and *Nvl4-Default* can't be deleted. 
 
@@ -206,7 +208,7 @@ The delete icon only appears next to custom profiles that are not already attach
 1. Run `netq lcm show credentials`. Identify the profiles you'd like to delete and copy their identifiers from the Profile ID column. The following example deletes the n-1000 profile:
 
 ```
-cumulus@switch:~$ netq lcm show credentials
+cumulus@netq-server:~$ netq lcm show credentials
 Profile ID           Profile Name             Type             SSH Key        Username         Password         Number of switches                   Last Changed
 -------------------- ------------------------ ---------------- -------------- ---------------- ---------------- ------------------------------------ -------------------------
 credential_profile_d Netq-Default             BASIC                           cumulus          **************   11                                   Fri Feb  3 18:20:33 2023
@@ -229,7 +231,7 @@ cd1be0fc123c5d7a42f8
 2. Run `netq lcm del credentials profile_ids <text-credential-profile-ids>`:
 
 ```
-cumulus@switch:~$ netq lcm del credentials profile_ids credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
+cumulus@netq-server:~$ netq lcm del credentials profile_ids credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
 ```
 
 3. Verify that the profile is deleted with `netq lcm show credentials`.
@@ -238,7 +240,7 @@ cumulus@switch:~$ netq lcm del credentials profile_ids credential_profile_3eddab
 
 {{</tabs>}}
 
-## View Access Profiles
+### View Access Profiles
 
 You can view the type of credentials used to access your switches in the NetQ UI. You can view the details of the credentials using the NetQ CLI.
 
@@ -264,6 +266,53 @@ If you use a username and password for the credentials, the username appears in 
 
 {{</tabs>}}
 
+## NetQ Agent Configuration Profiles
+
+You can create configuration profiles for NetQ agents on switches to adjust the following agent settings:
+
+- The VRF the NetQ agent uses to communicate with the NetQ server
+
+- Enabling or disabling WJH
+
+- The agent log level
+
+- The agent CPU limit
+
+The default NetQ agent configuration profile sets the VRF to `mgmt`, the log level to `info`, the WJH status to disabled, and the CPU limit to disabled.
+
+{{<tabs "TabID281">}}
+
+{{<tab "NetQ UI">}}
+
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**.
+
+2. Select **NetQ agent configurations**.
+
+3. On the NetQ agent configurations card, select **Add config**.
+
+4. Configure the profile name and the desired settings. Drop down the **Advanced** menu to set values for log level and CPU limit:
+
+{{<figure src="/images/netq/lcm-switch-agentconfig-profile-480.png" alt="card displaying agent configuration profile settings" height="450" width="450">}}
+
+5. Enter your NetQ CLI {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="authentication keys">}} and select **Add**.
+
+{{%notice note%}}
+If you use an in-band interface to manage your switch, you must use the CLI to create NetQ agent configuration profiles using the `inband-interface` option.
+{{%/notice%}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+Configure a NetQ agent configuration profile using the CLI with the `netq lcm add netq-config config-profile-name` command. If you manage the switch using an in-band interface, you must specify the interface name using the `inband-interface` option:
+
+```
+cumulus@netq-server:~$ netq lcm add netq-config config-profile-name <text-profile-name> access-key <text-access-key> secret-key <text-secret-key> [cpu-limit <text-cpu-limit>] [log-level error | log-level warn | log-level info | log-level debug] [vrf default | vrf mgmt | vrf <text-config-vrf>] [wjh enable | wjh disable] [inband-interface <text-interface-name>]
+```
+
+{{</tab>}}
+
+{{</tabs>}}
 ## Related Information
 
 - {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="Attach a Profile to a Switch">}}

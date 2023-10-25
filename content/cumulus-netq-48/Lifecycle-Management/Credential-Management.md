@@ -266,7 +266,8 @@ If you use a username and password for the credentials, the username appears in 
 
 {{</tabs>}}
 
-## NetQ Agent Configuration Profiles
+## Agent Configuration Profiles
+### Create Configuration Profiles
 
 You can create configuration profiles for NetQ agents on switches to adjust the following agent settings:
 
@@ -313,6 +314,24 @@ cumulus@netq-server:~$ netq lcm add netq-config config-profile-name <text-profil
 {{</tab>}}
 
 {{</tabs>}}
+
+### Apply Configuration Profiles
+
+Apply configuration profiles to a switch using the following procedure:
+
+1. Run a {{<link url="Switch-Management/#switch-discovery" text="switch discovery">}}
+
+2. Choose a discovered switch and select **Change config**.
+
+{{<figure src="/images/netq/lcm-switch-discovery-configure-configprofile-48.png" alt="card displaying discovered switch and change configuration option" height="450" width="450">}}
+
+3. Select the desired configuration profile name and click **Next**.
+
+4. Confirm the desired NetQ agent version to run on the switch, and click **Next**
+
+5. Click **Install** to begin pre-checks and apply the configuration profile and install the selected agent version.
+
+
 ## Related Information
 
-- {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="Attach a Profile to a Switch">}}
+- {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="Attach an Access Profile to a Switch">}}

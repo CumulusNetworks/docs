@@ -71,7 +71,7 @@ value: "{{ $domain.log_file_name }}"
 
 Description: Append to an existing log file or overwrite the logs
 Possible Values:
-	0  - No  (Log file will be overwritten)
+    0  - No  (Log file will be overwritten)
     1  - Yes (Append to existing log)
 LOG_APPEND_TO_LOG=${LOG_APPEND_TO_LOG}
 value: "{{ $domain.log_append_to_log }}"

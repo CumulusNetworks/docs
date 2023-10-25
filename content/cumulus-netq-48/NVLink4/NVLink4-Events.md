@@ -11,3 +11,5 @@ toc: 3
 - GFM information, including the number of restarts
 - NVSwitch devices
  {{<figure src="/images/netq/nvl4-events-480.png" alt="" width="1050">}}
+
+<!--concatenating fields, explain how messages are concatenated, explicitely point out the ASICS ID field-->

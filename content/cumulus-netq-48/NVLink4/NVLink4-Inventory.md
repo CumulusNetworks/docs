@@ -6,7 +6,7 @@ toc: 3
 
 ---
 
-This section describes how to view device statistics and data for NVLink4 switches and GPUs.
+This section describes how to view device statistics and data for NVLink4 switches and GPUs. <!--L1 and L2 switches-->
 
 Add inventory cards to your workbench to:
  - View the distribution of software and hardware components.

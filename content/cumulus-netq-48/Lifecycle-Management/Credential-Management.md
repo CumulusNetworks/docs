@@ -334,4 +334,4 @@ Apply configuration profiles to a switch using the following procedure:
 
 ## Related Information
 
-- {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="Attach a Profile to a Switch">}}
+- {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="Attach an Access Profile to a Switch">}}

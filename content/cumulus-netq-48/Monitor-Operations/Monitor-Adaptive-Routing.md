@@ -13,12 +13,9 @@ Adaptive routing monitoring is supported on Spectrum-2 switches and above. It re
 
 {{</notice>}}
 
-## Prerequisites
+## Requirements
 
-To display adaptive routing data, you must have the following:
-
-- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE lossless mode">}} enabled
-- {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="ASIC monitoring service">}} configured (to view queue histograms)
+To display adaptive routing data, you must have adaptive routing configured on the switch; it can be either enabled or disabled. Switches without an adaptive routing configuration will not appear in the UI or CLI. Additionally, {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE lossless mode">}} must be enabled to display adaptive routing data. Switches with RoCE lossy mode enabled will appear in the UI and CLI, but will not display adaptive routing data.
 
 ## Adaptive Routing Commands
 

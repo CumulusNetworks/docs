@@ -42,42 +42,32 @@ None
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
-<!--
+
 ```
-cumulus@switch:~$ netq show adaptive-routing config global 
+cumulus@switch:~$netq show adaptive-routing config global
 
-Matching arconfig records: 
-
-Hostname          Is AR   Is RoCE  RoCE Mode Last Updated 
-
-                  Enabled Enabled 
-
------------------ ------- -------- --------- -------------------------- 
-
-mlx-3700-45       True    False    None      Thu Aug 31 12:30:46 2023
+Matching arconfig records:
+Hostname          Is AR   Is RoCE  RoCE Mode Last Updated
+                  Enabled Enabled
+----------------- ------- -------- --------- --------------------------
+torc-11           False   True     Lossy     Wed Oct 25 13:11:23 2023
+torc-12           True    True     Lossless  Tue Oct 24 15:32:33 2023
 ```
 
 ```
-cumulus@mlx-3700-45:mgmt:/$ netq show adaptive-routing config interface 
+cumulus@switch:~$ netq show adaptive-routing config interface
 
-Matching arconfig records: 
-
-Hostname          Interface Is AR   Link Util  Link Util  Last Updated 
-
-                            Enabled Threshold  Threshold 
-
-                                    Disabled 
-
------------------ --------- ------- ---------- ---------- -------------------------- 
-
-mlx-3700-45       swp1s0    True    True       60         Thu Aug 31 13:46:56 2023 
-
-mlx-3700-45       swp1      True    True       70         Thu Aug 31 13:46:56 2023 
-
-mlx-3700-45       swp2      True    True       70         Thu Aug 31 13:46:56 2023 
+Matching arconfig records:
+Hostname          Interface Is AR   Link Util  Link Util  Last Updated
+                            Enabled Threshold  Threshold
+                                    Disabled
+----------------- --------- ------- ---------- ---------- --------------------------
+torc-11           swp1      True    True       70         Tue Oct 24 15:32:33 2023
+torc-11           swp2      False   True       60         Wed Oct 25 13:07:21 2023
+torc-12           swp2      True    True       70         Tue Oct 24 15:32:33 2023
+torc-12           swp1      True    True       70         Tue Oct 24 15:32:33 2023
 ```
 
--->
 ### Related Commands
 
 None

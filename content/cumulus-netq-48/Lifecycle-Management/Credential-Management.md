@@ -5,9 +5,11 @@ weight: 640
 toc: 4
 ---
 
+This section describes how to create and modify two types of profiles: access profiles and agent configuration profiles. Access profiles store user authentications credentials. Agent configuration profiles specify settings for a NetQ agent running on a switch. Both types of profiles must be applied to a switch for the changes to take effect. 
+
 ## Access Profiles
 
-Authentication credentials are stored in access profiles which can be assigned to individual switches. You can create credentials with either basic (SSH username/password) or SSH (public/private key) authentication. This section describes how to create, edit, and delete access profiles. After you create a profile, {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="attach it to individual switches">}} so that you can perform upgrades on those switches. 
+Authentication credentials are stored in access profiles which can be assigned to individual switches. You can create credentials with either basic (SSH username/password) or SSH (public/private key) authentication. This section describes how to create, edit, and delete access profiles. After you create a profile, {{<link title="Switch Management/#attach-an-access-profile-to-a-switch" text="attach it to individual switches">}} so that you can perform upgrades on those switches. 
 
 {{<notice note>}}
 By default, NVIDIA supplies two access profiles: Netq-Default and Nvl4-Default (for NVLink devices). NVIDIA strongly recommends creating new access profiles or updating the default profiles with unique credentials. 
@@ -61,6 +63,8 @@ For security, your private key is stored in an encrypted format, and only provid
 
 7. (Optional) To verify that the new profile is listed among available profiles, select **View profiles** from the Access Profiles card.
 
+8. (Optional) {{<link title="Switch Management/#attach-an-access-profile-to-a-switch" text="Attach the profile to a switch">}} so that you can perform upgrades.
+
 {{</tab>}}
 
 {{<tab "Basic Authentication">}}
@@ -78,6 +82,8 @@ The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinu
 5. Click **Create**, then confirm.
 
 6. (Optional) To verify that the new profile is listed among available profiles, select **View profiles** from the Access Profiles card.
+
+7. (Optional) {{<link title="Switch Management/#attach-an-access-profile-to-a-switch" text="Attach the profile to a switch">}} so that you can perform upgrades.
 
 {{</tab>}}
 
@@ -185,7 +191,7 @@ To configure SSH authentication using a public/private key (requires sudoer perm
 
 ### Delete Access Profiles
 
-Any profile that is assigned to a switch can't be deleted. You must {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="attach a different profile to the switch">}} first. Note that *Netq-Default* and *Nvl4-Default* can't be deleted. 
+Any profile that is assigned to a switch can't be deleted. You must {{<link title="Switch Management/#attach-an-access-profile-to-a-switch" text="attach a different profile to the switch">}} first. Note that *Netq-Default* and *Nvl4-Default* can't be deleted. 
 
 {{<tabs "TabID247" >}}
 
@@ -267,19 +273,16 @@ If you use a username and password for the credentials, the username appears in 
 {{</tabs>}}
 
 ## Agent Configuration Profiles
-### Create Configuration Profiles
 
-You can create configuration profiles for NetQ agents on switches to adjust the following agent settings:
+You can customize configuration profiles for NetQ agents running on switches. When you create a configuration profile, you can adjust the following agent settings:
 
 - The VRF the NetQ agent uses to communicate with the NetQ server
-
-- Enabling or disabling WJH
-
+- Whether WJH is enabled or disabled
 - The agent log level
-
 - The agent CPU limit
 
 The default NetQ agent configuration profile sets the VRF to `mgmt`, the log level to `info`, the WJH status to disabled, and the CPU limit to disabled.
+### Create Configuration Profiles
 
 {{<tabs "TabID281">}}
 
@@ -291,7 +294,7 @@ The default NetQ agent configuration profile sets the VRF to `mgmt`, the log lev
 
 3. On the NetQ agent configurations card, select **Add config**.
 
-4. Configure the profile name and the desired settings. Drop down the **Advanced** menu to set values for log level and CPU limit:
+4. Enter a profile name and choose the settings from the options presented in the UI. Select **Advanced** to set values for the log level and CPU limit:
 
 {{<figure src="/images/netq/lcm-switch-agentconfig-profile-480.png" alt="card displaying agent configuration profile settings" height="450" width="450">}}
 
@@ -317,21 +320,16 @@ cumulus@netq-server:~$ netq lcm add netq-config config-profile-name <text-profil
 
 ### Apply Configuration Profiles
 
-Apply configuration profiles to a switch using the following procedure:
+After you create an agent configuration profile, you must apply the profile to a switch to update the agent settings.
 
-1. Run a {{<link url="Switch-Management/#switch-discovery" text="switch discovery">}}
+1. Run a {{<link url="Switch-Management/#switch-discovery" text="switch discovery">}}.
 
-2. Choose a discovered switch and select **Change config**.
+2. Select a switch from the **Discovered with NetQ** category and select **Change config**.
 
 {{<figure src="/images/netq/lcm-switch-discovery-configure-configprofile-48.png" alt="card displaying discovered switch and change configuration option" height="450" width="450">}}
 
-3. Select the desired configuration profile name and click **Next**.
+3. Select a configuration profile, then click **Next**.
 
-4. Confirm the desired NetQ agent version to run on the switch, and click **Next**
+4. Specify which NetQ agent version you want to run on the switch, then click **Next**.
 
-5. Click **Install** to begin pre-checks and apply the configuration profile and install the selected agent version.
-
-
-## Related Information
-
-- {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="Attach an Access Profile to a Switch">}}
+5. Click **Install** to begin the pre-check process. After the pre-checks are successful, NetQ applies the configuration profile and installs the agent version you specified.

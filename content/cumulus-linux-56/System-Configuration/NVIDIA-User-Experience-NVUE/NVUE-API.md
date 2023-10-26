@@ -171,7 +171,7 @@ The following example sets the port to 8888:
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api?rev=rev_id -H 'Content-Type:application/json' -d '{"port": 8888 }'
 ```
 
-You can listen on multiple interfaces by specifying different listening addresses:
+You can listen on multiple interfaces by specifying different listening addresses. The following example sets localhost, interface address 10.10.10.1, and 10.10.20.1 as listen-addresses.
 
 ```
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api/listening-address?rev=rev_id -H 'Content-Type:application/json' -d '{ "localhost": {}, "10.10.10.1": {}, "10.10.20.1": {}}'

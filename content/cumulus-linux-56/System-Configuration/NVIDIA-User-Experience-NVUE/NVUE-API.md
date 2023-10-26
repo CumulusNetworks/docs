@@ -129,11 +129,10 @@ This section shows how to:
 {{< tabs "TabID130 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example sets the port to 8888 and the listening address to localhost:
+The following example sets the port to 8888:
 
 ```
 cumulus@switch:~$ nv set system api port 8888
-cumulus@switch:~$ nv set system api listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 

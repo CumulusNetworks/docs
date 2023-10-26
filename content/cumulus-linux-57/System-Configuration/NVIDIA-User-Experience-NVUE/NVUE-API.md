@@ -42,7 +42,7 @@ Cumulus Linux includes a self-signed certificate and private key to use on the s
 <!-- vale on -->
 NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format. For the steps to generate self-signed certificates and keys, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
-Cumulus Linux lets you manage CA X.509 certificates (such as DigiCert or Verisign) and entity (end-point) X.509 certificates to use with the NVUE REST API. You can import certificates on the switch, set which certificate you want to use, and show information about a certificate, such as the serial number, and the date and time during which the certificate is valid.
+Cumulus Linux lets you manage CA certificates (such as DigiCert or Verisign) and entity (end-point) certificates. You can import certificates on the switch, set which certificate you want to use, and show information about a certificate, such as the serial number, and the date and time during which the certificate is valid.
 
 To import a certificate or certificate bundle on the switch, run the following commands. If the certificate is passphrase protected, you need to include the passphrase.
 

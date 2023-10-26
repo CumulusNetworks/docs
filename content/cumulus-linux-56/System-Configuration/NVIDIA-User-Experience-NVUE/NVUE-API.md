@@ -129,11 +129,10 @@ This section shows how to:
 {{< tabs "TabID130 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example sets the port to 8888 and the listening address to localhost:
+The following example sets the port to 8888:
 
 ```
 cumulus@switch:~$ nv set system api port 8888
-cumulus@switch:~$ nv set system api listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
@@ -166,16 +165,16 @@ cumulus@switch:~$ nv config apply
 {{</ tab >}}
 {{< tab "Curl Command ">}}
 
-The following example sets the listening address to localhost and the port to 8888:
+The following example sets the port to 8888:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api?rev=rev_id -H 'Content-Type:application/json' -d '{"localhost": 8888 }'
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api?rev=rev_id -H 'Content-Type:application/json' -d '{"port": 8888 }'
 ```
 
 You can listen on multiple interfaces by specifying different listening addresses:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api/listening-address?rev=rev_id -H 'Content-Type:application/json' -d '{ "10.10.10.1": {}, "10.10.20.1": {}}'
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api/listening-address?rev=rev_id -H 'Content-Type:application/json' -d '{ "localhost": {}, "10.10.10.1": {}, "10.10.20.1": {}}'
 ```
 
 The following example configures the listening address on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
@@ -1698,7 +1697,7 @@ To set the system hostname, pre-login or post-login message, and time zone on th
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"system": {"hostname":"switch01","timezone":"America/Los_Angeles","message":{"pre-login":"Welcome to NVIDIA Cumulus Linux","post-login:"You have successfully logged in to switch01"}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=4
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"system": {"hostname":"switch01","timezone":"America/Los_Angeles","message":{"pre-login":"Welcome to NVIDIA Cumulus Linux","post-login":"You have successfully logged in to switch01"}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=4
 ```
 
 {{< /tab >}}
@@ -1856,7 +1855,7 @@ To set up NTP, DNS, and SNMP on the switch, send a targeted API request to `/nvu
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"service": { "ntp": {"default":{"server:{"4.cumulusnetworks.pool.ntp.org":{"iburst":"on"}}}}, "dns": {"mgmt":{"server:{"192.168.1.100":{}}}}, "syslog": {"mgmt":{"server:{"192.168.1.120":{"port":8000}}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=5
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"service": { "ntp": {"default":{"server":{"4.cumulusnetworks.pool.ntp.org":{"iburst":"on"}}}}, "dns": {"mgmt":{"server":{"192.168.1.100":{}}}}, "syslog": {"mgmt":{"server":{"192.168.1.120":{"port":8000}}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=5
 ```
 
 {{< /tab >}}
@@ -2258,7 +2257,7 @@ The following example configures an interface.
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"type":"swp","link":{"state":"up"}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=6 
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k -d '{"swp1": {"link":{"state":{"up": {}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=21
 ```
 
 {{< /tab >}}
@@ -2633,7 +2632,7 @@ The following example configures a bridge.
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=8
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=21
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=8
 ```
 

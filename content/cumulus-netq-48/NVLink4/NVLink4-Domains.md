@@ -16,19 +16,16 @@ To run GFM, each domain needs a configuration file, a topology file, and an IP a
 
 This section outlines the steps to create a new domain using the UI. Advanced users can manually adjust GFM variables (beyond what is presented in the UI) by creating a new domain as outlined below, then following the {{<link title="Edit GFM Variables" text="steps to edit GFM configuration variables">}}. 
 
-1. Select the NVL4 icon in the header, then select **Add domain**.
+1. Select the {{<link title="NVLink Quick Start Guide/#access-nvlink4" text="NVL4 icon in the header">}}, then select **Add domain**.
 
-2. Fill out the fields in the UI, starting with the GFM configuration:
+2. Fill out the fields in the UI, starting with configuring the GFM:
 
 {{<figure src="/images/netq/domain-first-480.png" alt="wizard prompting user to configure GFM" width="550">}}
 
-The **Domain name** is the name that will appear in the inventory list.
-
-The **log level** can be set to critical, error, warning, info, or none.
-
-The **GFM timeout** is the length of time that the GFM node will wait for Local Fabric Managers (LFMs) to boot on all nodes. Setting this field to **Wait forever -1** (recommended) instructs the node to wait indefinitely, preventing timeout issues. You can also enter a custom value (in seconds) in this field.
-
-**Fabric manager mode** lists supported physical and virtualization models. For more information, refer to the {{<exlink url="https://docs.nvidia.com/datacenter/tesla/pdf/fabric-manager-user-guide.pdf" text="Fabric Manager User Guide">}}.
+- **Domain name** is the name that will appear in the inventory list.
+- **Log level** can be set to critical, error, warning, info, or none.
+- **GFM timeout** is the length of time that the GFM node will wait for Local Fabric Managers (LFMs) to boot on all nodes. Set this field to **Wait forever -1** (recommended) to instruct the node to wait indefinitely, which prevents timeout issues. You can also enter a custom value (in seconds) in this field.
+- **Fabric manager mode** lists supported physical and virtualization models. For more information, refer to the {{<exlink url="https://docs.nvidia.com/datacenter/tesla/pdf/fabric-manager-user-guide.pdf" text="Fabric Manager User Guide">}}.
 
 When toggled on, the **Create all nodes partition** switch creates a single, default partition.
 
@@ -38,7 +35,7 @@ When toggled on, the **Create all nodes partition** switch creates a single, def
 
 5. Select **Next**.
 
-6. The subsequent screen prompts you to upload your fabric node configuration. This is a text file listing the IP addresses for the nodes (GPU nodes and NVL4 switches) that comprise the domain. 
+6. The subsequent screen prompts you to upload your fabric node configuration. This is a text file listing the IP addresses for the nodes (NVLink switches) that comprise the domain. 
 
 7. Select **Next**.
 
@@ -56,7 +53,7 @@ From the list of NVLink4 domains, you can view and manage multiple domains. Per 
 - Name of the user who created the domain
 - GFM status (starting, stopping, up, down, or failed). In the event of a 'failed' status, NetQ will also display the number of times it attempted to restart GFM via a 'GFM recovery' counter.
 - Differences in the expected versus actual topology, indicated by a topology icon <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg" height="18" width="18"/> that you can select to view the differences
-- Total number of nodes (GPU nodes and NVL4 switches), including their health status (healthy or unhealthy)
+- Total number of nodes, including their health status (healthy or unhealthy)
 
 You can also perform the following actions:
 
@@ -69,10 +66,10 @@ You can also perform the following actions:
  When you select the **View details** button on a given domain, you gain access to granular information about the domain's configuration:
 <!-- insert pic from functioning setup-->
  - The Configuration tab displays the domain's configuration information.
- - The Devices tab displays a full list of devices, including their IP address, hostnames, LFM status, the device health (healthy or unhealthy), and other details. Many of the status columns include timestamp details (updated every 60 seconds) that you can access by hovering your mouse over the clock icon. The LED indicator column features a toggle that can be switched on to illuminate the blue locator UID LED on the switch. This is helpful for finding a particular switch in a data center full of switches.
+ - The Devices tab displays a full list of devices, including their respective IP addresses, hostnames, LFM status, the device health (healthy or unhealthy), and other details. Many of the status columns include timestamp details (updated every 60 seconds) that you can access by hovering your mouse over the clock icon. The LED indicator column features a toggle that can be switched on to illuminate the blue locator UID LED on the switch. This is helpful for finding a particular switch in a data center full of switches.
  {{<figure src="/images/netq/nvlink-devices-480.png" alt="devices summary for selected domain" width="1050">}}
- - The Connections tab displays differences that NetQ detected between the actual network topology and the expected network topology. The UI groups and displays missing, unexpected, or inactive optical connections for NVLink L1 and L2 switches. If NetQ does not detect connection anomalies, this screen will not contain data.
-{{<figure src="/images/netq/connections-diff-nvlink-480.png" alt="" width="1050">}}
+ - The Connections tab displays differences that NetQ detected between the actual network topology and the expected network topology. NetQ groups and displays missing, unexpected, or inactive optical connections for NVLink L1 and L2 switches. If NetQ does not detect connection anomalies, this screen will not contain data.
+<!--{{<figure src="/images/netq/connections-diff-nvlink-480.png" alt="" width="1050">}}-->
 
 ## Edit a Domain
 

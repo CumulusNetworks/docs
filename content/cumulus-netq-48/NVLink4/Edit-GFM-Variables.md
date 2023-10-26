@@ -1,7 +1,7 @@
 ---
 title: Edit GFM Variables
 author: NVIDIA
-weight: 1160
+weight: 1153
 toc: 3
 
 ---
@@ -51,6 +51,8 @@ $ kubectl exec -it netq-app-nvl4-controller-12-deploy-0 -c gfm  cat /usr/share/n
 GFM_WAIT_TIMEOUT=15
 ```
 ## Variables Reference
+
+You can edit the following GFM variables as described in the previous section.
 
 ```
 LOG_LEVEL=${LOG_LEVEL}

@@ -25,7 +25,7 @@ When fully expanded, NVLink4 cards display a table with device statistics about 
 
 {{<figure src="/images/netq/nvl4-additional-device-statistics.png" alt="fully-expanded NVLink card showing devices statistics" width="950">}}
 
-By selecting devices and adjusting a card's size, you can view device statistics and data using different displays and visualizations. The following cards display interface statistics:
+By selecting devices and adjusting a card's size, you can view device statistics and data using different displays and visualizations. The following cards display interface data for a given switch:
 
 {{<figure src="/images/netq/nvl4-flits.png" alt="card displaying flits data" width="650">}}
 

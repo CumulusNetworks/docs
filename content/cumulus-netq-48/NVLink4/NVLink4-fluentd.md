@@ -8,7 +8,7 @@ toc: 3
 
 ## Enable Fluentd Streaming
 
-To enable Fluentd streaming from NVlink4 switches to your Fluent collector, use the `netq_telemetry_agent_handler` tool to configure streaming parameters. The syntax for the command is below and can be reviewed on the command line with the `netq_telemetry_agent_handler -h` command:
+To enable Fluentd streaming from NVlink4 switches to your Fluent collector, use the `netq_telemetry_agent_handler` tool to configure streaming parameters. The `netq_telemetry_agent_handler` application can be downloaded from {{<exlink url="https://apps.nvidia.com/pid/contentlibraries/detail?id=1097442" text="NVIDIA Product Information Delivery Portal">}}. The syntax for the command can be reviewed on the command line with the `netq_telemetry_agent_handler -h` command:
 
 ```
 $ ./netq_telemetry_agent_handler -h
@@ -44,8 +44,6 @@ Examples for configuring one switche to delete a fluent destination:
 Examples for configuring one switch to delete all fluent destinations:
         ./netq_telemetry_agent_handler -delete_all -address 192.168.0.17 -user admin -password admin -domain_id 1 -domain my_domain
 ```
-
-The `netq_telemetry_agent_handler` application can be downloaded from {{<exlink url="https://apps.nvidia.com/pid/contentlibraries/detail?id=1097442" text="NVIDIA Product Information Delivery Portal">}}.
 ## NVLink4 Fluentd Message Example
 
 The following examples show NVLink4 Fluentd message output in JSON format: 

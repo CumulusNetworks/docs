@@ -16,7 +16,7 @@ NetQ 4.8.0 includes the following new features and improvements:
 - Lifecycle management support for {{<link url="Lifecycle-Management/#lcm-support-for-in-band-management" text="in-band deployments">}}
 - {{<link title="Adaptive Routing" text="Adaptive routing">}} monitoring for switches (beta)
 - High-availability improvements for on-premises cluster deployments: you can now access the NetQ UI via a virtual IP address in the event of a node failure 
-- NVLink support
+- Monitoring for NVLink4 devices: view your NVLink4 inventory, monitor events, perform NVOS upgrades, and generate troubleshooting files. Visit the {{<link title="NVLink4" text="NVLink4 section">}} to get started.
 - RoCE monitoring for DPUs {{<link title="RoCE">}} and create threshold-crossing rules {{<link title="Threshold-Crossing Events Reference/#dpu-roce">}}
 - {{<link title="Network Topology" text="Network topology">}} redesign that accommodates large networks with many devices (beta)
 - Performance improvements to the NetQ Agent

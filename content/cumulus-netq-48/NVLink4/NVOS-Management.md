@@ -9,13 +9,13 @@ NVOS images are managed with lifecycle management in the NetQ UI. This section d
 
 From the dashboard, select the **Image management** tab to display the NetQ and network OS images, including NVOS:
 
- {{<figure src="/images/netq/lcm-image-management-nvos.png" alt="images card with link to view missing images" width="800">}}
+ {{<figure src="/images/netq/nvos-images-480.png" alt="images card with link to view missing images" width="800">}}
 
 ## View and Upload Missing Images
 
 You should upload images for each NVOS version currently installed in your inventory so you can support rolling back to a known good version should an installation or upgrade fail. If you have specified a default NVOS version, NetQ verifies that the necessary versions of the default image are available based on the known device inventory, and if not, lists those that are missing.
 
-To upload missing **NVOS** images:
+To upload *missing* NVOS images:
 
 {{<tabs "Upload Missing Network OS Images" >}}
 
@@ -23,7 +23,7 @@ To upload missing **NVOS** images:
 
 1. On the NVOS Images card, select *View # missing NVOS images* to see which images you need.
 
-    {{<figure src="/images/netq/missing-nvos-450.png" alt="nvos images card with link to view missing images" width="200">}}
+    {{<figure src="/images/netq/nvos-card-480.png" alt="nvos images card with link to view missing images" width="200">}}
 
 <div style="padding-left: 18px;">{{<notice tip>}}
 If you have already specified a default image, you must click <strong>Manage</strong> and then <strong>Missing</strong> to see the missing images.
@@ -56,9 +56,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 ## Upload Images
 
-To upload the NVOS images that you want to use for the upgrade, first download the images (*.img* files). Place them in an accessible part of your local network.
-
-After obtaining the images, upload them to NetQ:
+To upload the NVOS images that you want to use for the upgrade, first download the images (*.img* files). Place them in an accessible part of your local network. After obtaining the images, upload them to NetQ:
 
 {{<tabs "Upload Upgrade Images">}}
 

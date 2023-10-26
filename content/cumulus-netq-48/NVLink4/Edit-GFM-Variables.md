@@ -53,6 +53,7 @@ GFM_WAIT_TIMEOUT=15
 ## Variables Reference
 
 ```
+LOG_LEVEL=${LOG_LEVEL}
 Description: Fabric Manager logging levels
 Possible Values:
 	0  - All the logging is disabled
@@ -60,114 +61,95 @@ Possible Values:
 	2  - Set log level to ERROR and above
 	3  - Set log level to WARNING and above
 	4  - Set log level to INFO and above
-LOG_LEVEL=${LOG_LEVEL}
-value: "{{ $domain.log_level }}"
 
+LOG_FILE_NAME=/var/log/fabricmanager.log
 Description: Filename for Fabric Manager logs
 Possible Values:
     Full path/filename string (max length of 256). Logs will be redirected to console(stderr) if the specified log file can't be opened or the path is empty.
-LOG_FILE_NAME=/var/log/fabricmanager.log
-value: "{{ $domain.log_file_name }}"
 
+LOG_APPEND_TO_LOG=${LOG_APPEND_TO_LOG}
 Description: Append to an existing log file or overwrite the logs
 Possible Values:
-    0  - No  (Log file will be overwritten)
+    0  - No (Log file will be overwritten)
     1  - Yes (Append to existing log)
-LOG_APPEND_TO_LOG=${LOG_APPEND_TO_LOG}
-value: "{{ $domain.log_append_to_log }}"
 
+LOG_FILE_MAX_SIZE=${LOG_FILE_MAX_SIZE}
 Description: Max size of log file (in MB)
 Possible Values:
-	Any Integer values
-LOG_FILE_MAX_SIZE=${LOG_FILE_MAX_SIZE}
-value: "{{ $domain.log_file_max_size }}"
+	Any integer values
 
+LOG_USE_SYSLOG=${LOG_USE_SYSLOG}
 Description: Redirect all the logs to syslog instead of logging to file
 Possible Values:
 	0  - No
 	1  - Yes
-LOG_USE_SYSLOG=${LOG_USE_SYSLOG}
-value: "{{ $domain.log_use_syslog }}"
 
+DAEMONIZE=${DAEMONIZE}
 Description: daemonize Fabric Manager on start-up
 Possible Values:
     0  - No (Do not daemonize and run fabric manager as a normal process)
     1  - Yes (Run Fabric Manager process as Unix daemon
-DAEMONIZE=${DAEMONIZE}
-value: "{{ $domain.daemonize }}"
 
+BIND_INTERFACE_IP=${BIND_INTERFACE_IP}
 Description: Network interface to listen for Global and Local Fabric Manager communication
 Possible Values:
 	A valid IPv4 address. By default, uses loopback (127.0.0.1) interface
-BIND_INTERFACE_IP=${BIND_INTERFACE_IP}
-value: "{{ $domain.bind_interface_ip }}"
 
+STARTING_TCP_PORT=${STARTING_TCP_PORT}
 Description: Starting TCP port number for Global and Local Fabric Manager communication
 Possible Values:
 	Any value between 0 and 65535
-STARTING_TCP_PORT=${STARTING_TCP_PORT}
-value: "{{ $domain.starting_tcp_port }}"
 
+UNIX_SOCKET_PATH=${UNIX_SOCKET_PATH}
 Description: Use Unix sockets instead of TCP Socket for Global and Local Fabric Manager communication
 Possible Values:
 	Unix domain socket path (max length of 256)
-	Default Value: 
-		Empty String (TCP socket will be used instead of Unix sockets)
-UNIX_SOCKET_PATH=${UNIX_SOCKET_PATH}
-value: "{{ $domain.unix_socket_path }}"
+Default Value: 
+	Empty String (TCP socket will be used instead of Unix sockets)
 
+FABRIC_MODE=${FABRIC_MODE}
 Description: Fabric Manager Operating Mode
 Possible Values:
     0  - Start Fabric Manager in Bare metal or Full pass through virtualization mode
     1  - Start Fabric Manager in Shared NVSwitch multitenancy mode. 
     2  - Start Fabric Manager in vGPU based multitenancy mode.
-FABRIC_MODE=${FABRIC_MODE}
-value: "{{ $domain.fabric_mode }}"
 
+FABRIC_MODE_RESTART=${FABRIC_MODE_RESTART}
 Description: Restart Fabric Manager after exit. Applicable only in Shared NVSwitch or vGPU based multitenancy mode
 Possible Values:
     0  - Start Fabric Manager and follow full initialization sequence
     1  - Start Fabric Manager and follow Shared NVSwitch or vGPU based multitenancy mode resiliency/restart sequence.
-FABRIC_MODE_RESTART=${FABRIC_MODE_RESTART}
-value: "{{ $domain.fabric_mode_restart }}"
 
-Description: Specify the filename to be used to save Fabric Manager states.
-                   Valid only if Shared NVSwitch or vGPU based multitenancy mode is enabled
+STATE_FILE_NAME=${STATE_FILE_NAME}
+Description: Specify the filename to be used to save Fabric Manager states. Valid only if Shared NVSwitch or vGPU based multitenancy mode is enabled
 Possible Values:
 	Full path/filename string (max length of 256)
-STATE_FILE_NAME=${STATE_FILE_NAME}
-value: "{{ $domain.state_file_name }}"
 
+FM_CMD_BIND_INTERFACE=${FM_CMD_BIND_INTERFACE}
 Description: Network interface to listen for Fabric Manager SDK/API to communicate with running FM instance.
 Possible Values:
 	A valid IPv4 address. By default, uses loopback (127.0.0.1) interface
-FM_CMD_BIND_INTERFACE=${FM_CMD_BIND_INTERFACE}
-value: "{{ $domain.fm_cmd_bind_interface }}"
 
+FM_CMD_PORT_NUMBER=${FM_CMD_PORT_NUMBER}
 Description: TCP port number for Fabric Manager SDK/API to communicate with running FM instance.
 Possible Values:
 	Any value between 0 and 65535
-FM_CMD_PORT_NUMBER=${FM_CMD_PORT_NUMBER}
-value: "{{ $domain.fm_cmd_port_number }}"
 
+FM_CMD_UNIX_SOCKET_PATH=${FM_CMD_UNIX_SOCKET_PATH}
 Description: Use Unix sockets instead of TCP Socket for Fabric Manager SDK/API communication
 Possible Values:
 		Unix domain socket path (max length of 256)
-	Default Value: 
-		Empty String (TCP socket will be used instead of Unix sockets)
-FM_CMD_UNIX_SOCKET_PATH=${FM_CMD_UNIX_SOCKET_PATH}
-value: "{{ $domain.fm_cmd_unix_socket_path }}"
+Default Value: 
+		Empty string (TCP socket will be used instead of Unix sockets)
 
+
+FM_STAY_RESIDENT_ON_FAILURES=${FM_STAY_RESIDENT_ON_FAILURES}
 Description: Fabric Manager does not exit when facing failures
 Possible Values:
-    0 – Fabric Manager service will terminate on errors such as, NVSwitch and GPU config failure, 
-           typical software errors etc.  
-    1 – Fabric Manager service will stay running on errors such as, NVSwitch and GPU config failure, 
-           typical software errors etc. However, the system will be uninitialized and CUDA application 
-          launch will fail. 
-FM_STAY_RESIDENT_ON_FAILURES=${FM_STAY_RESIDENT_ON_FAILURES}
-value: "{{ $domain.fm_stay_resident_on_failures }}"
+    0 – Fabric Manager service will terminate on errors such as, NVSwitch and GPU config failure, typical software errors, etc.  
+    1 – Fabric Manager service will stay running on errors such as, NVSwitch and GPU config failure, typical software errors etc. However, the system will be uninitialized and CUDA application launch will fail. 
 
+ACCESS_LINK_FAILURE_MODE=${ACCESS_LINK_FAILURE_MODE}
 Description: Degraded Mode options when there is an Access Link Failure (GPU to NVSwitch NVLink failure)
 Possible Values:
     In bare metal or full passthrough virtualization mode
@@ -176,11 +158,9 @@ Possible Values:
 
     In Shared NVSwitch or vGPU based multitenancy mode
     0  - Disable partitions which are using the Access Link failed GPU
-    1  - Disable the NVSwitch and its peer NVSwitch,
-           all partitions will be available but with reduced NVLink P2P bandwidth
-ACCESS_LINK_FAILURE_MODE=${ACCESS_LINK_FAILURE_MODE}
-value: "{{ $domain.access_link_failure_mode }}"
+    1  - Disable the NVSwitch and its peer NVSwitch, all partitions will be available but with reduced NVLink P2P bandwidth
 
+TRUNK_LINK_FAILURE_MODE=${TRUNK_LINK_FAILURE_MODE}
 Description: Degraded Mode options when there is a Trunk Link Failure (NVSwitch to NVSwitch NVLink failure)
 Possible Values:
     In bare metal or full passthrough virtualization mode
@@ -191,9 +171,8 @@ Possible Values:
     0  - Remove partitions that are using the Trunk NVLinks
     1  - Disable the NVSwitch and its peer NVSwitch,
             all partitions will be available but with reduced NVLink P2P bandwidth
-TRUNK_LINK_FAILURE_MODE=${TRUNK_LINK_FAILURE_MODE}
-value: "{{ $domain.trunk_link_failure_mode }}"
 
+NVSWITCH_FAILURE_MODE=${NVSWITCH_FAILURE_MODE}
 Description: Degraded Mode options when there is a NVSwitch failure or an NVSwitch is excluded
 Possible Values:
     In bare metal or full passthrough virtualization mode
@@ -204,40 +183,33 @@ Possible Values:
     0  - Disable partitions that are using the NVSwitch
     1  - Disable the NVSwitch and its peer NVSwitch,
            all partitions will be available but with reduced NVLink P2P bandwidth
-NVSWITCH_FAILURE_MODE=${NVSWITCH_FAILURE_MODE}
-value: "{{ $domain.nvswitch_failure_mode }}"
 
+ABORT_CUDA_JOBS_ON_FM_EXIT=${ABORT_CUDA_JOBS_ON_FM_EXIT}
 Description: Control running CUDA jobs behavior when Fabric Manager service is stopped or terminated
 Possible Values:
     0  - Do not abort running CUDA jobs when Fabric Manager exits. However new CUDA job launch will fail.
     1  - Abort all running CUDA jobs when Fabric Manager exits.
-ABORT_CUDA_JOBS_ON_FM_EXIT=${ABORT_CUDA_JOBS_ON_FM_EXIT}
-value: "{{ $domain.abort_cuda_jobs_on_fm_exit }}"
 
+TOPOLOGY_FILE_PATH=${TOPOLOGY_FILE_PATH}
 Description: Absolute directory path containing Fabric Manager topology files
 Possible Values:
-              A valid directory path string (max length of 256)
-TOPOLOGY_FILE_PATH=${TOPOLOGY_FILE_PATH}
-value: "{{ $domain.topology_file_path }}"
+    A valid directory path string (max length of 256)
 
 ENABLE_LOCALFM=${ENABLE_LOCALFM}
-value: "{{ $domain.enable_localfm }}"
 
-Time in Seconds. Negative value for gfmWaitTimeout denotes an infinite wait time.
 GFM_WAIT_TIMEOUT=${GFM_WAIT_TIMEOUT}
-value: "{{ $domain.gfm_wait_timeout }}"
+Time in Seconds. Negative value for gfmWaitTimeout denotes an infinite wait time.
 
 ENABLE_TOPOLOGY_VALIDATION=${ENABLE_TOPOLOGY_VALIDATION}
-value: "{{ $domain.enable_topology_validation }}"
 
 FABRIC_NODE_CONFIG_FILE=/usr/share/nvidia/nvswitch/${FABRIC_NODE_CONFIG}
 
-Filename of active multi-node-topology
 MULTI_NODE_TOPOLOGY=${MULTI_NODE_TOPOLOGY}
+Filename of active multi-node-topology
 
+MULTI_NODE_ENABLE_ALL_NODE_PARTITION=${MULTI_NODE_ENABLE_ALL_NODE_PARTITION}
 Description: Indicates that all nodes are by default in a single default partition
 Possible Values:
    0 -  No default partition is enabled
    1 -  default partition is enabled
-MULTI_NODE_ENABLE_ALL_NODE_PARTITION=${MULTI_NODE_ENABLE_ALL_NODE_PARTITION}
-value: "{{ $domain.multi_node_enable_all_node_partition }}"
+

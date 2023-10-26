@@ -2987,10 +2987,22 @@ The NVUE action operations are ephemeral operations that do not modify the state
 {{< tabs "ActionOperations" >}}
 {{< tab "Curl Command" >}}
 
+To clear counters on swp1:
+
 ```
-cumulus@switch:~$ curl -H 'Content-Type:application/json' -u 'cumulus:cumulus' -d '{"@clear": {"state": "start", "parameters": {}}}' -k -X POST "https://127.0.0.1:8765/nvue_v1/interface/swp1/qos/counter" 
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -H 'Content-Type:application/json' -d '{"@clear": {"state": "start", "parameters": {}}}' -k -X POST https://127.0.0.1:8765/nvue_v1/interface/swp1/counters
 1
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k -X GET "https://127.0.0.1:8765/nvue_v1/action/1" 
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -X GET https://127.0.0.1:8765/nvue_v1/action/1 -k
+{"detail":"swp1 counters cleared.","http_status":200,"issue":[],"state":"action_success","status":"swp1 counters cleared.","timeout":60,"type":""}
+```
+
+To clear QoS buffers on swp1:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -H 'Content-Type:application/json' -d '{"@clear": {"state": "start", "parameters": {}}}' -k -X POST https://127.0.0.1:8765/nvue_v1/interface/swp1/qos/buffer
+2
+cumulus@switch:~$ curl -u 'cumulus:cumulus'  -X GET https://127.0.0.1:8765/nvue_v1/action/2 -k
+{"detail":"QoS buffers cleared on swp1.","http_status":200,"issue":[],"state":"action_success","status":"QoS buffers cleared on swp1.","timeout":60,"type":""}
 ```
 
 {{< /tab >}}

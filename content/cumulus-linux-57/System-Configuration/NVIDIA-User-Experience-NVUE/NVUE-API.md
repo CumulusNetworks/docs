@@ -44,7 +44,7 @@ NVIDIA recommends you use your own certificates and keys. Certificates must be i
 
 Cumulus Linux lets you manage CA certificates (such as DigiCert or Verisign) and entity (end-point) certificates. You can import certificates on the switch, set which certificate you want to use, and show information about a certificate, such as the serial number, and the date and time during which the certificate is valid.
 
-To import a certificate or certificate bundle on the switch, run the following commands. If the certificate is passphrase protected, you need to include the passphrase.
+To import a certificate, run the following commands. If the certificate is passphrase protected, you need to include the passphrase.
 
 {{%notice note%}}
 You import a maximum of 25 entity certificates and a maximum of 50 CA certificates.
@@ -56,7 +56,7 @@ You import a maximum of 25 entity certificates and a maximum of 50 CA certificat
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-The following example imports the CA certificate bundle called tls-cert-1. The certifcate is passphrase protected with `hell0$`.
+The following example imports the CA certificate bundle `tls-cert-1`. The certifcate is passphrase protected with `hell0$`.
 
 ```
 cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12 passphrase hell0$

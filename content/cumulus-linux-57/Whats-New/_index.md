@@ -34,13 +34,14 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link title="Setting the Date and Time/#set-the-date-and-time" text="Set date and time command">}}
   - {{<link url="User-Accounts" text="Custom role-based access control">}} with more granularity
   - Commands to {{<link url="NVUE-API/#certificates" text="manage public key certificates">}} for the NVUE REST API
+  - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.
   - Admin state shows in `nv show interface` output
   - PIM show commands for PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Set and show commands to configure and show the IP neighbor table
+  - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
   - mlag keyword presentation
   - Allow unset operations with a key and value
-  - Enhanced show config history output
   - API support
   - Provide interface summary view with filtering
 

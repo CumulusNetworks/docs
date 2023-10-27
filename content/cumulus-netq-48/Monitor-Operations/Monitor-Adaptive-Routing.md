@@ -35,8 +35,9 @@ netq show adaptive routing config interface
 The adaptive routing dashboard displays:
 
 - devices with adaptive routing (enabled or disabled) and their RoCE modes (lossy or lossless).
-- a summary of adaptive routing events, including ECMP traffic imbalances that can be investigated further by viewing their histograms.
-- a list of up to 10 switches, which can be sorted by highest P95 value, highest standard deviation, or widest deviation from the P95 value (aggregated over the past 3 minutes). From this panel, you can select **View more** in the **View histogram** column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.
+- a list of interfaces on the switch and their configurations, including link utilization status (visible by selecting **View details** in the 'interfaces' column).
+- a summary of adaptive routing events, including ECMP traffic imbalances.
+- a list of up to 10 switches, which can be sorted by highest P95 value, highest standard deviation, or ports with the widest deviation from the P95 value (aggregated over the past 3 minutes). From this panel, you can select **View more** in the 'view histogram' column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.
 
 {{<figure src="/images/netq/ar-dashboard-480.png" alt="adaptive routing dashboard displaying two devices with AR enabled" width="1100">}}
 

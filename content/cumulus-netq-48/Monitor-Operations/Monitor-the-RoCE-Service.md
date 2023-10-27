@@ -29,7 +29,7 @@ netq check roce
 
 1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the Network heading, select **RoCE counters**. Use the tabs to view receive (Rx), transmit (Tx), and pool counters networkwide.
+2. Under the Network heading, select either **RoCE switches** or **RoCE DPUs**. Use the tabs to view and filter specific types of RoCE counters.
 ## View RoCE Counters for a Given Switch
 
 You can view the following RoCE counters for a given switch:

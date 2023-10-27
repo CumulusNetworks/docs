@@ -40,7 +40,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Set and show commands to configure and show the IP neighbor table
   - mlag keyword presentation
   - Allow unset operations with a key and value
-  - Enhanced show config history output
+  - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
   - API support
   - Provide interface summary view with filtering
 

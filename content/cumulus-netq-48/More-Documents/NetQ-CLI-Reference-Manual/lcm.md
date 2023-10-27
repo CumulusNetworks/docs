@@ -135,12 +135,9 @@ cumulus@switch:~$ netq lcm add default-version netq-images 4.7.0
 
 - - -
 
-<!-- need to check this against command line diff for 4.7
-https://redmine.mellanox.com/issues/3144699#change-27154407
--->
 ## netq lcm add netq-config
 
-Adds a NetQ configuration profile.
+Creates a NetQ agent configuration profile.
 
 ### Syntax
 
@@ -170,6 +167,7 @@ netq lcm add netq-config config-profile-name <text-config-profile>
 | log-level | error, warn, info, debug | Specify the logging level |
 | vrf | default, mgmt, \<text-config-vrf\>  | Set the VRF to default, management, or specify a custom VRF |
 | wjh | enable, disable | Enable or disable What Just Happened events |
+| inband-interface | <text-interface-name\>  | Creates an agent configuration profile for in-band deployments |
 
 ### Sample Usage
 

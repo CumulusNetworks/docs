@@ -218,16 +218,16 @@ cumulus@<hostname>:~$ netq install cluster master-init
    netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
 ```
 
-Run the `netq install cluster worker-init <ssh-key>` command from the output on each of your worker nodes.
+Run the {{<link title="install/#netq-install-cluster-worker-init" text="netq install cluster worker-init <ssh-key>">}} command from the output on each of your worker nodes.
 
-Run the following command on your master node using the IP addresses of your worker nodes:
+Next, run the {{<link title="install/#netq-install-cluster-full" text="netq install cluster full">}} command on your master node using the IP addresses of your worker nodes:
 
 ```
 cumulus@<hostname>:~$ netq install cluster full interface <interface-name> bundle /mnt/installables/NetQ-4.7.0.tgz workers <worker-1-ip> <worker-2-ip>
 ```
 
 {{%notice note%}}
-You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
+You can specify the IPv4 or IPv6 address instead of the interface name. Refer to the {{<link title="install/#netq-install-cluster-full" text="command line reference">}} for the full syntax.
 {{%/notice%}}
 
 On the master node, run the following command in the directory that contains the {{<link title="Upgrade NetQ Virtual Machines/#download-upgrade-software" text="NetQ configuration backup script">}}.

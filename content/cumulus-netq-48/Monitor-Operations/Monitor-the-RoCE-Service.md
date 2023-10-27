@@ -13,7 +13,7 @@ The following commands display your network's RoCE configuration, RoCE counters 
 
 ```
 netq show roce-config 
-netq show roce-counters  
+netq show roce-counters (dpu | nic)
 netq show roce-counters pool
 netq show events message_type tca_roce
 netq show events message_type roceconfig

@@ -308,10 +308,17 @@ If you use an in-band interface to manage your switch, you must use the CLI to c
 
 {{<tab "NetQ CLI" >}}
 
-Configure a NetQ agent configuration profile using the CLI with the `netq lcm add netq-config config-profile-name` command. If you manage the switch using an in-band interface, you must specify the interface name using the `inband-interface` option:
+Create a NetQ agent configuration profile with the {{<link title="lcm/#netq-lcm-add-netq-config" text="netq lcm add netq-config config-profile-name">}} command. If you manage the switch using an in-band interface, you must specify the interface name using the `inband-interface` option:
 
 ```
-cumulus@netq-server:~$ netq lcm add netq-config config-profile-name <text-profile-name> access-key <text-access-key> secret-key <text-secret-key> [cpu-limit <text-cpu-limit>] [log-level error | log-level warn | log-level info | log-level debug] [vrf default | vrf mgmt | vrf <text-config-vrf>] [wjh enable | wjh disable] [inband-interface <text-interface-name>]
+cumulus@netq-server:~$ netq lcm add netq-config config-profile-name <text-config-profile> 
+    accesskey <text-access-key> 
+    secret-key <text-secret-key> 
+    [cpu-limit <text-cpu-limit>] 
+    [log-level error | log-level warn | log-level info | log-level debug] 
+    [vrf default | vrf mgmt | vrf <text-config-vrf>] 
+    [wjh enable | wjh disable] 
+    [inband-interface <text-inband-interface>]
 ```
 
 {{</tab>}}

@@ -22,8 +22,8 @@ To display adaptive routing data, you must have adaptive routing configured on t
 Monitor adaptive routing with the following commands. See the {{<link title="show/#netq-show-adaptive-routing-config" text="command line reference">}} for additional options, definitions, and examples.
 
 ```
-netq show adaptive routing config
-netq show events message_type adaptive-routing
+netq show adaptive routing config global
+netq show adaptive routing config interface
 ```
 
 ## Access the Adaptive Routing Dashboard

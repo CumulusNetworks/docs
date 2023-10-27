@@ -906,39 +906,29 @@ None
 - `netq config del opta proxy-host`
 
 - - -
-<!--
-## netq config addons
+## netq config asic-monitor-simulation
 
 ### Syntax
 
 ```
-netq config (add|del) addons
+netq config (start|stop|status|restart) asic-monitor-simulation
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| add | NA |  |
-| del | NA | |
+| config | start, stop, status, restart | NA |
 
 ### Options
 
 None
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq config add addons
-Addons config added
-```
 
 ### Related Commands
 
 None
 
 - - -
--->
 ## netq config color
 
 <!-- vale off -->

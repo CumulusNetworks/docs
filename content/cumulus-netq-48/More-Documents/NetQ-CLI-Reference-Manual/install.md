@@ -88,7 +88,7 @@ None
 - - -
 ## netq install cluster full
 
-Installs the NetQ Platform software on the servers (NetQ On-premises Appliances or VMs) in an on-premises, server cluster deployment, all with a single command. You must have the hostname or IP address of the master node and two worker nodes, and the NetQ software bundle to run the command.
+Installs the NetQ Platform software on the servers in an on-premises, server cluster deployment. You must have the hostname or IP address of the master node and two worker nodes, and the NetQ software bundle to run the command.
 
 Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
@@ -96,11 +96,14 @@ Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.c
 
 ```
 netq install cluster full
-    (interface <text-opta-ifname>|ip-addr <text-ip-addr>)
+    (interface <text-opta-ifname>|ip-addr <text-ip-addr> [<text-ipv6-addr>])
     bundle <text-bundle-url>
     [config-key <text-opta-key>]
     [pod-ip-range <text-pod-ip-range>]
     workers <text-worker-01> <text-worker-02>
+    [workers-ipv6 <text-worker-ipv6-01> <text-worker-ipv6-02>] 
+    [ipv6]
+    [cluster-vip <text-cluster-vip>] 
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
 
@@ -110,16 +113,20 @@ netq install cluster full
 | ---- | ---- | ---- |
 | full | NA | Install a server cluster, running all initialization and configuration commands automatically |
 | interface | \<text-opta-ifname\> | Install a server cluster with a master node using this interface to communicate with the NetQ Agents on the worker nodes |
-| ip-addr | \<text-ip-addr\> | Install a server cluster with a master node with this IP address to communicate with the NetQ Agents on the worker nodes |
+| ip-addr | \<text-ip-addr\> | Install a server cluster with a master node with this IPv4 address to communicate with the NetQ Agents on the worker nodes |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
-| workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IP addresses |
+| workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IPv4 addresses |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| NA | \<text-ipv6-addr\> | Install a server cluster with a master node with this IPv6 address to communicate with the NetQ Agents on the worker nodes |
 | conifg-key | \<text-opta-key\> | Use this unique key to install the server cluster |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
+| workers-ipv6 | \<text-worker-ipv6-01\> \<text-worker-ipv6-02\> | Install the worker nodes with these IPv6 addresses |
+| ipv6 | NA | Include this option for IPv6 installations |
+| cluster-vip | \<text-vip\> | Specify a range of IP addresses for the pod |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 
@@ -127,20 +134,20 @@ netq install cluster full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.0.0.tgz workers 10.20.10.25 10.20.10.45
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz workers 10.20.10.25 10.20.10.45
 ```
 
 ### Related Commands
 
-- ```netq install cluster activate-job```
-- ```netq install cluster join-workers```
+- `netq install cluster activate-job`
+- `netq install cluster join-workers`
 
 - - -
 <!-- vale off -->
 ## netq install cluster join-workers
 <!-- vale on -->
 
-After initiating a NetQ installation, this command configures the first two worker nodes (NetQ On-premises Appliances or VMs) in a server cluster deployment.
+After initiating a NetQ installation, this command configures the first two worker nodes (NetQ on-premises appliances or VMs) in a server cluster deployment.
 
 Alternately, use {{<link title="#netq-install-cluster-full" text="netq install cluster full">}} to perform this and all other steps of a NetQ installation with a single command.
 
@@ -489,27 +496,28 @@ Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.c
 ### Syntax
 
 ```
-netq install standalone full
-    (interface <text-opta-ifname>|ip-addr <text-ip-addr>)
-    bundle <text-bundle-url>
+netq install standalone full 
+    (interface <text-opta-ifname>|ip-addr <text-ip-addr> [<text-ipv6-addr>]) 
+    bundle <text-bundle-url> 
+    [ipv6] 
     [config-key <text-opta-key>]
     [pod-ip-range <text-pod-ip-range>]
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
-
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | full | NA | Install a server with NetQ software, running all initialization and configuration commands automatically |
 | interface | \<text-opta-ifname\> | Install NetQ on the server with this interface as the communication interface for the NetQ Agents on the monitored switches and hosts |
-| ip-addr | \<text-ip-addr\> | Install NetQ on the server with this IP address to communicate with the NetQ Agents on the monitored switches and hosts |
+| ip-addr | \<text-ip-addr\>,\<text-ipv6-addr\>  | Install NetQ on the server with this IPv4 or IPv6 address to communicate with the NetQ Agents on the monitored switches and hosts |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| ipv6 | NA | Install NetQ using an IPv6 address |
 | conifg-key | \<text-opta-key\> | Use this unique key to activate the software |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
@@ -518,12 +526,12 @@ netq install standalone full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.0.0.tgz
+cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.7.0.tgz
 ```
 
 ### Related Commands
 
-- ```netq install standalone activate-job```
+- `netq install standalone activate-job`
 
 - - -
 ## netq install update-opta-ssl-setting
@@ -541,7 +549,7 @@ netq install update-opta-ssl-setting
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| update-opta-ssl-setting | NA | Update the TLS/SSL settings on opta for agent-opta connection |
+| update-opta-ssl-setting | NA | Update the TLS/SSL settings on OPTA for agent-opta connection |
 | ssl-cert | \<text-ssl-cert-filel\> | TLS/SSL certificate file absolute path |
 | ssl-key | \<text-ssl-key-filel\> | TLS/SSL private key file absolute path |
 

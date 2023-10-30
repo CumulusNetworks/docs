@@ -18,12 +18,13 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 
 ### New Features and Enhancements
 
-- Shared ECMP containers for adaptive routing
 - Buffer and bandwidth histograms
 - {{<link url="802.1X-Interfaces" text="802.1x support">}}
-- PTP PPS In or Out Support
 - {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}} forwarding profile
 - {{<link url="MAC-Address-Translation" text="MAC Address Translation">}}
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Shared ECMP containers for adaptive routing">}} to optimize and share resources, and avoid resource exhaustion
+- PTP PPS In or Out Support
+- 3431890 and 3455021 zero down time for config apply/update (FRR and switchd)
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
@@ -42,8 +43,6 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Set and show commands to configure and show the IP neighbor table
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
   - mlag keyword presentation
-  - Allow unset operations with a key and value
-  - API support
   - Provide interface summary view with filtering
 
 {{< expand "New NVUE Commands" >}}

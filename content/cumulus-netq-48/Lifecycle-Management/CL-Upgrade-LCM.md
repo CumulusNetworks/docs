@@ -32,7 +32,7 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 3. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-4. (Optional) Assign a {{<link  title="Switch Management/#assign-roles-to-switches" text="role">}} to each switch.
+4. (Optional) Assign a {{<link title="Switch Management/#assign-roles-to-switches" text="role">}} to each switch.
 
 {{</tab>}}
 

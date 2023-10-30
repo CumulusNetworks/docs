@@ -25,7 +25,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}} forwarding profile
 - {{<link url="MAC-Address-Translation" text="MAC Address Translation">}}
 - NVUE enhancements include:
-  - {{<link url="Port-Security" text="Port Security commands">}}
+  - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
   - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="ISSU maintenance mode commands">}}
   - {{<link url="RADIUS-AAA" text="RADIUS AAA commands">}}
@@ -35,7 +35,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link url="User-Accounts" text="Custom role-based access control">}} with more granularity
   - Commands to {{<link url="NVUE-API/#certificates" text="manage public key certificates">}} for the NVUE REST API
   - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.
-  - Admin state shows in `nv show interface` output
+  - The `nv show interface` command output includes the admin state
   - PIM show commands for PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Set and show commands to configure and show the IP neighbor table

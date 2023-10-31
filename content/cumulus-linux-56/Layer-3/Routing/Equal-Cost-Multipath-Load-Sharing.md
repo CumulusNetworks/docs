@@ -548,7 +548,9 @@ Enabling or disabling adaptive routing restarts the `switchd` service, which cau
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
+If you need to configure adaptive routing with Linux commands by editing configuration files, contact NVIDIA Customer Support for help.
+
+<!--Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
 - Set the `adaptive_routing.enable` parameter to `TRUE` to enable the adaptive routing feature.
 - Set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE` in the `Per-port configuration` section to enable adaptive routing on all the ports that are part of the same ECMP route.
 - For a switch with the Spectrum-2 or Spectrum-3 ASIC, add the line `adaptive_routing.profile = profile-1`. For a switch with the  Spectrum 4 ASIC, add the line `adaptive_routing.profile = profile-2`.
@@ -568,14 +570,14 @@ interface.swp52.adaptive_routing.link_util_thresh = 70
 ```
 
 {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
-<!-- vale off -->
+
 {{<cl/restart-switchd>}}
-<!-- vale on -->
 
 To disable adaptive routing, set the `adaptive_routing.enable` parameter to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
 
 To disable adaptive routing on a specific port, set the `interface.<port>.adaptive_routing.enable` parameter  to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
 
+-->
 {{< /tab >}}
 {{< /tabs >}}
 

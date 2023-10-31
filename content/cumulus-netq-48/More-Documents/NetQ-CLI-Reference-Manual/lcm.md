@@ -142,7 +142,8 @@ Creates a NetQ agent configuration profile.
 ### Syntax
 
 ```
-netq lcm add netq-config config-profile-name <text-config-profile> 
+netq lcm add netq-config 
+    config-profile-name <text-config-profile> 
     access-key <text-access-key> 
     secret-key <text-secret-key> 
     [cpu-limit <text-cpu-limit>] 

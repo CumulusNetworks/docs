@@ -153,10 +153,6 @@ Run the appropriate commands for your current version and deployment type:
 cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
 ```
 
-{{%notice note%}}
-You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
-{{%/notice%}}
-
 {{</tab>}}
 
 {{<tab "Cluster">}}
@@ -181,9 +177,6 @@ cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
 cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
 ```
 
-{{%notice note%}}
-You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
-{{%/notice%}}
 {{</tab>}}
 
 {{<tab "Cluster">}}

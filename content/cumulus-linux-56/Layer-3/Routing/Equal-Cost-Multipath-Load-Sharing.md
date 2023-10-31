@@ -548,7 +548,7 @@ Enabling or disabling adaptive routing restarts the `switchd` service, which cau
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-If you need to configure adaptive routing with Linux commands by editing configuration files, contact NVIDIA Customer Support.
+If you need to configure adaptive routing with Linux commands by editing configuration files, contact NVIDIA Customer Support for help.
 
 <!--Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
 - Set the `adaptive_routing.enable` parameter to `TRUE` to enable the adaptive routing feature.

@@ -274,7 +274,7 @@ If you use a username and password for the credentials, the username appears in 
 
 ## Agent Configuration Profiles
 
-You can customize configuration profiles for NetQ agents running on switches. When you create a configuration profile, you can adjust the following agent settings:
+You can customize configuration profiles for NetQ Agents running on switches. When you create a configuration profile, you can adjust the following agent settings:
 
 - The VRF the NetQ agent uses to communicate with the NetQ server
 - Whether WJH is enabled or disabled
@@ -308,10 +308,11 @@ If you use an in-band interface to manage your switch, you must use the CLI to c
 
 {{<tab "NetQ CLI" >}}
 
-Create a NetQ agent configuration profile with the {{<link title="lcm/#netq-lcm-add-netq-config" text="netq lcm add netq-config config-profile-name">}} command. If you manage the switch using an in-band interface, you must specify the interface name using the `inband-interface` option:
+Create a NetQ agent configuration profile with the {{<link title="lcm/#netq-lcm-add-netq-config" text="netq lcm add netq-config">}} command. If you manage the switch using an in-band interface, you must specify the interface name using the `inband-interface` option:
 
 ```
-cumulus@netq-server:~$ netq lcm add netq-config config-profile-name <text-config-profile> 
+cumulus@netq-server:~$ netq lcm add netq-config 
+    config-profile-name <text-config-profile> 
     accesskey <text-access-key> 
     secret-key <text-secret-key> 
     [cpu-limit <text-cpu-limit>] 
@@ -333,7 +334,7 @@ After you create an agent configuration profile, you must apply the profile to a
 
 2. Select a switch from the **Discovered with NetQ** category and select **Change config**.
 
-{{<figure src="/images/netq/lcm-switch-discovery-configure-configprofile-48.png" alt="card displaying discovered switch and change configuration option" height="450" width="450">}}
+{{<figure src="/images/netq/lcm-switch-discovery-configure-configprofile-48.png" alt="card displaying discovered switch and change configuration option" width="500">}}
 
 3. Select a configuration profile, then click **Next**.
 

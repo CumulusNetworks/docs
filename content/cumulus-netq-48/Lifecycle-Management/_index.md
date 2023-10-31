@@ -53,3 +53,4 @@ If you manage a switch using an in-band network interface, the `inband-interface
     ```
     sudo netq config add agent server 192.168.1.254 vrf default inband-interface swp1
     ```
+After the NetQ Agent is configured for in-band connections, you can {{<link title="Credentials and Profiles/#agent-configuration-profiles" text="create custom agent configuration profiles">}} using the CLI, then {{<link title="Credentials and Profiles/#apply-configuration-profiles" text="apply the custom  profiles">}} to switches during upgrades.

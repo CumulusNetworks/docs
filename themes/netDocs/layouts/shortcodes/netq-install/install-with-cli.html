@@ -28,7 +28,7 @@
 
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</code></pre>
     
-<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<br><p>If you have changed the IP address or hostname of the NetQ On-premises VM after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p><pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre><p>Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install standalone full interface eno1 bundle /mnt/installables/NetQ-4.8.0.tgz</pre></p></div>
+<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<br><p>If you have changed the IP address or hostname of the NetQ On-premises VM after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p><pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre><p>Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;</pre></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -51,7 +51,7 @@
 
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; cluster-vip &lt;vip-ip&gt;</code></pre>
     
-<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<br><p>If you have changed the IP address or hostname of the NetQ On-premises VM after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p><pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre><p>Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install standalone full interface eno1 bundle /mnt/installables/NetQ-4.8.0.tgz</pre></p></div>
+<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<br><p>If you have changed the IP address or hostname of the NetQ On-premises VM after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM, indicating whether you want to purge any NetQ DB data or keep it.</p><pre>cumulus@hostname:~$ netq bootstrap reset [purge-db|keep-db]</pre><p>Re-run the install CLI on the appliance. This example uses interface eno1. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; cluster-vip &lt;vip-ip&gt;</pre></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -87,7 +87,7 @@
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key &lt;your-config-key&gt; workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; [proxy-host &lt;proxy-hostname&gt; proxy-port &lt;proxy-port&gt;]
     </code></pre>
     
-<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<p>If you have changed the IP address or hostname of the NetQ OPTA after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM:</p><pre>cumulus@hostname:~$ netq bootstrap reset</pre><p>Re-run the install CLI on the appliance. This example uses interface eth0. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key &lt;your-config-key&gt; [proxy-host <proxy-hostname> proxy-port <proxy-port>]</pre></p></div>
+<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<p>If you have changed the IP address or hostname of the NetQ OPTA after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM:</p><pre>cumulus@hostname:~$ netq bootstrap reset</pre><p>Re-run the install CLI on the appliance. This example uses interface eth0. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key &lt;your-config-key&gt; workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; [proxy-host <proxy-hostname> proxy-port <proxy-port>]</pre></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.</p></div>
 
@@ -108,18 +108,43 @@
 
 <div class="notices info"><p>The HA cluster virtual IP must be allocated from the same subnet used for your master and worker nodes.</p></div>
 
-<pre><code>cumulus@&lt;hostname&gt;:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key &lt;your-config-key&gt; workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; [proxy-host &lt;proxy-hostname&gt; proxy-port &lt;proxy-port&gt;]
+<pre><code>cumulus@&lt;hostname&gt;:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key &lt;your-config-key&gt; workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; cluster-vip &lt;vip-ip&gt; [proxy-host &lt;proxy-hostname&gt; proxy-port &lt;proxy-port&gt;]
     </code></pre>
     
-<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<p>If you have changed the IP address or hostname of the NetQ OPTA after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM:</p><pre>cumulus@hostname:~$ netq bootstrap reset</pre><p>Re-run the install CLI on the appliance. This example uses interface eth0. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key &lt;your-config-key&gt; [proxy-host <proxy-hostname> proxy-port <proxy-port>]</pre></p></div>
+<div class="notices note"><p>You can specify the IP address instead of the interface name here: use <code>ip-addr &lt;IP address></code> in place of <code>interface &lt;ifname></code> above.<p>If you have changed the IP address or hostname of the NetQ OPTA after this step, you need to re-register this address with NetQ as follows:</p><p>Reset the VM:</p><pre>cumulus@hostname:~$ netq bootstrap reset</pre><p>Re-run the install CLI on the appliance. This example uses interface eth0. Replace this with your updated IP address, hostname or interface using the interface or ip-addr option.</p><pre>cumulus@hostname:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key &lt;your-config-key&gt; workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; [proxy-host <proxy-hostname> proxy-port <proxy-port>]</pre></p></div>
 
 <div class="notices tip"><p>If this step fails for any reason, you can run <code>netq bootstrap reset</code> and then try again.</p></div>
 
 <p>Consider the following for container environments, and make adjustments as needed.</p>
 
-<p><em>Calico Networking</em></p><p>NetQ overrides the Calico default address range and changes it to 10.244.0.0/16. To modify this range, use the <code>netq install opta</code> command, specifying the default address range with the <code>pod-ip-range</code> option. For example:</p><pre>cumulus@hostname:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key &lt;your-config-key&gt; pod-ip-range 10.255.0.0/16</pre><p><em>Docker Default Bridge Interface</em></p><p>The default Docker bridge interface is disabled in NetQ. If you need to reenable the interface, <a href=https://www.nvidia.com/en-us/support/enterprise/ target=_blank>contact support</a>.</p>
+<p><em>Calico Networking</em></p><p>NetQ overrides the Calico default address range and changes it to 10.244.0.0/16. To modify this range, use the <code>netq install opta</code> command, specifying the default address range with the <code>pod-ip-range</code> option. For example:</p><pre>cumulus@hostname:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key &lt;your-config-key&gt;  workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; cluster-vip &lt;vip-ip&gt; pod-ip-range 10.255.0.0/16</pre><p><em>Docker Default Bridge Interface</em></p><p>The default Docker bridge interface is disabled in NetQ. If you need to reenable the interface, <a href=https://www.nvidia.com/en-us/support/enterprise/ target=_blank>contact support</a>.</p>
 
 {{end}}
+
+{{- if eq (.Get "deployment") "cloud-cluster-ha" "onprem-cluster-ha" -}}
+
+<h2 id=verify-installation-status>Verify Installation Status</h2><p>To view the status of the installation, use the <code>netq show status [verbose]</code> command. The following example shows a successful on-premises installation:</p><pre><code class=language-$ data-lang=$>State: Active
+    NetQ Live State: Active
+    Installation Status: FINISHED
+    Version: 4.8.0
+    Installer Version: 4.8.0
+    Installation Type: Cluster
+    Activation Key: EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIixPSUJCOHBPWUFnWXI2dGlGY2hTRzExR2E5aSt6ZnpjOUvpVVTaDdpZEhFPQ==
+    Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCZ1FDNW9iVXB6RkczNkRC
+    Is Cloud: False
+    
+    Kubernetes Cluster Nodes Status:
+    IP Address    Hostname     Role    NodeStatus    Virtual IP
+    ------------  -----------  ------  ------------  ------------
+    10.213.7.52   10.213.7.52  Worker  Ready         10.213.7.53
+    10.213.7.51   10.213.7.51  Worker  Ready         10.213.7.53
+    10.213.7.49   10.213.7.49  Master  Ready         10.213.7.53
+    
+    In Summary, Live state of the NetQ is... Active</code></pre>
+
+{{end}}
+
+{{- if ne (.Get "deployment") "cloud-cluster-ha" "onprem-cluster-ha" -}}
 
 <h2 id=verify-installation-status>Verify Installation Status</h2><p>To view the status of the installation, use the <code>netq show status [verbose]</code> command. The following example shows a successful on-premises installation:</p><pre><code class=language-$ data-lang=$>State: Active
     Version: 4.8.0
@@ -135,7 +160,11 @@
     10.188.44.147  10.188.44.147  Role    Ready
     
     NetQ... Active
-    </code></pre><p>Run the <code>netq show opta-health</code> command to verify all applications are operating properly. Allow 10-15 minutes for all applications to come up and report their status.</p><pre><code>cumulus@hostname:~$ netq show opta-health
+    </code></pre>
+    
+    {{end}}
+
+    <p>Run the <code>netq show opta-health</code> command to verify all applications are operating properly. Allow 10-15 minutes for all applications to come up and report their status.</p><pre><code>cumulus@hostname:~$ netq show opta-health
     Application                                            Status    Namespace      Restarts    Timestamp
     -----------------------------------------------------  --------  -------------  ----------  ------------------------
     cassandra-rc-0-w7h4z                                   READY     default        0           Fri Apr 10 16:08:38 2020

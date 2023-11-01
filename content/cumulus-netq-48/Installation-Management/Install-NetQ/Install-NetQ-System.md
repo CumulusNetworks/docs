@@ -32,8 +32,8 @@ You can install NetQ either on your premises or as a remote, SaaS solution. If y
 | On-premises | Single server | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Single On-premises Server" text="Start Install" >}} |
 | On-premises | Server cluster | KVM | {{<link title="Set Up Your KVM Virtual Machine for an On-premises Server Cluster" text="Start Install" >}} |
 | On-premises | Server cluster | VMware | {{<link title="Set Up Your VMware Virtual Machine for an On-premises Server Cluster" text="Start Install" >}} |
-| On-premises | HA Server cluster | KVM | {{<link title="Set Up Your KVM Virtual Machine for an On-premises HA Server Cluster" text="Start Install" >}} |
-| On-premises | HA Server cluster | VMware | {{<link title="Set Up Your VMware Virtual Machine for an On-premises HA Server Cluster" text="Start Install" >}} |
+| On-premises | High availability server cluster | KVM | {{<link title="Set Up Your KVM Virtual Machine for an On-premises HA Server Cluster" text="Start Install" >}} |
+| On-premises | High availability server cluster | VMware | {{<link title="Set Up Your VMware Virtual Machine for an On-premises HA Server Cluster" text="Start Install" >}} |
 
 ## Telemetry Aggregator (OPTA for NetQ Cloud)
 

@@ -9,7 +9,7 @@ This section describes three common data center deployment types for network man
 
 - Out-of-band management (recommended)
 - In-band management
-- High availability
+- Server cluster and high availability
 
 {{<notice note>}}
 
@@ -52,8 +52,16 @@ These switches connect to each physical network device through a virtual network
 While not recommended, you can implement NetQ within your data network. In this scenario, there is no overlay and all traffic to and from the NetQ Agents and the NetQ Platform traverses the data paths along with your regular network traffic. The roles of the switches in the Clos network are the same, except that the NetQ Platform performs the aggregation function that the OOB management switch performed. If your network goes down, you might not have access to the NetQ Platform for troubleshooting. Certain features—such as lifecycle management—require {{<link url="Lifecycle-Management/#lcm-support-for-in-band-management" text="additional configurations">}} for in-band deployments.  
 
 {{<img src="/images/netq/deploy-arch-ib-example-230.png" alt="diagram of an in-band management deployment." ewidth="700">}}
-## High Availability Deployment
+## Server Cluster Deployments
 
-NetQ supports a high availability deployment for users who prefer a solution in which the collected data and processing provided by the NetQ Platform remains available through alternate equipment should the platform fail for any reason. In this configuration, three NetQ Platforms are deployed, with one as the master and two as workers (or replicas). NetQ Agents send data to all three switches so that if the master NetQ Platform fails, one of the replicas automatically becomes the master and continues to store and provide the telemetry data. The following example is based on an OOB-management configuration, and modified to support high availability for NetQ.
+NetQ supports a server cluster deployment for users who prefer a solution with increased scalability in which the collected data by the NetQ Platform remains available through additional servers if one should fail for any reason. In this configuration, three NetQ Platforms are deployed, with one as the master and two as workers (or replicas). NetQ Agents send data to all three servers so that if the master NetQ Platform fails, one of the replicas automatically becomes the master and continues to store the telemetry data. The following example is based on an OOB-management configuration, and modified to support higher scalability for NetQ.
 
-{{<img src="/images/netq/deploy-arch-ha-example-240.png" alt="diagram of a high availability deployment with one master and two worker NetQ platforms." ewidth="700">}}
+{{<img src="/images/netq/deploy-arch-ha-example-240.png" alt="diagram of a server cluster deployment with one master and two worker NetQ platforms." ewidth="700">}}
+
+### High Availability
+
+You can configure a server cluster with a high availability (HA) virtual IP address (VIP) to load balance control plane processing and UI access across all nodes in the cluster. This deployment model requires an additional IP address to be allocated in the same subnet as the master and worker nodes. This VIP also allows the UI to be accessible if there is a failure of the master node. The VIP must be specified during a new HA server cluster installation with the `cluster-vip` option specified in the {{<link url="install/#netq-install-cluster-full" text="install command">}}
+
+High availability is only supported for on-premises deployments.
+
+

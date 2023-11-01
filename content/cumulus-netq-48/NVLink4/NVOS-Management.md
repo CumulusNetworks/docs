@@ -1,5 +1,5 @@
 ---
-title: NVOS Images
+title: NVOS Management
 author: NVIDIA
 weight: 1152
 toc: 4
@@ -9,13 +9,13 @@ NVOS images are managed with lifecycle management in the NetQ UI. This section d
 
 From the dashboard, select the **Image management** tab to display the NetQ and network OS images, including NVOS:
 
- {{<figure src="/images/netq/lcm-image-management-nvos.png" alt="images card with link to view missing images" width="800">}}
+ {{<figure src="/images/netq/nvos-images-480.png" alt="images card with link to view missing images" width="800">}}
 
 ## View and Upload Missing Images
 
 You should upload images for each NVOS version currently installed in your inventory so you can support rolling back to a known good version should an installation or upgrade fail. If you have specified a default NVOS version, NetQ verifies that the necessary versions of the default image are available based on the known device inventory, and if not, lists those that are missing.
 
-To upload missing **NVOS** images:
+To upload *missing* NVOS images:
 
 {{<tabs "Upload Missing Network OS Images" >}}
 
@@ -23,7 +23,7 @@ To upload missing **NVOS** images:
 
 1. On the NVOS Images card, select *View # missing NVOS images* to see which images you need.
 
-    {{<figure src="/images/netq/missing-nvos-450.png" alt="nvos images card with link to view missing images" width="200">}}
+    {{<figure src="/images/netq/nvos-card-480.png" alt="nvos images card with link to view missing images" width="200">}}
 
 <div style="padding-left: 18px;">{{<notice tip>}}
 If you have already specified a default image, you must click <strong>Manage</strong> and then <strong>Missing</strong> to see the missing images.
@@ -56,9 +56,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 ## Upload Images
 
-To upload the NVOS images that you want to use for the upgrade, first download the images (*.img* files). Place them in an accessible part of your local network.
-
-After obtaining the images, upload them to NetQ:
+To upload the NVOS images that you want to use for the upgrade, first download the images (*.img* files). Place them in an accessible part of your local network. After obtaining the images, upload them to NetQ:
 
 {{<tabs "Upload Upgrade Images">}}
 
@@ -112,6 +110,56 @@ After you upgrade all your switches beyond a particular release, you can remove 
 2. On the **Uploaded** tab, select the images you want to remove. 
 
 3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> **Delete**.
+
+{{</tab>}}
+
+{{</tabs>}}
+
+## Perform an NVOS Upgrade
+
+{{<tabs "TabID61" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** in the upper-left corner of the UI and select **Manage switches**.
+
+2. From the Switches card, select **Manage**:
+
+{{<img src="/images/netq/manage-switches-nvos.png" alt="" width="650">}}
+
+3. Select the device(s) to include in the upgrade, then click {{<img src="/images/netq/arrow-up-circle-icon.png" height="18" width="18">}} **Upgrade NVOS** above the table and follow the steps in the UI: give the upgrade a name, select the NVOS version, then choose whether to restart the devices after they've been upgraded. If you choose not to restart the devices after the upgrade, the upgrade will remain in a pending state until the devices are restarted.
+
+4. NetQ directs you to a screen where you can monitor the upgrade and view past upgrades:
+
+    {{<figure src="/images/netq/upgrade-progress-nvos.png" alt="" width="1500">}}
+
+{{</tab>}}
+
+{{</tabs>}}
+
+## View Previous NVOS Upgrades
+
+To view the full history of NVOS upgrades:
+
+{{<tabs "TabID38" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**.
+
+2. Select the **Job history** tab:
+
+{{<figure src="/images/netq/nvos-upgrade-history-450.png" alt="" width="450">}}
+
+3. On the NVOS upgrade history card, select **View**. From here, you can sort and filter upgrades using the controls at the top of the screen.
+
+To view information at the most granular level, expand an individual upgrade job and select the arrow:
+
+{{<figure src="/images/netq/kong-additional-details-450.png" alt="" width="1500">}}
+
+Select **Details** on any device to display a timestamped history of the upgrade:
+
+{{<figure src="/images/netq/kong-details-450.png" alt="" width="1500">}}
 
 {{</tab>}}
 

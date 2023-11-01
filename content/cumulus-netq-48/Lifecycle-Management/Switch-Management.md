@@ -7,6 +7,10 @@ toc: 4
 
 Lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. From the inventory list, you can assign access profiles and roles to switches, and select switches for software installation and upgrades. You can also decommission switches, which removes them from the NetQ database.
 
+{{%notice note%}}
+If you manage a switch using an in-band network interface, {{<link url="Lifecycle-Management/#lcm-support-for-in-band-management" text="additional configurations">}} are required for LCM operations.
+{{%/notice%}}
+
 ## View the LCM Switch Inventory
 
 {{<tabs "TabID13" >}}
@@ -44,12 +48,150 @@ Use the `version` options to display switches with a given OS version. For addit
 This list is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
 - Verify the missing switches are reachable using `ping`
-- Run a {{<link title="Upgrade Cumulus Linux/#upgrade-cumulus-linux-on-switches-without-netq-agent-installed" text="switch discovery">}}, which locates all switches running Cumulus Linux in your network's fabric
+- Run a [switch discovery](#switch-discovery), which locates all switches running Cumulus Linux in your network's fabric
 - {{<link title="Install NetQ Agents" text="Install NetQ on the switch">}}
 - Verify the NetQ Agent is fresh and running version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} **Menu**, then click **Agents** or run `netq show agents`)
 - {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)
 
-## Attach a Profile to a Switch
+## Switch Discovery
+
+A switch discovery searches your network for all Cumulus Linux switches (with and without NetQ currently installed) and determines the versions of Cumulus Linux and NetQ installed. These results can be used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure.
+
+To discover switches running Cumulus Linux:
+
+{{<tabs "Discover switches" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in the workbench header, then click **Manage switches**.
+
+2. On the Switches card, click **Discover**.
+
+3. Enter a name for the scan.
+
+    {{<figure src="/images/netq/discover-switches-profile-450.png" width="500">}}
+
+4. Choose whether you want to look for switches by entering IP address ranges or import switches using a comma-separated values (CSV) file.
+
+    {{<tabs "TabID314" >}}
+
+{{<tab "IP Address Range" >}}
+
+If you do not have a switch listing, then you can manually add the address ranges where your switches are located in the network. This has the advantage of catching switches that might have been missed in a file.
+
+{{<notice tip>}}
+A maximum of 50 addresses can be included in an address range. If necessary, break the range into smaller ranges.
+{{</notice>}}
+
+To discover switches using address ranges:
+
+1. Enter an IP address range in the **IP Range** field.
+
+    Ranges can be contiguous, for example *192.168.0.24-64*, or non-contiguous, for example *192.168.0.24-64,128-190,235*, but they must be contained within a single subnet.
+
+2. Optionally, enter another IP address range (in a different subnet) by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}}.
+
+    For example, *198.51.100.0-128* or *198.51.100.0-128,190,200-253*.
+
+3. Add additional ranges as needed. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/subtract-circle.svg" height="18" width="18">}} to remove a range.
+
+If you decide to use a CSV file instead, the ranges you entered will remain if you return to using IP ranges again.
+
+{{</tab>}}
+
+{{<tab "CSV Import" >}}
+
+To import switches through a CSV file:
+
+1. Click **Browse**.
+
+2. Select the CSV file containing the list of switches.
+
+    The CSV file must include a header containing *hostname*, *ip*, and *port*. They can be in any order you like, but the data must match that order. For example, a CSV file that represents the Cumulus reference topology could look like this:
+
+    {{<figure src="/images/netq/lcm-import-switches-310.png" width="200">}}
+
+<div style="padding-left: 18px;">or this:</div>
+
+    {{<figure src="/images/netq/lcm-import-switches-2-310.png" width="200">}}
+
+<div style="padding-left: 18px;">
+{{<notice note>}}
+You must have an IP address in your file, but the hostname is optional. If the port is blank, NetQ uses switch port 22 by default.
+{{</notice>}}
+</div>
+
+Click **Remove** if you decide to use a different file or want to use IP address ranges instead. If you entered ranges before selecting the CSV file option, they remain.
+
+{{</tab>}}
+
+    {{</tabs>}}
+
+5. Select an access profile from the dropdown menu. If you use Netq-Default you will see a message requesting that you {{<link title="Credentials and Profiles" text= "create or update your credentials">}}.
+
+6. Click **Next**.
+
+    When the network discovery is complete, NetQ presents the number of Cumulus Linux switches it found. Each switch can be in one of the following categories:
+
+    - **Discovered without NetQ**: Switches found without NetQ installed
+    - **Discovered with NetQ**: Switches found with some version of NetQ installed
+    - **Discovered but Rotten**: Switches found that are unreachable
+    - **Incorrect Credentials**: Switches found that are unreachable because the provided access credentials do not match those for the switches
+    - **OS not Supported**: Switches found that are running a Cumulus Linux version not supported by LCM upgrades
+    - **Not Discovered**: IP addresses which did not have an associated Cumulus Linux switch
+
+    If the discovery process does not find any switches for a particular category, then it does not display that category.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+Use the {{<link title="lcm/#netq-lcm-discover" text="netq lcm discover">}} command, specifying a single IP address, a range of IP addresses where your switches are located in the network, or a CSV file containing the IP address.
+
+You must also specify the access profile ID, which you can obtain with the `netq lcm show credentials` command.
+
+       cumulus@switch:~$ netq lcm discover ip-range 10.0.1.12 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
+       NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556db
+
+When the network discovery is complete, NetQ presents the number of Cumulus Linux switches it has found. The output displays their discovery status, which can be one of the following:
+
+- **Discovered without NetQ**: Switches found without NetQ installed
+- **Discovered with NetQ**: Switches found with some version of NetQ installed
+- **Discovered but Rotten**: Switches found that are unreachable
+- **Incorrect Credentials**: Switches found that are unreachable because the provided access credentials do not match those for the switches
+- **OS not Supported**: Switches found that are running Cumulus Linux version not supported by the LCM upgrade feature
+- **NOT\_FOUND**: IP addresses which did not have an associated Cumulus Linux switch
+
+Note that if you previously ran a switch discovery, you can display its results with `netq lcm show discovery-job`:
+
+```
+cumulus@switch:~$ netq lcm show discovery-job job_scan_921f0a40-5440-11eb-97a2-5b3ed2e556db
+Scan COMPLETED
+
+Summary
+-------
+Start Time: 2021-01-11 19:09:47.441000
+End Time: 2021-01-11 19:09:59.890000
+Total IPs: 1
+Completed IPs: 1
+Discovered without NetQ: 0
+Discovered with NetQ: 0
+Incorrect Credentials: 0
+OS Not Supported: 0
+Not Discovered: 1
+
+
+Hostname          IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Discovery Status Upgrade Status
+----------------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ---------------- --------------
+N/A               10.0.1.12                 N/A                N/A      N/A         N/A           []                           NOT_FOUND        NOT_UPGRADING
+cumulus@switch:~$ 
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+## Attach an Access Profile to a Switch
 
 After creating {{<link title="Credentials and Profiles" text="access profiles">}} from your credentials, you can attach a profile to one or more switches.
 

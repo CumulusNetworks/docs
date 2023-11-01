@@ -126,7 +126,7 @@ netq install cluster full
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 | workers-ipv6 | \<text-worker-ipv6-01\> \<text-worker-ipv6-02\> | Install the worker nodes with these IPv6 addresses |
 | ipv6 | NA | Include this option for IPv6 installations |
-| cluster-vip | \<text-vip\> | Specify a range of IP addresses for the pod |
+| cluster-vip | \<text-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes. |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 

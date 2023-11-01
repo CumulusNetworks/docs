@@ -137,7 +137,7 @@ Monitoring queue lengths in your network’s fabric is useful for detecting micr
 
 {{<notice note>}}
 
-Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 and above.
+Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 and above. To display queue histogram data, you must set the snapshot file count to at least 120 when you are configuring ASIC monitoring, as described in step 9 in the {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="ASIC monitoring configuration">}} documentation.
 
 {{</notice>}}
 

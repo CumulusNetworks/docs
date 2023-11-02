@@ -60,7 +60,7 @@ NetQ supports a server cluster deployment for users who prefer a solution with i
 
 ### High Availability
 
-You can configure a server cluster with a high availability (HA) virtual IP address (VIP) to load balance control plane processing and UI access across all nodes in the cluster. This deployment model requires an additional IP address to be allocated in the same subnet as the master and worker nodes. This VIP also allows the UI to be accessible if there is a failure of the master node. The VIP must be specified during a new HA server cluster installation with the `cluster-vip` option specified in the {{<link url="install/#netq-install-cluster-full" text="install command">}}
+You can configure a server cluster with a high-availability, virtual IP address for load balancing control plane processing and UI access across all nodes of a cluster deployment. This deployment model requires an additional IP address that is allocated in the same subnet as the master and worker nodes. The virtual IP address also enables UI access in the case of a master node failure. The virtual IP address must be specified during a new {{<link title="Install the NetQ System" text="high-availability server cluster installation">}} with the `cluster-vip` option specified in the {{<link url="install/#netq-install-cluster-full" text="install command">}}.
 
 High availability is only supported for on-premises deployments.
 

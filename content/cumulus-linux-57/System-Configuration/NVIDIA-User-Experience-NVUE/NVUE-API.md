@@ -40,52 +40,61 @@ The NVUE REST API supports HTTP basic authentication, and the same underlying au
 <!-- vale off -->
 Cumulus Linux includes a self-signed certificate and private key to use on the server so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
 <!-- vale on -->
-NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format. For the steps to generate self-signed certificates and keys, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
+NVIDIA recommends you use your own certificates and keys. For the steps to generate self-signed certificates and keys, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
-Cumulus Linux lets you manage CA certificates (such as DigiCert or Verisign) and entity (end-point) certificates. You can import certificates on the switch, set which certificate you want to use, and show information about a certificate, such as the serial number, and the date and time during which the certificate is valid.
+Cumulus Linux lets you manage CA certificates (such as DigiCert or Verisign) and entity (end-point) certificates. Both a CA certificate and an entity certificate can contain a chain of certificates.
+
+You can import certificates onto the switch (fetch certificates from an external source), set which certificate you want to use with the NVUE REST API, and show information about a certificate, such as the serial number, and the date and time during which the certificate is valid.
 
 To import a certificate, run the following commands. If the certificate is passphrase protected, you need to include the passphrase.
 
 {{%notice note%}}
-You import a maximum of 25 entity certificates and a maximum of 50 CA certificates.
+- You can import a maximum of 25 entity certificates and a maximum of 50 CA certificates.
+- The certificate you import contains sensitive private key information. NVIDIA recommends that you use a secure transport such as SFTP, SCP, or HTTPS.
 {{%/notice%}}
 
-{{< tabs "TabID47 ">}}
-{{< tab "Curl Commands ">}}
-
-{{< /tab >}}
+{{< tabs "TabID53 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example imports the CA certificate bundle `tls-cert-1`. The certifcate is passphrase protected with `hell0$`.
+- To import an entity certificate, run the `nv action import system security certificate <cert-id> [options]`command.
+- To import a CA certificate, run the `nv action import system security ca-certificate <cert-id> [options]` command.
+
+You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate being imported.
+
+The following example imports a CA certificate with the public key `AFCB12334…==` and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `hell0$`. The public key is a Base64 ASCII encoded PEM string.
+
+```
+cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 data "AFCB12334…==" passphrase hell0$
+cumulus@switch:~$ nv config apply
+```
+
+The following example imports an entity certificate bundle and calls the certificate `tls-cert-1`. The certificate bundle is passphrase protected with `hell0$`.
+
+A certificate bundle must be in .PFX or .P12 format.
 
 ```
 cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12 passphrase hell0$
 cumulus@switch:~$ nv config apply
 ```
 
-The following example imports the CA certificate `tls-cert-2` with the public key `AFCB12334…==`.  The certifcate is passphrase protected with `hell0$`.
+The following example imports an entity certificate with the public key URI `scp://user@pass:1.2.3.4` and private key URI `scp://user@pass:1.2.3.4`, and calls the certificate `tls-cert-1`. The certificate is not passphrase protected.
+
+A CA certificate must be in .pem, .p7a, or .p7c format.
 
 ```
-cumulus@switch:~$ nv action import system security certificate tls-cert-2 data "AFCB12334…==" passphrase hell0$
+cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-public-key scp://user@pass:1.2.3.4 uri-private-key scp://user@pass:1.2.3.4
 cumulus@switch:~$ nv config apply
 ```
 
-The following example imports the entity certificate `tls-cert-3` with the public key URI `scp://user@pass:1.2.3.4` and private key URI `scp://user@pass:1.2.3.4`. The certifcate is not passphrase protected.
-
-```
-cumulus@switch:~$ nv action import system security certificate tls-cert-3 uri-public-key scp://user@pass:1.2.3.4 uri-private-key scp://user@pass:1.2.3.4
-cumulus@switch:~$ nv config apply
-```
+{{< /tab >}}
+{{< tab "Curl Commands ">}}
 
 {{< /tab >}}
 {{< /tabs >}}
 
 To set the certificate you want to use with the REST API:
 
-{{< tabs "TabID44 ">}}
-{{< tab "Curl Commands ">}}
-
-{{< /tab >}}
+{{< tabs "TabID92 ">}}
 {{< tab "NVUE Commands ">}}
 
 The following example configures the NVUE REST API to use the certificate `tls-cert-1`:
@@ -102,24 +111,78 @@ cumulus@switch:~$ nv set system api certificate auto
 cumulus@switch:~$ nv config apply
 ```
 
+To unset the certificate to use with the NVUE REST API:
+
+```
+cumulus@switch:~$ nv unset system api certificate
+```
+
+{{< /tab >}}
+{{< tab "Curl Commands ">}}
+
 {{< /tab >}}
 {{< /tabs >}}
 
 To delete a certificate and the key data stored on the switch:
 
-{{< tabs "TabID67 ">}}
-{{< tab "Curl Commands ">}}
-
-```
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
+{{< tabs "TabID125 ">}}
 {{< tab "NVUE Commands ">}}
+
+- To delete an entity certificate and the key data stored on the switch, run the `nv action delete system security certificate <cert-id>` command.
+- To delete a CA certificate and the key data stored on the switch, run the `nv action delete system security ca-certificate <cert-id>` command.
+
+The following command deletes the CA certificate `tls-cert-1`:
 
 ```
 cumulus@switch:~$ nv action delete system security certificate tls-cert-1 
 ```
+
+{{< /tab >}}
+{{< tab "Curl Commands ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show certificate information:
+
+{{< tabs "TabID145 ">}}
+{{< tab "NVUE Commands ">}}
+
+- To show all the entity certificates on the switch, run the `nv show system security certificate` command.
+- To show all the CA certificates on the switch, run the `nv show system security ca-certificate` command.
+
+The following example shows all the entity certificates on the switch:
+
+```
+cumulus@switch:~$ nv show system security certificate
+```
+
+- To show information about a specific entity certificate, run the `nv show system security certificate <cert-id>` command.
+- To show information about a specific CA certificate, run the `nv show system security ca-certificate <cert-id>` command.
+
+The following example shows information about the CA certificate `tls-cert-1`:
+
+```
+cumulus@switch:~$ nv show system security certificate ca-certificate tls-cert-1
+```
+
+To show the applications that are using a certificate, run the `nv show system security certificate <cert-id> installed` command:
+
+```
+cumulus@switch:~$ nv show system security certificate tls-cert-1 installed
+```
+
+- To show detailed information about a specific entity certificate, run the `nv show system security certificate <cert-id> dump` command.
+- To show detailed information about a specific CA certificate, run the `nv show system security ca-certificate <cert-id> dump` command.
+
+The following example shows detailed information about the CA certificate `tls-cert-1`:
+
+```
+cumulus@switch:~$ nv show system security ca-certificate tls-cert-1 dump
+```
+
+{{< /tab >}}
+{{< tab "Curl Commands ">}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -376,7 +439,7 @@ cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8
 }
 ```
 
-To show the certifcates on the switch:
+To show the certificates on the switch:
 
 ```
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/certificate?rev=rev_id -H "accept: application/json"

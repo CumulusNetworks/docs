@@ -19,7 +19,7 @@ To display adaptive routing data, you must have adaptive routing configured on t
 
 ## Adaptive Routing Commands
 
-Monitor adaptive routing with the {{<link title="show/#netq-show-adaptive-routing-config" text="netq show adaptice routing config">}} command.
+Monitor adaptive routing with the {{<link title="show/#netq-show-adaptive-routing-config" text="netq show adaptive routing config">}} command.
 
 ```
 netq show adaptive routing config global

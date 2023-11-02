@@ -3912,13 +3912,6 @@ server08          /dev/vda1            486105088            80372736            
 ## netq show roce-config
 
 Displays RoCE configuration.
-
-{{<notice note>}}
-
-Priority code point (PCP) monitoring requires NetQ Agent 4.5 or later.
-
-{{</notice>}}
-
 ### Syntax
 ```
 netq [<hostname>] show roce-config
@@ -4081,7 +4074,45 @@ Hostname          Interface            PG packets           PG bytes            
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
 switch            swp1s1               1643392              154094520            0                    0                    1                    0                    1
 ```
+Dislpay RoCE counters for BlueField DPUs:
 
+```
+cumulus@dpu:~$ netq show roce-counters dpu 
+
+Matching roce records:
+Hostname          Device Name          Port Name            Rx Prio3 Bytes       Rx Prio3 Buf Discard Rx Prio3 Packets     Rx Prio3 Cong Discar Rx Prio3 Discards    Tx Prio3 Bytes       Tx Prio3 Packets     Np Cnp Sent          Np Ecn Marked Roce P Rp Cnp Handled       Rp Cnp Ignored
+                                                                                                                           d                                                                                                        ackets
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+r-netq-bf2-01-dpu pf0hpf               pf0hpf               0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu pf1hpf               pf1hpf               0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu enp3s0f1s0           enp3s0f1s0           0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu enp3s0f0s0           enp3s0f0s0           0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu en3f0pf0sf0          en3f0pf0sf0          0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu p0                   p0                   0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu en3f1pf1sf0          en3f1pf1sf0          0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu p1                   p1                   1.23 GB              0                    176                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+```
+
+Display RoCE counters for ConnectX NICs:
+
+```
+cumulus@nic:~$ netq show roce-counters nic 
+
+Matching roce records:
+Hostname          Device Name          Port Name            Rx Prio3 Bytes       Rx Prio3 Buf Discard Rx Prio3 Packets     Rx Prio3 Cong Discar Rx Prio3 Discards    Tx Prio3 Bytes       Tx Prio3 Packets     Np Cnp Sent          Np Ecn Marked Roce P Rp Cnp Handled       Rp Cnp Ignored
+                                                                                                                           d                                                                                                        ackets
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+fit-l-vrt-netq-40 ens7f1np1            ens7f1np1            146.28 GB            0                    2379794807           0                    0                    151.58 GB            149834335613         0 Bytes              0 Bytes              0                    0
+fit-l-vrt-netq-40 ens8f1np1            ens8f1np1            0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+```
 ### Related Commands
 
 - `netq show roce-config`

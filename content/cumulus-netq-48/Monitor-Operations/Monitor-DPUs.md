@@ -35,8 +35,8 @@ To view a larger display of hardware resource utilization, select {{<img src="/i
 
 {{<figure src="/images/netq/dev-dpu-large-utilization-42.png" width="700">}}
 
-Expand the card to its largest size to view a list of installed packages and RoCE counters for a given DPU. 
+Expand the card to its largest size to view a list of installed packages and RoCE counters for a given DPU. You can filter RoCE information by physical port, priority port, RoCE extended, RoCE, and peripheral component interconnect (PCI).
 
 ## Related Information
 
-To read more about NVIDIA BlueField DPUs and the DOCA Telemetry Service, refer to the {{<exlink url="https://docs.nvidia.com/doca/sdk/doca-telemetry-service/index.html" text="DOCA SDK Documentation">}}.
+- {{<link title="Threshold-Crossing Events Reference#dpu-roce" text="DPU RoCE threshold-crossing events reference">}}

@@ -56,24 +56,26 @@ You import a maximum of 25 entity certificates and a maximum of 50 CA certificat
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-The following example imports the CA certificate bundle `tls-cert-1`. The certifcate is passphrase protected with `hell0$`.
+The following example imports a certificate with the public key `AFCB12334…==` and calls the certificate `tls-cert-1`. The certifcate is passphrase protected with `hell0$`. The key is a Base64 ASCII encoded PEM string.
+
+```
+cumulus@switch:~$ nv action import system security certificate tls-cert-1 data "AFCB12334…==" passphrase hell0$
+cumulus@switch:~$ nv config apply
+```
+
+The following example imports a certificate bundle and calls the certificate `tls-cert-1`. The certifcate bundle is passphrase protected with `hell0$`.
+
+A certificate bundle must be in .PFX or .P12 format.
 
 ```
 cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12 passphrase hell0$
 cumulus@switch:~$ nv config apply
 ```
 
-The following example imports the CA certificate `tls-cert-2` with the public key `AFCB12334…==`.  The certifcate is passphrase protected with `hell0$`.
+The following example imports a certificate with the public key URI `scp://user@pass:1.2.3.4` and private key URI `scp://user@pass:1.2.3.4`, and calls the certificate `tls-cert-1`. The certifcate is not passphrase protected.
 
 ```
-cumulus@switch:~$ nv action import system security certificate tls-cert-2 data "AFCB12334…==" passphrase hell0$
-cumulus@switch:~$ nv config apply
-```
-
-The following example imports the entity certificate `tls-cert-3` with the public key URI `scp://user@pass:1.2.3.4` and private key URI `scp://user@pass:1.2.3.4`. The certifcate is not passphrase protected.
-
-```
-cumulus@switch:~$ nv action import system security certificate tls-cert-3 uri-public-key scp://user@pass:1.2.3.4 uri-private-key scp://user@pass:1.2.3.4
+cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-public-key scp://user@pass:1.2.3.4 uri-private-key scp://user@pass:1.2.3.4
 cumulus@switch:~$ nv config apply
 ```
 

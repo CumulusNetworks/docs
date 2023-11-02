@@ -8,8 +8,8 @@ toc: 4
  Lifecycle management (LCM) lets you upgrade Cumulus Linux on one or more switches in your network via the NetQ UI or the CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time.
 
 You can upgrade Cumulus Linux from:
-- 4.3.0 to later versions of Cumulus Linux 4.3 (Broadcom switches)
-- 5.0.0 or later to subsequent versions of Cumulus Linux 5 (Spectrum switches)
+- Cumulus Linux 4.3.0 and 4.3.1 (Broadcom switches)
+- Cumulus Linux 5.0.0 and above (Spectrum switches)
 
 You can upgrade switches running Cumulus Linux 5.0.0 or later that are managed with flat configuration files or with NVUE.
 

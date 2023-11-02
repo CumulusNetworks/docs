@@ -13,11 +13,12 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale on -->
 NetQ 4.8.0 includes the following new features and improvements:
 
-- Lifecycle management support for in-band deployments
+- {{<link title="Adaptive Routing" text="Adaptive routing">}} monitoring for switches (beta)
+- Lifecycle management support for {{<link url="Lifecycle-Management/#lcm-support-for-in-band-management" text="in-band deployments">}}
 - High-availability improvements for on-premises cluster deployments: you can now access the NetQ UI via a virtual IP address in the event of a node failure 
-- NVLink support
-- RoCE monitoring for DPUs {{<link title="RoCE">}} and create threshold-crossing rules {{<link title="Threshold-Crossing Events Reference/#dpu-roce">}}
-- Topology redesign {{<link title="Network Topology">}} to accommodate more devices
+- Monitoring for NVLink4 devices: view your NVLink4 inventory, monitor events, perform NVOS upgrades, and generate troubleshooting files. Visit the {{<link title="NVLink4" text="NVLink4 section">}} to get started.
+- {{<link title="RoCE" text="RoCE monitoring">}} for DPUs (beta)
+- {{<link title="Network Topology" text="Network topology">}} redesign that accommodates large networks with many devices (beta)
 - Performance improvements to the NetQ Agent
 - Security enhancements
 
@@ -26,7 +27,9 @@ NetQ 4.8.0 includes the following new features and improvements:
 
 For deployments running:
 
-
+- 4.7.0 or 4.6.0: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-460-or-470" text="upgrade directly">}} to NetQ 4.8.0
+- 4.5.0, 4.4.1, 4.4.0, or 4.3.0: {{<link title="Back Up and Restore NetQ/" text="back up your NetQ data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.8.0">}}
+- 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your NetQ data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.8.0">}}.
 ## Compatible Agent Versions
 
 The NetQ 4.8.0 server is compatible with NetQ Agents 4.7.0 and 4.6.0. You can install NetQ Agents on switches and servers running:

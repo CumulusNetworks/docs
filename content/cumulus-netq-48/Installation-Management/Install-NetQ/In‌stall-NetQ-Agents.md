@@ -599,17 +599,28 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 3. Set the parameters for the agent as follows:
     - port: 31980 (default configuration)
-    - server: IP address of the NetQ appliance or VM where the agent should send its collected data
+    - server: IP address of the NetQ server where the agent should send its collected data
     - vrf: default (or one that you specify)
+    - inband-interface: the interface used to reach your NetQ server and used by lifecycle management to connect to the switch (for deployments where switches are managed through an in-band interface)
 
     Your configuration should be similar to this:
 
     ```
     netq-agent:
         port: 31980
-        server: 127.0.0.1
+        server: 192.168.1.254
         vrf: mgmt
     ```
+
+    For in-band deployments:
+    ```
+    netq-agent:
+        inband-interface: swp1
+        port: 31980
+        server: 192.168.1.254
+        vrf: default
+    ```
+
 
 ### Configure NetQ Agents Using the NetQ CLI
 
@@ -622,16 +633,25 @@ If you intend to use a VRF for agent communication (recommended), refer to {{<li
 Use the following command to configure the NetQ Agent:
 
 ```
-netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
+sudo netq config add agent server <text-opta-ip> [port <text-opta-port>] [ssl true | ssl false] [ssl-cert <text-ssl-cert-file> | ssl-cert download] [vrf <text-vrf-name>] [inband-interface <interface-name>]
 ```
 
-This example uses an IP address of *192.168.1.254* and the default port and VRF for the NetQ appliance or VM.
+This example uses a NetQ server IP address of *192.168.1.254*, the default port, and the `mgmt` VRF for a switch managed through an out-of-band connection:
 
 ```
-sudo netq config add agent server 192.168.1.254
+sudo netq config add agent server 192.168.1.254 vrf mgmt
+Updated agent server 192.168.1.254 vrf mgmt. Please restart netq-agent (netq config restart agent).
+sudo netq config restart agent
+```
+
+This example uses a NetQ server IP address of *192.168.1.254*, the default port, and the `default` VRF for a switch managed through an in-band connection on interface `swp1`:
+
+```
+sudo netq config add agent server 192.168.1.254 vrf default inband-interface swp1
 Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
 sudo netq config restart agent
 ```
+
 
 ## Configure Advanced NetQ Agent Settings
 
@@ -654,7 +674,7 @@ If you later change the VRF configured for the NetQ Agent (using a lifecycle man
 
 ### Configure the Agent to Communicate over a Specific Port
 
-By default, NetQ uses port 31980 for communication between the NetQ appliance or VM and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ appliance or VM via a different port, you need to specify the port number when configuring the NetQ Agent, like this:
+By default, NetQ uses port 31980 for communication between the NetQ server and NetQ Agents for on-premises deployments and port 443 for cloud deployments. If you want the NetQ Agent to communicate with the NetQ sever via a different port, you need to specify the port number when configuring the NetQ Agent, like this:
 
 ```
 sudo netq config add agent server 192.168.1.254 port 7379

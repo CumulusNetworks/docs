@@ -16,13 +16,13 @@ Usage of ./netq_telemetry_agent_handler:
   -add
         Append a new destination collector
   -address value
-        list of addresses for discovery
+        List of addresses for discovery
   -delete
         Delete destination collectors
   -delete_all
         Delete all destination collectors
   -destination value
-        list of fluent collectors (format <ip_addr>,<port>,<tcp/tls>)
+        List of fluent collectors (format <ip_addr>,<port>,<tcp/tls>)
   -domain string
         Domain name (optional)
   -domain_id string

@@ -22,7 +22,7 @@ You can install NetQ either on your premises or as a remote, SaaS solution. If y
 
 - - -
 -->
-You can install NetQ either on your premises or as a remote, SaaS solution. If you are unsure which option is best for your network, refer to the {{<link title="Before You Install" text="Before You Install">}}.
+You can install NetQ either on your premises or as a remote, SaaS solution. If you are unsure which option is best for your network, refer to {{<link title="Before You Install" text="Before You Install">}}.
 
 ## On-premises
 

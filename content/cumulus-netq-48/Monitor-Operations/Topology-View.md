@@ -5,7 +5,7 @@ weight: 890
 toc: 3
 ---
 
-The NetQ topology view displays a visual representation of your network, showing connections and device information for all monitored nodes. The view allows you to understand your network's architecture at a high-level, but also lets you isolate individual devices or sections.
+The network topology dashboard displays a visual representation of your network, showing connections and device information for all monitored nodes. The view allows you to understand your network's architecture at a high-level, but also lets you isolate individual devices or sections.
 
 {{<notice note>}}
 The topology view has been redesigned for 4.8 to better accommodate larger networks with over 50 devices. This feature is in beta and feedback is welcome. You can still access the legacy topology view by following the instructions in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-47/Monitor-Operations/Topology-View/" text="NetQ 4.7 documentation">}}.

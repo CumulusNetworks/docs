@@ -9,13 +9,13 @@ This page describes how to upgrade your NetQ virtual machines. Note that the upg
 
 For deployments running:
 
-- 4.7.0 or 4.6.0: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-460-or-470" text="upgrade directly">}} to NetQ 4.8.0
+- 4.7.0, 4.6.0, or 4.5.0:: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-460-or-470" text="upgrade directly">}} to NetQ 4.8.0
 - 4.5.0, 4.4.1, 4.4.0, or 4.3.0: {{<link title="Back Up and Restore NetQ/" text="back up your NetQ data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.8.0">}}
 - 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your NetQ data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.8.0">}}.
 
-## Upgrading from NetQ 4.6.0 or 4.7.0
+## Upgrading from NetQ 4.7, 4.6, or 4.5
 
-You can upgrade directly to NetQ 4.8.0 if your deployment is currently running version 4.6.0 or 4.7.0.
+You can upgrade directly to NetQ 4.8.0 if your deployment is currently running version 4.5.0, 4.6.0 or 4.7.0.
 ### Back up your NetQ Data
 
 Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
@@ -199,7 +199,7 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 
 {{</tab>}}
 
-{{<tab "Upgrade from NetQ 4.6.0">}}
+{{<tab "Upgrade from NetQ 4.6.0 or 4.5.0">}}
 
 {{<tabs "CLI Upgrade-4.6">}}
 

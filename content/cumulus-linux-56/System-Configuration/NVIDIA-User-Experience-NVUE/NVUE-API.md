@@ -168,19 +168,19 @@ cumulus@switch:~$ nv config apply
 The following example sets the port to 8888:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api?rev=rev_id -H 'Content-Type:application/json' -d '{"port": 8888 }'
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api?rev=2 -H 'Content-Type:application/json' -d '{"port": 8888 }'
 ```
 
 You can listen on multiple interfaces by specifying different listening addresses. The following example sets localhost, interface address 10.10.10.1, and 10.10.20.1 as listen-addresses.
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api/listening-address?rev=rev_id -H 'Content-Type:application/json' -d '{ "localhost": {}, "10.10.10.1": {}, "10.10.20.1": {}}'
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api/listening-address?rev=2 -H 'Content-Type:application/json' -d '{ "localhost": {}, "10.10.10.1": {}, "10.10.20.1": {}}'
 ```
 
 The following example configures the listening address on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api?rev=rev_id -H 'Content-Type:application/json' -d '{"172.0.24.0": {}}'
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api/listening-address?rev=2 -H 'Content-Type:application/json' -d '{"172.0.24.0": {}}'
 ```
 
 {{< /tab >}}
@@ -240,7 +240,7 @@ localhost
 {{< tab "Curl Command ">}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api?rev=rev_id -H "accept: application/json"
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api?rev=2 -H "accept: application/json"
 {
   "state": "enabled",
   "port": 8765,
@@ -260,25 +260,10 @@ cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8
 }
 ```
 
-To show connection information only:
-
-```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/connections?rev=rev_id -H "accept: application/json"
-{
-  "active": 1,
-  "accepted": 31,
-  "handled": 0,
-  "requests": 28,
-  "reading": 0,
-  "writing": 1,
-  "waiting": 0
-}
-```
-
 To show the configured listening address:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/listening-address?rev=rev_id -H "accept: application/json"
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/listening-address?rev=2 -H "accept: application/json"
 {
   "10.10.10.1": {},
   "10.10.20.1": {}

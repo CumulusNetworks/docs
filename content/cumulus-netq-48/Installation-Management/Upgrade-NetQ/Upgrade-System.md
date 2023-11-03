@@ -173,16 +173,46 @@ cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
 
 {{<tab "Standalone">}}
 
+Clear the current install state:
+
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
+cumulus@<hostname>:~$ netq bootstrap reset
 ```
+
+Run the following install command on your NetQ cloud VM with the config key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also {{<link title="Configure Premises" text="obtain the configuration key using the NetQ UI">}}.
+
+```
+cumulus@<hostname>:~$ netq install opta standalone full interface <interface-name> bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
+```
+
+{{%notice note%}}
+You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
+{{%/notice%}}
 
 {{</tab>}}
 
 {{<tab "Cluster">}}
 
+Clear the current install state on your master node:
+
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
+cumulus@<hostname>:~$ netq bootstrap reset
+```
+
+Run the following command on your master node to initialize the cluster. Copy the output of the command to use on your worker nodes:
+
+```
+cumulus@<hostname>:~$ netq install cluster master-init
+   Please run the following command on all worker nodes:
+   netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
+```
+
+Run the `netq install cluster worker-init <ssh-key>` command from the output on each of your worker nodes.
+
+Run the following command on your master NetQ cloud VM using the IP addresses of your worker nodes and the config key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also {{<link title="Configure Premises" text="obtain the configuration key using the NetQ UI">}}.
+
+```
+cumulus@<hostname>:~$ netq install opta cluster full interface <interface-name> bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key <your-config-key> workers <worker-1-ip> <worker-2-ip> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
 ```
 
 {{%notice note%}}

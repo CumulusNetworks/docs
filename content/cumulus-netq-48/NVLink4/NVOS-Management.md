@@ -5,9 +5,9 @@ weight: 1152
 toc: 4
 ---
 
-NVOS images are managed with lifecycle management in the NetQ UI. This section details how to check for missing images, upload images, and specify default images. To complete the tasks outlined in this section, expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** in the upper-left corner of the UI and select **Manage switches**.
+NVOS images are managed with lifecycle management in the NetQ UI. This section details how to check for missing images, upload images, and specify default images. You can download NVOS images from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
-From the dashboard, select the **Image management** tab to display the NetQ and network OS images, including NVOS:
+To complete the tasks outlined in this section, expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** in the upper-left corner of the UI and select **Manage switches**. From the dashboard, select the **Image management** tab to display the NetQ and network OS images, including NVOS:
 
  {{<figure src="/images/netq/nvos-images-480.png" alt="images card with link to view missing images" width="800">}}
 

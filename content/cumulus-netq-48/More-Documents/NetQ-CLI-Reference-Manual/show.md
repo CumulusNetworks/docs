@@ -9,7 +9,7 @@ type: nojsscroll
 ---
 ## netq show adaptive-routing config
 
-Displays a list of switches that are running adaptive routing and RoCE settings for those switches.
+Displays a list of switches that are running adaptive routing and RoCE settings for those switches. The second form of this command displays a list of interfaces on the switch and their configurations.
 ### Syntax
 
 ```
@@ -35,7 +35,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| ifname | \<text-ifname\> | Only display results for the interface with this name |
+| NA | \<text-ifname\> | Only display results for the interface with this name |
 | between | \<text-time\> and \<text-endtime\> | Only display results between the snapshots taken at these times |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
@@ -3912,13 +3912,6 @@ server08          /dev/vda1            486105088            80372736            
 ## netq show roce-config
 
 Displays RoCE configuration.
-
-{{<notice note>}}
-
-Priority code point (PCP) monitoring requires NetQ Agent 4.5 or later.
-
-{{</notice>}}
-
 ### Syntax
 ```
 netq [<hostname>] show roce-config
@@ -4081,7 +4074,45 @@ Hostname          Interface            PG packets           PG bytes            
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
 switch            swp1s1               1643392              154094520            0                    0                    1                    0                    1
 ```
+Dislpay RoCE counters for BlueField DPUs:
 
+```
+cumulus@dpu:~$ netq show roce-counters dpu 
+
+Matching roce records:
+Hostname          Device Name          Port Name            Rx Prio3 Bytes       Rx Prio3 Buf Discard Rx Prio3 Packets     Rx Prio3 Cong Discar Rx Prio3 Discards    Tx Prio3 Bytes       Tx Prio3 Packets     Np Cnp Sent          Np Ecn Marked Roce P Rp Cnp Handled       Rp Cnp Ignored
+                                                                                                                           d                                                                                                        ackets
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+r-netq-bf2-01-dpu pf0hpf               pf0hpf               0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu pf1hpf               pf1hpf               0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu enp3s0f1s0           enp3s0f1s0           0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu enp3s0f0s0           enp3s0f0s0           0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu en3f0pf0sf0          en3f0pf0sf0          0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu p0                   p0                   0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu en3f1pf1sf0          en3f1pf1sf0          0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu p1                   p1                   1.23 GB              0                    176                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+```
+
+Display RoCE counters for ConnectX NICs:
+
+```
+cumulus@nic:~$ netq show roce-counters nic 
+
+Matching roce records:
+Hostname          Device Name          Port Name            Rx Prio3 Bytes       Rx Prio3 Buf Discard Rx Prio3 Packets     Rx Prio3 Cong Discar Rx Prio3 Discards    Tx Prio3 Bytes       Tx Prio3 Packets     Np Cnp Sent          Np Ecn Marked Roce P Rp Cnp Handled       Rp Cnp Ignored
+                                                                                                                           d                                                                                                        ackets
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+fit-l-vrt-netq-40 ens7f1np1            ens7f1np1            146.28 GB            0                    2379794807           0                    0                    151.58 GB            149834335613         0 Bytes              0 Bytes              0                    0
+fit-l-vrt-netq-40 ens8f1np1            ens8f1np1            0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+```
 ### Related Commands
 
 - `netq show roce-config`

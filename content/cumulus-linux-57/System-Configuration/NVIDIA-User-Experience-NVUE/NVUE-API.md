@@ -120,6 +120,18 @@ cumulus@switch:~$ nv unset system api certificate
 {{< /tab >}}
 {{< tab "Curl Commands ">}}
 
+The following example configures the NVUE REST API to use the certificate `tls-cert-1`:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"set": {"system": {"api": {"certificate": "cert1","port": 8888}}}}'-k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=2
+```
+
+Set the certificate to `auto` to let the system determine which certificate to use. For example, you can set the certificate to `auto` if you want to use a previously installed certificate (either the default self-signed or your own installed certificate).
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus'  -d '{"set": {"system": {"api": {"certificate": "auto","port": 8888}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=2
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -393,46 +405,24 @@ valid-to       2033-02-11T00:35:18+00:00
 {{< tab "Curl Command ">}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api?rev=rev_id -H "accept: application/json"
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api?rev=2 -H "accept: application/json"
 {
-  "state": "enabled",
-  "port": 8765,
   "certificate": "self-signed",
   "listening-address": {
     "10.10.10.1": {},
-    "10.10.20.1": {}
+    "10.10.20.1": {},
+    "172.0.24.0": {},
+    "localhost": {}
   },
-  "connections": {
-    "active": 1,
-    "accepted": 31,
-    "handled": 0,
-    "requests": 28,
-    "reading": 0,
-    "writing": 1,
-    "waiting": 0
-  }
-}
-```
-
-To show connection information only:
-
-```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/connections?rev=rev_id -H "accept: application/json"
-{
-  "active": 1,
-  "accepted": 31,
-  "handled": 0,
-  "requests": 28,
-  "reading": 0,
-  "writing": 1,
-  "waiting": 0
+  "port": 8888,
+  "state": "enabled"
 }
 ```
 
 To show the configured listening address:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/listening-address?rev=rev_id -H "accept: application/json"
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/listening-address?rev=2 -H "accept: application/json"
 {
   "10.10.10.1": {},
   "10.10.20.1": {}
@@ -442,7 +432,7 @@ cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8
 To show the certificates on the switch:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/certificate?rev=rev_id -H "accept: application/json"
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/certificate?rev=2 -H "accept: application/json"
 {
   "tls-cert-1": {},
   "tls-cert-2": {}
@@ -452,7 +442,7 @@ cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8
 To show information about a specific certificate, such as the serial number and how long the certificate is valid:
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/certificate/tls-cert-1?rev=rev_id -H "accept: application/json"
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/certificate/tls-cert-1?rev=2 -H "accept: application/json"
 {
   "serial-number": "67:03:3B:B4:6E:35:D3",
   "valid-from": "2023-02-14T00:35:18+00:00",

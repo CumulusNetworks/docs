@@ -13,8 +13,8 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale on -->
 NetQ 4.8.0 includes the following new features and improvements:
 
-- {{<link title="Data Center Network Deployments#high-availability" text="High-availability">}} improvements for new on-premises cluster installations: you can now access the NetQ UI via a virtual IP address in the event of a node failure 
-- Monitoring for NVLink4 devices: view your NVLink4 inventory, monitor events, perform NVOS upgrades, and generate troubleshooting files. Visit the {{<link title="NVLink4" text="NVLink4 section">}} to get started.
+- {{<link title="Data Center Network Deployments#high-availability" text="High-availability">}} improvements for new, on-premises cluster installations: you can now access the NetQ UI via a virtual IP address in the event of a node failure 
+- Monitoring for NVLink4 devices: view your NVLink4 inventory, run Global Fabric Manager, monitor events, perform NVOS upgrades, and generate troubleshooting files. Visit the {{<link title="NVLink4" text="NVLink4 section">}} to get started.
 - Lifecycle management support for {{<link url="Lifecycle-Management/#lcm-support-for-in-band-management" text="in-band deployments">}}
 - {{<link title="Network Topology" text="Network topology">}} redesign that accommodates large networks with many devices (beta)
 - {{<link title="Adaptive Routing" text="Adaptive routing">}} monitoring for switches (beta)

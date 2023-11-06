@@ -27,7 +27,7 @@ Cumulus Linux 4.3.1 provides bug fixes.
 {{%notice note%}}
 Cumulus Linux 4.3.1 is supported on Broadcom switches only. You cannot upgrade to Cumulus Linux 4.3.1 on a Mellanox switch.
 - NVIDIA does not provide a Cumulus Linux 4.3.1 image for Mellanox switches.
-- To upgrade a Broadcom switch to Cumulus Linux 4.3.1 with `apt upgrade`, see {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text=" Upgrade to Cumulus Linux 4.3.1">}}.
+- To upgrade a Broadcom switch to Cumulus Linux 4.3.1 with `apt upgrade`, see {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text=" Upgrade to Cumulus Linux 4.3.1 and later">}}.
 {{%/notice%}}
 
 ## What's New in Cumulus Linux 4.3.0

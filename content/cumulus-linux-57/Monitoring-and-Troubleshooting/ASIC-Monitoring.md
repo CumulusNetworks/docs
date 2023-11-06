@@ -49,7 +49,7 @@ The following illustration demonstrates a histogram showing how many times the q
 
 ## Configure ASIC Monitoring
 
-The `asic-monitor` service manages the ASIC monitoring tool  (`systemd` manages the `asic-monitor` service). The `asic-monitor` service reads the `/etc/cumulus/datapath/monitor.conf` configuration file to determine what statistics to collect and when to trigger. The service always starts; however, if the configuration file is empty, the service exits.
+The `asic-monitor` service manages the ASIC monitoring tool (`systemd` manages the `asic-monitor` service). The `asic-monitor` service reads the `/etc/cumulus/datapath/monitor.conf` configuration file to determine what statistics to collect and when to trigger. The service always starts; however, if the configuration file is empty, the service exits.
 
 The `monitor.conf` configuration file provides the following information:
 - The type of data to collect.
@@ -190,10 +190,26 @@ This section shows configuration examples.
 
 In the following example:
 
-- Queue length histograms collect every second for swp1 through swp50.
+- Queue length histograms collect every second for traffic class 0 on swp1 through swp50.
 - The results write to the `/var/lib/cumulus/histogram_stats` snapshot file.
 - The size of the histogram is 12288 bytes, the minimum boundary is 960 bytes, and the sampling time is 1024 nanoseconds.
-- A threshold configures  the system to send a message to the `/var/log/syslog` file when the size of the queue reaches 500 bytes.
+- A threshold configures the system to send a message to the `/var/log/syslog` file when the size of the queue reaches 500 bytes.
+
+{{< tabs "TabID198 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service telemetry enable
+cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
+cumulus@switch:~$ nv set service telemetry snapshot-file count 64
+cumulus@switch:~$ nv set service telemetry snapshot-interval 1s
+cumulus@switch:~$ nv set interface swp1 telemetry histogram egress-buffer traffic-class 0 bin-min-boundary 960
+cumulus@switch:~$ nv set interface swp1 telemetry histogram egress-buffer traffic-class 0 histogram-size 12288
+cumulus@switch:~$ nv set interface swp1 telemetry histogram egress-buffer traffic-class 0 sample-interval 1024
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 ```
 monitor.port_group_list                               = [histogram_pg]
@@ -210,6 +226,9 @@ monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
 monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
 monitor.histogram_pg.histogram.sample_time_ns         = 1024
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Packet Drops Due to Errors
 

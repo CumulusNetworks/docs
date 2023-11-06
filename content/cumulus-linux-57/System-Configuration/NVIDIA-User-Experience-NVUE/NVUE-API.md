@@ -152,6 +152,10 @@ cumulus@switch:~$ nv action delete system security certificate tls-cert-1
 {{< /tab >}}
 {{< tab "Curl Commands ">}}
 
+```
+cumulus@switch:~$  
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -195,6 +199,10 @@ cumulus@switch:~$ nv show system security ca-certificate tls-cert-1 dump
 
 {{< /tab >}}
 {{< tab "Curl Commands ">}}
+
+```
+cumulus@switch:~$  
+```
 
 {{< /tab >}}
 {{< /tabs >}}

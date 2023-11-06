@@ -29,6 +29,7 @@ Create the `/etc/dhcpsnoop/dhcp_snoop.json` file and add DHCP snooping configura
 The following example enables DHCP snooping for IPv4 on VLAN 10, sets the rate limit to 50 and the trusted interface to swp6. swp6 is a member of the bridge `br_default`:
 
 ```
+cumulus@leaf01:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
 {
   "bridge": [
     {
@@ -52,6 +53,7 @@ The following example enables DHCP snooping for IPv4 on VLAN 10, sets the rate l
 The following example enables DHCP snooping for IPv6 on VLAN 10, sets the rate limit to 50 and the trusted interface to swp6. swp6 is a member of the bridge `br_default`:
 
 ```
+cumulus@leaf01:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
 {
   "bridge": [
     {

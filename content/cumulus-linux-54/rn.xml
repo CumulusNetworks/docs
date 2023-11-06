@@ -462,6 +462,22 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3647426</td>
+<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
+
+% AS specified for local as is the same as the remote as and this is not allowed.
+
+This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>5.0.0-5.5.1</td>
+<td>5.6.0</td>
+</tr>
+<tr>
+<td>3585467</td>
+<td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
+<td>5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3576949</td>
 <td>When you run the NVUE {{nv set service snmp listening-address localhost vrf &lt;vrf-name&gt;}} or {{nv set service snmp listening-address localhost-v6 vrf &lt;vrf-name&gt;}} command to configure the SNMP listening address, Cumulus Linux applies the listening address to the default VRF instead of the VRF you specify.</td>
 <td>5.3.0-5.6.0</td>
@@ -482,13 +498,21 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <tr>
 <td>3562767</td>
 <td>ACLs do not process inbound DHCP packets and the packets do not contribute to ACL counters</td>
-<td>5.2.0-5.5.1</td>
-<td>5.6.0</td>
+<td>5.2.0-5.4.0</td>
+<td>5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3560622</td>
 <td>When you configure a route distinguisher (RD) or a route target (RT) manually for layer 2 VNIs, type-1 routes are not properly updated, type-1 EVI routes with the old RD are not properly withdrawn, and type-1 ES routes do not have the corresponding layer 2 VNI route target updated.</td>
-<td>5.0.0-5.6.0</td>
+<td>5.0.0-5.5.1</td>
+<td>5.6.0</td>
+</tr>
+<tr>
+<td>3554231</td>
+<td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
+Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
+For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
+<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -525,6 +549,12 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <td>3491259</td>
 <td>When BGP receives an EVPN type-5 route with a gateway IP overlay attribute, the gateway IP overlay attribute in the {{attr memory}} (which is already inserted in the attribute hash) might change. As a result, the modified {{attr memory}} might match with another {{attr}} in the attribute hash, which produces duplicate entries in the hash table. As a result, BGP might crash when deleting one of the duplicate {{attr}} structures. </td>
 <td>5.0.0-5.5.1</td>
+<td>5.6.0</td>
+</tr>
+<tr>
+<td>3488136</td>
+<td>When zebra receives route updates that include both a route with a recursive next hop and the route used to resolve that next hop, zebra might mark the route with the recursive next hop as inactive. To work around this issue, reprocess the route updates by running the appropriate clear command for the protocol in use. For example, for BGP, clear inbound routes from the relevant neighbor using the {{nv action clear vrf &lt;vrf&gt; router bgp neighbor &lt;neighbor&gt; address-family &lt;address-family&gt; in}} command.</td>
+<td>4.2.1-5.5.1</td>
 <td>5.6.0</td>
 </tr>
 <tr>
@@ -849,7 +879,9 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 </tr>
 <tr>
 <td>3347677</td>
-<td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.</td>
+<td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.
+
+In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on secondary clag device on peerlink down trigger. This ensures smooth traffic flow and no convergence issue seen in system test bed with this fix.</td>
 <td>5.1.0-5.6.0</td>
 <td></td>
 </tr>
@@ -911,12 +943,6 @@ cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3334275</td>
-<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
-<td>5.2.0-5.5.1</td>
-<td>5.6.0</td>
-</tr>
-<tr>
 <td>3329518</td>
 <td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} (files is listed before tacplus), a user that is present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch. NVIDIA recommends that when using TACACS+, you list {{tacplus}} before {{files}} in {{/etc/nsswitch.conf}}.  When using NVUE, ensure that {{tacacs}} has priority over {{local}}.</td>
 <td>5.4.0-5.6.0</td>
@@ -956,6 +982,18 @@ cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 <td>3269691</td>
 <td>When you restart the LLDP service, you see a {{broken pipe}} error and a log message in the {{lldpd.service}} logs. This error does not affect LLDP functionality.</td>
 <td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3266197</td>
+<td>When you disable BGP globally with the {{nv set router bgp enable off}} command, applying the configuration with NVUE might fail due to an FRR reload failure.</td>
+<td>5.2.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3264269</td>
+<td>When you change the BGP router ID that causes a change to an EVPN VNI RD, EVPN EAD-per-EVI routes are not updated properly.</td>
+<td>5.3.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>

@@ -511,7 +511,7 @@ With adaptive routing, the switch forwards packets to the less loaded path on a 
 
 Cumulus Linux supports adaptive routing with:
 - Switches with the Spectrum-4 ASIC.
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic.
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE2" >}} unicast traffic.
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
@@ -776,9 +776,7 @@ To show adaptive routing settings, run the `nv show router adaptive-routing` com
 cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
                             operational   applied
 --------------------------  ------------  -------
-enable                      on            on     
-link-utilization-threshold  off           off    
-profile                     profile-1
+enable                      on            off
 ```
 
 To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing`.

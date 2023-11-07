@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3549877</td>
+<td>NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes.</td>
+<td>4.6.0-4.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3491935</td>
 <td>NetQ might generate continuous TCA events for the NetQ VM squashfs mounts when disk utilization TCA rules are configured for all hosts.  </td>
 <td>4.5.0-4.6.0</td>

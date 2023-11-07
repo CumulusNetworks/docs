@@ -679,5 +679,3 @@ cumulus@switch:~$ netq add validation type bgp
 - ```netq del validation```
 - ```netq show validation settings```
 - ```netq show validation summary```
-
-- - -

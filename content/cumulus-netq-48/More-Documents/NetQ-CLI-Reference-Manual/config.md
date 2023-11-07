@@ -1233,7 +1233,7 @@ cumulus@switch:~$ netq config del cli server
 
 -->
 
-- - -
+
 ## netq config del opta proxy-host
 
 Deletes a proxy host as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}.

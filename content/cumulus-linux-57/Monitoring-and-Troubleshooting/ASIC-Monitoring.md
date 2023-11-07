@@ -186,11 +186,11 @@ The following table describes the ASIC monitor settings.
 
 This section shows configuration examples.
 
-### Queue Length Histograms
+### Egress Queue Length Histograms
 
 In the following example:
 
-- Queue length histograms collect every second for traffic class 0 on swp1 through swp50.
+- Egress queue length histograms collect every second for all traffic classes on all ports.
 - The results write to the `/var/lib/cumulus/histogram_stats` snapshot file.
 - The size of the histogram is 12288 bytes, the minimum boundary is 960 bytes, and the sampling time is 1024 nanoseconds.
 - A threshold configures the system to send a message to the `/var/log/syslog` file when the size of the queue reaches 500 bytes.
@@ -203,19 +203,20 @@ cumulus@switch:~$ nv set service telemetry enable
 cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
 cumulus@switch:~$ nv set service telemetry snapshot-file count 64
 cumulus@switch:~$ nv set service telemetry snapshot-interval 1s
-cumulus@switch:~$ nv set interface swp1 telemetry histogram egress-buffer traffic-class 0 bin-min-boundary 960
-cumulus@switch:~$ nv set interface swp1 telemetry histogram egress-buffer traffic-class 0 histogram-size 12288
-cumulus@switch:~$ nv set interface swp1 telemetry histogram egress-buffer traffic-class 0 sample-interval 1024
+cumulus@switch:~$ nv set service telemetry histogram egress-buffer bin-min-boundary 960 
+cumulus@switch:~$ nv set service telemetry histogram egress-buffer histogram-size 12288 
+cumulus@switch:~$ nv set service telemetry histogram ingress-buffer sample-interval 1024
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 ```
-monitor.port_group_list                               = [histogram_pg]
+monitor.port_group_list                               = [histogram_pg] 
 monitor.histogram_pg.port_set                         = swp1-swp50
-monitor.histogram_pg.stat_type                        = histogram
-monitor.histogram_pg.cos_list                         = [0]
+monitor.histogram_pg.stat_type                        = histogram_tc
+monitor.histogram_pg.cos_list                         = [0-15]
 monitor.histogram_pg.trigger_type                     = timer
 monitor.histogram_pg.timer                            = 1s
 monitor.histogram_pg.action_list                      = [snapshot,log]
@@ -229,6 +230,167 @@ monitor.histogram_pg.histogram.sample_time_ns         = 1024
 
 {{< /tab >}}
 {{< /tabs >}}
+
+In the following example:
+
+- Egress queue length histograms collect every second for traffic class 0 on swp1 through swp8 and for traffic class 1 on swp9 through swp16.
+- The results write to the `/var/lib/cumulus/histogram_stats` snapshot file.
+- The size of the histogram is 12288 bytes, the minimum boundary is 960 bytes, and the sampling time is 1024 nanoseconds for both traffic class 0 on swp1 through swp8 and for traffic class 1 on swp9 through swp16.
+- A threshold configures the system to send a message to the `/var/log/syslog` file when the size of the queue reaches 500 bytes.
+
+{{< tabs "TabID198 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service telemetry enable
+cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
+cumulus@switch:~$ nv set service telemetry snapshot-file count 64
+cumulus@switch:~$ nv set service telemetry snapshot-interval 1s
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram egress-buffer traffic-class 0 bin-min-boundary 960
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram egress-buffer traffic-class 0 histogram-size 12288
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram egress-buffer traffic-class 0 sample-interval 1024
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram egress-buffer traffic-class 1 bin-min-boundary 960
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram egress-buffer traffic-class 1 histogram-size 12288
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram egress-buffer traffic-class 1 sample-interval 1024
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+monitor.port_group_list                                = [histogram_gr1, histogram_gr2] 
+monitor.histogram_gr1.port_set                         = swp1-swp8
+monitor.histogram_gr1.stat_type                        = histogram_tc
+monitor.histogram_gr1.cos_list                         = [0]
+monitor.histogram_gr1.trigger_type                     = timer
+monitor.histogram_gr1.timer                            = 1s
+monitor.histogram_gr1.action_list                      = [snapshot,log]
+monitor.histogram_gr1.snapshot.file                    = /var/lib/cumulus/histogram_stats
+monitor.histogram_gr1.snapshot.file_count              = 64
+monitor.histogram_gr1.log.queue_bytes                  = 500
+monitor.histogram_gr1.histogram.minimum_bytes_boundary = 960
+monitor.histogram_gr1.histogram.histogram_size_bytes   = 12288
+monitor.histogram_gr1.histogram.sample_time_ns         = 1024
+
+monitor.histogram_gr2.port_set                         = swp9-swp16
+monitor.histogram_gr2.stat_type                        = histogram_tc
+monitor.histogram_gr2.cos_list                         = [1]
+monitor.histogram_gr2.trigger_type                     = timer
+monitor.histogram_gr2.timer                            = 1s
+monitor.histogram_gr2.action_list                      = [snapshot,log]
+monitor.histogram_gr2.snapshot.file                    = /var/lib/cumulus/histogram_stats
+monitor.histogram_gr2.snapshot.file_count              = 64
+monitor.histogram_gr2.log.queue_bytes                  = 500
+monitor.histogram_gr2.histogram.minimum_bytes_boundary = 960
+monitor.histogram_gr2.histogram.histogram_size_bytes   = 12288
+monitor.histogram_gr2.histogram.sample_time_ns         = 1024
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Ingress Queue Length Histograms
+
+In the following example:
+- Ingress queue length histograms collect every second for all priority groups on all ports.
+- The results write to the `/var/lib/cumulus/histogram_stats` snapshot file.
+- The size of the histogram is 12288 bytes, the minimum boundary is 960 bytes, and the sampling time is 1024 nanoseconds.
+- A threshold configures the system to send a message to the `/var/log/syslog` file when the size of the queue reaches 500 bytes.
+
+{{< tabs "TabID198 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service telemetry enable
+cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
+cumulus@switch:~$ nv set service telemetry snapshot-file count 64
+cumulus@switch:~$ nv set service telemetry snapshot-interval 1s
+cumulus@switch:~$ nv set service telemetry histogram ingress-buffer bin-min-boundary 960 
+cumulus@switch:~$ nv set service telemetry histogram ingress-buffer histogram-size 12288 
+cumulus@switch:~$ nv set service telemetry histogram ingress-buffer sample-interval 1024
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+monitor.port_group_list                               = [histogram_pg] 
+monitor.histogram_pg.port_set                         = swp1-swp50
+monitor.histogram_pg.stat_type                        = histogram_pg
+monitor.histogram_pg.cos_list                         = [0-15]
+monitor.histogram_pg.trigger_type                     = timer
+monitor.histogram_pg.timer                            = 1s
+monitor.histogram_pg.action_list                      = [snapshot,log]
+monitor.histogram_pg.snapshot.file                    = /var/lib/cumulus/histogram_stats
+monitor.histogram_pg.snapshot.file_count              = 64
+monitor.histogram_pg.log.queue_bytes                  = 500
+monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
+monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
+monitor.histogram_pg.histogram.sample_time_ns         = 1024
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+In the following example:
+- Ingress queue length histograms collect every second for priority group 0 on swp1 through swp8 and for priority group 1 on swp9 through swp16.
+- The results write to the `/var/lib/cumulus/histogram_stats` snapshot file.
+- The size of the histogram is 12288 bytes, the minimum boundary is 960 bytes, and the sampling time is 1024 nanoseconds for both priority group 0 on swp1 through swp8 and for priority group 1 on swp9 through swp16.
+- A threshold configures the system to send a message to the `/var/log/syslog` file when the size of the queue reaches 500 bytes.
+
+{{< tabs "TabID198 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service telemetry enable
+cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
+cumulus@switch:~$ nv set service telemetry snapshot-file count 64
+cumulus@switch:~$ nv set service telemetry snapshot-interval 1s
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 bin-min-boundary 960
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 histogram-size 12288
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 sample-interval 1024
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 bin-min-boundary 960
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 histogram-size 12288
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 sample-interval 1024
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+monitor.port_group_list                                = [histogram_gr1, histogram_gr2] 
+monitor.histogram_gr1.port_set                         = swp1-swp8
+monitor.histogram_gr1.stat_type                        = histogram_pg
+monitor.histogram_gr1.cos_list                         = [0]
+monitor.histogram_gr1.trigger_type                     = timer
+monitor.histogram_gr1.timer                            = 1s
+monitor.histogram_gr1.action_list                      = [snapshot,log]
+monitor.histogram_gr1.snapshot.file                    = /var/lib/cumulus/histogram_stats
+monitor.histogram_gr1.snapshot.file_count              = 64
+monitor.histogram_gr1.log.queue_bytes                  = 500
+monitor.histogram_gr1.histogram.minimum_bytes_boundary = 960
+monitor.histogram_gr1.histogram.histogram_size_bytes   = 12288
+monitor.histogram_gr1.histogram.sample_time_ns         = 1024
+
+monitor.histogram_gr2.port_set                         = swp9-swp16
+monitor.histogram_gr2.stat_type                        = histogram_pg
+monitor.histogram_gr2.cos_list                         = [1]
+monitor.histogram_gr2.trigger_type                     = timer
+monitor.histogram_gr2.timer                            = 1s
+monitor.histogram_gr2.action_list                      = [snapshot,log]
+monitor.histogram_gr2.snapshot.file                    = /var/lib/cumulus/histogram_stats
+monitor.histogram_gr2.snapshot.file_count              = 64
+monitor.histogram_gr2.log.queue_bytes                  = 500
+monitor.histogram_gr2.histogram.minimum_bytes_boundary = 960
+monitor.histogram_gr2.histogram.histogram_size_bytes   = 12288
+monitor.histogram_gr2.histogram.sample_time_ns         = 1024
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### 
 
 ### Packet Drops Due to Errors
 

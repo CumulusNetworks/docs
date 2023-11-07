@@ -14,7 +14,7 @@ Use caution when configuring VLANs; Cumulus Linux does not prevent reserved VLAN
 
 ## Reserved VLAN Count
 
-The minimum number of VLAN IDs required in the reserved VLAN range depends on the Cumulus Linux version and the feature you configure. You might need to change the reserved VLAN range to increase the number of VLANs reserved for certain features.
+The minimum number of VLAN IDs required in the reserved VLAN range depends on the Cumulus Linux release and the feature you configure. You might need to change the reserved VLAN range to increase the number of VLANs reserved for certain features.
 
 {{%notice note%}}
 - The reserved VLAN range is a single contiguous set of VLAN IDs that you cannot use when configuring the switch.
@@ -28,7 +28,7 @@ The minimum number of VLAN IDs required in the reserved VLAN range depends on th
 
 ## Default Reserved VLAN Ranges
 
-| Version | Default Range | Default Reserved Count |
+| Release | Default Range | Default Reserved Count |
 | ------- | ------------- | ---------------------- |
 | 5.x     | 3725-3999     | 275  |
 | 4.4.x   | 3725-3999     | 275  |

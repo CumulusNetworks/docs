@@ -7,6 +7,74 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3649630</td>
+<td>LCM discovery might fail in a NetQ on-premises cluster deployment with the message {{Error: Connection failure: ('The read operation timed out',)}}. To validate this issue is occurring, run the {{sudo kubectl get pods -o wide | grep lcm-executor}} command and confirm the lcm-executor pod is deployed on a worker node instead of the expected master node. To work around this issue: 
+
+1. Retrieve your worker node names:
+
+$ sudo kubectl get nodes
+NAME               STATUS   ROLES                  AGE   VERSION
+master1  Ready    control-plane,master   18d   v1.27.2
+worker1  Ready    &lt;none&gt;    18d   v1.27.2
+worker2  Ready    &lt;none&gt;    18d   v1.27.2
+
+
+2. Disable pod scheduling on the worker nodes with the {{sudo kubectl cordon &lt;worker1-name&gt; &lt;worker2-name&gt;}} command.
+
+3. Verify pod scheduling is disabled on the worker nodes:
+
+NAME               STATUS   ROLES                  AGE   VERSION
+master1  Ready    control-plane,master   18d   v1.27.2
+worker1  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
+worker2  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
+
+
+4. Delete the lcm-executor pod with the {{delete pod netq-lcm-executor-deploy-&lt;name&gt;}} command, retrieving the full lcm-executor pod name from the output of {{sudo kubectl get pods -o wide | grep lcm-executor}}.
+
+5. Verify the lcm-executor pod is now scheduled on the master node with the {{sudo kubectl get pods -o wide | grep lcm-executor}} command.
+
+6. Reenable scheduling on worker nodes with the {{sudo kubectl cordon &lt;worker1-name&gt; &lt;worker2-name&gt;}} command.
+
+7. Run your LCM discovery again.</td>
+<td>4.7.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3644644</td>
+<td>When you perform an LCM upgrade of Cumulus Linux on a switch using the {{netq lcm upgrade cl-image}} CLI command, an error message of {{NetQ cloud token invalid}} is displayed though the upgrade completes successfully. This issue is not encountered when using the NetQ LCM UI to perform the upgrade.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3633458</td>
+<td>The legacy topology diagram might categorize devices into tiers incorrectly. To work around this issue, use the updated topology diagram by selecting Topology Beta in the NetQ 4.8.0 UI.</td>
+<td>4.7.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3632783</td>
+<td>LCM upgrades of Cumulus Linux fail when using an on-switch OPTA and in-band management.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3632378</td>
+<td>After you upgrade your on-premises NetQ VM from version 4.7.0 to 4.8.0, NIC telemetry using the Prometheus adapter is not collected. To work around this issue, run the following commands on your NetQ VM:
+
+
+sudo kubectl set image deployment/netq-prom-adapter netq-prom-adapter=docker-registry:5000/netq-prom-adapter:4.8.0
+sudo kubectl set image deployment/netq-prom-adapter prometheus=docker-registry:5000/prometheus-v2.41.0:4.8.0
+</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3613811</td>
+<td>LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the {{mgmt}} VRF on Cumulus Linux switches when interface eth0 is in use.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3435373</td>
 <td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command fail with the following message: 
 
@@ -45,9 +113,24 @@ To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.
 <th> Affects </th>
 </tr>
 <tr>
+<td>3575935</td>
+<td>When you upgrade to NetQ 4.7.0, configured premises names might get reset to the default name {{OPID0}}.</td>
+<td>4.7.0</td>
+</tr>
+<tr>
+<td>3575934</td>
+<td>When you upgrade to NetQ 4.7.0, the password for the {{admin}} user is reset to the default password.</td>
+<td>4.7.0</td>
+</tr>
+<tr>
 <td>3555031</td>
 <td>NetQ incorrectly reports a low health SSD event on SN5600 switches. To work around this issue, configure an event suppression rule for {{ssdutil}} messages from SN5600 switches in your network.</td>
 <td>4.7.0</td>
+</tr>
+<tr>
+<td>3549877</td>
+<td>NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes.</td>
+<td>4.6.0-4.7.0</td>
 </tr>
 <tr>
 <td>3530739</td>

@@ -42,7 +42,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Set and show commands to configure and show the IP neighbor table
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
-  - mlag keyword presentation
+  - Improvements to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
   - Provide interface summary view with filtering
 
 {{< expand "New NVUE Commands" >}}

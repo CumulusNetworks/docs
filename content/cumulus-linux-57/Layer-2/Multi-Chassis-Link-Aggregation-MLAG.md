@@ -916,21 +916,23 @@ The following example command shows global MLAG settings for each peer and indic
 
 ```
 cumulus@leaf01:mgmt:~$ nv show mlag consistency-checker global
-Parameter                LocalValue               PeerValue                Conflict                                Summary
------------------------  -----------------------  -----------------------  --------------------------------------  -------
-+ anycast-ip             -                        -                        -
-+ bridge-priority        32768                    32768                    -
-+ bridge-stp             on                       on                       -
-+ bridge-type            vlan-aware               vlan-aware               -
-+ clag-pkg-version       1.6.0-cl5.0.1+u15        1.6.0-cl5.0.1+u15        -
-+ clag-protocol-version  1.6.0                    1.6.0                    -
-+ peer-ip                fe80::4638:39ff:fe00:59  fe80::4638:39ff:fe00:59  -
-+ peerlink-master        br_default               NOT-SYNCED               -
-+ peerlink-mtu           9216                     9216                     -
-+ peerlink-native-vlan   1                        1                        -
-+ peerlink-vlans         1, 10, 20, 30            1, 10, 20, 30            -
-+ redirect2-enable       yes                      yes                      -
-+ system-mac             44:38:39:be:ef:ab        44:38:39:be:ef:aa        system mac mismatch between clag peers
+Global Consistency-checker
+=============================
+    Parameter               LocalValue                 PeerValue                  Conflict  Summary
+    ----------------------  -------------------------  -------------------------  --------  -------
+    anycast-ip              -                          -                          -                
+    bridge-priority         32768                      32768                      -                
+    bridge-stp              on                         on                         -                
+    bridge-type             vlan-aware                 vlan-aware                 -                
+    clag-pkg-version        1.6.0-cl5.7.0u2            1.6.0-cl5.7.0u2            -                
+    clag-protocol-version   1.6.1                      1.6.1                      -                
+    peer-ip                 fe80::4ab0:2dff:fe3c:61d1  fe80::4ab0:2dff:fe3c:61d1  -                
+    peerlink-bridge-member  Yes                        Yes                        -                
+    peerlink-mtu            9216                       9216                       -                
+    peerlink-native-vlan    1                          1                          -                
+    peerlink-vlans          1, 10, 20, 30              1, 10, 20, 30              -                
+    redirect2-enable        yes                        yes                        -                
+    system-mac              44:38:39:be:ef:aa          44:38:39:be:ef:aa          system mac mismatch between clag peers
 ```
 
 The following example command shows MLAG settings for all interfaces on each peer with no conflicts:
@@ -939,30 +941,30 @@ The following example command shows MLAG settings for all interfaces on each pee
 cumulus@leaf01:mgmt:~$ nv show interface --view=mlag-cc
 Interface  Conflict  LocalValue         Parameter         PeerValue
 ---------  --------  -----------------  ----------------  -----------------
-+ bond1    -         yes                bridge-learning   yes
-  bond1    -         1                  clag-id           1
-  bond1    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
-  bond1    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
-  bond1    -         br_default         master            NOT-SYNCED
-  bond1    -         9216               mtu               9216
-  bond1    -         1                  native-vlan       1
-  bond1    -         1, 10, 20, 30      vlan-id           1, 10, 20, 30
-+ bond2    -         yes                bridge-learning   yes
-  bond2    -         2                  clag-id           2
-  bond2    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
-  bond2    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
-  bond2    -         br_default         master            NOT-SYNCED
-  bond2    -         9216               mtu               9216
-  bond2    -         1                  native-vlan       1
-  bond2    -         1, 10, 20, 30      vlan-id           1, 10, 20, 30
-+ bond3    -         yes                bridge-learning   yes
-  bond3    -         3                  clag-id           3
-  bond3    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
-  bond3    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
-  bond3    -         br_default         master            NOT-SYNCED
-  bond3    -         9216               mtu               9216
-  bond3    -         1                  native-vlan       1
-  bond3    -         1, 10, 20, 30      vlan-id           1, 10, 20, 30
+bond1    -         yes                bridge-learning   yes
+bond1    -         1                  clag-id           1
+bond1    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
+bond1    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
+bond1    -         br_default         master            NOT-SYNCED
+bond1    -         9216               mtu               9216
+bond1    -         1                  native-vlan       1
+bond1    -         1, 10, 20, 30      vlan-id           1, 10, 20, 30
+bond2    -         yes                bridge-learning   yes
+bond2    -         2                  clag-id           2
+bond2    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
+bond2    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
+bond2    -         br_default         master            NOT-SYNCED
+bond2    -         9216               mtu               9216
+bond2    -         1                  native-vlan       1
+bond2    -         1, 10, 20, 30      vlan-id           1, 10, 20, 30
+bond3    -         yes                bridge-learning   yes
+bond3    -         3                  clag-id           3
+bond3    -         44:38:39:be:ef:aa  lacp-actor-mac    44:38:39:be:ef:aa
+bond3    -         00:00:00:00:00:00  lacp-partner-mac  00:00:00:00:00:00
+bond3    -         br_default         master            NOT-SYNCED
+bond3    -         9216               mtu               9216
+bond3    -         1                  native-vlan       1
+bond3    -         1, 10, 20, 30      vlan-id           1, 10, 20, 30
 ```
 
 The following example command shows the MLAG settings for bond1 on each peer and indicates that the MTU does not match:
@@ -971,14 +973,14 @@ The following example command shows the MLAG settings for bond1 on each peer and
 cumulus@leaf01:mgmt:~$ nv show interface bond1 bond mlag consistency-checker
 Parameter           LocalValue         PeerValue          Conflict  Summary
 ------------------  -----------------  -----------------  --------  -------
-+ bridge-learning   yes                yes                -
-+ clag-id           1                  1                  -
-+ lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
-+ lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
-+ master            br_default         NOT-SYNCED         -
-+ mtu               4800               1500               mtu mismatch on clag interface between clag peers
-+ native-vlan       1                  1                  -
-+ vlan-id           1, 10, 20, 30      1, 10, 20, 30      -
+bridge-learning   yes                yes                -
+clag-id           1                  1                  -
+lacp-actor-mac    44:38:39:be:ef:aa  44:38:39:be:ef:aa  -
+lacp-partner-mac  00:00:00:00:00:00  00:00:00:00:00:00  -
+master            br_default         NOT-SYNCED         -
+mtu               4800               1500               mtu mismatch on clag interface between clag peers
+native-vlan       1                  1                  -
+vlan-id           1, 10, 20, 30      1, 10, 20, 30      -
 ```
 
 {{< /tab >}}

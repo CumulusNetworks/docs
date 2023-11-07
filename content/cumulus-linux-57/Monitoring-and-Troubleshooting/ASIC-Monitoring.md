@@ -238,7 +238,7 @@ In the following example:
 - The size of the histogram is 12288 bytes, the minimum boundary is 960 bytes, and the sampling time is 1024 nanoseconds for both traffic class 0 on swp1 through swp8 and for traffic class 1 on swp9 through swp16.
 - A threshold configures the system to send a message to the `/var/log/syslog` file when the size of the queue reaches 500 bytes.
 
-{{< tabs "TabID198 ">}}
+{{< tabs "TabID241 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -297,7 +297,7 @@ In the following example:
 - The size of the histogram is 12288 bytes, the minimum boundary is 960 bytes, and the sampling time is 1024 nanoseconds.
 - A threshold configures the system to send a message to the `/var/log/syslog` file when the size of the queue reaches 500 bytes.
 
-{{< tabs "TabID198 ">}}
+{{< tabs "TabID300 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -339,7 +339,7 @@ In the following example:
 - The size of the histogram is 12288 bytes, the minimum boundary is 960 bytes, and the sampling time is 1024 nanoseconds for both priority group 0 on swp1 through swp8 and for priority group 1 on swp9 through swp16.
 - A threshold configures the system to send a message to the `/var/log/syslog` file when the size of the queue reaches 500 bytes.
 
-{{< tabs "TabID198 ">}}
+{{< tabs "TabID342 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```

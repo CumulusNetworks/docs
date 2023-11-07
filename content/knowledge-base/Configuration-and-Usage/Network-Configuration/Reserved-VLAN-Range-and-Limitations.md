@@ -20,7 +20,7 @@ The minimum number of VLAN IDs required in the reserved VLAN range depends on th
 - The reserved VLAN range is a single contiguous set of VLAN IDs that you cannot use when configuring the switch.
 - NVIDIA does not recommend you change the number of reserved VLANs unless absolutely necessary.
 - Do not reduce the number of VLANs below the defaults.
-- The number of required reserved VLAN IDs must never exceed the count configured in the reserved VLAN range; see the {{<link url="#default-reserved-VLAN-ranges" text="table">}} below.
+- The reserved VLAN range requirements, based on your platform, Cumulus Linux release and configuration, must not exceed the total count of reserved VLANs configured. The {{<link url="#default-reserved-VLAN-ranges" text="table">}} below shows the default range for each Cumulus Linux release.
 - Use caution when changing the number of reserved VLANs: Cumulus Linux does not prevent you from configuring features that might exceed the number of reserved VLANs.
 - Changing the reserved VLAN range requires a `switchd` restart.
 

@@ -54,6 +54,7 @@ Edit the `/etc/pam_radius_auth.conf` file to specify the hostname or IP address 
 ```
 ...
 mapped_priv_user   radius_priv_user
+
 # server[:port]    shared_secret   timeout (secs)  src_ip
 192.168.0.254      secretkey       3
 ...
@@ -75,7 +76,7 @@ You can configure the following optional settings global RADIUS settings and ser
 | Option | Description |
 | ------ | ----------- |
 | `vrf` | The VRF you want to use to communicate with the RADIUS servers. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. You cannot specify more than one VRF. |
-| `priv-lvl` | The minimum privilege level that determines if users can configure the switch with NVUE commands and sudo, or have read-only rights. The default privilege level is 15, which provides full administrator access. This is a global option only; you cannot set the minimum privilege level for specific RADIUS servers.|
+| `privilege-level` | The minimum privilege level that determines if users can configure the switch with NVUE commands and sudo, or have read-only rights. The default privilege level is 15, which provides full administrator access. This is a global option only; you cannot set the minimum privilege level for specific RADIUS servers.|
 | `retransmit` | The maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out. This is a global option only; you cannot set the number of retransmission attempts for specific RADIUS servers.|
 | `priority` | The priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.|
 | `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
@@ -89,7 +90,7 @@ The following example configures global RADIUS settings:
 
 ```
 cumulus@switch:~$ nv set system aaa radius vrf mgmt
-cumulus@switch:~$ nv set system aaa radius priv-lvl 10
+cumulus@switch:~$ nv set system aaa radius privilege-level 10
 cumulus@switch:~$ nv set system aaa radius retransmit 42
 cumulus@switch:~$ nv set system aaa radius timeout 10
 cumulus@switch:~$ nv set system aaa radius source-ip 192.168.1.10

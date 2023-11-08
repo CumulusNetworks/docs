@@ -46,7 +46,7 @@ Examples for configuring one switch to delete all fluent destinations:
 ```
 ## NVLink4 Fluentd Message Examples
 
-The following examples show NVLink4 Fluentd message output in JSON format: 
+Expand the dropdown menu to view NVLink4 Fluentd message output in JSON format: 
 
 {{< expand "JSON examples" >}}
 ```
@@ -480,12 +480,13 @@ NvlEvents
 ```
 {{< /expand >}}
 <br>
+## Fluentd Message Reference
 
 {{< expand "Fluentd message reference" >}}
 
 **High Level Message**
 
- | Field Name |Type |Short Description |
+ | Field Name |Type | Description |
  |--- | --- | --- | 
  | date | Double | Message timestamp by fluent-bit | 
  | aid | String | Agent ID - Hostname | 
@@ -496,23 +497,23 @@ NvlEvents
  | message | Object | Message content on the message type | 
 
  **Node**
- | Field Name |Type |Short Description |
+ | Field Name |Type | Description |
  |--- | --- | --- | 
  | domain | String | Domain name | 
  | deleted | Boolean | Is record got deleted | 
  | hostname | String | Hostname | 
- | last_reinit | Long | Last sytem intialization | 
+ | last_reinit | Long | Last system initialization | 
  | lastboot | Long | Last system reboot | 
- | ntp_state | String | NTP deamon state | 
+ | ntp_state | String | NTP daemon state | 
  | sys_uptime | Long | System uptime | 
  | timestamp | Long | Inner message timestamp | 
  | version | String | Agent version | 
 
 
 **Inventory**
- | Field Name |Type |Short Description |
+ | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Ir record active true/false | 
+ | active | Boolean | Is record active true/false | 
  | agent_version | String | Agent version | 
  | asic_core_bw | String | Not supported | 
  | asic_data | String | Additional ASIC data information - not supported | 
@@ -545,46 +546,46 @@ NvlEvents
  | platform_part_number | String | Platform part number – Not supported | 
  | platform_serial_number | String | Platform serial number - Not supported | 
  | platform_vendor | String | Platform vendor - hardcoded NVIDIA | 
- | timestamp | Long | Message timetsamp | 
+ | timestamp | Long | Message timestamp | 
 
  **ResourceUtil**
- | Field Name |Type |Short Description |
+ | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Ir record active true/false | 
- | cpu_utilization | String | Total CPU utilization in percentage | 
- | deleted | Boolean | Is record got deleted | 
- | mem_utilization | String | Show memory utlization in percentage | 
+ | active | Boolean | Is record active true/false | 
+ | cpu_utilization | String | Total CPU utilization as a percentage | 
+ | deleted | Boolean | Is record deleted | 
+ | mem_utilization | String | Show memory utilization as a percentage | 
  | message_type | String | Message type | 
- | timestamp | Long | Message timetsamp | 
- | disk_utilization | List | Show disk utilization in percentage | 
+ | timestamp | Long | Message timestamp | 
+ | disk_utilization | List | Show disk utilization as a percentage | 
  | "disk_utilization" Item start |  |  | 
- | percent | Double | percetange of used disk utilization | 
+ | percent | Double | Percentage of used disk utilization | 
  | total | Long | Total disk utilization in bytes | 
  | used | Long | Used disk utilization in bytes | 
  | is_disk_read_only | Boolean | Is disk read only - Always true | 
 
  **Port**
- | Field Name |Type |Short Description |
+ | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Ir record active true/false | 
+ | active | Boolean | Is record active true/false | 
  | connector | String | Interface connector (not supported) | 
- | deleted | Boolean | Is record got deleted | 
+ | deleted | Boolean | Is record deleted | 
  | hostname | String | Hostname | 
  | identifier | String | Interface identifier (not supported) | 
  | length | String |  | 
  | ifname | String | Interface name | 
  | message_type | String | Message type | 
- | part_number | String | Interface part number(not supported) | 
- | serial_number | String | Interface serial number (not supported | 
- | speed | String | Inerface port speed | 
+ | part_number | String | Interface part number (not supported) | 
+ | serial_number | String | Interface serial number (not supported) | 
+ | speed | String | Interface port speed | 
  | state | String | Interface operational state | 
  | timestamp | Long | Message timestamp | 
- | transceiver | String | Transciever information (not supported) | 
+ | transceiver | String | Transceiver information (not supported) | 
  | vendor_name | String | Interface vendor (not supported) | 
 
 
  **Fan**
-  | Field Name |Type |Short Description |
+  | Field Name |Type | Description |
  |--- | --- | --- | 
  | active | Boolean | Ir record active true/false | 
  | deleted | Boolean | Is record got deleted | 
@@ -594,7 +595,7 @@ NvlEvents
  | s_name | String | Fan source name | 
  | s_prev_state | String | Fan previous state | 
  | s_state | String | Fan current state | 
- | timestamp | Long | Message timetsamp | 
+ | timestamp | Long | Message timestamp | 
  | Temp |  |  | 
  | active | Boolean | Ir record active true/false | 
  | deleted | Boolean | Is record got deleted | 
@@ -605,38 +606,38 @@ NvlEvents
  | s_name | String | Temperature name | 
  | s_prev_state | String | Temperature previous state | 
  | s_state | String | Temperature current state | 
- | timestamp | Long | Message timetsamp | 
+ | timestamp | Long | Message timestamp | 
 
 
  **Power**
-  | Field Name |Type |Short Description |
+  | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Ir record active true/false | 
+ | active | Boolean | Is record active true/false | 
  | deleted | Boolean | Is record got deleted | 
  | hostname | String | Hostname | 
  | message_type | String | Message type | 
  | s_adapter_name | String | Message adapter name | 
- | timestamp | Long | Message timetsamp | 
+ | timestamp | Long | Message timestamp | 
 
  **PSU**
- | Field Name |Type |Short Description |
+ | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Ir record active true/false | 
- | deleted | Boolean | Is record got deleted | 
+ | active | Boolean | Is record active true/false | 
+ | deleted | Boolean | Is record deleted | 
  | hostname | String | Hostname | 
  | message_type | String | Message type | 
  | s_name | String | PSU name | 
  | s_prev_state | String | PSU previous state | 
  | s_state | String | PSU current state | 
- | timestamp | Long | Message timetsamp | 
+ | timestamp | Long | Message timestamp | 
 
 
  **Link**
-  | Field Name |Type |Short Description |
+  | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Ir record active true/false | 
+ | active | Boolean | Is record active true/false | 
  | admin_state | String | Interface admin state | 
- | deleted | Boolean | Is record got deleted | 
+ | deleted | Boolean | Is record deleted | 
  | down_reason | String | Interface down reason | 
  | hostname | String | Hostname | 
  | ifalias | String | Interface description | 
@@ -647,14 +648,14 @@ NvlEvents
  | message_type | String | Message type | 
  | mtu | String | Interface MTU | 
  | oper_state | String | Interface operational state | 
- | timestamp | Long | Message timetsamp | 
+ | timestamp | Long | Message timestamp | 
 
 **NvlStats**
- | Field Name |Type |Short Description |
+ | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Ir record active true/false | 
+ | active | Boolean | Is record active true/false | 
  | crc_errors | Long | CRC errors counter | 
- | deleted | Boolean | Is record got deleted | 
+ | deleted | Boolean | Is record deleted | 
  | hostname | String | Hostname | 
  | ifname | String | Interface name | 
  | message_type | String | Message type | 
@@ -676,7 +677,7 @@ NvlEvents
  |--- | --- | --- | 
  | active | Boolean | Ir record active true/false | 
  | bind_interface_ip | String | Binded interface IP | 
- | deleted | Boolean | Is record got deleted | 
+ | deleted | Boolean | Is record deleted | 
  | hostname | String | Hostname | 
  | log_append_to_log | Boolean | Log append to log | 
  | log_level | String | Log level | 
@@ -685,7 +686,7 @@ NvlEvents
  | starting_tcp_port | String | Starting TCP port | 
  | uid_led_status | String | Current switch LED status | 
  | state | String | LFM state | 
- | timestamp | Long | Message timetsamp |
+ | timestamp | Long | Message timestamp |
 
  **DOM**
   | Field Name |Type |Short Description |

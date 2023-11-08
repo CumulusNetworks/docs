@@ -300,9 +300,9 @@ cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv config save
 ```
 
-## Clear Switch Configuration
+## Clear NVUE Configuration
 
-To reset the configuration on the switch back to the factory defaults, run the following command:
+To clear all NVUE configuration, run the following command:
 
 ```
 cumulus@switch:~$ nv config apply empty

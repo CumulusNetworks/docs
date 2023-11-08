@@ -213,8 +213,10 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 ```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
+...
 monitor.port_group_list                               = [histogram_pg] 
-monitor.histogram_pg.port_set                         = swp1-swp50
+monitor.histogram_pg.port_set                         = allports
 monitor.histogram_pg.stat_type                        = histogram_tc
 monitor.histogram_pg.cos_list                         = [0-15]
 monitor.histogram_pg.trigger_type                     = timer
@@ -258,6 +260,8 @@ cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram egress-buffer 
 {{< tab "Linux Commands ">}}
 
 ```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
+...
 monitor.port_group_list                                = [histogram_gr1, histogram_gr2] 
 monitor.histogram_gr1.port_set                         = swp1-swp8
 monitor.histogram_gr1.stat_type                        = histogram_tc
@@ -315,8 +319,10 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 ```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
+...
 monitor.port_group_list                               = [histogram_pg] 
-monitor.histogram_pg.port_set                         = swp1-swp50
+monitor.histogram_pg.port_set                         = allports
 monitor.histogram_pg.stat_type                        = histogram_pg
 monitor.histogram_pg.cos_list                         = [0-15]
 monitor.histogram_pg.trigger_type                     = timer
@@ -350,15 +356,19 @@ cumulus@switch:~$ nv set service telemetry snapshot-interval 1s
 cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 bin-min-boundary 960
 cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 histogram-size 12288
 cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 sample-interval 1024
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 log threshold 5000
 cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 bin-min-boundary 960
 cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 histogram-size 12288
 cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 sample-interval 1024
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 log threshold 5000
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 ```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
+...
 monitor.port_group_list                                = [histogram_gr1, histogram_gr2] 
 monitor.histogram_gr1.port_set                         = swp1-swp8
 monitor.histogram_gr1.stat_type                        = histogram_pg
@@ -390,12 +400,96 @@ monitor.histogram_gr2.histogram.sample_time_ns         = 1024
 {{< /tab >}}
 {{< /tabs >}}
 
-### 
+### Counter
+
+In the following example:
+- Counter histograms collect every second on all ports.
+- The results write to the `/var/lib/cumulus/histogram_stats` snapshot file.
+- The histogram collects counters for all packets.
+- The size of the histogram is 1000 bytes, the minimum boundary is 1000 bytes, and the sampling time is 1024 nanoseconds.
+- A threshold configures the system to send a message to the `/var/log/syslog` file when the number of counters reaches 64.
+
+{{< tabs "TabID408 ">}}
+{{< tab "NVUE Commands ">}}
+
+cumulus@switch:~$ nv set service telemetry enable
+cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
+cumulus@switch:~$ nv set service telemetry snapshot-file count 64
+cumulus@switch:~$ nv set service telemetry snapshot-interval 1s
+cumulus@switch:~$ nv set service telemetry histogram counter bin-min-boundary 1000
+cumulus@switch:~$ nv set service telemetry histogram counter histogram-size 1000
+cumulus@switch:~$ nv set service telemetry histogram counter sample-interval 1024
+cumulus@switch:~$ nv config apply
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
+...
+monitor.histogram_pg.port_set                         = allports
+monitor.histogram_pg.stat_type                        = histogram_counter
+monitor.histogram_pg.counter_type                     = [tx-pkt, rx-packet]
+monitor.histogram_pg.trigger_type                     = timer
+monitor.histogram_pg.timer                            = 1s
+monitor.histogram_pg.action_list                      = [snapshot,log]
+monitor.histogram_pg.snapshot.file                    = /var/lib/cumulus/histogram_stats
+monitor.histogram_pg.snapshot.file_count              = 64
+monitor.histogram_pg.log.count                        = 500
+monitor.histogram_pg.histogram.minimum_count_boundary = 1000
+monitor.histogram_pg.histogram.histogram_size_count   = 1000
+monitor.histogram_pg.histogram.sample_time_ns         = 1024
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+In the following example:
+- Counter histograms collect every second on swp1 through swp8.
+- The results write to the `/var/lib/cumulus/histogram_stats` snapshot file.
+- The histogram collects counters for transferred packets.
+- The size of the histogram is 12288 bytes, the minimum boundary is 960 bytes, and the sampling time is 1024 nanoseconds for swp1 through swp8.
+- A threshold configures the system to send a message to the `/var/log/syslog` file when the number of counters reaches 64.
+
+{{< tabs "TabID408 ">}}
+{{< tab "NVUE Commands ">}}
+
+cumulus@switch:~$ nv set service telemetry enable
+cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
+cumulus@switch:~$ nv set service telemetry snapshot-file count 64
+cumulus@switch:~$ nv set service telemetry snapshot-interval 1s
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type tx-packet bin-min-boundary 1000
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type tx-packet histogram-size 1000
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type tx-packet sample-interval 1024
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type tx-packet log threshold 5000
+cumulus@switch:~$ nv config apply
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
+...
+monitor.histogram_pg.port_set                         = swp1-swp8
+monitor.histogram_pg.stat_type                        = histogram_counter
+monitor.histogram_pg.counter_type                     = [tx-pkt]
+monitor.histogram_pg.trigger_type                     = timer
+monitor.histogram_pg.timer                            = 1s
+monitor.histogram_pg.action_list                      = [snapshot,log]
+monitor.histogram_pg.snapshot.file                    = /var/lib/cumulus/histogram_stats
+monitor.histogram_pg.snapshot.file_count              = 64
+monitor.histogram_pg.log.count                        = 500
+monitor.histogram_pg.histogram.minimum_count_boundary = 1000
+monitor.histogram_pg.histogram.histogram_size_count   = 1000
+monitor.histogram_pg.histogram.sample_time_ns         = 1024
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Packet Drops Due to Errors
 
 In the following example:
-
 - Packet drops on swp1 through swp50 collect every two seconds.
 - If the number of packet drops is greater than 100, the results write to the `/var/lib/cumulus/discard_stats snapshot` file and the system sends a message to the `/var/log/syslog` file.
 

@@ -14,9 +14,9 @@ With NetQ, you can monitor the performance of your NVLink devices, manage NVOS u
 - {{<link title="Debugging Files" text="Debugging files">}}: download system dumps and GFM logs for troubleshooting
 - {{<link title="Edit GFM Variables" text="Edit GFM variables">}}: customize your Global Fabric Manager configuration with variables unavailable in the NetQ UI
 - {{<link title="Fluentd Reference" text="Fluentd message reference">}}: view NVLink4 example messages in JSON format for Fluentd collectors
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-48/api/" text="API reference">}}: access a Swagger instance to view NVLink4 API options
  
 Each NVSwitch has a designated telemetry agent embedded in NVOS. This agent fetches telemetry data and streams it to a Fluentd data collector that integrates with NetQ or a third-party client. 
  
-Additionally, NetQ maintains GFM processes with high availability. If the GFM process stops unexpectedly, NetQ quickly and automatically remediates issues.
+NetQ maintains GFM processes with high availability. If the GFM process stops unexpectedly, NetQ quickly and automatically remediates issues.
 
-API reference: {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-48/api/" text="API reference">}}: access a Swagger instance to view NVLink4 API options

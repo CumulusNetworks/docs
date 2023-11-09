@@ -9,7 +9,7 @@ First configure the VM on the master node, and then configure the VM on each wor
 
 Follow these steps to set up and configure your VM on a cluster of servers in a cloud deployment:
 
-1. Verify that your master node meets the VM requirements.
+1. Verify that each node in your cluster---the master node and two worker nodes---meets the VM requirements.
 
     {{<netq-install/vm-reqs deployment="cloud" hypervisor="kvm">}}
 

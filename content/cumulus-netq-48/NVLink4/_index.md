@@ -19,4 +19,4 @@ Each NVSwitch has a designated telemetry agent embedded in NVOS. This agent fetc
  
 Additionally, NetQ maintains GFM processes with high availability. If the GFM process stops unexpectedly, NetQ quickly and automatically remediates issues.
 
-<!--- API reference: {{<exlink url="https://nvlink4-netq.d1pzhbszsr62xj.amplifyapp.com/networking-ethernet-software/cumulus-netq-45/api/index.html" text="API reference">}}: access a Swagger instance to view NVLink4 API options.-->
+API reference: {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-48/api/" text="API reference">}}: access a Swagger instance to view NVLink4 API options

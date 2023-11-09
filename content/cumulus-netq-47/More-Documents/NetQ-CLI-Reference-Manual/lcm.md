@@ -1319,7 +1319,6 @@ cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl530-nq450 netq-
 
 - `netq lcm show upgrade-jobs netq-image`
 
-- - -
 
 <!--NVLink command
 ## netq lcm upgrade nvos-image

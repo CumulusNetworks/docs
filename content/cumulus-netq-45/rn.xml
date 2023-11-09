@@ -72,7 +72,7 @@ This is due to an expired key in the installation tarball. For assistance workin
 </tr>
 <tr>
 <td>3435373</td>
-<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command fail with the following message: 
+<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades might fail with the following message: 
 
 
 Job upgrade failed or timed out.

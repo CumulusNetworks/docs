@@ -31,6 +31,12 @@ nv set interface vlan10 router ospf area 0
 <td></td>
 </tr>
 <tr>
+<td>3463827</td>
+<td>In an EVPN configuration with PIM-SM for BUM handling, the host behind the DUT does not receive the expected number of BUM packets. Cumulus Linux 5.6 only supports Head-End Replication (HREP) for handling BUM traffic in an EVPN configuration. BUM handling using a PIM-SM Multicast tree is not supported.</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3368217</td>
 <td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.7.0</td>

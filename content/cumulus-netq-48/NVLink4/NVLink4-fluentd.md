@@ -484,23 +484,23 @@ NvlEvents
 
 {{< expand "Fluentd message reference" >}}
 
-**High Level Message**
+**General**
 
  | Field Name |Type | Description |
  |--- | --- | --- | 
  | date | Double | Message timestamp by fluent-bit | 
- | aid | String | Agent ID - Hostname | 
+ | aid | String | Agent ID/hostname | 
  | domain | String | Domain name | 
- | message_type | String | Message type Node/Inventory/Link... | 
+ | message_type | String | Message type (node, inventory, link, etc.) | 
  | ts | Long | Message timestamp | 
- | trans_mode | String | Transition mode - Full/Partial/First segment/Mid segment/Last segment | 
- | message | Object | Message content on the message type | 
+ | trans_mode | String | Transition mode (full, partial, first segment, mid segment, last segment) | 
+ | message | Object | Message content for the message type | 
 
  **Node**
  | Field Name |Type | Description |
  |--- | --- | --- | 
  | domain | String | Domain name | 
- | deleted | Boolean | Is record got deleted | 
+ | deleted | Boolean | Record deletion status | 
  | hostname | String | Hostname | 
  | last_reinit | Long | Last system initialization | 
  | lastboot | Long | Last system reboot | 
@@ -513,63 +513,63 @@ NvlEvents
 **Inventory**
  | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Is record active true/false | 
+ | active | Boolean | Record activity status | 
  | agent_version | String | Agent version | 
- | asic_core_bw | String | Not supported | 
- | asic_data | String | Additional ASIC data information - not supported | 
+ | asic_core_bw | String | (not supported) | 
+ | asic_data | String | Additional ASIC data (not supported) | 
  | asic_model | String | ASIC model | 
- | asic_model_id | String | ASIC model ID - System type | 
+ | asic_model_id | String | ASIC model ID (system type) | 
  | asic_ports | String | ASIC ports | 
- | asic_vendor | String | ASIC vendor - hardcoded NVIDIA | 
- | cpu_arch | String | CPU Architecture | 
- | cpu_data | String | Not supported | 
+ | asic_vendor | String | ASIC vendor (hard-coded NVIDIA) | 
+ | cpu_arch | String | CPU architecture | 
+ | cpu_data | String | (not supported) | 
  | cpu_max_freq | String | CPU max frequency | 
  | cpu_model | String | CPU model | 
  | cpu_nos | String | Number of CPU nos | 
- | deleted | Boolean | Is record got deleted | 
+ | deleted | Boolean | Record deletion status | 
  | disk_data | String | Additional disk data information | 
  | disk_total_size | String | Disk total size | 
  | domain | String | Domain name | 
  | hostname | String | Hostname | 
  | license_data | String | License information | 
  | license_state | String | License state | 
- | memory_data | String | Additional memory data information - Not supported | 
- | memory_total_size | String | Memory total size in the switch | 
+ | memory_data | String | Additional memory data information (not supported) | 
+ | memory_total_size | String | Memory total size on the switch | 
  | message_type | String | Message type | 
  | os_name | String | Operating system name | 
  | os_version | String | Operating system version | 
  | os_version_id | String | Operating system version summary | 
- | platform_base_mac | String | Platform management mac address | 
- | platform_label_revision | String | Platform label revision - not supported | 
- | platform_mfg_date | String | Platform manufacture data – Not supported | 
+ | platform_base_mac | String | Platform management MAC address | 
+ | platform_label_revision | String | Platform label revision (not supported) | 
+ | platform_mfg_date | String | Platform manufacture data (not supported) | 
  | platform_model | String | Platform model | 
- | platform_part_number | String | Platform part number – Not supported | 
- | platform_serial_number | String | Platform serial number - Not supported | 
- | platform_vendor | String | Platform vendor - hardcoded NVIDIA | 
+ | platform_part_number | String | Platform part number (not supported) | 
+ | platform_serial_number | String | Platform serial number (not supported) | 
+ | platform_vendor | String | Platform vendor (hard-coded NVIDIA) | 
  | timestamp | Long | Message timestamp | 
 
  **ResourceUtil**
  | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Is record active true/false | 
+ | active | Boolean | Record activity status | 
  | cpu_utilization | String | Total CPU utilization as a percentage | 
- | deleted | Boolean | Is record deleted | 
+ | deleted | Boolean | Record deletion status | 
  | mem_utilization | String | Show memory utilization as a percentage | 
  | message_type | String | Message type | 
  | timestamp | Long | Message timestamp | 
  | disk_utilization | List | Show disk utilization as a percentage | 
  | "disk_utilization" Item start |  |  | 
- | percent | Double | Percentage of used disk utilization | 
+ | percent | Double | Percentage of used disk space | 
  | total | Long | Total disk utilization in bytes | 
  | used | Long | Used disk utilization in bytes | 
- | is_disk_read_only | Boolean | Is disk read only - Always true | 
+ | is_disk_read_only | Boolean | Read-only status (always true) | 
 
  **Port**
  | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Is record active true/false | 
+ | active | Boolean | Record activity status | 
  | connector | String | Interface connector (not supported) | 
- | deleted | Boolean | Is record deleted | 
+ | deleted | Boolean | Record deletion status | 
  | hostname | String | Hostname | 
  | identifier | String | Interface identifier (not supported) | 
  | length | String |  | 
@@ -587,8 +587,8 @@ NvlEvents
  **Fan**
   | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Ir record active true/false | 
- | deleted | Boolean | Is record got deleted | 
+ | active | Boolean | Record activity status | 
+ | deleted | Boolean | Record deletion status | 
  | hostname | String | Hostname | 
  | message_type | String | Message type | 
  | s_input | String | Fan source input | 
@@ -597,8 +597,8 @@ NvlEvents
  | s_state | String | Fan current state | 
  | timestamp | Long | Message timestamp | 
  | Temp |  |  | 
- | active | Boolean | Ir record active true/false | 
- | deleted | Boolean | Is record got deleted | 
+ | active | Boolean | Record activity status | 
+ | deleted | Boolean | Record deletion status | 
  | hostname | String | Hostname | 
  | message_type | String | Message type | 
  | s_desc | String | Temperature description | 
@@ -612,8 +612,8 @@ NvlEvents
  **Power**
   | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Is record active true/false | 
- | deleted | Boolean | Is record got deleted | 
+ | active | Boolean | Record activity status | 
+ | deleted | Boolean | Record deletion status | 
  | hostname | String | Hostname | 
  | message_type | String | Message type | 
  | s_adapter_name | String | Message adapter name | 
@@ -622,8 +622,8 @@ NvlEvents
  **PSU**
  | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Is record active true/false | 
- | deleted | Boolean | Is record deleted | 
+ | active | Boolean | Record activity status | 
+ | deleted | Boolean | Record deletion status | 
  | hostname | String | Hostname | 
  | message_type | String | Message type | 
  | s_name | String | PSU name | 
@@ -635,9 +635,9 @@ NvlEvents
  **Link**
   | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Is record active true/false | 
+ | active | Boolean | Record activity status | 
  | admin_state | String | Interface admin state | 
- | deleted | Boolean | Is record deleted | 
+ | deleted | Boolean | Record deletion status | 
  | down_reason | String | Interface down reason | 
  | hostname | String | Hostname | 
  | ifalias | String | Interface description | 
@@ -653,9 +653,9 @@ NvlEvents
 **NvlStats**
  | Field Name |Type | Description |
  |--- | --- | --- | 
- | active | Boolean | Is record active true/false | 
+ | active | Boolean | Record activity status | 
  | crc_errors | Long | CRC errors counter | 
- | deleted | Boolean | Is record deleted | 
+ | deleted | Boolean | Record deletion status | 
  | hostname | String | Hostname | 
  | ifname | String | Interface name | 
  | message_type | String | Message type | 
@@ -675,11 +675,11 @@ NvlEvents
 **NVL device info**
  | Field Name |Type |Short Description |
  |--- | --- | --- | 
- | active | Boolean | Ir record active true/false | 
+ | active | Boolean | Record activity status | 
  | bind_interface_ip | String | Binded interface IP | 
- | deleted | Boolean | Is record deleted | 
+ | deleted | Boolean | Record deletion status | 
  | hostname | String | Hostname | 
- | log_append_to_log | Boolean | Log append to log | 
+ | log_append_to_log | Boolean | Log appended to log | 
  | log_level | String | Log level | 
  | message_type | String | Message type | 
  | shutdown | String | Shutdown state | 
@@ -691,8 +691,8 @@ NvlEvents
  **DOM**
   | Field Name |Type |Short Description |
  |--- | --- | --- |  
- | active | Boolean | Ir record active true/false | 
- | deleted | Boolean | Is record got deleted | 
+ | active | Boolean | Record activity status | 
+ | deleted | Boolean | Record deletion status | 
  | hostname | String | Hostname | 
  | identifier | String | Identifier (not supported) | 
  | ifname | String | Interface name | 
@@ -761,7 +761,7 @@ NvlEvents
  | prefix | String | IP address for mgmt address | 
  | mask | String | Mask for mgmt address | 
  | vrf | String | VRF for mgmt address | 
- | is_ipv6 | Boolean | Is IPV6 address | 
+ | is_ipv6 | Boolean | IPv6 address status | 
 
  **NVL events**
   | Field Name |Type |Short Description |

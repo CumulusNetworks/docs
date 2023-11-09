@@ -96,10 +96,10 @@ netq lcm upgrade netq-image
     [config_profile <text-config-profile>]
 ```
 
-The following example creates a NetQ Agent upgrade job called *upgrade-cl530-nq470*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.7.0.
+The following example creates a NetQ Agent upgrade job called *upgrade-cl550-nq470*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.8.0.
 
 ```
-cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl530-nq470 netq-version 4.7.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl550-nq480 netq-version 4.8.0 hostnames spine01,spine02
 ```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:

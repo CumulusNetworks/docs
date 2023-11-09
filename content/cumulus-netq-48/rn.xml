@@ -1,5 +1,5 @@
 <tables>
-<table name="Open Issues in 4.7.0">
+<table name="Open Issues in 4.8.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
@@ -7,33 +7,91 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3555031</td>
-<td>NetQ incorrectly reports a low health SSD event on SN5600 switches. To work around this issue, configure an event suppression rule for {{ssdutil}} messages from SN5600 switches in your network.</td>
-<td>4.7.0</td>
+<td>3649630</td>
+<td>LCM discovery might fail in a NetQ on-premises cluster deployment with the message {{Error: Connection failure: ('The read operation timed out',)}}. To validate this issue is occurring, run the {{sudo kubectl get pods -o wide | grep lcm-executor}} command and confirm the lcm-executor pod is deployed on a worker node instead of the expected master node. To work around this issue: 
+
+1. Retrieve your worker node names:
+
+$ sudo kubectl get nodes
+NAME               STATUS   ROLES                  AGE   VERSION
+master1  Ready    control-plane,master   18d   v1.27.2
+worker1  Ready    &lt;none&gt;    18d   v1.27.2
+worker2  Ready    &lt;none&gt;    18d   v1.27.2
+
+2. Disable pod scheduling on the worker nodes with the {{sudo kubectl cordon &lt;worker1-name&gt; &lt;worker2-name&gt;}} command.
+
+3. Verify pod scheduling is disabled on the worker nodes:
+$ sudo kubectl get nodes
+NAME               STATUS   ROLES                  AGE   VERSION
+master1  Ready    control-plane,master   18d   v1.27.2
+worker1  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
+worker2  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
+
+4. Delete the lcm-executor pod with the {{delete pod netq-lcm-executor-deploy-&lt;name&gt;}} command, retrieving the full lcm-executor pod name from the output of {{sudo kubectl get pods -o wide | grep lcm-executor}}.
+
+5. Verify the lcm-executor pod is now scheduled on the master node with the {{sudo kubectl get pods -o wide | grep lcm-executor}} command.
+
+6. Reenable scheduling on worker nodes with the {{sudo kubectl cordon &lt;worker1-name&gt; &lt;worker2-name&gt;}} command.
+
+7. Run your LCM discovery again.</td>
+<td>4.7.0-4.8.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3530739</td>
-<td>Queue histogram data received from switches might encounter a delay before appearing in the NetQ UI.</td>
-<td>4.7.0</td>
+<td>3649629</td>
+<td>When you upgrade an on-premises NetQ VM from version 4.7.0 to 4.8.0, the upgrade process might take longer than 4 hours.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3644644</td>
+<td>When you perform an LCM upgrade of Cumulus Linux on a switch using the {{netq lcm upgrade cl-image}} CLI command, an error message of {{NetQ cloud token invalid}} is displayed though the upgrade completes successfully. This issue is not encountered when using the NetQ LCM UI to perform the upgrade.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3633458</td>
+<td>The legacy topology diagram might categorize devices into tiers incorrectly. To work around this issue, use the updated topology diagram by selecting Topology Beta in the NetQ 4.8.0 UI.</td>
+<td>4.7.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3632783</td>
+<td>LCM upgrades of Cumulus Linux fail when using an on-switch OPTA and in-band management.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3632378</td>
+<td>After you upgrade your on-premises NetQ VM from version 4.7.0 to 4.8.0, NIC telemetry using the Prometheus adapter is not collected. To work around this issue, run the following commands on your NetQ VM:
+
+sudo kubectl set image deployment/netq-prom-adapter netq-prom-adapter=docker-registry:5000/netq-prom-adapter:4.8.0
+sudo kubectl set image deployment/netq-prom-adapter prometheus=docker-registry:5000/prometheus-v2.41.0:4.8.0</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3613811</td>
+<td>LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the {{mgmt}} VRF on Cumulus Linux switches when interface eth0 is in use.</td>
+<td>4.8.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3435373</td>
-<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command fail with the following message: 
+<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades might fail with the following message: 
 
 
 Job upgrade failed or timed out.
 
 
 To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.</td>
-<td>4.5.0-4.7.0</td>
+<td>4.5.0-4.8.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3429528</td>
 <td>EVPN and RoCE validation cards in the NetQ UI might not display data when Cumulus Linux switches are configured with high VNI scale.</td>
-<td>4.6.0-4.7.0</td>
+<td>4.6.0-4.8.0</td>
 <td></td>
 </tr>
 <tr>
@@ -46,93 +104,45 @@ To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.
    torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021
                                                          torc-21:vx-282 and torc-11:peerlink-3
    </td>
-<td>4.1.0-4.7.0</td>
+<td>4.1.0-4.8.0</td>
 <td></td>
 </tr>
 </table>
-<table name="Fixed Issues in 4.7.0">
+<table name="Fixed Issues in 4.8.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
 </tr>
 <tr>
-<td>3491935</td>
-<td>NetQ might generate continuous TCA events for the NetQ VM squashfs mounts when disk utilization TCA rules are configured for all hosts.  </td>
-<td>4.5.0-4.6.0</td>
+<td>3634648</td>
+<td>The topology graph might show unexpected connections when devices in the topology do not have LLDP adjacencies.</td>
+<td></td>
 </tr>
 <tr>
-<td>3454057</td>
-<td>When you configure more than one TCA rule referencing the same TCA event type, adding additional TCA rules fails with the following message:
-
-Failed to add/update TCA http status_code: 409</td>
-<td>4.5.0-4.6.0</td>
+<td>3575935</td>
+<td>When you upgrade to NetQ 4.7.0, configured premises names might get reset to the default name {{OPID0}}.</td>
+<td>4.7.0</td>
 </tr>
 <tr>
-<td>3448057</td>
-<td>NetQ NTP validations will report time syncronization failures for switches running the NTP service in the default VRF.</td>
-<td>4.5.0-4.6.0</td>
+<td>3575934</td>
+<td>When you upgrade to NetQ 4.7.0, the password for the {{admin}} user is reset to the default password.</td>
+<td>4.7.0</td>
 </tr>
 <tr>
-<td>3446351</td>
-<td>When you perform an apt upgrade from NetQ 4.5.0 to version 4.6.0, the {{sudo apt upgrade}} command fails with the following message: 
-
-
-Setting up shim-signed (1.40.9+15.7-0ubuntu1) ...
-
-mount: /var/lib/grub/esp: special device /dev/vda15 does not exist.
-
-dpkg: error processing package shim-signed (--configure):
-
-installed shim-signed package post-installation script subprocess returned error exit status 32
-
-Errors were encountered while processing:
-
-shim-signed
-
-E: Sub-process /usr/bin/dpkg returned an error code (1)
-
-
-To work around this issue, run the {{sudo apt remove -y shim-signed grub-efi-amd64-bin --allow-remove-essential}} command and rerun the {{sudo apt upgrade}} command.</td>
-<td>4.5.0-4.6.0</td>
+<td>3555031</td>
+<td>NetQ incorrectly reports a low health SSD event on SN5600 switches. To work around this issue, configure an event suppression rule for {{ssdutil}} messages from SN5600 switches in your network.</td>
+<td>4.7.0</td>
 </tr>
 <tr>
-<td>3442456</td>
-<td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
-<td>4.2.0-4.6.0</td>
+<td>3549877</td>
+<td>NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes.</td>
+<td>4.6.0-4.7.0</td>
 </tr>
 <tr>
-<td>3436299</td>
-<td>RoCE validations might not display data in the NetQ UI and CLI for Cumulus Linux switches when the NVUE service is not running. This issue will resolve itself within 24 hours after the next full status update from the NetQ agent. </td>
-<td>4.6.0</td>
-</tr>
-<tr>
-<td>3431386</td>
-<td>When you upgrade your NetQ VM from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command, certain pods are not correctly retagged. To work around this issue, retag and restart the affected pods with the following commands for your deployment after upgrading:
-
-On-premises VMs:
-
-sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
-sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
-sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
-
-sudo docker tag localhost:5000/cp-schema-registry:7.2.0 docker-registry:5000/cp-schema-registry:7.2.0
-sudo docker push docker-registry:5000/cp-schema-registry:7.2.0
-sudo kubectl get pods -n default|grep -i cp-schema-registry|awk '{print $1}'|xargs kubectl delete pod -n default
-
-sudo docker tag localhost:5000/cp-kafka:7.2.0 docker-registry:5000/cp-kafka:7.2.0
-sudo docker push docker-registry:5000/cp-kafka:7.2.0
-sudo kubectl get pods -n default|grep -i kafka-broker|awk '{print $1}'|xargs kubectl delete pod -n default
-
-
-Cloud VMs:
-
-sudo docker tag localhost:5000/fluend-aggregator-opta:1.14.3 docker-registry:5000/fluend-aggregator-opta:1.14.3
-sudo docker push docker-registry:5000/fluend-aggregator-opta:1.14.3
-sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'|xargs kubectl delete pod -n default
-
-</td>
-<td>4.5.0-4.6.0</td>
+<td>3530739</td>
+<td>Queue histogram data received from switches might encounter a delay before appearing in the NetQ UI.</td>
+<td>4.7.0</td>
 </tr>
 </table>
 </tables>

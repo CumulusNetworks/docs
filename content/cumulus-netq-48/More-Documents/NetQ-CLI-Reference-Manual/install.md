@@ -526,7 +526,7 @@ netq install standalone full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.7.0.tgz
+cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz
 ```
 
 ### Related Commands

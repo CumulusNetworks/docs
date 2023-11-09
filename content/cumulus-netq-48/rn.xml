@@ -12,22 +12,19 @@
 
 1. Retrieve your worker node names:
 
-$ sudo kubectl get nodes
-NAME               STATUS   ROLES                  AGE   VERSION
-master1  Ready    control-plane,master   18d   v1.27.2
-worker1  Ready    &lt;none&gt;    18d   v1.27.2
-worker2  Ready    &lt;none&gt;    18d   v1.27.2
-
+	$ sudo kubectl get nodes
+	NAME               STATUS   ROLES                  AGE   VERSION
+	master1  Ready    control-plane,master   18d   v1.27.2
+	worker1  Ready    &lt;none&gt;    18d   v1.27.2
+	worker2  Ready    &lt;none&gt;    18d   v1.27.2
 
 2. Disable pod scheduling on the worker nodes with the {{sudo kubectl cordon &lt;worker1-name&gt; &lt;worker2-name&gt;}} command.
 
 3. Verify pod scheduling is disabled on the worker nodes:
-
-NAME               STATUS   ROLES                  AGE   VERSION
-master1  Ready    control-plane,master   18d   v1.27.2
-worker1  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
-worker2  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
-
+	NAME               STATUS   ROLES                  AGE   VERSION
+	master1  Ready    control-plane,master   18d   v1.27.2
+	worker1  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
+	worker2  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
 
 4. Delete the lcm-executor pod with the {{delete pod netq-lcm-executor-deploy-&lt;name&gt;}} command, retrieving the full lcm-executor pod name from the output of {{sudo kubectl get pods -o wide | grep lcm-executor}}.
 
@@ -37,6 +34,12 @@ worker2  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
 
 7. Run your LCM discovery again.</td>
 <td>4.7.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3649629</td>
+<td>When you upgrade an on-premises NetQ VM from version 4.7.0 to 4.8.0, the upgrade process might take longer than 4 hours.</td>
+<td>4.8.0</td>
 <td></td>
 </tr>
 <tr>
@@ -76,7 +79,7 @@ sudo kubectl set image deployment/netq-prom-adapter prometheus=docker-registry:5
 </tr>
 <tr>
 <td>3435373</td>
-<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command fail with the following message: 
+<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades might fail with the following message: 
 
 
 Job upgrade failed or timed out.
@@ -111,6 +114,11 @@ To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>3634648</td>
+<td>The topology graph might show unexpected connections when devices in the topology do not have LLDP adjacencies.</td>
+<td></td>
 </tr>
 <tr>
 <td>3575935</td>

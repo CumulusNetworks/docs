@@ -7,18 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3605618</td>
-<td>When the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file includes non-existent or partially configured interfaces from the {{/etc/netwwork/interfaces}} file, there is an open file descriptor leak in DHCP Relay; the DHCP Relay service exits and you see error messages. To work around this issue, either clean up the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file to remove non-existent or partially configured interfaces from the {{/etc/network/interfaces}} file or correct the {{/etc/network/interfaces}} file to have a complete configuration for all interfaces defined in the {{INTF_CMD}} list in the {{/etc/default/isc-dhcp-relay}} file.</td>
-<td>4.3.0-4.4.5</td>
+<td>3647731</td>
+<td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
+Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
+For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
+<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3544701</td>
-<td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
-
-% AS specified for local as is the same as the remote as and this is not allowed.
-
-This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
+<td>3647424</td>
+<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
 <td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
@@ -221,12 +219,6 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <tr>
 <td>3267353</td>
 <td>In a QinQ configuration, if the VLAN priority is a non-zero value, double-tagged packets are translated to triple-tagged packets. </td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3236365</td>
-<td>When you run docker commands, the command process might crash. The crash can occur during the {{apt upgrade}} process, where you can run docker commands implicitly. To work around this issue, run {{ulimit -v unlimited}} before running docker commands or   running {{apt upgrade}} to upgrade to Cumulus Linux 43.1.</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>

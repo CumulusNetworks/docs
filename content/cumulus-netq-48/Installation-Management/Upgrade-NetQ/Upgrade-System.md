@@ -133,6 +133,8 @@ sudo systemctl restart kubelet
 
 Confirm that the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
 
+5. Confirm that the NetQ CLI is {{<link url=Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
+
 #### Upgrade Using the NetQ CLI
 
 Run the appropriate commands for your current version and deployment type:

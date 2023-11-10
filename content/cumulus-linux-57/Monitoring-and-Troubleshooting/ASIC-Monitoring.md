@@ -18,7 +18,7 @@ You can collect the following type of statistics with the ASIC monitoring tool:
 - Dropped packet, pause frame, and ECN-marked packet counts
 - Buffer congestion occupancy per port, priority and buffer pool, and at input and output ports
 
-## Collecting Queue Lengths in Histograms
+## Histogram Collection Example
 
 The NVIDIA Spectrum ASIC provides a mechanism to measure and report egress queue lengths in histograms (a graphical representation of data, which it divides into intervals or bins). You can configure the ASIC to measure up to 64 egress queues. Each queue reports through a histogram with 10 bins, where each bin represents a range of queue lengths.
 
@@ -49,56 +49,89 @@ The following illustration demonstrates a histogram showing how many times the q
 
 ## Configure ASIC Monitoring
 
-To configure ASIC monitoring, you need to specify:
+To configure ASIC monitoring, you specify:
 - The type of data to collect.
-- The switch ports to monitor.
-- How and when to start reading the ASIC (when the switch reaches a specific queue length or number of dropped packets).
-- What actions to take (create a snapshot file, send a message to the `/var/log/syslog` file, or collect more data).
+- The switch ports to monitor. For the egress queue length histogram, you can specify the traffic classes you want to monitor for a port or range of ports. For the ingress queue length histogram, you can specify the priority groups you want to monitor for a port or range of ports.
+- How and when to start reading the ASIC: at a specific queue length, number of packets or bytes received or transmitted.
+- What actions to take: create a snapshot file, send a message to the `/var/log/syslog` file, or both.
 
-{{< tabs "TabID157 ">}}
+### Enable ASCI Monitoring
+
+To enable ASIC monitoring:
+
+{{< tabs "TabID62 ">}}
 {{< tab "NVUE Commands ">}}
-
-Enable ASIC monitoring and configure the monitoring settings.
-
-The following table describes the ASIC monitor settings.
-
-| Settings | Description |
-| -------- | ----------- |
-| snapshot-file name| Specifies the name for the snapshot file. All snapshots use this name, with a sequential number appended to it. See the `snapshot-file count`, below. The default location and file name is `/var/lib/cumulus/histogram_stats`.|
-| snapshot-file count | The number of snapshots that you can create before the first snapshot file is overwritten. For example, if you set the snapshot file count to 64, the first snapshot file is named `histogram_stats_0` and the 64th snapshot is named `histogram_stats_63`. When the 65th snapshot is taken, the original snapshot file (`histogram_stats_0`) is overwritten and the sequence restarts. The default value is 64.**Note**: While more snapshots provide you with more data, they can occupy a lot of disk space on the switch.|
-| snapshot-interval | How often (in seconds) to write to a snapshot file. The default value is 1 second. |
-| bin-min-boundary | The minimum boundary size for the histogram in bytes. This number must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. The default value is 960 bytes.|
-| histogram-size | The size of the histogram in bytes. Adding this number and the `bin-min-boundary` value together produces the maximum boundary size. These values represent the range of queue lengths per bin. The default value is 12288 bytes. |
-| sample-interval | The sampling time of the histogram in nanoseconds. The default value is 1024 nanoseconds. |
-| log threshold| The size in bytes that the queue must reach or the number of counters before sending a message to the `/var/log/syslog` file. |
-
-The following example:
-- Enables ASIC monitoring.
-- Configures egress queue length histograms to collect every second for all traffic classes on all ports.
-- Writes the results to the `/var/lib/cumulus/histogram_stats` snapshot file.
-- Overwrites the first snapshot file when the file count reaches 300.
-- Configures the size of the histogram to 12288 bytes, the minimum boundary to 960 bytes, and the sampling time to 1024 nanoseconds.
-- Configures Cumulus Linux to send a message to the `/var/log/syslog` file when the size of the queue reaches 500 bytes.
 
 ```
 cumulus@switch:~$ nv set service telemetry enable
-cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
-cumulus@switch:~$ nv set service telemetry snapshot-file count 300
-cumulus@switch:~$ nv set service telemetry snapshot-interval 1s
-cumulus@switch:~$ nv set service telemetry histogram egress-buffer bin-min-boundary 960 
-cumulus@switch:~$ nv set service telemetry histogram egress-buffer histogram-size 12288 
-cumulus@switch:~$ nv set service telemetry histogram egress-buffer sample-interval 1024
-cumulus@switch:~$ nv config apply
 ```
-
-For additional examples, see below.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 The `asic-monitor` service manages the ASIC monitoring tool (`systemd` manages the `asic-monitor` service). The `asic-monitor` service reads the `/etc/cumulus/datapath/monitor.conf` configuration file to determine what statistics to collect and when to trigger. The service always starts; however, if the configuration file is empty, the service exits.
 
-To configure ASIC monitoring, edit settings in the `/etc/cumulus/datapath/monitor.conf` file, then restart the `asic-monitor` service with the `systemctl restart asic-monitor.service` command. The `asic-monitor` service reads the new configuration file and then runs until you stop the service with the `systemctl stop asic-monitor.service` command.
+{{< /tab >}}
+{{< /tabs >}}
+
+### Histogram Settings
+
+Configure the histogram type (the type of data you want to collect), the ports you want the histogram to monitor, the sampling time of the histogram, the histogram size, and the minimum boundary size for the histogram.
+
+{{< tabs "TabID81 ">}}
+{{< tab "NVUE Commands ">}}
+
+- The histogram type can be `egress-buffer`, `ingress-buffer`, or `counter`.
+- To monitor all ports, use the nv `set service telemetry histogram <type>` command. To specify a port or range of ports, usethe `nv set interface <interface> telemetry histogram <type>` command.
+  - For the ingress queue length histogram, you can monitor specific priority groups for a port or range of ports.
+  - For the egress queue length histogram, you can specify specific traffic classes for a port or range of ports.
+  - For the counter histogram, you can specify a counter-type for a port or range of ports: `tx-packet`, `rx-packet`, `tx-byte`, `rx-byte`.
+- The histogram size. Adding this number and the `bin-min-boundary` value together produces the maximum boundary size. Thesevalues represent the range of queue lengths per bin. The default value is 12288 bytes.
+- The value for the minimum boundary size must be a multiple of 96. Adding this number to the size of the histogram produces themaximum boundary size. These values represent the range of queue lengths per bin. The default minimum boundary size is 960 bytes.
+- The default value for the sampling time is 1024 nanoseconds.
+
+The following example configures the egress queue length histogram and sets the miminimum boundary size to 960, the histogramsize to 12288, and the sampling interval to 1024. The histogram monitors all ports:
+```
+cumulus@switch:~$ nv set service telemetry histogram egress-buffer bin-min-boundary 960 
+cumulus@switch:~$ nv set service telemetry histogram egress-buffer histogram-size 12288 
+cumulus@switch:~$ nv set service telemetry histogram egress-buffer sample-interval 1024
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures the ingress queue length histogram and sets the miminimum boundary size to 960, the histogramsize to 12288, and the sampling interval to 1024. The histogram monitors priority group 0 on ports 1 through 8 and prioritygroup 1 on ports 9 through 16:
+
+```
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 bin-min-boundary 960
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 histogram-size 12288
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 sample-interval 1024
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 bin-min-boundary 960
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 histogram-size 12288
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 sample-interval 1024
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures the counter histogram and sets the miminimum boundary size to 960, the histogram size to 12288,and the sampling interval to 1024. The histogram monitors all counters:
+
+```
+cumulus@switch:~$ nv set service telemetry histogram counter bin-min-boundary 1000
+cumulus@switch:~$ nv set service telemetry histogram counter histogram-size 1000
+cumulus@switch:~$ nv set service telemetry histogram countersample-interval 1024
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures the counter histogram and sets the miminimum boundary size to 960, the histogram size to 12288,and the sampling interval to 1024. The histogram monitors all received packets on ports 1 through 8:
+
+```
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet bin-min-boundary 1000
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet histogram-size 1000
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet sample-interval 1024
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit settings in the `/etc/cumulus/datapath/monitor.conf` file, then restart the `asic-monitor` service with the `systemctl restart asic-monitor.service` command. The `asic-monitor` service reads the new configuration file and then runs until you stop the service with the `systemctl stop asic-monitor.service` command.
 
 The following table describes the ASIC monitor settings.
 
@@ -110,12 +143,7 @@ The following table describes the ASIC monitor settings.
 | `<port_group_name>.cos_list` | For histogram monitoring, each CoS (Class of Service) value in the list has its own histogram on each port. The global limit on the number of histograms is an average of one histogram per port.<br><br>Example:<pre>monitor.histogram_pg.cos_list = [0]</pre> |
 | `<port_group_name>.trigger_type` | Specifies the type of trigger that initiates data collection. The only option is timer. At least one port group must have a configured timer, otherwise no data is ever collected.<br><br>Example:<pre>monitor.histogram_pg.trigger_type = timer</pre> |
 | `<port_group_name>.timer` | Specifies the frequency at which data collects; for example, a setting of 1s indicates that data collects one time per second. You can set the timer to the following:<br>1 to 60 seconds: 1s, 2s, and so on up to 60s<br>1 to 60 minutes: 1m, 2m, and so on up to 60m<br>1 to 24 hours: 1h, 2h, and so on up to 24h<br>1 to 7 days: 1d, 2d and so on up to 7d<br><br>Example:<pre>monitor.histogram_pg.timer = 4s</pre> |
-| `<port_group_name>.action_list` | Specifies one or more actions that occur when data collects:<br>`snapshot` writes a snapshot of the data collection results to a file. If you specify this action, you must also specify a snapshot file (described below). You can also specify a threshold that initiates the snapshot action.<br><br>Example:<pre>monitor.histogram_pg.action_list = [snapshot]<br>`monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats`</pre>`collect` gathers additional data. If you specify this action, you must also specify the port groups for the additional data you want to collect.<br><br>Example:<pre>monitor.histogram_pg.action_list = [collect<br>monitor.histogram_pg.collect.port_group_list = [buffers_pg,all_packet_pg]</pre>`log` sends a message to the `/var/log/syslog` file. If you specify this action, you must also specify a threshold that initiates the log action.<br>Example:<pre>monitor.histogram_pg.action_list = [log]<br>monitor.histogram_pg.log.queue_bytes = 500</pre>You can use all three of these actions in one monitoring step. For example<pre>monitor.histogram_pg.action_list = [snapshot,collect,log]</pre> **Note**: If an action appears in the action list but does not have the required settings (such as a threshold for the log action), the ASIC monitor stops and reports an error. |
-| `<port_group_name>.snapshot.file` | Specifies the name for the snapshot file. All snapshots use this name, with a sequential number appended to it. See the `snapshot.file_count` setting.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats</pre> |
-| `<port_group_name>.snapshot.file_count` | <!-- vale off -->Specifies the number of snapshots that can be created before the first snapshot file is overwritten. In the following example, because the snapshot file count is set to 64, the first snapshot file is named histogram_stats_0 and the 64th snapshot is named histogram_stats_63. When the 65th snapshot is taken, the original snapshot file (histogram_stats_0) is overwritten and the sequence restarts.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file_count = 64</pre>**Note**: While more snapshots provide you with more data, they can occupy a lot of disk space on the switch.<!-- vale on --> |
 | `<port_group_name>.<action>.queue_bytes` | *For histogram monitoring*.<br><br>Specifies a threshold for the histogram monitor. This is the length of the queue in bytes that initiates a specified action (snapshot, log, collect).<br><br>Examples:<pre>monitor.histogram_pg.snapshot.queue_bytes = 500<br>monitor.histogram_pg.log.queue_bytes = 500<br>monitor.histogram_pg.collect.queue_bytes = 500</pre> |
-| `<port_group_name>.<action>.packet_error_drops` | *For monitoring packet drops due to error*.<br><br>Specifies a threshold for the packet drops due to error monitor. This is the number of packet drops due to error that initiates a specified action (snapshot, log, collect).<br><br>Examples:<pre>monitor.discards_pg.snapshot.packet_error_drops = 500<br>monitor.discards_pg.log.packet_error_drops = 500<br>monitor.discards_pg.collect.packet_error_drops = 500</pre> |
-| `<port_group_name>.<action>.packet_congestion_drops` | *For monitoring packet drops due to buffer congestion*.<br><br>Specifies a threshold for the packet drops due to buffer congestion monitor. This is the number of packet drops due to buffer congestion that initiates a specified action (log or collect).<br><br>Examples:<pre>monitor.buffers_pg.log.packet_congestion_drops = 500<br>monitor.buffers_pg.snapshot.packet_congestion_drops = 500<br>monitor.buffers_pg.collect.packet_congestion_drops = 500</pre> |
 | `<port_group_name>.histogram.minimum_bytes_boundary` | *For histogram monitoring*.<br><br>The minimum boundary size for the histogram in bytes. On a Spectrum switch, this number must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin.<br><br>Example:<pre>monitor.histogram_pg.histogram.minimum_bytes_boundary = 960</pre> |
 | `<port_group_name>.histogram.histogram_size_bytes` | *For histogram monitoring*.<br><br>The size of the histogram in bytes. Adding this number and the minimum_bytes_boundary value together produces the maximum boundary size. These values represent the range of queue lengths per bin.<br><br>Example:<pre>monitor.histogram_pg.histogram.histogram_size_bytes = 12288</pre> |
 | `<port_group_name>.histogram.sample_time_ns` | *For histogram monitoring*.<br><br>The sampling time of the histogram in nanoseconds.<br><br>Example:<pre>monitor.histogram_pg.histogram.sample_time_ns = 1024</pre> |
@@ -123,6 +151,58 @@ The following table describes the ASIC monitor settings.
 {{%notice note%}}
 Restarting the `asic-monitor` service does not disrupt traffic or require you to restart `switchd`. The switch enables the 
 {{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Snapshots
+
+To create a snapshot, you need to set:
+- How often to write to a snapshot file. The default value is 1 second.
+- The snapshot file name and location. The default location and file name is `/var/lib/cumulus/histogram_stats`.
+- The number of snapshots that you can create before the first snapshot file is overwritten. For example, if you set thesnapshot file count to 30, the first snapshot file is named `histogram_stats_0` and the 30th snapshot is named`histogram_stats_30`. When the 30th snapshot is taken, the original snapshot file (`histogram_stats_0`) is overwritten and thesequence restarts. The default value is 64.
+
+{{%notice note%}}
+While more snapshots provide you with more data, they can occupy a lot ofdisk space on the switch.
+{{%/notice%}}
+
+The following example creates the `/var/lib/cumulus/histogram_stats` snapshot every 5 seconds. The number of snapshots that you can create before the first snapshot file is overwritten is set to 30.
+
+{{< tabs "TabID171 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
+cumulus@switch:~$ nv set service telemetry snapshot-file count 30
+cumulus@switch:~$ nv set service telemetry snapshot-interval 5s
+nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+| Setting| Description|
+|------- |----------- |
+| `<port_group_name>.action_list` | Specifies one or more actions that occur when data collects:<br>`snapshot` writes a snapshot of the data collection results to a file. If you specify this action, you must also specify a snapshot file (described below). You can also specify a threshold that initiates the snapshot action.<br><br>Example:<pre>monitor.histogram_pg.action_list = [snapshot]<br>`monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats`</pre>`collect` gathers additional data. If you specify this action, you must also specify the port groups for the additional data you want to collect.<br><br>Example:<pre>monitor.histogram_pg.action_list = [collect<br>monitor.histogram_pg.collect.port_group_list = [buffers_pg,all_packet_pg]</pre>`log` sends a message to the `/var/log/syslog` file. If you specify this action, you must also specify a threshold that initiates the log action.<br>Example:<pre>monitor.histogram_pg.action_list = [log]<br>monitor.histogram_pg.log.queue_bytes = 500</pre>You can use all three of these actions in one monitoring step. For example<pre>monitor.histogram_pg.action_list = [snapshot,collect,log]</pre> **Note**: If an action appears in the action list but does not have the required settings (such as a threshold for the log action), the ASIC monitor stops and reports an error. |
+| `<port_group_name>.snapshot.file` | Specifies the name for the snapshot file. All snapshots use this name, with a sequential number appended to it. See the `snapshot.file_count` setting.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats</pre> |
+| `<port_group_name>.snapshot.file_count` | Specifies the number of snapshots that can be created before the first snapshot file is overwritten. In the following example, because the snapshot file count is set to 64, the first snapshot file is named histogram_stats_0 and the 64th snapshot is named histogram_stats_63. When the 65th snapshot is taken, the original snapshot file (histogram_stats_0) is overwritten and the sequence restarts.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file_count = 64</pre>**Note**: While more snapshots provide you with more data, they can occupy a lot of disk space on the switch. |
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Log files
+
+The following example sends a message to the the `/var/log/syslog` file after the ingress queue length for priority-group 1 on ports swp9 through swp16 reaches 5000 bytes:
+
+{{< tabs "TabID197 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 log threshold 5000
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -517,7 +597,48 @@ Certain actions require additional settings. For example, if you specify the `sn
 A snapshot action writes a snapshot of the current state of the ASIC to a file. Because parsing the file and finding the information can be tedious, you can use a third-party analysis tool to analyze the data in the file. The following example shows a snapshot of queue lengths.
 
 ```
-{"timestamp_info": {"start_datetime": "2017-03-16 21:36:40.775026", "end_datetime": "2017-03-16 21:36:40.775848"}, "buffer_info": null, "packet_info": null, "histogram_info": {"swp2": {"0": 55531}, "swp32": {"0": 48668}, "swp1": {"0": 64578}}}
+{ 
+    "timestamp_info": { 
+        "start_datetime": "2017-03-16 21:36:40.775026", 
+        "end_datetime": "2017-03-16 21:36:40.775848" 
+    },  
+    "buffer_info": null,  
+    "packet_info": null, 
+    "histogram_info_tc": { 
+        "swp1": { 
+            "0": {"0": 10000}, 
+        }, 
+        "swp2": { 
+            "0": {"0": 11000}, 
+            "1": {"0": 12000}, 
+        }, 
+        "swp3": { 
+            "0": {"0": 13000}, 
+        }, 
+    }, 
+    "histogram_info_pg": { 
+        "swp1": { 
+            "0": {"0": 10000}, 
+        }, 
+        "swp2": { 
+            "0": {"0": 11000}, 
+            "1": {"0": 12000}, 
+        }, 
+        "swp3": { 
+            "0": {"0": 13000}, 
+        }, 
+    }, 
+   "histogram_info_counter": { 
+        "swp1": { 
+            "0": {"0": 10000}, 
+        }, 
+        "swp2": { 
+            "0": {"0": 11000}, 
+            "1": {"0": 12000}, 
+        },
+    }, 
+
+} 
 ```
 
 ## Example Log Message

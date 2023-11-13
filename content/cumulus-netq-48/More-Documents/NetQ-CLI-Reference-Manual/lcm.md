@@ -126,7 +126,7 @@ None
 ```
 cumulus@switch:~$ netq lcm add default-version cl-images 5.5.0
 
-cumulus@switch:~$ netq lcm add default-version netq-images 4.7.0
+cumulus@switch:~$ netq lcm add default-version netq-images 4.8.0
 ```
 
 ### Related Commands
@@ -1167,13 +1167,13 @@ netq lcm show switches
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show switches cl-version 5.2.0
+cumulus@switch:~$ netq lcm show switches cl-version 5.5.0
 Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Credential Profile                   Last Changed
 ----------------- ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ------------------------------------ -------------------------
-noc-se                       192.168.0.15              00:01:00:00:12:00  x86_64   5.2.0       4.7.0-cl4u43~ []                           Netq-Default                         Fri Feb  3 20:50:40 2023
+noc-se                       192.168.0.15              00:01:00:00:12:00  x86_64   5.5.0       4.8.0-cl4u44~ []                           Netq-Default                         Fri Feb  3 20:50:40 2023
                                                                                                1675445092.42
                                                                                                fbac0a
-spine-1                      192.168.0.15              00:01:00:00:13:00  x86_64   5.2.0       4.7.0-cl4u43~ []                           n-2000                               Fri Feb  3 22:28:25 2023
+spine-1                      192.168.0.15              00:01:00:00:13:00  x86_64   5.5.0       4.8.0-cl4u44~ []                           n-2000                               Fri Feb  3 22:28:25 2023
                                                                                                1675445092.42
                                                                                                fbac0a
 ```
@@ -1319,7 +1319,6 @@ cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl530-nq450 netq-
 
 - `netq lcm show upgrade-jobs netq-image`
 
-- - -
 
 <!--NVLink command
 ## netq lcm upgrade nvos-image

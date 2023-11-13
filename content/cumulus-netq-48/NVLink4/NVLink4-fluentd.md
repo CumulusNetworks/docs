@@ -46,7 +46,7 @@ Examples for configuring one switch to delete all fluent destinations:
 ```
 ## NVLink4 Fluentd Message Examples
 
-The following examples show NVLink4 Fluentd message output in JSON format: 
+Expand the dropdown menu to view NVLink4 Fluentd message output in JSON format: 
 
 {{< expand "JSON examples" >}}
 ```
@@ -478,6 +478,303 @@ NvlEvents
   ]
 }
 ```
+{{< /expand >}}
+<br>
+## Fluentd Message Reference
+
+{{< expand "Fluentd message reference" >}}
+
+**General**
+
+ | Field Name |Type | Description |
+ |--- | --- | --- | 
+ | date | Double | Message timestamp by fluent-bit | 
+ | aid | String | Agent ID/hostname | 
+ | domain | String | Domain name | 
+ | message_type | String | Message type (node, inventory, link, etc.) | 
+ | ts | Long | Message timestamp | 
+ | trans_mode | String | Transition mode (full, partial, first segment, mid segment, last segment) | 
+ | message | Object | Message content for the message type | 
+
+ **Node**
+ | Field Name |Type | Description |
+ |--- | --- | --- | 
+ | domain | String | Domain name | 
+ | deleted | Boolean | Record deletion status | 
+ | hostname | String | Hostname | 
+ | last_reinit | Long | Last system initialization | 
+ | lastboot | Long | Last system reboot | 
+ | ntp_state | String | NTP daemon state | 
+ | sys_uptime | Long | System uptime | 
+ | timestamp | Long | Inner message timestamp | 
+ | version | String | Agent version | 
+
+
+**Inventory**
+ | Field Name |Type | Description |
+ |--- | --- | --- | 
+ | active | Boolean | Record activity status | 
+ | agent_version | String | Agent version | 
+ | asic_core_bw | String | (not supported) | 
+ | asic_data | String | Additional ASIC data (not supported) | 
+ | asic_model | String | ASIC model | 
+ | asic_model_id | String | ASIC model ID (system type) | 
+ | asic_ports | String | ASIC ports | 
+ | asic_vendor | String | ASIC vendor (hard-coded NVIDIA) | 
+ | cpu_arch | String | CPU architecture | 
+ | cpu_data | String | (not supported) | 
+ | cpu_max_freq | String | CPU max frequency | 
+ | cpu_model | String | CPU model | 
+ | cpu_nos | String | Number of CPU nos | 
+ | deleted | Boolean | Record deletion status | 
+ | disk_data | String | Additional disk data information | 
+ | disk_total_size | String | Disk total size | 
+ | domain | String | Domain name | 
+ | hostname | String | Hostname | 
+ | license_data | String | License information | 
+ | license_state | String | License state | 
+ | memory_data | String | Additional memory data information (not supported) | 
+ | memory_total_size | String | Memory total size on the switch | 
+ | message_type | String | Message type | 
+ | os_name | String | Operating system name | 
+ | os_version | String | Operating system version | 
+ | os_version_id | String | Operating system version summary | 
+ | platform_base_mac | String | Platform management MAC address | 
+ | platform_label_revision | String | Platform label revision (not supported) | 
+ | platform_mfg_date | String | Platform manufacture data (not supported) | 
+ | platform_model | String | Platform model | 
+ | platform_part_number | String | Platform part number (not supported) | 
+ | platform_serial_number | String | Platform serial number (not supported) | 
+ | platform_vendor | String | Platform vendor (hard-coded NVIDIA) | 
+ | timestamp | Long | Message timestamp | 
+
+ **ResourceUtil**
+ | Field Name |Type | Description |
+ |--- | --- | --- | 
+ | active | Boolean | Record activity status | 
+ | cpu_utilization | String | Total CPU utilization as a percentage | 
+ | deleted | Boolean | Record deletion status | 
+ | mem_utilization | String | Show memory utilization as a percentage | 
+ | message_type | String | Message type | 
+ | timestamp | Long | Message timestamp | 
+ | disk_utilization | List | Show disk utilization as a percentage | 
+ | "disk_utilization" Item start |  |  | 
+ | percent | Double | Percentage of used disk space | 
+ | total | Long | Total disk utilization in bytes | 
+ | used | Long | Used disk utilization in bytes | 
+ | is_disk_read_only | Boolean | Read-only status (always true) | 
+
+ **Port**
+ | Field Name |Type | Description |
+ |--- | --- | --- | 
+ | active | Boolean | Record activity status | 
+ | connector | String | Interface connector (not supported) | 
+ | deleted | Boolean | Record deletion status | 
+ | hostname | String | Hostname | 
+ | identifier | String | Interface identifier (not supported) | 
+ | length | String |  | 
+ | ifname | String | Interface name | 
+ | message_type | String | Message type | 
+ | part_number | String | Interface part number (not supported) | 
+ | serial_number | String | Interface serial number (not supported) | 
+ | speed | String | Interface port speed | 
+ | state | String | Interface operational state | 
+ | timestamp | Long | Message timestamp | 
+ | transceiver | String | Transceiver information (not supported) | 
+ | vendor_name | String | Interface vendor (not supported) | 
+
+
+ **Fan**
+  | Field Name |Type | Description |
+ |--- | --- | --- | 
+ | active | Boolean | Record activity status | 
+ | deleted | Boolean | Record deletion status | 
+ | hostname | String | Hostname | 
+ | message_type | String | Message type | 
+ | s_input | String | Fan source input | 
+ | s_name | String | Fan source name | 
+ | s_prev_state | String | Fan previous state | 
+ | s_state | String | Fan current state | 
+ | timestamp | Long | Message timestamp | 
+ | Temp |  |  | 
+ | active | Boolean | Record activity status | 
+ | deleted | Boolean | Record deletion status | 
+ | hostname | String | Hostname | 
+ | message_type | String | Message type | 
+ | s_desc | String | Temperature description | 
+ | s_input | String | Temperature input | 
+ | s_name | String | Temperature name | 
+ | s_prev_state | String | Temperature previous state | 
+ | s_state | String | Temperature current state | 
+ | timestamp | Long | Message timestamp | 
+
+
+ **Power**
+  | Field Name |Type | Description |
+ |--- | --- | --- | 
+ | active | Boolean | Record activity status | 
+ | deleted | Boolean | Record deletion status | 
+ | hostname | String | Hostname | 
+ | message_type | String | Message type | 
+ | s_adapter_name | String | Message adapter name | 
+ | timestamp | Long | Message timestamp | 
+
+ **PSU**
+ | Field Name |Type | Description |
+ |--- | --- | --- | 
+ | active | Boolean | Record activity status | 
+ | deleted | Boolean | Record deletion status | 
+ | hostname | String | Hostname | 
+ | message_type | String | Message type | 
+ | s_name | String | PSU name | 
+ | s_prev_state | String | PSU previous state | 
+ | s_state | String | PSU current state | 
+ | timestamp | Long | Message timestamp | 
+
+
+ **Link**
+  | Field Name |Type | Description |
+ |--- | --- | --- | 
+ | active | Boolean | Record activity status | 
+ | admin_state | String | Interface admin state | 
+ | deleted | Boolean | Record deletion status | 
+ | down_reason | String | Interface down reason | 
+ | hostname | String | Hostname | 
+ | ifalias | String | Interface description | 
+ | ifname | String | Interface name | 
+ | kind | String | Interface type | 
+ | managed | String | Interface device is managed | 
+ | master | String | Interface parent device | 
+ | message_type | String | Message type | 
+ | mtu | String | Interface MTU | 
+ | oper_state | String | Interface operational state | 
+ | timestamp | Long | Message timestamp | 
+
+**NvlStats**
+ | Field Name |Type | Description |
+ |--- | --- | --- | 
+ | active | Boolean | Record activity status | 
+ | crc_errors | Long | CRC errors counter | 
+ | deleted | Boolean | Record deletion status | 
+ | hostname | String | Hostname | 
+ | ifname | String | Interface name | 
+ | message_type | String | Message type | 
+ | rx_all_flits | Long | RX all flits counter | 
+ | rx_data_flits | Long | RX data flits counter | 
+ | timestamp | Long | Message timestamp | 
+ | tx_all_flits | Long | TX all flits counter | 
+ | tx_data_flits | Long | TX data flits counter | 
+ | rx_physical_bit_error_rate | Double | RX physical bit error rate | 
+ | rx_physical_errors_per_lane_0 | Long | RX physical errors lane 0 | 
+ | rx_physical_errors_per_lane_1 | Long | RX physical errors lane 1 | 
+ | rx_crc_bit_error_rate | Double | RX CRC but error rate | 
+ | tx_replay_rate | Double | TX replay rate | 
+ | rx_replay_rate | Double | RX replay rate | 
+ | wait | Long | TX wait counter | 
+
+**NVL device info**
+ | Field Name |Type |Short Description |
+ |--- | --- | --- | 
+ | active | Boolean | Record activity status | 
+ | bind_interface_ip | String | Binded interface IP | 
+ | deleted | Boolean | Record deletion status | 
+ | hostname | String | Hostname | 
+ | log_append_to_log | Boolean | Log appended to log | 
+ | log_level | String | Log level | 
+ | message_type | String | Message type | 
+ | shutdown | String | Shutdown state | 
+ | starting_tcp_port | String | Starting TCP port | 
+ | uid_led_status | String | Current switch LED status | 
+ | state | String | LFM state | 
+ | timestamp | Long | Message timestamp |
+
+ **DOM**
+  | Field Name |Type |Short Description |
+ |--- | --- | --- |  
+ | active | Boolean | Record activity status | 
+ | deleted | Boolean | Record deletion status | 
+ | hostname | String | Hostname | 
+ | identifier | String | Identifier (not supported) | 
+ | ifname | String | Interface name | 
+ | laser_bias_current | Object |  | 
+ | "laser_bias_current" start |  |  | 
+ | Channel 1 | String | Channel 1 | 
+ | Channel 2 | String | Channel 2 | 
+ | Channel 3 | String | Channel 3 | 
+ | Channel 4 | String | Channel 4 | 
+ | Channel 5 | String | Channel 5 | 
+ | Channel 6 | String | Channel 6 | 
+ | Channel 7 | String | Channel 7 | 
+ | Channel 8 | String | Channel 8 | 
+ | "laser_bias_current" end |  |  | 
+ | laser_bias_current_high_alarm_th | String | Laser bias current high alarm threshold | 
+ | laser_bias_current_high_warning_th | String | Laser bias current high warning threshold | 
+ | laser_bias_current_low_alarm_th | String | Laser bias current low alarm threshold | 
+ | laser_bias_current_low_warning_th | String | Laser bias current low warning threshold | 
+ | laser_output_power | Object |  | 
+ | "laser_output_power" start |  |  | 
+ | Channel 1 | String | Channel 1 | 
+ | Channel 2 | String | Channel 2 | 
+ | Channel 3 | String | Channel 3 | 
+ | Channel 4 | String | Channel 4 | 
+ | Channel 5 | String | Channel 5 | 
+ | Channel 6 | String | Channel 6 | 
+ | Channel 7 | String | Channel 7 | 
+ | Channel 8 | String | Channel 8 | 
+ | "laser_output_power" end |  |  | 
+ | laser_output_power_high_alarm_th | String | Laser output power high alarm threshold | 
+ | laser_output_power_high_warning_th | String | Laser output power high warning threshold | 
+ | laser_output_power_low_alarm_th | String | Laser output power low alarm threshold | 
+ | laser_output_power_low_warning_th | String | Laser output power low warning threshold | 
+ | laser_rx_power | Object |  | 
+ | "laser_rx_power" start |  |  | 
+ | Channel 1 | String | Channel 1 | 
+ | Channel 2 | String | Channel 2 | 
+ | Channel 3 | String | Channel 3 | 
+ | Channel 4 | String | Channel 4 | 
+ | Channel 5 | String | Channel 5 | 
+ | Channel 6 | String | Channel 6 | 
+ | Channel 7 | String | Channel 7 | 
+ | Channel 8 | String | Channel 8 | 
+ | "laser_rx_power" end |  |  | 
+ | laser_rx_power_high_alarm_th | String | Laser RX power high alarm threshold | 
+ | laser_rx_power_high_warning_th | String | Laser RX power high warning threshold | 
+ | laser_rx_power_low_alarm_th | String | Laser RX power low alarm threshold | 
+ | laser_rx_power_low_warning_th | String | Laser RX power low warning threshold | 
+ | message_type | String | Message type | 
+ | module_temp | String | Module temperature | 
+ | module_temp_high_alarm_th | String | Module temperature high alarm threshold | 
+ | module_temp_high_warning_th | String | Module temperature high warning threshold | 
+ | module_temp_low_alarm_th | String | Module temperature low alarm threshold | 
+ | module_temp_low_warning_th | String | Module temperature low warning threshold | 
+ | module_voltage | String | Module voltage | 
+ | module_voltage_high_alarm_th | String | Module voltage high alarm threshold | 
+ | module_voltage_high_warning_th | String | Module voltage high warning threshold | 
+ | module_voltage_low_alarm_th | String | Module voltage low alarm threshold | 
+ | module_voltage_low_warning_th | String | Module voltage low warning threshold | 
+ | timestamp | Long |  | 
+
+**MGMT address**
+ | Field Name |Type |Short Description |
+ |--- | --- | --- | 
+ | ifname | String | Interface attached to mgmt address | 
+ | prefix | String | IP address for mgmt address | 
+ | mask | String | Mask for mgmt address | 
+ | vrf | String | VRF for mgmt address | 
+ | is_ipv6 | Boolean | IPv6 address status | 
+
+ **NVL events**
+  | Field Name |Type |Short Description |
+ |--- | --- | --- | 
+ | ASIC | String | ASIC source | 
+ | SXID | String |  | 
+ | Description | String | Event description | 
+ | Severity | String | Event severity | 
+ | InstanceLink | String |  | 
+ | Subinstance | String |  | 
+ | DomainName | String | Domain name | 
+ | timestamp | Long | Event timestamp | 
+
 {{< /expand >}}
 ## Fluentd Collection
 

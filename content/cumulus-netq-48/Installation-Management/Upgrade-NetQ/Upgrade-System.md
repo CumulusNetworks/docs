@@ -9,13 +9,13 @@ This page describes how to upgrade your NetQ virtual machines. Note that the upg
 
 For deployments running:
 
-- 4.7.0 or 4.6.0: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-460-or-470" text="upgrade directly">}} to NetQ 4.8.0
-- 4.5.0, 4.4.1, 4.4.0, or 4.3.0: {{<link title="Back Up and Restore NetQ/" text="back up your NetQ data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.8.0">}}
+- 4.7.0, 4.6.0, or 4.5.0: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-4.7,-4.6,-or-4.5" text="upgrade directly">}} to NetQ 4.8.0
+- 4.4.1, 4.4.0, or 4.3.0: {{<link title="Back Up and Restore NetQ/" text="back up your NetQ data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.8.0">}}
 - 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your NetQ data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.8.0">}}.
 
-## Upgrading from NetQ 4.6.0 or 4.7.0
+## Upgrading from NetQ 4.7, 4.6, or 4.5
 
-You can upgrade directly to NetQ 4.8.0 if your deployment is currently running version 4.6.0 or 4.7.0.
+You can upgrade directly to NetQ 4.8.0 if your deployment is currently running version 4.5.0, 4.6.0 or 4.7.0.
 ### Back up your NetQ Data
 
 Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
@@ -53,11 +53,11 @@ Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back 
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (4.7.0-ub20.04u43~1690981360.9d32c7a0) ...
+    Unpacking netq-agent (4.8.0-ub20.04u44~1699074936.80e664937) ...
     ...
-    Unpacking netq-apps (4.7.0-ub20.04u43~1690981360.9d32c7a0) ...
-    Setting up netq-apps (4.7.0-ub20.04u43~1690981360.9d32c7a0) ...
-    Setting up netq-agent (4.7.0-ub20.04u43~1690981360.9d32c7a0) ...
+    Unpacking netq-apps (4.8.0-ub20.04u44~1699074936.80e664937) ...
+    Setting up netq-apps (4.8.0-ub20.04u44~1699074936.80e664937) ...
+    Setting up netq-agent (4.8.0-ub20.04u44~1699074936.80e664937) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
@@ -133,6 +133,8 @@ sudo systemctl restart kubelet
 
 Confirm that the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
 
+5. Confirm that the NetQ CLI is {{<link url=Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
+
 #### Upgrade Using the NetQ CLI
 
 Run the appropriate commands for your current version and deployment type:
@@ -173,16 +175,46 @@ cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
 
 {{<tab "Standalone">}}
 
+Clear the current install state:
+
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
+cumulus@<hostname>:~$ netq bootstrap reset
 ```
+
+Run the following install command on your NetQ cloud VM with the config key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also {{<link title="Configure Premises" text="obtain the configuration key using the NetQ UI">}}.
+
+```
+cumulus@<hostname>:~$ netq install opta standalone full interface <interface-name> bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
+```
+
+{{%notice note%}}
+You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
+{{%/notice%}}
 
 {{</tab>}}
 
 {{<tab "Cluster">}}
 
+Clear the current install state on your master node:
+
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
+cumulus@<hostname>:~$ netq bootstrap reset
+```
+
+Run the following command on your master node to initialize the cluster. Copy the output of the command to use on your worker nodes:
+
+```
+cumulus@<hostname>:~$ netq install cluster master-init
+   Please run the following command on all worker nodes:
+   netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
+```
+
+Run the `netq install cluster worker-init <ssh-key>` command from the output on each of your worker nodes.
+
+Run the following command on your master NetQ cloud VM using the IP addresses of your worker nodes and the config key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also {{<link title="Configure Premises" text="obtain the configuration key using the NetQ UI">}}.
+
+```
+cumulus@<hostname>:~$ netq install opta cluster full interface <interface-name> bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key <your-config-key> workers <worker-1-ip> <worker-2-ip> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
 ```
 
 {{%notice note%}}
@@ -199,7 +231,7 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 
 {{</tab>}}
 
-{{<tab "Upgrade from NetQ 4.6.0">}}
+{{<tab "Upgrade from NetQ 4.6.0 or 4.5.0">}}
 
 {{<tabs "CLI Upgrade-4.6">}}
 
@@ -333,9 +365,9 @@ Confirm the upgrade was successful:
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.7.0
+    BOOTSTRAP_VERSION=4.8.0
     APPLIANCE_MANIFEST_HASH=8869b5423dfcc441ea56a3c89e680b1b2ad61f6887edccb11676bac893073beb
-    APPLIANCE_VERSION=4.7.0
+    APPLIANCE_VERSION=4.8.0
     APPLIANCE_NAME=NetQ On-premises Appliance
     ```
 {{</tab>}}
@@ -345,9 +377,9 @@ Confirm the upgrade was successful:
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.7.0
-    APPLIANCE_MANIFEST_HASH=0f282bd6eb5ac43c6b7b7a2a0df42281b20912ffead1eb2ba8afafd5a428db7c
-    APPLIANCE_VERSION=4.7.0
+    BOOTSTRAP_VERSION=4.8.0
+    APPLIANCE_MANIFEST_HASH=271f5943ffae42f758fef09bafeb37a63d996bd6e41bf7aeeb3a4d33232f05de
+    APPLIANCE_VERSION=4.8.0
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```
 {{</tab>}}

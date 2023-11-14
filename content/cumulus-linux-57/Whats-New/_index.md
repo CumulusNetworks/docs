@@ -24,7 +24,6 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - {{<link url="MAC-Address-Translation" text="MAC Address Translation">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Shared ECMP containers for adaptive routing">}} to optimize and share resources, and avoid resource exhaustion
 - PTP PPS In or Out Support
-- 3431890 and 3455021 zero down time for config apply/update (FRR and switchd)
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}

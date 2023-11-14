@@ -4,4 +4,7 @@ author: NVIDIA
 weight: 338
 toc: 3
 ---
-This section describes how to configure <span style="background-color:#F5F5DC">[DHCP](## "Dynamic Host Configuration Protocol")</span> relays and <span style="background-color:#F5F5DC">[DHCP](## "Dynamic Host Configuration Protocol")</span> servers.
+This section describes how to configure:
+- {{<link url="DHCP-Relays" text="DHCP relays">}}
+- {{<link url="DHCP-Servers" text="DHCP servers">}}
+- {{<link url="DHCP-Snooping" text="DHCP snooping">}}

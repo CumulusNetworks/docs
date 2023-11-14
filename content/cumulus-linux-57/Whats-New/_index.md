@@ -18,11 +18,11 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 
 ### New Features and Enhancements
 
-- {{<link url="ASIC-Monitoring" text="Buffer and bandwidth histograms">}}
 - {{<link url="802.1X-Interfaces" text="802.1x support">}}
-- {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}} forwarding profile
 - {{<link url="MAC-Address-Translation" text="MAC Address Translation">}}
+- {{<link url="ASIC-Monitoring" text="Updated and new histograms for ASIC monitoring">}}
 - {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Shared ECMP containers for adaptive routing">}} to optimize and share resources, and avoid resource exhaustion
+- {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}} forwarding profile
 - PTP PPS In or Out Support
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}

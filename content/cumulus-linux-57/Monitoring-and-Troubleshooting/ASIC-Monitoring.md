@@ -10,9 +10,9 @@ Cumulus Linux provides an ASIC monitoring tool that collects and distributes dat
 - Packet buffer congestion that might lead to packet drops
 - Network problems with a particular switch, port, or traffic class
 
-Cumulus Linux supports several histograms:
-- The *egress queue length* histogram provides information about egress buffer utilization over time for a specific queue for a port.
-- The *ingress queue lengths* histogram provides information about ingress buffer utilization over time for a specific queue for a port.
+Cumulus Linux provides several histograms:
+- The *egress queue length* histogram provides information about egress buffer utilization over time.
+- The *ingress queue lengths* histogram provides information about ingress buffer utilization over time.
 - The *counter* histogram provides information about bandwidth utilization for a port over time.
 
 ## Histogram Collection Example

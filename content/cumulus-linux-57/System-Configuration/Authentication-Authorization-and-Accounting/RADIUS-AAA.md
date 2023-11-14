@@ -23,11 +23,13 @@ The `nvshow` group includes the `radius_user` account, and the `nvset` and `nvap
 
 ## Required RADIUS Client Configuration
 
-After you install the required RADIUS packages, configure the following required settings on the switch (the RADIUS client).
+After you install the required RADIUS packages, configure the following required settings on the switch (the RADIUS client):
 - Set the IP address or hostname of at least one RADIUS server. You can specify a port for the server (optional). The default port number is 1812.
 - Set the secret key shared between the RADIUS server and client. If you include special characters in the key (such as $), you must enclose the key in single quotes (').
-- Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
-- If you use NVUE commands to configure RADIUS, you must also set the priority for the authentication order for local and RADIUS users, and enable RADIUS.
+- If you use NVUE commands to configure RADIUS, you must also:
+  - Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
+  - Set the priority for the authentication order for local and RADIUS users.
+  - Enable RADIUS.
 
 {{< tabs "TabID41 ">}}
 {{< tab "NVUE Commands ">}}
@@ -74,9 +76,12 @@ The server port number is optional. The system looks up the port in the `/etc/se
 
 ## Optional RADIUS Configuration
 
-You can configure the following optional settings global RADIUS settings and server specific settings:
+You can configure the following optional settings global RADIUS settings and server specific settings.
 
-| Option | Description |
+{{< tabs "TabID34 ">}}
+{{< tab "NVUE Commands ">}}
+
+| Setting | Description |
 | ------ | ----------- |
 | `vrf` | The VRF you want to use to communicate with the RADIUS servers. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. You cannot specify more than one VRF. |
 | `privilege-level` | The minimum privilege level that determines if users can configure the switch with NVUE commands and sudo, or have read-only rights. The default privilege level is 15, which provides full administrator access. This is a global option only; you cannot set the minimum privilege level for specific RADIUS servers.|
@@ -84,9 +89,6 @@ You can configure the following optional settings global RADIUS settings and ser
 | `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
 | `source-ipv4`<br>`source-ipv6`</br>| A specific interface to reach the RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers. |
 | `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. If you configure multiple RADIUS servers, you can enable the debug option globally for all the servers.|
-
-{{< tabs "TabID34 ">}}
-{{< tab "NVUE Commands ">}}
 
 The following example configures global RADIUS settings:
 
@@ -111,6 +113,14 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+| Setting | Description |
+| ------ | ----------- |
+| `vrf` | The VRF you want to use to communicate with the RADIUS servers. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. You cannot specify more than one VRF. |
+| `shell:priv-lvl` | Determines the privilege level for the user on the switch.|
+| `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
+| `source-ip`</br>| A specific IPv4 or IPv6 interface to reach the RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers. |
+| `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. If you configure multiple RADIUS servers, you can enable the debug option globally for all the servers.|
 
 Edit the `/etc/pam_radius_auth.conf` file. An example is shown below.
 

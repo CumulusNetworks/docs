@@ -89,7 +89,7 @@ Now that you have the plugin installed, you need to configure access to the NetQ
 4. Enter *Net-Q* into the **Name** field.
 
 5. Enter the URL used to access the database:
-    - Cloud: *plugin.netq.nvidia.com*
+    - Cloud: *https://plugin.prod.netq.nvidia.com*
     - On-premises: *http://\<hostname-or-ipaddr-of-netq-appl-or-vm\>/plugin*
     - Cumulus in the Cloud (CITC): *plugin.air.netq.nvidia.com*
 

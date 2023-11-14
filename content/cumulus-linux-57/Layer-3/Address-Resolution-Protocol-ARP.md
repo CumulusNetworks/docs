@@ -57,9 +57,7 @@ For example, if you set the `/proc/sys/net/conf/all/arp_ignore` value to *1* and
 The *default* location `/proc/sys/net/ipv4/conf/default/arp*` defines the values for all future IP interfaces. Changing the *default* setting of an ARP parameter does not impact interfaces that already have an IP address. If you make changes to a running system that already has assigned IP addresses, use port-specific settings instead.
 
 {{%notice note%}}
-
 Cumulus Linux copies the value of the *default* parameter to every port-specific location, excluding those that already have an IP address. There is no complicated logic between the *default* setting and the *port-specific* setting (unlike the *all* location).
-
 {{%/notice%}}
 
 To determine the current ARP parameter settings for each of the locations, run the following commands:
@@ -155,7 +153,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the interface and the -v0 interface so that both interfaces do not respond with proxy ARP replies.
+If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the base SVI interface and the -v0 interface so that only one of the two interfaces replies when getting an ARP request. This prevents the v0 interface from proxy replying on behalf of the SVI (and the SVI from proxy replying on behalf of the v0 interface). You can only prevent duplicate replies when the ARP request is for the SVI or the v0 interface directly.
 
 {{< tabs "TabID174 ">}}
 {{< tab "NVUE Commands ">}}

@@ -28,7 +28,7 @@ After you install the required RADIUS packages, configure the following required
 - Set the secret key shared between the RADIUS server and client. If you include special characters in the key (such as $), you must enclose the key in single quotes (').
 - If you use NVUE commands to configure RADIUS, you must also:
   - Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
-  - Set the priority for the authentication order for local and RADIUS users.
+  - Set the priority for the authentication order for local and RADIUS users. You can set a value between 1 and 100. The lower value is the higher priority.
   - Enable RADIUS.
 
 {{< tabs "TabID41 ">}}
@@ -38,7 +38,7 @@ The following example commmands set:
 - The IP address of the RADIUS server to 192.168.0.254 and the port to 42.
 - The secret to `'myradius$key'`.
 - The priority at which Cumulus Linux contacts the RADIUS server to 10.
-- The authentication order so that RADIUS authentication has priority over local (the lower number has priority).
+- The authentication order to 10 for Radiuso that RADIUS authentication has priority over local.
 - The RADIUS option to `enable`.
 
 ```

@@ -95,6 +95,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
 cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface vlan10 ptp enable on
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
 cumulus@switch:~$ nv set interface swp1 ptp enable on

@@ -24,20 +24,20 @@ NetQ software installation file names include a version number, in the form of x
     - Feature improvements.
     - Bug fixes and updates.
     - Security updates.
-- **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb10 for SONiC)
+- **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb10 for SONiC, ub for Ubuntu)
 - **TAG** represents a timestamp for the release of the version.
 - **CPU** architecture represents architecture.
 
 For example:
 
-- netq-agent\_4.7.0-cl4u43~1690981360.9d32c7a0\_amd64.deb
-- netq-apps\_4.7.0-cl4u43~1690981360.9d32c7a0\_amd64.deb
+- netq-apps_<strong>4.8.0</strong>-deb10u<strong>44</strong>~1699076923.80e664937_amd64.deb
+- netq-agent_<strong>4.8.0</strong>-deb10u<strong>44</strong>~1699076923.80e664937_amd64.deb
 
 ## Release, Support Lifecycle and Support Policy
 
 NetQ is offered with a per switch subscription that includes support for 1, 3, and 5 years options. The subscription model allows customers to upgrade the software as updates and new versions become available, for the period of the subscription.
 
-- Review the NetQ [user guide]({{<ref "/cumulus-netq-47/" >}}) for the supported Network Operating System (NOS) versions. Note that when your Network Operating System is no longer supported, NetQ customer support ends along with it. Access to NetQ is permitted until the end of the subscription period.
+- Review the NetQ user guide for the supported Network Operating System (NOS) versions. Note that when your Network Operating System is no longer supported, NetQ customer support ends along with it. Access to NetQ is permitted until the end of the subscription period.
 - Use matching versions of NetQ Server and both NetQ Agent and NetQ Apps packages on switches (for example, NetQ 4.2.0 Server with NetQ 4.2.0 Agents and Apps on the switches).
 - The product is supported for the period of the subscription and bug fixes are received by upgrading to new versions of software.
 - A NetQ version is supported for two years from its release date. After that date, it is necessary to upgrade to a later release to continue receiving support for the period of the subscription.
@@ -48,6 +48,7 @@ The following table depicts the NetQ release support matrix:
 
 | NetQ Release | Release Date | End of Support |
 | :--------: | --------- | --------- |
+| 4.8.z | 10-Nov-2023 | 10-Nov-2025 |
 | 4.7.z | 11-Aug-2023 | 11-Aug-2025 |
 | 4.6.z | 01-May-2023 | 01-May-2025 |
 | 4.5.z | 27-Feb-2023 | 27-Feb-2025 |
@@ -55,10 +56,9 @@ The following table depicts the NetQ release support matrix:
 | 4.3.z | 05-Aug-2022 | 05-Aug-2024 |
 | 4.2.z | 24-May-2022 | 24-May-2024 |
 | 4.1.z | 13-Jan-2022 | 13-Jan-2024 |
-| 4.0.z| 15-Sep-2021 | 15-Sep-2023 |
 
 **NetQ 1.y, 2.y, and 3.y releases are End of Support.**
 
 ## Upgrade Process
 
-For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-47/Installation-Management" >}}).
+For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-48/Installation-Management" >}}).

@@ -405,7 +405,7 @@ None
 - - -
 ## netq config add agent server
 
-Configures the destination (NetQ appliance or VM) for the data collected by the NetQ Agent and for API requests.
+Configures the destination NetQ server for the data collected by the NetQ Agent and for API requests.
 
 ### Syntax
 
@@ -416,23 +416,25 @@ netq config add agent server
     [vrf <text-vrf-name>]
     [ssl true | ssl false ]
     [ssl-cert <text-ssl-cert-file> | ssl-cert download]
+    [inband-interface <interface-name>]
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| server | \<text-opta-ip\> | Use the appliance or VM with this IP address to receive NetQ Agent data and API requests |
+| server | \<text-opta-ip\> | Use the NetQ server with this IP address to receive NetQ Agent data and API requests |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| port | \<text-opta-port\> | Use this port on the appliance or VM to receive NetQ Agent data and API requests |
-| vrf | \<text-vrf-name\> | Use this VRF on the appliance or VM to receive NetQ Agent data and API requests |
+| port | \<text-opta-port\> | Use this port on the NetQ server to receive NetQ Agent data and API requests |
+| vrf | \<text-vrf-name\> | Use this VRF on the NetQ server to receive NetQ Agent data and API requests |
 | ssl | true, false | Establish an SSL connection between agent and OPTA (true) |
 | ssl-cert | \<text-ssl-cert-file\> | Use the SSL certificate contained in this file. Value must include entire path to the file. |
 | ssl-cert download | NA | Download the SSL certificate |
+| inband-interface | <interface-name> | Use this in-band interface to manage the switch when not using an out-of-band network | 
 
 ### Sample Usage
 
@@ -904,39 +906,29 @@ None
 - `netq config del opta proxy-host`
 
 - - -
-<!--
-## netq config addons
+## netq config asic-monitor-simulation
 
 ### Syntax
 
 ```
-netq config (add|del) addons
+netq config (start|stop|status|restart) asic-monitor-simulation
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| add | NA |  |
-| del | NA | |
+| config | start, stop, status, restart | NA |
 
 ### Options
 
 None
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq config add addons
-Addons config added
-```
 
 ### Related Commands
 
 None
 
 - - -
--->
 ## netq config color
 
 <!-- vale off -->
@@ -1241,7 +1233,7 @@ cumulus@switch:~$ netq config del cli server
 
 -->
 
-- - -
+
 ## netq config del opta proxy-host
 
 Deletes a proxy host as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}.

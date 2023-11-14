@@ -26,6 +26,7 @@ The `nvshow` group includes the `radius_user` account, and the `nvset` and `nvap
 After you install the required RADIUS packages, configure the following required settings on the switch (the RADIUS client).
 - Set the IP address or hostname of at least one RADIUS server. You can specify a port for the server (optional). The default port number is 1812.
 - Set the secret key shared between the RADIUS server and client. If you include special characters in the key (such as $), you must enclose the key in single quotes (').
+- Set the priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
 - If you use NVUE commands to configure RADIUS, you must also set the priority for the authentication order for local and RADIUS users, and enable RADIUS.
 
 {{< tabs "TabID41 ">}}
@@ -34,12 +35,14 @@ After you install the required RADIUS packages, configure the following required
 The following example commmands set:
 - The IP address of the RADIUS server to 192.168.0.254 and the port to 42.
 - The secret to `'myradius$key'`.
+- The priority at which Cumulus Linux contacts the RADIUS server to 10.
 - The authentication order so that RADIUS authentication has priority over local (the lower number has priority).
 - The RADIUS option to `enable`.
 
 ```
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 port 42
-cumulus@switch:~$ nv set system aaa radius server secret 'myradius$key'
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 secret 'myradius$key'
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 10
 cumulus@switch:~$ nv set system aaa authentication-order 10 radius
 cumulus@switch:~$ nv set system aaa authentication-order 20 local
 cumulus@switch:~$ nv set system aaa radius enable on
@@ -54,6 +57,7 @@ Edit the `/etc/pam_radius_auth.conf` file to specify the hostname or IP address 
 ```
 ...
 mapped_priv_user   radius_priv_user
+
 # server[:port]    shared_secret   timeout (secs)  src_ip
 192.168.0.254      secretkey       3
 ...
@@ -75,11 +79,10 @@ You can configure the following optional settings global RADIUS settings and ser
 | Option | Description |
 | ------ | ----------- |
 | `vrf` | The VRF you want to use to communicate with the RADIUS servers. This is typically the management VRF (`mgmt`), which is the default VRF on the switch. You cannot specify more than one VRF. |
-| `priv-lvl` | The minimum privilege level that determines if users can configure the switch with NVUE commands and sudo, or have read-only rights. The default privilege level is 15, which provides full administrator access. This is a global option only; you cannot set the minimum privilege level for specific RADIUS servers.|
+| `privilege-level` | The minimum privilege level that determines if users can configure the switch with NVUE commands and sudo, or have read-only rights. The default privilege level is 15, which provides full administrator access. This is a global option only; you cannot set the minimum privilege level for specific RADIUS servers.|
 | `retransmit` | The maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out. This is a global option only; you cannot set the number of retransmission attempts for specific RADIUS servers.|
-| `priority` | The priority at which Cumulus Linux contacts a RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.|
 | `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
-| `source-ip`| A specific interface to reach the RADIUS server. You can specify the hostname of the interface, or an IPv4 or IPv6 address. If you specify a specific interface, you must also specify the `timeout` option. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers. |
+| `source-ipv4`<br>`source-ipv6`</br>| A specific interface to reach the RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers. |
 | `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. If you configure multiple RADIUS servers, you can enable the debug option globally for all the servers.|
 
 {{< tabs "TabID34 ">}}
@@ -89,10 +92,10 @@ The following example configures global RADIUS settings:
 
 ```
 cumulus@switch:~$ nv set system aaa radius vrf mgmt
-cumulus@switch:~$ nv set system aaa radius priv-lvl 10
-cumulus@switch:~$ nv set system aaa radius retransmit 42
+cumulus@switch:~$ nv set system aaa radius privilege-level 10
+cumulus@switch:~$ nv set system aaa radius retransmit 8
 cumulus@switch:~$ nv set system aaa radius timeout 10
-cumulus@switch:~$ nv set system aaa radius source-ip 192.168.1.10
+cumulus@switch:~$ nv set system aaa radius source-ipv4 192.168.1.10
 cumulus@switch:~$ nv set system aaa radius debug enable
 cumulus@switch:~$ nv config apply
 ```
@@ -100,8 +103,7 @@ cumulus@switch:~$ nv config apply
 The following example configures RADIUS settings for a specific RADIUS server:
 
 ```
-cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 10
-cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ip 192.168.1.10
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ipv4 192.168.1.10
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 timeout 10
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 debug enable
 cumulus@switch:~$ nv config apply
@@ -241,18 +243,39 @@ To show global RADIUS configuration, run the `nv show system aaa radius` command
 
 ```
 cumulus@switch:~$ nv show system aaa radius
+                 operational    applied      
+---------------  -------------  -------------
+enable           on             on           
+vrf              mgmt           mgmt         
+debug            enabled        enabled      
+privilege-level  10             10           
+retransmit       8              8            
+port                            1812         
+timeout                         10           
+source-ipv4                     192.168.1.10 
+[server]         192.168.0.254  192.168.0.254
 ```
 
 To show all RADIUS configured servers, run the `nv show system aaa radius server` command:
 
 ```
 cumulus@switch:~$ nv show system aaa radius server
+Hostname       Port  Priority  Password  source-ip     Timeout
+-------------  ----  --------  --------  ------------  -------
+192.168.0.254  42    1         *         192.168.1.10  10
 ```
 
 To show configuration for a specific RADIUS server, run the `nv show system aaa radius server <server>` command:
 
 ```
 cumulus@switch:~$ nv show system aaa radius server 192.168.0.254
+           operational   applied     
+---------  ------------  ------------
+port       42            42          
+timeout    10            10          
+secret     *             *           
+priority   1             10          
+source-ip  192.168.1.10  192.168.1.10
 ```
 
 ## Remove RADIUS Client Packages

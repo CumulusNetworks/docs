@@ -7,8 +7,22 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## September 2023
+## November 2023
 <!-- Air:WhatsNew -->
+### 82.2023.1109-012
+- Fixed an issue where the font failed to render correctly
+- Fixed an issue preventing sims from starting
+- Fixed an issue where a simulation created with no nodes would become stuck in the LOADING state
+- Fixed an issue where sim state lock could be released too early during a stop job
+- Fixed an issue where the topology delete API did not remove the topology
+<!-- Air:WhatsNew -->
+
+## October 2023
+### 82.2023.1023-012
+- Updated minimum memory allocated for the oob-mgmt-switch to 2GB
+- Fixed a bug where a user defined value for memory on the oob-mgmt-switch was not respected
+
+## September 2023
 ### 82.2023.0925-011
 - Added Cumulus Linux 5.2.1 to OS dropdown in the builder
 - Added Cumulus Linux 5.4.0c to OS dropdown in the builder
@@ -16,7 +30,6 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 - Added SONiC 202211_1 to OS dropdown in the builder
 - Updated default version for Cumulus Linux to 5.6.0 in the builder
 - Updated default version for SONiC to 202211_1 in the builder
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0921-012
 - Improved messaging when a resource budget is exceeded

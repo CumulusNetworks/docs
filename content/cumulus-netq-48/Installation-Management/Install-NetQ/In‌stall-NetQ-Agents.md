@@ -7,7 +7,7 @@ toc: 4
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 4.3.0 and above (Broadcom switches)
+- Cumulus Linux 4.3.0 and 4.3.1 (Broadcom switches)
 - Cumulus Linux 5.0.0 and above (Spectrum switches)
 - SONiC 202012
 - CentOS 7
@@ -40,7 +40,7 @@ If your network uses a proxy server for external connections, you should first {
 ### Verify NTP Is Installed and Configured
 <!-- vale on -->
 
-Verify that {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-55/System-Configuration/Date-and-Time/Network-Time-Protocol-NTP/" text="NTP">}} is running on the switch. The switch system clock must be synchronized with the NetQ appliance to enable useful statistical analysis. Alternatively, you can configure {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-55/System-Configuration/Date-and-Time/Precision-Time-Protocol-PTP/" text="PTP">}} for time synchronization.
+Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch as outlined in the steps below. The switch system clock must be synchronized with the NetQ appliance to enable useful statistical analysis. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
 
 ```
 cumulus@switch:~$ sudo systemctl status ntp
@@ -94,7 +94,7 @@ cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-app
 ### Verify NTP Is Installed and Configured
 <!-- vale on -->
 
-Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be synchronized with the NetQ appliance to enable useful statistical analysis.
+Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch as outlined in the steps below. The switch must be synchronized with the NetQ appliance to enable useful statistical analysis. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
 
 ```
 admin@switch:~$ sudo systemctl status ntp
@@ -184,7 +184,7 @@ root@rhel7:~# sudo yum install wget
 
 ### Install and Configure NTP
 
-If NTP is not already installed and configured, follow these steps:
+If NTP is not already installed and configured, follow the steps outlined below. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
 
 1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
@@ -282,7 +282,7 @@ root@ubuntu:~# sudo systemctl start lldpd.service
 
 ### Install and Configure Network Time Server
 
-If NTP is not already installed and configured, follow these steps:
+If NTP is not already installed and configured, follow the steps below. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
 
 1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
@@ -341,7 +341,7 @@ root@ubuntu:~# chronyc activity
 0 sources doing burst (return to offline)
 0 sources with unknown address
 ```
-   4. View the time servers chrony is using.
+   4. View the time servers which chrony is using.
 ```
 root@ubuntu:~# chronyc sources
 210 Number of sources = 8
@@ -370,7 +370,7 @@ driftfile /var/lib/chrony/drift
 makestep 1.0 3
 rtcsync
 ```
-   5. View the server chrony is currently tracking.
+   5. View the server  chrony is currently tracking.
 ```
 root@ubuntu:~# chronyc tracking
 Reference ID    : 5BBD59C7 (golem.canonical.com)
@@ -466,7 +466,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.7.0" opsys="cl">}}
+    {{<netq-install/agent-version version="4.8.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -522,7 +522,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -qa | grep -i netq
     ```
 
-    {{<netq-install/agent-version version="4.7.0" opsys="rh">}}
+    {{<netq-install/agent-version version="4.8.0" opsys="rh">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -551,7 +551,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.7.0" opsys="ub">}}
+    {{<netq-install/agent-version version="4.8.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -599,17 +599,28 @@ You can configure the NetQ Agent in the `netq.yml` configuration file contained 
 
 3. Set the parameters for the agent as follows:
     - port: 31980 (default configuration)
-    - server: IP address of the NetQ appliance or VM where the agent should send its collected data
+    - server: IP address of the NetQ server where the agent should send its collected data
     - vrf: default (or one that you specify)
+    - inband-interface: the interface used to reach your NetQ server and used by lifecycle management to connect to the switch (for deployments where switches are managed through an in-band interface)
 
     Your configuration should be similar to this:
 
     ```
     netq-agent:
         port: 31980
-        server: 127.0.0.1
+        server: 192.168.1.254
         vrf: mgmt
     ```
+
+    For in-band deployments:
+    ```
+    netq-agent:
+        inband-interface: swp1
+        port: 31980
+        server: 192.168.1.254
+        vrf: default
+    ```
+
 
 ### Configure NetQ Agents Using the NetQ CLI
 
@@ -622,16 +633,25 @@ If you intend to use a VRF for agent communication (recommended), refer to {{<li
 Use the following command to configure the NetQ Agent:
 
 ```
-netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
+sudo netq config add agent server <text-opta-ip> [port <text-opta-port>] [ssl true | ssl false] [ssl-cert <text-ssl-cert-file> | ssl-cert download] [vrf <text-vrf-name>] [inband-interface <interface-name>]
 ```
 
-This example uses an IP address of *192.168.1.254* and the default port and VRF for the NetQ appliance or VM.
+This example uses a NetQ server IP address of *192.168.1.254*, the default port, and the `mgmt` VRF for a switch managed through an out-of-band connection:
 
 ```
-sudo netq config add agent server 192.168.1.254
+sudo netq config add agent server 192.168.1.254 vrf mgmt
+Updated agent server 192.168.1.254 vrf mgmt. Please restart netq-agent (netq config restart agent).
+sudo netq config restart agent
+```
+
+This example uses a NetQ server IP address of *192.168.1.254*, the default port, and the `default` VRF for a switch managed through an in-band connection on interface `swp1`:
+
+```
+sudo netq config add agent server 192.168.1.254 vrf default inband-interface swp1
 Updated agent server 192.168.1.254 vrf default. Please restart netq-agent (netq config restart agent).
 sudo netq config restart agent
 ```
+
 
 ## Configure Advanced NetQ Agent Settings
 
@@ -654,7 +674,7 @@ If you later change the VRF configured for the NetQ Agent (using a lifecycle man
 
 ### Configure the Agent to Communicate over a Specific Port
 
-By default, NetQ uses port 31980 for communication between the NetQ appliance or VM and NetQ Agents. If you want the NetQ Agent to communicate with the NetQ appliance or VM via a different port, you need to specify the port number when configuring the NetQ Agent, like this:
+By default, NetQ uses port 31980 for communication between the NetQ server and NetQ Agents for on-premises deployments and port 443 for cloud deployments. If you want the NetQ Agent to communicate with the NetQ sever via a different port, you need to specify the port number when configuring the NetQ Agent, like this:
 
 ```
 sudo netq config add agent server 192.168.1.254 port 7379

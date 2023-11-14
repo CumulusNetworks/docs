@@ -511,7 +511,7 @@ With adaptive routing, the switch forwards packets to the less loaded path on a 
 
 Cumulus Linux supports adaptive routing with:
 - Switches with the Spectrum-4 ASIC.
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic.
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCEv2" >}} unicast traffic.
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
@@ -548,15 +548,19 @@ Enabling or disabling adaptive routing restarts the `switchd` service, which cau
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
+If you need to configure adaptive routing with Linux commands by editing configuration files, contact NVIDIA Customer Support for help.
+
+<!--Edit the `/etc/cumulus/switchd.d/adaptive_routing.conf` file:
 - Set the `adaptive_routing.enable` parameter to `TRUE` to enable the adaptive routing feature.
 - Set the `interface.<port>.adaptive_routing.enable` parameter to `TRUE` in the `Per-port configuration` section to enable adaptive routing on all the ports that are part of the same ECMP route.
+- For a switch with the Spectrum-2 or Spectrum-3 ASIC, add the line `adaptive_routing.profile = profile-1`. For a switch with the  Spectrum 4 ASIC, add the line `adaptive_routing.profile = profile-2`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
 ## Global adaptive-routing enable/disable setting
 adaptive_routing.enable = TRUE
-...
+## Global AR profile config
+adaptive_routing.profile = profile-2
 ## Per-port configuration
 interface.swp51.adaptive_routing.enable = TRUE
 interface.swp51.adaptive_routing.link_util_thresh = 70
@@ -566,14 +570,14 @@ interface.swp52.adaptive_routing.link_util_thresh = 70
 ```
 
 {{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
-<!-- vale off -->
+
 {{<cl/restart-switchd>}}
-<!-- vale on -->
 
 To disable adaptive routing, set the `adaptive_routing.enable` parameter to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
 
 To disable adaptive routing on a specific port, set the `interface.<port>.adaptive_routing.enable` parameter  to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
 
+-->
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -586,7 +590,7 @@ Cumulus Linux provides these adaptive routing profiles:
 - `ar-profile-2` is the default profile for a switch with the Spectrum-4 ASIC.
 - `ar-profile-custom` includes adaptive routing settings you can change (advanced users).
 
-You cannot make changes to the default profiles. You can customize the custom profile by editing the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file. NVUE does not provide commands.
+You cannot make changes to the default profiles. You can customize the custom profile by ed1ting the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file. NVUE does not provide commands.
 
 After changing parameter values and saving the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
@@ -776,9 +780,7 @@ To show adaptive routing settings, run the `nv show router adaptive-routing` com
 cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
                             operational   applied
 --------------------------  ------------  -------
-enable                      on            on     
-link-utilization-threshold  off           off    
-profile                     profile-1
+enable                      on            off
 ```
 
 To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing`.

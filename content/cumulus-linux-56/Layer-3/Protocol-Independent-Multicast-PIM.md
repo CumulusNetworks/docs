@@ -347,10 +347,10 @@ Source          Group           Proto   Input     Output     TTL  Uptime
 
 ### SSM Multicast Group Ranges
 
-For <span style="background-color:#F5F5DC">[SSM](## "Source Specific Multicast")</span>, `232.0.0.0/8` is the default multicast group range. To change the multicast group range, define a prefix list and apply it. You can change the default group or add additional group ranges.
+232.0.0.0/8 is the default multicast group range reserved for <span style="background-color:#F5F5DC">[SSM](## "Source Specific Multicast")</span>. To modify the SSM multicast group range, define a prefix list and apply it. You can change (expand) the default group or add additional groups to this range.
 
 {{%notice note%}}
-You must include `232.0.0.0/8` in the prefix list. When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
+You must include 232.0.0.0/8 in the prefix list as this is the reserved SSM range. Using a prefix-list, you can expand the SSM range but all devices in the source tree must agree on the SSM range. When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
 {{%/notice%}}
 
 {{< tabs "TabID825 ">}}
@@ -999,7 +999,7 @@ cumulus@switch:~$ nv config apply
 You can set the following optional IGMP settings on a PIM interface:
 - The last member query interval, which is the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 10.
 - The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 100.
-- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255 seconds. The default setting is 2.
+- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255. The default setting is 2.
 - How often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 65535 seconds. The default setting is 125.
 - Fast leave processing, where the switch immediately removes a port from the forwarding entry for a multicast group when the port receives a leave message. The default setting is off.
 

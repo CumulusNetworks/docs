@@ -40,13 +40,173 @@ The NVUE REST API supports HTTP basic authentication, and the same underlying au
 <!-- vale off -->
 Cumulus Linux includes a self-signed certificate and private key to use on the server so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
 <!-- vale on -->
-NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format. For the steps to generate self-signed certificates and keys, and to install them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
+NVIDIA recommends you use your own certificates and keys. For the steps to generate self-signed certificates and keys, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
-To use your own certificate chain:
-1. Import the certificate and private key onto the Cumulus Linux switch using secure channels, such as SCP or SFTP.
-2. Store the certificate and private key on the filesystem in a location of you choice or use the same location; for example, `/etc/ssl/certs` and `/etc/ssl/private`.
-3. Update the `/etc/nginx/sites-enabled/nvue.conf` file to set the `ssl_certificate` and the `ssl_certificate_key` values to your keys.
-4. Restart NGINX with the `sudo systemctl restart nginx` command.
+Cumulus Linux lets you manage CA certificates (such as DigiCert or Verisign) and entity (end-point) certificates. Both a CA certificate and an entity certificate can contain a chain of certificates.
+
+You can import certificates onto the switch (fetch certificates from an external source), set which certificate you want to use with the NVUE REST API, and show information about a certificate, such as the serial number, and the date and time during which the certificate is valid.
+
+To import a certificate, run the following commands. If the certificate is passphrase protected, you need to include the passphrase.
+
+{{%notice note%}}
+- You can import a maximum of 25 entity certificates and a maximum of 50 CA certificates.
+- The certificate you import contains sensitive private key information. NVIDIA recommends that you use a secure transport such as SFTP, SCP, or HTTPS.
+{{%/notice%}}
+
+{{< tabs "TabID53 ">}}
+{{< tab "NVUE Commands ">}}
+
+- To import an entity certificate, run the `nv action import system security certificate <cert-id> [options]`command.
+- To import a CA certificate, run the `nv action import system security ca-certificate <cert-id> [options]` command.
+
+You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate being imported.
+
+The following example imports a CA certificate with the public key `AFCB12334…==` and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `hell0$`. The public key is a Base64 ASCII encoded PEM string.
+
+```
+cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 data "AFCB12334…==" passphrase hell0$
+cumulus@switch:~$ nv config apply
+```
+
+The following example imports an entity certificate bundle and calls the certificate `tls-cert-1`. The certificate bundle is passphrase protected with `hell0$`.
+
+A certificate bundle must be in .PFX or .P12 format.
+
+```
+cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12 passphrase hell0$
+cumulus@switch:~$ nv config apply
+```
+
+The following example imports an entity certificate with the public key URI `scp://user@pass:1.2.3.4` and private key URI `scp://user@pass:1.2.3.4`, and calls the certificate `tls-cert-1`. The certificate is not passphrase protected.
+
+A CA certificate must be in .pem, .p7a, or .p7c format.
+
+```
+cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-public-key scp://user@pass:1.2.3.4 uri-private-key scp://user@pass:1.2.3.4
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Curl Commands ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To set the certificate you want to use with the REST API:
+
+{{< tabs "TabID92 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example configures the NVUE REST API to use the certificate `tls-cert-1`:
+
+```
+cumulus@switch:~$ nv set system api certificate tls-cert-1
+cumulus@switch:~$ nv config apply
+```
+
+Set the certificate to `auto` to let the system determine which certificate to use. For example, you can set the certificate to `auto` if you want to use a previously installed certificate (either the default self-signed or your own installed certificate).
+
+```
+cumulus@switch:~$ nv set system api certificate auto
+cumulus@switch:~$ nv config apply
+```
+
+To unset the certificate to use with the NVUE REST API:
+
+```
+cumulus@switch:~$ nv unset system api certificate
+```
+
+{{< /tab >}}
+{{< tab "Curl Commands ">}}
+
+The following example configures the NVUE REST API to use the certificate `tls-cert-1`:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"set": {"system": {"api": {"certificate": "cert1","port": 8888}}}}'-k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=2
+```
+
+Set the certificate to `auto` to let the system determine which certificate to use. For example, you can set the certificate to `auto` if you want to use a previously installed certificate (either the default self-signed or your own installed certificate).
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus'  -d '{"set": {"system": {"api": {"certificate": "auto","port": 8888}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=2
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To delete a certificate and the key data stored on the switch:
+
+{{< tabs "TabID125 ">}}
+{{< tab "NVUE Commands ">}}
+
+- To delete an entity certificate and the key data stored on the switch, run the `nv action delete system security certificate <cert-id>` command.
+- To delete a CA certificate and the key data stored on the switch, run the `nv action delete system security ca-certificate <cert-id>` command.
+
+The following command deletes the CA certificate `tls-cert-1`:
+
+```
+cumulus@switch:~$ nv action delete system security certificate tls-cert-1 
+```
+
+{{< /tab >}}
+{{< tab "Curl Commands ">}}
+
+```
+cumulus@switch:~$  
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show certificate information:
+
+{{< tabs "TabID145 ">}}
+{{< tab "NVUE Commands ">}}
+
+- To show all the entity certificates on the switch, run the `nv show system security certificate` command.
+- To show all the CA certificates on the switch, run the `nv show system security ca-certificate` command.
+
+The following example shows all the entity certificates on the switch:
+
+```
+cumulus@switch:~$ nv show system security certificate
+```
+
+- To show information about a specific entity certificate, run the `nv show system security certificate <cert-id>` command.
+- To show information about a specific CA certificate, run the `nv show system security ca-certificate <cert-id>` command.
+
+The following example shows information about the CA certificate `tls-cert-1`:
+
+```
+cumulus@switch:~$ nv show system security certificate ca-certificate tls-cert-1
+```
+
+To show the applications that are using a certificate, run the `nv show system security certificate <cert-id> installed` command:
+
+```
+cumulus@switch:~$ nv show system security certificate tls-cert-1 installed
+```
+
+- To show detailed information about a specific entity certificate, run the `nv show system security certificate <cert-id> dump` command.
+- To show detailed information about a specific CA certificate, run the `nv show system security ca-certificate <cert-id> dump` command.
+
+The following example shows detailed information about the CA certificate `tls-cert-1`:
+
+```
+cumulus@switch:~$ nv show system security ca-certificate tls-cert-1 dump
+```
+
+{{< /tab >}}
+{{< tab "Curl Commands ">}}
+
+```
+cumulus@switch:~$  
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 <!-- vale off -->
 ### API-only User
 <!-- vale on -->
@@ -65,7 +225,11 @@ adduser automation nvapply
 
 ### Control Plane ACLs
 
-You can secure the API with control plane ACLs. The following example allows users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
+You can secure the API by configuring:
+- A listening address; see {{<link url="#api-port-and-listening-address" text="API Port and Listening Address">}} below.
+- Control plane ACLs; see the following example.
+
+This example shows how to create ACLs to allow users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
 
 ```
 cumulus@switch:~$ nv set acl API-PROTECT type ipv4 
@@ -120,35 +284,84 @@ To use the NVUE REST API in Cumulus Linux 5.6, you must {{<link url="/User-Accou
 
 This section shows how to:
 - Set the NVUE REST API port. If you do not set a port, Cumulus Linux uses the default port 8765.
-- Specify the NVUE REST API listening address; you can specify an IPv4 address or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
+- Specify the NVUE REST API listening address; you can specify an IPv4 address, IPv6 address, or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
+
+{{< tabs "TabID130 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets the port to 8888:
 
 ```
 cumulus@switch:~$ nv set system api port 8888
-cumulus@switch:~$ nv set system api listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
-- You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the management VRF and to swp1 on VRF BLUE.
-{{%/notice%}}
-<!--
+You can listen on multiple interfaces by specifying different listening addresses:
+
 ```
-cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
-cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
-cumulus@switch:~$ sudo systemctl restart nginx
+cumulus@switch:~$ nv set system api listening-address 10.10.10.1
+cumulus@switch:~$ nv set system api listening-address 10.10.20.1
+cumulus@switch:~$ nv config apply
 ```
--->
+
+The following example configures the listening address on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
+
+```
+cumulus@switch:~$ nv set system api listening-address 172.0.24.0
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures VRF BLUE on swp1, which has IP address 10.10.20.1, then sets the API listening address to the IP address for swp1 (configured for VRF BLUE).
+
+```
+cumulus@switch:~$ nv set interface swp1 ip address 10.10.10.1/24
+cumulus@switch:~$ nv set interface swp1 ip vrf BLUE
+cumulus@switch:~$ nv config apply
+
+cumulus@switch:~$ nv set system api listening-address 10.10.10.1
+cumulus@switch:~$ nv config apply
+```
+
+{{</ tab >}}
+{{< tab "Curl Command ">}}
+
+The following example sets the port to 8888:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api?rev=2 -H 'Content-Type:application/json' -d '{"port": 8888 }'
+```
+
+You can listen on multiple interfaces by specifying different listening addresses. The following example sets localhost, interface address 10.10.10.1, and 10.10.20.1 as listen-addresses.
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api/listening-address?rev=2 -H 'Content-Type:application/json' -d '{ "localhost": {}, "10.10.10.1": {}, "10.10.20.1": {}}'
+```
+
+The following example configures the listening address on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api/listening-address?rev=2 -H 'Content-Type:application/json' -d '{"172.0.24.0": {}}'
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Show NVUE REST API Information
 
-To show REST API port configuration, state (enabled or disabled), and connection information, run the `nv show system api` command:
+To show REST API port configuration, state (enabled or disabled), certificate, listening address, and connection information:
+
+{{< tabs "TabID270 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv show system api` command:
 
 ```
 cumulus@switch:~$ nv show system api
                   operational     applied
 --------------    -----------     -------
 port                 8888         8888     
-state                enabled      enabled  
+state                enabled      enabled
+certificate          self-signed  self-signed  
 [listening-address]  localhost    localhost
 connections
   accepted        31
@@ -179,34 +392,74 @@ To show the configured listening address, run the `nv show system api listening-
 
 ```
 cumulus@switch:~$ nv show system api listening-address
-
 ---------
 localhost
 ```
 
-### Access the NVUE REST API from a Front Panel Port
+To show all the certificates installed on the switch, run the `nv show system security certificate` command. To show information about a specific certificate, such as the serial number and how long the certificate is valid, run the `nv show system security certificate <certificate>` command:
 
-To access the NVUE REST API from a front panel port (swp) on the switch:
+```
+cumulus@switch:~$ nv show system security certificate tls-cert-1 
+               operational                applied  pending 
+-------------  -------------------------  -------  ------- 
+installed      
+ app           TLS 
+serial-number  67:03:3B:B4:6E:35:D3 
+valid-from     2023-02-14T00:35:18+00:00 
+valid-to       2033-02-11T00:35:18+00:00 
+```
 
-1. Ensure that the `nvue.conf` file is present in the `/etc/nginx/sites-enabled` directory.
+{{</ tab >}}
+{{< tab "Curl Command ">}}
 
-   Either copy the packaged template file `nvue.conf` from the `/etc/nginx/sites-available` directory to the `/etc/nginx/sites-enabled` directory or create a symbolic link.
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api?rev=2 -H "accept: application/json"
+{
+  "certificate": "self-signed",
+  "listening-address": {
+    "10.10.10.1": {},
+    "10.10.20.1": {},
+    "172.0.24.0": {},
+    "localhost": {}
+  },
+  "port": 8888,
+  "state": "enabled"
+}
+```
 
-2. Edit the `nvue.conf` file and add the `listen` directive with the IPv4 or IPv6 address of the swp interface you want to use.
+To show the configured listening address:
 
-   The default `nvue.conf` file includes a single `listen localhost:8765 ssl;` entry. Add an entry for each swp interface with its IP address. Make sure to use an accessible HTTP (TCP) port (subject to any ACL or firewall rules). For information on the NGINX `listen` directive, see {{<exlink url="http://nginx.org/en/docs/http/ngx_http_core_module.html#listen" text="the NGINX documentation" >}}.
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/listening-address?rev=2 -H "accept: application/json"
+{
+  "10.10.10.1": {},
+  "10.10.20.1": {}
+}
+```
 
-3. Restart the `nginx` service:
+To show the certificates on the switch:
 
-   ```
-   cumulus@switch:~$ sudo systemctl reload-or-restart nginx
-   ```
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/certificate?rev=2 -H "accept: application/json"
+{
+  "tls-cert-1": {},
+  "tls-cert-2": {}
+}
+```
 
-{{%notice note%}}
-- The swp interfaces must be part of the default VRF on the Cumulus Linux switch or virtual appliance.
-- To access the REST API from the switch running `curl` locally, invoke the REST API client from the default VRF from the Cumulus Linux shell by prefixing the command with `ip vrf exec default curl`.
-- To access the NVUE REST API from a client on a peer Cumulus Linux switch or virtual appliance, or any other off-the-shelf Linux server or virtual machine, make sure the switch or appliance has the correct IP routing configuration so that the REST API HTTP packets arrive on the correct target interface and VRF.
-{{%/notice%}}
+To show information about a specific certificate, such as the serial number and how long the certificate is valid:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/certificate/tls-cert-1?rev=2 -H "accept: application/json"
+{
+  "serial-number": "67:03:3B:B4:6E:35:D3",
+  "valid-from": "2023-02-14T00:35:18+00:00",
+  "valid-to": "2033-02-11T00:35:18+00:00"
+}
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Run cURL Commands
 
@@ -1591,7 +1844,7 @@ To set the system hostname, pre-login or post-login message, and time zone on th
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"system": {"hostname":"switch01","timezone":"America/Los_Angeles","message":{"pre-login":"Welcome to NVIDIA Cumulus Linux","post-login:"You have successfully logged in to switch01"}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=4
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"system": {"hostname":"switch01","timezone":"America/Los_Angeles","message":{"pre-login":"Welcome to NVIDIA Cumulus Linux","post-login":"You have successfully logged in to switch01"}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=4
 ```
 
 {{< /tab >}}
@@ -1749,7 +2002,7 @@ To set up NTP, DNS, and SNMP on the switch, send a targeted API request to `/nvu
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"service": { "ntp": {"default":{"server:{"4.cumulusnetworks.pool.ntp.org":{"iburst":"on"}}}}, "dns": {"mgmt":{"server:{"192.168.1.100":{}}}}, "syslog": {"mgmt":{"server:{"192.168.1.120":{"port":8000}}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=5
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"service": { "ntp": {"default":{"server":{"4.cumulusnetworks.pool.ntp.org":{"iburst":"on"}}}}, "dns": {"mgmt":{"server":{"192.168.1.100":{}}}}, "syslog": {"mgmt":{"server":{"192.168.1.120":{"port":8000}}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=5
 ```
 
 {{< /tab >}}
@@ -2151,7 +2404,7 @@ The following example configures an interface.
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"type":"swp","link":{"state":"up"}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=6 
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k -d '{"swp1": {"link":{"state":{"up": {}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=21
 ```
 
 {{< /tab >}}
@@ -2526,7 +2779,7 @@ The following example configures a bridge.
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=8
+curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=21
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=8
 ```
 
@@ -2881,10 +3134,22 @@ The NVUE action operations are ephemeral operations that do not modify the state
 {{< tabs "ActionOperations" >}}
 {{< tab "Curl Command" >}}
 
+To clear counters on swp1:
+
 ```
-cumulus@switch:~$ curl -H 'Content-Type:application/json' -u 'cumulus:cumulus' -d '{"@clear": {"state": "start", "parameters": {}}}' -k -X POST "https://127.0.0.1:8765/nvue_v1/interface/swp1/qos/counter" 
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -H 'Content-Type:application/json' -d '{"@clear": {"state": "start", "parameters": {}}}' -k -X POST https://127.0.0.1:8765/nvue_v1/interface/swp1/counters
 1
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k -X GET "https://127.0.0.1:8765/nvue_v1/action/1" 
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -X GET https://127.0.0.1:8765/nvue_v1/action/1 -k
+{"detail":"swp1 counters cleared.","http_status":200,"issue":[],"state":"action_success","status":"swp1 counters cleared.","timeout":60,"type":""}
+```
+
+To clear QoS buffers on swp1:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -H 'Content-Type:application/json' -d '{"@clear": {"state": "start", "parameters": {}}}' -k -X POST https://127.0.0.1:8765/nvue_v1/interface/swp1/qos/buffer
+2
+cumulus@switch:~$ curl -u 'cumulus:cumulus'  -X GET https://127.0.0.1:8765/nvue_v1/action/2 -k
+{"detail":"QoS buffers cleared on swp1.","http_status":200,"issue":[],"state":"action_success","status":"QoS buffers cleared on swp1.","timeout":60,"type":""}
 ```
 
 {{< /tab >}}

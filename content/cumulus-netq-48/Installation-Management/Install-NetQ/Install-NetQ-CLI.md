@@ -9,7 +9,7 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux 4.3.0 and above (Broadcom switches)
+- Cumulus Linux 4.3.0 and 4.3.1 (Broadcom switches)
 - Cumulus Linux 5.0.0 and above (Spectrum switches)
 - SONiC 202012
 - CentOS 7
@@ -355,7 +355,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.7" opsys="cl">}}
+{{<netq-install/cli-version version="4.8" opsys="cl">}}
 <!-- vale on -->
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -389,9 +389,9 @@ To obtain the NetQ CLI package:
     admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
-    You should see version 4.7.0 and update 43 in the results. For example:
+    You should see version 4.8.0 and update 44 in the results. For example:
 
-    - netq-apps_<strong>4.7.0</strong>-deb10u<strong>43</strong>~1690984858.9d32c7a0_amd64.deb
+    - netq-apps_<strong>4.8.0</strong>-deb10u<strong>44</strong>~1699076923.80e664937_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -437,7 +437,7 @@ To obtain the NetQ CLI package:
     root@rhel7:~# rpm -q -netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.7" opsys="rh">}}
+{{<netq-install/cli-version version="4.8" opsys="rh">}}
 <!-- vale on -->
 5. Continue with the next section.
 
@@ -458,7 +458,7 @@ To obtain the NetQ CLI package:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.7" opsys="ub">}}
+{{<netq-install/cli-version version="4.8" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 

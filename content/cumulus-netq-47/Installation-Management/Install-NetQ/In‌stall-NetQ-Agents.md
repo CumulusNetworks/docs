@@ -7,7 +7,7 @@ toc: 4
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 4.3.0 and above (Broadcom switches)
+- Cumulus Linux 4.3.0 and 4.3.1 (Broadcom switches)
 - Cumulus Linux 5.0.0 and above (Spectrum switches)
 - SONiC 202012
 - CentOS 7
@@ -40,7 +40,7 @@ If your network uses a proxy server for external connections, you should first {
 ### Verify NTP Is Installed and Configured
 <!-- vale on -->
 
-Verify that {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-55/System-Configuration/Date-and-Time/Network-Time-Protocol-NTP/" text="NTP">}} is running on the switch. The switch system clock must be synchronized with the NetQ appliance to enable useful statistical analysis. Alternatively, you can configure {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-55/System-Configuration/Date-and-Time/Precision-Time-Protocol-PTP/" text="PTP">}} for time synchronization.
+Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch as outlined in the steps below. The switch system clock must be synchronized with the NetQ appliance to enable useful statistical analysis. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
 
 ```
 cumulus@switch:~$ sudo systemctl status ntp
@@ -94,7 +94,7 @@ cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-app
 ### Verify NTP Is Installed and Configured
 <!-- vale on -->
 
-Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch. The switch must be synchronized with the NetQ appliance to enable useful statistical analysis.
+Verify that {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} is running on the switch as outlined in the steps below. The switch must be synchronized with the NetQ appliance to enable useful statistical analysis. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
 
 ```
 admin@switch:~$ sudo systemctl status ntp
@@ -184,7 +184,7 @@ root@rhel7:~# sudo yum install wget
 
 ### Install and Configure NTP
 
-If NTP is not already installed and configured, follow these steps:
+If NTP is not already installed and configured, follow the steps outlined below. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
 
 1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
@@ -282,7 +282,7 @@ root@ubuntu:~# sudo systemctl start lldpd.service
 
 ### Install and Configure Network Time Server
 
-If NTP is not already installed and configured, follow these steps:
+If NTP is not already installed and configured, follow the steps below. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
 
 1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server, if not already installed. Servers must be synchronized with the NetQ appliance to enable useful statistical analysis.
 
@@ -341,7 +341,7 @@ root@ubuntu:~# chronyc activity
 0 sources doing burst (return to offline)
 0 sources with unknown address
 ```
-   4. View the time servers chrony is using.
+   4. View the time servers which chrony is using.
 ```
 root@ubuntu:~# chronyc sources
 210 Number of sources = 8
@@ -370,7 +370,7 @@ driftfile /var/lib/chrony/drift
 makestep 1.0 3
 rtcsync
 ```
-   5. View the server chrony is currently tracking.
+   5. View the server  chrony is currently tracking.
 ```
 root@ubuntu:~# chronyc tracking
 Reference ID    : 5BBD59C7 (golem.canonical.com)

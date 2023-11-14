@@ -1,0 +1,820 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "",
+    "version" : "",
+    "title" : "",
+    "termsOfService" : ""
+  },
+  "host" : "",
+  "basePath" : "/api/netq/nvl4/v1",
+  "tags" : [ {
+    "name" : "blob"
+  }, {
+    "name" : "domain"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/blob/{blobId}" : {
+      "get" : {
+        "tags" : [ "blob" ],
+        "summary" : "Get file by id",
+        "description" : "",
+        "operationId" : "getBlob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "blobId",
+          "in" : "path",
+          "description" : "file id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BlobUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "File {blobId} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "blob" ],
+        "summary" : "Delete file by id",
+        "description" : "",
+        "operationId" : "deleteBlob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "blobId",
+          "in" : "path",
+          "description" : "file id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DelResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/blob" : {
+      "get" : {
+        "tags" : [ "blob" ],
+        "summary" : "Get all file list for the premise",
+        "description" : "",
+        "operationId" : "getAllBlob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BlobMetaUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/nodes" : {
+      "get" : {
+        "tags" : [ "domain" ],
+        "summary" : "Get nodes information by domain id",
+        "description" : "",
+        "operationId" : "getNodes",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/NodeInfo"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Domain with domain id: {domainId} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/gfm/{action}" : {
+      "put" : {
+        "tags" : [ "domain" ],
+        "summary" : "Start or Stop GFM",
+        "description" : "",
+        "operationId" : "activateAndDeactivateGfm",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "action",
+          "in" : "path",
+          "description" : "start/stop",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DomainUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/blob/{fileType}" : {
+      "post" : {
+        "tags" : [ "blob" ],
+        "summary" : "Add a new file",
+        "description" : "",
+        "operationId" : "postBlob",
+        "consumes" : [ "multipart/form-data" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "file",
+          "in" : "formData",
+          "description" : "Add file request",
+          "required" : true
+        }, {
+          "name" : "fileType",
+          "in" : "path",
+          "description" : "topology/fabric_configuration",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/BlobMetaUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/blob/{blobId}/download" : {
+      "get" : {
+        "tags" : [ "blob" ],
+        "summary" : "download file by file id",
+        "description" : "",
+        "operationId" : "downloadBlob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "blobId",
+          "in" : "path",
+          "description" : "file id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BlobUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "File {BlobId} for opid {opid} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}" : {
+      "get" : {
+        "tags" : [ "domain" ],
+        "summary" : "Get domain by id",
+        "description" : "",
+        "operationId" : "getDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/DomainUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Domain with domain id: {domainId} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "domain" ],
+        "summary" : "Delete nvl4 domain by id",
+        "description" : "",
+        "operationId" : "deleteDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DelResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain" : {
+      "get" : {
+        "tags" : [ "domain" ],
+        "summary" : "Get all nvl4 domains for the premise",
+        "description" : "",
+        "operationId" : "getAllDomains",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/DomainUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "domain" ],
+        "summary" : "Add a new nvl4 domain",
+        "description" : "",
+        "operationId" : "postDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Domain request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/DomainCreationRequest"
+          }
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DomainUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "domain" ],
+        "summary" : "Updates nvl4 domain",
+        "description" : "",
+        "operationId" : "putDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Update domain request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/DomainUpdateRequest"
+          }
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DomainUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "409" : {
+            "description" : "Domain with id {domain_id} doesn't exists",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "jwt" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "DelResponse" : {
+      "type" : "object",
+      "required" : [ "deleted" ],
+      "properties" : {
+        "deleted" : {
+          "type" : "boolean"
+        }
+      },
+      "description" : "BLob UI Object"
+    },
+    "ErrorResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "error message"
+        }
+      },
+      "description" : "Generic error response"
+    },
+    "BlobUiObj" : {
+      "type" : "object",
+      "required" : [ "blob_type", "data", "domains", "id", "name", "opid", "uploaded_at" ],
+      "properties" : {
+        "opid" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "blob_type" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "domains" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : { }
+          }
+        },
+        "data" : {
+          "type" : "string"
+        },
+        "uploaded_at" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      },
+      "description" : "BLob UI Object"
+    },
+    "BlobMetaUiObj" : {
+      "type" : "object",
+      "required" : [ "blob_type", "domains", "id", "name", "uploaded_at", "uploaded_by" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "blob_type" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "domains" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : { }
+          }
+        },
+        "uploaded_at" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "uploaded_by" : {
+          "type" : "string"
+        }
+      },
+      "description" : "BLob UI Object"
+    },
+    "DomainStatusSummary" : {
+      "type" : "object",
+      "required" : [ "healthyNodes", "totalNodes", "undiscoverdNodes", "unhealthyNodes" ],
+      "properties" : {
+        "totalNodes" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "healthyNodes" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "unhealthyNodes" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "undiscoverdNodes" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      },
+      "description" : "Domain Status Summary"
+    },
+    "DomainUiObj" : {
+      "type" : "object",
+      "required" : [ "created_at", "created_by", "fabric_mode", "gfm_state", "gfm_timeout", "id", "isActive", "log_level", "name", "opid", "status", "updated_at" ],
+      "properties" : {
+        "opid" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "log_level" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fabric_mode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "gfm_timeout" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "topology" : {
+          "$ref" : "#/definitions/BlobMetaUiObj"
+        },
+        "fabric_configuration" : {
+          "$ref" : "#/definitions/BlobMetaUiObj"
+        },
+        "created_by" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "updated_at" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "isActive" : {
+          "type" : "boolean"
+        },
+        "gfm_state" : {
+          "type" : "string"
+        },
+        "statusSummary" : {
+          "$ref" : "#/definitions/DomainStatusSummary"
+        },
+        "status" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Domain UI Object"
+    },
+    "DomainCreationRequest" : {
+      "type" : "object",
+      "required" : [ "fabric_configuration_id", "fabric_mode", "gfm_timeout", "log_level", "name", "topology_id" ],
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "log_level" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fabric_mode" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "gfm_timeout" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "topology_id" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fabric_configuration_id" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      },
+      "description" : "Add Domain Request"
+    },
+    "DomainUpdateRequest" : {
+      "type" : "object",
+      "required" : [ "domainId" ],
+      "properties" : {
+        "domainId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "log_level" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "fabric_mode" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "gfm_timeout" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "topology_id" : {
+          "type" : "object",
+          "properties" : { }
+        },
+        "fabric_configuration_id" : {
+          "type" : "object",
+          "properties" : { }
+        }
+      },
+      "description" : "Update Domain Request"
+    },
+    "NodeInfo" : {
+      "type" : "object",
+      "required" : [ "device_type", "health", "hostname", "ip_address", "lfm_status" ],
+      "properties" : {
+        "hostname" : {
+          "type" : "string"
+        },
+        "lfm_status" : {
+          "type" : "string"
+        },
+        "device_type" : {
+          "type" : "string"
+        },
+        "ip_address" : {
+          "type" : "string"
+        },
+        "health" : {
+          "type" : "string"
+        }
+      },
+      "description" : "Nodes data"
+    }
+  }
+}

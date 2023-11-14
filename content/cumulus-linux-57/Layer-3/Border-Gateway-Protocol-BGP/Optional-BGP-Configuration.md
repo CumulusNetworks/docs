@@ -1469,6 +1469,40 @@ router bgp 65101
 {{< /tab >}}
 {{< /tabs >}}
 
+## BGP Input and Ouput Message Queue Limit
+
+You can configure the input and the output message queue limit globally for all peers. For both the input and output queue limit, you can set a value between 1 and 4294967295 messages. The default setting is 10000.
+
+{{< tabs "1477 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets the input queue limit to 2048 messages and the output queue limit to 2048 messages:
+
+```
+cumulus@leaf01:~$ nv set router bgp queue-limit input-queue 2048
+cumulus@leaf01:~$ nv set router bgp queue-limit output-queue 2048
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+The following example sets the input queue limit to 2048 messages and the output queue limit to 2048 messages:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp input-queue-limit 2048
+leaf01(config)# bgp output-queue-limit 2048
+leaf01(config)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Route Reflectors
 
 <span style="background-color:#F5F5DC">[iBGP](## "internal BGP")</span> rules state that BGP cannot send a route learned from an iBGP peer to another iBGP peer. In a data center spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, you can use a *route reflector*. When an iBGP speaker is a route reflector, it *can* send iBGP learned routes to other iBGP peers.

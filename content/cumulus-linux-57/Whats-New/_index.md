@@ -18,30 +18,30 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 
 ### New Features and Enhancements
 
-- Support for Debian 12
-- Shared ECMP containers for adaptive routing
-- Buffer and bandwidth histograms
-- 802.1x support
-- PTP PPS In or Out Support
+- {{<link url="ASIC-Monitoring" text="Buffer and bandwidth histograms">}}
+- {{<link url="802.1X-Interfaces" text="802.1x support">}}
 - {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}} forwarding profile
-- Route server support for EVPN
+- {{<link url="MAC-Address-Translation" text="MAC Address Translation">}}
+- {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Shared ECMP containers for adaptive routing">}} to optimize and share resources, and avoid resource exhaustion
+- PTP PPS In or Out Support
 - NVUE enhancements include:
-  - {{<link url="Port-Security" text="Port Security commands">}}
+  - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
   - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="ISSU maintenance mode commands">}}
   - {{<link url="RADIUS-AAA" text="RADIUS AAA commands">}}
   - {{<link url="Interface-Configuration-and-Management/#link-flap-protection" text="Link flap protection ">}} commands
   - {{<link title="Spanning Tree and Rapid Spanning Tree - STP" text="MLAG support for PVST & PVRST VLAN-aware bridge mode">}}
-  - {{<link title="Setting the Date and Time/#set-the-date-and-time" text="Set time command">}}
-  - Add admin state to `nv show interface` output
+  - {{<link title="Setting the Date and Time/#set-the-date-and-time" text="Set date and time command">}}
+  - {{<link url="Optional-BGP-Configuration#bgp-input-and-ouput-message-queue-limit" text="Set BGP input and ouput message queue limit">}}
+  - {{<link url="User-Accounts" text="Custom role-based access control">}} with more granularity
+  - Commands to {{<link url="NVUE-API/#certificates" text="manage certificates">}} for the NVUE REST API
+  - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.
+  - The `nv show interface` command output includes the admin state
   - PIM show commands for PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
-  - Replace net show neighbor
-  - mlag keyword presentation
-  - User permissions
-  - Allow unset operations with a key and value
-  - Enhanced show config history output
-  - API support
+  - Set and show commands to configure and show the IP neighbor table
+  - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
+  - Improvements to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
   - Provide interface summary view with filtering
 
 {{< expand "New NVUE Commands" >}}

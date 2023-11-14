@@ -105,7 +105,7 @@ netq-ts           Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e 
 You can view the current configuration of a NetQ Agent to determine what data it collects and where it sends that data. The syntax for this command is:
 
 ```
-netq config show agent 
+sudo netq config show agent 
     [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|ssl|stats|wjh|wjh-threshold] 
     [json]
 ```
@@ -113,7 +113,7 @@ netq config show agent
 The following example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF. There is no special configuration to monitor Kubernetes, FRR, interface statistics, or WJH, and there are no limits on CPU usage or change to the default logging level.
 
 ```
-cumulus@switch:~$ netq config show agent
+cumulus@switch:~$ sudo netq config show agent
 netq-agent             value      default
 ---------------------  ---------  ---------
 exhibitport
@@ -133,7 +133,7 @@ To view the configuration of a particular aspect of a NetQ Agent, use the variou
 This example shows a NetQ Agent configured with a CPU limit of 60%.
 
 ```
-cumulus@switch:~$ netq config show agent cpu-limit
+cumulus@switch:~$ sudo netq config show agent cpu-limit
 CPU Quota
 -----------
 60%
@@ -156,26 +156,36 @@ Commands apply to one agent at a time, and you run them on the switch or host wh
 
 {{</notice>}}
 
-### Add and Remove a NetQ Agent
+### Add or Remove a NetQ Agent
 
-To add or remove a NetQ Agent, you must add or remove the IP address (and port and VRF when specified) from the NetQ configuration file (at */etc/netq/netq.yml*). This adds or removes the information about the appliance or VM where the agent sends the data it collects.
+To add or remove a NetQ Agent, you must add or remove the IP address (as well as the port and VRF, if specified) from the NetQ configuration file, `/etc/netq/netq.yml`. This adds or removes the information about the server where the agent sends the data it collects.
 
 To use the NetQ CLI to add or remove a NetQ Agent on a switch or host, run:
 
 ```
-netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>]
-netq config del agent server
+sudo netq config add agent server <text-opta-ip> [port <text-opta-port>] [vrf <text-vrf-name>] [inband-interface <interface-name>]
 ```
 
-If you want to use a specific port on the appliance or VM, use the `port` option. If you want the data sent over a particular virtual route interface, use the `vrf` option.
+If you want to use a specific port on the server, use the `port` option. If you want the data sent over a particular virtual route interface, use the `vrf` option.
 
-This example shows how to add a NetQ Agent and tell it to send the data it collects to the NetQ appliance or VM at the IPv4 address of 10.0.0.23 using the default port (port 31980 for on-premises and port 443 for cloud deployments) and vrf (default).
+This example shows how to add a NetQ Agent and tell it to send the data it collects to the NetQ server at the IPv4 address of 10.0.0.23 using the default port (port 31980 for on-premises and port 443 for cloud deployments) and the default VRF (mgmt). The port and VRF are not specified, so NetQ assumes default settings.
 
 ```
-cumulus@switch~:$ netq config add agent server 10.0.0.23
-cumulus@switch~:$ netq config restart agent
+cumulus@switch~:$ sudo netq config add agent server 10.0.0.23
+cumulus@switch~:$ sudo netq config restart agent
 ```
 
+This example shows how to add a NetQ Agent and tell it to send the data it collects to the NetQ server at the IPv4 address of 10.0.0.23 using the default port (port 31980 for on-premises and port 443 for cloud deployments) and the `default` VRF for a switch managed through an in-band connection on interface `swp1`:
+
+```
+cumulus@switch~:$ sudo netq config add agent server 10.0.0.23 vrf default inband-interface swp1
+cumulus@switch~:$ sudo netq config restart agent
+```
+To remove a NetQ Agent on a switch or host, run:
+
+```
+sudo netq config del agent server
+```
 <!-- vale off -->
 ### Disable and Reenable a NetQ Agent
 <!-- vale on -->
@@ -185,13 +195,13 @@ You can temporarily disable the NetQ Agent on a node. Disabling the NetQ Agent m
 To disable a NetQ Agent, run:
 
 ```
-cumulus@switch:~$ netq config stop agent
+cumulus@switch:~$ sudo netq config stop agent
 ```
 
 To reenable a NetQ Agent, run:
 
 ```
-cumulus@switch:~$ netq config restart agent
+cumulus@switch:~$ sudo netq config restart agent
 ```
 
 ### Configure a NetQ Agent to Limit Switch CPU Usage
@@ -203,15 +213,15 @@ For more detail about this feature, refer to this [Knowledge Base article]({{<re
 This example limits a NetQ Agent from consuming more than 40% of the CPU resources on a Cumulus Linux switch.
 
 ```
-cumulus@switch:~$ netq config add agent cpu-limit 40
-cumulus@switch:~$ netq config restart agent
+cumulus@switch:~$ sudo netq config add agent cpu-limit 40
+cumulus@switch:~$ sudo netq config restart agent
 ```
 
 To remove the limit, run:
 
 ```
-cumulus@switch:~$ netq config del agent cpu-limit
-cumulus@switch:~$ netq config restart agent
+cumulus@switch:~$ sudo netq config del agent cpu-limit
+cumulus@switch:~$ sudo netq config restart agent
 ```
 
 ### Configure a NetQ Agent to Collect Data from Selected Services
@@ -221,31 +231,31 @@ You can enable and disable data collection about FRRouting (FRR), Kubernetes, an
 To configure the agent to start or stop collecting FRR data, run:
 
 ```
-cumulus@chassis~:$ netq config add agent frr-monitor
-cumulus@switch:~$ netq config restart agent
+cumulus@chassis~:$ sudo netq config add agent frr-monitor
+cumulus@switch:~$ sudo netq config restart agent
 
-cumulus@chassis~:$ netq config del agent frr-monitor
-cumulus@switch:~$ netq config restart agent
+cumulus@chassis~:$ sudo netq config del agent frr-monitor
+cumulus@switch:~$ sudo netq config restart agent
 ```
 
 To configure the agent to start or stop collecting Kubernetes data, run:
 
 ```
-cumulus@switch:~$ netq config add agent kubernetes-monitor
-cumulus@switch:~$ netq config restart agent
+cumulus@switch:~$ sudo netq config add agent kubernetes-monitor
+cumulus@switch:~$ sudo netq config restart agent
 
-cumulus@switch:~$ netq config del agent kubernetes-monitor
-cumulus@switch:~$ netq config restart agent
+cumulus@switch:~$ sudo netq config del agent kubernetes-monitor
+cumulus@switch:~$ sudo netq config restart agent
 ```
 
 To configure the agent to start or stop collecting WJH data, run:
 
 ```
-cumulus@chassis~:$ netq config add agent wjh
-cumulus@switch:~$ netq config restart agent
+cumulus@chassis~:$ sudo netq config add agent wjh
+cumulus@switch:~$ sudo netq config restart agent
 
-cumulus@chassis~:$ netq config del agent wjh
-cumulus@switch:~$ netq config restart agent
+cumulus@chassis~:$ sudo netq config del agent wjh
+cumulus@switch:~$ sudo netq config restart agent
 ```
 
 ### Configure a NetQ Agent to Send Data to a Server Cluster
@@ -255,7 +265,7 @@ If you have a server cluster arrangement for NetQ, you should configure the NetQ
 To configure the agent to send data to the servers in your cluster, run:
 
 ```
-netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
+sudo netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
 ```
 
 You must separate the list of IP addresses by commas (not spaces). You can optionally specify a port or VRF.
@@ -263,13 +273,13 @@ You must separate the list of IP addresses by commas (not spaces). You can optio
 This example configures the NetQ Agent on a switch to send the data to three servers located at *10.0.0.21*, *10.0.0.22*, and *10.0.0.23* using the *rocket* VRF.
 
 ```
-cumulus@switch:~$ netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf rocket
+cumulus@switch:~$ sudo netq config add agent cluster-servers 10.0.0.21,10.0.0.22,10.0.0.23 vrf rocket
 ```
 
 To stop a NetQ Agent from sending data to a server cluster, run:
 
 ```
-cumulus@switch:~$ netq config del agent cluster-servers
+cumulus@switch:~$ sudo netq config del agent cluster-servers
 ```
 
 ### Configure Logging to Troubleshoot a NetQ Agent
@@ -306,13 +316,13 @@ To configure a logging level, follow these steps. This example sets the logging 
 1. Set the logging level:
 
     ```
-    cumulus@switch:~$ netq config add agent loglevel debug
+    cumulus@switch:~$ sudo netq config add agent loglevel debug
     ```
 
 2. Restart the NetQ Agent:
 
     ```
-    cumulus@switch:~$ netq config restart agent
+    cumulus@switch:~$ sudo netq config restart agent
     ```
 
 3. (Optional) Verify the connection to the NetQ appliance or VM by viewing the `netq-agent.log` messages.
@@ -324,15 +334,15 @@ If you set the logging level to *debug* for troubleshooting, NVIDIA recommends t
 To change the logging level from debug to another level, run:
 
 ```
-cumulus@switch:~$ netq config add agent loglevel [info|warning|error]
-cumulus@switch:~$ netq config restart agent
+cumulus@switch:~$ sudo netq config add agent loglevel [info|warning|error]
+cumulus@switch:~$ sudo netq config restart agent
 ```
 
 To disable all logging:
 
 ```
-cumulus@switch:~$ netq config del agent loglevel
-cumulus@switch:~$ netq config restart agent
+cumulus@switch:~$ sudo netq config del agent loglevel
+cumulus@switch:~$ sudo netq config restart agent
 ```
 
 ## Change NetQ Agent Polling Data and Frequency
@@ -348,7 +358,7 @@ Depending on the switch platform, the NetQ Agent might not execute some supporte
 To see the list of supported modular commands, run:
 
 ```
-cumulus@switch:~$ netq config show agent commands
+cumulus@switch:~$ sudo netq config show agent commands
  Service Key               Period  Active       Command
 -----------------------  --------  --------  ---------------------------------------------------------------------
 bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']
@@ -389,10 +399,10 @@ The NetQ predefined commands include:
 You can change the polling frequency (in seconds) of a modular command. For example, to change the polling frequency of the `lldp-json` command to 60 seconds from its default of 120 seconds, run:
 
 ```
-cumulus@switch:~$ netq config add agent command service-key lldp-json poll-period 60
+cumulus@switch:~$ sudo netq config add agent command service-key lldp-json poll-period 60
 Successfully added/modified Command service lldpd command /usr/sbin/lldpctl -f json
 
-cumulus@switch:~$ netq config show agent commands
+cumulus@switch:~$ sudo netq config show agent commands
  Service Key               Period  Active       Command
 -----------------------  --------  --------  ---------------------------------------------------------------------
 bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']
@@ -423,10 +433,10 @@ ospf-interface-json            60  no        ['/usr/bin/vtysh', '-c', 'show ip o
 You can disable unnecessary commands. This can help reduce the compute resources the NetQ Agent consumes on the switch. For example, if your network does not run OSPF, you can disable the two OSPF commands:
 
 ```
-cumulus@switch:~$ netq config add agent command service-key ospf-neighbor-json enable False
+cumulus@switch:~$ sudo netq config add agent command service-key ospf-neighbor-json enable False
 Command Service ospf-neighbor-json is disabled
 
-cumulus@switch:~$ netq config show agent commands
+cumulus@switch:~$ sudo netq config show agent commands
  Service Key               Period  Active       Command
 -----------------------  --------  --------  ---------------------------------------------------------------------
 bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']
@@ -457,6 +467,6 @@ ospf-interface-json            60  no        ['/usr/bin/vtysh', '-c', 'show ip o
 To revert to the original command settings, run:
 
 ```
-cumulus@switch:~$ netq config agent factory-reset commands
+cumulus@switch:~$ sudo netq config agent factory-reset commands
 Netq Command factory reset successful
 ```

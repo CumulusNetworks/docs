@@ -7,38 +7,71 @@ right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
 ---
-
-<!-- alpha for 4.7
 ## netq show adaptive-routing config
 
+Displays a list of switches that are running adaptive routing and RoCE settings for those switches. The second form of this command displays a list of interfaces on the switch and their configurations.
 ### Syntax
 
 ```
-netq [<hostname>] show adaptive-routing config global [profile <text-profilename>] 
-[between <text-time> and <text-endtime>] 
-[around <text-time>]
-[json]
+netq [<hostname>] show adaptive-routing config global 
+    [between <text-time> and <text-endtime>] 
+    [around <text-time>]
+    [json]
 ```
 ```
-netq [<hostname>] show adaptive-routing config interface [<text-ifname>] 
-[between <text-time> and <text-endtime>] 
-[around <text-time>] 
-[json]
+netq [<hostname>] show adaptive-routing config interface 
+    [<text-ifname>] 
+    [between <text-time> and <text-endtime>] 
+    [around <text-time>] 
+    [json]
 ```
 
 ### Required Arguments
 
-| Argument | Value | Description |
-| ---- | ---- | ---- |
+None
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
+| NA | \<text-ifname\> | Only display results for the interface with this name |
+| between | \<text-time\> and \<text-endtime\> | Only display results between the snapshots taken at these times |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
--->
+
+```
+cumulus@switch:~$netq show adaptive-routing config global
+
+Matching arconfig records:
+Hostname          Is AR   Is RoCE  RoCE Mode Last Updated
+                  Enabled Enabled
+----------------- ------- -------- --------- --------------------------
+torc-11           False   True     Lossy     Wed Oct 25 13:11:23 2023
+torc-12           True    True     Lossless  Tue Oct 24 15:32:33 2023
+```
+
+```
+cumulus@switch:~$ netq show adaptive-routing config interface
+
+Matching arconfig records:
+Hostname          Interface Is AR   Link Util  Link Util  Last Updated
+                            Enabled Threshold  Threshold
+                                    Disabled
+----------------- --------- ------- ---------- ---------- --------------------------
+torc-11           swp1      True    True       70         Tue Oct 24 15:32:33 2023
+torc-11           swp2      False   True       60         Wed Oct 25 13:07:21 2023
+torc-12           swp2      True    True       70         Tue Oct 24 15:32:33 2023
+torc-12           swp1      True    True       70         Tue Oct 24 15:32:33 2023
+```
+
+### Related Commands
+
+None
+
+- - -
 ## netq show address-history
 <!-- vale on -->
 
@@ -929,7 +962,7 @@ Event querying is supported for a 72-hour window within the past 30 days.
 ```
 netq [<hostname>] show events
     [severity info | severity error]
-    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_services|tca_wjh|trace|vlan|vxlan]
+    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_hostd_roce|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_services|tca_wjh|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
 ```
@@ -944,7 +977,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | severity | info, error| Only display events with this severity level |
-| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_services, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
+| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_hostd_roce, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_services, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON format |
 
@@ -1270,7 +1303,118 @@ Wed Jul 26 02:39:27 2023       1052005  0        0        0        0        0   
 ```
 
 - - -
+## netq show impact kubernetes
 
+Displays the impact on pods, services, replica sets or deployments when a specific ToR switch becomes unavailable.
+
+{{<notice tip>}}
+You must enable Kubernetes monitoring on NetQ Agents. Refer to the <code>netq config add agent</code> command to enable monitoring.
+{{</notice>}}
+
+Outputs vary according to the component of the Kubernetes cluster you want to view. The output is color coded (not shown in the examples) so you can clearly see the impact: green shows no impact, yellow shows partial impact, and red shows full impact. Use the `netq config add color` command to view the colored output.
+
+### Syntax
+
+```
+netq  <hostname>  show impact kubernetes service
+    [master <kube-master-node>]
+    [name <kube-service-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-service-label>]
+    [service-cluster-ip <kube-service-cluster-ip>]
+    [service-external-ip <kube-service-external-ip>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show impact kubernetes replica-set
+    [master <kube-master-node>]
+    [name <kube-rs-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-rs-label>]
+    [around <text-time>]
+    [json]
+
+netq <hostname> show impact kubernetes deployment
+    [master <kube-master-node>]
+    [name <kube-deployment-name>]
+    [cluster <kube-cluster-name>]
+    [namespace <namespace>]
+    [label <kube-deployment-label>]
+    [around <text-time>]
+    [json]
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| deployment | NA | Display results for Kubernetes deployments |
+| replica-set | NA | Display results for Kubernetes replica sets |
+| service | NA | Display results for Kubernetes services |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| master | \<kube-master-node\> | Only display results for the master node with this name |
+| name | \<kube-deployment-name\>, \<kube-rs-name\>, \<kube-service-name\> | Only display results for the Kubernetes component with this name |
+| cluster | \<kube-cluster-name\> | Only display results for the cluster with this name |
+| namespace | \<namespace\> | Only display results for clusters and nodes within this namespace |
+| label | \<kube-node-label\>, \<kube-ds-label\>, \<kube-deployment-label\>, \<kube-pod-label\>, \<kube-rc-label\>, \<kube-rs-label\>, \<kube-service-label\> | Only display results for components with this label |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON format |
+
+### Sample Usage
+
+Display the impact on service availability based on the loss of particular node:
+
+```
+cumulus@host:~$ netq server11 show impact kubernetes service name calico-etcd
+calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
+                                    -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
+                                    -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
+                                    -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
+```
+
+Display the impact on the Kubernetes deployment if a host or switch becomes unavailable:
+
+```
+cumulus@host:~$ netq torc-21 show impact kubernetes deployment name nginx
+nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
+                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
+        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
+                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
+                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
+        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
+                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+                                -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
+
+cumulus@server11:~$ netq server12 show impact kubernetes deployment name nginx
+nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
+                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
+                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
+                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
+        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
+                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
+                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
+        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
+                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
+```
+
+### Related Commands
+
+- ```netq config add agent kubernetes-monitor```
+- ```netq config del agent kubernetes-monitor```
+- ```netq config show agent kubernetes-monitor```
+- ```netq config add color```
+- ```netq show kubernetes```
+
+- - -
 ## netq show interfaces
 
 Displays the health of all interfaces or a single interface on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter by the interface type, state of the interface, or the remote interface. For a given switch or host, you can view the total number of configured interfaces.
@@ -2636,119 +2780,6 @@ Refer to {{<link title="Monitor Container Environments Using Kubernetes API Serv
 - ```netq show impact kubernetes```
 
 - - -
-
-## netq show impact kubernetes
-
-Displays the impact on pods, services, replica sets or deployments when a specific ToR switch becomes unavailable.
-
-{{<notice tip>}}
-You must enable Kubernetes monitoring on NetQ Agents. Refer to the <code>netq config add agent</code> command to enable monitoring.
-{{</notice>}}
-
-Outputs vary according to the component of the Kubernetes cluster you want to view. The output is color coded (not shown in the examples) so you can clearly see the impact: green shows no impact, yellow shows partial impact, and red shows full impact. Use the `netq config add color` command to view the colored output.
-
-### Syntax
-
-```
-netq  <hostname>  show impact kubernetes service
-    [master <kube-master-node>]
-    [name <kube-service-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-service-label>]
-    [service-cluster-ip <kube-service-cluster-ip>]
-    [service-external-ip <kube-service-external-ip>]
-    [around <text-time>]
-    [json]
-
-netq <hostname> show impact kubernetes replica-set
-    [master <kube-master-node>]
-    [name <kube-rs-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-rs-label>]
-    [around <text-time>]
-    [json]
-
-netq <hostname> show impact kubernetes deployment
-    [master <kube-master-node>]
-    [name <kube-deployment-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-deployment-label>]
-    [around <text-time>]
-    [json]
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| deployment | NA | Display results for Kubernetes deployments |
-| replica-set | NA | Display results for Kubernetes replica sets |
-| service | NA | Display results for Kubernetes services |
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| master | \<kube-master-node\> | Only display results for the master node with this name |
-| name | \<kube-deployment-name\>, \<kube-rs-name\>, \<kube-service-name\> | Only display results for the Kubernetes component with this name |
-| cluster | \<kube-cluster-name\> | Only display results for the cluster with this name |
-| namespace | \<namespace\> | Only display results for clusters and nodes within this namespace |
-| label | \<kube-node-label\>, \<kube-ds-label\>, \<kube-deployment-label\>, \<kube-pod-label\>, \<kube-rc-label\>, \<kube-rs-label\>, \<kube-service-label\> | Only display results for components with this label |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON format |
-
-### Sample Usage
-
-Display the impact on service availability based on the loss of particular node:
-
-```
-cumulus@host:~$ netq server11 show impact kubernetes service name calico-etcd
-calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
-                                    -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
-                                    -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
-                                    -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
-```
-
-Display the impact on the Kubernetes deployment if a host or switch becomes unavailable:
-
-```
-cumulus@host:~$ netq torc-21 show impact kubernetes deployment name nginx
-nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
-                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
-                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
-                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
-        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
-                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
-                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
-        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
-                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
-                                -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
-
-cumulus@server11:~$ netq server12 show impact kubernetes deployment name nginx
-nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
-                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
-                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
-                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
-        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
-                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
-                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
-        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
-                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
-```
-
-### Related Commands
-
-- ```netq config add agent kubernetes-monitor```
-- ```netq config del agent kubernetes-monitor```
-- ```netq config show agent kubernetes-monitor```
-- ```netq config add color```
-- ```netq show kubernetes```
-
-- - -
 <!--
 ## netq show line-utilization
 
@@ -3881,13 +3912,6 @@ server08          /dev/vda1            486105088            80372736            
 ## netq show roce-config
 
 Displays RoCE configuration.
-
-{{<notice note>}}
-
-Priority code point (PCP) monitoring requires NetQ Agent 4.5 or later.
-
-{{</notice>}}
-
 ### Syntax
 ```
 netq [<hostname>] show roce-config
@@ -3947,13 +3971,25 @@ mlx-3700c-24      swp8            Lossy      0,3          ECN      1502208  1566
 - - -
 ## netq show roce-counters
 
-Displays RoCE counters.
+Displays RoCE counters for switches, DPUs, and NICs.
 
 ### Syntax
 
 ```
 netq [<hostname>] show roce-counters 
     [<text-port>] tx | rx [roce | general] 
+    [around <text-time>] 
+    [json]
+```
+
+```
+netq [<hostname>] show roce-counters dpu 
+    [around <text-time>] 
+    [json]
+```
+```
+netq [<hostname>] show roce-counters nic 
+    [<text-device-name>]  
     [around <text-time>] 
     [json]
 ```
@@ -3968,6 +4004,7 @@ None
 | NA | \<hostname\> | Only display results for the device with this name |
 | NA | tx | Display tx info |
 | NA | rx | Display rx info |
+| NA | \<text-device-name\>  | Only display results for the NIC with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -4037,7 +4074,45 @@ Hostname          Interface            PG packets           PG bytes            
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
 switch            swp1s1               1643392              154094520            0                    0                    1                    0                    1
 ```
+Dislpay RoCE counters for BlueField DPUs:
 
+```
+cumulus@dpu:~$ netq show roce-counters dpu 
+
+Matching roce records:
+Hostname          Device Name          Port Name            Rx Prio3 Bytes       Rx Prio3 Buf Discard Rx Prio3 Packets     Rx Prio3 Cong Discar Rx Prio3 Discards    Tx Prio3 Bytes       Tx Prio3 Packets     Np Cnp Sent          Np Ecn Marked Roce P Rp Cnp Handled       Rp Cnp Ignored
+                                                                                                                           d                                                                                                        ackets
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+r-netq-bf2-01-dpu pf0hpf               pf0hpf               0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu pf1hpf               pf1hpf               0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu enp3s0f1s0           enp3s0f1s0           0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu enp3s0f0s0           enp3s0f0s0           0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu en3f0pf0sf0          en3f0pf0sf0          0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu p0                   p0                   0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu en3f1pf1sf0          en3f1pf1sf0          0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+r-netq-bf2-01-dpu p1                   p1                   1.23 GB              0                    176                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+01
+```
+
+Display RoCE counters for ConnectX NICs:
+
+```
+cumulus@nic:~$ netq show roce-counters nic 
+
+Matching roce records:
+Hostname          Device Name          Port Name            Rx Prio3 Bytes       Rx Prio3 Buf Discard Rx Prio3 Packets     Rx Prio3 Cong Discar Rx Prio3 Discards    Tx Prio3 Bytes       Tx Prio3 Packets     Np Cnp Sent          Np Ecn Marked Roce P Rp Cnp Handled       Rp Cnp Ignored
+                                                                                                                           d                                                                                                        ackets
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+fit-l-vrt-netq-40 ens7f1np1            ens7f1np1            146.28 GB            0                    2379794807           0                    0                    151.58 GB            149834335613         0 Bytes              0 Bytes              0                    0
+fit-l-vrt-netq-40 ens8f1np1            ens8f1np1            0 Bytes              0                    0                    0                    0                    0 Bytes              0                    0 Bytes              0 Bytes              0                    0
+```
 ### Related Commands
 
 - `netq show roce-config`
@@ -4386,8 +4461,8 @@ None
 cumulus@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 4.7.0
-Installer Version: 4.7.0
+Version: 4.8.0
+Installer Version: 4.8.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdsaHpjKzcwNmJiNVROOExRRXdLL3l5RVNLSHRhUE5sZS9FRjN0cTNzaHh1NmRtMkZpYmg3WWxKUE9lZTd5bnVlV2huaTZxZ0xxV3ZMYkpLMGdkc3RQcGdzNUlqanNMR3RzRTFpaEdNa3RZNlJYenQxLzh4Z3pVRXp3WTBWZDB4aWJrdDF3RGQwSjhnbExlbVk1RDM4VUdBVFVkMWQwcndLQ3gxZEhRdEM5L1UzZUs5cHFlOVdBYmE0ZHdiUFlaazZXLzM0ZmFsdFJxaG8rNUJia0pkTkFnWHdkZGZ5RXA1Vjc3Z2I1TUU3Q1BxOXp2Q1lXZW84cGtXVS9Wc0gxWklNWnhsa2crYlZ4MDRWUnN4ZnNIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==
@@ -5211,5 +5286,3 @@ leaf01            swp2                     Ingress router ACL                   
 - `netq config add agent wjh-threshold`
 - `netq config add agent wjh-drop-filter`
 - `netq config restart agent`
-
-- - -

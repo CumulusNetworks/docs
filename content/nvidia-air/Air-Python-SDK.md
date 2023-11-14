@@ -694,6 +694,27 @@ List existing accounts
 [<Account mrobertson@nvidia.com c51b49b6-94a7-4c93-950c-e7fa4883591>, <Account nmitchell@nvidia.com 3134711d-015e-49fb-a6ca-68248a8d4aff>]
 ```
 
+<a name="air_sdk.account.AccountApi.preferences"></a>
+### Preferences
+
+Get account preferences
+
+**Returns**:
+
+- `dict` - Response JSON
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+
+**Example**:
+
+```
+>>> air.accounts.preferences()
+{"baz": true, "foo": false}
+```
+
 Cumulus AIR API module
 
 ## AirSession
@@ -2451,6 +2472,9 @@ Manage a simulation
 
 ### json
 Returns a JSON string representation of the simulation
+
+### preferences
+Returns a JSON string representation of the simulation preferences
 
 ### refresh
 Syncs the simulation with all values returned by the API

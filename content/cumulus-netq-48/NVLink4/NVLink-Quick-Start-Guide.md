@@ -3,7 +3,6 @@ title: NVLink Quick Start Guide
 author: NVIDIA
 weight: 1000
 toc: 3
-bookhidden: true
 
 ---
 

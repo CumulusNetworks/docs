@@ -3,7 +3,6 @@ title: NVLink4 Events
 author: NVIDIA
 weight: 1150
 toc: 3
-bookhidden: true
 
 ---
 

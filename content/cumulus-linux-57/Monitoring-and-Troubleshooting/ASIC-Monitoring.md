@@ -10,10 +10,10 @@ Cumulus Linux provides an ASIC monitoring tool that collects and distributes dat
 - Packet buffer congestion that might lead to packet drops
 - Network problems with a particular switch, port, or traffic class
 
-Cumulus Linux provides several histograms:
-- The *egress queue length* histogram provides information about egress buffer utilization over time.
-- The *ingress queue lengths* histogram provides information about ingress buffer utilization over time.
-- The *counter* histogram provides information about bandwidth utilization for a port over time.
+Cumulus Linux provides:
+- The *egress queue length* histogram, which provides information about egress buffer utilization over time.
+- The *ingress queue lengths* histogram, which provides information about ingress buffer utilization over time.
+- The *counter* histogram, which provides information about bandwidth utilization for a port over time.
 
 ## Histogram Collection Example
 
@@ -343,7 +343,7 @@ The following example creates the `/var/lib/cumulus/histogram_stats` snapshot ev
 ```
 cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
 cumulus@switch:~$ nv set service telemetry snapshot-file count 30
-cumulus@switch:~$ nv set service telemetry snapshot-interval 5s
+cumulus@switch:~$ nv set service telemetry snapshot-interval 5
 cumulus@switch:~$ nv config apply
 ```
 
@@ -354,7 +354,7 @@ Edit the `snapshot.file` settings in the `/etc/cumulus/datapath/monitor.conf` fi
 
 | Setting| Description|
 |------- |----------- |
-| `<port_group_name>.action_list` | Specifies one or more actions that occur when data collects:<br>`snapshot` writes a snapshot of the data collection results to a file. If you specify this action, you must also specify a snapshot file (described below). You can also specify a threshold that initiates the snapshot action.<br><br>Example:<pre>monitor.histogram_pg.action_list = [snapshot]<br>`monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats`</pre>`collect` gathers additional data. If you specify this action, you must also specify the port groups for the additional data you want to collect.<br><br>Example:<pre>monitor.histogram_pg.action_list = [collect<br>monitor.histogram_pg.collect.port_group_list = [buffers_pg,all_packet_pg]</pre>`log` sends a message to the `/var/log/syslog` file. If you specify this action, you must also specify a threshold that initiates the log action.<br>Example:<pre>monitor.histogram_pg.action_list = [log]<br>monitor.histogram_pg.log.queue_bytes = 500</pre>You can use all three of these actions in one monitoring step. For example<pre>monitor.histogram_pg.action_list = [snapshot,collect,log]</pre> **Note**: If an action appears in the action list but does not have the required settings (such as a threshold for the log action), the ASIC monitor stops and reports an error. |
+| `<port_group_name>.action_list` | Specifies one or more actions that occur when data collects:<br>`snapshot` writes a snapshot of the data collection results to a file. If you specify this action, you must also specify a snapshot file (described below). You can also specify a threshold that initiates the snapshot action.<br><br>Example:<pre>monitor.histogram_pg.action_list = [snapshot]</pre>`collect` gathers additional data. If you specify this action, you must also specify the port groups for the additional data you want to collect.<br><br>Example:<pre>monitor.histogram_pg.action_list = [collect<br>monitor.histogram_pg.collect.port_group_list = [buffers_pg,all_packet_pg]</pre>`log` sends a message to the `/var/log/syslog` file. If you specify this action, you must also specify a threshold that initiates the log action.<br>Example:<pre>monitor.histogram_pg.action_list = [log]<br>monitor.histogram_pg.log.queue_bytes = 500</pre>You can use all three of these actions in one monitoring step. For example<pre>monitor.histogram_pg.action_list = [snapshot,collect,log]</pre> **Note**: If an action appears in the action list but does not have the required settings (such as a threshold for the log action), the ASIC monitor stops and reports an error. |
 | `<port_group_name>.snapshot.file` | Specifies the name for the snapshot file. All snapshots use this name, with a sequential number appended to it. See the `snapshot.file_count` setting.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats</pre> |
 | `<port_group_name>.snapshot.file_count` | Specifies the number of snapshots that can be created before the first snapshot file is overwritten. In the following example, because the snapshot file count is set to 64, the first snapshot file is named histogram_stats_0 and the 64th snapshot is named histogram_stats_63. When the 65th snapshot is taken, the original snapshot file (histogram_stats_0) is overwritten and the sequence restarts.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file_count = 64</pre>**Note**: While more snapshots provide you with more data, they can occupy a lot of disk space on the switch. |
 
@@ -460,10 +460,10 @@ When collecting data, the switch uses both the CPU and SDK process, which can af
 
 ## Show Histogram Information
 
-To show a list of the interfaces on which histograms are enabled, run the `nv show service telemetry histogram interfaces` command:
+To show a list of the interfaces on which histograms are enabled, run the `nv show service telemetry histogram interface` command:
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram interfaces
+cumulus@switch:~$ nv show service telemetry histogram interface
 Interface         ingress-buffer          egress-buffer            counter 
 --------------------------------------------------------------------------------------- 
 swp1              0,1,2                   -                        tx-byte,rx-byte 

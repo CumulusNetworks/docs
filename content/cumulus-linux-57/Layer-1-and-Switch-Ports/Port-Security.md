@@ -25,7 +25,7 @@ To configure port security:
 To enable security on a port, run the `nv set interface <interface> port-security enabled` command:
 
 ```
-cumulus@switch:~$ nv set interface swp1 port-security enabled
+cumulus@switch:~$ nv set interface swp1 port-security enable
 cumulus@switch:~$ nv config apply
 ```
 
@@ -61,14 +61,14 @@ cumulus@switch:~$ nv config apply
 To enable sticky MAC aging, run the `nv set interface <interface> port-security sticky-aging enabled` command.
 
 ```
-cumulus@switch:~$ nv set interface swp1 port-security sticky-aging enable
+cumulus@switch:~$ nv set interface swp1 port-security sticky-ageing enable
 cumulus@switch:~$ nv config apply
 ```
 
-To configure the violation mode: `shutdown` to put a port into ADMIN down state or `restrict` to drop packets, run the run the `nv set interface <interface> port-security violation-mode shutdown` command.
+To configure the violation mode: `protodown` to put a port into ADMIN down state or `restrict` to drop packets, run the run the `nv set interface <interface> port-security violation-mode shutdown` command.
 
 ```
-cumulus@switch:~$ nv set interface swp1 port-security violation-mode shutdown
+cumulus@switch:~$ nv set interface swp1 port-security violation-mode protodown
 cumulus@switch:~$ nv config apply
 ```
 
@@ -99,16 +99,54 @@ The following shows an example `/etc/cumulus/switchd.d/port_security.conf` confi
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/port_security.conf
+...
+## Interface Port security
 interface.swp1.port_security.enable = 1
-interface.swp1.port_security.mac_limit = 32
-interface.swp1.port_security.static_mac = 00:02:00:00:00:05 00:02:00:00:00:06
+interface.swp1.port_security.mac_limit = 100
 interface.swp1.port_security.sticky_mac = 1
 interface.swp1.port_security.sticky_timeout = 2000
 interface.swp1.port_security.sticky_aging = 1
 interface.swp1.port_security.violation_mode = 0
 interface.swp1.port_security.violation_timeout = 3600
-...
+interface.swp1.port_security.static_mac = 00:02:00:00:00:05 00:02:00:00:00:06
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Troubleshooting
+
+To show port security configuration, run the `nv show interface <interface-id> port-security` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 port-security
+                   operational  applied  
+-----------------  -----------  ---------
+enable             off          on       
+mac-limit                       100      
+sticky-mac                      enabled  
+sticky-timeout                  2000     
+sticky-ageing                   enabled  
+violation-mode                  protodown
+violation-timeout               3600     
+
+Static MAC
+=============
+No Data
+
+mac-addresses
+================
+No Data
+```
+
+To show the port security static MAC addresses, run the `nv show interface <interface-id> port-security static-mac` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 port-security static-mac
+```
+
+To show the port security MAC addresses, run the `nv show interface <interface-id> port-security mac-addresses` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 port-security mac-addresses
+```

@@ -1,7 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: GNU GRUB
 Source: https://www.gnu.org/software/grub/
-Files-Excluded: grub-core/lib/libgcrypt*/cipher/crc.c
 
 Files: *
 Copyright: 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009  Free Software Foundation, Inc
@@ -10,9 +9,9 @@ License: GPL-3+
 
 Files: debian/*
 Copyright: 2003, 2004, 2005, 2006, 2007, 2008, 2009, Robert Millan
-	   2005, 2006, 2007, Otavio Salvador
-	   2008, 2009, Felix Zielcke
-	   2009, Jordi Mallach
+           2005, 2006, 2007, Otavio Salvador
+           2008, 2009, Felix Zielcke
+           2009, Jordi Mallach
 License: GPL-3+
 
 Files: debian/grub-extras/*
@@ -163,21 +162,21 @@ License: CC-BY-SA-3.0
     to Distribute and Publicly Perform Adaptations.
  .
     For the avoidance of doubt:
-	Non-waivable Compulsory License Schemes. In those jurisdictions in
-	which the right to collect royalties through any statutory or
-	compulsory licensing scheme cannot be waived, the Licensor reserves
-	the exclusive right to collect such royalties for any exercise by
-	You of the rights granted under this License;
-	Waivable Compulsory License Schemes. In those jurisdictions in which
-	the right to collect royalties through any statutory or compulsory
-	licensing scheme can be waived, the Licensor waives the exclusive
-	right to collect such royalties for any exercise by You of the
-	rights granted under this License; and,
-	Voluntary License Schemes. The Licensor waives the right to collect
-	royalties, whether individually or, in the event that the Licensor
-	is a member of a collecting society that administers voluntary
-	licensing schemes, via that society, from any exercise by You of the
-	rights granted under this License.
+        Non-waivable Compulsory License Schemes. In those jurisdictions in
+        which the right to collect royalties through any statutory or
+        compulsory licensing scheme cannot be waived, the Licensor reserves
+        the exclusive right to collect such royalties for any exercise by
+        You of the rights granted under this License;
+        Waivable Compulsory License Schemes. In those jurisdictions in which
+        the right to collect royalties through any statutory or compulsory
+        licensing scheme can be waived, the Licensor waives the exclusive
+        right to collect such royalties for any exercise by You of the
+        rights granted under this License; and,
+        Voluntary License Schemes. The Licensor waives the right to collect
+        royalties, whether individually or, in the event that the Licensor
+        is a member of a collecting society that administers voluntary
+        licensing schemes, via that society, from any exercise by You of the
+        rights granted under this License.
  .
  The above rights may be exercised in all media and formats whether now
  known or hereafter devised. The above rights include the right to make such

@@ -3,6 +3,7 @@ title: NVLink4 Inventory
 author: NVIDIA
 weight: 1150
 toc: 3
+bookhidden: true
 
 ---
 

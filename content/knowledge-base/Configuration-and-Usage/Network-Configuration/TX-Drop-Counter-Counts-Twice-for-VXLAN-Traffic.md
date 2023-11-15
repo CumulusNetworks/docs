@@ -1,6 +1,6 @@
 ---
 title: TX Drop Counter Counts Twice for VXLAN Traffic
-author: Cumulus Networks
+author: NVIDIA
 weight: 393
 toc: 4
 ---

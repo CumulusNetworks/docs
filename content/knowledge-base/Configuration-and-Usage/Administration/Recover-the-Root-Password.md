@@ -1,6 +1,6 @@
 ---
 title: Recover the Root Password
-author: Cumulus Networks
+author: NVIDIA
 weight: 310
 toc: 4
 ---

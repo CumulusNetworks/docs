@@ -3,7 +3,6 @@ title: NVOS Management
 author: NVIDIA
 weight: 1152
 toc: 4
-bookhidden: true
 ---
 
 NVOS images are managed with lifecycle management in the NetQ UI. This section details how to check for missing images, upload images, and specify default images. You can download NVOS images from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.

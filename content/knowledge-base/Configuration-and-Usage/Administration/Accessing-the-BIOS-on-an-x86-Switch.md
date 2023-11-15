@@ -1,6 +1,6 @@
 ---
 title: Accessing the BIOS on an x86 Switch
-author: Cumulus Networks
+author: NVIDIA
 weight: 317
 toc: 4
 ---

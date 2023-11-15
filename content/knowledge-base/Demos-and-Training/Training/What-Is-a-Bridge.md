@@ -1,6 +1,6 @@
 ---
 title: What Is a Bridge
-author: Cumulus Networks
+author: NVIDIA
 weight: 552
 toc: 4
 ---

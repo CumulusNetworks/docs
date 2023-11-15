@@ -1,6 +1,6 @@
 ---
 title: Verify Software and Hardware Version Information
-author: Cumulus Networks
+author: NVIDIA
 weight: 701
 toc: 4
 ---
@@ -13,12 +13,14 @@ Cumulus Linux users familiar with Cisco IOS might look for the same level of inf
 <!-- vale off -->
 ## Use cat /etc/lsb-release to Verify the Running System Image
 <!-- vale on -->
-The following command displays the version of Cumulus Linux running in the current slot, and gets updated to reflect version changes accomplished via `apt-get`:
+The following command displays the version of Cumulus Linux running in the current slot, and is updated to reflect version changes with `apt-get`:
 
-    cumulus@switch:~$ cat /etc/lsb-release   
-    DISTRIB_ID=Cumulus Networks  
-    DISTRIB_RELEASE=1.5.1  
-    DISTRIB_DESCRIPTION=1.5.1-5c6829a-201309251712-final
+```
+cumulus@switch:~$ at /etc/lsb-release
+DISTRIB_ID="Cumulus Linux"
+DISTRIB_RELEASE=4.2.0
+DISTRIB_DESCRIPTION="Cumulus Linux 4.2.0"
+```
 <!-- vale off -->
 ## Use decode-syseeprom to Verify Hardware Model, Version and Other Vendor-specific Details
 <!-- vale on -->
@@ -79,5 +81,7 @@ The `fw_printenv` command is a U-Boot tool inherited from the standard Debian di
 
 For example:
 
-    cumulus@switch:~$ fw_printenv onie_version  
-    onie_version="1.3.0"
+```
+cumulus@switch:~$ fw_printenv onie_version  
+onie_version="1.3.0"
+```

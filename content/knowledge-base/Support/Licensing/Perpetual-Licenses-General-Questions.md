@@ -1,6 +1,6 @@
 ---
 title: Perpetual Licenses General Questions
-author: Cumulus Networks
+author: NVIDIA
 weight: 612
 toc: 4
 ---
@@ -67,7 +67,7 @@ When you purchase a Cumulus Linux license, you get access to the {{<exlink url="
 <!-- vale off -->
 ## How can I get a copy of the NVIDIA EULA (end-user license agreement)?
 <!-- vale on -->
-Click the following link to view {{<exlink url="https://docs.nvidia.com/cuda/archive/9.1/pdf/EULA.pdf" text="the EULA">}}.
+Click the following link to view {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Licensing/Cumulus-Linux-EULA/" text="the EULA">}}.
 <!-- vale off -->
 ## When does my Software Updates and Support contract start?
 <!-- vale on -->

@@ -1,6 +1,6 @@
 ---
 title: Cumulus Linux Security Updates
-author: Cumulus Networks
+author: NVIDIA
 weight: 450
 toc: 4
 ---

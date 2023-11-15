@@ -1,6 +1,6 @@
 ---
 title: NetQ Cookie Policy
-author: Cumulus Networks
+author: NVIDIA
 weight: 618
 toc: 4
 ---

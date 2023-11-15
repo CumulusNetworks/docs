@@ -1,6 +1,6 @@
 ---
 title: Configuration and Usage
-author: Cumulus Networks
+author: NVIDIA
 weight: 30
 toc: 2
 ---

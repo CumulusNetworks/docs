@@ -1,0 +1,75 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: pycrypto
+Upstream-Contact: Dwayne C. Litzenberger <dlitz@dlitz.net>
+Source: http://www.dlitz.net/software/pycrypto/
+
+Files: *
+Copyright: public-domain
+License: public-domain
+ Copyright and licensing of the Python Cryptography Toolkit ("PyCrypto"):
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ To the best of our knowledge, with the exceptions noted below or
+ within the files themselves, the files that constitute PyCrypto are in
+ the public domain. Most are distributed with the following notice:
+ .
+   The contents of this file are dedicated to the public domain. To
+   the extent that dedication to the public domain is not available,
+   everyone is granted a worldwide, perpetual, royalty-free,
+   non-exclusive license to exercise all rights associated with the
+   contents of this file for any purpose whatsoever.
+   No rights are reserved.
+ .
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+   BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+   ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+ .
+ Exception:
+ .
+  - Portions of HMAC.py and setup.py are derived from Python 2.2, and
+    are therefore Copyright (c) 2001, 2002, 2003 Python Software
+    Foundation (All Rights Reserved). They are licensed by the PSF
+    under the terms of the Python 2.2 license. (See the file
+    LEGAL/copy/LICENSE.python-2.2 for details.)
+ .
+ EXPORT RESTRICTIONS:
+ .
+ Note that the export or re-export of cryptographic software and/or
+ source code may be subject to regulation in your jurisdiction.
+
+Files: debian/*
+Copyright: 2011-2018 Sebastian Ramacher <sramacher@debian.org>
+License: BSD-3-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+  1. Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+  3. The name of the author may not be used to endorse or promote products
+     derived from this software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+ IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ IN NO EVENT SHALL THE AUTOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+ TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+Comment:
+ The original packaging is by:
+ * 2002-2010 Andreas Rottmann <rotty@debian.org> and
+ * 2010 James Cook <zealcook@gmail.com>
+ But only parts of debian/control, debian/watch and
+ debian/python-crypto-doc.doc-base remain from the old packaging. Everything
+ else has been rewritten.

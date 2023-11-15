@@ -85,10 +85,21 @@ To show the current MAC address translation configuration:
 
 ```
 cumulus@switch:~$ nv show acl
+       type  Summary
+-----  ----  -------
+MACL1  mac   rule: 1
+MACL2  mac   rule: 1
 ```
 
 To show information about a specific MAC address translation rule, run the `nv show acl <name>`: command
 
 ```
 cumulus@switch:~$ nv show acl MACL1
+      operational  applied
+----  -----------  -------
+type               mac    
+
+rule
+=======
+No Data
 ```

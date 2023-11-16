@@ -42,6 +42,17 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
   - Improvements to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
 
+{{< expand "Changed NVUE Commands" >}}
+
+| Previous Command  |  New Command  |
+| ------------ | ------------- |
+| `nv set router pim timers keep-alive`| `nv set router pim timers keepalive` |
+| `nv set router pim timers rp-keep-alive`| `nv set router pim timers rp-keepalive` |
+| `nv set vrf default router pim timers keep-alive`| `nv set vrf default router pim timers keepalive` |
+| `nv set vrf default router pim timers rp-keep-alive`| `nv set vrf default router pim timers rp-keepalive` |
+
+{{< /expand >}}
+
 {{< expand "New NVUE Commands" >}}
 
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.

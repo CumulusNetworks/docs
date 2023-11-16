@@ -450,7 +450,7 @@ The following example commands redistribute routing information from <span style
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast route-redistribute ospf
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute ospf
 cumulus@switch:~$ nv config apply
 ```
 
@@ -477,7 +477,7 @@ To redistribute all directly connected networks, use the `redistribute connected
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast route-redistribute connected
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@switch:~$ nv config apply
 ```
 

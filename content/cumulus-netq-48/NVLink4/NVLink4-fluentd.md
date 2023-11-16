@@ -3,6 +3,7 @@ title: Fluentd Reference
 author: NVIDIA
 weight: 1154
 toc: 3
+bookhidden: true
 
 ---
 

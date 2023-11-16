@@ -696,7 +696,7 @@ cumulus@switch:~$ ip link show swp2
 
 You can change the following link flap protection settings:
 - The duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (off) and 60. The default setting is 10.
-- The number of times the link must flap within the link flap window before link flap protection triggers. You can specify a value between 0 (off) and 30. The default setting is 5.
+- The number of times the link can flap within the link flap window before link flap protection triggers. You can specify a value between 0 (off) and 30. The default setting is 5.
 
 The following example configures the link flap duration to 30 and the number of times the link must flap to 8.
 
@@ -704,7 +704,7 @@ The following example configures the link flap duration to 30 and the number of 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system link flap-protection time-interval 30
+cumulus@switch:~$ nv set system link flap-protection interval 30
 cumulus@switch:~$ nv set system link flap-protection threshold 8 
 cumulus@switch:~$ nv config apply
 ```
@@ -759,14 +759,20 @@ link_flap_threshold = 0
 To show the link flap protection time interval and threshold settings:
 
 ```
-cumulus@switch:~$ nv show system link flap-protection time-interval
-cumulus@switch:~$ nv show system link flap-protection threshold
+cumulus@switch:~$ nv show system link flap-protection
+           applied
+---------  -------
+threshold  8      
+interval   30 
 ```
 
-To show the link flap protection configuration for an interface, run the `nv show interface <interface> link flap-protection` command:
+To show if link flap protection is enabled on an interface, run the `nv show interface <interface> link flap-protection` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 link flap-protection
+        applied
+------  -------
+enable  off
 ```
 
 ## Mako Templates

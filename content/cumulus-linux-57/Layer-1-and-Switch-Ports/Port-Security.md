@@ -65,7 +65,7 @@ cumulus@switch:~$ nv set interface swp1 port-security sticky-ageing enable
 cumulus@switch:~$ nv config apply
 ```
 
-To configure the violation mode: `protodown` to put a port into ADMIN down state or `restrict` to drop packets, run the run the `nv set interface <interface> port-security violation-mode shutdown` command.
+To configure the violation mode: `protodown` to put a port into ADMIN down state or `restrict` to drop packets, run the `nv set interface <interface> port-security violation-mode shutdown` command.
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security violation-mode protodown
@@ -132,7 +132,8 @@ violation-timeout               3600
 
 Static MAC
 =============
-No Data
+00:02:00:00:00:05
+00:02:00:00:00:06
 
 mac-addresses
 ================

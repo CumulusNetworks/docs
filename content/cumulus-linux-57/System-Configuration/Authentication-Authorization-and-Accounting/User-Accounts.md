@@ -124,13 +124,13 @@ cumulus@switch:~$ nv set system aaa user user1 role switch-admin
 cumulus@switch:~$ nv set system aaa user user1 password
 cumulus@switch:~$ nv set system aaa role switch-admin class nvapply 
 cumulus@switch:~$ nv set system aaa class nvapply action allow 
-cumulus@switch:~$ nv set system aaa class nvapply command-path * permission all 
+cumulus@switch:~$ nv set system aaa class nvapply command-path /system permission all 
 cumulus@switch:~$ nv set system aaa role switch-admin class nvshow
 cumulus@switch:~$ nv set system aaa class nvshow action allow 
-cumulus@switch:~$ nv set system aaa class nvshow command-path * permission all 
+cumulus@switch:~$ nv set system aaa class nvshow command-path /system permission all 
 cumulus@switch:~$ nv set system aaa role switch-admin class restrict 
 cumulus@switch:~$ nv set system aaa class restrict action deny 
-cumulus@switch:~$ nv set system aaa class restrict command-path /system/aaa/*
+cumulus@switch:~$ nv set system aaa class restrict command-path /system/aaa/
 cumulus@switch:~$ nv config apply
 ```
 
@@ -143,8 +143,8 @@ cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 action allow
 cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/lo permission all 
 cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/mgmt permission all 
 cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/eth0 permission all 
-cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/vrf* permission all 
-cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/swp[1-5]/* permission all
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/vrf permission all 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/swp1-swp5/* permission all
 cumulus@switch:~$ nv config apply
 ```
 
@@ -154,7 +154,7 @@ The following example assigns user3 the role of `OSPF`. user3 does **not** have 
 cumulus@switch:~$ nv set system aaa user user3 role OSPF 
 cumulus@switch:~$ nv set system aaa role IFMgr class OSPF-DENY 
 cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 action deny 
-cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/.*/router/ospf permission all 
+cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path interface/*/router/ospf permission all 
 cumulus@switch:~$ nv config apply
 ```
 

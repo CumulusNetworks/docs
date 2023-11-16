@@ -47,7 +47,7 @@ The documentation walks you through these choices and then provides the instruct
 
 Deploying the NetQ servers in a cluster arrangement has many benefits even though it's a more complex configuration. The primary benefits of having multiple servers that run the software and store the data are reduced potential downtime and increased availability.
 
-The default clustering implementation has three servers: 1 master and 2 workers. However, NetQ supports up to 10 worker nodes in a cluster, and up to 5000 devices in total (switches, servers and hosts). When you configure the cluster, {{<link url="Install-NetQ-Agents/#configure-netq-agent" text="configure the NetQ Agents">}} to connect to these three nodes in the cluster first by providing the IP addresses as a comma-separated list. If you later {{<link title="Post Installation Configuration Options#add-more-nodes-to-your-server-cluster" text="add more nodes">}} to the cluster, you do not need to configure these nodes again.
+The default clustering implementation has three servers: 1 master and 2 workers. However, NetQ supports up to 10 worker nodes in a cluster.<!-- and up to 5000 devices in total (switches, servers and hosts).--> When you configure the cluster, {{<link url="Install-NetQ-Agents/#configure-netq-agent" text="configure the NetQ Agents">}} to connect to these three nodes in the cluster first by providing the IP addresses as a comma-separated list. If you later {{<link title="Post Installation Configuration Options#add-more-nodes-to-your-server-cluster" text="add more nodes">}} to the cluster, you do not need to configure these nodes again.
 
 The Agents connect to the server using gRPC.
 

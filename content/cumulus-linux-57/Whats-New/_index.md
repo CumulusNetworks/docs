@@ -36,9 +36,9 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link url="User-Accounts" text="Custom role-based access control">}} with more granularity
   - Commands to {{<link url="NVUE-API/#certificates" text="manage certificates">}} for the NVUE REST API
   - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.
-  - PIM show commands for PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information
+  <!-- - PIM show commands for PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information-->
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
-  - Set and show commands to configure and show the IP neighbor table
+  - Show commands to show the IP neighbor table
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
   - Improvements to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
 

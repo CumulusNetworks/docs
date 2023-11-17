@@ -108,12 +108,12 @@ Custom role-based access control consists of the following elements:
 | Element | Description |
 | ------- | ----------- |
 | Role | A virtual identifier for multiple classes (groups). You can assign only one role for a user. For example, for a user that can manage interfaces, you can create a role called `IFMgr`. |
-| Class | A class is similar in concept to a Linux group. Creating and managing classes is the simplest way to configure multiple users simultaneously, especially when configuring permissions. You can assign a maximum of 64 classes to a role.</br>A class consists of:</br>- Command paths, which are based on the objects in the NVUE declarative model and are the same as URI paths; for example; you can use the `/vrf/` command path to allow or deny a user access to all VRFs, or `/system/nat` to allow or deny a user access to NAT configuration. You can configure a maximum of 128 command paths.</br>- Permissions for the command paths: (`ro`) to run show commands, (`rw`) to run set, unset, and apply commands, (`act`) to run action commands, or (`all`) to run all commands. The default permission setting is `all`.|
+| Class | A class is similar in concept to a Linux group. Creating and managing classes is the simplest way to configure multiple users simultaneously, especially when configuring permissions. You can assign a maximum of 64 classes to a role.</br>A class consists of:</br>- Command paths, which are based on the objects in the NVUE declarative model and are the same as URI paths; for example; you can use the `/vrf/` command path to allow or deny a user access to all VRFs, or `/system/nat` to allow or deny a user access to NAT configuration. Use the tab key to see available command paths (`nv set system aaa class <class-name> command-path <<press tab>>`). You can configure a maximum of 128 command paths.</br>- Permissions for the command paths: (`ro`) to run show commands, (`rw`) to run set, unset, and apply commands, (`act`) to run action commands, or (`all`) to run all commands. The default permission setting is `all`.|
 | Action | The action for the class; `allow` or `deny`.  |
 
 To add a new user account and assign the user a custom role:
 - Assign a role to a user.
-- Create classes for the role. 
+- Create classes for the role.
 - Add command paths and permissions for each class.
 - Assign the action (`allow` or `deny`) for each class.
 

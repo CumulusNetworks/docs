@@ -113,7 +113,7 @@ Custom role-based access control consists of the following elements:
 
 To add a new user account and assign the user a custom role:
 - Assign a role to a user.
-- Create classes for the role. 
+- Create classes for the role.
 - Add command paths and permissions for each class.
 - Assign the action (`allow` or `deny`) for each class.
 

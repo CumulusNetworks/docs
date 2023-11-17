@@ -70,7 +70,7 @@ The following rule matches UDP packets with source IP address 10.0.0.1 and sourc
 ```
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol udp 
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-ip 10.0.0.1
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-port 5000
+cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip udp source-port 5000
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-ip 172.30.58.80
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-port 6000
 cumulus@switch:~$ nv config apply
@@ -81,7 +81,7 @@ The following rule matches UDP packets with destination IP address 172.30.58.80 
 ```
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol udp 
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip dest-ip 172.30.58.80
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip dest-port 6000
+cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip udp dest-port 6000
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action dest-nat translate-ip 10.0.0.1
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action dest-nat translate-port 5000
 cumulus@switch:~$ nv config apply 
@@ -172,7 +172,7 @@ To delete a static NAT rule:
 ```
 cumulus@switch:~$ nv unset acl acl_1 type ipv4 rule 1 match ip protocol udp 
 cumulus@switch:~$ nv unset acl acl_1 type ipv4 rule 1 match ip dest-ip 172.30.58.80
-cumulus@switch:~$ nv unset acl acl_1 type ipv4 rule 1 match ip dest-port 6000
+cumulus@switch:~$ nv unset acl acl_1 type ipv4 rule 1 match ip udp dest-port 6000
 cumulus@switch:~$ nv config apply 
 ```
 
@@ -303,7 +303,7 @@ The following rule matches UDP packets with source IP address in the range 10.0.
 ```
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol udp 
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-ip 10.0.0.0/24
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-port 5000
+cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip udp source-port 5000
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-ip 172.30.58.80
 cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-port 1024-1200
 cumulus@switch:~$ nv config apply 

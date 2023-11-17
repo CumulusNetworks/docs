@@ -256,9 +256,9 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
    cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
    cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/32
-   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port ANY
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp source-port ANY
    cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
-   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port ANY
+   cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp dest-port ANY
    cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
    ```
 
@@ -866,7 +866,7 @@ To set SSH as high priority traffic:
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp dest-port 22
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 46
 cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
@@ -897,9 +897,9 @@ To use a range of ports for TCP traffic:
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.0.17/32
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 10000:20000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp source-port 10000:20000
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.100.27/32
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 10000:20000
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp dest-port 10000:20000
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 34
 cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
@@ -1129,7 +1129,7 @@ The following rule blocks any TCP traffic with destination port 200 going throug
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 200
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp dest-port 200
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
 cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 outbound
 cumulus@switch:~$ nv config apply
@@ -1156,7 +1156,7 @@ The following rule blocks any UDP traffic with source port 200 going from server
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol udp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 200
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip udp source-port 200
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
 cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
@@ -1183,7 +1183,7 @@ The following rule blocks any UDP traffic with source port 200 and destination p
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol udp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 50
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip udp dest-port 50
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
 cumulus@switch:~$ nv set interface swp2 acl EXAMPLE1 inbound control-plane
 cumulus@switch:~$ nv config apply
@@ -1210,8 +1210,8 @@ The following rule blocks any TCP traffic with source port 123 and destination p
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 123
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 123
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp source-port 123
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp dest-port 123
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
 cumulus@switch:~$ nv set interface swp2 acl EXAMPLE1 outbound control-plane
 cumulus@switch:~$ nv config apply
@@ -1246,14 +1246,14 @@ This also becomes two ACLs and is the same as:
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 123
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 123
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp source-port 123
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip tcp dest-port 123
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
 cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 outbound
 cumulus@switch:~$ nv set acl EXAMPLE2 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip protocol tcp
-cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip source-port 123
-cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip dest-port 123
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip tcp source-port 123
+cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 match ip tcp dest-port 123
 cumulus@switch:~$ nv set acl EXAMPLE2 rule 10 action deny
 cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE2 outbound control-plane
 cumulus@switch:~$ nv config apply

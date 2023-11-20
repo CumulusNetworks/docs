@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 152
 toc: 4
 ---
-In addition to the default roles that Cumulus Linux provides, you can create your own roles to restrict authorization, giving you more granular control over what a user can manage on the switch. For example, you can assign a user the role of Network Manager and provide the user privileges for interface management, service management and system management. When the user logs in and executes an NVUE command, NVUE checks the user privileges and authorizes the user to run that command.
+In addition to the default roles that Cumulus Linux provides, you can create your own roles to restrict authorization, giving you more granular control over what a user can manage on the switch. For example, you can assign a user the role of network manager and provide the user privileges for interface management, service management and system management. When the user logs in and executes an NVUE command, NVUE checks the user privileges and authorizes the user to run that command.
 
 Custom role-based access control consists of the following elements:
 
@@ -17,12 +17,12 @@ Custom role-based access control consists of the following elements:
 {{%notice note%}}
 - You can assign a maximum of 64 classes to a role.
 - You can configure a maximum of 128 command paths.
-- When you configure a command path, you allow or deny a specific schema path and its children. For example the command path `/qos/` allows or denies access to all QoS commands, whereas the command path `/qos/egress-scheduler` allows or denies access to the QoS egress scheduler commands.
+- When you configure a command path, you allow or deny a specific schema path and its children. For example the command path `/qos/` allows or denies access to QoS commands, whereas the command path `/qos/egress-scheduler` allows or denies access to QoS egress scheduler commands.
 {{%/notice%}}
 
 ## Assign a Custom Role to a User Account
 
-To assign custom role to a user account:
+To assign a custom role to a user account:
 - Assign a role to a user.
 - Create classes for the role.
 - Add command paths and permissions for each class.
@@ -115,7 +115,7 @@ www-data          www-data                            Unknown  system
 To show information about a specific user account including the role assigned to the user, run the run the NVUE `nv show system aaa user <user>` command:
 
 ```
-cumulus@switch:~$ nv show system aaa user admin2
+cumulus@switch:~$ nv show system aaa user user2
            operational  applied
 ---------  -----------  -------
 role       IFMgr        IFMgr  

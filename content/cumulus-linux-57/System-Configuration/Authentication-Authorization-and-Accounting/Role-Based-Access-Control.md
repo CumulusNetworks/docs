@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 152
 toc: 4
 ---
-In addition to the default roles that Cumulus Linux provides, you can create your own roles to restrict authorization, giving you more granular control over what a user can manage on the switch. For example, you can assign a user the role of network manager and provide the user privileges for interface management, service management and system management. When the user logs in and executes an NVUE command, NVUE checks the user privileges and authorizes the user to run that command.
+In addition to the {{<link url="User-Accounts/#default-roles" text="default roles">}} that Cumulus Linux provides, you can create your own roles to restrict authorization, giving you more granular control over what a user can manage on the switch. For example, you can assign a user the role of network manager and provide the user privileges for interface management, service management and system management. When the user logs in and executes an NVUE command, NVUE checks the user privileges and authorizes the user to run that command.
 
 Custom role-based access control consists of the following elements:
 

@@ -99,6 +99,8 @@ Only the following user accounts can create, modify, and delete other `system-ad
 - Non NVUE-managed users that are in the `sudo` group.
 {{%/notice%}}
 
+You can also create custom roles and assign a custom role to a user. See {{<link url="Role-Based-Access-Control" text="Role-based Access Control">}}.
+
 ### Hashed Passwords
 
 Instead of a plain text password, you can provide a hashed password for a local user.

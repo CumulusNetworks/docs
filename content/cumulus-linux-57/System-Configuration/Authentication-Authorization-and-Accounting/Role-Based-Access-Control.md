@@ -67,6 +67,23 @@ cumulus@switch:~$ nv set system aaa class OSPF-DENY command-path /interface/*/ro
 cumulus@switch:~$ nv config apply
 ```
 
+## Delete Custom Roles
+
+To delete a custom role and all its classes, you must first unassign the role from the user, then delete the role:
+
+```
+cumulus@switch:~$ nv unset system aaa user user1 role OSPF
+cumulus@switch:~$ nv unset system aaa role OSPF
+cumulus@switch:~$ nv config apply
+```
+
+To delete a class from a role, run the `nv unset system aaa role <role> class <class>` command:
+
+```
+cumulus@switch:~$ nv unset system aaa role OSPF class OSPF-DENY
+cumulus@switch:~$ nv config apply
+```
+
 ## Show Custom Role Information
 
 To show the user accounts configured on the system, run the NVUE `nv show system aaa user` command or the linux `sudo cat /etc/passwd` command.

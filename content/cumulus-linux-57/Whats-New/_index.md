@@ -21,7 +21,6 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - {{<link url="802.1X-Interfaces" text="802.1x support">}}
 - {{<link url="MAC-Address-Translation" text="MAC Address Translation">}}
 - {{<link url="ASIC-Monitoring" text="Updated and new histograms for ASIC monitoring">}}
-- {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="Shared ECMP containers for adaptive routing">}} to optimize and share resources, and avoid resource exhaustion
 - {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}} forwarding profile
 - PTP PPS In or Out Support
 - NVUE enhancements include:
@@ -36,7 +35,6 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link url="Role-Based-Access-Control" text="Role-based access control">}}
   - Commands to {{<link url="NVUE-API/#certificates" text="manage certificates">}} for the NVUE REST API
   - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.
-  <!-- - PIM show commands for PIM RP, JOIN, PIM MLAG summary, and MLAG upstream information-->
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Show commands to show the IP neighbor table
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format

@@ -63,7 +63,7 @@ The following example assigns user3 the role of `OSPF`. user3 does **not** have 
 cumulus@switch:~$ nv set system aaa user user3 role OSPF 
 cumulus@switch:~$ nv set system aaa role OSPF class OSPF-DENY 
 cumulus@switch:~$ nv set system aaa class OSPF-DENY action deny 
-cumulus@switch:~$ nv set system aaa class OSPF-DENY command-path /interface/*/router/ospf/ permission all 
+cumulus@switch:~$ nv set system aaa class OSPF-DENY command-path /interface/*/router/ospf/ permission all
 cumulus@switch:~$ nv config apply
 ```
 

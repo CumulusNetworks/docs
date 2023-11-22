@@ -14,7 +14,7 @@
 
 This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
 <td>5.0.0-5.5.1</td>
-<td>5.6.0</td>
+<td>4.3.2-4.4.5, 5.6.0</td>
 </tr>
 <tr>
 <td>3585467</td>
@@ -57,8 +57,8 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
 Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
 For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
-<td></td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3541912</td>
@@ -99,8 +99,8 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <tr>
 <td>3484058</td>
 <td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
-<td>5.3.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>5.3.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3479786</td>
@@ -174,7 +174,7 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
 <td>5.0.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3413785</td>
@@ -243,8 +243,8 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-5.3.1</td>
-<td>5.4.0-5.6.0</td>
+<td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
+<td>4.3.2, 5.4.0-5.6.0</td>
 </tr>
 <tr>
 <td>3351936</td>
@@ -364,6 +364,12 @@ ethtool (-S): unknown parameter 'clear'
 <td>5.4.0-5.6.0</td>
 </tr>
 <tr>
+<td>3293114</td>
+<td>In Cumulus Linux 5.4 and earlier, the command to enable Neighbor Discovery (ND) router advertisement is inverted and causes confusion; {{nv set interface &lt;interface&gt; ip neighbor-discovery router-advertisement enable off}}. In Cumulus Linux 5.5 and later, the command to enable router advertisement is updated to {{nv set interface &lt;interface&gt; ip neighbor-discovery router-advertisement enable on}}. </td>
+<td>5.3.0-5.5.1</td>
+<td>5.6.0</td>
+</tr>
+<tr>
 <td>3293039</td>
 <td>When you add the {{/etc/frr/frr.conf}} file to the ignore list for NVUE, any configuration change causes FRR to restart because a check is done to see if any running configuration has changed since the previously applied configuration in the vtysh shell. </td>
 <td>5.3.0-5.3.1</td>
@@ -561,8 +567,8 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>5.0.1-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3135952</td>
@@ -715,12 +721,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2847919</td>
-<td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only. To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
-<td>5.0.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2847755</td>
 <td>When you use NCLU to remove the configuration for a peer that is a member of a group but also has other peer-specific configuration, you must remove the peer-specific configuration before you delete the peer in a separate NCLU commit.</td>
 <td>5.0.0-5.6.0</td>
@@ -808,7 +808,7 @@ You can safely ignore this warning.</td>
 
 This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
 <td>5.0.0-5.5.1</td>
-<td>5.6.0</td>
+<td>4.3.2-4.4.5, 5.6.0</td>
 </tr>
 <tr>
 <td>3585467</td>
@@ -839,8 +839,8 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
 Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
 For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
-<td></td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3541912</td>
@@ -863,8 +863,8 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <tr>
 <td>3484058</td>
 <td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
-<td>5.3.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>5.3.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3479786</td>
@@ -932,7 +932,7 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
 <td>5.0.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3413785</td>
@@ -978,8 +978,8 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-5.3.1</td>
-<td>5.4.0-5.6.0</td>
+<td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
+<td>4.3.2, 5.4.0-5.6.0</td>
 </tr>
 <tr>
 <td>3351936</td>
@@ -1108,6 +1108,12 @@ ethtool (-S): unknown parameter 'clear'
 <td>5.4.0-5.6.0</td>
 </tr>
 <tr>
+<td>3293114</td>
+<td>In Cumulus Linux 5.4 and earlier, the command to enable Neighbor Discovery (ND) router advertisement is inverted and causes confusion; {{nv set interface &lt;interface&gt; ip neighbor-discovery router-advertisement enable off}}. In Cumulus Linux 5.5 and later, the command to enable router advertisement is updated to {{nv set interface &lt;interface&gt; ip neighbor-discovery router-advertisement enable on}}. </td>
+<td>5.3.0-5.5.1</td>
+<td>5.6.0</td>
+</tr>
+<tr>
 <td>3293039</td>
 <td>When you add the {{/etc/frr/frr.conf}} file to the ignore list for NVUE, any configuration change causes FRR to restart because a check is done to see if any running configuration has changed since the previously applied configuration in the vtysh shell. </td>
 <td>5.3.0-5.3.1</td>
@@ -1305,8 +1311,8 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>5.0.1-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3135952</td>
@@ -1459,12 +1465,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2847919</td>
-<td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only. To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
-<td>5.0.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2847755</td>
 <td>When you use NCLU to remove the configuration for a peer that is a member of a group but also has other peer-specific configuration, you must remove the peer-specific configuration before you delete the peer in a separate NCLU commit.</td>
 <td>5.0.0-5.6.0</td>
@@ -1536,7 +1536,7 @@ You can safely ignore this warning.</td>
 <tr>
 <td>3231330</td>
 <td>If BGP {{neighbor &lt;name&gt; allowas-in}} is set, negating with no {{no neighbor &lt;name&gt; allowas-in}} does not disable the setting. To work around this issue and disable the setting, restart the FRR service.</td>
-<td>4.2.1-5.2.1</td>
+<td>4.2.1-4.3.1</td>
 </tr>
 <tr>
 <td>3228856</td>
@@ -1645,7 +1645,7 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-5.2.1</td>
+<td>4.3.0-4.3.1, 4.4.0-5.2.1</td>
 </tr>
 <tr>
 <td>3188576</td>

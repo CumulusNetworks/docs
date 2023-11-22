@@ -7,24 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3634358</td>
-<td>After applying the {{nv set interface &lt;vlan&gt; router ospf passive}} command to a MACVLAN virtual interface that has an OSPF network statement (example shown below), NVUE might get into a broken state and might not be able to apply any more configurations.
-
-nv set interface vlan10 ip vrr address 10.1.10.1/24
-nv set interface vlan10 ip vrr mac-address 00:00:5E:00:01:00
-nv set interface vlan10 vlan 10
-nv set vrf default router ospf area 0 network 10.1.10.1/24
-...
-nv set interface vlan10-v0 router ospf passive on
-
-To work around this issue, do not use a network statement on a VRR VLAN interface, use an interface statement instead:
-
-nv set interface vlan10 router ospf area 0
-</td>
-<td>5.6.0-5.7.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3590053</td>
 <td>If you connect a 1G BaseT module to the service port on the NVIDIA SN5600 switch when its peer is down, the link shows as active on one side while its peer is disabled.</td>
 <td>5.6.0-5.7.0</td>
@@ -34,6 +16,12 @@ nv set interface vlan10 router ospf area 0
 <td>3463827</td>
 <td>In an EVPN configuration with PIM-SM for BUM handling, the host behind the DUT does not receive the expected number of BUM packets. Cumulus Linux 5.6 only supports Head-End Replication (HREP) for handling BUM traffic in an EVPN configuration. BUM handling using a PIM-SM Multicast tree is not supported.</td>
 <td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3395489</td>
+<td>On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.</td>
+<td>5.4.0-5.7.0</td>
 <td></td>
 </tr>
 <tr>
@@ -51,6 +39,13 @@ Invalid config [rev_id: 11]
   qos config is not supported on following invalid interface: swp1s0. Supported on swp and bond interface types.
 
 To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
+<td>5.4.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3350027</td>
+<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see dynamic flow deletion errors in {{switchd.log}}. 
+These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td>5.4.0-5.7.0</td>
 <td></td>
 </tr>
@@ -79,8 +74,8 @@ To work around this issue, run {{nv unset}} on the configured QoS settings, then
 <td></td>
 </tr>
 <tr>
-<td>3269691</td>
-<td>When you restart the LLDP service, you see a {{broken pipe}} error and a log message in the {{lldpd.service}} logs. This error does not affect LLDP functionality.</td>
+<td>3308191</td>
+<td>If you try to set an unsupported interface speed together with FEC, the {{nv config apply}} command succeeds but Cumulus Linux ignores the FEC configuration and configures the default FEC setting for the chosen speed. There is no warning or error message.</td>
 <td>5.4.0-5.7.0</td>
 <td></td>
 </tr>
@@ -208,12 +203,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2847919</td>
-<td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only. To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
-<td>5.0.0-5.7.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2847755</td>
 <td>When you use NCLU to remove the configuration for a peer that is a member of a group but also has other peer-specific configuration, you must remove the peer-specific configuration before you delete the peer in a separate NCLU commit.</td>
 <td>5.0.0-5.7.0</td>
@@ -271,6 +260,11 @@ You can safely ignore this warning.</td>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>3639058</td>
+<td>When you run the {{nv show service ntp}} command, you see an error message instead of the expected output.</td>
+<td>5.6.0</td>
 </tr>
 <tr>
 <td>3611215</td>
@@ -341,7 +335,7 @@ These error messages do not affect how the switch functions; however the message
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
 Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
 For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-5.6.0</td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
 </tr>
 <tr>
 <td>3534718</td>
@@ -411,6 +405,16 @@ In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on 
 <td>3258232</td>
 <td>If you use NVUE to configure multiple SNMP listener addresses at the same time, the SNMP service fails to start. To work around this issue, configure multiple SNMP listener addresses one at a time.</td>
 <td>5.3.0-5.6.0</td>
+</tr>
+<tr>
+<td>3232091</td>
+<td>The NVUE {{nv unset interface &lt;interface&gt; link lanes}} command does not restore the port lane setting to the default value. To work around this issue, run the {{nv set interface &lt;interface&gt; link lanes &lt;value&gt;}} command.</td>
+<td>5.4.0-5.6.0</td>
+</tr>
+<tr>
+<td>3221628</td>
+<td>Cumulus Linux 5.2.0 and 5.2.1 VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
+<td>5.2.0-5.6.0</td>
 </tr>
 </table>
 </tables>

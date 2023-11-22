@@ -9,8 +9,8 @@
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -19,8 +19,8 @@
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -478,7 +478,7 @@ https://security-tracker.debian.org/tracker/linux</td>
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.1</td>
+<td>3.7.15-4.3.2</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -531,8 +531,8 @@ To work around this issue, increase the burst value of the ARP policers to 200 o
 <tr>
 <td>2555175</td>
 <td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
-<td></td>
+<td>3.7.15-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>2554785</td>
@@ -893,7 +893,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.1</td>
+<td>3.7.11-4.3.2</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -2361,7 +2361,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2677063</td>
@@ -2493,8 +2493,8 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -2503,8 +2503,8 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -3472,7 +3472,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -3602,7 +3602,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.1</td>
+<td>3.7.15-4.3.2</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -3692,8 +3692,8 @@ To work around this issue, increase the burst value of the ARP policers to 200 o
 <tr>
 <td>2555175</td>
 <td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
-<td></td>
+<td>3.7.15-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>2554785</td>
@@ -4054,7 +4054,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.1</td>
+<td>3.7.11-4.3.2</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -5043,7 +5043,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
 Vulnerable: &lt;= 2.8.0-cl3.7.15u2
 Fixed: 2.8.0-cl3.7.15u3</td>
-<td>3.7.14-3.7.14.2, 4.3.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.3.0-4.3.2</td>
 </tr>
 <tr>
 <td>2617009</td>
@@ -5134,7 +5134,7 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 <tr>
 <td>2566880</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2562511</td>
@@ -5168,7 +5168,7 @@ To work around this issue, disable ARP suppression.</td>
 <td>2556782</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2556780</td>
@@ -5472,8 +5472,8 @@ These messages are harmless and can be ignored.</td>
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -5482,8 +5482,8 @@ These messages are harmless and can be ignored.</td>
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -6137,7 +6137,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -6309,7 +6309,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
 Vulnerable: &lt;= 2.8.0-cl3.7.15u2
 Fixed: 2.8.0-cl3.7.15u3</td>
-<td>3.7.14-3.7.14.2, 4.3.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.3.0-4.3.2</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -6420,7 +6420,7 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 <tr>
 <td>2566880</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -6465,7 +6465,7 @@ To work around this issue, disable ARP suppression.</td>
 <td>2556782</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -7108,7 +7108,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.1</td>
+<td>3.7.11-4.3.2</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -8160,8 +8160,8 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -8170,8 +8170,8 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -8782,7 +8782,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -8943,7 +8943,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
 Vulnerable: &lt;= 2.8.0-cl3.7.15u2
 Fixed: 2.8.0-cl3.7.15u3</td>
-<td>3.7.14-3.7.14.2, 4.3.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.3.0-4.3.2</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -9048,7 +9048,7 @@ Fixed: 0.99.beta19-2+deb8u2</td>
 <tr>
 <td>2566880</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -9087,7 +9087,7 @@ To work around this issue, disable ARP suppression.</td>
 <td>2556782</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -9792,7 +9792,7 @@ If you flap the link with the {{ip link set vni10100 down; ip link set vni10100 
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.1</td>
+<td>3.7.11-4.3.2</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -11214,8 +11214,8 @@ To work around this issue, modify the routing design or policy such that routes 
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -11224,8 +11224,8 @@ To work around this issue, modify the routing design or policy such that routes 
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -11836,7 +11836,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -12836,7 +12836,7 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.1</td>
+<td>3.7.11-4.3.2</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -14323,8 +14323,8 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -14333,8 +14333,8 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -14938,7 +14938,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -15928,7 +15928,7 @@ To work around this issue, revert the configuration change.</td>
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.1</td>
+<td>3.7.11-4.3.2</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -17397,8 +17397,8 @@ net.ipv6.ip6frag_high_thresh = 262144
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -17407,8 +17407,8 @@ net.ipv6.ip6frag_high_thresh = 262144
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -17834,7 +17834,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -18274,7 +18274,7 @@ To work around this issue, revert the configuration change.</td>
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.1</td>
+<td>3.7.11-4.3.2</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -20098,8 +20098,8 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -20108,8 +20108,8 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -20535,7 +20535,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -22330,8 +22330,8 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -22340,8 +22340,8 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -22760,7 +22760,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -24883,8 +24883,8 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -24893,8 +24893,8 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -25313,7 +25313,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -26863,8 +26863,8 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -26873,8 +26873,8 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -27293,7 +27293,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -29182,8 +29182,8 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -29192,8 +29192,8 @@ If you need link pause or PFC functionality, you must use a switch that does not
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -29612,7 +29612,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -31246,8 +31246,8 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -31256,8 +31256,8 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -31676,7 +31676,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -32955,8 +32955,8 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -32965,8 +32965,8 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -33385,7 +33385,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -34691,8 +34691,8 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -34701,8 +34701,8 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -35121,7 +35121,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -36527,8 +36527,8 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -36537,8 +36537,8 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -36957,7 +36957,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -38406,8 +38406,8 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -38416,8 +38416,8 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -38836,7 +38836,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
@@ -39598,8 +39598,8 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <tr>
 <td>3418046</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3376798</td>
@@ -39608,8 +39608,8 @@ To work around this issue, remove the matching {{network}} statement. </td>
 switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
 
 MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
+<td>3.7.0-4.3.1</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -40028,7 +40028,7 @@ Fixed: 1.6.2-5+deb8u9</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>

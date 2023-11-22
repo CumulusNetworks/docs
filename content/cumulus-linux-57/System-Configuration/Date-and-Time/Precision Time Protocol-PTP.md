@@ -485,7 +485,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ### PPS Synchronization
 
-<span style="background-color:#F5F5DC">[PPS](## "Pulse per second")</span> is the simplest form of synchronization. The PPS source provides a high precision signal each second, which can synchronize the clock of a system. The switch can receive PPS from an accurate PPS source as a slave to use for frequency synchronization of its clock and can also generate PPS as a master to other devices.
+<span style="background-color:#F5F5DC">[PPS](## "Pulse per second")</span> is the simplest form of synchronization. The PPS source provides a high precision signal each second, which can synchronize a system clock. The switch can receive PPS from an accurate PPS source as a slave to use for frequency synchronization of its clock and can also generate PPS as a master to other devices.
 
 Cumulus Linux supports two PPS modes:
 - PPS Out is a signal that is generated every time the <span style="background-color:#F5F5DC">[PHC](## "Physical Hardware Clock")</span> reaches 1-rounded second. This signal can provide synchronization to other PHC devices and to check if the clock is synchronized by comparing this signal with other outputs in the network. 

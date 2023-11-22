@@ -1640,8 +1640,8 @@ pdfhidden: True
 | {{<foss_file text="switchd-halbcm" url="cumulus-linux-43/Whats-New/licenses/switchd-halbcm.txt" >}} | 1.0-cl4.3.2u9 | Cumulus Networks Proprietary(&#42; ); GPL-2(debian/&#42; ) |
 | {{<foss_file text="switchd-halmlx" url="cumulus-linux-43/Whats-New/licenses/switchd-halmlx.txt" >}} | 1.0-cl4.3.2u5 | Cumulus Networks Proprietary(&#42; ); GPL-2(debian/&#42; ); The MIT License(include/kvec.h); CC0-1.0(lib/ccan/&#42; ) |
 | {{<foss_file text="switchd-mlx-dbg" url="cumulus-linux-43/Whats-New/licenses/switchd-mlx-dbg.txt" >}} | 1.0-cl4.3.2u5 | Cumulus Networks Proprietary(&#42; ); GPL-2(debian/&#42; ); The MIT License(include/kvec.h); CC0-1.0(lib/ccan/&#42; ) |
-| {{<foss_file text="sx-kernel-4.19.0-cl-1-amd64" url="cumulus-linux-43/Whats-New/licenses/sx-kernel-4.19.0-cl-1-amd64.txt" >}} | 1.mlnx.4.4.2224-cl4.3.1u12 | NO OR UNKNOWN LICENSE FOUND IN COPYRIGHT FILE |
-| {{<foss_file text="sx-kernel-4.19.0-cl-1-amd64-dbg" url="cumulus-linux-43/Whats-New/licenses/sx-kernel-4.19.0-cl-1-amd64-dbg.txt" >}} | 1.mlnx.4.4.2224-cl4.3.1u12 | Mellanox Proprietary(&#42; ) |
+| {{<foss_file text="sx-kernel-4.19.273-cl-1-amd64" url="cumulus-linux-43/Whats-New/licenses/sx-kernel-4.19.273-cl-1-amd64.txt" >}} | 1.mlnx.4.4.2224-cl4.3.1u12 | NO OR UNKNOWN LICENSE FOUND IN COPYRIGHT FILE |
+| {{<foss_file text="sx-kernel-4.19.273-cl-1-amd64-dbg" url="cumulus-linux-43/Whats-New/licenses/sx-kernel-4.19.273-cl-1-amd64-dbg.txt" >}} | 1.mlnx.4.4.2224-cl4.3.1u12 | Mellanox Proprietary(&#42; ) |
 | {{<foss_file text="sx-kernel-dev" url="cumulus-linux-43/Whats-New/licenses/sx-kernel-dev.txt" >}} | 1.mlnx.4.4.2224-cl4.3.1u12 | NO OR UNKNOWN LICENSE FOUND IN COPYRIGHT FILE |
 | {{<foss_file text="sx-sdk-eth" url="cumulus-linux-43/Whats-New/licenses/sx-sdk-eth.txt" >}} | 1.mlnx.4.4.2224-cl4.3.1u12 | Mellanox Proprietary(&#42; ) |
 | {{<foss_file text="sx-sdk-eth-dbg" url="cumulus-linux-43/Whats-New/licenses/sx-sdk-eth-dbg.txt" >}} | 1.mlnx.4.4.2224-cl4.3.1u12 | Mellanox Proprietary(&#42; ) |

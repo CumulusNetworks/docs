@@ -483,50 +483,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-## Optional Global Configuration
-
-Optional global PTP configuration includes configuring the DiffServ code point (DSCP). You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
-
-{{< tabs "TabID320 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set service ptp 1 ip-dscp 22
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a timestamp read from the clock and the `dscp_general` setting for PTP messages that carry commands, responses, information, or timestamps.
-
-After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-[global]
-#
-# Default Data Set
-#
-slaveOnly               0
-priority1               200
-priority2               200
-domainNumber            3
-
-twoStepFlag             1
-dscp_event              22
-dscp_general            22
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-## PPS Synchronization
+### PPS Synchronization
 
 <span style="background-color:#F5F5DC">[PPS](## "Pulse per second")</span> is the simplest form of synchronization. The PPS source provides a high precision signal each second, which can synchronize the clock of a system. The switch can receive PPS from an accurate PPS source as a slave to use for frequency synchronization of its clock and can also generate PPS as a master to other devices.
 
@@ -534,7 +491,7 @@ Cumulus Linux supports two PPS modes:
 - PPS Out is a signal that is generated every time the <span style="background-color:#F5F5DC">[PHC](## "Physical Hardware Clock")</span> reaches 1-rounded second. This signal can provide synchronization to other PHC devices and to check if the clock is synchronized by comparing this signal with other outputs in the network. 
 - PPS In is a signal that is pushed to the switch from an external device. This allows the PHC to be synchronized to an external source capable of providing a PPS signal.
 
-## Enable PPS Synchronization
+#### Enable PPS Synchronization
 
 To enable PPS In and PPS Out:
 
@@ -570,7 +527,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-## PPS Synchronization Settings
+#### PPS Synchronization Settings
 
 You can configure these PPS In settings:
 
@@ -632,6 +589,49 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Optional Global Configuration
+
+Optional global PTP configuration includes configuring the DiffServ code point (DSCP). You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
+
+{{< tabs "TabID320 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service ptp 1 ip-dscp 22
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a timestamp read from the clock and the `dscp_general` setting for PTP messages that carry commands, responses, information, or timestamps.
+
+After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly               0
+priority1               200
+priority2               200
+domainNumber            3
+
+twoStepFlag             1
+dscp_event              22
+dscp_general            22
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
 
 {{< /tab >}}
 {{< /tabs >}}

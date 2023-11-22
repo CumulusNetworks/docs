@@ -7,20 +7,8 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3634358</td>
-<td>After applying the {{nv set interface &lt;vlan&gt; router ospf passive}} command to a MACVLAN virtual interface that has an OSPF network statement (example shown below), NVUE might get into a broken state and might not be able to apply any more configurations.
-
-nv set interface vlan10 ip vrr address 10.1.10.1/24
-nv set interface vlan10 ip vrr mac-address 00:00:5E:00:01:00
-nv set interface vlan10 vlan 10
-nv set vrf default router ospf area 0 network 10.1.10.1/24
-...
-nv set interface vlan10-v0 router ospf passive on
-
-To work around this issue, do not use a network statement on a VRR VLAN interface, use an interface statement instead:
-
-nv set interface vlan10 router ospf area 0
-</td>
+<td>3639058</td>
+<td>When you run the {{nv show service ntp}} command, you see an error message instead of the expected output.</td>
 <td>5.6.0</td>
 <td></td>
 </tr>
@@ -117,8 +105,8 @@ These error messages do not affect how the switch functions; however the message
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
 Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
 For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
-<td></td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3549798</td>
@@ -148,6 +136,12 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>3517739</td>
 <td>When you connect the SN5600 switch to third party test equipment (such as IXIA) using copper cables, 100G, 200G, 400G, and 800G links do not come up. To work around this issue, use fiber optic cables when testing an SN5600 switch with IXIA for 100G, 200G, 400G, and 800G link speeds.</td>
 <td>5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3484058</td>
+<td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
+<td>5.3.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -302,12 +296,6 @@ In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on 
 <td></td>
 </tr>
 <tr>
-<td>3269691</td>
-<td>When you restart the LLDP service, you see a {{broken pipe}} error and a log message in the {{lldpd.service}} logs. This error does not affect LLDP functionality.</td>
-<td>5.4.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3266197</td>
 <td>When you disable BGP globally with the {{nv set router bgp enable off}} command, applying the configuration with NVUE might fail due to an FRR reload failure.</td>
 <td>5.2.0-5.6.0</td>
@@ -370,6 +358,20 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 <td>3145869</td>
 <td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
 <td>5.2.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3141826</td>
+<td>A slow memory leak (~5KB over 24 hour period at a 60 second polling interval) might occur in SNMP when you walk the following system MIB objects (1.3.6.1.2.1).
+
+1.3.6.1.2.1.47 --&gt; Entity MIB
+ 1.3.6.1.2.1.99 --&gt; Entity Sensor MIB
+ 1.3.6.1.2.1.23 --&gt; rip2
+ 1.3.6.1.2.1.2 --&gt; interface/interfaces
+ 1.3.6.1.2.1.31 --&gt; ifMIB
+ 1.3.6.1.2.1.4 --&gt; IP
+ 1.3.6.1.2.1.25 --&gt; hostResource</td>
+<td>5.0.1-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -474,12 +476,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>2867042</td>
 <td>When connecting the NVIDIA SN4600 switch to another NVIDIA Spectrum switch, you must use auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
-<td>5.0.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2847919</td>
-<td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only. To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
 <td>5.0.0-5.6.0</td>
 <td></td>
 </tr>
@@ -649,7 +645,7 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <tr>
 <td>3482006</td>
 <td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
-<td>4.3.0-5.5.1</td>
+<td>4.3.0-4.3.1</td>
 </tr>
 <tr>
 <td>3479786</td>
@@ -822,6 +818,11 @@ This error message is benign and has no functional impact.</td>
 <td>3336808</td>
 <td>If you run the NVUE {{nv set interface &lt;interface&gt; description}} command without providing a description, the {{nv config apply}} command fails with the error {{Unable to restart services (ifreload-nvue.service)}}.</td>
 <td>5.4.0-5.5.1</td>
+</tr>
+<tr>
+<td>3293114</td>
+<td>In Cumulus Linux 5.4 and earlier, the command to enable Neighbor Discovery (ND) router advertisement is inverted and causes confusion; {{nv set interface &lt;interface&gt; ip neighbor-discovery router-advertisement enable off}}. In Cumulus Linux 5.5 and later, the command to enable router advertisement is updated to {{nv set interface &lt;interface&gt; ip neighbor-discovery router-advertisement enable on}}. </td>
+<td>5.3.0-5.5.1</td>
 </tr>
 <tr>
 <td>3187469</td>

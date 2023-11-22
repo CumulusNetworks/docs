@@ -536,7 +536,7 @@ You can configure these PPS In settings:
 | `channel-index` | Enables and disables channel index. 1 enables channel index. 0 disables channel index. The default value is 0.|
 | `logging-level` | Sets the logging level for PPS In. You can specify `emergency`, `alert`, `critical`, `error`, `warning`, `notice`, `info`,or `debug`. The default logging level is `info`.|
 | `pin-index` |  Enables and disables pin index. 1 enables pin index. 0 disables pin index. The default value is 0.|
-| `signal-polarity` | Sets the polarity of the PPS IN signal. You can specify `rising-edge`, `falling-edge`, or `both`. Teh default setting is `rising-edge`.|
+| `signal-polarity` | Sets the polarity of the PPS IN signal. You can specify `rising-edge`, `falling-edge`, or `both`. The default setting is `rising-edge`.|
 | `signal-width` | Sets the pulse width of the PPS IN signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
 | `timestamp-correction` | Sets the value, in nanoseconds, to add to each PPS time stamp. You can set a value between -1000000000 and 1000000000. The default value is 0. |  
 
@@ -547,7 +547,7 @@ You can configure these PPS Out options:
 | `channel-index`| Enables and disables channel index. 1 enables channel index. 0 disables channel index. The default value is 0.|
 | `frequency-adjustment` | Sets the frequency adjustment of the PPS Out signal. You can set a value between 1000000000 and 2147483647. The default value is 1000000000.|
 | `phase-adjustment` | Sets the phase adjustment of the PPS Out signal. You can set a value between 0 and 1000000000. The default value is 0.|
-| `pin-index` | Enables and disables pin index. 1 enables pin index. 0 disables pin index. The default value is 0.|
+| `pin-index` | Enables and disables pin index. 1 enables pin index. 0 disables pin index. The default value is 1.|
 | `signal-width` |  Sets the pulse width of the PPS OUT signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
 
 {{< tabs "TabID592 ">}}

@@ -483,6 +483,116 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
+### PPS Synchronization
+
+<span style="background-color:#F5F5DC">[PPS](## "Pulse per second")</span> is the simplest form of synchronization. The PPS source provides a high precision signal each second, which can synchronize the clock of a system. The switch can receive PPS from an accurate PPS source as a slave to use for frequency synchronization of its clock and can also generate PPS as a master to other devices.
+
+Cumulus Linux supports two PPS modes:
+- PPS Out is a signal that is generated every time the <span style="background-color:#F5F5DC">[PHC](## "Physical Hardware Clock")</span> reaches 1-rounded second. This signal can provide synchronization to other PHC devices and to check if the clock is synchronized by comparing this signal with other outputs in the network. 
+- PPS In is a signal that is pushed to the switch from an external device. This allows the PHC to be synchronized to an external source capable of providing a PPS signal.
+
+#### Enable PPS Synchronization
+
+To enable PPS In and PPS Out:
+
+{{< tabs "TabID541 ">}}
+{{< tab "NVUE Commands ">}}
+
+To enable PPS out:
+
+```
+cumulus@switch:~$ nv set platform pulse-per-second out state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To enable PPS In:
+
+```
+cumulus@switch:~$ nv set platform pulse-per-second in state enabled
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `` file to   , then restart the PTP service.
+
+```
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+#### PPS Synchronization Settings
+
+You can configure these PPS In settings:
+
+| PPS In Setting | Description |
+| ------- | ----------- |
+| `channel-index` | Enables and disables channel index. 1 enables channel index. 0 disables channel index. The default value is 0.|
+| `logging-level` | Sets the logging level for PPS In. You can specify `emergency`, `alert`, `critical`, `error`, `warning`, `notice`, `info`,or `debug`. The default logging level is `info`.|
+| `pin-index` |  Enables and disables pin index. 1 enables pin index. 0 disables pin index. The default value is 0.|
+| `signal-polarity` | Sets the polarity of the PPS IN signal. You can specify `rising-edge`, `falling-edge`, or `both`. Teh default setting is `rising-edge`.|
+| `signal-width` | Sets the pulse width of the PPS IN signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
+| `timestamp-correction` | Sets the value, in nanoseconds, to add to each PPS time stamp. You can set a value between -1000000000 and 1000000000. The default value is 0. |  
+
+You can configure these PPS Out options:
+
+| PPS Out Setting | Description |
+| ------- | ----------- |
+| `channel-index`| Enables and disables channel index. 1 enables channel index. 0 disables channel index. The default value is 0.|
+| `frequency-adjustment` | Sets the frequency adjustment of the PPS Out signal. You can set a value between 1000000000 and 2147483647. The default value is 1000000000.|
+| `phase-adjustment` | Sets the phase adjustment of the PPS Out signal. You can set a value between 0 and 1000000000. The default value is 0.|
+| `pin-index` | Enables and disables pin index. 1 enables pin index. 0 disables pin index. The default value is 0.|
+| `signal-width` |  Sets the pulse width of the PPS OUT signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
+
+{{< tabs "TabID592 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example configures PPS In and sets:
+- The channel index to 1
+- The pin index to 1
+- The signal width to 999000000.
+- The number of nanoseconds to add to each PPS time stamp to 1000000000.
+- The logging level to `warning`.
+- The polarity of the PPS IN signal to `falling-edge`.
+
+```
+cumulus@switch:~$ nv set platform pulse-per-second in channel-index 1
+cumulus@switch:~$ nv set platform pulse-per-second in pin-index 1
+cumulus@switch:~$ nv set platform pulse-per-second in signal-width 999000000
+cumulus@switch:~$ nv set platform pulse-per-second in timestamp-correction 1000000000
+cumulus@switch:~$ nv set platform pulse-per-second in logging-level warning
+cumulus@switch:~$ nv set platform pulse-per-second in signal-polarity falling-edge
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures PPS Out and sets:
+- The channel index to 1.
+- The pin index to 1.
+- The signal width to 999000000.
+- The phase adjustment of the PPS Out signal to 1000000000.
+- The frequency-adjustment of the PPS Out signal to 2147483647.
+
+```
+cumulus@switch:~$ nv set platform pulse-per-second out channel-index 1
+cumulus@switch:~$ nv set platform pulse-per-second out pin-index 1
+cumulus@switch:~$ nv set platform pulse-per-second out signal-width 999000000
+cumulus@switch:~$ nv set platform pulse-per-second out phase-adjustment 1000000000
+cumulus@switch:~$ nv set platform pulse-per-second out frequency-adjustment 2147483647
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Optional Global Configuration
 
 Optional global PTP configuration includes configuring the DiffServ code point (DSCP). You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
@@ -539,7 +649,7 @@ When a profile is in use, avoid configuring the following interface configuratio
 
 By default, Cumulus Linux encapsulates PTP messages in UDP IPV4 frames. To encapsulate PTP messages on an interface in UDP IPV6 frames:
 
-{{< tabs "TabID274 ">}}
+{{< tabs "TabID557 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```

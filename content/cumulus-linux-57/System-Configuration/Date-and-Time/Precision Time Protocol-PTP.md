@@ -515,14 +515,33 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `` file to   , then restart the PTP service.
+To enable PPS In:
+
+1. Edit the `/etc/linuxptp/ts2phc.conf` file to set the following parameters.
+
+   ```
+   ```
+
+2. Enable and start the `ptp4l` and `phc2sys` services:
+
+  ```
+  cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
+  cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
+  ```
+
+To enable PPS Out:
+
+1.Edit the `/etc/linuxptp/pps_out.conf` file to set the following parameters.
 
 ```
 ```
 
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
+2. Enable and start the `pps_out` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl enable pps_out.service 
+   cumulus@switch:~$ sudo systemctl start pps_out.service 
+   ```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -533,22 +552,22 @@ You can configure these PPS In settings:
 
 | PPS In Setting | Description |
 | ------- | ----------- |
-| `channel-index` | Enables and disables channel index. 1 enables channel index. 0 disables channel index. The default value is 0.|
+| `channel-index` | Sets the channel index. You can set a value of 1 or 0. The default value is 0.|
 | `logging-level` | Sets the logging level for PPS In. You can specify `emergency`, `alert`, `critical`, `error`, `warning`, `notice`, `info`,or `debug`. The default logging level is `info`.|
-| `pin-index` |  Enables and disables pin index. 1 enables pin index. 0 disables pin index. The default value is 0.|
-| `signal-polarity` | Sets the polarity of the PPS IN signal. You can specify `rising-edge`, `falling-edge`, or `both`. Teh default setting is `rising-edge`.|
+| `pin-index` |  Sets the pin index. You can set a value of 1 or 0. The default value is 0.|
+| `signal-polarity` | Sets the polarity of the PPS IN signal. You can specify `rising-edge`, `falling-edge`, or `both`. The default setting is `rising-edge`.|
 | `signal-width` | Sets the pulse width of the PPS IN signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
 | `timestamp-correction` | Sets the value, in nanoseconds, to add to each PPS time stamp. You can set a value between -1000000000 and 1000000000. The default value is 0. |  
 
-You can configure these PPS Out options:
+You can configure these PPS Out settings:
 
 | PPS Out Setting | Description |
 | ------- | ----------- |
-| `channel-index`| Enables and disables channel index. 1 enables channel index. 0 disables channel index. The default value is 0.|
+| `channel-index`| Sets the channel index. You can set a value of 1 or 0. The default value is 0.|
 | `frequency-adjustment` | Sets the frequency adjustment of the PPS Out signal. You can set a value between 1000000000 and 2147483647. The default value is 1000000000.|
 | `phase-adjustment` | Sets the phase adjustment of the PPS Out signal. You can set a value between 0 and 1000000000. The default value is 0.|
-| `pin-index` | Enables and disables pin index. 1 enables pin index. 0 disables pin index. The default value is 0.|
-| `signal-width` |  Sets the pulse width of the PPS OUT signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
+| `pin-index` | Sets the pin index. You can set a value of 1 or 0. The default value is 0.|
+| `signal-width` | Sets the pulse width of the PPS OUT signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
 
 {{< tabs "TabID592 ">}}
 {{< tab "NVUE Commands ">}}
@@ -557,7 +576,7 @@ The following example configures PPS In and sets:
 - The channel index to 1
 - The pin index to 1
 - The signal width to 999000000.
-- The number of nanoseconds to add to each PPS time stamp to 1000000000.
+- The time stamp correction to 1000000000.
 - The logging level to `warning`.
 - The polarity of the PPS IN signal to `falling-edge`.
 
@@ -589,6 +608,54 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+To configure PPS In, edit the `/etc/linuxptp/ts2phc.conf` file, then restart the PPS In service with the `sudo systemctl restart ts2phc.service` command.
+
+The following example configures PPS In and sets:
+- The channel index to 1
+- The pin index to 1
+- The signal width to 999000000.
+- The time stamp correction to 1000000000.
+- The logging level to `warning`.
+- The polarity of the PPS IN signal to `falling-edge`.
+
+```
+# ts2phc is enabled 
+[global] 
+use_syslog                     0 
+verbose                        1 
+slave_event_monitor            /var/run/ptp_sem.sock 
+logging_level                  3 
+ts2phc.pulsewidth              999000000 
+ts2phc.tod_source              ptp 
+domainNumber                   0
+...
+[/dev/ptp1] 
+ts2phc.pin_index               1 
+ts2phc.channel                 1 
+ts2phc.extts_polarity          falling 
+ts2phc.extts_correction        0
+```
+
+To configure PPS Out, edit the `/etc/linuxptp/pps_out.conf.conf` file, then restart the PPS Out service with the `sudo systemctl restart pps_out.service` command.
+
+The following example configures PPS Out and sets:
+- The channel index to 1.
+- The pin index to 1.
+- The signal width to 999000000.
+- The phase adjustment of the PPS Out signal to 1000000000.
+- The frequency-adjustment of the PPS Out signal to 2147483647.
+
+```
+# pps out is enabled 
+PTP_DEV=/dev/ptp1 
+CACHE_FILE=/var/run/pps_out 
+OUT_PIN=1
+OUT_CHANNEL=1 
+PULSE_FREQ= 2147483647
+PULSE_WIDTH= 999000000 
+PULSE_PHASE= 1000000000
+```
 
 {{< /tab >}}
 {{< /tabs >}}

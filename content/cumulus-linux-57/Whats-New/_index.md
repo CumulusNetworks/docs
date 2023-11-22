@@ -22,7 +22,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - {{<link url="MAC-Address-Translation" text="MAC Address Translation">}}
 - {{<link url="ASIC-Monitoring" text="Updated and new histograms for ASIC monitoring">}}
 - {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}} forwarding profile
-- PTP PPS In or Out Support
+- {{<link url="Precision-Time-Protocol-PTP/#pps-synchronization" text="PTP PPS In and PPS Out">}}
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}

@@ -40,7 +40,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
   - Improvements to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
 
-{{< expand "Commands that now need a reload instead of a restart" >}}
+{{< expand "Commands that reload instead restart a service" >}}
 ```
 nv set system acl mode non-atomic
 nv set system acl mode atomic
@@ -66,6 +66,8 @@ nv set interface <interface-id> router adaptive-routing enable
 | `nv set router pim timers rp-keep-alive`| `nv set router pim timers rp-keepalive` |
 | `nv set vrf default router pim timers keep-alive`| `nv set vrf default router pim timers keepalive` |
 | `nv set vrf default router pim timers rp-keep-alive`| `nv set vrf default router pim timers rp-keepalive` |
+| `nv set acl <acl-ID> rule <rule-ID> match ip dest-port <port>` | `nv set acl <acl-ID> rule <rule-ID> match ip <protocol> dest-port <port>`|
+| `nv set acl <acl-ID> rule <rule-ID> match ip source-port <port>`| `nv set acl <acl-ID> rule <rule-ID> match ip <protocol> source-port <port>` |
 {{< /expand >}}
 
 {{< expand "New NVUE Commands" >}}

@@ -8,7 +8,7 @@ toc: 3
 When you first log in to the NetQ UI via an on-premises deployment, your browser will display a warning indicating that the default certificate is not trusted. You can avoid this warning by installing your own signed certificate using the steps outlined on this page. The self-signed certificate is sufficient for non-production environments or cloud deployments. 
 
 {{%notice note%}}
-If you already have a certificate installed and want to change or update it, run the `kubectl delete secret netq-gui-ingress-tls [name] --namespace default` command.
+If you already have a certificate installed and want to change or update it, run the `kubectl delete secret netq-gui-ingress-tls [name] --namespace default` command. After making your updates, restart nginx with the `kubectl delete pod -l app.kubernetes.io/name=ingress-nginx --namespace ingress-nginx` command.
 {{%/notice%}}
 
 You need the following items to perform the certificate installation:

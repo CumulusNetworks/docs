@@ -38,74 +38,74 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Show commands to show the IP neighbor table
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
-  - Improvements to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
+  - Improvements to adaptive-routing link-utilization-threshold{{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
 
-{{< expand "Commands that reload instead restart a service" >}}
-```
-nv set system acl mode non-atomic
-nv set system acl mode atomic
-nv set system forwarding host-route-preference route
-nv set system forwarding host-route-preference neighbor
-nv set system forwarding host-route-preference route-and-neighbour
-nv set evpn multihoming enable
-nv set nve vxlan encapsulation dscp action
-nv set nve vxlan encapsulation dscp value
-nv set nve vxlan decapsulation dscp action
-nv set interface <interface-id> router adaptive-routing link-utilization-threshold
-nv set system forwarding profile <l2-heavy/l3/lpm>
-nv set router bgp wait-for-install
-nv set router adaptive-routing enable
-nv set interface <interface-id> router adaptive-routing enable
-```
-{{< /expand >}}
+   {{< expand "Commands that now reload a service instead of restarting a service" >}}
+   ```
+   nv set system acl mode non-atomic
+   nv set system acl mode atomic
+   nv set system forwarding host-route-preference route
+   nv set system forwarding host-route-preference neighbor
+   nv set system forwarding host-route-preference route-and-neighbour
+   nv set evpn multihoming enable
+   nv set nve vxlan encapsulation dscp action
+   nv set nve vxlan encapsulation dscp value
+   nv set nve vxlan decapsulation dscp action
+   nv set interface <interface-id> router 
+   nv set system forwarding profile
+   nv set router bgp wait-for-install
+   nv set router adaptive-routing enable
+   nv set interface <interface-id> router adaptive-routing enable
+   ```
+   {{< /expand >}}
 
-{{< expand "Changed Commands" >}}
-| Previous Command  |  New Command  |
-| ------------ | ------------- |
-| `nv set router pim timers keep-alive`| `nv set router pim timers keepalive` |
-| `nv set router pim timers rp-keep-alive`| `nv set router pim timers rp-keepalive` |
-| `nv set vrf default router pim timers keep-alive`| `nv set vrf default router pim timers keepalive` |
-| `nv set vrf default router pim timers rp-keep-alive`| `nv set vrf default router pim timers rp-keepalive` |
-| `nv set acl <acl-ID> rule <rule-ID> match ip dest-port <port>` | `nv set acl <acl-ID> rule <rule-ID> match ip <protocol> dest-port <port>`|
-| `nv set acl <acl-ID> rule <rule-ID> match ip source-port <port>`| `nv set acl <acl-ID> rule <rule-ID> match ip <protocol> source-port <port>` |
-{{< /expand >}}
+   {{< expand "Changed Commands" >}}
+   | Previous Command  |  New Command  |
+   | ------------ | ------------- |
+   | `nv set router pim timers keep-alive`| `nv set router pim timers keepalive` |
+   | `nv set router pim timers rp-keep-alive`| `nv set router pim timers rp-keepalive` |
+   | `nv set vrf default router pim timers keep-alive`| `nv set vrf default router pim timers keepalive` |
+   | `nv set vrf default router pim timers rp-keep-alive`| `nv set vrf default router pim timers rp-keepalive` |
+   | `nv set acl <acl-ID> rule <rule-ID> match ip dest-port <port>` | `nv set acl <acl-ID> rule <rule-ID> match ip <protocol>    dest-port <port>`|
+   | `nv set acl <acl-ID> rule <rule-ID> match ip source-port <port>`| `nv set acl <acl-ID> rule <rule-ID> match ip <protocol>    source-port <port>` |
+   {{< /expand >}}
 
-{{< expand "New NVUE Commands" >}}
+   {{< expand "New NVUE Commands" >}}
 
-For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for  Cumulus Linux.
+   For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for     Cumulus Linux.
 
-{{< tabs "TabID40 ">}}
-{{< tab "nv show ">}}
+   {{< tabs "TabID40 ">}}
+   {{< tab "nv show ">}}
 
-```
-nv show
-```
+   ```
+   nv show
+   ```
 
-{{< /tab >}}
-{{< tab "nv set ">}}
+   {{< /tab >}}
+   {{< tab "nv set ">}}
 
-```
-nv set
-```
+   ```
+   nv set
+   ```
 
-{{< /tab >}}
-{{< tab "nv unset ">}}
+   {{< /tab >}}
+   {{< tab "nv unset ">}}
 
-```
-nv unset
-```
+   ```
+   nv unset
+   ```
 
-{{< /tab >}}
-{{< tab "nv action ">}}
+   {{< /tab >}}
+   {{< tab "nv action ">}}
 
-```
-nv action
-```
+   ```
+   nv action
+   ```
 
-{{< /tab >}}
-{{< /tabs >}}
+   {{< /tab >}}
+   {{< /tabs >}}
 
-{{< /expand >}}
+   {{< /expand >}}
 
 {{%notice info%}}
 Cumulus Linux 5.7 includes the NVUE object model. After you upgrade to Cumulus Linux 5.7, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

@@ -36,25 +36,26 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Commands to {{<link url="NVUE-API/#certificates" text="manage certificates">}} for the NVUE REST API
   - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
-  - Show commands to show the IP neighbor table
+  - Show commands to show the IP neighbor table and set commands to create an IP neighbor table entry for an interface
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
   - Improvements to adaptive-routing link-utilization-threshold{{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
+  - FRR now restarts only when you change the FRR daemon file, change the BGP ASN, remove the default instance, disable the SNMP server (with agentx configuration present).
 
-{{< expand "Commands that require a switchd reload instead of a restart" >}}
+{{< expand "Commands that now reload switchd instead of restarting switchd" >}}
 
 ```
-nv set system acl mode non-atomic
-nv set system acl mode atomic
-nv set system forwarding host-route-preference route
-nv set system forwarding host-route-preference neighbor
-nv set system forwarding host-route-preference route-and-neighbour
-nv set nve vxlan encapsulation dscp action
-nv set nve vxlan encapsulation dscp value
-nv set nve vxlan decapsulation dscp action
-nv set interface <interface-id> router 
-nv set router bgp wait-for-install
-nv set router adaptive-routing enable
-nv set interface <interface-id> router adaptive-routing enable
+nv set/unset system acl mode non-atomic
+nv set/unset system acl mode atomic
+nv set/unset system forwarding host-route-preference route
+nv set/unset system forwarding host-route-preference neighbor
+nv set/unset system forwarding host-route-preference route-and-neighbour
+nv set/unset nve vxlan encapsulation dscp action
+nv set/unset nve vxlan encapsulation dscp value
+nv set/unset nve vxlan decapsulation dscp action
+nv set/unset interface <interface-id> router 
+nv set/unset router bgp wait-for-install
+nv set/unset router adaptive-routing enable
+nv set/unset interface <interface-id> router adaptive-routing enable
 ```
 
 {{< /expand >}}

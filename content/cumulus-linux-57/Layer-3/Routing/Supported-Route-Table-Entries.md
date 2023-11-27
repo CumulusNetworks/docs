@@ -98,7 +98,7 @@ cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
 forwarding_table.profile = l2-heavy
 ```
 
-After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect.
+After you specify a different profile, restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}

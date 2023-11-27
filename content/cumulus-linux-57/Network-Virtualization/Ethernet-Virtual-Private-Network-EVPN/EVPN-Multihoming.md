@@ -116,7 +116,7 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`, then reload the `switchd` service. Cumulus Linux disables this variable by default.
+Set the `evpn.multihoming.enable` variable in the `/etc/cumulus/switchd.conf` file to `TRUE`, then restart the `switchd` service. Cumulus Linux disables this variable by default.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/cumulus/switchd.conf
@@ -126,7 +126,7 @@ evpn.multihoming.enable = TRUE
 ```
 
 ```
-cumulus@leaf01:~$ sudo systemctl reload switchd.service
+cumulus@leaf01:~$ sudo systemctl restart switchd.service
 ```
 
 {{< /tab >}}

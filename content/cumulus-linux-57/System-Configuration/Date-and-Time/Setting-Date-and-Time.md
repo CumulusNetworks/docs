@@ -18,16 +18,16 @@ To show the current time zone, date, and time on the switch:
 
 ```
 cumulus@switch:~$ nv show system date-time
-                           operational
--------------------------  ---------------------------
-local-time                 Wed 2023-05-10 08:01:21 UTC
-universal-time             Wed 2023-05-10 08:01:21 UTC
-rtc-time                   Wed 2023-05-10 08:02:13
-time-zone                  Etc/UTC (UTC, +0000)
-system-clock-synchronized  no
-ntp-service                inactive
-rtc-in-local-tz            no
-unix-time                  1683705681.5062315
+                           operational                  
+-------------------------  -----------------------------
+local-time                 Wed 2023-11-22 11:22:54 EST  
+universal-time             Wed 2023-11-22 16:22:54 UTC  
+rtc-time                   Wed 2023-11-22 16:22:54      
+time-zone                  America/New_York (EST, -0500)
+system-clock-synchronized  no                           
+ntp-service                inactive                     
+rtc-in-local-tz            no                           
+unix-time                  1700670174.4371066
 ```
 
 {{< /tab >}}

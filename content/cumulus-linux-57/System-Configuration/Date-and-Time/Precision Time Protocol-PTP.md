@@ -493,7 +493,7 @@ Cumulus Linux supports two PPS modes:
 
 #### Enable PPS Synchronization
 
-To enable PPS In and PPS Out:
+To enable PPS synchronization:
 
 {{< tabs "TabID541 ">}}
 {{< tab "NVUE Commands ">}}

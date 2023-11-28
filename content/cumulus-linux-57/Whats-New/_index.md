@@ -36,76 +36,79 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Commands to {{<link url="NVUE-API/#certificates" text="manage certificates">}} for the NVUE REST API
   - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
-  - Show commands to show the IP neighbor table
+  - Show commands to show the IP neighbor table and set commands to create an IP neighbor table entry for an interface
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
   - Improvements to adaptive-routing link-utilization-threshold{{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
+  - FRR now restarts only when you change the FRR daemon file, change the BGP ASN, remove the default instance, disable the SNMP server (with agentx configuration present).
 
-   {{< expand "Commands that now reload a service instead of restarting a service" >}}
-   ```
-   nv set system acl mode non-atomic
-   nv set system acl mode atomic
-   nv set system forwarding host-route-preference route
-   nv set system forwarding host-route-preference neighbor
-   nv set system forwarding host-route-preference route-and-neighbour
-   nv set evpn multihoming enable
-   nv set nve vxlan encapsulation dscp action
-   nv set nve vxlan encapsulation dscp value
-   nv set nve vxlan decapsulation dscp action
-   nv set interface <interface-id> router 
-   nv set system forwarding profile
-   nv set router bgp wait-for-install
-   nv set router adaptive-routing enable
-   nv set interface <interface-id> router adaptive-routing enable
-   ```
-   {{< /expand >}}
+{{< expand "Commands that now reload switchd instead of restarting switchd" >}}
 
-   {{< expand "Changed Commands" >}}
-   | Previous Command  |  New Command  |
-   | ------------ | ------------- |
-   | `nv set router pim timers keep-alive`| `nv set router pim timers keepalive` |
-   | `nv set router pim timers rp-keep-alive`| `nv set router pim timers rp-keepalive` |
-   | `nv set vrf default router pim timers keep-alive`| `nv set vrf default router pim timers keepalive` |
-   | `nv set vrf default router pim timers rp-keep-alive`| `nv set vrf default router pim timers rp-keepalive` |
-   | `nv set acl <acl-ID> rule <rule-ID> match ip dest-port <port>` | `nv set acl <acl-ID> rule <rule-ID> match ip <protocol>    dest-port <port>`|
-   | `nv set acl <acl-ID> rule <rule-ID> match ip source-port <port>`| `nv set acl <acl-ID> rule <rule-ID> match ip <protocol>    source-port <port>` |
-   {{< /expand >}}
+```
+nv set/unset system acl mode non-atomic
+nv set/unset system acl mode atomic
+nv set/unset system forwarding host-route-preference route
+nv set/unset system forwarding host-route-preference neighbor
+nv set/unset system forwarding host-route-preference route-and-neighbour
+nv set/unset nve vxlan encapsulation dscp action
+nv set/unset nve vxlan encapsulation dscp value
+nv set/unset nve vxlan decapsulation dscp action
+nv set/unset interface <interface-id> router 
+nv set/unset router bgp wait-for-install
+nv set/unset router adaptive-routing enable
+nv set/unset interface <interface-id> router adaptive-routing enable
+```
 
-   {{< expand "New NVUE Commands" >}}
+{{< /expand >}}
 
-   For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for     Cumulus Linux.
+{{< expand "Changed Commands" >}}
 
-   {{< tabs "TabID40 ">}}
-   {{< tab "nv show ">}}
+| Previous Command  |  New Command  |
+| ------------ | ------------- |
+| `nv set router pim timers keep-alive`| `nv set router pim timers keepalive` |
+| `nv set router pim timers rp-keep-alive`| `nv set router pim timers rp-keepalive` |
+| `nv set vrf default router pim timers keep-alive`| `nv set vrf default router pim timers keepalive` |
+| `nv set vrf default router pim timers rp-keep-alive`| `nv set vrf default router pim timers rp-keepalive` |
+| `nv set acl <acl-ID> rule <rule-ID> match ip dest-port <port>` | `nv set acl <acl-ID> rule <rule-ID> match ip <protocol>    dest-port <port>`|
+| `nv set acl <acl-ID> rule <rule-ID> match ip source-port <port>`| `nv set acl <acl-ID> rule <rule-ID> match ip <protocol>    source-port <port>` |
 
-   ```
-   nv show
-   ```
+{{< /expand >}}
 
-   {{< /tab >}}
-   {{< tab "nv set ">}}
+{{< expand "New NVUE Commands" >}}
 
-   ```
-   nv set
-   ```
+For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) fCumulus Linux.
 
-   {{< /tab >}}
-   {{< tab "nv unset ">}}
+{{< tabs "TabID40 ">}}
+{{< tab "nv show ">}}
 
-   ```
-   nv unset
-   ```
+```
+nv show
+```
 
-   {{< /tab >}}
-   {{< tab "nv action ">}}
+{{< /tab >}}
+{{< tab "nv set ">}}
 
-   ```
-   nv action
-   ```
+```
+nv set
+```
 
-   {{< /tab >}}
-   {{< /tabs >}}
+{{< /tab >}}
+{{< tab "nv unset ">}}
 
-   {{< /expand >}}
+``
+nv unset
+```
+
+{{< /tab >}}
+{{< tab "nv action ">}}
+
+```
+nv action
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /expand >}}
 
 {{%notice info%}}
 Cumulus Linux 5.7 includes the NVUE object model. After you upgrade to Cumulus Linux 5.7, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

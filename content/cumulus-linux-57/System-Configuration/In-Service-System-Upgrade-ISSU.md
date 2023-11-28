@@ -313,10 +313,9 @@ ports  disabled
 
 ```
 cumulus@switch:~$ sudo csmgrctl -s
-Current System Mode: Maintenance, cold  
- Maintenance mode since Sat Nov 18 07:24:11 2023 (Duration: 00:00:38)
- Ports shutdown for Maintenance
- frr             : Maintenance, cold, down, up time: 13:11:15 (1 restart)
- switchd         : Maintenance, cold, down, up time: 13:25:40
- System Services : Maintenance, cold, down, up time: 13:25:59
+Current System Mode: cold  
+ frr             : cold, up, up time: 00:14:51 (2 restarts)
+ clagd           : cold, up, up time: 00:14:47
+ switchd         : cold, up, up time: 01:09:48
+ System Services : cold, up, up time: 01:10:07
 ```

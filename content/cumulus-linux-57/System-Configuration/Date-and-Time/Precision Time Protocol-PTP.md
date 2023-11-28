@@ -493,7 +493,7 @@ Cumulus Linux supports two PPS modes:
 
 #### Enable PPS Synchronization
 
-To enable PPS In and PPS Out:
+To enable PPS synchronization:
 
 {{< tabs "TabID541 ">}}
 {{< tab "NVUE Commands ">}}
@@ -548,7 +548,7 @@ To enable PPS Out:
 
 #### PPS Synchronization Settings
 
-You can configure these PPS In settings:
+You can configure these PPS settings:
 
 | PPS In Setting | Description |
 | ------- | ----------- |
@@ -558,8 +558,6 @@ You can configure these PPS In settings:
 | `signal-polarity` | Sets the polarity of the PPS IN signal. You can specify `rising-edge`, `falling-edge`, or `both`. The default setting is `rising-edge`.|
 | `signal-width` | Sets the pulse width of the PPS IN signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
 | `timestamp-correction` | Sets the value, in nanoseconds, to add to each PPS time stamp. You can set a value between -1000000000 and 1000000000. The default value is 0. |  
-
-You can configure these PPS Out settings:
 
 | PPS Out Setting | Description |
 | ------- | ----------- |

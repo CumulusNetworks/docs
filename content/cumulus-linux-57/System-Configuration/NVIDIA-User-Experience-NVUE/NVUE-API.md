@@ -143,7 +143,7 @@ To delete a certificate and the key data stored on the switch:
 - To delete an entity certificate and the key data stored on the switch, run the `nv action delete system security certificate <cert-id>` command.
 - To delete a CA certificate and the key data stored on the switch, run the `nv action delete system security ca-certificate <cert-id>` command.
 
-The following command deletes the CA certificate `tls-cert-1`:
+The following command deletes the certificate `tls-cert-1`:
 
 ```
 cumulus@switch:~$ nv action delete system security certificate tls-cert-1 

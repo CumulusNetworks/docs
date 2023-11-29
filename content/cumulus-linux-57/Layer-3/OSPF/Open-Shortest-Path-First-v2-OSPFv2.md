@@ -10,6 +10,10 @@ This topic describes OSPFv2, which is a link-state routing protocol for IPv4. Fo
 
 You can configure <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span> using either numbered interfaces or unnumbered interfaces.
 
+{{%notice warning%}}
+When you enable or disable OSPF, the FRR service restarts, which might impact traffic.
+{{%/notice%}}
+
 ### OSPFv2 Numbered
 
 To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. You must put all the interfaces on the switch with an IP address that matches the network subnet into the specified area. OSPF attempts to discover other OSPF routers on those interfaces. Cumulus Linux adds all matching interface network addresses to a type-1 <span style="background-color:#F5F5DC">[LSA](## "Link-State Advertisement")</span> and advertises to discovered neighbors for proper reachability.

@@ -520,6 +520,35 @@ To enable PPS In:
 1. Edit the `/etc/linuxptp/ts2phc.conf` file to set the following parameters.
 
    ```
+   # Default configurations
+   [global]
+   use_syslog                0
+   verbose                   1
+   logging_level             6
+   slave_event_monitor       /var/run/ptp_sem.sock
+   ts2phc.pulsewidth         500000000
+   ts2phc.tod_source         ptp 
+   #
+   # servo parameters
+   #
+   pi_proportional_const          0.000000
+   pi_integral_const              0.000000
+   pi_proportional_scale          0.700000
+   pi_proportional_exponent       -0.300000
+   pi_proportional_norm_max       0.700000
+   pi_integral_scale              0.300000
+   pi_integral_exponent           0.400000
+   pi_integral_norm_max           0.300000
+   step_threshold                 0.000000050
+   first_step_threshold           0.000000001
+   max_frequency                  500000000
+   sanity_freq_limit              0
+
+   [/dev/ptp1] 
+   ts2phc.pin_index               0 
+   ts2phc.channel                 0
+   ts2phc.extts_polarity          rising 
+   ts2phc.extts_correction        0
    ```
 
 2. Enable and start the `ptp4l` and `phc2sys` services:
@@ -533,8 +562,27 @@ To enable PPS Out:
 
 1.Edit the `/etc/linuxptp/pps_out.conf` file to set the following parameters.
 
-```
-```
+  ```
+  # Configuration file used for the pps_out.service
+  # It is shell formatted and the file is source'd by the service
+  
+  # Set the PTP device to source our PPS from. 
+  # If not specified, the service will find the first device with a clock name "sx_ptp".
+  PTP_DEV=/dev/ptp1
+  
+  # Set the pin index on the PPS device to send on. 
+  # On the NVIDIA systems, only pin 1 (0-based) is supported
+  OUT_PIN=1
+  
+  # Set the file where to cache the last started values. 
+  # This is used primarily in the "stop" operation to know what to clean up.
+  CACHE_FILE=/var/run/pps_out
+  
+  # Set the out pulse charateristics for frequency and width
+  PULSE_FREQ=1000000000
+  PULSE_WIDTH=500000000
+  PULSE_PHASE=0
+  ```
 
 2. Enable and start the `pps_out` service:
 
@@ -564,7 +612,7 @@ You can configure these PPS settings:
 | `channel-index`| Sets the channel index. You can set a value of 1 or 0. The default value is 0.|
 | `frequency-adjustment` | Sets the frequency adjustment of the PPS Out signal. You can set a value between 1000000000 and 2147483647. The default value is 1000000000.|
 | `phase-adjustment` | Sets the phase adjustment of the PPS Out signal. You can set a value between 0 and 1000000000. The default value is 0.|
-| `pin-index` | Sets the pin index. You can set a value of 1 or 0. The default value is 0.|
+| `pin-index` | Sets the pin index. The default value is 1. NVIDIA switches only support pin 1.|
 | `signal-width` | Sets the pulse width of the PPS OUT signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
 
 {{< tabs "TabID592 ">}}
@@ -645,14 +693,27 @@ The following example configures PPS Out and sets:
 - The frequency-adjustment of the PPS Out signal to 2147483647.
 
 ```
-# pps out is enabled 
-PTP_DEV=/dev/ptp1 
-CACHE_FILE=/var/run/pps_out 
+# Configuration file used for the pps_out.service
+# It is shell formatted and the file is source'd by the service
+
+# Set the PTP device to source our PPS from. 
+# If not specified, the service will find the first device with a clock name "sx_ptp".
+PTP_DEV=/dev/ptp1
+
+# Set the pin index on the PPS device to send on. 
+# On the NVIDIA systems, only pin 1 (0-based) is supported
 OUT_PIN=1
+
 OUT_CHANNEL=1 
-PULSE_FREQ= 2147483647
-PULSE_WIDTH= 999000000 
-PULSE_PHASE= 1000000000
+
+# Set the file where to cache the last started values. 
+# This is used primarily in the "stop" operation to know what to clean up.
+CACHE_FILE=/var/run/pps_out
+
+# Set the out pulse charateristics for frequency and width
+PULSE_FREQ=2147483647
+PULSE_WIDTH=999000000
+PULSE_PHASE=1000000000
 ```
 
 {{< /tab >}}

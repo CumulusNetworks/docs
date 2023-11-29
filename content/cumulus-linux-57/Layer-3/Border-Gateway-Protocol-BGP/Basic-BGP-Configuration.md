@@ -10,6 +10,10 @@ This section describes how to configure BGP using either BGP numbered or {{<link
 BGP *unnumbered* simplifies configuration. NVIDIA recommends you use BGP unnumbered for data center deployments.
 {{%/notice%}}
 
+{{%notice warning%}}
+When you enable BGP for the first time, the FRR service restarts, which might impact traffic. Any time you enable or disable BGP, or change the ASN, the FRR service also restarts.
+{{%/notice%}}
+
 ## BGP Numbered
 
 To configure BGP numbered on a BGP node, you need to:

@@ -30,7 +30,6 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link url="Interface-Configuration-and-Management/#link-flap-protection" text="Link flap protection ">}} commands
   - {{<link title="Spanning Tree and Rapid Spanning Tree - STP" text="MLAG support for PVST & PVRST VLAN-aware bridge mode">}}
   - {{<link title="Setting the Date and Time/#set-the-date-and-time" text="Set date and time command">}}
-  - {{<link url="Optional-BGP-Configuration#bgp-input-and-ouput-message-queue-limit" text="Set BGP input and ouput message queue limit">}}
   - {{<link url="Role-Based-Access-Control" text="Role-based access control">}}
   - Commands to {{<link url="NVUE-API/#certificates" text="manage certificates">}} for the NVUE REST API
   - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.

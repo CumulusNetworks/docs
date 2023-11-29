@@ -10,13 +10,13 @@
 <td>2893000</td>
 <td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
 <td>2.4.0-4.0.1</td>
-<td>4.1.0-4.7.0</td>
+<td>4.1.0-4.8.0</td>
 </tr>
 <tr>
 <td>2553453</td>
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>
-<td>4.0.0-4.7.0</td>
+<td>4.0.0-4.8.0</td>
 </tr>
 <tr>
 <td>2551790</td>
@@ -46,7 +46,7 @@
 <td>2549319</td>
 <td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
 <td>3.0.0-3.3.1</td>
-<td>4.0.0-4.7.0</td>
+<td>4.0.0-4.8.0</td>
 </tr>
 <tr>
 <td>2549246</td>

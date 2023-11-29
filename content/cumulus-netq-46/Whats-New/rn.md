@@ -14,7 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3549877"></a> [3549877](#3549877) <a name="3549877"></a> <br /> | NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes. | 4.6.0-4.7.0 | 4.8.0|
+| <a name="3549877"></a> [3549877](#3549877) <a name="3549877"></a> <br /> | NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes. | 4.6.0-4.8.0 | |
 | <a name="3491935"></a> [3491935](#3491935) <a name="3491935"></a> <br /> | NetQ might generate continuous TCA events for the NetQ VM squashfs mounts when disk utilization TCA rules are configured for all hosts.   | 4.5.0-4.6.0 | 4.7.0-4.8.0|
 | <a name="3454057"></a> [3454057](#3454057) <a name="3454057"></a> <br /> | When you configure more than one TCA rule referencing the same TCA event type, adding additional TCA rules fails with the following message:<pre>Failed to add/update TCA http status_code: 409</pre> | 4.5.0-4.6.0 | 4.7.0-4.8.0|
 | <a name="3448057"></a> [3448057](#3448057) <a name="3448057"></a> <br /> | NetQ NTP validations will report time syncronization failures for switches running the NTP service in the default VRF. | 4.5.0-4.6.0 | 4.7.0-4.8.0|

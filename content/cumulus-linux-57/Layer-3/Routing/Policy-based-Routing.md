@@ -35,6 +35,10 @@ To configure a PBR policy:
 {{< tabs "TabID35 ">}}
 {{< tab "NVUE Commands ">}}
 
+{{%notice warning%}}
+When you configure PBR with NVUE commands, NVUE enables the `pbrd` service and restarts the FRR service; An FRR service restart might impact traffic.
+{{%/notice%}}
+
 1. Configure the policy map.
 
     The example commands below configure a policy map called `map1` with rule number 1 that matches on destination address 10.1.2.0/24 and source address 10.1.4.1/24.

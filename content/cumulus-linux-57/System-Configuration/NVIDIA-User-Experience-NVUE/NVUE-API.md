@@ -61,10 +61,10 @@ To import a certificate, run the following commands. If the certificate is passp
 
 You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate being imported.
 
-The following example imports a CA certificate with the public key `AFCB12334…==` and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `hell0$`. The public key is a Base64 ASCII encoded PEM string.
+The following example imports a CA certificate with the public key `AFCB12334SUSnDy8cArHfRf3sFcHgEhW5L0rLwno` and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `hell0$`. The public key is a Base64 ASCII encoded PEM string.
 
 ```
-cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 data "AFCB12334…==" passphrase hell0$
+cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 data "AFCB12334SUSnDy8cArHfRf3sFcHgEhW5L0rLwno" passphrase hell0$
 cumulus@switch:~$ nv config apply
 ```
 

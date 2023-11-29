@@ -390,7 +390,7 @@ ipv6
     fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router
 ```
 
-To show table entries for an interface with a specific IPv4 address:
+To show table entries for an interface with a specific IPv4 address, run the `nv show interface <interface_id> neighbor ipv4 <ip-address>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor ipv4 169.254.0.1

@@ -557,7 +557,7 @@ fe80::4ab0:2dff:fe3f:69d6 dev peerlink.4094 lladdr 48:b0:2d:3f:69:d6 router REAC
 ...
 ```
 
-To show table entries for a specific interface, run the `nv show interface <interface_id> neighbor`  command:
+To show table entries for a specific interface, run the `nv show interface <interface_id> neighbor` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor
@@ -574,7 +574,7 @@ ipv6
     fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router
 ```
 
-To show table entries for an interface with a specific IPv6 address:
+To show table entries for an interface with a specific IPv6 address, run the `nv show interface <interface_id> neighbor ipv6 <ip-address>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79

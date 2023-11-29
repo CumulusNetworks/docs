@@ -26,6 +26,10 @@ cumulus@switch:~$ nv set service snmp-server listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice warning%}}
+If you disable the `snmpd` service with the `nv set service snmp-server enable off` command, the FRR service restarts, which might impact traffic.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -527,6 +531,11 @@ To verify the configuration, you can run `snmpwalk`.
 ```
 cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14
 ```
+
+{{%notice warning%}}
+If you disable the SNMP server with AgentX enabled, the FRR service restarts, which might impact traffic.
+{{%/notice%}}
+
 <!-- vale off -->
 ### Enable the .1.3.6.1.2.1 Range
 <!-- vale on -->

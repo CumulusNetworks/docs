@@ -51,6 +51,10 @@ The parent interface must use a primary address as the source address on VRRP ad
 {{< tabs "TabID448 ">}}
 {{< tab "NVUE Commands ">}}
 
+{{%notice warning%}}
+When you configure VRRP with NVUE commands, NVUE enables the `vrrpd` service and restarts the FRR service; An FRR service restart might impact traffic.
+{{%/notice%}}
+
 {{< tabs "TabID504 ">}}
 {{< tab "spine01 ">}}
 

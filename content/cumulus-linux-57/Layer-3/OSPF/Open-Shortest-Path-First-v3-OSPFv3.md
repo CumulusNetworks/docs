@@ -14,6 +14,10 @@ IETF has defined extensions to OSPFv3 to support multiple address families (both
 
 You can configure <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span> using either numbered interfaces or unnumbered interfaces.
 
+{{%notice warning%}}
+When you enable or disable OSPF, the FRR service restarts, which might impact traffic.
+{{%/notice%}}
+
 {{%notice note%}}
 NVUE commands are not supported for OSPFv3.
 {{%/notice%}}

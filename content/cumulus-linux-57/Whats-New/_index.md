@@ -21,7 +21,6 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - {{<link url="802.1X-Interfaces" text="802.1x support">}}
 - {{<link url="MAC-Address-Translation" text="MAC Address Translation">}}
 - {{<link url="ASIC-Monitoring" text="Updated and new histograms for ASIC monitoring">}}
-- {{<link url="Supported-Route-Table-Entries/#spectrum-2-and-spectrum-3" text="l2-heavy-v4-lpm">}} forwarding profile
 - {{<link url="Precision-Time-Protocol-PTP/#pps-synchronization" text="PTP PPS In and PPS Out">}}
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
@@ -39,9 +38,9 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Show commands to show the IP neighbor table and set commands to create an IP neighbor table entry for an interface
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
   - Improvements to adaptive-routing link-utilization-threshold{{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
-  - FRR now restarts only when you change the FRR daemon file, change the BGP ASN, remove the default instance, disable the SNMP server (with agentx configuration present).
+  - FRR now restarts only when you enable or disable a routing protocol, change the BGP ASN, or disable the SNMP server.
 
-{{< expand "Commands that now reload switchd instead of restarting switchd" >}}
+{{< expand "Commands that no longer require a switchd restart" >}}
 
 ```
 nv set/unset system acl mode non-atomic

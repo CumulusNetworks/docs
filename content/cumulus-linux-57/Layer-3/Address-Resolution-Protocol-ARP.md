@@ -284,7 +284,7 @@ The ARP refresh timer defaults to 1080 seconds (18 minutes).
 
 ## Add Static ARP Table Entries
 
-You can add static ARP table entries as a security measure to prevent spoofing and other nefarious activities.
+You can add static ARP table entries for easy management or as a security measure to prevent spoofing and other nefarious activities.
 
 To create a static ARP entry for an interface with an IPv4 address associated with a MAC address, run the `nv set interface <interface> neighbor ipv4 <ip-address> lladdr <mac-address>` command.
 

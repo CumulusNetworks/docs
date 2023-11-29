@@ -10,13 +10,13 @@
 <td>3085064</td>
 <td>When you attempt to install NetQ on a device using LCM and configure the incorrect VRF, the installation will be reflected as successful but the switch will not be present in the inventory in the LCM UI.</td>
 <td>4.1.0-4.3.0</td>
-<td>4.4.0-4.7.0</td>
+<td>4.4.0-4.8.0</td>
 </tr>
 <tr>
 <td>3015875</td>
 <td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
 <td>4.1.0-4.4.1</td>
-<td>4.5.0-4.7.0</td>
+<td>4.5.0-4.8.0</td>
 </tr>
 <tr>
 <td>3011307</td>
@@ -26,7 +26,7 @@
 systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
 </td>
 <td>4.1.1</td>
-<td>4.2.0-4.7.0</td>
+<td>4.2.0-4.8.0</td>
 </tr>
 <tr>
 <td>2896825</td>
@@ -47,13 +47,13 @@ systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
 
 {{sudo apt-get update &amp;&amp; sudo apt-get install --reinstall netq-agent}}</td>
 <td>4.1.0-4.1.1</td>
-<td>4.2.0-4.7.0</td>
+<td>4.2.0-4.8.0</td>
 </tr>
 <tr>
 <td>2885440</td>
 <td>After upgrading to NetQ 4.1.0, validation checks might show intermittent errors that are not valid while the validation application processess pending messages after upgrade. This condition will clear once all messages are processed.</td>
 <td>4.1.0-4.1.1</td>
-<td>4.2.0-4.7.0</td>
+<td>4.2.0-4.8.0</td>
 </tr>
 <tr>
 <td>2885312</td>
@@ -65,20 +65,20 @@ systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
    torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021
                                                          torc-21:vx-282 and torc-11:peerlink-3
    </td>
-<td>4.1.0-4.7.0</td>
+<td>4.1.0-4.8.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2843640</td>
 <td>In NetQ clustered environments, the network snapshot feature may fail.</td>
 <td>4.0.0-4.1.1</td>
-<td>4.2.0-4.7.0</td>
+<td>4.2.0-4.8.0</td>
 </tr>
 <tr>
 <td>2817749</td>
 <td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
 <td>4.0.1-4.2.0</td>
-<td>4.3.0-4.7.0</td>
+<td>4.3.0-4.8.0</td>
 </tr>
 <tr>
 <td>2815596</td>
@@ -147,7 +147,7 @@ systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
 	Filesystem     1M-blocks  Used Available Use% Mounted on
 	/dev/vda1          63341  1193     62132   2% /</td>
 <td>4.0.1-4.1.1</td>
-<td>4.2.0-4.7.0</td>
+<td>4.2.0-4.8.0</td>
 </tr>
 <tr>
 <td>2711101</td>
@@ -167,7 +167,7 @@ To work around this issue, disable RoCE monitoring:
 3. Restart the NetQ agent:
        $ netq config agent restart</td>
 <td>4.0.0-4.1.1</td>
-<td>4.2.0-4.7.0</td>
+<td>4.2.0-4.8.0</td>
 </tr>
 </table>
 <table name="Fixed Issues in 4.1.1">
@@ -195,13 +195,13 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
 <td>3085064</td>
 <td>When you attempt to install NetQ on a device using LCM and configure the incorrect VRF, the installation will be reflected as successful but the switch will not be present in the inventory in the LCM UI.</td>
 <td>4.1.0-4.3.0</td>
-<td>4.4.0-4.7.0</td>
+<td>4.4.0-4.8.0</td>
 </tr>
 <tr>
 <td>3015875</td>
 <td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
 <td>4.1.0-4.4.1</td>
-<td>4.5.0-4.7.0</td>
+<td>4.5.0-4.8.0</td>
 </tr>
 <tr>
 <td>2896825</td>
@@ -222,13 +222,13 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
 
 {{sudo apt-get update &amp;&amp; sudo apt-get install --reinstall netq-agent}}</td>
 <td>4.1.0-4.1.1</td>
-<td>4.2.0-4.7.0</td>
+<td>4.2.0-4.8.0</td>
 </tr>
 <tr>
 <td>2885440</td>
 <td>After upgrading to NetQ 4.1.0, validation checks might show intermittent errors that are not valid while the validation application processess pending messages after upgrade. This condition will clear once all messages are processed.</td>
 <td>4.1.0-4.1.1</td>
-<td>4.2.0-4.7.0</td>
+<td>4.2.0-4.8.0</td>
 </tr>
 <tr>
 <td>2885312</td>
@@ -240,20 +240,20 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
    torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021
                                                          torc-21:vx-282 and torc-11:peerlink-3
    </td>
-<td>4.1.0-4.7.0</td>
+<td>4.1.0-4.8.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2843640</td>
 <td>In NetQ clustered environments, the network snapshot feature may fail.</td>
 <td>4.0.0-4.1.1</td>
-<td>4.2.0-4.7.0</td>
+<td>4.2.0-4.8.0</td>
 </tr>
 <tr>
 <td>2817749</td>
 <td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
 <td>4.0.1-4.2.0</td>
-<td>4.3.0-4.7.0</td>
+<td>4.3.0-4.8.0</td>
 </tr>
 <tr>
 <td>2815596</td>
@@ -322,7 +322,7 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
 	Filesystem     1M-blocks  Used Available Use% Mounted on
 	/dev/vda1          63341  1193     62132   2% /</td>
 <td>4.0.1-4.1.1</td>
-<td>4.2.0-4.7.0</td>
+<td>4.2.0-4.8.0</td>
 </tr>
 <tr>
 <td>2711101</td>
@@ -342,7 +342,7 @@ To work around this issue, disable RoCE monitoring:
 3. Restart the NetQ agent:
        $ netq config agent restart</td>
 <td>4.0.0-4.1.1</td>
-<td>4.2.0-4.7.0</td>
+<td>4.2.0-4.8.0</td>
 </tr>
 </table>
 <table name="Fixed Issues in 4.1.0">

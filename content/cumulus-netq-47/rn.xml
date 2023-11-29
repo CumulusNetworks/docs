@@ -64,8 +64,8 @@ worker2  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
 <tr>
 <td>3549877</td>
 <td>NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes.</td>
-<td>4.6.0-4.7.0</td>
-<td>4.8.0</td>
+<td>4.6.0-4.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3530739</td>

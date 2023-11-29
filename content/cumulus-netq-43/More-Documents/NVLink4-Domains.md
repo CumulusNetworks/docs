@@ -38,7 +38,7 @@ For GFM to run, the topology file must reflect how the network is wired. The sam
 
 Next, upload a file of IP addresses:
 
-{{<figure src="/images/netq/nvl4-ip-address-file.png" alt="wizard prompting user to upload file containing IP adressess" width="550">}}
+{{<figure src="/images/netq/nvl4-ip-address-file.png" alt="wizard prompting user to upload file containing IP addresses" width="550">}}
 
 This is a text file listing the IP addresses for the nodes (GPU nodes and NVL4 switches) that comprise the domain.
 
@@ -47,7 +47,7 @@ The final screen displays a summary of the domain's parameters. In addition to t
 Enter your credentials to set the switch username and password. 
 
 {{<notice info>}}
-If you are also using NetQ to manage ethernet switches, make sure the switch username and password match.
+If you are also using NetQ to manage Ethernet switches, make sure the switch username and password match.
 {{</notice>}}
 
 After reviewing the summary, select **Finish**. NetQ adds the domain to a list of all NVLink4 domains:

@@ -37,7 +37,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Show commands to show the IP neighbor table and set commands to create an IP neighbor table entry for an interface
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
-  - Improvements to adaptive-routing link-utilization-threshold{{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
+  - Improvements to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
   - FRR now restarts only when you enable or disable a routing protocol, change the BGP ASN, or disable the SNMP server.
 
 {{< expand "Commands that no longer require a switchd restart" >}}

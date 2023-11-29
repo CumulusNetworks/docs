@@ -1044,7 +1044,7 @@ Cumulus Linux supports the following predefined profiles:
 - You cannot set global PTP parameters in a profile currently in use.
 - PTP profiles do not support VLANs or bonds.
 - If you set a predefined or custom profile, do not change any global PTP settings, such as the <span style="background-color:#F5F5DC">[DSCP](## "DiffServ code point")</span> or the clock domain.
-- For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp burst <value>` and `nv set system control-plane policer lldp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
+- For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp-ptp burst <value>` and `nv set system control-plane policer lldp-ptp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
 {{%/notice%}}
 
 ### Set a Predefined Profile

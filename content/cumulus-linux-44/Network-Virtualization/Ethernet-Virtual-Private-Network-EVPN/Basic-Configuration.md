@@ -365,7 +365,7 @@ router bgp 65101
   bgp router-id 10.10.10.1
   neighbor swp51 interface remote-as external
   address-family l2vpn evpn
-neighbor swp1 activate
+neighbor swp51 activate
   advertise-all-vni
 ...
 ```
@@ -381,7 +381,7 @@ spine01(config)# router bgp 65199
 spine01(config-router)# bgp router-id 10.10.10.101
 spine01(config-router)# neighbor swp1 interface remote-as external
 spine01(config-router)# address-family l2vpn evpn
-spine01(config-router-af)# neighbor swp51 activate
+spine01(config-router-af)# neighbor swp1 activate
 spine01(config-router-af)# end
 spine01)# write memory
 spine01)# exit

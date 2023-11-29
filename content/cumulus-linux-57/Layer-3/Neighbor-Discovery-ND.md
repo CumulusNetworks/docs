@@ -471,7 +471,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 ## Add Static IP Neighbor Table Entries
 
-You can add static IPv6 neighbor table entries as a security measure to prevent spoofing and other nefarious activities.
+You can add static IPv6 neighbor table entries for easy management or as a security measure to prevent spoofing and other nefarious activities.
 
 To create a static neighbor entry for an interface with an IPv6 address associated with a MAC address, run the `nv set interface <interface> neighbor ipv6 <ip-address> lladdr <mac-address>` command.
 

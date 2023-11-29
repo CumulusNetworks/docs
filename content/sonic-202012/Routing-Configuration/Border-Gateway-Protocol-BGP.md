@@ -307,7 +307,7 @@ router bgp 65199
 
 ## ECMP
 
-BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipathing-ECMP" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has all the information necessary to program the routing table and forward traffic for that prefix through all of these peers. BGP typically choses one best path for each prefix and installs that route in the forwarding table.
+BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipathing-ECMP" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has all the information necessary to program the routing table and forward traffic for that prefix through all of these peers. BGP typically chooses one best path for each prefix and installs that route in the forwarding table.
 
 In SONiC, the *BGP multipath* option is enabled by default with the maximum number of paths set to 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs.
 

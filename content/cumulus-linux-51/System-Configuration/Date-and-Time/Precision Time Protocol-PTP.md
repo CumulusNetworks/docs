@@ -202,7 +202,7 @@ delay_mechanism         E2E
 network_transport       UDPv4
 ```
 
-For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
 ```
 [swp1]
@@ -220,7 +220,7 @@ network_transport       UDPv4
 For a switch VLAN, add
 ```
 
-For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
 ```
 [swp2]
@@ -1168,9 +1168,9 @@ The following example shows that there are no violations:
 cumulus@switch:~$ nv show service ptp 1 monitor violations
                   operational  applied  description
 ----------------  -----------  -------  -----------------------------------------------
-last-max-offset                         Time at which last max offest violation occured
-last-min-offset                         Time at which last min offest violation occured
-last-path-delay                         Time at which last path delay violation occured
+last-max-offset                         Time at which last max offest violation occurred
+last-min-offset                         Time at which last min offest violation occurred
+last-path-delay                         Time at which last path delay violation occurred
 max-offset-count  0                     Number of maximum offset violations
 min-offset-count  0                     Number of min offset violations
 path-delay-count  0                     Number of Path delay violations

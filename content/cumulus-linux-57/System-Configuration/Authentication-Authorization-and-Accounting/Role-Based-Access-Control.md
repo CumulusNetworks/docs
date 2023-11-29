@@ -129,7 +129,7 @@ uuidd                                                 Unknown  system
 www-data          www-data                            Unknown  system    
 ```
 
-To show information about a specific user account including the role assigned to the user, run the run the NVUE `nv show system aaa user <user>` command:
+To show information about a specific user account including the role assigned to the user, run the NVUE `nv show system aaa user <user>` command:
 
 ```
 cumulus@switch:~$ nv show system aaa user user2

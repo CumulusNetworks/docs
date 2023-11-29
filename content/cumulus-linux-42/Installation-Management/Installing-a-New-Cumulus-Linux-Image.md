@@ -476,7 +476,7 @@ You can run several installer command line options from ONIE to perform basic sw
 
 {{%notice note%}}
 
-The `onie-nos-install` command does *not* allow you specify command line parameters. You must access the switch from the console and transfer a disk image to the switch. You must then make the disk image executable and install the image directly from the ONIE command line with the options you want to use.
+The `onie-nos-install` command does *not* allow you to specify command line parameters. You must access the switch from the console and transfer a disk image to the switch. You must then make the disk image executable and install the image directly from the ONIE command line with the options you want to use.
 
 The following example commands transfer a disk image to the switch, make the image executable, and install the image with the `--password` option to change the default cumulus user password:
 

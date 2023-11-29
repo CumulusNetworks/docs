@@ -589,7 +589,7 @@ monitor [OPTIONS] NAME EXPRESSION
 
     OPTIONS
 
-            There are various options to control the behaviour of the monitored expression.  These include:
+            There are various options to control the behavior of the monitored expression.  These include:
             -D     indicates that the expression should be evaluated using delta differences between sample
                     values (rather than the values themselves).
             -d OID  or  -di OID
@@ -618,7 +618,7 @@ monitor [OPTIONS] NAME EXPRESSION
             -S     indicates that the monitor expression should not be evaluated when the agent first starts up.
                     The first evaluation will be done once the first repeat interval has expired.
             -s      indicates that the monitor expression should be evaluated when the agent first starts up.
-                    This is the default behaviour.
+                    This is the default behavior.
                     Note:  Notifications triggered by this initial evaluation will be sent before the coldStart trap.
              -u SECNAME
                      specifies a security name to use for scanning the local host, instead of the default

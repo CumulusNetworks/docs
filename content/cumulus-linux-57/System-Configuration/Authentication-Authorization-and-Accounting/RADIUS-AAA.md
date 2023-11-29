@@ -34,7 +34,7 @@ After you install the required RADIUS packages, configure the following required
 {{< tabs "TabID41 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example commmands set:
+The following example commands set:
 - The IP address of the RADIUS server to 192.168.0.254 and the port to 42.
 - The secret to `'myradius$key'`.
 - The priority at which Cumulus Linux contacts the RADIUS server to 10.

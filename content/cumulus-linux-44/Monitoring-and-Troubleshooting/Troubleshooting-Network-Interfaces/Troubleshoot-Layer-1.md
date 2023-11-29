@@ -761,7 +761,7 @@ Because I2C problems can be very pernicious, often showing up again much later a
 
 To verify that an I2C failure is occurring, run `sudo tail -F /var/log/syslog` and look for `smbus` or `i2c` or `EEPROM read` errors that continue to appear or appear in bursts.
 
-Based on the failure scenario when tyou discover the issue, choose when to address this issue; immediately or during a maintenance window.
+Based on the failure scenario when you discover the issue, choose when to address this issue; immediately or during a maintenance window.
 
 - If traffic or the switch operates negatively and you cannot route traffic through a redundant network, you must do something immediately.
 - If you can route traffic around the failing switch, allowing troubleshooting to proceed on the failed switch, proceed to reroute traffic to find an appropriate time to troubleshoot the failing switch.

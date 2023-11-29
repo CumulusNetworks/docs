@@ -44,6 +44,10 @@ To configure PIM:
 
   <span style="background-color:#F5F5DC">[SSM](## "Source Specific Multicast")</span> uses prefix lists to configure a receiver to only allow traffic to a multicast address from a single source. This removes the need for an RP because the receiver must know the source before accepting traffic. To enable SSM, you only need to enable PIM and IGMPv3 on the interfaces.
 
+{{%notice warning%}}
+When you enable or disable PIM, the FRR service restarts, which might impact traffic.
+{{%/notice%}}
+
 These example commands configure leaf01, leaf02 and spine01 as shown in the topology example above.
 
 {{< tabs "TabID44 ">}}

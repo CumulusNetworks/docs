@@ -9,7 +9,7 @@ toc: 4
 
 You can upgrade Cumulus Linux from:
 - Cumulus Linux 4.3.0 and 4.3.1 (Broadcom switches)
-- Cumulus Linux 5.0.0 and above (Spectrum switches)
+- Cumulus Linux 5.0.0 and later (Spectrum switches)
 
 You can upgrade switches running Cumulus Linux 5.0.0 or later that are managed with flat configuration files or with NVUE.
 

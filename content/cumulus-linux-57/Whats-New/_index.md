@@ -19,22 +19,21 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 ### New Features and Enhancements
 
 - {{<link url="802.1X-Interfaces" text="802.1x support">}}
-- {{<link url="MAC-Address-Translation" text="MAC Address Translation">}}
-- {{<link url="ASIC-Monitoring" text="Updated and new histograms for ASIC monitoring">}}
-- {{<link url="Precision-Time-Protocol-PTP/#pps-synchronization" text="PTP PPS In and PPS Out">}}
+- {{<link url="MAC-Address-Translation" text="MAC address translation">}}
+- {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}}
+- {{<link url="Precision-Time-Protocol-PTP/#pps-synchronization" text="PTP PPS in and PPS out">}}
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
   - {{<link url="In-Service-System-Upgrade-ISSU/#maintenance-mode" text="ISSU maintenance mode commands">}}
   - {{<link url="RADIUS-AAA" text="RADIUS AAA commands">}}
-  - {{<link url="Interface-Configuration-and-Management/#link-flap-protection" text="Link flap protection ">}} commands
+  - {{<link url="Interface-Configuration-and-Management/#link-flap-protection" text="Link flap protection commands ">}}
   - {{<link title="Spanning Tree and Rapid Spanning Tree - STP" text="MLAG support for PVST & PVRST VLAN-aware bridge mode">}}
   - {{<link title="Setting the Date and Time/#set-the-date-and-time" text="Set date and time command">}}
-  - {{<link url="Optional-BGP-Configuration#bgp-input-and-ouput-message-queue-limit" text="Set BGP input and ouput message queue limit">}}
   - {{<link url="Role-Based-Access-Control" text="Role-based access control">}}
-  - Commands to {{<link url="NVUE-API/#certificates" text="manage certificates">}} for the NVUE REST API
+  - {{<link url="NVUE-API/#certificates" text="Manage certificate commands">}} for the NVUE REST API
   - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.
-  - Show commands to see the {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
+  - Commands to show {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Commands to show the {{<link url="Address-Resolution-Protocol-ARP/#show-the-arp-table" text="ARP table">}} and {{<link url="Neighbor-Discovery-ND#show-the-ip-neighbor-table" text="ND table">}} and to add static entries to the {{<link url="Address-Resolution-Protocol-ARP/#add-static-arp-table-entries" text="ARP table">}} and {{<link url="Neighbor-Discovery-ND/#add-static-ip-neighbor-table-entries" text="ND table">}}
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
   - Improvements to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}

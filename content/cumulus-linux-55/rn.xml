@@ -507,6 +507,12 @@ In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on 
 <td>5.6.0</td>
 </tr>
 <tr>
+<td>3334275</td>
+<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>5.2.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3329518</td>
 <td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} (files is listed before tacplus), a user that is present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch. NVIDIA recommends that when using TACACS+, you list {{tacplus}} before {{files}} in {{/etc/nsswitch.conf}}.  When using NVUE, ensure that {{tacacs}} has priority over {{local}}.</td>
 <td>5.4.0-5.6.0</td>
@@ -1273,6 +1279,12 @@ In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on 
 <td>If you run the NVUE {{nv set interface &lt;interface&gt; description}} command without providing a description, the {{nv config apply}} command fails with the error {{Unable to restart services (ifreload-nvue.service)}}.</td>
 <td>5.4.0-5.5.1</td>
 <td>5.6.0</td>
+</tr>
+<tr>
+<td>3334275</td>
+<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>5.2.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3329518</td>

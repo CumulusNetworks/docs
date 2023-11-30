@@ -176,6 +176,12 @@ In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on 
 <td>5.4.0-5.6.0</td>
 </tr>
 <tr>
+<td>3334275</td>
+<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>5.2.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
@@ -1014,6 +1020,12 @@ In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on 
 <td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
 <td>5.4.0-5.6.0</td>
+</tr>
+<tr>
+<td>3334275</td>
+<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>5.2.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3330705</td>

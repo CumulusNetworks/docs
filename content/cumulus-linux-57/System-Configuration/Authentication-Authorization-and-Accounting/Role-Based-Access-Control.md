@@ -20,13 +20,63 @@ Custom role-based access control consists of the following elements:
 - When you configure a command path, you allow or deny a specific schema path and its children. For example the command path `/qos/` allows or denies access to QoS commands, whereas the command path `/qos/egress-scheduler` allows or denies access to QoS egress scheduler commands.
 {{%/notice%}}
 
+The following example describes the permissions for a role (ROLE1) that consists of three classes:
+- Class1 has the allow action
+- Class2 has the allow action
+- Class3 has the deny action
+
+Class1
+
+| Command Path | Permissions |
+| ------------ | ----------- |
+| `/interface/` | `all`|
+| `/interface/*/acl/` | `ro` |
+| `/interface/*/ptp/` | `ro` |
+
+Class2
+
+| Command Path | Permissions |
+| ------------ | ----------- |
+| `/system/` | `ro` |
+| `/vrf/` | `rw` |
+
+Class3
+
+| Command Path | Permissions |
+| ------------ | ----------- |
+| `/interface/*/evpn/`| `rw` |
+| `/interface/*/qos/` | `rw` |
+
+The following table shows the permissions for a user assigned the role ROLE1. In the table, R is read only (RO), W is write, and X is action (ACT).
+
+| Path     | Allow     | Deny       | Permissions |
+| -------- | --------- | ---------- | ----------- |
+| `/acl/` |            | RWX        | Implicit deny |
+| `/qos/`  |           | RWX        | Implicit deny |
+| All unspecified paths are implicit deny | | | |
+| `/interface/` | RWX |  | The permissions specified |
+| `/interface/*` (* matches all interfaces) | | RWX | Inherited from parent |
+| `/interface/*/bond/` | RWX | | Inherited from parent |
+| `/interface/*/ip/` | RWX | | Inherited from parent |
+| All unspecified children of `/interface/` inherit parent permissions | RWX| | |
+| `/interface/*/acl/` | R | WX | The permissions specified |
+| `/interface/*/ptp/` | R |	WX | The permissions specified |
+| `/interface/*/evpn/` | | RWX | The permissions specified |
+| `/interface/*/qos/` | | RWX | The permissions specified |
+| `/system/` | R | WX | The permissions specified |
+| `/system/aaa/` | R | WX |Inherited from parent|
+| `/system/api/` | R | WX |Inherited from parent|
+| All unspecified children of `/system/` inherit parent permissions | R | | |
+| `/vrf/` | RW | X | The permissions specified |
+| All unspecified children of `/vrf/` inherit parent permissions| RW | X | |
+
 ## Assign a Custom Role to a User Account
 
 To assign a custom role to a user account:
-- Assign a role to a user.
-- Create classes for the role.
+- Create a role and classes for the role.
 - Add command paths and permissions for each class.
-- Assign the action (`allow` or `deny`) for each class.
+- Assign the action (allow or deny) for each class.
+- Assign a role to a user.
 
 {{%notice note%}}
 You assign a custom role to an existing user account. For information about creating user accounts, see {{<link url="User-Accounts" text="User Accounts">}} commands.
@@ -35,10 +85,10 @@ You assign a custom role to an existing user account. For information about crea
 The following example assigns user1 the role of `switch-admin`. user1 can manage the entire switch except for authentication, authorization, and accounting settings (`system aaa`).
 
 ```
-cumulus@switch:~$ nv set system aaa user user1 role switch-admin 
 cumulus@switch:~$ nv set system aaa role switch-admin class RESTRICT 
 cumulus@switch:~$ nv set system aaa class restrict action deny 
 cumulus@switch:~$ nv set system aaa class restrict command-path /system/aaa/*/
+cumulus@switch:~$ nv set system aaa user user1 role switch-admin
 cumulus@switch:~$ nv config apply
 ```
 
@@ -86,7 +136,7 @@ cumulus@switch:~$ nv config apply
 
 ## Show Custom Role Information
 
-To show the user accounts configured on the system, run the NVUE `nv show system aaa user` command or the linux `sudo cat /etc/passwd` command.
+To show the user accounts configured on the system, run the NVUE `nv show system aaa user` command or the Linux `sudo cat /etc/passwd` command.
 
 ```
 cumulus@switch:~$ nv show system aaa user

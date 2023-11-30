@@ -488,8 +488,8 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 <span style="background-color:#F5F5DC">[PPS](## "Pulse per second")</span> is the simplest form of synchronization. The PPS source provides a high precision signal each second, which can synchronize a system clock. The switch can receive PPS from an accurate PPS source as a slave to use for frequency synchronization of its clock and can also generate PPS as a master to other devices.
 
 Cumulus Linux supports two PPS modes:
-- PPS Out is a signal that is generated every time the <span style="background-color:#F5F5DC">[PHC](## "Physical Hardware Clock")</span> reaches 1-rounded second. This signal can provide synchronization to other PHC devices and to check if the clock is synchronized by comparing this signal with other outputs in the network. 
-- PPS In is a signal that is pushed to the switch from an external device. This allows the PHC to be synchronized to an external source capable of providing a PPS signal.
+- PPS Out is a signal that generates every time the <span style="background-color:#F5F5DC">[PHC](## "Physical Hardware Clock")</span> reaches 1-rounded second. This signal can provide synchronization to other PHC devices and to check if the clock is synchronized by comparing this signal with other outputs in the network. 
+- PPS In is a signal that an external device pushes to the switch. This allows the PHC to be synchronized to an external source capable of providing a PPS signal.
 
 #### Enable PPS Synchronization
 
@@ -498,17 +498,17 @@ To enable PPS synchronization:
 {{< tabs "TabID541 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable PPS out:
-
-```
-cumulus@switch:~$ nv set platform pulse-per-second out state enabled
-cumulus@switch:~$ nv config apply
-```
-
 To enable PPS In:
 
 ```
 cumulus@switch:~$ nv set platform pulse-per-second in state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To enable PPS out:
+
+```
+cumulus@switch:~$ nv set platform pulse-per-second out state enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -560,7 +560,7 @@ To enable PPS In:
 
 To enable PPS Out:
 
-1.Edit the `/etc/linuxptp/pps_out.conf` file to set the following parameters.
+1. Edit the `/etc/linuxptp/pps_out.conf` file to set the following parameters.
 
   ```
   # Configuration file used for the pps_out.service
@@ -601,7 +601,7 @@ You can configure these PPS settings:
 | PPS In Setting | Description |
 | ------- | ----------- |
 | `channel-index` | Sets the channel index. You can set a value of 1 or 0. The default value is 0.|
-| `logging-level` | Sets the logging level for PPS In. You can specify `emergency`, `alert`, `critical`, `error`, `warning`, `notice`, `info`,or `debug`. The default logging level is `info`.|
+| `logging-level` | Sets the logging level for PPS In. You can specify `emergency`, `alert`, `critical`, `error`, `warning`, `notice`, `info`, or `debug`. The default logging level is `info`.|
 | `pin-index` |  Sets the pin index. You can set a value of 1 or 0. The default value is 0.|
 | `signal-polarity` | Sets the polarity of the PPS IN signal. You can specify `rising-edge`, `falling-edge`, or `both`. The default setting is `rising-edge`.|
 | `signal-width` | Sets the pulse width of the PPS IN signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
@@ -612,15 +612,15 @@ You can configure these PPS settings:
 | `channel-index`| Sets the channel index. You can set a value of 1 or 0. The default value is 0.|
 | `frequency-adjustment` | Sets the frequency adjustment of the PPS Out signal. You can set a value between 1000000000 and 2147483647. The default value is 1000000000.|
 | `phase-adjustment` | Sets the phase adjustment of the PPS Out signal. You can set a value between 0 and 1000000000. The default value is 0.|
-| `pin-index` | Sets the pin index. The default value is 1. NVIDIA switches only support pin 1.|
+| `pin-index` | Sets the pin index. The default value is 0.|
 | `signal-width` | Sets the pulse width of the PPS OUT signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
 
 {{< tabs "TabID592 ">}}
 {{< tab "NVUE Commands ">}}
 
 The following example configures PPS In and sets:
-- The channel index to 1
-- The pin index to 1
+- The channel index to 1.
+- The pin index to 1.
 - The signal width to 999000000.
 - The time stamp correction to 1000000000.
 - The logging level to `warning`.
@@ -662,8 +662,8 @@ The following example configures PPS In and sets:
 - The pin index to 1
 - The signal width to 999000000.
 - The time stamp correction to 1000000000.
-- The logging level to `warning`.
-- The polarity of the PPS IN signal to `falling-edge`.
+- The logging level to 4 (warning).
+- The polarity of the PPS IN signal to falling edge (`falling`).
 
 ```
 # ts2phc is enabled 
@@ -671,7 +671,7 @@ The following example configures PPS In and sets:
 use_syslog                     0 
 verbose                        1 
 slave_event_monitor            /var/run/ptp_sem.sock 
-logging_level                  3 
+logging_level                  4 
 ts2phc.pulsewidth              999000000 
 ts2phc.tod_source              ptp 
 domainNumber                   0

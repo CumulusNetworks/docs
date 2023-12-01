@@ -20,12 +20,9 @@ Custom role-based access control consists of the following elements:
 - When you configure a command path, you allow or deny a specific schema path and its children. For example the command path `/qos/` allows or denies access to QoS commands, whereas the command path `/qos/egress-scheduler` allows or denies access to QoS egress scheduler commands.
 {{%/notice%}}
 
-The following example describes the permissions for a role (ROLE1) that consists of three classes:
-- Class1 has the `allow` class action
-- Class2 has the `allow` class action
-- Class3 has the `deny` class action
+The following example describes the permissions for a role (ROLE1) that consists of three classes: Class1, Class2, Class3
 
-**Class1**
+**Class1** has the `allow` class action and the following command path permissions:
 
 | Command Path | Permissions |
 | ------------ | ----------- |
@@ -33,21 +30,21 @@ The following example describes the permissions for a role (ROLE1) that consists
 | `/interface/*/acl/` | `ro` |
 | `/interface/*/ptp/` | `ro` |
 
-**Class2**
+**Class2** has the `allow` class action and the following command path permissions:
 
 | Command Path | Permissions |
 | ------------ | ----------- |
 | `/system/` | `ro` |
 | `/vrf/` | `rw` |
 
-**Class3**
+**Class3** has the `deny` class action and the following command path permissions:
 
 | Command Path | Permissions |
 | ------------ | ----------- |
 | `/interface/*/evpn/`| `rw` |
 | `/interface/*/qos/` | `rw` |
 
-The following table shows the permissions for a user assigned the role ROLE1, which has the three classes Class1, Class2, and Class3. In the table, R is read only (RO), W is write, and X is action commands (ACT).
+The following table shows the permissions for a user assigned the role ROLE1. In the table, R is read only (RO), W is write, and X is action (ACT).
 
 | Path     | Allow     | Deny       | Permissions |
 | -------- | --------- | ---------- | ----------- |

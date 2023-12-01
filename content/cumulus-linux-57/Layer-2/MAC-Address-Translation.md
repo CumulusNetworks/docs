@@ -49,7 +49,7 @@ cumulus@switch:~$ nv config apply 
 
 To create rules, use `cl-acltool`.
 
-To add rules using cl-acltool, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[ebtables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[ebtables]` section. For example:
+To add rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[ebtables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[ebtables]` section. For example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/60_mac.rules

@@ -74,7 +74,7 @@ cumulus@switch:~$ nv set interface swp1 port-security violation-mode protodown
 cumulus@switch:~$ nv config apply
 ```
 
-To configure the number of seconds after which the violation mode times out, run the `nv set interface <interface> port-security violation-timeout` command. You can specify a value between 0 and 60 minutes. The default value is 30 seconds.
+To configure the number of seconds after which the violation mode times out, run the `nv set interface <interface> port-security violation-timeout` command. You can specify a value between 0 and 60 minutes. The default value is 30 minutes.
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security violation-timeout 60
@@ -92,9 +92,9 @@ Add the configuration settings you want to use to the `/etc/cumulus/switchd.d/po
 | `interface.<port>.port_security.mac_limit` | Configures the maximum number of MAC addresses allowed to access the port. You can specify a number between 0 and 512. The default value is 32.|
 | `interface.<port>.port_security.static_mac` | Configures the specific MAC addresses allowed to access the port. To specify multiple MAC addresses, separate each MAC address with a space.|
 | `interface.<port>.port_security.sticky_mac` | Enables and disables sticky MAC. 1 enables sticky MAC, where the first learned MAC address on the port is the only MAC address allowed. 0 disables sticky MAC. |
-| `interface.<port>.port_security.sticky_timeout` | The time period after which the first learned MAC address ages out and no longer has access to the port. The default aging timeout value is 1800 seconds (30 minutes). You can specify a value between 0 and 3600 seconds (60 minutes).|
+| `interface.<port>.port_security.sticky_timeout` | The time period after which the first learned MAC address ages out and no longer has access to the port. You can specify a value between 0 and 3600 seconds (60 minutes). The default aging timeout value is 1800 seconds (30 minutes). |
 | `interface.<port>.port_security.sticky_aging` | Enables and disables sticky MAC aging. 1 enables sticky MAC aging. 0 disables sticky MAC aging.|
-| `interface.<port>.port_security.violation_mode` | Configures the violation mode: 0 (protodown) puts a port into ADMIN down state. 1 (restrict) drops packets.|
+| `interface.<port>.port_security.violation_mode` | Configures the violation mode: 0 (protodown) puts a port into ADMIN down state. 1 (restrict) drops packets. The default setting is 0.|
 | `interface.<port>.port_security.violation_timeout` | Configures the number of seconds after which the violation mode times out. You can specify a value between 0 and 3600 seconds. The default value is 1800 seconds.|
 
 The following shows an example `/etc/cumulus/switchd.d/port_security.conf` configuration file:

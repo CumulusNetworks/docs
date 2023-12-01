@@ -22,12 +22,14 @@ To configure port security:
 {{< tabs "TabID22 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable security on a port, run the `nv set interface <interface> port-security enabled` command:
+To enable security on a port, run the `nv set interface <interface> port-security enable on` command:
 
 ```
-cumulus@switch:~$ nv set interface swp1 port-security enable
+cumulus@switch:~$ nv set interface swp1 port-security enable on
 cumulus@switch:~$ nv config apply
 ```
+
+You can disable port security on an interface with the `nv set interface <interface> port-security enable off` command
 
 To configure the maximum number of MAC addresses allowed to access the port, run the `nv set interface <interface> port-security mac-limit` command. You can specify a value between 1 and 512. The default value is 32.
 
@@ -65,17 +67,17 @@ cumulus@switch:~$ nv set interface swp1 port-security sticky-ageing enable
 cumulus@switch:~$ nv config apply
 ```
 
-To configure the violation mode: `protodown` to put a port into ADMIN down state or `restrict` to drop packets, run the `nv set interface <interface> port-security violation-mode shutdown` command.
+To configure violation mode, either run the `nv set interface <interface> port-security violation-mode protodown` command to put a port into ADMIN down state or run the `nv set interface <interface> port-security violation-mode restrict` command to drop packets.
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security violation-mode protodown
 cumulus@switch:~$ nv config apply
 ```
 
-To configure the number of seconds after which the violation mode times out, run the `nv set interface <interface> port-security violation-timeout` command. You can specify a value between 0 and 3600 seconds. The default value is 1800 seconds.
+To configure the number of seconds after which the violation mode times out, run the `nv set interface <interface> port-security violation-timeout` command. You can specify a value between 0 and 60 minutes. The default value is 30 minutes.
 
 ```
-cumulus@switch:~$ nv set interface swp1 port-security violation-timeout 3600
+cumulus@switch:~$ nv set interface swp1 port-security violation-timeout 60
 cumulus@switch:~$ nv config apply
 ```
 
@@ -86,13 +88,13 @@ Add the configuration settings you want to use to the `/etc/cumulus/switchd.d/po
 
 | <div style="width:460px">Setting | Description|
 | --------| -----------|
-| `interface.<port>.port_security.enable` | Enables and disables port security. 1 enables security on the port. 0 disables security on the port.|
-| `interface.<port>.port_security.mac_limit` | Configures the maximum number of MAC addresses allowed to access the port. You can specify a number between 0 and 512. The default is 32.|
+| `interface.<port>.port_security.enable` | Enables and disables port security. 1 enables security on the port. 0 disables security on the port. By default, port security is disabled.|
+| `interface.<port>.port_security.mac_limit` | Configures the maximum number of MAC addresses allowed to access the port. You can specify a number between 0 and 512. The default value is 32.|
 | `interface.<port>.port_security.static_mac` | Configures the specific MAC addresses allowed to access the port. To specify multiple MAC addresses, separate each MAC address with a space.|
 | `interface.<port>.port_security.sticky_mac` | Enables and disables sticky MAC. 1 enables sticky MAC, where the first learned MAC address on the port is the only MAC address allowed. 0 disables sticky MAC. |
-| `interface.<port>.port_security.sticky_timeout` | The time period after which the first learned MAC address ages out and no longer has access to the port. The default aging timeout value is 30 minutes. You can specify a value between 0 and 60 minutes.|
+| `interface.<port>.port_security.sticky_timeout` | The time period after which the first learned MAC address ages out and no longer has access to the port. You can specify a value between 0 and 3600 seconds (60 minutes). The default aging timeout value is 1800 seconds (30 minutes). |
 | `interface.<port>.port_security.sticky_aging` | Enables and disables sticky MAC aging. 1 enables sticky MAC aging. 0 disables sticky MAC aging.|
-| `interface.<port>.port_security.violation_mode` | Configures the violation mode: 0 (shutdown) puts a port into ADMIN down state. 1 (restrict) drops packets.|
+| `interface.<port>.port_security.violation_mode` | Configures the violation mode: 0 (protodown) puts a port into ADMIN down state. 1 (restrict) drops packets. The default setting is 0.|
 | `interface.<port>.port_security.violation_timeout` | Configures the number of seconds after which the violation mode times out. You can specify a value between 0 and 3600 seconds. The default value is 1800 seconds.|
 
 The following shows an example `/etc/cumulus/switchd.d/port_security.conf` configuration file:
@@ -128,7 +130,7 @@ sticky-mac                      enabled
 sticky-timeout                  2000     
 sticky-ageing                   enabled  
 violation-mode                  protodown
-violation-timeout               3600     
+violation-timeout               60     
 
 Static MAC
 =============
@@ -140,13 +142,13 @@ mac-addresses
 No Data
 ```
 
-To show the port security static MAC addresses, run the `nv show interface <interface-id> port-security static-mac` command:
+To show port security static MAC address information, run the `nv show interface <interface-id> port-security static-mac` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 port-security static-mac
 ```
 
-To show the port security MAC addresses, run the `nv show interface <interface-id> port-security mac-addresses` command:
+To show port security MAC address information, run the `nv show interface <interface-id> port-security mac-addresses` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 port-security mac-addresses

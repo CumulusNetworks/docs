@@ -495,17 +495,19 @@ Cumulus Linux supports two PPS modes:
 
 To enable PPS synchronization:
 
-{{< tabs "TabID541 ">}}
+{{< tabs "TabID498 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable PPS In:
+{{< tabs "TabID501 ">}}
+{{< tab "Enable PPS In ">}}
 
 ```
 cumulus@switch:~$ nv set platform pulse-per-second in state enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To enable PPS out:
+{{< /tab >}}
+{{< tab "Enable PPS Out ">}}
 
 ```
 cumulus@switch:~$ nv set platform pulse-per-second out state enabled
@@ -513,9 +515,13 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To enable PPS In:
+{{< tabs "TabID522 ">}}
+{{< tab "Enable PPS In ">}}
 
 1. Edit the `/etc/linuxptp/ts2phc.conf` file to set the following parameters.
 
@@ -553,31 +559,28 @@ To enable PPS In:
 
 2. Enable and start the `ptp4l` and `phc2sys` services:
 
-  ```
-  cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
-  cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
-  ```
+   ```
+   cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
+   cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
+   ```
 
-To enable PPS Out:
+{{< /tab >}}
+{{< tab "Enable PPS Out ">}}
 
 1. Edit the `/etc/linuxptp/pps_out.conf` file to set the following parameters.
 
   ```
   # Configuration file used for the pps_out.service
   # It is shell formatted and the file is source'd by the service
-  
   # Set the PTP device to source our PPS from. 
   # If not specified, the service will find the first device with a clock name "sx_ptp".
   PTP_DEV=/dev/ptp1
-  
   # Set the pin index on the PPS device to send on. 
   # On the NVIDIA systems, only pin 1 (0-based) is supported
   OUT_PIN=1
-  
   # Set the file where to cache the last started values. 
   # This is used primarily in the "stop" operation to know what to clean up.
   CACHE_FILE=/var/run/pps_out
-  
   # Set the out pulse charateristics for frequency and width
   PULSE_FREQ=1000000000
   PULSE_WIDTH=500000000
@@ -590,6 +593,9 @@ To enable PPS Out:
    cumulus@switch:~$ sudo systemctl enable pps_out.service 
    cumulus@switch:~$ sudo systemctl start pps_out.service 
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -612,11 +618,14 @@ You can configure these PPS settings:
 | `channel-index`| Sets the channel index. You can set a value of 1 or 0. The default value is 0.|
 | `frequency-adjustment` | Sets the frequency adjustment of the PPS Out signal. You can set a value between 1000000000 and 2147483647. The default value is 1000000000.|
 | `phase-adjustment` | Sets the phase adjustment of the PPS Out signal. You can set a value between 0 and 1000000000. The default value is 0.|
-| `pin-index` | Sets the pin index. The default value is 0.|
+| `pin-index` | Sets the pin index. Cumulus Linux supports only pin 1.|
 | `signal-width` | Sets the pulse width of the PPS OUT signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
 
 {{< tabs "TabID592 ">}}
 {{< tab "NVUE Commands ">}}
+
+{{< tabs "TabID621 ">}}
+{{< tab "PPS In ">}}
 
 The following example configures PPS In and sets:
 - The channel index to 1.
@@ -636,16 +645,17 @@ cumulus@switch:~$ nv set platform pulse-per-second in signal-polarity falling-ed
 cumulus@switch:~$ nv config apply
 ```
 
+{{< /tab >}}
+{{< tab "PPS Out ">}}
+
 The following example configures PPS Out and sets:
 - The channel index to 1.
-- The pin index to 1.
 - The signal width to 999000000.
 - The phase adjustment of the PPS Out signal to 1000000000.
 - The frequency-adjustment of the PPS Out signal to 2147483647.
 
 ```
 cumulus@switch:~$ nv set platform pulse-per-second out channel-index 1
-cumulus@switch:~$ nv set platform pulse-per-second out pin-index 1
 cumulus@switch:~$ nv set platform pulse-per-second out signal-width 999000000
 cumulus@switch:~$ nv set platform pulse-per-second out phase-adjustment 1000000000
 cumulus@switch:~$ nv set platform pulse-per-second out frequency-adjustment 2147483647
@@ -653,7 +663,13 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+{{< tabs "TabID665 ">}}
+{{< tab "PPS In ">}}
 
 To configure PPS In, edit the `/etc/linuxptp/ts2phc.conf` file, then restart the PPS In service with the `sudo systemctl restart ts2phc.service` command.
 
@@ -683,11 +699,13 @@ ts2phc.extts_polarity          falling
 ts2phc.extts_correction        0
 ```
 
+{{< /tab >}}
+{{< tab "PPS Out ">}}
+
 To configure PPS Out, edit the `/etc/linuxptp/pps_out.conf.conf` file, then restart the PPS Out service with the `sudo systemctl restart pps_out.service` command.
 
 The following example configures PPS Out and sets:
 - The channel index to 1.
-- The pin index to 1.
 - The signal width to 999000000.
 - The phase adjustment of the PPS Out signal to 1000000000.
 - The frequency-adjustment of the PPS Out signal to 2147483647.
@@ -718,6 +736,13 @@ PULSE_PHASE=1000000000
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+- To show a summary of the PPS In and PPS out configuration settings, run the `nv show platform pulse-per-second` command.
+- To show only PPS In configuration settings, run the `nv show platform pulse-per-second in` command.
+- To show only PPS Out configuration settings, run the `nv show platform pulse-per-second out` command.
 
 ## Optional Global Configuration
 

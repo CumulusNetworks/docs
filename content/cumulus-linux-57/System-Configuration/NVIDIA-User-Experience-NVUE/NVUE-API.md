@@ -61,20 +61,18 @@ To import a certificate, run the following commands. If the certificate is passp
 
 You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate being imported.
 
-The following example imports a CA certificate with the public key `AFCB12334SUSnDy8cArHfRf3sFcHgEhW5L0rLwno` and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `hell0$`. The public key is a Base64 ASCII encoded PEM string.
+The following example imports a CA certificate with a public key and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`. The public key is a Base64 ASCII encoded PEM string.
 
 ```
-cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 data "AFCB12334SUSnDy8cArHfRf3sFcHgEhW5L0rLwno" passphrase hell0$
-cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 passphrase mypassphrase data "<public-key>" 
 ```
 
-The following example imports an entity certificate bundle and calls the certificate `tls-cert-1`. The certificate bundle is passphrase protected with `hell0$`.
+The following example imports an entity certificate bundle and calls the certificate `tls-cert-1`. The certificate bundle is passphrase protected with `mypassphrase`.
 
 A certificate bundle must be in .PFX or .P12 format.
 
 ```
-cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12 passphrase hell0$
-cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv action import system security certificate tls-cert-1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12 
 ```
 
 The following example imports an entity certificate with the public key URI `scp://user@pass:1.2.3.4` and private key URI `scp://user@pass:1.2.3.4`, and calls the certificate `tls-cert-1`. The certificate is not passphrase protected.
@@ -83,11 +81,32 @@ A CA certificate must be in .pem, .p7a, or .p7c format.
 
 ```
 cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-public-key scp://user@pass:1.2.3.4 uri-private-key scp://user@pass:1.2.3.4
-cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Curl Commands ">}}
+
+The following example imports a CA certificate with a public key and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`. The public key is a Base64 ASCII encoded PEM string.
+
+```
+cumulus@switch:~$ cumulus@switch:~$ curl -u 'cumulus:cumulus' 127.0.0.1:8765/nvue_v1/system/security/certificate/tls-cert-1 -X POST -H 'Content-Type:application/json' -d '{"@import": { "state": "start", "parameters": { "????": "??????", "passphrase": "mypassphrase"}}}'
+```
+
+The following example imports an entity certificate bundle and calls the certificate `tls-cert-1`. The certificate bundle is passphrase protected with `mypassphrase`.
+
+A certificate bundle must be in .PFX or .P12 format.
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' 127.0.0.1:8765/nvue_v1/system/security/certificate/tls-cert-1 -X POST -H 'Content-Type:application/json' -d '{"@import": { "state": "start", "parameters": { "uri-bundle": "scp://user@pass:1.2.3.4:/opt/certs/cert.p12", "passphrase": "mypassphrase"}}}'
+```
+
+The following example imports an entity certificate with the public key URI `scp://user@pass:1.2.3.4` and private key URI `scp://user@pass:1.2.3.4`, and calls the certificate `tls-cert-1`. The certificate is not passphrase protected.
+
+A CA certificate must be in .pem, .p7a, or .p7c format.
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' 127.0.0.1:8765/nvue_v1/system/security/certificate/tls-cert-1 -X POST -H 'Content-Type:application/json' -d '{"@import": { "state": "start", "parameters": { "uri-public-key": "scp://user@pass:1.2.3.4", "uri-private-key": "scp://user@pass:1.2.3.4"}}}'
+```
 
 {{< /tab >}}
 {{< /tabs >}}

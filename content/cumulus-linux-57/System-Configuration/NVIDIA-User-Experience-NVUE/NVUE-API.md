@@ -44,7 +44,7 @@ NVIDIA recommends you use your own certificates and keys. For the steps to gener
 
 Cumulus Linux lets you manage CA certificates (such as DigiCert or Verisign) and entity (end-point) certificates. Both a CA certificate and an entity certificate can contain a chain of certificates.
 
-You can import certificates onto the switch (fetch certificates from an external source), set which certificate you want to use with the NVUE REST API, and show information about a certificate, such as the serial number, and the date and time during which the certificate is valid.
+You can import certificates onto the switch (fetch certificates from an external source), set which certificate you want to use for the NVUE REST API, and show information about a certificate, such as the serial number, and the date and time during which the certificate is valid.
 
 To import a certificate, run the following commands. If the certificate is passphrase protected, you need to include the passphrase.
 

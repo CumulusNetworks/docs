@@ -25,7 +25,7 @@ The following example describes the permissions for a role (ROLE1) that consists
 - Class2 has the allow action
 - Class3 has the deny action
 
-Class1
+**Class1**
 
 | Command Path | Permissions |
 | ------------ | ----------- |
@@ -33,21 +33,21 @@ Class1
 | `/interface/*/acl/` | `ro` |
 | `/interface/*/ptp/` | `ro` |
 
-Class2
+**Class2**
 
 | Command Path | Permissions |
 | ------------ | ----------- |
 | `/system/` | `ro` |
 | `/vrf/` | `rw` |
 
-Class3
+**Class3**
 
 | Command Path | Permissions |
 | ------------ | ----------- |
 | `/interface/*/evpn/`| `rw` |
 | `/interface/*/qos/` | `rw` |
 
-The following table shows the permissions for a user assigned the role ROLE1. In the table, R is read only (RO), W is write, and X is action (ACT).
+The following table shows the permissions for a user assigned the role ROLE1, which has the three classes Class1, Class2, and Class3. In the table, R is read only (RO), W is write, and X is action (ACT).
 
 | Path     | Allow     | Deny       | Permissions |
 | -------- | --------- | ---------- | ----------- |
@@ -74,8 +74,8 @@ The following table shows the permissions for a user assigned the role ROLE1. In
 
 To assign a custom role to a user account:
 - Create a role and classes for the role.
-- Add command paths and permissions for each class.
 - Assign the action (allow or deny) for each class.
+- Add command paths and permissions for each class.
 - Assign a role to a user.
 
 {{%notice note%}}
@@ -95,7 +95,6 @@ cumulus@switch:~$ nv config apply
 The following example assigns user2 the role of `IFMgr`. user2 can manage the loopback, management, eth0, and swp1 through 3 interfaces.
 
 ```
-cumulus@switch:~$ nv set system aaa user user2 role IFMgr 
 cumulus@switch:~$ nv set system aaa role IFMgr class InterfaceMgmt_1 
 cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 action allow 
 cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path /interface/lo permission all 
@@ -104,16 +103,17 @@ cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path /interfac
 cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path /interface/swp1 permission all
 cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path /interface/swp2 permission all
 cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path /interface/swp3 permission all
+cumulus@switch:~$ nv set system aaa user user2 role IFMgr 
 cumulus@switch:~$ nv config apply
 ```
 
 The following example assigns user3 the role of `OSPF`. user3 does **not** have permissions to manage OSPF on an interface.
 
 ```
-cumulus@switch:~$ nv set system aaa user user3 role OSPF 
 cumulus@switch:~$ nv set system aaa role OSPF class OSPF-DENY 
 cumulus@switch:~$ nv set system aaa class OSPF-DENY action deny 
 cumulus@switch:~$ nv set system aaa class OSPF-DENY command-path /interface/*/router/ospf/ permission all
+cumulus@switch:~$ nv set system aaa user user3 role OSPF 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -179,7 +179,7 @@ uuidd                                                 Unknown  system
 www-data          www-data                            Unknown  system    
 ```
 
-To show information about a specific user account including the role assigned to the user, run the run the NVUE `nv show system aaa user <user>` command:
+To show information about a specific user account including the role assigned to the user, run the NVUE `nv show system aaa user <user>` command:
 
 ```
 cumulus@switch:~$ nv show system aaa user user2
@@ -190,7 +190,7 @@ full-name
 enable     on           on
 ```
 
-To show all the roles configured on the switch:
+To show all the roles configured on the switch, run the NVUE `nv show system aaa role` command:
 
 ```
 cumulus@switch:~$ nv show system aaa role
@@ -204,7 +204,7 @@ system-admin  nvapply
               sudo
 ```
 
-To show the classes applied to specific role:
+To show the classes applied to specific role, run the `nv show system aaa role <role>` command:
 
 ```
 cumulus@switch:~$ nv show system aaa role IFMgr
@@ -213,7 +213,7 @@ cumulus@switch:~$ nv show system aaa role IFMgr
 [class]  InterfaceMgmt_1
 ```
 
-To show all the classes configured on the switch:
+To show all the classes configured on the switch, run the `nv show system aaa class` command:
 
 ```
 cumulus@switch:~$ nv show system aaa class
@@ -231,7 +231,7 @@ nvshow           /                          ro          allow
 sudo             /                          all         allow  
 ```
 
-To show the configuration and state of the command-paths for a class:
+To show the configuration and state of the command-paths for a class, run the `nv show system aaa class <class>` command:
 
 ```
 cumulus@switch:~$ nv show system aaa class OSPF-DENY

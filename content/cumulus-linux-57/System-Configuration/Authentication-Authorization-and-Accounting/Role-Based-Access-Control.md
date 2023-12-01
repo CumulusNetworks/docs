@@ -21,9 +21,9 @@ Custom role-based access control consists of the following elements:
 {{%/notice%}}
 
 The following example describes the permissions for a role (ROLE1) that consists of three classes:
-- Class1 has the allow action
-- Class2 has the allow action
-- Class3 has the deny action
+- Class1 has the `allow` class action
+- Class2 has the `allow` class action
+- Class3 has the `deny` class action
 
 **Class1**
 
@@ -47,7 +47,7 @@ The following example describes the permissions for a role (ROLE1) that consists
 | `/interface/*/evpn/`| `rw` |
 | `/interface/*/qos/` | `rw` |
 
-The following table shows the permissions for a user assigned the role ROLE1, which has the three classes Class1, Class2, and Class3. In the table, R is read only (RO), W is write, and X is action (ACT).
+The following table shows the permissions for a user assigned the role ROLE1, which has the three classes Class1, Class2, and Class3. In the table, R is read only (RO), W is write, and X is action commands (ACT).
 
 | Path     | Allow     | Deny       | Permissions |
 | -------- | --------- | ---------- | ----------- |

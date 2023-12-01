@@ -122,15 +122,15 @@ To show port security configuration, run the `nv show interface <interface-id> p
 
 ```
 cumulus@switch:~$ nv show interface swp1 port-security
-                   operational  applied  
------------------  -----------  ---------
-enable             off          on       
-mac-limit                       100      
-sticky-mac                      enabled  
-sticky-timeout                  2000     
-sticky-ageing                   enabled  
-violation-mode                  protodown
-violation-timeout               60     
+                   operational  applied
+-----------------  -----------  --------
+enable             on           on
+mac-limit          32           32
+sticky-mac         disabled     disabled
+sticky-timeout     1800         1800
+sticky-ageing      disabled     disabled
+violation-mode     restrict     restrict
+violation-timeout  30           30     
 
 Static MAC
 =============
@@ -139,17 +139,18 @@ Static MAC
 
 mac-addresses
 ================
-No Data
+    entry-id  MAC address        Type     Status
+    --------  -----------------  -------  ---------
+    1         00:01:02:03:04:05
+    2         00:02:00:00:00:ab  Static
+    3         00:02:00:00:00:05  Static
+    4         00:02:00:00:01:05  Static
+    5         00:02:00:00:01:06  Static
+    6         00:02:01:00:01:06  Static
+    7         01:02:01:00:01:06  Static
+    8         00:02:00:00:00:11  Dynamic  Installed
 ```
 
 To show port security static MAC address information, run the `nv show interface <interface-id> port-security static-mac` command:
 
-```
-cumulus@switch:~$ nv show interface swp1 port-security static-mac
-```
-
-To show port security MAC address information, run the `nv show interface <interface-id> port-security mac-addresses` command:
-
-```
-cumulus@switch:~$ nv show interface swp1 port-security mac-addresses
-```
+To show port security MAC address information, run the `nv show interface <interface-id> port-security mac-addresses` command

@@ -55,7 +55,7 @@ cumulus@switch:~$ nv set acl acl_1 rule 1 action source-nat translate-ip 172.30.
 cumulus@switch:~$ nv config apply 
 ```
 
-The following rule matches ICMP packets with destination IP address 172.30.58.80 on interface swp51 and translates the IP address to 10.0.0.1
+The following rule matches ICMP packets with destination IP address 172.30.58.80 coming in on interface swp51 and translates the IP address to 10.0.0.1
 
 ```
 cumulus@switch:~$ nv set acl acl_2 type ipv4

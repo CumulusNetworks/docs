@@ -1,7 +1,7 @@
 ---
-title: SyncE 
+title: Synchronous Ethernet - SyncE 
 author: NVIDIA
-weight: 129
+weight: 128
 toc: 3
 draft: true
 
@@ -10,7 +10,7 @@ draft: true
 SyncE is currently in Beta.
 {{%/notice%}}
 
-<span style="background-color:#F5F5DC">[SyncE](## "Synchronous Ethernet")</span> is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel manages this synchronization.
+<span style="background-color:#F5F5DC">[SyncE](## "Synchronous Ethernet")</span> is an ITU-T standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated channel, <span style="background-color:#F5F5DC">[ESMC](## "Ethernet Synchronization Messaging Channel")</span> manages this synchronization, as specified by the ITU-T Rec. G.8264 standard.
 
 The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 - The SyncE controller reads performance counters to calculate the differences between transmit and receive ethernet symbols on the physical layer to fine tune the clock frequency.

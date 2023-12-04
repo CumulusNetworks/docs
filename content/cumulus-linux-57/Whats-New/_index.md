@@ -21,7 +21,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - {{<link url="802.1X-Interfaces" text="802.1x support">}}
 - {{<link url="MAC-Address-Translation" text="MAC address translation">}}
 - {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}}
-- {{<link url="Pulse-Per-Second-PPS" text="PTP PPS in and PPS out">}}
+- {{<link url="Pulse-Per-Second-PPS" text=" Pulse Per Second (PPS) synchronization">}}
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}

@@ -222,6 +222,7 @@ The following example configures PPS In and sets:
 - The polarity of the PPS IN signal to falling edge (`falling`).
 
 ```
+cumulus@switch:~$ sudo nano /etc/linuxptp/ts2phc.conf
 # ts2phc is enabled 
 [global] 
 use_syslog                     0 
@@ -251,6 +252,7 @@ The following example configures PPS Out and sets:
 - The frequency-adjustment of the PPS Out signal to 2147483647.
 
 ```
+cumulus@switch:~$ sudo nano /etc/linuxptp/pps_out.conf.conf
 # Configuration file used for the pps_out.service
 # It is shell formatted and the file is source'd by the service
 
@@ -280,6 +282,54 @@ PULSE_PHASE=1000000000
 {{< /tab >}}
 {{< /tabs >}}
 
-- To show a summary of the PPS In and PPS out configuration settings, run the `nv show platform pulse-per-second` command.
-- To show only PPS In configuration settings, run the `nv show platform pulse-per-second in` command.
-- To show only PPS Out configuration settings, run the `nv show platform pulse-per-second out` command.
+To show a summary of the PPS In and PPS out configuration settings, run the `nv show platform pulse-per-second` command.
+
+```
+cumulus@switch:~$ nv show platform pulse-per-second
+                        applied
+----------------------  -----------
+in
+  state                 enabled
+  pin-index             0
+  channel-index         0
+  signal-width          500000000
+  signal-polarity       rising-edge
+  timestamp-correction  0
+  logging-level         info
+out
+  state                 disabled
+  pin-index             1
+  channel-index         0
+  frequency-adjustment  1000000000
+  phase-adjustment      0
+  signal-width          500000000
+```
+
+To show only PPS In configuration settings, run the `nv show platform pulse-per-second in` command:
+
+```
+cumulus@switch:~$ nv show platform pulse-per-second in
+                      applied
+--------------------  -----------
+state                 enabled
+pin-index             0
+channel-index         0
+signal-width          500000000
+signal-polarity       rising-edge
+timestamp-correction  0
+logging-level         info
+```
+
+To show only PPS Out configuration settings, run the `nv show platform pulse-per-second out` command:
+
+```
+cumulus@switch:~$ nv show platform pulse-per-second out
+                      applied
+--------------------  ----------
+state                 disabled
+pin-index             1
+channel-index         0
+frequency-adjustment  1000000000
+phase-adjustment      0
+signal-width          500000000
+```

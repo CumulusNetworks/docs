@@ -144,12 +144,6 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 <td></td>
 </tr>
 <tr>
-<td>3590053</td>
-<td>If you connect a 1G BaseT module to the service port on the NVIDIA SN5600 switch when its peer is down, the link shows as active on one side while its peer is disabled.</td>
-<td>5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3585467</td>
 <td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
 <td>5.0.0-5.6.0</td>
@@ -387,12 +381,6 @@ In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on 
 <tr>
 <td>3326659</td>
 <td>If you have a large number of MAC addresses, they do not age out at the MAC ageing timeout value configured on the switch. It might take up to 30 seconds more for the MAC addresses to age out and be deleted from the hardware. To work around this issue, wait for the ageing timeout value plus 30 seconds to allow for the MAC addresses to age out and be deleted from the hardware.</td>
-<td>5.4.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3308191</td>
-<td>If you try to set an unsupported interface speed together with FEC, the {{nv config apply}} command succeeds but Cumulus Linux ignores the FEC configuration and configures the default FEC setting for the chosen speed. There is no warning or error message.</td>
 <td>5.4.0-5.6.0</td>
 <td></td>
 </tr>

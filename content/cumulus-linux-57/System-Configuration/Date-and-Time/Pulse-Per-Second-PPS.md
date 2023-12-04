@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 127
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[PPS](## "Pulse per second")</span> is the simplest form of synchronization. The PPS source provides a signal precisely every second. The NVIDIA Spectrum switch is capable of using an external PPS signal to synchronize its <span style="background-color:#F5F5DC">[PHC](## "Physical Hardware Clock")</span> (for PPS In) and can also generate the PPS signal that other devices can use to synchronize their clocks (for PPS Out).
-- In PPS Out mode, the switch can output the PPS signal. The switch can use this signal to check the accuracy of its PHC frequency and other devices can use this signal to synchronize their PHC.
+<span style="background-color:#F5F5DC">[PPS](## "Pulse per second")</span> is the simplest form of synchronization. The PPS source provides a signal precisely every second. The switch is capable of using an external PPS signal to synchronize its <span style="background-color:#F5F5DC">[PHC](## "Physical Hardware Clock")</span> (for PPS In) and can also generate the PPS signal that other devices can use to synchronize their clocks (for PPS Out).
 - In PPS In mode, the switch can use an external PPS signal to synchronize the frequency of its PHC. The PPS signal provides frequency synchronization for the clock but does not provide the <span style="background-color:#F5F5DC">[ToD](## "Time Of Day")</span>. Cumulus Linux uses PTP for the ToD; you must have a PTP slave port configured on the switch for PPS In.
+- In PPS Out mode, the switch can output the PPS signal. The switch can use this signal to check the accuracy of its PHC frequency and other devices can use this signal to synchronize their PHC.
 
 {{%notice note%}}
 Cumulus Linux supports PPS for the NVIDIA SN3750-SX switch only.
@@ -46,7 +46,22 @@ cumulus@switch:~$ nv config apply
 {{< tabs "TabID522 ">}}
 {{< tab "Enable PPS In ">}}
 
-1. Edit the `/etc/linuxptp/ts2phc.conf` file to set the following parameters.
+1. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the PTP slave port on the switch, which is required for PPS In. See {{<link url="Precision-Time-Protocol-PTP/#basic-configuration" text="Precision Time Protocol - PTP">}} for information about PTP.
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/linuxptp/pps_out.conf
+   ...
+   # Default interface options
+   #
+   time_stamping                  hardware
+   [swp29]
+   udp_ttl                      1
+   masterOnly                   0
+   delay_mechanism              E2E
+   network_transport            UDPv4
+   ```
+
+2. Edit the `/etc/linuxptp/ts2phc.conf` file to set the following parameters to enable PPS In.
 
    ```
    cumulus@switch:~$ sudo nano /etc/linuxptp/ts2phc.conf
@@ -73,27 +88,12 @@ cumulus@switch:~$ nv config apply
    first_step_threshold           0.000000001
    max_frequency                  500000000
    sanity_freq_limit              0
-
+   #
    [/dev/ptp1] 
    ts2phc.pin_index               0 
    ts2phc.channel                 0
    ts2phc.extts_polarity          rising 
    ts2phc.extts_correction        0
-   ```
-
-2. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the PTP slave port on the switch, which is required for PPS In.
-
-   ```
-   cumulus@switch:~$ sudo nano /etc/linuxptp/pps_out.conf
-   ...
-   # Default interface options
-   #
-   time_stamping                  hardware
-   [swp29]
-   udp_ttl                      1
-   masterOnly                   0
-   delay_mechanism              E2E
-   network_transport            UDPv4
    ```
 
 3. Enable and start the `ptp4l` and `phc2sys` services:
@@ -255,21 +255,21 @@ The following example configures PPS Out and sets:
 cumulus@switch:~$ sudo nano /etc/linuxptp/pps_out.conf.conf
 # Configuration file used for the pps_out.service
 # It is shell formatted and the file is source'd by the service
-
+#
 # Set the PTP device to source our PPS from. 
 # If not specified, the service will find the first device with a clock name "sx_ptp".
 PTP_DEV=/dev/ptp1
-
+#
 # Set the pin index on the PPS device to send on. 
 # On the NVIDIA systems, only pin 1 (0-based) is supported
 OUT_PIN=1
-
+#
 OUT_CHANNEL=1 
-
+#
 # Set the file where to cache the last started values. 
 # This is used primarily in the "stop" operation to know what to clean up.
 CACHE_FILE=/var/run/pps_out
-
+#
 # Set the out pulse charateristics for frequency and width
 PULSE_FREQ=2147483647
 PULSE_WIDTH=999000000
@@ -282,7 +282,9 @@ PULSE_PHASE=1000000000
 {{< /tab >}}
 {{< /tabs >}}
 
-To show a summary of the PPS In and PPS out configuration settings, run the `nv show platform pulse-per-second` command.
+## Show PPS Configuration Settings
+
+To show a summary of the PPS In and PPS out configuration settings, run the `nv show platform pulse-per-second` command:
 
 ```
 cumulus@switch:~$ nv show platform pulse-per-second

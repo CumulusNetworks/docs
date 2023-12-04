@@ -420,8 +420,8 @@ def build_rn_markdown_files(product, version_list):
     #### Temporarily skip NetQ 4.8.0 until Redmine updates complete - Nov 11 2023
     #   if version == "4.6.0":
     #       continue
-        if version == "4.8.0":
-            continue
+    #    if version == "4.8.0":
+    #        continue
         if version_string(version) in major_minor:
             major_minor[version_string(version)].append(version)
         else:

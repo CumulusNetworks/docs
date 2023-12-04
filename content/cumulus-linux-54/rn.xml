@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3663182</td>
+<td>Changing non-default BGP timers with NCLU or vtysh commands sets the hold time and keep alive interval to 0 seconds. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.3.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3647426</td>
 <td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
 
@@ -14,12 +20,22 @@
 
 This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
 <td>5.0.0-5.5.1</td>
-<td>5.6.0</td>
+<td>4.3.2-4.4.5, 5.6.0</td>
 </tr>
 <tr>
 <td>3585467</td>
 <td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
 <td>5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3580435</td>
+<td>On the NVIDIA SN2410 switch with an Innodisk SSD, you might see the following message in syslog:
+
+smartd[501]: Device: /dev/sda [SAT], CHECK POWER STATUS spins up disk (0x00 -&gt; 0xff)
+
+This is a cosmetic issue and does not affect how the switch operates. To prevent this message from occurring, run the {{hdparm -S 24 /dev/sda}} command to change the HD timeout.</td>
+<td>5.3.1-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -57,8 +73,8 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
 Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
 For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
-<td></td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3541912</td>
@@ -105,8 +121,8 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <tr>
 <td>3484058</td>
 <td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
-<td>5.3.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>5.3.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3479786</td>
@@ -228,6 +244,12 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td></td>
 </tr>
 <tr>
+<td>3419928</td>
+<td>The NVUE PIM timer command option names {{keep-alive}} and {{rp-keep-alive}} are inconsistent and need to change to  {{keepalive}} and {{rp-keepalive}}.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3418103</td>
 <td>On the Spectrum-2 and Spectrum-3 switch, if you use module SPQCELRCDFB when connected to a 3rd party switch, you might see no link or a very long link up time (around two minutes). To work around this issue, bring down the port, then bring it back up.</td>
 <td>5.4.0</td>
@@ -237,7 +259,7 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
 <td>5.0.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3413785</td>
@@ -276,12 +298,6 @@ ERR cannot allocate vlan for sub-interface
 <td>When an ECMP route is present in a non-default VRF, resilient hashing does not work as expected and flows might get remapped to a new next hop when the set of nexthops changes.</td>
 <td>5.4.0</td>
 <td>5.5.0-5.6.0</td>
-</tr>
-<tr>
-<td>3395489</td>
-<td>On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.</td>
-<td>5.4.0-5.6.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3395247</td>
@@ -518,22 +534,16 @@ cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 <td></td>
 </tr>
 <tr>
-<td>3308191</td>
-<td>If you try to set an unsupported interface speed together with FEC, the {{nv config apply}} command succeeds but Cumulus Linux ignores the FEC configuration and configures the default FEC setting for the chosen speed. There is no warning or error message.</td>
-<td>5.4.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3293560</td>
 <td>If you run NVUE commands to break out a port into four interfaces, NVUE disables the subsequent port automatically. However, if you run NVUE commands to break out a port into eight interfaces, NVUE does not disable the subsequent port automatically; you have to run the NVUE command to disable the subsequent port.</td>
 <td>5.4.0</td>
 <td>5.5.0-5.6.0</td>
 </tr>
 <tr>
-<td>3269691</td>
-<td>When you restart the LLDP service, you see a {{broken pipe}} error and a log message in the {{lldpd.service}} logs. This error does not affect LLDP functionality.</td>
-<td>5.4.0-5.6.0</td>
-<td></td>
+<td>3293114</td>
+<td>In Cumulus Linux 5.4 and earlier, the command to enable Neighbor Discovery (ND) router advertisement is inverted and causes confusion; {{nv set interface &lt;interface&gt; ip neighbor-discovery router-advertisement enable off}}. In Cumulus Linux 5.5 and later, the command to enable router advertisement is updated to {{nv set interface &lt;interface&gt; ip neighbor-discovery router-advertisement enable on}}. </td>
+<td>5.3.0-5.5.1</td>
+<td>5.6.0</td>
 </tr>
 <tr>
 <td>3266197</td>
@@ -657,8 +667,8 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>5.0.1-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3135952</td>
@@ -790,12 +800,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2847919</td>
-<td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only. To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
-<td>5.0.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2847755</td>
 <td>When you use NCLU to remove the configuration for a peer that is a member of a group but also has other peer-specific configuration, you must remove the peer-specific configuration before you delete the peer in a separate NCLU commit.</td>
 <td>5.0.0-5.6.0</td>
@@ -856,7 +860,7 @@ You can safely ignore this warning.</td>
 <tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-5.3.1</td>
+<td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
 </tr>
 <tr>
 <td>3351936</td>
@@ -1008,7 +1012,7 @@ Vlan: 0
 <tr>
 <td>3234085</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-5.3.1</td>
+<td>4.3.0-4.3.1</td>
 </tr>
 <tr>
 <td>3226525</td>

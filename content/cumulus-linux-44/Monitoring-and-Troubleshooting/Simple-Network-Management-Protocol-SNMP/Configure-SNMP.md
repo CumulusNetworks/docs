@@ -188,7 +188,7 @@ You can authenticate the user in the following ways:
 
 - With no authentication password (if you specify `auth-none`)
 - With an MD5 password
-- With a SHA password
+- With an SHA password
 
 {{< tabs "username" >}}
 {{< tab "NCLU Commands" >}}

@@ -96,8 +96,8 @@ The following example commands configure both 10.1.10.1/24 and 10.1.11.1/24 on V
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr adress 10.1.10.1/24
-cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr adress 10.1.11.1/24
+cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.11.1/24
 cumulus@switch:mgmt:~$ nv config apply
 ```
 

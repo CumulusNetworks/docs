@@ -9,7 +9,7 @@ Installing NetQ telemetry agents on your hosts with {{<exlink url="https://www.n
 
 {{%notice note%}}
 - NIC telemetry for ConnectX adapters is supported only for on-premises NetQ deployments.
-- ConnectX telemetry is supported on DTS version 1.14.2 and above.
+- ConnectX telemetry is supported on DTS version 1.14.2 and later.
 {{%/notice%}}
 
 ## Install DTS on ConnectX Hosts

@@ -7,7 +7,7 @@ toc: 3
 
 {{<notice note>}}
 
-PTP monitoring is only supported on Spectrum switches running Cumulus Linux version 5.0.0 and above.
+PTP monitoring is only supported on Spectrum switches running Cumulus Linux version 5.0.0 and later.
 
 {{</notice>}}
 

@@ -36,7 +36,7 @@ If you disable the `snmpd` service with the `nv set service snmp-server enable o
 {{%notice note%}}
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service.
 
-You do not need to run SNMP in the management VRF if you just want to allow SNMP communicaton through the managment VRF interfaces; see {{<link url="#snmp-and-vrfs" text="SNMP and VRFs">}}.
+You do not need to run SNMP in the management VRF if you just want to allow SNMP communication through the management VRF interfaces; see {{<link url="#snmp-and-vrfs" text="SNMP and VRFs">}}.
 {{%/notice%}}
 
 1. Start the `snmpd` service:
@@ -198,7 +198,7 @@ You can authenticate the user in the following ways:
 
 - With no authentication password (if you specify `auth-none`)
 - With an MD5 password
-- With a SHA password
+- With an SHA password
 
 {{< tabs "username" >}}
 {{< tab "NVUE Commands" >}}

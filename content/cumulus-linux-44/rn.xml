@@ -7,22 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3647731</td>
-<td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
-For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3647424</td>
 <td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
 <td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
-<td>3534654</td>
-<td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
+<td>3600912</td>
+<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -33,50 +25,10 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3486888</td>
-<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
-<td>4.3.0-5.5.1</td>
-<td>5.6.0</td>
-</tr>
-<tr>
-<td>3479967</td>
-<td>When you remove VRF configuration, the {{systemctl reload frr.service}} command returns a non zero exit code after erroneously running the invalid command {{no exit-vrf}}.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3474391</td>
 <td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-5.5.1</td>
 <td>5.6.0</td>
-</tr>
-<tr>
-<td>3455998</td>
-<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3448171</td>
-<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
-
-This only impacts the default VRF and a default route learned dynamically.
-
-In order to recover from this condition: 
-
-1. Restart switchd.service (sudo systemctl restart switchd.service)
-
-OR
- 
-2. Reboot the switch (sudo reboot)</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3434315</td>
-<td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3429530</td>
@@ -85,50 +37,9 @@ OR
 <td>5.5.0-5.6.0</td>
 </tr>
 <tr>
-<td>3419962</td>
-<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
-
-switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
-</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3419953</td>
-<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3418045</td>
-<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
-</tr>
-<tr>
-<td>3401121</td>
-<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
-
-samplingDirection=out
-psample { group=1 }
-</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3376798</td>
-<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
-
-switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
-
-MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -138,44 +49,10 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td></td>
 </tr>
 <tr>
-<td>3366612</td>
-<td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3364996</td>
-<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3364717</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3358865</td>
-<td>When you reboot a Broadcom switch with a static default route configured, the route might be installed in hardware without a next hop. This results in forwarded traffic to the CPU and drops. To recover from this issue, remove the default route configuration and reapply it. To prevent this issue, before rebooting the switch, split the default route configuration into two routes as below:
-
-ip route 0.0.0.0/1 10.1.1.1
-ip route 128.0.0.0/1 10.1.1.1
-</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-5.3.1</td>
-<td>5.4.0-5.6.0</td>
-</tr>
-<tr>
-<td>3334031</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
+<td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
+<td>4.3.2, 5.4.0-5.6.0</td>
 </tr>
 <tr>
 <td>3333064</td>
@@ -241,12 +118,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.0.0-5.6.0</td>
 </tr>
 <tr>
-<td>3288385</td>
-<td>On the EdgeCore AS7326-56X and AS7726-32X switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3288156</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
@@ -266,43 +137,16 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>5.2.1-5.6.0</td>
 </tr>
 <tr>
-<td>3269538</td>
-<td>The {{cl-ecmpcalc}} command prints the following error when the egress interface is a bond or SVI:
-
-ecmpcalc: will query hardware
-Traceback (most recent call last):
-File “/usr/cumulus/bin/cl-ecmpcalc”, line 986, in
-isTrunkMbr, port = ecmp.getHdPort(hd_cmd)
-File “/usr/cumulus/bin/cl-ecmpcalc”, line 618, in getHdPort
-port = int(str4)
-ValueError: invalid literal for int() with base 10: ‘0t
-</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
 <td>5.4.0-5.6.0</td>
 </tr>
 <tr>
-<td>3267353</td>
-<td>In a QinQ configuration, if the VLAN priority is a non-zero value, double-tagged packets are translated to triple-tagged packets. </td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3244740</td>
 <td>If you have a lot of inbound route maps that match lists with many regex statements, a large number of updates from the peer can cause the system to run out of memory. To work around this issue, reduce the number of regex matches in inbound route maps.</td>
 <td>4.4.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
-</tr>
-<tr>
-<td>3240406</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-5.3.1</td>
-<td>5.4.0-5.6.0</td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3236366</td>
@@ -311,27 +155,9 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td></td>
 </tr>
 <tr>
-<td>3236334</td>
-<td>Using ARP suppression with a very large number of interfaces might result in missing ARP entries on the local device or buffer underrun warnings in the {{neighmgrd}} log.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3235956</td>
-<td>With certain triggers on Broadcom switches, such as adding or deleting a VNI or reloading the network, Cumulus Linux might consider the underlay routes as overlay routes. In this case, {{switchd}} allocates the overlay next hop, which is incorrect and might affect traffic forwarding.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3235368</td>
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
-<td>5.3.0-5.6.0</td>
-</tr>
-<tr>
-<td>3234031</td>
-<td>If BGP {{neighbor &lt;name&gt; allowas-in}} is set, negating with no {{no neighbor &lt;name&gt; allowas-in}} does not disable the setting. To work around this issue and disable the setting, restart the FRR service.</td>
-<td>4.2.1-5.2.1</td>
 <td>5.3.0-5.6.0</td>
 </tr>
 <tr>
@@ -410,8 +236,8 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
+<td>4.3.0-4.3.1, 4.4.0-5.2.1</td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3168564</td>
@@ -879,6 +705,12 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>5.0.0-5.6.0</td>
 </tr>
 <tr>
+<td>2771653</td>
+<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more which consumes a lot of hardware space.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>2763819</td>
 <td>When  you enable LACP bypass on a bond, traffic to static MAC addresses configured on the bond might not work when LACP bypass is enforced.</td>
 <td>4.4.0-4.4.5</td>
@@ -1175,12 +1007,6 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 
 This error has no functional impact.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>2555175</td>
-<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2282,22 +2108,14 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3647731</td>
-<td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
-For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3647424</td>
 <td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
 <td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
-<td>3534654</td>
-<td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
+<td>3600912</td>
+<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -2308,50 +2126,10 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3486888</td>
-<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
-<td>4.3.0-5.5.1</td>
-<td>5.6.0</td>
-</tr>
-<tr>
-<td>3479967</td>
-<td>When you remove VRF configuration, the {{systemctl reload frr.service}} command returns a non zero exit code after erroneously running the invalid command {{no exit-vrf}}.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3474391</td>
 <td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-5.5.1</td>
 <td>5.6.0</td>
-</tr>
-<tr>
-<td>3455998</td>
-<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3448171</td>
-<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
-
-This only impacts the default VRF and a default route learned dynamically.
-
-In order to recover from this condition: 
-
-1. Restart switchd.service (sudo systemctl restart switchd.service)
-
-OR
- 
-2. Reboot the switch (sudo reboot)</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3434315</td>
-<td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3429530</td>
@@ -2360,50 +2138,9 @@ OR
 <td>5.5.0-5.6.0</td>
 </tr>
 <tr>
-<td>3419962</td>
-<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
-
-switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
-</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3419953</td>
-<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3418045</td>
-<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
-</tr>
-<tr>
-<td>3401121</td>
-<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
-
-samplingDirection=out
-psample { group=1 }
-</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3376798</td>
-<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
-
-switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
-
-MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2413,44 +2150,10 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td></td>
 </tr>
 <tr>
-<td>3366612</td>
-<td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3364996</td>
-<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3364717</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3358865</td>
-<td>When you reboot a Broadcom switch with a static default route configured, the route might be installed in hardware without a next hop. This results in forwarded traffic to the CPU and drops. To recover from this issue, remove the default route configuration and reapply it. To prevent this issue, before rebooting the switch, split the default route configuration into two routes as below:
-
-ip route 0.0.0.0/1 10.1.1.1
-ip route 128.0.0.0/1 10.1.1.1
-</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-5.3.1</td>
-<td>5.4.0-5.6.0</td>
-</tr>
-<tr>
-<td>3334031</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
+<td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
+<td>4.3.2, 5.4.0-5.6.0</td>
 </tr>
 <tr>
 <td>3333064</td>
@@ -2516,12 +2219,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.0.0-5.6.0</td>
 </tr>
 <tr>
-<td>3288385</td>
-<td>On the EdgeCore AS7326-56X and AS7726-32X switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3288156</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
@@ -2535,66 +2232,21 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td></td>
 </tr>
 <tr>
-<td>3269538</td>
-<td>The {{cl-ecmpcalc}} command prints the following error when the egress interface is a bond or SVI:
-
-ecmpcalc: will query hardware
-Traceback (most recent call last):
-File “/usr/cumulus/bin/cl-ecmpcalc”, line 986, in
-isTrunkMbr, port = ecmp.getHdPort(hd_cmd)
-File “/usr/cumulus/bin/cl-ecmpcalc”, line 618, in getHdPort
-port = int(str4)
-ValueError: invalid literal for int() with base 10: ‘0t
-</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
 <td>5.4.0-5.6.0</td>
 </tr>
 <tr>
-<td>3267353</td>
-<td>In a QinQ configuration, if the VLAN priority is a non-zero value, double-tagged packets are translated to triple-tagged packets. </td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3244740</td>
 <td>If you have a lot of inbound route maps that match lists with many regex statements, a large number of updates from the peer can cause the system to run out of memory. To work around this issue, reduce the number of regex matches in inbound route maps.</td>
 <td>4.4.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
-</tr>
-<tr>
-<td>3240406</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-5.3.1</td>
-<td>5.4.0-5.6.0</td>
-</tr>
-<tr>
-<td>3236334</td>
-<td>Using ARP suppression with a very large number of interfaces might result in missing ARP entries on the local device or buffer underrun warnings in the {{neighmgrd}} log.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3235956</td>
-<td>With certain triggers on Broadcom switches, such as adding or deleting a VNI or reloading the network, Cumulus Linux might consider the underlay routes as overlay routes. In this case, {{switchd}} allocates the overlay next hop, which is incorrect and might affect traffic forwarding.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3235368</td>
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
-<td>5.3.0-5.6.0</td>
-</tr>
-<tr>
-<td>3234031</td>
-<td>If BGP {{neighbor &lt;name&gt; allowas-in}} is set, negating with no {{no neighbor &lt;name&gt; allowas-in}} does not disable the setting. To work around this issue and disable the setting, restart the FRR service.</td>
-<td>4.2.1-5.2.1</td>
 <td>5.3.0-5.6.0</td>
 </tr>
 <tr>
@@ -2679,8 +2331,8 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
+<td>4.3.0-4.3.1, 4.4.0-5.2.1</td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3168564</td>
@@ -3148,6 +2800,12 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>5.0.0-5.6.0</td>
 </tr>
 <tr>
+<td>2771653</td>
+<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more which consumes a lot of hardware space.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>2763819</td>
 <td>When  you enable LACP bypass on a bond, traffic to static MAC addresses configured on the bond might not work when LACP bypass is enforced.</td>
 <td>4.4.0-4.4.5</td>
@@ -3444,12 +3102,6 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 
 This error has no functional impact.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>2555175</td>
-<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -4686,22 +4338,14 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3647731</td>
-<td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
-For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3647424</td>
 <td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
 <td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
-<td>3534654</td>
-<td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
+<td>3600912</td>
+<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -4712,50 +4356,10 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3486888</td>
-<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
-<td>4.3.0-5.5.1</td>
-<td>5.6.0</td>
-</tr>
-<tr>
-<td>3479967</td>
-<td>When you remove VRF configuration, the {{systemctl reload frr.service}} command returns a non zero exit code after erroneously running the invalid command {{no exit-vrf}}.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3474391</td>
 <td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-5.5.1</td>
 <td>5.6.0</td>
-</tr>
-<tr>
-<td>3455998</td>
-<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3448171</td>
-<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
-
-This only impacts the default VRF and a default route learned dynamically.
-
-In order to recover from this condition: 
-
-1. Restart switchd.service (sudo systemctl restart switchd.service)
-
-OR
- 
-2. Reboot the switch (sudo reboot)</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3434315</td>
-<td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3429530</td>
@@ -4764,91 +4368,16 @@ OR
 <td>5.5.0-5.6.0</td>
 </tr>
 <tr>
-<td>3419962</td>
-<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
-
-switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
-</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3419953</td>
-<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3418045</td>
-<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
-</tr>
-<tr>
-<td>3401121</td>
-<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
-
-samplingDirection=out
-psample { group=1 }
-</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
-<td>3376798</td>
-<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
-
-switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
-
-MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3366612</td>
-<td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3364996</td>
-<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3364717</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3358865</td>
-<td>When you reboot a Broadcom switch with a static default route configured, the route might be installed in hardware without a next hop. This results in forwarded traffic to the CPU and drops. To recover from this issue, remove the default route configuration and reapply it. To prevent this issue, before rebooting the switch, split the default route configuration into two routes as below:
-
-ip route 0.0.0.0/1 10.1.1.1
-ip route 128.0.0.0/1 10.1.1.1
-</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-5.3.1</td>
-<td>5.4.0-5.6.0</td>
-</tr>
-<tr>
-<td>3334031</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
+<td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
+<td>4.3.2, 5.4.0-5.6.0</td>
 </tr>
 <tr>
 <td>3333064</td>
@@ -4920,12 +4449,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.0.0-5.6.0</td>
 </tr>
 <tr>
-<td>3288385</td>
-<td>On the EdgeCore AS7326-56X and AS7726-32X switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3288156</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
@@ -4939,61 +4462,16 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td></td>
 </tr>
 <tr>
-<td>3269538</td>
-<td>The {{cl-ecmpcalc}} command prints the following error when the egress interface is a bond or SVI:
-
-ecmpcalc: will query hardware
-Traceback (most recent call last):
-File “/usr/cumulus/bin/cl-ecmpcalc”, line 986, in
-isTrunkMbr, port = ecmp.getHdPort(hd_cmd)
-File “/usr/cumulus/bin/cl-ecmpcalc”, line 618, in getHdPort
-port = int(str4)
-ValueError: invalid literal for int() with base 10: ‘0t
-</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
 <td>5.4.0-5.6.0</td>
 </tr>
 <tr>
-<td>3267353</td>
-<td>In a QinQ configuration, if the VLAN priority is a non-zero value, double-tagged packets are translated to triple-tagged packets. </td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3244740</td>
 <td>If you have a lot of inbound route maps that match lists with many regex statements, a large number of updates from the peer can cause the system to run out of memory. To work around this issue, reduce the number of regex matches in inbound route maps.</td>
 <td>4.4.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
-</tr>
-<tr>
-<td>3240406</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-5.3.1</td>
-<td>5.4.0-5.6.0</td>
-</tr>
-<tr>
-<td>3236334</td>
-<td>Using ARP suppression with a very large number of interfaces might result in missing ARP entries on the local device or buffer underrun warnings in the {{neighmgrd}} log.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3235956</td>
-<td>With certain triggers on Broadcom switches, such as adding or deleting a VNI or reloading the network, Cumulus Linux might consider the underlay routes as overlay routes. In this case, {{switchd}} allocates the overlay next hop, which is incorrect and might affect traffic forwarding.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3234031</td>
-<td>If BGP {{neighbor &lt;name&gt; allowas-in}} is set, negating with no {{no neighbor &lt;name&gt; allowas-in}} does not disable the setting. To work around this issue and disable the setting, restart the FRR service.</td>
-<td>4.2.1-5.2.1</td>
-<td>5.3.0-5.6.0</td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3226579</td>
@@ -5065,8 +4543,8 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
+<td>4.3.0-4.3.1, 4.4.0-5.2.1</td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3168564</td>
@@ -5613,6 +5091,12 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>5.0.0-5.6.0</td>
 </tr>
 <tr>
+<td>2771653</td>
+<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more which consumes a lot of hardware space.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>2763819</td>
 <td>When  you enable LACP bypass on a bond, traffic to static MAC addresses configured on the bond might not work when LACP bypass is enforced.</td>
 <td>4.4.0-4.4.5</td>
@@ -5909,12 +5393,6 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 
 This error has no functional impact.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>2555175</td>
-<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -7054,22 +6532,14 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3647731</td>
-<td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
-For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3647424</td>
 <td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
 <td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
-<td>3534654</td>
-<td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
+<td>3600912</td>
+<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -7080,50 +6550,10 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3486888</td>
-<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
-<td>4.3.0-5.5.1</td>
-<td>5.6.0</td>
-</tr>
-<tr>
-<td>3479967</td>
-<td>When you remove VRF configuration, the {{systemctl reload frr.service}} command returns a non zero exit code after erroneously running the invalid command {{no exit-vrf}}.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3474391</td>
 <td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-5.5.1</td>
 <td>5.6.0</td>
-</tr>
-<tr>
-<td>3455998</td>
-<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3448171</td>
-<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
-
-This only impacts the default VRF and a default route learned dynamically.
-
-In order to recover from this condition: 
-
-1. Restart switchd.service (sudo systemctl restart switchd.service)
-
-OR
- 
-2. Reboot the switch (sudo reboot)</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3434315</td>
-<td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3429530</td>
@@ -7132,91 +6562,16 @@ OR
 <td>5.5.0-5.6.0</td>
 </tr>
 <tr>
-<td>3419962</td>
-<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
-
-switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
-</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3419953</td>
-<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3418045</td>
-<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
-</tr>
-<tr>
-<td>3401121</td>
-<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
-
-samplingDirection=out
-psample { group=1 }
-</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
-<td>3376798</td>
-<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
-
-switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
-
-MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3366612</td>
-<td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3364996</td>
-<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3364717</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3358865</td>
-<td>When you reboot a Broadcom switch with a static default route configured, the route might be installed in hardware without a next hop. This results in forwarded traffic to the CPU and drops. To recover from this issue, remove the default route configuration and reapply it. To prevent this issue, before rebooting the switch, split the default route configuration into two routes as below:
-
-ip route 0.0.0.0/1 10.1.1.1
-ip route 128.0.0.0/1 10.1.1.1
-</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-5.3.1</td>
-<td>5.4.0-5.6.0</td>
-</tr>
-<tr>
-<td>3334031</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
+<td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
+<td>4.3.2, 5.4.0-5.6.0</td>
 </tr>
 <tr>
 <td>3333064</td>
@@ -7288,30 +6643,9 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.0.0-5.6.0</td>
 </tr>
 <tr>
-<td>3288385</td>
-<td>On the EdgeCore AS7326-56X and AS7726-32X switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3284719</td>
 <td>Certain EVPN multihoming show commands might cause the {{bgpd}} service to crash if you use the {{json}} flag and try to reference the default VRF by name. For example: {{show bgp l2vpn evpn es-vrf json}}.</td>
 <td>4.4.2-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3269538</td>
-<td>The {{cl-ecmpcalc}} command prints the following error when the egress interface is a bond or SVI:
-
-ecmpcalc: will query hardware
-Traceback (most recent call last):
-File “/usr/cumulus/bin/cl-ecmpcalc”, line 986, in
-isTrunkMbr, port = ecmp.getHdPort(hd_cmd)
-File “/usr/cumulus/bin/cl-ecmpcalc”, line 618, in getHdPort
-port = int(str4)
-ValueError: invalid literal for int() with base 10: ‘0t
-</td>
-<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -7321,40 +6655,10 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>5.4.0-5.6.0</td>
 </tr>
 <tr>
-<td>3267353</td>
-<td>In a QinQ configuration, if the VLAN priority is a non-zero value, double-tagged packets are translated to triple-tagged packets. </td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3244740</td>
 <td>If you have a lot of inbound route maps that match lists with many regex statements, a large number of updates from the peer can cause the system to run out of memory. To work around this issue, reduce the number of regex matches in inbound route maps.</td>
 <td>4.4.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
-</tr>
-<tr>
-<td>3240406</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-5.3.1</td>
-<td>5.4.0-5.6.0</td>
-</tr>
-<tr>
-<td>3236334</td>
-<td>Using ARP suppression with a very large number of interfaces might result in missing ARP entries on the local device or buffer underrun warnings in the {{neighmgrd}} log.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3235956</td>
-<td>With certain triggers on Broadcom switches, such as adding or deleting a VNI or reloading the network, Cumulus Linux might consider the underlay routes as overlay routes. In this case, {{switchd}} allocates the overlay next hop, which is incorrect and might affect traffic forwarding.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3234031</td>
-<td>If BGP {{neighbor &lt;name&gt; allowas-in}} is set, negating with no {{no neighbor &lt;name&gt; allowas-in}} does not disable the setting. To work around this issue and disable the setting, restart the FRR service.</td>
-<td>4.2.1-5.2.1</td>
-<td>5.3.0-5.6.0</td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3221470</td>
@@ -7414,8 +6718,8 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
+<td>4.3.0-4.3.1, 4.4.0-5.2.1</td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3168564</td>
@@ -7971,6 +7275,12 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>5.0.0-5.6.0</td>
 </tr>
 <tr>
+<td>2771653</td>
+<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more which consumes a lot of hardware space.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>2763819</td>
 <td>When  you enable LACP bypass on a bond, traffic to static MAC addresses configured on the bond might not work when LACP bypass is enforced.</td>
 <td>4.4.0-4.4.5</td>
@@ -8267,12 +7577,6 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 
 This error has no functional impact.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>2555175</td>
-<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -9604,22 +8908,14 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3647731</td>
-<td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
-Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
-For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3647424</td>
 <td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
 <td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
-<td>3534654</td>
-<td>On a Broadcom switch, Q-in-Q VLAN operations do not clear when you remove a bridge port from a VXLAN-enabled bridge.  This can result in unexpected double tagged packets if the outer VLAN is still used on the bridge. To work around this issue, restart {{switchd}} after you modify or remove double tagged bridge ports from a VXLAN-enabled bridge.</td>
+<td>3600912</td>
+<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
 <td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
@@ -9630,50 +8926,10 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3486888</td>
-<td>If FRR learns a layer 2 entry against a VNI and you reconfigure the VNI later as a layer 3 VNI, the original layer 2 entry does not clear and remains in the forwarding database.</td>
-<td>4.3.0-5.5.1</td>
-<td>5.6.0</td>
-</tr>
-<tr>
-<td>3479967</td>
-<td>When you remove VRF configuration, the {{systemctl reload frr.service}} command returns a non zero exit code after erroneously running the invalid command {{no exit-vrf}}.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3474391</td>
 <td>The SNMP MIB definition file {{/usr/share/snmp/mibs/Cumulus-BGPVRF-MIB.txt}} does not  define the INDEX of the {{bgpPeerEntry}} correctly. This issue does not impact SNMP functionality for this MIB.</td>
 <td>4.3.1-5.5.1</td>
 <td>5.6.0</td>
-</tr>
-<tr>
-<td>3455998</td>
-<td>When you poll the BGP unnumbered MIB object 1.3.6.1.4.1.40310.4 after uncommenting the {{bgpun_pp.py}} pass persist script in the {{/etc/snmpd/snmpd.conf}} file, BGP session information is not retrieved. To work around this issue, add executable permissions to the script with the {{sudo chmod +x /usr/share/snmp/bgpun_pp.py}} command.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3448171</td>
-<td>If a default route is withdrawn from the routing table and then learned again, traffic matching this entry will be software (cpu) forwarded.  This will cause intermittent drops due to the CPU the rate-limiter.
-
-This only impacts the default VRF and a default route learned dynamically.
-
-In order to recover from this condition: 
-
-1. Restart switchd.service (sudo systemctl restart switchd.service)
-
-OR
- 
-2. Reboot the switch (sudo reboot)</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3434315</td>
-<td>IPv6 BGP sessions in a VRF do not be establish with MD5 authentication.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3429530</td>
@@ -9682,91 +8938,16 @@ OR
 <td>5.5.0-5.6.0</td>
 </tr>
 <tr>
-<td>3419962</td>
-<td>On a Broadcom switch, if you remove a double-tagged interface from a bridge that contains other double-tagged interfaces built on the same physical port (for example, you remove swp1.10.100 when swp1.10.200 is also a bridge port), traffic forwarding within the bridge might fail and you see critical warnings in the {{/var/log/switchd.log}} file similar to the following:
-
-switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ext_vlan 10.100 int_vlan 2132: -11
-</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3419953</td>
-<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3418045</td>
-<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
-</tr>
-<tr>
-<td>3401121</td>
-<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
-
-samplingDirection=out
-psample { group=1 }
-</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
-<td>3376798</td>
-<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
-
-switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
-
-MAC learning looks correct, but traffic does not flow as expected.</td>
-<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3366612</td>
-<td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3364996</td>
-<td>Under certain conditions, BGP can allow a combination of EVPN and non-EVPN paths to be put into a multipath group together. This results in erroneous programming of EVPN symmetric next hops and RMACs, which can result in momentary traffic drops.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3364717</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3358865</td>
-<td>When you reboot a Broadcom switch with a static default route configured, the route might be installed in hardware without a next hop. This results in forwarded traffic to the CPU and drops. To recover from this issue, remove the default route configuration and reapply it. To prevent this issue, before rebooting the switch, split the default route configuration into two routes as below:
-
-ip route 0.0.0.0/1 10.1.1.1
-ip route 128.0.0.0/1 10.1.1.1
-</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-5.3.1</td>
-<td>5.4.0-5.6.0</td>
-</tr>
-<tr>
-<td>3334031</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
+<td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
+<td>4.3.2, 5.4.0-5.6.0</td>
 </tr>
 <tr>
 <td>3333064</td>
@@ -9817,67 +8998,16 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.0.0-5.6.0</td>
 </tr>
 <tr>
-<td>3288385</td>
-<td>On the EdgeCore AS7326-56X and AS7726-32X switch, the fan speed reports a minimum threshold in the logs.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3269538</td>
-<td>The {{cl-ecmpcalc}} command prints the following error when the egress interface is a bond or SVI:
-
-ecmpcalc: will query hardware
-Traceback (most recent call last):
-File “/usr/cumulus/bin/cl-ecmpcalc”, line 986, in
-isTrunkMbr, port = ecmp.getHdPort(hd_cmd)
-File “/usr/cumulus/bin/cl-ecmpcalc”, line 618, in getHdPort
-port = int(str4)
-ValueError: invalid literal for int() with base 10: ‘0t
-</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
 <td>5.4.0-5.6.0</td>
 </tr>
 <tr>
-<td>3267353</td>
-<td>In a QinQ configuration, if the VLAN priority is a non-zero value, double-tagged packets are translated to triple-tagged packets. </td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3244740</td>
 <td>If you have a lot of inbound route maps that match lists with many regex statements, a large number of updates from the peer can cause the system to run out of memory. To work around this issue, reduce the number of regex matches in inbound route maps.</td>
 <td>4.4.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
-</tr>
-<tr>
-<td>3240406</td>
-<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
-<td>4.3.0-5.3.1</td>
-<td>5.4.0-5.6.0</td>
-</tr>
-<tr>
-<td>3236334</td>
-<td>Using ARP suppression with a very large number of interfaces might result in missing ARP entries on the local device or buffer underrun warnings in the {{neighmgrd}} log.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3235956</td>
-<td>With certain triggers on Broadcom switches, such as adding or deleting a VNI or reloading the network, Cumulus Linux might consider the underlay routes as overlay routes. In this case, {{switchd}} allocates the overlay next hop, which is incorrect and might affect traffic forwarding.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3234031</td>
-<td>If BGP {{neighbor &lt;name&gt; allowas-in}} is set, negating with no {{no neighbor &lt;name&gt; allowas-in}} does not disable the setting. To work around this issue and disable the setting, restart the FRR service.</td>
-<td>4.2.1-5.2.1</td>
-<td>5.3.0-5.6.0</td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3221470</td>
@@ -9928,8 +9058,8 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
+<td>4.3.0-4.3.1, 4.4.0-5.2.1</td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3168564</td>
@@ -10523,6 +9653,12 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
+<td>2771653</td>
+<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more which consumes a lot of hardware space.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>2763819</td>
 <td>When  you enable LACP bypass on a bond, traffic to static MAC addresses configured on the bond might not work when LACP bypass is enforced.</td>
 <td>4.4.0-4.4.5</td>
@@ -10923,12 +10059,6 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 
 This error has no functional impact.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>2555175</td>
-<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -12022,7 +11152,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 
 thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 </td>
-<td>4.3.0-4.3.1</td>
+<td>4.3.0-4.3.2</td>
 </tr>
 <tr>
 <td>2734173</td>
@@ -12041,14 +11171,14 @@ Fixed: 2.4.47+dfsg-3+deb10u5</td>
 <td>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
 Fixed: 2.4.47+dfsg-3+deb10u6</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2695526</td>
 <td>CVE-2021-3580 CVE-2021-20305: Multiple vulnerabilities were discovered in nettle, a low level cryptographic library, which could result in denial of service (remote crash in RSA decryption via specially crafted ciphertext, crash on ECDSA signature verification) or incorrect verification of ECDSA signatures.
 Vulnerable: 3.4.1-1
 Fixed: 3.4.1-1+deb10u1</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2691506</td>
@@ -12063,14 +11193,14 @@ sx_sdk: LAG: Can't add port (0x00012400) to lag. Port has vports configured for 
 switchd[4529]: hal_mlx_bond.c:582 ERR bond32 member swp32 add failed: Parameter Error
 
 To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-4.3.1</td>
+<td>4.3.0-4.3.2</td>
 </tr>
 <tr>
 <td>2687159</td>
 <td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25012 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
 Vulnerable: 0.6.1-2
 Fixed: 0.6.1-2+deb10u1</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2684418</td>
@@ -12082,20 +11212,20 @@ Fixed: 0.6.1-2+deb10u1</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
 Vulnerable: 0.12.2+cl4u1
 Fixed: 0.12.2+cl4.4.0u1</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2682780</td>
 <td>Adding a route map configuration after a MAC access list configuration line causes the route map configuration to be applied incorrectly.
 To work around this issue, add the MAC access list configuration to the end of the {{/etc/frr/frr.conf}} file.</td>
-<td>4.2.0-4.3.1</td>
+<td>4.2.0-4.3.2</td>
 </tr>
 <tr>
 <td>2679948</td>
 <td>CVE-2021-25217: parsing of stored leases by dhclient or dhcpd has an incorrect length check that may cause a crash.
 Vulnerable: &lt;= 4.3.1-6-cl3.7.14u1
 Fixed: 4.3.1-6-cl3.7.16u1</td>
-<td>3.7.0-3.7.15, 4.0.0-4.3.1</td>
+<td>3.7.0-3.7.15, 4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2679936</td>
@@ -12113,44 +11243,44 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2669873</td>
 <td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.3.1</td>
+<td>4.3.0-4.3.2</td>
 </tr>
 <tr>
 <td>2669073</td>
 <td>On Spectrum, Spectrum-2, and Spectrum-3 switches, the {{l1-show}} command shows the wrong data when the MST service is stopped.
 To work around this issue, start the MST service with the {{sudo mst start}} command.</td>
-<td>4.3.0-4.3.1</td>
+<td>4.3.0-4.3.2</td>
 </tr>
 <tr>
 <td>2666838</td>
 <td>CVE-2021-31535: missing length validation in various functions provided by libx11, the X11 client-side library, allow to inject X11 protocol commands on X clients, leading to authentication bypass, denial of service or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.6.7-1+deb10u1
 Fixed: 1.6.7-1+deb10u2</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2663479</td>
 <td>CVE-2021-3520: integer overflow flaw in lz4, a fast LZ compression algorithm library, resulting in memory corruption.
 Vulnerable: 1.8.3-1
 Fixed: 1.8.3-1+deb10u1</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2656527</td>
 <td>CVE-2020-18032: A buffer overflow was discovered in Graphviz, which could potentially result in the execution of arbitrary code when processing a malformed file.
 Vulnerable: 2.40.1-6
 Fixed: 2.40.1-6+deb10u1</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
-<td>3.7.15-4.3.1</td>
+<td>3.7.15-4.3.2</td>
 </tr>
 <tr>
 <td>2648587</td>
@@ -12170,7 +11300,7 @@ CVE-2021-25215: named could crash when a DNAME record placed in the ANSWER secti
 CVE-2021-25216: the SPNEGO implementation used by BIND is prone to a buffer overflow vulnerability. This update switches to use the SPNEGO implementation from the Kerberos libraries.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u4
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2643822</td>
@@ -12198,7 +11328,7 @@ Fixed: 1.14.4-2+deb10u1</td>
 <tr>
 <td>2632379</td>
 <td>When you upgrade the switch with {{apt-get upgrade}}, the {{kexec-tools}} package is not installed, which causes the Smart System Manager fast restart mode to work incorrectly.</td>
-<td>4.3.0-4.3.1</td>
+<td>4.3.0-4.3.2</td>
 </tr>
 <tr>
 <td>2628693</td>
@@ -12215,7 +11345,7 @@ Fixed: 1.14.4-2+deb10u1</td>
 <td>CVE-2020-12695: hostapd does not properly handle UPnP subscribe messages under certain conditions, allowing an attacker to cause a denial of service.
 Vulnerable: &lt;= 2.8.0-cl3.7.15u2
 Fixed: 2.8.0-cl3.7.15u3</td>
-<td>3.7.14-3.7.14.2, 4.3.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.3.0-4.3.2</td>
 </tr>
 <tr>
 <td>2617000</td>
@@ -12223,21 +11353,21 @@ Fixed: 2.8.0-cl3.7.15u3</td>
 Multiple vulnerabilities have been discovered in the Xen hypervisor, which could result in denial of service, privilege escalation or memory disclosure.
 Vulnerable: &lt; 4.11.4+99-g8bce4698f6-1
 Fixed: 4.11.4+99-g8bce4698f6-1</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2616998</td>
 <td>CVE-2021-23358: missing input sanitising in the template() function of the Underscore JavaScript library could result in the execution of arbitrary code.
 Vulnerable: 1.9.1~dfsg-1
 Fixed: 1.9.1~dfsg-1+deb10u1</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2616987</td>
 <td>CVE-2020-6851 CVE-2020-8112 CVE-2020-15389 CVE-2020-27814 CVE-2020-27823 CVE-2020-27824 CVE-2020-27841 CVE-2020-27842 CVE-2020-27843 CVE-2020-27845: Multiple vulnerabilities have been discovered in openjpeg2, the open-source JPEG 2000 codec, which could result in denial of service or the execution of arbitrary code when opening a malformed image.
 Vulnerable: &lt;= 2.3.0-2+deb10u1
 Fixed: 2.3.0-2+deb10u2</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2616976</td>
@@ -12252,52 +11382,52 @@ CVE-2021-22876: libcurl did not strip user credentials from URL when populating 
 CVE-2021-22890: libcurl using HTTPS proxy with TLS1.3 could use the wrong session ticket and bypass server TLS certificate check.
 Vulnerable: &lt;= 7.64.0-4+deb10u1
 Fixed: 7.64.0-4+deb10u2</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2616967</td>
 <td>CVE-2021-28957: lxml, a Python binding for the libxml2 and libxslt libraries, did not properly sanitize its input. This would allow a malicious user to mount a cross-site scripting attack.
 Vulnerable: &lt;= 4.3.2-1+deb10u2
 Fixed: 4.3.2-1+deb10u3</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2616964</td>
 <td>CVE-2021-27291: Pygments, a syntax highlighting package written in Python 3, used regular expressions which could result in denial of service.
 Vulnerable: &lt;= 2.3.1+dfsg-1+deb10u1
 Fixed: 2.3.1+dfsg-1+deb10u2</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2616954</td>
 <td>CVE-2021-3449: A NULL pointer dereference was found in the signature_algorithms processing in OpenSSL, a Secure Sockets Layer toolkit, which could result in denial of service.
 Vulnerable: &lt;= 1.1.1d-0+deb10u5
 Fixed: 1.1.1d-0+deb10u6</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2614016</td>
 <td>The switch firmware incorrectly identifies Lenovo LR4 transceivers (part number 00YD278) and does not set the laser levels properly, which can prevent the link from coming up or might cause the transceiver to be identified as a 1G module.</td>
-<td>4.2.0-4.3.1</td>
+<td>4.2.0-4.3.2</td>
 </tr>
 <tr>
 <td>2582639</td>
 <td>On NVIDIA Spectrum switches, BUM traffic might be dropped during VXLAN decapsulation in an EVPN multihoming environment after multiple PIM uplink interfaces flap.</td>
-<td>4.3.0-4.3.1</td>
+<td>4.3.0-4.3.2</td>
 </tr>
 <tr>
 <td>2578872</td>
 <td>CVE-2021-20270: It was discovered that Pygments, a syntax highlighting package written in Python, could be forced into an infinite loop, resulting in denial of service.
 Vulnerable: 2.3.1+dfsg-1
 Fixed: 2.3.1+dfsg-1+deb10u1</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2578870</td>
 <td>CVE-2020-35523 CVE-2020-35524: Two vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
 Vulnerable: &lt;= 4.1.0+git191117-2~deb10u1
 Fixed: 4.1.0+git191117-2~deb10u2</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2578845</td>
@@ -12307,12 +11437,12 @@ Fixed: 4.1.0+git191117-2~deb10u2</td>
 <tr>
 <td>2577499</td>
 <td>QSFP+ 40G optics do not work on Spectrum platforms.</td>
-<td>4.3.0-4.3.1</td>
+<td>4.3.0-4.3.2</td>
 </tr>
 <tr>
 <td>2566878</td>
 <td>CVE-2021-27803: A vulnerability was discovered in how p2p/p2p_pd.c in wpa_supplicant before 2.10 processes P2P (Wi-Fi Direct) provision discovery requests. It could result in denial of service or other impact (potentially execution of arbitrary code), for an attacker within radio range.</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2564534</td>
@@ -12324,7 +11454,7 @@ CVE-2020-27749: A stack buffer overflow flaw was found in grub_parser_split_cmdl
 CVE-2020-27779: It was discovered that the cutmem command allows a privileged user to remove memory regions when Secure Boot is enabled.
 CVE-2021-20225: A heap out-of-bounds write vulnerability was found in the short form option parser.
 CVE-2021-2023: A heap out-of-bound write flaw was found caused by mis-calculation of space required for quoting in the menu rendering.</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2556814</td>
@@ -12336,14 +11466,14 @@ To work around this issue, disable ARP suppression.</td>
 <td>2556781</td>
 <td>CVE-2021-0326: An issue has been found in wpa, a set of tools to support WPA and WPA2 (IEEE 802.11i). Missing validation of data can result in a buffer over-write, which might lead to a DoS of the wpa_supplicant process or potentially arbitrary code execution.
 Vulnerable: &lt;= 2.8.0-cl3.7.14u1, &lt;= 2.8.0-cl4.2.1u1</td>
-<td>3.7.14-3.7.14.2, 4.0.0-4.3.1</td>
+<td>3.7.14-3.7.14.2, 4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2556777</td>
 <td>CVE-2021-26937: A  flaw in the handling of combining characters in screen, a terminal multiplexer with VT100/ANSI terminal emulation can result in denial of service, or potentially the execution of arbitrary code via a specially crafted UTF-8 character sequence.
 Vulnerable: 4.6.2-3
 Fixed: 4.6.2-3+deb10u1</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2556774</td>
@@ -12362,7 +11492,7 @@ Fixed: 1.3.8+dfsg-3+deb10u2</td>
 <td>CVE-2020-8625: A buffer overflow vulnerability was discovered in the SPNEGO implementation affecting the GSSAPI security policy negotiation in BIND, a DNS server implementation, which could result in denial of service (daemon crash), or potentially the execution of arbitrary code.
 Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u2
 Fixed: 9.11.5.P4+dfsg-5.1+deb10u3</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2556690</td>
@@ -12380,7 +11510,7 @@ Fixed: 1.1.1d-0+deb10u5</td>
 <td>CVE-2020-35498: A vulnerability was found in openvswitch. A limitation in the implementation of userspace packet parsing can allow a malicious user to send a specially crafted packet causing the resulting megaflow in the kernel to be too wide, potentially causing a denial of service. The highest threat from this vulnerability is to system availability.
 Vulnerable: &lt;= 2.8.90-1-cl4u5
 Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 <tr>
 <td>2556568</td>
@@ -12402,22 +11532,22 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <tr>
 <td>2554299</td>
 <td>In a VRRP configuration, BGP unnumbered sessions for VRFs fail to establish after a networking restart.</td>
-<td>4.2.0-4.3.1</td>
+<td>4.2.0-4.3.2</td>
 </tr>
 <tr>
 <td>2550704</td>
 <td>On the Mellanox SN3420 switch, 25G SR optics only link up in force mode.</td>
-<td>4.3.0-4.3.1</td>
+<td>4.3.0-4.3.2</td>
 </tr>
 <tr>
 <td>2549371</td>
 <td>When Optimized Multicast Flooding (OMF) is enabled with the {{bridge.optimized_mcast_flood = TRUE}} setting in the {{/etc/cumulus/switchd.conf}} file, the switch continues to flood IPv6 multicast traffic to all slave ports when there is no MLD join receive.</td>
-<td>3.7.11-4.3.1</td>
+<td>3.7.11-4.3.2</td>
 </tr>
 <tr>
 <td>2545239</td>
 <td>On the Mellanox switch with the Spectrum-2 ASIC, Precision Time Protocol (PTP) is not currently supported. </td>
-<td>4.0.0-4.3.1</td>
+<td>4.0.0-4.3.2</td>
 </tr>
 </table>
 </tables>

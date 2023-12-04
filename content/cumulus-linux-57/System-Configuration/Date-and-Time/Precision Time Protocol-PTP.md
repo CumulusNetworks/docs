@@ -250,7 +250,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    delay_mechanism         E2E
    ```
 
-   For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+   For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
    ```
    [swp1]
@@ -263,7 +263,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    network_transport       UDPv4
    ```
 
-   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and  `src_ip` to the IP adress of the VLAN interface:
+   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and  `src_ip` to the IP address of the VLAN interface:
    
    ```
    [swp2]
@@ -1435,7 +1435,7 @@ To create a custom profile:
 - Update any of the profile settings you want to change (`announce-interval`, `delay-req-interval`, `priority1`, `sync-interval`, `announce-timeout`, `domain`, `priority2`, `transport`, `delay-mechanism`, `local-priority`).
 - Set the custom profile to be the current profile.
 
-The following example commands create a custom profile called CUSTOM1 based on the predifined profile ITU 8275-1. The commands set the `domain` to 28 and the `announce-timeout` to 3, then set `CUSTOM1` to be the current profile:
+The following example commands create a custom profile called CUSTOM1 based on the predefined profile ITU 8275-1. The commands set the `domain` to 28 and the `announce-timeout` to 3, then set `CUSTOM1` to be the current profile:
 
 ```
 cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 
@@ -1449,7 +1449,7 @@ cumulus@switch:~$  nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example `/etc/ptp4l.conf` file creates a custom profile based on the predifined profile ITU 8275-1 and sets the `domain` to 28 and the `announce-timeout` to 3.
+The following example `/etc/ptp4l.conf` file creates a custom profile based on the predefined profile ITU 8275-1 and sets the `domain` to 28 and the `announce-timeout` to 3.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -1690,10 +1690,10 @@ You can configure the following monitor settings:
 | ----- | ----------- |
 | `nv set service ptp <instance> monitor min-offset-threshold` | Sets the minimum difference allowed between the master and slave time. You can set a value between -1000000000 and 0 nanoseconds. The default value is -50 nanoseconds.|
 | `nv set service ptp <instance> monitor max-offset-threshold` | Sets the maximum difference allowed between the master and slave time. You can set a value between 0 and 1000000000 nanoseconds. The default value is 50 nanoseconds.|
-| `nv set service ptp <instance> monitor path-delay-threshold` | Sets the mean time that PTP packets take to travel between the master and slave. You can set a value between 0 and 1000000000 nanoseconds . The default value is 200 nanoseconds. |
+| `nv set service ptp <instance> monitor path-delay-threshold` | Sets the mean time that PTP packets take to travel between the master and slave. You can set a value between 0 and 1000000000 nanoseconds. The default value is 200 nanoseconds. |
 | `nv set service ptp <instance> monitor max-timestamp-entries` | Sets the maximum number of timestamp entries allowed. Cumulus Linux updates the timestamps continuously. You can specify a value between 100 and 200. The default value is 100 entries.|
 
-The following example sets the minimum offeset threshold to -1000, the maximum offeset threshold to 1000, and the path delay threshold to 300:
+The following example sets the minimum offset threshold to -1000, the maximum offset threshold to 1000, and the path delay threshold to 300:
 
 ```
 cumulus@switch:~$ nv set service ptp 1 monitor min-offset-threshold -1000
@@ -1713,7 +1713,7 @@ You can configure the following monitor settings manually in the `/etc/ptp4l.con
 | `offset_from_master_max_threshold` | Sets the maximum difference allowed between the master and slave time. You can set a value between 0 and 1000000000 nanoseconds. The default value is 50 nanoseconds. |
 | `mean_path_delay_threshold` | Sets the mean time that PTP packets take to travel between the master and slave. You can set a value between 0 and 1000000000 nanoseconds. The default value is 200 nanoseconds. |
 
-The following example sets the minimum offeset threshold to -1000, the maximum offeset threshold to 1000, and the path delay threshold to 300:
+The following example sets the minimum offset threshold to -1000, the maximum offset threshold to 1000, and the path delay threshold to 300:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -1769,11 +1769,11 @@ You can configure the following monitor settings manually in the `/etc/ptp4l.con
 
 | Parameter | Description |
 | ----- | ----------- |
-| `tsmonitor_num_log_sets` | Sets the maxumum number of log sets allowed. You can specify a value between 2 and 4. The default value is 3.|
+| `tsmonitor_num_log_sets` | Sets the maximum number of log sets allowed. You can specify a value between 2 and 4. The default value is 3.|
 | `tsmonitor_num_log_entries`  |  Sets the maximum number of log entries allowed in a log set. You can specify a value between 4 and 8. The default value is 4.|
 | `tsmonitor_log_wait_seconds` |  Sets the number of seconds to wait before logging back-to-back violations. You can specify a value between 0 and 60. The default value is 1.|
 
-The following example sets the maxumum number of log sets allowed to 4, the maximum number of log entries allowed to 6, and the violation log interval to 10:
+The following example sets the maximum number of log sets allowed to 4, the maximum number of log entries allowed to 6, and the violation log interval to 10:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -1811,7 +1811,7 @@ PTP monitoring provides commands to show counters for violations as well as the 
 | Command  | Description |
 | -------- | ----------- |
 | `nv show service ptp <instance> monitor timestamp-log` | Shows the last 25 PTP timestamps.  |
-| `nv show service ptp <instance> monitor violations` |  Shows the threshold violation count and the last time a violation of a specific type occured. |
+| `nv show service ptp <instance> monitor violations` |  Shows the threshold violation count and the last time a violation of a specific type occurred. |
 | `nv show service ptp 1 monitor violations log acceptable-master` | Shows logs with violations that occur when a PTP server not in the Acceptable Master table sends an Announce request. |
 | `nv show service ptp 1 monitor violations log forced-master`  | Shows logs with violations that occur when a forced master port gets a higher clock. |
 | `nv show service ptp 1 monitor violations log max-offset` | Shows logs with violations that occur when the timestamp offset is higher than the max offset threshold. |
@@ -2208,7 +2208,7 @@ network_transport            UDPv4
 
 ### PTP Traffic Shaping
 
-To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
+To improve performance on the NVIDIA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
 
 {{%notice note%}}
 - Switches with Spectrum-2 and later do not support PTP shaping.

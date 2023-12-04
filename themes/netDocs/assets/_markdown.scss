@@ -169,7 +169,10 @@ $block-border-radius: 0.15rem;
   }
 
   a {
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: #76b900;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3125em;
 
     &:hover {
       text-decoration: underline;

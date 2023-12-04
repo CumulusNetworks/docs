@@ -56,11 +56,18 @@ h5 {
 }
 
 a {
-  text-decoration: none;
-  color: $color-link;
+  text-decoration: underline;
+  text-decoration-color: #76b900;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3125em;
+  color: #3c3c3c;
 
   &:visited {
-    color: $color-link;
+    color: #3c3c3c;
+    text-decoration: underline;
+    text-decoration-color: #76b900;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3125em;
 
 
   }
@@ -99,10 +106,11 @@ aside nav ul {
 
   a {
     display: block;
+    text-decoration: none;
 
   }
   a:active{
-    color: $nvidia-green
+    color: $nvidia-green;
   }
   a:hover {
     opacity: .5;

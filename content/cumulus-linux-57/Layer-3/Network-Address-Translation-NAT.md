@@ -424,15 +424,43 @@ Remove the rule from the policy file in the `/etc/cumulus/acl/policy.d` director
 
 ## Show Configured NAT Rules
 
-To see the NAT rules configured on the switch, run the `sudo iptables -t nat -v -L` or the
-`sudo cl-acltool -L ip -v` command. For example:
+To see the NAT rules configured on the switch, run the NVUE `nv show acl <acl> --applied -o=json` command or the Linux `sudo iptables -t nat -v -L` or `sudo cl-acltool -L ip -v` commands. For example:
+
+```
+cumulus@switch:~$ nv show acl acl_5 --applied -o=json
+{
+  "rule": {
+    "1": {
+      "action": {
+        "source-nat": {
+          "translate-ip": {
+            "172.30.58.0": {
+              "to": "172.30.58.80"
+            }
+          },
+          "translate-port": {
+            "1024-1200": {}
+          }
+        }
+      },
+      "match": {
+        "ip": {
+          "dest-ip": "10.1.0.0/24",
+          "protocol": "icmp",
+          "source-ip": "10.0.0.0/24"
+        }
+      }
+    }
+  },
+  "type": "ipv4"
+}
+```
 
 ```
 cumulus@switch:~$ sudo iptables -t nat -v -L -n
 ...
-Chain POSTROUTING (policy ACCEPT 27 packets, 3249 bytes)
- pkts  bytes  target   prot  opt  in   out   source      destination
-    0      0  SNAT     tcp   --   any  any   10.0.0.1    anywhere     to:172.30.58.80
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 SNAT       icmp --  *      swp6    10.0.0.0/24          10.1.0.0/24          /* rule_id:1,acl_name:acl_5,dir:outbound,interface_id:swp6 */ to:172.30.58.0-172.30.58.80:1024-1200
 ```
 
 ## Show Conntrack Flows

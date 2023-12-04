@@ -144,12 +144,7 @@ sticky-mac         disabled     disabled
 sticky-timeout     1800         1800
 sticky-ageing      disabled     disabled
 violation-mode     restrict     restrict
-violation-timeout  30           30     
-
-Static MAC
-=============
-00:02:00:00:00:05
-00:02:00:00:00:06
+violation-timeout  30           30
 
 mac-addresses
 ================
@@ -165,6 +160,5 @@ mac-addresses
     8         00:02:00:00:00:11  Dynamic  Installed
 ```
 
-To show port security static MAC address information, run the `nv show interface <interface-id> port-security static-mac` command:
-
-To show port security MAC address information, run the `nv show interface <interface-id> port-security mac-addresses` command
+- To show port security static MAC address information, run the `nv show interface <interface-id> port-security static-mac` command.
+- To show port security MAC address information, run the `nv show interface <interface-id> port-security mac-addresses` command.

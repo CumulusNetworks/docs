@@ -14,7 +14,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .docs-home {
   a {
-    color: $nvidia-green;
+    color: #3c3c3c;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3125em;
+
+
 
     &:hover {
       color: $nvidia-green;
@@ -69,13 +74,19 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   section {
-    padding: 73px 0 120px;
+    padding: 40px 0 40px;
     h3 {
       font-size: 24px;
-      font-weight: 300;
+      font-weight: 600;
       letter-spacing: -.15px;
       line-height: 34px;
       margin-bottom: 15px;
+    }
+
+    h5 {
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: -.15px;
     }
 
     p {
@@ -129,6 +140,19 @@ h1, h2, h3, h4, h5, h6 {
         grid-template-columns: repeat(4, 1fr);
       }
     }
+
+    &.three-across {
+      grid-gap: 20px;
+      grid-template-columns: repeat(1, 1fr);
+
+      @media #{$sm-up} {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media #{$lg-up} {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   }
 
   .card {
@@ -167,7 +191,7 @@ h1, h2, h3, h4, h5, h6 {
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      min-height: 180px;
+
 
       ~.card__content {
         display: flex;
@@ -385,6 +409,7 @@ h1, h2, h3, h4, h5, h6 {
 
   }
 }
+  
 
 .globalNav {
   background: black !important;
@@ -396,6 +421,9 @@ h1, h2, h3, h4, h5, h6 {
   height: 125px;
   transition: none !important;
   transition: top .25s,background .25s !important;
+  padding-left: 5%;
+
+  
 
   ul {
     padding: 0;
@@ -431,7 +459,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     height: 47px;
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 0px;
     flex-shrink: 0;
     box-sizing: border-box;
 
@@ -470,7 +498,7 @@ h1, h2, h3, h4, h5, h6 {
   .navSection.logo {
     position: absolute;
     top: 17px;
-    left: 30px;
+    left: 0px;
 
     @media #{$xl-up} {
       display: block;
@@ -631,6 +659,18 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
+  .Page-breadcrumbs {
+    font-weight: 400;
+    font-family: $cumulus-font-family;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    color: #3c3c3c;
+    text-decoration: none;
+    background: transparent;
+    padding-left: 25px;
+  
+  }
+
   ul {
     list-style: none;
     margin: 0;
@@ -694,6 +734,17 @@ h1, h2, h3, h4, h5, h6 {
   .search-container {
     display: flex;
     align-items: center;
+
+    a {
+      color: #3c3c3c;
+ 
+    }
+    a:hover {     
+      text-underline-offset: 0.3125em;
+      text-decoration: underline;
+      text-decoration-color: black;
+      text-decoration-thickness: 2px;
+    }
 
     .dropdown {
       margin-left: 15px;
@@ -1404,6 +1455,7 @@ div.notices.info {
 
   a {
     /* color: #ffc82e; */
+
 
     &:hover {
       text-decoration: none;

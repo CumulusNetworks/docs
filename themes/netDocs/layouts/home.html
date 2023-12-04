@@ -29,7 +29,7 @@
   https://github.com/alex-shpak/hugo-book
   {{ "-->" | safeHTML }}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+  
 
 </head>
 
@@ -44,8 +44,8 @@
             <div class="search-container">
               <script async="" src="https://cse.google.com/cse.js?cx=002929300794741444210:sy0sz3qlwdc"></script>
             <li>
-              <div class="gsc-control-searchbox-only gsc-control-searchbox-only-en" dir="ltr">
-                <form action="{{"search/" | absURL }}" class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8">
+              <div dir="ltr">
+                <form action="{{"search/" | absURL }}" accept-charset="utf-8">
                   <div id="doc-search-box-black">
                   <input type="text" name="q" class="doc-search-input-black" placeholder="Search">
                   <span>
@@ -91,8 +91,10 @@
           <li><a href={{ "cumulus-vx" | absURL }}>NVIDIA Cumulus VX</a></li>
           <li><a href={{ "knowledge-base" | absURL }}>Knowledge Base</a></li>
       </div>
+      
     </div>
-    <section class="bg-athens-gray-white">
+
+      <section class="bg-athens-gray-white">
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
@@ -102,11 +104,10 @@
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
               <a href={{ .Site.Params.cl_latest | absURL }}><img src={{"home-products-cumulus-linux.jpg" | absURL }} alt="NVIDIA Cumulus Linux" class="mb-6"></a>
-              <h3>NVIDIA Cumulus Linux</h3>
+              <a href={{ .Site.Params.cl_latest | absURL }}><h3>NVIDIA Cumulus Linux</h3></a>
               <p class="small">An open network operating system designed for efficiency, automation and scale</p>
               <ul>
                   <li><a href={{ .Site.Params.cl_latest | absURL }}>User guide</a></li>
-                  <li><a href="{{ .Site.Params.cl_latest | absURL }}/Quick-Start-Guide/">Quick start guide</a></li>
                   <li><a href="{{ .Site.Params.cl_latest | absURL }}/Whats-New/rn/">Release notes</a></li>
                   <li><a href="{{ .Site.Params.cl_latest | absURL }}/Whats-New/">What's new in Cumulus Linux</a></li>
                   <li><a href="{{ .Site.Params.nvue_latest| absURL }}">NVUE command reference</a></li>
@@ -114,7 +115,7 @@
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
               <a href="{{ .Site.Params.netq_latest | absURL }}"><img src={{"home-products-netq.jpg" | absURL }} alt="NVIDIA NetQ" class="mb-6"> </a>
-              <h3>NVIDIA NetQ</h3>
+              <a href="{{ .Site.Params.netq_latest | absURL }}"><h3>NVIDIA NetQ</h3></a>
               <p class="small">A highly-scalable, modern network operations tool set that provides visibility into your network</p>
               <ul>
                   <li><a href={{ .Site.Params.netq_latest | absURL }}>User guide</a></li>
@@ -124,7 +125,7 @@
           </div>
           <div class="col-12 col-sm-6 col-lg-4 mb-5 mb-lg-0">
             <a href="{{ .Site.Params.air_latest | absURL }}"><img src={{"home-products-cumulus-express.jpg" | absURL }} alt="NVIDIA Air" class="mb-6"></a>
-            <h3>NVIDIA Air</h3>
+            <a href="{{ .Site.Params.air_latest | absURL }}"><h3>NVIDIA Air</h3></a>
             <p class="small">A cloud hosted, network simulation platform that behaves exactly like a real world production environment</p>
             <ul>
               <li><a href="{{ .Site.Params.air_latest | absURL }}/Quick-Start/">Quick start guide</a></li>
@@ -143,41 +144,29 @@
             </h3>
           </div>
           <div class="col-12 mb-3">
-            <div class="card-deck four-across">
-              <div class="card">
-                <a href="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/"></a>
-                <div class="card__background" style="background-image: url('{{"Tech-Doc-01-HCL.jpg" | absURL}}')"></div>
-                <div class="card__content">
-                  <h3>Hardware Compatibility List</h3>
-                  <p>See all the platforms that Cumulus Linux and Cumulus RMP support.</p>
-                  <span>View our HCL</span>
-                </div>
-              </div>
+            <div class="card-deck three-across">
               <div class="card">
                 <a href={{"guides" | absURL }}></a>
-                <div class="card__background" style="background-image: url('{{"Tech-Doc-02-Support.jpg" | absURL}}')"></div>
+                <div class="card__background" style="background-image: none"></div>
                 <div class="card__content">
                   <h3>Technical Guides</h3>
                   <p>Read long form technical guides that provide deep dives into various features.</p>
-                  <span>Read the guides</span>
                 </div>
               </div>
               <div class="card">
                 <a href={{"knowledge-base" | absURL }}></a>
-                <div class="card__background" style="background-image: url('{{"Tech-Doc-03-release-notes.jpg" | absURL}}')"></div>
+                <div class="card__background" style="background-image: none"></div>
                 <div class="card__content">
                   <h3>Knowledge Base</h3>
                   <p>Learn many troubleshooting tips and peruse various technical articles.</p>
-                  <span>View KB articles</span>
                 </div>
               </div>
               <div class="card">
                 <a href={{"contributor-guide" | absURL }}></a>
-                <div class="card__background" style="background-image: url('{{"Tech-Doc-04-Contribute.png" | absURL}}')"></div>
+                <div class="card__background" style="background-image: none"></div>
                 <div class="card__content">
                   <h3>Contribute</h3>
                   <p>Discover how to add or update content in the Cumulus Networks technical documentation.</p>
-                  <span>Learn More</span>
                 </div>
               </div>
             </div>
@@ -229,19 +218,7 @@
                                     <path class="a" d="M23 6.628l-2-.5 1-2-2.464.7A4.48 4.48 0 0 0 12 8.128v1c-3.539.73-6.634-1.2-9.5-4.5q-.75 4 1.5 6l-3-.5c.405 2.069 1.362 3.7 4 4l-2.5 1c1 2 2.566 2.31 5 2.5a10.748 10.748 0 0 1-6.5 2c12.755 5.669 20-2.664 20-10V8.3z"></path>
                                 </svg>
                             </a>
-                        </li>
-                        <li>
-                            <a href="//www.facebook.com/CumulusNetworks/" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                    <defs>
-                                        <style>
-                                        .a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
-                                        </style>
-                                    </defs>
-                                    <path class="a" d="M17.768 7.5H13.5V5.6a.972.972 0 0 1 1.012-1.1c.418 0 2.988.01 2.988.01V.5h-4.329C9.244.5 8.5 3.474 8.5 5.355V7.5h-3v4h3v12h5v-12h3.851z"></path>
-                                </svg>
-                            </a>
-                        </li>
+                        </li>                    
                         <li>
                             <a href="//www.linkedin.com/showcase/nvidianetworking/" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

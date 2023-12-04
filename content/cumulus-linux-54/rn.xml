@@ -534,12 +534,6 @@ cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 <td></td>
 </tr>
 <tr>
-<td>3308191</td>
-<td>If you try to set an unsupported interface speed together with FEC, the {{nv config apply}} command succeeds but Cumulus Linux ignores the FEC configuration and configures the default FEC setting for the chosen speed. There is no warning or error message.</td>
-<td>5.4.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3293560</td>
 <td>If you run NVUE commands to break out a port into four interfaces, NVUE disables the subsequent port automatically. However, if you run NVUE commands to break out a port into eight interfaces, NVUE does not disable the subsequent port automatically; you have to run the NVUE command to disable the subsequent port.</td>
 <td>5.4.0</td>

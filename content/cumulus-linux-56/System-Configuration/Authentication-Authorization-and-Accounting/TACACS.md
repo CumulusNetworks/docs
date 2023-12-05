@@ -41,6 +41,10 @@ After you install the required TACACS+ packages, configure the following require
 
 If you use NVUE commands to configure TACACS+, you must also set the priority for the authentication order for local and TACACS+ users, and enable TACACS+.
 
+{{%notice note%}}
+After you configure any TACACS+ settings with NVUE and you run `nv config apply`, you must restart the NVUE service with the `sudo systemctl restart nvued.service` command.
+{{%/notice%}}
+
 {{< tabs "TabID31 ">}}
 {{< tab "NVUE Commands ">}}
 

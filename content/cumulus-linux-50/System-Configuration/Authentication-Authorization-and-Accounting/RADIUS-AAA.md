@@ -31,7 +31,18 @@ During package installation:
 
 ## Configure the RADIUS Client
 
-To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf` file:
+To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf` file.
+
+{{%notice note%}}
+
+After editing the `/etc/pam_radius_auth.conf` file, you must restart both `nvued.service` and `nginx-authenticator.service`:
+
+```
+cumulus@switch:~$ sudo systemctl restart nvued.service
+cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
+```
+
+{{%/notice%}}
 
 1. Add the hostname or IP address of at least one RADIUS server (such as a *{{<exlink url="http://freeradius.org/" text="freeradius">}}* server on Linux), and the shared secret used to authenticate and encrypt communication with each server.
 

@@ -509,7 +509,7 @@ cumulus@switch:~$ nv set service ptp 1 enable on
 
 ## <h>nv set service ptp \<instance-id\> ip-dscp</h>
 
-Configures the <span style="background-color:#F5F5DC">[DSCP](## "DiffServ code point")</span> value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
+Configures the <span class="a-tooltip">[DSCP](## "DiffServ code point")</span> value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
 
 ### Command Syntax
 

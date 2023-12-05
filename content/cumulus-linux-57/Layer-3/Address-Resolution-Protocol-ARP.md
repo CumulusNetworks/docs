@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1000
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[ARP](## "Address Resolution Protocol")</span> is a communication protocol that discovers the link layer address, such as a MAC address, associated with a network layer address. The Cumulus Linux ARP implementation differs from standard Debian Linux ARP behavior because Cumulus Linux is an operating system for routers and switches, not servers.
+<span class="a-tooltip">[ARP](## "Address Resolution Protocol")</span> is a communication protocol that discovers the link layer address, such as a MAC address, associated with a network layer address. The Cumulus Linux ARP implementation differs from standard Debian Linux ARP behavior because Cumulus Linux is an operating system for routers and switches, not servers.
 
 For a definition of ARP, refer to {{<exlink url="https://tools.ietf.org/html/rfc826" text="RFC 826">}}.
 

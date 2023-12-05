@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 615
 toc: 3
 ---
-*VXLAN active-active mode* enables a pair of <span style="background-color:#F5F5DC">[MLAG](## "Multi Chassis Link Aggregation")</span> switches to act as a single <span style="background-color:#F5F5DC">[VTEP](## "Virtual Tunnel End Point")</span>, providing active-active VXLAN termination for bare metal as well as virtualized workloads.
+*VXLAN active-active mode* enables a pair of <span class="a-tooltip">[MLAG](## "Multi Chassis Link Aggregation")</span> switches to act as a single <span class="a-tooltip">[VTEP](## "Virtual Tunnel End Point")</span>, providing active-active VXLAN termination for bare metal as well as virtualized workloads.
 
 To use VXLAN active-active mode, you need to configure:
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}

@@ -20,7 +20,7 @@ Configures BGP globally on the switch.
 
 ## <h>nv set router bgp autonomous-system</h>
 
-Configures the BGP <span style="background-color:#F5F5DC">[ASN](## "Autonomous System Number ")</span> on the switch to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
+Configures the BGP <span class="a-tooltip">[ASN](## "Autonomous System Number ")</span> on the switch to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
 
 ### Version History
 
@@ -1450,7 +1450,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family l2vpn-evpn enable
 
 ## <h>nv set vrf \<vrf-id\> router bgp autonomous-system</h>
 
-Configures the BGP <span style="background-color:#F5F5DC">[ASN](## "Autonomous System Number ")</span> in the specified VRF to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
+Configures the BGP <span class="a-tooltip">[ASN](## "Autonomous System Number ")</span> in the specified VRF to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
 
 ### Command Syntax
 

@@ -295,7 +295,7 @@ The following table shows the default parameter values for the predefined profil
 | Local priority | NA | 128  |
 | Transport | UDPv4 (UDPv6 supported) |802.3 |
 | Transmission | Multicast (unicast supported) | Multicast |
-| <span style="background-color:#F5F5DC">[BMCA](## "Best Master Clock Algorythm")</span> | IEEE 1588 | G.8275.x |
+| <span class="a-tooltip">[BMCA](## "Best Master Clock Algorythm")</span> | IEEE 1588 | G.8275.x |
 
 The switch has a predefined default profile of each profile type, one for IEEE1588 and one for ITU8275.1.
 You can configure the switch to use a predefined profile or you can create a custom profile. You can change the profile settings of the predfined profiles, such as the announce rate, sync rate, domain, priority, transport, and so on. These changes conform to the ranges and allowed values of the profile type. You can also configure these parameters for individual PTP interfaces. When you configure parameters for an individual interface, the configuration takes precedence over the profile configuration. The interface is not part of the profile.
@@ -1865,6 +1865,6 @@ network_transport       UDPv4
 
 ### Spanning Tree and PTP
 
-PTP frames are affected by <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
+PTP frames are affected by <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
 
 If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.

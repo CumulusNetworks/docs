@@ -2357,7 +2357,7 @@ rd
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd</h>
 
-Shows the EVPN local RIB <span style="background-color:#F5F5DC">[RDs](## "Route Distinguisher")</span> for the specified VRF.
+Shows the EVPN local RIB <span class="a-tooltip">[RDs](## "Route Distinguisher")</span> for the specified VRF.
 
 ### Command Syntax
 
@@ -2397,7 +2397,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\></h>
 
-Shows a specific EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> for the specified VRF.
+Shows a specific EVPN local RIB <span class="a-tooltip">[RD](## "Route Distinguisher")</span> for the specified VRF.
 
 ### Command Syntax
 
@@ -2424,7 +2424,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type</h>
 
-Shows the EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route distinguisher route types for the specified VRF.
+Shows the EVPN local RIB <span class="a-tooltip">[RD](## "Route Distinguisher")</span> route distinguisher route types for the specified VRF.
 
 ### Command Syntax
 
@@ -2451,7 +2451,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\></h>
 
-Shows information about a specific EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route distinguisher route type for the specified VRF.
+Shows information about a specific EVPN local RIB <span class="a-tooltip">[RD](## "Route Distinguisher")</span> route distinguisher route type for the specified VRF.
 
 ### Command Syntax
 
@@ -2475,7 +2475,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\> route</h>
 
-Shows the routes in the EVPN local RIB for the specified VRF with a specific <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> and route type.
+Shows the routes in the EVPN local RIB for the specified VRF with a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> and route type.
 
 ### Command Syntax
 
@@ -2499,7 +2499,7 @@ cumulus@switch:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-r
 
 ## <h>nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\> route \<evpn-route-id\></h>
 
-Shows the routes in the EVPN local RIB for the specified VRF with a specific <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route type and EVPN route type.
+Shows the routes in the EVPN local RIB for the specified VRF with a specific <span class="a-tooltip">[RD](## "Route Distinguisher")</span> route type and EVPN route type.
 
 ### Command Syntax
 

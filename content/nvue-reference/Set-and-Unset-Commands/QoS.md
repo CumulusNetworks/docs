@@ -1318,7 +1318,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 
 ## <h>nv set qos congestion-control \<profile-id\></h>
 
-Configures <span style="background-color:#F5F5DC">[ECN](## "Explicit Congestion Notification")</span>; an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
+Configures <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span>; an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
 
 ECN operates by having a transit switch that marks packets between two end hosts. You use ECN with RDMA over Converged Ethernet (RoCE).
 
@@ -1424,7 +1424,7 @@ cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5
 
 ## <h>nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> red</h>
 
-Turns <span style="background-color:#F5F5DC">[RED](## "Random Early Detection")</span> on or off. 
+Turns <span class="a-tooltip">[RED](## "Random Early Detection")</span> on or off. 
 
 ECN prevents packet drops in the network due to congestion by signaling hosts to transmit less. However, if congestion continues after ECN marking, packets drop after the switch buffer is full. By default, Cumulus Linux tail-drops packets when the buffer is full. You can enable RED to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
 

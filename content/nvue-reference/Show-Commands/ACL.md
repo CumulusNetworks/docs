@@ -440,7 +440,7 @@ source-mac-mask               ff:ff:ff:ff:ff:ff
 
 ## <h>nv show interface \<interface-id\> acl</h>
 
-Shows the <span style="background-color:#F5F5DC">[ACLs](## "Access Control Lists")</span> on the specified interface. You use ACLs to match packets and take actions.
+Shows the <span class="a-tooltip">[ACLs](## "Access Control Lists")</span> on the specified interface. You use ACLs to match packets and take actions.
 
 ### Command Syntax
 

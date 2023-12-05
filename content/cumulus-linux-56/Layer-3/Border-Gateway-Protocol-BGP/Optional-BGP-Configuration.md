@@ -119,7 +119,7 @@ router bgp 65101
 
 The eBGP multihop option lets you use BGP to exchange routes with an external peer that is more than one hop away.
 
-The following example command configures Cumulus Linux to establish a connection between two <span style="background-color:#F5F5DC">[eBGP](## "external BGP")</span> peers that are not directly connected and sets the maximum number of hops used to reach a eBGP peer to 1.
+The following example command configures Cumulus Linux to establish a connection between two <span class="a-tooltip">[eBGP](## "external BGP")</span> peers that are not directly connected and sets the maximum number of hops used to reach a eBGP peer to 1.
 
 {{< tabs "154 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1262,7 +1262,7 @@ match ip address prefix-list EXIST
 {{< /tab >}}
 {{< /tabs >}}
 
-Cumulus Linux scans the entire <span style="background-color:#F5F5DC">[RIB](## "BGP Routing Information Base")</span> table every 60 seconds. You can set the conditional advertisement timer to increase or decrease how often you want Cumulus Linux to scan the RIB table. You can set a value between 5 and 240 seconds.
+Cumulus Linux scans the entire <span class="a-tooltip">[RIB](## "BGP Routing Information Base")</span> table every 60 seconds. You can set the conditional advertisement timer to increase or decrease how often you want Cumulus Linux to scan the RIB table. You can set a value between 5 and 240 seconds.
 
 {{%notice note%}}
 A lower value (such as 5) increases the amount of processing needed. Use caution when configuring conditional advertisement on a large number of BGP neighbors.
@@ -1471,7 +1471,7 @@ router bgp 65101
 
 ## Route Reflectors
 
-<span style="background-color:#F5F5DC">[iBGP](## "internal BGP")</span> rules state that BGP cannot send a route learned from an iBGP peer to another iBGP peer. In a data center spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, you can use a *route reflector*. When an iBGP speaker is a route reflector, it *can* send iBGP learned routes to other iBGP peers.
+<span class="a-tooltip">[iBGP](## "internal BGP")</span> rules state that BGP cannot send a route learned from an iBGP peer to another iBGP peer. In a data center spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, you can use a *route reflector*. When an iBGP speaker is a route reflector, it *can* send iBGP learned routes to other iBGP peers.
 
 In the following example, spine01 is acting as a route reflector. The leaf switches, leaf01, leaf02 and leaf03 are *route reflector clients*. BGP sends any route that spine01 learns from a route reflector client to other route reflector clients.
 

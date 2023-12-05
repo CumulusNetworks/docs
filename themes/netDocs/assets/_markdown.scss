@@ -303,6 +303,7 @@ $block-border-radius: 0.15rem;
   .notices p code {
     color: inherit;
   }
+
 }
 
   .notices pre {
@@ -314,4 +315,21 @@ $block-border-radius: 0.15rem;
       font-size: $font-size-14;
       margin: 1rem 0;
       overflow-x: auto;
+  }
+
+  .a-tooltip {
+
+    a { text-decoration: none;
+    background-color:#F5F5DC;
+    border-bottom: none;
+    
+    &:visited {
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: none;
+      border-bottom: none;
+      transition-delay: 200ms;
+    }
+  }
   }

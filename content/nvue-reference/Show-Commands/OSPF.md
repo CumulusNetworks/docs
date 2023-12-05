@@ -52,7 +52,7 @@ timers
 
 ## <h>nv show interface \<interface-id\> router ospf timers</h>
 
-Shows <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timer settings for the specified interface.
+Shows <span class="a-tooltip">[SPF](## "Shortest Path First")</span> timer settings for the specified interface.
 
 ### Command Syntax
 
@@ -161,7 +161,7 @@ timers
 
 ## <h>nv show router ospf timers</h>
 
-Shows all OSPF timer settings, such as <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> timers and <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timers that prevent consecutive SPF from overburdening the CPU.
+Shows all OSPF timer settings, such as <span class="a-tooltip">[LSA](## "Link State Advertisement")</span> timers and <span class="a-tooltip">[SPF](## "Shortest Path First")</span> timers that prevent consecutive SPF from overburdening the CPU.
 
 ### Version History
 
@@ -187,7 +187,7 @@ spf
 
 ## <h>nv show router ospf timers lsa</h>
 
-Shows <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> throttle timer settings.
+Shows <span class="a-tooltip">[LSA](## "Link State Advertisement")</span> throttle timer settings.
 
 ### Version History
 
@@ -207,7 +207,7 @@ throttle     5000
 
 ## <h>nv show router ospf timers spf</h>
 
-Shows <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timer settings.
+Shows <span class="a-tooltip">[SPF](## "Shortest Path First")</span> timer settings.
 
 ### Version History
 
@@ -1148,7 +1148,7 @@ spf
 
 ## <h>nv show vrf \<vrf-id\> router ospf timers lsa</h>
 
-Shows the <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> throttle timer settings for the specified VRF.
+Shows the <span class="a-tooltip">[LSA](## "Link State Advertisement")</span> throttle timer settings for the specified VRF.
 
 ### Command Syntax
 
@@ -1174,7 +1174,7 @@ throttle     3000
 
 ## <h>nv show vrf \<vrf-id\> router ospf timers spf</h>
 
-Shows <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timer settings for the specified VRF.
+Shows <span class="a-tooltip">[SPF](## "Shortest Path First")</span> timer settings for the specified VRF.
 
 ### Command Syntax
 

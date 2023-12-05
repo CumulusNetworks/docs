@@ -168,12 +168,12 @@ The following *double NAT* rule translates both the source and destination IP ad
 -t nat -A PREROUTING -d 26.26.26.26 -p icmp -j DNAT --to-destination 140.1.1.2 
 ```
 -->
-{{< /tab >}}
-{{< /tabs >}}
-
 {{%notice note%}}
 When you configure a static SNAT rule for outgoing traffic, you must also configure a static DNAT rule for the reverse traffic so that traffic goes in both directions.
 {{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Delete a Static NAT Rule
 
@@ -424,7 +424,7 @@ Remove the rule from the policy file in the `/etc/cumulus/acl/policy.d` director
 
 ## Show Configured NAT Rules
 
-To see the NAT rules configured on the switch, run the NVUE `nv show acl <acl> --applied -o=json` command or the Linux `sudo iptables -t nat -v -L` or `sudo cl-acltool -L ip -v` commands. For example:
+To see the NAT rules configured on the switch, run the NVUE `nv show acl <acl> --applied -o=json` command, or the Linux `sudo iptables -t nat -v -L` or `sudo cl-acltool -L ip -v` commands. For example:
 
 ```
 cumulus@switch:~$ nv show acl acl_5 --applied -o=json

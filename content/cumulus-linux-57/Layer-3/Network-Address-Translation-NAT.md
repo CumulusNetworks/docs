@@ -156,7 +156,7 @@ The following rule matches UDP packets with destination IP address 172.30.58.80 
 ```
 -t nat -A PREROUTING -d 172.30.58.80 -p udp --dport 6000 --in-interface swp51  -j DNAT --to-destination 10.0.0.1:5000
 ```
-
+<!--
 The following *double NAT* rule translates both the source and destination IP addresses of incoming and outgoing ICMP packets:  
 - For outgoing messages, NAT changes the inside local IP address 172.16.10.2 to the inside global IP address 130.1.100.10 and the outside local IP address 26.26.26.26 to the outside global IP address 140.1.1.2.
 - For incoming messages, NAT changes the inside global IP address 130.1.100.10 to the inside local IP address 172.16.10.2 and the outside global IP address 140.1.1.2 to the outside local IP address 26.26.26.26.
@@ -167,7 +167,7 @@ The following *double NAT* rule translates both the source and destination IP ad
 -t nat -A POSTROUTING -s 140.1.1.2 -p icmp -j SNAT --to-source 26.26.26.26 
 -t nat -A PREROUTING -d 26.26.26.26 -p icmp -j DNAT --to-destination 140.1.1.2 
 ```
-
+-->
 {{< /tab >}}
 {{< /tabs >}}
 

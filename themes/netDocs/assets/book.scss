@@ -60,10 +60,10 @@ a {
   text-decoration-color: #76b900;
   text-decoration-thickness: 2px;
   text-underline-offset: 0.3125em;
-  color: #3c3c3c;
+  color: inherit;
 
   &:visited {
-    color: #3c3c3c;
+    color: inherit;
     text-decoration: underline;
     text-decoration-color: #76b900;
     text-decoration-thickness: 2px;

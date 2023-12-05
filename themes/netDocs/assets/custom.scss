@@ -76,8 +76,24 @@ h1, h2, h3, h4, h5, h6 {
 
   section {
     padding: 40px 0 40px;
+    h1 {
+      font-size: 40px;
+      font-weight: 600;
+      letter-spacing: -.15px;
+      line-height: 34px;
+
+    }
+    
+    h2 {
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -.15px;
+      line-height: 34px;
+      padding-bottom: 30px;
+
+    }
     h3 {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 600;
       letter-spacing: -.15px;
       line-height: 34px;
@@ -97,6 +113,9 @@ h1, h2, h3, h4, h5, h6 {
       padding-bottom: 20px;
     }
     
+    .h2-more-padding {
+      padding-bottom: 40px;
+    }
 
     p {
       &.small {

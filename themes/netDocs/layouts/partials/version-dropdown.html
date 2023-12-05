@@ -43,15 +43,16 @@
             </div>
         </div>
         {{ if eq .Page.Params.product "Cumulus Linux" }}
-        <div class="Page-breadcrumbs">
+        <div class="Page-breadcrumbs"></div>
             <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
             <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
             <a href="https://docs.nvidia.com/networking/software/index.html">Networking Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
-            <a href="https://docs.nvidia.com/networking/software/switch-software/index.html">Switch Software</a>
+            <a href="https://docs.nvidia.com/networking/software/switch-software/index.html">Switch Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <p>Cumulus Linux</p>
         </div>
         {{ end }}
         {{ if eq .Page.Params.product "Cumulus VX" }}
-        <div class="Page-breadcrumbs">
+        <div class="Page-breadcrumbs"></div>
             <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
             <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
             <a href="https://docs.nvidia.com/networking/software/index.html">Networking Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
@@ -63,12 +64,13 @@
             <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
             <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
             <a href="https://docs.nvidia.com/networking/software/index.html">Networking Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
-            <a href="https://docs.nvidia.com/networking/software/management-software/index.html#cumulus-netq">Management Software</a>
+            <a href="https://docs.nvidia.com/networking/software/management-software/index.html#cumulus-netq">Management Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <p>NetQ User Guide</p>
         </div>
         {{ end }}
         
 
-    <!-- Breadcrumb logic for Air and the KB page not working as of Dec 4 2023 - due to no version cascading. Requires more testing/restructuring -->
+    <!-- Breadcrumb logic for NVUE cmd ref, Air and the KB page not working as of Dec 4 2023 - due to no version cascading. Requires more testing/restructuring -->
         {{ if eq .Page.Params.product "NVIDIA Air" }}
         <div class="Page-breadcrumbs">
             <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
@@ -78,6 +80,15 @@
         </div>
         {{ end }}
         {{ if eq .Page.Params.product "Knowledge Base" }}
+        <div class="Page-breadcrumbs">
+            <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/index.html">Networking Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/switch-software/index.html">Switch Software</a>
+        </div>
+        {{ end }}
+
+        {{ if eq .Page.Params.product "NVUE" }}
         <div class="Page-breadcrumbs">
             <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
             <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;

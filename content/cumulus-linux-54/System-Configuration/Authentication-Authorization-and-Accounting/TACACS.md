@@ -45,6 +45,17 @@ After you install the required TACACS+ packages, configure the following require
 
 If you use NVUE commands to configure TACACS+, you must also set the priority for the authentication order for local and TACACS+ users, and enable TACACS+.
 
+{{%notice note%}}
+
+After you change TACACS+ settings, you must restart both `nvued.service` and `nginx-authenticator.service`:
+
+```
+cumulus@switch:~$ sudo systemctl restart nvued.service
+cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
+```
+
+{{%/notice%}}
+
 {{< tabs "TabID31 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -357,10 +368,11 @@ The first `adduser` command prompts for information and a password. You can skip
 
 3. Edit the `/etc/nsswitch.conf` file to add the keyword `tacplus` back to the line starting with `passwd` (the keyword you removed in the first step).
 
-4. Restart the `nvued` service with the following command:
+4. Restart the `nvued` service and the `nginx-authenticator` service with the following commands:
 
     ```
-    cumulus@switch:~$ sudo systemctl restart nvued
+    cumulus@switch:~$ sudo systemctl restart nvued.service
+    cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
     ```
 <!-- vale off -->
 ## TACACS+ Per-command Authorization

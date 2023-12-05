@@ -38,7 +38,7 @@ The following example commands set:
 - The IP address of the RADIUS server to 192.168.0.254 and the port to 42.
 - The secret to `'myradius$key'`.
 - The priority at which Cumulus Linux contacts the RADIUS server to 10.
-- The authentication order to 10 for RADIUS that RADIUS authentication has priority over local.
+- The authentication order to 10 so that RADIUS authentication has priority over local.
 - The RADIUS option to `enable`.
 
 ```

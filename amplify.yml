@@ -20,11 +20,11 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then python3 utils/build_pdf_xls.py $DOCRAPTOR_KEY https://stage.d1l3582pfvms7p.amplifyapp.com/networking-ethernet-software/ x x ; fi
         #
         # Don't minify in non-prod branches to simplify troubleshooting
-        - if [ "${AWS_BRANCH}" != "test-404-change" ]; then hugo -D --baseURL $BASEURL -d public/networking-ethernet-software/ ; fi
-        - if [ "${AWS_BRANCH}" = "test-404-change" ]; then hugo --minify --baseURL $BASEURL ; fi
+        - if [ "${AWS_BRANCH}" != "master" ]; then hugo -D --baseURL $BASEURL -d public/networking-ethernet-software/ ; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then hugo --minify --baseURL $BASEURL ; fi
         #
         # Amplify requires that an index page exists. Generate one for stage.
-        - if [ "${AWS_BRANCH}" != "test-404-change" ]; then echo "<html><head></head><body><a href='networking-ethernet-software/''>click here</a></body></html>" > public/index.html ; fi
+        - if [ "${AWS_BRANCH}" != "master" ]; then echo "<html><head></head><body><a href='networking-ethernet-software/''>click here</a></body></html>" > public/index.html ; fi
         #
         # Modify the PDF pages
         # Install python beautifulsoup for html parsing

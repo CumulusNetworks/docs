@@ -1,4 +1,4 @@
-0/* To be overridden by theme user */
+/* To be overridden by theme user */
 // @import "variables";
 
 body {
@@ -10,16 +10,6 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: $cumulus-font-family;
   color: #3c3c3c;
-}
-
-.a-toolip {
-
-  a { text-decoration: none;
-  background-color:#F5F5DC;
-  }
-  &:visited {
-    text-decoration: none;
-  }
 }
 
 .docs-home {

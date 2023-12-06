@@ -792,7 +792,7 @@ peer-priority   32768                                       Mlag Peer Priority
 peer-role       secondary                                   Mlag Peer Role
 ```
 
-Run the `net show mlag` command or the `clagctl` command to show the MLAG interface information:
+Run the `net show clag` command or the `clagctl` command to show the MLAG interface information:
 
 ```
 cumulus@leaf01:mgmt:~$ net show clag
@@ -813,35 +813,29 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
 
 ### Show All MLAG Settings
 
-To see all MLAG settings, run the `clagctl params` command:
+To see all MLAG settings, run the `nv show mlag` command:
 
 ```
-cumulus@leaf01:~$ clagctl params
-clagVersion = 1.4.0
-clagDataVersion = 1.4.0
-clagCmdVersion = 1.1.0
-peerIp = linklocal
-peerIf = peerlink.4094
-sysMac = 44:38:39:be:ef:aa
-lacpPoll = 2
-currLacpPoll = 2
-peerConnect = 1
-cmdConnect = 1
-peerLinkPoll = 1
-switchdReadyTimeout = 120
-reloadTimer = 300
-periodicRun = 4
-priority = 32768
-quiet = False
-debug = 0x0
-verbose = False
-log = syslog
-vm = True
-peerPort = 5342
-peerTimeout = 20
-initDelay = 100
-sendTimeout = 30
-...
+cumulus@leaf01:~$ nv show mlag
+                operational                applied   
+--------------  -------------------------  ----------
+enable          on                         on        
+mac-address     44:38:39:be:ef:aa          auto      
+peer-ip         fe80::4ab0:2dff:fe52:1190  linklocal 
+priority        1000                       1000      
+init-delay      10                         10        
+debug           off                        off       
+[backup]        10.10.10.2                 10.10.10.2
+peer-priority   2000                                 
+backup-active   True                                 
+local-id        48:b0:2d:d1:e4:e1                    
+peer-id         48:b0:2d:52:11:90                    
+local-role      primary                              
+peer-role       secondary                            
+peer-interface  peerlink.4094                        
+peer-alive      True                                 
+backup-reason                                        
+anycast-ip      10.0.1.12
 ```
 
 ### View the MLAG Log File
@@ -1108,27 +1102,27 @@ NIC statistics:
      tx_queue_0_kicks: 195
 ```
 
-You can also run the `net show counters` command. The number of dropped packets shows in the `RX_DRP` column.
+You can also run the `nv show interface counters` command. The number of dropped packets shows in the `RX_DRP` column.
 
 ```
-cumulus@leaf01:mgmt:~$ net show counters
-
-Kernel Interface table
-Iface            MTU    RX_OK    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_ERR    TX_DRP    TX_OVR  Flg
--------------  -----  -------  --------  --------  --------  -------  --------  --------  --------  -----
-bond1           9216        0         0         0         0      542         0         0         0  BMmU
-bond2           9216        0         0         0         0      542         0         0         0  BMmU
-bridge          9216        0         0         0         0       17         0         0         0  BMRU
-eth0            1500     5497         0         0         0      933         0         0         0  BMRU
-lo             65536     1328         0         0         0     1328         0         0         0  LRU
-mgmt           65536      790         0         0         0        0         0        33         0  OmRU
-peerlink        9216    23626         0       520         0    23665         0         0         0  BMmRU
-peerlink.4094   9216     8013         0         0         0     8017         0         0         0  BMRU
-swp1            9216        5         0         0         0      553         0         0         0  BMsRU
-swp2            9216        3         0         0         0      552         0         0         0  BMsRU
-swp49           9216    11822         0         0         0    11852         0         0         0  BMsRU
-swp50           9216    11804         0         0         0    11841         0         0         0  BMsRU
-swp51           9216        0         0         0         0      292         0         0         0  BMRU
+cumulus@leaf01:mgmt:~$ nv show interface counters
+Interface       MTU    RX_OK  RX_ERR  RX_DRP  RX_OVR  TX_OK  TX_ERR  TX_DRP  TX_OVR  Flg  
+--------------  -----  -----  ------  ------  ------  -----  ------  ------  ------  -----
+BLUE            65575  0      0       0       0       0      0       1       0       OmRU 
+RED             65575  0      0       0       0       0      0       1       0       OmRU 
+bond1           9000   0      0       0       0       1336   0       0       0       BMmRU
+bond2           9000   0      0       0       0       1337   0       0       0       BMmRU
+bond3           9000   0      0       0       0       1336   0       0       0       BMmRU
+br_default      9216   69     0       0       0       191    0       0       0       BMRU 
+eth0            1500   6184   0       0       0       3384   0       0       0       BMRU 
+lo              65536  3835   0       0       0       3835   0       0       0       LRU  
+mgmt            65575  4098   0       0       0       0      0       13      0       OmRU 
+peerlink        9216   14604  0       0       0       14134  0       0       0       BMmRU
+peerlink.4094   9216   9923   0       0       0       9423   0       0       0       BMRU 
+swp1            9000   5      0       5       0       1336   0       0       0       BMsRU
+swp2            9000   5      0       5       0       1337   0       0       0       BMsRU
+swp3            9000   5      0       5       0       1336   0       0       0       BMsRU
+swp4            1500        
 ```
 
 ### Peer Link Interfaces and the protodown State

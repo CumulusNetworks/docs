@@ -350,7 +350,7 @@ vlan20         10.1.20.105                48:b0:2d:75:bf:9e  noarp      |ext_lea
 To show IPv4 entries only, run the Linux `ip -4 neighbor` command:
 
 ```
-cumulus@leaf01:mgmt:~$
+cumulus@leaf01:mgmt:~$ ip -4 neighbor
 169.254.0.1 dev swp54 lladdr 48:b0:2d:80:8c:21 PERMANENT proto zebra 
 169.254.0.1 dev peerlink.4094 lladdr 48:b0:2d:3f:69:d6 PERMANENT proto zebra 
 10.10.10.3 dev vxlan48 lladdr 44:38:39:22:01:84 extern_learn  NOARP proto zebra 
@@ -373,7 +373,7 @@ cumulus@leaf01:mgmt:~$
 ...
 ```
 
-To show table entries for a specific interface, run the `nv show interface <interface_id> neighbor`  command:
+To show table entries for a specific interface, run the `nv show interface <interface_id> neighbor` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor

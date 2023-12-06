@@ -172,7 +172,7 @@ cumulus@switch:~$ nv action delete system security certificate tls-cert-1
 {{< tab "Curl Commands ">}}
 
 ```
-cumulus@switch:~$  curl -u 'cumulus:cumulus' https://127.0.0.1:8765/system/security/certificate/tls-cert-1 -X POST -H 'Content-Type:application/json' -d '{"@delete": { "state": "start"}}'
+cumulus@switch:~$ curl -u 'cumulus:cumulus' https://127.0.0.1:8765/system/security/certificate/tls-cert-1 -X POST -H 'Content-Type:application/json' -d '{"@delete": { "state": "start"}}'
 ```
 
 {{< /tab >}}

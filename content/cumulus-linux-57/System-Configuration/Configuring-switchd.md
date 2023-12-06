@@ -31,7 +31,7 @@ A low setting, such as 1, might affect system performance.
 - The log level to debug the data plane programming related code. You can specify `debug`, `info`, `notice`, `warning`, or `error`. The default setting is `info`. NVIDIA recommends that you do not set the log level to debug in a production environment.
 - The DSCP action and value for encapsulation. You can set the DSCP action to `copy` (to copy the value from the IP header of the packet), `set` (to specify a specific value), or `derive` (to obtain the value from the switch priority). The default action is `derive`. Only specify a value if the action is `set`.
 - The DSCP action for decapsulation in VXLAN outer headers. You can specify `copy` (to copy the value from the IP header of the packet), `preserve` (to keep the inner DSCP value), or `derive` (to obtain the value from the switch priority). The default action is `derive`.
-- The preference between a route and neighbor with the same IP address and mask. You can specify `route`, `neighbor`, or `route-and-neighbour`. The default setting is `route`.
+- The preference between a route and neighbor with the same IP address and mask. You can specify `route`, `neighbor`, or `route-and-neighbor`. The default setting is `route`.
 - The ACL mode (atomic or non-atomic). The default setting is `atomic`.
 - The reserved VLAN range. The default setting is 3725-3999.
 
@@ -71,7 +71,7 @@ cumulus@switch:~$ nv set nve vxlan decapsulation dscp action preserve
 cumulus@switch:~$ nv config apply
 ```
 
-The following command example sets the route or neighbour preference to both route and neighbour:
+The following command example sets the route or neighbor preference to both route and neighbor:
 
 ```
 cumulus@switch:~$ nv set system forwarding host-route-preference route-and-neighbour

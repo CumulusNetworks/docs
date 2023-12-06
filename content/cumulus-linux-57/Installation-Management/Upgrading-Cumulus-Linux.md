@@ -61,7 +61,6 @@ Understanding the location of configuration data is important for successful upg
 {{%notice note%}}
 - If you are using the root user account, consider including `/root/`.
 - If you have custom user accounts, consider including `/home/<username>/`.
-- Run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
 {{%/notice%}}
 
 {{< /tab >}}

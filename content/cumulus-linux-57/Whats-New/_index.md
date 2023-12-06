@@ -50,10 +50,8 @@ nv set/unset system forwarding host-route-preference route-and-neighbour
 nv set/unset nve vxlan encapsulation dscp action
 nv set/unset nve vxlan encapsulation dscp value
 nv set/unset nve vxlan decapsulation dscp action
-nv set/unset interface <interface-id> router 
+nv set/unset interface <interface-id> router adaptive-routing link-utilization-threshold 
 nv set/unset router bgp wait-for-install
-nv set/unset router adaptive-routing enable
-nv set/unset interface <interface-id> router adaptive-routing enable
 ```
 
 {{< /expand >}}

@@ -89,7 +89,7 @@ cumulus@switch:~$ nv action import system security certificate tls-cert-1 uri-pu
 The following example imports a CA certificate with a public key and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`. The public key is a Base64 ASCII encoded PEM string.
 
 ```
-cumulus@switch:~$ cumulus@switch:~$ curl -u 'cumulus:cumulus' 127.0.0.1:8765/nvue_v1/system/security/certificate/tls-cert-1 -X POST -H 'Content-Type:application/json' -d '{"@import": { "state": "start", "parameters": { "????": "??????", "passphrase": "mypassphrase"}}}'
+cumulus@switch:~$ cumulus@switch:~$ curl -u 'cumulus:cumulus' 127.0.0.1:8765/nvue_v1/system/security/ca-certificate/tls-cert-1 -X POST -H 'Content-Type:application/json' -d '{"@import": { "state": "start", "parameters": { "????": "??????", "passphrase": "mypassphrase"}}}'
 ```
 
 The following example imports an entity certificate bundle and calls the certificate `tls-cert-1`. The certificate bundle is passphrase protected with `mypassphrase`.
@@ -172,7 +172,7 @@ cumulus@switch:~$ nv action delete system security certificate tls-cert-1
 {{< tab "Curl Commands ">}}
 
 ```
-cumulus@switch:~$  
+cumulus@switch:~$ curl -u 'cumulus:cumulus' https://127.0.0.1:8765/system/security/certificate/tls-cert-1 -X POST -H 'Content-Type:application/json' -d '{"@delete": { "state": "start"}}'
 ```
 
 {{< /tab >}}
@@ -220,7 +220,7 @@ cumulus@switch:~$ nv show system security ca-certificate tls-cert-1 dump
 {{< tab "Curl Commands ">}}
 
 ```
-cumulus@switch:~$  
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -X GET https://127.0.0.1:8765/system/security/certificate/tls-cert-1
 ```
 
 {{< /tab >}}

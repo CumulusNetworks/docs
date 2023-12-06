@@ -27,6 +27,17 @@ cumulus@switch:~$ sudo -E apt-get install tacplus-client
 
 ## Configure the TACACS+ Client
 
+{{%notice note%}}
+
+After you configure TACACS+ settings, you must restart both `nvued.service` and `nginx-authenticator.service`:
+
+```
+cumulus@switch:~$ sudo systemctl restart nvued.service
+cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
+```
+
+{{%/notice%}}
+
 After installing TACACS+, edit the `/etc/tacplus_servers` file to add at least one server and one shared secret (key). You can specify the server and secret parameters in any order anywhere in the file. Whitespace (spaces or tabs) are not allowed. For example, if your TACACS+ server IP address is `192.168.0.30` and your shared secret is `tacacskey`, add these parameters to the `/etc/tacplus_servers` file:
 
 ```
@@ -127,10 +138,11 @@ The first `adduser` command prompts for information and a password. You can skip
 
 3. Edit the `/etc/nsswitch.conf` file to add the keyword `tacplus` back to the line starting with `passwd` (the keyword you removed in the first step).
 
-4. Restart the `nvued` service with the following command:
+4. Restart the `nvued` service and the `nginx-authenticator` service with the following commands:
 
     ```
-    cumulus@switch:~$ sudo systemctl restart nvued
+    cumulus@switch:~$ sudo systemctl restart nvued.service
+    cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
     ```
 
 ## TACACS+ Accounting

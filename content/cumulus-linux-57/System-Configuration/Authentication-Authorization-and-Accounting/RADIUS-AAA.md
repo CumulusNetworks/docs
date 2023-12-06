@@ -31,6 +31,10 @@ After you install the required RADIUS packages, configure the following required
   - Set the priority for the authentication order for local and RADIUS users. You can set a value between 1 and 100. The lower value is the higher priority.
   - Enable RADIUS.
 
+{{%notice note%}}
+After you configure any RADIUS settings with NVUE and you run `nv config apply`, you must restart the NVUE service with the `sudo systemctl restart nvued.service` command.
+{{%/notice%}}
+
 {{< tabs "TabID41 ">}}
 {{< tab "NVUE Commands ">}}
 

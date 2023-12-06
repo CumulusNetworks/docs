@@ -6,10 +6,6 @@ toc: 3
 draft: true
 
 ---
-{{%notice note%}}
-SyncE is currently in Beta.
-{{%/notice%}}
-
 <span style="background-color:#F5F5DC">[SyncE](## "Synchronous Ethernet")</span> is an ITU-T standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated channel, <span style="background-color:#F5F5DC">[ESMC](## "Ethernet Synchronization Messaging Channel")</span> manages this synchronization, as specified by the ITU-T Rec. G.8264 standard.
 
 The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
@@ -19,7 +15,8 @@ The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
   - Manages the synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span> in the SSM.
 
 {{%notice note%}}
-Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
+- Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
+- SyncE with PTP is currently in Beta
 {{%/notice%}}
 
 ## Basic Configuration

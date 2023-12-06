@@ -639,7 +639,24 @@ Cumulus Linux enables link flap detection by default. Link flap detection trigge
 2023-02-10T17:53:21.264621+00:00 cumulus switchd[10109]: sync_port.c:2263 ERR swp2 link flapped more than 3 times in the last 60 seconds, setting protodown
 ```
 
-To show interfaces with the protodown flag, run the Linux `ip link` command:
+To show interfaces with the protodown flag, run the NVUE `nv show interface` command or the Linux `ip link` command. To check a specific interface, run the `nv show interface <interface> link` command.
+
+```
+cumulus@switch:~$ nv show interface
+Interface  State  Speed  MTU    Type      Remote Host      Remote Port  Summary                                 
+---------  -----  -----  -----  --------  ---------------  -----------  ----------------------------------------
+eth0       up     1G     1500   eth       oob-mgmt-switch  swp10        IP Address:            192.168.200.11/24
+                                                                        IP Address:  fe80::4638:39ff:fe22:17a/64
+lo         up            65536  loopback                                IP Address:                  127.0.0.1/8
+                                                                        IP Address:                      ::1/128
+mgmt       up            65575  vrf                                     IP Address:                  127.0.0.1/8
+                                                                        IP Address:                      ::1/128
+swp1       up            1500   swp                                                                             
+swp2       protodown     9178   swp                                                                             
+swp3       up            1500   swp                                                                             
+swp4       up            1500   swp                                                                             
+...
+```
 
 ```
 cumulus@switch:~$ ip link

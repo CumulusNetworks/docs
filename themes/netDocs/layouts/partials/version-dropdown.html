@@ -95,6 +95,15 @@
             <p>NVUE Command Reference</p>
         </div>
         {{ end }}
+
+        {{ if eq .Page.Params.product "Technical Guides" }}
+        <div class="Page-breadcrumbs"></div>
+            <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/index.html">Networking Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <p>Technical Guides</p>
+        </div>
+        {{ end }}
         
         
     </div>

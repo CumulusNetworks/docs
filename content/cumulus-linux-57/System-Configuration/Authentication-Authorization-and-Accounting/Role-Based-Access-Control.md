@@ -20,9 +20,9 @@ Custom role-based access control consists of the following elements:
 - When you configure a command path, you allow or deny a specific schema path and its children. For example the command path `/qos/` allows or denies access to QoS commands, whereas the command path `/qos/egress-scheduler` allows or denies access to QoS egress scheduler commands.
 {{%/notice%}}
 
-The following example describes the permissions for a role (ROLE1) that consists of three classes: Class1, Class2, Class3
+The following example describes the permissions for a role (`role1`) that consists of three classes: `class1`, `class2`, `class3`
 
-**Class1** has the `allow` class action and the following command path permissions:
+**class1** has the `allow` class action and the following command path permissions:
 
 | Command Path | Permissions |
 | ------------ | ----------- |
@@ -30,21 +30,21 @@ The following example describes the permissions for a role (ROLE1) that consists
 | `/interface/*/acl/` | `ro` |
 | `/interface/*/ptp/` | `ro` |
 
-**Class2** has the `allow` class action and the following command path permissions:
+**class2** has the `allow` class action and the following command path permissions:
 
 | Command Path | Permissions |
 | ------------ | ----------- |
 | `/system/` | `ro` |
 | `/vrf/` | `rw` |
 
-**Class3** has the `deny` class action and the following command path permissions:
+**class3** has the `deny` class action and the following command path permissions:
 
 | Command Path | Permissions |
 | ------------ | ----------- |
 | `/interface/*/evpn/`| `rw` |
 | `/interface/*/qos/` | `rw` |
 
-The following table shows the permissions for a user assigned the role ROLE1. In the table, R is read only (RO), W is write, and X is action (ACT).
+The following table shows the permissions for a user assigned the role `role1`. In the table, R is read only (RO), W is write, and X is action (ACT).
 
 | Path     | Allow     | Deny       | Permissions |
 | -------- | --------- | ---------- | ----------- |
@@ -79,39 +79,44 @@ To assign a custom role to a user account:
 You assign a custom role to an existing user account. For information about creating user accounts, see {{<link url="User-Accounts" text="User Accounts">}} commands.
 {{%/notice%}}
 
-The following example assigns user1 the role of `switch-admin`. user1 can manage the entire switch except for authentication, authorization, and accounting settings (`system aaa`).
+The following example creates the three classes described above for role `role1`.
+
+`class1` has permissions to manage all interfaces except for ACL and PTP interfaces, which only have `show` permissions:
 
 ```
-cumulus@switch:~$ nv set system aaa role switch-admin class RESTRICT 
-cumulus@switch:~$ nv set system aaa class restrict action deny 
-cumulus@switch:~$ nv set system aaa class restrict command-path /system/aaa/*/
-cumulus@switch:~$ nv set system aaa user user1 role switch-admin
-cumulus@switch:~$ nv config apply
+cumulus@leaf01:mgmt:~$ nv set system aaa role ROLE1 class class1
+cumulus@leaf01:mgmt:~$ nv set system aaa class class1 action allow
+cumulus@leaf01:mgmt:~$ nv set system aaa class class1 command-path /interface/ permission all   
+cumulus@leaf01:mgmt:~$ nv set system aaa class class1 command-path /interface/*/acl/ permission ro
+cumulus@leaf01:mgmt:~$ nv set system aaa class class1 command-path /interface/*/ptp/ permission ro
+cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-The following example assigns user2 the role of `IFMgr`. user2 can manage the loopback, management, eth0, and swp1 through 3 interfaces.
+`class2` has permissions to only show system commands and to set, unset, and apply VRF commands:
 
 ```
-cumulus@switch:~$ nv set system aaa role IFMgr class InterfaceMgmt_1 
-cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 action allow 
-cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path /interface/lo permission all 
-cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path /interface/mgmt permission all 
-cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path /interface/eth0 permission all 
-cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path /interface/swp1 permission all
-cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path /interface/swp2 permission all
-cumulus@switch:~$ nv set system aaa class InterfaceMgmt_1 command-path /interface/swp3 permission all
-cumulus@switch:~$ nv set system aaa user user2 role IFMgr 
-cumulus@switch:~$ nv config apply
+cumulus@leaf01:mgmt:~$ nv set system aaa role ROLE1 class class2
+cumulus@leaf01:mgmt:~$ nv set system aaa class class2 action allow
+cumulus@leaf01:mgmt:~$ nv set system aaa class class2 command-path /system/ permission ro
+cumulus@leaf01:mgmt:~$ nv set system aaa class class2 command-path /vrf/ permission rw
+cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
-The following example assigns user3 the role of `OSPF`. user3 does **not** have permissions to manage OSPF on an interface.
+`class3` prevents setting, unsetting, and applying interface commands for EVPN and QOS:
 
 ```
-cumulus@switch:~$ nv set system aaa role OSPF class OSPF-DENY 
-cumulus@switch:~$ nv set system aaa class OSPF-DENY action deny 
-cumulus@switch:~$ nv set system aaa class OSPF-DENY command-path /interface/*/router/ospf/ permission all
-cumulus@switch:~$ nv set system aaa user user3 role OSPF 
-cumulus@switch:~$ nv config apply
+cumulus@leaf01:mgmt:~$ nv set system aaa role ROLE1 class class3
+cumulus@leaf01:mgmt:~$ nv set system aaa class class3 action deny
+cumulus@leaf01:mgmt:~$ nv set system aaa class class3 command-path /interface/*/evpn/ permission rw
+cumulus@leaf01:mgmt:~$ nv set system aaa class class3 command-path /interface/*/qos/ permission rw
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+The following command assigns user `admin2` the role `role1`:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 role role1
+cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
 ## Delete Custom Roles
@@ -119,15 +124,15 @@ cumulus@switch:~$ nv config apply
 To delete a custom role and all its classes, you must first unassign the role from the user, then delete the role:
 
 ```
-cumulus@switch:~$ nv unset system aaa user user1 role OSPF
-cumulus@switch:~$ nv unset system aaa role OSPF
+cumulus@switch:~$ nv unset system aaa user admin2 role role1
+cumulus@switch:~$ nv unset system aaa role role1
 cumulus@switch:~$ nv config apply
 ```
 
 To delete a class from a role, run the `nv unset system aaa role <role> class <class>` command:
 
 ```
-cumulus@switch:~$ nv unset system aaa role OSPF class OSPF-DENY
+cumulus@switch:~$ nv unset system aaa role role1 class class2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -169,8 +174,7 @@ systemd-coredump  systemd Core Dumper                 Unknown  system
 systemd-network   systemd Network Management,,,       Unknown  system         
 systemd-resolve   systemd Resolver,,,                 Unknown  system         
 systemd-timesync  systemd Time Synchronization,,,     Unknown  system         
-user1                                                 OSPF     on             
-user2                                                 IFMgr    on             
+admin2                                                role1    on             
 uucp              uucp                                Unknown  system         
 uuidd                                                 Unknown  system         
 www-data          www-data                            Unknown  system    
@@ -179,10 +183,10 @@ www-data          www-data                            Unknown  system
 To show information about a specific user account including the role assigned to the user, run the NVUE `nv show system aaa user <user>` command:
 
 ```
-cumulus@switch:~$ nv show system aaa user user2
+cumulus@switch:~$ nv show system aaa user admin2
            operational  applied
 ---------  -----------  -------
-role       IFMgr        IFMgr  
+role       role1        role1  
 full-name                      
 enable     on           on
 ```
@@ -191,49 +195,53 @@ To show all the roles configured on the switch, run the NVUE `nv show system aaa
 
 ```
 cumulus@switch:~$ nv show system aaa role
-Role          Class          
-------------  ---------------
-IFMgr         InterfaceMgmt_1
-OSPF          OSPF-DENY      
-nvue-admin    nvapply        
-nvue-monitor  nvshow         
-system-admin  nvapply        
+Role          Class  
+------------  -------
+nvue-admin    nvapply
+nvue-monitor  nvshow 
+role1         class1 
+              class2 
+              class3 
+system-admin  nvapply
               sudo
 ```
 
 To show the classes applied to specific role, run the `nv show system aaa role <role>` command:
 
 ```
-cumulus@switch:~$ nv show system aaa role IFMgr
-         applied        
--------  ---------------
-[class]  InterfaceMgmt_1
+cumulus@switch:~$ nv show system aaa role role1
+         applied
+-------  -------
+[class]  class1 
+[class]  class2 
+[class]  class3
 ```
 
 To show all the classes configured on the switch, run the `nv show system aaa class` command:
 
 ```
 cumulus@switch:~$ nv show system aaa class
-Class Name       Command Path               Permission  Action
----------------  -------------------------  ----------  ------
-InterfaceMgmt_1  /interface/eth0/           all         allow 
-                 /interface/lo/             all               
-                 /interface/mgmt/           all               
-                 /interface/swp1/           all               
-                 /interface/swp2/           all               
-                 /interface/swp3/           all               
-OSPF-DENY        /interface/*/router/ospf/  all         deny  
-nvapply          /                          all         allow 
-nvshow           /                          ro          allow 
-sudo             /                          all         allow  
+Class Name  Command Path        Permission  Action
+----------  ------------------  ----------  ------
+class1      /interface/         all         allow 
+            /interface/*/acl/   ro                
+            /interface/*/ptp/   ro                
+class2      /system/            ro          allow 
+            /vrf/               rw                
+class3      /interface/*/evpn/  rw          deny  
+            /interface/*/qos/   rw                
+nvapply     /                   all         allow 
+nvshow      /                   ro          allow 
+sudo        /                   all         allow 
 ```
 
 To show the configuration and state of the command-paths for a class, run the `nv show system aaa class <class>` command:
 
 ```
-cumulus@switch:~$ nv show system aaa class OSPF-DENY
-                applied                  
---------------  -------------------------
-action          deny                     
-[command-path]  /interface/*/router/ospf/
+cumulus@switch:~$ nv show system aaa class class3
+               applied           
+--------------  ------------------
+action          deny              
+[command-path]  /interface/*/evpn/
+[command-path]  /interface/*/qos/
 ```

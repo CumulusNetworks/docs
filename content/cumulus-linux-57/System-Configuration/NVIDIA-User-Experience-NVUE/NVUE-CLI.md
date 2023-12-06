@@ -224,7 +224,7 @@ If you run an NVUE show command but the corresponding FRR routing daemons are no
 In addition to the `nv show` commands, Cumulus Linux continues to provide a subset of the NCLU `net show` commands. Use these commands to get additional views of various parts of your network configuration.
 
 ```
-cumulus@leaf01:mgmt:~$ net show 
+cumulus@leaf01:mgmt:~$ net show <<TAB>>
     bfd            :  Bidirectional forwarding detection
     bgp            :  Border Gateway Protocol
     bridge         :  a layer2 bridge

@@ -32,6 +32,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link title="Setting the Date and Time/#set-the-date-and-time" text="Set date and time command">}}
   - {{<link url="Role-Based-Access-Control" text="Role-based access control">}}
   - {{<link url="NVUE-API/#certificates" text="Manage certificate commands">}} for the NVUE REST API
+  - {{<link url="Optional-BGP-Configuration/#bgp-input-and-ouput-message-queue-limit" text="BGP Input and Ouput Message Queue Limit">}} commands
   - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.
   - Commands to show {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Commands to show the {{<link url="Address-Resolution-Protocol-ARP/#show-the-arp-table" text="ARP table">}} and {{<link url="Neighbor-Discovery-ND#show-the-ip-neighbor-table" text="ND table">}} and to add static entries to the {{<link url="Address-Resolution-Protocol-ARP/#add-static-arp-table-entries" text="ARP table">}} and {{<link url="Neighbor-Discovery-ND/#add-static-ip-neighbor-table-entries" text="ND table">}}

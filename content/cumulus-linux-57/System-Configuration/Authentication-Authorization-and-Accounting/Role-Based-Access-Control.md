@@ -16,7 +16,7 @@ Custom role-based access control consists of the following elements:
 
 {{%notice note%}}
 - You can assign a maximum of 64 classes to a role.
-- You can configure a maximum of 128 command paths.
+- You can configure a maximum of 128 command paths for a class.
 - When you configure a command path, you allow or deny a specific schema path and its children. For example the command path `/qos/` allows or denies access to QoS commands, whereas the command path `/qos/egress-scheduler` allows or denies access to QoS egress scheduler commands.
 {{%/notice%}}
 

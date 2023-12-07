@@ -373,7 +373,7 @@ cumulus@leaf01:mgmt:~$ ip -4 neighbor
 ...
 ```
 
-To show table entries for a specific interface, run the `nv show interface <interface_id> neighbor` command:
+To show all table entries for a specific interface, run the `nv show interface <interface_id> neighbor` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor
@@ -390,7 +390,17 @@ ipv6
     fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router
 ```
 
-To show table entries for an interface with a specific IPv4 address, run the `nv show interface <interface_id> neighbor ipv4 <ip-address>` command:
+To show all IPv4 table entries for an interface, run the `nv sh interface <interface> neighbor ipv4` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv sh interface swp1 neighbor ipv4
+IPV4         LLADR(MAC)         State      Flag
+-----------  -----------------  ---------  ----
+10.188.52.1  00:00:5e:00:01:22  reachable
+10.188.52.2  1c:34:da:e8:1d:c8  stale
+```
+
+To show table entries for an interface with a specific IPv4 address, run the `nv show interface <interface_id> neighbor ipv4 <ip-address>` command.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor ipv4 169.254.0.1

@@ -897,6 +897,50 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
+### Force Version Setting
+
+By default, the switch sends RSTP type 2 BPDUs. You can configure the switch to send BPDU type 0 STP configuration BPDUs when you need to interoperate with other systems.
+
+{{< tabs "TabID904 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp force-protocol-version stp
+cumulus@switch:~$ nv config apply
+```
+
+To change the setting back to the default, run the `nv set bridge domain <domain> stp force-protocol-version rstp` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the bridge stanza in the `/etc/network/interfaces` file to add the `mstpctl-forcevers stp` line, then run the `ifreload -a` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto br_default
+iface br_default
+    hwaddress 08:00:27:60:36:0b
+    bridge-vlan-aware yes
+    bridge-vids 10
+    bridge-pvid 1
+    bridge-stp yes
+    bridge-mcsnoop no
+    mstpctl-forcevers stp
+    mstpctl-pvrst-mode yes
+...
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+To change the setting back to the default, change the line in the bridge stanza to `mstpctl-forcevers rstp`, then run the `ifreload -a` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Additional STP Settings
 
 The table below describes additional STP configuration parameters available in Cumulus Linux. You can set these optional parameters manually by editing the `/etc/network/interfaces` file. Cumulus Linux does not provide NVUE commands for these parameters.

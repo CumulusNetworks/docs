@@ -2,7 +2,7 @@
 title: Page Not Found
 author: NVIDIA
 weight: 1
-subsection: true
+product: 404
 bookhidden: true
 toc: 0
 pdfhidden: true

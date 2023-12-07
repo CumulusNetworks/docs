@@ -14,6 +14,15 @@ Cumulus Linux provides:
 - The *egress queue length* histogram, which provides information about egress buffer utilization over time.
 - The *ingress queue lengths* histogram, which provides information about ingress buffer utilization over time.
 - The *counter* histogram, which provides information about bandwidth utilization for a port over time.
+- Packet drops due to errors (Linux only).
+
+{{%notice note%}}
+Cumulus Linux supports:
+- The egress queue length histogram on Spectrum 1 and later.
+- The ingress queue length histogram on Spectrum-2 and later.
+- The counter histogram (transmitted packet, transmitted byte, received packet, received byte, and CRC counters) on Spectrum-2 and later.
+- The counter histogram (layer 1 received byte counters and layer 1 transmitted byte counters) on Spectrum-4 only.
+{{%/notice%}}
 
 ## Histogram Collection Example
 
@@ -62,7 +71,7 @@ To enable ASIC monitoring:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service telemetry enable
+cumulus@switch:~$ nv set service telemetry enable on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -83,20 +92,29 @@ Restarting the `asic-monitor` service does not disrupt traffic or require you to
 Histogram settings include the type of data you want to collect, the ports you want the histogram to monitor, the sampling time of the histogram, the histogram size, and the minimum boundary size for the histogram.
 - The ingress queue length histogram can monitor a specific priority group for a port or range of ports.
 - The egress queue length histogram can monitor a specific traffic class for a port or range of ports.
-- The counter histogram can monitor transmitted packets or bytes, or received packets or bytes for a port or range of ports.
+- The counter histogram can monitor the following counter types:
+    - Received packet counters (`rx-packet`)
+    - Transmitted packet counters (`tx-packet`)
+    - Received byte counters (`rx-byte`)
+    - Transmitted byte counters (`tx-byte`)
+    - CRC counters (`crc`)
+    - Layer 1 received byte counters (`l1-rx-byte`)
+    - Layer 1 transmitted byte counters (`l1-tx-byte`)
+- You can enable up to two counter histogram counter types per physical interface. The counter histogram does not support bonds or virtual interfaces.
 - The value for the minimum boundary size must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. The default minimum boundary size is 960 bytes.
 - The default value for the sampling time is 1024 nanoseconds.
+
 {{< tabs "TabID81 ">}}
 {{< tab "NVUE Commands ">}}
 
 The histogram type can be `egress-buffer`, `ingress-buffer`, or `counter`.
 
-To monitor all ports, run the nv `set service telemetry histogram <type>` command. To specify a port or range of ports, run the `nv set interface <interface> telemetry histogram <type>` command.
+To change global histogram settings, run the `nv set service telemetry histogram <type>` command. To enable histograms on interfaces or to change interface level settings, run the `nv set interface <interface> telemetry histogram <type>` command.
   
 {{< tabs "TabID93 ">}}
 {{< tab "Egress Queue Length Examples ">}}
 
-The following example configures the egress queue length histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram collects data every second for all traffic classes on all ports:
+The following example configures the egress queue length histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. These settings apply to interfaces that have the `egress-buffer` histogram enabled and do not have different values configured for these settings at the interface level:
 
 ```
 cumulus@switch:~$ nv set service telemetry histogram egress-buffer bin-min-boundary 960 
@@ -105,62 +123,56 @@ cumulus@switch:~$ nv set service telemetry histogram egress-buffer sample-interv
 cumulus@switch:~$ nv config apply
 ```
 
-The following example configures the egress queue length histogram and sets the minimum boundary to 960 bytes, the histogram size to 12288 bytes, and the sampling interval to 1024 nanoseconds. The histogram collects data every second for traffic class 0 on swp1 through swp8, and for traffic class 1 on swp9 through swp16.
+The following example enables the egress queue length histogram for traffic class 0 on swp1 through swp8 with the globally applied minimum boundary, histogram size, and sample interval. The example also enables the egress queue length histogram for traffic class 1 on swp9 through swp16 and sets the minimum boundary to 768 bytes, the histogram size to 9600 bytes, and the sampling interval to 2048 nanoseconds.
 
 ```
-cumulus@switch:~$ nv set service telemetry enable
-cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram egress-buffer traffic-class 0 bin-min-boundary 960
-cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram egress-buffer traffic-class 0 histogram-size 12288
-cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram egress-buffer traffic-class 0 sample-interval 1024
-cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram egress-buffer traffic-class 1 bin-min-boundary 960
-cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram egress-buffer traffic-class 1 histogram-size 12288
-cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram egress-buffer traffic-class 1 sample-interval 1024
+cumulus@switch:~$ nv set service telemetry enable on
+cumulus@switch:~$ nv set interface swp1-8 telemetry histogram egress-buffer traffic-class 0
+cumulus@switch:~$ nv set interface swp9-16 telemetry histogram egress-buffer traffic-class 1 bin-min-boundary 768
+cumulus@switch:~$ nv set interface swp9-16 telemetry histogram egress-buffer traffic-class 1 histogram-size 9600
+cumulus@switch:~$ nv set interface swp9-16 telemetry histogram egress-buffer traffic-class 1 sample-interval 2048
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Ingress Queue Length Examples ">}}
 
-The following example configures the ingress queue length histogram and sets the minimum boundary size to 960 bytes, the histogram size to 12288 bytes, and the sampling interval to 1024 nanoseconds. The histogram collects data every second for all priority groups on all ports.
+The following example configures the ingress queue length histogram and sets the minimum boundary size to 960 bytes, the histogram size to 12288 bytes, and the sampling interval to 1024 nanoseconds. These settings apply to interfaces that have the `ingress-buffer` histogram enabled and do not have different values configured for these settings at the interface level:
 
 ```
-cumulus@switch:~$ nv set service telemetry enable
+cumulus@switch:~$ nv set service telemetry enable on
 cumulus@switch:~$ nv set service telemetry histogram ingress-buffer bin-min-boundary 960 
 cumulus@switch:~$ nv set service telemetry histogram ingress-buffer histogram-size 12288 
 cumulus@switch:~$ nv set service telemetry histogram ingress-buffer sample-interval 1024
 cumulus@switch:~$ nv config apply
 ```
 
-The following example configures the ingress queue length histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors priority group 0 on ports 1 through 8 and priority group 1 on ports 9 through 16:
+The following example enables the ingress queue length histogram for priority group 0 on swp1 through swp8 with the globally applied minimum boundary, histogram size, and sample interval. The example also enables the ingress queue length histogram for priority group 1 on swp9 through swp16 and sets the minimum boundary to 768 bytes, the histogram size to 9600 bytes, and the sampling interval to 2048 nanoseconds.
 
 ```
-cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 bin-min-boundary 960
-cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 histogram-size 12288
-cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram ingress-buffer priority-group 0 sample-interval 1024
-cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 bin-min-boundary 960
-cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 histogram-size 12288
-cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 sample-interval 1024
+cumulus@switch:~$ nv set interface swp1-8 telemetry histogram ingress-buffer priority-group 0
+cumulus@switch:~$ nv set interface swp9-16 telemetry histogram ingress-buffer priority-group 1 bin-min-boundary 768
+cumulus@switch:~$ nv set interface swp9-16 telemetry histogram ingress-buffer priority-group 1 histogram-size 9600
+cumulus@switch:~$ nv set interface swp9-16 telemetry histogram ingress-buffer priority-group 1 sample-interval 2048
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Counter Histogram Examples ">}}
 
-The following example configures the counter histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all counter types:
+The following example configures the counter histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all counter types. These settings apply to interfaces that have the `counter` histogram enabled and do not have different values configured for these settings at the interface level:
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram counter bin-min-boundary 1000
-cumulus@switch:~$ nv set service telemetry histogram counter histogram-size 1000
-cumulus@switch:~$ nv set service telemetry histogram countersample-interval 1024
+cumulus@switch:~$ nv set service telemetry histogram counter bin-min-boundary 960
+cumulus@switch:~$ nv set service telemetry histogram counter histogram-size 12288
+cumulus@switch:~$ nv set service telemetry histogram counter sample-interval 1024
 cumulus@switch:~$ nv config apply
 ```
 
-The following example configures the counter histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all received packets on ports 1 through 8:
+The following example enables the counter histogram on swp1 through swp8 and uses the global settings for the minimum boundary size, histogram size, and the sampling interval. The histogram monitors all received packet counters on ports 1 through 8:
 
 ```
-cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet bin-min-boundary 1000
-cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet histogram-size 1000
-cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet sample-interval 1024
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet
 cumulus@switch:~$ nv config apply
 ```
 
@@ -190,7 +202,7 @@ The following table describes the ASIC monitor settings.
 {{< tabs "TabID184 ">}}
 {{< tab "Egress Queue Examples ">}}
 
-The following example configures the egress queue length histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram collects data every second for all traffic classes on all ports:
+The following example configures the egress queue length histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram collects data every second for traffic class 0 through 15 on all ports:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
@@ -237,7 +249,7 @@ monitor.histogram_gr2.histogram.sample_time_ns         = 1024
 {{< /tab >}}
 {{< tab "Ingress Queue Examples ">}}
 
-The following example configures the ingress queue length histogram and sets the minimum boundary size to 960 bytes, the histogram size to 12288 bytes, and the sampling interval to 1024 nanoseconds. The histogram collects data every second for all priority groups on all ports.
+The following example configures the ingress queue length histogram and sets the minimum boundary size to 960 bytes, the histogram size to 12288 bytes, and the sampling interval to 1024 nanoseconds. The histogram collects data every second for priority group 1 through 15 on all ports.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
@@ -319,6 +331,79 @@ monitor.histogram_pg.histogram.sample_time_ns         = 1024
 ```
 
 {{< /tab >}}
+{{< tab "Packet Drops Due to Errors Example ">}}
+
+In the following example:
+- Packet drops on swp1 through swp50 collect every two seconds.
+- If the number of packet drops is greater than 100, the results write to the `/var/lib/cumulus/discard_stats` snapshot file and the system sends a message to the `/var/log/syslog` file.
+
+```
+monitor.port_group_list                            = [discards_pg]
+monitor.discards_pg.port_set                       = swp1-swp50
+monitor.discards_pg.stat_type                      = packet
+monitor.discards_pg.action_list                    = [snapshot,log]
+monitor.discards_pg.trigger_type                   = timer
+monitor.discards_pg.timer                          = 2s
+monitor.discards_pg.log.packet_error_drops         = 100
+monitor.discards_pg.snapshot.packet_error_drops    = 100
+monitor.discards_pg.snapshot.file                  = /var/lib/cumulus/discard_stats
+monitor.discards_pg.snapshot.file_count            = 16
+```
+
+{{< /tab >}}
+{{< tab "Collect Actions ">}}
+
+A collect action triggers the collection of additional information. You can daisy chain multiple monitors (port groups) into a single collect action.
+
+In the following example:
+- Queue length histograms collect for swp1 through swp50 every second.
+- The results write to the `/var/lib/cumulus/histogram_stats` snapshot file.
+- When the queue length reaches 500 bytes, the system sends a message to the /var/log/syslog file and collects additional data; buffer occupancy and all packets per port.
+- Buffer occupancy data writes to the `/var/lib/cumulus/buffer_stats` snapshot file and all packets per port data writes to the `/var/lib/cumulus/all_packet_stats` snapshot file.
+- In addition, packet drops on swp1 through swp50 collect every two seconds. If the number of packet drops is greater than 100, the monitor writes the results to the `/var/lib/cumulus/discard_stats` snapshot file and sends a message to the `/var/log/syslog` file.
+
+```
+monitor.port_group_list                               = [histogram_pg,discards_pg]
+
+monitor.histogram_pg.port_set                         = swp1-swp50
+monitor.histogram_pg.stat_type                        = buffer
+monitor.histogram_pg.cos_list                         = [0]
+monitor.histogram_pg.trigger_type                     = timer
+monitor.histogram_pg.timer                            = 1s
+monitor.histogram_pg.action_list                      = [snapshot,collect,log]
+monitor.histogram_pg.snapshot.file                    = /var/lib/cumulus/histogram_stats
+monitor.histogram_pg.snapshot.file_count              = 64
+monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
+monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
+monitor.histogram_pg.histogram.sample_time_ns         = 1024
+monitor.histogram_pg.log.queue_bytes                  = 500
+monitor.histogram_pg.collect.queue_bytes              = 500
+monitor.histogram_pg.collect.port_group_list          = [buffers_pg,all_packet_pg]
+
+monitor.buffers_pg.port_set                           = swp1-swp50
+monitor.buffers_pg.stat_type                          = buffer
+monitor.buffers_pg.action_list                        = [snapshot]
+monitor.buffers_pg.snapshot.file                      = /var/lib/cumulus/buffer_stats
+monitor.buffers_pg.snapshot.file_count                = 8
+
+monitor.all_packet_pg.port_set                        = swp1-swp50
+monitor.all_packet_pg.stat_type                       = packet_all
+monitor.all_packet_pg.action_list                     = [snapshot]
+monitor.all_packet_pg.snapshot.file                   = /var/lib/cumulus/all_packet_stats
+monitor.all_packet_pg.snapshot.file_count             = 8
+
+monitor.discards_pg.port_set                          = swp1-swp50
+monitor.discards_pg.stat_type                         = packet
+monitor.discards_pg.action_list                       = [snapshot,log]
+monitor.discards_pg.trigger_type                      = timer
+monitor.discards_pg.timer                             = 2s
+monitor.discards_pg.log.packet_error_drops            = 100
+monitor.discards_pg.snapshot.packet_error_drops       = 100
+monitor.discards_pg.snapshot.file                     = /var/lib/cumulus/discard_stats
+monitor.discards_pg.snapshot.file_count               = 16
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 {{< /tab >}}
@@ -332,7 +417,7 @@ To create a snapshot:
 - Configure the number of snapshots you can create before the first snapshot file is overwritten. For example, if you set the snapshot file count to 30, the first snapshot file is named `histogram_stats_0` and the 30th snapshot is named`histogram_stats_30`. When the 30th snapshot is taken, the original snapshot file (`histogram_stats_0`) is overwritten and the sequence restarts. The default value is 64.
 
 {{%notice note%}}
-While more snapshots provide you with more data, they can occupy a lot of disk space on the switch.
+Snapshots provide you with more data; however, they can occupy a lot of disk space on the switch.
 {{%/notice%}}
 
 The following example creates the `/var/lib/cumulus/histogram_stats` snapshot every 5 seconds. The number of snapshots that you can create before the first snapshot file is overwritten is set to 30.
@@ -423,7 +508,8 @@ The following example sends a message to the `/var/log/syslog` file after the in
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 log threshold 5000
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 threshold action log
+cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 threshold value 5000
 cumulus@switch:~$ nv config apply
 ```
 

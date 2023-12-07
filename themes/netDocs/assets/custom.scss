@@ -1487,7 +1487,7 @@ div.notices.info {
 
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
       text-decoration-color: black;
       text-decoration-thickness: 2px;
     }
@@ -1531,7 +1531,7 @@ div.notices.warning {
     /* color: #f1446f; */
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
       text-decoration-color: black;
       text-decoration-thickness: 2px;
     }
@@ -1579,7 +1579,7 @@ div.notices.note {
     /* color: #6ab0de; */
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
       text-decoration-color: black;
       text-decoration-thickness: 2px;
     }
@@ -1624,7 +1624,7 @@ div.notices.tip {
     /* color: #6ab0de; */
 
     &:hover {
-      text-decoration: underline;
+      text-decoration: none;
       text-decoration-color: black;
       text-decoration-thickness: 2px;
     }

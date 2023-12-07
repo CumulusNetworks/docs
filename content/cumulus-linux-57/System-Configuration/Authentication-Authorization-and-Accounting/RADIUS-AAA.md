@@ -8,7 +8,11 @@ Various add-on packages enable [RADIUS](## "Remote Authentication Dial-In User S
 
 ## Install the RADIUS Packages
 
-The RADIUS packages are in the `cumulus-local-apt-archive` repository, which is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux image. You can install the packages even when the switch is not connected to the internet.
+{{%notice note%}}
+NVUE automatically installs the RADIUS AAA packages; you do **not** have to install the packages if you use NVUE commands to configure RADIUS AAA.
+{{%/notice%}}
+
+If you use Linux commands to configure RADIUS AAA, you must install the RADIUS packages `libnss-mapuser` and `libpam-radius-auth` before you start configuration. The packages are in the `cumulus-local-apt-archive` repository, which is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux image. You can install the packages even when the switch is not connected to the internet.
 
 To install the RADIUS packages:
 

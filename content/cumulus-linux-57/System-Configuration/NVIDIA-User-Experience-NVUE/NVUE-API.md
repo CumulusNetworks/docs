@@ -216,7 +216,7 @@ NVUE follows a declarative model, removing context-specific commands and setting
 Cumulus Linux enables the NVUE REST API by default. To disable the NVUE REST API, run the `nv set system api state disabled` command.
 
 {{%notice note%}}
-To use the NVUE REST API in Cumulus Linux 5.6, you must {{<link url="/User-Accounts" text="change the password for the cumulus user">}}; otherwise you see 403 responses when you run commands.
+To use the NVUE REST API in Cumulus Linux 5.6 and later, you must {{<link url="/User-Accounts" text="change the password for the cumulus user">}}; otherwise you see 403 responses when you run commands.
 {{%/notice%}}
 
 ### API Port and Listening Address

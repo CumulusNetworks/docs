@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3695541</td>
+<td>When applying a full configuration with NVUE that includes VRRP and BGP in VRFs, the VRRP configuration does not come up after you run {{nv config apply}}.  BGP routes might also be missing.  This issue only happens during the initial {{nv config apply}} of a full configuration, not during a normal initialization during a reboot or FRR restart. To work around this issue, reboot or restart FRR.</td>
+<td>5.5.1</td>
+<td>5.6.0</td>
+</tr>
+<tr>
+<td>3668939</td>
+<td>When you enable MIB 1.3.6.1.4.1.40310.1 in the {{snmpd.conf}} file, you might see high CPU usage by the {{snmpd}} service.</td>
+<td>5.5.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3663182</td>
 <td>Changing non-default BGP timers with NCLU or vtysh commands sets the hold time and keep alive interval to 0 seconds. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.3.1-5.6.0</td>
@@ -185,6 +197,13 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>For layer 3 VNIs, Cumulus Linux automatically creates an SVI name that includes an underscore (for example, {{vlan4036_l3}}), which is not allowed in SVI names. As a result, commands such as {{nv show interface}} for the SVI show an error. The underscore (_) character is now allowed in SVI names.</td>
 <td>5.5.0-5.5.1</td>
 <td>5.6.0</td>
+</tr>
+<tr>
+<td>3522524</td>
+<td>FRR does not allow eBGP multi hop configuration on unnumbered BGP neighbors. 
+</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3520511</td>
@@ -953,6 +972,13 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>For layer 3 VNIs, Cumulus Linux automatically creates an SVI name that includes an underscore (for example, {{vlan4036_l3}}), which is not allowed in SVI names. As a result, commands such as {{nv show interface}} for the SVI show an error. The underscore (_) character is now allowed in SVI names.</td>
 <td>5.5.0-5.5.1</td>
 <td>5.6.0</td>
+</tr>
+<tr>
+<td>3522524</td>
+<td>FRR does not allow eBGP multi hop configuration on unnumbered BGP neighbors. 
+</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3517376</td>

@@ -72,34 +72,377 @@ nv set/unset router bgp wait-for-install
 
 {{< expand "New NVUE Commands" >}}
 
-For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) fCumulus Linux.
+For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 
 {{< tabs "TabID40 ">}}
 {{< tab "nv show ">}}
 
 ```
-nv show
+nv show acl <acl-id> rule <rule-id> action dest-nat
+nv show acl <acl-id> rule <rule-id> action dest-nat translate-ip
+nv show acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id>
+nv show acl <acl-id> rule <rule-id> action dest-nat translate-port
+nv show acl <acl-id> rule <rule-id> action dest-nat translate-port <translate-port-id>
+nv show acl <acl-id> rule <rule-id> action source-nat
+nv show acl <acl-id> rule <rule-id> action source-nat translate-ip
+nv show acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id>
+nv show acl <acl-id> rule <rule-id> action source-nat translate-port
+nv show acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
+nv show acl <acl-id> rule <rule-id> match mac
+nv show bridge vlan-vni-map
+nv show bridge domain <domain-id> vlan-vni-map
+nv show interface <interface-id> dot1x
+nv show interface <interface-id> dot1x authenticated-sessions
+nv show interface <interface-id> dot1x authenticated-sessions <mac-address-id>
+nv show interface <interface-id> dot1x authenticated-sessions <mac-address-id> counters
+nv show interface <interface-id> link flap-protection
+nv show interface <interface-id> neighbor
+nv show interface <interface-id> neighbor ipv4
+nv show interface <interface-id> neighbor ipv4 <neighbor-id>
+nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr
+nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr <lladdr-id>
+nv show interface <interface-id> neighbor ipv6
+nv show interface <interface-id> neighbor ipv6 <neighbor-id>
+nv show interface <interface-id> neighbor ipv6 <neighbor-id> lladdr
+nv show interface <interface-id> neighbor ipv6 <neighbor-id> lladdr <lladdr-id>
+nv show interface <interface-id> port-security
+nv show interface <interface-id> port-security static-mac
+nv show interface <interface-id> port-security mac-addresses
+nv show interface <interface-id> telemetry
+nv show interface <interface-id> telemetry histogram
+nv show interface <interface-id> telemetry histogram ingress-buffer
+nv show interface <interface-id> telemetry histogram ingress-buffer priority-group
+nv show interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id>
+nv show interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold
+nv show interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> snapshot
+nv show interface <interface-id> telemetry histogram egress-buffer
+nv show interface <interface-id> telemetry histogram egress-buffer traffic-class
+nv show interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id>
+nv show interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold
+nv show interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> snapshot
+nv show interface <interface-id> telemetry histogram counter
+nv show interface <interface-id> telemetry histogram counter counter-type
+nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id>
+nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold
+nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> snapshot
+nv show interface <interface-id> telemetry bw-gauge
+nv show interface neighbor
+nv show platform pulse-per-second
+nv show platform pulse-per-second in
+nv show platform pulse-per-second out
+nv show service telemetry
+nv show service telemetry histogram
+nv show service telemetry histogram ingress-buffer
+nv show service telemetry histogram egress-buffer
+nv show service telemetry histogram counter
+nv show service telemetry histogram interface
+nv show service telemetry bw-gauge
+nv show service telemetry bw-gauge interface
+nv show service telemetry snapshot-file
+nv show system aaa class
+nv show system aaa class <class-id>
+nv show system aaa class <class-id> command-path
+nv show system aaa class <class-id> command-path <command-path-id>
+nv show system aaa radius
+nv show system aaa radius server
+nv show system aaa radius server <hostname-id>
+nv show system aaa role
+nv show system aaa role <role-id>
+nv show system aaa role <role-id> class
+nv show system aaa role <role-id> class <class-id>
+nv show system dot1x
+nv show system dot1x radius
+nv show system dot1x radius server
+nv show system dot1x radius server <server-id>
+nv show system maintenance
+nv show system link flap-protection
+nv show system security ca-certificate
+nv show system security ca-certificate <cert-id>
+nv show system security ca-certificate <cert-id> dump
+nv show system security certificate
+nv show system security certificate <cert-id>
+nv show system security certificate <cert-id> installed
+nv show system security certificate <cert-id> dump
 ```
 
 {{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
-nv set
+nv set acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id>
+nv set acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id> to <ipv4>
+nv set acl <acl-id> rule <rule-id> action dest-nat translate-port <translate-port-id>
+nv set acl <acl-id> rule <rule-id> action dest-nat translate-mac <mac>
+nv set acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id>
+nv set acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id> to <ipv4>
+nv set acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
+nv set acl <acl-id> rule <rule-id> action source-nat translate-mac <mac>
+nv set acl <acl-id> rule <rule-id> match mac source-mac (ANY|bpdu|cdp|cisco-pvst|lacp|lldp|<mac>)
+nv set acl <acl-id> rule <rule-id> match mac source-mac-mask <mac>
+nv set acl <acl-id> rule <rule-id> match mac dest-mac (ANY|bpdu|cdp|cisco-pvst|lacp|lldp|<mac>)
+nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask <mac>
+nv set acl <acl-id> rule <rule-id> match mac protocol (ANY|arp|ipv4|ipv6)
+nv set interface <interface-id> dot1x eap (enabled|disabled)
+nv set interface <interface-id> dot1x mba (enabled|disabled)
+nv set interface <interface-id> dot1x auth-fail-vlan (enabled|disabled)
+nv set interface <interface-id> link flap-protection enable (on|off)
+nv set interface <interface-id> neighbor <address> lladdr <address>
+nv set interface <interface-id> neighbor <address> lladdr <address> state permanent
+nv set interface <interface-id> neighbor <address> lladdr <address> flag is-router
+nv set interface <interface-id> port-security static-mac
+nv set interface <interface-id> port-security enable (on|off)
+nv set interface <interface-id> port-security mac-limit 1-512
+nv set interface <interface-id> port-security sticky-mac (enabled|disabled)
+nv set interface <interface-id> port-security sticky-timeout 0-3600
+nv set interface <interface-id> port-security sticky-ageing (enabled|disabled)
+nv set interface <interface-id> port-security violation-mode (protodown|restrict)
+nv set interface <interface-id> port-security violation-timeout 1-60
+nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id>
+nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold action log
+nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold value 96-4294967295
+nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> bin-min-boundary 96-4294967295
+nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> histogram-size 96-4294967295
+nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> sample-interval 128-1000000000
+nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id>
+nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold action log
+nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold value 96-4294967295
+nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> bin-min-boundary 96-4294967295
+nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> histogram-size 96-4294967295
+nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> sample-interval 128-1000000000
+nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id>
+nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold action log
+nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold value 1-4294967295
+nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> bin-min-boundary 1-4294967295
+nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> histogram-size 1-4294967295
+nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> sample-interval 128-1000000000
+nv set interface <interface-id> telemetry bw-gauge enable (on|off)
+nv set platform pulse-per-second in state
+nv set platform pulse-per-second in channel-index
+nv set platform pulse-per-second in pin-index
+nv set platform pulse-per-second in signal-width
+nv set platform pulse-per-second in timestamp-correction
+nv set platform pulse-per-second in logging-level warning
+nv set platform pulse-per-second in signal-polarity falling-edge
+nv set platform pulse-per-second out channel-index
+nv set platform pulse-per-second out signal-width
+nv set platform pulse-per-second out phase-adjustment
+nv set platform pulse-per-second out frequency-adjustment
+nv set router bgp queue-limit input-queue
+nv set router bgp queue-limit output-queue
+nv set service telemetry histogram ingress-buffer bin-min-boundary
+nv set service telemetry histogram ingress-buffer histogram-size
+nv set service telemetry histogram ingress-buffer sample-interval
+nv set service telemetry histogram egress-buffer bin-min-boundary
+nv set service telemetry histogram egress-buffer histogram-size
+nv set service telemetry histogram egress-buffer sample-interval
+nv set service telemetry histogram counter bin-min-boundary
+nv set service telemetry histogram counter histogram-size
+nv set service telemetry histogram counter sample-interval
+nv set service telemetry snapshot-file name <value>
+nv set service telemetry snapshot-file count
+nv set service telemetry enable (on|off)
+nv set service telemetry snapshot-interval
+nv set system aaa class <class-id>
+nv set system aaa class <class-id> command-path <command-path-id>
+nv set system aaa class <class-id> command-path <command-path-id> permission (ro|rw|act|all)
+nv set system aaa class <class-id> action (allow|deny)
+nv set system aaa radius server <hostname-id>
+nv set system aaa radius server <hostname-id> port
+nv set system aaa radius server <hostname-id> timeout
+nv set system aaa radius server <hostname-id> secret <value>
+nv set system aaa radius server <hostname-id> priority
+nv set system aaa radius server <hostname-id> source-ip (<ipv4>|<ipv6>)
+nv set system aaa radius enable (on|off)
+nv set system aaa radius vrf <vrf-name>
+nv set system aaa radius debug (enabled|disabled)
+nv set system aaa radius privilege-level
+nv set system aaa radius retransmit
+nv set system aaa radius port
+nv set system aaa radius timeout 1-60
+nv set system aaa radius source-ipv4 <ipv4>
+nv set system aaa radius source-ipv6 <ipv6>
+nv set system aaa authentication-order <priority-id> (tacacs|radius|local)
+nv set system aaa role <role-id>
+nv set system aaa role <role-id> class <class-id>
+nv set system api certificate
+nv set system dot1x radius server <server-id>
+nv set system dot1x radius server <server-id> priority
+nv set system dot1x radius server <server-id> vrf <value>
+nv set system dot1x radius server <server-id> accounting-port
+nv set system dot1x radius server <server-id> authentication-port
+nv set system dot1x radius server <server-id> shared-secret <value>
+nv set system dot1x radius client-src-ip <ipv4>
+nv set system dot1x reauthentication-interval
+nv set system dot1x dynamic-vlan
+nv set system dot1x auth-fail-vlan
+nv set system dot1x max-stations
+nv set system link flap-protection threshold
+nv set system link flap-protection interval
 ```
 
 {{< /tab >}}
 {{< tab "nv unset ">}}
 
-``
-nv unset
+```
+nv unset acl <acl-id> rule <rule-id> action dest-nat
+nv unset acl <acl-id> rule <rule-id> action dest-nat translate-ip
+nv unset acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id>
+nv unset acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id> to
+nv unset acl <acl-id> rule <rule-id> action dest-nat translate-port
+nv unset acl <acl-id> rule <rule-id> action dest-nat translate-port <translate-port-id>
+nv unset acl <acl-id> rule <rule-id> action dest-nat translate-mac
+nv unset acl <acl-id> rule <rule-id> action source-nat
+nv unset acl <acl-id> rule <rule-id> action source-nat translate-ip
+nv unset acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id>
+nv unset acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id> to
+nv unset acl <acl-id> rule <rule-id> action source-nat translate-port
+nv unset acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
+nv unset acl <acl-id> rule <rule-id> action source-nat translate-mac
+nv unset acl <acl-id> rule <rule-id> match mac
+nv unset acl <acl-id> rule <rule-id> match mac source-mac
+nv unset acl <acl-id> rule <rule-id> match mac source-mac-mask
+nv unset acl <acl-id> rule <rule-id> match mac dest-mac
+nv unset acl <acl-id> rule <rule-id> match mac dest-mac-mask
+nv unset acl <acl-id> rule <rule-id> match mac protocol
+nv unset interface <interface-id> dot1x
+nv unset interface <interface-id> dot1x eap
+nv unset interface <interface-id> dot1x mba
+nv unset interface <interface-id> dot1x auth-fail-vlan
+nv unset interface <interface-id> link flap-protection
+nv unset interface <interface-id> link flap-protection enable
+nv unset interface <interface-id> neighbor <address> lladdr <address>
+nv unset interface <interface-id> neighbor <address> lladdr <address> state permanent
+nv unset interface <interface-id> neighbor <address> lladdr <address> flag is-router
+nv unset interface <interface-id> port-security
+nv unset interface <interface-id> port-security static-mac
+nv unset interface <interface-id> port-security enable
+nv unset interface <interface-id> port-security mac-limit
+nv unset interface <interface-id> port-security sticky-mac
+nv unset interface <interface-id> port-security sticky-timeout
+nv unset interface <interface-id> port-security sticky-ageing
+nv unset interface <interface-id> port-security violation-mode
+nv unset interface <interface-id> port-security violation-timeout
+nv unset interface <interface-id> telemetry
+nv unset interface <interface-id> telemetry histogram
+nv unset interface <interface-id> telemetry histogram ingress-buffer
+nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group
+nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id>
+nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold
+nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold action
+nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold value
+nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> bin-min-boundary
+nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> histogram-size
+nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> sample-interval
+nv unset interface <interface-id> telemetry histogram egress-buffer
+nv unset interface <interface-id> telemetry histogram egress-buffer traffic-class
+nv unset interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id>
+nv unset interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold
+nv unset interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold action
+nv unset interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold value
+nv unset interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> bin-min-boundary
+nv unset interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> histogram-size
+nv unset interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> sample-interval
+nv unset interface <interface-id> telemetry histogram counter
+nv unset interface <interface-id> telemetry histogram counter counter-type
+nv unset interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id>
+nv unset interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold
+nv unset interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold action
+nv unset interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold value
+nv unset interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> bin-min-boundary
+nv unset interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> histogram-size
+nv unset interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> sample-interval
+nv unset interface <interface-id> telemetry bw-gauge
+nv unset interface <interface-id> telemetry bw-gauge enable
+nv unset router bgp queue-limit input-queue
+nv unset router bgp queue-limit output-queue
+nv unset platform pulse-per-second in state
+nv unset platform pulse-per-second in channel-index
+nv unset platform pulse-per-second in pin-index
+nv unset platform pulse-per-second in signal-width
+nv unset platform pulse-per-second in timestamp-correction
+nv unset platform pulse-per-second in logging-level warning
+nv unset platform pulse-per-second in signal-polarity falling-edge
+nv unset platform pulse-per-second out channel-index
+nv unset platform pulse-per-second out signal-width
+nv unset platform pulse-per-second out phase-adjustment
+nv unset platform pulse-per-second out frequency-adjustment
+nv unset service telemetry
+nv unset service telemetry histogram
+nv unset service telemetry histogram ingress-buffer
+nv unset service telemetry histogram ingress-buffer bin-min-boundary
+nv unset service telemetry histogram ingress-buffer histogram-size
+nv unset service telemetry histogram ingress-buffer sample-interval
+nv unset service telemetry histogram egress-buffer
+nv unset service telemetry histogram egress-buffer bin-min-boundary
+nv unset service telemetry histogram egress-buffer histogram-size
+nv unset service telemetry histogram egress-buffer sample-interval
+nv unset service telemetry histogram counter
+nv unset service telemetry histogram counter bin-min-boundary
+nv unset service telemetry histogram counter histogram-size
+nv unset service telemetry histogram counter sample-interval
+nv unset service telemetry snapshot-file
+nv unset service telemetry snapshot-file name
+nv unset service telemetry snapshot-file count
+nv unset service telemetry enable
+nv unset service telemetry snapshot-interval
+nv unset system aaa class
+nv unset system aaa class <class-id>
+nv unset system aaa class <class-id> command-path
+nv unset system aaa class <class-id> command-path <command-path-id>
+nv unset system aaa class <class-id> command-path <command-path-id> permission
+nv unset system aaa class <class-id> action
+nv unset system aaa radius
+nv unset system aaa radius server
+nv unset system aaa radius server <hostname-id>
+nv unset system aaa radius server <hostname-id> port
+nv unset system aaa radius server <hostname-id> timeout
+nv unset system aaa radius server <hostname-id> secret
+nv unset system aaa radius server <hostname-id> priority
+nv unset system aaa radius server <hostname-id> source-ip
+nv unset system aaa radius enable
+nv unset system aaa radius vrf
+nv unset system aaa radius debug
+nv unset system aaa radius privilege-level
+nv unset system aaa radius retransmit
+nv unset system aaa radius port
+nv unset system aaa radius timeout
+nv unset system aaa radius source-ipv4
+nv unset system aaa radius source-ipv6
+nv unset system aaa role
+nv unset system aaa role <role-id>
+nv unset system aaa role <role-id> class
+nv unset system aaa role <role-id> class <class-id>
+nv unset system api certificate
+nv unset system dot1x
+nv unset system dot1x radius
+nv unset system dot1x radius server
+nv unset system dot1x radius server <server-id>
+nv unset system dot1x radius server <server-id> priority
+nv unset system dot1x radius server <server-id> vrf
+nv unset system dot1x radius server <server-id> accounting-port
+nv unset system dot1x radius server <server-id> authentication-port
+nv unset system dot1x radius server <server-id> shared-secret
+nv unset system dot1x radius client-src-ip
+nv unset system dot1x reauthentication-interval
+nv unset system dot1x dynamic-vlan
+nv unset system dot1x auth-fail-vlan
+nv unset system dot1x max-stations
+nv unset system link flap-protection
+nv unset system link flap-protection threshold
+nv unset system link flap-protection interval
 ```
 
 {{< /tab >}}
 {{< tab "nv action ">}}
 
 ```
-nv action
+nv action change system date-time
+nv action delete system security ca-certificate <cert-id>
+nv action delete system security certificate <cert-id>
+nv action disable system maintenance (mode|ports)
+nv action enable system maintenance (mode|ports)
+nv action import system security ca-certificate <cert-id> [uri <value>] [data <value>]
+nv action import system security certificate <cert-id> [uri-bundle <value>] [uri-public-key <value>] [uri-private-key <value>] [data <value>] [passphrase <value>]
 ```
 
 {{< /tab >}}

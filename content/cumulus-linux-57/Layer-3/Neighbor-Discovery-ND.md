@@ -597,7 +597,7 @@ lladdr
 
 ## Troubleshooting
 
-To show the ND configurationsettings for an interface, run the NVUE `nv show interface <interface-id> ip neighbor-discovery` command:
+To show the ND configuration settings for an interface, run the NVUE `nv show interface <interface-id> ip neighbor-discovery` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery

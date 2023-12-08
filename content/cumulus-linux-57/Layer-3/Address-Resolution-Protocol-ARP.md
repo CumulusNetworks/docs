@@ -393,7 +393,7 @@ ipv6
 To show all IPv4 table entries for an interface, run the `nv sh interface <interface> neighbor ipv4` command:
 
 ```
-cumulus@leaf01:mgmt:~$ nv sh interface swp1 neighbor ipv4
+cumulus@leaf01:mgmt:~$ nv show interface swp1 neighbor ipv4
 IPV4         LLADR(MAC)         State      Flag
 -----------  -----------------  ---------  ----
 10.188.52.1  00:00:5e:00:01:22  reachable

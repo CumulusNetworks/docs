@@ -169,53 +169,53 @@ nv show system security certificate <cert-id> dump
 {{< tab "nv set ">}}
 
 ```
-nv set acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id>
-nv set acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id> to <ipv4>
-nv set acl <acl-id> rule <rule-id> action dest-nat translate-port <translate-port-id>
-nv set acl <acl-id> rule <rule-id> action dest-nat translate-mac <mac>
-nv set acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id>
-nv set acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id> to <ipv4>
-nv set acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
-nv set acl <acl-id> rule <rule-id> action source-nat translate-mac <mac>
-nv set acl <acl-id> rule <rule-id> match mac source-mac (ANY|bpdu|cdp|cisco-pvst|lacp|lldp|<mac>)
-nv set acl <acl-id> rule <rule-id> match mac source-mac-mask <mac>
-nv set acl <acl-id> rule <rule-id> match mac dest-mac (ANY|bpdu|cdp|cisco-pvst|lacp|lldp|<mac>)
-nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask <mac>
-nv set acl <acl-id> rule <rule-id> match mac protocol (ANY|arp|ipv4|ipv6)
-nv set interface <interface-id> dot1x eap (enabled|disabled)
-nv set interface <interface-id> dot1x mba (enabled|disabled)
-nv set interface <interface-id> dot1x auth-fail-vlan (enabled|disabled)
-nv set interface <interface-id> link flap-protection enable (on|off)
-nv set interface <interface-id> neighbor <address> lladdr <address>
+nv set acl <acl-id> rule <rule-id> action dest-nat translate-ip
+nv set acl <acl-id> rule <rule-id> action dest-nat translate-ip
+nv set acl <acl-id> rule <rule-id> action dest-nat translate-port
+nv set acl <acl-id> rule <rule-id> action dest-nat translate-mac
+nv set acl <acl-id> rule <rule-id> action source-nat translate-ip
+nv set acl <acl-id> rule <rule-id> action source-nat translate-ip
+nv set acl <acl-id> rule <rule-id> action source-nat translate-port
+nv set acl <acl-id> rule <rule-id> action source-nat translate-mac
+nv set acl <acl-id> rule <rule-id> match mac source-mac
+nv set acl <acl-id> rule <rule-id> match mac source-mac-mask
+nv set acl <acl-id> rule <rule-id> match mac dest-mac
+nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask
+nv set acl <acl-id> rule <rule-id> match mac protocol
+nv set interface <interface-id> dot1x eap
+nv set interface <interface-id> dot1x mba
+nv set interface <interface-id> dot1x auth-fail-vlan
+nv set interface <interface-id> link flap-protection enable
+nv set interface <interface-id> neighbor <address> lladdr
 nv set interface <interface-id> neighbor <address> lladdr <address> state permanent
 nv set interface <interface-id> neighbor <address> lladdr <address> flag is-router
 nv set interface <interface-id> port-security static-mac
-nv set interface <interface-id> port-security enable (on|off)
-nv set interface <interface-id> port-security mac-limit 1-512
-nv set interface <interface-id> port-security sticky-mac (enabled|disabled)
-nv set interface <interface-id> port-security sticky-timeout 0-3600
-nv set interface <interface-id> port-security sticky-ageing (enabled|disabled)
-nv set interface <interface-id> port-security violation-mode (protodown|restrict)
-nv set interface <interface-id> port-security violation-timeout 1-60
-nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id>
+nv set interface <interface-id> port-security enable
+nv set interface <interface-id> port-security mac-limit
+nv set interface <interface-id> port-security sticky-mac
+nv set interface <interface-id> port-security sticky-timeout
+nv set interface <interface-id> port-security sticky-ageing
+nv set interface <interface-id> port-security violation-mode
+nv set interface <interface-id> port-security violation-timeout
+nv set interface <interface-id> telemetry histogram ingress-buffer priority-group
 nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold action log
-nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold value 96-4294967295
-nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> bin-min-boundary 96-4294967295
-nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> histogram-size 96-4294967295
-nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> sample-interval 128-1000000000
-nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id>
+nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold value
+nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> bin-min-boundary
+nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> histogram-size
+nv set interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> sample-interval
+nv set interface <interface-id> telemetry histogram egress-buffer traffic-class
 nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold action log
-nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold value 96-4294967295
-nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> bin-min-boundary 96-4294967295
-nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> histogram-size 96-4294967295
-nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> sample-interval 128-1000000000
+nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold value
+nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> bin-min-boundary
+nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> histogram-size
+nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> sample-interval
 nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id>
 nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold action log
-nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold value 1-4294967295
-nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> bin-min-boundary 1-4294967295
-nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> histogram-size 1-4294967295
-nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> sample-interval 128-1000000000
-nv set interface <interface-id> telemetry bw-gauge enable (on|off)
+nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold value
+nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> bin-min-boundary
+nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> histogram-size
+nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> sample-interval
+nv set interface <interface-id> telemetry bw-gauge enable
 nv set platform pulse-per-second in state
 nv set platform pulse-per-second in channel-index
 nv set platform pulse-per-second in pin-index
@@ -243,35 +243,35 @@ nv set service telemetry snapshot-file count
 nv set service telemetry enable (on|off)
 nv set service telemetry snapshot-interval
 nv set system aaa class <class-id>
-nv set system aaa class <class-id> command-path <command-path-id>
-nv set system aaa class <class-id> command-path <command-path-id> permission (ro|rw|act|all)
-nv set system aaa class <class-id> action (allow|deny)
+nv set system aaa class <class-id> command-path
+nv set system aaa class <class-id> command-path <command-path-id> permission
+nv set system aaa class <class-id> action
 nv set system aaa radius server <hostname-id>
 nv set system aaa radius server <hostname-id> port
 nv set system aaa radius server <hostname-id> timeout
-nv set system aaa radius server <hostname-id> secret <value>
+nv set system aaa radius server <hostname-id> secret
 nv set system aaa radius server <hostname-id> priority
-nv set system aaa radius server <hostname-id> source-ip (<ipv4>|<ipv6>)
-nv set system aaa radius enable (on|off)
+nv set system aaa radius server <hostname-id> source-ip
+nv set system aaa radius enable
 nv set system aaa radius vrf <vrf-name>
-nv set system aaa radius debug (enabled|disabled)
+nv set system aaa radius debug
 nv set system aaa radius privilege-level
 nv set system aaa radius retransmit
 nv set system aaa radius port
 nv set system aaa radius timeout 1-60
-nv set system aaa radius source-ipv4 <ipv4>
-nv set system aaa radius source-ipv6 <ipv6>
-nv set system aaa authentication-order <priority-id> (tacacs|radius|local)
+nv set system aaa radius source-ipv4
+nv set system aaa radius source-ipv6
+nv set system aaa authentication-order <priority-id>
 nv set system aaa role <role-id>
 nv set system aaa role <role-id> class <class-id>
 nv set system api certificate
 nv set system dot1x radius server <server-id>
 nv set system dot1x radius server <server-id> priority
-nv set system dot1x radius server <server-id> vrf <value>
+nv set system dot1x radius server <server-id> vrf
 nv set system dot1x radius server <server-id> accounting-port
 nv set system dot1x radius server <server-id> authentication-port
-nv set system dot1x radius server <server-id> shared-secret <value>
-nv set system dot1x radius client-src-ip <ipv4>
+nv set system dot1x radius server <server-id> shared-secret
+nv set system dot1x radius client-src-ip
 nv set system dot1x reauthentication-interval
 nv set system dot1x dynamic-vlan
 nv set system dot1x auth-fail-vlan
@@ -441,8 +441,8 @@ nv action delete system security ca-certificate <cert-id>
 nv action delete system security certificate <cert-id>
 nv action disable system maintenance (mode|ports)
 nv action enable system maintenance (mode|ports)
-nv action import system security ca-certificate <cert-id> [uri <value>] [data <value>]
-nv action import system security certificate <cert-id> [uri-bundle <value>] [uri-public-key <value>] [uri-private-key <value>] [data <value>] [passphrase <value>]
+nv action import system security ca-certificate <cert-id>
+nv action import system security certificate <cert-id>
 ```
 
 {{< /tab >}}

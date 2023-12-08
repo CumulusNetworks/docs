@@ -221,12 +221,13 @@ nv set platform pulse-per-second in channel-index
 nv set platform pulse-per-second in pin-index
 nv set platform pulse-per-second in signal-width
 nv set platform pulse-per-second in timestamp-correction
-nv set platform pulse-per-second in logging-level warning
-nv set platform pulse-per-second in signal-polarity falling-edge
+nv set platform pulse-per-second in logging-level 
+nv set platform pulse-per-second in signal-polarity
 nv set platform pulse-per-second out channel-index
 nv set platform pulse-per-second out signal-width
 nv set platform pulse-per-second out phase-adjustment
 nv set platform pulse-per-second out frequency-adjustment
+nv set platform pulse-per-second out state
 nv set router bgp queue-limit input-queue
 nv set router bgp queue-limit output-queue
 nv set service telemetry histogram ingress-buffer bin-min-boundary
@@ -360,12 +361,13 @@ nv unset platform pulse-per-second in channel-index
 nv unset platform pulse-per-second in pin-index
 nv unset platform pulse-per-second in signal-width
 nv unset platform pulse-per-second in timestamp-correction
-nv unset platform pulse-per-second in logging-level warning
-nv unset platform pulse-per-second in signal-polarity falling-edge
+nv unset platform pulse-per-second in logging-level
+nv unset platform pulse-per-second in signal-polarity
 nv unset platform pulse-per-second out channel-index
 nv unset platform pulse-per-second out signal-width
 nv unset platform pulse-per-second out phase-adjustment
 nv unset platform pulse-per-second out frequency-adjustment
+nv unset platform pulse-per-second out state
 nv unset service telemetry
 nv unset service telemetry histogram
 nv unset service telemetry histogram ingress-buffer

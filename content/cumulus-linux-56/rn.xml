@@ -297,7 +297,7 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 </tr>
 <tr>
 <td>3463827</td>
-<td>Rarely, SPT switchover may not happen cleanly in PIM, resulting in some dropped packets. In the scenario where PIM-SM is used to replicate EVPN BUM traffic, there could be brief drop of multicast traffic before it recovers due to normal PIM-SM traffic timeout.</td>
+<td>On rare occasions, SPT switchover might not happen cleanly in PIM, resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
 <td>5.6.0</td>
 <td></td>
 </tr>

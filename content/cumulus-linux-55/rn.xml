@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3695541</td>
+<td>When applying a full configuration with NVUE that includes VRRP and BGP in VRFs, the VRRP configuration does not come up after you run {{nv config apply}}.  BGP routes might also be missing.  This issue only happens during the initial {{nv config apply}} of a full configuration, not during a normal initialization during a reboot or FRR restart. To work around this issue, reboot or restart FRR.</td>
+<td>5.5.1</td>
+<td>5.6.0</td>
+</tr>
+<tr>
+<td>3668939</td>
+<td>When you enable MIB 1.3.6.1.4.1.40310.1 in the {{snmpd.conf}} file, you might see high CPU usage by the {{snmpd}} service.</td>
+<td>5.5.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3663182</td>
+<td>Changing non-default BGP timers with NCLU or vtysh commands sets the hold time and keep alive interval to 0 seconds. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.3.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3647426</td>
 <td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
 
@@ -17,6 +35,18 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <td>4.3.2-4.4.5, 5.6.0</td>
 </tr>
 <tr>
+<td>3630492</td>
+<td>On the NVIDIA SN2201 switch, the {{ledmgrd -d}} command output shows the system and PSU LED status as orange when the physical LED is green.</td>
+<td>5.5.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3616338</td>
+<td>When you reboot an MLAG switch with 3000 or more VNIs, there might be extended traffic loss during reboot. To work around this issue, configure the {{clagd}} service {{initDelay}} to 300 seconds with the {{nv set mlag init-delay 300}} command.</td>
+<td>5.5.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3610611</td>
 <td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address &lt;address&gt;}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
 <td>5.5.0-5.6.0</td>
@@ -24,7 +54,9 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 </tr>
 <tr>
 <td>3609128</td>
-<td>When you use {{vi}} with root or sudo, visual mode is enabled by default due to a missing {{vimrc}} configuration file. This makes it difficult to copy and paste into {{vi}} and might introduce a security issue.</td>
+<td>When you use {{vi}} with root or sudo, visual mode is enabled by default due to a missing {{vimrc}} configuration file. This makes it difficult to copy and paste into {{vi}}.  In CL5.7.0, the default configuration now includes {{set mouse-=a}}.
+
+In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines, which can be a security risk.</td>
 <td>5.5.0-5.6.0</td>
 <td></td>
 </tr>
@@ -41,9 +73,31 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <td></td>
 </tr>
 <tr>
+<td>3597456</td>
+<td>NVUE does not allow you to use the reserved name {{lo}} in an interface name. </td>
+<td>5.5.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3585467</td>
 <td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
 <td>5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3582826</td>
+<td>When you enable the FRR SNMP agent (agentx) and configure routing adjacencies with short timers (dead, keepalive, and hold time), the routing adjacencies might go down in certain scenarios; for example when you have frequent or concurrent client SNMP requests, you use custom SNMP MIB extensions, you poll OIDs with large responses, or during high CPU load. To work around this issue, you can increase the routing adjacency timers to accommodate SNMP processing.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3580435</td>
+<td>On the NVIDIA SN2410 switch with an Innodisk SSD, you might see the following message in syslog:
+
+smartd[501]: Device: /dev/sda [SAT], CHECK POWER STATUS spins up disk (0x00 -&gt; 0xff)
+
+This is a cosmetic issue and does not affect how the switch operates. To prevent this message from occurring, run the {{hdparm -S 24 /dev/sda}} command to change the HD timeout.</td>
+<td>5.3.1-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -143,6 +197,13 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>For layer 3 VNIs, Cumulus Linux automatically creates an SVI name that includes an underscore (for example, {{vlan4036_l3}}), which is not allowed in SVI names. As a result, commands such as {{nv show interface}} for the SVI show an error. The underscore (_) character is now allowed in SVI names.</td>
 <td>5.5.0-5.5.1</td>
 <td>5.6.0</td>
+</tr>
+<tr>
+<td>3522524</td>
+<td>FRR does not allow eBGP multi hop configuration on unnumbered BGP neighbors. 
+</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3520511</td>
@@ -372,6 +433,12 @@ This error message is benign and has no functional impact.</td>
 <td>5.6.0</td>
 </tr>
 <tr>
+<td>3419928</td>
+<td>The NVUE PIM timer command option names {{keep-alive}} and {{rp-keep-alive}} are inconsistent and need to change to  {{keepalive}} and {{rp-keepalive}}.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3413785</td>
 <td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.1</td>
@@ -381,12 +448,6 @@ This error message is benign and has no functional impact.</td>
 <td>3405024</td>
 <td>You cannot remove PBR map configuration with source and destination rules. To work around this issue, delete the entire PBR map clause.</td>
 <td>5.5.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3395489</td>
-<td>On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.</td>
-<td>5.4.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -485,12 +546,6 @@ In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on 
 <tr>
 <td>3326659</td>
 <td>If you have a large number of MAC addresses, they do not age out at the MAC ageing timeout value configured on the switch. It might take up to 30 seconds more for the MAC addresses to age out and be deleted from the hardware. To work around this issue, wait for the ageing timeout value plus 30 seconds to allow for the MAC addresses to age out and be deleted from the hardware.</td>
-<td>5.4.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3308191</td>
-<td>If you try to set an unsupported interface speed together with FEC, the {{nv config apply}} command succeeds but Cumulus Linux ignores the FEC configuration and configures the default FEC setting for the chosen speed. There is no warning or error message.</td>
 <td>5.4.0-5.6.0</td>
 <td></td>
 </tr>
@@ -781,6 +836,12 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3663182</td>
+<td>Changing non-default BGP timers with NCLU or vtysh commands sets the hold time and keep alive interval to 0 seconds. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.3.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3647426</td>
 <td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
 
@@ -798,7 +859,9 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 </tr>
 <tr>
 <td>3609128</td>
-<td>When you use {{vi}} with root or sudo, visual mode is enabled by default due to a missing {{vimrc}} configuration file. This makes it difficult to copy and paste into {{vi}} and might introduce a security issue.</td>
+<td>When you use {{vi}} with root or sudo, visual mode is enabled by default due to a missing {{vimrc}} configuration file. This makes it difficult to copy and paste into {{vi}}.  In CL5.7.0, the default configuration now includes {{set mouse-=a}}.
+
+In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines, which can be a security risk.</td>
 <td>5.5.0-5.6.0</td>
 <td></td>
 </tr>
@@ -812,6 +875,22 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <td>3585467</td>
 <td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
 <td>5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3582826</td>
+<td>When you enable the FRR SNMP agent (agentx) and configure routing adjacencies with short timers (dead, keepalive, and hold time), the routing adjacencies might go down in certain scenarios; for example when you have frequent or concurrent client SNMP requests, you use custom SNMP MIB extensions, you poll OIDs with large responses, or during high CPU load. To work around this issue, you can increase the routing adjacency timers to accommodate SNMP processing.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3580435</td>
+<td>On the NVIDIA SN2410 switch with an Innodisk SSD, you might see the following message in syslog:
+
+smartd[501]: Device: /dev/sda [SAT], CHECK POWER STATUS spins up disk (0x00 -&gt; 0xff)
+
+This is a cosmetic issue and does not affect how the switch operates. To prevent this message from occurring, run the {{hdparm -S 24 /dev/sda}} command to change the HD timeout.</td>
+<td>5.3.1-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -893,6 +972,13 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>For layer 3 VNIs, Cumulus Linux automatically creates an SVI name that includes an underscore (for example, {{vlan4036_l3}}), which is not allowed in SVI names. As a result, commands such as {{nv show interface}} for the SVI show an error. The underscore (_) character is now allowed in SVI names.</td>
 <td>5.5.0-5.5.1</td>
 <td>5.6.0</td>
+</tr>
+<tr>
+<td>3522524</td>
+<td>FRR does not allow eBGP multi hop configuration on unnumbered BGP neighbors. 
+</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3517376</td>
@@ -1122,6 +1208,12 @@ This error message is benign and has no functional impact.</td>
 <td>5.6.0</td>
 </tr>
 <tr>
+<td>3419928</td>
+<td>The NVUE PIM timer command option names {{keep-alive}} and {{rp-keep-alive}} are inconsistent and need to change to  {{keepalive}} and {{rp-keepalive}}.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3413785</td>
 <td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.1</td>
@@ -1131,12 +1223,6 @@ This error message is benign and has no functional impact.</td>
 <td>3405024</td>
 <td>You cannot remove PBR map configuration with source and destination rules. To work around this issue, delete the entire PBR map clause.</td>
 <td>5.5.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3395489</td>
-<td>On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.</td>
-<td>5.4.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1235,12 +1321,6 @@ In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on 
 <tr>
 <td>3326659</td>
 <td>If you have a large number of MAC addresses, they do not age out at the MAC ageing timeout value configured on the switch. It might take up to 30 seconds more for the MAC addresses to age out and be deleted from the hardware. To work around this issue, wait for the ageing timeout value plus 30 seconds to allow for the MAC addresses to age out and be deleted from the hardware.</td>
-<td>5.4.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3308191</td>
-<td>If you try to set an unsupported interface speed together with FEC, the {{nv config apply}} command succeeds but Cumulus Linux ignores the FEC configuration and configures the default FEC setting for the chosen speed. There is no warning or error message.</td>
 <td>5.4.0-5.6.0</td>
 <td></td>
 </tr>

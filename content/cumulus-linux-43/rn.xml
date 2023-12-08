@@ -350,6 +350,12 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
+<td>2771653</td>
+<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more which consumes a lot of hardware space.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>2754791</td>
 <td>Remote MAC addreses in zebra are out of sync with {{bgpd}}. The zebra MAC addresses point to an incorrect (old) VTEP IP  address and the sequence number is one higher than in BGP. </td>
 <td>3.7.14.2-3.7.16, 4.3.0-4.4.5</td>
@@ -2192,6 +2198,11 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.3.1, 4.4.0-5.2.1</td>
 </tr>
+<tr>
+<td>2555175</td>
+<td>Control plane traffic (such as BGP peering from leaf to spine) goes down on the leaf due to the peer Hold Down timer expiration following prolonged link flaps on down links when VXLAN enabled VLANs are carried on the flapping link. Be sure to correct layer 1 issues, configuration issues, or misbehaving link partners that are causing the link flaps.</td>
+<td>3.7.15-4.3.1</td>
+</tr>
 </table>
 <table name="Open Issues in 4.3.1">
 <tr>
@@ -2211,8 +2222,8 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <tr>
 <td>3647424</td>
 <td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-5.5.1</td>
-<td>5.6.0</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3600912</td>
@@ -2300,10 +2311,10 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <td>4.3.2-4.4.5</td>
 </tr>
 <tr>
-<td>3418046</td>
+<td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
-<td>3.7.0-4.3.1</td>
-<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
+<td>3.7.0-5.4.0</td>
+<td>5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3401121</td>
@@ -2338,26 +2349,10 @@ MAC learning looks correct, but traffic does not flow as expected.</td>
 <td>4.3.2-4.4.5</td>
 </tr>
 <tr>
-<td>3364717</td>
+<td>3336590</td>
 <td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.3.1</td>
-<td>4.3.2-4.4.5</td>
-</tr>
-<tr>
-<td>3358865</td>
-<td>When you reboot a Broadcom switch with a static default route configured, the route might be installed in hardware without a next hop. This results in forwarded traffic to the CPU and drops. To recover from this issue, remove the default route configuration and reapply it. To prevent this issue, before rebooting the switch, split the default route configuration into two routes as below:
-
-ip route 0.0.0.0/1 10.1.1.1
-ip route 128.0.0.0/1 10.1.1.1
-</td>
-<td>4.3.1</td>
-<td>4.3.2-4.4.5</td>
-</tr>
-<tr>
-<td>3351951</td>
-<td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
-<td>4.3.2, 5.4.0-5.6.0</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -2390,6 +2385,12 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.4.0-5.6.0</td>
 </tr>
 <tr>
+<td>3319919</td>
+<td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
+<td>4.2.1-5.3.1</td>
+<td>5.4.0-5.6.0</td>
+</tr>
+<tr>
 <td>3291548</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
@@ -2400,6 +2401,16 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>On the EdgeCore AS7326-56X and AS7726-32X switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>4.3.1</td>
 <td>4.3.2-4.4.5</td>
+</tr>
+<tr>
+<td>3288343</td>
+<td>When you reboot a Broadcom switch with a static default route configured, the route might be installed in hardware without a next hop. This results in forwarded traffic to the CPU and drops. To recover from this issue, remove the default route configuration and reapply it. To prevent this issue, before rebooting the switch, split the default route configuration into two routes as below:
+
+ip route 0.0.0.0/1 10.1.1.1
+ip route 128.0.0.0/1 10.1.1.1
+</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3269538</td>
@@ -2447,6 +2458,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>5.3.0-5.6.0</td>
 </tr>
 <tr>
+<td>3216922</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.6.0</td>
+</tr>
+<tr>
 <td>3216921</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
 </td>
@@ -2464,10 +2481,10 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td></td>
 </tr>
 <tr>
-<td>3192808</td>
+<td>3191517</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.3.1, 4.4.0-5.2.1</td>
-<td>4.3.2, 5.3.0-5.6.0</td>
+<td>4.3.0-5.2.1</td>
+<td>5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3168564</td>
@@ -2672,6 +2689,29 @@ Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-
 <td></td>
 </tr>
 <tr>
+<td>2821869</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15-4.4.5</td>
+<td>5.0.0-5.6.0</td>
+</tr>
+<tr>
 <td>2820565</td>
 <td>SNMP does not start and you see errors similar to the following:
 
@@ -2734,6 +2774,12 @@ Fixed: 1.1.1d-0+deb10u7</td>
 This affects failed neighbor entries on routed interfaces that are not SVIs.</td>
 <td>4.3.0-4.4.1</td>
 <td>4.4.2-4.4.5</td>
+</tr>
+<tr>
+<td>2771653</td>
+<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more which consumes a lot of hardware space.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>2754791</td>

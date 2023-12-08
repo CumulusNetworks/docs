@@ -146,20 +146,20 @@ You can configure these PPS settings:
 
 | PPS In Setting | Description |
 | ------- | ----------- |
-| `channel-index` | Sets the channel index. You can set a value of 1 or 0. The default value is 0.|
+| `channel-index` | Sets the channel index for PPS In. You can set a value of 1 or 0. The default value is 0.|
 | `logging-level` | Sets the logging level for PPS In. You can specify `emergency`, `alert`, `critical`, `error`, `warning`, `notice`, `info`, or `debug`. The default logging level is `info`.|
-| `pin-index` |  Sets the pin index. You can set a value of 1 or 0. The default value is 0.|
-| `signal-polarity` | Sets the polarity of the PPS IN signal. You can specify `rising-edge`, `falling-edge`, or `both`. The default setting is `rising-edge`.|
-| `signal-width` | Sets the pulse width of the PPS IN signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
-| `timestamp-correction` | Sets the value, in nanoseconds, to add to each PPS time stamp. You can set a value between -1000000000 and 1000000000. The default value is 0. |  
+| `pin-index` |  Sets the pin index for PPS In. You can set a value of 1 or 0. The default value is 0.|
+| `signal-polarity` | Sets the polarity of the PPS In signal. You can specify `rising-edge`, `falling-edge`, or `both`. The default setting is `rising-edge`.|
+| `signal-width` | Sets the pulse width of the PPS In signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
+| `timestamp-correction` | Sets the value, in nanoseconds, to add to each PPS In time stamp. You can set a value between -1000000000 and 1000000000. The default value is 0. |  
 
 | PPS Out Setting | Description |
 | ------- | ----------- |
-| `channel-index`| Sets the channel index. You can set a value of 1 or 0. The default value is 0.|
+| `channel-index`| Sets the channel index for PPS Out. You can set a value of 1 or 0. The default value is 0.|
 | `frequency-adjustment` | Sets the frequency adjustment of the PPS Out signal. You can set a value between 1000000000 and 2147483647. The default value is 1000000000.|
 | `phase-adjustment` | Sets the phase adjustment of the PPS Out signal. You can set a value between 0 and 1000000000. The default value is 0.|
-| `pin-index` | Sets the pin index. Cumulus Linux supports only pin 1.|
-| `signal-width` | Sets the pulse width of the PPS OUT signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
+| `pin-index` | Sets the pin index for PPS Out. Cumulus Linux supports only pin 1.|
+| `signal-width` | Sets the pulse width of the PPS Out signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
 
 {{< tabs "TabID592 ">}}
 {{< tab "NVUE Commands ">}}
@@ -173,7 +173,7 @@ The following example configures PPS In and sets:
 - The signal width to 999000000.
 - The time stamp correction to 1000000000.
 - The logging level to `warning`.
-- The polarity of the PPS IN signal to `falling-edge`.
+- The polarity of the PPS In signal to `falling-edge`.
 
 ```
 cumulus@switch:~$ nv set platform pulse-per-second in channel-index 1
@@ -219,7 +219,7 @@ The following example configures PPS In and sets:
 - The signal width to 999000000.
 - The time stamp correction to 1000000000.
 - The logging level to 4 (warning).
-- The polarity of the PPS IN signal to falling edge (`falling`).
+- The polarity of the PPS In signal to falling edge (`falling`).
 
 ```
 cumulus@switch:~$ sudo nano /etc/linuxptp/ts2phc.conf

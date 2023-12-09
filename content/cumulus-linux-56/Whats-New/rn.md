@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3686260"></a> [3686260](#3686260) <a name="3686260"></a> <br /> | In an EVPN configuration when you reuse IPv6 addresses on SVIs in different sites and ND suppression is disabled, IPv6 duplicate address detection fails with an error similar to the following:<pre>inet6 2001:0DB8::2/64 scope global dadfailed tentative</pre>To work around this issue, reenable IPv6 ND suppression or disable IPv6 duplicate address detection on the interfaces that reuse IPv6 addresses in different sites. For example, to disable IPv6 duplicate address detection on vlan100, add the following values to the <code>/etc/sysctl.conf</code> file:<pre> sysctl net.ipv6.conf.vlan100.accept_dad=0sysctl net.ipv6.conf.vlan100.dad_transmits=0</pre> | 5.6.0 | |
 | <a name="3684268"></a> [3684268](#3684268) <a name="3684268"></a> <br /> | When multiple interfaces have addresses in the same network, deleting one of them might cause the wrong connected route from being deleted. | 5.6.0 | |
 | <a name="3683166"></a> [3683166](#3683166) <a name="3683166"></a> <br /> | A statistics issue in the I2C interface to modules is locked and might cause the switch to hang. | 5.6.0 | |
 | <a name="3669935"></a> [3669935](#3669935) <a name="3669935"></a> <br /> | When you add or delete VXLAN VNI and VLAN interfaces, a memory leak might occur in <code>switchd</code>. | 5.6.0 | |

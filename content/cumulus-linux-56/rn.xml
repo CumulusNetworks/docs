@@ -7,20 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3686260</td>
-<td>In an EVPN configuration when you reuse IPv6 addresses on SVIs in different sites and ND suppression is disabled, IPv6 duplicate address detection fails with an error similar to the following:
-
-inet6 2001:0DB8::2/64 scope global dadfailed tentative
-
-To work around this issue, reenable IPv6 ND suppression or disable IPv6 duplicate address detection on the interfaces that reuse IPv6 addresses in different sites. For example, to disable IPv6 duplicate address detection on vlan100, add the following values to the {{/etc/sysctl.conf}} file:
- 
-sysctl net.ipv6.conf.vlan100.accept_dad=0
-sysctl net.ipv6.conf.vlan100.dad_transmits=0
-</td>
-<td>5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3684268</td>
 <td>When multiple interfaces have addresses in the same network, deleting one of them might cause the wrong connected route from being deleted.</td>
 <td>5.6.0</td>

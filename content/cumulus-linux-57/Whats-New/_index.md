@@ -217,6 +217,7 @@ nv set bridge domain <domain-id> stp force-protocol-version (stp|rstp)
 nv set evpn mac-vrf-soo <route-distinguisher>
 nv set interface <interface-id> link flap-protection enable (on|off)
 nv set interface <interface-id> link protodown
+nv set interface <interface-id> neighbor ipv4|ipv6
 nv set interface <interface-id> port-security static-mac
 nv set interface <interface-id> port-security enable (on|off)
 nv set interface <interface-id> port-security mac-limit 1-512
@@ -337,6 +338,7 @@ nv unset evpn mac-vrf-soo
 nv unset interface <interface-id> link flap-protection
 nv unset interface <interface-id> link flap-protection enable
 nv unset interface <interface-id> link protodown
+nv unset interface <interface-id> neighbor ipv4|ipv6
 nv unset interface <interface-id> port-security
 nv unset interface <interface-id> port-security static-mac
 nv unset interface <interface-id> port-security enable

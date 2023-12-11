@@ -21,7 +21,8 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - {{<link url="802.1X-Interfaces" text="802.1x support">}}
 - {{<link url="MAC-Address-Translation" text="MAC address translation">}}
 - {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}}
-- {{<link url="Pulse-Per-Second-PPS" text=" Pulse Per Second (PPS) synchronization">}}
+- {{<link url="Pulse-Per-Second-PPS" text="Pulse Per Second (PPS) synchronization">}}
+- {{<link url="BGP-Weighted-Equal-Cost-Multipath/#weight-normalization" text="Weight normalization for BGP weighted ECMP">}} 
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
@@ -168,8 +169,6 @@ nv show system link
 nv show system link flap-protection
 nv show system config files
 nv show system config files <config-file-id>
-nv show system security
-nv show system security password-hardening
 nv show system security certificate
 nv show system security certificate <cert-id>
 nv show system security certificate <cert-id> installed
@@ -262,16 +261,6 @@ nv set service telemetry snapshot-interval 1-604800
 nv set system api certificate self-signed
 nv set system link flap-protection threshold 0-30
 nv set system link flap-protection interval 0-60
-nv set system security password-hardening state (enabled|disabled)
-nv set system security password-hardening reject-user-passw-match (enabled|disabled)
-nv set system security password-hardening lower-class (enabled|disabled)
-nv set system security password-hardening upper-class (enabled|disabled)
-nv set system security password-hardening digits-class (enabled|disabled)
-nv set system security password-hardening special-class (enabled|disabled)
-nv set system security password-hardening expiration-warning -1-30
-nv set system security password-hardening expiration -1-365
-nv set system security password-hardening history-cnt 1-100
-nv set system security password-hardening len-min 6-32
 nv set system synce enable (on|off)
 nv set system synce wait-to-restore-time 1-720
 nv set system synce log-level (info|debug|notice|error|critical)
@@ -416,18 +405,6 @@ nv unset system link
 nv unset system link flap-protection
 nv unset system link flap-protection threshold
 nv unset system link flap-protection interval
-nv unset system security
-nv unset system security password-hardening
-nv unset system security password-hardening state
-nv unset system security password-hardening reject-user-passw-match
-nv unset system security password-hardening lower-class
-nv unset system security password-hardening upper-class
-nv unset system security password-hardening digits-class
-nv unset system security password-hardening special-class
-nv unset system security password-hardening expiration-warning
-nv unset system security password-hardening expiration
-nv unset system security password-hardening history-cnt
-nv unset system security password-hardening len-min
 nv unset system synce
 nv unset system synce enable
 nv unset system synce wait-to-restore-time

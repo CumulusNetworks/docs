@@ -311,6 +311,26 @@ Cumulus Linux supports BGP W-ECMP with adaptive routing for high-performance Eth
 - Cumulus Linux supports a maximum of 48 adaptive routing enabled ports in a single ECMP group.
 - Both adaptive routing eligible traffic and non adaptive routing eligible traffic goes over the same ECMP group, which adjusts according to the W-ECMP weight. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.
 
+## Weight Normalization
+
+The NVIDIA Spectrum switch supports weight programming for ECMP by repeating each individual path, which consumes resources. To reduce hardware utilization of ECMP resources, you can enable weight normalization.
+
+To enable weight normalization:
+
+```
+cumulus@leaf01:mgmt:~$ nv set system forwarding ecmp-weight-normalisation mode enabled
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+To disable weight normalization, run the `nv set system forwarding ecmp-weight-normalisation mode disabled` command.
+
+You can also adjust the maximum number of hardware entries for weighted ECMP by running the `nv set system forwarding ecmp-weight-normalisation max-hw-weight` command. You can specify a value between 10-255. The default value is 32.
+
+```
+cumulus@leaf01:mgmt:~$ nv set system forwarding ecmp-weight-normalisation max-hw-weight 100
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
 ## Troubleshooting
 
 To show the extended community in a received or local route, run the vtysh `show bgp` command or the `net show bgp` command.

@@ -225,75 +225,6 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action set class</h>
-
-Modifies the class value for packet classification.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set class 3
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule\<rule-id\> action set cos</h>
-
-Configures the 802.1p CoS value to modify in the packet.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set cos 6
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action set dscp</h>
-
-Configures the DSCP value to modify in the packet.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp af12
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action police burst</h>
 
 Configures quality of service for traffic on the data plane. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the police burst rate; the number of packets or kilobytes (KB) allowed to arrive sequentially. You can specify a value between 1 and 2147483647.
@@ -382,6 +313,75 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action police rate 2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action set class</h>
+
+Modifies the class value for packet classification.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set class 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule\<rule-id\> action set cos</h>
+
+Configures the 802.1p CoS value to modify in the packet.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set cos 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action set dscp</h>
+
+Configures the DSCP value to modify in the packet.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp af12
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

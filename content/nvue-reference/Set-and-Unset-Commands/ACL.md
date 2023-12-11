@@ -63,6 +63,29 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action dest-nat translate-mac</h>
+
+Configures a rule to translate a destination MAC address to a public MAC address. You specify the destination MAC address with the `nv set acl <acl-id> rule <rule-id> match mac dest-mac` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl MACL2 rule 1 action dest-nat translate-mac 99:de:fc:32:11:01
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action erspan dest-ip</h>
 
 Configures the ERSPAN destination IP address.
@@ -359,6 +382,29 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action police rate 2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-mac</h>
+
+Configures a rule to translate a source MAC address to a public MAC address. Specify the source MAC address with `the nv set acl <acl-id> rule <rule-id> match mac source-mac <source-mac>` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl MACL1 rule 1 action source-nat translate-mac 99:de:fc:32:11:01 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -934,6 +980,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 type ipv4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> type mac</h>
+
+Configures the ACL type to MAC address for MAC address translation.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl MACL1 type mac
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

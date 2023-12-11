@@ -293,12 +293,6 @@ nv unset acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id> t
 nv unset acl <acl-id> rule <rule-id> action source-nat translate-port
 nv unset acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
 nv unset acl <acl-id> rule <rule-id> action source-nat translate-mac
-nv unset acl <acl-id> rule <rule-id> match mac
-nv unset acl <acl-id> rule <rule-id> match mac source-mac
-nv unset acl <acl-id> rule <rule-id> match mac source-mac-mask
-nv unset acl <acl-id> rule <rule-id> match mac dest-mac
-nv unset acl <acl-id> rule <rule-id> match mac dest-mac-mask
-nv unset acl <acl-id> rule <rule-id> match mac protocol
 nv unset interface <interface-id> dot1x
 nv unset interface <interface-id> dot1x eap
 nv unset interface <interface-id> dot1x mba

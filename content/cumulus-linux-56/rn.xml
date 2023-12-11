@@ -36,14 +36,12 @@
 &lt;noformat&gt;
 /usr/sbin/smond : : Path /run/hw-management/thermal/fan1_dir does not exist
 /usr/sbin/smond : : Path /run/hw-management/thermal/fan2_dir does not exist
-&lt;/noformat&gt;
-{{smond}} has been modified to determine dynamically (at run-time) if the fan has the capability or not.
-
-To drop the messages before they get to the log, create a file, such as {{/etc/rsyslog.d/18-drop_fan_dir_msgs.conf}} with the following contents, then restart {{rsyslogd}} with the {{systemctl restart rsyslog}} command.
+&lt;noformat&gt;
+{{smond}} has been modified to determine dynamically (at run-time) if the fan has the capability. To drop the messages before they get to the log, create a file, such as {{/etc/rsyslog.d/18-drop_fan_dir_msgs.conf}} with the following contents, then restart {{rsyslogd}} with the {{systemctl restart rsyslog}} command.
 &lt;noformat&gt;
 # The lines below cause the offending message to be dropped from all logs
 :msg, ereregex, ".*Path /run/hw-management/thermal/fan[1-8]_dir does not exist" stop
-&lt;/noformat&gt;</td>
+&lt;noformat&gt;</td>
 <td>5.6.0</td>
 <td></td>
 </tr>
@@ -136,7 +134,7 @@ These error messages do not affect how the switch functions; however the message
 </tr>
 <tr>
 <td>3610611</td>
-<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address &lt;address&gt;}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
+<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the nv unset vrf &lt;vrf&gt; loopback ip address command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
 <td>5.5.0-5.6.0</td>
 <td></td>
 </tr>
@@ -168,7 +166,7 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 </tr>
 <tr>
 <td>3599699</td>
-<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address &lt;address&gt;}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
+<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the nv unset vrf &lt;vrf&gt; loopback ip address &lt;address&gt; command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
 <td>5.5.0-5.6.0</td>
 <td></td>
 </tr>
@@ -378,9 +376,7 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 </tr>
 <tr>
 <td>3347677</td>
-<td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.
-
-In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on secondary clag device on peerlink down trigger. This ensures smooth traffic flow and no convergence issue seen in system test bed with this fix.</td>
+<td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.</td>
 <td>5.1.0-5.6.0</td>
 <td></td>
 </tr>
@@ -464,7 +460,7 @@ In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on 
 </tr>
 <tr>
 <td>3221628</td>
-<td>Cumulus Linux 5.2.0 and 5.2.1 VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
+<td>Cumulus Linux VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
 <td>5.2.0-5.6.0</td>
 <td></td>
 </tr>

@@ -88,7 +88,6 @@ nv show acl <acl-id> rule <rule-id> action source-nat translate-ip
 nv show acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id>
 nv show acl <acl-id> rule <rule-id> action source-nat translate-port
 nv show acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
-nv show acl <acl-id> rule <rule-id> match mac
 nv show bridge vlan-vni-map
 nv show bridge domain <domain-id> vlan-vni-map
 nv show interface <interface-id> dot1x
@@ -177,11 +176,6 @@ nv set acl <acl-id> rule <rule-id> action source-nat translate-ip
 nv set acl <acl-id> rule <rule-id> action source-nat translate-ip
 nv set acl <acl-id> rule <rule-id> action source-nat translate-port
 nv set acl <acl-id> rule <rule-id> action source-nat translate-mac
-nv set acl <acl-id> rule <rule-id> match mac source-mac
-nv set acl <acl-id> rule <rule-id> match mac source-mac-mask
-nv set acl <acl-id> rule <rule-id> match mac dest-mac
-nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask
-nv set acl <acl-id> rule <rule-id> match mac protocol
 nv set interface <interface-id> dot1x eap
 nv set interface <interface-id> dot1x mba
 nv set interface <interface-id> dot1x auth-fail-vlan

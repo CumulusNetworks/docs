@@ -351,7 +351,7 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 </tr>
 <tr>
 <td>2771653</td>
-<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more which consumes a lot of hardware space.</td>
+<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
 <td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
@@ -2777,7 +2777,7 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 </tr>
 <tr>
 <td>2771653</td>
-<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more which consumes a lot of hardware space.</td>
+<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
 <td>4.3.0-4.4.5</td>
 <td></td>
 </tr>

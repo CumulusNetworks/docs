@@ -79,6 +79,8 @@ nv set/unset router bgp wait-for-install
 | `nv set vrf <vrf-id> router pim address-family ipv4-unicast ssm-prefix-list` | `nv set vrf <vrf-id> router pim address-family ipv4 ssm-prefix-list` |
 | `nv set vrf <vrf-id> router pim address-family ipv4-unicast register-accept-list` | `nv set vrf <vrf-id> router pim address-family ipv4 register-accept-list`|
 | `nv set vrf <vrf-id> router pim address-family ipv4-unicast send-v6-secondary`| `nv set vrf <vrf-id> router pim address-family ipv4 send-v6-secondary` |
+| `nv set system aaa tacacs authorization <privilege-level-id> role (nvue-monitor\|system-admin\|nvue-admin)` |
+`nv set system aaa tacacs authorization <privilege-level-id> role <value>`|
 | `nv show interface <interface-id> synce counters` | `nv show interface <interface-id> counters synce`|
 | `nv show acl <acl-id> rule <rule-id> match ip source-port` |`nv show acl <acl-id> rule <rule-id> match ip udp source-port`<br>`nv show acl <acl-id> rule <rule-id> match ip tcp source-port` |
 | `nv show acl <acl-id> rule <rule-id> match ip source-port <ip-port-id>` | `nv show acl <acl-id> rule <rule-id> match ip udp source-port <ip-port-id>` <br>`nv show acl <acl-id> rule <rule-id> match ip tcp source-port <ip-port-id>`|
@@ -90,7 +92,6 @@ nv set/unset router bgp wait-for-install
 | `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id>` | `nv show vrf <vrf-id> router pim address-family ipv4 rp <rp-id>` |
 | `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range` | `nv show vrf <vrf-id> router pim address-family ipv4 rp <rp-id> group-range` |
 | `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id>` | `nv show vrf <vrf-id> router pim address-family ipv4 rp <rp-id> group-range <group-range-id>` |
-
 
 {{< /expand >}}
 
@@ -308,8 +309,6 @@ nv set system aaa class <class-id>
 nv set system aaa class <class-id> command-path <command-path-id>
 nv set system aaa class <class-id> command-path <command-path-id> permission (ro|rw|act|all)
 nv set system aaa class <class-id> action (allow|deny)
-nv set system aaa tacacs authorization <privilege-level-id> role (nvue-monitor|system-admin|nvue-admin)
-nv set system aaa tacacs authorization <privilege-level-id> role <value>
 nv set system nat age-poll-interval 1-1440
 nv set system nat translate-table-size 1024-8192
 nv set system nat rule-table-size 64-1024

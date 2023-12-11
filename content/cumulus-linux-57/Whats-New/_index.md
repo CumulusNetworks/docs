@@ -169,10 +169,8 @@ nv show system security certificate <cert-id> dump
 
 ```
 nv set acl <acl-id> rule <rule-id> action dest-nat translate-ip
-nv set acl <acl-id> rule <rule-id> action dest-nat translate-ip
 nv set acl <acl-id> rule <rule-id> action dest-nat translate-port
 nv set acl <acl-id> rule <rule-id> action dest-nat translate-mac
-nv set acl <acl-id> rule <rule-id> action source-nat translate-ip
 nv set acl <acl-id> rule <rule-id> action source-nat translate-ip
 nv set acl <acl-id> rule <rule-id> action source-nat translate-port
 nv set acl <acl-id> rule <rule-id> action source-nat translate-mac
@@ -281,17 +279,11 @@ nv set system link flap-protection interval
 ```
 nv unset acl <acl-id> rule <rule-id> action dest-nat
 nv unset acl <acl-id> rule <rule-id> action dest-nat translate-ip
-nv unset acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id>
-nv unset acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id> to
 nv unset acl <acl-id> rule <rule-id> action dest-nat translate-port
-nv unset acl <acl-id> rule <rule-id> action dest-nat translate-port <translate-port-id>
 nv unset acl <acl-id> rule <rule-id> action dest-nat translate-mac
 nv unset acl <acl-id> rule <rule-id> action source-nat
 nv unset acl <acl-id> rule <rule-id> action source-nat translate-ip
-nv unset acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id>
-nv unset acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id> to
 nv unset acl <acl-id> rule <rule-id> action source-nat translate-port
-nv unset acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
 nv unset acl <acl-id> rule <rule-id> action source-nat translate-mac
 nv unset interface <interface-id> dot1x
 nv unset interface <interface-id> dot1x eap

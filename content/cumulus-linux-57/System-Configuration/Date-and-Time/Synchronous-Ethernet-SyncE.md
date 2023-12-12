@@ -34,7 +34,7 @@ The basic configuration shown below uses the default SyncE settings:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service synce enable on
+cumulus@switch:~$ nv set system synce enable on
 cumulus@switch:~$ nv set interface swp2 synce enable on
 cumulus@switch:~$ nv config apply
 ```
@@ -82,7 +82,7 @@ The following command example sets the wait to restore time to 180 seconds (3 mi
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service synce wait-to-restore-time 180
+cumulus@switch:~$ nv set system synce wait-to-restore-time 180
 cumulus@switch:~$ nv config apply
 ```
 
@@ -115,7 +115,7 @@ The following example command sets the priority to 256:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service synce provider-default-priority 256
+cumulus@switch:~$ nv set system synce provider-default-priority 256
 cumulus@switch:~$ nv config apply
 ```
 
@@ -154,7 +154,7 @@ The following example command sets the logging level to `debug`.
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service synce log-level debug
+cumulus@switch:~$ nv set system synce log-level debug
 cumulus@switch:~$ nv config apply
 ```
 
@@ -231,12 +231,12 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 ## Show SyncE Configuration and Counters
 
-To show global SyncE configuration, run the NVUE `nv show service synce` command or the Linux `syncectl show status` command.
+To show global SyncE configuration, run the NVUE `nv show system synce` command or the Linux `syncectl show status` command.
 
 To show SyncE configuration for a specific interface, run the NVUE `nv show interface <interface-id> synce` command or the Linux  `syncectl show interface status <interface>` command.
 
 ```
-cumulus@switch:~$ nv show service synce
+cumulus@switch:~$ nv show system synce
                            operational                                                        applied
 -------------------------  -----------------------------------------------------------------  -------
 enable                     On                                                                 on

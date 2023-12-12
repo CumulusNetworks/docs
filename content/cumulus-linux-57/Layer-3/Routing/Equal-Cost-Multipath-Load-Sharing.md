@@ -763,7 +763,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
--->
+
 ### Show Adaptive Routing Settings
 
 To show adaptive routing settings, run the `nv show router adaptive-routing` command:

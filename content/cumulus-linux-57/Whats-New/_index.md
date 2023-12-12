@@ -21,7 +21,8 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - {{<link url="802.1X-Interfaces" text="802.1x support">}}
 - {{<link url="MAC-Address-Translation" text="MAC address translation">}}
 - {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}}
-- {{<link url="Pulse-Per-Second-PPS" text=" Pulse Per Second (PPS) synchronization">}}
+- {{<link url="Pulse-Per-Second-PPS" text="Pulse Per Second (PPS) synchronization">}}
+- {{<link url="BGP-Weighted-Equal-Cost-Multipath/#weight-normalization" text="Weight normalization for BGP weighted ECMP">}} 
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
@@ -33,6 +34,9 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link url="Role-Based-Access-Control" text="Role-based access control">}}
   - {{<link url="NVUE-API/#certificates" text="Manage certificate commands">}} for the NVUE REST API
   - {{<link url="Optional-BGP-Configuration/#bgp-input-and-ouput-message-queue-limit" text="BGP Input and Ouput Message Queue Limit">}} commands
+  - {{<link url="EVPN-Enhancements/#configure-a-site-id-for-mlag" text="Command to configure a site ID for MLAG">}}
+  - {{<link url="DHCP-Relays/#dhcp-agent-information-option-option-82" text="DHCP agent information (Option 82) commands">}}
+  - {{<link url="DHCP-Servers/#basic-configuration" text="DNS server interface name command">}}
   - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.
   - Commands to show {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Commands to show the {{<link url="Address-Resolution-Protocol-ARP/#show-the-arp-table" text="ARP table">}} and {{<link url="Neighbor-Discovery-ND#show-the-ip-neighbor-table" text="ND table">}} and to add static entries to the {{<link url="Address-Resolution-Protocol-ARP/#add-static-arp-table-entries" text="ARP table">}} and {{<link url="Neighbor-Discovery-ND/#add-static-ip-neighbor-table-entries" text="ND table">}}
@@ -79,7 +83,7 @@ nv set/unset router bgp wait-for-install
 | `nv set vrf <vrf-id> router pim address-family ipv4-unicast ssm-prefix-list` | `nv set vrf <vrf-id> router pim address-family ipv4 ssm-prefix-list` |
 | `nv set vrf <vrf-id> router pim address-family ipv4-unicast register-accept-list` | `nv set vrf <vrf-id> router pim address-family ipv4 register-accept-list`|
 | `nv set vrf <vrf-id> router pim address-family ipv4-unicast send-v6-secondary`| `nv set vrf <vrf-id> router pim address-family ipv4 send-v6-secondary` |
-| `nv set system aaa tacacs authorization <privilege-level-id> role (nvue-monitor\|system-admin\|nvue-admin)` |
+| `nv set system aaa tacacs authorization <privilege-level-id> role (nvue-monitor system-admin nvue-admin)` |
 `nv set system aaa tacacs authorization <privilege-level-id> role <value>`|
 | `nv show interface <interface-id> synce counters` | `nv show interface <interface-id> counters synce`|
 | `nv show acl <acl-id> rule <rule-id> match ip source-port` |`nv show acl <acl-id> rule <rule-id> match ip udp source-port`<br>`nv show acl <acl-id> rule <rule-id> match ip tcp source-port` |
@@ -92,6 +96,7 @@ nv set/unset router bgp wait-for-install
 | `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id>` | `nv show vrf <vrf-id> router pim address-family ipv4 rp <rp-id>` |
 | `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range` | `nv show vrf <vrf-id> router pim address-family ipv4 rp <rp-id> group-range` |
 | `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id>` | `nv show vrf <vrf-id> router pim address-family ipv4 rp <rp-id> group-range <group-range-id>` |
+| `nv action clear interface <interface> synce counters` | `nv action clear interface <interface> counters synce`|
 
 {{< /expand >}}
 
@@ -153,7 +158,6 @@ nv show service dhcp-relay <vrf-id> agent
 nv show service dhcp-relay <vrf-id> agent remote-id
 nv show service dhcp-relay <vrf-id> agent remote-id <remote-id>
 nv show service dhcp-relay <vrf-id> agent use-pif-circuit-id
-nv show service synce
 nv show service ptp <instance-id> servo
 nv show service telemetry
 nv show service telemetry histogram
@@ -168,8 +172,6 @@ nv show system link
 nv show system link flap-protection
 nv show system config files
 nv show system config files <config-file-id>
-nv show system security
-nv show system security password-hardening
 nv show system security certificate
 nv show system security certificate <cert-id>
 nv show system security certificate <cert-id> installed
@@ -177,7 +179,6 @@ nv show system security certificate <cert-id> dump
 nv show system security ca-certificate
 nv show system security ca-certificate <cert-id>
 nv show system security ca-certificate <cert-id> dump
-nv show system synce
 nv show system maintenance
 nv show system date-time
 nv show system forwarding ecmp-weight-normalisation
@@ -217,7 +218,14 @@ nv set bridge domain <domain-id> stp force-protocol-version (stp|rstp)
 nv set evpn mac-vrf-soo <route-distinguisher>
 nv set interface <interface-id> link flap-protection enable (on|off)
 nv set interface <interface-id> link protodown
-nv set interface <interface-id> neighbor ipv4|ipv6
+nv set interface <interface-id> neighbor ipv4
+nv set interface <interface-id> neighbor ipv4 <address> lladdr
+nv set interface <interface-id> neighbor ipv4 <address> lladdr <address> flag
+nv set interface <interface-id> neighbor ipv4 <address> lladdr <address> state
+nv set interface <interface-id> neighbor ipv6
+nv set interface <interface-id> neighbor ipv6 <address> lladdr
+nv set interface <interface-id> neighbor ipv6 <address> lladdr <address> flag
+nv set interface <interface-id> neighbor ipv6 <address> lladdr <address> state
 nv set interface <interface-id> port-security static-mac
 nv set interface <interface-id> port-security enable (on|off)
 nv set interface <interface-id> port-security mac-limit 1-512
@@ -246,6 +254,10 @@ nv set interface <interface-id> telemetry histogram counter counter-type <if-cou
 nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> histogram-size 1-4294967295
 nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> sample-interval 128-1000000000
 nv set interface <interface-id> dot1x auth-fail-vlan (enabled|disabled)
+nv set service dhcp-server <vrf-id> static <static-id> ifname <interface-name>
+nv set service dhcp-relay <vrf-id> agent remote-id <remote-id>
+nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id enable (on|off)
+nv set service dhcp-relay <vrf-id> agent enable (on|off)
 nv set service telemetry histogram ingress-buffer bin-min-boundary 96-4294967295
 nv set service telemetry histogram ingress-buffer histogram-size 96-4294967295
 nv set service telemetry histogram ingress-buffer sample-interval 128-1000000000
@@ -262,20 +274,6 @@ nv set service telemetry snapshot-interval 1-604800
 nv set system api certificate self-signed
 nv set system link flap-protection threshold 0-30
 nv set system link flap-protection interval 0-60
-nv set system security password-hardening state (enabled|disabled)
-nv set system security password-hardening reject-user-passw-match (enabled|disabled)
-nv set system security password-hardening lower-class (enabled|disabled)
-nv set system security password-hardening upper-class (enabled|disabled)
-nv set system security password-hardening digits-class (enabled|disabled)
-nv set system security password-hardening special-class (enabled|disabled)
-nv set system security password-hardening expiration-warning -1-30
-nv set system security password-hardening expiration -1-365
-nv set system security password-hardening history-cnt 1-100
-nv set system security password-hardening len-min 6-32
-nv set system synce enable (on|off)
-nv set system synce wait-to-restore-time 1-720
-nv set system synce log-level (info|debug|notice|error|critical)
-nv set system synce provider-default-priority 1-256
 nv set system forwarding ecmp-weight-normalisation mode (enabled|disabled)
 nv set system forwarding ecmp-weight-normalisation max-hw-weight 10-255
 nv set system dot1x radius server <server-id>
@@ -338,7 +336,14 @@ nv unset evpn mac-vrf-soo
 nv unset interface <interface-id> link flap-protection
 nv unset interface <interface-id> link flap-protection enable
 nv unset interface <interface-id> link protodown
-nv unset interface <interface-id> neighbor ipv4|ipv6
+nv unset interface <interface-id> neighbor ipv4
+nv unset interface <interface-id> neighbor ipv4 <address> lladdr
+nv unset interface <interface-id> neighbor ipv4 <address> lladdr <address> flag
+nv unset interface <interface-id> neighbor ipv4 <address> lladdr <address> state
+nv unset interface <interface-id> neighbor ipv6
+nv unset interface <interface-id> neighbor ipv6 <address> lladdr
+nv unset interface <interface-id> neighbor ipv6 <address> lladdr <address> flag
+nv unset interface <interface-id> neighbor ipv6 <address> lladdr <address> state
 nv unset interface <interface-id> port-security
 nv unset interface <interface-id> port-security static-mac
 nv unset interface <interface-id> port-security enable
@@ -386,7 +391,6 @@ nv unset interface <interface-id> dot1x mba
 nv unset interface <interface-id> dot1x auth-fail-vlan
 nv unset service dhcp-server <vrf-id> static <static-id> ifname
 nv unset service dhcp-relay <vrf-id> agent
-nv unset service dhcp-relay <vrf-id> agent remote-id
 nv unset service dhcp-relay <vrf-id> agent remote-id <remote-id>
 nv unset service dhcp-relay <vrf-id> agent use-pif-circuit-id
 nv unset service dhcp-relay <vrf-id> agent use-pif-circuit-id enable
@@ -416,23 +420,6 @@ nv unset system link
 nv unset system link flap-protection
 nv unset system link flap-protection threshold
 nv unset system link flap-protection interval
-nv unset system security
-nv unset system security password-hardening
-nv unset system security password-hardening state
-nv unset system security password-hardening reject-user-passw-match
-nv unset system security password-hardening lower-class
-nv unset system security password-hardening upper-class
-nv unset system security password-hardening digits-class
-nv unset system security password-hardening special-class
-nv unset system security password-hardening expiration-warning
-nv unset system security password-hardening expiration
-nv unset system security password-hardening history-cnt
-nv unset system security password-hardening len-min
-nv unset system synce
-nv unset system synce enable
-nv unset system synce wait-to-restore-time
-nv unset system synce log-level
-nv unset system synce provider-default-priority
 nv unset system forwarding ecmp-weight-normalisation
 nv unset system forwarding ecmp-weight-normalisation mode
 nv unset system forwarding ecmp-weight-normalisation max-hw-weight

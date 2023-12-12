@@ -4856,7 +4856,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, license mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
+| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage

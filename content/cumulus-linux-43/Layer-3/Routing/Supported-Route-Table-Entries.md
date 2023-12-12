@@ -46,10 +46,8 @@ After you specify a different profile, {{%link url="Configuring-switchd#restart-
 
 The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile for supported platforms. If you do not specify any profiles as described above, the switch uses the *default* values.
 
-{{%notice tip%}}
-
-The values in the following tables reflect results from testing on supported platforms, which might differ from published manufacturer specifications.
-
+{{%notice note%}}
+The values provided in the profiles below are the maximum values that Cumulus Linux software allocates; the theoretical hardware limits might be higher. These limits refer to values that have been validated as part of the unidimensional scale validation. If you try to achieve maximum scalability with multiple features enabled, results might differ from the values listed in this guide.
 {{%/notice%}}
 
 ### Mellanox Spectrum Switches

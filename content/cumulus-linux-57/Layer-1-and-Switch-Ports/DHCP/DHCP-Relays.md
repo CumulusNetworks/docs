@@ -114,6 +114,21 @@ Cumulus Linux supports DHCP Agent Information Option 82, which allows a DHCP rel
 
 To configure DHCP Agent Information Option 82:
 
+{{< tabs "TabID117 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example enables Option 82, enables circuit ID, and sets the remote ID to MAC address 44:38:39:BE:EF:AA:
+
+```
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
+cumulus@leaf01:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id enable on
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 1. Edit the `/etc/default/isc-dhcp-relay-default` file and add one of the following options:
 
    To inject the ingress *SVI interface* against which DHCP processes the relayed DHCP discover packet, add `-a` to the `OPTIONS` line:
@@ -148,6 +163,9 @@ To configure DHCP Agent Information Option 82:
    ```
    cumulus@leaf01:~$ sudo systemctl restart dhcrelay@default.service
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Control the Gateway IP Address with RFC 3527
 

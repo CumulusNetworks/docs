@@ -249,10 +249,10 @@ network-type               1
 summary                    Group #0: TRACKING holdover acquired on swp1. freq_diff: 77 (ppb)
 ```
 
-To show SyncE statistics for a specific interface, run the NVUE `nv show interface <interface-id> synce counters` command or the Linux `syncectl show interface counters <interface` command:
+To show SyncE statistics for a specific interface, run the NVUE `nv show interface <interface-id> counters synce` command or the Linux `syncectl show interface counters <interface` command:
 
 ```
-cumulus@switch:~$ nv show interface swp2 synce counters
+cumulus@switch:~$ nv show interface swp2 counters synce
                  operational  applied
 ---------------  -----------  -------
 rx-esmc          248899
@@ -283,10 +283,10 @@ tx-esmc-unknown  0
 
 ## Clear SyncE Interface Counters
 
-To clear counters for a specific SyncE interface, run the NVUE `nv action clear interface <interface> synce counters` command or the Linux `syncectl clear interface counters <interface>` command.
+To clear counters for a specific SyncE interface, run the NVUE `nv action clear interface <interface> counters synce` command or the Linux `syncectl clear interface counters <interface>` command.
 
 ```
-cumulus@switch:~$ nv action clear interface swp1 synce counters
+cumulus@switch:~$ nv action clear interface swp1 counters synce
 swp1 counters cleared
 Action succeeded
 ```

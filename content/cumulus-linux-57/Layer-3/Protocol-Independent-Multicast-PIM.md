@@ -61,7 +61,7 @@ cumulus@leaf01:~$ nv set router pim enable on
 cumulus@leaf01:~$ nv set interface vlan10 router pim
 cumulus@leaf01:~$ nv set interface vlan10 ip igmp
 cumulus@leaf01:~$ nv set interface swp51 router pim
-cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -73,7 +73,7 @@ cumulus@leaf02:~$ nv set router pim enable on
 cumulus@leaf02:~$ nv set interface vlan20 router pim
 cumulus@leaf02:~$ nv set interface vlan20 ip igmp
 cumulus@leaf02:~$ nv set interface swp51 router pim
-cumulus@leaf02:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101
+cumulus@leaf02:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101
 cumulus@leaf02:~$ nv config apply
 ```
 
@@ -84,7 +84,7 @@ cumulus@leaf02:~$ nv config apply
 cumulus@spine01:~$ nv set router pim enable on
 cumulus@spine01:~$ nv set interface swp1 router pim
 cumulus@spine01:~$ nv set interface swp2 router pim
-cumulus@spine01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 
+cumulus@spine01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101 
 cumulus@spine01:~$ nv config apply
 ```
 
@@ -235,8 +235,8 @@ The above commands configure the switch to send all multicast traffic to RP 10.1
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 group-range 224.10.0.0/16
-cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.102 group-range 224.10.2.0/24
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101 group-range 224.10.0.0/16
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.102 group-range 224.10.2.0/24
 ```
 
 {{< /tab >}}
@@ -266,8 +266,8 @@ cumulus@leaf01:~$ nv set router policy prefix-list MCAST1 rule 1 match 224.10.0.
 cumulus@leaf01:~$ nv set router policy prefix-list MCAST2 rule 1 action permit
 cumulus@leaf01:~$ nv set router policy prefix-list MCAST2 rule 1 match 224.10.2.0/24
 cumulus@leaf01:~$ nv config apply
-cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 prefix-list MCAST1
-cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.102 prefix-list MCAST2
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101 prefix-list MCAST1
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.102 prefix-list MCAST2
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -319,8 +319,8 @@ cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 1 match 235.0.0
 cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 1 action permit
 cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 2 match 238.0.0.0/8 max-prefix-len 32
 cumulus@switch:~$ nv set router policy prefix-list SPTrange rule 2 action permit
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover prefix-list SPTrange
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover action infinity
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4 spt-switchover prefix-list SPTrange
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4 spt-switchover action infinity
 cumulus@switch:~$ nv config apply
 ```
 
@@ -376,7 +376,7 @@ cumulus@switch:~$ nv set router policy prefix-list MyCustomSSMrange rule 10 acti
 Apply the custom prefix list:
 
 ```
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast ssm-prefix-list MyCustomSSMrange
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4 ssm-prefix-list MyCustomSSMrange
 cumulus@switch:~$ nv config apply
 ```
 
@@ -547,7 +547,7 @@ The following steps configure a Cumulus switch to use MSDP:
 2. On every multicast switch, configure the group to RP mapping using the anycast address:
 
    ```
-   cumulus@switch:$ nv set vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
+   cumulus@switch:$ nv set vrf default router pim address-family ipv4 rp 10.100.100.100 group-range 224.0.0.0/4
    cumulus@switch:$ nv config apply
    ```
 
@@ -1643,7 +1643,7 @@ cumulus@leaf01:~$ nv set interface lo router pim
 cumulus@leaf01:~$ nv set interface swp51 router pim
 cumulus@leaf01:~$ nv set interface vlan10 router pim
 cumulus@leaf01:~$ nv set interface vlan10 ip igmp
-cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1667,7 +1667,7 @@ cumulus@leaf02:~$ nv set interface lo router pim
 cumulus@leaf02:~$ nv set interface swp51 router pim
 cumulus@leaf02:~$ nv set interface vlan20 router pim
 cumulus@leaf02:~$ nv set interface vlan20 ip igmp
-cumulus@leaf02:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101
+cumulus@leaf02:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101
 cumulus@leaf02:~$ nv config apply
 ```
 
@@ -1685,7 +1685,7 @@ cumulus@spine01:~$ nv set vrf default router bgp address-family ipv4-unicast net
 cumulus@spine01:~$ nv set interface lo router pim
 cumulus@spine01:~$ nv set interface swp1 router pim
 cumulus@spine01:~$ nv set interface swp2 router pim
-cumulus@spine01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 
+cumulus@spine01:~$ nv set vrf default router pim address-family ipv4 rp 10.10.10.101 
 cumulus@spine01:~$ nv config apply
 ```
 

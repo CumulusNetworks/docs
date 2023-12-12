@@ -29,6 +29,8 @@ In addition, you can configure a static IP address for a resource, such as a ser
 - Provide the static IP address you want to assign to this resource.
 - Provide the MAC address of the resource to which you want to assign the IP address.
 
+You can also set the interface name for the static assignment.
+
 {{%notice note%}}
 - To configure static IP address assignments, you must first configure a pool.
 - You can set the DNS server IP address and domain name globally or specify different DNS server IP addresses and domain names for different pools. The following example commands configure a DNS server IP address and domain name for a pool.
@@ -54,7 +56,7 @@ cumulus@switch:~$ nv config apply
 
 To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server <vrf> domain-name-server <address>` and `nv set service dhcp-server <vrf> domain-name <domain>` commands.
 
-To set the interface name instead of the static IP address and MAC address, run the `nv set service dhcp-server <vrf> static <server> ifname` command.
+To set the interface name for the static assignment, run the `nv set service dhcp-server <vrf> static <server> ifname` command.
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}

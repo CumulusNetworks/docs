@@ -302,14 +302,6 @@ switch# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-<!-- vale off -->
-## BGP W-ECMP with Adaptive Routing
-<!-- vale on -->
-Cumulus Linux supports BGP W-ECMP with adaptive routing for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-w-ecmp" text="above.">}}
-
-- NVIDIA recommends using W-ECMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
-- Cumulus Linux supports a maximum of 48 adaptive routing enabled ports in a single ECMP group.
-- Both adaptive routing eligible traffic and non adaptive routing eligible traffic goes over the same ECMP group, which adjusts according to the W-ECMP weight. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.
 
 ## Weight Normalization
 
@@ -330,6 +322,15 @@ You can also adjust the maximum number of hardware entries for weighted ECMP by 
 cumulus@leaf01:mgmt:~$ nv set system forwarding ecmp-weight-normalisation max-hw-weight 100
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
+<!-- vale off -->
+## BGP W-ECMP with Adaptive Routing
+<!-- vale on -->
+Cumulus Linux supports BGP W-ECMP with adaptive routing for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-w-ecmp" text="above.">}}
+
+- NVIDIA recommends using W-ECMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
+- Cumulus Linux supports a maximum of 48 adaptive routing enabled ports in a single ECMP group.
+- Both adaptive routing eligible traffic and non adaptive routing eligible traffic goes over the same ECMP group, which adjusts according to the W-ECMP weight. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.
+
 
 ## Troubleshooting
 

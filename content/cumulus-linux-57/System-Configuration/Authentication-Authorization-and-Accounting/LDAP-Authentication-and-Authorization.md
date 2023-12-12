@@ -57,10 +57,10 @@ Entering incorrect information during the installation process produces configur
 - Edit the `/etc/nslcd.conf` file to update the LDAP URI and search base DN (see {{<link url="#update-the-nslcdconf-file" text="Update the nslcd.conf File">}}, below).
 - Edit the `/etc/nssswitch.conf` file to update the service selections.
 
-Be sure to restart `netd` after editing the files.
+Be sure to restart `nvued.service` after editing the files.
 
 ```
-cumulus@switch:~$ sudo systemctl restart netd.service
+cumulus@switch:~$ sudo systemctl restart nvued.service
 ```
 
 {{< expand "Alternative Installation Method Using debconf-utils "  >}}

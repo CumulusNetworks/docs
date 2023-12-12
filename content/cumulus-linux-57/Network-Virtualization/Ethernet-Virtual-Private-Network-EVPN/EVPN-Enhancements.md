@@ -621,9 +621,16 @@ When you configure a site ID, Cumulus Linux:
 
 The site ID is in the format `<IPv4 address>:<2-byte Value>`, where the IPv4 address is the anycast IP address (a virtual IP address for VXLAN data-path termination) and the 2-byte value is an integer between 0 and 65535. For example: 10.0.1.12:10
 
-NVUE does not provide commands for this feature.
+{{< tabs "TabID624 ">}}
+{{< tab "NVUE Commands ">}}
 
-To configure a unique site ID, run the following vtysh commands:
+```
+cumulus@leaf01:~$ nv set evpn mac-vrf-soo 10.0.1.12:10
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -636,6 +643,9 @@ leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 NVIDIA recommends you do not configure a site ID on a standalone or multihoming VTEP.

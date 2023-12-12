@@ -54,6 +54,8 @@ cumulus@switch:~$ nv config apply
 
 To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server <vrf> domain-name-server <address>` and `nv set service dhcp-server <vrf> domain-name <domain>` commands.
 
+To set the interface name instead of the static IP address and MAC address, run the `nv set service dhcp-server <vrf> static <server> ifname` command.
+
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 

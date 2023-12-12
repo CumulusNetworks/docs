@@ -34,6 +34,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link url="Role-Based-Access-Control" text="Role-based access control">}}
   - {{<link url="NVUE-API/#certificates" text="Manage certificate commands">}} for the NVUE REST API
   - {{<link url="Optional-BGP-Configuration/#bgp-input-and-ouput-message-queue-limit" text="BGP Input and Ouput Message Queue Limit">}} commands
+  - {{<link url="EVPN-Enhancements/#configure-a-site-id-for-mlag" text="Command to configure a site ID for MLAG">}}
   - {{<link url="DHCP-Relays/#dhcp-agent-information-option-option-82" text="DHCP agent information (Option 82) commands">}}
   - {{<link url="DHCP-Servers/#basic-configuration" text="DNS server interface name command">}}
   - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.

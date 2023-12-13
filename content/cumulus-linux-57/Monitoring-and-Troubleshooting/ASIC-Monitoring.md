@@ -408,7 +408,34 @@ monitor.discards_pg.snapshot.file_count               = 16
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+### Bandwidth Gauge
 
+{{%notice note%}}
+Cumulus Linux supports the bandwidth gauge option on the Spectrum-4 switch only.
+{{%/notice%}}
+
+To track bandwidth usage for an interface, you can enable the bandwidth gauge option with the `nv set interface <interface-id> telemetry bw-gauge enable on` command:
+
+```
+cumulus@switch:~$ nv set interface swp1 telemetry bw-gauge enable on
+cumulus@switch:~$ nv config apply
+```
+
+To disable bandwidth tracking, run the `nv set interface <interface-id> telemetry bw-gauge enable off` command.
+
+To show bandwidth details for all interfaces with the bandwidth gauge option on, run the `nv show service telemetry bw-gauge interface` command:
+
+```
+cumulus@switch:~$ nv show service telemetry bw-gauge interface
+```
+
+To show bandwidth details for an interface, run the `nv show interface <interface-id> telemetry bw-gauge` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry bw-gauge
+```
+-->
 ### Snapshots
 <!-- vale off -->
 To create a snapshot:

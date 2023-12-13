@@ -5,7 +5,7 @@ weight: 127
 toc: 3
 ---
 <span style="background-color:#F5F5DC">[PPS](## "Pulse per second")</span> is the simplest form of synchronization. The PPS source provides a signal precisely every second. The switch is capable of using an external PPS signal to synchronize its <span style="background-color:#F5F5DC">[PHC](## "Physical Hardware Clock")</span> (for PPS In) and can also generate the PPS signal that other devices can use to synchronize their clocks (for PPS Out).
-- In PPS In mode, the switch can use an external PPS signal to synchronize the frequency of its PHC. The PPS signal provides frequency synchronization for the clock but does not provide the <span style="background-color:#F5F5DC">[ToD](## "Time Of Day")</span>. Cumulus Linux uses PTP for the ToD; you must have a PTP slave port configured on the switch for PPS In.
+- In PPS In mode, the switch can use an external PPS signal to adjust the phase of its PHC. The PPS signal does not provide <span style="background-color:#F5F5DC">[ToD](## "Time Of Day")</span>, so Cumulus Linux uses PTP for ToD; you must configure a PTP slave port on the switch for PPS In.
 - In PPS Out mode, the switch can output the PPS signal. The switch can use this signal to check the accuracy of its PHC frequency and other devices can use this signal to synchronize their PHC.
 
 {{%notice note%}}

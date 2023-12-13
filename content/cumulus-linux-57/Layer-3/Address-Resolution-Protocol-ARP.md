@@ -153,7 +153,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the base SVI interface and the -v0 interface so that only one of the two interfaces replies when getting an ARP request. This prevents the v0 interface from proxy replying on behalf of the SVI (and the SVI from proxy replying on behalf of the v0 interface). You can only prevent duplicate replies when the ARP request is for the SVI or the v0 interface directly.
+If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the base SVI interface and the -v0 interface. In this case only one of the two interfaces replies when getting an ARP request. This prevents the v0 interface from proxy replying on behalf of the SVI (and the SVI from proxy replying on behalf of the v0 interface). You can only prevent duplicate replies when the ARP request is for the SVI or the v0 interface directly.
 
 {{< tabs "TabID174 ">}}
 {{< tab "NVUE Commands ">}}
@@ -378,13 +378,13 @@ To show all table entries for a specific interface, run the `nv show interface <
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor
 ipv4
-=======
+=========
     IPV4         LLADR(MAC)         State      Flag
     -----------  -----------------  ---------  ----
     10.5.5.51    00:00:5e:00:53:51  permanent      
     169.254.0.1  48:b0:2d:a2:4c:79  permanent
 ipv6
-=======
+=========
     IPV6                       LLADR(MAC)         State      Flag     
     -------------------------  -----------------  ---------  ---------
     fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router

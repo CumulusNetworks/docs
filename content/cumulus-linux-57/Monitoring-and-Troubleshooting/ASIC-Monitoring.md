@@ -410,12 +410,12 @@ monitor.discards_pg.snapshot.file_count               = 16
 {{< /tabs >}}
 
 ### Snapshots
-
+<!-- vale off -->
 To create a snapshot:
 - Set how often to write to a snapshot file. The default value is 1 second.
 - Provide the snapshot file name and location. The default location and file name is `/var/lib/cumulus/histogram_stats`.
-- Configure the number of snapshots you can create before the first snapshot file is overwritten. For example, if you set the snapshot file count to 30, the first snapshot file is named `histogram_stats_0` and the 30th snapshot is named`histogram_stats_30`. When the 30th snapshot is taken, the original snapshot file (`histogram_stats_0`) is overwritten and the sequence restarts. The default value is 64.
-
+- Configure the number of snapshots you can create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is `histogram_stats_0` and the 30th snapshot is `histogram_stats_30`. After the 30th snapshot, Cumulus Linux overwrites the original snapshot file (`histogram_stats_0`) and the sequence restarts. The default value is 64.
+<!-- vale on -->
 {{%notice note%}}
 Snapshots provide you with more data; however, they can occupy a lot of disk space on the switch.
 {{%/notice%}}
@@ -436,13 +436,13 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 Edit the `snapshot.file` settings in the `/etc/cumulus/datapath/monitor.conf` file, then restart the `asic-monitor` service with the `systemctl restart asic-monitor.service` command. The `asic-monitor` service reads the new configuration file and then runs until you stop the service with the `systemctl stop asic-monitor.service` command.
-
+<!-- vale off -->
 | Setting| Description|
 |------- |----------- |
 | `<port_group_name>.action_list` | Specifies one or more actions that occur when data collects:<br>`snapshot` writes a snapshot of the data collection results to a file. If you specify this action, you must also specify a snapshot file (described below). You can also specify a threshold that initiates the snapshot action.<br><br>Example:<pre>monitor.histogram_pg.action_list = [snapshot]</pre>`collect` gathers additional data. If you specify this action, you must also specify the port groups for the additional data you want to collect.<br><br>Example:<pre>monitor.histogram_pg.action_list = [collect<br>monitor.histogram_pg.collect.port_group_list = [buffers_pg,all_packet_pg]</pre>`log` sends a message to the `/var/log/syslog` file. If you specify this action, you must also specify a threshold that initiates the log action.<br>Example:<pre>monitor.histogram_pg.action_list = [log]<br>monitor.histogram_pg.log.queue_bytes = 500</pre>You can use all three of these actions in one monitoring step. For example<pre>monitor.histogram_pg.action_list = [snapshot,collect,log]</pre> **Note**: If an action appears in the action list but does not have the required settings (such as a threshold for the log action), the ASIC monitor stops and reports an error. |
 | `<port_group_name>.snapshot.file` | Specifies the name for the snapshot file. All snapshots use this name, with a sequential number appended to it. See the `snapshot.file_count` setting.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats</pre> |
-| `<port_group_name>.snapshot.file_count` | Specifies the number of snapshots that can be created before the first snapshot file is overwritten. In the following example, because the snapshot file count is set to 64, the first snapshot file is named histogram_stats_0 and the 64th snapshot is named histogram_stats_63. When the 65th snapshot is taken, the original snapshot file (histogram_stats_0) is overwritten and the sequence restarts.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file_count = 64</pre>**Note**: While more snapshots provide you with more data, they can occupy a lot of disk space on the switch. |
-
+| `<port_group_name>.snapshot.file_count` | Specifies the number of snapshots you can create before Cumulus Linux overwrites the first snapshot file. In the following example, because the snapshot file count is set to 64, the first snapshot file is `histogram_stats_0` and the 64th snapshot is `histogram_stats_63`. After the 65th snapshot, Cumulus Linux overwrites the original snapshot file (histogram_stats_0) and the sequence restarts.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file_count = 64</pre>**Note**: While more snapshots provide you with more data, they can occupy a lot of disk space on the switch. |
+<!-- vale on -->
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -546,7 +546,7 @@ When collecting data, the switch uses both the CPU and SDK process, which can af
 
 ## Show Histogram Information
 
-To show a list of the interfaces on which histograms are enabled, run the `nv show service telemetry histogram interface` command:
+To show a list of the interfaces with enabled histograms, run the `nv show service telemetry histogram interface` command:
 
 ```
 cumulus@switch:~$ nv show service telemetry histogram interface

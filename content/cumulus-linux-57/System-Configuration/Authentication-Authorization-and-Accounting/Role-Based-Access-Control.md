@@ -7,13 +7,13 @@ toc: 4
 In addition to the {{<link url="User-Accounts/#default-roles" text="default roles">}} that Cumulus Linux provides, you can create your own roles to restrict authorization, giving you more granular control over what a user can manage on the switch. For example, you can assign a user the role of network manager and provide the user privileges for interface management, service management and system management. When the user logs in and executes an NVUE command, NVUE checks the user privileges and authorizes the user to run that command.
 
 Custom role-based access control consists of the following elements:
-
+<!-- vale off -->
 | Element | Description |
 | ------- | ----------- |
 | Role | A virtual identifier for multiple classes (groups). You can assign only one role for a user. For example, for a user that can manage interfaces, you can create a role called `IFMgr`. |
-| Class | A class is similar in concept to a Linux group. Creating and managing classes is the simplest way to configure multiple users simultaneously, especially when configuring permissions. </br></br>A class consists of:<ul><li>Command paths, which are based on the objects in the NVUE declarative model and are the same as URI paths; for example; you can use the `/vrf/` command path to allow or deny a user access to all VRFs, or `/system/nat` to allow or deny a user access to NAT configuration. Use the tab key to see available command paths (`nv set system aaa class <class-name> command-path / <<press tab>>`).<li>Permissions for the command paths: (`ro`) to run show commands, (`rw`) to run set, unset, and apply commands, (`act`) to run action commands, or (`all`) to run all commands. The default permission setting is `all`.</li></ul>|
-| Action | The action for the class; `allow` or `deny`.  |
-
+| Class | A class is similar in concept to a Linux group. Creating and managing classes is the simplest way to configure multiple users simultaneously, especially when configuring permissions.</br></br>A class consists of:<ul><li>Command paths, which Cumulus Linux bases on the objects in the NVUE declarative model and, which are the same as URI paths; for example; you can use the `/vrf/` command path to allow or deny a user access to all VRFs, or `/system/nat` to allow or deny a user access to NAT configuration. Use the tab key to see available command paths (`nv set system aaa class <class-name> command-path / <<press tab>>`).<li>Permissions for the command paths: (`ro`) to run show commands, (`rw`) to run set, unset, and apply commands, (`act`) to run action commands, or (`all`) to run all commands. The default permission setting is `all`.</li></ul>|
+| Action | The action for the class: `allow` or `deny`.  |
+<!-- vale on -->
 {{%notice note%}}
 - You can assign a maximum of 64 classes to a role.
 - You can configure a maximum of 128 command paths for a class.
@@ -43,9 +43,9 @@ The following example describes the permissions for a role (`role1`) that consis
 | ------------ | ----------- |
 | `/interface/*/evpn/`| `rw` |
 | `/interface/*/qos/` | `rw` |
-
+<!-- vale off -->
 The following table shows the permissions for a user assigned the role `role1`. In the table, R is read only (RO), W is write, and X is action (ACT).
-
+<!-- vale on -->
 | Path     | Allow     | Deny       | Permissions |
 | -------- | --------- | ---------- | ----------- |
 | `/acl/` |            | RWX        | Implicit deny |

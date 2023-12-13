@@ -562,13 +562,13 @@ To all show table entries for a specific interface, run the `nv show interface <
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor
 ipv4
-=======
+=========
     IPV4         LLADR(MAC)         State      Flag
     -----------  -----------------  ---------  ----
     10.5.5.51    00:00:5e:00:53:51  permanent      
     169.254.0.1  48:b0:2d:a2:4c:79  permanent
 ipv6
-=======
+=========
     IPV6                       LLADR(MAC)         State      Flag     
     -------------------------  -----------------  ---------  ---------
     fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router

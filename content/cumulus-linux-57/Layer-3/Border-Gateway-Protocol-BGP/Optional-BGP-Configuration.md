@@ -1509,6 +1509,8 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
+To show the input and output message queue configuration, run the `nv show router bgp queue-limit` command.
+
 ## Route Reflectors
 
 <span style="background-color:#F5F5DC">[iBGP](## "internal BGP")</span> rules state that BGP cannot send a route learned from an iBGP peer to another iBGP peer. In a data center spine and leaf network using iBGP, this prevents a spine from sending a route learned from a leaf to any other leaf. As a workaround, you can use a *route reflector*. When an iBGP speaker is a route reflector, it *can* send iBGP learned routes to other iBGP peers.

@@ -390,7 +390,7 @@ ipv6
     fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router
 ```
 
-To show all IPv4 table entries for an interface, run the `nv sh interface <interface> neighbor ipv4` command:
+To show all IPv4 table entries for an interface, run the `nv show interface <interface> neighbor ipv4` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 neighbor ipv4

@@ -235,7 +235,7 @@ nvshow      /                   ro          allow
 sudo        /                   all         allow 
 ```
 
-To show the configuration and state of the command-paths for a class, run the `nv show system aaa class <class>` command:
+To show the configuration and state of the command paths for a class, run the `nv show system aaa class <class>` command:
 
 ```
 cumulus@switch:~$ nv show system aaa class class3

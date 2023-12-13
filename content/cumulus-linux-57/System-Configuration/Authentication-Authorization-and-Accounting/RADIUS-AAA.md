@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 190
 toc: 4
 ---
-Various add-on packages enable [RADIUS](## "Remote Authentication Dial-In User Service") users to log in to a Cumulus Linux switch in a transparent way with minimal configuration. There is no need to create accounts or directories on the switch. Authentication uses PAM and includes login, `ssh`, `sudo` and `su`.
+Cumulus Linux provides add-on packages to enable [RADIUS](## "Remote Authentication Dial-In User Service") users to log into the switch transparently with minimal configuration. There is no need to create accounts or directories on the switch. Authentication uses PAM and includes login, `ssh`, `sudo` and `su`.
 
 ## Install the RADIUS Packages
 
@@ -12,7 +12,7 @@ Various add-on packages enable [RADIUS](## "Remote Authentication Dial-In User S
 NVUE automatically installs the RADIUS AAA packages; you do **not** have to install the packages if you use NVUE commands to configure RADIUS AAA.
 {{%/notice%}}
 
-If you use Linux commands to configure RADIUS AAA, you must install the RADIUS packages `libnss-mapuser` and `libpam-radius-auth` before you start configuration. The packages are in the `cumulus-local-apt-archive` repository, which is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux image. You can install the packages even when the switch is not connected to the internet.
+If you use Linux commands to configure RADIUS AAA, you must install the RADIUS `libnss-mapuser` and `libpam-radius-auth` packages before you start configuration. The packages are in the `cumulus-local-apt-archive` repository, which is {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="embedded">}} in the Cumulus Linux image. You can install the packages even when the switch is not connected to the internet.
 
 To install the RADIUS packages:
 

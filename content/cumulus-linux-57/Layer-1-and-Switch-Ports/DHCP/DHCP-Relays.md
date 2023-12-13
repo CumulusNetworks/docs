@@ -117,12 +117,19 @@ To configure DHCP Agent Information Option 82:
 {{< tabs "TabID117 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example enables Option 82, enables circuit ID, and sets the remote ID to MAC address 44:38:39:BE:EF:AA:
+The following example enables Option 82 and enables circuit ID:
+
+```
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id enable on
+cumulus@leaf01:~$ nv config apply
+```
+
+The following example enables Option 82 and sets the remote ID to MAC address 44:38:39:BE:EF:AA:
 
 ```
 cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
 cumulus@leaf01:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id enable on
 cumulus@leaf01:~$ nv config apply
 ```
 

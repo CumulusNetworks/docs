@@ -692,4 +692,4 @@ You need to configure certain TACACS+ servers to allow authorization requests be
 
 If you configure multiple TACACS+ servers that have different user accounts:
 - TACACS+ *authentication* allows for fall through; if the first reachable server does not authenticate the user, the client tries the second server, and so on.
-- TACACS *authorization* does not fall through. If the first reachable server returns an *unauthorized* result, the command is unauthorized and the client does not try the next server.
+- TACACS *authorization* does not fall through. If the first reachable server returns an *unauthorized* result, the client does not try the next server.

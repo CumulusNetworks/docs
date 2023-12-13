@@ -63,45 +63,41 @@ nv set/unset router bgp wait-for-install
 
 {{< expand "Changed Commands" >}}
 
+{{< tabs "TabID66 ">}}
+{{< tab "nv show ">}}
+
 | Previous Command  |  New Command  |
 | ------------ | ------------- |
-| `nv set router pim timers keep-alive`| `nv set router pim timers keepalive` |
-| `nv set router pim timers rp-keep-alive`| `nv set router pim timers rp-keepalive` |
-| `nv set vrf default router pim timers keep-alive`| `nv set vrf default router pim timers keepalive` |
-| `nv set vrf default router pim timers rp-keep-alive`| `nv set vrf default router pim timers rp-keepalive` |
-| `nv set acl <acl-ID> rule <rule-ID> match ip dest-port <port>` | `nv set acl <acl-ID> rule <rule-ID> match ip <protocol>    dest-port <port>`|
-| `nv set acl <acl-ID> rule <rule-ID> match ip source-port <port>`| `nv set acl <acl-ID> rule <rule-ID> match ip <protocol>    source-port <port>` |
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast` | `nv unset vrf <vrf-id> router pim address-family ipv4` |
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover` | `nv set vrf <vrf-id> router pim address-family ipv4 spt-switchover`|
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover action` | `nv set vrf <vrf-id> router pim address-family ipv4 spt-switchover action` |
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover prefix-list` | `nv set vrf <vrf-id> router pim address-family ipv4 spt-switchover prefix-list` |
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast rp` | `nv set vrf <vrf-id> router pim address-family ipv4 rp` |
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id>` | `nv set vrf <vrf-id> router pim address-family ipv4 rp <rp-id>` |
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range` | `nv set vrf <vrf-id> router pim address-family ipv4 rp <rp-id> group-range` |
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id>` | `nv set vrf <vrf-id> router pim address-family ipv4 rp <rp-id> group-range <group-range-id>` |
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> prefix-list` | `nv set vrf <vrf-id> router pim address-family ipv4 rp <rp-id> prefix-list` |
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast ssm-prefix-list` | `nv set vrf <vrf-id> router pim address-family ipv4 ssm-prefix-list` |
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast register-accept-list` | `nv set vrf <vrf-id> router pim address-family ipv4 register-accept-list`|
-| `nv set vrf <vrf-id> router pim address-family ipv4-unicast send-v6-secondary`| `nv set vrf <vrf-id> router pim address-family ipv4 send-v6-secondary` |
-| `nv set system aaa tacacs authorization <privilege-level-id> role (nvue-monitor system-admin nvue-admin)` | `nv set system aaa tacacs authorization <privilege-level-id> role <value>`|
-| `nv set service synce` | `nv set system synce`|
-| `nv set service synce enable` | `nv set system synce enable` |
-| `nv set service synce wait-to-restore-time` | `nv set system synce wait-to-restore-time`|
-| `nv set service synce log-level` | `nv set system synce log-level` |
-| `nv set service synce provider-default-priority` | `nv set system synce provider-default-priority`|
+| `nv show acl <acl-id> rule <rule-id> match ip dest-port` | `nv show acl <acl-id> rule <rule-id> match ip udp dest-port`<br><br>`nv show acl <acl-id> rule <rule-id> match ip tcp dest-port`|
+| `nv show acl <acl-id> rule <rule-id> match ip source-port` |`nv show acl <acl-id> rule <rule-id> match ip udp source-port`<br><br>`nv show acl <acl-id> rule <rule-id> match ip tcp source-port` |
 | `nv show interface <interface-id> synce counters` | `nv show interface <interface-id> counters synce`|
-| `nv show acl <acl-id> rule <rule-id> match ip source-port` |`nv show acl <acl-id> rule <rule-id> match ip udp source-port`<br>`nv show acl <acl-id> rule <rule-id> match ip tcp source-port` |
-| `nv show acl <acl-id> rule <rule-id> match ip source-port <ip-port-id>` | `nv show acl <acl-id> rule <rule-id> match ip udp source-port <ip-port-id>` <br>`nv show acl <acl-id> rule <rule-id> match ip tcp source-port <ip-port-id>`|
-| `nv show acl <acl-id> rule <rule-id> match ip dest-port` | `nv show acl <acl-id> rule <rule-id> match ip udp dest-port`<br>`nv show acl <acl-id> rule <rule-id> match ip tcp dest-port`|
-| `nv show acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id>` |`nv show acl <acl-id> rule <rule-id> match ip udp dest-port <ip-port-id>`<br>`nv show acl <acl-id> rule <rule-id> match ip tcp dest-port <ip-port-id>` |
 | `nv show service synce` | `nv show system synce` |
 | `nv show vrf <vrf-id> router pim address-family ipv4-unicast` | `nv show vrf <vrf-id> router pim address-family ipv4`|
-| `nv show vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover` | `nv show vrf <vrf-id> router pim address-family ipv4 spt-switchover`|
-| `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp` | `nv show vrf <vrf-id> router pim address-family ipv4 rp` |
-| `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id>` | `nv show vrf <vrf-id> router pim address-family ipv4 rp <rp-id>` |
-| `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range` | `nv show vrf <vrf-id> router pim address-family ipv4 rp <rp-id> group-range` |
-| `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id>` | `nv show vrf <vrf-id> router pim address-family ipv4 rp <rp-id> group-range <group-range-id>` |
+
+{{< /tab >}}
+{{< tab "nv set ">}}
+
+| Previous Commands  |  New Commands  |
+| ------------ | ------------- |
+| `nv set acl <acl-ID> rule <rule-ID> match ip dest-port` | `nv set acl <acl-ID> rule <rule-ID> match ip udp dest-port`<br><br>`nv set acl <acl-ID> rule <rule-ID> match ip tcp dest-port` |
+| `nv set acl <acl-ID> rule <rule-ID> match ip source-port`| `nv set acl <acl-ID> rule <rule-ID> match ip udp source-port`<br><br>`nv set acl <acl-ID> rule <rule-ID> match ip tcp source-port` |
+| `nv set router pim timers keep-alive`| `nv set router pim timers keepalive` |
+| `nv set router pim timers rp-keep-alive`| `nv set router pim timers rp-keepalive` |
+| `nv set service synce` | `nv set system synce`|
+| `nv set system aaa tacacs authorization <privilege-level-id> role (nvue-monitor system-admin nvue-admin)` | `nv set system aaa tacacs authorization <privilege-level-id> role <value>`|
+| `nv set vrf <vrf-id> router pim address-family ipv4-unicast` | `nv unset vrf <vrf-id> router pim address-family ipv4` |
+| `nv set vrf <vrf-id> router pim timers keep-alive`| `nv set vrf <vrf-id> router pim timers keepalive` |
+| `nv set vrf <vrf-id> router pim timers rp-keep-alive`| `nv set vrf <vrf-id> router pim timers rp-keepalive` |
+
+{{< /tab >}}
+{{< tab "nv action ">}}
+
+| Previous Command  |  New Command  |
+| ------------ | ------------- |
 | `nv action clear interface <interface> synce counters` | `nv action clear interface <interface> counters synce`|
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /expand >}}
 

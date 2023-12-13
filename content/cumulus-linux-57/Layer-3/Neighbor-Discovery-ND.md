@@ -557,7 +557,7 @@ fe80::4ab0:2dff:fe3f:69d6 dev peerlink.4094 lladdr 48:b0:2d:3f:69:d6 router REAC
 ...
 ```
 
-To all show table entries for a specific interface, run the `nv show interface <interface_id> neighbor` command:
+To show all table entries for a specific interface, run the `nv show interface <interface_id> neighbor` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor

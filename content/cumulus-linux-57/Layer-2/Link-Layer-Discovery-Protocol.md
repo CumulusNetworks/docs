@@ -94,9 +94,13 @@ cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
 
 {{< /expand >}}
 
-## Enable the SNMP Subagent
+## SNMP Subagent
 
-LLDP does not enable the <span style="background-color:#F5F5DC">[SNMP](## "Simple Network Management Protocol")</span> subagent by default. To enable the SNMP subagent, edit the `/etc/default/lldpd` file and add the `-x` option:
+The <span style="background-color:#F5F5DC">[SNMP](## "Simple Network Management Protocol")</span> subagent allows SNMP queries to retrieve LLDP information from the `lldpd` service.
+
+If you enable SNMP with the NVUE `nv set service snmp-server enable on` command, NVUE enables the SNMP subagent automatically. To disable the SNMP subagent, disable SNMP with the NVUE `nv set service snmp-server enable off` command.
+
+If you use Linux commands to configure the switch, Cumulus Linux does not enable the SNMP subagent by default. To enable the SNMP subagent, edit the `/etc/default/lldpd` file and add the `-x` option:
 
 ```
 cumulus@switch:~$ sudo nano /etc/default/lldpd

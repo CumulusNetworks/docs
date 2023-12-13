@@ -98,8 +98,8 @@ Histogram settings include the type of data you want to collect, the ports you w
     - Received byte counters (`rx-byte`)
     - Transmitted byte counters (`tx-byte`)
     - CRC counters (`crc`)
-    - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1 IPG bytes.
-    - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1 IPG bytes.
+    - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span style="background-color:#F5F5DC">[IPG](## "Interpacket Gap")</span> bytes.
+    - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span style="background-color:#F5F5DC">[IPG](## "Interpacket Gap")</span> bytes.
 - You can enable up to two counter histogram counter types per physical interface. The counter histogram does not support bonds or virtual interfaces.
 - The value for the minimum boundary size must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. The default minimum boundary size is 960 bytes.
 - The default value for the sampling time is 1024 nanoseconds.
@@ -446,52 +446,26 @@ Edit the `snapshot.file` settings in the `/etc/cumulus/datapath/monitor.conf` fi
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example shows an egress queue length snapshot.
+- To show an ingress queue snapshot, run the `nv show interface <interface> telemetry histogram ingress-buffer priority-group <value> snapshot` command
+- To show an egress queue snapshot, run the `nv show interface <interface> telemetry histogram egress-buffer traffic-class <type> snapshot`
+- To show a counter snapshot, run the `nv show interface <interface> telemetry histogram counter counter-type <type> snapshot`
+
+The following example shows an ingress queue snapshot:
 
 ```
-{ 
-    "timestamp_info": { 
-        "start_datetime": "2017-03-16 21:36:40.775026", 
-        "end_datetime": "2017-03-16 21:36:40.775848" 
-    },  
-    "buffer_info": null,  
-    "packet_info": null, 
-    "histogram_info_tc": { 
-        "swp1": { 
-            "0": {"0": 10000}, 
-        }, 
-        "swp2": { 
-            "0": {"0": 11000}, 
-            "1": {"0": 12000}, 
-        }, 
-        "swp3": { 
-            "0": {"0": 13000}, 
-        }, 
-    }, 
-    "histogram_info_pg": { 
-        "swp1": { 
-            "0": {"0": 10000}, 
-        }, 
-        "swp2": { 
-            "0": {"0": 11000}, 
-            "1": {"0": 12000}, 
-        }, 
-        "swp3": { 
-            "0": {"0": 13000}, 
-        }, 
-    }, 
-   "histogram_info_counter": { 
-        "swp1": { 
-            "0": {"0": 10000}, 
-        }, 
-        "swp2": { 
-            "0": {"0": 11000}, 
-            "1": {"0": 12000}, 
-        },
-    }, 
-
-}
-...
+cumulus@switch:~$ nv show interface swp1 telemetry histogram ingress-buffer priority-group 0 snapshot
+Sl.No  Date-Time            Bin-0   Bin-1    Bin-2    Bin-3    Bin-4    Bin-5    Bin-6    Bin-7     Bin-8     Bin-9
+-----  -------------------  ------  -------  -------  -------  -------  -------  -------  --------  --------  ---------
+0      -                    (<864)  (<2304)  (<3744)  (<5184)  (<6624)  (<8064)  (<9504)  (<10944)  (<12384)  (>=12384)
+1      2023-12-13 11:02:44  980318  0        0        0        0        0        0        0         0         0
+2      2023-12-13 11:02:43  980318  0        0        0        0        0        0        0         0         0
+3      2023-12-13 11:02:42  980318  0        0        0        0        0        0        0         0         0
+4      2023-12-13 11:02:41  980318  0        0        0        0        0        0        0         0         0
+5      2023-12-13 11:02:40  980488  0        0        0        0        0        0        0         0         0
+6      2023-12-13 11:02:39  980149  0        0        0        0        0        0        0         0         0
+7      2023-12-13 11:02:38  979809  0        0        0        0        0        0        0         0         0
+8      2023-12-13 11:02:37  980488  0        0        0        0        0        0        0         0         0
+9      2023-12-13 11:02:36  980318  0        0        0        0        0        0        0         0         0
 ```
 
 {{%notice note%}}

@@ -20,13 +20,11 @@
 </tr>
 <tr>
 <td>3637444</td>
-<td>Applying inbound control plane ACLs on the eth0 management interface does not work. To work around this issue, apply the ACLs on the {{mgmt}} interface. For example,
-
-nv set acl ACLNAME rule 10 action deny
-nv set acl ACLNAME rule 10 match ip source-ip 10.0.0.2
-nv set acl ACLNAME type ipv4
-nv set interface mgmt acl ACLNAME inbound control-plane
-</td>
+<td>Applying inbound control plane ACLs on the eth0 management interface does not work. To work around this issue, apply the ACLs on the {{mgmt}} interface. For example:
+- {{nv set acl ACLNAME rule 10 action deny}}
+- {{nv set acl ACLNAME rule 10 match ip source-ip 10.0.0.2}}
+- {{nv set acl ACLNAME type ipv4}}
+- {{nv set interface mgmt acl ACLNAME inbound control-plane}}</td>
 <td>5.7.0</td>
 <td></td>
 </tr>

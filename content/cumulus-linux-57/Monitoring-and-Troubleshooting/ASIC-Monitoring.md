@@ -26,7 +26,7 @@ Cumulus Linux supports:
 
 ## Histogram Collection Example
 
-The NVIDIA Spectrum ASIC provides a mechanism to measure and report egress queue lengths in histograms (a graphical representation of data, which it divides into intervals or bins). Each queue reports through a histogram with 10 bins, where each bin represents a range of queue lengths.
+The NVIDIA Spectrum ASIC provides a mechanism to measure and report ingress and egress queue lengths, and counters in histograms (a graphical representation of data, which it divides into intervals or bins). Each queue reports through a histogram with 10 bins, where each bin represents a range of queue lengths.
 
 You configure the histogram with a minimum size boundary (Min) and a histogram size. You then derive the maximum size boundary (Max) by adding the minimum size boundary and the histogram size.
 
@@ -91,15 +91,15 @@ Restarting the `asic-monitor` service does not disrupt traffic or require you to
 
 Histogram settings include the type of data you want to collect, the ports you want the histogram to monitor, the sampling time of the histogram, the histogram size, and the minimum boundary size for the histogram.
 - The ingress queue length histogram can monitor a specific priority group for a port or range of ports.
-- The egress queue length histogram can monitor a specific traffic class for a port or range of ports.
+- The egress queue length histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
 - The counter histogram can monitor the following counter types:
     - Received packet counters (`rx-packet`)
     - Transmitted packet counters (`tx-packet`)
     - Received byte counters (`rx-byte`)
     - Transmitted byte counters (`tx-byte`)
     - CRC counters (`crc`)
-    - Layer 1 received byte counters (`l1-rx-byte`)
-    - Layer 1 transmitted byte counters (`l1-tx-byte`)
+    - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span style="background-color:#F5F5DC">[IPG](## "Interpacket Gap")</span> bytes.
+    - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span style="background-color:#F5F5DC">[IPG](## "Interpacket Gap")</span> bytes.
 - You can enable up to two counter histogram counter types per physical interface. The counter histogram does not support bonds or virtual interfaces.
 - The value for the minimum boundary size must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. The default minimum boundary size is 960 bytes.
 - The default value for the sampling time is 1024 nanoseconds.
@@ -408,7 +408,34 @@ monitor.discards_pg.snapshot.file_count               = 16
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+### Bandwidth Gauge
 
+{{%notice note%}}
+Cumulus Linux supports the bandwidth gauge option on the Spectrum-4 switch only.
+{{%/notice%}}
+
+To track bandwidth usage for an interface, you can enable the bandwidth gauge option with the `nv set interface <interface-id> telemetry bw-gauge enable on` command:
+
+```
+cumulus@switch:~$ nv set interface swp1 telemetry bw-gauge enable on
+cumulus@switch:~$ nv config apply
+```
+
+To disable bandwidth tracking, run the `nv set interface <interface-id> telemetry bw-gauge enable off` command.
+
+To show bandwidth details for all interfaces with the bandwidth gauge option on, run the `nv show service telemetry bw-gauge interface` command:
+
+```
+cumulus@switch:~$ nv show service telemetry bw-gauge interface
+```
+
+To show bandwidth details for an interface, run the `nv show interface <interface-id> telemetry bw-gauge` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry bw-gauge
+```
+-->
 ### Snapshots
 <!-- vale off -->
 To create a snapshot:
@@ -417,7 +444,7 @@ To create a snapshot:
 - Configure the number of snapshots you can create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is `histogram_stats_0` and the 30th snapshot is `histogram_stats_30`. After the 30th snapshot, Cumulus Linux overwrites the original snapshot file (`histogram_stats_0`) and the sequence restarts. The default value is 64.
 <!-- vale on -->
 {{%notice note%}}
-Snapshots provide you with more data; however, they can occupy a lot of disk space on the switch.
+Snapshots provide you with more data; however, they can occupy a lot of disk space on the switch. To reduce disk usage, you can use a volatile partition for the snapshot files; for example, `/var/run/cumulus/histogram_stats`.
 {{%/notice%}}
 
 The following example creates the `/var/lib/cumulus/histogram_stats` snapshot every 5 seconds. The number of snapshots that you can create before the first snapshot file is overwritten is set to 30.
@@ -446,52 +473,26 @@ Edit the `snapshot.file` settings in the `/etc/cumulus/datapath/monitor.conf` fi
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example shows an egress queue length snapshot.
+- To show an ingress queue snapshot, run the `nv show interface <interface> telemetry histogram ingress-buffer priority-group <value> snapshot` command
+- To show an egress queue snapshot, run the `nv show interface <interface> telemetry histogram egress-buffer traffic-class <type> snapshot`
+- To show a counter snapshot, run the `nv show interface <interface> telemetry histogram counter counter-type <type> snapshot`
+
+The following example shows an ingress queue snapshot:
 
 ```
-{ 
-    "timestamp_info": { 
-        "start_datetime": "2017-03-16 21:36:40.775026", 
-        "end_datetime": "2017-03-16 21:36:40.775848" 
-    },  
-    "buffer_info": null,  
-    "packet_info": null, 
-    "histogram_info_tc": { 
-        "swp1": { 
-            "0": {"0": 10000}, 
-        }, 
-        "swp2": { 
-            "0": {"0": 11000}, 
-            "1": {"0": 12000}, 
-        }, 
-        "swp3": { 
-            "0": {"0": 13000}, 
-        }, 
-    }, 
-    "histogram_info_pg": { 
-        "swp1": { 
-            "0": {"0": 10000}, 
-        }, 
-        "swp2": { 
-            "0": {"0": 11000}, 
-            "1": {"0": 12000}, 
-        }, 
-        "swp3": { 
-            "0": {"0": 13000}, 
-        }, 
-    }, 
-   "histogram_info_counter": { 
-        "swp1": { 
-            "0": {"0": 10000}, 
-        }, 
-        "swp2": { 
-            "0": {"0": 11000}, 
-            "1": {"0": 12000}, 
-        },
-    }, 
-
-}
-...
+cumulus@switch:~$ nv show interface swp1 telemetry histogram ingress-buffer priority-group 0 snapshot
+Sl.No  Date-Time            Bin-0   Bin-1    Bin-2    Bin-3    Bin-4    Bin-5    Bin-6    Bin-7     Bin-8     Bin-9
+-----  -------------------  ------  -------  -------  -------  -------  -------  -------  --------  --------  ---------
+0      -                    (<864)  (<2304)  (<3744)  (<5184)  (<6624)  (<8064)  (<9504)  (<10944)  (<12384)  (>=12384)
+1      2023-12-13 11:02:44  980318  0        0        0        0        0        0        0         0         0
+2      2023-12-13 11:02:43  980318  0        0        0        0        0        0        0         0         0
+3      2023-12-13 11:02:42  980318  0        0        0        0        0        0        0         0         0
+4      2023-12-13 11:02:41  980318  0        0        0        0        0        0        0         0         0
+5      2023-12-13 11:02:40  980488  0        0        0        0        0        0        0         0         0
+6      2023-12-13 11:02:39  980149  0        0        0        0        0        0        0         0         0
+7      2023-12-13 11:02:38  979809  0        0        0        0        0        0        0         0         0
+8      2023-12-13 11:02:37  980488  0        0        0        0        0        0        0         0         0
+9      2023-12-13 11:02:36  980318  0        0        0        0        0        0        0         0         0
 ```
 
 {{%notice note%}}

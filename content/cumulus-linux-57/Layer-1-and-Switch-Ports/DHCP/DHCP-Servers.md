@@ -27,7 +27,7 @@ To configure the DHCP server on a Cumulus Linux switch:
 In addition, you can configure a static IP address for a resource, such as a server or printer:
 - Create an ID for the static assignment. This is typically the name of the resource.
 - Provide the static IP address you want to assign to this resource.
-- Provide the MAC address of the resource to which you want to assign the IP address. Instead of the MAC address, you can set the interface name for the static assignment; for example swp1.
+- Provide the MAC address of the resource to which you want to assign the IP address. Instead of the MAC address, you can set the interface name for the static assignment (IPv4 only); for example swp1.
 
 {{%notice note%}}
 - To configure static IP address assignments, you must first configure a pool.
@@ -210,7 +210,7 @@ subnet6 2001:db8::1/128 {
 
 ### Lease Time
 
-You can set the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000. The default lease time is 600 seconds.
+You can set the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000. The default lease time is 3600 seconds.
 
 {{< tabs "TabID206 ">}}
 {{< tab "NVUE Commands ">}}

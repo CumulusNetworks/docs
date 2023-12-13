@@ -130,7 +130,7 @@ cumulus@switch:~$ nv config apply
 | `src_ip`</br>| A specific IPv4 or IPv6 interface to reach the RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers. |
 | `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. If you configure multiple RADIUS servers, you can enable the debug option globally for all the servers.|
 
-Edit the `/etc/pam_radius_auth.conf` file. An example is shown below.
+Edit the `/etc/pam_radius_auth.conf` file.
 
 ```
 ...

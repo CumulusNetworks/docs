@@ -783,7 +783,7 @@ threshold  8
 interval   30 
 ```
 
-To show if link flap protection is enabled on an interface, run the `nv show interface <interface> link flap-protection` command:
+To show if link flap protection is on an interface, run the `nv show interface <interface> link flap-protection` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 link flap-protection

@@ -95,7 +95,7 @@ Add the configuration settings you want to use to the `/etc/cumulus/switchd.d/po
 
 | <div style="width:460px">Setting | Description|
 | --------| -----------|
-| `interface.<port>.port_security.enable` | Enables and disables port security. 1 enables security on the port. 0 disables security on the port. By default, port security is disabled.|
+| `interface.<port>.port_security.enable` | Enables and disables port security. 1 enables security on the port. 0 disables security on the port. The default setting is 0.|
 | `interface.<port>.port_security.mac_limit` | Configures the maximum number of MAC addresses allowed to access the port. You can specify a number between 0 and 512. The default value is 32.|
 | `interface.<port>.port_security.static_mac` | Configures the specific MAC addresses allowed to access the port. To specify multiple MAC addresses, separate each MAC address with a space.|
 | `interface.<port>.port_security.sticky_mac` | Enables and disables sticky MAC. 1 enables sticky MAC, where the first learned MAC address on the port is the only MAC address allowed. 0 disables sticky MAC. |

@@ -74,7 +74,7 @@ cumulus@leaf01:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
 }
 ```
 
-When DHCP snooping detects a violation, the packet is dropped and a message is logged to the `/var/log/dhcpsnoop.log` file.
+When DHCP snooping detects a violation, Cumulus Linux drops the packet and logs a message in the `/var/log/dhcpsnoop.log` file.
 
 ## Show the DHCP Binding Table
 

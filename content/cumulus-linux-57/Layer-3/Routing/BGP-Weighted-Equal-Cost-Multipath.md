@@ -316,7 +316,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 
 To disable weight normalization, run the `nv set system forwarding ecmp-weight-normalisation mode disabled` command.
 
-You can also adjust the maximum number of hardware entries for weighted ECMP by running the `nv set system forwarding ecmp-weight-normalisation max-hw-weight` command. You can specify a value between 10-255. The default value is 32.
+You can also adjust the maximum number of hardware entries for weighted ECMP by running the `nv set system forwarding ecmp-weight-normalisation max-hw-weight` command. You can specify a value between 10 and 255. The default value is 32.
 
 ```
 cumulus@leaf01:mgmt:~$ nv set system forwarding ecmp-weight-normalisation max-hw-weight 100

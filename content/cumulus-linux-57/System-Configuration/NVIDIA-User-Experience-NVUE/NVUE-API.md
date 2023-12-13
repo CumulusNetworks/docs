@@ -58,7 +58,7 @@ You can import certificates onto the switch (fetch certificates from an external
 
 If the certificate is passphrase protected, you need to include the passphrase.
 
-You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate being imported.
+You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
 
 The following example imports a CA certificate with a public key and calls the certificate `tls-cert-1`. The certificate is passphrase protected with `mypassphrase`. The public key is a Base64 ASCII encoded PEM string.
 

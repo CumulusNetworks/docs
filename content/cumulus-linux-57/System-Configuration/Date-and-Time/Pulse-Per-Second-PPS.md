@@ -46,7 +46,7 @@ cumulus@switch:~$ nv config apply
 {{< tabs "TabID522 ">}}
 {{< tab "Enable PPS In ">}}
 
-1. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the PTP slave port on the switch, which is required for PPS In. See {{<link url="Precision-Time-Protocol-PTP/#basic-configuration" text="Precision Time Protocol - PTP">}} for information about PTP.
+1. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the PTP slave port on the switch. PPS In requires PTP slave port. See {{<link url="Precision-Time-Protocol-PTP/#basic-configuration" text="Precision Time Protocol - PTP">}} for information about PTP.
 
    ```
    cumulus@switch:~$ sudo nano /etc/linuxptp/pps_out.conf
@@ -143,7 +143,7 @@ cumulus@switch:~$ nv config apply
 ## PPS Synchronization Settings
 
 You can configure these PPS settings:
-
+<!-- vale off -->
 | PPS In Setting | Description |
 | ------- | ----------- |
 | `channel-index` | Sets the channel index for PPS In. You can set a value of 1 or 0. The default value is 0.|
@@ -151,7 +151,7 @@ You can configure these PPS settings:
 | `pin-index` |  Sets the pin index for PPS In. You can set a value of 1 or 0. The default value is 0.|
 | `signal-polarity` | Sets the polarity of the PPS In signal. You can specify `rising-edge`, `falling-edge`, or `both`. The default setting is `rising-edge`.|
 | `signal-width` | Sets the pulse width of the PPS In signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
-| `timestamp-correction` | Sets the value, in nanoseconds, to add to each PPS In time stamp. You can set a value between -1000000000 and 1000000000. The default value is 0. |  
+| `timestamp-correction` | Sets the value, in nanoseconds, to add to each PPS In timestamp. You can set a value between -1000000000 and 1000000000. The default value is 0. |  
 
 | PPS Out Setting | Description |
 | ------- | ----------- |
@@ -160,7 +160,7 @@ You can configure these PPS settings:
 | `phase-adjustment` | Sets the phase adjustment of the PPS Out signal. You can set a value between 0 and 1000000000. The default value is 0.|
 | `pin-index` | Sets the pin index for PPS Out. Cumulus Linux supports only pin 1.|
 | `signal-width` | Sets the pulse width of the PPS Out signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
-
+<!-- vale on -->
 {{< tabs "TabID592 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -171,7 +171,7 @@ The following example configures PPS In and sets:
 - The channel index to 1.
 - The pin index to 1.
 - The signal width to 999000000.
-- The time stamp correction to 1000000000.
+- The timestamp correction to 1000000000.
 - The logging level to `warning`.
 - The polarity of the PPS In signal to `falling-edge`.
 
@@ -187,13 +187,13 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "PPS Out ">}}
-
+<!-- vale off -->
 The following example configures PPS Out and sets:
 - The channel index to 1.
 - The signal width to 999000000.
 - The phase adjustment of the PPS Out signal to 1000000000.
 - The frequency-adjustment of the PPS Out signal to 2147483647.
-
+<!-- vale on -->
 ```
 cumulus@switch:~$ nv set platform pulse-per-second out channel-index 1
 cumulus@switch:~$ nv set platform pulse-per-second out signal-width 999000000
@@ -217,7 +217,7 @@ The following example configures PPS In and sets:
 - The channel index to 1
 - The pin index to 1
 - The signal width to 999000000.
-- The time stamp correction to 1000000000.
+- The timestamp correction to 1000000000.
 - The logging level to 4 (warning).
 - The polarity of the PPS In signal to falling edge (`falling`).
 
@@ -244,13 +244,13 @@ ts2phc.extts_correction        0
 {{< tab "PPS Out ">}}
 
 To configure PPS Out, edit the `/etc/linuxptp/pps_out.conf.conf` file, then restart the PPS Out service with the `sudo systemctl restart pps_out.service` command.
-
+<!-- vale off -->
 The following example configures PPS Out and sets:
 - The channel index to 1.
 - The signal width to 999000000.
 - The phase adjustment of the PPS Out signal to 1000000000.
 - The frequency-adjustment of the PPS Out signal to 2147483647.
-
+<!-- vale on -->
 ```
 cumulus@switch:~$ sudo nano /etc/linuxptp/pps_out.conf.conf
 # Configuration file used for the pps_out.service

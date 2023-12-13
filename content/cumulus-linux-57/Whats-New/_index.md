@@ -22,7 +22,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - {{<link url="MAC-Address-Translation" text="MAC address translation">}}
 - {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}}
 - {{<link url="Pulse-Per-Second-PPS" text="Pulse Per Second (PPS) synchronization">}}
-- {{<link url="BGP-Weighted-Equal-Cost-Multipath/#weight-normalization" text="Weight normalization for BGP weighted ECMP">}} 
+- {{<link url="BGP-Weighted-Equal-Cost-Multipath/#weight-normalization" text="Weight normalization for BGP weighted ECMP">}}
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
@@ -36,13 +36,13 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link url="Optional-BGP-Configuration/#bgp-input-and-ouput-message-queue-limit" text="BGP Input and Ouput Message Queue Limit">}} commands
   - {{<link url="EVPN-Enhancements/#configure-a-site-id-for-mlag" text="Command to configure a site ID for MLAG">}}
   - {{<link url="DHCP-Relays/#dhcp-agent-information-option-option-82" text="DHCP agent information (Option 82) commands">}}
-  - {{<link url="DHCP-Servers/#basic-configuration" text="DNS server interface name command">}}
-  - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch.
+  - {{<link url="DHCP-Servers/#basic-configuration" text="DNS server interface name command">}} for IPv4
+  - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch
   - Commands to show {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Commands to show the {{<link url="Address-Resolution-Protocol-ARP/#show-the-arp-table" text="ARP table">}} and {{<link url="Neighbor-Discovery-ND#show-the-ip-neighbor-table" text="ND table">}} and to add static entries to the {{<link url="Address-Resolution-Protocol-ARP/#add-static-arp-table-entries" text="ARP table">}} and {{<link url="Neighbor-Discovery-ND/#add-static-ip-neighbor-table-entries" text="ND table">}}
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
   - Improvements to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
-  - FRR now restarts only when you enable or disable a routing protocol, change the BGP ASN, or disable the SNMP server.
+  - FRR now restarts only when you enable or disable a routing protocol, change the BGP ASN, or disable the SNMP server
 
 {{< expand "Commands that no longer require a switchd restart" >}}
 
@@ -140,6 +140,7 @@ nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr <lladdr-id>
 nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr <lladdr-id> state
 nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr <lladdr-id> flag
 nv show interface <interface-id> telemetry
+nv show interface <interface-id> telemetry bw-gauge
 nv show interface <interface-id> telemetry histogram
 nv show interface <interface-id> telemetry histogram ingress-buffer
 nv show interface <interface-id> telemetry histogram ingress-buffer priority-group
@@ -156,7 +157,6 @@ nv show interface <interface-id> telemetry histogram counter counter-type
 nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id>
 nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold
 nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> snapshot
-nv show interface <interface-id> telemetry bw-gauge
 nv show interface <interface-id> dot1x
 nv show interface <interface-id> dot1x authenticated-sessions
 nv show interface <interface-id> dot1x authenticated-sessions <mac-address-id>
@@ -243,6 +243,7 @@ nv set interface <interface-id> port-security sticky-ageing (enabled|disabled)
 nv set interface <interface-id> port-security violation-mode (protodown|restrict)
 nv set interface <interface-id> port-security violation-timeout 1-60
 nv set interface <interface-id> synce bundle-id 0-256
+nv set interface <interface-id> telemetry bw-gauge enable (on|off)
 nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id>
 nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold action log
 nv set interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold value 1-4294967295

@@ -61,7 +61,7 @@ cumulus@switch:~$ nv set interface swp1 port-security sticky-ageing enabled
 cumulus@switch:~$ nv config apply
 ```
 
-To configure the time period after which learned sticky MAC addresses age out and no longer have access to the port, run the `nv set interface <interface> port-security sticky-timeout` command. You can specify a value between 0 and 60 minutes. The default setting is 30 minutes.
+To configure the time period after which learned sticky MAC addresses age out and no longer have access to the port, run the `nv set interface <interface> port-security sticky-timeout` command. You can specify a value between 0 and 3600 minutes. The default setting is 1800 minutes.
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security sticky-timeout 20
@@ -80,7 +80,7 @@ cumulus@switch:~$ sudo ip link set swp2 protodown_reason portsecurity off
 cumulus@switch:~$ sudo ip link set swp2 protodown off
 ```
 
-To configure the number of seconds after which the violation mode times out, run the `nv set interface <interface> port-security violation-timeout` command. You can specify a value between 0 and 60 minutes. The default value is 30 minutes.
+To configure the number of minutes after which the violation mode times out, run the `nv set interface <interface> port-security violation-timeout` command. You can specify a value between 0 and 60 minutes. The default value is 30 minutes.
 
 ```
 cumulus@switch:~$ nv set interface swp1 port-security violation-timeout 60
@@ -98,10 +98,10 @@ Add the configuration settings you want to use to the `/etc/cumulus/switchd.d/po
 | `interface.<port>.port_security.mac_limit` | Configures the maximum number of MAC addresses allowed to access the port. You can specify a number between 0 and 512. The default value is 32.|
 | `interface.<port>.port_security.static_mac` | Configures the specific MAC addresses allowed to access the port. To specify multiple MAC addresses, separate each MAC address with a space.|
 | `interface.<port>.port_security.sticky_mac` | Enables and disables sticky MAC port security to track specific dynamically learned MAC addresses on a port. 1 enables sticky MAC. 0 disables sticky MAC.<br>Cumulus Linux maintains learned sticky MAC addresses through interface flaps and reboots if the source MAC address is still sending traffic; otherwise learned sticky MAC addresses age out according to the sticky MAC aging time.|
-| `interface.<port>.port_security.sticky_timeout` | The time period after which learned sticky MAC addresses age out and no longer have access to the port. You can specify a value between 0 and 3600 seconds (60 minutes). The default aging timeout value is 1800 seconds (30 minutes). |
+| `interface.<port>.port_security.sticky_timeout` | The time period after which learned sticky MAC addresses age out and no longer have access to the port. You can specify a value between 0 and 3600 minutes. The default aging timeout value is 1800. |
 | `interface.<port>.port_security.sticky_aging` | Enables and disables sticky MAC aging. 1 enables sticky MAC aging. 0 disables sticky MAC aging.|
 | `interface.<port>.port_security.violation_mode` | Configures the violation mode: 0 (protodown) puts a port into a protodown state. 1 (restrict) drops packets. The default setting is 1.|
-| `interface.<port>.port_security.violation_timeout` | Configures the number of seconds after which the violation mode times out. You can specify a value between 0 and 3600 seconds. The default value is 1800 seconds.|
+| `interface.<port>.port_security.violation_timeout` | Configures the number of minutes after which the violation mode times out. You can specify a value between 0 and 3600. The default value is 1800.|
 
 The following shows an example `/etc/cumulus/switchd.d/port_security.conf` configuration file:
 

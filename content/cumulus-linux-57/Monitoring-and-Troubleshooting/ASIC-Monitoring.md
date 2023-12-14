@@ -6,14 +6,14 @@ toc: 3
 ---
 
 Cumulus Linux provides an ASIC monitoring tool that collects and distributes data about the state of the ASIC. The monitoring tool polls for data at specific intervals and takes certain actions so that you can identify and respond to problems, such as:
-- Microbursts that result in longer packet latency
-- Packet buffer congestion that might lead to packet drops
-- Network problems with a particular switch, port, or traffic class
+- Microbursts that result in longer packet latency.
+- Packet buffer congestion that might lead to packet drops.
+- Network problems with a particular switch, port, or traffic class.
 
 Cumulus Linux provides:
-- The *egress queue length* histogram, which provides information about egress buffer utilization over time.
-- The *ingress queue lengths* histogram, which provides information about ingress buffer utilization over time.
-- The *counter* histogram, which provides information about bandwidth utilization for a port over time.
+- The *egress queue length* histogram, which shows information about egress buffer utilization over time.
+- The *ingress queue lengths* histogram, which shows information about ingress buffer utilization over time.
+- The *counter* histogram, which shows information about bandwidth utilization for a port over time.
 - Packet drops due to errors (Linux only).
 
 {{%notice note%}}
@@ -109,7 +109,8 @@ Histogram settings include the type of data you want to collect, the ports you w
 
 The histogram type can be `egress-buffer`, `ingress-buffer`, or `counter`.
 
-To change global histogram settings, run the `nv set service telemetry histogram <type>` command. To enable histograms on interfaces or to change interface level settings, run the `nv set interface <interface> telemetry histogram <type>` command.
+- To change global histogram settings, run the `nv set service telemetry histogram <type>` command.
+- To enable histograms on interfaces or to change interface level settings, run the `nv set interface <interface> telemetry histogram <type>` command.
   
 {{< tabs "TabID93 ">}}
 {{< tab "Egress Queue Length Examples ">}}

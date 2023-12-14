@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show interface \<interface-id\> ip neighbor-discovery</h>
 
-Shows <span style="background-color:#F5F5DC">[ND](## "Neighbor Discovery")</span> settings for an interface.
+Shows <span class="a-tooltip">[ND](## "Neighbor Discovery")</span> settings for an interface.
 
 ### Command Syntax
 
@@ -57,7 +57,7 @@ router-advertisement
 
 ## <h>nv show interface \<interface-id\> ip neighbor-discovery dnssl</h>
 
-Shows the <span style="background-color:#F5F5DC">[DNSSL](## "DNS search list")</span>domain suffixes configured on the specified interface.
+Shows the <span class="a-tooltip">[DNSSL](## "DNS search list")</span>domain suffixes configured on the specified interface.
 
 ### Command Syntax
 
@@ -79,7 +79,7 @@ cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery dnssl
 
 ## <h>nv show interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\></h>
 
-Shows configuration information for the specified <span style="background-color:#F5F5DC">[DNSSL](## "DNS search list")</span>domain suffix.
+Shows configuration information for the specified <span class="a-tooltip">[DNSSL](## "DNS search list")</span>domain suffix.
 
 ### Command Syntax
 
@@ -184,7 +184,7 @@ valid-lifetime      2000000000
 
 ## <h>nv show interface \<interface-id\> ip neighbor-discovery rdnss</h>
 
-Shows the <span style="background-color:#F5F5DC">[RDNSS](## "recursive DNS servers")</span> configured on the specified interface.
+Shows the <span class="a-tooltip">[RDNSS](## "recursive DNS servers")</span> configured on the specified interface.
 
 ### Command Syntax
 
@@ -206,7 +206,7 @@ cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery rdnss
 
 ## <h>nv show interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\></h>
 
-Shows configuration for the specified <span style="background-color:#F5F5DC">[RDNSS](## "recursive DNS server")</span> configured on the specified interface.
+Shows configuration for the specified <span class="a-tooltip">[RDNSS](## "recursive DNS server")</span> configured on the specified interface.
 
 ### Command Syntax
 
@@ -267,7 +267,7 @@ router-preference  medium
 
 ## <h>nv show system global nd</h>
 
-Shows <span style="background-color:#F5F5DC">[ND](## "Neighbor Discovery")</span> settings, such as the neighbor base reachable timer and garbage collection settings.
+Shows <span class="a-tooltip">[ND](## "Neighbor Discovery")</span> settings, such as the neighbor base reachable timer and garbage collection settings.
 
 ### Version History
 
@@ -290,7 +290,7 @@ garbage-collection-threshold
 
 ## <h>nv show system global nd garbage-collection-threshold</h>
 
-Shows the <span style="background-color:#F5F5DC">[ND](## "Neighbor Discovery")</span> garbage collection threshold settings.
+Shows the <span class="a-tooltip">[ND](## "Neighbor Discovery")</span> garbage collection threshold settings.
 
 ### Version History
 

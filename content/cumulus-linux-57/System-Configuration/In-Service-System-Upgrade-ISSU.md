@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 275
 toc: 3
 ---
-Use <span style="background-color:#F5F5DC">[ISSU](## "In Service System Upgrade")</span> to upgrade and troubleshoot an active switch with minimal disruption to the network.
+Use <span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> to upgrade and troubleshoot an active switch with minimal disruption to the network.
 
 ISSU includes the following modes:
 - Restart

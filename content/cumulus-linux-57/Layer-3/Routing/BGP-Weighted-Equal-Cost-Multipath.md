@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 780
 toc: 3
 ---
-You use <span style="background-color:#F5F5DC">[W-ECMP](## "Weighted Equal Cost Multipath")</span> in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports BGP W-ECMP by using the <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
+You use <span class="a-tooltip">[W-ECMP](## "Weighted Equal Cost Multipath")</span> in data center networks that rely on anycast routing to provide network-based load balancing. Cumulus Linux supports BGP W-ECMP by using the <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> link bandwidth extended community to load balance traffic towards anycast services for IPv4 and IPv6 routes in a layer 3 deployment and for prefix (type-5) routes in an EVPN deployment.
 <!-- vale off -->
 ## W-ECMP Routing
 <!-- vale on -->
-In <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path")</span>, the route to a destination has multiple next hops and traffic distributes across them equally. Flow-based hashing ensures that all traffic associated with a particular flow uses the same next hop and the same path across the network.
+In <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span>, the route to a destination has multiple next hops and traffic distributes across them equally. Flow-based hashing ensures that all traffic associated with a particular flow uses the same next hop and the same path across the network.
 
 In W-ECMP, along with the ECMP flow-based hash, Cumulus Linux associates a weight with each next hop and distributes traffic across the next hops in proportion to their weight. The BGP link bandwidth extended community carries information about the anycast server distribution through the network, which maps to the weight of the corresponding next hop. The mapping factors the bandwidth value of a particular path against the total bandwidth values of all possible paths, mapped to the range 1 to 100. The BGP best path selection algorithm and the multipath computation algorithm that determines which paths you can use for load balancing does not change.
 <!-- vale off -->
@@ -152,7 +152,7 @@ route-map ucmp-route-map permit 10
 
 ### EVPN Configuration
 
-For <span style="background-color:#F5F5DC">[EVPN](## "Ethernet Virtual Private Network")</span> configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
+For <span class="a-tooltip">[EVPN](## "Ethernet Virtual Private Network")</span> configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
 
 {{< tabs "TabID160 ">}}
 {{< tab "NVUE Commands">}}
@@ -270,7 +270,7 @@ router bgp 65011
 
 ### BGP Link Bandwidth Outside a Domain
 
-The BGP link bandwidth extended community passes on automatically with the prefix to <span style="background-color:#F5F5DC">[eBGP](## "external BGP")</span> peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
+The BGP link bandwidth extended community passes on automatically with the prefix to <span class="a-tooltip">[eBGP](## "external BGP")</span> peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
 
 {{%notice note%}}
 You cannot disable just the BGP link bandwidth extended community from advertising to a neighbor; you either send all BGP extended communities, or none.
@@ -333,7 +333,6 @@ Exercise caution when adjusting the maximum number of hardware entries. Configur
 Cumulus Linux supports BGP W-ECMP with adaptive routing for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-w-ecmp" text="above.">}}
 
 - NVIDIA recommends using W-ECMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
-- Cumulus Linux supports a maximum of 48 adaptive routing enabled ports in a single ECMP group.
 - Both adaptive routing eligible traffic and non adaptive routing eligible traffic goes over the same ECMP group, which adjusts according to the W-ECMP weight. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.
 
 

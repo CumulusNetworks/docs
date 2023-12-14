@@ -13,7 +13,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show service dns \<vrf-id\></h>
 
-Shows <span style="background-color:#F5F5DC">[DNS](## "Domain Name Service")</span> configuration settings for the specified VRF.
+Shows <span class="a-tooltip">[DNS](## "Domain Name Service")</span> configuration settings for the specified VRF.
 
 ### Command Syntax
 

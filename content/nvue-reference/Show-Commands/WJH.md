@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show system wjh</h>
 
-Shows <span style="background-color:#F5F5DC">[WJH](## "What Just Happened")</span> configuration on the switch. WJH provides real time visibility into network problems.
+Shows <span class="a-tooltip">[WJH](## "What Just Happened")</span> configuration on the switch. WJH provides real time visibility into network problems.
 
 ### Version History
 

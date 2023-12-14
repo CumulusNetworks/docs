@@ -987,13 +987,13 @@ cumulus@switch:~$ nv config apply
 
 ### Match on ECN Bits in the TCP IP Header
 
-<span style="background-color:#F5F5DC">[ECN](## "Explicit Congestion Notification")</span> allows end-to-end notification of network congestion without dropping packets. You can add ECN rules to match on the <span style="background-color:#F5F5DC">[ECE](## "ECN-Echo")</span>, <span style="background-color:#F5F5DC">[CWR](## "Congestion Window Received")</span>, and <span style="background-color:#F5F5DC">[ECT](## "ECN Capable Transport")</span> flags in the TCP IPv4 header.
+<span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span> allows end-to-end notification of network congestion without dropping packets. You can add ECN rules to match on the <span class="a-tooltip">[ECE](## "ECN-Echo")</span>, <span class="a-tooltip">[CWR](## "Congestion Window Received")</span>, and <span class="a-tooltip">[ECT](## "ECN Capable Transport")</span> flags in the TCP IPv4 header.
 
 By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
 
 #### Match on the ECE Bit
 
-After an endpoint receives a packet with the <span style="background-color:#F5F5DC">[CE](## "Congestion Experienced")</span> bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
+After an endpoint receives a packet with the <span class="a-tooltip">[CE](## "Congestion Experienced")</span> bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
 
 To match on the ECE bit:
 

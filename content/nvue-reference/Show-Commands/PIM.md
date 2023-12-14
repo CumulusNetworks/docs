@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show interface \<interface-id\> router pim</h>
 
-Shows <span style="background-color:#F5F5DC">[PIM](## "Protocol Independent Multicast")</span> configuration for the specified interface.
+Shows <span class="a-tooltip">[PIM](## "Protocol Independent Multicast")</span> configuration for the specified interface.
 
 ### Command Syntax
 
@@ -333,7 +333,7 @@ spt-switchover
 
 ## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\></h>
 
-Shows IPv4 PIM configuration settings for a specific <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
+Shows IPv4 PIM configuration settings for a specific <span class="a-tooltip">[RP](## "Rendezvous Point")</span> for the specified VRF.
 
 ### Command Syntax
 
@@ -359,7 +359,7 @@ cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp 
 
 ## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range</h>
 
-Shows the group ranges for the IPv4 PIM <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
+Shows the group ranges for the IPv4 PIM <span class="a-tooltip">[RP](## "Rendezvous Point")</span> for the specified VRF.
 
 ### Command Syntax
 
@@ -382,7 +382,7 @@ cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp 
 
 ## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range \<group-range-id\></h>
 
-Shows IPv4 PIM configuration settings for a specific <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> group range for the specified VRF.
+Shows IPv4 PIM configuration settings for a specific <span class="a-tooltip">[RP](## "Rendezvous Point")</span> group range for the specified VRF.
 
 ### Command Syntax
 
@@ -406,7 +406,7 @@ cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp 
 
 ## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover</h>
 
-Shows IPv4 PIM <span style="background-color:#F5F5DC">[SPT](## "Shortest Path Tree")</span> switchover configuration for the specified VRF.
+Shows IPv4 PIM <span class="a-tooltip">[SPT](## "Shortest Path Tree")</span> switchover configuration for the specified VRF.
 
 ### Command Syntax
 

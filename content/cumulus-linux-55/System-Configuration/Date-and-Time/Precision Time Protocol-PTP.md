@@ -984,7 +984,7 @@ Cumulus Linux supports the following predefined profiles:
 - You cannot set the current profile to a profile not yet created.
 - You cannot set global PTP parameters in a profile currently in use.
 - PTP profiles do not support VLANs or bonds.
-- If you set a predefined or custom profile, do not change any global PTP settings, such as the <span style="background-color:#F5F5DC">[DSCP](## "DiffServ code point")</span> or the clock domain.
+- If you set a predefined or custom profile, do not change any global PTP settings, such as the <span class="a-tooltip">[DSCP](## "DiffServ code point")</span> or the clock domain.
 - For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp burst <value>` and `nv set system control-plane policer lldp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
 {{%/notice%}}
 
@@ -1938,7 +1938,7 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 
 ### Spanning Tree and PTP
 <!-- vale off -->
-PTP frames are affected by <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
+PTP frames are affected by <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
 
 If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.
 <!-- vale on -->

@@ -5,10 +5,10 @@ weight: 490
 toc: 3
 ---
 {{%notice note%}}
-**MLAG or CLAG**: Other vendors refer to the Cumulus Linux implementation of <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> as CLAG, MC-LAG or VPC. You even see references to CLAG in Cumulus Linux, including the management daemon, named `clagd`, and other options in the code, such as `clag-id`, which exist for historical purposes. The Cumulus Linux implementation is truly a multi-chassis link aggregation protocol so this document uses MLAG.
+**MLAG or CLAG**: Other vendors refer to the Cumulus Linux implementation of <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> as CLAG, MC-LAG or VPC. You even see references to CLAG in Cumulus Linux, including the management daemon, named `clagd`, and other options in the code, such as `clag-id`, which exist for historical purposes. The Cumulus Linux implementation is truly a multi-chassis link aggregation protocol so this document uses MLAG.
 {{%/notice%}}
 
-<span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> enables a server or switch with a two-port bond, such as a link aggregation group (LAG), EtherChannel, port group or trunk, to connect those ports to different switches and operate as if they connect to a single, logical switch. This provides greater redundancy and greater system throughput.
+<span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> enables a server or switch with a two-port bond, such as a link aggregation group (LAG), EtherChannel, port group or trunk, to connect those ports to different switches and operate as if they connect to a single, logical switch. This provides greater redundancy and greater system throughput.
 
 Dual-connected devices can create LACP bonds that contain links to each physical switch; Cumulus Linux supports active-active links from the dual-connected devices even though they connect to two different physical switches.
 
@@ -28,7 +28,7 @@ More elaborate configurations are also possible. The number of links between the
 <!-- vale off -->
 ### LACP and Dual-connected Links
 <!-- vale on -->
-{{<link url="Bonding-Link-Aggregation" text="Link Aggregation Control Protocol (LACP)">}}, the IEEE standard protocol for managing bonds, verifies dual-connectedness. <span style="background-color:#F5F5DC">[LACP](## "Link Aggregation Control Protocol")</span> runs on the dual-connected devices and on each of the MLAG peer switches. On a dual-connected device, the only configuration requirement is to create a bond that LACP manages.
+{{<link url="Bonding-Link-Aggregation" text="Link Aggregation Control Protocol (LACP)">}}, the IEEE standard protocol for managing bonds, verifies dual-connectedness. <span class="a-tooltip">[LACP](## "Link Aggregation Control Protocol")</span> runs on the dual-connected devices and on each of the MLAG peer switches. On a dual-connected device, the only configuration requirement is to create a bond that LACP manages.
 
 On each of the peer switches, you must place the links that connect to the dual-connected host or switch in the bond. This is true even if the links are a single port on each peer switch, where each port is in a bond, as shown below:
 
@@ -668,7 +668,7 @@ cumulus@leaf01:~$ sudo ifreload -a
 
 ### STP and MLAG
 
-Always enable <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> in your layer 2 network and {{<link title="Spanning Tree and Rapid Spanning Tree - STP#bpdu-guard" text="BPDU Guard">}} on the host-facing bond interfaces.
+Always enable <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> in your layer 2 network and {{<link title="Spanning Tree and Rapid Spanning Tree - STP#bpdu-guard" text="BPDU Guard">}} on the host-facing bond interfaces.
 
 - The STP global configuration must be the same on both peer switches.
 - The STP configuration for dual-connected ports must be the same on both peer switches.
@@ -904,9 +904,9 @@ The following table shows the conflict types and actions that Cumulus Linux take
 
 |  Conflict       | Type   | Action|
 | --------------- | ------ | ----- |
-| Bridge STP mode | Global |  Protodown only the MLAG bonds on the secondary switch when there is an <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> mode mismatch across peers. |
+| Bridge STP mode | Global |  Protodown only the MLAG bonds on the secondary switch when there is an <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> mode mismatch across peers. |
 | MLAG native VLAN | Interface | Protodown only the MLAG bonds on the secondary switch when there is a native VLAN mismatch. |
-| STP root bridge priority | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is an <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> priority mismatch across peers. |
+| STP root bridge priority | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is an <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> priority mismatch across peers. |
 | MLAG system MAC address | Global  | Protodown the MLAG bonds and VNIs on the secondary switch when there is an MLAG system MAC address mismatch across peers.|
 | Peer IP | Global   | Protodown the MLAG bonds and VNIs on the secondary switch when there is an IP address mismatch within the same subnet between peers. The consistency checker does not trigger an IP address mismatch between the link-local keyword and a static IPv4 address, or between IPv4 addresses across subnets.|
 | Peer link MTU | Global | Protodown the MLAG bonds and VNIs on the secondary switch when there is a peer link MTU mismatch across peers. |

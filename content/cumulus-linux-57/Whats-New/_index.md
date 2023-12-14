@@ -22,6 +22,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - {{<link url="MAC-Address-Translation" text="MAC address translation">}}
 - {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}}
 - {{<link url="Pulse-Per-Second-PPS" text="Pulse Per Second (PPS) synchronization">}}
+- {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PRP Noise Transfer Servo">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#weight-normalization" text="Weight normalization for BGP weighted ECMP">}}
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}

@@ -1116,58 +1116,61 @@ To show STP information for the ports in a bridge:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp port
-
-
-Interface Info: swp1
---------------------------------------------------------------------------
-enabled         : yes         admin-edge-port      : no
-restricted-tcn  : no          bpdu-guard-port      : no
-restricted-role : no          bpdu-guard-error     : no
-port-path-cost  : 20000       bpdu-filter-port     : no
-oper-edge-port  : yes         ba-inconsistent      : no
-network-port    : no          auto-edge-port       : yes
-mcheck          : no          admin-port-path-cost : 0
-
-Interface Info: swp2
---------------------------------------------------------------------------
-enabled         : yes         admin-edge-port      : no
-restricted-tcn  : no          bpdu-guard-port      : no
-restricted-role : no          bpdu-guard-error     : no
-port-path-cost  : 20000       bpdu-filter-port     : no
-oper-edge-port  : yes         ba-inconsistent      : no
-network-port    : no          auto-edge-port       : yes
-mcheck          : no          admin-port-path-cost : 0
-```
-
-If you configurd MLAG, the `nv show bridge domain <bridge-id> stp port` command shows MLAG information:
-
-```
-cumulus@switch:~$ nv show bridge domain br_default stp port
 Interface Info: bond1
 --------------------------------------------------------------------------
 enabled              : yes         mcheck            : no
 admin-edge-port      : no          bpdu-guard-port   : no
 auto-edge-port       : yes         bpdu-filter-port  : no
-oper-edge-port       : no          bpdu-guard-error  : no
+oper-edge-port       : yes         bpdu-guard-error  : no
 admin-port-path-cost : 0           restricted-tcn    : no
-port-path-cost       : 2000        restricted-role   : no
+port-path-cost       : 20000       restricted-role   : no
 network-port         : no          ba-inconsistent   : no
-clag-role            : primary     clag-system-mac   : 44:38:39:FF:89:9F
+clag-role            : primary     clag-system-mac   : 44:38:39:BE:EF:AA
 clag-isl             : no          clag-isl-oper-up  : no
-clag-dual-conn-mac   : 00:02:00:00:00:1a
+clag-dual-conn-mac   : 00:00:00:00:00:00
+
+Interface Info: bond2
+--------------------------------------------------------------------------
+enabled              : yes         mcheck            : no
+admin-edge-port      : no          bpdu-guard-port   : no
+auto-edge-port       : yes         bpdu-filter-port  : no
+oper-edge-port       : yes         bpdu-guard-error  : no
+admin-port-path-cost : 0           restricted-tcn    : no
+port-path-cost       : 20000       restricted-role   : no
+network-port         : no          ba-inconsistent   : no
+clag-role            : primary     clag-system-mac   : 44:38:39:BE:EF:AA
+clag-isl             : no          clag-isl-oper-up  : no
+clag-dual-conn-mac   : 00:00:00:00:00:00
+
+Interface Info: bond3
+--------------------------------------------------------------------------
+enabled              : yes         mcheck            : no
+admin-edge-port      : no          bpdu-guard-port   : no
+auto-edge-port       : yes         bpdu-filter-port  : no
+oper-edge-port       : yes         bpdu-guard-error  : no
+admin-port-path-cost : 0           restricted-tcn    : no
+port-path-cost       : 20000       restricted-role   : no
+network-port         : no          ba-inconsistent   : no
+clag-role            : primary     clag-system-mac   : 44:38:39:BE:EF:AA
+clag-isl             : no          clag-isl-oper-up  : no
+clag-dual-conn-mac   : 00:00:00:00:00:00
+...
 ```
 
 To show STP information for a specific bridge port:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp port swp1
-enabled         : yes       admin-edge-port      : no
-restricted-tcn  : no          bpdu-guard-port      : no
-restricted-role : no          bpdu-guard-error     : no
-port-path-cost  : 20000       bpdu-filter-port     : no
-oper-edge-port  : yes         ba-inconsistent      : no
-network-port    : no          auto-edge-port       : yes
-mcheck          : no          admin-port-path-cost : 0
+enabled              : yes         mcheck            : no
+admin-edge-port      : no          bpdu-guard-port   : no
+auto-edge-port       : yes         bpdu-filter-port  : no
+oper-edge-port       : yes         bpdu-guard-error  : no
+admin-port-path-cost : 0           restricted-tcn    : no
+port-path-cost       : 20000       restricted-role   : no
+network-port         : no          ba-inconsistent   : no
+clag-role            : primary     clag-system-mac   : 44:38:39:BE:EF:AA
+clag-isl             : no          clag-isl-oper-up  : no
+clag-dual-conn-mac   : 00:00:00:00:00:00
 ```
 
 To show the root ID and root cost for the bridge, run the `nv show bridge domain <bridge> stp root` command.
@@ -1209,7 +1212,7 @@ swp3  296      0        7       0       4          7          539               
 To show all blocked ports in the bridge:
 
 ```
-cumulus@switch:~$ nv show bridge domain br_default blocked-ports
+cumulus@switch:~$ nv show bridge domain br_default stp blocked-ports
 ```
 
 {{< /tab >}}

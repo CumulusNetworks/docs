@@ -1481,13 +1481,28 @@ div.notices.info {
     line-height: 1.764rem;
     padding: 1.6rem 0 0;
   }
+  .a-tooltip {
 
+    a { text-decoration: none;
+    background-color:#F5F5DC;
+    border-bottom: none;
+    
+    &:visited {
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: none;
+      border-bottom: none;
+      transition-delay: 200ms;
+    }
+  }
+  }
   a {
     /* color: #ffc82e; */
 
 
     &:hover {
-      text-decoration: none;
+      text-decoration: underline;
       text-decoration-color: black;
       text-decoration-thickness: 2px;
     }
@@ -1531,7 +1546,7 @@ div.notices.warning {
     /* color: #f1446f; */
 
     &:hover {
-      text-decoration: none;
+      text-decoration: underline;
       text-decoration-color: black;
       text-decoration-thickness: 2px;
     }
@@ -1574,12 +1589,27 @@ div.notices.note {
       padding: 0
     }
   }
+  .a-tooltip {
 
+    a { text-decoration: none;
+    background-color:#F5F5DC;
+    border-bottom: none;
+    
+    &:visited {
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: none;
+      border-bottom: none;
+      transition-delay: 200ms;
+    }
+  }
+  }
   a {
     /* color: #6ab0de; */
 
     &:hover {
-      text-decoration: none;
+      text-decoration: underline;
       text-decoration-color: black;
       text-decoration-thickness: 2px;
     }
@@ -1619,12 +1649,27 @@ div.notices.tip {
     line-height: 1.764rem;
     padding: 1.6rem 0 0;
   }
+  .a-tooltip {
 
+    a { text-decoration: none;
+    background-color:#F5F5DC;
+    border-bottom: none;
+    
+    &:visited {
+      text-decoration: none;
+    }
+    &:hover {
+      text-decoration: none;
+      border-bottom: none;
+      transition-delay: 200ms;
+    }
+  }
+  }
   a {
     /* color: #6ab0de; */
 
     &:hover {
-      text-decoration: none;
+      text-decoration: underline;
       text-decoration-color: black;
       text-decoration-thickness: 2px;
     }

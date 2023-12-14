@@ -62,7 +62,7 @@ cumulus@switch:~$ nv set platform pulse-per-second in pin-index 1
 
 ## <h>nv set platform pulse-per-second in signal-polarity</h>
 
-Sets the polarity of the PPS In signal. You can specify `rising-edge`, `falling-edge`, or both. The default setting is `rising-edge`.
+Sets the polarity of the PPS In signal. You can specify rising-edge, falling-edge, or both. The default setting is rising-edge.
 
 ### Version History
 
@@ -206,9 +206,11 @@ Introduced in Cumulus Linux 5.7.0
 cumulus@switch:~$ nv set platform pulse-per-second out signal-width 999000000
 ```
 
-## <h>nv set platform pulse-per-second out signal-width</h>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-Enables and disables PPS Out. You can specify `enabled` or `disabled`.
+## <h>nv set platform pulse-per-second state</h>
+
+Enables and disables PPS Out.
 
 ### Version History
 

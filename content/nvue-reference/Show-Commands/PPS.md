@@ -55,7 +55,6 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv show platform pulse-per-second in
-nv show platform pulse-per-second in
                       applied
 --------------------  -----------
 state                 enabled

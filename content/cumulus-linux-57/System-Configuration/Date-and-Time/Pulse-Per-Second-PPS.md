@@ -108,24 +108,24 @@ cumulus@switch:~$ nv config apply
 
 1. Edit the `/etc/linuxptp/pps_out.conf` file to set the following parameters.
 
-  ```
-  cumulus@switch:~$ sudo nano /etc/linuxptp/pps_out.conf
-  # Configuration file used for the pps_out.service
-  # It is shell formatted and the file is source'd by the service
-  # Set the PTP device to source our PPS from. 
-  # If not specified, the service will find the first device with a clock name "sx_ptp".
-  PTP_DEV=/dev/ptp1
-  # Set the pin index on the PPS device to send on. 
-  # On the NVIDIA systems, only pin 1 (0-based) is supported
-  OUT_PIN=1
-  # Set the file where to cache the last started values. 
-  # This is used primarily in the "stop" operation to know what to clean up.
-  CACHE_FILE=/var/run/pps_out
-  # Set the out pulse charateristics for frequency and width
-  PULSE_FREQ=1000000000
-  PULSE_WIDTH=500000000
-  PULSE_PHASE=0
-  ```
+   ```
+   cumulus@switch:~$ sudo nano /etc/linuxptp/pps_out.conf
+   # Configuration file used for the pps_out.service
+   # It is shell formatted and the file is source'd by the service
+   # Set the PTP device to source our PPS from. 
+   # If not specified, the service will find the first device with a clock name "sx_ptp".
+   PTP_DEV=/dev/ptp1
+   # Set the pin index on the PPS device to send on. 
+   # On the NVIDIA systems, only pin 1 (0-based) is supported
+   OUT_PIN=1
+   # Set the file where to cache the last started values. 
+   # This is used primarily in the "stop" operation to know what to clean up.
+   CACHE_FILE=/var/run/pps_out
+   # Set the out pulse charateristics for frequency and width
+   PULSE_FREQ=1000000000
+   PULSE_WIDTH=500000000
+   PULSE_PHASE=0
+   ```
 
 2. Enable and start the `pps_out` service:
 

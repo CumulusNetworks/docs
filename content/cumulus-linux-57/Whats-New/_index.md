@@ -519,9 +519,8 @@ nv unset system nat translate-table-size
 ```
 nv action change system date-time
 nv action clear interface <interface-id> bridge domain <domain-id> stp bpduguardviolation
-nv action clear interface <interface-id> link protodown
-nv action clear system link protodown
-nv action delete system config files
+nv action clear interface <interface-id> link protodown link-flap
+nv action clear system link protodown link-flap
 nv action delete system security ca-certificate
 nv action delete system security certificate
 nv action disable system maintenance

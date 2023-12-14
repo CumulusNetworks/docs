@@ -2269,6 +2269,51 @@ cumulus@switch:~$ nv action delete system security certificate cert-1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action disable system maintenance mode</h>
+
+Disables maintenance mode and restores normal operation.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action disable system maintenance mode
+System maintenance mode has been disabled successfully
+ Current System Mode: cold  
+ frr             : cold, up, up time: 12:57:48 (1 restart)
+ switchd         : cold, up, up time: 13:12:13
+ System Services : cold, up, up time: 13:12:32
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action disable system maintenance ports</h>
+
+Restores the port admin state after maintenance.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action disable system maintenance ports
+System maintenance ports has been disabled successfully
+ Current System Mode: cold  
+ Ports shutdown for Maintenance
+ frr             : cold, up, up time: 13:00:57 (1 restart)
+ switchd         : cold, up, up time: 13:15:22
+ System Services : cold, up, up time: 13:15:41
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action disconnect system aaa user \<user\></h>
 
 Disconnects authenticated and authorized users.

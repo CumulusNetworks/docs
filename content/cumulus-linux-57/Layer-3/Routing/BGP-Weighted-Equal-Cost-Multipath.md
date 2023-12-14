@@ -324,7 +324,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
 {{%notice note%}}
-Exercise caution when adjusting the maximum number of hardware entries. Configuring the setting too low consumes more resources but provides less weight granularity. Configuring the setting too high consumes fewer resources but provides more weight granularity.
+Exercise caution when adjusting the maximum number of hardware entries. Configuring the setting too low consumes fewer resources but provides less weight granularity. Configuring the setting too high consumes more resources but provides more weight granularity.
 {{%/notice%}}
 
 <!-- vale off -->
@@ -334,7 +334,6 @@ Cumulus Linux supports BGP W-ECMP with adaptive routing for high-performance Eth
 
 - NVIDIA recommends using W-ECMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
 - Both adaptive routing eligible traffic and non adaptive routing eligible traffic goes over the same ECMP group, which adjusts according to the W-ECMP weight. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.
-
 
 ## Troubleshooting
 

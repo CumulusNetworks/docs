@@ -12,9 +12,7 @@ This document supports the Cumulus Linux 5.7 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.7.0
 <!-- vale on -->
-Cumulus Linux 5.7.0 supports new platforms, contains several new features and improvements, and provides bug fixes.
-
-### Platforms
+Cumulus Linux 5.7.0 contains several new features and improvements, and provides bug fixes.
 
 ### New Features and Enhancements
 
@@ -513,6 +511,10 @@ nv action upload system config files
 {{< /tabs >}}
 
 {{< /expand >}}
+
+{{%notice note%}}
+In Cumulus 5.7, NVIDIA has revised the {{<link url="Supported-Route-Table-Entries/#spectrum-1" text="Spectrum-1 forwarding profile numbers">}}.
+{{%/notice%}}
 
 {{%notice info%}}
 Cumulus Linux 5.7 includes the NVUE object model. After you upgrade to Cumulus Linux 5.7, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

@@ -513,7 +513,7 @@ nv action upload system config files
 {{< /expand >}}
 
 {{%notice note%}}
-In Cumulus 5.7, NVIDIA has revised the {{<link url="Supported-Route-Table-Entries/#spectrum-1" text="Spectrum-1 forwarding profile numbers">}}.
+Cumulus 5.7 provides updated {{<link url="Supported-Route-Table-Entries/#spectrum-1" text="Spectrum-1 forwarding profile numbers">}} to optimize hardware resources and prevent overutilization.
 {{%/notice%}}
 
 {{%notice info%}}

@@ -208,9 +208,9 @@ cumulus@switch:~$ nv set platform pulse-per-second out signal-width 999000000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set platform pulse-per-second out signal-width</h>
+## <h>nv set platform pulse-per-second state</h>
 
-Enables and disables PPS Out. You can specify enabled or disabled.
+Enables and disables PPS Out.
 
 ### Version History
 

@@ -43,6 +43,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3538321</td>
+<td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the Slave state and one of the ports might remain in an Uncalibrated state. To work around this issue, toggle the port that is in the Uncalibrated state up and down to recover the PTP state so that one of the ports is selected as the Slave.</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3484058</td>
 <td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
 <td>5.3.0-5.7.0</td>
@@ -125,6 +131,12 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td>3326659</td>
 <td>If you have a large number of MAC addresses, they do not age out at the MAC ageing timeout value configured on the switch. It might take up to 30 seconds more for the MAC addresses to age out and be deleted from the hardware. To work around this issue, wait for the ageing timeout value plus 30 seconds to allow for the MAC addresses to age out and be deleted from the hardware.</td>
 <td>5.4.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3241567</td>
+<td>When you apply switch configuration for the first time on a freshly booted switch, you might see the error message {{Failed to start Hostname Service}} when you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
+<td>5.3.0-5.7.0</td>
 <td></td>
 </tr>
 <tr>

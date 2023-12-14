@@ -1139,6 +1139,24 @@ network-port    : no          auto-edge-port       : yes
 mcheck          : no          admin-port-path-cost : 0
 ```
 
+If you configurd MLAG, the `nv show bridge domain <bridge-id> stp port` command shows MLAG information:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default stp port
+Interface Info: bond1
+--------------------------------------------------------------------------
+enabled              : yes         mcheck            : no
+admin-edge-port      : no          bpdu-guard-port   : no
+auto-edge-port       : yes         bpdu-filter-port  : no
+oper-edge-port       : no          bpdu-guard-error  : no
+admin-port-path-cost : 0           restricted-tcn    : no
+port-path-cost       : 2000        restricted-role   : no
+network-port         : no          ba-inconsistent   : no
+clag-role            : primary     clag-system-mac   : 44:38:39:FF:89:9F
+clag-isl             : no          clag-isl-oper-up  : no
+clag-dual-conn-mac   : 00:02:00:00:00:1a
+```
+
 To show STP information for a specific bridge port:
 
 ```

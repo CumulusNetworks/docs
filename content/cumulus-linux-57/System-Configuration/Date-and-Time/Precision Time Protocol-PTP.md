@@ -620,7 +620,14 @@ servo_num_offset_values             5
 {{< /tab >}}
 {{< /tabs >}}
 
-To show Noise Transfer Servo configuration settings, run the `nv show service ptp <instance-id> servo` command.
+To show Noise Transfer Servo configuration settings, run the `nv show service ptp <instance-id> servo` command:
+
+```
+cumulus@switch:~$ nv show service ptp 1 servo
+       operational  applied
+-----  -----------  --------------
+servo               noise-transfer
+```
 
 ## Optional Global Configuration
 

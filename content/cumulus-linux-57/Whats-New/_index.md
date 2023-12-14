@@ -262,6 +262,19 @@ nv set interface <interface-id> telemetry histogram egress-buffer traffic-class 
 nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold action log
 nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold value 96-4294967295
 nv set nve vxlan ageing 0-4096
+nv set platform pulse-per-second in channel-index
+nv set platform pulse-per-second in logging-level
+nv set platform pulse-per-second in pin-index 
+nv set platform pulse-per-second in signal-polarity
+nv set platform pulse-per-second in signal-width
+nv set platform pulse-per-second in state
+nv set platform pulse-per-second in timestamp-correction
+nv set platform pulse-per-second out channel-index
+nv set platform pulse-per-second out frequency-adjustment
+nv set platform pulse-per-second out phase-adjustment
+nv set platform pulse-per-second out pin-index
+nv set platform pulse-per-second out signal-width
+nv set platform pulse-per-second state
 nv set router bgp queue-limit input 1-4294967295
 nv set router bgp queue-limit output 1-4294967295
 nv set service dhcp-relay <vrf-id> agent enable (on|off)
@@ -401,6 +414,19 @@ nv unset interface <interface-id> telemetry histogram ingress-buffer priority-gr
 nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold
 nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold action
 nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold value
+nv unset platform pulse-per-second in channel-index
+nv unset platform pulse-per-second in logging-level
+nv unset platform pulse-per-second in pin-index 
+nv unset platform pulse-per-second in signal-polarity
+nv unset platform pulse-per-second in signal-width
+nv unset platform pulse-per-second in state
+nv unset platform pulse-per-second in timestamp-correction
+nv unset platform pulse-per-second out channel-index
+nv unset platform pulse-per-second out frequency-adjustment
+nv unset platform pulse-per-second out phase-adjustment
+nv unset platform pulse-per-second out pin-index
+nv unset platform pulse-per-second out signal-width
+nv unset platform pulse-per-second state
 nv unset router bgp queue-limit
 nv unset router bgp queue-limit input
 nv unset router bgp queue-limit output

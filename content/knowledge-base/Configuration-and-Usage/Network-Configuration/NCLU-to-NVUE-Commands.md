@@ -695,7 +695,7 @@ Below are a few similar VXLAN and EVPN commands, for full configuration and more
         <code>nv set evpn enable on</code>
         </td>
         <td rowspan="3" style="vertical-align : middle">
-        In NVUE, enable EVPN-AF globally and at the BGP proccess as well as the peer activation in BGP.</br>Unlike with NCLU, in NVUE you do not need enable the BGP control plane for all VNIs with the <code>advertise-all-vni</code> option.
+        In NVUE, enable EVPN-AF globally and at the BGP proccess as well as the peer activation in BGP.</br>Unlike with NCLU, in NVUE you do not need to enable the BGP control plane for all VNIs with the <code>advertise-all-vni</code> option.
         </td>
     </tr>
     <tr>

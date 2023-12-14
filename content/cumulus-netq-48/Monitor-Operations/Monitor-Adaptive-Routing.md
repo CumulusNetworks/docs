@@ -9,7 +9,7 @@ Adaptive routing is a load balancing feature that improves network utilization f
 
 {{<notice note>}}
 
-Adaptive routing monitoring is supported on Spectrum-2 switches and above. It requires a switch fabric running Cumulus Linux 5.5.0 or above. This feature is in beta.
+Adaptive routing monitoring is supported on Spectrum-2 switches and later. It requires a switch fabric running Cumulus Linux 5.5.0 or above. This feature is in beta.
 
 {{</notice>}}
 
@@ -19,11 +19,11 @@ To display adaptive routing data, you must have adaptive routing configured on t
 
 ## Adaptive Routing Commands
 
-Monitor adaptive routing with the {{<link title="show/#netq-show-adaptive-routing-config" text="netq show adaptive routing config">}} command.
+Monitor adaptive routing with the {{<link title="show/#netq-show-adaptive-routing-config" text="netq show adaptive-routing config">}} command.
 
 ```
-netq show adaptive routing config global
-netq show adaptive routing config interface
+netq show adaptive-routing config global
+netq show adaptive-routing config interface
 ```
 
 ## Access the Adaptive Routing Dashboard

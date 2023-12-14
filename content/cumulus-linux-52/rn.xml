@@ -14,7 +14,7 @@
 
 This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
 <td>5.0.0-5.5.1</td>
-<td>5.6.0</td>
+<td>4.3.2-4.4.5, 5.6.0</td>
 </tr>
 <tr>
 <td>3585467</td>
@@ -39,8 +39,8 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
 Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
 For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
-<td></td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3541912</td>
@@ -100,7 +100,7 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
 <td>5.0.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3413785</td>
@@ -140,8 +140,8 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-5.3.1</td>
-<td>5.4.0-5.6.0</td>
+<td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
+<td>4.3.2, 5.4.0-5.6.0</td>
 </tr>
 <tr>
 <td>3351936</td>
@@ -163,9 +163,7 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 </tr>
 <tr>
 <td>3347677</td>
-<td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.
-
-In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on secondary clag device on peerlink down trigger. This ensures smooth traffic flow and no convergence issue seen in system test bed with this fix.</td>
+<td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.</td>
 <td>5.1.0-5.6.0</td>
 <td></td>
 </tr>
@@ -307,7 +305,7 @@ ethtool (-S): unknown parameter 'clear'
 </tr>
 <tr>
 <td>3221628</td>
-<td>Cumulus Linux 5.2.0 and 5.2.1 VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
+<td>Cumulus Linux VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
 <td>5.2.0-5.6.0</td>
 <td></td>
 </tr>
@@ -402,8 +400,8 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
+<td>4.3.0-4.3.1, 4.4.0-5.2.1</td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3188576</td>
@@ -550,8 +548,8 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>5.0.1-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3139364</td>
@@ -782,12 +780,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2847919</td>
-<td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only. To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
-<td>5.0.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2847755</td>
 <td>When you use NCLU to remove the configuration for a peer that is a member of a group but also has other peer-specific configuration, you must remove the peer-specific configuration before you delete the peer in a separate NCLU commit.</td>
 <td>5.0.0-5.6.0</td>
@@ -872,7 +864,7 @@ You can safely ignore this warning.</td>
 
 This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
 <td>5.0.0-5.5.1</td>
-<td>5.6.0</td>
+<td>4.3.2-4.4.5, 5.6.0</td>
 </tr>
 <tr>
 <td>3585467</td>
@@ -897,8 +889,8 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
 Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
 For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.4.5, 5.0.0-5.6.0</td>
-<td></td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
+<td>4.3.2-4.4.5</td>
 </tr>
 <tr>
 <td>3541912</td>
@@ -958,7 +950,7 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
 <td>5.0.0-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>4.3.2-4.4.5, 5.5.0-5.6.0</td>
 </tr>
 <tr>
 <td>3413785</td>
@@ -992,8 +984,8 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-5.3.1</td>
-<td>5.4.0-5.6.0</td>
+<td>4.2.1-4.3.1, 4.4.0-5.3.1</td>
+<td>4.3.2, 5.4.0-5.6.0</td>
 </tr>
 <tr>
 <td>3351936</td>
@@ -1015,9 +1007,7 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 </tr>
 <tr>
 <td>3347677</td>
-<td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.
-
-In a proposed fix in the MR !226, we are not flapping the IP on vxlan device on secondary clag device on peerlink down trigger. This ensures smooth traffic flow and no convergence issue seen in system test bed with this fix.</td>
+<td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.</td>
 <td>5.1.0-5.6.0</td>
 <td></td>
 </tr>
@@ -1165,7 +1155,7 @@ ethtool (-S): unknown parameter 'clear'
 </tr>
 <tr>
 <td>3221628</td>
-<td>Cumulus Linux 5.2.0 and 5.2.1 VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
+<td>Cumulus Linux VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
 <td>5.2.0-5.6.0</td>
 <td></td>
 </tr>
@@ -1266,8 +1256,8 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-5.2.1</td>
-<td>5.3.0-5.6.0</td>
+<td>4.3.0-4.3.1, 4.4.0-5.2.1</td>
+<td>4.3.2, 5.3.0-5.6.0</td>
 </tr>
 <tr>
 <td>3188576</td>
@@ -1414,8 +1404,8 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.4.0</td>
-<td>5.5.0-5.6.0</td>
+<td>5.0.1-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3139364</td>
@@ -1642,12 +1632,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>2867042</td>
 <td>When connecting the NVIDIA SN4600 switch to another NVIDIA Spectrum switch, you must use auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
-<td>5.0.0-5.6.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2847919</td>
-<td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only. To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
 <td>5.0.0-5.6.0</td>
 <td></td>
 </tr>

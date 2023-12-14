@@ -9,7 +9,7 @@ Create a flow analysis to sample data from TCP and UDP flows in your environment
 <!-- vale off -->
 {{<notice info>}}
 
-Flow analysis is supported on NVIDIA Spectrum-2 switches and above. It requires a switch fabric running Cumulus Linux version 5.0 or above.
+Flow analysis is supported on NVIDIA Spectrum-2 switches and later. It requires a switch fabric running Cumulus Linux version 5.0 or later.
 
 You must enable {{<link title="Lifecycle Management" text="Lifecycle Management">}} (LCM) to run a flow analysis. If LCM is disabled, you will not see the flow analysis icon in the UI. LCM is enabled for on-premises deployments by default and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
 

@@ -23,7 +23,7 @@ Cumulus Linux provides several generalized profiles, described below. These prof
 The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile. If you do not specify any profiles as described below, the switch uses the *default* values.
 
 {{%notice note%}}
-The values in the following tables reflect results from testing, which can differ from published manufacturer specifications.
+The values provided in the profiles below are the maximum values that Cumulus Linux software allocates; the theoretical hardware limits might be higher. These limits refer to values that NVIDIA checks as part of the unidimensional scale validation. If you try to achieve maximum scalability with multiple features enabled, results might differ from the values listed in this guide.
 {{%/notice%}}
 
 ### Spectrum 1
@@ -45,7 +45,6 @@ The values in the following tables reflect results from testing, which can diffe
 | default         | 50k           | 41k (IPv4) and 20k (IPv6) | 82k (IPv4), 74k (IPv6-long), 1K (IPv4-Mcast)|
 | l2-heavy        | 115k          | 74k (IPv4) and 37k (IPv6) | 16k (IPv4), 24k (IPv6-long), 1K (IPv4-Mcast)|
 | l2-heavy-1      | 239k          | 16k (IPv4) and 12k (IPv6) | 16k (IPv4), 16k (IPv6-long), 1K (IPv4-Mcast)|
-| l2-heavy-v4-lpm | 125k          | 1k (IPv4) and 128 (IPv6) | 65k (IPv4), 512 (IPv6-long), 0 (IPv4-Mcast)|
 | l2-heavy-3      | 107k          | 90k (IPv4) and 80k (IPv6) | 25k (IPv4), 10k (IPv6-long), 1K (IPv4-Mcast) |
 | v4-lpm-heavy    | 16k           | 41k (IPv4) and 24k (IPv6) | 124k (IPv4), 24k (IPv6-long), 1K (IPv4-Mcast)|
 | v4-lpm-heavy-1  | 16k           | 16k (IPv4) and 4k (IPv6)  | 256k (IPv4), 8k (IPv6-long), 1K (IPv4-Mcast)|
@@ -55,6 +54,7 @@ The values in the following tables reflect results from testing, which can diffe
 | ipmc-heavy      | 57k           | 41k (IPv4) and 20k (IPv6) | 82K (IPv4), 66K (IPv6-long), 8K (IPv4-Mcast) |
 | ipmc-max        | 41K           | 41k (IPv4) and 20k (IPv6) | 74K (IPv4), 66K (IPv6-long), 15K (IPv4-Mcast)|
 
+<!--| l2-heavy-v4-lpm | 125k          | 1k (IPv4) and 128 (IPv6) | 65k (IPv4), 512 (IPv6-long), 0 (IPv4-Mcast)| -->
 The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number is half of the /64 IPv6 prefix number.
 
 {{%notice note%}}
@@ -98,7 +98,7 @@ cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
 forwarding_table.profile = l2-heavy
 ```
 
-After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect.
+After you specify a different profile, restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}

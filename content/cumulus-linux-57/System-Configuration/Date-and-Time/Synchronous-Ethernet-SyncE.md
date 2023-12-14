@@ -1,16 +1,12 @@
 ---
-title: SyncE 
+title: Synchronous Ethernet - SyncE 
 author: NVIDIA
-weight: 129
+weight: 128
 toc: 3
 draft: true
 
 ---
-{{%notice note%}}
-SyncE is currently in Beta.
-{{%/notice%}}
-
-<span class="a-tooltip">[SyncE](## "Synchronous Ethernet")</span> is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel manages this synchronization.
+<span class="a-tooltip">[SyncE](## "Synchronous Ethernet")</span> is an ITU-T standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated channel, <span class="a-tooltip">[ESMC](## "Ethernet Synchronization Messaging Channel")</span> manages this synchronization, as specified by the ITU-T Rec. G.8264 standard.
 
 The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 - The SyncE controller reads performance counters to calculate the differences between transmit and receive ethernet symbols on the physical layer to fine tune the clock frequency.
@@ -19,7 +15,8 @@ The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
   - Manages the synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span class="a-tooltip">[QL](## "Quality Level")</span> in the SSM.
 
 {{%notice note%}}
-Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
+- Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
+- SyncE with PTP is currently in Beta
 {{%/notice%}}
 
 ## Basic Configuration
@@ -37,7 +34,7 @@ The basic configuration shown below uses the default SyncE settings:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service synce enable on
+cumulus@switch:~$ nv set system synce enable on
 cumulus@switch:~$ nv set interface swp2 synce enable on
 cumulus@switch:~$ nv config apply
 ```
@@ -85,7 +82,7 @@ The following command example sets the wait to restore time to 180 seconds (3 mi
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service synce wait-to-restore-time 180
+cumulus@switch:~$ nv set system synce wait-to-restore-time 180
 cumulus@switch:~$ nv config apply
 ```
 
@@ -118,7 +115,7 @@ The following example command sets the priority to 256:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service synce provider-default-priority 256
+cumulus@switch:~$ nv set system synce provider-default-priority 256
 cumulus@switch:~$ nv config apply
 ```
 
@@ -157,7 +154,7 @@ The following example command sets the logging level to `debug`.
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service synce log-level debug
+cumulus@switch:~$ nv set system synce log-level debug
 cumulus@switch:~$ nv config apply
 ```
 
@@ -234,12 +231,12 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 ## Show SyncE Configuration and Counters
 
-To show global SyncE configuration, run the NVUE `nv show service synce` command or the Linux `syncectl show status` command.
+To show global SyncE configuration, run the NVUE `nv show system synce` command or the Linux `syncectl show status` command.
 
 To show SyncE configuration for a specific interface, run the NVUE `nv show interface <interface-id> synce` command or the Linux  `syncectl show interface status <interface>` command.
 
 ```
-cumulus@switch:~$ nv show service synce
+cumulus@switch:~$ nv show system synce
                            operational                                                        applied
 -------------------------  -----------------------------------------------------------------  -------
 enable                     On                                                                 on
@@ -252,10 +249,10 @@ network-type               1
 summary                    Group #0: TRACKING holdover acquired on swp1. freq_diff: 77 (ppb)
 ```
 
-To show SyncE statistics for a specific interface, run the NVUE `nv show interface <interface-id> synce counters` command or the Linux `syncectl show interface counters <interface` command:
+To show SyncE statistics for a specific interface, run the NVUE `nv show interface <interface-id> counters synce` command or the Linux `syncectl show interface counters <interface` command:
 
 ```
-cumulus@switch:~$ nv show interface swp2 synce counters
+cumulus@switch:~$ nv show interface swp2 counters synce
                  operational  applied
 ---------------  -----------  -------
 rx-esmc          248899
@@ -286,10 +283,10 @@ tx-esmc-unknown  0
 
 ## Clear SyncE Interface Counters
 
-To clear counters for a specific SyncE interface, run the NVUE `nv action clear interface <interface> synce counters` command or the Linux `syncectl clear interface counters <interface>` command.
+To clear counters for a specific SyncE interface, run the NVUE `nv action clear interface <interface> counters synce` command or the Linux `syncectl clear interface counters <interface>` command.
 
 ```
-cumulus@switch:~$ nv action clear interface swp1 synce counters
+cumulus@switch:~$ nv action clear interface swp1 counters synce
 swp1 counters cleared
 Action succeeded
 ```

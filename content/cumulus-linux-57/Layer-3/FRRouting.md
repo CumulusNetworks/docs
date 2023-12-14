@@ -78,9 +78,8 @@ cumulus@switch:~$ sudo systemctl start frr.service
 ## Restore the Default Configuration
 
 {{%notice note%}}
-The information in this section does not apply if you use NVUE to configure your switch. NVUE manages FRR daemons and configuration automatically. These instructions are only applicable for users managing FRR directly through linux flat file configurations.
+The information in this section does not apply if you use NVUE to configure your switch. NVUE manages FRR daemons and configuration automatically. These instructions are only applicable if you manage FRR directly with linux flat file configurations.
 {{%/notice%}}
-
 
 If you need to restore the FRR configuration to the default running configuration, delete the `frr.conf` file and restart the `frr` service.
 
@@ -93,7 +92,6 @@ Back up `frr.conf` (or any configuration files you want to remove) before procee
     ```
     cumulus@switch:~$ sudo rm /etc/frr/frr.conf
     ```
-
 
 3. Restart FRR with this command:
 

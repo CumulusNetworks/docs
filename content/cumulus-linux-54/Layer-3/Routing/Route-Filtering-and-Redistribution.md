@@ -281,7 +281,7 @@ The `source-protocol` match statement is only supported in {{<link url="FRRoutin
 | ------------ | ---------- |
 | `aggregator-as` | Sets the aggregator AS. |
 | `ext-community-rt` | Sets the BGP extended community RT.|
-| `originator-id` | Sets the originator ID so that BGP choses the preferred path. |
+| `originator-id` | Sets the originator ID so that BGP chooses the preferred path. |
 | `as-path-exclude` | Sets BGP AS path exclude attribute to avoid considering the AS path during best path route selection. |
 | `ext-community-soo` | Sets the BGP extended community Sight of Origin (SOO).|
 | `large-community` |Sets the BGP large community. |
@@ -450,7 +450,7 @@ The following example commands redistribute routing information from <span class
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast route-redistribute ospf
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute ospf
 cumulus@switch:~$ nv config apply
 ```
 
@@ -477,7 +477,7 @@ To redistribute all directly connected networks, use the `redistribute connected
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast route-redistribute connected
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@switch:~$ nv config apply
 ```
 

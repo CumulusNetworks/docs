@@ -42,7 +42,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.conf` file, then restart `switchd`.
+Edit the `/etc/cumulus/switchd.conf` file, then reload `switchd`.
 
 The following example sets the VXLAN encapsulation DSCP action to `copy`.
 
@@ -87,10 +87,7 @@ vxlan.def_decap_dscp_action = preserve
 ...
 ```
 
-After you modify `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect.
-<!-- vale off -->
-{{<cl/restart-switchd>}}
-<!-- vale on -->
+After you modify `/etc/cumulus/switchd.conf` file, you must reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}

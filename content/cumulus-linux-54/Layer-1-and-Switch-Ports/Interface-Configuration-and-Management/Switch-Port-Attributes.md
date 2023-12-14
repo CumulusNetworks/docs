@@ -1120,7 +1120,7 @@ SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with al
 
 For lower speeds, PAM4 is automatically converted to NRZ encoding.
 
-Only 32xQSFP56 ports can brea kout into 4xSFP56 (4x50GbE). But, in this case, the adjacent QSFP56 port are blocked (only the first and third or second and fourth rows can break out into 4xSFP56).
+Only 32xQSFP56 ports can break out into 4xSFP56 (4x50GbE). But, in this case, the adjacent QSFP56 port are blocked (only the first and third or second and fourth rows can break out into 4xSFP56).
 
 All 64xQSFP56 ports can break out into 2xQSFP56 (2x100GbE) without blocking ports.
 

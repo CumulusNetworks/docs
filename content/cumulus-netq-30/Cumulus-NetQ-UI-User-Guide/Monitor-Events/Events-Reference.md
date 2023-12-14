@@ -508,7 +508,7 @@ For information about configuring threshold-based events (TCAs), refer to {{<lin
 </tr>
 <tr>
 <td>ssdutil</td>
-<td>A dip in 3ME3 disk health of more than 2% has occured within the last 24 hours</td>
+<td>A dip in 3ME3 disk health of more than 2% has occurred within the last 24 hours</td>
 <td>Critical</td>
 <td>@info: @details</td>
 <td>significant health drop : 3.0%</td>

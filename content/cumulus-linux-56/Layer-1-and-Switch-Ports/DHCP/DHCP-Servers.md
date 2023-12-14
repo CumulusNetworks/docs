@@ -203,7 +203,7 @@ subnet6 2001:db8::1/128 {
 
 ### Lease Time
 
-You can set the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000. The default lease time is 600 seconds.
+You can set the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000. The default lease time is 3600 seconds.
 
 {{< tabs "TabID206 ">}}
 {{< tab "NVUE Commands ">}}

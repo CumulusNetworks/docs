@@ -70,7 +70,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family l2
 cumulus@leaf01:~$ nv config apply
 ```
 
-You do not need enable the BGP control plane for all VNIs configured on the switch with NVUE with the `advertise-all-vni` option. FRR **is** aware of any local VNIs and MACs, and hosts (neighbors) associated with those VNIs.
+You do not need to enable the BGP control plane for all VNIs configured on the switch with NVUE with the `advertise-all-vni` option. FRR **is** aware of any local VNIs and MACs, and hosts (neighbors) associated with those VNIs.
 
 After you run `nv config save`, the NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
@@ -275,7 +275,7 @@ router bgp 65101
   bgp router-id 10.10.10.1
   neighbor swp51 interface remote-as external
   address-family l2vpn evpn
-neighbor swp1 activate
+neighbor swp51 activate
   advertise-all-vni
 ...
 ```
@@ -291,7 +291,7 @@ spine01(config)# router bgp 65199
 spine01(config-router)# bgp router-id 10.10.10.101
 spine01(config-router)# neighbor swp1 interface remote-as external
 spine01(config-router)# address-family l2vpn evpn
-spine01(config-router-af)# neighbor swp51 activate
+spine01(config-router-af)# neighbor swp1 activate
 spine01(config-router-af)# end
 spine01)# write memory
 spine01)# exit

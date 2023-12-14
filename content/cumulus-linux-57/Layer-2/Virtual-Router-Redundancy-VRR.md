@@ -156,8 +156,8 @@ The following example commands configure both 10.1.10.1/24 and 10.1.11.1/24 on V
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr adress 10.1.10.1/24
-cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr adress 10.1.11.1/24
+cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.11.1/24
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
@@ -194,35 +194,31 @@ Configure the links between the servers and the switches in *active-active* mode
 
 ### Troubleshooting
 
-To verify the configuration on the switch, run the `net show interface` command:
+To verify the configuration on the switch, run the `nv show interface` command:
 
 ```
-cumulus@leaf01:mgmt:~$ net show interface
-State  Name           Spd  MTU    Mode          LLDP                     Summary
------  -------------  ---  -----  ------------  -----------------------  -----------------------
-UP     lo             N/A  65536  Loopback                               IP: 127.0.0.1/8
-       lo                                                                IP: 10.10.10.1/32
-       lo                                                                IP: ::1/128
-UP     eth0           1G   1500   Mgmt          oob-mgmt-switch (swp10)  Master: mgmt(UP)
-       eth0                                                              IP: 192.168.200.11/24
-UP     swp1           1G   9216   BondMember                             Master: bond1(UP)
-UP     swp2           1G   9216   BondMember                             Master: bond2(UP)
-UP     swp49          1G   9216   BondMember                             Master: peerlink(UP)
-UP     swp50          1G   9216   BondMember                             Master: peerlink(UP)
-UP     swp51          1G   9216   Default
-UP     bond1          1G   9216   802.3ad                                Master: br_default(UP)
-       bond1                                                             Bond Members: swp1(UP)
-UP     bond2          1G   9216   802.3ad                                Master: br_default(UP)
-       bond2                                                             Bond Members: swp2(UP)
-UP     br_default     N/A  9216   Bridge/L2
-UP     mgmt           N/A  65536  VRF                                    IP: 127.0.0.1/8
-       mgmt                                                              IP: ::1/128
-UP     peerlink       2G   9216   802.3ad                                Master: br_default(UP)
-       peerlink                                                          Bond Members: swp49(UP)
-       peerlink                                                          Bond Members: swp50(UP)
-UP     peerlink.4094  2G   9216   Default
-UP     vlan10         N/A  9216   Interface/L3                           IP: 10.1.10.2/24
-UP     vlan10-v0      N/A  9216   Interface/L3                           IP: 10.1.10.1/24
+cumulus@leaf01:mgmt:~$ nv show interface
+Interface       State  Speed  MTU    Type      Remote Host      Remote Port  Summary                                 
+--------------  -----  -----  -----  --------  ---------------  -----------  ----------------------------------------
+BLUE            up            65575  vrf                                     IP Address:                  127.0.0.1/8
+                                                                             IP Address:                      ::1/128
+RED             up            65575  vrf                                     IP Address:                  127.0.0.1/8
+                                                                             IP Address:                      ::1/128
+bond1           up     1G     9000   bond                                                                            
+bond2           up     1G     9000   bond                                                                            
+bond3           up     1G     9000   bond                                                                            
+br_default      up            9216   bridge                                  IP Address:  fe80::4638:39ff:fe22:17a/64
+eth0            up     1G     1500   eth       oob-mgmt-switch  swp10        IP Address:            192.168.200.11/24
+                                                                             IP Address:  fe80::4638:39ff:fe22:17a/64
+lo              up            65536  loopback                                IP Address:                 10.0.1.12/32
+                                                                             IP Address:                10.10.10.1/32
+                                                                             IP Address:                  127.0.0.1/8
+                                                                             IP Address:                      ::1/128
+mgmt            up            65575  vrf                                     IP Address:                  127.0.0.1/8
+                                                                             IP Address:                      ::1/128
+peerlink        up     2G     9216   bond                                                                            
+peerlink.4094   up            9216   sub                                     IP Address: fe80::4ab0:2dff:fed1:e4e1/64
+swp1            up     1G     9000   swp 
 ...
 ```
 

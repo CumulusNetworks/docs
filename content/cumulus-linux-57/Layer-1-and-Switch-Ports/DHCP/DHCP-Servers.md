@@ -27,12 +27,14 @@ To configure the DHCP server on a Cumulus Linux switch:
 In addition, you can configure a static IP address for a resource, such as a server or printer:
 - Create an ID for the static assignment. This is typically the name of the resource.
 - Provide the static IP address you want to assign to this resource.
-- Provide the MAC address of the resource to which you want to assign the IP address.
+- Provide the MAC address of the resource to which you want to assign the IP address. Instead of the MAC address, you can set the interface name for the static assignment (IPv4 only); for example swp1.
 
 {{%notice note%}}
 - To configure static IP address assignments, you must first configure a pool.
-- You can set the DNS server IP address and domain name globally or specify different DNS server IP addresses and domain names for different pools. The following example commands configure a DNS server IP address and domain name for a pool.
+- You can set the DNS server IP address and domain name globally or specify different DNS server IP addresses and domain names for different pools.
 {{%/notice%}}
+
+The following example configures the `storage-servers` pool with DNS and static DHCP assignments for `server1` and `server2`.
 
 {{< tabs "TabID27 ">}}
 {{< tab "NVUE Commands ">}}
@@ -49,10 +51,15 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 gateway 1
 cumulus@switch:~$ nv set service dhcp-server default static server1
 cumulus@switch:~$ nv set service dhcp-server default static server1 ip-address 10.0.0.2
 cumulus@switch:~$ nv set service dhcp-server default static server1 mac-address 44:38:39:00:01:7e
+cumulus@switch:~$ nv set service dhcp-server default static server2
+cumulus@switch:~$ nv set service dhcp-server default static server2 ip-address 10.0.0.3
+cumulus@switch:~$ nv set service dhcp-server default static server2 ifname swp1
 cumulus@switch:~$ nv config apply
 ```
 
 To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server <vrf> domain-name-server <address>` and `nv set service dhcp-server <vrf> domain-name <domain>` commands.
+
+To set the interface name for the static assignment, run the `nv set service dhcp-server <vrf> static <server> ifname` command.
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
@@ -203,7 +210,7 @@ subnet6 2001:db8::1/128 {
 
 ### Lease Time
 
-You can set the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000. The default lease time is 600 seconds.
+You can set the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000. The default lease time is 3600 seconds.
 
 {{< tabs "TabID206 ">}}
 {{< tab "NVUE Commands ">}}

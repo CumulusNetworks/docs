@@ -412,7 +412,7 @@ If you specify a subinterface, such as swp1.100, then run `ifup swp1.100`, Cumul
 You can specify both IPv4 and IPv6 addresses for the same interface.
 
 For IPv6 addresses:
-- You can create or modify the IP address for an interface using either `::` or `0:0:0` notation. For example,both 2620:149:43:c109:0:0:0:5 and 2001:DB8::1/126 are valid.
+- You can create or modify the IP address for an interface using either `::` or `0:0:0` notation. For example, both 2620:149:43:c109:0:0:0:5 and 2001:DB8::1/126 are valid.
 - Cumulus Linux assigns the IPv6 address with all zeroes in the interface identifier (2001:DB8::/126) for each subnet; connected hosts cannot use this address.
 
 The following example commands configure three IP addresses for swp1; two IPv4 addresses and one IPv6 address.
@@ -639,7 +639,24 @@ Cumulus Linux enables link flap detection by default. Link flap detection trigge
 2023-02-10T17:53:21.264621+00:00 cumulus switchd[10109]: sync_port.c:2263 ERR swp2 link flapped more than 3 times in the last 60 seconds, setting protodown
 ```
 
-To show interfaces with the protodown flag, run the Linux `ip link` command:
+To show interfaces with the protodown flag, run the NVUE `nv show interface` command or the Linux `ip link` command. To check a specific interface, run the `nv show interface <interface> link` command.
+
+```
+cumulus@switch:~$ nv show interface
+Interface  State  Speed  MTU    Type      Remote Host      Remote Port  Summary                                 
+---------  -----  -----  -----  --------  ---------------  -----------  ----------------------------------------
+eth0       up     1G     1500   eth       oob-mgmt-switch  swp10        IP Address:            192.168.200.11/24
+                                                                        IP Address:  fe80::4638:39ff:fe22:17a/64
+lo         up            65536  loopback                                IP Address:                  127.0.0.1/8
+                                                                        IP Address:                      ::1/128
+mgmt       up            65575  vrf                                     IP Address:                  127.0.0.1/8
+                                                                        IP Address:                      ::1/128
+swp1       up            1500   swp                                                                             
+swp2       protodown     9178   swp                                                                             
+swp3       up            1500   swp                                                                             
+swp4       up            1500   swp                                                                             
+...
+```
 
 ```
 cumulus@switch:~$ ip link
@@ -681,7 +698,7 @@ cumulus@switch:~$ sudo ip link set swp2 protodown_reason linkflap off
 cumulus@switch:~$ sudo ip link set swp2 protodown off
 ```
 
-After a few seconds the port state returns to UP. Run the `ip link show <interface>` command to verify that the interface is no longer in a protodown state and that the reason clears:
+After a few seconds, the port state returns to UP. To verify that the interface is no longer in a protodown state and that the reason clears, run the `ip link show <interface>` command:
 
 ```
 cumulus@switch:~$ ip link show swp2
@@ -696,7 +713,7 @@ cumulus@switch:~$ ip link show swp2
 
 You can change the following link flap protection settings:
 - The duration in seconds during which a link must flap the number of times set in the link flap threshold before link flap protection triggers. You can specify a value between 0 (off) and 60. The default setting is 10.
-- The number of times the link must flap within the link flap window before link flap protection triggers. You can specify a value between 0 (off) and 30. The default setting is 5.
+- The number of times the link can flap within the link flap window before link flap protection triggers. You can specify a value between 0 (off) and 30. The default setting is 5.
 
 The following example configures the link flap duration to 30 and the number of times the link must flap to 8.
 
@@ -704,7 +721,7 @@ The following example configures the link flap duration to 30 and the number of 
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system link flap-protection time-interval 30
+cumulus@switch:~$ nv set system link flap-protection interval 30
 cumulus@switch:~$ nv set system link flap-protection threshold 8 
 cumulus@switch:~$ nv config apply
 ```
@@ -759,14 +776,20 @@ link_flap_threshold = 0
 To show the link flap protection time interval and threshold settings:
 
 ```
-cumulus@switch:~$ nv show system link flap-protection time-interval
-cumulus@switch:~$ nv show system link flap-protection threshold
+cumulus@switch:~$ nv show system link flap-protection
+           applied
+---------  -------
+threshold  8      
+interval   30 
 ```
 
-To show the link flap protection configuration for an interface, run the `nv show interface <interface> link flap-protection` command:
+To show if link flap protection is on an interface, run the `nv show interface <interface> link flap-protection` command:
 
 ```
 cumulus@switch:~$ nv show interface swp1 link flap-protection
+        applied
+------  -------
+enable  off
 ```
 
 ## Mako Templates

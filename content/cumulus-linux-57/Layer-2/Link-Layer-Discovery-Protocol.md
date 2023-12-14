@@ -94,9 +94,13 @@ cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
 
 {{< /expand >}}
 
-## Enable the SNMP Subagent
+## SNMP Subagent
 
-LLDP does not enable the <span class="a-tooltip">[SNMP](## "Simple Network Management Protocol")</span> subagent by default. To enable the SNMP subagent, edit the `/etc/default/lldpd` file and add the `-x` option:
+The <span class="a-tooltip">[SNMP](## "Simple Network Management Protocol")</span> subagent allows SNMP queries to retrieve LLDP information from the `lldpd` service.
+
+If you enable SNMP with NVUE commands, NVUE enables the SNMP subagent automatically. To disable the SNMP subagent, disable SNMP with the NVUE `nv set service snmp-server enable off` command.
+
+If you use Linux commands to configure the switch, Cumulus Linux does not enable the SNMP subagent by default. To enable the SNMP subagent, edit the `/etc/default/lldpd` file and add the `-x` option:
 
 ```
 cumulus@switch:~$ sudo nano /etc/default/lldpd
@@ -120,7 +124,7 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 
 ## Set LLDP Mode
 
-By default, the `lldpd` service sends LLDP frames unless it detects a CDP peer, then it sends CDP frames. You can change this behaviour and configure the `lldpd` service to send only CDP frames or only LLDP frames.
+By default, the `lldpd` service sends LLDP frames unless it detects a CDP peer, then it sends CDP frames. You can change this behavior and configure the `lldpd` service to send only CDP frames or only LLDP frames.
 
 {{%notice note%}}
 - You configure the `lldpd` service to send only CDP or only LLDP frames globally for all interfaces; you cannot configure these settings for specific interfaces.

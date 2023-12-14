@@ -10,7 +10,7 @@ Validation support is available in the NetQ UI and the NetQ CLI for the followin
 
 | Item | NetQ UI | NetQ CLI |
 | --- | :---: | :---: |
-| Addresses | Yes | Yes |
+| Addresses | No | Yes |
 | Agents | Yes | Yes |
 | BGP | Yes | Yes |
 | Cumulus Linux version | No | Yes |
@@ -20,7 +20,7 @@ Validation support is available in the NetQ UI and the NetQ CLI for the followin
 | MTU | Yes | Yes |
 | NTP | Yes | Yes |
 | OSPF | Yes | Yes |
-| RoCE | Yes | Yes |
+| RoCE | No | Yes |
 | Sensors | Yes | Yes |
 | VLAN | Yes | Yes |
 | VXLAN | Yes | Yes |

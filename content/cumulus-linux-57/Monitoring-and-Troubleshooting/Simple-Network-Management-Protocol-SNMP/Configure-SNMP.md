@@ -26,13 +26,17 @@ cumulus@switch:~$ nv set service snmp-server listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice warning%}}
+If you disable the `snmpd` service with the `nv set service snmp-server enable off` command, the FRR service restarts, which might impact traffic.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 {{%notice note%}}
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service.
 
-You do not need to run SNMP in the management VRF if you just want to allow SNMP communicaton through the managment VRF interfaces; see {{<link url="#snmp-and-vrfs" text="SNMP and VRFs">}}.
+You do not need to run SNMP in the management VRF if you just want to allow SNMP communication through the management VRF interfaces; see {{<link url="#snmp-and-vrfs" text="SNMP and VRFs">}}.
 {{%/notice%}}
 
 1. Start the `snmpd` service:
@@ -194,7 +198,7 @@ You can authenticate the user in the following ways:
 
 - With no authentication password (if you specify `auth-none`)
 - With an MD5 password
-- With a SHA password
+- With an SHA password
 
 {{< tabs "username" >}}
 {{< tab "NVUE Commands" >}}
@@ -527,6 +531,11 @@ To verify the configuration, you can run `snmpwalk`.
 ```
 cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14
 ```
+
+{{%notice warning%}}
+If you disable the SNMP server with AgentX enabled, the FRR service restarts, which might impact traffic.
+{{%/notice%}}
+
 <!-- vale off -->
 ### Enable the .1.3.6.1.2.1 Range
 <!-- vale on -->

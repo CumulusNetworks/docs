@@ -7,37 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3649630</td>
-<td>LCM discovery might fail in a NetQ on-premises cluster deployment with the message {{Error: Connection failure: ('The read operation timed out',)}}. To validate this issue is occurring, run the {{sudo kubectl get pods -o wide | grep lcm-executor}} command and confirm the lcm-executor pod is deployed on a worker node instead of the expected master node. To work around this issue: 
-
-1. Retrieve your worker node names:
-
-$ sudo kubectl get nodes
-NAME               STATUS   ROLES                  AGE   VERSION
-master1  Ready    control-plane,master   18d   v1.27.2
-worker1  Ready    &lt;none&gt;    18d   v1.27.2
-worker2  Ready    &lt;none&gt;    18d   v1.27.2
-
-2. Disable pod scheduling on the worker nodes with the {{sudo kubectl cordon &lt;worker1-name&gt; &lt;worker2-name&gt;}} command.
-
-3. Verify pod scheduling is disabled on the worker nodes:
-$ sudo kubectl get nodes
-NAME               STATUS   ROLES                  AGE   VERSION
-master1  Ready    control-plane,master   18d   v1.27.2
-worker1  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
-worker2  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
-
-4. Delete the lcm-executor pod with the {{delete pod netq-lcm-executor-deploy-&lt;name&gt;}} command, retrieving the full lcm-executor pod name from the output of {{sudo kubectl get pods -o wide | grep lcm-executor}}.
-
-5. Verify the lcm-executor pod is now scheduled on the master node with the {{sudo kubectl get pods -o wide | grep lcm-executor}} command.
-
-6. Reenable scheduling on worker nodes with the {{sudo kubectl cordon &lt;worker1-name&gt; &lt;worker2-name&gt;}} command.
-
-7. Run your LCM discovery again.</td>
-<td>4.7.0-4.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3633458</td>
 <td>The legacy topology diagram might categorize devices into tiers incorrectly. To work around this issue, use the updated topology diagram by selecting Topology Beta in the NetQ 4.8.0 UI.</td>
 <td>4.7.0-4.8.0</td>
@@ -64,8 +33,8 @@ worker2  Ready,SchedulingDisabled    &lt;none&gt;    18d   v1.27.2
 <tr>
 <td>3549877</td>
 <td>NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes.</td>
-<td>4.6.0-4.7.0</td>
-<td>4.8.0</td>
+<td>4.6.0-4.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3530739</td>

@@ -979,6 +979,8 @@ cumulus@leaf01:~$ nv set router bgp wait-for-install on
 cumulus@leaf01:~$ nv config apply
 ```
 
+When you configure suppress route advertisement, NVUE reloads `switchd`.
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -1038,7 +1040,7 @@ BGP add-path RX enables BGP to receive multiple paths for the same prefix. A pat
 
 To view the existing capabilities, run the vtysh `show ip bgp neighbors` command. You can see the existing capabilities in the subsection *Add Path*, below *Neighbor capabilities.*
 
-The following example output shows that BGP can sent and receive additional BGP paths, and that the BGP neighbor on swp51 supports both.
+The following example output shows that BGP can send and receive additional BGP paths, and that the BGP neighbor on swp51 supports both.
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1473,6 +1475,10 @@ router bgp 65101
 
 You can configure the input and the output message queue limit globally for all peers. For both the input and output queue limit, you can set a value between 1 and 4294967295 messages. The default setting is 10000.
 
+{{%notice note%}}
+Only increase the input or output queue if you have enough memory to handle large queues of messages at the same time.
+{{%/notice%}}
+
 {{< tabs "1477 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -1502,6 +1508,8 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show the input and output message queue configuration, run the `nv show router bgp queue-limit` command.
 
 ## Route Reflectors
 

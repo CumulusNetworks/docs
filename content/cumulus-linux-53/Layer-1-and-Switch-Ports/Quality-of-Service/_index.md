@@ -896,7 +896,7 @@ If you define a queue minimum shaping value of `0`, there is no bandwidth guaran
 
 <!--### PTP Shaping
 
-To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
+To improve performance on the NVIDIA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
 
 {{%notice note%}}
 PTP shaping is not supported on Spectrum-2 and later.

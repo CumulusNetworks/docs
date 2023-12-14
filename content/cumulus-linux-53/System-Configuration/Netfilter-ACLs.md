@@ -138,7 +138,7 @@ The incremental nonatomic update operation follows this order:
 2. Cumulus Linux checks if the rules in a table are different from installation time; if a table does not have any changes, it does not reinstall the rules.
 3. If there are changes in a table, the new rules populate in new groups or slices in hardware, then that table switches over to the new groups or slices.
 4. Finally, old resources for that table free up. This process repeats for each of the tables listed above.
-5. If there are isufficient resources to hold both the new rule set and old rule set, Cumulus Linux tries the regular nonatomic mode, which interrupts network traffic.
+5. If there are insufficient resources to hold both the new rule set and old rule set, Cumulus Linux tries the regular nonatomic mode, which interrupts network traffic.
 6. If the regular nonatomic update fails, Cumulus Linux reverts back to the previous rules.
 
 To always reload `switchd` with nonatomic updates:
@@ -1313,7 +1313,7 @@ To work around this limitation, set the rate and burst for all these rules to th
 ### Where to Assign Rules
 
 - If you assign a switch port to a bond, you must assign any egress rules to the bond.
-- When using the OUTPUT chain, you must assign rules to the source. For example, if you assign a rule to the switch port in the direction of traffic but the source is a bridge (VLAN), the rule does not affect the traffic and you must applied the rule to the bridge.
+- When using the OUTPUT chain, you must assign rules to the source. For example, if you assign a rule to the switch port in the direction of traffic but the source is a bridge (VLAN), the rule does not affect the traffic and you must apply the rule to the bridge.
 - If you need to apply a rule to all transit traffic, use the FORWARD chain, not the OUTPUT chain.
 
 ### ACL Rule Installation Failure
@@ -1332,7 +1332,7 @@ failed.
 <!--
 ### INPUT Chain Rules
 
-Cumulus Linux implements INPUT chain rules using a trap mechanism and assigns trap IDs to packets that go to the CPU. The default INPUT chain rules map to these trap IDs. However, if a packet matches multiple traps, an internal priority mechanism resolves them. which can be different from the rule priorities. The default expected rule does not police the packet but another rule polices it instead. For example, the LOCAL rule polices ICMP packets that go to the CPU instead of the ICMP rule. Also, multiple rules can share the same trap, where the largest of the policer values applies.
+Cumulus Linux implements INPUT chain rules using a trap mechanism and assigns trap IDs to packets that go to the CPU. The default INPUT chain rules map to these trap IDs. However, if a packet matches multiple traps, an internal priority mechanism resolves them which can be different from the rule priorities. The default expected rule does not police the packet but another rule polices it instead. For example, the LOCAL rule polices ICMP packets that go to the CPU instead of the ICMP rule. Also, multiple rules can share the same trap, where the largest of the policer values applies.
 
 To work around this issue, create rules on the INPUT and FORWARD chains (INPUT,FORWARD).
 

@@ -49,7 +49,7 @@ cumulus@switch:~$ nv config apply 
 
 To create rules, use `cl-acltool`.
 
-To add rules using cl-acltool, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[ebtables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[ebtables]` section. For example:
+To add rules using `cl-acltool`, either edit an existing file in the `/etc/cumulus/acl/policy.d` directory and add rules under `[ebtables]` or create a new file in the `/etc/cumulus/acl/policy.d` directory and add rules under an `[ebtables]` section. For example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.d/60_mac.rules
@@ -79,16 +79,59 @@ The following example matches Ethernet packets with destination MAC address 01:1
 {{< /tab >}}
 {{< /tabs >}}
 
-## Show MAC Address Translation Configuration
+## Show MAC Address Translation Configuration and Statistics
 
 To show the current MAC address translation configuration:
 
 ```
 cumulus@switch:~$ nv show acl
+       type  Summary
+-----  ----  -------
+MACL1  mac   rule: 1
+MACL2  mac   rule: 1
 ```
 
-To show information about a specific MAC address translation rule, run the `nv show acl <name>`: command
+To show information about a specific MAC address translation rule, run the `nv show acl <name> --applied -o=json` command:
 
 ```
-cumulus@switch:~$ nv show acl MACL1
+cumulus@switch:~$ nv show acl MACL1 --applied -o=json
+{
+  "rule": {
+    "1": {
+      "action": {
+        "source-nat": {
+          "translate-ip": {},
+          "translate-mac": "99:de:fc:32:11:01",
+          "translate-port": {}
+        }
+      },
+      "match": {
+        "mac": {
+          "dest-mac-mask": "ff:ff:ff:ff:ff:ff",
+          "source-mac": "b8:ce:f6:3c:62:06",
+          "source-mac-mask": "ff:ff:ff:ff:ff:ff"
+        }
+      }
+    }
+  },
+  "type": "mac"
+}
 ```
+
+To show statistics for MAC address translation, such as the number of packets that match the rules and the number of bytes in the matched packets, run the NVUE `nv show interface acl-statistics` command or the Linux `cl-acltool -L eb` command:
+
+```
+cumulus@switch:~$ nv show interface acl-statistics
+Interface  ACL Name   Rule ID   In Packets  In Bytes  Out Packets  Out Bytes
+---------  ---------  -------   ----------  --------  -----------  ---------
+swp2       macl_snat  10                              14            1.13 KB
+```
+
+```
+cumulus@switch:~$ sudo cl-acltool -L eb
+-s ec:d:9a:84:8b:82 -o swp2 --comment rule_id:10 -j snat --to-src 0:0:0:0:0:2 --snat-target ACCEPT, pcnt = 14 -- bcnt = 1162
+```
+
+In the above example Linux command output:
+- `pcnt` shows how many packets matched this rule (14 packets).
+- `bcnt` shows the total number of bytes in the matched packets (1162 bytes).

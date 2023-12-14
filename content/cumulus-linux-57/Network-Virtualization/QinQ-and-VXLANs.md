@@ -207,7 +207,7 @@ The configuration in Cumulus Linux uses the outer tag for the customer and the i
 
 {{%notice note%}}
 You can use double tag translation:
-- On Spectrum-2 and Spectrum-3 switches in a VXLAN configuration on native interfaces only. You cannot configure double tag translation on bonds.
+- On Spectrum-2 and later in a VXLAN configuration on native interfaces only. You cannot configure double tag translation on bonds.
 - With bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}} only.
 - With 802.1Q bridge mode.
 - *Without* MLAG.

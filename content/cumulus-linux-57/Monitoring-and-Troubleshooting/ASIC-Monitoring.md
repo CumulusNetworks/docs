@@ -434,7 +434,7 @@ cumulus@switch:~$ nv show interface swp1 telemetry bw-gauge
 enable  on           on
 ```
 
-To show a summary of the bandwidth gauge for an interface, run the `nv show service telemetry bw-gauge interface` command:
+To show a summary of the bandwidth for an interface, run the `nv show service telemetry bw-gauge interface` command:
 
 ```
 cumulus@switch:~$ nv show service telemetry bw-gauge interface

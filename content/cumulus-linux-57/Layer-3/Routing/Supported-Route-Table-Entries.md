@@ -6,7 +6,7 @@ toc: 3
 ---
 Cumulus Linux advertises the maximum number of route table entries supported on the switch, including:
 
-- Layer 3 IPv4 <span style="background-color:#F5F5DC">[LPM](## "Longest Prefix Match")</span> entries that have a mask less than /32
+- Layer 3 IPv4 <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> entries that have a mask less than /32
 - Layer 3 IPv6 LPM entries that have a mask of /64 or less
 - Layer 3 IPv6 LPM entries that have a mask greater than /64
 - Layer 3 IPv4 neighbor (or host) entries that are the next hops seen in `ip neighbor`

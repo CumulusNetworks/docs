@@ -454,7 +454,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10
 
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding</h>
 
-Configures <span style="background-color:#F5F5DC">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling.
+Configures <span class="a-tooltip">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

@@ -56,19 +56,29 @@ h5 {
 }
 
 a {
-  text-decoration: none;
-  color: $color-link;
+  text-decoration: underline;
+  text-decoration-color: #76b900;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3125em;
+  color: inherit;
 
   &:visited {
-    color: $color-link;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: #76b900;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3125em;
 
 
   }
+
+  
 }
 
 img {
   vertical-align: middle;
   max-width: 100%;
+  aspect-ratio: auto;
 }
 
 //Menu Styles and Expand/Collapse
@@ -99,10 +109,11 @@ aside nav ul {
 
   a {
     display: block;
+    text-decoration: none;
 
   }
   a:active{
-    color: $nvidia-green
+    color: $nvidia-green;
   }
   a:hover {
     opacity: .5;
@@ -116,8 +127,6 @@ aside nav ul {
     }
   }
 }
-
-
 
 
 ul.pagination {

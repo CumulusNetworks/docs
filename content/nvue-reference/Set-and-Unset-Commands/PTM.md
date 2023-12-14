@@ -14,7 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set router ptm
 
-Provides commands to configure <span style="background-color:#F5F5DC">[PTM](## "Prescriptive Topology Manager")</span>.
+Provides commands to configure <span class="a-tooltip">[PTM](## "Prescriptive Topology Manager")</span>.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

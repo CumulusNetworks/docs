@@ -31,7 +31,25 @@
       <div class="container-lg">
         <nav class="navTopWrapper">
           <ul class="navTop">
-            <li><a href="https://www.nvidia.com/" target="_blank"><img src={{"images/nvidia-logo.svg" | absURL }} /></a></li>
+            <li><a href="https://www.nvidia.com/" target="_blank"><img width="280" src={{"images/nvidia-docshub-logo-2.svg" | absURL }} /></a></li>
+            <div id="product-nav-black" class="flex">
+            <div class="search-container">
+            <li>
+              <form action="{{"search/" | absURL }}"  accept-charset="utf-8">
+                <input type="hidden" id="facet.docs_version[]" name="facet.docs_version[]" value="{{.Page.Params.version}}">
+                <div id="doc-search-box-black">
+                    <input type="text" name="q" class="doc-search-input-black" placeholder="Search">
+                    <span>
+                        <button type="submit">
+                          <img src={{"icons/search_20x20.svg" | absURL }} alt="">
+                        </button>
+                    </span>
+                </div>
+              
+            </form>
+          </div>
+        </div>
+            </li>
           </ul>
         </nav>
         <nav>
@@ -65,15 +83,7 @@
           <li><a href={{ "guides" | absURL }}>Technical Guides</a></li>
       </div>
     </div>
-    <header class="home-banner" style="background-color: #76b900">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <h1>Search Results</h1>
-          </div>
-        </div>
-      </div>
-    </header>
+
     <section class="bg-athens-gray-white">
       <div class="container">
         <div class="row">

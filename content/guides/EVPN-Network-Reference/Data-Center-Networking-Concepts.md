@@ -9,7 +9,7 @@ cascade:
 
 Network virtualization is the carving up of a single physical network into many virtual networks. Virtualizing a resource allows it to be shared by multiple users. In the case of virtual networks, each user is under the illusion that there are no other users of the network. To preserve the illusion, virtual networks are isolated from one another.
 
-A virtual network implemented with protocols that leave the transit nodes unaware of it is called a **virtual network overlay**. An **underlay** is the network that transports the overlay network. Underlay networks can be L2 or L3 networks. L2 underlay networks today are typically based on Ethernet, with segmentation accomplished through VLANs. Internet is an example of an L3 underlay network, where autonomous systems use interior gateway protocols (IGPs) such as <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span> and <span style="background-color:#F5F5DC">[IS-IS](## "Intermediate System to Intermediate System")</span> to run control planes, and use <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> as the Internet-wide routing protocol. <span style="background-color:#F5F5DC">[MPLS](## "Multi-Protocol Label Switched")</span> networks are a legacy underlay WAN technology that falls between L2 and L3. Overlay networks implement network virtualization concepts, where L2 and L3 tunneling encapsulation <span style="background-color:#F5F5DC">[VXLAN](## "Virtual Extensible LAN")</span>, <span style="background-color:#F5F5DC">[GRE](## "IP Generic Routing Encapsulation ")</span> and <span style="background-color:#F5F5DC">[IPSec](## "Internet Protocol Security")</span> serves as the transport overlay protocol, sometimes referred to as OTV (Overlay Transport Virtualization).
+A virtual network implemented with protocols that leave the transit nodes unaware of it is called a **virtual network overlay**. An **underlay** is the network that transports the overlay network. Underlay networks can be L2 or L3 networks. L2 underlay networks today are typically based on Ethernet, with segmentation accomplished through VLANs. Internet is an example of an L3 underlay network, where autonomous systems use interior gateway protocols (IGPs) such as <span class="a-tooltip">[OSPF](## "Open Shortest Path First")</span> and <span class="a-tooltip">[IS-IS](## "Intermediate System to Intermediate System")</span> to run control planes, and use <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> as the Internet-wide routing protocol. <span class="a-tooltip">[MPLS](## "Multi-Protocol Label Switched")</span> networks are a legacy underlay WAN technology that falls between L2 and L3. Overlay networks implement network virtualization concepts, where L2 and L3 tunneling encapsulation <span class="a-tooltip">[VXLAN](## "Virtual Extensible LAN")</span>, <span class="a-tooltip">[GRE](## "IP Generic Routing Encapsulation ")</span> and <span class="a-tooltip">[IPSec](## "Internet Protocol Security")</span> serves as the transport overlay protocol, sometimes referred to as OTV (Overlay Transport Virtualization).
 
 In data centers, the role of the underlay is to provide reachability for the entire network. The underlay doesn’t actually have any intelligence to keep track of the endpoints or define the end-to-end networking. It provides the ability for all devices in the network to communicate with each other. In overlay environments, routing information is typically aggregated in top-of-rack switches (for bare-metal endpoints) or server hypervisors (for virtualized workloads).
 
@@ -31,7 +31,7 @@ Many data centers today have moved from a legacy L2 design to a modern L3 archit
 
 VXLAN is widely deployed in many L3 data centers to provide L2 connectivity between hosts for specific applications. This is done by encapsulating L2 frames in L3 packets. VXLAN is an Overlay Technology as it allows you to stretch L2 connections over an intervening L3 network by encapsulating (tunneling) Ethernet frames in an IP-UDP packet with a VXLAN header.
 
-When a host sends traffic that belongs to a <span style="background-color:#F5F5DC">[VNI](## "VXLAN Network Identifier")</span>, as shown in figure 2, the traffic is encapsulated in UDP and IP headers. This is then sent across the underlay network, just like normal IP traffic. When the packet reaches the destination switch, the packet is decapsulated and delivered to the destination server.
+When a host sends traffic that belongs to a <span class="a-tooltip">[VNI](## "VXLAN Network Identifier")</span>, as shown in figure 2, the traffic is encapsulated in UDP and IP headers. This is then sent across the underlay network, just like normal IP traffic. When the packet reaches the destination switch, the packet is decapsulated and delivered to the destination server.
 
 **Figure 2 - VXLAN Communication**
 
@@ -41,7 +41,7 @@ In the 2 tier leaf-spine topology, the leaf switches handle all the VXLAN functi
 
 ### Virtual Tunnel Endpoints
 
-<span style="background-color:#F5F5DC">[VTEPs](## "Virtual Tunnel Endpoints")</span> are used to originate and terminate the VXLAN tunnel, and map a VLAN to a VNI and a VNI to a VLAN. As shown above in Figure 2, a VTEP is an edge device on a VXLAN network. It is either the start of a VXLAN tunnel, where the user data frame is encapsulated, or the end point of a VXLAN tunnel, where the user data frame is decapsulated.
+<span class="a-tooltip">[VTEPs](## "Virtual Tunnel Endpoints")</span> are used to originate and terminate the VXLAN tunnel, and map a VLAN to a VNI and a VNI to a VLAN. As shown above in Figure 2, a VTEP is an edge device on a VXLAN network. It is either the start of a VXLAN tunnel, where the user data frame is encapsulated, or the end point of a VXLAN tunnel, where the user data frame is decapsulated.
 
 These are the top-of-rack switches (for bare-metal endpoints) and server hypervisors (for virtualized workloads). A VTEP requires an IP address (often a loopback address) and uses this address as the source/destination tunnel IP address. The VTEP IP address must be advertised into the routed domain so the VXLAN tunnel endpoints can reach each other. You can have multiple VNIs (VXLANs) using one VTEP IP address. Each switch that hosts a VTEP must have a VXLAN-supported chipset, such as Spectrum. VXLAN is a *point-to-multipoint tunnel*. Multicast or broadcast packets can be sent from a single VTEP to multiple VTEPs in the network.
 
@@ -62,7 +62,7 @@ VXLAN overcomes these deficiencies and allows the network operator to optimize o
 
 ## Border Gateway Protocol
 
-<span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> is the routing protocol that runs the Internet. It manages how packets get routed from network to network by exchanging routing and reachability information.
+<span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> is the routing protocol that runs the Internet. It manages how packets get routed from network to network by exchanging routing and reachability information.
 
 BGP is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology.
 
@@ -130,13 +130,13 @@ nv config apply
 
 ### Route Distinguisher
 
-Virtual networks allow the reuse of an address. In other words, an address is unique only within a virtual network. A common, well understood example of this is the use of the `10.x.x.x` subnet in IPv4. The `10.x` address space is a private address space, so different organizations can reuse the address with impunity. Similarly, different virtual networks can reuse the same `10.x` IPv4 address. This is true also for L2 addresses. So, BGP needs to keep the Building Blocks of Ethernet VPN separate from the advertisement of an address in one virtual network from the advertisement of the same address in a different virtual network. That is the job of a <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span>. 
+Virtual networks allow the reuse of an address. In other words, an address is unique only within a virtual network. A common, well understood example of this is the use of the `10.x.x.x` subnet in IPv4. The `10.x` address space is a private address space, so different organizations can reuse the address with impunity. Similarly, different virtual networks can reuse the same `10.x` IPv4 address. This is true also for L2 addresses. So, BGP needs to keep the Building Blocks of Ethernet VPN separate from the advertisement of an address in one virtual network from the advertisement of the same address in a different virtual network. That is the job of a <span class="a-tooltip">[RD](## "Route Distinguisher")</span>. 
 
 When exchanging VPN addresses, BGP prepends an 8-byte RD to every address. This combination of RD plus address makes the address globally unique. The RD format used for this purpose (RFC4364) is IP address + a unique number in the format of `x.x.x.x:y` this gives overlapping IP space uniqueness across EVPN domain, hence RD used in an EVPN domain must be unique.
 
 ### Route Target
 
-BGP advertisements carry path attributes, which provide extra information about a network address. They carry information such as the next hop IP address for a prefix, whether to propagate an advertisement, and so on, as encoded bits. Path attributes take several forms, including well-known attributes, communities, and extended communities. <span style="background-color:#F5F5DC">[RT](## "Route Target")</span> is a specific path attribute that encodes the virtual network it represents. A BGP speaker advertising virtual networks and their addresses uses a specific RT called the **export RT**. A BGP speaker receiving and using the advertisement uses this RT to decide into which local virtual network to add the routes. This is called the **import RT**. In a typical VPN configuration, you must configure both import and export RTs.
+BGP advertisements carry path attributes, which provide extra information about a network address. They carry information such as the next hop IP address for a prefix, whether to propagate an advertisement, and so on, as encoded bits. Path attributes take several forms, including well-known attributes, communities, and extended communities. <span class="a-tooltip">[RT](## "Route Target")</span> is a specific path attribute that encodes the virtual network it represents. A BGP speaker advertising virtual networks and their addresses uses a specific RT called the **export RT**. A BGP speaker receiving and using the advertisement uses this RT to decide into which local virtual network to add the routes. This is called the **import RT**. In a typical VPN configuration, you must configure both import and export RTs.
 
 ### RD, RT, and BGP Processing
 
@@ -150,7 +150,7 @@ Cumulus Linux treats the import RT as `*:VNI` to determine which received routes
 
 ## Ethernet Virtual Private Network
 
-<span style="background-color:#F5F5DC">[EVPN](## "Ethernet Virtual Private Network")</span> is a feature offered with Cumulus Linux that provides a scalable, interoperable end-to-end control-plane solution using Border Gateway Protocol (BGP). It is a standards-based protocol that can carry both L2 MAC and L3 IP information simultaneously to optimize routing and switching decisions. This control plane technology uses Multiprotocol BGP (MP-BGP) for MAC and IP address endpoint distribution, in turn minimizing flooding.
+<span class="a-tooltip">[EVPN](## "Ethernet Virtual Private Network")</span> is a feature offered with Cumulus Linux that provides a scalable, interoperable end-to-end control-plane solution using Border Gateway Protocol (BGP). It is a standards-based protocol that can carry both L2 MAC and L3 IP information simultaneously to optimize routing and switching decisions. This control plane technology uses Multiprotocol BGP (MP-BGP) for MAC and IP address endpoint distribution, in turn minimizing flooding.
 
 EVPN supports redundancy, load sharing, and multi-tenant segmentation. It provides virtual multi-point bridged connectivity between different L2 domains over an IP or IP/MPLS backbone network. EVPN also provides the benefit of fast convergence for host and VM mobility over VXLAN tunnels and ARP suppression.
 
@@ -205,19 +205,19 @@ Table 1 shows the different Route Types (RTs) used in EVPN. The minimum required
 
 ### Multi-Chassis Link Aggregation (MLAG)
 
-<span style="background-color:#F5F5DC">[MLAG](## "Multi-Chasis Link Aggregation")</span> enables a pair of switches to act redundantly in an active-active architecture and appear as a single, logical device from the perspective of the host. The two switches in an MLAG pair are connected by a link or bonded links called the peer link. In a basic MLAG configuration, as shown in Figure 5, leaf01 and leaf02 are MLAG peers. MLAG is on three bonds, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port.
+<span class="a-tooltip">[MLAG](## "Multi-Chasis Link Aggregation")</span> enables a pair of switches to act redundantly in an active-active architecture and appear as a single, logical device from the perspective of the host. The two switches in an MLAG pair are connected by a link or bonded links called the peer link. In a basic MLAG configuration, as shown in Figure 5, leaf01 and leaf02 are MLAG peers. MLAG is on three bonds, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port.
 
 **Figure 5 - Basic MLAG Cconfiguration**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/mlag.png" >}}
 
-<span style="background-color:#F5F5DC">[VRR](## "Virtual Router-Redundancy")</span> enables a pair of switches to act as a single gateway for <span style="background-color:#F5F5DC">[HA](## "High Availability")</span> and Active-Active server links. VRR enables hosts to communicate with any redundant switch without reconfiguration by running dynamic router protocols or router redundancy protocols. Redundant switches respond to ARP requests from hosts. The switches respond in an identical manner, but if one fails, the other redundant switches continue to respond.
+<span class="a-tooltip">[VRR](## "Virtual Router-Redundancy")</span> enables a pair of switches to act as a single gateway for <span class="a-tooltip">[HA](## "High Availability")</span> and Active-Active server links. VRR enables hosts to communicate with any redundant switch without reconfiguration by running dynamic router protocols or router redundancy protocols. Redundant switches respond to ARP requests from hosts. The switches respond in an identical manner, but if one fails, the other redundant switches continue to respond.
 
 A device that connects to an MLAG bond believes there is a single device on the other end of the bond and only forwards one copy of the transit frames. With the virtual MAC active on both MLAG devices, either MLAG device handles the frame it receives. Cumulus Linux supports both VRR and VRRP. VRRP allows two or more network devices in an active or standby configuration to share a single virtual default gateway. However, VRRP cannot be used in an EVPN configuration.
 
 ### Multihoming (EVPN-MH)
 
-<span style="background-color:#F5F5DC">[EVPN-MH](## "EVPN Multihoming")</span> is a standards-based replacement for the proprietary MLAG protocol in data center deployments. It provides an all-active server connectivity without the need for peer links between ToR switches. EVPN-MH enables multi-vendor interoperability with a single BGP-EVPN control plane. This protocol allows easier data center deployments without the need of understanding and using proprietary protocols.
+<span class="a-tooltip">[EVPN-MH](## "EVPN Multihoming")</span> is a standards-based replacement for the proprietary MLAG protocol in data center deployments. It provides an all-active server connectivity without the need for peer links between ToR switches. EVPN-MH enables multi-vendor interoperability with a single BGP-EVPN control plane. This protocol allows easier data center deployments without the need of understanding and using proprietary protocols.
 
 EVPN-MH uses BGP-EVPN `type-1`, `type-2` and `type-4` routes to discover Ethernet segments (ES) and to forward traffic to them. The MAC and neighbor databases synchronize between the ES peers through these routes as well. An ES is a group of switch links that attach to the same server. As seen in Figure 6, EVPN-MH eliminates the need for peer links or inter-switch links between the top of rack switch.
 
@@ -233,7 +233,7 @@ Multihoming uses EVPN messages to communicate host connectivity, and it dynamica
 
 The switch selects a designated forwarder (DF) for each Ethernet segment. The DF forwards flooded traffic received through the VXLAN overlay to the locally attached Ethernet segment. You need to specify a preference on an Ethernet segment for the DF election, as this leads to predictable failure scenarios. The EVPN VTEP with the highest DF preference setting becomes the DF.
 
-MLAG uses both uplinks at the same time. VRR enables both devices to act as gateways simultaneously for <span style="background-color:#F5F5DC">[HA](## "High Availability")</span> and active-active mode (both are used at the same time).
+MLAG uses both uplinks at the same time. VRR enables both devices to act as gateways simultaneously for <span class="a-tooltip">[HA](## "High Availability")</span> and active-active mode (both are used at the same time).
 
 The disadvantages of using MLAG are:
 - More complicated (more moving parts)

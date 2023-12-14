@@ -31,7 +31,7 @@ In the following procedures:
 
 ## Install Using a DHCP/Web Server With DHCP Options
 
-To install Cumulus Linux using a DHCP or web server *with* <span style="background-color:#F5F5DC">[DHCP](## "Dynamic Host Configuration Protocol")</span> options, set up a DHCP/web server on your laptop and connect the eth0 management port of the switch to your laptop. After you connect the cable, the installation proceeds as follows:
+To install Cumulus Linux using a DHCP or web server *with* <span class="a-tooltip">[DHCP](## "Dynamic Host Configuration Protocol")</span> options, set up a DHCP/web server on your laptop and connect the eth0 management port of the switch to your laptop. After you connect the cable, the installation proceeds as follows:
 
 1. The switch boots up and requests an IP address (DHCP request).
 2. The DHCP server acknowledges and responds with DHCP option 114 and the location of the installation image.

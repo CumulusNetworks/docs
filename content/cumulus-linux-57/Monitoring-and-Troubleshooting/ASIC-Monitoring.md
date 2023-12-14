@@ -98,8 +98,8 @@ Histogram settings include the type of data you want to collect, the ports you w
     - Received byte counters (`rx-byte`)
     - Transmitted byte counters (`tx-byte`)
     - CRC counters (`crc`)
-    - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span style="background-color:#F5F5DC">[IPG](## "Interpacket Gap")</span> bytes.
-    - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span style="background-color:#F5F5DC">[IPG](## "Interpacket Gap")</span> bytes.
+    - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
+    - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
 - You can enable up to two counter histogram counter types per physical interface. The counter histogram does not support bonds or virtual interfaces.
 - The value for the minimum boundary size must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. The default minimum boundary size is 960 bytes.
 - The default value for the sampling time is 1024 nanoseconds.

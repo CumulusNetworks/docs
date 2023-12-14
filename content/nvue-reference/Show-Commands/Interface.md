@@ -844,7 +844,7 @@ cumulus@switch:~$ nv show interface swp1 link traffic-engineering
 
 ## <h>nv show interface \<interface-id\> pluggable</h>
 
-Shows the <span style="background-color:#F5F5DC">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
+Shows the <span class="a-tooltip">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
 
 ### Command Syntax
 

@@ -18,13 +18,13 @@ With the modern era of cloud computing, extending layer 2 domains across long di
 Layer 2 extensions are undesirable for the following reasons:
 - They can increase the chances of creating topological asymmetries.
 - Broadcast and multicast storms risk extending from one data center to others.
-- They can increase <span style="background-color:#F5F5DC">[MTTR](## "Mean Time to Recovery")</span>.
+- They can increase <span class="a-tooltip">[MTTR](## "Mean Time to Recovery")</span>.
 - They are difficult to troubleshoot compared to a layer 3 extension because there is no clear demarcation between layer 2 and layer 3.
 - They require a layer 2 loop detection system on all ToR and leaf switches.  
 
 By limiting the scope of the layer 2 network, you reduce the potential impact when problems occur. If it is not possible to avoid a layer 2 extension, it is crucial to keep the extended layer 2 broadcast domains to a minimum to limit MAC address advertisements and withdrawals. Extending layer 2 domains is the same as merging multiple broadcast domains; it creates a geographically separated large broadcast domain that is interconnected through a complex network over a distance.
 
-Extending a layer 2 segment from one data center to another involves extending EVPN type-2 (MAC and IP address) routes for individual MAC addresses and type-3 (Inclusive Multicast) routes for <span style="background-color:#F5F5DC">[BUM](## "Broadcast, Unknown-Unicast, and Multicast")</span>  traffic. In modern EVPN and VXLAN environments with multihoming, extending type-1 (Ethernet Auto Discovery) routes and type-4 (Ethernet Segment) routes is equally essential.
+Extending a layer 2 segment from one data center to another involves extending EVPN type-2 (MAC and IP address) routes for individual MAC addresses and type-3 (Inclusive Multicast) routes for <span class="a-tooltip">[BUM](## "Broadcast, Unknown-Unicast, and Multicast")</span>  traffic. In modern EVPN and VXLAN environments with multihoming, extending type-1 (Ethernet Auto Discovery) routes and type-4 (Ethernet Segment) routes is equally essential.
 
 ## Configuration
 

@@ -93,10 +93,10 @@ cumulus@switch:~$ nv set system api certificate tls-cert-1
 cumulus@switch:~$ nv config apply
 ```
 
-Set the certificate to `auto` to let the system determine which certificate to use; for example, if you want to use a previously installed certificate (either the default self-signed or your own installed certificate).
+The following example configures the API to use the self-signed certificate:
 
 ```
-cumulus@switch:~$ nv set system api certificate auto
+cumulus@switch:~$ nv set system api certificate self-signed
 cumulus@switch:~$ nv config apply
 ```
 

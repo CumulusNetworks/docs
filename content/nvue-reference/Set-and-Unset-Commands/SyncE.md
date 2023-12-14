@@ -14,7 +14,7 @@ In Cumulus Linux 5.6 and earlier, the global SyncE commands are `nv set service 
 
 ## <h>nv set interface \<interface-id\> synce</h>
 
-Configures <span style="background-color:#F5F5DC">[SynCe](## "Synchronous Ethernet")</span> on the specified interface. SyncE is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, (ESMC), manages this synchronization.
+Configures <span class="a-tooltip">[SynCe](## "Synchronous Ethernet")</span> on the specified interface. SyncE is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, (ESMC), manages this synchronization.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -42,7 +42,7 @@ cumulus@switch:~$ nv set interface swp1 synce enable on
 
 ## <h>nv set interface \<interface-id\> synce provider-priority</h>
 
-Configures the frequency source priority for the interface. The clock selection algorithm uses the frequency source priority to choose between two sources that have the same <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 100.
+Configures the frequency source priority for the interface. The clock selection algorithm uses the frequency source priority to choose between two sources that have the same <span class="a-tooltip">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 100.
 
 ### Command Syntax
 
@@ -65,7 +65,7 @@ cumulus@switch:~$ nv set interface swp1 synce provider-priority 10
 ## <h>nv set system synce</h>
 
 Configures the SyncE service (`synced.service`) that manages:
-- Transmitting and receiving <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the <span style="background-color:#F5F5DC">[ESMC](## "Ethernet Synchronization Messaging Channel")</span>.
+- Transmitting and receiving <span class="a-tooltip">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the <span class="a-tooltip">[ESMC](## "Ethernet Synchronization Messaging Channel")</span>.
 - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the QL in the SSM.
 - Using to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
 - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
@@ -127,7 +127,7 @@ cumulus@switch:~$ nv set system synce provider-default-priority 256
 
 ## <h>nv set system synce wait-to-restore-time</h>
 
-Configures the number of seconds SyncE waits for each port to be up before opening the <span style="background-color:#F5F5DC">[ESMC](## "Ethernet Synchronization Message Channel")</span> for messages. You can set a value between 0 and 720 seconds (12 minutes). The default value is 300 seconds (5 minutes).
+Configures the number of seconds SyncE waits for each port to be up before opening the <span class="a-tooltip">[ESMC](## "Ethernet Synchronization Message Channel")</span> for messages. You can set a value between 0 and 720 seconds (12 minutes). The default value is 300 seconds (5 minutes).
 
 ### Version History
 

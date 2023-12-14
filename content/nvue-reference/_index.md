@@ -1,8 +1,7 @@
 ---
 title: NVUE Command Reference
 author: Cumulus Networks
-weight: -34
-subsection: true
+weight: 5
 cascade:
   product: NVUE
   version: '5.x'

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 730
 toc: 3
 ---
-You can use static routing if you do not require the complexity of a dynamic routing protocol (such as <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> or <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span>), if you have routes that do not change frequently and for which the destination is only one or two paths away.
+You can use static routing if you do not require the complexity of a dynamic routing protocol (such as <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> or <span class="a-tooltip">[OSPF](## "Open Shortest Path First")</span>), if you have routes that do not change frequently and for which the destination is only one or two paths away.
 
 With static routing, you configure the switch manually to send traffic with a specific destination prefix to a specific next hop. When the switch receives a packet, it looks up the destination IP address in the routing table and forwards the packet accordingly.
 
@@ -183,7 +183,7 @@ iface swp51
     post-down ip route del 10.10.10.101/32 via 10.0.1.0
 ```
 
-The `ip route` command allows you to manipulate the kernel routing table directly from the Linux shell. See `man ip(8)` for details. <span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> monitors the kernel routing table changes and updates its own routing table accordingly.
+The `ip route` command allows you to manipulate the kernel routing table directly from the Linux shell. See `man ip(8)` for details. <span class="a-tooltip">[FRR](## "FRRouting")</span> monitors the kernel routing table changes and updates its own routing table accordingly.
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -487,13 +487,13 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ### Noise Transfer Servo
 
 ITU-T specifies the following key elements to measure, test, and classify the accuracy of a clock:
-- Noise generation&mdash;jitter and wander noise in the output of a clock in reference to a <span style="background-color:#F5F5DC">[PRTC](## "Primary Reference Time Clock")</span>.
+- Noise generation&mdash;jitter and wander noise in the output of a clock in reference to a <span class="a-tooltip">[PRTC](## "Primary Reference Time Clock")</span>.
 - Noise tolerance&mdash;how much noise the clock can tolerate before it switches to another stable source.
 - Noise transfer&mdash;smoothe out the input noise so that noise does not accumulate and increase over a network of clocks.
 - Transient response&mdash;the response from the clock to a transient.
 - Hold over&mdash;the time interval during which the clock maintains its output after losing the input reference signal.
 
-Cumulus Linux PTP has an option to use a servo specifically designed to handle ITU-T’s Noise Transfer specification. When you use this option, the <span style="background-color:#F5F5DC">[PHC](## "Physical Hardware Clock")</span> is disciplined by Noise Transfer Servo, which smoothes the jitter and wander noise from the Master clock.
+Cumulus Linux PTP has an option to use a servo specifically designed to handle ITU-T’s Noise Transfer specification. When you use this option, the <span class="a-tooltip">[PHC](## "Physical Hardware Clock")</span> is disciplined by Noise Transfer Servo, which smoothes the jitter and wander noise from the Master clock.
 
 {{%notice note%}}
 - To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces. 
@@ -1189,7 +1189,7 @@ Cumulus Linux supports the following predefined profiles:
 - You cannot set the current profile to a profile not yet created.
 - You cannot set global PTP parameters in a profile currently in use.
 - PTP profiles do not support VLANs or bonds.
-- If you set a predefined or custom profile, do not change any global PTP settings, such as the <span style="background-color:#F5F5DC">[DSCP](## "DiffServ code point")</span> or the clock domain.
+- If you set a predefined or custom profile, do not change any global PTP settings, such as the <span class="a-tooltip">[DSCP](## "DiffServ code point")</span> or the clock domain.
 - For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp-ptp burst <value>` and `nv set system control-plane policer lldp-ptp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
 {{%/notice%}}
 
@@ -2151,7 +2151,7 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 
 ### Spanning Tree and PTP
 <!-- vale off -->
-PTP frames are affected by <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
+PTP frames are affected by <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
 
 If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.
 <!-- vale on -->

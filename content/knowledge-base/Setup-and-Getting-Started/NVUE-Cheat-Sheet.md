@@ -4,9 +4,9 @@ weight: 102
 toc: 4
 ---
 
-<span style="background-color:#F5F5DC"> [NVUE](## "NVIDIA User Experience")</span> is an object-oriented, schema-driven model of a complete Cumulus Linux system providing a robust API that allows multiple interfaces to view and configure any element within a system.
+<span class="a-tooltip"> [NVUE](## "NVIDIA User Experience")</span> is an object-oriented, schema-driven model of a complete Cumulus Linux system providing a robust API that allows multiple interfaces to view and configure any element within a system.
 
-You can use NVUE through its <span style="background-color:#F5F5DC"> [CLI](## "Command Line Interface")</span> or <span style="background-color:#F5F5DC"> [API](## "Application Programming Interface")</span>. Because NVUE is an object model, both CLI and REST API interfaces have equivalent functionality and can work in parallel while keeping all management operations consistent; for example, the CLI `show` commands reflect any `PATCH` operation you run through the REST API.  
+You can use NVUE through its <span class="a-tooltip"> [CLI](## "Command Line Interface")</span> or <span class="a-tooltip"> [API](## "Application Programming Interface")</span>. Because NVUE is an object model, both CLI and REST API interfaces have equivalent functionality and can work in parallel while keeping all management operations consistent; for example, the CLI `show` commands reflect any `PATCH` operation you run through the REST API.  
 
 NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a big tree (like a filesystem path) representing the entire system state. At the base of the tree are high-level branches representing objects, such as router and interface. Under each branch, there are additional branches, and as you navigate through the tree, you gain a more specific context of the objects. The leaves of the tree are actual attributes, represented as key-value pairs.
 
@@ -31,7 +31,7 @@ Like all industry-standard CLIs, the NVUE CLI includes command completion with t
 
 ## Getting Started
 
-After you rack and power on your NVIDIA Spectrum switch with Cumulus Linux, connect a serial console cable so that you can begin configuration. All switches are manufactured with an RJ45 serial port for console connectivity and set to 115200 baud rate. If your switch does not have a pre-installed <span style="background-color:#F5F5DC"> [NOS](## "Network Operating System")</span>, you can [install a new Cumulus Linux image]({{<ref "/cumulus-linux-53/Installation-Management/Installing-a-New-Cumulus-Linux-Image">}}).
+After you rack and power on your NVIDIA Spectrum switch with Cumulus Linux, connect a serial console cable so that you can begin configuration. All switches are manufactured with an RJ45 serial port for console connectivity and set to 115200 baud rate. If your switch does not have a pre-installed <span class="a-tooltip"> [NOS](## "Network Operating System")</span>, you can [install a new Cumulus Linux image]({{<ref "/cumulus-linux-53/Installation-Management/Installing-a-New-Cumulus-Linux-Image">}}).
 
 ## System Management and Services
 
@@ -40,10 +40,10 @@ Use the following commands to configure the management network and system servic
 | <div style="width:220px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
 | `nv set system hostname <name>` | Configures the system hostname. The default hostname is `cumulus`.<pre>$ nv set system hostname leaf01</pre>|
-| `nv set interface eth0 ip address <ip-address/mask>`</br></br>`nv set interface eth0 ip gateway <ip-address>` |Configures a static IP address and default gateway on the <span style="background-color:#F5F5DC">[OOB](## "Out of Band")</span> management interface (eth0). By default the OOB management interface is set to use DHCPv4 to obtain an IP address.<pre>$ nv set interface eth0 ip address 192.168.200.2/24</br>$ nv set interface eth0 ip gateway 192.168.200.1</pre> |
-| `nv set service ntp <vrf-name> server <url> iburst on` | Adds an <span style="background-color:#F5F5DC"><a><abbr title="Network Time Protocol">NTP</abbr></a></span> server. Cumulus Linux boots with the NTP service enabled and uses default servers. Refer to the <a href="/cumulus-linux-53/System-Configuration/Date-and-Time/Network-Time-Protocol-NTP">NTP</a> documentation for more information.</br>The <span style="background-color:#F5F5DC"><a><abbr title="Virtual Routing and Forwarding">VRF</abbr></a></span> name in the example is `default`. You must specify a VRF.<pre>$ nv set service ntp default server 4.cumulusnetworks.pool.ntp.org iburst on</pre></br>If you do not use NTP, set the system time and date with the Linux `date` command. |
-| `nv set system timezone <timezone>` | Configures the system time zone. By default, Cumulus Linux uses the <span style="background-color:#F5F5DC">[UTC](## "Coordinated Universal Time")</span> time zone.<pre>$ nv set system timezone US/Eastern</pre> |
-| `nv set service dns <vrf-name> server <ip-address)` | Configures the <span style="background-color:#F5F5DC"><a><abbr title="Domain Name System">DNS</abbr></a></span> lookup server. The VRF name in the example is `mgmt`. You can use this command with or without the VRF.<pre>$ nv set service dns mgmt server 198.51.100.31</pre> |
+| `nv set interface eth0 ip address <ip-address/mask>`</br></br>`nv set interface eth0 ip gateway <ip-address>` |Configures a static IP address and default gateway on the <span class="a-tooltip">[OOB](## "Out of Band")</span> management interface (eth0). By default the OOB management interface is set to use DHCPv4 to obtain an IP address.<pre>$ nv set interface eth0 ip address 192.168.200.2/24</br>$ nv set interface eth0 ip gateway 192.168.200.1</pre> |
+| `nv set service ntp <vrf-name> server <url> iburst on` | Adds an <span class="a-tooltip"><a><abbr title="Network Time Protocol">NTP</abbr></a></span> server. Cumulus Linux boots with the NTP service enabled and uses default servers. Refer to the <a href="/cumulus-linux-53/System-Configuration/Date-and-Time/Network-Time-Protocol-NTP">NTP</a> documentation for more information.</br>The <span class="a-tooltip"><a><abbr title="Virtual Routing and Forwarding">VRF</abbr></a></span> name in the example is `default`. You must specify a VRF.<pre>$ nv set service ntp default server 4.cumulusnetworks.pool.ntp.org iburst on</pre></br>If you do not use NTP, set the system time and date with the Linux `date` command. |
+| `nv set system timezone <timezone>` | Configures the system time zone. By default, Cumulus Linux uses the <span class="a-tooltip">[UTC](## "Coordinated Universal Time")</span> time zone.<pre>$ nv set system timezone US/Eastern</pre> |
+| `nv set service dns <vrf-name> server <ip-address)` | Configures the <span class="a-tooltip"><a><abbr title="Domain Name System">DNS</abbr></a></span> lookup server. The VRF name in the example is `mgmt`. You can use this command with or without the VRF.<pre>$ nv set service dns mgmt server 198.51.100.31</pre> |
 | `nv set service syslog <vrf-name> server <ip-address> port <port>`</br></br>`nv set service syslog <vrf-name> server <ip-address> protocol <protocol>` | Configures a remote Syslog server for the switch to send syslog messages. The VRF name in the example is `default`. You must specify a VRF.</br>You can specify `udp` or `tcp` for the protocol.<pre>$ nv set service syslog default server 192.168.0.254 port 514</br>$ nv set service syslog default server 192.168.0.254 protocol udp</pre> |
 
 ## Working with Interfaces
@@ -57,7 +57,7 @@ Use the following commands to configure the physical, breakout, loopback, and lo
 | `nv set interface <interface>`</br>`nv set interface <interface-range>`| Administratively enables physical interfaces on the switch.</br>All physical interfaces except eth0 are disabled by default; you must enable them for them to become operational.</br>To disable an interface, use the `nv unset` command.</br>You can also enable or disable all or a range of interfaces at the same time. <pre>$ nv set interface swp1</br>$ nv set interface swp1,20-32</pre>|
 | `nv set interface <interface> link state <state>` | Configures the interface link state: `up` or `down`. After you enable an interface, the link state is set automatically to `up`.</br><b>Note:</b> Setting the link state to `down` does not disable the interface from the system like the `nv unset interface <interface>` command. <pre>$ nv set interface swp1 link state down</br>$ nv set interface swp8-15 link state up</pre>|
 | `nv set interface <interface> link speed <speed>` | Configures the interface speed. If auto-negotiation is enabled (the default setting), it takes precedence over the link speed setting.<pre>$ nv set interface swp1 link speed 50G</pre>|
-| `nv set interface <interface> link mtu <mtu>` | Configures the interface <span style="background-color:#F5F5DC"><a><abbr title="Maximum Transfer Unit">MTU</abbr></a></span>. All interfaces in Cumulus Linux are set to 9216B MTU by default.<pre>$ nv set interface swp1 link mtu 1500</pre>|
+| `nv set interface <interface> link mtu <mtu>` | Configures the interface <span class="a-tooltip"><a><abbr title="Maximum Transfer Unit">MTU</abbr></a></span>. All interfaces in Cumulus Linux are set to 9216B MTU by default.<pre>$ nv set interface swp1 link mtu 1500</pre>|
 
 ### Breakout Interfaces
 
@@ -91,22 +91,22 @@ The default bridge `br_default` is a VLAN-aware bridge. Refer to the [Ethernet B
 | <div style="width:200px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
 | `nv set interface <interface> bridge domain br_default` | Adds a physical interface into the default `br_default` bridge. You can add a range of interfaces to a bridge.</br>When you add an interface to a bridge, Cumulus Linux sets the interface automatically to trunk mode (tagged-dot1Q) with all bridge VLANs allowed.<pre>$ nv set interface swp1 bridge domain br_default</br>$ nv set interface swp1-5,7-22 bridge domain br_default</pre>|
-| `nv set interface <interface> bridge domain br_default untagged none` | Configures an interface (<b>not the bridge</b>) to drop all untagged traffic. The `untagged none` command removes the <span style="background-color:#F5F5DC"><a><abbr title="Primary VLAN Identifier">PVID</abbr></a></span> from the interface.<pre>$ nv set interface swp2 bridge domain br_default untagged none</pre> |
+| `nv set interface <interface> bridge domain br_default untagged none` | Configures an interface (<b>not the bridge</b>) to drop all untagged traffic. The `untagged none` command removes the <span class="a-tooltip"><a><abbr title="Primary VLAN Identifier">PVID</abbr></a></span> from the interface.<pre>$ nv set interface swp2 bridge domain br_default untagged none</pre> |
 | `nv set bridge domain br_default vlan <vlan-id>` | Configures VLANs on the default bridge (`br_default`). All new VLANs you add to the bridge are automatically added to all its trunk ports. You can also add VLANs in a range or a list.<pre>$ nv set bridge domain br_default vlan 10,20</pre>|
 | `nv set interface <interface> bridge domain br_default access <vlan-id>` | Configures an interface as an access (untagged) port in a specific VLAN.<pre>$ nv set interface swp1 bridge domain br_default access 10</pre>|
 | `nv set bridge domain br_default untagged <vlan-id>` | Configures the PVID of the default `br_default` bridge. The default PVID is 1. Use this command only to change (or reset) the default PVID.<pre>$ nv set bridge domain br_default untagged 100</pre>|
 
 #### Spanning-Tree Protocol (STP)
 
-The VLAN-aware bridge (`br_default`) operates only in <span style="background-color:#F5F5DC"><a><abbr title="Rapid Spanning-Tree Protocol">RSTP</abbr></a></span> mode.
+The VLAN-aware bridge (`br_default`) operates only in <span class="a-tooltip"><a><abbr title="Rapid Spanning-Tree Protocol">RSTP</abbr></a></span> mode.
 {{%notice note%}}
-Traditional bridges operate in both <span style="background-color:#F5F5DC"><a><abbr title="Per-VLAN Spanning-Tree">PVST</abbr></a></span> and <span style="background-color:#F5F5DC"><a><abbr title="Rapid Per-VLAN Spanning-Tree">RPVST</abbr></a></span> mode. The default mode is PVRST. Each traditional bridge has its own separate STP instance.
+Traditional bridges operate in both <span class="a-tooltip"><a><abbr title="Per-VLAN Spanning-Tree">PVST</abbr></a></span> and <span class="a-tooltip"><a><abbr title="Rapid Per-VLAN Spanning-Tree">RPVST</abbr></a></span> mode. The default mode is PVRST. Each traditional bridge has its own separate STP instance.
 {{%/notice%}}
 
 | <div style="width:230px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
 | `nv set bridge domain br_default stp priority <priority>` | Sets the spanning-tree priority of the default bridge (`br_default`). The default STP priority is 32768.<pre>$ nv set bridge domain br_default stp priority 8192</pre> |
-| `nv set interface <interface> bridge domain br_default stp admin-edge on`</br></br>`nv set interface <interface> bridge domain br_default stp bpdu-guard on`</br></br>`nv set interface <interface> bridge domain br_default stp auto-edge on` | Sets an interface to Edge (PortFast) mode. NVIDIA recommends you set <span style="background-color:#F5F5DC"><a><abbr title="Bridge Protocol Data Unit">BPDU</abbr></a></span>-guard on edge ports to eliminate loops.</br>Cumulus Linux enables automatic edge `auto-edge` port detection by default. You can disable `auto-edge` with the `off` option.<pre>$ nv set interface swp5 bridge domain br_default stp admin-edge on</br>$ nv set interface swp5 bridge domain br_default stp bpdu-guard on</br>$ nv set interface swp5 bridge domain br_default stp auto-edge off</pre>|
+| `nv set interface <interface> bridge domain br_default stp admin-edge on`</br></br>`nv set interface <interface> bridge domain br_default stp bpdu-guard on`</br></br>`nv set interface <interface> bridge domain br_default stp auto-edge on` | Sets an interface to Edge (PortFast) mode. NVIDIA recommends you set <span class="a-tooltip"><a><abbr title="Bridge Protocol Data Unit">BPDU</abbr></a></span>-guard on edge ports to eliminate loops.</br>Cumulus Linux enables automatic edge `auto-edge` port detection by default. You can disable `auto-edge` with the `off` option.<pre>$ nv set interface swp5 bridge domain br_default stp admin-edge on</br>$ nv set interface swp5 bridge domain br_default stp bpdu-guard on</br>$ nv set interface swp5 bridge domain br_default stp auto-edge off</pre>|
 
 Refer to the [Spanning Tree and Rapid Spanning Tree - STP]({{<ref "/cumulus-linux-53/Layer-2/Spanning-Tree-and-Rapid-Spanning-Tree">}}) documentation for more information.
 
@@ -117,7 +117,7 @@ After you enable a Cumulus Linux interface administratively, it is a routed port
 | <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
 | `nv set interface <interface> ip address <ip-address>` | Configures an IPv4 or IPv6 address on the physical interface (swp).<pre>$ nv set interface swp10 ip address 10.1.0.5/24</br>$ nv set interface swp10 ip address 2001:db8::10/64</pre>|
-| `nv set interface <svi> ip address <ip-address>` | Configures an IPv4 or IPv6 address on an <span style="background-color:#F5F5DC"><a><abbr title="Switch Virtual Interface">SVI</abbr></a></span> (VLAN interface).</br>The SVI operates only if its VLAN exists and an interface is assigned to it (either tagged or untagged).<pre>$ nv set interface vlan100 ip address 100.1.0.2/24</br>$ nv set interface vlan100 ip address 2001:db8::1/32</pre>|
+| `nv set interface <svi> ip address <ip-address>` | Configures an IPv4 or IPv6 address on an <span class="a-tooltip"><a><abbr title="Switch Virtual Interface">SVI</abbr></a></span> (VLAN interface).</br>The SVI operates only if its VLAN exists and an interface is assigned to it (either tagged or untagged).<pre>$ nv set interface vlan100 ip address 100.1.0.2/24</br>$ nv set interface vlan100 ip address 2001:db8::1/32</pre>|
 
 ### Link Aggregation Interfaces
 
@@ -126,8 +126,8 @@ The Link Aggregation (LAG) interface in Cumulus Linux is called a bond. You can 
 | <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
 | `nv set interface <bond-name> bond member <bonded-interface>`</br></br>`nv set interface <bond-name> type bond` | Configures a bond interface and sets the physical ports. If you use a bond name that starts with `bond`, the type is automatically set to `bond`. Otherwise, you have to manually set the interface type to `bond`.<pre>$ nv set interface bond1 bond members swp1-4</br>$ nv set interface lag1 bond members swp5-6</br>$ nv set interface lag1 type bond</pre>|
-| `nv set interface <bond-name> bond mode <mode>`| Configures the bond interface operation mode.</br>By default, bonds in Cumulus Linux are set to <span style="background-color:#F5F5DC"><a><abbr title="Link Aggregation Control Protocol">LACP</abbr></a></span> (802.3ad) mode.</br>You can change the mode to Balance-xor with the `static` option. To reset the bond mode to LACP, use the `lacp` option.<pre>$ nv set interface bond1 bond mode static</br>$ nv set interface bond1 bond mode lacp</pre>|
-|`nv set interface <bond-name> bond lacp-rate <rate>` | Configures the bond interface LACP <span style="background-color:#F5F5DC"><a><abbr title="Protocol Data Unit">PDU</abbr></a></span> transmit rate.</br>By default, bonds in Cumulus Linux are set to `fast` mode (transmitting every 3 seconds). To set the rate to 30 seconds, use `slow` mode.<pre>$ nv set interface bond1 bond lacp-rate slow</br>$ nv set interface bond1 bond lacp-rate fast</pre>|
+| `nv set interface <bond-name> bond mode <mode>`| Configures the bond interface operation mode.</br>By default, bonds in Cumulus Linux are set to <span class="a-tooltip"><a><abbr title="Link Aggregation Control Protocol">LACP</abbr></a></span> (802.3ad) mode.</br>You can change the mode to Balance-xor with the `static` option. To reset the bond mode to LACP, use the `lacp` option.<pre>$ nv set interface bond1 bond mode static</br>$ nv set interface bond1 bond mode lacp</pre>|
+|`nv set interface <bond-name> bond lacp-rate <rate>` | Configures the bond interface LACP <span class="a-tooltip"><a><abbr title="Protocol Data Unit">PDU</abbr></a></span> transmit rate.</br>By default, bonds in Cumulus Linux are set to `fast` mode (transmitting every 3 seconds). To set the rate to 30 seconds, use `slow` mode.<pre>$ nv set interface bond1 bond lacp-rate slow</br>$ nv set interface bond1 bond lacp-rate fast</pre>|
 
 ## Working with Network Protocols
 
@@ -158,7 +158,7 @@ This cheat sheet includes the basic MLAG configuration commands. Refer to the [M
 
 #### Virtual Router Redundancy - VRR
 
-<span style="background-color:#F5F5DC"> [VRR](## "Virtual Router Redundancy")</span> enables an active-active gateway for the layer 2 MLAG domain. Both MLAG peers must have an SVI with unique IP addresses for each VLAN. Then, you must set identical VRR instances (one instance per subnet) on both MLAG peers. The VRR instance is configured on the SVIs and holds the virtual IP and MAC addresses. Both peers respond to ARP requests from the host but if one fails, the second still serves as the gateway.
+<span class="a-tooltip"> [VRR](## "Virtual Router Redundancy")</span> enables an active-active gateway for the layer 2 MLAG domain. Both MLAG peers must have an SVI with unique IP addresses for each VLAN. Then, you must set identical VRR instances (one instance per subnet) on both MLAG peers. The VRR instance is configured on the SVIs and holds the virtual IP and MAC addresses. Both peers respond to ARP requests from the host but if one fails, the second still serves as the gateway.
 
 | <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
@@ -172,7 +172,7 @@ Refer to the [Virtual Router Redundancy - VRR and VRRP]({{<ref "/cumulus-linux-5
 
 #### Virtual Routing and Forwarding - VRF
 
-<span style="background-color:#F5F5DC"> [VRF](## "Virtual Routing and Forwarding")</span> (also called VRF-Lite) enables you to use multiple independent routing tables that work simultaneously on the same switch. VRFs are useful in multi-tenant environments.
+<span class="a-tooltip"> [VRF](## "Virtual Routing and Forwarding")</span> (also called VRF-Lite) enables you to use multiple independent routing tables that work simultaneously on the same switch. VRFs are useful in multi-tenant environments.
 
 This cheat sheet includes basic VRF commands. For more information about using custom and `mgmt` VRFs with different protocols, refer to the [Virtual Routing and Forwarding - VRF]({{<ref "/cumulus-linux-53/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF">}}) and [Management VRF]({{<ref "/cumulus-linux-53/Layer-3/VRFs/Management-VRF">}}) documentation.
 
@@ -191,10 +191,10 @@ You can use static routing if you do not require the complexity of a dynamic rou
 
 #### Border Gateway Protocol - BGP
 
-<span style="background-color:#F5F5DC"> [BGP](## "Border Gateway Protocol")</span> is the routing protocol that runs the Internet. BGP manages how packets get routed from network to network by exchanging routing and reachability information.
+<span class="a-tooltip"> [BGP](## "Border Gateway Protocol")</span> is the routing protocol that runs the Internet. BGP manages how packets get routed from network to network by exchanging routing and reachability information.
 
 Cumulus Linux makes BGP configuration in the data center easier with [Auto BGP]({{<ref "/cumulus-linux-53/Layer-3/Border-Gateway-Protocol-BGP#auto-bgp">}}) and
-[BGP Unnumbered]({{<ref "/cumulus-linux-53/Layer-3/Border-Gateway-Protocol-BGP#bgp-unnumbered">}}). NVIDIA recommends using these features to eliminate the need for <span style="background-color:#F5F5DC"> [ASN](## "Autonomous System Number")</span> and point-to-point IP addressing assignments, and to reduce human errors.
+[BGP Unnumbered]({{<ref "/cumulus-linux-53/Layer-3/Border-Gateway-Protocol-BGP#bgp-unnumbered">}}). NVIDIA recommends using these features to eliminate the need for <span class="a-tooltip"> [ASN](## "Autonomous System Number")</span> and point-to-point IP addressing assignments, and to reduce human errors.
 
 This cheat sheet includes basic BGP configuration commands. Refer to the [Border Gateway Protocol - BGP]({{<ref "/cumulus-linux-53/Layer-3/Border-Gateway-Protocol-BGP">}}) documentation for more information.
 
@@ -209,11 +209,11 @@ This cheat sheet includes basic BGP configuration commands. Refer to the [Border
 
 ### Network Virtualization
 
-<span style="background-color:#F5F5DC"> [VXLAN](## "Virtual Extensible LAN")</span> is a standard overlay protocol for logical virtual networks. It uses a VLAN-like encapsulation technique to encapsulate layer 2 Ethernet segments over layer 3 networks. The encapsulation happens on the  <span style="background-color:#F5F5DC"> [VTEP](## "VXLAN Tunnel End Points")</span>, which establishes an overlay UDP tunnel to the remote VTEP device. Unlike VLANs, VXLAN scales to 16 million segments (a 24-bit VXLAN network identifier (VNI ID) in the VXLAN header) for multi-tenancy. Refer to the [Network Virtualization]({{<ref "/cumulus-linux-53/Network-Virtualization">}}) documentation for more information.
+<span class="a-tooltip"> [VXLAN](## "Virtual Extensible LAN")</span> is a standard overlay protocol for logical virtual networks. It uses a VLAN-like encapsulation technique to encapsulate layer 2 Ethernet segments over layer 3 networks. The encapsulation happens on the  <span class="a-tooltip"> [VTEP](## "VXLAN Tunnel End Points")</span>, which establishes an overlay UDP tunnel to the remote VTEP device. Unlike VLANs, VXLAN scales to 16 million segments (a 24-bit VXLAN network identifier (VNI ID) in the VXLAN header) for multi-tenancy. Refer to the [Network Virtualization]({{<ref "/cumulus-linux-53/Network-Virtualization">}}) documentation for more information.
 
 #### VXLAN Devices and Static Tunnels
 
-Cumulus Linux supports single and traditional VXLAN devices. NVUE allows you to work only with a single VXLAN device (single VTEP) in a VLAN-aware bridge. With a single VXLAN device (<span style="background-color:#F5F5DC">[NVE](## "Network Virtual Interface")</span> interface), you specify the VLAN to <span style="background-color:#F5F5DC"> [VNI](## "Virtual Network Identifier")</span> mapping. 
+Cumulus Linux supports single and traditional VXLAN devices. NVUE allows you to work only with a single VXLAN device (single VTEP) in a VLAN-aware bridge. With a single VXLAN device (<span class="a-tooltip">[NVE](## "Network Virtual Interface")</span> interface), you specify the VLAN to <span class="a-tooltip"> [VNI](## "Virtual Network Identifier")</span> mapping. 
 
 {{%notice note %}}
 Cumulus Linux supports multiple single VXLAN devices when set with multiple VLAN-aware bridges. Make sure not to duplicate VNIs across devices.
@@ -230,12 +230,12 @@ This cheat sheet includes some of the basic configuration commands for static VX
 | `nv set nve vxlan arp-nd-suppress on` | Enables the NVE to reply to local ARP requests if it has the remote MAC already. This prevents unnecessary broadcast traffic to all remote VTEPs.<pre>$ nv set nve vxlan arp-nd-suppress on</pre>|
 | `nv set nve vxlan source address <ip-address>` | Configures the VTEP (NVE) source IP address to form the overlay tunnel. Cumulus Linux uses the loopback IP address for the tunnel source. <pre>$ nv set nve vxlan source address 10.10.10.1</pre>|
 | `nv set nve vxlan mlag shared-address <ip-address>`| Configures the MLAG anycast virtual IP address as the VXLAN tunnel destination. Both MLAG peers must have the same address.<pre>$ nv set nve vxlan mlag shared-address 10.0.1.34</pre>|
-| `nv set bridge domain br_default vlan <vlan-id> vni <vni-id> flooding head-end-replication <ip-address>`</br></br>`nv set nve vxlan flooding head-end-replication <ip-address>` | Configures the remote VTEPs for <span style="background-color:#F5F5DC"><a><abbr title="Head End Replication">HER</abbr></a></span> to handle <span style="background-color:#F5F5DC"><a><abbr title="Broadcast, Unknown-Unicast and Multicast">BUM</abbr></a></span> traffic. You must configure the remote VTEPs in non-EVPN fabrics. You can set the remote VTEP per VNI or globally for all VNIs.<pre>$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2</br>$ nv set nve vxlan flooding head-end-replication 10.10.10.2</pre>|
+| `nv set bridge domain br_default vlan <vlan-id> vni <vni-id> flooding head-end-replication <ip-address>`</br></br>`nv set nve vxlan flooding head-end-replication <ip-address>` | Configures the remote VTEPs for <span class="a-tooltip"><a><abbr title="Head End Replication">HER</abbr></a></span> to handle <span class="a-tooltip"><a><abbr title="Broadcast, Unknown-Unicast and Multicast">BUM</abbr></a></span> traffic. You must configure the remote VTEPs in non-EVPN fabrics. You can set the remote VTEP per VNI or globally for all VNIs.<pre>$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2</br>$ nv set nve vxlan flooding head-end-replication 10.10.10.2</pre>|
 |`nv set bridge domain br_default vlan <vlan-id> vni <vni-id> flooding multicast-group <ip-address>`<br></br>`nv set nve vxlan flooding multicast-group <ip-address>` | Configures the multicast group for BUM traffic handling for EVPN fabrics (HER is the default). You can set the flooding group per VNI or globally. NVIDIA recommends setting a unique multicast group per VNI. This configuration requires using PIM-SM on the underlay network.</br>Refer to <a href="/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-PIM">EVPN BUM Traffic with PIM-SM</a> for more information.<pre>$ nv set bridge domain br_default vlan 10 vni 10 flooding multicast-group 239.1.1.110</br>$ nv set nve vxlan flooding multicast-group 224.0.0.10</pre>|
 
 #### Ethernet Virtual Private Network - EVPN
 
-<span style="background-color:#F5F5DC"> [EVPN](## "Ethernet Virtual Private Network")</span> is a standards-based control plane that relies on multi-protocol BGP (MP-BGP) and allows for building and deploying VXLANs at scale. EVPN enables intra-subnet bridging and inter-subnet routing, including multi-tenancy support. 
+<span class="a-tooltip"> [EVPN](## "Ethernet Virtual Private Network")</span> is a standards-based control plane that relies on multi-protocol BGP (MP-BGP) and allows for building and deploying VXLANs at scale. EVPN enables intra-subnet bridging and inter-subnet routing, including multi-tenancy support. 
 
 This cheat sheet includes the basic EVPN configuration commands. For more information and additional configuration, refer to the [Ethernet Virtual Private Network - EVPN]({{<ref "/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN">}}) documentation.
 
@@ -247,9 +247,9 @@ This cheat sheet includes the basic EVPN configuration commands. For more inform
 | `nv set vrf <vrf-name> evpn vni <vni-id>` | Creates the layer 3 VNI for a tenant VRF when using EVPN <a href="/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing#symmetric-routing">Symmetric Routing</a>. First, make sure to create the tenant VRF and add an SVI to it.<pre>$ nv set vrf RED vni 4001</pre>|
 | `nv set vrf <vrf-name> router bgp address-family ipv4-unicast route-export to-evpn enable on` | Enables the switch to install EVPN type-5 routes from the VRF BGP RIB. First, make sure to create the tenant VRF and set the layer 3 VNI to it.<pre>$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on</pre>|
 | `nv set evpn multihoming enable on`| Enables <a href="/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-Multihoming">EVPN Multihoming</a> (EVPN-MH) on the switch.<pre>$ nv set evpn multihoming enable on</pre>|
-| `nv set interface <bond-name> evpn multihoming segment local-id <id>` | Configures the EVPN-MH <span style="background-color:#F5F5DC"><a><abbr title="Ethernet Segment Identifier">ESI</abbr></a></span> on the bond interface. Each <span style="background-color:#F5F5DC"><a><abbr title="Ethernet Segment">ES</abbr></a></span> must have the same ESI accross the fabric. You must set a unique ESI per bond interface on the switch.<pre>$ nv set interface bond2 evpn multihoming segment local-id 2</pre>|
+| `nv set interface <bond-name> evpn multihoming segment local-id <id>` | Configures the EVPN-MH <span class="a-tooltip"><a><abbr title="Ethernet Segment Identifier">ESI</abbr></a></span> on the bond interface. Each <span class="a-tooltip"><a><abbr title="Ethernet Segment">ES</abbr></a></span> must have the same ESI accross the fabric. You must set a unique ESI per bond interface on the switch.<pre>$ nv set interface bond2 evpn multihoming segment local-id 2</pre>|
 | `nv set interface <bond-name> evpn multihoming segment mac-address <mac-address>` | Configures the EVPN-MH ES MAC address per bond interface. The ES MAC and the ESI generates a unique EVPN type-3 route. The ES MAC must be the same on all interfaces toward the same server.<pre>$ nv set interface bond1 evpn multihoming segment mac-address 44:38:39:BE:EF:AA</pre>|
-| `nv set interface <bond-name> evpn multihoming segment df-preference <value>` | Configures the EVPN-MH ES <span style="background-color:#F5F5DC"><a><abbr title="Designated Frowarder">DF</abbr></a></span>. The DF handles flooded traffic received through the VXLAN tunnels to the local ES. The default DF value is 32767. NVIDIA recommends setting the DF preference to avoid unpredictable failure scenarios.<pre>$ nv set interface bond1 evpn multihoming segment df-preference 50000</pre>|
+| `nv set interface <bond-name> evpn multihoming segment df-preference <value>` | Configures the EVPN-MH ES <span class="a-tooltip"><a><abbr title="Designated Frowarder">DF</abbr></a></span>. The DF handles flooded traffic received through the VXLAN tunnels to the local ES. The default DF value is 32767. NVIDIA recommends setting the DF preference to avoid unpredictable failure scenarios.<pre>$ nv set interface bond1 evpn multihoming segment df-preference 50000</pre>|
 | `nv set interface <interface> evpn multihoming uplink on` | Configures the EVPN-MH uplink ports. When all ES uplink ports go down, all bonds enter an error-disabled state to prevent active MH bonds without VXLAN overlay tunnels.<pre>$ nv set interface swp51-54 evpn multihoming uplink on</pre>|
 
 The [Configuration Examples]({{<ref "/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Configuration-Examples">}}) section of the Cumulus Linux user guide provides examples of EVPN layer 2 routing, centralized routing, symmetric routing, and [EVPN-MH]({{<ref "/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-Multihoming#configuration-example">}}).
@@ -262,7 +262,7 @@ You can also examine and try the EVPN best practices using these pre-built simul
 
 ## Access Control List - ACL
 
-<span style="background-color:#F5F5DC"> [ACLs](## "Access Control Lists")</span> in Cumulus Linux are based on Linux <em>iptables</em> and <em>ebtables</em> with the following default behaviors:
+<span class="a-tooltip"> [ACLs](## "Access Control Lists")</span> in Cumulus Linux are based on Linux <em>iptables</em> and <em>ebtables</em> with the following default behaviors:
 
 - There is no <em>implicit deny</em>. ACLs must end in a `match any` and `action deny` rule to drop all unmatched traffic.
 - There is no support for wildcard masks. You must list subnets individually.

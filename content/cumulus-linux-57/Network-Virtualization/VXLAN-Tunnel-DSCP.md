@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 625
 toc: 3
 ---
-Cumulus Linux provides configuration options to control <span style="background-color:#F5F5DC">[DSCP](## "Differentiated Services Code Point")</span> operations during VXLAN encapsulation and decapsulation, specifically for solutions that require end-to-end quality of service, such as <span style="background-color:#F5F5DC">[RDMA](## "Remote Direct Memory Access")</span> over Converged Ethernet.
+Cumulus Linux provides configuration options to control <span class="a-tooltip">[DSCP](## "Differentiated Services Code Point")</span> operations during VXLAN encapsulation and decapsulation, specifically for solutions that require end-to-end quality of service, such as <span class="a-tooltip">[RDMA](## "Remote Direct Memory Access")</span> over Converged Ethernet.
 
-The configuration options propagate <span style="background-color:#F5F5DC">[ECN](## "Explicit Congestion Notification")</span> between the underlay and overlay according to {{<exlink url="https://tools.ietf.org/html/rfc6040" text="RFC 6040">}}, which describes how to construct the IP header of an ECN field on both ingress to and egress from an IP-in-IP tunnel.
+The configuration options propagate <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span> between the underlay and overlay according to {{<exlink url="https://tools.ietf.org/html/rfc6040" text="RFC 6040">}}, which describes how to construct the IP header of an ECN field on both ingress to and egress from an IP-in-IP tunnel.
 
 ## Configure DSCP Operations
 

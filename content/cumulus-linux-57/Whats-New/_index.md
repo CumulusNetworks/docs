@@ -523,13 +523,12 @@ nv action clear interface <interface-id> link protodown link-flap
 nv action clear system link protodown link-flap
 nv action delete system security ca-certificate
 nv action delete system security certificate
-nv action disable system maintenance
-nv action enable system maintenance
-nv action export system config
+nv action disable system maintenance mode
+nv action disable system maintenance ports
+nv action enable system maintenance mode
+nv action enable system maintenance ports
 nv action import system security ca-certificate
 nv action import system security certificate
-nv action rename system config files
-nv action upload system config files
 ```
 
 {{< /tab >}}

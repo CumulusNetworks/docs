@@ -25,7 +25,7 @@ To configure EVPN-MH, you set an Ethernet segment system MAC address and a local
 While you can specify a different system MAC address on different Ethernet segments attached to the same switch, the Ethernet segment system MAC address must be the same on the downlinks attached to the same server.
 
 {{%notice info%}}
-On Spectrum-2 and Spectrum-3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group. However, on Spectrum A1 switches, you can include a maximum of two switches in a redundancy group or Ethernet segment.
+On Spectrum-2 and later, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group. However, on Spectrum A1 switches, you can include a maximum of two switches in a redundancy group or Ethernet segment.
 {{%/notice%}}
 
 ## Required and Supported Features
@@ -57,7 +57,7 @@ To use EVPN-MH, you must remove any MLAG configuration on the switch:
   - When an EVPN-MH bond enters LACP bypass state, BGP stops advertising EVPN type-1 and type-4 routes for that bond. The switch disables split-horizon and designated forwarder filters.
   - When an EVPN-MH bond exits the LACP bypass state, BGP starts advertising EVPN type-1 and type-4 routes for that bond. The switch enables split-horizon and designated forwarder filters.
 - <span style="background-color:#F5F5DC">[EVI](## "EVPN virtual instance")</span> - Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
-- Supported {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="ASICs">}} include NVIDIA Spectrum A1, Spectrum-2 and Spectrum-3.
+- Supported {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="ASICs">}} include NVIDIA Spectrum A1, Spectrum-2 and later.
 
 ### Supported EVPN Route Types
 

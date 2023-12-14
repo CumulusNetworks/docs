@@ -698,7 +698,7 @@ cumulus@switch:~$ sudo ip link set swp2 protodown_reason linkflap off
 cumulus@switch:~$ sudo ip link set swp2 protodown off
 ```
 
-After a few seconds the port state returns to UP. Run the `ip link show <interface>` command to verify that the interface is no longer in a protodown state and that the reason clears:
+After a few seconds, the port state returns to UP. To verify that the interface is no longer in a protodown state and that the reason clears, run the `ip link show <interface>` command:
 
 ```
 cumulus@switch:~$ ip link show swp2

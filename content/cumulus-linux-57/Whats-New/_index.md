@@ -22,6 +22,7 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
 - {{<link url="MAC-Address-Translation" text="MAC address translation">}}
 - {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}}
 - {{<link url="Pulse-Per-Second-PPS" text="Pulse Per Second (PPS) synchronization">}}
+- {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PRP Noise Transfer Servo">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#weight-normalization" text="Weight normalization for BGP weighted ECMP">}}
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
@@ -38,11 +39,11 @@ Cumulus Linux 5.7.0 supports new platforms, contains several new features and im
   - {{<link url="DHCP-Relays/#dhcp-agent-information-option-option-82" text="DHCP agent information (Option 82) commands">}}
   - {{<link url="DHCP-Servers/#basic-configuration" text="DNS server interface name command">}} for IPv4
   - {{<link url="Link-Layer-Discovery-Protocol/#snmp-subagent" text="NVUE enables the SNMP subagent for LLDP by default ">}} when you enable SNMP
-  - Enhanced {{<link url="NVUE-API/#certificates" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#certificates" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch
+  - Enhanced {{<link url="NVUE-API/#show-nvue-rest-api-information" text="nv show system api">}} command output to show the certificate used for the API and additional {{<link url="NVUE-API/#show-certificate-information" text="nv show system api certificate">}} commands to show information about the certificates installed on the switch
   - Commands to show {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for all bridges">}} and {{<link url="Troubleshooting-EVPN" text="VLAN to VNI mapping for a specific bridge">}}
   - Commands to show the {{<link url="Address-Resolution-Protocol-ARP/#show-the-arp-table" text="ARP table">}} and {{<link url="Neighbor-Discovery-ND#show-the-ip-neighbor-table" text="ND table">}} and to add static entries to the {{<link url="Address-Resolution-Protocol-ARP/#add-static-arp-table-entries" text="ARP table">}} and {{<link url="Neighbor-Discovery-ND/#add-static-ip-neighbor-table-entries" text="ND table">}}
   - Enhanced {{<link url="NVUE-CLI/#configuration-management-commands" text="show config history">}} command output now in table format
-  - Improvements to {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="nv show mlag command outputs">}}
+  - Improvements to {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#troubleshooting" text="nv show mlag command outputs">}}
   - FRR now restarts only when you enable or disable a routing protocol, change the BGP ASN, or disable the SNMP server
 
 {{< expand "Commands that no longer require a switchd restart" >}}

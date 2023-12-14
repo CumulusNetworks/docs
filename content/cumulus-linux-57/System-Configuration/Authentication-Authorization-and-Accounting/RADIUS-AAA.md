@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 190
 toc: 4
 ---
-Cumulus Linux provides add-on packages to enable [RADIUS](## "Remote Authentication Dial-In User Service") users to log into the switch transparently with minimal configuration. There is no need to create accounts or directories on the switch. Authentication uses PAM and includes login, `ssh`, `sudo` and `su`.
+Cumulus Linux provides add-on packages to enable <span style="background-color:#F5F5DC">[RADIUS](## "Remote Authentication Dial-In User Service")</span> users to log into the switch transparently with minimal configuration. There is no need to create accounts or directories on the switch. Authentication uses PAM and includes login, `ssh`, `sudo` and `su`.
 
 ## Install the RADIUS Packages
 

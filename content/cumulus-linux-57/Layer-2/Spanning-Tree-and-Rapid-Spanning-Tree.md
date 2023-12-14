@@ -744,11 +744,7 @@ To show the reason for the port protodown, run the `ip -p -j link show <interfac
 cumulus@switch:~$ ip -p -j link show swp5
 ```
 
-To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the `mstpctl clearbpduguardviolation <bridge> <interface>` command.
-
-```
-cumulus@switch:~$ mstpctl clearbpduguardviolation bridge swp5
-```
+To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the NVUE `nv action clear interface <interface> bridge domain <domain> stp bpduguardviolation` command or the Linux `mstpctl clearbpduguardviolation <bridge> <interface>` command.
 
 {{%notice note%}}
 Bringing up the disabled port does not correct the problem if the configuration on the connected end station does not resolve.
@@ -1120,6 +1116,8 @@ To show STP information for the ports in a bridge:
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default stp port
+
+
 Interface Info: swp1
 --------------------------------------------------------------------------
 enabled         : yes         admin-edge-port      : no

@@ -12,9 +12,7 @@ This document supports the Cumulus Linux 5.7 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.7.0
 <!-- vale on -->
-Cumulus Linux 5.7.0 supports new platforms, contains several new features and improvements, and provides bug fixes.
-
-### Platforms
+Cumulus Linux 5.7.0 contains several new features and improvements, and provides bug fixes.
 
 ### New Features and Enhancements
 
@@ -110,23 +108,24 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-nv show acl <acl-id> rule <rule-id> action source-nat
-nv show acl <acl-id> rule <rule-id> action source-nat translate-ip
-nv show acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id>
-nv show acl <acl-id> rule <rule-id> action source-nat translate-port
-nv show acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
 nv show acl <acl-id> rule <rule-id> action dest-nat
 nv show acl <acl-id> rule <rule-id> action dest-nat translate-ip
 nv show acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id>
 nv show acl <acl-id> rule <rule-id> action dest-nat translate-port
 nv show acl <acl-id> rule <rule-id> action dest-nat translate-port <translate-port-id>
-nv show bridge vlan-vni-map
+nv show acl <acl-id> rule <rule-id> action source-nat
+nv show acl <acl-id> rule <rule-id> action source-nat translate-ip
+nv show acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id>
+nv show acl <acl-id> rule <rule-id> action source-nat translate-port
+nv show acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
 nv show bridge domain <domain-id> vlan-vni-map
+nv show bridge vlan-vni-map
+nv show interface <interface-id> dot1x
+nv show interface <interface-id> dot1x authenticated-sessions
+nv show interface <interface-id> dot1x authenticated-sessions <mac-address-id>
+nv show interface <interface-id> dot1x authenticated-sessions <mac-address-id> counters
 nv show interface <interface-id> link flap-protection
 nv show interface <interface-id> link protodown
-nv show interface <interface-id> port-security
-nv show interface <interface-id> port-security static-mac
-nv show interface <interface-id> port-security mac-addresses
 nv show interface <interface-id> neighbor
 nv show interface <interface-id> neighbor ipv6
 nv show interface <interface-id> neighbor ipv6 <neighbor-id>
@@ -140,6 +139,9 @@ nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr
 nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr <lladdr-id>
 nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr <lladdr-id> state
 nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr <lladdr-id> flag
+nv show interface <interface-id> port-security
+nv show interface <interface-id> port-security mac-addresses
+nv show interface <interface-id> port-security static-mac
 nv show interface <interface-id> telemetry
 nv show interface <interface-id> telemetry bw-gauge
 nv show interface <interface-id> telemetry histogram
@@ -158,10 +160,6 @@ nv show interface <interface-id> telemetry histogram counter counter-type
 nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id>
 nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold
 nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> snapshot
-nv show interface <interface-id> dot1x
-nv show interface <interface-id> dot1x authenticated-sessions
-nv show interface <interface-id> dot1x authenticated-sessions <mac-address-id>
-nv show interface <interface-id> dot1x authenticated-sessions <mac-address-id> counters
 nv show platform pulse-per-second
 nv show platform pulse-per-second in
 nv show platform pulse-per-second out
@@ -180,17 +178,15 @@ nv show service telemetry histogram interface
 nv show service telemetry bw-gauge
 nv show service telemetry bw-gauge interface
 nv show service telemetry snapshot-file
+nv show system aaa class
+nv show system aaa class <class-id>
+nv show system aaa class <class-id> command-path
+nv show system aaa class <class-id> command-path <command-path-id>
 nv show system aaa radius
 nv show system aaa radius server
 nv show system aaa radius server <hostname-id>
 nv show system aaa role <role-id> class
 nv show system aaa role <role-id> class <class-id>
-nv show system aaa class
-nv show system aaa class <class-id>
-nv show system aaa class <class-id> command-path
-nv show system aaa class <class-id> command-path <command-path-id>
-nv show system config files
-nv show system config files <config-file-id>
 nv show system date-time
 nv show system dot1x
 nv show system dot1x radius
@@ -225,8 +221,9 @@ nv set acl <acl-id> rule <rule-id> action source-nat translate-mac <mac>
 nv set bridge domain <domain-id> stp force-protocol-version (stp|rstp)
 nv set evpn mac-vrf-soo <route-distinguisher>
 nv set interface <interface-id> dot1x auth-fail-vlan (enabled|disabled)
+nv set interface <interface-id> dot1x eap (enabled|disabled)
+nv set interface <interface-id> dot1x mba (enabled|disabled)
 nv set interface <interface-id> link flap-protection enable (on|off)
-nv set interface <interface-id> link protodown
 nv set interface <interface-id> neighbor ipv4
 nv set interface <interface-id> neighbor ipv4 <address> lladdr
 nv set interface <interface-id> neighbor ipv4 <address> lladdr <address> flag
@@ -264,6 +261,19 @@ nv set interface <interface-id> telemetry histogram egress-buffer traffic-class 
 nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold action log
 nv set interface <interface-id> telemetry histogram egress-buffer traffic-class <if-tc-id> threshold value 96-4294967295
 nv set nve vxlan ageing 0-4096
+nv set platform pulse-per-second in channel-index
+nv set platform pulse-per-second in logging-level
+nv set platform pulse-per-second in pin-index 
+nv set platform pulse-per-second in signal-polarity
+nv set platform pulse-per-second in signal-width
+nv set platform pulse-per-second in state
+nv set platform pulse-per-second in timestamp-correction
+nv set platform pulse-per-second out channel-index
+nv set platform pulse-per-second out frequency-adjustment
+nv set platform pulse-per-second out phase-adjustment
+nv set platform pulse-per-second out pin-index
+nv set platform pulse-per-second out signal-width
+nv set platform pulse-per-second state
 nv set router bgp queue-limit input 1-4294967295
 nv set router bgp queue-limit output 1-4294967295
 nv set service dhcp-relay <vrf-id> agent enable (on|off)
@@ -353,7 +363,6 @@ nv unset interface <interface-id> dot1x mba
 nv unset interface <interface-id> dot1x auth-fail-vlan
 nv unset interface <interface-id> link flap-protection
 nv unset interface <interface-id> link flap-protection enable
-nv unset interface <interface-id> link protodown
 nv unset interface <interface-id> neighbor ipv4
 nv unset interface <interface-id> neighbor ipv4 <address> lladdr
 nv unset interface <interface-id> neighbor ipv4 <address> lladdr <address> flag
@@ -403,6 +412,19 @@ nv unset interface <interface-id> telemetry histogram ingress-buffer priority-gr
 nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold
 nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold action
 nv unset interface <interface-id> telemetry histogram ingress-buffer priority-group <if-pg-id> threshold value
+nv unset platform pulse-per-second in channel-index
+nv unset platform pulse-per-second in logging-level
+nv unset platform pulse-per-second in pin-index 
+nv unset platform pulse-per-second in signal-polarity
+nv unset platform pulse-per-second in signal-width
+nv unset platform pulse-per-second in state
+nv unset platform pulse-per-second in timestamp-correction
+nv unset platform pulse-per-second out channel-index
+nv unset platform pulse-per-second out frequency-adjustment
+nv unset platform pulse-per-second out phase-adjustment
+nv unset platform pulse-per-second out pin-index
+nv unset platform pulse-per-second out signal-width
+nv unset platform pulse-per-second state
 nv unset router bgp queue-limit
 nv unset router bgp queue-limit input
 nv unset router bgp queue-limit output
@@ -495,24 +517,26 @@ nv unset system nat translate-table-size
 ```
 nv action change system date-time
 nv action clear interface <interface-id> bridge domain <domain-id> stp bpduguardviolation
-nv action clear interface <interface-id> link protodown
-nv action clear system link protodown
-nv action delete system config files
+nv action clear interface <interface-id> link protodown link-flap
+nv action clear system link protodown link-flap
 nv action delete system security ca-certificate
 nv action delete system security certificate
-nv action disable system maintenance
-nv action enable system maintenance
-nv action export system config
+nv action disable system maintenance mode
+nv action disable system maintenance ports
+nv action enable system maintenance mode
+nv action enable system maintenance ports
 nv action import system security ca-certificate
 nv action import system security certificate
-nv action rename system config files
-nv action upload system config files
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
 {{< /expand >}}
+
+{{%notice note%}}
+Cumulus 5.7 provides updated {{<link url="Supported-Route-Table-Entries/#spectrum-1" text="Spectrum-1 forwarding profile numbers">}} to optimize hardware resources and prevent overutilization.
+{{%/notice%}}
 
 {{%notice info%}}
 Cumulus Linux 5.7 includes the NVUE object model. After you upgrade to Cumulus Linux 5.7, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

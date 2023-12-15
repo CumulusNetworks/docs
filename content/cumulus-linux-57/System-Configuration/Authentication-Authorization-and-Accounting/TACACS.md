@@ -12,18 +12,13 @@ TACACS+ in Cumulus Linux:
 - Allows users with privilege level 15 to run NVUE `nv set`, `nv unset`, and `nv apply` commands in addition to `nv show` commands. TACACS+ users with a lower privilege level can only execute `nv show` commands.
 - Supports up to seven TACACS+ servers. Be sure to configure your TACACS+ servers in addition to the TACACS+ client. Refer to your TACACS+ server documentation.
 
-## Install the TACACS+ Client Packages
+## TACACS+ Client Packages
 
 {{%notice note%}}
-You must install the TACACS+ client packages to use TACACS+. If you do not install the TACACS+ packages, you see the following message when you try to enable TACACS+ with the NVUE `nv set system aaa tacacs enable on` command:
-
-```
-'tacplus-client' package needs to be installed to enable tacacs
-```
-
+NVUE automatically installs the TACACS+ packages; you do **not** have to install the packages if you use NVUE commands to configure TACACS+.
 {{%/notice%}}
 
-You can install the TACACS+ packages even if the switch is not connected to the internet; the packages are in the `cumulus-local-apt-archive` repository in the {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="Cumulus Linux image">}}.
+If you use Linux commands to configure TACACS+, you must install the TACACS+ packages. You can install the TACACS+ packages even if the switch is not connected to the internet; the packages are in the `cumulus-local-apt-archive` repository in the {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="Cumulus Linux image">}}.
 
 To install all required packages, run these commands:
 
@@ -34,7 +29,7 @@ cumulus@switch:~$ sudo -E apt-get install tacplus-client
 
 ## Required TACACS+ Client Configuration
 
-After you install the required TACACS+ packages, configure the following required settings on the switch (the TACACS+ client).
+Configure the following required settings on the switch (the TACACS+ client).
 - Set the IP address or hostname of at least one TACACS+ server.
 - Set the secret (key) shared between the TACACS+ server and client.
 - Set the VRF you want to use to communicate with the TACACS+ server. This is typically the management VRF (`mgmt`), which is the default VRF on the switch.

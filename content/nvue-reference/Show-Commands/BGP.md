@@ -84,6 +84,26 @@ stale-routes-time             360
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show router bgp queue-limit</h
+
+Shows the input and output message queue configuration settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show router bgp queue-limit
+        applied
+------  -------
+input   2048  
+output  2048 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> router bgp</h>
 
 Shows a summary of the BGP configuration information for the specified VRF.

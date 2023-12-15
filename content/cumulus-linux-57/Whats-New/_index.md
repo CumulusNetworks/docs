@@ -108,23 +108,24 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-nv show acl <acl-id> rule <rule-id> action source-nat
-nv show acl <acl-id> rule <rule-id> action source-nat translate-ip
-nv show acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id>
-nv show acl <acl-id> rule <rule-id> action source-nat translate-port
-nv show acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
 nv show acl <acl-id> rule <rule-id> action dest-nat
 nv show acl <acl-id> rule <rule-id> action dest-nat translate-ip
 nv show acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id>
 nv show acl <acl-id> rule <rule-id> action dest-nat translate-port
 nv show acl <acl-id> rule <rule-id> action dest-nat translate-port <translate-port-id>
-nv show bridge vlan-vni-map
+nv show acl <acl-id> rule <rule-id> action source-nat
+nv show acl <acl-id> rule <rule-id> action source-nat translate-ip
+nv show acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id>
+nv show acl <acl-id> rule <rule-id> action source-nat translate-port
+nv show acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
 nv show bridge domain <domain-id> vlan-vni-map
+nv show bridge vlan-vni-map
+nv show interface <interface-id> dot1x
+nv show interface <interface-id> dot1x authenticated-sessions
+nv show interface <interface-id> dot1x authenticated-sessions <mac-address-id>
+nv show interface <interface-id> dot1x authenticated-sessions <mac-address-id> counters
 nv show interface <interface-id> link flap-protection
 nv show interface <interface-id> link protodown
-nv show interface <interface-id> port-security
-nv show interface <interface-id> port-security static-mac
-nv show interface <interface-id> port-security mac-addresses
 nv show interface <interface-id> neighbor
 nv show interface <interface-id> neighbor ipv6
 nv show interface <interface-id> neighbor ipv6 <neighbor-id>
@@ -138,6 +139,9 @@ nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr
 nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr <lladdr-id>
 nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr <lladdr-id> state
 nv show interface <interface-id> neighbor ipv4 <neighbor-id> lladdr <lladdr-id> flag
+nv show interface <interface-id> port-security
+nv show interface <interface-id> port-security mac-addresses
+nv show interface <interface-id> port-security static-mac
 nv show interface <interface-id> telemetry
 nv show interface <interface-id> telemetry bw-gauge
 nv show interface <interface-id> telemetry histogram
@@ -156,10 +160,6 @@ nv show interface <interface-id> telemetry histogram counter counter-type
 nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id>
 nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> threshold
 nv show interface <interface-id> telemetry histogram counter counter-type <if-counter-type-id> snapshot
-nv show interface <interface-id> dot1x
-nv show interface <interface-id> dot1x authenticated-sessions
-nv show interface <interface-id> dot1x authenticated-sessions <mac-address-id>
-nv show interface <interface-id> dot1x authenticated-sessions <mac-address-id> counters
 nv show platform pulse-per-second
 nv show platform pulse-per-second in
 nv show platform pulse-per-second out
@@ -178,17 +178,15 @@ nv show service telemetry histogram interface
 nv show service telemetry bw-gauge
 nv show service telemetry bw-gauge interface
 nv show service telemetry snapshot-file
+nv show system aaa class
+nv show system aaa class <class-id>
+nv show system aaa class <class-id> command-path
+nv show system aaa class <class-id> command-path <command-path-id>
 nv show system aaa radius
 nv show system aaa radius server
 nv show system aaa radius server <hostname-id>
 nv show system aaa role <role-id> class
 nv show system aaa role <role-id> class <class-id>
-nv show system aaa class
-nv show system aaa class <class-id>
-nv show system aaa class <class-id> command-path
-nv show system aaa class <class-id> command-path <command-path-id>
-nv show system config files
-nv show system config files <config-file-id>
 nv show system date-time
 nv show system dot1x
 nv show system dot1x radius

@@ -1473,7 +1473,7 @@ router bgp 65101
 
 ## BGP Input and Ouput Message Queue Limit
 
-You can configure the input and the output message queue limit globally for all peers. For both the input and output queue limit, you can set a value between 1 and 4294967295 messages. The default setting is 10000.
+You can configure the input and the output message queue limit for all peers. For both the input and output queue limit, you can set a value between 1 and 4294967295 messages. The default setting is 10000.
 
 {{%notice note%}}
 Only increase the input or output queue if you have enough memory to handle large queues of messages at the same time.
@@ -1485,8 +1485,8 @@ Only increase the input or output queue if you have enough memory to handle larg
 The following example sets the input queue limit to 2048 messages and the output queue limit to 2048 messages:
 
 ```
-cumulus@leaf01:~$ nv set router bgp queue-limit input-queue 2048
-cumulus@leaf01:~$ nv set router bgp queue-limit output-queue 2048
+cumulus@leaf01:~$ nv set router bgp queue-limit input 2048
+cumulus@leaf01:~$ nv set router bgp queue-limit output 2048
 cumulus@leaf01:~$ nv config apply
 ```
 

@@ -199,13 +199,9 @@ cumulus@switch:~$ nv set router bgp policy-update-timer 300
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router bgp queue-limit input-queue</h>
+## <h>nv set router bgp queue-limit input</h>
 
 Configures the input message queue limit for all peers. You can set a value between 1 and 4294967295 messages. The default setting is 10000.
-
-{{%notice note%}}
-Only increase the input queue if you have enough memory to handle large queues of messages at the same time.
-{{%/notice%}}
 
 ### Version History
 
@@ -214,18 +210,14 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router bgp queue-limit input-queue 2048
+cumulus@switch:~$ nv set router bgp queue-limit input 2048
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router bgp queue-limit output-queue</h>
+## <h>nv set router bgp queue-limit output</h>
 
 Configures the output message queue limit for all peers. You can set a value between 1 and 4294967295 messages. The default setting is 10000.
-
-{{%notice note%}}
-Only increase the output queue if you have enough memory to handle large queues of messages at the same time
-{{%/notice%}}
 
 ### Version History
 
@@ -234,7 +226,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set router bgp queue-limit output-queue 2048
+cumulus@switch:~$ nv set router bgp queue-limit output 2048
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

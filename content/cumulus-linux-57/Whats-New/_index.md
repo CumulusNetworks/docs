@@ -224,7 +224,6 @@ nv set bridge domain <domain-id> stp force-protocol-version (stp|rstp)
 nv set evpn mac-vrf-soo <route-distinguisher>
 nv set interface <interface-id> dot1x auth-fail-vlan (enabled|disabled)
 nv set interface <interface-id> link flap-protection enable (on|off)
-nv set interface <interface-id> link protodown
 nv set interface <interface-id> neighbor ipv4
 nv set interface <interface-id> neighbor ipv4 <address> lladdr
 nv set interface <interface-id> neighbor ipv4 <address> lladdr <address> flag
@@ -364,7 +363,6 @@ nv unset interface <interface-id> dot1x mba
 nv unset interface <interface-id> dot1x auth-fail-vlan
 nv unset interface <interface-id> link flap-protection
 nv unset interface <interface-id> link flap-protection enable
-nv unset interface <interface-id> link protodown
 nv unset interface <interface-id> neighbor ipv4
 nv unset interface <interface-id> neighbor ipv4 <address> lladdr
 nv unset interface <interface-id> neighbor ipv4 <address> lladdr <address> flag

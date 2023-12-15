@@ -46,12 +46,8 @@ cumulus@netq-appliance:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 
 4. In the directory you copied the `vm-backuprestore.sh` script, run:
 
-{{%notice note%}}
-The `vm-backuprestore.sh` script stops NetQ pods during operation. Run the script with the `--start_pods` option to restart them after the backup completes. 
-{{%/notice%}}
-
 ```
-cumulus@netq-appliance:~$ sudo ./vm-backuprestore.sh --backup --start_pods
+cumulus@netq-appliance:~$ sudo ./vm-backuprestore.sh --backup
 [sudo] password for cumulus:
 Mon Feb  6 12:37:18 2023 - Please find detailed logs at: /var/log/vm-backuprestore.log
 Mon Feb  6 12:37:18 2023 - Starting backup of data, the backup might take time based on the size of the data
@@ -81,12 +77,8 @@ cumulus@netq-appliance:~$
 
 1. Run the backup script `/usr/sbin/vm-backuprestore.sh`:
 
-{{%notice note%}}
-The `vm-backuprestore.sh` script stops NetQ pods during operation. Run the script with the `--start_pods` option to restart them after the backup completes. 
-{{%/notice%}}
-
 ```
-cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup --start_pods
+cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
 ```
 
 2. Verify the backup file creation was successful:

@@ -38,7 +38,7 @@ The values provided in the profiles below are the maximum values that Cumulus Li
 | v6-lpm-heavy   | 27k           | 8k (IPv4) and 36k (IPv6)  | 8k (IPv4), 32k (IPv6-long) and 32K (IPv6/64) |
 | lpm-balanced   | 6k            | 4k (IPv4) and 3k (IPv6)   | 60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
 
-### Spectrum-2 and Spectrum-3
+### Spectrum-2 and Later
 
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| LPM  |
 | --------------  | ------------- | ------------------------- | ------------------------------ |

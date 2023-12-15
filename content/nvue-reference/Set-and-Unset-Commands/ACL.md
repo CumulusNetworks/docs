@@ -48,8 +48,8 @@ Configures a deny action to deny packets.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -63,6 +63,99 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action dest-nat translate-ip</h>
+
+Configures a NAT action rule to translate a destination IP address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl_2 rule 1 action dest-nat translate-ip 10.0.0.1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action dest-nat translate-ip \<range-id\> to \<ipv4\></h>
+
+Configures a dynamic NAT rule to translate a destination IP address range.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
+| `\<range-id\>` |  The IP address range. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl_4 rule 1 action dest-nat translate-ip 172.30.58.0 to 172.30.58.80
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action dest-nat translate-mac</h>
+
+Configures MAC address translation to translate a destination MAC address to a public address. MAC address translation is equivalent to static NAT but operates at layer 2 on Ethernet frames.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl MACL2 rule 1 action dest-nat translate-mac 99:de:fc:32:11:01
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action dest-nat translate-port</h>
+
+Configures a NAT action rule to translate a destination port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl_4 rule 1 action dest-nat translate-port 5000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action erspan dest-ip</h>
 
 Configures the ERSPAN destination IP address.
@@ -71,8 +164,8 @@ Configures the ERSPAN destination IP address.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -94,8 +187,8 @@ Configures the ERSPAN source IP address.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -117,8 +210,8 @@ Configures the ERSPAN Time to Live (TTL). You can specify a value between 1 and 
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -140,8 +233,8 @@ Configures logging for ACLs.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -163,8 +256,8 @@ Configures logging for packets with a specific prefix.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 | `<prefix>`|  The prefix with which you want to log matching packets. |
 
 ### Version History
@@ -187,8 +280,8 @@ Configures a permit action to permit packets.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -210,8 +303,8 @@ Modifies the class value for packet classification.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -233,8 +326,8 @@ Configures the 802.1p CoS value to modify in the packet.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -256,8 +349,8 @@ Configures the DSCP value to modify in the packet.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -279,8 +372,8 @@ Configures quality of service for traffic on the data plane. Using QoS policers,
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -302,8 +395,8 @@ Configures quality of service for traffic on the data plane. Using QoS policers,
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -325,8 +418,8 @@ Configures quality of service for traffic on the data plane. Using QoS policers,
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -348,8 +441,8 @@ Configures quality of service for traffic on the data plane. Using QoS policers,
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -363,6 +456,98 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action police rate 2000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip</h>
+
+Configures a NAT action rule to translate a source IP address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl_3 rule 1 action source-nat translate-ip 172.30.58.80
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<range-id\> to <ipv4></h>
+
+Configures a dynamic NAT action rule to translate a source IP address range to a public address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl_1 rule 1 action source-nat translate-ip 172.30.58.0 to 172.30.58.80
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl <acl-id> rule <rule-id> action source-nat translate-mac <mac></h>
+
+Configures MAC address translation to translate a source MAC address to a public address. MAC address translation is equivalent to static NAT but operates at layer 2 on Ethernet frames.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl MACL1 rule 1 action source-nat translate-mac 99:de:fc:32:11:01
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-port</h>
+
+Configures a NAT action rule to translate a source IP port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl_2 rule 1 action source-nat translate-port 1024-1200
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action span \<interface-name\></h>
 
 Configures the SPAN session for the specified interface.
@@ -371,8 +556,8 @@ Configures the SPAN session for the specified interface.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 | `<interface-name>` |  The interface name. |
 
 ### Version History
@@ -395,8 +580,8 @@ Configures the destination IP address you want to match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 | `<ip-address>` | The destination IP address. |
 
 ### Version History
@@ -419,8 +604,8 @@ Configures the IP destination port match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 | `<ip-port-id>` |  The IP port number. |
 
 ### Version History
@@ -443,8 +628,8 @@ Configures the DSCP value you want to match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -468,8 +653,8 @@ By default, ECN rules match a packet with the bit set. You can reverse the match
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -493,8 +678,8 @@ By default, ECN rules match a packet with the bit set. You can reverse the match
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -518,8 +703,8 @@ By default, ECN rules match a packet with the bit set. You can reverse the match
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -541,8 +726,8 @@ Configures IP fragment packet match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -564,8 +749,8 @@ Configures the IP ICMP type you want to match. You can specify: `dest-unreachabl
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -587,8 +772,8 @@ Configures the IP ICMPv6 type you want to match. You can specify: `router-solici
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -610,8 +795,8 @@ Configures the IP protocol you want to match. You can specify `tcp`, `udp`, `osp
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -633,8 +818,8 @@ Configures the source IP address you want to match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 | `<ip-address-id>` | The source IP address. |
 
 ### Version History
@@ -657,8 +842,8 @@ Configures the IP source port match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -686,8 +871,8 @@ Configures the IP TCP flag you want match in the packet. You can specify: `ack`,
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -709,8 +894,8 @@ Configures the IP TCP mask you want to match in the packet. You can specify: `ac
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -732,8 +917,8 @@ Configures the TCP established state you want to match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -755,8 +940,8 @@ Configures the destination MAC address you want to match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 | `<mac-address>` |  The destination MAC address. |
 
 ### Version History
@@ -779,8 +964,8 @@ Configures the destination MAC address mask you want to match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 | `<mac>` |  The destination MAC address mask. |
 
 ### Version History
@@ -803,8 +988,8 @@ Configures the MAC protocol you want to match. You can specify `ANY`, `arp`, `ip
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -826,8 +1011,8 @@ Configures the source MAC address you want to match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 | `<source-mac>` |  The source MAC address.|
 
 ### Version History
@@ -850,8 +1035,8 @@ Configures the source MAC address mask you want to match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 | `<source-mac-mask>` |  The source MAC address mask. |
 
 ### Version History
@@ -874,8 +1059,8 @@ Configures the VLAN ID to match.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 | `<vlan-id>` |  The VLAN name. |
 
 ### Version History
@@ -898,8 +1083,8 @@ Configures an ACL rule remark (description) about deny or permit conditions in t
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -923,8 +1108,8 @@ This command is required when configuring other ACL settings.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
+| `\<acl-id\>` |   The ACL name. |
+| `\<rule-id\>` |  The ACL rule number. |
 
 ### Version History
 
@@ -947,7 +1132,7 @@ Configures the ACL rule to apply in the inbound direction.
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The ACL name. |
+| `\<acl-id\>` |   The ACL name. |
 
 ### Version History
 
@@ -970,7 +1155,7 @@ Configures the ACL rule to apply to a control plane interface in the inbound dir
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The ACL name. |
+| `\<acl-id\>` |   The ACL name. |
 
 ### Version History
 
@@ -993,7 +1178,7 @@ Configures the ACL rule to apply in the outbound direction.
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The ACL name. |
+| `\<acl-id\>` |   The ACL name. |
 
 ### Version History
 
@@ -1016,7 +1201,7 @@ Configures the ACL rule to apply to a control plane interface in the outbound di
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The ACL name. |
+| `\<acl-id\>` |   The ACL name. |
 
 ### Version History
 
@@ -1044,7 +1229,7 @@ Configures an inbound control plane ACL.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
+| `\<acl-id\>` |   The ACL name. |
 
 ### Version History
 
@@ -1066,7 +1251,7 @@ Configures an outbound control plane ACL.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
+| `\<acl-id\>` |   The ACL name. |
 
 ### Version History
 

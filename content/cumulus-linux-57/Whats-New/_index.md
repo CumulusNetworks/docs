@@ -221,6 +221,8 @@ nv set acl <acl-id> rule <rule-id> action source-nat translate-mac <mac>
 nv set bridge domain <domain-id> stp force-protocol-version (stp|rstp)
 nv set evpn mac-vrf-soo <route-distinguisher>
 nv set interface <interface-id> dot1x auth-fail-vlan (enabled|disabled)
+nv set interface <interface-id> dot1x eap (enabled|disabled)
+nv set interface <interface-id> dot1x mba (enabled|disabled)
 nv set interface <interface-id> link flap-protection enable (on|off)
 nv set interface <interface-id> neighbor ipv4
 nv set interface <interface-id> neighbor ipv4 <address> lladdr

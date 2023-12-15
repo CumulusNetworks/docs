@@ -483,6 +483,11 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 <td>5.5.1-5.6.0</td>
 </tr>
 <tr>
+<td>3590394</td>
+<td>Under rare conditions, running NVUE commands that capture output larger than 4k bytes from Linux tools or utilities might result in failures with 500 INTERNAL SERVER ERROR or Unrecoverable internal error messages. This issue occurs when there are non-ascii characters in large outputs that Cumulus Linux can't decode. This failure is observed only in Cumulus Linux 5.6 and earlier.</td>
+<td>5.6.0</td>
+</tr>
+<tr>
 <td>3585467</td>
 <td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
 <td>5.0.0-5.6.0</td>

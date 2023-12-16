@@ -12,6 +12,78 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+## <h>nv set interface <interface-id> neighbor ipv6 \<address\> lladdr \<lladdr-id\></h>
+
+Configures a static ARP table entry for an interface with an IPv6 address associated with a MAC address for easy management or as a security measure to prevent spoofing and other nefarious activities.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<address>` |  The static IPv6 address. |
+| `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface <interface-id> neighbor ipv6 \<address\> lladdr \<lladdr-id\> flag</h>
+
+Configures a flag to indicate that the neighbor in the IP neighbor table is a router (`is-router`) or learned externally (`ext_learn`).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<address>` |  The static IPv6 address. |
+| `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 flag is-router
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface <interface-id> neighbor ipv6 \<address\> lladdr \<lladdr-id\> state</h>
+
+Configures the state of the neighbor in the IP neighbor table (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<address>` |  The static IPv6 address. |
+| `<lladdr-id>` |  The MAC address you want to associate with IPv6 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 state permanent
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> ip neighbor-discovery</h>
 
 Configures <span class="a-tooltip">[ND](## "Neighbor Discovery")</span> for an interface. ND allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.

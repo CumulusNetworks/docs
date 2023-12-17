@@ -84,7 +84,7 @@ stale-routes-time             360
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show router bgp queue-limit</h
+## <h>nv show router bgp queue-limit</h>
 
 Shows the input and output message queue configuration settings.
 

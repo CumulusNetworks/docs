@@ -2336,6 +2336,52 @@ cumulus@switch:~$ nv action disconnect system aaa user admin2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action enable system maintenance mode</h>
+
+Enables maintenance mode. When maintenance mode is on, ISSU performs a graceful BGP shutdown, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action enable system maintenance mode
+System maintenance mode has been enabled successfully
+ Current System Mode: Maintenance, cold  
+ Maintenance mode since Sat Nov 18 07:09:25 2023 (Duration: 00:00:00)
+ frr             : Maintenance, cold, down, up time: 12:55:51 (1 restart)
+ switchd         : Maintenance, cold, down, up time: 13:10:16
+ System Services : Maintenance, cold, down, up time: 13:10:35
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action enable system maintenance ports</h>
+
+Brings down the ports for maintenance.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action enable system maintenance ports
+System maintenance ports has been enabled successfully
+ Current System Mode: Maintenance, cold  
+ Maintenance mode since Sat Nov 18 07:09:25 2023 (Duration: 00:00:56)
+ frr             : Maintenance, cold, down, up time: 12:56:47 (1 restart)
+ switchd         : Maintenance, cold, down, up time: 13:11:12
+ System Services : Maintenance, cold, down, up time: 13:11:31
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action reboot system</h>
 
 Reboots the switch.

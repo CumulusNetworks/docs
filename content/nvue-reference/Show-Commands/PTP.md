@@ -694,7 +694,7 @@ profile-type        itu-g-8275-1  itu-g-8275-1
 sync-interval       -4            -4          
 transport           802.3         802.3
 ```
-
+<!--
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show service ptp \<instance-id\> servo</h>
@@ -719,7 +719,7 @@ cumulus@switch:~$ nv show service ptp 1 servo
 -----  -----------  --------------
 servo               noise-transfer
 ```
-
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show service ptp \<instance-id\> status</h>

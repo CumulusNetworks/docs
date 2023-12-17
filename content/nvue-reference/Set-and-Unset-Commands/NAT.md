@@ -20,8 +20,8 @@ Configures a NAT action rule to translate a destination IP address.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `\<acl-id\>` |   The ACL name. |
-| `\<rule-id\>` |  The ACL rule number. |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -43,9 +43,9 @@ Configures a dynamic NAT rule to translate a destination IP address range.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `\<acl-id\>` |   The ACL name. |
-| `\<rule-id\>` |  The ACL rule number. |
-| `\<range-id\>` |  The IP address range. |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+| `<range-id>` |  The IP address range. |
 
 ### Version History
 
@@ -67,8 +67,8 @@ Configures MAC address translation to translate a destination MAC address to a p
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `\<acl-id\>` |   The ACL name. |
-| `\<rule-id\>` |  The ACL rule number. |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -90,8 +90,8 @@ Configures a NAT action rule to translate a destination port.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `\<acl-id\>` |   The ACL name. |
-| `\<rule-id\>` |  The ACL rule number. |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 

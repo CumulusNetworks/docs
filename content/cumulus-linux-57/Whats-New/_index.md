@@ -168,7 +168,6 @@ nv show service dhcp-relay <vrf-id> agent
 nv show service dhcp-relay <vrf-id> agent remote-id
 nv show service dhcp-relay <vrf-id> agent remote-id <remote-id>
 nv show service dhcp-relay <vrf-id> agent use-pif-circuit-id
-nv show service ptp <instance-id> servo
 nv show service telemetry
 nv show service telemetry histogram
 nv show service telemetry histogram ingress-buffer
@@ -278,7 +277,6 @@ nv set service dhcp-relay <vrf-id> agent enable (on|off)
 nv set service dhcp-relay <vrf-id> agent remote-id <remote-id>
 nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id enable (on|off)
 nv set service dhcp-server <vrf-id> static <static-id> ifname <interface-name>
-nv set service ptp <instance-id> servo
 nv set service telemetry enable (on|off)
 nv set service telemetry histogram counter bin-min-boundary 1-4294967295
 nv set service telemetry histogram counter histogram-size 1-4294967295
@@ -433,7 +431,6 @@ nv unset service dhcp-relay <vrf-id> agent enable
 nv unset service dhcp-relay <vrf-id> agent remote-id <remote-id>
 nv unset service dhcp-relay <vrf-id> agent use-pif-circuit-id
 nv unset service dhcp-relay <vrf-id> agent use-pif-circuit-id enable
-nv unset service ptp <instance-id> servo
 nv unset service telemetry
 nv unset service telemetry enable
 nv unset service telemetry histogram

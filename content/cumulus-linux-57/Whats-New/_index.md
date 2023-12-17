@@ -20,7 +20,6 @@ Cumulus Linux 5.7.0 contains several new features and improvements, and provides
 - {{<link url="MAC-Address-Translation" text="MAC address translation">}}
 - {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}}
 - {{<link url="Pulse-Per-Second-PPS" text="Pulse Per Second (PPS) synchronization">}}
-- {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PRP Noise Transfer Servo">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#weight-normalization" text="Weight normalization for BGP weighted ECMP">}}
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
@@ -168,7 +167,6 @@ nv show service dhcp-relay <vrf-id> agent
 nv show service dhcp-relay <vrf-id> agent remote-id
 nv show service dhcp-relay <vrf-id> agent remote-id <remote-id>
 nv show service dhcp-relay <vrf-id> agent use-pif-circuit-id
-nv show service ptp <instance-id> servo
 nv show service telemetry
 nv show service telemetry histogram
 nv show service telemetry histogram ingress-buffer
@@ -224,14 +222,12 @@ nv set interface <interface-id> dot1x auth-fail-vlan (enabled|disabled)
 nv set interface <interface-id> dot1x eap (enabled|disabled)
 nv set interface <interface-id> dot1x mba (enabled|disabled)
 nv set interface <interface-id> link flap-protection enable (on|off)
-nv set interface <interface-id> neighbor ipv4
-nv set interface <interface-id> neighbor ipv4 <address> lladdr
-nv set interface <interface-id> neighbor ipv4 <address> lladdr <address> flag
-nv set interface <interface-id> neighbor ipv4 <address> lladdr <address> state
-nv set interface <interface-id> neighbor ipv6
-nv set interface <interface-id> neighbor ipv6 <address> lladdr
-nv set interface <interface-id> neighbor ipv6 <address> lladdr <address> flag
-nv set interface <interface-id> neighbor ipv6 <address> lladdr <address> state
+nv set interface <interface-id> neighbor ipv4 <address> lladdr <lladdr-id>
+nv set interface <interface-id> neighbor ipv4 <address> lladdr <lladdr-id> flag
+nv set interface <interface-id> neighbor ipv4 <address> lladdr <lladdr-id> state
+nv set interface <interface-id> neighbor ipv6 <address> lladdr <lladdr-id>
+nv set interface <interface-id> neighbor ipv6 <address> lladdr <lladdr-id> flag
+nv set interface <interface-id> neighbor ipv6 <address> lladdr <lladdr-id> state
 nv set interface <interface-id> port-security static-mac
 nv set interface <interface-id> port-security enable (on|off)
 nv set interface <interface-id> port-security mac-limit 1-512
@@ -280,7 +276,6 @@ nv set service dhcp-relay <vrf-id> agent enable (on|off)
 nv set service dhcp-relay <vrf-id> agent remote-id <remote-id>
 nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id enable (on|off)
 nv set service dhcp-server <vrf-id> static <static-id> ifname <interface-name>
-nv set service ptp <instance-id> servo
 nv set service telemetry enable (on|off)
 nv set service telemetry histogram counter bin-min-boundary 1-4294967295
 nv set service telemetry histogram counter histogram-size 1-4294967295
@@ -365,12 +360,12 @@ nv unset interface <interface-id> link flap-protection
 nv unset interface <interface-id> link flap-protection enable
 nv unset interface <interface-id> neighbor ipv4
 nv unset interface <interface-id> neighbor ipv4 <address> lladdr
-nv unset interface <interface-id> neighbor ipv4 <address> lladdr <address> flag
-nv unset interface <interface-id> neighbor ipv4 <address> lladdr <address> state
+nv unset interface <interface-id> neighbor ipv4 <address> lladdr <lladdr-id> flag
+nv unset interface <interface-id> neighbor ipv4 <address> lladdr <lladdr-id> state
 nv unset interface <interface-id> neighbor ipv6
 nv unset interface <interface-id> neighbor ipv6 <address> lladdr
-nv unset interface <interface-id> neighbor ipv6 <address> lladdr <address> flag
-nv unset interface <interface-id> neighbor ipv6 <address> lladdr <address> state
+nv unset interface <interface-id> neighbor ipv6 <address> lladdr <lladdr-id> flag
+nv unset interface <interface-id> neighbor ipv6 <address> lladdr <lladdr-id> state
 nv unset interface <interface-id> port-security
 nv unset interface <interface-id> port-security enable
 nv unset interface <interface-id> port-security mac-limit
@@ -435,7 +430,6 @@ nv unset service dhcp-relay <vrf-id> agent enable
 nv unset service dhcp-relay <vrf-id> agent remote-id <remote-id>
 nv unset service dhcp-relay <vrf-id> agent use-pif-circuit-id
 nv unset service dhcp-relay <vrf-id> agent use-pif-circuit-id enable
-nv unset service ptp <instance-id> servo
 nv unset service telemetry
 nv unset service telemetry enable
 nv unset service telemetry histogram

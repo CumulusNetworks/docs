@@ -1,0 +1,89 @@
+---
+title: NTP
+author: Cumulus Networks
+weight: 230
+
+type: nojsscroll
+---
+<style>
+h { color: RGB(118,185,0)}
+</style>
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action dest-nat</h>
+
+Shows NAT destination rules.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action dest-nat
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action dest-nat translate-ip</h>
+
+Shows NAT destination translate IP address rules.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action dest-nat translate-ip
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action dest-nat translate-ip <range-id></h>
+
+Shows NAT destination translate IP address range rules.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action dest-nat translate-ip 172.30.58.0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action dest-nat translate-port</h>
+
+Shows the NAT destination translate port rules.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action dest-nat translate-port
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action dest-nat translate-port <translate-port-id></h>
+
+Shows NAT destination translate rule for a specific port.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action dest-nat translate-port 6000
+```

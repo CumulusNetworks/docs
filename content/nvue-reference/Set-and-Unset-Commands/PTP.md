@@ -960,7 +960,7 @@ Introduced in Cumulus Linux 5.2.0
 ```
 cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 profile-type itu-g-8275-1
 ```
-
+<!--
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service ptp \<instance-id\> servo noise-transfer</h>
@@ -989,7 +989,7 @@ Introduced in Cumulus Linux 5.7.0
 ```
 cumulus@switch:~$ nv set service ptp 1 servo noise-transfer
 ```
-
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service ptp \<instance-id\> profile \<profile-id\> sync-interval</h>

@@ -224,14 +224,12 @@ nv set interface <interface-id> dot1x auth-fail-vlan (enabled|disabled)
 nv set interface <interface-id> dot1x eap (enabled|disabled)
 nv set interface <interface-id> dot1x mba (enabled|disabled)
 nv set interface <interface-id> link flap-protection enable (on|off)
-nv set interface <interface-id> neighbor ipv4
-nv set interface <interface-id> neighbor ipv4 <address> lladdr
-nv set interface <interface-id> neighbor ipv4 <address> lladdr <address> flag
-nv set interface <interface-id> neighbor ipv4 <address> lladdr <address> state
-nv set interface <interface-id> neighbor ipv6
-nv set interface <interface-id> neighbor ipv6 <address> lladdr
-nv set interface <interface-id> neighbor ipv6 <address> lladdr <address> flag
-nv set interface <interface-id> neighbor ipv6 <address> lladdr <address> state
+nv set interface <interface-id> neighbor ipv4 <address> lladdr <lladdr-id>
+nv set interface <interface-id> neighbor ipv4 <address> lladdr <lladdr-id> flag
+nv set interface <interface-id> neighbor ipv4 <address> lladdr <lladdr-id> state
+nv set interface <interface-id> neighbor ipv6 <address> lladdr <lladdr-id>
+nv set interface <interface-id> neighbor ipv6 <address> lladdr <lladdr-id> flag
+nv set interface <interface-id> neighbor ipv6 <address> lladdr <lladdr-id> state
 nv set interface <interface-id> port-security static-mac
 nv set interface <interface-id> port-security enable (on|off)
 nv set interface <interface-id> port-security mac-limit 1-512
@@ -365,12 +363,12 @@ nv unset interface <interface-id> link flap-protection
 nv unset interface <interface-id> link flap-protection enable
 nv unset interface <interface-id> neighbor ipv4
 nv unset interface <interface-id> neighbor ipv4 <address> lladdr
-nv unset interface <interface-id> neighbor ipv4 <address> lladdr <address> flag
-nv unset interface <interface-id> neighbor ipv4 <address> lladdr <address> state
+nv unset interface <interface-id> neighbor ipv4 <address> lladdr <lladdr-id> flag
+nv unset interface <interface-id> neighbor ipv4 <address> lladdr <lladdr-id> state
 nv unset interface <interface-id> neighbor ipv6
 nv unset interface <interface-id> neighbor ipv6 <address> lladdr
-nv unset interface <interface-id> neighbor ipv6 <address> lladdr <address> flag
-nv unset interface <interface-id> neighbor ipv6 <address> lladdr <address> state
+nv unset interface <interface-id> neighbor ipv6 <address> lladdr <lladdr-id> flag
+nv unset interface <interface-id> neighbor ipv6 <address> lladdr <lladdr-id> state
 nv unset interface <interface-id> port-security
 nv unset interface <interface-id> port-security enable
 nv unset interface <interface-id> port-security mac-limit

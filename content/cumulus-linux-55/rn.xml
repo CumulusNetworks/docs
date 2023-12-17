@@ -7,10 +7,34 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3702431</td>
+<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE {{nv set service snmp-server enable on}} CLI command and the listening address with the {{nv set service snmp-server listening-address &lt;address&gt;}} CLI command or the equivalent API commands.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3696061</td>
+<td>When the MAC address of a neighbor changes, the {{zebra}} IP routing manager might crash. </td>
+<td>5.2.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3695541</td>
 <td>When applying a full configuration with NVUE that includes VRRP and BGP in VRFs, the VRRP configuration does not come up after you run {{nv config apply}}.  BGP routes might also be missing.  This issue only happens during the initial {{nv config apply}} of a full configuration, not during a normal initialization during a reboot or FRR restart. To work around this issue, reboot or restart FRR.</td>
 <td>5.5.1</td>
 <td>5.6.0</td>
+</tr>
+<tr>
+<td>3695430</td>
+<td>When you configure extended nexthop encoding for a peer group, the peers in the group do not inherit the configuration. To work around this issue, configure extended nexthop encoding on each individual peer in the group. NVIDIA recommends that you upgrade to Cumulus Linux 5.6 or later to avoid this issue.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3668939</td>
@@ -47,6 +71,12 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <td></td>
 </tr>
 <tr>
+<td>3613258</td>
+<td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed between {{switchd}} and the kernel.</td>
+<td>5.2.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3610611</td>
 <td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the nv unset vrf &lt;vrf&gt; loopback ip address command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
 <td>5.5.0-5.6.0</td>
@@ -68,7 +98,7 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 </tr>
 <tr>
 <td>3599699</td>
-<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address &lt;address&gt;}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
+<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt; command.</td>
 <td>5.5.0-5.6.0</td>
 <td></td>
 </tr>
@@ -147,6 +177,12 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <td>When you configure a route distinguisher (RD) or a route target (RT) manually for layer 2 VNIs, type-1 routes are not properly updated, type-1 EVI routes with the old RD are not properly withdrawn, and type-1 ES routes do not have the corresponding layer 2 VNI route target updated.</td>
 <td>5.0.0-5.5.1</td>
 <td>5.6.0</td>
+</tr>
+<tr>
+<td>3556762</td>
+<td>On rare occasions, SPT switchover might not happen cleanly in PIM resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3554231</td>
@@ -515,7 +551,7 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 </tr>
 <tr>
 <td>3334275</td>
-<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>When you run the {{sensors}} command, the output shows an erroneous fault on some front panel ports.</td>
 <td>5.2.0-5.6.0</td>
 <td></td>
 </tr>
@@ -824,6 +860,30 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3702431</td>
+<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE {{nv set service snmp-server enable on}} CLI command and the listening address with the {{nv set service snmp-server listening-address &lt;address&gt;}} CLI command or the equivalent API commands.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3696061</td>
+<td>When the MAC address of a neighbor changes, the {{zebra}} IP routing manager might crash. </td>
+<td>5.2.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3695430</td>
+<td>When you configure extended nexthop encoding for a peer group, the peers in the group do not inherit the configuration. To work around this issue, configure extended nexthop encoding on each individual peer in the group. NVIDIA recommends that you upgrade to Cumulus Linux 5.6 or later to avoid this issue.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3663182</td>
 <td>Changing non-default BGP timers with NCLU or vtysh commands sets the hold time and keep alive interval to 0 seconds. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.3.1-5.6.0</td>
@@ -838,6 +898,12 @@ You can safely ignore this warning.</td>
 This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
 <td>5.0.0-5.5.1</td>
 <td>4.3.2-4.4.5, 5.6.0</td>
+</tr>
+<tr>
+<td>3613258</td>
+<td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed between {{switchd}} and the kernel.</td>
+<td>5.2.1-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3610611</td>
@@ -855,7 +921,7 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 </tr>
 <tr>
 <td>3599699</td>
-<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address &lt;address&gt;}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
+<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt; command.</td>
 <td>5.5.0-5.6.0</td>
 <td></td>
 </tr>
@@ -910,6 +976,12 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <td>When you configure a route distinguisher (RD) or a route target (RT) manually for layer 2 VNIs, type-1 routes are not properly updated, type-1 EVI routes with the old RD are not properly withdrawn, and type-1 ES routes do not have the corresponding layer 2 VNI route target updated.</td>
 <td>5.0.0-5.5.1</td>
 <td>5.6.0</td>
+</tr>
+<tr>
+<td>3556762</td>
+<td>On rare occasions, SPT switchover might not happen cleanly in PIM resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3554231</td>
@@ -1278,7 +1350,7 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 </tr>
 <tr>
 <td>3334275</td>
-<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>When you run the {{sensors}} command, the output shows an erroneous fault on some front panel ports.</td>
 <td>5.2.0-5.6.0</td>
 <td></td>
 </tr>

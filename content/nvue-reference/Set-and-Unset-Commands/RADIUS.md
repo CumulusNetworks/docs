@@ -16,6 +16,12 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Configures the IP address or hostname of the RADIUS server.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -31,6 +37,12 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254
 ## <h>nv set system aaa radius server \<hostname-id\> port</h>
 
 Configures the port used to communicate with the specified RADIUS Server. A port is optional. You can set a value between 0 and 65535. The default value is 1812.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
 
 ### Version History
 
@@ -48,6 +60,12 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 port 42
 
 Configures the priority at which Cumulus Linux contacts the specified RADIUS server for load balancing. You can set a value between 1 and 100. The lower value is the higher priority.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -63,6 +81,12 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 priority 10
 ## <h>nv set system aaa radius server \<hostname-id\> secret</h>
 
 Configures the secret key shared between the specified RADIUS server and client. If you include special characters in the key (such as `$`), you must enclose the key in single quotes (').
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
 
 ### Version History
 
@@ -80,6 +104,12 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 secret 'myradius
 
 Configures the specific interface IPv4 address you want to use to reach the specified RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers with the `nv set system aaa radius source-ipv4` command, described below.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -96,6 +126,12 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ipv4 192.
 
 Configures the specific interface IPv6 address you want to use to reach the specified RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers with the `nv set system aaa radius source-ipv6` command, described below.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -111,6 +147,12 @@ cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ipv6 0:0:
 ## <h>nv set system aaa radius server \<hostname-id\> timeout</h>
 
 Configures the timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers with the `nv set system aaa radius timeout` command.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
 
 ### Version History
 

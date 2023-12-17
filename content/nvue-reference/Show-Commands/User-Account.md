@@ -72,7 +72,7 @@ Index  Method
 
 ## <h>nv show system aaa authentication-order \<priority-id\></h>
 
-Shows the authentication order so that TACACS+ authentication has priority over local (the lower number has priority).
+Shows information about the authentication order.
 
 ### Command Syntax
 
@@ -88,7 +88,6 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show system aaa authentication-order 5
-
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

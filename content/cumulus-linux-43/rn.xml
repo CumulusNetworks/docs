@@ -7,16 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3647424</td>
 <td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
 <td>4.3.0-5.5.1</td>
 <td>5.6.0</td>
-</tr>
-<tr>
-<td>3600912</td>
-<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -2212,6 +2212,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3647731</td>
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
 Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
@@ -2223,12 +2229,6 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>3647424</td>
 <td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3600912</td>
-<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
-<td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>

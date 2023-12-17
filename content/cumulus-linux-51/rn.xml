@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3647426</td>
 <td>If BGP {{remote-as}} is set to an integer and you try to configure the {{local-as}} for a BGP instance, you see the following error:
 

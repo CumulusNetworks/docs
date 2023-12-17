@@ -7,16 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.6, 5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3647424</td>
 <td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
 <td>4.3.0-5.5.1</td>
 <td>5.6.0</td>
-</tr>
-<tr>
-<td>3600912</td>
-<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
-<td>4.3.1-4.4.6</td>
-<td></td>
 </tr>
 <tr>
 <td>3488136</td>
@@ -2114,15 +2114,15 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3600912</td>
-<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
-<td>4.3.1-4.4.5</td>
+<td>3647424</td>
+<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -4215,15 +4215,15 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3600912</td>
-<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
-<td>4.3.1-4.4.5</td>
+<td>3647424</td>
+<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -6445,15 +6445,15 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3600912</td>
-<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
-<td>4.3.1-4.4.5</td>
+<td>3647424</td>
+<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -8639,15 +8639,15 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3600912</td>
-<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
-<td>4.3.1-4.4.5</td>
+<td>3647424</td>
+<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -11015,15 +11015,15 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3600912</td>
-<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
-<td>4.3.1-4.4.5</td>
+<td>3647424</td>
+<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -13262,15 +13262,15 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3647424</td>
-<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
-<td>4.3.0-4.4.5</td>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3600912</td>
-<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
-<td>4.3.1-4.4.5</td>
+<td>3647424</td>
+<td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>

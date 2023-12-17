@@ -462,6 +462,30 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3702431</td>
+<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE {{nv set service snmp-server enable on}} CLI command and the listening address with the {{nv set service snmp-server listening-address &lt;address&gt;}} CLI command or the equivalent API commands.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3696061</td>
+<td>When the MAC address of a neighbor changes, the {{zebra}} IP routing manager might crash. </td>
+<td>5.2.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3695430</td>
+<td>When you configure extended nexthop encoding for a peer group, the peers in the group do not inherit the configuration. To work around this issue, configure extended nexthop encoding on each individual peer in the group. NVIDIA recommends that you upgrade to Cumulus Linux 5.6 or later to avoid this issue.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3663182</td>
 <td>Changing non-default BGP timers with NCLU or vtysh commands sets the hold time and keep alive interval to 0 seconds. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
 <td>5.3.1-5.6.0</td>
@@ -476,6 +500,12 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 This configuration is not allowed; it is considered to be eBGP and local preference is not advertised.</td>
 <td>5.0.0-5.5.1</td>
 <td>4.3.2-4.4.5, 5.6.0</td>
+</tr>
+<tr>
+<td>3613258</td>
+<td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed between {{switchd}} and the kernel.</td>
+<td>5.2.1-5.6.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3585467</td>
@@ -952,7 +982,7 @@ cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 </tr>
 <tr>
 <td>3334275</td>
-<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>When you run the {{sensors}} command, the output shows an erroneous fault on some front panel ports.</td>
 <td>5.2.0-5.6.0</td>
 <td></td>
 </tr>

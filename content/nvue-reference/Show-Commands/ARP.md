@@ -101,33 +101,6 @@ lladdr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> neighbor ipv4 \<neighbor-id\> lladdr \<lladdr-id\> state</h>
-
-Shows the state of the neighbor in the ARP table for the specified interface and associated MAC address.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` | The interface. |
-| `<neighbor-id>` | The IPv4 address of the neighbor. |
-| `<lladdr-id>` |  The MAC address associated with IPv4 address. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp51 neighbor ipv4 169.254.0.1 lladdr 48:b0:2d:2b:5b:b9 state
-  operational  applied  
-   -----------  ---------
-   permanent    permanent
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show interface \<interface-id\> neighbor ipv4 \<neighbor-id\> lladdr \<lladdr-id\> flag</h>
 
 Shows the flag set for the neighbor in the ARP table for the specified interface and associated MAC address.
@@ -151,6 +124,33 @@ cumulus@switch:~$ nv show interface swp51 neighbor ipv4 169.254.0.1 lladdr 48:b0
   operational  applied  
    -----------  ---------
    is-router    is-router
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> neighbor ipv4 \<neighbor-id\> lladdr \<lladdr-id\> state</h>
+
+Shows the state of the neighbor in the ARP table for the specified interface and associated MAC address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface. |
+| `<neighbor-id>` | The IPv4 address of the neighbor. |
+| `<lladdr-id>` |  The MAC address associated with IPv4 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp51 neighbor ipv4 169.254.0.1 lladdr 48:b0:2d:2b:5b:b9 state
+  operational  applied  
+   -----------  ---------
+   permanent    permanent
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

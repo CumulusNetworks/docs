@@ -15,6 +15,12 @@ h { color: RGB(118,185,0)}
 
 Shows the histogram configuration settings for the specified interface and operational data.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -30,6 +36,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry
 ## <h>nv show interface \<interface-id\> telemetry bw-gauge</h>
 
 Shows the bandwidth gauge setting for the specified interface
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -49,6 +62,12 @@ enable  on           on
 
 Shows histogram details for the specified interface.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -64,6 +83,12 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram
 ## <h>nv show interface \<interface-id\> telemetry histogram ingress-buffer</h>
 
 Shows ingress queue depth histogram samples collected or the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
 
 ### Version History
 
@@ -81,6 +106,12 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram ingress-buffer
 
 Shows the ingress queue depth histogram samples collected for all priority groups at the configured interval for the specified interface.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -96,6 +127,12 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram ingress-buffer prio
 ## <h>nv show interface \<interface-id\> telemetry histogram ingress-buffer priority-group \<pg-id\></h>
 
 Shows the ingress queue depth histogram samples collected at the configured interval for the specified priority group and interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
 
 ### Version History
 
@@ -118,6 +155,13 @@ Time      0-863     864:2303    2304:3743  3744:5183   5184:6623   6624:8063   8
 
 Show the configured interval set for ingress queue depth histogram samples.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+| `<pg-id>` |  The priority group ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -133,6 +177,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram ingress-buffer prio
 ## <h>nv show interface \<interface-id\> telemetry histogram ingress-buffer priority-group \<pg-id\> snapshot</h>
 
 Shows the snapshot collected for the ingress queue depth histogram samples.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+| `<pg-id>` |  The priority group ID. |
 
 ### Version History
 
@@ -162,6 +213,12 @@ Sl.No  Date-Time            Bin-0   Bin-1    Bin-2    Bin-3    Bin-4    Bin-5   
 
 Shows the egress queue depth histogram samples collected at the configured interval for the specified interface.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -177,6 +234,12 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer
 ## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer traffic-class</h>
 
 Shows the ingress queue depth histogram samples collected for all traffic classes at the configured interval for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
 
 ### Version History
 
@@ -194,6 +257,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traff
 
 Shows the egress queue depth histogram samples collected at the configured interval for the specified traffic class and interface.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+| `<tc-id>` |  The traffic class ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -209,6 +279,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traff
 ## <h>nv show interface \<interface-id\> telemetry histogram egress-buffer traffic-class \<tc-id\> threshold</h>
 
 Shows the configured interval set for egress queue depth histogram samples.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+| `<tc-id>` |  The traffic class ID. |
 
 ### Version History
 
@@ -226,6 +303,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traff
 
 Shows the snapshot collected for the egress queue depth histogram samples.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+| `<tc-id>` |  The traffic class ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -241,6 +325,12 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram egress-buffer traff
 ## <h>nv show interface \<interface-id\> telemetry histogram counter</h>
 
 Shows the counter histogram samples collected at the configured interval for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
 
 ### Version History
 
@@ -258,6 +348,12 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram counter
 
 Shows the counter histogram samples collected at the configured interval for all counter types for the specified interface.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -273,6 +369,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-typ
 ## <h>nv show interface \<interface-id\> telemetry histogram counter counter-type \<counter-type-id\></h>
 
 Shows the counter histogram samples collected at the configured interval for the specified counter type for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+| `<counter-type-id>` |  The counter type ID. |
 
 ### Version History
 
@@ -290,6 +393,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-typ
 
 Shows the configured interval set for counter histogram samples for the specified counter type.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+| `<counter-type-id>` |  The counter type ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -305,6 +415,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-typ
 ## <h>nv show interface \<interface-id\> telemetry histogram counter counter-type \<counter-type-id\> snapshot</h>
 
 Shows the snapshot collected for the counter histogram samples for the specified counter type.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface ID. |
+| `<counter-type-id>` |  The counter type ID. |
 
 ### Version History
 

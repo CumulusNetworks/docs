@@ -51,7 +51,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface port-security enable on
+cumulus@switch:~$ nv set interface swp1 port-security enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

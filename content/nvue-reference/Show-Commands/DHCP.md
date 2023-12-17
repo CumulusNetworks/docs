@@ -82,6 +82,12 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay default agent
+                    applied          
+------------------  -----------------
+[remote-id]         44:38:39:BE:EF:AA
+use-pif-circuit-id                   
+  enable            on               
+enable              on  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -104,6 +110,12 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay default agent remote-id
+                    applied          
+------------------  -----------------
+[remote-id]         44:38:39:BE:EF:AA
+use-pif-circuit-id                   
+  enable            on               
+enable              on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -149,6 +161,9 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv show service dhcp-relay default agent use-pif-circuit-id
+        applied
+------  -------
+enable  on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

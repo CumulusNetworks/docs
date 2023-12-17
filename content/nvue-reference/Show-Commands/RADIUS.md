@@ -60,6 +60,12 @@ Hostname       Port  Priority  Password  source-ip     Timeout
 
 Shows configuration settings for a specific RADIUS server.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<hostname-id>` | The IP address or hostname of the RADIUS server. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0

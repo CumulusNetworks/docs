@@ -236,7 +236,7 @@ cumulus@switch:~$ nv set system nat mode dynamic
 
 ## <h>nv set system nat rule-table-size</h>
 
-Configures the maximum number of rules allowed. You can set a value between 64 and 1024. The default value is 64.
+Configures the maximum number of NAT rules allowed. You can set a value between 64 and 1024. The default value is 64.
 
 ### Version History
 

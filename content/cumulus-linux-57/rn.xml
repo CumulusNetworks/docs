@@ -7,8 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3706432</td>
+<td>On rare occasions, when the peerlink flaps, you might see traffic loss on some VLANs because the VLANs are in a blocking state. To work around this issue, identify the VLANs that are in a blocking state with the {{bridge -d -c vlan show}} command, then clear the blocking state with the {{bridge vlan set vid &lt;vlan-range&gt; dev &lt;bond&gt; state forwarding stp_nosuspend}} command.</td>
+<td>5.3.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3702431</td>
-<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE {{nv set service snmp-server enable on}} CLI command and the listening address with the {{nv set service snmp-server listening-address &lt;address&gt;}} CLI command or the equivalent API commands.</td>
+<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE {{nv set service snmp-server enable on}}  and  {{nv set service snmp-server listening-address &lt;address&gt;}} commands or the equivalent API commands.</td>
 <td>5.4.0-5.7.0</td>
 <td></td>
 </tr>

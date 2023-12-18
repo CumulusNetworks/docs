@@ -12,7 +12,7 @@ enableRobotsTXT: True
 disableKinds: ["RSS", "taxonomy", "term"]
 
 Params:
-  cl_latest: "cumulus-linux-56"
+  cl_latest: "cumulus-linux-57"
   netq_latest: "cumulus-netq-48"
   sonic_latest: "sonic-202012"
   nvue_latest: "nvue-reference"

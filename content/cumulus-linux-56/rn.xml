@@ -7,6 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3702431</td>
+<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE {{nv set service snmp-server enable on}} CLI command and the listening address with the {{nv set service snmp-server listening-address &lt;address&gt;}} CLI command or the equivalent API commands.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3698680</td>
+<td>If you run the {{ifreload -a}} command when ACLs exist but non_atomic update mode is set in the {{switchd.conf}} file, traffic pauses on unaffected interfaces.</td>
+<td>5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3696061</td>
+<td>When the MAC address of a neighbor changes, the {{zebra}} IP routing manager might crash. </td>
+<td>5.2.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3695430</td>
+<td>When you configure extended nexthop encoding for a peer group, the peers in the group do not inherit the configuration. To work around this issue, configure extended nexthop encoding on each individual peer in the group. NVIDIA recommends that you upgrade to Cumulus Linux 5.6 or later to avoid this issue.</td>
+<td>5.4.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3684998</td>
+<td>DHCP lease information is not collected in the {{cl-support}} file.</td>
+<td>4.3.0-4.4.5, 5.0.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3684268</td>
 <td>When multiple interfaces have addresses in the same network, deleting one of them might cause the wrong connected route from being deleted.</td>
 <td>5.6.0</td>
@@ -81,6 +111,12 @@ Note: this procedure results in a switchd restart which will have an impact on t
 <td></td>
 </tr>
 <tr>
+<td>3644473</td>
+<td> When bulk interface flaps trigger, Cumulus Linux does not process the {{route.route_preferred_over_neigh=both}} configuration correctly due to the sequence of the events that occur when {{switchd}} creates and processes the route or neighbor and nexthop group.</td>
+<td>5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3643624</td>
 <td>The help text for the NVUE policer command {{nv set acl &lt;acl&gt; rule &lt;rule&gt; action police mode}} incorrectly indicates that the policer mode units are in bits per second. NVUE configures policers using bytes per second.</td>
 <td>5.6.0</td>
@@ -117,6 +153,12 @@ Note: this procedure results in a switchd restart which will have an impact on t
 <td></td>
 </tr>
 <tr>
+<td>3613258</td>
+<td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed between {{switchd}} and the kernel.</td>
+<td>5.2.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3612959</td>
 <td>The interface name for a VLAN subinterface does not show correctly; the VLAN is appended to the interface again.</td>
 <td>5.6.0</td>
@@ -129,6 +171,12 @@ Note: this procedure results in a switchd restart which will have an impact on t
 2023-09-07T15:45:56.055477+02:00 switch1 switchd7903: hal_mlx_flx_acl.c:2388 hal_mlx_flx_region_pull_bulk_counters failed
 
 These error messages do not affect how the switch functions; however the messages fill up the {{switchd}} logs, which is not desirable.</td>
+<td>5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3610967</td>
+<td>In an EVPN symmetric routing configuration, running the NVUE {{nv set vrf &lt;vrf&gt; vlan auto}} command to derive layer 3 VNIs automatically might result in duplicate VLAN entries in the system. This most often occurs at scale when many VRFs have similar names. To work around this issue, manually specify a unique VLAN for each VRF.</td>
 <td>5.6.0</td>
 <td></td>
 </tr>
@@ -166,7 +214,7 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 </tr>
 <tr>
 <td>3599699</td>
-<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address &lt;address&gt;}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
+<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt; command.</td>
 <td>5.5.0-5.6.0</td>
 <td></td>
 </tr>
@@ -174,6 +222,12 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 <td>3597456</td>
 <td>NVUE does not allow you to use the reserved name {{lo}} in an interface name. </td>
 <td>5.5.1-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3590394</td>
+<td>Under rare conditions, running NVUE commands that capture output larger than 4k bytes from Linux tools or utilities might result in failures with 500 INTERNAL SERVER ERROR or Unrecoverable internal error messages. This issue occurs when there are non-ascii characters in large outputs that Cumulus Linux can't decode. This failure is observed only in Cumulus Linux 5.6 and earlier.</td>
+<td>5.6.0</td>
 <td></td>
 </tr>
 <tr>
@@ -225,6 +279,12 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <tr>
 <td>3566980</td>
 <td>When running DHCP relay for IPv6 and a downstream interface flaps more than once, relaying might stop working. To recover, restart the {{dhcrelay6}} service, making sure the specified downstream interfaces are up and running.</td>
+<td>5.5.0-5.6.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3556762</td>
+<td>On rare occasions, SPT switchover might not happen cleanly in PIM resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
 <td>5.5.0-5.6.0</td>
 <td></td>
 </tr>
@@ -384,7 +444,7 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 </tr>
 <tr>
 <td>3334275</td>
-<td>The {{sensors.conf}} files in Cumulus Linux are out of date.</td>
+<td>When you run the {{sensors}} command, the output shows an erroneous fault on some front panel ports.</td>
 <td>5.2.0-5.6.0</td>
 <td></td>
 </tr>

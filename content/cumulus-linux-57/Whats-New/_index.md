@@ -18,7 +18,7 @@ Cumulus Linux 5.7.0 contains several new features and improvements, and provides
 
 - {{<link url="802.1X-Interfaces" text="802.1x support">}}
 - {{<link url="MAC-Address-Translation" text="MAC address translation">}}
-- {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}}
+- {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}} to include ingress buffer utilization and bandwidth utilization for a port.
 - {{<link url="Pulse-Per-Second-PPS" text="Pulse Per Second (PPS) synchronization">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#weight-normalization" text="Weight normalization for BGP weighted ECMP">}}
 - NVUE enhancements include:

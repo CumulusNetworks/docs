@@ -18,6 +18,73 @@ Configures DHCP relays for IPv4 and IPv6.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set service dhcp-relay \<vrf-id\> agent enable</h>
+
+Enables DHCP Agent Information Option 82, which allows a DHCP relay to insert circuit or relay specific information into a request that the switch forwards to a DHCP server. You can specify `on` or `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service dhcp-relay default agent enable on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service dhcp-relay \<vrf-id\> agent remote-id \<remote-id\></h>
+
+Sets the remote ID DHCP Agent Information Option 82, which includes information that identifies the relay agent, such as the MAC address. By default, this is the system MAC address of the device on which DHCP relay is running.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<remote-id>` | The remote ID, which includes information that identifies the relay agent, such as the MAC address.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service dhcp-relay \<vrf-id\> agent use-pif-circuit-id enable</h>
+
+Enables Circuit ID DHCP Agent Information Option 82, which includes information about the circuit on which the request comes in, such as the SVI or physical port. By default, this is the printable name of the interface that receives the client request. You can specify `on` or `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service dhcp-relay default agent use-pif-circuit-id enable on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set service dhcp-relay \<vrf-id\> gateway-interface \<interface-id\></h>
 
 Configures the gateway IPv4 address on an interface.
@@ -669,6 +736,30 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv set service dhcp-server default static server1 host-id-circuit-id 1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service dhcp-server \<vrf-id\> static \<static-id\> ifname \<interface-name\></h>
+
+Configures the interface name for the DHCP static assignment (IPv4 only) to use instead of the MAC address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<static-id>` |  The name of the resource. |
+| `<interface-name>` |  The interface name (such as swp1). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service dhcp-server default static server1 ifname swp1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

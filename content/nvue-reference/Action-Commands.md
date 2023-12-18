@@ -16,6 +16,35 @@ Resets counters for interfaces, BGP, QoS buffers and pools, removes conflicts fr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show action \<action-job-id\></h>
+
+Shows information about the specified action.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<action-job-id>` | The action ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show action 3
+detail: acl counters cleared.
+http_status: 200
+issue: []
+state: action_success
+status: acl counters cleared.
+timeout: 60
+type: ''
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action change system date-time</h>
 
 Configures the Cumulus Linux software clock. The switch contains a battery backed hardware clock that maintains the time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
@@ -204,7 +233,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear interface <interface-id> bridge domain <domain-id> stp bpduguardviolation</h>
+## <h>nv action clear interface \<interface-id\> bridge domain <domain-id> stp bpduguardviolation</h>
 
 Clears the BPDU guard violation from the specified interface and recovers the interface from the `protodown` state.
 
@@ -249,7 +278,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear interface <interface-id> link protodown link-flap</h>
+## <h>nv action clear interface \<interface-id\> link protodown link-flap</h>
 
 Clears the protodown state of the interface and brings the interface back up.
 
@@ -341,15 +370,19 @@ cumulus@switch:~$ nv action clear interface swp1 qos roce counters
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear interface \<interface-id\> synce counters</h>
+## <h>nv action clear interface \<interface-id\> counters synce</h>
 
 Clears SyncE counters on the specified interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, this command is `nv action clear interface <interface-id> synce counters`.
+{{%/notice%}}
 
 ### Command Syntax
 
 | Syntax   |  Description  |
 | ----------    | ------------  |
-| `<interface-id>` | The interface on which you want to clear synce counters. |
+| `<interface-id>` | The interface on which you want to clear SyncE counters. |
 
 ### Version History
 
@@ -358,7 +391,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action clear interface swp1 synce counters
+cumulus@switch:~$ nv action clear interface swp1 counters synce
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2225,7 +2258,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system security ca-certificate <cert-id></h>
+## <h>nv action delete system security ca-certificate \<cert-id\></h>
 
 Deletes the CA certificate you specify.
 
@@ -2247,7 +2280,7 @@ cumulus@switch:~$ nv action delete system security ca-certificate cert-1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action delete system security certificate <cert-id></h>
+## <h>nv action delete system security certificate \<cert-id\></h>
 
 Deletes the entity certificate you specify.
 
@@ -2382,6 +2415,59 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action import system security ca-certificate \<cert-id\></h>
+
+Imports a CA certificate.
+
+Cumulus Linux includes a self-signed certificate and private key to use on the server so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
+
+NVIDIA recommends you use your own certificates and keys. 
+
+- You can import a maximum of 50 CA certificates on the switch.
+- The CA certificate you import contains sensitive private key information. NVIDIA recommends that you use a secure transport such as SFTP, SCP, or HTTPS.
+- If the certificate is passphrase protected, you need to include the passphrase.
+- You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action import system security ca-certificate tls-cert-1 passphrase mypassphrase data "<public-key>" 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action import system security ca-certificate \<cert-id\></h>
+
+Imports an entity certificate or certificate bundle.
+
+Cumulus Linux includes a self-signed certificate and private key to use on the server so that it works out of the box. The switch generates the self-signed certificate and private key when it boots for the first time. The X.509 certificate with the public key is in `/etc/ssl/certs/cumulus.pem` and the corresponding private key is in `/etc/ssl/private/cumulus.key`.
+
+NVIDIA recommends you use your own certificates and keys. 
+
+- You can import a maximum of 25 entity certificates on the switch.
+- The certificate you import contains sensitive private key information. NVIDIA recommends that you use a secure transport such as SFTP, SCP, or HTTPS.
+- If the certificate is passphrase protected, you need to include the passphrase.
+- A certificate bundle must be in .PFX or .P12 format.
+- You must provide a certificate ID (`<cert-id>`) to uniquely identify the certificate you import.
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action import system security certificate tls-cert-1 passphrase mypassphrase uri-bundle scp://user@pass:1.2.3.4:/opt/certs/cert.p12
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action reboot system</h>
 
 Reboots the switch.
@@ -2421,33 +2507,4 @@ id  state
 4   action_success 
 5   action_success
 6   action_success
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show action \<action-job-id\></h>
-
-Shows information about the specified action.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ----------    | ------------  |
-| `<action-job-id>` | The action ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show action 3
-detail: acl counters cleared.
-http_status: 200
-issue: []
-state: action_success
-status: acl counters cleared.
-timeout: 60
-type: ''
 ```

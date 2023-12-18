@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface <interface-id> neighbor ipv6 \<address\> lladdr \<lladdr-id\></h>
+## <h>nv set interface \<interface-id\> neighbor ipv6 \<address\> lladdr \<lladdr-id\></h>
 
 Configures a static ARP table entry for an interface with an IPv6 address associated with a MAC address for easy management or as a security measure to prevent spoofing and other nefarious activities.
 
@@ -36,7 +36,7 @@ cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface <interface-id> neighbor ipv6 \<address\> lladdr \<lladdr-id\> flag</h>
+## <h>nv set interface \<interface-id\> neighbor ipv6 \<address\> lladdr \<lladdr-id\> flag</h>
 
 Configures a flag to indicate that the neighbor in the IP neighbor table is a router (`is-router`) or learned externally (`ext_learn`).
 
@@ -60,7 +60,7 @@ cumulus@switch:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface <interface-id> neighbor ipv6 \<address\> lladdr \<lladdr-id\> state</h>
+## <h>nv set interface \<interface-id\> neighbor ipv6 \<address\> lladdr \<lladdr-id\> state</h>
 
 Configures the state of the neighbor in the IP neighbor table (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
 

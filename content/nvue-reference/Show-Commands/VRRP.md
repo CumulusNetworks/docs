@@ -151,7 +151,7 @@ Shows the IP addresses of the virtual gateway implemented with VRRP for the spec
 
 | Syntax |  Description   |
 | --------- | -------------- |
-|| `<interface-id>`    | The interface name. |
+| `<interface-id>`    | The interface name. |
 | `<virtual-router-id>` |  The Virtual Router IDentifier (VRID) that identifies the group of VRRP routers.|
 
 ### Version History
@@ -174,7 +174,7 @@ Shows information about the IP address of the virtual gateway implemented with V
 
 | Syntax |  Description   |
 | --------- | -------------- |
-|| `<interface-id>`    | The interface name. |
+| `<interface-id>`    | The interface name. |
 | `<virtual-router-id>` |  The Virtual Router IDentifier (VRID) that identifies the group of VRRP routers.|
 | `<ip-address-id>`        | The IPv4 or IPv6 address. |
 
@@ -202,7 +202,7 @@ Add `-o json` at the end of the command to see the output in a more readable for
 
 | Syntax |  Description   |
 | --------- | -------------- |
-|| `<interface-id>`    | The interface name. |
+| `<interface-id>`    | The interface name. |
 | `<virtual-router-id>` |  The Virtual Router IDentifier (VRID) that identifies the group of VRRP routers.|
 
 ### Version History

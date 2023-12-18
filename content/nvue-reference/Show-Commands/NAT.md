@@ -14,6 +14,13 @@ h { color: RGB(118,185,0)}
 
 Shows NAT destination rules.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -29,6 +36,13 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action dest-nat
 ## <h>nv show acl \<acl-id\> rule \<rule-id\> action dest-nat translate-ip</h>
 
 Shows NAT destination translate IP address rules.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 
@@ -46,6 +60,14 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action dest-nat translate-ip
 
 Shows NAT destination translate IP address range rules.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+| `<ip-address> to <ip-address>` | The IP address range.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -62,6 +84,13 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action dest-nat translate-ip 172.
 
 Shows the NAT destination translate port rules.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -74,15 +103,17 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action dest-nat translate-port
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action dest-nat translate-port <port-id></h>
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action dest-nat translate-port \<port-id\></h>
 
 Shows the NAT destination translate rule for a specific port.
 
 ### Command Syntax
 
-| Syntax | Description |
+| Syntax |  Description   |
 | --------- | -------------- |
-| `<port-id>` | The port number. |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+| `<port-id>` | The port number.|
 
 ### Version History
 
@@ -92,4 +123,111 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action dest-nat translate-port 6000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat</h>
+
+Shows NAT source rules.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action source-nat
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip</h>
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action source-nat
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<range-id\></h>
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action source-nat
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-port</h>
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action source-nat
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-port \<translate-port-id\></h>
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action source-nat
 ```

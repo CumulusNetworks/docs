@@ -199,3 +199,67 @@ Introduced in Cumulus Linux 5.7.0
 ```
 cumulus@switch:~$ nv set acl MACL1 rule 1 action source-nat translate-mac 99:de:fc:32:11:01  
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system nat age-poll-interval</h>
+
+Configures the period of inactivity (in minutes) before Cumulus Linux releases a NAT entry from the translation table. You can set a value between 1 and 1440. The default value is 5.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system nat age-poll-interval 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system nat mode dynamic</h>
+
+Enables and disables dynamic NAT mode. Dynamic NAT maps private IP addresses and ports to a public IP address and port range or a public IP address range and port range. Cumulus Linux assigns IP addresses from a pool of addresses dynamically. When the switch releases entries after a period of inactivity, it maps new incoming connections dynamically to the freed up addresses and ports.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system nat mode dynamic
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system nat rule-table-size</h>
+
+Configures the maximum number of rules allowed. You can set a value between 64 and 1024. The default value is 64.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system nat rule-table-size 100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system nat translate-table-size</h>
+
+Configures the maximum number of dynamic `snat` and `dnat` entries in the translation table. You can set a value between 1024 and 8192. The default value is 1024.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$  nv set system nat translate-table-size 2048
+```

@@ -157,10 +157,14 @@ You can configure these PPS settings:
 | ------- | ----------- |
 | `channel-index`| Sets the channel index for PPS Out. You can set a value of 1 or 0. The default value is 0.|
 | `frequency-adjustment` | Sets the frequency adjustment of the PPS Out signal. You can set a value between 1000000000 and 2147483647. The default value is 1000000000.|
-| `phase-adjustment` | Sets the phase adjustment of the PPS Out signal. You can set a value between 0 and 1000000000. The default value is 0.|
 | `pin-index` | Sets the pin index for PPS Out. Cumulus Linux supports only pin 1.|
 | `signal-width` | Sets the pulse width of the PPS Out signal. You can set a value between 1000000 and 999000000. The default value is 500000000.|
 <!-- vale on -->
+
+{{%notice note%}}
+The NVUE CLI includes the `phase adjustment` setting for PPS Out. Cumulus Linux 5.7 does not support this setting.
+{{%/notice%}}
+
 {{< tabs "TabID592 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -191,13 +195,11 @@ cumulus@switch:~$ nv config apply
 The following example configures PPS Out and sets:
 - The channel index to 1.
 - The signal width to 999000000.
-- The phase adjustment of the PPS Out signal to 1000000000.
 - The frequency-adjustment of the PPS Out signal to 2147483647.
 <!-- vale on -->
 ```
 cumulus@switch:~$ nv set platform pulse-per-second out channel-index 1
 cumulus@switch:~$ nv set platform pulse-per-second out signal-width 999000000
-cumulus@switch:~$ nv set platform pulse-per-second out phase-adjustment 1000000000
 cumulus@switch:~$ nv set platform pulse-per-second out frequency-adjustment 2147483647
 cumulus@switch:~$ nv config apply
 ```
@@ -248,7 +250,6 @@ To configure PPS Out, edit the `/etc/linuxptp/pps_out.conf.conf` file, then rest
 The following example configures PPS Out and sets:
 - The channel index to 1.
 - The signal width to 999000000.
-- The phase adjustment of the PPS Out signal to 1000000000.
 - The frequency-adjustment of the PPS Out signal to 2147483647.
 <!-- vale on -->
 ```

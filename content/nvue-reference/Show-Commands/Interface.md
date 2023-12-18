@@ -958,6 +958,26 @@ vxlan99     9216   0       0       0       0       0       0       4800    0    
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system link flap-protection</h>
+
+Shows the link flap protection threshold and interval configuration settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system link flap-protection
+           applied
+---------  -------
+threshold  8      
+interval   30
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show vrf \<vrf-id\> loopback</h>
 
 Shows the loopback interfaces associated with this VRF.

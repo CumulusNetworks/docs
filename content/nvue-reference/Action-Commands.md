@@ -16,6 +16,27 @@ Resets counters for interfaces, BGP, QoS buffers and pools, removes conflicts fr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action change system date-time</h>
+
+Configures the Cumulus Linux software clock. The switch contains a battery backed hardware clock that maintains the time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
+
+During boot up, the switch copies the time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action change system date-time 2023-12-04 2:33:30
+System Date-time changed successfully
+Local Time is now Mon 2023-12-04 02:33:30 UTC
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear acl counters</h>
 
 Clears all ACL counters.
@@ -183,6 +204,28 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear interface <interface-id> bridge domain <domain-id> stp bpduguardviolation</h>
+
+Clears the BPDU guard violation from the specified interface and recovers the interface from the `protodown` state.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<interface-id>` | The interface on which you want to clear PTP counters. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface swp1 bridge domain br_default stp bpduguardviolation
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear interface \<interface-id\> counters ptp</h>
 
 Clears PTP counters on the specified interface.
@@ -201,6 +244,30 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear interface swp1 counters ptp
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear interface <interface-id> link protodown link-flap</h>
+
+Clears the protodown state of the interface and brings the interface back up.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<interface-id>` | The interface on which you want to clear the QoS buffer. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear interface swp1 link protodown link-flap 
+link-flap state cleared on swp1.
 Action succeeded
 ```
 
@@ -632,6 +699,23 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear service ptp 1 monitor violations log path-delay
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear system link protodown link-flap</h>
+
+Clears the protodown links on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system link protodown link-flap
 Action succeeded
 ```
 
@@ -2141,6 +2225,95 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action delete system security ca-certificate <cert-id></h>
+
+Deletes the CA certificate you specify.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<cert-id>` | The CA certificate you want to delete. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system security ca-certificate cert-1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action delete system security certificate <cert-id></h>
+
+Deletes the entity certificate you specify.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<cert-id>` | The entity certificate you want to delete. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action delete system security certificate cert-1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action disable system maintenance mode</h>
+
+Disables maintenance mode and restores normal operation.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action disable system maintenance mode
+System maintenance mode has been disabled successfully
+ Current System Mode: cold  
+ frr             : cold, up, up time: 12:57:48 (1 restart)
+ switchd         : cold, up, up time: 13:12:13
+ System Services : cold, up, up time: 13:12:32
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action disable system maintenance ports</h>
+
+Restores the port admin state after maintenance.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action disable system maintenance ports
+System maintenance ports has been disabled successfully
+ Current System Mode: cold  
+ Ports shutdown for Maintenance
+ frr             : cold, up, up time: 13:00:57 (1 restart)
+ switchd         : cold, up, up time: 13:15:22
+ System Services : cold, up, up time: 13:15:41
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action disconnect system aaa user \<user\></h>
 
 Disconnects authenticated and authorized users.
@@ -2159,6 +2332,52 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv action disconnect system aaa user admin2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action enable system maintenance mode</h>
+
+Enables maintenance mode. When maintenance mode is on, ISSU performs a graceful BGP shutdown, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action enable system maintenance mode
+System maintenance mode has been enabled successfully
+ Current System Mode: Maintenance, cold  
+ Maintenance mode since Sat Nov 18 07:09:25 2023 (Duration: 00:00:00)
+ frr             : Maintenance, cold, down, up time: 12:55:51 (1 restart)
+ switchd         : Maintenance, cold, down, up time: 13:10:16
+ System Services : Maintenance, cold, down, up time: 13:10:35
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action enable system maintenance ports</h>
+
+Brings down the ports for maintenance.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action enable system maintenance ports
+System maintenance ports has been enabled successfully
+ Current System Mode: Maintenance, cold  
+ Maintenance mode since Sat Nov 18 07:09:25 2023 (Duration: 00:00:56)
+ frr             : Maintenance, cold, down, up time: 12:56:47 (1 restart)
+ switchd         : Maintenance, cold, down, up time: 13:11:12
+ System Services : Maintenance, cold, down, up time: 13:11:31
+Action succeeded
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -474,7 +474,7 @@ cumulus@switch:~$ nv set interface swp1 link fec baser
 
 ## <h>nv set interface <interface-id> link flap-protection enable</h>
 
-Enable (`on`) and disables (`off`) link flap protection on the specified interface. Cumulus Linux enables link flap detection by default. Link flap detection triggers when there are five link flaps within ten seconds, at which point the interface goes into a protodown state and shows linkflap as the reason. The `switchd` service also shows a log message.
+Enable (`on`) and disables (`off`) link flap protection on the specified interface. Cumulus Linux enables link flap detection by default. Link flap detection triggers when there are five link flaps within ten seconds, at which point the interface goes into a protodown state and shows `linkflap` as the reason. The `switchd` service also shows a log message.
 
 ### Command Syntax
 

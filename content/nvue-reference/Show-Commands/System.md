@@ -73,6 +73,32 @@ utilization  100.0%
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system date-time</h>
+
+Shows the current date and time on the switch software clock.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system date-time
+                           operational                  
+-------------------------  -----------------------------
+local-time                 Wed 2023-11-22 11:22:54 EST  
+universal-time             Wed 2023-11-22 16:22:54 UTC  
+rtc-time                   Wed 2023-11-22 16:22:54      
+time-zone                  America/New_York (EST, -0500)
+system-clock-synchronized  no                           
+ntp-service                inactive                     
+rtc-in-local-tz            no                           
+unix-time                  1700670174.4371066
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system forwarding profile-option</h>
 
 Shows forwarding profile information.
@@ -232,6 +258,26 @@ cumulus@switch:~$ nv show system global reserved vlan l3-vni-vlan
 -----  -----------  -------
 begin  4000         4000   
 end    4064         4064
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system maintenance</h>
+
+Show the current system maintenance mode.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system maintenance 
+       operational
+-----  ----------- 
+mode   disabled            
+ports  enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -10,4 +10,4 @@ This section discusses how to:
 - Configure {{<link url="Network-Time-Protocol-NTP" text="Network Time Protocol (NTP)">}}
 - Configure {{<link url="Precision-Time-Protocol-PTP" text="Precision Time Protocol (PTP)">}}
 - Configure {{<link url="Pulse-Per-Second-PPS" text="Pulse Per Second (PPS)">}}
-- Configure {{<link url="Synchronous-Ethernet-SyncE" text=" Synchronous Ethernet (SyncE)">}}
+- Configure {{<link title="Synchronous Ethernet - SyncE" text=" Synchronous Ethernet (SyncE)">}}

@@ -35,7 +35,7 @@ cumulus@switch:~$ nv set acl acl_2 rule 1 action dest-nat translate-ip 10.0.0.1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> action dest-nat translate-ip \<range-id\> to \<ipv4\></h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action dest-nat translate-ip \<ip-address\> to \<ip-address\></h>
 
 Configures a dynamic NAT rule to translate a destination IP address range.
 
@@ -45,7 +45,7 @@ Configures a dynamic NAT rule to translate a destination IP address range.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<range-id>` |  The IP address range. |
+| `<ip-address> to <ip-address>` |  The IP address range. |
 
 ### Version History
 

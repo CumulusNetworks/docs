@@ -370,15 +370,19 @@ cumulus@switch:~$ nv action clear interface swp1 qos roce counters
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear interface \<interface-id\> synce counters</h>
+## <h>nv action clear interface \<interface-id\> counters synce</h>
 
 Clears SyncE counters on the specified interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, this command is `nv action clear interface <interface-id> synce counters`.
+{{%/notice%}}
 
 ### Command Syntax
 
 | Syntax   |  Description  |
 | ----------    | ------------  |
-| `<interface-id>` | The interface on which you want to clear synce counters. |
+| `<interface-id>` | The interface on which you want to clear SyncE counters. |
 
 ### Version History
 
@@ -387,7 +391,7 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv action clear interface swp1 synce counters
+cumulus@switch:~$ nv action clear interface swp1 counters synce
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

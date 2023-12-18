@@ -162,17 +162,7 @@ cumulus@switch:~$ nv set platform pulse-per-second out frequency-adjustment 2147
 
 ## <h>nv set platform pulse-per-second out phase-adjustment</h>
 
-Configures the phase adjustment of the PPS Out signal. You can set a value between 0 and 1000000000. The default value is 0.
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set platform pulse-per-second out phase-adjustment 1000000000
-```
+The NVUE CLI includes the `phase adjustment` setting for PPS Out. Cumulus Linux 5.7 does not support this setting.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

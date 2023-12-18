@@ -16,6 +16,28 @@ Configures <span class="a-tooltip">[SynCe](## "Synchronous Ethernet")</span> on 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> synce bundle-id</h>
+
+Configures the SyncE bundle that this interface belongs to. You can specify a value between 0 and 256. A value of zero indicates no bundle.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface on which you want to configure SyncE. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 synce bundle-id 0 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> synce enable</h>
 
 Turns SyncE on or off on the specified interface. The default setting is `off`.

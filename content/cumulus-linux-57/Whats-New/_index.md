@@ -109,14 +109,14 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 ```
 nv show acl <acl-id> rule <rule-id> action dest-nat
 nv show acl <acl-id> rule <rule-id> action dest-nat translate-ip
-nv show acl <acl-id> rule <rule-id> action dest-nat translate-ip <range-id>
+nv show acl <acl-id> rule <rule-id> action dest-nat translate-ip <ip-address>
 nv show acl <acl-id> rule <rule-id> action dest-nat translate-port
-nv show acl <acl-id> rule <rule-id> action dest-nat translate-port <translate-port-id>
+nv show acl <acl-id> rule <rule-id> action dest-nat translate-port <port-id>
 nv show acl <acl-id> rule <rule-id> action source-nat
 nv show acl <acl-id> rule <rule-id> action source-nat translate-ip
-nv show acl <acl-id> rule <rule-id> action source-nat translate-ip <range-id>
+nv show acl <acl-id> rule <rule-id> action source-nat translate-ip <ip-address>
 nv show acl <acl-id> rule <rule-id> action source-nat translate-port
-nv show acl <acl-id> rule <rule-id> action source-nat translate-port <translate-port-id>
+nv show acl <acl-id> rule <rule-id> action source-nat translate-port <port-id>
 nv show bridge domain <domain-id> vlan-vni-map
 nv show bridge vlan-vni-map
 nv show interface <interface-id> dot1x

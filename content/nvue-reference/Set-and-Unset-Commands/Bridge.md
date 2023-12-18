@@ -168,7 +168,7 @@ Configures STP on the bridge domain.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain <domain-id> stp force-protocol-version</h>
+## <h>nv set bridge domain \<domain-id\> stp force-protocol-version</h>
 
 Configures the switch to send BPDU type 0 STP configuration BPDUs. By default, the switch sends RSTP type 2 BPDUs. You can configure the switch to send BPDU type 0 STP configuration BPDUs when you need to interoperate with other systems.
 

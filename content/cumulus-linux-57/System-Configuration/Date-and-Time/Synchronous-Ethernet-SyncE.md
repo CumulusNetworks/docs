@@ -3,7 +3,6 @@ title: Synchronous Ethernet - SyncE
 author: NVIDIA
 weight: 128
 toc: 3
-draft: true
 
 ---
 <span class="a-tooltip">[SyncE](## "Synchronous Ethernet")</span> is an ITU-T standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated channel, <span class="a-tooltip">[ESMC](## "Ethernet Synchronization Messaging Channel")</span> manages this synchronization, as specified by the ITU-T Rec. G.8264 standard.

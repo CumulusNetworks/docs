@@ -106,6 +106,12 @@ cumulus@switch:~$ nv set interface swp1 port-security sticky-mac enabled
 
 Configures the time period after which learned sticky MAC addresses age out and no longer have access to the port. You can specify a value between 0 and 3600 minutes. The default setting is 1800 minutes.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0

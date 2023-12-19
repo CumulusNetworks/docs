@@ -14,6 +14,12 @@ h { color: RGB(118,185,0)}
 
 Shows port security configuration on the specified interface.
 
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -52,6 +58,12 @@ mac-addresses
 
 Shows port security MAC address information for the specified interface.
 
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -67,6 +79,12 @@ cumulus@switch:~$ nv show interface swp1 port-security mac-addresses
 ## <h>nv show interface \<interface-id\> port-security static-mac</h>
 
 Shows port security static MAC address information for the specified interface.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 

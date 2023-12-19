@@ -88,6 +88,7 @@ EVPN multihoming supports the following route types.
 The following features are not supported with EVPN-MH:
 - {{<link url="Traditional-Bridge-Mode" text="Traditional bridge mode">}}
 - {{<link url="Inter-subnet-Routing/#asymmetric-routing" text="Distributed asymmetric routing">}}
+- {{<link url="Inter-subnet-Routing/#centralized-routing" text="Centralized routing">}}
 - Head-end replication; use {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN-PIM">}} for BUM traffic handling instead
 - {{<link url="EVPN-Enhancements/#duplicate-address-detection" text="Duplicate address detection">}}
 - Multihomed networks, such as STP bridge domains that are MH connected. EVPN-MH bonds are intended for multihomed end-node device (server) connectivity.

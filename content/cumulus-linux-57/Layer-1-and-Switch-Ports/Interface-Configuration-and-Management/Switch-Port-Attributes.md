@@ -1534,7 +1534,7 @@ cumulus@switch:~$ nv config apply
 You must configure the lanes-per-port at the same time as you configure the breakout. If you want to change the number of lanes per port after you configure a breakout, you must first unset the breakout with the `nv unset interface <port> breakout` and `nv config apply` commands, then reconfigure the breakout and the lanes with the `nv set interface <interface> link breakout <breakout> lanes-per-port <lanes>` command. For example:
 
 ```
-cumulus@switch:~$ nv unset interface swp1 breakout
+cumulus@switch:~$ nv unset interface swp1 link breakout
 cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv set interface swp1 link breakout 2x lanes-per-port 2
 cumulus@switch:~$ nv config apply

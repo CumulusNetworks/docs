@@ -419,11 +419,6 @@ You can safely ignore this warning.</td>
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3683166</td>
-<td>A statistics issue in the I2C interface to modules is locked and might cause the switch to hang.</td>
-<td>5.6.0</td>
-</tr>
-<tr>
 <td>3669935</td>
 <td>When you add or delete VXLAN VNI and VLAN interfaces, a memory leak might occur in {{switchd}}.</td>
 <td>5.6.0</td>
@@ -475,6 +470,11 @@ You can safely ignore this warning.</td>
 2. Save the configuration {{nv config apply}}. 
 3. Re-add the PTP config. 
 Note: this procedure results in a switchd restart which will have an impact on the data plane.</td>
+<td>5.6.0</td>
+</tr>
+<tr>
+<td>3650661</td>
+<td>Configuration changes to an already applied custom flexible snippet that includes a service restart does not restart the service when you apply the patch.</td>
 <td>5.6.0</td>
 </tr>
 <tr>

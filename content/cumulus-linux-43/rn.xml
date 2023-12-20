@@ -19,12 +19,6 @@
 <td>5.6.0-5.7.0</td>
 </tr>
 <tr>
-<td>3600912</td>
-<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
-<td>4.3.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3488136</td>
 <td>When zebra receives route updates that include both a route with a recursive next hop and the route used to resolve that next hop, zebra might mark the route with the recursive next hop as inactive. To work around this issue, reprocess the route updates by running the appropriate clear command for the protocol in use. For example, for BGP, clear inbound routes from the relevant neighbor using the {{nv action clear vrf &lt;vrf&gt; router bgp neighbor &lt;neighbor&gt; address-family &lt;address-family&gt; in}} command.</td>
 <td>4.2.1-5.5.1</td>
@@ -2235,12 +2229,6 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>3647424</td>
 <td>When you remove the {{update-source}} configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same {{update-source}} configuration.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3600912</td>
-<td>In an MLAG EVPN configuration, if host mobility occurs multiple times at high frequency, the host MAC might point to an incorrect VTEP; it might be local behind the VTEP.</td>
-<td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>

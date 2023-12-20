@@ -330,7 +330,7 @@ Exercise caution when adjusting the maximum number of hardware entries. Configur
 <!-- vale off -->
 ## BGP W-ECMP with Adaptive Routing
 <!-- vale on -->
-Cumulus Linux supports BGP W-ECMP with adaptive routing for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-w-ecmp" text="above.">}}
+Cumulus Linux supports BGP W-ECMP with {{<link title="#adaptive-routing" text="adaptive routing">}} for high-performance Ethernet topologies, where you use adaptive routing for optimal and efficient traffic distribution. You do not need to perform any additional configuration other than the configuration specified {{<link title="#configure-w-ecmp" text="above.">}}
 
 - NVIDIA recommends using W-ECMP with adaptive routing on networks that have an equal number of links connecting the spine and leaf switches and where the port speed for the links is the same across all the switches.
 - Both adaptive routing eligible traffic and non adaptive routing eligible traffic goes over the same ECMP group, which adjusts according to the W-ECMP weight. Non adaptive routing traffic continues to follow the hash-based traffic distribution between the updated list of next hops.

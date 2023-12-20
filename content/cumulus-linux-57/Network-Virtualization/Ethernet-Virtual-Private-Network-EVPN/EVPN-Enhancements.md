@@ -450,7 +450,41 @@ Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce AR
 {{%notice note%}}
 - ARP and ND suppression only suppresses the flooding of known hosts. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
 - NVIDIA recommends that you keep ARP and ND suppression enabled on all VXLAN interfaces on the switch. If you must disable suppression for a special use case, you cannot disable ARP and ND suppression on some VXLAN interfaces but not others.
-- When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment. Refer to . {{<link url="Address-Resolution-Protocol-ARP/#global-timer-settings" text="Global Timer Settings">}}  
+- When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment. Refer to . {{<link url="Address-Resolution-Protocol-ARP/#global-timer-settings" text="Global Timer Settings">}}
+-If ND suppression is disabled and IPv6 address reuse is in place, IPv6 duplicate address detection (DAD) will fail and the address will remain tentative and not be useable. An example output of failed IPv6 DAD on vlan10:
+```
+cumulus@switch:~$ ip address show vlan10 | grep dad
+    inet6 2001:db8::1/32 scope global dadfailed tentative
+```
+-To prevent IPv6 DAD from failing in this scenario you can either disable IPv6 DAD globally or on the interface address level.
+
+1. To disable IPv6 DAD globally:
+
+-Add the following lines in "/etc/sysctl.conf":
+net.ipv6.conf.default.accept_dad = 0
+-Reboot the switch.
+
+2. To disable IPv6 DAD on the interface address level using an NVUE snippet:
+
+The snippet below disables DAD on vlan10 interface IP address:
+
+```
+cat DisableDadVlan10.yaml
+- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlan10: |
+              post-up ip address add 2001:db8::1/32 dev vlan10 nodad
+```
+
+```
+cumulus@switch:~$ nv config patch DisableDadVlan10.yaml
+cumulus@switch:~$ nv config apply
+```
+No reboot is necessary with this method however you must not assign the IPv6 address using the nv syntax or another method.
+ 
 {{%/notice%}}
 
 In a centralized routing deployment, you must configure layer 3 interfaces even if you configure the switch only for layer 2 (you are not using VXLAN routing). To avoid installing unnecessary layer 3 information, you can turn off IP forwarding.

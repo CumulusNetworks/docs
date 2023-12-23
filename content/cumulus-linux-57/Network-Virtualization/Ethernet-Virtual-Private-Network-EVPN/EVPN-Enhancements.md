@@ -450,26 +450,32 @@ Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce AR
 {{%notice note%}}
 - ARP and ND suppression only suppresses the flooding of known hosts. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
 - NVIDIA recommends that you keep ARP and ND suppression enabled on all VXLAN interfaces on the switch. If you must disable suppression for a special use case, you cannot disable ARP and ND suppression on some VXLAN interfaces but not others.
-- When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment. Refer to . {{<link url="Address-Resolution-Protocol-ARP/#global-timer-settings" text="Global Timer Settings">}}
--If ND suppression is disabled and IPv6 address reuse is in place, IPv6 duplicate address detection (DAD) will fail and the address will remain tentative and not be useable. An example output of failed IPv6 DAD on vlan10:
+- When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries/#forwarding-table-profiles" text="forwarding table profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment. Refer to {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="Global Timer Settings">}}.
+{{%/notice%}}
+
+### ND Suppression and IPv6 Address Reuse
+
+If you disable ND suppression and reuse IPv6 addresses, IPv6 duplicate address detection fails and the address remains tentative and not useable. The following example shows an IPv6 duplicate address detection failure on vlan10:
+
 ```
 cumulus@switch:~$ ip address show vlan10 | grep dad
-    inet6 2001:db8::1/32 scope global dadfailed tentative
+inet6 2001:db8::1/32 scope global dadfailed tentative
 ```
--To prevent IPv6 DAD from failing in this scenario you can either disable IPv6 DAD globally or on the interface address level.
 
-1. To disable IPv6 DAD globally:
+To prevent IPv6 duplicate address detection from failing, you can either disable IPv6 duplicate address detection globally or on the interface address.
 
--Add the following lines in "/etc/sysctl.conf":
+To disable IPv6 duplicate address detection globally, add the following lines in the `/etc/sysctl.conf` file, then reboot the switch.
+
+```
+cumulus@switch:~$ sudo nano /etc/sysctl.conf
+...
 net.ipv6.conf.default.accept_dad = 0
--Reboot the switch.
+```
 
-2. To disable IPv6 DAD on the interface address level using an NVUE snippet:
-
-The snippet below disables DAD on vlan10 interface IP address:
+To disable IPv6 duplicate address detection on an interface address, create an NVUE snippet, then patch and apply the configuration. The following snippet disables duplicate address detection on vlan10 with the IP address 2001:db8::1/32:
 
 ```
-cat DisableDadVlan10.yaml
+cumulus@switch:~$ sudo nano DisableDadVlan10.yaml
 - set:
     system:
       config:
@@ -483,9 +489,10 @@ cat DisableDadVlan10.yaml
 cumulus@switch:~$ nv config patch DisableDadVlan10.yaml
 cumulus@switch:~$ nv config apply
 ```
-No reboot is necessary with this method however you must not assign the IPv6 address using the nv syntax or another method.
- 
-{{%/notice%}}
+
+You do not need to reboot the switch after you create and apply the snippet.
+
+### ARP ND Suppression and Centralized Routing
 
 In a centralized routing deployment, you must configure layer 3 interfaces even if you configure the switch only for layer 2 (you are not using VXLAN routing). To avoid installing unnecessary layer 3 information, you can turn off IP forwarding.
 
@@ -554,6 +561,8 @@ iface bridge1
 ...
 ```
 
+### Disable ARP and ND Suppression
+
 NVIDIA recommends that you keep ARP and ND suppression on to reduce ARP and ND packet flooding over VXLAN tunnels. However, if you *do* need to disable ARP and ND suppression, run the NVUE `nv set nve vxlan arp-nd-suppress off` command or set `bridge-arp-nd-suppress off` in the `/etc/network/interfaces` file:
 
 {{< tabs "TabID593 ">}}
@@ -594,10 +603,10 @@ The neighbor manager service relies on ARP and ND suppression to snoop on packet
 
 1. Create the systemd override configuration file `/etc/systemd/system/neighmgrd.service` with the following content:
 
-```
-[Service]
-ExecStart=/usr/bin/neighmgrd --snoop-all-bridges
-```
+   ```
+   [Service]
+   ExecStart=/usr/bin/neighmgrd --snoop-all-bridges
+   ```
 
 2. Reload the systemd unit configuration with the `sudo systemctl daemon-reload` command.
 

@@ -49,6 +49,13 @@
 <td></td>
 </tr>
 <tr>
+<td>3679478</td>
+<td>Both the ASIC Monitoring service and the What-Just-Happened service try to initialize the SDK TELE module. Initialization is successful only for the first service to initialize the module and you see error log messages.
+There is no functional impact if a service tries to initialize the module again.</td>
+<td>5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3677821</td>
 <td>If you bring down an interface with Linux or NVUE commands, all the static neighbor entries disappear for that interface.</td>
 <td>5.7.0</td>
@@ -87,7 +94,7 @@
 <tr>
 <td>3610967</td>
 <td>In an EVPN symmetric routing configuration, running the NVUE {{nv set vrf &lt;vrf&gt; vlan auto}} command to derive layer 3 VNIs automatically might result in duplicate VLAN entries in the system. This most often occurs at scale when many VRFs have similar names. To work around this issue, manually specify a unique VLAN for each VRF.</td>
-<td>5.6.0-5.7.0</td>
+<td>5.3.0-5.7.0</td>
 <td></td>
 </tr>
 <tr>
@@ -118,6 +125,12 @@
 <td>3484058</td>
 <td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
 <td>5.3.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3463827</td>
+<td>On rare occasions, SPT switchover might not happen cleanly in PIM, resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
+<td>5.6.0-5.7.0</td>
 <td></td>
 </tr>
 <tr>
@@ -473,6 +486,11 @@ Note: this procedure results in a switchd restart which will have an impact on t
 <td>5.6.0</td>
 </tr>
 <tr>
+<td>3655027</td>
+<td>If you create a new snippet with the same name as a snippet you deleted, you receive a warning message. To work around this issue, create the new snippet with a different name than any removed snippets.</td>
+<td>5.6.0</td>
+</tr>
+<tr>
 <td>3650661</td>
 <td>Configuration changes to an already applied custom flexible snippet that includes a service restart does not restart the service when you apply the patch.</td>
 <td>5.6.0</td>
@@ -601,6 +619,14 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <td>3576961</td>
 <td>The NVUE command to clear all ACL counters at once is not available. To work around this issue, run the {{cl-acltool -Z all}} command to reset the statistics for all ACL rules.</td>
 <td>5.5.1-5.6.0</td>
+</tr>
+<tr>
+<td>3575800</td>
+<td>When you configure the {{peerlink}} interface with NVUE but do not configure the necessary MLAG parameters with {{nv set mlag}} commands (such as the backup IP address, peer IP address, and MLAG MAC address), NVUE apply fails with the following message:
+
+ MLAG cannot be deleted when a peerlink or peerlink sub-interfaces exist.
+</td>
+<td>5.6.0</td>
 </tr>
 <tr>
 <td>3573800</td>

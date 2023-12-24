@@ -95,7 +95,7 @@ You can configure the following global RADIUS settings and server specific setti
 | `privilege-level` | The minimum privilege level that determines if users can configure the switch with NVUE commands and sudo, or have read-only rights. The default privilege level is 15, which provides full administrator access. This is a global option only; you cannot set the minimum privilege level for specific RADIUS servers.|
 | `retransmit` | The maximum number of retransmission attempts allowed for requests when a RADIUS authentication request times out. This is a global option only; you cannot set the number of retransmission attempts for specific RADIUS servers.|
 | `timeout` | The timeout value when a server is slow or latencies are high. You can set a value between 1 and 60. The default timeout is 3 seconds. If you configure multiple RADIUS servers, you can set a global timeout for all servers. |
-| `source-ip`<br>`source-ipv6`</br>| A specific interface to reach the RADIUS server. If you configure multiple RADIUS servers, you can configure a specific interface to reach all RADIUS servers. |
+| `source-ipv4`</br>`source-ipv6`| A specific interface to reach all RADIUS servers. To configure the source IP address for a specific RADIUS server, use the `source-ip` option.|
 | `debug` | The debug option for troubleshooting. The debugging messages write to `/var/log/syslog`. When the RADIUS client is working correctly, you can disable the debug option. You enable the debug option globally for all the servers.|
 
 The following example configures global RADIUS settings:
@@ -113,7 +113,7 @@ cumulus@switch:~$ nv config apply
 The following example configures RADIUS settings for a specific RADIUS server:
 
 ```
-cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ipv4 192.168.1.10
+cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 source-ip 192.168.1.10
 cumulus@switch:~$ nv set system aaa radius server 192.168.0.254 timeout 10
 cumulus@switch:~$ nv config apply
 ```

@@ -141,6 +141,12 @@ Note: this procedure results in a switchd restart which will have an impact on t
 <td>5.7.0</td>
 </tr>
 <tr>
+<td>3632843</td>
+<td>When the switch receives a type5 route in BGP and there is a network statement for the same prefix, BGP sometimes removes the request to track next hops from FRR. As next hop reachability changes, BGP no longer reacts to the change. To work around this issue, run the {{clear bgp *}} command for all peerings.</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3630492</td>
 <td>On the NVIDIA SN2201 switch, the {{ledmgrd -d}} command output shows the system and PSU LED status as orange when the physical LED is green.</td>
 <td>5.5.1-5.7.0</td>

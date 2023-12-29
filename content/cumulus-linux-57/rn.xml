@@ -86,6 +86,12 @@ There is no functional impact if a service tries to initialize the module again.
 <td></td>
 </tr>
 <tr>
+<td>3632843</td>
+<td>When the switch receives a type5 route in BGP and there is a network statement for the same prefix, BGP sometimes removes the request to track next hops from FRR. As next hop reachability changes, BGP no longer reacts to the change. To work around this issue, run the {{clear bgp *}} command for all peerings.</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3630492</td>
 <td>On the NVIDIA SN2201 switch, the {{ledmgrd -d}} command output shows the system and PSU LED status as orange when the physical LED is green.</td>
 <td>5.5.1-5.7.0</td>
@@ -737,11 +743,6 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td>3221628</td>
 <td>Cumulus Linux VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
 <td>5.2.0-5.6.0</td>
-</tr>
-<tr>
-<td>2771653</td>
-<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
-<td>4.3.0-5.6.0</td>
 </tr>
 </table>
 </tables>

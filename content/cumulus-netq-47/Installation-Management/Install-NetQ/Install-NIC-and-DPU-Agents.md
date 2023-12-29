@@ -92,7 +92,7 @@ wget --content-disposition https://api.ngc.nvidia.com/v2/resources/nvidia/doca/d
 This step replaces the default configuration of `command: ["/bin/bash", "-c", "/usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh"]`.
 {{%/notice%}}
 
-4. Restart the DPE service with the `service restart dpe` command.
+4. Restart the DPE service with the `service dpe restart` command.
 
 ## Related Information
 

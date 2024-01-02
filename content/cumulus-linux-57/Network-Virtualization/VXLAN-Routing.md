@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 605
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[VXLAN](## "Virtual Extensible LAN")</span> routing, sometimes referred to as *inter-VXLAN routing*, provides IP routing between VXLAN VNIs in overlay networks. Cumulus Linux routes traffic using the inner header or the overlay tenant IP address.
+<span class="a-tooltip">[VXLAN](## "Virtual Extensible LAN")</span> routing, sometimes referred to as *inter-VXLAN routing*, provides IP routing between VXLAN VNIs in overlay networks. Cumulus Linux routes traffic using the inner header or the overlay tenant IP address.
 
 Because VXLAN routing is fundamentally routing, you deploy it typically with a control plane, such as Ethernet Virtual Private Network ({{<link url="Ethernet-Virtual-Private-Network-EVPN" text="EVPN">}}). You can also set up static routing for MAC distribution and BUM handling.
 

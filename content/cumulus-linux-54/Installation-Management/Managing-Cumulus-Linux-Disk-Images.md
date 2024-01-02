@@ -12,7 +12,7 @@ To install a new Cumulus Linux image, refer to {{<link title="Installing a New C
 
 Reprovisioning the system deletes all system data from the switch.
 
-To stage an <span style="background-color:#F5F5DC">[ONIE](## "Open Network Install Environment")</span> installer from the network (where ONIE automatically locates the installer), run the `onie-select -i` command. You must reboot the switch to start the install process.
+To stage an <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span> installer from the network (where ONIE automatically locates the installer), run the `onie-select -i` command. You must reboot the switch to start the install process.
 
 ```
 cumulus@switch:~$ sudo onie-select -i
@@ -83,7 +83,7 @@ Cancelling pending uninstall at next reboot...done.
 
 ## Boot Into Rescue Mode
 
-If your system becomes unresponsive, you can correct certain issues by booting into <span style="background-color:#F5F5DC">[ONIE](## "Open Network Install Environment")</span> rescue mode, which uses unmounted file systems. You can use various Cumulus Linux utilities to try and resolve a problem.
+If your system becomes unresponsive, you can correct certain issues by booting into <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span> rescue mode, which uses unmounted file systems. You can use various Cumulus Linux utilities to try and resolve a problem.
 
 To reboot the system into ONIE rescue mode, run the `onie-select -r` command:
 

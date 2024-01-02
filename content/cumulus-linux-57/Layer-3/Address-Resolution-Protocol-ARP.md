@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1000
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[ARP](## "Address Resolution Protocol")</span> is a communication protocol that discovers the link layer address, such as a MAC address, associated with a network layer address. The Cumulus Linux ARP implementation differs from standard Debian Linux ARP behavior because Cumulus Linux is an operating system for routers and switches, not servers.
+<span class="a-tooltip">[ARP](## "Address Resolution Protocol")</span> is a communication protocol that discovers the link layer address, such as a MAC address, associated with a network layer address. The Cumulus Linux ARP implementation differs from standard Debian Linux ARP behavior because Cumulus Linux is an operating system for routers and switches, not servers.
 
 For a definition of ARP, refer to {{<exlink url="https://tools.ietf.org/html/rfc826" text="RFC 826">}}.
 
@@ -57,9 +57,7 @@ For example, if you set the `/proc/sys/net/conf/all/arp_ignore` value to *1* and
 The *default* location `/proc/sys/net/ipv4/conf/default/arp*` defines the values for all future IP interfaces. Changing the *default* setting of an ARP parameter does not impact interfaces that already have an IP address. If you make changes to a running system that already has assigned IP addresses, use port-specific settings instead.
 
 {{%notice note%}}
-
 Cumulus Linux copies the value of the *default* parameter to every port-specific location, excluding those that already have an IP address. There is no complicated logic between the *default* setting and the *port-specific* setting (unlike the *all* location).
-
 {{%/notice%}}
 
 To determine the current ARP parameter settings for each of the locations, run the following commands:
@@ -155,7 +153,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the interface and the -v0 interface so that both interfaces do not respond with proxy ARP replies.
+If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the base SVI interface and the -v0 interface. In this case only one of the two interfaces replies when getting an ARP request. This prevents the v0 interface from proxy replying on behalf of the SVI (and the SVI from proxy replying on behalf of the v0 interface). You can only prevent duplicate replies when the ARP request is for the SVI or the v0 interface directly.
 
 {{< tabs "TabID174 ">}}
 {{< tab "NVUE Commands ">}}
@@ -283,3 +281,132 @@ garbage-collection-threshold
 Cumulus Linux does not interact directly with end systems as much as end systems interact with each another. Therefore, after ARP places a neighbor into a reachable state, if Cumulus Linux does not interact with the client again for a long enough period of time, the neighbor can move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before removing them from the Linux kernel and from hardware forwarding. The `neighmgrd` process adds a neighbor if the sender IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes).
+
+## Add Static ARP Table Entries
+
+You can add static ARP table entries for easy management or as a security measure to prevent spoofing and other nefarious activities.
+
+To create a static ARP entry for an interface with an IPv4 address associated with a MAC address, run the `nv set interface <interface> neighbor ipv4 <ip-address> lladdr <mac-address>` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv4 10.5.5.51 lladdr 00:00:5E:00:53:51
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+You can also set a flag to indicate that the neighbour is a router (`is-router`) or learned externally (`ext_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv4 10.5.5.51 lladdr 00:00:5E:00:53:51 flag is-router
+cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv4 10.5.5.51 lladdr 00:00:5E:00:53:51 state permanent
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+To delete an entry in the ARP table, run the `nv unset interface <interface> neighbor ipv4 <ip-address>` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv unset interface swp51 neighbor ipv4 10.5.5.51
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+## Show the ARP Table
+
+To show all the entries in the IP neighbor table, run the `nv show interface neighbor` command or the Linux `ip neighbor` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface neighbor
+Interface      IP/IPV6                    LLADR(MAC)         State      Flag      
+-------------  -------------------------  -----------------  ---------  ----------
+eth0           192.168.200.251            48:b0:2d:00:00:01  stale                
+               192.168.200.1              48:b0:2d:aa:8b:45  reachable            
+               fe80::4ab0:2dff:fe00:1     48:b0:2d:00:00:01  reachable  router    
+peerlink.4094  169.254.0.1                48:b0:2d:3f:69:d6  permanent            
+               fe80::4ab0:2dff:fe3f:69d6  48:b0:2d:3f:69:d6  reachable  router    
+swp51          169.254.0.1                48:b0:2d:a2:4c:79  permanent            
+               fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  router    
+swp52          169.254.0.1                48:b0:2d:48:f1:ae  permanent            
+               fe80::4ab0:2dff:fe48:f1ae  48:b0:2d:48:f1:ae  reachable  router    
+swp53          169.254.0.1                48:b0:2d:2d:de:93  permanent            
+               fe80::4ab0:2dff:fe2d:de93  48:b0:2d:2d:de:93  reachable  router    
+swp54          169.254.0.1                48:b0:2d:80:8c:21  permanent            
+               fe80::4ab0:2dff:fe80:8c21  48:b0:2d:80:8c:21  reachable  router    
+vlan10         10.1.10.3                  44:38:39:22:01:78  permanent            
+               10.1.10.101                48:b0:2d:a1:3f:4b  reachable            
+               10.1.10.104                48:b0:2d:1d:d7:e8  noarp      |ext_learn
+               fe80::4ab0:2dff:fea1:3f4b  48:b0:2d:a1:3f:4b  reachable            
+               fe80::4ab0:2dff:fe1d:d7e8  48:b0:2d:1d:d7:e8  noarp      |ext_learn
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
+vlan10-v0      10.1.10.101                48:b0:2d:a1:3f:4b  stale                
+               fe80::4ab0:2dff:fea1:3f4b  48:b0:2d:a1:3f:4b  stale                
+               fe80::4ab0:2dff:fe1d:d7e8  48:b0:2d:1d:d7:e8  stale                
+vlan20         10.1.20.105                48:b0:2d:75:bf:9e  noarp      |ext_learn
+               10.1.20.102                48:b0:2d:00:e9:05  reachable            
+               10.1.20.3                  44:38:39:22:01:78  permanent            
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
+               fe80::4ab0:2dff:fe75:bf9e  48:b0:2d:75:bf:9e  noarp      |ext_learn
+               fe80::4ab0:2dff:fe00:e905  48:b0:2d:00:e9:05  reachable
+...
+```
+
+To show IPv4 entries only, run the Linux `ip -4 neighbor` command:
+
+```
+cumulus@leaf01:mgmt:~$ ip -4 neighbor
+169.254.0.1 dev swp54 lladdr 48:b0:2d:80:8c:21 PERMANENT proto zebra 
+169.254.0.1 dev peerlink.4094 lladdr 48:b0:2d:3f:69:d6 PERMANENT proto zebra 
+10.10.10.3 dev vxlan48 lladdr 44:38:39:22:01:84 extern_learn  NOARP proto zebra 
+10.10.10.64 dev vlan4024_l3 lladdr 44:38:39:22:01:7c extern_learn  NOARP proto zebra 
+10.1.20.102 dev vlan20-v0 lladdr 48:b0:2d:00:e9:05 STALE
+192.168.200.251 dev eth0 lladdr 48:b0:2d:00:00:01 STALE
+10.10.10.4 dev vlan4024_l3 lladdr 44:38:39:22:01:8a extern_learn  NOARP proto zebra 
+10.10.10.64 dev vlan4036_l3 lladdr 44:38:39:22:01:7c extern_learn  NOARP proto zebra 
+169.254.0.1 dev swp53 lladdr 48:b0:2d:2d:de:93 PERMANENT proto zebra 
+10.10.10.4 dev vlan4036_l3 lladdr 44:38:39:22:01:8a extern_learn  NOARP proto zebra 
+10.1.10.3 dev vlan10 lladdr 44:38:39:22:01:78 PERMANENT
+169.254.0.1 dev swp52 lladdr 48:b0:2d:48:f1:ae PERMANENT proto zebra 
+10.10.10.2 dev vlan4024_l3 lladdr 44:38:39:22:01:78 extern_learn  NOARP proto zebra 
+10.1.20.105 dev vlan20 lladdr 48:b0:2d:75:bf:9e extern_learn  NOARP proto zebra 
+10.10.10.64 dev vxlan48 lladdr 44:38:39:22:01:7c extern_learn  NOARP proto zebra 
+10.0.1.34 dev vxlan48 lladdr 44:38:39:be:ef:bb extern_learn  NOARP proto zebra 
+10.10.10.2 dev vlan4036_l3 lladdr 44:38:39:22:01:78 extern_learn  NOARP proto zebra 
+10.1.10.101 dev vlan10-v0 lladdr 48:b0:2d:a1:3f:4b STALE
+10.1.10.101 dev vlan10 lladdr 48:b0:2d:a1:3f:4b REACHABLE
+...
+```
+
+To show all table entries for a specific interface, run the `nv show interface <interface_id> neighbor` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor
+ipv4
+=========
+    IPV4         LLADR(MAC)         State      Flag
+    -----------  -----------------  ---------  ----
+    10.5.5.51    00:00:5e:00:53:51  permanent      
+    169.254.0.1  48:b0:2d:a2:4c:79  permanent
+ipv6
+=========
+    IPV6                       LLADR(MAC)         State      Flag     
+    -------------------------  -----------------  ---------  ---------
+    fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router
+```
+
+To show all IPv4 table entries for an interface, run the `nv show interface <interface> neighbor ipv4` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 neighbor ipv4
+IPV4         LLADR(MAC)         State      Flag
+-----------  -----------------  ---------  ----
+10.188.52.1  00:00:5e:00:01:22  reachable
+10.188.52.2  1c:34:da:e8:1d:c8  stale
+```
+
+To show table entries for an interface with a specific IPv4 address, run the `nv show interface <interface_id> neighbor ipv4 <ip-address>` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor ipv4 169.254.0.1
+lladdr
+=========
+    LLADR(MAC)         State      Flag
+    -----------------  ---------  ----
+    48:b0:2d:a2:4c:79  permanent
+```

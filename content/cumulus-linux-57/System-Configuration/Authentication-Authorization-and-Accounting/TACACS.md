@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 180
 toc: 4
 ---
-Cumulus Linux implements TACACS+ client <span style="background-color:#F5F5DC">[AAA](## "Accounting, Authentication, and Authorization")</span> in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in {{<exlink url="https://tools.ietf.org/html/draft-grant-tacacs-02" text="this IETF document">}}. There is no need to create accounts or directories on the switch. Accounting records go to all configured TACACS+ servers by default. Using per-command authorization requires additional setup on the switch.
+Cumulus Linux implements TACACS+ client <span class="a-tooltip">[AAA](## "Accounting, Authentication, and Authorization")</span> in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in {{<exlink url="https://tools.ietf.org/html/draft-grant-tacacs-02" text="this IETF document">}}. There is no need to create accounts or directories on the switch. Accounting records go to all configured TACACS+ servers by default. Using per-command authorization requires additional setup on the switch.
 
 TACACS+ in Cumulus Linux:
 - Uses PAM authentication and includes `login`, `ssh`, `sudo` and `su`.
@@ -12,18 +12,13 @@ TACACS+ in Cumulus Linux:
 - Allows users with privilege level 15 to run NVUE `nv set`, `nv unset`, and `nv apply` commands in addition to `nv show` commands. TACACS+ users with a lower privilege level can only execute `nv show` commands.
 - Supports up to seven TACACS+ servers. Be sure to configure your TACACS+ servers in addition to the TACACS+ client. Refer to your TACACS+ server documentation.
 
-## Install the TACACS+ Client Packages
+## TACACS+ Client Packages
 
 {{%notice note%}}
-You must install the TACACS+ client packages to use TACACS+. If you do not install the TACACS+ packages, you see the following message when you try to enable TACACS+ with the NVUE `nv set system aaa tacacs enable on` command:
-
-```
-'tacplus-client' package needs to be installed to enable tacacs
-```
-
+NVUE automatically installs the TACACS+ packages; you do **not** have to install the packages if you use NVUE commands to configure TACACS+.
 {{%/notice%}}
 
-You can install the TACACS+ packages even if the switch is not connected to the internet; the packages are in the `cumulus-local-apt-archive` repository in the {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="Cumulus Linux image">}}.
+If you use Linux commands to configure TACACS+, you must install the TACACS+ packages. You can install the TACACS+ packages even if the switch is not connected to the internet; the packages are in the `cumulus-local-apt-archive` repository in the {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="Cumulus Linux image">}}.
 
 To install all required packages, run these commands:
 
@@ -34,19 +29,23 @@ cumulus@switch:~$ sudo -E apt-get install tacplus-client
 
 ## Required TACACS+ Client Configuration
 
-After you install the required TACACS+ packages, configure the following required settings on the switch (the TACACS+ client).
+Configure the following required settings on the switch (the TACACS+ client).
 - Set the IP address or hostname of at least one TACACS+ server.
 - Set the secret (key) shared between the TACACS+ server and client.
 - Set the VRF you want to use to communicate with the TACACS+ server. This is typically the management VRF (`mgmt`), which is the default VRF on the switch.
 
 If you use NVUE commands to configure TACACS+, you must also set the priority for the authentication order for local and TACACS+ users, and enable TACACS+.
 
+{{%notice note%}}
+After you configure any TACACS+ settings with NVUE and you run `nv config apply`, you must restart the NVUE service with the `sudo systemctl restart nvued.service` command.
+{{%/notice%}}
+
 {{< tabs "TabID31 ">}}
 {{< tab "NVUE Commands ">}}
 
 NVUE commands require you to specify the priority for each TACACS+ server. You must set a priority even if you only specify one server.
 
-The following example commmands set:
+The following example commands set:
 - The TACACS+ server priority to 5.
 - The IP address of the server to 192.168.0.30.
 - The secret to `mytacac$key`.
@@ -144,7 +143,7 @@ You can configure the following optional TACACS+ settings:
 - The TACACS timeout value, which is the number of seconds to wait for a response from the TACACS+ server before trying the next TACACS+ server. You can specify a value between 0 and 60. The default is 5 seconds.
 - The source IP address to use when communicating with the TACACS+ server so that the server can identify the client switch. You must specify an IPv4 address, which must be valid for the interface you use. This source IP address is typically the loopback address on the switch.
 <!-- vale off -->
-- The TACACS+ authentication type. You can specify <span style="background-color:#F5F5DC">[PAP](## "Password Authentication Protocol")</span> to send clear text between the user and the server, <span style="background-color:#F5F5DC">[CHAP](## "Challenge Handshake Authentication Protocol")</span> to establish a <span style="background-color:#F5F5DC">[PPP](## "Point-to-Point Protocol")</span> connection between the user and the server, or login. The default is PAP.
+- The TACACS+ authentication type. You can specify <span class="a-tooltip">[PAP](## "Password Authentication Protocol")</span> to send clear text between the user and the server, <span class="a-tooltip">[CHAP](## "Challenge Handshake Authentication Protocol")</span> to establish a <span class="a-tooltip">[PPP](## "Point-to-Point Protocol")</span> connection between the user and the server, or login. The default is PAP.
 <!-- vale on -->
 - The users you do not want to send to the TACACS+ server for authentication; for example, local user accounts that exist on the switch, such as the cumulus user.
 - A separate home directory for each TACACS+ user when the TACACS+ user first logs in. By default, the switch uses the home directory in the mapping accounts in `/etc/passwd`. If the home directory does not exist, the `mkhomedir_helper` program creates it. This option does not apply to accounts with restricted shells (users mapped to a TACACS privilege level that has enforced per-command authorization).
@@ -332,7 +331,9 @@ cumulus@switch:~$ nv config apply
 
 ## Local Fallback Authentication
 
-If a site wants to allow local fallback authentication for a user when none of the TACACS servers are reachable, you can add a privileged user account as a local account on the switch.
+You can configure the switch to allow local fallback authentication for a user when the TACACS servers are unreachable, do not include the user for authentication, or have the user in the exclude user list.
+
+To allow local fallback authentication for a user, add a local privileged user account on the switch with the same username as a TACACS user. A local user is always active even when the TACACS service is not running.
 
 {{%notice note%}}
 NVUE does not provide commands to configure local fallback authentication.
@@ -350,7 +351,6 @@ To configure local fallback authentication:
     # Example configuration of GNU Name Service Switch functionality.
     # If you have the `glibc-doc-reference' and `info' packages installed, try:
     # `info libc "Name Service Switch"' for information about this file.
-
     passwd:         files
     group:          tacplus files
     shadow:         files
@@ -372,6 +372,19 @@ The first `adduser` command prompts for information and a password. You can skip
     ```
 
 3. Edit the `/etc/nsswitch.conf` file to add the keyword `tacplus` back to the line starting with `passwd` (the keyword you removed in the first step).
+
+    ```
+    cumulus@switch:~$ sudo vi /etc/nsswitch.conf
+    #
+    # Example configuration of GNU Name Service Switch functionality.
+    # If you have the `glibc-doc-reference' and `info' packages installed, try:
+    # `info libc "Name Service Switch"' for information about this file.
+    passwd:         tacplus files
+    group:          tacplus files
+    shadow:         files
+    gshadow:        files
+    ...
+    ```
 
 4. Restart the `nvued` service with the following command:
 
@@ -688,4 +701,4 @@ You need to configure certain TACACS+ servers to allow authorization requests be
 
 If you configure multiple TACACS+ servers that have different user accounts:
 - TACACS+ *authentication* allows for fall through; if the first reachable server does not authenticate the user, the client tries the second server, and so on.
-- TACACS *authorization* does not fall through. If the first reachable server returns an *unauthorized* result, the command is unauthorized and the client does not try the next server.
+- TACACS *authorization* does not fall through. If the first reachable server returns an *unauthorized* result, the client does not try the next server.

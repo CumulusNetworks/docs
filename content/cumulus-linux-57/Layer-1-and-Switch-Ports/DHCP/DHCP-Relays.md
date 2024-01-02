@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 340
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[DHCP](## "Dynamic Host Configuration Protocol")</span> is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers that are not on the same physical subnet.
+<span class="a-tooltip">[DHCP](## "Dynamic Host Configuration Protocol")</span> is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers that are not on the same physical subnet.
 
 This topic describes how to configure DHCP relays for IPv4 and IPv6 using the following topology:
 
@@ -103,7 +103,7 @@ cumulus@leaf01:~$ nv config apply
 
 ## Optional Configuration
 
-This section describes optional DHCP relay configuration. The steps provided in this section assume that you already done basic DHCP relay configuration, described above.
+This section describes optional DHCP relay configurations. The steps provided in this section assume that you have already configured basic DHCP relay, as described above.
 
 ### DHCP Agent Information Option (Option 82)
 
@@ -113,6 +113,28 @@ Cumulus Linux supports DHCP Agent Information Option 82, which allows a DHCP rel
 - *Remote ID* includes information that identifies the relay agent, such as the MAC address. By default, this is the system MAC address of the device on which DHCP relay is running.
 
 To configure DHCP Agent Information Option 82:
+
+{{< tabs "TabID117 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example enables Option 82 and enables circuit ID:
+
+```
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id enable on
+cumulus@leaf01:~$ nv config apply
+```
+
+The following example enables Option 82 and sets the remote ID to MAC address 44:38:39:BE:EF:AA:
+
+```
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
+cumulus@leaf01:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay-default` file and add one of the following options:
 
@@ -148,6 +170,9 @@ To configure DHCP Agent Information Option 82:
    ```
    cumulus@leaf01:~$ sudo systemctl restart dhcrelay@default.service
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Control the Gateway IP Address with RFC 3527
 

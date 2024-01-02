@@ -31,7 +31,7 @@ A low setting, such as 1, might affect system performance.
 - The log level to debug the data plane programming related code. You can specify `debug`, `info`, `notice`, `warning`, or `error`. The default setting is `info`. NVIDIA recommends that you do not set the log level to debug in a production environment.
 - The DSCP action and value for encapsulation. You can set the DSCP action to `copy` (to copy the value from the IP header of the packet), `set` (to specify a specific value), or `derive` (to obtain the value from the switch priority). The default action is `derive`. Only specify a value if the action is `set`.
 - The DSCP action for decapsulation in VXLAN outer headers. You can specify `copy` (to copy the value from the IP header of the packet), `preserve` (to keep the inner DSCP value), or `derive` (to obtain the value from the switch priority). The default action is `derive`.
-- The preference between a route and neighbor with the same IP address and mask. You can specify `route`, `neighbor`, or `route-and-neighbour`. The default setting is `route`.
+- The preference between a route and neighbor with the same IP address and mask. You can specify `route`, `neighbor`, or `route-and-neighbor`. The default setting is `route`.
 - The ACL mode (atomic or non-atomic). The default setting is `atomic`.
 - The reserved VLAN range. The default setting is 3725-3999.
 
@@ -71,7 +71,7 @@ cumulus@switch:~$ nv set nve vxlan decapsulation dscp action preserve
 cumulus@switch:~$ nv config apply
 ```
 
-The following command example sets the route or neighbour preference to both route and neighbour:
+The following command example sets the route or neighbor preference to both route and neighbor:
 
 ```
 cumulus@switch:~$ nv set system forwarding host-route-preference route-and-neighbour
@@ -149,9 +149,9 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 | `nat.table_size` | The NAT table size limit in number of entries. You can configure this setting only when `nat.dynamic_enable` is set to TRUE.<br>The default setting is 1024. | restart |
 | `nat.config_table_size` | The NAT configuration table size limit in number of entries. You can configure this setting only when `nat.dynamic_enable` is set to TRUE.<br>The default setting is 64. | restart |
 | `logging` | Configures logging in the format BACKEND=LEVEL. Separate multiple BACKEND=LEVEL pairs with a space. The BACKEND value can be `stderr`, `file:filename`, `syslog`, `program:executable`. The LEVEL value can be `CRIT`, `ERR`, `WARN`, `INFO`, `DEBUG`.</br>The default value is `syslog=INFO`| restart |
-| `interface.swp1.storm_control.broadcast` | Enables broadcast storm control and sets the number of packets per second (pps).</br>The default setting is 400. | reload |
-| `interface.swp1.storm_control.multicast` | Enables multicast storm control and sets the number of packets per second (pps).</br>The default setting is 3000. | reload |
-| `interface.swp1.storm_control.unknown_unicast` | Enables unicast storm control and sets the number of packets per second (pps).</br>The default setting is 2000. | reload |
+| `interface.<interface>.storm_control.broadcast` | Enables broadcast storm control and sets the number of packets per second (pps).</br>The default setting is 400. | reload |
+| `interface.<interface>.storm_control.multicast` | Enables multicast storm control and sets the number of packets per second (pps).</br>The default setting is 3000. | reload |
+| `interface.<interface>.storm_control.unknown_unicast` | Enables unicast storm control and sets the number of packets per second (pps).</br>The default setting is 2000. | reload |
 | `stats.vlan.aggregate` | Enables hardware statistics for VLANs and specifies the type of statistics needed. You can specify NONE, BRIEF, or DETAIL.</br>The default setting is BRIEF. | restart |
 | `stats.vxlan.aggregate` | Enables hardware statistics for VXLANs and specifies the type of statistics needed. You can specify NONE, BRIEF, or DETAIL.</br> The default setting is DETAIL. | restart |
 | `stats.vxlan.member` | Enables hardware statistics for VXLAN members and specifies the type of statistics needed. You can specify NONE, BRIEF, or DETAIL.</br>The default setting is BRIEF. | restart |
@@ -167,9 +167,9 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 | `bridge.unreg_v6_mcast_prune` | Enables unregistered layer 2 multicast prune to mrouter ports (IPv6).</br>The default setting is FALSE (flood unregistered layer 2 multicast traffic). | restart |
 | `netlink libnl logger` | The default setting is [0-5]. | restart |
 | `netlink.nl_logger` | The default setting is 0. | restart |
-| `vxlan.def_encap_dscp_action` | Sets the default VXLAN router DSCP action during encapsulation. You can specify `copy` if the inner packet is IP, `set` to set a specific value, or `derive` to derive the value from the switch priority.</br>The default setting is `derive`. | restart |
-| `vxlan.def_encap_dscp_value` | Sets the default VXLAN encapsulation DSCP value if the action is `set`.</br> | restart |
-| `vxlan.def_decap_dscp_action` | Sets the default VXLAN router DSCP action during decapsulation. You can specify `copy` if the inner packet is IP, `preserve` to preserve the inner DSCP value, or `derive` to derive the value from the switch priority.</br>The default setting is `derive`. | restart |
+| `vxlan.def_encap_dscp_action` | Sets the default VXLAN router DSCP action during encapsulation. You can specify `copy` if the inner packet is IP, `set` to set a specific value, or `derive` to derive the value from the switch priority.</br>The default setting is `derive`. | reload |
+| `vxlan.def_encap_dscp_value` | Sets the default VXLAN encapsulation DSCP value if the action is `set`.</br> | reload |
+| `vxlan.def_decap_dscp_action` | Sets the default VXLAN router DSCP action during decapsulation. You can specify `copy` if the inner packet is IP, `preserve` to preserve the inner DSCP value, or `derive` to derive the value from the switch priority.</br>The default setting is `derive`. | reload |
 | `ipmulticast.unknown_ipmc_to_cpu` | Enables sending unknown IPMC to the CPU.</br>The default setting is FALSE. | restart |
 | `vrf_route_leak_enable_dynamic` | Enables dynamic VRF route leaking.</br>The default setting is FALSE. | restart |
 | `sync_queue_depth_val` | The event queue depth.</br>The default setting is 50000. | restart |

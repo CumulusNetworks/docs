@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 275
 toc: 3
 ---
-Use <span style="background-color:#F5F5DC">[ISSU](## "In Service System Upgrade")</span> to upgrade and troubleshoot an active switch with minimal disruption to the network.
+Use <span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> to upgrade and troubleshoot an active switch with minimal disruption to the network.
 
 ISSU includes the following modes:
 - Restart
@@ -23,7 +23,7 @@ You can configure the switch to restart in one of the following modes.
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The restart process maintains the forwarding entries of the switching ASIC and the data plane is not affected. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
 - **warm** restarts the system with no interruption to traffic for existing route entries. Warm mode restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
 
-   When you restart the switch in warm mode, BGP performs a graceful restart if the BGP Graceful Restart option is on. To enable BGP Graceful Restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
+   When you restart the switch in warm mode, BGP only performs a graceful restart if the BGP graceful restart option is set to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
 {{%notice note%}}
 Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
@@ -199,7 +199,14 @@ Run the following command to enable maintenance mode. When maintenance mode is o
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv action change system maintenance mode enabled
+cumulus@switch:~$ nv action enable system maintenance mode
+System maintenance mode has been enabled successfully
+ Current System Mode: Maintenance, cold  
+ Maintenance mode since Sat Nov 18 07:09:25 2023 (Duration: 00:00:00)
+ frr             : Maintenance, cold, down, up time: 12:55:51 (1 restart)
+ switchd         : Maintenance, cold, down, up time: 13:10:16
+ System Services : Maintenance, cold, down, up time: 13:10:35
+Action succeeded
 ```
 
 {{< /tab >}}
@@ -217,15 +224,44 @@ You can run additional commands to bring all the ports down, then up to restore 
 {{< tabs "176 ">}}
 {{< tab "NVUE Command ">}}
 
+To bring all the ports down:
+
 ```
-cumulus@switch:~$ nv action change system maintenance ports enabled
+cumulus@switch:~$ nv action enable system maintenance ports
+System maintenance ports has been enabled successfully
+ Current System Mode: Maintenance, cold  
+ Maintenance mode since Sat Nov 18 07:09:25 2023 (Duration: 00:00:56)
+ frr             : Maintenance, cold, down, up time: 12:56:47 (1 restart)
+ switchd         : Maintenance, cold, down, up time: 13:11:12
+ System Services : Maintenance, cold, down, up time: 13:11:31
+Action succeeded
+```
+
+To restore the port admin state:
+
+```
+cumulus@switch:~$ nv action disable system maintenance ports
+System maintenance ports has been disabled successfully
+ Current System Mode: cold  
+ Ports shutdown for Maintenance
+ frr             : cold, up, up time: 13:00:57 (1 restart)
+ switchd         : cold, up, up time: 13:15:22
+ System Services : cold, up, up time: 13:15:41
+Action succeeded
 ```
 
 {{< /tab >}}
 {{< tab "csmgrctl Commands ">}}
 
+To bring  all the ports down:
+
 ```
 cumulus@switch:~$ sudo csmgrctl -p0
+```
+
+To restore the port admin state:
+
+```
 cumulus@switch:~$ sudo csmgrctl -p1
 ```
 
@@ -244,7 +280,13 @@ Run the following command to disable maintenance mode and restore normal operati
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv action change system maintenance mode disabled
+cumulus@switch:~$ nv action disable system maintenance mode
+System maintenance mode has been disabled successfully
+ Current System Mode: cold  
+ frr             : cold, up, up time: 12:57:48 (1 restart)
+ switchd         : cold, up, up time: 13:12:13
+ System Services : cold, up, up time: 13:12:32
+Action succeeded
 ```
 
 {{< /tab >}}
@@ -259,13 +301,21 @@ cumulus@switch:~$ sudo csmgrctl -m0
 
 ### Show Maintenance Mode Status
 
-To see the status of maintenance mode, run the Linux `sudo csmgrctl -s` command. For example:
+To see the status of maintenance mode, run the NVUE `nv show system maintenance` command or the Linux `sudo csmgrctl -s` command. For example:
+
+```
+cumulus@switch:~$ nv show system maintenance 
+       operational
+-----  -----------
+mode   enabled   
+ports  disabled 
+```
 
 ```
 cumulus@switch:~$ sudo csmgrctl -s
-Current System Mode: Maintenance since Tue Jan  5 00:13:37 2021 (Duration: 00:00:31)
- Boot Mode: reboot_cold  
- 2 registered modules
- frr     : Maintenance, down
- switchd : Maintenance, down 
+Current System Mode: cold  
+ frr             : cold, up, up time: 00:14:51 (2 restarts)
+ clagd           : cold, up, up time: 00:14:47
+ switchd         : cold, up, up time: 01:09:48
+ System Services : cold, up, up time: 01:10:07
 ```

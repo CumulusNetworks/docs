@@ -31,7 +31,7 @@ In the following procedures:
 
 ## Install Using a DHCP/Web Server With DHCP Options
 
-To install Cumulus Linux using a DHCP or web server *with* <span style="background-color:#F5F5DC">[DHCP](## "Dynamic Host Configuration Protocol")</span> options, set up a DHCP/web server on your laptop and connect the eth0 management port of the switch to your laptop. After you connect the cable, the installation proceeds as follows:
+To install Cumulus Linux using a DHCP or web server *with* <span class="a-tooltip">[DHCP](## "Dynamic Host Configuration Protocol")</span> options, set up a DHCP/web server on your laptop and connect the eth0 management port of the switch to your laptop. After you connect the cable, the installation proceeds as follows:
 
 1. The switch boots up and requests an IP address (DHCP request).
 2. The DHCP server acknowledges and responds with DHCP option 114 and the location of the installation image.
@@ -323,7 +323,7 @@ You can run several installer command line options from ONIE to perform basic sw
 - Execute a ZTP script to perform necessary configuration
 
 {{%notice note%}}
-The `onie-nos-install` command does *not* allow you specify command line parameters. You must access the switch from the console and transfer a disk image to the switch. You must then make the disk image executable and install the image directly from the ONIE command line with the options you want to use.
+The `onie-nos-install` command does *not* allow you to specify command line parameters. You must access the switch from the console and transfer a disk image to the switch. You must then make the disk image executable and install the image directly from the ONIE command line with the options you want to use.
 
 The following example commands transfer a disk image to the switch, make the image executable, and install the image with the `--password` option to change the default cumulus user password:
 

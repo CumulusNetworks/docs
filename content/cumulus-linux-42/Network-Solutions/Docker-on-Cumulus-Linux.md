@@ -37,7 +37,7 @@ Do you want to continue? [Y/n]
    cumulus@switch:mgmt:~$ sudo systemctl daemon-reload
    ```
 
-3. In the managment VRF, enable the Docker service. Docker pulls container images from the internet, which requires internet access through the management VRF.
+3. In the management VRF, enable the Docker service. Docker pulls container images from the internet, which requires internet access through the management VRF.
 
    ```
    cumulus@switch:mgmt:~$ sudo systemctl enable --now docker@mgmt.service

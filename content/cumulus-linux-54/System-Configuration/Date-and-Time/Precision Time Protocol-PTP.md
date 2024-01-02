@@ -95,6 +95,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
 cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface vlan10 ptp enable on
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
 cumulus@switch:~$ nv set interface swp1 ptp enable on
@@ -235,7 +236,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    network_transport       UDPv4
    ```
 
-   For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+   For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
    ```
    [swp1]
@@ -248,7 +249,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    network_transport       UDPv4
    ```
 
-   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and  `src_ip` to the IP adress of the VLAN interface:
+   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and  `src_ip` to the IP address of the VLAN interface:
 
    ```
    [swp2]
@@ -294,7 +295,7 @@ The following table shows the default parameter values for the predefined profil
 | Local priority | NA | 128  |
 | Transport | UDPv4 (UDPv6 supported) |802.3 |
 | Transmission | Multicast (unicast supported) | Multicast |
-| <span style="background-color:#F5F5DC">[BMCA](## "Best Master Clock Algorythm")</span> | IEEE 1588 | G.8275.x |
+| <span class="a-tooltip">[BMCA](## "Best Master Clock Algorythm")</span> | IEEE 1588 | G.8275.x |
 
 The switch has a predefined default profile of each profile type, one for IEEE1588 and one for ITU8275.1.
 You can configure the switch to use a predefined profile or you can create a custom profile. You can change the profile settings of the predfined profiles, such as the announce rate, sync rate, domain, priority, transport, and so on. These changes conform to the ranges and allowed values of the profile type. You can also configure these parameters for individual PTP interfaces. When you configure parameters for an individual interface, the configuration takes precedence over the profile configuration. The interface is not part of the profile.
@@ -514,7 +515,7 @@ To create a custom profile:
 - Update any of the profile settings you want to change (`announce-interval`, `delay-req-interval`, `priority1`, `sync-interval`, `announce-timeout`, `domain`, `priority2`, `transport`, `delay-mechanism`, `local-priority`).
 - Set the custom profile to be the current profile.
 
-The following example commands create a custom profile called CUSTOM1 based on the predifined profile ITU 8275-1. The commands set the `domain` to 28 and the `announce-timeout` to 3, then set `CUSTOM1` to be the current profile:
+The following example commands create a custom profile called CUSTOM1 based on the predefined profile ITU 8275-1. The commands set the `domain` to 28 and the `announce-timeout` to 3, then set `CUSTOM1` to be the current profile:
 
 ```
 cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 
@@ -528,7 +529,7 @@ cumulus@switch:~$  nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example `/etc/ptp4l.conf` file creates a custom profile based on the predifined profile ITU 8275-1 and sets the `domain` to 28 and the `announce-timeout` to 3.
+The following example `/etc/ptp4l.conf` file creates a custom profile based on the predefined profile ITU 8275-1 and sets the `domain` to 28 and the `announce-timeout` to 3.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -1417,7 +1418,7 @@ Cumulus Linux monitors clock correction and path delay against thresholds, and g
 | ----- | ----------- |
 | `nv set service ptp <instance> monitor min-offset-threshold` | Sets the minimum difference allowed between the master and slave time. You can set a value between -1000000000 and 0 nanoseconds. The default value is -50 nanoseconds.|
 | `nv set service ptp <instance> monitor max-offset-threshold` | Sets the maximum difference allowed between the master and slave time. You can set a value between 0 and 1000000000 nanoseconds. The default value is 50 nanoseconds.|
-| `nv set service ptp <instance> monitor path-delay-threshold` | Sets the mean time that PTP packets take to travel between the master and slave. You can set a value between 0 and 1000000000 nanoseconds . The default value is 200 nanoseconds. |
+| `nv set service ptp <instance> monitor path-delay-threshold` | Sets the mean time that PTP packets take to travel between the master and slave. You can set a value between 0 and 1000000000 nanoseconds. The default value is 200 nanoseconds. |
 | `nv set service ptp <instance> monitor max-timestamp-entries` | Sets the maximum number of timestamp entries allowed. Cumulus Linux updates the timestamps continuously. You can specify a value between 100 and 200. The default value is 100 entries.|
 | `nv set service ptp <instance> monitor max-violation-log-sets` | Sets the maximum number of violation log sets allowed. You can specify a value between 2 and 4. The default value is 2 sets.|
 | `nv set service ptp <instance> monitor max-violation-log-entries` | Sets the maximum number of violation log entries allowed for each set. You can specify a value between 4 and 8. The default value is 8 entries.|
@@ -1679,9 +1680,9 @@ The following example shows that there are no violations:
 cumulus@switch:~$ nv show service ptp 1 monitor violations
                   operational  applied  description
 ----------------  -----------  -------  -----------------------------------------------
-last-max-offset                         Time at which last max offest violation occured
-last-min-offset                         Time at which last min offest violation occured
-last-path-delay                         Time at which last path delay violation occured
+last-max-offset                         Time at which last max offest violation occurred
+last-min-offset                         Time at which last min offest violation occurred
+last-path-delay                         Time at which last path delay violation occurred
 max-offset-count  0                     Number of maximum offset violations
 min-offset-count  0                     Number of min offset violations
 path-delay-count  0                     Number of Path delay violations
@@ -1868,7 +1869,7 @@ network_transport       UDPv4
 PTP shaping is a Beta feature.
 {{%/notice%}}
 
-To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
+To improve performance on the NVIDIA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
 For example, if you see that the PTP timing offset varies widely and is does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
 
 {{%notice note%}}
@@ -1920,7 +1921,7 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 -->
 ### Spanning Tree and PTP
 <!-- vale off -->
-PTP frames are affected by <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
+PTP frames are affected by <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
 
 If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.
 <!-- vale on -->

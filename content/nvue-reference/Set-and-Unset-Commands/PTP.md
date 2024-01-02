@@ -509,7 +509,7 @@ cumulus@switch:~$ nv set service ptp 1 enable on
 
 ## <h>nv set service ptp \<instance-id\> ip-dscp</h>
 
-Configures the <span style="background-color:#F5F5DC">[DSCP](## "DiffServ code point")</span> value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
+Configures the <span class="a-tooltip">[DSCP](## "DiffServ code point")</span> value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
 
 ### Command Syntax
 
@@ -960,7 +960,36 @@ Introduced in Cumulus Linux 5.2.0
 ```
 cumulus@switch:~$ nv set service ptp 1 profile CUSTOM1 profile-type itu-g-8275-1
 ```
+<!--
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set service ptp \<instance-id\> servo noise-transfer</h>
+
+Enables Noise Transfer Servo to smooth the jitter and wander noise from the Master clock.
+
+{{%notice note%}}
+- To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces.
+- Cumulus Linux supports Noise Transfer Servo on Spectrum ASICs that support SyncE.
+- NVIDIA recommends you do not change the default Noise Transfer Servo configuration parameters.
+- NVIDIA recommends you use Noise Transfer Servo with PTP Telecom profiles. If you use other profiles or choose not to use a profile, make sure to set the sync interval to -3 or better.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service ptp 1 servo noise-transfer
+```
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set service ptp \<instance-id\> profile \<profile-id\> sync-interval</h>

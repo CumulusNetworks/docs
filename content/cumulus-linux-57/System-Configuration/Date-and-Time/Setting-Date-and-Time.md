@@ -1,13 +1,52 @@
 ---
 title: Setting the Date and Time 
 author: NVIDIA
-weight: 124
+weight: 122
 toc: 3
 ---
 
 This section discusses how to set the time zone, and how to set the date and time on the software clock on the switch. To configure NTP, see {{<link url="Network-Time-Protocol-NTP">}}. To configure PTP, see {{<link url="Precision-Time-Protocol-PTP">}}.
 
 Setting the time zone, and the date and time on the software clock requires root privileges; use `sudo`.
+
+## Show the Current Time Zone, Date, and Time
+
+To show the current time zone, date, and time on the switch:
+
+{{< tabs "TabID16 ">}}
+{{< tab "NVUE Command ">}}
+
+```
+cumulus@switch:~$ nv show system date-time
+                           operational                  
+-------------------------  -----------------------------
+local-time                 Wed 2023-11-22 11:22:54 EST  
+universal-time             Wed 2023-11-22 16:22:54 UTC  
+rtc-time                   Wed 2023-11-22 16:22:54      
+time-zone                  America/New_York (EST, -0500)
+system-clock-synchronized  no                           
+ntp-service                inactive                     
+rtc-in-local-tz            no                           
+unix-time                  1700670174.4371066
+```
+
+{{< /tab >}}
+{{< tab "Linux Command ">}}
+
+```
+cumulus@switch:~$ date
+Wed 11 Oct 2023 12:18:33 PM UTC
+```
+
+To show the time zone only, run the `date +%Z` command:
+
+```
+cumulus@switch:~$ date +%Z
+UTC
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Set the Time Zone
 
@@ -16,8 +55,8 @@ You can use one of these methods to set the time zone on the switch:
 - Use the guided wizard.
 - Edit the `/etc/timezone` file.
 
-{{< tabs "TabID19 ">}}
-{{< tab "NVUE Commands ">}}
+{{< tabs "TabID58 ">}}
+{{< tab "NVUE Command ">}}
 <!-- vale off -->
 Run the `nv set system timezone <timezone>` command. To see all the available time zones, run `nv set system timezone` and press the Tab key. The following example sets the time zone to US/Eastern:
 
@@ -72,17 +111,26 @@ The switch contains a battery backed hardware clock that maintains the time whil
 
 During boot up, the switch copies the time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
 
-You can set the date and time on the software clock with the `date` command. First, determine your current time zone:
-
-```
-cumulus@switch:~$ date +%Z
-```
-
 {{%notice note%}}
 If you need to reconfigure the current time zone, refer to the instructions above.
 {{%/notice%}}
 
 To set the software clock according to the configured time zone:
+
+{{< tabs "TabID120 ">}}
+{{< tab "NVUE Command ">}}
+
+Run the `nv action change system date-time <clock-date> <clock-time>` command. Specify `<clock-date>` in YYYY-MM-DD format and `<clock-time>` in HH:MM:SS format.
+
+```
+cumulus@switch:~$ nv action change system date-time 2023-12-04 2:33:30
+System Date-time changed successfully
+Local Time is now Mon 2023-12-04 02:33:30 UTC
+Action succeeded
+```
+
+{{< /tab >}}
+{{< tab "Linux Command ">}}
 
 ```
 cumulus@switch:~$ sudo date -s "Tue Jan 26 00:37:13 2021"
@@ -96,6 +144,5 @@ cumulus@switch:~$ sudo hwclock -w
 
 See `man hwclock(8)` for more information.
 
-## Related Information
-
-- {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="Debian System Administrator's Manual - Time">}}
+{{< /tab >}}
+{{< /tabs >}}

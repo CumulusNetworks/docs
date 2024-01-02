@@ -96,11 +96,7 @@ The following commands verify which files have changed compared to the previous 
 
 ### Back Up and Restore Configuration with NVUE
 
-To back up and restore the configuration on the switch with NVUE, you can either:
-- Back up and restore the NVUE configuration file (available when upgrading from 4.4 and later).
-- Back up and restore the NVUE configuration commands (available when upgrading from 5.0 and later).
-
-You can backup and restore the configuration with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
+You can backup and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
 
 To back up and restore the configuration file:
 
@@ -119,24 +115,6 @@ To back up and restore the configuration file:
    cumulus@switch:~$ nv config apply startup
    applied
    ```
-
-To backup and restore the configuration commands:
-
-1. Run the `nv config show -o commands > backup.config` command to save the commands to the `backup.config` file:
-
-   ```
-   cumulus@switch:~$ nv config show -o commands > backup.config
-   ```
-
-2. Copy the `backup.config` file off the switch to a different location.
-
-3. After upgrade is complete, restore the configuration. Copy the `backup.config` file to the switch, then run the `source backup.config` command to run all the commands in the file.
-
-   ```
-   cumulus@switch:~$ source backup.config
-   ```
-
-4. Verify the configuration on the switch, then run the `nv config save` command to save the configuration to the `/etc/nvue.d/startup.yaml` file.
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
@@ -168,7 +146,7 @@ cumulus@switch:~$ sudo cl-support
 
 ## Upgrade Cumulus Linux
 
-<span style="background-color:#F5F5DC">[ONIE](## "Open Network Install Environment")</span> is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
+<span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span> is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
 
 You can upgrade Cumulus Linux in one of two ways:
 
@@ -207,6 +185,9 @@ Be aware of the following when upgrading packages:
 - The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
 - Cumulus Linux does not support the `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
+- The supported upgrade path is the base image plus two. For example, if the starting image is Cumulus Linux 5.2, the latest release that package upgrade supports is Cumulus Linux 5.4 (5.2 + 2 = 5.4).
+- You can check the base image with the `grep RELEASE /etc/image-release` syntax.
+- Occasionally, a release contains a base OS upgrade and does not support package upgrade; release notes indicate when a release does not support package upgrade.
 
 ### Cumulus Linux Image Install (ONIE)
 

@@ -61,7 +61,6 @@ Understanding the location of configuration data is important for successful upg
 {{%notice note%}}
 - If you are using the root user account, consider including `/root/`.
 - If you have custom user accounts, consider including `/home/<username>/`.
-- Run the `net show configuration files | grep -B 1 "==="` command and back up the files listed in the command output.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -96,11 +95,7 @@ The following commands verify which files have changed compared to the previous 
 
 ### Back Up and Restore Configuration with NVUE
 
-To back up and restore the configuration on the switch with NVUE, you can either:
-- Back up and restore the NVUE configuration file (available when upgrading from 4.4 and later).
-- Back up and restore the NVUE configuration commands (available when upgrading from 5.0 and later).
-
-You can backup and restore the configuration with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
+You can backup and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
 
 To back up and restore the configuration file:
 
@@ -119,24 +114,6 @@ To back up and restore the configuration file:
    cumulus@switch:~$ nv config apply startup
    applied
    ```
-
-To backup and restore the configuration commands:
-
-1. Run the `nv config show -o commands > backup.config` command to save the commands to the `backup.config` file:
-
-   ```
-   cumulus@switch:~$ nv config show -o commands > backup.config
-   ```
-
-2. Copy the `backup.config` file off the switch to a different location.
-
-3. After upgrade is complete, restore the configuration. Copy the `backup.config` file to the switch, then run the `source backup.config` command to run all the commands in the file.
-
-   ```
-   cumulus@switch:~$ source backup.config
-   ```
-
-4. Verify the configuration on the switch, then run the `nv config save` command to save the configuration to the `/etc/nvue.d/startup.yaml` file.
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
 
@@ -168,7 +145,7 @@ cumulus@switch:~$ sudo cl-support
 
 ## Upgrade Cumulus Linux
 
-<span style="background-color:#F5F5DC">[ONIE](## "Open Network Install Environment")</span> is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
+<span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span> is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
 
 You can upgrade Cumulus Linux in one of two ways:
 

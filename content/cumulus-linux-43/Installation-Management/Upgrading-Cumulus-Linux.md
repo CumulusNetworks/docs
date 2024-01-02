@@ -273,7 +273,7 @@ Cumulus Linux 4.3.1 is supported on Broadcom switches only and requires a differ
 6. Verify correct operation with the old configurations on the new version.
 
 {{< /tab >}}
-{{< tab "Upgrade to Cumulus Linux 4.3.1 ">}}
+{{< tab "Upgrade to Cumulus Linux 4.3.1 and later ">}}
 
 To ensure that 4.3.1 package update is available only for Broadcom switches, you must either run `apt update` and `apt upgrade` twice *or* manually edit the `sources.list` file, then run `apt update` and `apt upgrade` once. Both procedures are below.
 

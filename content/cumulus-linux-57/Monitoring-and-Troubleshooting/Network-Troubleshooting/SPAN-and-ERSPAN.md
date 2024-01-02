@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1145
 toc: 4
 ---
-Cumulus Linux supports both <span style="background-color:#F5F5DC">[SPAN](## "Switched Port Analyzer")</span> and <span style="background-color:#F5F5DC">[ERSPAN](## "Encapsulated Remote SPAN")</span>.
+Cumulus Linux supports both <span class="a-tooltip">[SPAN](## "Switched Port Analyzer")</span> and <span class="a-tooltip">[ERSPAN](## "Encapsulated Remote SPAN")</span>.
 - SPAN mirrors all packets that come in from or go out of an interface (the *SPAN source*), and copy and transmit the packets out of a local port or CPU (the *SPAN destination*) for monitoring. The SPAN destination port is also referred to as a mirror-to-port (MTP). The original packet is still switched, while a mirrored copy of the packet goes out of the MTP.
 - ERSPAN sends the mirrored packets to a monitoring node located anywhere across the routed network. The switch finds the outgoing port of the mirrored packets by looking up the destination IP address in its routing table. The switch encapsulates the original layer 2 packet with GRE for IP delivery. The encapsulated packets have the following format:
 
@@ -131,6 +131,12 @@ mirror.session.1.dest = swp2
 mirror.session.1.type = span
 ```
 
+Run the following command to the load the configuration:
+
+```
+cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/switchd.d/port-mirror.conf -prefix mirror
+```
+
 SPAN sessions that reference an outgoing interface create the mirrored packets according to the ingress interface before the routing decision. For example, the following rule captures traffic that is ultimately destined to leave swp1 but mirrors the packets when they arrive on swp49. The rule transmits packets that reference the original VLAN tag, and source and destination MAC address at the time that swp49 originally receives the packet.
 
 ```
@@ -140,6 +146,10 @@ mirror.session.1.direction = egress
 mirror.session.1.src = swp1
 mirror.session.1.dest = swp49
 mirror.session.1.type = span
+```
+
+```
+cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/switchd.d/port-mirror.conf -prefix mirror
 ```
 
 {{< /tab >}}

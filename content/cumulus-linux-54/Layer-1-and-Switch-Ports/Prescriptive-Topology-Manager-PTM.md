@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 370
 toc: 3
 ---
-In data center topologies, right cabling is time consuming and error prone. <span style="background-color:#F5F5DC">[PTM](## "Prescriptive Topology Manager")</span> is a dynamic cabling verification tool that can detect and eliminate errors. PTM uses a Graphviz-DOT specified network cabling plan in a `topology.dot` file and couples it with runtime information from LLDP to verify that the cabling matches the specification. The check occurs on every link transition on each node in the network.
+In data center topologies, right cabling is time consuming and error prone. <span class="a-tooltip">[PTM](## "Prescriptive Topology Manager")</span> is a dynamic cabling verification tool that can detect and eliminate errors. PTM uses a Graphviz-DOT specified network cabling plan in a `topology.dot` file and couples it with runtime information from LLDP to verify that the cabling matches the specification. The check occurs on every link transition on each node in the network.
 
 You can customize the `topology.dot` file to control `ptmd` at both the global/network level and the node/port level.
 
@@ -12,10 +12,10 @@ PTM runs as a daemon, named `ptmd`.
 
 ## Supported Features
 
-- Topology verification using <span style="background-color:#F5F5DC">[LLDP](## "Link Layer Discovery Protocol")</span>. `ptmd` creates a client connection to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship between the nodes/ports in the network and compares them against the prescribed topology specified in the `topology.dot` file.
+- Topology verification using <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span>. `ptmd` creates a client connection to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship between the nodes/ports in the network and compares them against the prescribed topology specified in the `topology.dot` file.
 - PTM only supports physical interfaces, such as swp1 or eth0. You cannot specify virtual interfaces, such as bonds or subinterfaces in the topology file.
 - Cumulus Linux does not support forwarding path failure detection using {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection">}} (BFD); however, you can use demand mode. For more information on how BFD operates in Cumulus Linux, refer to {{<link title="Bidirectional Forwarding Detection - BFD">}} and `man ptmd(8)`.
-- Integration with <span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> (PTM to FRR notification).
+- Integration with <span class="a-tooltip">[FRR](## "FRRouting")</span> (PTM to FRR notification).
 - Client management: `ptmd` creates an abstract named socket `/var/run/ptmd.socket` on startup. Other applications can connect to this socket to receive notifications and send commands.
 - Event notifications: see Scripts below.
 - User configuration through a `topology.dot` file; {{<link url="#configure-ptm" text="see below">}}.
@@ -127,7 +127,7 @@ In this template, LLDP1 and LLDP2 are templates for LLDP parameters. BFD1 and BF
 
 ### Supported BFD and LLDP Parameters
 
-`ptmd` supports the following <span style="background-color:#F5F5DC">[BFD](## "Bidirectional Forwarding Detection")</span> parameters:
+`ptmd` supports the following <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> parameters:
 
 - `upMinTx` is the minimum transmit interval, which defaults to *300ms*, specified in milliseconds.
 - `requiredMinRx` is the minimum interval between received BFD packets, which defaults to *300ms*, specified in milliseconds.
@@ -172,7 +172,7 @@ graph G {
 
 ## BFD
 
-<span style="background-color:#F5F5DC">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD using PTM, see {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
+<span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD using PTM, see {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
 
 ## Check Link State
 

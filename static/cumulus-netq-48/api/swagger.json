@@ -1,0 +1,1974 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "",
+    "version" : "",
+    "title" : "",
+    "termsOfService" : ""
+  },
+  "host" : "",
+  "basePath" : "/api/netq/nvl4/v1",
+  "tags" : [ {
+    "name" : "blob"
+  }, {
+    "name" : "domain"
+  }, {
+    "name" : "partition"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/blob/{blobId}" : {
+      "get" : {
+        "tags" : [ "blob" ],
+        "summary" : "Get file by id",
+        "description" : "",
+        "operationId" : "getBlob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "blobId",
+          "in" : "path",
+          "description" : "file id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BlobUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "File {blobId} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/blob" : {
+      "get" : {
+        "tags" : [ "blob" ],
+        "summary" : "Get all file list for the premise",
+        "description" : "",
+        "operationId" : "getAllBlob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BlobMetaUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "blob" ],
+        "summary" : "Add a new file",
+        "description" : "",
+        "operationId" : "postBlob",
+        "consumes" : [ "multipart/form-data" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "file",
+          "in" : "formData",
+          "description" : "Add file request",
+          "required" : true
+        }, {
+          "name" : "type",
+          "in" : "query",
+          "description" : "topology/fabric_configuration",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "domain_id",
+          "in" : "query",
+          "description" : "Domain Id associated with the blob",
+          "required" : false,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/BlobMetaUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "blob" ],
+        "summary" : "Delete file/s",
+        "description" : "",
+        "operationId" : "deleteBlobs",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Delete Blobs request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/BlobsDeletionRequest"
+          }
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DeleteBlobsResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/topology_difference" : {
+      "get" : {
+        "tags" : [ "domain" ],
+        "summary" : "Get topology differences information by domain id",
+        "description" : "",
+        "operationId" : "getConnections",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "label",
+          "in" : "query",
+          "description" : "missing_connections or unexpected_connections or inactive_connections",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of entries to display starting from the offset value. For example, a count of 100 displays 100 entries at a time.",
+          "required" : false
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "Used in combination with count, offset specifies the starting location within the set of entries returned. For example, an offset of 100 would display results beginning with entry 101.",
+          "required" : false
+        }, {
+          "name" : "is_total",
+          "in" : "query",
+          "description" : "Is total",
+          "required" : false
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ConnectionInfo"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid query parameter value",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Domain with domain id: {domainId} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/nodes" : {
+      "get" : {
+        "tags" : [ "domain" ],
+        "summary" : "Get nodes information by domain id",
+        "description" : "",
+        "operationId" : "getNodes",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "description" : "Number of entries to display starting from the offset value. For example, a count of 100 displays 100 entries at a time.",
+          "required" : false
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "Used in combination with count, offset specifies the starting location within the set of entries returned. For example, an offset of 100 would display results beginning with entry 101.",
+          "required" : false
+        }, {
+          "name" : "is_total",
+          "in" : "query",
+          "description" : "Is total",
+          "required" : false
+        }, {
+          "name" : "partition_name",
+          "in" : "query",
+          "description" : "Partition name",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "partition_status",
+          "in" : "query",
+          "description" : "Partition status",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "hostname",
+          "in" : "query",
+          "description" : "User-specified name for a network switch or host. For example, leaf01, spine04, host-6, engr-1, tor-22.",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "ip_address",
+          "in" : "query",
+          "description" : "IP address",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "device_type",
+          "in" : "query",
+          "description" : "Device type",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "health",
+          "in" : "query",
+          "description" : "Device health",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "group_id",
+          "in" : "query",
+          "description" : "Group ID",
+          "required" : false
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/NodeInfo"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid query parameter value",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Domain with domain id: {domainId} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/leds" : {
+      "put" : {
+        "tags" : [ "domain" ],
+        "summary" : "Configure switch uid led",
+        "description" : "",
+        "operationId" : "configureUidLed",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Configure uid led request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ConfigureUidLedRequest"
+          }
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Resource Not Available",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/upload_sysdump" : {
+      "post" : {
+        "tags" : [ "domain" ],
+        "summary" : "Upload sysdump",
+        "description" : "",
+        "operationId" : "uploadSysdump",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Resource Not Available",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/gfm/{action}" : {
+      "put" : {
+        "tags" : [ "domain" ],
+        "summary" : "Start or Stop GFM",
+        "description" : "",
+        "operationId" : "activateAndDeactivateGfm",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "action",
+          "in" : "path",
+          "description" : "start/stop",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DomainUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/blob/{blobId}/download" : {
+      "get" : {
+        "tags" : [ "blob" ],
+        "summary" : "download file by file id",
+        "description" : "",
+        "operationId" : "downloadBlob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "blobId",
+          "in" : "path",
+          "description" : "file id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BlobUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "File {BlobId} for opid {opid} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}" : {
+      "get" : {
+        "tags" : [ "domain" ],
+        "summary" : "Get domain by id",
+        "description" : "",
+        "operationId" : "getDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/DomainUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Domain with domain id: {domainId} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "domain" ],
+        "summary" : "Delete nvl4 domain by id",
+        "description" : "",
+        "operationId" : "deleteDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DelResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/partition" : {
+      "get" : {
+        "tags" : [ "partition" ],
+        "summary" : "Get compute node partitions",
+        "description" : "",
+        "operationId" : "getPartitions",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domains",
+          "in" : "query",
+          "description" : "Domain ids",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "health",
+          "in" : "query",
+          "description" : "Partition health status",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/GetPartitionUiObj"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "partition" ],
+        "summary" : "Add a new compute node partition",
+        "description" : "",
+        "operationId" : "postPartition_1",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Partition request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/CrossDomainPartitionCreationRequest"
+          }
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AddCrossDomainPartitionUiObj"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Resource Not Available",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "409" : {
+            "description" : "Conflict",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/generate_sysdump" : {
+      "post" : {
+        "tags" : [ "domain" ],
+        "summary" : "Start generating sysdumps",
+        "description" : "",
+        "operationId" : "generateSysdump",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Generate sysdumps request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/GenerateSysdumpRequest"
+          }
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Resource Not Available",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/partition" : {
+      "post" : {
+        "tags" : [ "domain" ],
+        "summary" : "Add a new node partition to domain",
+        "description" : "",
+        "operationId" : "postPartition",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Partition request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/PartitionCreationRequest"
+          }
+        }, {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AddPartitionUiObj"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Resource Not Available",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "409" : {
+            "description" : "Conflict",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/fetch_gfmlogs" : {
+      "post" : {
+        "tags" : [ "domain" ],
+        "summary" : "Fetch GFM logs",
+        "description" : "",
+        "operationId" : "fetchGfmLogs",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Resource Not Available",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/partitions/{partitionId}" : {
+      "get" : {
+        "tags" : [ "domain" ],
+        "summary" : "Get partition by id",
+        "description" : "",
+        "operationId" : "getPartition",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "partitionId",
+          "in" : "path",
+          "description" : "partition id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/GetPartitionUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Partition not found",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "domain" ],
+        "summary" : "Delete partition by id",
+        "description" : "",
+        "operationId" : "deletePartition",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "partitionId",
+          "in" : "path",
+          "description" : "partition id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DelResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Partition not found",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain" : {
+      "get" : {
+        "tags" : [ "domain" ],
+        "summary" : "Get all nvl4 domains for the premise",
+        "description" : "",
+        "operationId" : "getAllDomains",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DomainsUiResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "domain" ],
+        "summary" : "Add a new nvl4 domain",
+        "description" : "",
+        "operationId" : "postDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Domain request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/DomainCreationRequest"
+          }
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DomainUiObj"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Resource Not Available",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "domain" ],
+        "summary" : "Updates nvl4 domain",
+        "description" : "",
+        "operationId" : "putDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Update domain request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/DomainUpdateRequest"
+          }
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DomainUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Resource Not Available",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "409" : {
+            "description" : "Domain with id {domain_id} doesn't exists",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "jwt" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "BlobUiObj" : {
+      "type" : "object",
+      "properties" : {
+        "opid" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Premise Id"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Blob Id. Automatically generated when a file is uploaded."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name of the file uploaded."
+        },
+        "blob_type" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Type of the file uploaded.\n The two supported files are : \n 1. topology file (binary format) and \n 2. the file with list of Ips (Text format) called fabric configuration file"
+        },
+        "domains" : {
+          "type" : "array",
+          "description" : "List of Domain Ids referring to this file.",
+          "items" : {
+            "type" : "object",
+            "properties" : { }
+          }
+        },
+        "data" : {
+          "type" : "string",
+          "description" : "Content of the file."
+        },
+        "uploaded_at" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Time of upload of the file."
+        }
+      },
+      "description" : "BLob UI Object"
+    },
+    "ErrorResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "error message"
+        }
+      },
+      "description" : "Generic error response"
+    },
+    "DeleteBlobsResponse" : {
+      "type" : "object",
+      "required" : [ "blob_ids" ],
+      "properties" : {
+        "blob_ids" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : { }
+          }
+        }
+      },
+      "description" : "Delete BLobs"
+    },
+    "BlobsDeletionRequest" : {
+      "type" : "object",
+      "properties" : {
+        "blob_ids" : {
+          "type" : "array",
+          "description" : "Blobs ids",
+          "items" : {
+            "type" : "object",
+            "properties" : { }
+          }
+        }
+      },
+      "description" : "BLobs deletion request"
+    },
+    "BlobMetaUiObj" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Blob Id. Automatically generated when a file is uploaded."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name of the file uploaded."
+        },
+        "blob_type" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Type of the file uploaded.\n The two supported files are : \n 1. topology file (binary format) and \n 2. the file with list of Ips (Text format) called fabric configuration file"
+        },
+        "domains" : {
+          "type" : "array",
+          "description" : "List of Domain Ids referring to this file.",
+          "items" : {
+            "type" : "object",
+            "properties" : { }
+          }
+        },
+        "uploaded_at" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Username of the user who uploaded the file"
+        },
+        "uploaded_by" : {
+          "type" : "string",
+          "description" : "Time of upload of the file."
+        }
+      },
+      "description" : "BLob UI Object"
+    },
+    "DelResponse" : {
+      "type" : "object",
+      "required" : [ "deleted" ],
+      "properties" : {
+        "deleted" : {
+          "type" : "boolean"
+        }
+      },
+      "description" : "BLob UI Object"
+    },
+    "GetPartitionUiObj" : {
+      "type" : "object",
+      "properties" : {
+        "partition_id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Partition Id"
+        },
+        "partition_name" : {
+          "type" : "string",
+          "description" : "Partition name "
+        },
+        "created_at" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Creation time of the partition"
+        },
+        "number_of_devices" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Number of devices"
+        },
+        "partition_type" : {
+          "type" : "string",
+          "description" : "Partition type"
+        },
+        "health" : {
+          "type" : "string",
+          "description" : "Partition health"
+        }
+      },
+      "description" : "Partition UI Object"
+    },
+    "DomainStatusSummary" : {
+      "type" : "object",
+      "properties" : {
+        "totalNodes" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Total number of nodes from Gfm"
+        },
+        "healthyNodes" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Total number of nodes with HEALTHY status from Gfm"
+        },
+        "unhealthyNodes" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Total number of nodes with UNHEALTHY status from Gfm"
+        },
+        "undiscoverdNodes" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Total number of nodes with UNKOWN status from Gfm"
+        },
+        "lastHeartbeat" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Timestamp of the last GFM heartbeat recieved from the controller"
+        }
+      },
+      "description" : "Domain (GFM Nodes) Status Summary"
+    },
+    "DomainUiObj" : {
+      "type" : "object",
+      "properties" : {
+        "opid" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Premise Id"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Domain Id. Automatically generated when domain is created."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Domain Name. Given by user to identify the domain."
+        },
+        "log_level" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Fabric Manager logging levels.\n0  - All the logging is disabled,\n1  - Set log level to CRITICAL and above,\n2  - Set log level to ERROR and above,\n3  - Set log level to WARNING and above,\n4  - Set log level to INFO and above"
+        },
+        "fabric_mode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Fabric Manager Operating Mode\n0  - Start Fabric Manager in Bare metal or Full pass through virtualization mode\n       1  - Start Fabric Manager in Shared NVSwitch multitenancy mode. \n       2  - Start Fabric Manager in vGPU based multitenancy mode."
+        },
+        "gfm_timeout" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Time in Seconds. Negative value for gfmWaitTimeout denotes an infinite wait time."
+        },
+        "topology" : {
+          "$ref" : "#/definitions/BlobMetaUiObj"
+        },
+        "fabric_configuration" : {
+          "$ref" : "#/definitions/BlobMetaUiObj"
+        },
+        "created_by" : {
+          "type" : "string",
+          "description" : "Username who created the domain"
+        },
+        "created_at" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Time of creation of the domain"
+        },
+        "updated_at" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Time of last edit of any properties of the domain"
+        },
+        "isActive" : {
+          "type" : "boolean",
+          "description" : "Gfm started for the domain"
+        },
+        "gfm_state" : {
+          "type" : "string",
+          "description" : "Heath State of the GFM (controller) for the domain"
+        },
+        "statusSummary" : {
+          "$ref" : "#/definitions/DomainStatusSummary"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "State of Gfm Job for the domain"
+        },
+        "topology_difference" : {
+          "type" : "boolean",
+          "description" : "Topology difference indication"
+        },
+        "multi_node_enable_all_node_partition" : {
+          "type" : "boolean",
+          "description" : "Domain fully connected"
+        },
+        "gfm_log_summary" : {
+          "description" : "gfm log file summary",
+          "$ref" : "#/definitions/FileSummary"
+        },
+        "gfm_recovery_count" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "GFM recovery count"
+        },
+        "gfm_last_start_time" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "GFM last start time"
+        }
+      },
+      "description" : "Domain UI Object"
+    },
+    "FileSummary" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "description" : "Status of the file"
+        },
+        "error_message" : {
+          "type" : "string",
+          "description" : "Error message"
+        },
+        "file_size" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "File size in bytes"
+        },
+        "created_at" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Timestamp of the last file generated"
+        },
+        "file_name" : {
+          "type" : "string",
+          "description" : "File name"
+        },
+        "file_id" : {
+          "type" : "string",
+          "description" : "File size"
+        }
+      },
+      "description" : "Domain GFM log summary"
+    },
+    "ConnectionInfo" : {
+      "type" : "object",
+      "required" : [ "connection_type", "device_a", "device_b", "device_id_a", "device_id_b", "is_active", "port_a", "port_b" ],
+      "properties" : {
+        "is_active" : {
+          "type" : "boolean"
+        },
+        "connection_type" : {
+          "type" : "string"
+        },
+        "device_a" : {
+          "type" : "string"
+        },
+        "device_id_a" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "port_a" : {
+          "type" : "string"
+        },
+        "device_b" : {
+          "type" : "string"
+        },
+        "device_id_b" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "port_b" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AddPartitionUiObj" : {
+      "type" : "object",
+      "properties" : {
+        "partition_id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Partition Id"
+        },
+        "partition_name" : {
+          "type" : "string",
+          "description" : "Partition Name "
+        },
+        "nodes" : {
+          "type" : "array",
+          "description" : "Partition Nodes ",
+          "items" : {
+            "$ref" : "#/definitions/Node"
+          }
+        }
+      },
+      "description" : "Add Partition UI Object"
+    },
+    "Node" : {
+      "type" : "object",
+      "properties" : {
+        "node_id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Node Id"
+        }
+      },
+      "description" : "Node"
+    },
+    "PartitionCreationRequest" : {
+      "type" : "object",
+      "properties" : {
+        "partition_name" : {
+          "type" : "string",
+          "description" : "Partition Name "
+        },
+        "nodes" : {
+          "type" : "array",
+          "description" : "Partition Nodes ",
+          "items" : {
+            "$ref" : "#/definitions/Node"
+          }
+        }
+      }
+    },
+    "ConfigureUidLedRequest" : {
+      "type" : "object",
+      "required" : [ "switches" ],
+      "properties" : {
+        "switches" : {
+          "type" : "array",
+          "description" : "Switches",
+          "items" : {
+            "$ref" : "#/definitions/SwitchInfo"
+          }
+        }
+      },
+      "description" : "Configure uid led request"
+    },
+    "SwitchInfo" : {
+      "type" : "object",
+      "required" : [ "hostname", "ip_address" ],
+      "properties" : {
+        "hostname" : {
+          "type" : "string",
+          "description" : "Switch hostname"
+        },
+        "ip_address" : {
+          "type" : "string",
+          "description" : "Switch ip"
+        },
+        "action" : {
+          "type" : "string",
+          "description" : "Switch UID Led status: on or off"
+        }
+      },
+      "description" : "Switch info Configure uid led request"
+    },
+    "DomainCreationRequest" : {
+      "type" : "object",
+      "required" : [ "name" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "Domain Name. Given by user to identify the domain."
+        },
+        "log_level" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Fabric Manager logging levels.\n0  - All the logging is disabled,\n1  - Set log level to CRITICAL and above,\n2  - Set log level to ERROR and above,\n3  - Set log level to WARNING and above,\n4  - Set log level to INFO and above"
+        },
+        "fabric_mode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Fabric Manager Operating Mode\n0  - Start Fabric Manager in Bare metal or Full pass through virtualization mode\n       1  - Start Fabric Manager in Shared NVSwitch multitenancy mode. \n       2  - Start Fabric Manager in vGPU based multitenancy mode."
+        },
+        "gfm_timeout" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Time in Seconds. Negative value for gfmWaitTimeout denotes an infinite wait time."
+        },
+        "topology_id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Id of the selected topology file"
+        },
+        "fabric_configuration_id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Id of the selected file of IP addresses"
+        },
+        "multi_node_enable_all_node_partition" : {
+          "type" : "boolean",
+          "description" : "Domain property to select if the domain is fully connected"
+        }
+      },
+      "description" : "Add Domain Request"
+    },
+    "DomainUpdateRequest" : {
+      "type" : "object",
+      "properties" : {
+        "domainId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Domain Id. Automatically generated when domain is created."
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "log_level" : {
+          "type" : "object",
+          "description" : "Fabric Manager logging levels.\n0  - All the logging is disabled,\n1  - Set log level to CRITICAL and above,\n2  - Set log level to ERROR and above,\n3  - Set log level to WARNING and above,\n4  - Set log level to INFO and above",
+          "properties" : { }
+        },
+        "fabric_mode" : {
+          "type" : "object",
+          "description" : "Fabric Manager Operating Mode\n0  - Start Fabric Manager in Bare metal or Full pass through virtualization mode\n       1  - Start Fabric Manager in Shared NVSwitch multitenancy mode. \n       2  - Start Fabric Manager in vGPU based multitenancy mode.",
+          "properties" : { }
+        },
+        "gfm_timeout" : {
+          "type" : "object",
+          "description" : "Time in Seconds. Negative value for gfmWaitTimeout denotes an infinite wait time.",
+          "properties" : { }
+        },
+        "topology_id" : {
+          "type" : "object",
+          "description" : "Id of the selected topology file",
+          "properties" : { }
+        },
+        "fabric_configuration_id" : {
+          "type" : "object",
+          "description" : "Id of the selected file of IP addresses",
+          "properties" : { }
+        },
+        "multi_node_enable_all_node_partition" : {
+          "type" : "object",
+          "description" : "Domain property to select if the domain is fully connected",
+          "properties" : { }
+        }
+      },
+      "description" : "Update Domain Request"
+    },
+    "DomainsUiResponse" : {
+      "type" : "object",
+      "properties" : {
+        "domains" : {
+          "type" : "array",
+          "description" : "List of domains",
+          "items" : {
+            "$ref" : "#/definitions/DomainUiObj"
+          }
+        },
+        "max_generate_sysdumps_in_parallel" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The maximum amount of devices that can generate sysdumps in parallel."
+        }
+      },
+      "description" : "Domains UI Response"
+    },
+    "Agent" : {
+      "type" : "object",
+      "properties" : {
+        "state" : {
+          "type" : "string",
+          "description" : "Agent state"
+        },
+        "last_fresh_time" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Last agent fresh time"
+        }
+      },
+      "description" : "Agent data"
+    },
+    "NodeInfo" : {
+      "type" : "object",
+      "properties" : {
+        "hostname" : {
+          "type" : "string",
+          "description" : "Hostname of the switch"
+        },
+        "node_id" : {
+          "type" : "object",
+          "description" : "GFM node id",
+          "properties" : { }
+        },
+        "group_id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "GFM group id"
+        },
+        "partition_id" : {
+          "type" : "object",
+          "description" : "GFM generated id for node partition",
+          "properties" : { }
+        },
+        "partition_name" : {
+          "type" : "string",
+          "description" : "Node partition name"
+        },
+        "partition_status" : {
+          "type" : "string",
+          "description" : "Node partition status"
+        },
+        "lfm_status" : {
+          "type" : "string",
+          "description" : "LFM status of the Switch"
+        },
+        "lfm_last_running_timestamp" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Last time when the state of switch as per LFM was RUNNING"
+        },
+        "device_type" : {
+          "type" : "string",
+          "description" : "Type of switch: cpu/gpu"
+        },
+        "ip_address" : {
+          "type" : "string",
+          "description" : "Ip Address of the switch"
+        },
+        "health" : {
+          "type" : "string",
+          "description" : "Gfm Health status of the node"
+        },
+        "last_healthy" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Timestamp of the last healthy status of node from GFM"
+        },
+        "last_gfm_heartbeat" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Timestamp of the last heartbeat from GFM (controller)"
+        },
+        "agent" : {
+          "description" : "Agent state of the node",
+          "$ref" : "#/definitions/Agent"
+        },
+        "sysdump_summary" : {
+          "description" : "Sysdump file summary",
+          "$ref" : "#/definitions/FileSummary"
+        },
+        "uid_led_indicator" : {
+          "description" : "UID LED node data",
+          "$ref" : "#/definitions/UidLedIndicator"
+        },
+        "discovery_status" : {
+          "type" : "string",
+          "description" : "Discovery status"
+        },
+        "discovery_failure_reason" : {
+          "type" : "string",
+          "description" : "Discovery failure reason"
+        }
+      },
+      "description" : "Nodes data"
+    },
+    "UidLedIndicator" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "description" : "Status"
+        },
+        "error_message" : {
+          "type" : "string",
+          "description" : "Error message"
+        },
+        "error_action" : {
+          "type" : "string",
+          "description" : "Error action"
+        },
+        "last_update_time" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Last update time"
+        }
+      },
+      "description" : "UID LED data"
+    },
+    "GenerateSysdumpRequest" : {
+      "type" : "object",
+      "required" : [ "switches" ],
+      "properties" : {
+        "switches" : {
+          "type" : "array",
+          "description" : "Devices to generate system dump",
+          "items" : {
+            "$ref" : "#/definitions/GenerateSysdumpSwitchInfo"
+          }
+        }
+      },
+      "description" : "Generate Sysdump Request"
+    },
+    "GenerateSysdumpSwitchInfo" : {
+      "type" : "object",
+      "required" : [ "hostname", "ip" ],
+      "properties" : {
+        "ip" : {
+          "type" : "string"
+        },
+        "hostname" : {
+          "type" : "string"
+        }
+      },
+      "description" : "NVOS generate debug-dump job request"
+    },
+    "AddCrossDomainPartitionUiObj" : {
+      "type" : "object",
+      "properties" : {
+        "partition_id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Partition Id"
+        },
+        "partition_name" : {
+          "type" : "string",
+          "description" : "Partition Name "
+        },
+        "nodes" : {
+          "type" : "array",
+          "description" : "Cross Domain Nodes ",
+          "items" : {
+            "$ref" : "#/definitions/DomainNode"
+          }
+        }
+      },
+      "description" : "Add Cross Domain Partition UI Object"
+    },
+    "DomainNode" : {
+      "type" : "object",
+      "properties" : {
+        "node_id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Node Id"
+        },
+        "domain_id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Domain Id"
+        }
+      },
+      "description" : "Domain Node"
+    },
+    "CrossDomainPartitionCreationRequest" : {
+      "type" : "object",
+      "properties" : {
+        "partition_name" : {
+          "type" : "string",
+          "description" : "Partition Name "
+        },
+        "nodes" : {
+          "type" : "array",
+          "description" : "Cross Domain Nodes ",
+          "items" : {
+            "$ref" : "#/definitions/DomainNode"
+          }
+        }
+      }
+    }
+  }
+}

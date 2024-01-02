@@ -6,14 +6,14 @@ toc: 3
 ---
 Typical routing systems and protocols forward traffic based on the destination address in the packet, which they look up in a routing table. However, sometimes the traffic on your network requires a more hands-on approach. Sometimes, you need to forward a packet based on the source address, the packet size, or other information in the packet header.
 
-<span style="background-color:#F5F5DC">[PBR](## "Policy-based Routing")</span> lets you make routing decisions based on filters that change the routing behavior of specific traffic so that you can override the routing table and influence where the traffic goes. For example, you can use PBR to reach the best bandwidth utilization for business-critical applications, isolate traffic for inspection or analysis, or manually load balance outbound traffic.
+<span class="a-tooltip">[PBR](## "Policy-based Routing")</span> lets you make routing decisions based on filters that change the routing behavior of specific traffic so that you can override the routing table and influence where the traffic goes. For example, you can use PBR to reach the best bandwidth utilization for business-critical applications, isolate traffic for inspection or analysis, or manually load balance outbound traffic.
 
 Cumulus Linux applies PBR to incoming packets. All packets received on a PBR-enabled interface pass through enhanced packet filters that determine rules and specify where to forward the packets.
 
 {{%notice note%}}
-- You can create a *maximum* of 255 PBR match rules and 256 next hop groups (this is the <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path") limit)</span>.
+- You can create a *maximum* of 255 PBR match rules and 256 next hop groups (this is the <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path") limit)</span>.
 - You can apply only one PBR policy per input interface.
-- You can match on *source* and *destination* IP address, or match on <span style="background-color:#F5F5DC">[DSCP](## "Differentiated Services Code Point")</span> or <span style="background-color:#F5F5DC">[ECN](## "Explicit Congestion Notification")</span> values within a packet.
+- You can match on *source* and *destination* IP address, or match on <span class="a-tooltip">[DSCP](## "Differentiated Services Code Point")</span> or <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span> values within a packet.
 - PBR is not supported for VXLAN tunneling.
 - PBR is not supported on management interfaces, such as eth0.
 - A PBR rule cannot contain both IPv4 and IPv6 addresses.
@@ -28,7 +28,7 @@ A PBR policy contains one or more policy maps. Each policy map:
    - To match on a source and destination address, a policy map can contain both match source and match destination IP rules.
    - A set rule determines the PBR next hop for the policy. <!--The set rule can contain a single next hop IP address or it can contain a next hop group. A next hop group has more than one next hop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a next hop group.-->
 
-To use PBR in Cumulus linux, you define a PBR policy and apply it to the ingress interface (the interface must already have an IP address assigned). Cumulus Linux matches traffic against the match rules in sequential order and forwards the traffic according to the set rule in the first match. Traffic that does not match any rule passes on to the normal destination based routing mechanism.
+To use PBR in Cumulus Linux, you define a PBR policy and apply it to the ingress interface (the interface must already have an IP address assigned). Cumulus Linux matches traffic against the match rules in sequential order and forwards the traffic according to the set rule in the first match. Traffic that does not match any rule passes on to the normal destination based routing mechanism.
 
 To configure a PBR policy:
 

@@ -14,7 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set interface \<interface-id\> ip vrrp</h>
 
-Configures the <span style="background-color:#F5F5DC">[VRRP](## "Virtual Router Redundancy Protocol")</span> on the interface.
+Configures the <span class="a-tooltip">[VRRP](## "Virtual Router Redundancy Protocol")</span> on the interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

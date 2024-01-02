@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 180
 toc: 4
 ---
-Cumulus Linux implements TACACS+ client <span style="background-color:#F5F5DC">[AAA](## "Accounting, Authentication, and Authorization")</span> in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in {{<exlink url="https://tools.ietf.org/html/draft-grant-tacacs-02" text="this IETF document">}}. There is no need to create accounts or directories on the switch. Accounting records go to all configured TACACS+ servers by default. Using per-command authorization requires additional setup on the switch.
+Cumulus Linux implements TACACS+ client <span class="a-tooltip">[AAA](## "Accounting, Authentication, and Authorization")</span> in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in {{<exlink url="https://tools.ietf.org/html/draft-grant-tacacs-02" text="this IETF document">}}. There is no need to create accounts or directories on the switch. Accounting records go to all configured TACACS+ servers by default. Using per-command authorization requires additional setup on the switch.
 
 TACACS+ in Cumulus Linux:
 - Uses PAM authentication and includes `login`, `ssh`, `sudo` and `su`.
@@ -41,12 +41,16 @@ After you install the required TACACS+ packages, configure the following require
 
 If you use NVUE commands to configure TACACS+, you must also set the priority for the authentication order for local and TACACS+ users, and enable TACACS+.
 
+{{%notice note%}}
+After you configure any TACACS+ settings with NVUE and you run `nv config apply`, you must restart the NVUE service with the `sudo systemctl restart nvued.service` command.
+{{%/notice%}}
+
 {{< tabs "TabID31 ">}}
 {{< tab "NVUE Commands ">}}
 
 NVUE commands require you to specify the priority for each TACACS+ server. You must set a priority even if you only specify one server.
 
-The following example commmands set:
+The following example commands set:
 - The TACACS+ server priority to 5.
 - The IP address of the server to 192.168.0.30.
 - The secret to `mytacac$key`.
@@ -144,7 +148,7 @@ You can configure the following optional TACACS+ settings:
 - The TACACS timeout value, which is the number of seconds to wait for a response from the TACACS+ server before trying the next TACACS+ server. You can specify a value between 0 and 60. The default is 5 seconds.
 - The source IP address to use when communicating with the TACACS+ server so that the server can identify the client switch. You must specify an IPv4 address, which must be valid for the interface you use. This source IP address is typically the loopback address on the switch.
 <!-- vale off -->
-- The TACACS+ authentication type. You can specify <span style="background-color:#F5F5DC">[PAP](## "Password Authentication Protocol")</span> to send clear text between the user and the server, <span style="background-color:#F5F5DC">[CHAP](## "Challenge Handshake Authentication Protocol")</span> to establish a <span style="background-color:#F5F5DC">[PPP](## "Point-to-Point Protocol")</span> connection between the user and the server, or login. The default is PAP.
+- The TACACS+ authentication type. You can specify <span class="a-tooltip">[PAP](## "Password Authentication Protocol")</span> to send clear text between the user and the server, <span class="a-tooltip">[CHAP](## "Challenge Handshake Authentication Protocol")</span> to establish a <span class="a-tooltip">[PPP](## "Point-to-Point Protocol")</span> connection between the user and the server, or login. The default is PAP.
 <!-- vale on -->
 - The users you do not want to send to the TACACS+ server for authentication; for example, local user accounts that exist on the switch, such as the cumulus user.
 - A separate home directory for each TACACS+ user when the TACACS+ user first logs in. By default, the switch uses the home directory in the mapping accounts in `/etc/passwd`. If the home directory does not exist, the `mkhomedir_helper` program creates it. This option does not apply to accounts with restricted shells (users mapped to a TACACS privilege level that has enforced per-command authorization).

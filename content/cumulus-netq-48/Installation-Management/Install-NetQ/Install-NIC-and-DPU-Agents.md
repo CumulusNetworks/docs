@@ -9,7 +9,7 @@ Installing NetQ telemetry agents on your hosts with {{<exlink url="https://www.n
 
 {{%notice note%}}
 - NIC telemetry for ConnectX adapters is supported only for on-premises NetQ deployments.
-- ConnectX telemetry is supported on DTS version 1.14.2 and above.
+- ConnectX telemetry is supported on DTS version 1.14.2 and later.
 {{%/notice%}}
 
 ## Install DTS on ConnectX Hosts
@@ -70,7 +70,7 @@ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz
 
 ## Install DTS on DPUs
 
-To install and configure the DOCA Telemetry Service container on a DPU, perform the following steps:
+To install and configure the DOCA Telemetry Service (DTS) container on a DPU, perform the following steps:
 
 1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container** and copy the image path.
 
@@ -80,7 +80,7 @@ To install and configure the DOCA Telemetry Service container on a DPU, perform 
 wget --content-disposition https://api.ngc.nvidia.com/v2/resources/nvidia/doca/doca_container_configs/versions/2.0.2v1/files/configs/2.0.2/doca_telemetry.yaml
 ```
 
-3. Edit the `command` in the `initContainers` section of the `/etc/kubelet.d/doca_telemetry_standalone.yaml` file to set the `DTS_CONFIG_DIR` parameter to `inventory_netq` and configure the fluent forwarding `-i` option to your NetQ server IP address and the `-p` option to 30001:
+3. Edit the `command` in the `initContainers` section of the `/etc/kubelet.d/doca_telemetry_standalone.yaml` file to set the `DTS_CONFIG_DIR` parameter to `inventory_netq`. Configure the fluent forwarding `-i` option to your NetQ server IP address and the `-p` option to 30001:
 
 ```
   initContainers:
@@ -92,7 +92,7 @@ wget --content-disposition https://api.ngc.nvidia.com/v2/resources/nvidia/doca/d
 This step replaces the default configuration of `command: ["/bin/bash", "-c", "/usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh"]`.
 {{%/notice%}}
 
-4. Restart the DPE service with the `service restart dpe` command.
+4. Restart the DPE service with the `service dpe restart` command.
 
 ## Related Information
 

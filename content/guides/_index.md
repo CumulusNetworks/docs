@@ -2,8 +2,9 @@
 title: Technical Guides
 author: NVIDIA
 weight: 1
-product: Technical Guides
 imgData: guides
+cascade: 
+ product: Technical Guides
 ---
 
 NVIDIA has assembled many long form technical guides that provide deep dives into various features. These guides include deployment guides, solution briefs and white papers. Most of these documents are on the {{<exlink url="https://resource.nvidia.com/l/en-us-networking" text="main website">}}, but are getting migrated to this page.

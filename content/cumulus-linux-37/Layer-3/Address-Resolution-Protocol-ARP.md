@@ -204,7 +204,7 @@ iface swp1
     post-up echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp
 ```
 
-If you're running two interfaces in the same broadcast domain, which is typically seen when using {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}, as it creates a "-v0" interface in the same broadcast domain, make sure to use `sysctl` or `sysfs` to let the kernel know, so that both interfaces do not respond with proxy ARP replies. To do so, set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the interface and the -v0 interface. Continuing with the previous example:
+If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the base SVI interface and the -v0 interface so that only one of the two interfaces replies when getting an ARP request. This prevents the v0 interface from proxy replying on behalf of the SVI (and the SVI from proxy replying on behalf of the v0 interface). You can only prevent duplicate replies when the ARP request is for the SVI or the v0 interface directly.
 
 ```
 cumulus@switch:~$ net add interface swp1 post-up "echo 2 > /proc/sys/net/ipv4/conf/swp1/medium_id"

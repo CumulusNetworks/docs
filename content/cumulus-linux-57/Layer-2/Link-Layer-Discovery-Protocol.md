@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 400
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[LLDP](## "Link Layer Discovery Protocol")</span> shows information about connected devices.
+<span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> shows information about connected devices.
 
 The `lldpd` daemon implements the IEEE802.1AB LLDP standard and starts at system boot. All `lldpd` command line arguments are in the `/etc/default/lldpd` file.
 
@@ -94,9 +94,13 @@ cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
 
 {{< /expand >}}
 
-## Enable the SNMP Subagent
+## SNMP Subagent
 
-LLDP does not enable the <span style="background-color:#F5F5DC">[SNMP](## "Simple Network Management Protocol")</span> subagent by default. To enable the SNMP subagent, edit the `/etc/default/lldpd` file and add the `-x` option:
+The <span class="a-tooltip">[SNMP](## "Simple Network Management Protocol")</span> subagent allows SNMP queries to retrieve LLDP information from the `lldpd` service.
+
+If you enable SNMP with NVUE commands, NVUE enables the SNMP subagent automatically. To disable the SNMP subagent, disable SNMP with the NVUE `nv set service snmp-server enable off` command.
+
+If you use Linux commands to configure the switch, Cumulus Linux does not enable the SNMP subagent by default. To enable the SNMP subagent, edit the `/etc/default/lldpd` file and add the `-x` option:
 
 ```
 cumulus@switch:~$ sudo nano /etc/default/lldpd
@@ -120,7 +124,7 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 
 ## Set LLDP Mode
 
-By default, the `lldpd` service sends LLDP frames unless it detects a CDP peer, then it sends CDP frames. You can change this behaviour and configure the `lldpd` service to send only CDP frames or only LLDP frames.
+By default, the `lldpd` service sends LLDP frames unless it detects a CDP peer, then it sends CDP frames. You can change this behavior and configure the `lldpd` service to send only CDP frames or only LLDP frames.
 
 {{%notice note%}}
 - You configure the `lldpd` service to send only CDP or only LLDP frames globally for all interfaces; you cannot configure these settings for specific interfaces.
@@ -218,7 +222,7 @@ tx-interval         30                30
 
 ## LLDP DCBX TLVs
 
-<span style="background-color:#F5F5DC">[DCBX](## "Data Center Bridging Capability Exchange protocol ")</span> is an extension of LLDP. Cumulus Linux supports DCBX <span style="background-color:#F5F5DC">[TLVs](## "Type-Length-Value ")</span> to provide additional information in LLDP packets to peers, such as VLAN information and <span style="background-color:#F5F5DC">[QoS](## "Quality of Service ")</span>. Adding QoS configuration as part of the DCBX TLVs allows automated configuration on hosts and switches that connect to the switch.
+<span class="a-tooltip">[DCBX](## "Data Center Bridging Capability Exchange protocol ")</span> is an extension of LLDP. Cumulus Linux supports DCBX <span class="a-tooltip">[TLVs](## "Type-Length-Value ")</span> to provide additional information in LLDP packets to peers, such as VLAN information and <span class="a-tooltip">[QoS](## "Quality of Service ")</span>. Adding QoS configuration as part of the DCBX TLVs allows automated configuration on hosts and switches that connect to the switch.
 
 {{%notice info%}}
 - Cumulus Linux can send a maximum of 250 VLANS per switch port in one LLDP frame.
@@ -240,9 +244,9 @@ Cumulus Linux supports the following TLVs:
 
 | Name               | Subtype | Description |
 |------------------- | ------- | ----------- |
-| ETS Configuration  | 9       | The <span style="background-color:#F5F5DC">[ETS](## "Enhanced Transmission Selection ")</span> configuration settings on the switch.|
-| ETS Recommendation | A       | The recommended <span style="background-color:#F5F5DC">[ETS](## "Enhanced Transmission Selection ")</span> settings that the switch wants the connected peer interface to use. |
-| PFC Configuration  | B       | The <span style="background-color:#F5F5DC">[PFC](## "Priority-based Flow Control ")</span> configuration settings on the switch. |
+| ETS Configuration  | 9       | The <span class="a-tooltip">[ETS](## "Enhanced Transmission Selection ")</span> configuration settings on the switch.|
+| ETS Recommendation | A       | The recommended <span class="a-tooltip">[ETS](## "Enhanced Transmission Selection ")</span> settings that the switch wants the connected peer interface to use. |
+| PFC Configuration  | B       | The <span class="a-tooltip">[PFC](## "Priority-based Flow Control ")</span> configuration settings on the switch. |
 <!-- vale off -->
 ### IEEE 802.3 TLVs
 <!-- vale on -->
@@ -251,7 +255,7 @@ Cumulus Linux transmits the following 802.3 TLVs by default. You do not need to 
 | Name                | Subtype | Description |
 |-------------------- | ------- | ----------- |
 | Link Aggregation    | 3       | Indicates if the port supports link aggregation and if it is on.  |
-| Maximum Frame Size  | 4       | The MTU configuration on the port. The MTU on the port is the <span style="background-color:#F5F5DC">[MFS](## "Maximum Frame Size ")</span>. |
+| Maximum Frame Size  | 4       | The MTU configuration on the port. The MTU on the port is the <span class="a-tooltip">[MFS](## "Maximum Frame Size ")</span>. |
 <!-- vale off -->
 ### Transmit IEEE 802.1 TLVs
 <!-- vale on -->

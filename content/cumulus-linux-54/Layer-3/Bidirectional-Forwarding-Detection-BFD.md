@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 990
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.
+<span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection.
 
 {{%notice note%}}
 Cumulus Linux does not support:
@@ -25,7 +25,7 @@ You can configure BFD with NVUE or vtysh commands or by specifying the configura
 - The topology file supports BFD IPv4 and IPv6 *single* hop sessions only; you *cannot* specify IPv4 or IPv6 *multihop* sessions in the topology file.
 - The topology file supports BFD sessions for only link-local IPv6 peers; BFD sessions for global IPv6 peers discovered on the link are not created.
 
-Use <span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> to register multihop peers with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}} and BFD, and monitor the connectivity to the remote <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> multihop peer. FRR can dynamically register and unregister both IPv4 and IPv6 peers with BFD when the BFD-enabled peer connectivity starts or stops. Also, you can configure BFD parameters for each BGP or <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span> peer.
+Use <span class="a-tooltip">[FRR](## "FRRouting")</span> to register multihop peers with {{<link url="Prescriptive-Topology-Manager-PTM" text="PTM">}} and BFD, and monitor the connectivity to the remote <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> multihop peer. FRR can dynamically register and unregister both IPv4 and IPv6 peers with BFD when the BFD-enabled peer connectivity starts or stops. Also, you can configure BFD parameters for each BGP or <span class="a-tooltip">[OSPF](## "Open Shortest Path First")</span> peer.
 
 {{%notice note%}}
 The BFD parameter in the topology file takes precedence over the client-configured BFD parameters for a BFD session that both the topology file and FRR creates.

@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show system port-mirror</h>
 
-Shows <span style="background-color:#F5F5DC">[SPAN](## "Switched Port Analyzer")</span> and <span style="background-color:#F5F5DC">[ERSPAN](## "Encapsulated Remote Switched Port Analyzer")</span> configuration settings.
+Shows <span class="a-tooltip">[SPAN](## "Switched Port Analyzer")</span> and <span class="a-tooltip">[ERSPAN](## "Encapsulated Remote Switched Port Analyzer")</span> configuration settings.
 
 ### Version History
 
@@ -104,7 +104,7 @@ span
 
 ## <h>nv show system port-mirror session \<session-id\> erspan</h>
 
-Shows information about the specified <span style="background-color:#F5F5DC">[ERSPAN](## "Encapsulated Remote Switched Port Analyzer")</span> session.
+Shows information about the specified <span class="a-tooltip">[ERSPAN](## "Encapsulated Remote Switched Port Analyzer")</span> session.
 
 ### Command Syntax
 

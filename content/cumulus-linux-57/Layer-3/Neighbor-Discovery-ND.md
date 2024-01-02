@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1002
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[ND](## "Neighbor Discovery")</span> allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
+<span class="a-tooltip">[ND](## "Neighbor Discovery")</span> allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
 
 ND is on by default. Cumulus Linux provides a set of configuration options to support IPv6 networks and adjust your security settings.
 
@@ -390,7 +390,7 @@ interface swp1
 
 ## MTU
 
-You can set the <span style="background-color:#F5F5DC">[MTU](## "Maximum Transmission Unit")</span> for neighbor discovery messages on an interface. You can configure a value between 1 and 65535.
+You can set the <span class="a-tooltip">[MTU](## "Maximum Transmission Unit")</span> for neighbor discovery messages on an interface. You can configure a value between 1 and 65535.
 
 To following example commands set the MTU on swp1 to 1500:
 
@@ -469,9 +469,135 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
+## Add Static IP Neighbor Table Entries
+
+You can add static IPv6 neighbor table entries for easy management or as a security measure to prevent spoofing and other nefarious activities.
+
+To create a static neighbor entry for an interface with an IPv6 address associated with a MAC address, run the `nv set interface <interface> neighbor ipv6 <ip-address> lladdr <mac-address>` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+You can also set a flag to indicate that the neighbour is a router (`is-router`) or learned externally (`ext_learn`) and set the neighbor state (`delay`, `failed`, `incomplete`, `noarp`, `permanent`, `probe`, `reachable`, or `stale`).
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 flag is-router
+cumulus@leaf01:mgmt:~$ nv set interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 state permanent
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+To delete an entry in the IP neighbor table, run the `nv unset interface <interface> neighbor ipv6 <ip-address>` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv unset interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+## Show the IP Neighbor Table
+
+To show all the entries in the IP neighbor table, run the `nv show interface neighbor` command or the Linux `ip neighbor` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface neighbor
+Interface      IP/IPV6                    LLADR(MAC)         State      Flag      
+-------------  -------------------------  -----------------  ---------  ----------
+eth0           192.168.200.251            48:b0:2d:00:00:01  stale                
+               192.168.200.1              48:b0:2d:aa:8b:45  reachable            
+               fe80::4ab0:2dff:fe00:1     48:b0:2d:00:00:01  reachable  router    
+peerlink.4094  169.254.0.1                48:b0:2d:3f:69:d6  permanent            
+               fe80::4ab0:2dff:fe3f:69d6  48:b0:2d:3f:69:d6  reachable  router    
+swp51          169.254.0.1                48:b0:2d:a2:4c:79  permanent            
+               fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  router    
+swp52          169.254.0.1                48:b0:2d:48:f1:ae  permanent            
+               fe80::4ab0:2dff:fe48:f1ae  48:b0:2d:48:f1:ae  reachable  router    
+swp53          169.254.0.1                48:b0:2d:2d:de:93  permanent            
+               fe80::4ab0:2dff:fe2d:de93  48:b0:2d:2d:de:93  reachable  router    
+swp54          169.254.0.1                48:b0:2d:80:8c:21  permanent            
+               fe80::4ab0:2dff:fe80:8c21  48:b0:2d:80:8c:21  reachable  router    
+vlan10         10.1.10.3                  44:38:39:22:01:78  permanent            
+               10.1.10.101                48:b0:2d:a1:3f:4b  reachable            
+               10.1.10.104                48:b0:2d:1d:d7:e8  noarp      |ext_learn
+               fe80::4ab0:2dff:fea1:3f4b  48:b0:2d:a1:3f:4b  reachable            
+               fe80::4ab0:2dff:fe1d:d7e8  48:b0:2d:1d:d7:e8  noarp      |ext_learn
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
+vlan10-v0      10.1.10.101                48:b0:2d:a1:3f:4b  stale                
+               fe80::4ab0:2dff:fea1:3f4b  48:b0:2d:a1:3f:4b  stale                
+               fe80::4ab0:2dff:fe1d:d7e8  48:b0:2d:1d:d7:e8  stale                
+vlan20         10.1.20.105                48:b0:2d:75:bf:9e  noarp      |ext_learn
+               10.1.20.102                48:b0:2d:00:e9:05  reachable            
+               10.1.20.3                  44:38:39:22:01:78  permanent            
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
+               fe80::4ab0:2dff:fe75:bf9e  48:b0:2d:75:bf:9e  noarp      |ext_learn
+               fe80::4ab0:2dff:fe00:e905  48:b0:2d:00:e9:05  reachable
+...
+```
+
+To show IPv6 entries only, run the Linux `ip -6 neighbor` command:
+
+```
+cumulus@leaf01:mgmt:~$
+fe80::4ab0:2dff:fe4e:c76a dev vlan30 lladdr 48:b0:2d:4e:c7:6a extern_learn  NOARP proto zebra 
+fe80::4ab0:2dff:fea1:3f4b dev vlan10 lladdr 48:b0:2d:a1:3f:4b REACHABLE
+fe80::4ab0:2dff:fee9:d399 dev vlan30-v0 lladdr 48:b0:2d:e9:d3:99 STALE
+fe80::4ab0:2dff:fe75:bf9e dev vlan20-v0 lladdr 48:b0:2d:75:bf:9e STALE
+fe80::4638:39ff:fe22:178 dev vlan20 lladdr 44:38:39:22:01:78 PERMANENT
+fe80::4ab0:2dff:fea2:4c79 dev swp51 lladdr 48:b0:2d:a2:4c:79 router REACHABLE
+fe80::4ab0:2dff:fe00:1 dev eth0 lladdr 48:b0:2d:00:00:01 router REACHABLE
+fe80::4ab0:2dff:fee9:d399 dev vlan30 lladdr 48:b0:2d:e9:d3:99 REACHABLE
+fe80::4ab0:2dff:fe48:f1ae dev swp52 lladdr 48:b0:2d:48:f1:ae router REACHABLE
+fe80::4ab0:2dff:fe1d:d7e8 dev vlan10 lladdr 48:b0:2d:1d:d7:e8 extern_learn  NOARP proto zebra 
+fe80::4ab0:2dff:fea1:3f4b dev vlan10-v0 lladdr 48:b0:2d:a1:3f:4b STALE
+fe80::4ab0:2dff:fe80:8c21 dev swp54 lladdr 48:b0:2d:80:8c:21 router REACHABLE
+fe80::4ab0:2dff:fe75:bf9e dev vlan20 lladdr 48:b0:2d:75:bf:9e extern_learn  NOARP proto zebra 
+fe80::4638:39ff:fe22:178 dev vlan4024_l3 lladdr 44:38:39:22:01:78 PERMANENT
+fe80::4ab0:2dff:fe00:e905 dev vlan20-v0 lladdr 48:b0:2d:00:e9:05 STALE
+fe80::4ab0:2dff:fe3f:69d6 dev peerlink.4094 lladdr 48:b0:2d:3f:69:d6 router REACHABLE
+...
+```
+
+To show all table entries for a specific interface, run the `nv show interface <interface_id> neighbor` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor
+ipv4
+=========
+    IPV4         LLADR(MAC)         State      Flag
+    -----------  -----------------  ---------  ----
+    10.5.5.51    00:00:5e:00:53:51  permanent      
+    169.254.0.1  48:b0:2d:a2:4c:79  permanent
+ipv6
+=========
+    IPV6                       LLADR(MAC)         State      Flag     
+    -------------------------  -----------------  ---------  ---------
+    fe80::4ab0:2dff:fea2:4c79  48:b0:2d:a2:4c:79  reachable  is-router
+```
+
+To show all IPv6 table entries for an interface, run the `nv show interface <interface> neighbor ipv6` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 neighbor ipv6
+IPV6                       LLADR(MAC)         State      Flag
+-------------------------  -----------------  ---------  ---------
+fe80::1e34:daff:fe6c:dd8   1c:34:da:6c:0d:d8  stale
+fe80::3e2c:30ff:fe4b:800   3c:2c:30:4b:08:00  reachable
+```
+
+To show table entries for an interface with a specific IPv6 address, run the `nv show interface <interface_id> neighbor ipv6 <ip-address>` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp51 neighbor ipv6 fe80::4ab0:2dff:fea2:4c79
+lladdr
+=========
+    LLADR(MAC)         State      Flag
+    -----------------  ---------  ----
+    00:00:5E:00:53:51  permanent
+```
+
 ## Troubleshooting
 
-To show the ND settings for an interface, run the NVUE `nv show interface <interface-id> ip neighbor-discovery` command:
+To show the ND configuration settings for an interface, run the NVUE `nv show interface <interface-id> ip neighbor-discovery` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery

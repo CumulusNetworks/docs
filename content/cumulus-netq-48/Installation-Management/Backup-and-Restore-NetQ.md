@@ -46,12 +46,8 @@ cumulus@netq-appliance:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 
 4. In the directory you copied the `vm-backuprestore.sh` script, run:
 
-{{%notice note%}}
-The `vm-backuprestore.sh` script stops NetQ pods during operation. Run the script with the `--start_pods` option to restart them after the backup completes. 
-{{%/notice%}}
-
 ```
-cumulus@netq-appliance:~$ sudo ./vm-backuprestore.sh --backup --start_pods
+cumulus@netq-appliance:~$ sudo ./vm-backuprestore.sh --backup
 [sudo] password for cumulus:
 Mon Feb  6 12:37:18 2023 - Please find detailed logs at: /var/log/vm-backuprestore.log
 Mon Feb  6 12:37:18 2023 - Starting backup of data, the backup might take time based on the size of the data
@@ -81,12 +77,8 @@ cumulus@netq-appliance:~$
 
 1. Run the backup script `/usr/sbin/vm-backuprestore.sh`:
 
-{{%notice note%}}
-The `vm-backuprestore.sh` script stops NetQ pods during operation. Run the script with the `--start_pods` option to restart them after the backup completes. 
-{{%/notice%}}
-
 ```
-cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup --start_pods
+cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
 ```
 
 2. Verify the backup file creation was successful:
@@ -119,8 +111,8 @@ Data restored successfully
   The config key restored is EhVuZXRxLWVuZHBvaW50LWdhdGVfYXkYsagDIix2OUJhMUpyekMwSHBBaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==, alternately the config key is available in file /tmp/config-key
  
   Pass the config key while bootstrapping:
-  Example(standalone): netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.7.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
-  Example(cluster):    netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.7.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
+  Example(standalone): netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
+  Example(cluster):    netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
   Alternately you can setup config-key post bootstrap in case you missed to pass it during bootstrap
   Example(standalone): netq install standalone activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
   Example(cluster):    netq install cluster activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==

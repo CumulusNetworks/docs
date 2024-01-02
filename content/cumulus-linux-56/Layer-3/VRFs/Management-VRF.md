@@ -173,7 +173,7 @@ To run services in the management VRF as a non-root user, you need to create a c
 
 ## OSPF and BGP
 
-<span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> is VRF-aware and sends packets based on the switch port routing table. This includes BGP peering through loopback interfaces. BGP looks up routes in the default table. However, depending on how you redistribute your routes, you can perform the following modification.
+<span class="a-tooltip">[FRR](## "FRRouting")</span> is VRF-aware and sends packets based on the switch port routing table. This includes BGP peering through loopback interfaces. BGP looks up routes in the default table. However, depending on how you redistribute your routes, you can perform the following modification.
 
 Management VRF uses the mgmt table, including local routes. This does not affect route redistribution when you use routing protocols, such as OSPF and BGP.
 

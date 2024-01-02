@@ -4,27 +4,31 @@ author: NVIDIA
 weight: 960
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[PIM](## "Protocol Independent Multicast")</span> is a multicast control plane protocol that advertises multicast sources and receivers over a routed layer 3 network. Layer 3 multicast relies on PIM to advertise information about multicast capable routers, and the location of multicast senders and receivers. Multicast does not go through a routed network without PIM.
+<span class="a-tooltip">[PIM](## "Protocol Independent Multicast")</span> is a multicast control plane protocol that advertises multicast sources and receivers over a routed layer 3 network. Layer 3 multicast relies on PIM to advertise information about multicast capable routers, and the location of multicast senders and receivers. Multicast does not go through a routed network without PIM.
 
-PIM operates in <span style="background-color:#F5F5DC">[PIM-SM](## "Sparse Mode")</span> or <span style="background-color:#F5F5DC">[PIM-DM](## "Dense Mode")</span> mode. Cumulus Linux supports PIM-SM only.
+PIM operates in <span class="a-tooltip">[PIM-SM](## "Sparse Mode")</span> or <span class="a-tooltip">[PIM-DM](## "Dense Mode")</span> mode. Cumulus Linux supports PIM-SM only.
 
 PIM-SM is a *pull* multicast distribution method; multicast traffic only goes through the network if receivers explicitly ask for it. When a receiver *pulls* multicast traffic, it must notify the network periodically that it wants to continue the multicast stream.
 
 PIM-SM has three configuration options:
-- <span style="background-color:#F5F5DC">[ASM](## "Any-source Mulitcast")</span> relies on a multicast rendezvous point (RP) to connect multicast senders and receivers that dynamically determine the shortest path through the network.
-- <span style="background-color:#F5F5DC">[SSM](## "Source Specific Multicast")</span> requires multicast receivers to know from which source they want to receive multicast traffic instead of relying on an RP.
-- <span style="background-color:#F5F5DC">[BiDir](## "Bidirectional PIM")</span> forwards all traffic through the RP instead of tracking multicast source IPs, allowing for greater scale but can cause inefficient traffic forwarding.
+- <span class="a-tooltip">[ASM](## "Any-source Mulitcast")</span> relies on a multicast rendezvous point (RP) to connect multicast senders and receivers that dynamically determine the shortest path through the network.
+- <span class="a-tooltip">[SSM](## "Source Specific Multicast")</span> requires multicast receivers to know from which source they want to receive multicast traffic instead of relying on an RP.
+- <span class="a-tooltip">[BiDir](## "Bidirectional PIM")</span> forwards all traffic through the RP instead of tracking multicast source IPs, allowing for greater scale but can cause inefficient traffic forwarding.
 
 Cumulus Linux supports ASM and SSM only.
+
+{{%notice note%}}
+IGMPv3 works only with SSM multicast group ranges.
+{{%/notice%}}
 
 For additional information on PIM-SM, refer to {{<exlink url="https://tools.ietf.org/html/rfc7761" text="RFC 7761 - Protocol Independent Multicast - Sparse Mode">}}. For a brief description of how PIM works, refer to [PIM Overview]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).
 
 ## Example PIM Topology
 
-The following illustration shows a basic PIM <span style="background-color:#F5F5DC">[ASM](## "Any-source Mulitcast")</span> configuration:
-- leaf01 is the <span style="background-color:#F5F5DC">[FHR](## "First Hop Router")</span>, which controls the PIM register process. The FHR is the device to which the multicast sources connect.
-- leaf02 is the <span style="background-color:#F5F5DC">[LHR](## "Last Hop Router")</span>, which is the last router in the path and attaches to an interested multicast receiver.
-- spine01 is the <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span>, which receives multicast data from sources and forwards traffic down a shared distribution tree to the receivers.
+The following illustration shows a basic PIM <span class="a-tooltip">[ASM](## "Any-source Mulitcast")</span> configuration:
+- leaf01 is the <span class="a-tooltip">[FHR](## "First Hop Router")</span>, which controls the PIM register process. The FHR is the device to which the multicast sources connect.
+- leaf02 is the <span class="a-tooltip">[LHR](## "Last Hop Router")</span>, which is the last router in the path and attaches to an interested multicast receiver.
+- spine01 is the <span class="a-tooltip">[RP](## "Rendezvous Point")</span>, which receives multicast data from sources and forwards traffic down a shared distribution tree to the receivers.
 
 {{< figure src = "/images/cumulus-linux/pim-basic-example.png" >}}
 
@@ -35,10 +39,10 @@ To configure PIM:
 
   With NVUE, you must also run the `nv set router pim enable on` command to enable and start the PIM service. This is not required for vtysh configuration.
 
-- Enable <span style="background-color:#F5F5DC">[IGMP](## "Internet Group Management Protocol")</span> on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. For <span style="background-color:#F5F5DC">[SSM](## "Source Specific Multicast")</span>, you must use IGMP version 3.
-- For <span style="background-color:#F5F5DC">[ASM](## "Any-source Mulitcast")</span>, on each PIM enabled switch, specify the IP address of the RP for the multicast group. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
+- Enable <span class="a-tooltip">[IGMP](## "Internet Group Management Protocol")</span> on all interfaces that attach to a host and all interfaces that attach to a multicast receiver. IGMP version 3 is the default. Only specify the version if you want to use IGMP version 2. For <span class="a-tooltip">[SSM](## "Source Specific Multicast")</span>, you must use IGMP version 3.
+- For <span class="a-tooltip">[ASM](## "Any-source Mulitcast")</span>, on each PIM enabled switch, specify the IP address of the RP for the multicast group. You can also configure PIM to send traffic from specific multicast groups to specific RPs.
 
-  <span style="background-color:#F5F5DC">[SSM](## "Source Specific Multicast")</span> uses prefix lists to configure a receiver to only allow traffic to a multicast address from a single source. This removes the need for an RP because the receiver must know the source before accepting traffic. To enable SSM, you only need to enable PIM and IGMPv3 on the interfaces.
+  <span class="a-tooltip">[SSM](## "Source Specific Multicast")</span> uses prefix lists to configure a receiver to only allow traffic to a multicast address from a single source. This removes the need for an RP because the receiver must know the source before accepting traffic. To enable SSM, you only need to enable PIM and IGMPv3 on the interfaces.
 
 These example commands configure leaf01, leaf02 and spine01 as shown in the topology example above.
 
@@ -89,7 +93,7 @@ cumulus@spine01:~$ nv config apply
 {{< tabs "TabID91 ">}}
 {{< tab "leaf01 ">}}
 
-The <span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> package includes PIM. For proper PIM operation, PIM depends on Zebra. You must configure unicast routing and a routing protocol or static routes.
+The <span class="a-tooltip">[FRR](## "FRRouting")</span> package includes PIM. For proper PIM operation, PIM depends on Zebra. You must configure unicast routing and a routing protocol or static routes.
 
 1. Edit the `/etc/frr/daemons` file and add `pimd=yes` to the end of the file:
 
@@ -293,7 +297,7 @@ This section describes optional configuration procedures.
 
 ### ASM SPT Infinity
 
-When the LHR receives the first multicast packet, it sends a <span style="background-color:#F5F5DC">[PIM (S,G) join](## "a single PIM message with a list of groups to join. ")</span> towards the FHR to forward traffic through the network. This builds the <span style="background-color:#F5F5DC">[SPT](## "shortest path tree ")</span>, or the tree that is the shortest path to the source. When the traffic arrives over the SPT, a PIM (S,G) RPT prune goes up the shared tree towards the RP. This removes multicast traffic from the shared tree; multicast data only goes over the SPT.
+When the LHR receives the first multicast packet, it sends a <span class="a-tooltip">[PIM (S,G) join](## "a single PIM message with a list of groups to join. ")</span> towards the FHR to forward traffic through the network. This builds the <span class="a-tooltip">[SPT](## "shortest path tree ")</span>, or the tree that is the shortest path to the source. When the traffic arrives over the SPT, a PIM (S,G) RPT prune goes up the shared tree towards the RP. This removes multicast traffic from the shared tree; multicast data only goes over the SPT.
 
 You can configure SPT switchover per group (SPT infinity), which allows for some groups to never switch to a shortest path tree. The LHR now sends both (*,G) joins and (S,G) RPT prune messages towards the RP.
 
@@ -347,10 +351,10 @@ Source          Group           Proto   Input     Output     TTL  Uptime
 
 ### SSM Multicast Group Ranges
 
-For <span style="background-color:#F5F5DC">[SSM](## "Source Specific Multicast")</span>, `232.0.0.0/8` is the default multicast group range. To change the multicast group range, define a prefix list and apply it. You can change the default group or add additional group ranges.
+232.0.0.0/8 is the default multicast group range reserved for <span class="a-tooltip">[SSM](## "Source Specific Multicast")</span>. To modify the SSM multicast group range, define a prefix list and apply it. You can change (expand) the default group or add additional groups to this range.
 
 {{%notice note%}}
-You must include `232.0.0.0/8` in the prefix list. When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
+You must include 232.0.0.0/8 in the prefix list as this is the reserved SSM range. Using a prefix-list, you can expand the SSM range but all devices in the source tree must agree on the SSM range. When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
 {{%/notice%}}
 
 {{< tabs "TabID825 ">}}
@@ -409,9 +413,9 @@ PIM: ip prefix-list my-custom-ssm-range: 1 entries
 
 ### PIM and ECMP
 
-PIM uses <span style="background-color:#F5F5DC">[RPF](## "Reverse Path Forwarding")</span> to choose an upstream interface to build a forwarding state. If you configure <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multipaths")</span>, PIM chooses the RPF based on the ECMP hash algorithm.
+PIM uses <span class="a-tooltip">[RPF](## "Reverse Path Forwarding")</span> to choose an upstream interface to build a forwarding state. If you configure <span class="a-tooltip">[ECMP](## "Equal Cost Multipaths")</span>, PIM chooses the RPF based on the ECMP hash algorithm.
 
-You can configure PIM to use all the available next hops when installing mroutes. For example, if you have four-way ECMP, PIM spreads the <span style="background-color:#F5F5DC">[S,G](## "Represents the source entry. S is the multicast source IP. G is the multicast group.")</span> and <span style="background-color:#F5F5DC">[\*,G](## "Represents the RP Tree. \* is a wildcard indicating any multicast source. G is the multicast group.")</span> mroutes across the four different paths.
+You can configure PIM to use all the available next hops when installing mroutes. For example, if you have four-way ECMP, PIM spreads the <span class="a-tooltip">[S,G](## "Represents the source entry. S is the multicast source IP. G is the multicast group.")</span> and <span class="a-tooltip">[\*,G](## "Represents the RP Tree. \* is a wildcard indicating any multicast source. G is the multicast group.")</span> mroutes across the four different paths.
 
 You can also configure PIM to recalculate all stream paths over one of the ECMP paths if the switch loses a path. Otherwise, only the streams that are using the lost path move to alternate ECMP paths. This recalculation does not affect existing groups.
 
@@ -515,9 +519,9 @@ switch# exit
 
 ### MSDP
 
-You can use <span style="background-color:#F5F5DC">[MSDP](## "Multicast Source Discovery Protocol")</span> to connect multiple PIM-SM multicast domains using the PIM-SM RPs. If you configure anycast RPs with the same IP address on multiple multicast switches (on the loopback interface), you can use more than one RP per multicast group.
+You can use <span class="a-tooltip">[MSDP](## "Multicast Source Discovery Protocol")</span> to connect multiple PIM-SM multicast domains using the PIM-SM RPs. If you configure anycast RPs with the same IP address on multiple multicast switches (on the loopback interface), you can use more than one RP per multicast group.
 
-When an RP discovers a new source (a PIM-SM register message), it sends an <span style="background-color:#F5F5DC">[SA](## "source-active")</span> message to each MSDP peer. The peer then determines if there are any interested receivers.
+When an RP discovers a new source (a PIM-SM register message), it sends an <span class="a-tooltip">[SA](## "source-active")</span> message to each MSDP peer. The peer then determines if there are any interested receivers.
 
 {{%notice note%}}
 - Cumulus Linux supports MSDP for anycast RP, not multiple multicast domains. You must configure each MSDP peer in a full mesh. The switch does not forward received SA messages.
@@ -646,7 +650,7 @@ The following steps configure a Cumulus switch to use MSDP:
 
 PIM in a VRF enables PIM trees and multicast data traffic to run inside a layer 3 virtualized network, with a separate tree per domain or tenant. Each VRF has its own multicast tree with its own RPs, sources, and so on. Therefore, you can have one tenant per corporate division, client, or product.
 
-If you do not enable <span style="background-color:#F5F5DC">[MP-BGP](## "Multi Protocol BGP ")</span> <span style="background-color:#F5F5DC">[MPLS VPN](## "Multiprotocol Label Switching virtual private network")</span>, VRFs on different switches typically connect or peer over subinterfaces, where each subinterface is in its own VRF.
+If you do not enable <span class="a-tooltip">[MP-BGP](## "Multi Protocol BGP ")</span> <span class="a-tooltip">[MPLS VPN](## "Multiprotocol Label Switching virtual private network")</span>, VRFs on different switches typically connect or peer over subinterfaces, where each subinterface is in its own VRF.
 
 To configure PIM in a VRF:
 
@@ -936,7 +940,7 @@ switch# exit
 
 ### Improve Multicast Convergence
 
-For large multicast environments, the default <span style="background-color:#F5F5DC">[CoPP](## "Control Plane Policing")</span> policer might be too restrictive. You can adjust the policer to improve multicast convergence.
+For large multicast environments, the default <span class="a-tooltip">[CoPP](## "Control Plane Policing")</span> policer might be too restrictive. You can adjust the policer to improve multicast convergence.
 
 - The default PIM forwarding rate and burst rate is set to 2000 packets per second.
 - The default IGMP forwarding rate and burst rate is set to 1000 packets per second.
@@ -999,7 +1003,7 @@ cumulus@switch:~$ nv config apply
 You can set the following optional IGMP settings on a PIM interface:
 - The last member query interval, which is the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 10.
 - The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 100.
-- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255 seconds. The default setting is 2.
+- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255. The default setting is 2.
 - How often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 65535 seconds. The default setting is 125.
 - Fast leave processing, where the switch immediately removes a port from the forwarding entry for a multicast group when the port receives a leave message. The default setting is off.
 
@@ -1091,7 +1095,7 @@ Traffic from multicast sources attached to an MLAG bond always goes over the MLA
 {{<link url="Multi-Chassis-Link-Aggregation-MLAG#peer-link-sizing" text="size the peerlink appropriately">}} to accommodate this traffic.
 {{%/notice%}}
 
-The <span style="background-color:#F5F5DC">[PIM DR](## "PIM Designated Router")</span> for the VLAN where the source resides sends the PIM register towards the RP. The PIM DR is the PIM speaker with the highest IP address on the segment. After the PIM register process is complete and traffic is flowing along the <span style="background-color:#F5F5DC">[SPT](## "Shortest Path Tree ")<span>, either MLAG switch forwards traffic towards the receivers.
+The <span class="a-tooltip">[PIM DR](## "PIM Designated Router")</span> for the VLAN where the source resides sends the PIM register towards the RP. The PIM DR is the PIM speaker with the highest IP address on the segment. After the PIM register process is complete and traffic is flowing along the <span class="a-tooltip">[SPT](## "Shortest Path Tree ")<span>, either MLAG switch forwards traffic towards the receivers.
 
 PIM joins sent towards the source can be ECMP load shared by upstream PIM neighbors. Either MLAG member can receive the PIM join and forward traffic, regardless of DR status.
 
@@ -1101,7 +1105,7 @@ A dual-attached **multicast receiver** sends an IGMP join on the attached VLAN. 
 Traditionally, the PIM DR is the only node to send the PIM *,G Join. To provide resiliency in case of failure, both MLAG switches send PIM *,G Joins towards the RP to receive the multicast stream.
 {{%/notice%}}
 
-To prevent duplicate multicast packets, PIM elects a <span style="background-color:#F5F5DC">[DF](## "PIM Designated Forwarder")</span>, which is the `primary` member of the MLAG pair. The MLAG secondary switch puts the VLAN in the <span style="background-color:#F5F5DC">[OIL](## "Outgoing Interface List")</span>, preventing duplicate multicast traffic.
+To prevent duplicate multicast packets, PIM elects a <span class="a-tooltip">[DF](## "PIM Designated Forwarder")</span>, which is the `primary` member of the MLAG pair. The MLAG secondary switch puts the VLAN in the <span class="a-tooltip">[OIL](## "Outgoing Interface List")</span>, preventing duplicate multicast traffic.
 
 ### Example Traffic Flow
 
@@ -1256,7 +1260,7 @@ Interface         Address          Source           Group            Membership
 vlan20            10.2.10.1        *                239.1.1.1        INCLUDE 
 ```
 
-To show information about known S,Gs, the <span style="background-color:#F5F5DC">[IIF](## "Incoming Interface")</span> and the <span style="background-color:#F5F5DC">[OIL](## "Outgoing Interface")</span>, run the vtysh `show ip pim state` command or the `net show pim state` command.
+To show information about known S,Gs, the <span class="a-tooltip">[IIF](## "Incoming Interface")</span> and the <span class="a-tooltip">[OIL](## "Outgoing Interface")</span>, run the vtysh `show ip pim state` command or the `net show pim state` command.
 
 ```
 cumulus@fhr:~$ sudo vtysh
@@ -1312,7 +1316,7 @@ vlan20           10.2.10.1       239.1.1.1       *               03:13   Y 05:28
 
 ### FHR Stuck in the Registering Process
 
-When a multicast source starts, the FHR sends unicast PIM register messages from the <span style="background-color:#F5F5DC">[RPF](## "Reverse Path Forwarding")</span> interface towards the source. After the RP receives the PIM register, it sends a `PIM register stop` message to the FHR to end the register process. If an issue occurs with this communication, the FHR becomes stuck in the registering process, which can result in high CPU (the FHR CPU generates and sends PIM register packets to the RP CPU).
+When a multicast source starts, the FHR sends unicast PIM register messages from the <span class="a-tooltip">[RPF](## "Reverse Path Forwarding")</span> interface towards the source. After the RP receives the PIM register, it sends a `PIM register stop` message to the FHR to end the register process. If an issue occurs with this communication, the FHR becomes stuck in the registering process, which can result in high CPU (the FHR CPU generates and sends PIM register packets to the RP CPU).
 
 To assess this issue, review the FHR. You can see the output interface of `pimreg` here. If this does not change to an interface within a couple of seconds, it is possible that the FHR remains in the registering process.
 
@@ -1371,7 +1375,7 @@ To troubleshoot the issue:
 
 ### LHR Does Not Build \*,G
 
-If you do not enable both PIM **and** IGMP on an interface facing a receiver, the LHR does not build <span style="background-color:#F5F5DC">[\*,G](## "Represents the RP Tree. \* is a wildcard indicating any multicast source. G is the multicast group.")</span>.
+If you do not enable both PIM **and** IGMP on an interface facing a receiver, the LHR does not build <span class="a-tooltip">[\*,G](## "Represents the RP Tree. \* is a wildcard indicating any multicast source. G is the multicast group.")</span>.
 
 ```
 cumulus@lhr:~$ sudo vtysh
@@ -1419,7 +1423,7 @@ To troubleshoot this issue:
    !
    ```
 
-3. Verify that the <span style="background-color:#F5F5DC">[RPF](## "Reverse Path Forwarding")</span> interface for the source matches the interface that receives multicast traffic:
+3. Verify that the <span class="a-tooltip">[RPF](## "Reverse Path Forwarding")</span> interface for the source matches the interface that receives multicast traffic:
 
    ```
    fhr# show ip rpf 10.1.10.1
@@ -2194,7 +2198,7 @@ This simulation starts with the example PIM configuration. To simplify the examp
 
 - To show the multicast routing table, run the NCLU `net show mroute` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
 - To see the active source on the RP, run the `net show pim upstream` command on spine01.
-- To show information about known S,Gs, the <span style="background-color:#F5F5DC">[IIF](## "Incoming Interface")</span> and the <span style="background-color:#F5F5DC">[OIL](## "Outgoing Interface")</span>, run the `net show pim state` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
+- To show information about known S,Gs, the <span class="a-tooltip">[IIF](## "Incoming Interface")</span> and the <span class="a-tooltip">[OIL](## "Outgoing Interface")</span>, run the `net show pim state` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).
 
 To further validate the configuration, run the PIM show commands listed in the troubleshooting section above.
 

@@ -9,7 +9,7 @@ The most basic SNMP configuration requires you to:
 - Specify one or more IP addresses on which the SNMP agent listens.
 - Specify either a username (for SNMPv3) or a read-only community string (a password, for SNMPv1 or SNMPv2c).
 
-By default, the SNMP configuration has a listening address of localhost (127.0.0.1), which allows the agent (the `snmpd` service) to respond to SNMP requests originating on the switch itself. This is a secure method that allows checking the SNMP configuration without exposing the switch to outside attacks. For an external SNMP <span style="background-color:#F5F5DC">[NMS](## "Network Management Software")</span> to poll a Cumulus Linux switch, you must configure the `snmpd` service running on the switch to listen to one or more IP addresses on interfaces that have a link state UP.
+By default, the SNMP configuration has a listening address of localhost (127.0.0.1), which allows the agent (the `snmpd` service) to respond to SNMP requests originating on the switch itself. This is a secure method that allows checking the SNMP configuration without exposing the switch to outside attacks. For an external SNMP <span class="a-tooltip">[NMS](## "Network Management Software")</span> to poll a Cumulus Linux switch, you must configure the `snmpd` service running on the switch to listen to one or more IP addresses on interfaces that have a link state UP.
 
 Use the SNMPv3 username instead of the read-only community name. The SNMPv3 username does not expose the user credentials and can encrypt packet contents. However, SNMPv1 and SNMPv2c environments require read-only community passwords so that the `snmpd` daemon can respond to requests. The read-only community string enables you to poll various MIB objects on the device.
 
@@ -26,13 +26,17 @@ cumulus@switch:~$ nv set service snmp-server listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice warning%}}
+If you disable the `snmpd` service with the `nv set service snmp-server enable off` command, the FRR service restarts, which might impact traffic.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 {{%notice note%}}
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service.
 
-You do not need to run SNMP in the management VRF if you just want to allow SNMP communicaton through the managment VRF interfaces; see {{<link url="#snmp-and-vrfs" text="SNMP and VRFs">}}.
+You do not need to run SNMP in the management VRF if you just want to allow SNMP communication through the management VRF interfaces; see {{<link url="#snmp-and-vrfs" text="SNMP and VRFs">}}.
 {{%/notice%}}
 
 1. Start the `snmpd` service:
@@ -194,7 +198,7 @@ You can authenticate the user in the following ways:
 
 - With no authentication password (if you specify `auth-none`)
 - With an MD5 password
-- With a SHA password
+- With an SHA password
 
 {{< tabs "username" >}}
 {{< tab "NVUE Commands" >}}
@@ -527,6 +531,11 @@ To verify the configuration, you can run `snmpwalk`.
 ```
 cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14
 ```
+
+{{%notice warning%}}
+If you disable the SNMP server with AgentX enabled, the FRR service restarts, which might impact traffic.
+{{%/notice%}}
+
 <!-- vale off -->
 ### Enable the .1.3.6.1.2.1 Range
 <!-- vale on -->

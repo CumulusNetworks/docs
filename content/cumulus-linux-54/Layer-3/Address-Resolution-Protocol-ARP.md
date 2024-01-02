@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1000
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[ARP](## "Address Resolution Protocol")</span> is a communication protocol that discovers the link layer address, such as a MAC address, associated with a network layer address. The Cumulus Linux ARP implementation differs from standard Debian Linux ARP behavior because Cumulus Linux is an operating system for routers and switches, not servers.
+<span class="a-tooltip">[ARP](## "Address Resolution Protocol")</span> is a communication protocol that discovers the link layer address, such as a MAC address, associated with a network layer address. The Cumulus Linux ARP implementation differs from standard Debian Linux ARP behavior because Cumulus Linux is an operating system for routers and switches, not servers.
 
 For a definition of ARP, refer to {{<exlink url="https://tools.ietf.org/html/rfc826" text="RFC 826">}}.
 
@@ -155,7 +155,7 @@ cumulus@switch:~$ sudo ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the interface and the -v0 interface so that both interfaces do not respond with proxy ARP replies.
+If you are running two interfaces in the same broadcast domain (typically seen when using {{<link url="Virtual-Router-Redundancy-VRR-and-VRRP" text="VRR">}}, which creates a `-v0` interface in the same broadcast domain), set `/proc/sys/net/ipv4/conf/<INTERFACE>/medium_id` to *2* on both the base SVI interface and the -v0 interface so that only one of the two interfaces replies when getting an ARP request. This prevents the v0 interface from proxy replying on behalf of the SVI (and the SVI from proxy replying on behalf of the v0 interface). You can only prevent duplicate replies when the ARP request is for the SVI or the v0 interface directly.
 
 {{< tabs "TabID174 ">}}
 {{< tab "NVUE Commands ">}}

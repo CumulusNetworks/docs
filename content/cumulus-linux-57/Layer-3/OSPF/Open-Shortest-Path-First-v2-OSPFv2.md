@@ -8,11 +8,15 @@ This topic describes OSPFv2, which is a link-state routing protocol for IPv4. Fo
 
 ## Basic OSPFv2 Configuration
 
-You can configure <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span> using either numbered interfaces or unnumbered interfaces.
+You can configure <span class="a-tooltip">[OSPF](## "Open Shortest Path First")</span> using either numbered interfaces or unnumbered interfaces.
+
+{{%notice warning%}}
+When you enable or disable OSPF, the FRR service restarts, which might impact traffic.
+{{%/notice%}}
 
 ### OSPFv2 Numbered
 
-To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. You must put all the interfaces on the switch with an IP address that matches the network subnet into the specified area. OSPF attempts to discover other OSPF routers on those interfaces. Cumulus Linux adds all matching interface network addresses to a type-1 <span style="background-color:#F5F5DC">[LSA](## "Link-State Advertisement")</span> and advertises to discovered neighbors for proper reachability.
+To configure OSPF using numbered interfaces, you specify the router ID, IP subnet prefix, and area address. You must put all the interfaces on the switch with an IP address that matches the network subnet into the specified area. OSPF attempts to discover other OSPF routers on those interfaces. Cumulus Linux adds all matching interface network addresses to a type-1 <span class="a-tooltip">[LSA](## "Link-State Advertisement")</span> and advertises to discovered neighbors for proper reachability.
 
 If you do not want to bring up an OSPF adjacency on certain interfaces, but want to advertise those networks in the OSPF database, you can configure the interfaces as *passive interfaces*. A passive interface creates a database entry but does not send or receive OSPF hello packets. For example, in a data center topology, the host-facing interfaces do not need to run OSPF, however, you need to advertise the corresponding IP addresses to neighbors.
 
@@ -535,7 +539,7 @@ To see the configured OSPF interface parameter values, run the vtysh `show ip os
 
 ### SPF Timer Defaults
 
-OSPF uses the following default timers to prevent consecutive <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> from overburdening the CPU:
+OSPF uses the following default timers to prevent consecutive <span class="a-tooltip">[SPF](## "Shortest Path First")</span> from overburdening the CPU:
 
 - 0 milliseconds from the initial event until SPF runs
 - 50 milliseconds between consecutive SPF runs (the number doubles with each SPF, until it reaches the maximum time between SPF runs)
@@ -587,7 +591,7 @@ To see the configured SPF timer values, run the vtysh `show ip ospf` command.
 
 ### MD5 Authentication
 
-To configure <span style="background-color:#F5F5DC">[MD5](## "Message Digest Algorithm")</span> authentication on the switch, you need to create a key and a key ID, then enable MD5 authentication. The *key ID* must be a value between 1 and 255 that represents the key used to create the message digest. This value must be consistent across all routers on a link. The *key* must be a value with an upper range of 16 characters (longer strings truncate) that represents the actual message digest.
+To configure <span class="a-tooltip">[MD5](## "Message Digest Algorithm")</span> authentication on the switch, you need to create a key and a key ID, then enable MD5 authentication. The *key ID* must be a value between 1 and 255 that represents the key used to create the message digest. This value must be consistent across all routers on a link. The *key* must be a value with an upper range of 16 characters (longer strings truncate) that represents the actual message digest.
 
 The following example commands create key ID 1 with the key `thisisthekey` and enable MD5 authentication on swp51 on leaf01 and on swp1 on spine01.
 
@@ -733,9 +737,9 @@ switch# exit
 -->
 ### Summarization and Prefix Range
 
-By default, an <span style="background-color:#F5F5DC">[ABR](## "Area Border Router")</span> creates a summary (type-3) <span style="background-color:#F5F5DC">[LSA](## "Link-State Advertisement")</span> for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes. OSPF only allows for route summarization between areas on a ABR.
+By default, an <span class="a-tooltip">[ABR](## "Area Border Router")</span> creates a summary (type-3) <span class="a-tooltip">[LSA](## "Link-State Advertisement")</span> for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes. OSPF only allows for route summarization between areas on a ABR.
 
-The following example shows a topology divided into area 0 and area 1. border01 and border02 are <span style="background-color:#F5F5DC">[ABRs](## "Area Border Routers")</span> that have links to multiple areas and perform a set of specialized tasks, such as <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> computation per area and summarization of routes across areas.
+The following example shows a topology divided into area 0 and area 1. border01 and border02 are <span class="a-tooltip">[ABRs](## "Area Border Routers")</span> that have links to multiple areas and perform a set of specialized tasks, such as <span class="a-tooltip">[SPF](## "Shortest Path First")</span> computation per area and summarization of routes across areas.
 
 {{< img src = "/images/cumulus-linux/ospf-scalability-areas.png" >}}
 
@@ -792,7 +796,7 @@ router ospf
 
 ### Stub Areas
 
-External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. Typically, external link states make up a large percentage of the link-state database (LSDB). Stub *areas* reduce the <span style="background-color:#F5F5DC">[LSDB](## "Link State Database")</span> size by not flooding AS-external LSAs.
+External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. Typically, external link states make up a large percentage of the link-state database (LSDB). Stub *areas* reduce the <span class="a-tooltip">[LSDB](## "Link State Database")</span> size by not flooding AS-external LSAs.
 
 All routers must agree that an area is a stub, otherwise they do not become OSPF neighbors.
 
@@ -927,7 +931,7 @@ router ospf
 
 ### Administrative Distance
 
-Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> with an administrative distance of 100, the switch chooses BGP.
+Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> with an administrative distance of 100, the switch chooses BGP.
 
 Cumulus Linux provides several commands to change the distance for OSPF routes. The default value is 110.
 
@@ -1050,11 +1054,11 @@ router ospf
 
 ### Topology Changes and OSPF Reconvergence
 
-When you remove a router or OSPF interface, <span style="background-color:#F5F5DC">[LSA](## "Link-State Advertisement")</span> updates trigger throughout the network to inform all routers of the topology change. When the switch receives the LSA and runs OSPF, a routing update occurs. This can cause short-duration outages while the network detects the failure and updates the OSPF database.
+When you remove a router or OSPF interface, <span class="a-tooltip">[LSA](## "Link-State Advertisement")</span> updates trigger throughout the network to inform all routers of the topology change. When the switch receives the LSA and runs OSPF, a routing update occurs. This can cause short-duration outages while the network detects the failure and updates the OSPF database.
 
 With a planned outage (such as during a maintenance window), you can configure the OSPF router with an OSPF max-metric to notify its neighbors not to use it as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After you update the network, the max-metric router no longer receives any traffic and you can configure the max-metric setting. To remove a single interface, you can configure the OSPF cost for that specific interface.
 
-For failure events, traffic loss can occur during reconvergence (until <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> on all nodes computes an alternative path around the failed link or node to each of the destinations).
+For failure events, traffic loss can occur during reconvergence (until <span class="a-tooltip">[SPF](## "Shortest Path First")</span> on all nodes computes an alternative path around the failed link or node to each of the destinations).
 
 To configure the max-metric (for all interfaces):
 

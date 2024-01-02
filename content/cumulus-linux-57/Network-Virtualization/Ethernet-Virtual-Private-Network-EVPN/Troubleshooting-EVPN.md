@@ -15,7 +15,7 @@ You can use various NVUE or Linux commands to examine interfaces, VLAN mappings 
 - `nv show bridge domain <domain> vlan` (NVUE) or `bridge vlan show` (Linux)
 - `nv show bridge vlan-vni-map` (NVUE)
 - `nv show bridge domain <bridge> vlan-vni-map` (NVUE)
-- `ip neighbor show` (Linux)
+- `nv show interface neighbor` (NVUE) or `ip neighbor show` (Linux)
 - `ip route show [table <vrf-name>]` (Linux)
 
 The sample output below shows `ip -d link show type vxlan` command output for one VXLAN interface. Relevant parameters are the VNI value, the state, the local IP address for the VXLAN tunnel, the UDP port number (4789) and the bridge of which the interface is part (*bridge* in the example below). The output also shows that MAC learning is *off* on the VXLAN interface.
@@ -83,32 +83,48 @@ entry-id  age    bridge-domain  entry-type    interface   last-update  MAC addre
 ...
 ```
 
-The following example output for the `net show neighbor` command shows:
-
-- 10.1.10.101 is a locally attached host server01 on VLAN 10. Interface `vlan10-v0` is the virtual VRR address for VLAN10.
-- 10.1.10.104 is remote-host, server04 on VLAN10. The STATE `zebra` shows that it is an EVPN learned entry. Use `net show bridge macs` to see information about which VTEP the host is behind.
-- 10.1.20.105 is remote-host, server05 on VLAN 20.
+The following example shows the `nv show interface neighbor` command output:
 
 ```
-cumulus@leaf01:mgmt:~$ net show neighbor
-Neighbor                   MAC                Interface      AF    STATE
--------------------------  -----------------  -------------  ----  ---------
-10.1.10.104                68:0f:31:ae:3d:7a  vlan10         IPv4  zebra
-10.1.10.101                26:76:e6:93:32:78  vlan10-v0      IPv4  REACHABLE
-169.254.0.1                c0:8a:e6:03:96:d0  peerlink.4094  IPv4  zebra
-10.0.1.2                   44:38:39:be:ef:bb  vlan4001       IPv4  zebra
-169.254.0.1                c0:99:6b:c0:e1:ca  swp52          IPv4  zebra
-10.1.20.3                  c0:8a:e6:03:96:d0  vlan20         IPv4  PERMANENT
-169.254.0.1                ac:56:f0:f3:59:0c  swp54          IPv4  zebra
-10.1.20.105                12:15:9a:9c:f2:e1  vlan20         IPv4  zebra
-169.254.0.1                2c:f3:45:f4:6f:5f  swp53          IPv4  zebra
-192.168.200.1              12:72:bc:4c:e1:83  eth0           IPv4  REACHABLE
-169.254.0.1                f0:08:5f:12:cc:8c  swp51          IPv4  zebra
-192.168.200.250            44:38:39:00:01:80  eth0           IPv4  REACHABLE
-10.1.30.3                  c0:8a:e6:03:96:d0  vlan30         IPv4  PERMANENT
-192.168.200.2              02:7a:19:45:66:48  eth0           IPv4  STALE
-10.1.10.101                26:76:e6:93:32:78  vlan10         IPv4  REACHABLE
-10.1.10.3                  c0:8a:e6:03:96:d0  vlan10         IPv4  PERMANENT
+cumulus@leaf01:mgmt:~$ nv show interface neighbor
+Interface      IP/IPV6                    LLADR(MAC)         State      Flag      
+-------------  -------------------------  -----------------  ---------  ----------
+eth0           192.168.200.1              48:b0:2d:82:3b:b3  reachable            
+               192.168.200.251            48:b0:2d:00:00:01  stale                
+               fe80::4ab0:2dff:fe00:1     48:b0:2d:00:00:01  reachable  router    
+peerlink.4094  169.254.0.1                48:b0:2d:52:11:90  permanent            
+               fe80::4ab0:2dff:fe52:1190  48:b0:2d:52:11:90  reachable  router    
+swp51          169.254.0.1                48:b0:2d:b8:2b:bc  permanent            
+               fe80::4ab0:2dff:feb8:2bbc  48:b0:2d:b8:2b:bc  reachable  router    
+swp52          169.254.0.1                48:b0:2d:e1:08:f7  permanent            
+               fe80::4ab0:2dff:fee1:8f7   48:b0:2d:e1:08:f7  reachable  router    
+swp53          169.254.0.1                48:b0:2d:c0:71:8b  permanent            
+               fe80::4ab0:2dff:fec0:718b  48:b0:2d:c0:71:8b  reachable  router    
+swp54          169.254.0.1                48:b0:2d:18:f4:68  permanent            
+               fe80::4ab0:2dff:fe18:f468  48:b0:2d:18:f4:68  reachable  router    
+vlan10         10.1.10.3                  44:38:39:22:01:78  permanent            
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
+vlan20         10.1.20.3                  44:38:39:22:01:78  permanent            
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
+vlan30         10.1.30.3                  44:38:39:22:01:78  permanent            
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
+vlan4024_l3    10.10.10.63                44:38:39:22:01:74  noarp      |ext_learn
+               10.10.10.64                44:38:39:22:01:7c  noarp      |ext_learn
+               10.10.10.4                 44:38:39:22:01:8a  noarp      |ext_learn
+               10.10.10.3                 44:38:39:22:01:84  noarp      |ext_learn
+               10.10.10.2                 44:38:39:22:01:78  noarp      |ext_learn
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
+vlan4036_l3    10.10.10.63                44:38:39:22:01:74  noarp      |ext_learn
+               10.10.10.64                44:38:39:22:01:7c  noarp      |ext_learn
+               10.10.10.4                 44:38:39:22:01:8a  noarp      |ext_learn
+               10.10.10.3                 44:38:39:22:01:84  noarp      |ext_learn
+               10.10.10.2                 44:38:39:22:01:78  noarp      |ext_learn
+               fe80::4638:39ff:fe22:178   44:38:39:22:01:78  permanent            
+vxlan48        10.10.10.63                44:38:39:22:01:74  noarp      |ext_learn
+               10.10.10.4                 44:38:39:22:01:8a  noarp      |ext_learn
+               10.10.10.3                 44:38:39:22:01:84  noarp      |ext_learn
+               10.10.10.2                 44:38:39:22:01:78  noarp      |ext_learn
+               10.10.10.64                44:38:39:22:01:7c  noarp      |ext_learn
 ...
 ```
 

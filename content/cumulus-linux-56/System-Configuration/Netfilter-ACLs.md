@@ -138,7 +138,7 @@ The incremental nonatomic update operation follows this order:
 2. Cumulus Linux checks if the rules in a table are different from installation time; if a table does not have any changes, it does not reinstall the rules.
 3. If there are changes in a table, the new rules populate in new groups or slices in hardware, then that table switches over to the new groups or slices.
 4. Finally, old resources for that table free up. This process repeats for each of the tables listed above.
-5. If there are isufficient resources to hold both the new rule set and old rule set, Cumulus Linux tries the regular nonatomic mode, which interrupts network traffic.
+5. If there are insufficient resources to hold both the new rule set and old rule set, Cumulus Linux tries the regular nonatomic mode, which interrupts network traffic.
 6. If the regular nonatomic update fails, Cumulus Linux reverts back to the previous rules.
 
 To always reload `switchd` with nonatomic updates:
@@ -526,7 +526,7 @@ INPUT FORWARD OUTPUT
 
 |Rule Element|Supported|Unsupported|
 |--- |--- |--- |
-|**Matches**|Src/Dst, IP protocol<br>In/out interface<br>IPv4: icmp, ttl,<br>IPv6: icmp6, frag, hl,<br>IP common: tcp ({{<link url="#filter-specific-tcp-flags" text="with flags">}}), udp, multiport, DSCP, addrtype|Rules with input/output Ethernet interfaces do not apply<br>Inverse matches|
+|**Matches**|Src/Dst, IP protocol<br>In/out interface<br>IPv4: ecn, icmp, frag, ttl,<br>IPv6: icmp6, hl,<br>IP common: tcp ({{<link url="#filter-specific-tcp-flags" text="with flags">}}), udp, multiport, DSCP, addrtype|Rules with input/output Ethernet interfaces do not apply<br>Inverse matches|
 |**Standard Targets**|ACCEPT, DROP|RETURN, QUEUE, STOP, Fall Thru, Jump|
 |**Extended Targets**|LOG (IPv4/IPv6); UID is not supported for LOG<br>TCP SEQ, TCP options or IP options<br>ULOG<br>SETQOS<br>DSCP<br>Unique to Cumulus Linux:<br>SPAN<br>ERSPAN (IPv4/IPv6)<br>POLICE<br>TRICOLORPOLICE<br>SETCLASS||
 
@@ -987,13 +987,13 @@ cumulus@switch:~$ nv config apply
 
 ### Match on ECN Bits in the TCP IP Header
 
-<span style="background-color:#F5F5DC">[ECN](## "Explicit Congestion Notification")</span> allows end-to-end notification of network congestion without dropping packets. You can add ECN rules to match on the <span style="background-color:#F5F5DC">[ECE](## "ECN-Echo")</span>, <span style="background-color:#F5F5DC">[CWR](## "Congestion Window Received")</span>, and <span style="background-color:#F5F5DC">[ECT](## "ECN Capable Transport")</span> flags in the TCP IPv4 header.
+<span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span> allows end-to-end notification of network congestion without dropping packets. You can add ECN rules to match on the <span class="a-tooltip">[ECE](## "ECN-Echo")</span>, <span class="a-tooltip">[CWR](## "Congestion Window Received")</span>, and <span class="a-tooltip">[ECT](## "ECN Capable Transport")</span> flags in the TCP IPv4 header.
 
 By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
 
 #### Match on the ECE Bit
 
-After an endpoint receives a packet with the <span style="background-color:#F5F5DC">[CE](## "Congestion Experienced")</span> bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
+After an endpoint receives a packet with the <span class="a-tooltip">[CE](## "Congestion Experienced")</span> bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
 
 To match on the ECE bit:
 
@@ -1360,7 +1360,7 @@ To work around this limitation, set the rate and burst for all these rules to th
 ### Where to Assign Rules
 
 - If you assign a switch port to a bond, you must assign any egress rules to the bond.
-- When using the OUTPUT chain, you must assign rules to the source. For example, if you assign a rule to the switch port in the direction of traffic but the source is a bridge (VLAN), the rule does not affect the traffic and you must applied the rule to the bridge.
+- When using the OUTPUT chain, you must assign rules to the source. For example, if you assign a rule to the switch port in the direction of traffic but the source is a bridge (VLAN), the rule does not affect the traffic and you must apply the rule to the bridge.
 - If you need to apply a rule to all transit traffic, use the FORWARD chain, not the OUTPUT chain.
 
 ### ACL Rule Installation Failure
@@ -1379,7 +1379,7 @@ failed.
 <!--
 ### INPUT Chain Rules
 
-Cumulus Linux implements INPUT chain rules using a trap mechanism and assigns trap IDs to packets that go to the CPU. The default INPUT chain rules map to these trap IDs. However, if a packet matches multiple traps, an internal priority mechanism resolves them. which can be different from the rule priorities. The default expected rule does not police the packet but another rule polices it instead. For example, the LOCAL rule polices ICMP packets that go to the CPU instead of the ICMP rule. Also, multiple rules can share the same trap, where the largest of the policer values applies.
+Cumulus Linux implements INPUT chain rules using a trap mechanism and assigns trap IDs to packets that go to the CPU. The default INPUT chain rules map to these trap IDs. However, if a packet matches multiple traps, an internal priority mechanism resolves them which can be different from the rule priorities. The default expected rule does not police the packet but another rule polices it instead. For example, the LOCAL rule polices ICMP packets that go to the CPU instead of the ICMP rule. Also, multiple rules can share the same trap, where the largest of the policer values applies.
 
 To work around this issue, create rules on the INPUT and FORWARD chains (INPUT,FORWARD).
 

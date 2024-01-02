@@ -2,13 +2,13 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Zstd
 Source: https://github.com/facebook/zstd
 Files-Excluded: appveyor.yml
-                circle.yml
                 build/*
                 programs/windres/*
                 .travis.yml
                 .buckversion
                 .buckconfig
                 .circleci/*
+                .cirrus.yml
 
 Files: *
 Copyright: 2013-2018, Yann Collet

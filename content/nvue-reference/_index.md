@@ -1,8 +1,7 @@
 ---
 title: NVUE Command Reference
 author: Cumulus Networks
-weight: -34
-subsection: true
+weight: 5
 cascade:
   product: NVUE
   version: '5.x'
@@ -23,4 +22,4 @@ The NVUE CLI provides descriptions and examples for the following commands:
 
 ## Download the Command Reference
 
-You can download the NVUE command reference and view it offline. {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvue-reference/NVUECL55-html.zip" text="Download a zip file">}} of the command reference in HTML format, extract it locally, then open `nvue-reference.html` in your web browser.
+You can download the NVUE command reference and view it offline. {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvue-reference/NVUECL56-html.zip" text="Download a zip file">}} of the command reference in HTML format, extract it locally, then open `nvue-reference.html` in your web browser.

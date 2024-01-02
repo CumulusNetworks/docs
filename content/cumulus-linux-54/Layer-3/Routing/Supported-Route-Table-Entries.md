@@ -6,7 +6,7 @@ toc: 3
 ---
 Cumulus Linux advertises the maximum number of route table entries supported on the switch, including:
 
-- Layer 3 IPv4 <span style="background-color:#F5F5DC">[LPM](## "Longest Prefix Match")</span> entries that have a mask less than /32
+- Layer 3 IPv4 <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> entries that have a mask less than /32
 - Layer 3 IPv6 LPM entries that have a mask of /64 or less
 - Layer 3 IPv6 LPM entries that have a mask greater than /64
 - Layer 3 IPv4 neighbor (or host) entries that are the next hops seen in `ip neighbor`
@@ -23,7 +23,7 @@ Cumulus Linux provides several generalized profiles, described below. These prof
 The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile. If you do not specify any profiles as described below, the switch uses the *default* values.
 
 {{%notice note%}}
-The values in the following tables reflect results from testing, which can differ from published manufacturer specifications.
+The values provided in the profiles below are the maximum values that Cumulus Linux software allocates; the theoretical hardware limits might be higher. These limits refer to values that have been validated as part of the unidimensional scale validation. If you try to achieve maximum scalability with multiple features enabled, results might differ from the values listed in this guide.
 {{%/notice%}}
 
 ### Spectrum 1

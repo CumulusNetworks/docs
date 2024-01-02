@@ -10,7 +10,7 @@ This section shows an OSPF configuration example based on the reference topology
 
 The example configuration configures:
 - OSPFv2 *unnumbered* on all leafs and spines
-- <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> on leaf01 and leaf02, and on border01 and border02
+- <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> on leaf01 and leaf02, and on border01 and border02
 - leaf01, leaf02, spine01, and spine02 in area 0
 - border01 and border02 (ABRs) in area 0 and area 1
 

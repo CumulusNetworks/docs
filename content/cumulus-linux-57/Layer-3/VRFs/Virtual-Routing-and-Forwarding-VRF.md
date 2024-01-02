@@ -6,13 +6,13 @@ toc: 3
 ---
 Virtual routing and forwarding (VRF) enables you to use multiple independent routing tables that work simultaneously on the same switch. Other implementations call this feature *VRF-Lite*.
 
-You typically use VRFs in the data center to carry multiple isolated traffic streams for multi-tenant environments. The traffic streams can cross over only at configured boundary points, such as a firewall or <span style="background-color:#F5F5DC">[IDS](## "Intrusion Detection System")</span>. You can also use VRFs to burst traffic from private clouds to enterprise networks where the burst point is at layer 3.
+You typically use VRFs in the data center to carry multiple isolated traffic streams for multi-tenant environments. The traffic streams can cross over only at configured boundary points, such as a firewall or <span class="a-tooltip">[IDS](## "Intrusion Detection System")</span>. You can also use VRFs to burst traffic from private clouds to enterprise networks where the burst point is at layer 3.
 
 VRF is fully supported in the Linux kernel and has the following characteristics:
 
 - The VRF is a layer 3 master network device with its own associated routing table.
 - You can associate any layer 3 interface with a VRF, such as an SVI, swp port or bond, or a VLAN subinterface of a swp port or bond.
-- The layer 3 interfaces associated with the VRF belong to that VRF; IP rules direct <span style="background-color:#F5F5DC">[FIB](## "Forwarding Information Base")</span> lookups to the routing table for the VRF device.
+- The layer 3 interfaces associated with the VRF belong to that VRF; IP rules direct <span class="a-tooltip">[FIB](## "Forwarding Information Base")</span> lookups to the routing table for the VRF device.
 - The VRF device can have its own IP address, known as a *VRF-local loopback*.
 - By default, applications on the switch run against the default VRF. Services started by `systemd` run in the default VRF unless you use the VRF instance.
 - Connected and local routes go in appropriate VRF tables.
@@ -233,6 +233,7 @@ When you use route leaking:
 - You can leak routes in a VRF that iBGP or multi-hop eBGP learns even if their next hops become unreachable. NVIDIA recommends route leaking for routes that BGP learns through single-hop eBGP.
 - You cannot configure VRF instances of BGP in multiple autonomous systems (AS) or an AS that is not the same as the global AS.
 - Do not use the default VRF as a shared service VRF. Create another VRF for shared services.
+- Cumulus Linux does not copy extended communities to the destination VRF.
 - An EVPN symmetric routing configuration has certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has routes to VTEP addresses that you cannot leak to any tenant VRFs. If you need to leak routes between the default VRF and a non-default VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes. Use caution with such a configuration. Run common services in a separate VRF (service VRF) instead of the default VRF to simplify configuration and avoid using route maps for filtering.
 
 In the following example commands, routes in the BGP routing table of VRF `BLUE` dynamically leak into VRF `RED`.
@@ -401,7 +402,7 @@ Cumulus Linux no longer supports kernel commands. To avoid issues with VRF route
 
 ## FRRouting in a VRF
 
-Cumulus Linux supports {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="OSPFv2">}} and {{<link url="Static-Routing" text="static routing">}} for both IPv4 and IPv6 within a VRF context. Various <span style="background-color:#F5F5DC"> "FRRouting")</span> routing constructs, such as routing tables, nexthops, router-id, and related processing are also VRF-aware.
+Cumulus Linux supports {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}, {{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="OSPFv2">}} and {{<link url="Static-Routing" text="static routing">}} for both IPv4 and IPv6 within a VRF context. Various <span class="a-tooltip"> "FRRouting")</span> routing constructs, such as routing tables, nexthops, router-id, and related processing are also VRF-aware.
 
 {{<link url="FRRouting" text="FRR">}} learns of VRFs on the system as well as interface attachment to a VRF through notifications from the kernel.
 

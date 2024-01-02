@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 600
 toc: 3
 ---
-Cumulus Linux supports both single and traditional <span style="background-color:#F5F5DC">[VXLAN](## "Virtual Extensible LAN")</span> devices.
+Cumulus Linux supports both single and traditional <span class="a-tooltip">[VXLAN](## "Virtual Extensible LAN")</span> devices.
 
 {{%notice note%}}
 - You can configure single VXLAN devices in VLAN-aware bridge mode only.
@@ -197,7 +197,7 @@ cumulus@leaf01:~$ ifreload -a
 
 ## Automatic VLAN to VNI Mapping
 
-In an EVPN VXLAN environment, you need to map individual VLANs to VNIs. For a single VXLAN device, you can do this with a seperate NVUE command per VLAN; however, this can be cumbersome if you have to configure many VLANS or need to isolate tenants and reuse VLANs. To simplify the configuration, you can use these two commands instead:
+In an EVPN VXLAN environment, you need to map individual VLANs to VNIs. For a single VXLAN device, you can do this with a separate NVUE command per VLAN; however, this can be cumbersome if you have to configure many VLANS or need to isolate tenants and reuse VLANs. To simplify the configuration, you can use these two commands instead:
 - `nv set bridge domain <bridge> vlan <vlans> vni auto` configures the specified VLANs to use automatic mapping.
 - `nv set bridge domain <bridge> vlan-vni-offset` configures the offset you want to use for the VNIs. For example, if you specify an offset of 10000, the VNI is the VLAN plus 10000.
 

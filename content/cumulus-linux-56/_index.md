@@ -6,6 +6,7 @@ subsection: true
 cascade:
     product: Cumulus Linux
     version: "5.6"
+    old: true
 toc: 1
 ---
 NVIDIA® Cumulus Linux is the first full-featured {{<exlink url="https://www.debian.org/releases/buster/" text="Debian Buster" >}}-based, Linux operating system for the networking industry.
@@ -35,7 +36,6 @@ You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url
 Use one of the following methods to download the Cumulus Linux user guide and view it offline:
 
 - Host the documentation on a local host {{<exlink url="https://github.com/CumulusNetworks/docs" text="using hugo.">}}
-- Download a zip file of an {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/CL5-html.zip" text="HTML documentation build">}} for offline use. Download the desired version, extract it locally, then open `cumulus-linux-56.html` in your web browser.
-<!-- vale off -->
+- Download a zip file of an {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-56/CL56-html.zip" text="HTML documentation build">}} for offline use. Download the desired version, extract it locally, then open `cumulus-linux-56.html` in your web browser.<!-- vale off -->
 - You can view the complete Cumulus Linux {{% version %}} user guide as a single page to print to PDF {{% pdf_link "here." %}} Click on the link one time and use the web browser print-to-PDF option to save the PDF locally.
 <!-- vale on -->

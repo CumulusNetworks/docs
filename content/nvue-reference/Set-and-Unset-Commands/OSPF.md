@@ -115,7 +115,7 @@ cumulus@switch:~$ nv set interface swp51 router ospf authentication message-dige
 
 ## <h>nv set interface \<interface-id\> router ospf bfd</h>
 
-Configures <span style="background-color:#F5F5DC">[BFD](## "Bidirectional Forwarding Detection")</span> on the specified interface. BFD provides low overhead and rapid detection of failures in the paths between two network devices.
+Configures <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> on the specified interface. BFD provides low overhead and rapid detection of failures in the paths between two network devices.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -495,13 +495,13 @@ cumulus@switch:~$ nv set router ospf router-id 10.10.10.1.
 
 ## <h>nv set router ospf timers</h>
 
-Configures the OSPF <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> timers, <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timers, and the refresh interval.
+Configures the OSPF <span class="a-tooltip">[LSA](## "Link State Advertisement")</span> timers, <span class="a-tooltip">[SPF](## "Shortest Path First")</span> timers, and the refresh interval.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router ospf timers lsa</h>
 
-Configures <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> timers.
+Configures <span class="a-tooltip">[LSA](## "Link State Advertisement")</span> timers.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -555,7 +555,7 @@ cumulus@switch:~$ nv set router ospf timers refresh 100
 
 ## <h>nv set router ospf timers spf</h>
 
-Configures OSPF <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timers.
+Configures OSPF <span class="a-tooltip">[SPF](## "Shortest Path First")</span> timers.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

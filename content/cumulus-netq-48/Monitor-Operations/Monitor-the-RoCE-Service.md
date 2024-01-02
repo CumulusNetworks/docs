@@ -5,7 +5,7 @@ weight: 940
 toc: 3
 ---
 
-Use the UI or CLI to monitor RDMA over Converged Ethernet (RoCE) in your network.
+Use the UI or CLI to monitor RDMA over Converged Ethernet (RoCE) for Spectrum switches and BlueField DPUs.
 
 ## RoCE Commands
 
@@ -13,16 +13,11 @@ The following commands display your network's RoCE configuration, RoCE counters 
 
 ```
 netq show roce-config 
-netq show roce-counters  
+netq show roce-counters (dpu | nic)
 netq show roce-counters pool
 netq show events message_type tca_roce
 netq show events message_type roceconfig
 ```
-{{<notice note>}}
-
-Priority code point (PCP) monitoring requires a switch running NetQ Agent 4.5 or later.
-
-{{</notice>}}
 
 The {{<link title="check/#netq check roce" text="netq check roce">}} command checks for consistent RoCE and QoS configurations across all nodes in your network fabric.
 
@@ -34,7 +29,11 @@ netq check roce
 
 1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the Network heading, select **RoCE counters**. Use the tabs to view receive (Rx), transmit (Tx), and pool counters networkwide.
+2. Under the RoCE counters heading, select either **RoCE switches** or **RoCE DPUs**.
+
+The **RoCE switches** tab displays transmit (TX) and receive (RX) counters as well as counter pools for all switches running RoCE in your network.
+
+The **RoCE DPUs** tab displays physical port, priority port, RoCE extended, RoCE, and peripheral component interconnect (PCI) information for all DPUs running RoCE in your network.
 ## View RoCE Counters for a Given Switch
 
 You can view the following RoCE counters for a given switch:
@@ -44,13 +43,11 @@ You can view the following RoCE counters for a given switch:
 - Counter pools
 - Port-specific counters
 
-To view RoCE counters on a switch, navigate to the header and select {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices**, then click **Open a device card**. Select the large card, then click the RoCE icon {{<img src="/images/netq/roce-icon.svg" width="18px">}} at the top of the card to view RoCE counters and their associated ports:
+To view RoCE counters on a switch, navigate to the header and select {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices**, then click **Open a device card**. Select a switch that is running RoCE and open the large card on your workbench. Click the RoCE icon {{<img src="/images/netq/roce-icon.svg" width="18px">}} at the top of the card to view RoCE counters and their associated ports:
 
 {{<figure src="/images/netq/roce-l3-card-4.0.0.png" alt="switch card displaying list of ports" width="500">}}
 
-Expand the card to the largest size, then select **RoCE counters** from the side menu. Use the controls above the table to view, filter, or export counter statistics by Rx, Tx, or Pool:
-
-{{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" alt="full-size switch card with RoCe Counters tab selected" width="1100">}}
+Expand the card to the largest size, then select **RoCE counters** from the side menu. Use the controls above the table to view, filter, or export counter statistics by Rx, Tx, or Pool.
 
 ## Disable RoCE Monitoring
 

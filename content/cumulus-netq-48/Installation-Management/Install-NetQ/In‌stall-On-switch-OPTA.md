@@ -83,7 +83,7 @@ When the LCM executor is configured, the on-switch OPTA service supports the fol
 The {{<link title="Install On-switch OPTA/#connect-netq-agents-to-the-opta-service" text="NetQ Agent must be running">}} for lifecycle management to work properly. 
 
 {{<notice note>}}
-LCM with the on-switch OPTA service is supported on NVIDIA Spectrum-2 platforms and above.
+LCM with the on-switch OPTA service is supported on NVIDIA Spectrum-2 platforms and later.
 {{</notice>}}
 
 After installing and configuring the `netq-opta` package, enable the LCM executor with the following commands:

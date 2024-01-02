@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 963
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[VRRP](## "Virtual Router Redundancy Protocol")</span> allows two or more network devices in an active standby configuration to share a single virtual default gateway. The VRRP router that forwards packets at any given time is the master. If this VRRP router fails, another VRRP standby router automatically takes over as master. The master sends VRRP advertisements to other VRRP routers in the same virtual router group, which include the priority and state of the master. VRRP router priority determines the role that each virtual router plays and who becomes the new master if the master fails.
+<span class="a-tooltip">[VRRP](## "Virtual Router Redundancy Protocol")</span> allows two or more network devices in an active standby configuration to share a single virtual default gateway. The VRRP router that forwards packets at any given time is the master. If this VRRP router fails, another VRRP standby router automatically takes over as master. The master sends VRRP advertisements to other VRRP routers in the same virtual router group, which include the priority and state of the master. VRRP router priority determines the role that each virtual router plays and who becomes the new master if the master fails.
 
 Use VRRP when you have multiple distinct devices that connect to a layer 2 segment through multiple logical connections (not through a single bond). VRRP elects a single active forwarder that *owns* the virtual MAC address while it is active. This prevents the forwarding database of the layer 2 domain from continuously updating in response to MAC flaps because the switch receives frames sourced from the virtual MAC address from discrete logical connections.
 
@@ -13,10 +13,10 @@ All virtual routers use 00:00:5E:00:01:XX for IPv4 gateways or 00:00:5E:00:02:XX
 {{%notice note%}}
 - Cumulus Linux supports both VRRPv2 and VRRPv3. The default protocol version is VRRPv3.
 - You can configure a maximum of 255 virtual routers on a switch.
-- You cannot use VRRP with <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span>.
-- To configure VRRP on an <span style="background-color:#F5F5DC">[SVI](## "Switched Virtual Interface")</span> or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files.
-- You can use VRRP with layer 3 interfaces and subinterfaces that are part of a <span style="background-color:#F5F5DC">[VRF](## "Virtual Routing and Forwarding")</span>.
-- You cannot use VRRP in an <span style="background-color:#F5F5DC">[EVPN](## "Ethernet Virtual Private Network")</span> configuration; use MLAG and VRR instead.
+- You cannot use VRRP with <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span>.
+- To configure VRRP on an <span class="a-tooltip">[SVI](## "Switched Virtual Interface")</span> or {{<link url="Traditional-Bridge-Mode" text="traditional mode bridge">}}, you need to edit the `etc/network/interfaces` and `/etc/frr/frr.conf` files.
+- You can use VRRP with layer 3 interfaces and subinterfaces that are part of a <span class="a-tooltip">[VRF](## "Virtual Routing and Forwarding")</span>.
+- You cannot use VRRP in an <span class="a-tooltip">[EVPN](## "Ethernet Virtual Private Network")</span> configuration; use MLAG and VRR instead.
 You cannot configure both VRR and VRRP on the same switch.
 {{%/notice%}}
 
@@ -50,6 +50,10 @@ The parent interface must use a primary address as the source address on VRRP ad
 
 {{< tabs "TabID448 ">}}
 {{< tab "NVUE Commands ">}}
+
+{{%notice warning%}}
+When you configure VRRP with NVUE commands, NVUE enables the `vrrpd` service and restarts the FRR service; An FRR service restart might impact traffic.
+{{%/notice%}}
 
 {{< tabs "TabID504 ">}}
 {{< tab "spine01 ">}}

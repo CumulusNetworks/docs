@@ -31,77 +31,92 @@ The following illustration shows a basic NAT configuration.
 
 ## Static NAT
 
-Static NAT provides a one-to-one mapping between a private IP address inside your network and a public IP address. For example, if you have a web server with the private IP address 10.0.0.10 and you want a remote host to make a request to the web server using the IP address 172.30.58.80, you configure a static NAT mapping between the two IP addresses. 
+Static NAT provides a one-to-one mapping between a private IP address inside your network and a public IP address. For example, if you have a web server with the private IP address 10.0.0.10 and you want a remote host to make a request to the web server using the IP address 172.30.58.80, you configure a static NAT mapping between the two IP addresses.
 
 Static NAT entries do not time out from the translation table.
+
+Cumulus Linux also support MAC address translation, which operates on Ethernet packets at layer 2. For more information, refer to {{<link url="MAC-Address-Translation" text="MAC Address Translation">}}.
 
 ### Configure Static NAT
 
 - For static **NAT**, create a rule that matches a source or destination IP address and translate the IP address to a public IP address.
 - For static **PAT**, create a rule that matches a source or destination IP address together with the layer 4 port and translate the IP address and port to a public IP address and port. You can include the outgoing or incoming interface.
 
+{{%notice note%}}
+NVUE commands require you configure an inbound or outbound interface for static NAT rules. However, rules you configure in a rules file in the `/etc/cumulus/acl/policy.d/` directory do not require an inbound or outbound interface.
+{{%/notice%}}
+
 {{< tabs "TabID44 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following rule matches TCP packets with source IP address 10.0.0.1 and translates the IP address to 172.30.58.80:
+The following rule matches TCP packets with source IP address 10.0.0.1 coming in on interface swp51 and translates the IP address to 172.30.58.80:
 
 ```
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol tcp 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-ip 10.0.0.1
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-ip 172.30.58.80
+cumulus@switch:~$ nv set acl acl_1 type ipv4
+cumulus@switch:~$ nv set acl acl_1 rule 1 match ip protocol tcp 
+cumulus@switch:~$ nv set acl acl_1 rule 1 match ip source-ip 10.0.0.1
+cumulus@switch:~$ nv set acl acl_1 rule 1 action source-nat translate-ip 172.30.58.80
+cumulus@switch:~$ nv set interface swp51 acl acl_1 inbound 
 cumulus@switch:~$ nv config apply 
 ```
 
-The following rule matches ICMP packets with destination IP address 172.30.58.80 on interface swp51 and translates the IP address to 10.0.0.1
+The following rule matches ICMP packets with destination IP address 172.30.58.80 coming in on interface swp51 and translates the IP address to 10.0.0.1
 
 ```
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol icmp 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip dest-ip 172.30.58.80
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action dest-nat translate-ip 10.0.0.1
+cumulus@switch:~$ nv set acl acl_2 type ipv4
+cumulus@switch:~$ nv set acl acl_2 rule 1 match ip protocol icmp 
+cumulus@switch:~$ nv set acl acl_2 rule 1 match ip dest-ip 172.30.58.80
+cumulus@switch:~$ nv set acl acl_2 rule 1 action dest-nat translate-ip 10.0.0.1
+cumulus@switch:~$ nv set interface swp51 acl acl_2 inbound 
+cumulus@switch:~$ nv config apply 
+```
+
+The following rule matches UDP packets with source IP address 10.0.0.1 and source port 5000 going out of swp6, and translates the IP address to 172.30.58.80 and the port to 6000.
+
+```
+cumulus@switch:~$ nv set acl acl_3 type ipv4 
+cumulus@switch:~$ nv set acl acl_3 rule 1 match ip protocol udp 
+cumulus@switch:~$ nv set acl acl_3 rule 1 match ip source-ip 10.0.0.1
+cumulus@switch:~$ nv set acl acl_3 rule 1 match ip udp source-port 5000
+cumulus@switch:~$ nv set acl acl_3 rule 1 action source-nat translate-ip 172.30.58.80
+cumulus@switch:~$ nv set acl acl_3 rule 1 action source-nat translate-port 6000
+cumulus@switch:~$ nv set interface swp6 acl acl_3 outbound 
 cumulus@switch:~$ nv config apply
-cumulus@switch:~$ nv set interface swp5 acl acl_1 inbound 
+```
+
+The following rule matches UDP packets with destination IP address 172.30.58.80 and destination port 6000 coming in on interface swp51, and translates the IP address to 10.0.0.1 and the port to 5000.
+
+```
+cumulus@switch:~$ nv set acl acl_4 type ipv4
+cumulus@switch:~$ nv set acl acl_4 rule 1 match ip protocol udp
+cumulus@switch:~$ nv set acl acl_4 rule 1 match ip dest-ip 172.30.58.80
+cumulus@switch:~$ nv set acl acl_4 rule 1 match ip udp dest-port 6000
+cumulus@switch:~$ nv set acl acl_4 rule 1 action dest-nat translate-ip 10.0.0.1
+cumulus@switch:~$ nv set acl acl_4 rule 1 action dest-nat translate-port 5000
+cumulus@switch:~$ nv set interface swp51 acl acl_4 inbound
 cumulus@switch:~$ nv config apply 
 ```
-
-The following rule matches UDP packets with source IP address 10.0.0.1 and source port 5000, and translates the IP address to 172.30.58.80 and the port to 6000.
-
-```
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol udp 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-ip 10.0.0.1
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-port 5000
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-ip 172.30.58.80
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-port 6000
-cumulus@switch:~$ nv config apply
-```
-
-The following rule matches UDP packets with destination IP address 172.30.58.80 and destination port 6000 on interface swp51, and translates the IP address to 10.0.0.1 and the port to 5000.
-
-```
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol udp 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip dest-ip 172.30.58.80
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip dest-port 6000
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action dest-nat translate-ip 10.0.0.1
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action dest-nat translate-port 5000
-cumulus@switch:~$ nv config apply 
-```
-
+<!--
 The following *double NAT* rule translates both the source and destination IP addresses of incoming and outgoing ICMP packets:  
 - For outgoing messages, NAT changes the inside local IP address 172.16.10.2 to the inside global IP address 130.1.100.10 and the outside local IP address 26.26.26.26 to the outside global IP address 140.1.1.2.
 - For incoming messages, NAT changes the inside global IP address 130.1.100.10 to the inside local IP address 172.16.10.2 and the outside global IP address 140.1.1.2 to the outside local IP address 26.26.26.26.
 
 ```
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol icmp
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-ip 172.16.10.2
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-ip 130.1.100.100
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip dest-ip 130.1.100.100
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action dest-nat translate-ip 172.16.10.2
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-ip 140.1.1.2
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-ip 26.26.26.26
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip dest-ip 26.26.26.26
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action dest-nat translate-ip 140.1.1.2
+cumulus@switch:~$ nv set acl acl_5 type ipv4
+cumulus@switch:~$ nv set acl acl_5 rule 1 match ip protocol icmp
+cumulus@switch:~$ nv set acl acl_5 rule 1 match ip source-ip 172.16.10.2
+cumulus@switch:~$ nv set acl acl_5 rule 1 action source-nat translate-ip 130.1.100.100
+cumulus@switch:~$ nv set acl acl_5 rule 1 match ip dest-ip 130.1.100.100
+cumulus@switch:~$ nv set acl acl_5 rule 1 action dest-nat translate-ip 172.16.10.2
+cumulus@switch:~$ nv set interface swp51 acl acl_5 inbound
+cumulus@switch:~$ nv set acl acl_5 rule 1 match ip source-ip 140.1.1.2
+cumulus@switch:~$ nv set acl acl_5 rule 1 action source-nat translate-ip 26.26.26.26
+cumulus@switch:~$ nv set acl acl_5 rule 1 match ip dest-ip 26.26.26.26
+cumulus@switch:~$ nv set acl acl_5 rule 1 action dest-nat translate-ip 140.1.1.2
+cumulus@switch:~$ nv set interface swp6 acl acl_5 outbound 
 cumulus@switch:~$ nv config apply
 ```
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -141,7 +156,7 @@ The following rule matches UDP packets with destination IP address 172.30.58.80 
 ```
 -t nat -A PREROUTING -d 172.30.58.80 -p udp --dport 6000 --in-interface swp51  -j DNAT --to-destination 10.0.0.1:5000
 ```
-
+<!--
 The following *double NAT* rule translates both the source and destination IP addresses of incoming and outgoing ICMP packets:  
 - For outgoing messages, NAT changes the inside local IP address 172.16.10.2 to the inside global IP address 130.1.100.10 and the outside local IP address 26.26.26.26 to the outside global IP address 140.1.1.2.
 - For incoming messages, NAT changes the inside global IP address 130.1.100.10 to the inside local IP address 172.16.10.2 and the outside global IP address 140.1.1.2 to the outside local IP address 26.26.26.26.
@@ -152,13 +167,13 @@ The following *double NAT* rule translates both the source and destination IP ad
 -t nat -A POSTROUTING -s 140.1.1.2 -p icmp -j SNAT --to-source 26.26.26.26 
 -t nat -A PREROUTING -d 26.26.26.26 -p icmp -j DNAT --to-destination 140.1.1.2 
 ```
-
-{{< /tab >}}
-{{< /tabs >}}
-
+-->
 {{%notice note%}}
 When you configure a static SNAT rule for outgoing traffic, you must also configure a static DNAT rule for the reverse traffic so that traffic goes in both directions.
 {{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Delete a Static NAT Rule
 
@@ -167,17 +182,17 @@ To delete a static NAT rule:
 {{< tabs "TabID141 ">}}
 {{< tab "NVUE Commands ">}}
 
+Run the `nv unset acl <acl>` command.
+
 ```
-cumulus@switch:~$ nv unset acl acl_1 type ipv4 rule 1 match ip protocol udp 
-cumulus@switch:~$ nv unset acl acl_1 type ipv4 rule 1 match ip dest-ip 172.30.58.80
-cumulus@switch:~$ nv unset acl acl_1 type ipv4 rule 1 match ip dest-port 6000
+cumulus@switch:~$ nv unset acl acl_1
 cumulus@switch:~$ nv config apply 
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i command`.
+Remove the rule from the policy file in the `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i command`.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -228,7 +243,7 @@ You can customize the following dynamic NAT settings.
 | <div style="width:250px">Setting | Description |
 | ------- | ----------- |
 | `age-poll-interval` |  The period of inactivity (in minutes) before Cumulus Linux releases a NAT entry from the translation table. You can set a value between 1 and 1440. The default value is 5.|
-| `translate-table-size` | The maximum number of dynamic `snat` and `dnat` entries in the translation table. You can set a value between 512 and 8192. The default value is 1024.|
+| `translate-table-size` | The maximum number of dynamic `snat` and `dnat` entries in the translation table. You can set a value between 1024 and 8192. The default value is 1024.|
 | `rule-table-size` | The maximum number of rules allowed. You can set a value between 64 and 1024. The default value is 64.|
 
 The following example sets:
@@ -264,67 +279,77 @@ After you change any of the dynamic NAT configuration options, restart `switchd`
 
 ### Configure Dynamic NAT
 
-For dynamic **NAT**, create a rule that matches a IP address in CIDR notation and translates the address to a public IP address or IP address range.
+For dynamic **NAT**, create a rule that matches an IP address in CIDR notation and translates the address to a public IP address or IP address range.
 
 For dynamic **PAT**, create a rule that matches an IP address in CIDR notation and translates the address to a public IP address and port range or an IP address range and port range. You can also match on an IP address in CIDR notation and port.
 
-For an NVIDIA switch with Spectrum-2 or later, you can include the outgoing or incoming interface in the rule. See the examples below.
+{{%notice note%}}
+NVUE commands require you configure an inbound or outbound interface for dynamic NAT rules. However, rules you configure in a rules file in the `/etc/cumulus/acl/policy.d/` directory do not require an inbound or outbound interface.
+{{%/notice%}}
 
 {{< tabs "TabID227 ">}}
 {{< tab "NVUE Commands ">}}
 
 **Example Rules**
 
-The following rule matches TCP packets with source IP address in the range 10.0.0.0/24 on outbound interface swp5 and translates the address dynamically to an IP address in the range 172.30.58.0-172.30.58.80.
+The following rule matches TCP packets with source IP address in the range 10.0.0.0/24 going out of swp5 and translates the address dynamically to an IP address in the range 172.30.58.0-172.30.58.80.
 
 ```
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol tcp 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-ip 10.0.0.0/24 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-ip 172.30.58.0 to 172.30.58.80
-cumulus@switch:~$ nv config apply 
+cumulus@switch:~$ nv set acl acl_1 type ipv4
+cumulus@switch:~$ nv set acl acl_1 rule 1 match ip protocol tcp 
+cumulus@switch:~$ nv set acl acl_1 rule 1 match ip source-ip 10.0.0.0/24 
+cumulus@switch:~$ nv set acl acl_1 rule 1 action source-nat translate-ip 172.30.58.0 to 172.30.58.80
 cumulus@switch:~$ nv set interface swp5 acl acl_1 outbound 
 cumulus@switch:~$ nv config apply 
 ```
 
-The following rule matches UDP packets with source IP address in the range 10.0.0.0/24 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches UDP packets with source IP address in the range 10.0.0.0/24 going out of swp5 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol udp 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-ip 10.0.0.0/24 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-ip 172.30.58.80
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-port 1024-1200
+cumulus@switch:~$ nv set acl acl_2 type ipv4
+cumulus@switch:~$ nv set acl acl_2 rule 1 match ip protocol udp
+cumulus@switch:~$ nv set acl acl_2 rule 1 match ip source-ip 10.0.0.0/24 
+cumulus@switch:~$ nv set acl acl_2 rule 1 action source-nat translate-ip 172.30.58.80
+cumulus@switch:~$ nv set acl acl_2 rule 1 action source-nat translate-port 1024-1200
+cumulus@switch:~$ nv set interface swp5 acl acl_2 outbound
 cumulus@switch:~$ nv config apply 
 ```
 
-The following rule matches UDP packets with source IP address in the range 10.0.0.0/24 on source port 5000 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches UDP packets with source IP address in the range 10.0.0.0/24 on source port 5000 coming in on swp6 and translates the addresses dynamically to IP address 172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol udp 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-ip 10.0.0.0/24
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-port 5000
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-ip 172.30.58.80
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-port 1024-1200
+cumulus@switch:~$ nv set acl acl_3 type ipv4
+cumulus@switch:~$ nv set acl acl_3 rule 1 match ip protocol udp 
+cumulus@switch:~$ nv set acl acl_3 rule 1 match ip source-ip 10.0.0.0/24
+cumulus@switch:~$ nv set acl acl_3 rule 1 match ip udp source-port 5000
+cumulus@switch:~$ nv set acl acl_3 rule 1 action source-nat translate-ip 172.30.58.80
+cumulus@switch:~$ nv set acl acl_3 rule 1 action source-nat translate-port 1024-1200
+cumulus@switch:~$ nv set interface swp6 acl acl_3 inbound 
 cumulus@switch:~$ nv config apply 
 ```
 
-The following rule matches TCP packets with destination IP address in the range 10.1.0.0/24 and translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches TCP packets with destination IP address in the range 10.1.0.0/24 coming in on swp6 and translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol tcp 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip dest-ip 10.1.0.0/24 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action dest-nat translate-ip 172.30.58.0 to 172.30.58.80
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action dest-nat translate-port 1024-1200
+cumulus@switch:~$ nv set acl acl_4 type ipv4
+cumulus@switch:~$ nv set acl acl_4 rule 1 match ip protocol tcp 
+cumulus@switch:~$ nv set acl acl_4 rule 1 match ip dest-ip 10.1.0.0/24 
+cumulus@switch:~$ nv set acl acl_4 rule 1 action dest-nat translate-ip 172.30.58.0 to 172.30.58.80
+cumulus@switch:~$ nv set acl acl_4 rule 1 action dest-nat translate-port 1024-1200
+cumulus@switch:~$ nv set interface swp6 acl acl_4 inbound 
 cumulus@switch:~$ nv config apply
 ```
 
-The following rule matches ICMP packets with source IP address in the range 10.0.0.0/24 and destination IP address in the range 10.1.0.0/24. The rule translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
+The following rule matches ICMP packets with source IP address in the range 10.0.0.0/24 and destination IP address in the range 10.1.0.0/24 coming in on swp6. The rule translates the address dynamically to IP address range 172.30.58.0-172.30.58.80 with layer 4 ports in the range 1024-1200:
 
 ```
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip protocol icmp 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip source-ip 10.0.0.0/24 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 match ip dest-ip 10.1.0.0/24 
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-ip 172.30.58.0 to 172.30.58.80
-cumulus@switch:~$ nv set acl acl_1 type ipv4 rule 1 action source-nat translate-port 1024-1200
+cumulus@switch:~$ nv set acl acl_5 type ipv4 
+cumulus@switch:~$ nv set acl acl_5 rule 1 match ip protocol icmp 
+cumulus@switch:~$ nv set acl acl_5 rule 1 match ip source-ip 10.0.0.0/24 
+cumulus@switch:~$ nv set acl acl_5 rule 1 match ip dest-ip 10.1.0.0/24 
+cumulus@switch:~$ nv set acl acl_5 rule 1 action source-nat translate-ip 172.30.58.0 to 172.30.58.80
+cumulus@switch:~$ nv set acl acl_5 rule 1 action source-nat translate-port 1024-1200
+cumulus@switch:~$ nv set interface swp6 acl acl_5 inbound
 cumulus@switch:~$ nv config apply
 ```
 
@@ -382,10 +407,10 @@ To delete a dynamic NAT rule:
 {{< tabs "TabID311 ">}}
 {{< tab "NVUE Commands ">}}
 
+Run the `nv unset acl <acl>` command:
+
 ```
-cumulus@switch:~$ nv unset acl acl_1 type ipv4 rule 1 match ip protocol tcp
-cumulus@switch:~$ nv unset acl acl_1 type ipv4 rule 1 match ip source-ip 10.0.0.0/24
-cumulus@switch:~$ nv unset acl acl_1 type ipv4 rule 1 action source-nat translate-ip 172.30.58.0 to 172.30.58.80
+cumulus@switch:~$ nv unset acl acl_1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -399,15 +424,43 @@ Remove the rule from the policy file in the `/etc/cumulus/acl/policy.d` director
 
 ## Show Configured NAT Rules
 
-To see the NAT rules configured on the switch, run the `sudo iptables -t nat -v -L` or the
-`sudo cl-acltool -L ip -v` command. For example:
+To see the NAT rules configured on the switch, run the NVUE `nv show acl <acl> --applied -o=json` command, or the Linux `sudo iptables -t nat -v -L` or `sudo cl-acltool -L ip -v` commands. For example:
+
+```
+cumulus@switch:~$ nv show acl acl_5 --applied -o=json
+{
+  "rule": {
+    "1": {
+      "action": {
+        "source-nat": {
+          "translate-ip": {
+            "172.30.58.0": {
+              "to": "172.30.58.80"
+            }
+          },
+          "translate-port": {
+            "1024-1200": {}
+          }
+        }
+      },
+      "match": {
+        "ip": {
+          "dest-ip": "10.1.0.0/24",
+          "protocol": "icmp",
+          "source-ip": "10.0.0.0/24"
+        }
+      }
+    }
+  },
+  "type": "ipv4"
+}
+```
 
 ```
 cumulus@switch:~$ sudo iptables -t nat -v -L -n
 ...
-Chain POSTROUTING (policy ACCEPT 27 packets, 3249 bytes)
- pkts bytes target   prot opt in   out   source      destination
-    0     0 SNAT     tcp --  any  any   10.0.0.1    anywhere     to:172.30.58.80
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 SNAT       icmp --  *      swp6    10.0.0.0/24          10.1.0.0/24          /* rule_id:1,acl_name:acl_5,dir:outbound,interface_id:swp6 */ to:172.30.58.0-172.30.58.80:1024-1200
 ```
 
 ## Show Conntrack Flows

@@ -8,9 +8,9 @@ This section describes EVPN enhancements.
 
 ## Define RDs and RTs
 
-When <span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> learns about a local VNI and there is no explicit configuration for that VNI in FRR, the switch derives the <span style="background-color:#F5F5DC">[RD](## "route distinguisher")</span> and import and export <span style="background-color:#F5F5DC">[RTs](## "route targets")</span> for this VNI automatically. The RD uses *RouterId:VNI-Index* and the import and export RTs use *AS:VNI*. For routes that come from a layer 2 VNI (type-2 and type-3), the RD uses the VXLAN local tunnel IP address (`vxlan-local-tunnelip`) from the layer 2 VNI interface instead of the RouterId (`vxlan-local-tunnelip:VNI`). EVPN route exchange uses the RD and RTs.
+When <span class="a-tooltip">[FRR](## "FRRouting")</span> learns about a local VNI and there is no explicit configuration for that VNI in FRR, the switch derives the <span class="a-tooltip">[RD](## "route distinguisher")</span> and import and export <span class="a-tooltip">[RTs](## "route targets")</span> for this VNI automatically. The RD uses *RouterId:VNI-Index* and the import and export RTs use *AS:VNI*. For routes that come from a layer 2 VNI (type-2 and type-3), the RD uses the VXLAN local tunnel IP address (`vxlan-local-tunnelip`) from the layer 2 VNI interface instead of the RouterId (`vxlan-local-tunnelip:VNI`). EVPN route exchange uses the RD and RTs.
 
-The RD disambiguates EVPN routes in different VNIs (they can have the same MAC and IP address) while the RTs describe the VPN membership for the route. The *VNI-Index* for the RD is a unique number that the switch generates. It only has local significance; on remote switches, its only role is for route disambiguation. The switch uses this number instead of the VNI value itself because this number has to be less than or equal to 65535. In the RT, the <span style="background-color:#F5F5DC">[AS](## "Autonomous System")</span> is always a 2-byte value to allow room for a large VNI. If the router has a 4-byte AS, it only uses the lower 2 bytes. This ensures a unique RT for different VNIs while having the same RT for the same VNI across routers in the same AS.
+The RD disambiguates EVPN routes in different VNIs (they can have the same MAC and IP address) while the RTs describe the VPN membership for the route. The *VNI-Index* for the RD is a unique number that the switch generates. It only has local significance; on remote switches, its only role is for route disambiguation. The switch uses this number instead of the VNI value itself because this number has to be less than or equal to 65535. In the RT, the <span class="a-tooltip">[AS](## "Autonomous System")</span> is always a 2-byte value to allow room for a large VNI. If the router has a 4-byte AS, it only uses the lower 2 bytes. This ensures a unique RT for different VNIs while having the same RT for the same VNI across routers in the same AS.
 
 For eBGP EVPN peering, the peers are in a different AS so using an automatic RT of *AS:VNI* does not work for route import. Therefore, Cumulus Linux treats the import RT as *\*:VNI* to determine which received routes apply to a particular VNI. This only applies when the switch auto-derives the import RT.
 
@@ -228,7 +228,7 @@ address-family l2vpn evpn
 
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 
-You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or static route underlay. This is a more complex configuration than using <span style="background-color:#F5F5DC">[eBGP](## "external BGP")</span>. In this case, <span style="background-color:#F5F5DC">[iBGP](## "internal BGP")</span> advertises EVPN routes directly between <span style="background-color:#F5F5DC">[VTEPs](## "Virtual Tunnel End Points")</span> and the spines are unaware of EVPN or BGP.
+You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or static route underlay. This is a more complex configuration than using <span class="a-tooltip">[eBGP](## "external BGP")</span>. In this case, <span class="a-tooltip">[iBGP](## "internal BGP")</span> advertises EVPN routes directly between <span class="a-tooltip">[VTEPs](## "Virtual Tunnel End Points")</span> and the spines are unaware of EVPN or BGP.
 
 The leafs peer with each other in a full mesh within the EVPN address family without using route reflectors. The leafs generally peer to their loopback addresses, which advertise in OSPF. The receiving VTEP imports routes into a specific VNI with a matching route target community.
 
@@ -450,8 +450,49 @@ Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce AR
 {{%notice note%}}
 - ARP and ND suppression only suppresses the flooding of known hosts. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
 - NVIDIA recommends that you keep ARP and ND suppression enabled on all VXLAN interfaces on the switch. If you must disable suppression for a special use case, you cannot disable ARP and ND suppression on some VXLAN interfaces but not others.
-- When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries#forwarding-table-profiles" text="Forwarding Table Profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment. Refer to . {{<link url="Address-Resolution-Protocol-ARP/#global-timer-settings" text="Global Timer Settings">}}  
+- When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries/#forwarding-table-profiles" text="forwarding table profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment. Refer to {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="Global Timer Settings">}}.
 {{%/notice%}}
+
+### ND Suppression and IPv6 Address Reuse
+
+If you disable ND suppression and reuse IPv6 addresses, IPv6 duplicate address detection fails and the address remains tentative and not useable. The following example shows an IPv6 duplicate address detection failure on vlan10:
+
+```
+cumulus@switch:~$ ip address show vlan10 | grep dad
+inet6 2001:db8::1/32 scope global dadfailed tentative
+```
+
+To prevent IPv6 duplicate address detection from failing, you can either disable IPv6 duplicate address detection globally or on the interface address.
+
+To disable IPv6 duplicate address detection globally, add the following lines in the `/etc/sysctl.conf` file, then reboot the switch.
+
+```
+cumulus@switch:~$ sudo nano /etc/sysctl.conf
+...
+net.ipv6.conf.default.accept_dad = 0
+```
+
+To disable IPv6 duplicate address detection on an interface address, create an NVUE snippet, then patch and apply the configuration. The following snippet disables duplicate address detection on vlan10 with the IP address 2001:db8::1/32:
+
+```
+cumulus@switch:~$ sudo nano DisableDadVlan10.yaml
+- set:
+    system:
+      config:
+        snippet:
+          ifupdown2_eni:
+            vlan10: |
+              post-up ip address add 2001:db8::1/32 dev vlan10 nodad
+```
+
+```
+cumulus@switch:~$ nv config patch DisableDadVlan10.yaml
+cumulus@switch:~$ nv config apply
+```
+
+You do not need to reboot the switch after you create and apply the snippet.
+
+### ARP ND Suppression and Centralized Routing
 
 In a centralized routing deployment, you must configure layer 3 interfaces even if you configure the switch only for layer 2 (you are not using VXLAN routing). To avoid installing unnecessary layer 3 information, you can turn off IP forwarding.
 
@@ -520,6 +561,8 @@ iface bridge1
 ...
 ```
 
+### Disable ARP and ND Suppression
+
 NVIDIA recommends that you keep ARP and ND suppression on to reduce ARP and ND packet flooding over VXLAN tunnels. However, if you *do* need to disable ARP and ND suppression, run the NVUE `nv set nve vxlan arp-nd-suppress off` command or set `bridge-arp-nd-suppress off` in the `/etc/network/interfaces` file:
 
 {{< tabs "TabID593 ">}}
@@ -560,10 +603,10 @@ The neighbor manager service relies on ARP and ND suppression to snoop on packet
 
 1. Create the systemd override configuration file `/etc/systemd/system/neighmgrd.service` with the following content:
 
-```
-[Service]
-ExecStart=/usr/bin/neighmgrd --snoop-all-bridges
-```
+   ```
+   [Service]
+   ExecStart=/usr/bin/neighmgrd --snoop-all-bridges
+   ```
 
 2. Reload the systemd unit configuration with the `sudo systemctl daemon-reload` command.
 
@@ -621,9 +664,16 @@ When you configure a site ID, Cumulus Linux:
 
 The site ID is in the format `<IPv4 address>:<2-byte Value>`, where the IPv4 address is the anycast IP address (a virtual IP address for VXLAN data-path termination) and the 2-byte value is an integer between 0 and 65535. For example: 10.0.1.12:10
 
-NVUE does not provide commands for this feature.
+{{< tabs "TabID624 ">}}
+{{< tab "NVUE Commands ">}}
 
-To configure a unique site ID, run the following vtysh commands:
+```
+cumulus@leaf01:~$ nv set evpn mac-vrf-soo 10.0.1.12:10
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -636,6 +686,9 @@ leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 NVIDIA recommends you do not configure a site ID on a standalone or multihoming VTEP.
@@ -720,7 +773,7 @@ In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multi
 
 {{%notice note%}}
 - When you enable the advertise SVI IP and MAC address option, the anycast IP and MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP and MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
-- If you use <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> on your switch, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address">}}.
+- If you use <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> on your switch, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address">}}.
 {{%/notice%}}
 
 To advertise *all* SVI IP and MAC addresses on the switch, run these commands:
@@ -802,7 +855,7 @@ Disabling BUM flooding is useful in a deployment with a controller or orchestrat
 
 {{%notice note%}}
 
-For information on EVPN BUM flooding with <span style="background-color:#F5F5DC">[PIM](## "Protocol Independent Multicast")</span>, refer to {{<link url="EVPN-BUM-Traffic-with-PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
+For information on EVPN BUM flooding with <span class="a-tooltip">[PIM](## "Protocol Independent Multicast")</span>, refer to {{<link url="EVPN-BUM-Traffic-with-PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
 
 {{%/notice%}}
 

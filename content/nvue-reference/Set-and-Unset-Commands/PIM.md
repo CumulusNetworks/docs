@@ -46,19 +46,23 @@ Configures the address family on the PIM interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router pim address-family ipv4-unicast</h>
+## <h>nv set interface \<interface-id\> router pim address-family ipv4</h>
 
-Configures the IPv4 unicast address family on the interface.
+Configures the IPv4 address family on the interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, the `nv set interface <interface-id> router pim address-family ipv4` command is `nv set interface <interface-id> router pim address-family ipv4-unicast`
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router pim address-family ipv4-unicast allow-rp</h>
+## <h>nv set interface \<interface-id\> router pim address-family ipv4 allow-rp</h>
 
 Configures the PIM interface to ignore the RP check for all upstream neighbors. The default value is `off`.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router pim address-family ipv4-unicast allow-rp enable</h>
+## <h>nv set interface \<interface-id\> router pim address-family ipv4 allow-rp enable</h>
 
 Configures the PIM interface to ignore the RP check for all upstream neighbors. The default setting is `off`.
 
@@ -75,12 +79,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4-unicast allow-rp enable on
+cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4 allow-rp enable on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router pim address-family ipv4-unicast allow-rp rp-list</h>
+## <h>nv set interface \<interface-id\> router pim address-family ipv4 allow-rp rp-list</h>
 
 Configures PIM to only ignore the RP check for the upstream neighbors in the specified prefix list.
 
@@ -98,12 +102,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4-unicast allow-rp rp-list myprefixlist
+cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4 allow-rp rp-list myprefixlist
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router pim address-family ipv4-unicast multicast-boundary-oil</h>
+## <h>nv set interface \<interface-id\> router pim address-family ipv4 multicast-boundary-oil</h>
 
 Configures multicast boundaries to limit the distribution of multicast traffic and push multicast to a subset of the network.
 
@@ -121,12 +125,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4-unicast multicast-boundary-oil MyPrefixList
+cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4 multicast-boundary-oil MyPrefixList
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> router pim address-family ipv4-unicast use-source</h>
+## <h>nv set interface \<interface-id\> router pim address-family ipv4 use-source</h>
 
 Configures the PIM interface to use the unique source address in the PIM Hello source field.
 
@@ -143,7 +147,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4-unicast use-source 10.100.100.100
+cumulus@switch:~$ nv set interface swp51 router pim address-family ipv4 use-source 10.100.100.100
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -391,9 +395,15 @@ cumulus@switch:~$ nv set router pim timers join-prune-interval 100
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router pim timers keep-alive</h>
-
+<!--
+## <h>nv set router pim timers keepalive</h>
+-->
 Configures the timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000. The default setting is 210 seconds.
-
+<!--
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, the command is `nv set router pim timers keep-alive`.
+{{%/notice%}}
+-->
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -403,7 +413,11 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set router pim timers keep-alive 10000
 ```
-
+<!--
+```
+cumulus@switch:~$ nv set router pim timers keepalive 10000
+```
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router pim timers register-suppress</h>
@@ -422,18 +436,22 @@ cumulus@switch:~$ nv set router pim timers register-suppress 20000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set router pim timers rp-keep-alive</h>
+## <h>nv set router pim timers rp-keepalive</h>
 
 Configures the timeout value for the RP in seconds. You can specify a value between 31 and 60000. The default setting is 185 seconds.
 
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, the command is `nv set router pim timers rp-keep-alive`.
+{{%/notice%}}
+
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.7.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set router pim timers rp-keep-alive 10000
+cumulus@switch:~$ nv set router pim timers rp-keepalive 10000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -448,15 +466,19 @@ Configures PIM on the specified VRF.
 
 Configures the address family for PIM on the specified VRF.
 
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, the `nv set vrf <vrf-id> router pim address-family ipv4` command is `nv set vrf <vrf-id> router pim address-family ipv4-unicast`
+{{%/notice%}}
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast</h>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4</h>
 
 Configures the IPv4 unicast address family on the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast register-accept-list</h>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4 register-accept-list</h>
 
 Applies a prefix-list that specifies the source list to accept PIM register messages.
 
@@ -473,18 +495,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast register-accept-list MYACCEPTLIST
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4 register-accept-list MYACCEPTLIST
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\></h>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4 rp \<rp-id\></h>
 
 Configures RP settings for the specified VRF.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range \<group-range-id\></h>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4 rp \<rp-id\> group-range \<group-range-id\></h>
 
 Configures the group to RP mapping using the anycast address on the specified VRF.
 
@@ -503,12 +525,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4 rp 10.100.100.100 group-range 224.0.0.0/4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> prefix-list \<instance-name\></h>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4 rp \<rp-id\> prefix-list \<instance-name\></h>
 
 Applies a prefix list that specifies the multicast group range on the specified VRF.
 
@@ -526,7 +548,7 @@ Introduced in Cumulus Linux 5.0.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast send-v6-secondary</h>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4 send-v6-secondary</h>
 
 Turns sending IPv6 addresses as secondary addresses on or off on the specified VRF. The default setting is `off`.
 
@@ -543,12 +565,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast send-v6-secondary on
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4 send-v6-secondary on
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover</h>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4 spt-switchover</h>
 
 Configures PIM SPT switchover for the specified VRF. When the LHR receives the first multicast packet, it sends a PIM (S,G) join towards the FHR to forward traffic through the network. This builds the SPT, or the tree that is the shortest path to the source. When the traffic arrives over the SPT, a PIM (S,G) RPT prune goes up the shared tree towards the RP. This removes multicast traffic from the shared tree; multicast data only goes over the SPT.
 
@@ -556,7 +578,7 @@ You can configure SPT switchover per group (SPT infinity), which allows for some
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover action</h>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4 spt-switchover action</h>
 
 Configures the SPT switchover action in the specified VRF. You can set the action to be `immediate` or `infinite`.
 
@@ -573,12 +595,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover action immediate
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4 spt-switchover action immediate
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover prefix-list \<instance-name\></h>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4 spt-switchover prefix-list \<instance-name\></h>
 
 Applies the prefix list that specifies the multicast group range on the specified VRF.
 
@@ -596,12 +618,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover prefix-list SPTrange
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4 spt-switchover prefix-list SPTrange
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router pim address-family ipv4-unicast ssm-prefix-list</h>
+## <h>nv set vrf \<vrf-id\> router pim address-family ipv4 ssm-prefix-list</h>
 
 Applies a prefix-list to specify the Source Specific Multicast (SSM) group range on the specified VRF.
 
@@ -618,7 +640,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default router pim address-family ipv4-unicast ssm-prefix-list SSMPREFIXLIST
+cumulus@switch:~$ nv set vrf default router pim address-family ipv4 ssm-prefix-list SSMPREFIXLIST
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -755,9 +777,16 @@ Configures PIM timers on the specified VRF.
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router pim timers keep-alive</h>
-
+<!--
+## <h>nv set vrf \<vrf-id\> router pim timers keepalive</h>
+-->
 Configures the timeout value for the S,G stream in seconds for the specified VRF. You can set a value between 31 and 60000. The default setting is 210 seconds.
 
+<!--
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, the command is `nv set vrf <vrf-id> router pim timers keep-alive`.
+{{%/notice%}}
+-->
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -767,13 +796,24 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router pim timers keep-alive 10000
 ```
+<!--
+```
+cumulus@switch:~$ nv set vrf default router pim timers keepalive 10000
+```
+-->
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set vrf \<vrf-id\> router pim timers rp-keep-alive</h>
-
+<!--
+## <h>nv set vrf \<vrf-id\> router pim timers rp-keepalive</h>
+-->
 Configures the timeout value for the RP in seconds on the specified VRF. You can specify a value between 31 and 60000. The default setting is 185 seconds.
-
+<!--
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, the command is `nv set vrf <vrf-id> router pim timers rp-keep-alive`.
+{{%/notice%}}
+-->
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -789,3 +829,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv set vrf default router pim timers rp-keep-alive 1000
 ```
+<!--
+```
+cumulus@switch:~$ nv set vrf default router pim timers rp-keepalive 1000
+```
+-->

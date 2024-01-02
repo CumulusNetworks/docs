@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 510
 toc: 3
 ---
-VRR enables hosts to communicate with any redundant switch without reconfiguration by running dynamic router protocols or router redundancy protocols. Redundant switches respond to <span style="background-color:#F5F5DC">[ARP](## "Address Resolution Protocol")</span> requests from hosts. The switches respond in an identical manner, but if one fails, the other redundant switches continue to respond. You use VRR with <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span>.
+VRR enables hosts to communicate with any redundant switch without reconfiguration by running dynamic router protocols or router redundancy protocols. Redundant switches respond to <span class="a-tooltip">[ARP](## "Address Resolution Protocol")</span> requests from hosts. The switches respond in an identical manner, but if one fails, the other redundant switches continue to respond. You use VRR with <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span>.
 
 Use VRR when you connect multiple devices to a single logical connection, such as an MLAG bond. A device that connects to an MLAG bond believes there is a single device on the other end of the bond and only forwards one copy of the transit frames. If the destination of this frame is the virtual MAC address and you are running VRRP, the frame can go to the link connected to the VRRP standby device, which does not forward the frame to the right destination. With the virtual MAC active on both MLAG devices, either MLAG device handles the frame it receives.
 
@@ -29,7 +29,7 @@ The switches implement the layer 2 network interconnecting the servers and the r
 - One or more interfaces to each peer switch. To accommodate higher bandwidth between the switches and to offer link redundancy, multiple inter-peer links are typically bonded interfaces. The VLAN interface must have a unique IP address for both the physical and virtual interface; the switch uses the unique address when it initiates an ARP request.
 
 {{%notice note%}}
-Cumulus Linux only supports VRR on an <span style="background-color:#F5F5DC">[SVI](## "Switched Virtual Interface")</span>. You cannot configure VRR on a physical interface or virtual subinterface.
+Cumulus Linux only supports VRR on an <span class="a-tooltip">[SVI](## "Switched Virtual Interface")</span>. You cannot configure VRR on a physical interface or virtual subinterface.
 {{%/notice%}}
 
 The example commands below create a VLAN-aware bridge interface for a VRR-enabled network. The example assumes you have already configured a VLAN-aware bridge with VLAN 10 and that VLAN 10 has an IP address and uses the default fabric-wide VRR MAC address 00:00:5e:00:01:01.
@@ -156,8 +156,8 @@ The following example commands configure both 10.1.10.1/24 and 10.1.11.1/24 on V
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr adress 10.1.10.1/24
-cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr adress 10.1.11.1/24
+cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@switch:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.11.1/24
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
@@ -188,9 +188,9 @@ To reduce BGP EVPN processing during convergence, NVIDIA recommends that you use
 
 ### Configure the Servers
 
-Each server must have two network interfaces. The switches configure the interfaces as bonds running <span style="background-color:#F5F5DC">[LACP](## "Link Aggregation Control Protocol")</span>; the servers must also configure the two interfaces using teaming, port aggregation, port group, or EtherChannel running LACP. Configure the servers either statically or with DHCP, with a gateway address that is the IP address of the virtual router; this default gateway address never changes.
+Each server must have two network interfaces. The switches configure the interfaces as bonds running <span class="a-tooltip">[LACP](## "Link Aggregation Control Protocol")</span>; the servers must also configure the two interfaces using teaming, port aggregation, port group, or EtherChannel running LACP. Configure the servers either statically or with DHCP, with a gateway address that is the IP address of the virtual router; this default gateway address never changes.
 
-Configure the links between the servers and the switches in *active-active* mode for <span style="background-color:#F5F5DC">[FHRP](## "First Hop Redundancy Protocol")</span>.
+Configure the links between the servers and the switches in *active-active* mode for <span class="a-tooltip">[FHRP](## "First Hop Redundancy Protocol")</span>.
 
 ### Troubleshooting
 

@@ -5,10 +5,10 @@ weight: 570
 toc: 4
 ---
 
-*EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> in data centers deploying Clos topologies. Replacing MLAG provides these benefits:
+*EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> in data centers deploying Clos topologies. Replacing MLAG provides these benefits:
 
 - Eliminates the need for peerlinks or inter-switch links between the top of rack switches
-- Allows more than two <span style="background-color:#F5F5DC">[ToR](## "Top of Rack")</span> switches a redundancy group
+- Allows more than two <span class="a-tooltip">[ToR](## "Top of Rack")</span> switches a redundancy group
 - Provides a single BGP-EVPN control plane
 - Allows multi-vendor interoperability
 
@@ -16,7 +16,7 @@ EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, ty
 
 To configure EVPN-MH, you set an Ethernet segment system MAC address and a local Ethernet segment ID on a static or LACP bond. These two parameters generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}) automatically:
 
-- The Ethernet segment system MAC address is the <span style="background-color:#F5F5DC">[LACP](## "Link Aggregation Control Protocol")</span> system identifier.
+- The Ethernet segment system MAC address is the <span class="a-tooltip">[LACP](## "Link Aggregation Control Protocol")</span> system identifier.
 - The local Ethernet segment ID configuration defines a local discriminator to uniquely enumerate each bond that shares the same Ethernet segment system MAC address.
 - The resulting 10-byte ESI value has the following format, where the MMs denote the 6-byte Ethernet segment system MAC address and the XXs denote the 3-byte local Ethernet segment ID value:
 
@@ -56,7 +56,7 @@ To use EVPN-MH, you must remove any MLAG configuration on the switch:
 - {{<link url="LACP-Bypass">}}.
   - When an EVPN-MH bond enters LACP bypass state, BGP stops advertising EVPN type-1 and type-4 routes for that bond. The switch disables split-horizon and designated forwarder filters.
   - When an EVPN-MH bond exits the LACP bypass state, BGP starts advertising EVPN type-1 and type-4 routes for that bond. The switch enables split-horizon and designated forwarder filters.
-- <span style="background-color:#F5F5DC">[EVI](## "EVPN virtual instance")</span> - Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
+- <span class="a-tooltip">[EVI](## "EVPN virtual instance")</span> - Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
 - Supported {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="ASICs">}} include NVIDIA Spectrum A1, Spectrum-2 and Spectrum-3.
 
 ### Supported EVPN Route Types
@@ -77,6 +77,7 @@ The following features are not supported with EVPN-MH:
 
 - {{<link url="Traditional-Bridge-Mode" text="Traditional bridge mode">}}
 - {{<link url="Inter-subnet-Routing/#asymmetric-routing" text="Distributed asymmetric routing">}}
+- {{<link url="Inter-subnet-Routing/#centralized-routing" text="Centralized routing">}}
 - {{<link url="EVPN-Enhancements/#duplicate-address-detection" text="Duplicate address detection">}}
 - Multihomed networks, such as STP bridge domains that are MH connected. EVPN-MH bonds are intended for multihomed end-node device (server) connectivity.
 

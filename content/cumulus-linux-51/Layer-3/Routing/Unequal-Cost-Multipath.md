@@ -153,7 +153,7 @@ route-map ucmp-route-map permit 10
 
 ### EVPN Configuration
 
-For <span style="background-color:#F5F5DC">[EVPN](## "Ethernet Virtual Private Network")</span> configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
+For <span class="a-tooltip">[EVPN](## "Ethernet Virtual Private Network")</span> configuration, make sure that you activate the commands under the EVPN address family. The following shows an example EVPN configuration that sets the BGP link bandwidth extended community against **all** prefixes.
 
 {{< tabs "TabID160 ">}}
 {{< tab "NVUE Commands">}}
@@ -271,7 +271,7 @@ router bgp 65011
 
 ### BGP Link Bandwidth Outside a Domain
 
-The BGP link bandwidth extended community is passed on automatically with the prefix to <span style="background-color:#F5F5DC">[eBGP](## "external BGP")</span> peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
+The BGP link bandwidth extended community is passed on automatically with the prefix to <span class="a-tooltip">[eBGP](## "external BGP")</span> peers. If you do not want to pass on the BGP link bandwidth extended community outside of a particular domain, you can disable the advertisement of all BGP extended communities on specific peerings.
 
 {{%notice note%}}
 You cannot disable just the BGP link bandwidth extended community from advertising to a neighbor; you either send all BGP extended communities, or none.

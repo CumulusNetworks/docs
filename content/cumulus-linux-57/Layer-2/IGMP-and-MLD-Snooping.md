@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 520
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[IGMP](## "Internet Group Management Protocol")</span> and <span style="background-color:#F5F5DC">[MLD](## "Multicast Listener Discovery")</span> snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
+<span class="a-tooltip">[IGMP](## "Internet Group Management Protocol")</span> and <span class="a-tooltip">[MLD](## "Multicast Listener Discovery")</span> snooping prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
 
 The bridge driver in Cumulus Linux kernel includes IGMP and MLD snooping. If you disable IGMP or MLD snooping, multicast traffic floods to all the bridge ports in the bridge. Similarly, in the absence of receivers in a VLAN, multicast traffic floods to all ports in the VLAN.
 
@@ -85,7 +85,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 ## Optimized Multicast Flooding (OMF)
 
-IGMP snooping restricts multicast forwarding only to the ports that receive IGMP report messages. If the ports do not receive IGMP reports, multicast traffic floods to all ports in the bridge domain (also know as unregistered multicast (URMC) traffic). To restrict this flooding to only mrouter ports, you can enable OMF.
+IGMP snooping restricts multicast forwarding only to the ports that receive IGMP report messages. If the ports do not receive IGMP reports, multicast traffic floods to all ports in the bridge domain (also known as unregistered multicast (URMC) traffic). To restrict this flooding to only mrouter ports, you can enable OMF.
 
 To enable OMF:
 
@@ -154,7 +154,7 @@ OMF increases memory usage, which can impact scaling on Spectrum 1 switches.
 
 ## Improve Multicast Convergence
 
-For large multicast environments, the default <span style="background-color:#F5F5DC">[CoPP](## "Control Plane Policing")</span> policer might be too restrictive. You can adjust the policer to improve multicast convergence.
+For large multicast environments, the default <span class="a-tooltip">[CoPP](## "Control Plane Policing")</span> policer might be too restrictive. You can adjust the policer to improve multicast convergence.
 
 - For IGMP, both the default forwarding rate and the default burst rate are set to 1000 packets per second.
 - For MLD, the default forwarding rate is set to 300 packets per second and the default burst rate is set to 100 packets per second.
@@ -316,7 +316,7 @@ swp3 (3)
   flags
 ```
 
-Cumulus Linux tracks multicast group and port state in the <span style="background-color:#F5F5DC">[MDB](## "multicast database")</span>. To show the groups and bridge port state, run the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
+Cumulus Linux tracks multicast group and port state in the <span class="a-tooltip">[MDB](## "multicast database")</span>. To show the groups and bridge port state, run the Linux `sudo bridge mdb show` command. To show detailed router ports and group information, run the `sudo bridge -d -s mdb show` command:
 
 ```
 cumulus@switch:~$ sudo bridge -d -s mdb show

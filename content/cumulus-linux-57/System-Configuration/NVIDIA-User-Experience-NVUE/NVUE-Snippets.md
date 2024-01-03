@@ -271,9 +271,9 @@ The following example creates a file called `traffic_conf_snippet.yaml` and enab
    !---- NVUE snippets ----
    resilient_hash_enable = TRUE
    ```
-<!-- vale off -->
+
 ### /etc/snmp/snmpd.conf Snippets
-<!-- vale on -->
+
 To add Cumulus Linux SNMP agent configuration not yet available with NVUE commands, create an `snmpd.conf` snippet.
 
 The following example creates a file called `snmpd.conf_snippet.yaml`, and sets the read only community string and the listening address to run in the mgmt VRF.
@@ -503,6 +503,51 @@ Invalid config [rev_id: 1]
 {{%/notice%}}
 
 You can also create a flexible snippet with the REST API. See {{<link url="NVUE-API" text="NVUE API">}}.
+
+## Remove Snippets
+
+To remove a traditional or flexible snippet, edit the snippet's `.yaml` file to change `set` to `unset`, then patch and apply the configuration. Alternatively, you can use the REST API DELETE and PATCH methods.
+
+The following example removes the {{<link url="#etcnetworkinterfaces-snippets" text="MLAG timer traditional snippet">}} created above to configure the MLAG peer timeout:
+
+1. Edit the `mlag_snippet.yaml` file to change `set` to `unset`:
+
+   ```
+   cumulus@switch:~$ sudo nano mlag_snippet.yaml
+   - unset:
+       system:
+         config:
+           snippet:
+             ifupdown2_eni:
+               peerlink.4094: |
+                 clagd-args --peerTimeout 400
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch mlag_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the peer timeout parameter no longer exists in the `peerlink.4094` stanza of the `/etc/network/interfaces` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/network/interfaces
+   ...
+   auto peerlink.4094
+   iface peerlink.4094
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.2
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 180
+   ...
+   ```
 
 ## Considerations
 

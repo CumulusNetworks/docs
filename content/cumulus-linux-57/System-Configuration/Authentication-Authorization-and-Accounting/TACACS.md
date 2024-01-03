@@ -346,7 +346,7 @@ To configure local fallback authentication:
     The following example shows the `/etc/nsswitch.conf` file with no `tacplus` keyword in the line starting with `passwd`.
 
     ```
-    cumulus@switch:~$ sudo vi /etc/nsswitch.conf
+    cumulus@switch:~$ sudo nano /etc/nsswitch.conf
     #
     # Example configuration of GNU Name Service Switch functionality.
     # If you have the `glibc-doc-reference' and `info' packages installed, try:
@@ -374,7 +374,7 @@ The first `adduser` command prompts for information and a password. You can skip
 3. Edit the `/etc/nsswitch.conf` file to add the keyword `tacplus` back to the line starting with `passwd` (the keyword you removed in the first step).
 
     ```
-    cumulus@switch:~$ sudo vi /etc/nsswitch.conf
+    cumulus@switch:~$ sudo nano /etc/nsswitch.conf
     #
     # Example configuration of GNU Name Service Switch functionality.
     # If you have the `glibc-doc-reference' and `info' packages installed, try:

@@ -899,7 +899,7 @@ resources. However, the number of supported rules varies with the {{<link url="R
 | ipmc-heavy   | 750                    | 500                    | 1500                      | 1000                      |
 | acl-heavy    | 1750                   | 1000                   | 3500                      | 2000                      |
 | ipmc-max     | 1000                   | 500                    | 2000                      | 1000                      |
-| ip-acl-heavy | 7500                   | 0                      | 15000                     | 0                         |
+| ip-acl-heavy | 6000                   | 0                      | 12000                     | 0                         |
 
 {{%notice note%}}
 

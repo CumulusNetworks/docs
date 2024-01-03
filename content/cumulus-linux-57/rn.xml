@@ -68,12 +68,6 @@ There is no functional impact if a service tries to initialize the module again.
 <td></td>
 </tr>
 <tr>
-<td>3672706</td>
-<td> With port-security enabled, you can configure only 450 port-security static MAC addresses per interface.</td>
-<td>5.7.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3637444</td>
 <td>Applying an inbound control plane ACL on the eth0 management interface does not work. To work around this issue, apply the ACL on the {{mgmt}} interface; for example, {{nv set interface mgmt acl &lt;acl-id&gt; inbound control-plane}}.</td>
 <td>5.7.0</td>

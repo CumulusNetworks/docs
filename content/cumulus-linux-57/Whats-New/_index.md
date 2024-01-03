@@ -21,6 +21,7 @@ Cumulus Linux 5.7.0 contains several new features and improvements, and provides
 - {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}} to include ingress buffer utilization and bandwidth utilization for a port.
 - {{<link url="Pulse-Per-Second-PPS" text="Pulse Per Second (PPS) synchronization">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#weight-normalization" text="Weight normalization for BGP weighted ECMP">}}
+- The NVIDIA SN3750-SX switch is Class B compliant
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}

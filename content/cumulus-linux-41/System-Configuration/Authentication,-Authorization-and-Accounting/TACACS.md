@@ -88,7 +88,9 @@ Some TACACS+ servers need special configuration to allow authorization requests 
 
 ## Local Fallback Authentication
 
-If a site wants to allow local fallback authentication for a user when none of the TACACS servers can be reached you can add a privileged user account as a local account on the switch.
+You can configure the switch to allow local fallback authentication for a user when the TACACS servers are unreachable, do not include the user for authentication, or have the user in the exclude user list.
+
+To allow local fallback authentication for a user, add a local privileged user account on the switch with the same username as a TACACS user. A local user is always active even when the TACACS service is not running.
 
 To configure local fallback authentication:
 
@@ -97,7 +99,7 @@ To configure local fallback authentication:
     An example of the `/etc/nsswitch.conf` file with the keyword `tacplus` removed from the line starting with `passwd` is shown below.
 
     ```
-    cumulus@switch:~$ sudo vi /etc/nsswitch.conf
+    cumulus@switch:~$ sudo nano /etc/nsswitch.conf
     #
     # Example configuration of GNU Name Service Switch functionality.
     # If you have the `glibc-doc-reference' and `info' packages installed, try:
@@ -125,6 +127,19 @@ The first `adduser` command prompts for information and a password. You can skip
     ```
 
 3. Edit the `/etc/nsswitch.conf` file to add the keyword `tacplus` back to the line starting with `passwd` (the keyword you removed in the first step).
+
+   ```
+    cumulus@switch:~$ sudo nano /etc/nsswitch.conf
+    #
+    # Example configuration of GNU Name Service Switch functionality.
+    # If you have the `glibc-doc-reference' and `info' packages installed, try:
+    # `info libc "Name Service Switch"' for information about this file.
+    passwd:         tacplus files
+    group:          tacplus files
+    shadow:         files
+    gshadow:        files
+    ...
+    ```
 
 4. Restart the `netd` service with the following command:
 

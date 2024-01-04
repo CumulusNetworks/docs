@@ -1764,7 +1764,7 @@ Last update: Sun Dec 20 03:04:53 2020
 
 When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap on BGP peers that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the switches affected by the flap, which can affect overall network performance.
 
-To minimize the negative effects that occur when BGP restarts, Cumulus Linux enables graceful BGP restart by default, which lets a BGP speaker to signal to its peers that it can preserve its forwarding state and continue data forwarding during a restart. BGP graceful restart also enables a BGP speaker to continue to use routes announced by a peer even after the peer has gone down.
+To minimize the negative effects that occur when BGP restarts, Cumulus Linux enables graceful BGP restart by default, which lets a BGP speaker signal to its peers that it can preserve its forwarding state and continue data forwarding during a restart. BGP graceful restart also enables a BGP speaker to continue to use routes announced by a peer even after the peer has gone down.
 
 When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate a graceful restart. If the BGP peer also supports graceful restart, it activates for that neighbor session. If the BGP session stops, the BGP peer (the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. After the device comes back up and establishes BGP sessions again with its peers (restart helpers), it waits to learn all routes that these peers announce before selecting a cumulative path; after which, it updates its forwarding tables and re-announces the appropriate routes to its peers. These procedures ensure that if there are any routing changes while the BGP speaker is restarting, the network converges.
 
@@ -1774,7 +1774,7 @@ Cumulus Linux supports graceful BGP restart full mode and helper-only mode for I
 - In full mode, the switch is in both a helper and restarter role.
 - In helper-only mode, the switch is in a helper role only, where routes originated and advertised from a BGP peer are not deleted.
 
-You can configure graceful BGP restart globally, where all BGP peers inherit the graceful restart capability or for a BGP peer or peer group (useful for misbehaving peers or when working with third party devices).
+You can configure graceful BGP restart globally, where all BGP peers inherit the graceful restart capability, or for a BGP peer or peer group (useful for misbehaving peers or when working with third party devices).
 
 {{%notice note%}}
 BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception, or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.

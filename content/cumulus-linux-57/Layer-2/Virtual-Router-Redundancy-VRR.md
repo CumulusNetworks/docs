@@ -810,9 +810,7 @@ iface bond1.30
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL56 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
-
-This simulation is running Cumulus Linux 5.6. The Cumulus Linux 5.7 simulation is coming soon.
+    {{< simulation name="Try It CL57 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
 
 This demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

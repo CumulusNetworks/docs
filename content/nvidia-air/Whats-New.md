@@ -7,15 +7,19 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## November 2023
+## January 2024
 <!-- Air:WhatsNew -->
+### 82.2024.0104-012
+- Updated font used by configuration migration tool
+<!-- Air:WhatsNew -->
+
+## November 2023
 ### 82.2023.1109-012
 - Fixed an issue where the font failed to render correctly
 - Fixed an issue preventing sims from starting
 - Fixed an issue where a simulation created with no nodes would become stuck in the LOADING state
 - Fixed an issue where sim state lock could be released too early during a stop job
 - Fixed an issue where the topology delete API did not remove the topology
-<!-- Air:WhatsNew -->
 
 ## October 2023
 ### 82.2023.1023-012

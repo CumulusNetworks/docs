@@ -1796,7 +1796,9 @@ cumulus@leaf01:~$ nv config apply
 
 To set graceful BGP restart back to the default setting (helper-only mode), run the `nv unset router bgp graceful-restart` command.
 
-FRR (vtysh) supports helper-only mode; you can only set full mode with NVUE commands.
+{{%notice note%}}
+FRR (vtysh) does not provide the full mode option; you can only set full mode with NVUE commands.
+{{%/notice%}}
 
 ### Disable Graceful BGP Restart
 
@@ -1920,7 +1922,7 @@ router bgp 65199
 
 ### Show Graceful BGP Restart Information
 
-To show graceful BGP restart configuration settings, run the NVUE `nv show router bgp graceful-restart` command:
+To show global graceful BGP restart configuration settings, run the NVUE `nv show router bgp graceful-restart` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router bgp graceful-restart 

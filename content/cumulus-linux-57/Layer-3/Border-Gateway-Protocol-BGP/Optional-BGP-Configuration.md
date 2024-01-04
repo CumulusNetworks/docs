@@ -1780,27 +1780,60 @@ You can configure graceful BGP restart globally, where all BGP peers inherit the
 BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception, or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
 {{%/notice%}}
 
-The following example commands set graceful BGP restart to full mode globally on the switch:
+{{< tabs "TabID1783 ">}}
+{{< tab "NVUE Commands ">}}
+
+The switch has graceful restart enabled in helper-only mode by default. To set graceful BGP restart to full mode globally on the switch:
 
 ```
 cumulus@leaf01:~$ nv set router bgp graceful-restart mode full
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example commands set graceful BGP restart to full mode on the BGP peer connected on swp51:
+To set graceful BGP restart to full mode on the BGP peer connected on swp51:
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-restart mode full
 cumulus@leaf01:~$ nv config apply
 ```
 
-To set graceful BGP restart back to the default setting (helper-only mode), run the `nv unset router bgp graceful-restart` command.
+To set graceful BGP restart back to the default setting (helper-only mode), run the `nv unset router bgp graceful-restart` command or the `nv set router bgp graceful-restart mode helper-only` command.
 
-{{%notice note%}}
-FRR (vtysh) does not provide the full mode option; you can only set full mode with NVUE commands.
-{{%/notice%}}
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
-### Disable Graceful BGP Restart
+The switch has graceful restart enabled in helper-only mode by default. To set graceful BGP restart to full mode globally on the switch:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# bgp graceful-restart
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+To set graceful BGP restart to full mode on the BGP peer connected on swp51:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 graceful-restart
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+To set graceful BGP restart back to the default setting (helper-only mode), run the `no bgp graceful-restart` command or the `no neighbor <interface> graceful-restart` command
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Disable Graceful Restart
 
 {{%notice info%}}
 If you disable graceful BGP restart, you cannot achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="In-Service-System-Upgrade-ISSU" text="ISSU">}} for more information.
@@ -1920,7 +1953,7 @@ router bgp 65199
 {{< /tab >}}
 {{< /tabs >}}
 
-### Show Graceful BGP Restart Information
+### Show Graceful Restart Information
 
 To show global graceful BGP restart configuration settings, run the NVUE `nv show router bgp graceful-restart` command:
 

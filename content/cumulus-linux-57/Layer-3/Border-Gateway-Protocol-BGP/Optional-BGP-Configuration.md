@@ -1764,41 +1764,87 @@ Last update: Sun Dec 20 03:04:53 2020
 
 When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap on BGP peers that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the switches affected by the flap, which can affect overall network performance.
 
-To minimize the negative effects that occur when BGP restarts, you can enable the BGP graceful restart feature. This enables a BGP speaker to signal to its peers that it can preserve its forwarding state and continue data forwarding during a restart. It also enables a BGP speaker to continue to use routes announced by a peer even after the peer has gone down.
+To minimize the negative effects that occur when BGP restarts, Cumulus Linux enables graceful BGP restart by default, which lets a BGP speaker to signal to its peers that it can preserve its forwarding state and continue data forwarding during a restart. BGP graceful restart also enables a BGP speaker to continue to use routes announced by a peer even after the peer has gone down.
 
 When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate a graceful restart. If the BGP peer also supports graceful restart, it activates for that neighbor session. If the BGP session stops, the BGP peer (the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. After the device comes back up and establishes BGP sessions again with its peers (restart helpers), it waits to learn all routes that these peers announce before selecting a cumulative path; after which, it updates its forwarding tables and re-announces the appropriate routes to its peers. These procedures ensure that if there are any routing changes while the BGP speaker is restarting, the network converges.
 
-Cumulus Linux supports BGP graceful restart full and helper-only mode for Pv4 and IPv6. In full mode, the switch is in both a helper and restarter role. In helper-only mode, the switch is in a helper role only, where routes originated and advertised from a BGP peer are not deleted.
+### Restart Modes
 
-You can enable BGP graceful restart in one of two ways:
-- Globally, where all BGP peers inherit the graceful restart capability.
-- Per BGP peer or peer group, which can be useful for misbehaving peers or when working with third party devices.
+Cumulus Linux supports graceful BGP restart full mode and helper-only mode for IPv4 and IPv6. The default setting is helper-only mode.
+- In full mode, the switch is in both a helper and restarter role.
+- In helper-only mode, the switch is in a helper role only, where routes originated and advertised from a BGP peer are not deleted.
 
-You must enable BGP graceful restart to achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="In-Service-System-Upgrade-ISSU" text="ISSU">}} for more information.
+You can configure graceful BGP restart globally, where all BGP peers inherit the graceful restart capability or for a BGP peer or peer group (useful for misbehaving peers or when working with third party devices).
 
 {{%notice note%}}
-BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
+BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception, or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
 {{%/notice%}}
 
-The following example commands enable graceful BGP restart helper-only mode globally on the switch:
-
-{{< tabs "TabID1442 ">}}
-{{< tab "NVUE Commands ">}}
+The following example commands set graceful BGP restart to full mode globally on the switch:
 
 ```
-cumulus@leaf01:~$ nv set router bgp graceful-restart mode helper-only
+cumulus@leaf01:~$ nv set router bgp graceful-restart mode full
+cumulus@leaf01:~$ nv config apply
+```
+
+The following example commands set graceful BGP restart to full mode on the BGP peer connected on swp51:
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-restart mode full
+cumulus@leaf01:~$ nv config apply
+```
+
+To set graceful BGP restart back to the default setting (helper-only mode), run the `nv unset router bgp graceful-restart` command.
+
+FRR (vtysh) supports helper-only mode; you can only set full mode with NVUE commands.
+
+### Disable Graceful BGP Restart
+
+{{%notice info%}}
+If you disable graceful BGP restart, you cannot achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="In-Service-System-Upgrade-ISSU" text="ISSU">}} for more information.
+{{%/notice%}}
+
+{{< tabs "TabID1816 ">}}
+{{< tab "NVUE Commands ">}}
+
+To disable graceful BGP restart globally on the switch:
+
+```
+cumulus@leaf01:~$ nv set router bgp graceful-restart mode off
+cumulus@leaf01:~$ nv config apply
+```
+
+To disable graceful BGP restart on a BGP peer:
+
+```
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 graceful-restart
 cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
+To disable graceful BGP restart globally on the switch:
+
 ```
 cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp graceful-restart
+leaf01(config-router)# bgp graceful-restart-disable
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+To disable graceful BGP restart on a BGP peer:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 graceful-restart-disable
 leaf01(config-router)# end
 leaf01# write memory
 leaf01# exit
@@ -1807,56 +1853,20 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands enable helper-only mode for the BGP peer connected on swp51:
+### Restart Timers
 
-{{< tabs "TabID1506 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-restart mode helper-only
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# neighbor swp51 graceful-restart-helper
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-```
-
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-...
-router bgp 65199
- bgp router-id 10.10.10.101
- neighbor swp51 remote-as external
- neighbor swp51 graceful-restart-helper
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-You can configure the following graceful restart timers.
-
-|<div style="width:250px">Timer | Description |
-| ---- | ----------- |
-| `restart-time` | The number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. The default is 120 seconds. You can set a value between 1 and 4095.|
-| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. The default is 360 seconds. You can set a value between 0 and 3600. |
-| `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. The default is 360 seconds. You can set a value between 1 and 4095.|
-
-The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:
+You can configure the following graceful BGP restart timers.
 
 {{< tabs "TabID1557 ">}}
 {{< tab "NVUE Commands ">}}
+
+|<div style="width:250px">Timer | Description |
+| ---- | ----------- |
+| `restart-time` | The number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. You can set a value between 1 and 4095. The default is 120 seconds. |
+| `pathselect-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. You can set a value between 0 and 3600. The default is 360 seconds. |
+| `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. You can set a value between 1 and 4095. The default is 360 seconds.|
+
+The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:
 
 ```
 cumulus@leaf01:~$ nv set router bgp graceful-restart restart-time 400
@@ -1867,6 +1877,17 @@ cumulus@leaf01:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
+
+|<div style="width:250px">Timer | Description |
+| ---- | ----------- |
+| `notification` | Enables graceful BGP restart support for BGP NOTIFICATION messages.|
+| `preserve-fw-state` | Sets the F-bit indication that the FIB is preserved when doing a graceful BPG restart. |
+| `restart-time` | The number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. You can set a value between 1 and 4095. The default is 120 seconds. |
+|  `rib-stale-time` |  The stale route removal time in the RIB (in seconds). You can set a value between 1 and 3600. |
+| `select-defer-time` | The number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. You can set a value between 0 and 3600. The default is 360 seconds. |
+| `stalepath-time` | The number of seconds to hold stale routes for a restarting peer. You can set a value between 1 and 4095. The default is 360 seconds.|
+
+The following example commands set the `restart-time` to 400 seconds, `pathselect-defer-time` to 300 seconds, and `stalepath-time` to 400 seconds:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1897,61 +1918,21 @@ router bgp 65199
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands disable global graceful restart:
+### Show Graceful BGP Restart Information
 
-{{< tabs "TabID1816 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv unset router bgp graceful-restart
-cumulus@leaf01:~$ nv config apply$
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
+To show graceful BGP restart configuration settings, run the NVUE `nv show router bgp graceful-restart` command:
 
 ```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# bgp graceful-restart-disable
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
+cumulus@leaf01:mgmt:~$ nv show router bgp graceful-restart 
+                              applied      pending    
+----------------------------  -----------  -----------
+mode                          helper-only  helper-only
+restart-time                  120          120        
+path-selection-deferral-time  360          360        
+stale-routes-time             360          360
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-The following example commands disable graceful BGP restart on a BGP peer:
-
-{{< tabs "TabID169 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 graceful-restart
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# neighbor swp51 graceful-restart-disable
-leaf01(config-router)# end
-leaf01# write memory
-leaf01# exit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To show BGP graceful restart information, run the vtysh `show ip bgp neighbor <neighbor> graceful-restart` command or the `net show bgp neighbor <neighbour> graceful-restart` command.
+To show graceful BGP restart information on a specific BGP peer, run the vtysh `show ip bgp neighbor <neighbor> graceful-restart` command or the `net show bgp neighbor <neighbour> graceful-restart` command.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh

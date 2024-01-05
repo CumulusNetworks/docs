@@ -7,7 +7,7 @@ toc: 2
 This document supports the Cumulus Linux 5.8 release, and lists new platforms, features, and enhancements.
 
 - For a list of all the platforms supported in Cumulus Linux 5.8, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
-- For a list of open and fixed issues in Cumulus Linux 5.8, see the {{<link title="Cumulus Linux 5.8 Release Notes" text="Cumulus Linux 5.7 Release Notes">}}.
+- For a list of open and fixed issues in Cumulus Linux 5.8, see the {{<link title="Cumulus Linux 5.8 Release Notes" text="Cumulus Linux 5.8 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.8, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.8.0
@@ -16,7 +16,6 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 
 ### New Features and Enhancements
 
-- {{<link title="" text="">}}
 - Warmboot support for VXLAN EVPN (single homed; no EVPN MLAG or EVPN MH support)
 - ISSU Support for 802.1X
 - Port security and 802.1x interoperability (multi host mode)

@@ -7,6 +7,13 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
+## January 2024
+### 82.2024.0104-012
+- Updated font used by configuration migration tool
+
+<!-- Air:WhatsNew -->
+## Archive
+{{< expand "Changelog Archive" >}}
 ## November 2023
 <!-- Air:WhatsNew -->
 ### 82.2023.1109-012
@@ -164,3 +171,4 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
   - Added socat package
 - Updated generic/ubuntu1804 image
 <!-- vale on -->
+{{< /expand >}}

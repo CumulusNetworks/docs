@@ -1,0 +1,86 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: coolkey
+Upstream-Contact: http://directory.fedoraproject.org/wiki/CoolKey
+Source: http://directory.fedora.redhat.com/download/coolkey/coolkey-1.1.0.tar.gz
+Comment: Debianized by A. Maitland Bottoms <bottoms@debian.org> on 28 November 2006.
+ CVSROOT=:pserver:anonymous@cvs.fedora.redhat.com:/cvs/dirsec cvs export -D 20061215 coolkey
+ Updates from SVN at http://svn.fedorahosted.org/svn/coolkey
+ Updates from git at http://pkgs.fedoraproject.org/gitweb/?p=coolkey.git
+ or git://pkgs.fedoraproject.org/coolkey.git
+ Updates from Red Hat source:
+ (coolkey-1.1.0-15.el5.src.rpm	    MD5: 660de82bb4173dd68b996f872e841937
+ SHA-256: 77aff0adfabd0f9049ebff152fec2a5c11d6c521bcb76cfc2e272d1d6c531625)
+Copyright: 2005-2011 Red Hat, Inc.
+License: LGPL-2.1
+ The Coolkey library is:
+ # Copyright (C) 2005 Red Hat, Inc.
+ # All rights reserved.
+ #
+ # This library is free software; you can redistribute it and/or
+ # modify it under the terms of the GNU Lesser General Public
+ # License as published by the Free Software Foundation version
+ # 2.1 of the License.
+ .
+ A full copy of the license is in the file:
+ /usr/share/common-licenses/LGPL-2.1
+
+Files: debian/*
+Copyright: 2006,2007,2010,2012, A. Maitland Bottoms <bottoms@debian.org>
+ 2007-2009,2011-2012 Ludovic Rousseau <rousseau@debian.org>
+License: LGPL-2.1
+Comment: patches in debian/patches are derived from the patches
+ available in the Red Hat .src.rpm files, adjusted by quilt refresh.
+
+Files: conf* *am *in ac* lt* missing
+Comment: The package is built using autoconf, automake, libtool et al.
+Copyright: (C) 1994-2005,2011,2012  Free Software Foundation, Inc.
+License: GPL-2+
+ This program is free software; you can redistribute it
+ and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later
+ version.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+
+Files: install-sh
+Comment: This originates from X11R5 (mit/util/scripts/install.sh), which was
+ later released in X11R6 (xc/config/util/install.sh) with the
+ following copyright and license.
+Copyright: (C) 1994 X Consortium
+License: MIT/X
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to
+ deal in the Software without restriction, including without limitation the
+ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+License: LGPL-2.1
+ The Coolkey library is:
+ # Copyright (C) 2005 Red Hat, Inc.
+ # All rights reserved.
+ #
+ # This library is free software; you can redistribute it and/or
+ # modify it under the terms of the GNU Lesser General Public
+ # License as published by the Free Software Foundation version
+ # 2.1 of the License.
+ .
+ A full copy of the license is in the file:
+ /usr/share/common-licenses/LGPL-2.1

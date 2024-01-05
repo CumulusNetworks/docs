@@ -1,0 +1,43 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: XML-SAX
+Upstream-Contact: Grant McLean
+                  grantm@cpan.org
+Source: https://metacpan.org/release/XML-SAX/
+Comment:
+  Upstream sources are repackaged to remove a file with non-free
+  licensing/copyright:
+    + testcases/xmltest.xml  (See #452872)
+Files-Excluded: testfiles/xmltest.xml
+
+Files: *
+Copyright: 2001, Matt Sergeant, matt@sergeant.org
+License: Artistic or GPL-1+
+
+Files: debian/*
+Copyright:
+ 2002-2003, Ardo van Rangelrooij <ardo@debian.org>
+ 2004, Jay Bonci <jaybonci@debian.org>
+ 2006, Gunnar Wolf <gwolf@debian.org>
+ 2007, Robert S. Edmonds <edmonds@debian.org>
+ 2007-2008, Niko Tyni <ntyni@debian.org>
+ 2009-2018, gregor herrmann <gregoa@debian.org>
+ 2009, Franck Joncourt
+ 2009, Antonio Radici <antonio@dyne.org>
+ 2011-2012, Florian Schlichting <fschlich@zedat.fu-berlin.de>
+License: Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.

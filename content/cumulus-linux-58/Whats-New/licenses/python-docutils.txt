@@ -1,0 +1,356 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Files-Excluded: docs/user/rst/images/biohazard.swf
+
+Files: *
+Copyright: Public domain
+License: public-domain
+ The persons who have associated their work with this project (the
+ "Dedicator": David Goodger and the many contributors to the Docutils
+ project) hereby dedicate the entire copyright, less the exceptions_
+ listed below, in the work of authorship known as "Docutils" identified
+ below (the "Work") to the public domain.
+ .
+ The primary repository for the Work is the Internet World Wide Web
+ site <http://docutils.sourceforge.net/>.  The Work consists of the
+ files within the "docutils" module of the Docutils project Subversion
+ repository (Internet host docutils.svn.sourceforge.net, filesystem path
+ /svnroot/docutils), whose Internet web interface is located at
+ <http://docutils.svn.sourceforge.net/viewvc/docutils/>.  Files dedicated to the
+ public domain may be identified by the inclusion, near the beginning
+ of each file, of a declaration of the form::
+ .
+     Copyright: This document/module/DTD/stylesheet/file/etc. has been
+                placed in the public domain.
+ .
+ Dedicator makes this dedication for the benefit of the public at large
+ and to the detriment of Dedicator's heirs and successors.  Dedicator
+ intends this dedication to be an overt act of relinquishment in
+ perpetuity of all present and future rights under copyright law,
+ whether vested or contingent, in the Work.  Dedicator understands that
+ such relinquishment of all rights includes the relinquishment of all
+ rights to enforce (by lawsuit or otherwise) those copyrights in the
+ Work.
+ .
+ Dedicator recognizes that, once placed in the public domain, the Work
+ may be freely reproduced, distributed, transmitted, used, modified,
+ built upon, or otherwise exploited by anyone for any purpose,
+ commercial or non-commercial, and in any way, including by methods
+ that have not yet been invented or conceived.
+
+Files: docutils/writers/s5_html/themes/default/iepngfix.htc
+Copyright: 2005 Angus Turnbull
+License: LGPL-2.1+
+
+Files: docs/user/docutils-05-compat.sty.txt
+       docutils/utils/error_reporting.py
+       docutils/utils/math/__init__.py
+       docutils/utils/math/latex2mathml.py
+       docutils/utils/math/tex2mathml_extern.py
+       docutils/utils/punctuation_chars.py
+       docutils/writers/html5_polyglot/minimal.css
+       docutils/writers/html5_polyglot/plain.css
+       docutils/writers/latex2e/docutils-05-compat.sty
+       docutils/writers/xetex/__init__.py
+       test/functional/input/data/minimal.css
+       test/functional/input/data/plain.css
+       test/test_transforms/test_smartquotes.py
+       tools/dev/generate_punctuation_chars.py
+       tools/rst2html5.py
+Copyright: 2009-2017 Günter Milde
+License: BSD-2-clause
+
+Files: docutils/writers/_html_base.py
+       docutils/writers/html5_polyglot/__init__.py
+Copyright: 2016 David Goodger
+           2005-2016 Günter Milde
+License: BSD-2-clause
+
+Files: docutils/utils/smartquotes.py
+Copyright: 2003 John Gruber
+           2004, 2007 Chad Miller
+           2010 Günter Milde
+License: BSD-3-clause and BSD-2-clause
+
+Files: docutils/utils/math/math2html.py
+       docutils/writers/html5_polyglot/math.css
+       test/functional/input/data/math.css
+Copyright: 2009-2011 Alex Fernández
+License: BSD-2-clause
+
+Files: docutils/utils/roman.py
+Copyright: 2001 Mark Pilgrim
+License: Python-2.1.1
+
+Files: tools/editors/emacs/rst.el
+       tools/editors/emacs/tests/ert-buffer.el
+Copyright: 2003-2017 Free Software Foundation, Inc.
+License: GPL-3+
+
+License: LGPL-2.1+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ On Debian systems the text of the GNU Lesser General Public License
+ version 2.1 can be found in /usr/share/common-licenses/LGPL-2.1.
+
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ On Debian systems the text of the GNU General Public License
+ version 3 can be found in /usr/share/common-licenses/GPL-3.
+
+License: BSD-2-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ * Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ .
+ * Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-3-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ * Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ .
+ * Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+ .
+ * Neither the name of the author nor the names of its contributors
+   may be used to endorse or promote products derived from this
+   software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: Python-2.1.1
+ PSF LICENSE AGREEMENT
+ ---------------------
+ .
+ 1. This LICENSE AGREEMENT is between the Python Software Foundation
+ ("PSF"), and the Individual or Organization ("Licensee") accessing and
+ otherwise using Python 2.1.1 software in source or binary form and its
+ associated documentation.
+ .
+ 2. Subject to the terms and conditions of this License Agreement, PSF
+ hereby grants Licensee a nonexclusive, royalty-free, world-wide
+ license to reproduce, analyze, test, perform and/or display publicly,
+ prepare derivative works, distribute, and otherwise use Python 2.1.1
+ alone or in any derivative version, provided, however, that PSF's
+ License Agreement and PSF's notice of copyright, i.e., "Copyright (c)
+ 2001 Python Software Foundation; All Rights Reserved" are retained in
+ Python 2.1.1 alone or in any derivative version prepared by Licensee.
+ .
+ 3. In the event Licensee prepares a derivative work that is based on
+ or incorporates Python 2.1.1 or any part thereof, and wants to make
+ the derivative work available to others as provided herein, then
+ Licensee hereby agrees to include in any such work a brief summary of
+ the changes made to Python 2.1.1.
+ .
+ 4. PSF is making Python 2.1.1 available to Licensee on an "AS IS"
+ basis.  PSF MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR
+ IMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, PSF MAKES NO AND
+ DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS
+ FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF PYTHON 2.1.1 WILL NOT
+ INFRINGE ANY THIRD PARTY RIGHTS.
+ .
+ 5. PSF SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF PYTHON
+ 2.1.1 FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS AS
+ A RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING PYTHON 2.1.1,
+ OR ANY DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF.
+ .
+ 6. This License Agreement will automatically terminate upon a material
+ breach of its terms and conditions.
+ .
+ 7. Nothing in this License Agreement shall be deemed to create any
+ relationship of agency, partnership, or joint venture between PSF and
+ Licensee.  This License Agreement does not grant permission to use PSF
+ trademarks or trade name in a trademark sense to endorse or promote
+ products or services of Licensee, or any third party.
+ .
+ 8. By copying, installing or otherwise using Python 2.1.1, Licensee
+ agrees to be bound by the terms and conditions of this License
+ Agreement.
+ .
+ BEOPEN.COM TERMS AND CONDITIONS FOR PYTHON 2.0
+ ----------------------------------------------
+ .
+ BEOPEN PYTHON OPEN SOURCE LICENSE AGREEMENT VERSION 1
+ .
+ 1. This LICENSE AGREEMENT is between BeOpen.com ("BeOpen"), having an
+ office at 160 Saratoga Avenue, Santa Clara, CA 95051, and the
+ Individual or Organization ("Licensee") accessing and otherwise using
+ this software in source or binary form and its associated
+ documentation ("the Software").
+ .
+ 2. Subject to the terms and conditions of this BeOpen Python License
+ Agreement, BeOpen hereby grants Licensee a non-exclusive,
+ royalty-free, world-wide license to reproduce, analyze, test, perform
+ and/or display publicly, prepare derivative works, distribute, and
+ otherwise use the Software alone or in any derivative version,
+ provided, however, that the BeOpen Python License is retained in the
+ Software, alone or in any derivative version prepared by Licensee.
+ .
+ 3. BeOpen is making the Software available to Licensee on an "AS IS"
+ basis.  BEOPEN MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR
+ IMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, BEOPEN MAKES NO AND
+ DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS
+ FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE WILL NOT
+ INFRINGE ANY THIRD PARTY RIGHTS.
+ .
+ 4. BEOPEN SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF THE
+ SOFTWARE FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS
+ AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THE SOFTWARE, OR ANY
+ DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF.
+ .
+ 5. This License Agreement will automatically terminate upon a material
+ breach of its terms and conditions.
+ .
+ 6. This License Agreement shall be governed by and interpreted in all
+ respects by the law of the State of California, excluding conflict of
+ law provisions.  Nothing in this License Agreement shall be deemed to
+ create any relationship of agency, partnership, or joint venture
+ between BeOpen and Licensee.  This License Agreement does not grant
+ permission to use BeOpen trademarks or trade names in a trademark
+ sense to endorse or promote products or services of Licensee, or any
+ third party.  As an exception, the "BeOpen Python" logos available at
+ http://www.pythonlabs.com/logos.html may be used according to the
+ permissions granted on that web page.
+ .
+ 7. By copying, installing or otherwise using the software, Licensee
+ agrees to be bound by the terms and conditions of this License
+ Agreement.
+ .
+ CNRI OPEN SOURCE GPL-COMPATIBLE LICENSE AGREEMENT
+ -------------------------------------------------
+ .
+ 1. This LICENSE AGREEMENT is between the Corporation for National
+ Research Initiatives, having an office at 1895 Preston White Drive,
+ Reston, VA 20191 ("CNRI"), and the Individual or Organization
+ ("Licensee") accessing and otherwise using Python 1.6.1 software in
+ source or binary form and its associated documentation.
+ .
+ 2. Subject to the terms and conditions of this License Agreement, CNRI
+ hereby grants Licensee a nonexclusive, royalty-free, world-wide
+ license to reproduce, analyze, test, perform and/or display publicly,
+ prepare derivative works, distribute, and otherwise use Python 1.6.1
+ alone or in any derivative version, provided, however, that CNRI's
+ License Agreement and CNRI's notice of copyright, i.e., "Copyright (c)
+ 1995-2001 Corporation for National Research Initiatives; All Rights
+ Reserved" are retained in Python 1.6.1 alone or in any derivative
+ version prepared by Licensee.  Alternately, in lieu of CNRI's License
+ Agreement, Licensee may substitute the following text (omitting the
+ quotes): "Python 1.6.1 is made available subject to the terms and
+ conditions in CNRI's License Agreement.  This Agreement together with
+ Python 1.6.1 may be located on the Internet using the following
+ unique, persistent identifier (known as a handle): 1895.22/1013.  This
+ Agreement may also be obtained from a proxy server on the Internet
+ using the following URL: http://hdl.handle.net/1895.22/1013".
+ .
+ 3. In the event Licensee prepares a derivative work that is based on
+ or incorporates Python 1.6.1 or any part thereof, and wants to make
+ the derivative work available to others as provided herein, then
+ Licensee hereby agrees to include in any such work a brief summary of
+ the changes made to Python 1.6.1.
+ .
+ 4. CNRI is making Python 1.6.1 available to Licensee on an "AS IS"
+ basis.  CNRI MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR
+ IMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, CNRI MAKES NO AND
+ DISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS
+ FOR ANY PARTICULAR PURPOSE OR THAT THE USE OF PYTHON 1.6.1 WILL NOT
+ INFRINGE ANY THIRD PARTY RIGHTS.
+ .
+ 5. CNRI SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF PYTHON
+ 1.6.1 FOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS AS
+ A RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING PYTHON 1.6.1,
+ OR ANY DERIVATIVE THEREOF, EVEN IF ADVISED OF THE POSSIBILITY THEREOF.
+ .
+ 6. This License Agreement will automatically terminate upon a material
+ breach of its terms and conditions.
+ .
+ 7. This License Agreement shall be governed by the federal
+ intellectual property law of the United States, including without
+ limitation the federal copyright law, and, to the extent such
+ U.S. federal law does not apply, by the law of the Commonwealth of
+ Virginia, excluding Virginia's conflict of law provisions.
+ Notwithstanding the foregoing, with regard to derivative works based
+ on Python 1.6.1 that incorporate non-separable material that was
+ previously distributed under the GNU General Public License (GPL), the
+ law of the Commonwealth of Virginia shall govern this License
+ Agreement only as to issues arising under or with respect to
+ Paragraphs 4, 5, and 7 of this License Agreement.  Nothing in this
+ License Agreement shall be deemed to create any relationship of
+ agency, partnership, or joint venture between CNRI and Licensee.  This
+ License Agreement does not grant permission to use CNRI trademarks or
+ trade name in a trademark sense to endorse or promote products or
+ services of Licensee, or any third party.
+ .
+ 8. By clicking on the "ACCEPT" button where indicated, or by copying,
+ installing or otherwise using Python 1.6.1, Licensee agrees to be
+ bound by the terms and conditions of this License Agreement.
+ .
+ CWI PERMISSIONS STATEMENT AND DISCLAIMER
+ ----------------------------------------
+ .
+ Copyright (c) 1991 - 1995, Stichting Mathematisch Centrum Amsterdam,
+ The Netherlands.  All rights reserved.
+ .
+ Permission to use, copy, modify, and distribute this software and its
+ documentation for any purpose and without fee is hereby granted,
+ provided that the above copyright notice appear in all copies and that
+ both that copyright notice and this permission notice appear in
+ supporting documentation, and that the name of Stichting Mathematisch
+ Centrum or CWI not be used in advertising or publicity pertaining to
+ distribution of the software without specific, written prior
+ permission.
+ .
+ STICHTING MATHEMATISCH CENTRUM DISCLAIMS ALL WARRANTIES WITH REGARD TO
+ THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ FITNESS, IN NO EVENT SHALL STICHTING MATHEMATISCH CENTRUM BE LIABLE
+ FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
+ OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.

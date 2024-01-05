@@ -7,7 +7,7 @@ version: "5.8"
 toc: 1
 pdfhidden: True
 ---
-## 5.7.0 Open Source Software Licenses 
+## 5.8.0 Open Source Software Licenses 
 | Package | Version | License(s) |
 |---	        |---	        |---	    |
 | {{<foss_file text="acpi" url="cumulus-linux-57/Whats-New/licenses/acpi.txt" >}} | 1.7-1.1 | GPL |

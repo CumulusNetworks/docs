@@ -16,6 +16,8 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 
 ### New Features and Enhancements
 
+- 
+
 {{< expand "Changed Commands" >}}
 
 {{< tabs "TabID66 ">}}

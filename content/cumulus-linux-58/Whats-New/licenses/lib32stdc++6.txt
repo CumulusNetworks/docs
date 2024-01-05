@@ -1,0 +1,1 @@
+lib32stdc++6 has no copyright file

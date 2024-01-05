@@ -55,15 +55,13 @@ You can enable {{<link title="Data Center Network Deployments#high-availability"
 
 NetQ also monitors {{<link title="Monitor Container Environments Using Kubernetes API Server" text="Kubernetes containers">}}. Even if the master node fails, NetQ services remain operational. However, keep in mind that the master hosts the Kubernetes control plane so anything that requires connectivity with the Kubernetes cluster&mdash;such as upgrading NetQ or rescheduling pods to other workers if a worker goes down&mdash;will not work.
 
-To enable redundancy for the Kubernetes control plane, install your server cluster with the {{<link title="Data Center Network Deployments#high-availability" text="high availability">}} virtual IP address. 
+To enable redundancy for the Kubernetes control plane, install your server cluster with the {{<link title="Data Center Network Deployments#high-availability" text="high availability">}} virtual IP address. In this configuration, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure.
 
 ### Cluster Deployments and Load Balancers
 
 As an alternative to the {{<link url="#server-arrangement-single-or-cluster" text="high availability server-cluster deployment">}} with a VIP, you can use an external load balancer to provide high availability for the NetQ API and the NetQ UI.
 
-However, you need to be mindful of where you {{<link title="Install a Custom Signed Certificate" text="install the certificates">}} for the NetQ UI (port 443); otherwise, you cannot access the NetQ UI. 
-
-If you are using a load balancer in your deployment, NVIDIA recommends that you install the certificates directly on the load balancer for SSL offloading. However, if you install the certificates on the master node, then configure the load balancer to allow for SSL passthrough.
+However, you need to be mindful of where you {{<link title="Install a Custom Signed Certificate" text="install the certificates">}} for the NetQ UI (port 443); otherwise, you cannot access the NetQ UI. If you are using a load balancer in your deployment, NVIDIA recommends that you install the certificates directly on the load balancer for SSL offloading. However, if you install the certificates on the master node, then configure the load balancer to allow for SSL passthrough.
 
 ## Next Steps
 

@@ -578,6 +578,19 @@ The pass persist scripts in Cumulus Linux use the {{<exlink url="http://net-snmp
 
 Cumulus Linux enables all the scripts by default except for `bgp4_pp.py`, which {{<link url="FRRouting" text="FRR">}} uses.
 
+## Disable SNMP
+
+To disable SNMP, run the `nv unset service snmp-server enable` command:
+
+```
+cumulus@switch:~$ nv unset service snmp-server enable
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice warning%}}
+When you disable SNMP, the FRR service restarts, which might impact traffic.
+{{%/notice%}}
+
 ## Example Configuration
 
 The following example configuration:

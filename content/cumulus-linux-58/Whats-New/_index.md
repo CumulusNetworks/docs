@@ -16,7 +16,17 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 
 ### New Features and Enhancements
 
-- 
+- {{<link title="" text="">}}
+- Warmboot support for VXLAN EVPN (single homed; no EVPN MLAG or EVPN MH support)
+- ISSU Support for 802.1X
+- Port security and 802.1x interoperability (multi host mode)
+- SyncE support - Set Clock Identity as per ITU-T G.8264
+- Keep SVIs Always Up - Dummy Interface Support
+- FRR Tab completion
+- Interface summary view with filtering
+- Admin State added to interface object model
+- SyncE support at 1G (copper and optical)
+- PTP is now generally available on Spectrum-4 switches
 
 {{< expand "Changed Commands" >}}
 

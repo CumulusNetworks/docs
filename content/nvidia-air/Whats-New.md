@@ -7,23 +7,17 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
+<!-- Air:WhatsNew -->
 ## January 2024
-<<<<<<< HEAD
-=======
 ### 82.2024.0104-012
 - Updated font used by configuration migration tool
-
 <!-- Air:WhatsNew -->
+
 ## Archive
 {{< expand "Changelog Archive" >}}
 ## November 2023
->>>>>>> origin/stage
-<!-- Air:WhatsNew -->
 ### 82.2024.0104-012
 - Updated font used by configuration migration tool
-<!-- Air:WhatsNew -->
-<<<<<<< HEAD
-=======
 
 ## October 2023
 ### 82.2023.1023-012
@@ -352,7 +346,6 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ```
 
 - {{<exlink url="https://air.nvidia.com/marketplace" text="Demo Marketplace">}}: Get a jump start on your network configuration by checking out some pre-built feature demos, or submit your own!
->>>>>>> origin/stage
 <!-- vale on -->
 ## August 2021
 - {{<exlink url="https://air.nvidia.com/migrate" text="NVUE migration tool">}}

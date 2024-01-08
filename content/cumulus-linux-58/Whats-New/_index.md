@@ -22,7 +22,7 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 - ISSU with 802.1X
 - {{<link url="Port-Security" text="Port security with 802.1x">}}
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support to set Clock Identity as per ITU-T G.8264
-- NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-thesvi-perpetually-up" text="configure a dummy interface">}} to keep SVIs always UP
+- NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-the-svi-perpetually-up" text="configure a dummy interface">}} to keep SVIs always UP
 - {{<link url="FRRouting/#vtysh-modal-cli" text="FRR tab completion">}} with static representation
 - Interface summary view with filtering
 - Admin state added to NVUE `nv show interface` commands

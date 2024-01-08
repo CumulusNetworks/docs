@@ -480,7 +480,7 @@ cumulus@switch:~$ ip link show br_default
     link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
 ```
 
-Now add the dummy interface to your network configuration:
+To add a dummy interface to your network configuration:
 
 {{< tabs "TabID370 ">}}
 {{< tab "NVUE Commands ">}}

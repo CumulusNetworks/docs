@@ -15,7 +15,6 @@ The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 
 {{%notice note%}}
 - Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
-- Cumulus Linux does not support SyncE with PTP.
 {{%/notice%}}
 
 ## Basic Configuration

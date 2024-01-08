@@ -707,8 +707,8 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <tr>
 <td>2771653</td>
 <td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
-<td>4.3.0-5.6.0</td>
-<td>5.7.0</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>2763819</td>
@@ -2802,8 +2802,8 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <tr>
 <td>2771653</td>
 <td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
-<td>4.3.0-5.6.0</td>
-<td>5.7.0</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>2763819</td>
@@ -5093,8 +5093,8 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <tr>
 <td>2771653</td>
 <td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
-<td>4.3.0-5.6.0</td>
-<td>5.7.0</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>2763819</td>
@@ -7277,8 +7277,8 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <tr>
 <td>2771653</td>
 <td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
-<td>4.3.0-5.6.0</td>
-<td>5.7.0</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>2763819</td>
@@ -9655,8 +9655,8 @@ This affects failed neighbor entries on routed interfaces that are not SVIs.</td
 <tr>
 <td>2771653</td>
 <td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
-<td>4.3.0-5.6.0</td>
-<td>5.7.0</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>2763819</td>

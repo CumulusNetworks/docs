@@ -65,7 +65,11 @@ adduser automation nvapply
 
 ### Control Plane ACLs
 
-You can secure the API with control plane ACLs. The following example allows users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
+You can secure the API by configuring:
+- A listening address; see {{<link url="#api-port-and-listening-address" text="API Port and Listening Address">}} below.
+- Control plane ACLs; see the following example.
+
+This example shows how to create ACLs to allow users from the management subnet and the local switch to communicate with the switch using REST APIs, and restrict all other access.
 
 ```
 cumulus@switch:~$ nv set acl API-PROTECT type ipv4 
@@ -86,7 +90,7 @@ cumulus@switch:~$ nv set system control-plane acl API-PROTECT inbound
 
 ## Supported Objects
 
-The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-55/api/index.html" text="here.">}}
+The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-56/api/index.html" text="here.">}}
 
 | High-level Objects | Description |
 | ------------------ | ----------- |
@@ -120,28 +124,76 @@ To use the NVUE REST API in Cumulus Linux 5.6, you must {{<link url="/User-Accou
 
 This section shows how to:
 - Set the NVUE REST API port. If you do not set a port, Cumulus Linux uses the default port 8765.
-- Specify the NVUE REST API listening address; you can specify an IPv4 address or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
+- Specify the NVUE REST API listening address; you can specify an IPv4 address, IPv6 address, or `localhost`. If you do not specify a listening address, NGINX listens on all addresses for the target port.
+
+{{< tabs "TabID130 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets the port to 8888:
 
 ```
 cumulus@switch:~$ nv set system api port 8888
-cumulus@switch:~$ nv set system api listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
-- You can set two different listen addresses on two different VRFs. For example, you can listen to eth0 on the management VRF and to swp1 on VRF BLUE.
-{{%/notice%}}
-<!--
+You can listen on multiple interfaces by specifying different listening addresses:
+
 ```
-cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
-cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
-cumulus@switch:~$ sudo systemctl restart nginx
+cumulus@switch:~$ nv set system api listening-address 10.10.10.1
+cumulus@switch:~$ nv set system api listening-address 10.10.20.1
+cumulus@switch:~$ nv config apply
 ```
--->
+
+The following example configures the listening address on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
+
+```
+cumulus@switch:~$ nv set system api listening-address 172.0.24.0
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures VRF BLUE on swp1, which has IP address 10.10.20.1, then sets the API listening address to the IP address for swp1 (configured for VRF BLUE).
+
+```
+cumulus@switch:~$ nv set interface swp1 ip address 10.10.10.1/24
+cumulus@switch:~$ nv set interface swp1 ip vrf BLUE
+cumulus@switch:~$ nv config apply
+
+cumulus@switch:~$ nv set system api listening-address 10.10.10.1
+cumulus@switch:~$ nv config apply
+```
+
+{{</ tab >}}
+{{< tab "Curl Command ">}}
+
+The following example sets the port to 8888:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api?rev=2 -H 'Content-Type:application/json' -d '{"port": 8888 }'
+```
+
+You can listen on multiple interfaces by specifying different listening addresses. The following example sets localhost, interface address 10.10.10.1, and 10.10.20.1 as listen-addresses.
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api/listening-address?rev=2 -H 'Content-Type:application/json' -d '{ "localhost": {}, "10.10.10.1": {}, "10.10.20.1": {}}'
+```
+
+The following example configures the listening address on eth0, which has IP address 172.0.24.0 and uses the management VRF by default:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request PATCH https://localhost:8765/nvue_v1/system/api/listening-address?rev=2 -H 'Content-Type:application/json' -d '{"172.0.24.0": {}}'
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Show NVUE REST API Information
 
-To show REST API port configuration, state (enabled or disabled), and connection information, run the `nv show system api` command:
+To show REST API port configuration, state (enabled or disabled), and connection information:
+
+{{< tabs "TabID194 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv show system api` command:
 
 ```
 cumulus@switch:~$ nv show system api
@@ -184,6 +236,44 @@ cumulus@switch:~$ nv show system api listening-address
 localhost
 ```
 
+{{</ tab >}}
+{{< tab "Curl Command ">}}
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api?rev=2 -H "accept: application/json"
+{
+  "state": "enabled",
+  "port": 8765,
+  "listening-address": {
+    "10.10.10.1": {},
+    "10.10.20.1": {}
+  },
+  "connections": {
+    "active": 1,
+    "accepted": 31,
+    "handled": 0,
+    "requests": 28,
+    "reading": 0,
+    "writing": 1,
+    "waiting": 0
+  }
+}
+```
+
+To show the configured listening address:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k --request GET https://localhost:8765/nvue_v1/system/api/listening-address?rev=2 -H "accept: application/json"
+{
+  "10.10.10.1": {},
+  "10.10.20.1": {}
+}
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+<!--
 ### Access the NVUE REST API from a Front Panel Port
 
 To access the NVUE REST API from a front panel port (swp) on the switch:
@@ -207,7 +297,7 @@ To access the NVUE REST API from a front panel port (swp) on the switch:
 - To access the REST API from the switch running `curl` locally, invoke the REST API client from the default VRF from the Cumulus Linux shell by prefixing the command with `ip vrf exec default curl`.
 - To access the NVUE REST API from a client on a peer Cumulus Linux switch or virtual appliance, or any other off-the-shelf Linux server or virtual machine, make sure the switch or appliance has the correct IP routing configuration so that the REST API HTTP packets arrive on the correct target interface and VRF.
 {{%/notice%}}
-
+-->
 ### Run cURL Commands
 
 You can run the cURL commands from the command line. Use the username and password for the switch. For example:
@@ -918,6 +1008,7 @@ cumulus@switch:~$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nv
   "::1/128": {}
 }
 ```
+
 {{</ tab >}}
 {{< tab "Python Code ">}}
 
@@ -1591,7 +1682,7 @@ To set the system hostname, pre-login or post-login message, and time zone on th
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"system": {"hostname":"switch01","timezone":"America/Los_Angeles","message":{"pre-login":"Welcome to NVIDIA Cumulus Linux","post-login:"You have successfully logged in to switch01"}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=4
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"system": {"hostname":"switch01","timezone":"America/Los_Angeles","message":{"pre-login":"Welcome to NVIDIA Cumulus Linux","post-login":"You have successfully logged in to switch01"}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=4
 ```
 
 {{< /tab >}}
@@ -1749,7 +1840,7 @@ To set up NTP, DNS, and SNMP on the switch, send a targeted API request to `/nvu
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"service": { "ntp": {"default":{"server:{"4.cumulusnetworks.pool.ntp.org":{"iburst":"on"}}}}, "dns": {"mgmt":{"server:{"192.168.1.100":{}}}}, "syslog": {"mgmt":{"server:{"192.168.1.120":{"port":8000}}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=5
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"service": { "ntp": {"default":{"server":{"4.cumulusnetworks.pool.ntp.org":{"iburst":"on"}}}}, "dns": {"mgmt":{"server":{"192.168.1.100":{}}}}, "syslog": {"mgmt":{"server":{"192.168.1.120":{"port":8000}}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=5
 ```
 
 {{< /tab >}}
@@ -2151,7 +2242,7 @@ The following example configures an interface.
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"type":"swp","link":{"state":"up"}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=6 
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -k -d '{"swp1": {"link":{"state":{"up": {}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=21
 ```
 
 {{< /tab >}}
@@ -2526,7 +2617,7 @@ The following example configures a bridge.
 {{< tab "Curl Command" >}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=8
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=21
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=8
 ```
 
@@ -2881,10 +2972,22 @@ The NVUE action operations are ephemeral operations that do not modify the state
 {{< tabs "ActionOperations" >}}
 {{< tab "Curl Command" >}}
 
+To clear counters on swp1:
+
 ```
-cumulus@switch:~$ curl -H 'Content-Type:application/json' -u 'cumulus:cumulus' -d '{"@clear": {"state": "start", "parameters": {}}}' -k -X POST "https://127.0.0.1:8765/nvue_v1/interface/swp1/qos/counter" 
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -H 'Content-Type:application/json' -d '{"@clear": {"state": "start", "parameters": {}}}' -k -X POST https://127.0.0.1:8765/nvue_v1/interface/swp1/counters
 1
-cumulus@switch:~$ curl -u 'cumulus:cumulus' -k -X GET "https://127.0.0.1:8765/nvue_v1/action/1" 
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -X GET https://127.0.0.1:8765/nvue_v1/action/1 -k
+{"detail":"swp1 counters cleared.","http_status":200,"issue":[],"state":"action_success","status":"swp1 counters cleared.","timeout":60,"type":""}
+```
+
+To clear QoS buffers on swp1:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -H 'Content-Type:application/json' -d '{"@clear": {"state": "start", "parameters": {}}}' -k -X POST https://127.0.0.1:8765/nvue_v1/interface/swp1/qos/buffer
+2
+cumulus@switch:~$ curl -u 'cumulus:cumulus'  -X GET https://127.0.0.1:8765/nvue_v1/action/2 -k
+{"detail":"QoS buffers cleared on swp1.","http_status":200,"issue":[],"state":"action_success","status":"QoS buffers cleared on swp1.","timeout":60,"type":""}
 ```
 
 {{< /tab >}}
@@ -3208,8 +3311,8 @@ To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/mark
 
 ## Resources
 
-For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-55/api/index.html" text="NVUE API Swagger documentation.">}}
-The full object model download is available {{<mib_link url="cumulus-linux-55/api/openapi.json" text="here.">}}
+For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-56/api/index.html" text="NVUE API Swagger documentation.">}}
+The full object model download is available {{<mib_link url="cumulus-linux-56/api/openapi.json" text="here.">}}
 
 ## Considerations
 

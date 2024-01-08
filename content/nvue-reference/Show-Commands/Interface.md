@@ -844,7 +844,7 @@ cumulus@switch:~$ nv show interface swp1 link traffic-engineering
 
 ## <h>nv show interface \<interface-id\> pluggable</h>
 
-Shows the <span style="background-color:#F5F5DC">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
+Shows the <span class="a-tooltip">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
 
 ### Command Syntax
 
@@ -954,6 +954,26 @@ vlan220_l3  9216   0       0       0       0       2420    0       0       0    
 vlan297_l3  9216   0       0       0       0       2420    0       0       0       BMRU 
 vxlan48     9216   27342   0       0       0       25891   40829   51      0       BMRU 
 vxlan99     9216   0       0       0       0       0       0       4800    0       BMRU
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system link flap-protection</h>
+
+Shows the link flap protection threshold and interval configuration settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system link flap-protection
+           applied
+---------  -------
+threshold  8      
+interval   30
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

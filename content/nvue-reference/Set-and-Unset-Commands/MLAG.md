@@ -14,7 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set interface \<interface-id\> bond mlag</h>
 
-Provides commands to configure <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> on a bond interface.
+Provides commands to configure <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> on a bond interface.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

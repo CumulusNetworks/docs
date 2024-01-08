@@ -18,14 +18,14 @@ Each physical network interface (port) has several settings:
 - Auto-negotiation
 - Duplex Mode
 - Link speed
-- <span style="background-color:#F5F5DC">[MTU](## "Maximum Transmission Unit")</span>
-- <span style="background-color:#F5F5DC">[FEC](## "Forward Error Correction")</span>
+- <span class="a-tooltip">[MTU](## "Maximum Transmission Unit")</span>
+- <span class="a-tooltip">[FEC](## "Forward Error Correction")</span>
 
 For NVIDIA Spectrum ASICs, the firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. You can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
 ## MTU
 
-Interface <span style="background-color:#F5F5DC">[MTU](## "Maximum Transmission Unit")</span> applies to traffic traversing the management port, front panel or switch ports, bridge, VLAN subinterfaces, and bonds (both physical and logical interfaces). MTU is the only interface setting that you must set manually.
+Interface <span class="a-tooltip">[MTU](## "Maximum Transmission Unit")</span> applies to traffic traversing the management port, front panel or switch ports, bridge, VLAN subinterfaces, and bonds (both physical and logical interfaces). MTU is the only interface setting that you must set manually.
 
 In Cumulus Linux, `ifupdown2` assigns 9216 as the default MTU setting. The initial MTU value set by the driver is 9238. After you configure the interface, the default MTU setting is 9216.
 
@@ -130,7 +130,7 @@ cumulus@switch:~$ ip link show dev swp1
 
 ### Drop Packets that Exceed the Egress Layer 3 MTU
 
-The switch forwards all packets that are within the MTU value set for the egress layer 3 interface. However, when packets are larger in size than the MTU value, the switch fragments the packets that do *not* have the <span style="background-color:#F5F5DC">[DF](## "Don’t Fragment")</span> bit set and drops the packets that *do* have the <span style="background-color:#F5F5DC">[DF](## "Don’t Fragment")</span> bit set.
+The switch forwards all packets that are within the MTU value set for the egress layer 3 interface. However, when packets are larger in size than the MTU value, the switch fragments the packets that do *not* have the <span class="a-tooltip">[DF](## "Don’t Fragment")</span> bit set and drops the packets that *do* have the <span class="a-tooltip">[DF](## "Don’t Fragment")</span> bit set.
 
 Run the following command to drop **all** IP packets that are larger in size than the MTU value for the egress layer 3 interface instead of fragmenting packets:
 
@@ -154,7 +154,7 @@ cumulus@switch:~$ echo "0 >" /cumulus/switchd/config/trap/l3-mtu-err/enable
 
 ## FEC
 
-<span style="background-color:#F5F5DC">[FEC](## "Forward Error Correction")</span> is an encoding and decoding layer that enables the switch to detect and correct bit errors introduced over the cable between two interfaces. The target IEEE <span style="background-color:#F5F5DC">[BER](## "Bit Error Rate")</span> on high speed Ethernet links is 10<sup>-12</sup>. Because 25G transmission speeds can introduce a higher than acceptable BER on a link, FEC is often required to correct errors to achieve the target BER at 25G, 4x25G, 100G, and higher link speeds. The type and grade of a cable or module and the medium of transmission determine which FEC setting is necessary.
+<span class="a-tooltip">[FEC](## "Forward Error Correction")</span> is an encoding and decoding layer that enables the switch to detect and correct bit errors introduced over the cable between two interfaces. The target IEEE <span class="a-tooltip">[BER](## "Bit Error Rate")</span> on high speed Ethernet links is 10<sup>-12</sup>. Because 25G transmission speeds can introduce a higher than acceptable BER on a link, FEC is often required to correct errors to achieve the target BER at 25G, 4x25G, 100G, and higher link speeds. The type and grade of a cable or module and the medium of transmission determine which FEC setting is necessary.
 
 For the link to come up, the two interfaces on each end must use the same FEC setting.
 
@@ -1120,7 +1120,7 @@ SN4600 64xQSFP56 (200GbE) interfaces support both PAM4 and NRZ encodings with al
 
 For lower speeds, PAM4 is automatically converted to NRZ encoding.
 
-Only 32xQSFP56 ports can brea kout into 4xSFP56 (4x50GbE). But, in this case, the adjacent QSFP56 port are blocked (only the first and third or second and fourth rows can break out into 4xSFP56).
+Only 32xQSFP56 ports can break out into 4xSFP56 (4x50GbE). But, in this case, the adjacent QSFP56 port are blocked (only the first and third or second and fourth rows can break out into 4xSFP56).
 
 All 64xQSFP56 ports can break out into 2xQSFP56 (2x100GbE) without blocking ports.
 
@@ -1374,7 +1374,7 @@ cumulus@switch:~$ nv config apply
 You must configure the lanes-per-port at the same time as you configure the breakout. If you want to change the number of lanes per port after you configure a breakout, you must first unset the breakout with the `nv unset interface <port> breakout` and `nv config apply` commands, then reconfigure the breakout and the lanes with the `nv set interface <interface> link breakout <breakout> lanes-per-port <lanes>` command. For example:
 
 ```
-cumulus@switch:~$ nv unset interface swp1 breakout
+cumulus@switch:~$ nv unset interface swp1 link breakout
 cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv set interface swp1 link breakout 2x lanes-per-port 2
 cumulus@switch:~$ nv config apply
@@ -1463,7 +1463,7 @@ To remove a breakout port:
 
 ## Configure Port Lanes
 
-You can override the default behavior for supported speeds and platforms and specify the number of lanes for a port. For example, for the NVIDIA SN4700 switch, the default port speed is 50G (2 lanes, <span style="background-color:#F5F5DC">[NRZ](## "Non-Return-to-Zero")</span> signaling mode) and 100G (4 lanes, NRZ signaling mode). You can override this setting to 50G (1 lane, <span style="background-color:#F5F5DC">[PAM4](## "Pulse Amplitude Modulation 4-level")</span> signaling mode) and 100G (2 lanes, PAM4 signaling mode).
+You can override the default behavior for supported speeds and platforms and specify the number of lanes for a port. For example, for the NVIDIA SN4700 switch, the default port speed is 50G (2 lanes, <span class="a-tooltip">[NRZ](## "Non-Return-to-Zero")</span> signaling mode) and 100G (4 lanes, NRZ signaling mode). You can override this setting to 50G (1 lane, <span class="a-tooltip">[PAM4](## "Pulse Amplitude Modulation 4-level")</span> signaling mode) and 100G (2 lanes, PAM4 signaling mode).
 
 {{%notice note%}}
 This setting does not apply when auto-negotiation is on because Cumulus Linux advertises all supported speed options, including PAM4 and NRZ during auto-negotiation.

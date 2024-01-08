@@ -1,7 +1,7 @@
 ---
 title: ACL
 author: Cumulus Networks
-weight: 500
+weight: 505
 
 type: nojsscroll
 ---
@@ -363,6 +363,98 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action police rate 2000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip</h>
+
+Configures a NAT action rule to translate a source IP address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl_3 rule 1 action source-nat translate-ip 172.30.58.80
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<range-id\> to <ipv4></h>
+
+Configures a dynamic NAT action rule to translate a source IP address range to a public address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl_1 rule 1 action source-nat translate-ip 172.30.58.0 to 172.30.58.80
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl <acl-id> rule <rule-id> action source-nat translate-mac <mac></h>
+
+Configures MAC address translation to translate a source MAC address to a public address. MAC address translation is equivalent to static NAT but operates at layer 2 on Ethernet frames.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl MACL1 rule 1 action source-nat translate-mac 99:de:fc:32:11:01
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-port</h>
+
+Configures a NAT action rule to translate a source IP port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl_2 rule 1 action source-nat translate-port 1024-1200
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action span \<interface-name\></h>
 
 Configures the SPAN session for the specified interface.
@@ -407,30 +499,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip dest-port \<ip-port-id\></h>
-
-Configures the IP destination port match.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-| `<ip-port-id>` |  The IP port number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

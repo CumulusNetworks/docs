@@ -10,13 +10,13 @@ toc: 3
 SyncE is available for early access only.
 {{%/notice%}}
 
-<span style="background-color:#F5F5DC">[SyncE](## "Synchronous Ethernet")</span> is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, (<span style="background-color:#F5F5DC">[ESMC](## "Ethernet Synchronization Messaging Channel")</span>), manages this synchronization.
+<span class="a-tooltip">[SyncE](## "Synchronous Ethernet")</span> is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, (<span class="a-tooltip">[ESMC](## "Ethernet Synchronization Messaging Channel")</span>), manages this synchronization.
 
 The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 - The SyncE controller reads performance counters to calculate the differences between TX and RX ethernet symbols on the physical layer to fine tune the clock frequency.
 - The SyncE daemon (`syncd`) manages:
-  - Transmitting and receiving <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
-  - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span> in the SSM.
+  - Transmitting and receiving <span class="a-tooltip">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
+  - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span class="a-tooltip">[QL](## "Quality Level")</span> in the SSM.
   - Using to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
   - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
 
@@ -194,7 +194,7 @@ cumulus@switch:~$ sudo systemctl restart syncd
 
 ### Disable Synchronization Status Messages
 
-You can disable <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on an interface to prevent sending ESMC packets and ignore any received ESMC packets.
+You can disable <span class="a-tooltip">[SSMs](## "Synchronization Status Messages")</span> on an interface to prevent sending ESMC packets and ignore any received ESMC packets.
 
 The following command example disables SSMs on swp2:
 

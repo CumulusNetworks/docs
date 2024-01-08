@@ -88,6 +88,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
 cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface vlan10 ptp enable on
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
 cumulus@switch:~$ nv set interface swp1 ptp enable on
@@ -209,7 +210,7 @@ delay_mechanism         E2E
 network_transport       UDPv4
 ```
 
-For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
 ```
 [swp1]
@@ -222,7 +223,7 @@ delay_mechanism         E2E
 network_transport       UDPv4
 ```
 
-For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
 ```
 [swp2]
@@ -488,7 +489,7 @@ To create a custom profile:
 - Update any of the profile settings you want to change (`announce-interval`, `delay-req-interval`, `priority1`, `sync-interval`, `announce-timeout`, `domain`, `priority2`, `transport`, `delay-mechanism`, `local-priority`).
 - Set the custom profile to be the current profile.
 
-The following example commands create a custom profile called CUSTOM1 based on the predifined profile ITU 8275-1. The commands set the `domain` to 3 and the `announce-timeout` to 5, then set `CUSTOM1` to be the current profile:
+The following example commands create a custom profile called CUSTOM1 based on the predefined profile ITU 8275-1. The commands set the `domain` to 3 and the `announce-timeout` to 5, then set `CUSTOM1` to be the current profile:
 
 ```
 cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 
@@ -502,7 +503,7 @@ cumulus@switch:~$  nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example `/etc/ptp4l.conf` file creates a custom profile based on the predifined profile ITU 8275-1 and sets the `domain` to 3 and the `announce-timeout` to 5.
+The following example `/etc/ptp4l.conf` file creates a custom profile based on the predefined profile ITU 8275-1 and sets the `domain` to 3 and the `announce-timeout` to 5.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -982,7 +983,7 @@ To configure a PTP interface to be the unicast *client*:
   - Optional: Set the unicast request duration; the service time in seconds requested during discovery. The default value is 300 seconds.
 
 {{%notice note%}}
-A PTP interface as a unicast client or server only supports a single communictation mode and does not work with multicast servers or clients. Make sure that both sides of a PTP link are in unicast mode.
+A PTP interface as a unicast client or server only supports a single communication mode and does not work with multicast servers or clients. Make sure that both sides of a PTP link are in unicast mode.
 {{%/notice%}}
 
 The following example commands configure a unicast master table with ID 1. The commands set the unicast master address and the peer address to 10.10.10.1, the query interval to 4, the unicast service mode to `client`, and the unicast request duration to 20 in the unicast master table.
@@ -1652,9 +1653,9 @@ The following example shows that there are no violations:
 cumulus@switch:~$ nv show service ptp 1 monitor violations
                   operational  applied  description
 ----------------  -----------  -------  -----------------------------------------------
-last-max-offset                         Time at which last max offest violation occured
-last-min-offset                         Time at which last min offest violation occured
-last-path-delay                         Time at which last path delay violation occured
+last-max-offset                         Time at which last max offest violation occurred
+last-min-offset                         Time at which last min offest violation occurred
+last-path-delay                         Time at which last path delay violation occurred
 max-offset-count  0                     Number of maximum offset violations
 min-offset-count  0                     Number of min offset violations
 path-delay-count  0                     Number of Path delay violations
@@ -1847,6 +1848,6 @@ network_transport       UDPv4
 
 ### Spanning Tree and PTP
 
-PTP frames are affected by <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
+PTP frames are affected by <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
 
 If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.

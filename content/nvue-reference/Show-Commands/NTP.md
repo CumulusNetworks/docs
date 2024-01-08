@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show service ntp</h>
 
-Shows the <span style="background-color:#F5F5DC">[NTP](## "Network Time Protocol")</span> configuration on the switch.
+Shows the <span class="a-tooltip">[NTP](## "Network Time Protocol")</span> configuration on the switch.
 
 ### Version History
 

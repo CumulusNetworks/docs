@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 340
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[DHCP](## "Dynamic Host Configuration Protocol")</span> is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers that are not on the same physical subnet.
+<span class="a-tooltip">[DHCP](## "Dynamic Host Configuration Protocol")</span> is a client server protocol that automatically provides IP hosts with IP addresses and other related configuration information. A DHCP relay (agent) is a host that forwards DHCP packets between clients and servers that are not on the same physical subnet.
 
 This topic describes how to configure DHCP relays for IPv4 and IPv6 using the following topology:
 
@@ -103,7 +103,7 @@ cumulus@leaf01:~$ nv config apply
 
 ## Optional Configuration
 
-This section describes optional DHCP relay configuration. The steps provided in this section assume that you already done basic DHCP relay configuration, described above.
+This section describes optional DHCP relay configurations. The steps provided in this section assume that you have already configured basic DHCP relay, as described above.
 
 ### DHCP Agent Information Option (Option 82)
 

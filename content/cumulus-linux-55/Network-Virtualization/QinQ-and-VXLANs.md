@@ -31,7 +31,7 @@ You configure two switches: one at the service provider edge that faces the cust
 - All edges must support QinQ with VXLANs.
 - You *cannot* mix 802.1Q and 802.1ad subinterfaces on the same switch port.
 - When configuring bridges in {{<link url="Traditional-Bridge-Mode" text="traditional mode">}}, all VLANs that are members of the same switch port must use the same `vlan_protocol`.
-- When using switches in an <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> pair:
+- When using switches in an <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> pair:
   - Configure the peerlink (peerlink.4094) between the MLAG pair for VLAN protocol 802.1ad.
   - You cannot use the peerlink as a backup datapath in case one of the MLAG peers loses all uplinks.
 - When the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, all bridge ports must be either access ports (except for the MLAG peerlink) or VLAN trunks.

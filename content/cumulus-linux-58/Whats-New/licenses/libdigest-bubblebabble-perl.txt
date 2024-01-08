@@ -1,0 +1,37 @@
+Format-Specification: http://anonscm.debian.org/viewvc/dep/web/deps/dep5.mdwn?view=markup&pathrev=135
+Maintainer: Benjamin Trott <ben@rhumba.pair.com>
+Source: http://search.cpan.org/dist/Digest-BubbleBabble/
+Name: Digest-BubbleBabble
+
+Files: *
+Copyright: 2001, Benjamin Trott <ben@rhumba.pair.com>
+License: Artistic or GPL-1+
+
+Files: inc/Module/*
+Copyright: 2002-2010, Adam Kennedy <adamk@cpan.org>
+ 2002-2010, Audrey Tang <autrijus@autrijus.org>
+ 2002-2010, Brian Ingerson <ingy@cpan.org>
+License: Artistic or GPL-1+
+
+Files: debian/*
+Copyright: 2005, Florian Ragwitz <rafl@debian.org>
+ 2008, Mark Hymers <mhy@debian.org>
+ 2009, Ansgar Burchardt <ansgar@debian.org>
+ 2011, gregor herrmann <gregoa@debian.org>
+License: Artistic or GPL-1+
+
+License: Artistic
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the Artistic License, which comes with Perl.
+ .
+ On Debian systems, the complete text of the Artistic License can be
+ found in `/usr/share/common-licenses/Artistic'.
+
+License: GPL-1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 1, or (at your option)
+ any later version.
+ .
+ On Debian systems, the complete text of version 1 of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-1'.

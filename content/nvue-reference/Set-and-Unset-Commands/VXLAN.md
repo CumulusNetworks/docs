@@ -18,6 +18,22 @@ Configures VXLAN settings on the switch.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set nve vxlan ageing</h>
+
+Configures the VXLAN aging timer. You can set a value between 0 and 4096.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set nve vxlan ageing 4096
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set nve vxlan arp-nd-suppress</h>
 
 Turns VXLAN ARP and ND suppression on or off. The default setting is `on`.

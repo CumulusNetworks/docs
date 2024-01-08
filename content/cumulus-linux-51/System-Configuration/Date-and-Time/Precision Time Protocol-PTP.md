@@ -88,6 +88,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
 cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface vlan10 ptp enable on
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
 cumulus@switch:~$ nv set interface swp1 ptp enable on
@@ -201,7 +202,7 @@ delay_mechanism         E2E
 network_transport       UDPv4
 ```
 
-For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
 ```
 [swp1]
@@ -219,7 +220,7 @@ network_transport       UDPv4
 For a switch VLAN, add
 ```
 
-For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
 ```
 [swp2]
@@ -1167,9 +1168,9 @@ The following example shows that there are no violations:
 cumulus@switch:~$ nv show service ptp 1 monitor violations
                   operational  applied  description
 ----------------  -----------  -------  -----------------------------------------------
-last-max-offset                         Time at which last max offest violation occured
-last-min-offset                         Time at which last min offest violation occured
-last-path-delay                         Time at which last path delay violation occured
+last-max-offset                         Time at which last max offest violation occurred
+last-min-offset                         Time at which last min offest violation occurred
+last-path-delay                         Time at which last path delay violation occurred
 max-offset-count  0                     Number of maximum offset violations
 min-offset-count  0                     Number of min offset violations
 path-delay-count  0                     Number of Path delay violations
@@ -1362,6 +1363,6 @@ network_transport       UDPv4
 
 ### Spanning Tree and PTP
 
-PTP frames are affected by <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
+PTP frames are affected by <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
 
 If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.

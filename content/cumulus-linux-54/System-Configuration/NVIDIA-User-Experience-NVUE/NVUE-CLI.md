@@ -424,9 +424,9 @@ To add a configuration apply message, run the `nv config apply -m <message>` com
 cumulus@switch:~$ nv config apply -m "this is my message"
 ```
 
-## Clear Switch Configuration
+## Reset NVUE Configuration to Default Values
 
-To reset the configuration on the switch back to the factory defaults, run the following command:
+To reset the NVUE configuration on the switch back to the default values, run the following command:
 
 ```
 cumulus@switch:~$ nv config apply empty

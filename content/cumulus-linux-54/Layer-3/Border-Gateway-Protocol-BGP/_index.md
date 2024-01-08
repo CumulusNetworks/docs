@@ -4,22 +4,22 @@ author: NVIDIA
 weight: 840
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> is the routing protocol that runs the Internet. It manages how packets get routed from network to network by exchanging routing and reachability information.
+<span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> is the routing protocol that runs the Internet. It manages how packets get routed from network to network by exchanging routing and reachability information.
 
 BGP is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. {{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details about using BGP in the data center.
 
 ## How Does BGP Work?
 
 BGP directs packets between autonomous systems (AS), which are a set of routers under a common administration.
-Each router maintains a routing table that controls how the switch forwards packets. The BGP process on the router generates information in the routing table based on information coming from other routers and from information in the <span style="background-color:#F5F5DC">[RIB](## "BGP Routing Information Base")</span>. The RIB stores routes and continually updates the routing table as changes occur.
+Each router maintains a routing table that controls how the switch forwards packets. The BGP process on the router generates information in the routing table based on information coming from other routers and from information in the <span class="a-tooltip">[RIB](## "BGP Routing Information Base")</span>. The RIB stores routes and continually updates the routing table as changes occur.
 
 ### Autonomous System
 
-BGP treats each independently managed enterprise and service provider as an autonomous system, responsible for a set of network addresses. Each such autonomous system has a unique number called an <span style="background-color:#F5F5DC">[ASN](## "Autonomous System Number")</span>. A central authority (ICANN) hands out ASNs but numbers between 64512 and 65535 are for private use. When you use BGP within the data center, you must either use this number space or the single ASN you own.
+BGP treats each independently managed enterprise and service provider as an autonomous system, responsible for a set of network addresses. Each such autonomous system has a unique number called an <span class="a-tooltip">[ASN](## "Autonomous System Number")</span>. A central authority (ICANN) hands out ASNs but numbers between 64512 and 65535 are for private use. When you use BGP within the data center, you must either use this number space or the single ASN you own.
 
 The ASN is central to how BGP builds a forwarding topology. A BGP route advertisement carries with it not only the ASN of the originator, but also the list of ASNs that this route advertisement passes through. When forwarding a route advertisement, a BGP speaker adds itself to this list. The *AS path* includes the list of ASNs. BGP uses the AS path to detect and avoid loops.
 
-<span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> supports both 16-bit and 32-bit ASNs.
+<span class="a-tooltip">[FRR](## "FRRouting")</span> supports both 16-bit and 32-bit ASNs.
 
 ### Auto BGP
 
@@ -37,7 +37,7 @@ Auto BGP assigns private ASNs in the range 4200000000 through 4294967294. This i
 
 ### eBGP and iBGP
 
-When you use BGP to peer between autonomous systems, the peering is <span style="background-color:#F5F5DC">[eBGP](## "external BGP")</span>. When you use BGP within an autonomous system, the peering is <span style="background-color:#F5F5DC">[iBGP](## "internal BGP")</span>. eBGP peers have different ASNs while iBGP peers have the same ASN.
+When you use BGP to peer between autonomous systems, the peering is <span class="a-tooltip">[eBGP](## "external BGP")</span>. When you use BGP within an autonomous system, the peering is <span class="a-tooltip">[iBGP](## "internal BGP")</span>. eBGP peers have different ASNs while iBGP peers have the same ASN.
 
 The heart of the protocol is the same when used as eBGP or iBGP but there is a key difference in the protocol behavior between eBGP and iBGP. To prevent loops, an iBGP speaker does not forward routing information learned from one iBGP peer to another iBGP peer. eBGP prevents loops using the `AS_Path` attribute.
 
@@ -45,7 +45,7 @@ You need to peer all iBGP speakers with each other in a full mesh. In a large ne
 
 ### BGP Path Selection
 
-BGP is a path-vector routing algorithm that does not rely on a single routing metric to determine the lowest cost route, unlike <span style="background-color:#F5F5DC">[IGPs](## "interior gateway protocols")</span> like OSPF.
+BGP is a path-vector routing algorithm that does not rely on a single routing metric to determine the lowest cost route, unlike <span class="a-tooltip">[IGPs](## "interior gateway protocols")</span> like OSPF.
 
 The BGP path selection algorithm looks at multiple factors to determine which path is best. Cumulus Linux enables {{<link url="Optional-BGP-Configuration#ecmp" text="BGP multipath">}} by default so that multiple equal cost routes install in the routing table but only a single route advertises to BGP peers.
 
@@ -85,7 +85,7 @@ When you use BGP multipath, if multiple paths are equal, BGP still selects a sin
 
 Historically, peers connect over IPv4 and TCP port 179, and after they establish a session, they exchange prefixes. When a BGP peer advertises an IPv4 prefix, it must include an IPv4 next hop address, which is the address of the advertising router. This requires each BGP peer to have an IPv4 address, which in a large network can consume a lot of address space and can require a separate IP address for each peer-facing interface.
 
-The BGP unnumbered standard in {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}}, uses <span style="background-color:#F5F5DC">[ENHE](## "extended next hop encoding")</span> and does not require that you advertise an IPv4 prefix together with an IPv4 next hop. You can configure BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch; BGP uses unnumbered interfaces.
+The BGP unnumbered standard in {{<exlink url="https://tools.ietf.org/html/rfc5549" text="RFC 5549">}}, uses <span class="a-tooltip">[ENHE](## "extended next hop encoding")</span> and does not require that you advertise an IPv4 prefix together with an IPv4 next hop. You can configure BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch; BGP uses unnumbered interfaces.
 
 The next hop address for each prefix is an IPv6 link-local address, which BGP assigns automatically to each interface. Using the IPv6 link-local address as a next hop instead of an IPv4 unicast address, BGP unnumbered saves you from having to configure IPv4 addresses on each interface.
 

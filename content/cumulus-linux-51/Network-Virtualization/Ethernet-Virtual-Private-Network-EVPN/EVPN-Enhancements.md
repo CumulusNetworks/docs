@@ -783,7 +783,7 @@ To disable BUM flooding:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set nve vxlan flooding enable off
+cumulus@leaf01:~$ nv unset nve vxlan flooding
 cumulus@leaf01:~$ nv config apply
 ```
 

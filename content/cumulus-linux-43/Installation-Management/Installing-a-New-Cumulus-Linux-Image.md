@@ -18,7 +18,7 @@ Before you install Cumulus Linux, the switch can be in two different states:
 - Cumulus Linux is already installed on the switch but you want to use ONIE to reinstall Cumulus Linux or upgrade to a newer version.
 
 {{%notice note%}}
-Cumulus Linux 4.3.1 is supported on Broadcom switches only. You **cannot** upgrade to Cumulus Linux **4.3.1** on a Mellanox switch.
+Cumulus Linux 4.3.1 and 4.3.2 supports Broadcom switches only. You **cannot** upgrade to Cumulus Linux **4.3.1** or **4.3.2** on a Mellanox switch.
 {{%/notice%}}
 
 The sections below describe some of the different ways you can install the Cumulus Linux image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
@@ -480,7 +480,7 @@ You can run several installer command line options from ONIE to perform basic sw
 
 {{%notice note%}}
 
-The `onie-nos-install` command does *not* allow you specify command line parameters. You must access the switch from the console and transfer a disk image to the switch. You must then make the disk image executable and install the image directly from the ONIE command line with the options you want to use.
+The `onie-nos-install` command does *not* allow you to specify command line parameters. You must access the switch from the console and transfer a disk image to the switch. You must then make the disk image executable and install the image directly from the ONIE command line with the options you want to use.
 
 The following example commands transfer a disk image to the switch, make the image executable, and install the image with the `--password` option to change the default cumulus user password:
 

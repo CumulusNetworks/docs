@@ -43,7 +43,7 @@ Increasing the end-to-end MTU size avoids host-side and network-side fragmentati
 
 ### ELINE and ELAN Interconnect
 
-The example below shows a point-to-point <span style="background-color:#F5F5DC">[EVC](## "Ethernet Virtual Connection")</span> or multipoint-to-multipoint EVC service provided by a third party. These services are called ELINE and ELAN. An example of an ELINE service is a pseudowire with an emulated end-to-end Ethernet service over multiprotocol label switching (MPLS). An example of an ELAN service is a virtual private LAN service (VPLS). Although it helps to know how these services work and what limitations they have, jumbo-frame support remains the most important consideration when choosing between third-party vendors.  
+The example below shows a point-to-point <span class="a-tooltip">[EVC](## "Ethernet Virtual Connection")</span> or multipoint-to-multipoint EVC service provided by a third party. These services are called ELINE and ELAN. An example of an ELINE service is a pseudowire with an emulated end-to-end Ethernet service over multiprotocol label switching (MPLS). An example of an ELAN service is a virtual private LAN service (VPLS). Although it helps to know how these services work and what limitations they have, jumbo-frame support remains the most important consideration when choosing between third-party vendors.  
 
 {{<img src="/images/guides/elineelan-interconnect.png">}}
 
@@ -54,5 +54,5 @@ Securing a layer 2 or layer 3 VPN service, either through a third-party provider
 In the DCI context, security primarily refers to the data security pillar called *Confidentiality*, which means that your data is protected from unauthorized access and cannot be altered.
 
 You can achieve confidentiality on the network layer with:
-- <span style="background-color:#F5F5DC">[IPsec](## "Internet Protocol Security")</span>, which operates at layer 3. You typically use IPsec with firewall hardware and software, not with switching hardware. 
-- <span style="background-color:#F5F5DC">[MACsec](## "Media Access Control security")</span>, which operates at layer 2. MACsec-encrypted traffic cannot cross a layer 2 boundary and you cannot route MACsec-encrypted traffic across an IP network. DCIs with dark fiber or CWDM/DWDM infrastructures support MACsec encryption, which is the NVIDIA recommended implementation for DCI security.
+- <span class="a-tooltip">[IPsec](## "Internet Protocol Security")</span>, which operates at layer 3. You typically use IPsec with firewall hardware and software, not with switching hardware. 
+- <span class="a-tooltip">[MACsec](## "Media Access Control security")</span>, which operates at layer 2. MACsec-encrypted traffic cannot cross a layer 2 boundary and you cannot route MACsec-encrypted traffic across an IP network. DCIs with dark fiber or CWDM/DWDM infrastructures support MACsec encryption, which is the NVIDIA recommended implementation for DCI security.

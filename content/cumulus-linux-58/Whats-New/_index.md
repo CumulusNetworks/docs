@@ -1,0 +1,107 @@
+---
+title: What's New
+author: NVIDIA
+weight: 5
+toc: 2
+---
+This document supports the Cumulus Linux 5.8 release, and lists new platforms, features, and enhancements.
+
+- For a list of all the platforms supported in Cumulus Linux 5.8, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
+- For a list of open and fixed issues in Cumulus Linux 5.8, see the {{<link title="Cumulus Linux 5.8 Release Notes" text="Cumulus Linux 5.8 Release Notes">}}.
+- To upgrade to Cumulus Linux 5.8, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+<!-- vale off -->
+## What's New in Cumulus Linux 5.8.0
+<!-- vale on -->
+Cumulus Linux 5.8.0 contains several new features and improvements, and provides bug fixes.
+
+### New Features and Enhancements
+
+- Warmboot support for VXLAN EVPN (single homed; no EVPN MLAG or EVPN MH support)
+- ISSU Support for 802.1X
+- Port security and 802.1x interoperability (multi host mode)
+- SyncE support - Set Clock Identity as per ITU-T G.8264
+- Keep SVIs Always Up - Dummy Interface Support
+- FRR Tab completion
+- Interface summary view with filtering
+- Admin State added to interface object model
+- SyncE support at 1G (copper and optical)
+- PTP is now generally available on Spectrum-4 switches
+
+{{< expand "Changed Commands" >}}
+
+{{< tabs "TabID66 ">}}
+{{< tab "nv show ">}}
+
+| Previous Command  |  New Command  |
+| ------------ | ------------- |
+| | |
+
+{{< /tab >}}
+{{< tab "nv set ">}}
+
+| Previous Commands  |  New Commands  |
+| ------------ | ------------- |
+|  | |
+
+{{< /tab >}}
+{{< tab "nv action ">}}
+
+| Previous Command  |  New Command  |
+| ------------ | ------------- |
+| |  |
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /expand >}}
+
+{{< expand "New NVUE Commands" >}}
+
+For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
+
+{{< tabs "TabID40 ">}}
+{{< tab "nv show ">}}
+
+```
+
+```
+
+{{< /tab >}}
+{{< tab "nv set ">}}
+
+```
+
+```
+
+{{< /tab >}}
+{{< tab "nv unset ">}}
+
+```
+
+```
+
+{{< /tab >}}
+{{< tab "nv action ">}}
+
+```
+
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /expand >}}
+
+{{%notice note%}}
+Cumulus Linux 5.8 only supports Head-End Replication (HREP) for handling BUM traffic in an EVPN configuration. BUM handling using a PIM-SM Multicast tree is not supported.
+{{%/notice%}}
+
+{{%notice info%}}
+Cumulus Linux 5.8 includes the NVUE object model. After you upgrade to Cumulus Linux 5.8, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
+
+- Update your automation tools to use NVUE.
+- {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
+- Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
+
+Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.
+{{%/notice%}}

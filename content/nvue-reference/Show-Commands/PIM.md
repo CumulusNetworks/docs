@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show interface \<interface-id\> router pim</h>
 
-Shows <span style="background-color:#F5F5DC">[PIM](## "Protocol Independent Multicast")</span> configuration for the specified interface.
+Shows <span class="a-tooltip">[PIM](## "Protocol Independent Multicast")</span> configuration for the specified interface.
 
 ### Command Syntax
 
@@ -76,7 +76,7 @@ ipv4-unicast
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> router pim address-family ipv4-unicast</h>
+## <h>nv show interface \<interface-id\> router pim address-family ipv4</h>
 
 Shows IPv4 PIM configuration settings for the specified interface.
 
@@ -93,7 +93,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface vlan10 router pim address-family ipv4-unicast
+cumulus@switch:~$ nv show interface vlan10 router pim address-family ipv4
                         applied    
 ----------------------  -----------
 multicast-boundary-oil  MyPrefixLis
@@ -104,7 +104,7 @@ allow-rp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> router pim address-family ipv4-unicast allow-rp</h>
+## <h>nv show interface \<interface-id\> router pim address-family ipv4 allow-rp</h>
 
 Shows PIM allow RP configuration settings for IPv4 for the specified interface.
 
@@ -121,7 +121,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface vlan10 router pim address-family ipv4-unicast allow-rp
+cumulus@switch:~$ nv show interface vlan10 router pim address-family ipv4 allow-rp
         applied
 ------  -------
 enable  on
@@ -300,7 +300,7 @@ ipv4-unicast
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast</h>
+## <h>nv show vrf \<vrf-id\> router pim address-family ipv4</h>
 
 Shows IPv4 PIM configuration for the specified VRF.
 
@@ -317,7 +317,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast
+cumulus@switch:~$ nv show vrf default router pim address-family ipv4
                       applied         
 --------------------  ----------------
 register-accept-list  none            
@@ -331,9 +331,9 @@ spt-switchover
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\></h>
+## <h>nv show vrf \<vrf-id\> router pim address-family ipv4 rp \<rp-id\></h>
 
-Shows IPv4 PIM configuration settings for a specific <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
+Shows IPv4 PIM configuration settings for a specific <span class="a-tooltip">[RP](## "Rendezvous Point")</span> for the specified VRF.
 
 ### Command Syntax
 
@@ -349,7 +349,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.10.10.101
+cumulus@switch:~$ nv show vrf default router pim address-family ipv4 rp 10.10.10.101
                applied    
 -------------  -----------
 [group-range]  224.0.0.0/4
@@ -357,9 +357,9 @@ cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range</h>
+## <h>nv show vrf \<vrf-id\> router pim address-family ipv4 rp \<rp-id\> group-range</h>
 
-Shows the group ranges for the IPv4 PIM <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
+Shows the group ranges for the IPv4 PIM <span class="a-tooltip">[RP](## "Rendezvous Point")</span> for the specified VRF.
 
 ### Command Syntax
 
@@ -375,14 +375,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range
+cumulus@switch:~$ nv show vrf default router pim address-family ipv4 rp 10.100.100.100 group-range
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range \<group-range-id\></h>
+## <h>nv show vrf \<vrf-id\> router pim address-family ipv4 rp \<rp-id\> group-range \<group-range-id\></h>
 
-Shows IPv4 PIM configuration settings for a specific <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> group range for the specified VRF.
+Shows IPv4 PIM configuration settings for a specific <span class="a-tooltip">[RP](## "Rendezvous Point")</span> group range for the specified VRF.
 
 ### Command Syntax
 
@@ -399,14 +399,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
+cumulus@switch:~$ nv show vrf default router pim address-family ipv4 rp 10.100.100.100 group-range 224.0.0.0/4
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover</h>
+## <h>nv show vrf \<vrf-id\> router pim address-family ipv4 spt-switchover</h>
 
-Shows IPv4 PIM <span style="background-color:#F5F5DC">[SPT](## "Shortest Path Tree")</span> switchover configuration for the specified VRF.
+Shows IPv4 PIM <span class="a-tooltip">[SPT](## "Shortest Path Tree")</span> switchover configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -421,7 +421,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router pim address-family ipv4-unicast spt-switchover
+cumulus@switch:~$ nv show vrf default router pim address-family ipv4 spt-switchover
              applied 
 -----------  --------
 action       infinity

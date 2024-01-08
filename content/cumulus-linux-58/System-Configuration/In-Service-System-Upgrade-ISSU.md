@@ -26,7 +26,9 @@ You can configure the switch to restart in one of the following modes.
    When you restart the switch in warm mode, BGP only performs a graceful restart if the BGP graceful restart option is set to `full`. To set BGP graceful restart to full, run the `nv set router bgp graceful-restart mode full` command, then apply the configuration with `nv config apply`. For more information about BGP graceful restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
 {{%notice note%}}
-Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
+Cumulus Linux supports:
+- Fast mode for all protocols.
+- Warm mode for layer 2 forwarding, and layer 3 forwarding with BGP, static routing and VXLAN routing with EVPN. Cumulus Linux does **not** support warm boot with EVPN MLAG or EVPN multihoming.
 {{%/notice%}}
 
 NVIDIA recommends you use NVUE commands to configure restart mode and reboot the system. If you prefer to use `csmgrctl` commands, you must stop NVUE from managing the `/etc/cumulus/csmgrd.conf` file before you set restart mode:

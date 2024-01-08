@@ -321,7 +321,7 @@ The following example creates a snippet called `snmp-config` in a file called `s
 
 NVUE appends the snippet at the end of the `/etc/snmp/snmpd.conf` file.
 
-## Remove Snippets
+## Remove a Snippet
 
 To remove a traditional or flexible snippet, edit the snippet's `.yaml` file to change `set` to `unset`, then patch and apply the configuration. Alternatively, you can use the REST API DELETE and PATCH methods.
 

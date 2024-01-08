@@ -283,7 +283,7 @@ To create flexible snippets:
     - You can only set the umast permissions to a new file that you create. Adding the `permissions:` line is optional. The default umask persmissions are 644.
     - You can add a service with an action, such as start, restart, or stop. Adding the `services:` lines is optional.
 
-## Remove Snippets
+## Remove a Snippet
 
 To remove a traditional or flexible snippet, edit the snippet's `.yaml` file to change `set` to `unset`, then patch and apply the configuration. Alternatively, you can use the REST API DELETE and PATCH methods.
 

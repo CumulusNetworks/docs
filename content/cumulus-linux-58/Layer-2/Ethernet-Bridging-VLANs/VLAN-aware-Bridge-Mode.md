@@ -451,11 +451,11 @@ iface bridge1_vlan10
 
 The first time you configure a switch, all southbound bridge ports are down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking so that the SVI is always in the UP state, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
 
+## Keep the SVI Perpetually UP
+
 To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge.
 
-{{< expand "Example Configuration"  >}}
-
-Consider the following configuration, without a dummy interface in the bridge:
+Consider the following configuration, **without** a dummy interface in the bridge:
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
@@ -481,6 +481,16 @@ cumulus@switch:~$ ip link show br_default
 ```
 
 Now add the dummy interface to your network configuration:
+
+{{< tabs "TabID370 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/network/interfaces` file and add the dummy interface stanza before the bridge stanza:
 
@@ -513,21 +523,23 @@ Now add the dummy interface to your network configuration:
     cumulus@switch:~$ sudo ifreload -a
     ```
 
-    Now, even when swp3 is down, both the dummy interface and the bridge remain up:
+{{< /tab >}}
+{{< /tabs >}}
 
-    ```
-    cumulus@switch:~$ ip link show swp3
-    5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master br_default state DOWN mode DEFAULT group default qlen 1000
-        link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-    cumulus@switch:~$ ip link show dummy
-    37: dummy: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue master br_default state UNKNOWN mode DEFAULT group default
-        link/ether 66:dc:92:d4:f3:68 brd ff:ff:ff:ff:ff:ff
-    cumulus@switch:~$ ip link show br_default
-    35: br_default: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
-        link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
-    ```
+Now, even when swp3 is down, both the dummy interface and the bridge remain UP:
 
-{{< /expand >}}
+```
+cumulus@switch:~$ ip link show swp3
+5: swp3: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast master br_default state DOWN mode DEFAULT group default qlen 1000
+    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
+cumulus@switch:~$ ip link show dummy
+37: dummy: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue master br_default state UNKNOWN mode DEFAULT group default
+    link/ether 66:dc:92:d4:f3:68 brd ff:ff:ff:ff:ff:ff
+cumulus@switch:~$ ip link show br_default
+35: br_default: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
+    link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
+```
+
 <!-- vale off -->
 ## IPv6 Link-local Address Generation
 <!-- vale on -->

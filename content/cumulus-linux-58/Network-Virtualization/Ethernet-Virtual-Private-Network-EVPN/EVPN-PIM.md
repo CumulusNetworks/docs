@@ -5,7 +5,7 @@ weight: 580
 toc: 4
 ---
 {{%notice info%}}
-Cumulus Linux 5.8 only supports Head-End Replication (HREP) for handling BUM traffic in an EVPN configuration. BUM handling using a PIM-SM Multicast tree is not supported.
+On Spectrum 1A switches, EVPN multihoming needs a PIM-SM underlay to distribute BUM traffic; the Spectrum 1A switch does not support <span class="a-tooltip">[HER](## "Head End Replication")</span> with EVPN multihoming.
 {{%/notice%}}
 
 Without EVPN and <span class="a-tooltip">[PIM-SM](## "Sparse Mode")</span>, <span class="a-tooltip">[HER](## "Head End Replication")</span> is the default way to replicate BUM traffic to remote VTEPs, where the ingress VTEP generates the same number of copies as VTEPs for each overlay BUM packet. In certain deployments, this is not optimal.

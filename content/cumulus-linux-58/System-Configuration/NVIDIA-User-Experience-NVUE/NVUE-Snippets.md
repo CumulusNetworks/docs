@@ -515,10 +515,45 @@ Invalid config [rev_id: 1]
 
 You can also create a flexible snippet with the REST API. See {{<link url="NVUE-API" text="NVUE API">}}.
 
-## Considerations
+## Remove a Snippet
 
-As NVUE supports more features and introduces new syntax, snippets and flexible snippets become invalid.
+To remove a traditional or flexible snippet, edit the snippet's `.yaml` file to change `set` to `unset`, then patch and apply the configuration. Alternatively, you can use the REST API DELETE and PATCH methods.
 
-Before you upgrade Cumulus Linux to a new release, make sure to:
-- Review the {{<link url="Whats-New" text="What's New">}} for new NVUE syntax.
-- If NVUE introduces new syntax for the feature that a snippet configures, you must remove the snippet before upgrading.
+The following example removes the {{<link url="#etcnetworkinterfaces-snippets" text="MLAG timer traditional snippet">}} created above to configure the MLAG peer timeout:
+
+1. Edit the `mlag_snippet.yaml` file to change `set` to `unset`:
+
+   ```
+   cumulus@switch:~$ sudo nano mlag_snippet.yaml
+   - unset:
+       system:
+         config:
+           snippet:
+             ifupdown2_eni:
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch mlag_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the peer timeout parameter no longer exists in the `peerlink.4094` stanza of the `/etc/network/interfaces` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/network/interfaces
+   ...
+   auto peerlink.4094
+   iface peerlink.4094
+    clagd-peer-ip linklocal
+    clagd-backup-ip 10.10.10.2
+    clagd-sys-mac 44:38:39:BE:EF:AA
+    clagd-args --initDelay 180
+   ...
+   ```

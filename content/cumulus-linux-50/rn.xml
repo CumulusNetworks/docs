@@ -858,12 +858,6 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <td>5.2.0-5.7.0</td>
 </tr>
 <tr>
-<td>2771653</td>
-<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
-<td>4.3.0-5.6.0</td>
-<td>5.7.0</td>
-</tr>
-<tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>3.7.15-5.1.0</td>
@@ -1638,12 +1632,6 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <td>When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together.</td>
 <td>5.0.0-5.1.0</td>
 <td>5.2.0-5.7.0</td>
-</tr>
-<tr>
-<td>2771653</td>
-<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
-<td>4.3.0-5.6.0</td>
-<td>5.7.0</td>
 </tr>
 <tr>
 <td>2743186</td>

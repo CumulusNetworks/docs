@@ -16,8 +16,12 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 ## Archive
 {{< expand "Changelog Archive" >}}
 ## November 2023
-### 82.2024.0104-012
-- Updated font used by configuration migration tool
+### 82.2023.1109-012
+- Fixed an issue where the font failed to render correctly
+- Fixed an issue preventing sims from starting
+- Fixed an issue where a simulation created with no nodes would become stuck in the LOADING state
+- Fixed an issue where sim state lock could be released too early during a stop job
+- Fixed an issue where the topology delete API did not remove the topology
 
 ## October 2023
 ### 82.2023.1023-012

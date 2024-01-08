@@ -366,7 +366,7 @@ Use the following workflow to verify that the kernel routing table populates cor
 
 ### Route Scale
 
-This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Make sure the number of hosts plus fabric routes is under the allocated hardware LPM table size of the switch per the forwaring resource profile in use. Review the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Networks datasheets">}} for up to date scalability limits of your hardware platform. If in doubt, contact your support representative.
+Redistribute neighbor adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Make sure the number of hosts plus fabric routes is under the allocated hardware LPM table size of the switch according to the forwarding resource profile in use. Review the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Networks datasheets">}} for up-to-date scalability limits of your hardware platform. If in doubt, contact your support representative.
 
 ### Uneven Traffic Distribution
 

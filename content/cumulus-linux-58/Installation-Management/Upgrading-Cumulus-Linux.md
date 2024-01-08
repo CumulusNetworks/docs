@@ -217,8 +217,8 @@ When you use package upgrade to upgrade your switch, configuration data stays in
 #### Disk Space Requirements
 
 Make sure you have enough disk space to perform a package upgrade. Cumulus Linux 5.8.0 requires:
-- 0.6GB GB of free disk space to upgrade from 5.7
-- 1.5GB of free disk space to upgrade from 5.6
+- 1.5GB GB of free disk space to upgrade from 5.7
+- 1.8GB of free disk space to upgrade from 5.6
 
 Before you upgrade, run the `sudo df -h` command to show how much disk space you are currently using on the switch.
 

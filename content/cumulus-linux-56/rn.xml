@@ -696,12 +696,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2771653</td>
-<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
-<td>4.3.0-5.6.0</td>
-<td>5.7.0</td>
-</tr>
-<tr>
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.7.0</td>

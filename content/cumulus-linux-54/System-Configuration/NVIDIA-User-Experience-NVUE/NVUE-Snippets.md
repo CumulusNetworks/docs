@@ -480,7 +480,7 @@ The following example flexible snippet called `apt-flex-snippet` creates a new f
             permissions: "0644"
 ```
 
-## Remove Snippets
+## Remove a Snippet
 
 To remove a traditional or flexible snippet, edit the snippet's `.yaml` file to change `set` to `unset`, then patch and apply the configuration. Alternatively, you can use the REST API DELETE and PATCH methods.
 

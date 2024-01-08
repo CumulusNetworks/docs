@@ -515,7 +515,7 @@ Invalid config [rev_id: 1]
 
 You can also create a flexible snippet with the REST API. See {{<link url="NVUE-API" text="NVUE API">}}.
 
-## Remove Snippets
+## Remove a Snippet
 
 To remove a traditional or flexible snippet, edit the snippet's `.yaml` file to change `set` to `unset`, then patch and apply the configuration. Alternatively, you can use the REST API DELETE and PATCH methods.
 

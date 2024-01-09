@@ -5,7 +5,7 @@ weight: 580
 toc: 4
 ---
 {{%notice info%}}
-On Spectrum 1A switches, EVPN multihoming needs a PIM-SM underlay to distribute BUM traffic; the Spectrum 1A switch does not support <span class="a-tooltip">[HER](## "Head End Replication")</span> with EVPN multihoming. To check if you have a Spectrum 1A switch, run the `sudo decode-syseeprom version | egrep -i "tlv|--|device version"` command. If the command output shows the `Device Version` value at 16 or higher, you have a Spectrum A1 switch:
+On Spectrum 1A switches, EVPN multihoming needs a PIM-SM underlay to distribute BUM traffic; the Spectrum 1A switch does not support <span class="a-tooltip">[HER](## "Head End Replication")</span> with EVPN multihoming. To check if you have a Spectrum 1A switch, run the `sudo decode-syseeprom version | egrep -i "tlv|--|device version"` command. If the command output shows the `Device Version` value at 16 or higher, you have a Spectrum 1A switch:
 
 ```
 cumulus@switch:~$ sudo decode-syseeprom version | egrep -i "tlv|--|device version"

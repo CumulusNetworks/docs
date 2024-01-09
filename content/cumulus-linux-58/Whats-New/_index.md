@@ -19,9 +19,9 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} now generally available on Spectrum-4 switches
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (copper and optical)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} (no EVPN MLAG or EVPN multihoming support)
-- ISSU with 802.1X
+- ISSU warm boot with 802.1X
 - {{<link url="Port-Security" text="Port security with 802.1x">}}
-- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support to set Clock Identity as per ITU-T G.8264
+- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support to set Clock Identity according to ITU-T G.8264
 - NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-the-svi-perpetually-up" text="configure a dummy interface">}} to keep SVIs always UP
 - {{<link url="FRRouting/#vtysh-modal-cli" text="FRR tab completion">}} with static representation
 - Interface summary view with filtering

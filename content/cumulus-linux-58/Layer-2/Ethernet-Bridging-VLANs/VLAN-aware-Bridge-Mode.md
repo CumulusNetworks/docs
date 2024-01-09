@@ -449,11 +449,11 @@ iface bridge1_vlan10
 {{< /tab >}}
 {{< /tabs >}}
 
+## Keep an SVI Perpetually UP
+
 The first time you configure a switch, all southbound bridge ports are down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking so that the SVI is always in the UP state, even if all member ports are down. Other implementations describe this feature as *no autostate*. This is beneficial if you want to perform connectivity testing.
 
-## Keep the SVI Perpetually UP
-
-To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge.
+To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge so that even if all bridge members are down, the dummy interface forces the bridge to be in an UP state.
 
 Consider the following configuration, **without** a dummy interface in the bridge:
 
@@ -480,17 +480,27 @@ cumulus@switch:~$ ip link show br_default
     link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
 ```
 
-To add a dummy interface to your network configuration:
-
 {{< tabs "TabID370 ">}}
 {{< tab "NVUE Commands ">}}
 
+To configure all SVIs on the switch to be perpetually UP, run the `nv set system global svi-force-up enabled` command. This command adds a dummy interface to all bridges with SVIs on the switch.
+
 ```
-cumulus@switch:~$ nv set interface
+cumulus@switch:~$ nv set system global svi-force-up enabled
+cumulus@switch:~$ nv config apply
+```
+
+To configure a specific SVI to be perpetually UP, run the `nv set interface <interface-name> link state forced-up` command:
+
+```
+cumulus@switch:~$ nv set interface vlan10 link state forced-up
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+To add a dummy interface to your network configuration:
 
 1. Edit the `/etc/network/interfaces` file and add the dummy interface stanza before the bridge stanza:
 

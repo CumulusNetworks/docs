@@ -19,28 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3638703</td>
-<td>Upgrading to NetQ 4.8.0 might fail with the message {{Error: web socket connection broken to master}}. To work around this problem:
-
-For standalone on-premises deployments:
-
-1. Run the {{sudo netq bootstrap reset keep-db purge-images}} command 
-
-2. Run the install command using the NetQ 4.8.0 tarball: {{sudo netq install standalone full interface &lt;interface-name&gt; bundle /mnt/installables/NetQ-4.8.0.tgz}} 
-
-For cluster on-premises deployments: 
-
-1. Run the {{sudo netq bootstrap reset keep-db purge-images}} command 
-
-2. Run the {{sudo netq install cluster master-init}} command 
-
-3. Take the command output from step 2 and run it on each worker node 
-
-4. Run the install command using the NetQ 4.8.0 tarball: {{sudo netq install cluster full interface &lt;interface-name&gt; bundle /mnt/installables/NetQ-4.8.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;}}</td>
-<td>4.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3634648</td>
 <td>The topology graph might show unexpected connections when devices in the topology do not have LLDP adjacencies.</td>
 <td>4.8.0</td>
@@ -71,18 +49,6 @@ sudo kubectl set image deployment/netq-prom-adapter prometheus=docker-registry:5
 <td>3549877</td>
 <td>NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes.</td>
 <td>4.6.0-4.8.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3435373</td>
-<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades might fail with the following message: 
-
-
-Job upgrade failed or timed out.
-
-
-To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.</td>
-<td>4.5.0-4.8.0</td>
 <td></td>
 </tr>
 <tr>

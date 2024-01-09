@@ -175,6 +175,14 @@ rip      Routing Information Protocol
 router   IP router interface commands
 ```
 
+In addition to ?-based completion, you can use tab completion to get help with the valid keywords or options as you enter commands. For example, using tab completion with `router ospf` shows the possible options for the command and returns you to the command prompt to complete the command.
+
+```
+switch(config)# router ospf vrf<<press tab>>
+BLUE     RED      default  mgmt     
+switch(config)# router ospf vrf
+```
+
 To search for specific vtysh commands so that you can identify the correct syntax to use, run the `sudo vtysh -c 'find <term>'` command. For example, to show only commands that include `mlag`:
 
 ```

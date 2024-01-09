@@ -7,9 +7,21 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3715651</td>
+<td>If you run NVUE commands to configure PIM for a VRF before you create the VRF, PIM does not create the {{pimreg}} device and the {{pimd}} service crashes.</td>
+<td>5.5.1</td>
+<td>5.6.0-5.7.0</td>
+</tr>
+<tr>
 <td>3706432</td>
 <td>On rare occasions, when the peerlink flaps, you might see traffic loss on some VLANs because the VLANs are in a blocking state. To work around this issue, identify the VLANs that are in a blocking state with the {{bridge -d -c vlan show}} command, then clear the blocking state with the {{bridge vlan set vid &lt;vlan-range&gt; dev &lt;bond&gt; state forwarding stp_nosuspend}} command.</td>
 <td>5.3.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3706151</td>
+<td>The Lenovo MSN4600-VS2RC (PN SSG7B27990 Back-to-Front/C2P Airflow) might run the fan tray fans at a high speed because the software believes the PSU fans are running in the wrong direction.</td>
+<td>5.5.1-5.7.0</td>
 <td></td>
 </tr>
 <tr>

@@ -82,7 +82,7 @@ Now that you have the plugin installed, you need to configure access to the NetQ
 
 3. Enter **Net-Q** in the search box. Alternately, scroll down to the **Other** category, and select it from there.
 
-    {{<figure src="/images/netq/grafana-add-data-src-330.png" width="500">}}
+    {{<figure src="/images/netq/grafana-add-data-src-330.png" alt="" width="500">}}
 
 <!-- 5. Enter *Net-Q* or *Net-Q-Ethtool* into the **Name** field. -->
 
@@ -95,22 +95,22 @@ Now that you have the plugin installed, you need to configure access to the NetQ
 
 <!-- 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*. -->
 
-6. Select *procdevstats* from the **Module** dropdown.
+6. From the **Module** dropdown, select *procdevstats*.
 
 7. Enter your credentials (the ones used to log in).
 
 8. For NetQ cloud deployments only, if you have more than one premises configured, you can select the premises you want to view, as follows:
 
-    - If you leave the **Premises** field blank, the first premises name is selected by default
-    - If you enter a premises name, that premises is selected for viewing
+    - If you leave the **Premises** field blank, the first premises name is selected by default.
+    - If you enter a premises name, that premises is selected for viewing.
+    - If multiple premises are configured with the same name, then the first listed premises is displayed.
+<div style="margin-top: 20px;"></div>
 
-        *Note*: If multiple premises are configured with the same name, then the first premises of that name is selected for viewing
-
-9. Click **Save & Test**.
+9. Select **Save & Test**.
 
 ## Create Your NetQ Dashboard
 
-With the data source configured, you can create a dashboard with the transmit and receive statistics of interest to you.
+After you configure the data source, you can create a customizable dashboard with transmit and receive statistics.
 
 ### Create a Dashboard
 
@@ -124,17 +124,17 @@ With the data source configured, you can create a dashboard with the transmit an
 
     {{<figure src="/images/netq/grafana-add-hostname-variable-331.png" width="600">}}
 
-2. Enter *hostname* into the **Name** field.
+2. In the **Name** field, enter *hostname*.
 
-3. Enter *hostname* into the **Label** field.
+3. In the **Label** field, enter *hostname*.
 
 <!-- 4. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
 
-4. Select *Net-Q* from the **Data source** list.
+4. From the **Data source** list, select *Net-Q*.
 
-5. Select *On Dashboard Load* from the **Refresh** list.
+5. From the **Refresh** list, select *On Dashboard Load*.
 
-6. Enter *hostname* into the **Query** field.
+6. In the **Query** field, enter *hostname*.
 
 7. Click **Add**.
 
@@ -142,39 +142,39 @@ With the data source configured, you can create a dashboard with the transmit an
 
 8. Click **Variables** to add another variable for the interface name.
 
-    {{<figure src="/images/netq/grafana-add-ifname-variable-331.png" width="600">}}
+    {{<figure src="/images/netq/grafana-add-ifname-variable-331.png" alt="" width="600">}}
 
-9. Enter *ifname* into the **Name** field.
+9. In the **Name** field, enter *ifname*.
 
-10. Enter *ifname* into the **Label** field.
+10. In the **Label** field, enter *ifname*.
 
 <!-- 11. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
 
-11. Select *Net-Q* from the **Data source** list.
+11. From the **Data source** list, select *Net-Q*.
 
-12. Select *On Dashboard Load* from the **Refresh** list.
+12. From the **Refresh** list, select *On Dashboard Load*.
 
-13. Enter *ifname* into the **Query** field.
+13. In the **Query** field, enter *ifname*.
 
 14. Click **Add**.
 
     You should see a preview at the bottom of the ifname values.
 
-15. Click **Variables** to add another variable for metrics.
+15. Click **Variables** to add a variable for metrics.
 
-    {{<figure src="/images/netq/grafana-add-metrics-variable-331.png" width="600">}}
+    {{<figure src="/images/netq/grafana-add-metrics-variable-331.png" alt="" width="600">}}
 
-16. Enter *metrics* into the **Name** field.
+16. In the **Name** field, enter *metrics*.
 
-17. Enter *metrics* into the **Label** field.
+17. In the **Label** field, enter *metrics*.
 
 <!-- 18. Select *Net-Q* or *Net-Q-Ethtool* from the **Data source** list. -->
 
-18. Select *Net-Q* from the **Data source** list.
+18. From the **Data source** list, select *Net-Q*.
 
-19. Select *On Dashboard Load* from the **Refresh** list.
+19. From the **Refresh** list, select *On Dashboard Load*.
 
-20. Enter *metrics* into the **Query** field.
+20. In the **Query** field, enter *metrics*.
 
 21. Click **Add**.
 
@@ -186,19 +186,19 @@ With the data source configured, you can create a dashboard with the transmit an
 
 2. Click **Add Query**.
 
-    {{<figure src="/images/netq/grafana-create-chart-230.png" width="600">}}
+    {{<figure src="/images/netq/grafana-create-chart-230.png" alt="" width="600">}}
 
 <!-- 3. Select *Net-Q* or *Net-Q-Ethtool* from the **Query** source list. -->
 
-3. Select *Net-Q* from the **Query** source list.
+3. From the **Query** source list, select *Net-Q*.
 
 4. Select the interface statistic you want to view from the **Metric** list.
 
 5. Click the **General** icon.
 
-    {{<figure src="/images/netq/grafana-create-chart-general-settings-230.png" width="600">}}
+    {{<figure src="/images/netq/grafana-create-chart-general-settings-230.png" alt="" width="600">}}
 
-6. Select *hostname* from the **Repeat** list.
+6. From the **Repeat** list, select *hostname*.
 
 7. Set any other parameters around how to display the data.
 
@@ -206,25 +206,25 @@ With the data source configured, you can create a dashboard with the transmit an
 
 9. Select one or more hostnames from the **hostname** list.
 
-    {{<figure src="/images/netq/grafana-create-chart-select-hostname-331.png" width="600">}}
+    {{<figure src="/images/netq/grafana-create-chart-select-hostname-331.png" alt="" width="600">}}
 
 10. Select one or more interface names from the **ifname** list.
 
-    {{<figure src="/images/netq/grafana-create-chart-select-ifname-331.png" width="600">}}
+    {{<figure src="/images/netq/grafana-create-chart-select-ifname-331.png" alt="" width="600">}}
 
-11. Selectric one or more metrics to display for these hostnames and interfaces from the **metrics** list.
+11. Select one or more metrics to display for these hostnames and interfaces from the **metrics** list.
 
     {{<figure src="/images/netq/grafana-create-chart-select-metrics-331.png" width="600">}}
 
 The following example shows a dashboard with two hostnames, two interfaces, and one metric selected. The more values you select from the variable options, the more charts appear on your dashboard.
 
-{{<figure src="/images/netq/grafana-netq-dashboard-331.png" width="600">}}
+{{<figure src="/images/netq/grafana-netq-dashboard-331.png" alt="Grafana dashboard displaying metrics" width="600">}}
 
 ## Analyze the Data
 
-When you have configured the dashboard, you can start analyzing the data. You can explore the data by modifying the viewing parameters in one of several ways using the dashboard tool set:
+After you have configured the dashboard, you can start analyzing the data. You can explore the data by modifying the viewing parameters in one of several ways using the dashboard tool set:
 
-{{<figure src="/images/netq/grafana-dashboard-tools-230.png" width="600">}}
+{{<figure src="/images/netq/grafana-dashboard-tools-230.png" alt="" width="600">}}
 
 - Select a different time period for the data by clicking the forward or back arrows. The default time range is dependent on the width of your browser window.
 - Zoom in on the dashboard by clicking the magnifying glass.

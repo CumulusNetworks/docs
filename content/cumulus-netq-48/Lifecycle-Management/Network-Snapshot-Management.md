@@ -10,19 +10,17 @@ Snapshots capture a network's state---including the services running on the netw
 
 To create a snapshot:
 
-1. From the workbench header, select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} **Snapshot**, then **Create Snapshot**:
-
-    {{<figure src="/images/netq/create-network-snapshot.png" alt="modal prompting user to create, compare, view, or delete snapshots" width="400">}}
+1. From the workbench header, select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} **Snapshot**, then **Create snapshot**.
 
 2. Next, enter the snapshot's name, time frame, and the elements you'd like included in the snapshot:
 
-    {{<figure src="/images/netq/create-network-snapshot-enter-name.png" alt="modal prompting user to add name, time frame, and options while creating a snapshot" width="400">}}
+    {{<figure src="/images/netq/create-a-snapshot-490.png" alt="modal prompting user to add name, time frame, and options while creating a snapshot" width="400">}}
 
     To capture the network's current state, click **Now**. To capture the network's state at a previous date and time, click **Past**, then in the **Start Time** field, select the calendar icon.
 
     The **Choose options** field includes all the elements and services that may run on the network. All are selected by default. Click any element to remove it from the snapshot. Nodes and services are included in all snapshots.
 
-    The **Notes** field is optional. You can add a note to remind you of the snapshot's purpose.
+    The **Notes** field is optional. You can add a note as a reminder of the snapshot's purpose.
 
 3. Select **Finish**. The card now appears on your workbench.
 
@@ -56,16 +54,17 @@ The following table describes the information provided for each element type whe
 
 | Element | Data Descriptions |
 | ------- | ----------------- |
-| BGP | <ul><li><strong>Hostname</strong>: Name of the host running the BGP session</li><li><strong>VRF</strong>: Virtual route forwarding interface if used</li><li><strong>BGP Session</strong>: Session that was removed or added</li><li><strong>ASN</strong>: Autonomous system number</li></ul> |
-| Interface | <ul><li><strong>Hostname</strong>: Name of the host where the interface resides</li><li><strong>IF Name</strong>: Name of the interface that was removed or added</li></ul> |
-| IP Address | <ul><li><strong>Hostname</strong>: Name of the host where address was removed or added</li><li><strong>Prefix</strong>: IP address prefix</li><li><strong>Mask</strong>: IP address mask</li><li><strong>IF Name</strong>: Name of the interface that owns the address</li></ul> |
-| Links | <ul><li><strong>Hostname</strong>: Name of the host where the link was removed or added</li><li><strong>IF Name</strong>: Name of the link</li><li><strong>Kind</strong>: Bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan</li></ul> |
-| LLDP | <ul><li><strong>Hostname</strong>: Name of the discovered host that was removed or added</li><li><strong>IF Name</strong>: Name of the interface</li></ul> |
+| BGP | <ul><li><strong>Hostname</strong>: Name of the host running the BGP session</li><li><strong>VRF</strong>: Virtual route forwarding interface if used</li><li><strong>BGP session</strong>: Session that was removed or added</li><li><strong>ASN</strong>: Autonomous system number</li></ul> |
+| Config | <ul><li><strong>Hostname</strong>: Name of the host where the configuration file was added or removed</li><li><strong>Configuration file</strong>: File that was added or removed |
+| Interface | <ul><li><strong>Hostname</strong>: Name of the host where the interface resides</li><li><strong>Interface name</strong>: Name of the interface that was removed or added</li></ul> |
+| IP Address | <ul><li><strong>Hostname</strong>: Name of the host where address was removed or added</li><li><strong>Prefix</strong>: IP address prefix</li><li><strong>Mask</strong>: IP address mask</li><li><strong>Interface name</strong>: Name of the interface that owns the address</li></ul> |
+| Links | <ul><li><strong>Hostname</strong>: Name of the host where the link was removed or added</li><li><strong>Interface name</strong>: Name of the link</li><li><strong>Kind</strong>: Bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan</li></ul> |
+| LLDP | <ul><li><strong>Hostname</strong>: Name of the discovered host that was removed or added</li><li><strong>Interface name</strong>: Name of the interface</li></ul> |
 | MAC Address | <ul><li><strong>Hostname</strong>: Name of the host where MAC address resides</li><li><strong>MAC address</strong>: MAC address that was removed or added</li><li><strong>VLAN</strong>: VLAN associated with the MAC address</li></ul> |
 | MLAG | <ul><li><strong>Hostname</strong>: Name of the host running the MLAG session</li><li><strong>MLAG Sysmac</strong>: MAC address for a bond interface pair that was removed or added</li></ul> |
-| Neighbor | <ul><li><strong>Hostname</strong>: Name of the neighbor peer that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface if used</li><li><strong>IF Name</strong>: Name of the neighbor interface</li><li><strong>IP address</strong>: Neighbor IP address</li></ul> |
+| Neighbor | <ul><li><strong>Hostname</strong>: Name of the neighbor peer that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface if used</li><li><strong>Interface name</strong>: Name of the neighbor interface</li><li><strong>IP address</strong>: Neighbor IP address</li></ul> |
 | Node | <ul><li><strong>Hostname</strong>: Name of the network node that was removed or added</li></ul> |
-| OSPF | <ul><li><strong>Hostname</strong>: Name of the host running the OSPF session</li><li><strong>IF Name</strong>: Name of the associated interface that was removed or added</li><li><strong>Area</strong>: Routing domain for this host device</li><li><strong>Peer ID</strong>: Network subnet address of router with access to the peer device</li></ul> |
+| OSPF | <ul><li><strong>Hostname</strong>: Name of the host running the OSPF session</li><li><strong>Interface name</strong>: Name of the associated interface that was removed or added</li><li><strong>Area</strong>: Routing domain for this host device</li><li><strong>Peer ID</strong>: Network subnet address of router with access to the peer device</li></ul> |
 | Route | <ul><li><strong>Hostname</strong>: Name of the host running the route that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface associated with route</li><li><strong>Prefix</strong>: IP address prefix</li></ul> |
 | Sensors | <ul><li><strong>Hostname</strong>: Name of the host where sensor resides</li><li><strong>Kind</strong>: Power supply unit, fan, or temperature</li><li><strong>Name</strong>: Name of the sensor that was removed or added</li></ul> |
 | Services | <ul><li><strong>Hostname</strong>: Name of the host where service is running</li><li><strong>Name</strong>: Name of the service that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface associated with service</li></ul> |

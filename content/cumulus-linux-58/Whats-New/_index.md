@@ -16,16 +16,16 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 
 ### New Features and Enhancements
 
-- Warmboot support for VXLAN EVPN (single homed; no EVPN MLAG or EVPN MH support)
-- ISSU Support for 802.1X
-- Port security and 802.1x interoperability (multi host mode)
-- SyncE support - Set Clock Identity as per ITU-T G.8264
-- Keep SVIs Always Up - Dummy Interface Support
-- FRR Tab completion
+- {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} now generally available on Spectrum-4 switches
+- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (copper and optical)
+- {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} (no EVPN MLAG or EVPN multihoming support)
+- ISSU warm boot with 802.1X
+- {{<link url="Port-Security" text="Port security with 802.1x">}}
+- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support to set Clock Identity according to ITU-T G.8264
+- NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-the-svi-perpetually-up" text="configure a dummy interface">}} to keep SVIs always UP
+- {{<link url="FRRouting/#vtysh-modal-cli" text="FRR tab completion">}} with static representation
 - Interface summary view with filtering
-- Admin State added to interface object model
-- SyncE support at 1G (copper and optical)
-- PTP is now generally available on Spectrum-4 switches
+- Admin state added to NVUE `nv show interface` commands
 
 {{< expand "Changed Commands" >}}
 
@@ -92,13 +92,8 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 {{< /expand >}}
 
-{{%notice note%}}
-Cumulus Linux 5.8 only supports Head-End Replication (HREP) for handling BUM traffic in an EVPN configuration. BUM handling using a PIM-SM Multicast tree is not supported.
-{{%/notice%}}
-
 {{%notice info%}}
 Cumulus Linux 5.8 includes the NVUE object model. After you upgrade to Cumulus Linux 5.8, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
-
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.

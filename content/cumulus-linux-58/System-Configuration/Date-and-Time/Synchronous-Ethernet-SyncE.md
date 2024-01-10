@@ -13,9 +13,13 @@ The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
   - Manages transmitting and receiving <span class="a-tooltip">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
   - Manages the synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span class="a-tooltip">[QL](## "Quality Level")</span> in the SSM.
 
+Cumulus Linux constructs the SyncE clock identity as follows:
+- The higher order 3 bytes are from the higher order 3 bytes (OUI) of the base MAC address.
+- The middle 2 bytes are 0xff 0xfe.
+- The lower order 3 bytes are from the lower order 3 bytes of the base MAC address.
+
 {{%notice note%}}
 - Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
-- Cumulus Linux does not support SyncE with PTP.
 {{%/notice%}}
 
 ## Basic Configuration
@@ -73,7 +77,7 @@ cumulus@switch:~$ sudo systemctl start synced.service
 
 ### Wait to Restore Time
 
-The wait to restore time is the number of seconds SyncE waits for each port to be up before opening the Ethernet Synchronization Message Channel (ESMC) for messages. You can set a value betwen 0 and 720 (12) minutes. The default value is 300 seconds (5 minutes).
+The wait to restore time is the number of seconds SyncE waits for each port to be up before opening the Ethernet Synchronization Message Channel (ESMC) for messages. You can set a value between 0 and 720 (12) minutes. The default value is 300 seconds (5 minutes).
 
 The following command example sets the wait to restore time to 180 seconds (3 minutes):
 

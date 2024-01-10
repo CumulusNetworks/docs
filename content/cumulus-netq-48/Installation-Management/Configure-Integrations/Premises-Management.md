@@ -20,21 +20,19 @@ In this implementation, there is a NetQ appliance or VM running the NetQ softwar
 
 To configure a single UI to monitor multiple premises:
 
-1. From the UI of the primary premises (*OPID0*), select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown in the top-right corner of the screen. 
+1. From the UI of the primary premises (OPID0), select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown in the top-right corner of the screen. 
 
 2. Select **Manage premises**, then select the **External premises** tab.
 
-    {{<figure src="/images/netq/add-external-premises.png" alt="" width="900">}}
-
 3. Select **Add external premises**.
+
+    {{<figure src="/images/netq/external-premises-490.png" alt="" width="900">}}
+
+4. Enter the IP address for the external server, your username, and password. The username and password are the same credentials used to log in to the UI for the external server. Select **Next**
 
     {{<figure src="/images/netq/external-premises-credentials.png" alt="dialog prompting the user to enter the external server's IP and credentials" width="350">}}
 
-4. Enter the IP address for the external server.
-
-5. Enter the username and password for the external server, then click **Next**. These are the same credentials used to log in to the UI for the external server.
-
-6. Select the premises you want to connect, then click **Finish**.
+5. Select the premises you want to connect, then click **Finish**.
 
     {{<figure src="/images/netq/additional-external-premises.png" alt="dialog displaying two premises" width="350">}}
 
@@ -59,7 +57,7 @@ To create and add secondary premises:
 
 1. In the workbench header, select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown.
 
-2. Click **Manage premises**. Your primary premises (*OPID0*) is shown by default.
+2. Click **Manage premises**. Your primary premises (OPID0) is shown by default.
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Add premises**.
 

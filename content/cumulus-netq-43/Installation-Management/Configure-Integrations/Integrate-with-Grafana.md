@@ -212,7 +212,7 @@ With the data source configured, you can create a dashboard with the transmit an
 
     {{<figure src="/images/netq/grafana-create-chart-select-ifname-331.png" width="600">}}
 
-11. Selectric one or more metrics to display for these hostnames and interfaces from the **metrics** list.
+11. Select one or more metrics to display for these hostnames and interfaces from the **metrics** list.
 
     {{<figure src="/images/netq/grafana-create-chart-select-metrics-331.png" width="600">}}
 

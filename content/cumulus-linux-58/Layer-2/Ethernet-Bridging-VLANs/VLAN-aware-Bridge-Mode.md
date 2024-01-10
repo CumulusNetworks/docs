@@ -497,6 +497,8 @@ cumulus@switch:~$ nv set interface vlan10 link state forced-up
 cumulus@switch:~$ nv config apply
 ```
 
+To remove the dummy interfaces from all bridges with SVIs on the switch, run the `nv unset system global svi-force-up enabled` command. To remove the dummy interface from a bridge with a specific SVI, run the `nv unset interface <interface-name> link state forced-up` command.
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -532,6 +534,8 @@ To add a dummy interface to your network configuration:
     ```
     cumulus@switch:~$ sudo ifreload -a
     ```
+
+To remove the dummy interface, remove the dummy interface stanza and the dummy interface from the `bridge-ports` line in the bridge configuration, then reload the configuration with the `sudo ifreload -a` command.
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -39,7 +39,7 @@ After editing the `/etc/pam_radius_auth.conf` file, you must restart both `nvued
 
 ```
 cumulus@switch:~$ sudo systemctl restart nvued.service
-cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
+cumulus@switch:~$ sudo systemctl restart nginx.service
 ```
 
 {{%/notice%}}

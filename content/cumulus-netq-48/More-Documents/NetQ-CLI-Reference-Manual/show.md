@@ -4757,6 +4757,7 @@ netq show unit-tests bgp
 netq show unit-tests cl-version 
     [check_filter_id <text-check-filter-id>] 
     [json]
+
 netq show unit-tests evpn 
     [check_filter_id <text-check-filter-id>] 
     [json]
@@ -4796,7 +4797,6 @@ netq show unit-tests vlan
 netq show unit-tests vxlan 
     [check_filter_id <text-check-filter-id>] 
     [json]
-
 ```
 
 ### Required Arguments
@@ -4821,6 +4821,11 @@ cumulus@netq-ts:~$ netq show unit-tests bgp
    0 : Session Establishment     - check if BGP session is in established state
    1 : Address Families          - check if tx and rx address family advertisement is consistent between peers of a BGP session
    2 : Router ID                 - check for BGP router id conflict in the network
+   3 : Hold Time                 - check for mismatch of hold time between peers of a BGP session
+   4 : Keep Alive Interval       - check for mismatch of keep alive interval between peers of a BGP session
+   5 : Ipv4 Stale Path Time      - check for mismatch of ipv4 stale path timer between peers of a BGP session
+   6 : Ipv6 Stale Path Time      - check for mismatch of ipv6 stale path timer between peers of a BGP session
+   7 : Interface MTU             - check for consistency of Interface MTU for BGP peers
 
 Configured global result filters:
 

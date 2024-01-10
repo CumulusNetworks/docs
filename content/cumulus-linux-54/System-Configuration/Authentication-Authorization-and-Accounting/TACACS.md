@@ -47,11 +47,11 @@ If you use NVUE commands to configure TACACS+, you must also set the priority fo
 
 {{%notice note%}}
 
-After you change TACACS+ settings, you must restart both `nvued.service` and `nginx-authenticator.service`:
+After you change TACACS+ settings, you must restart both `nvued.service` and `nginx.service`:
 
 ```
 cumulus@switch:~$ sudo systemctl restart nvued.service
-cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
+cumulus@switch:~$ sudo systemctl restart nginx.service
 ```
 
 {{%/notice%}}
@@ -383,11 +383,11 @@ The first `adduser` command prompts for information and a password. You can skip
     ...
     ```
 
-4. Restart the `nvued` service and the `nginx-authenticator` service with the following commands:
+4. Restart the `nvued` service and the `nginx` service with the following commands:
 
     ```
     cumulus@switch:~$ sudo systemctl restart nvued.service
-    cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
+    cumulus@switch:~$ sudo systemctl restart nginx.service
     ```
 <!-- vale off -->
 ## TACACS+ Per-command Authorization

@@ -59,10 +59,6 @@ Entering incorrect information during the installation process produces configur
 
 After editing the files, restart the NVUE and nginx-authenticator services with the `sudo systemctl restart nvued.service` command and the `sudo systemctl restart nginx-authenticator.service` command.
 
-```
-cumulus@switch:~$ sudo systemctl restart nvued.service
-```
-
 {{< expand "Alternative Installation Method Using debconf-utils "  >}}
 
 Instead of running the installer and following the interactive prompts, as described above, you can pre-seed the installer parameters using `debconf-utils`.

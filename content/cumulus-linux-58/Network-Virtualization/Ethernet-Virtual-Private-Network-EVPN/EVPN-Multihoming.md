@@ -39,7 +39,20 @@ You must enable the following features to use EVPN-MH:
 - {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware bridge mode">}}
 - {{<link url="EVPN-Enhancements/#arp-and-nd-suppression" text="ARP suppression">}}
 
-Cumulus Linux uses Head End Replication by default with EVPN multihoming. If you prefer to use EVPN BUM traffic handling with EVPN-PIM on multihomed sites via Type-4/ESR routes, configure EVPN-PIM as described in {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
+Cumulus Linux uses <span class="a-tooltip">[HER](## "Head End Replication")</span> by default with EVPN multihoming. If you prefer to use EVPN BUM traffic handling with EVPN-PIM on multihomed sites through Type-4/ESR routes, configure EVPN-PIM as described in {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
+
+{{%notice info%}}
+On Spectrum 1A switches, EVPN multihoming needs a {{<link title="EVPN BUM Traffic with PIM-SM" text="PIM-SM underlay to distribute BUM traffic">}}; the Spectrum 1A switch does not support HER with EVPN multihoming. To check if you have a Spectrum 1A switch, run the `sudo decode-syseeprom version | egrep -i "tlv|--|device version"` command. If the command output shows the `Device Version` value at 16 or higher, you have a Spectrum 1A switch:
+
+```
+cumulus@switch:~$ sudo decode-syseeprom version | egrep -i "tlv|--|device version"
+TlvInfo Header:
+   Id String:    TlvInfo
+TLV Name             Code Len Value
+-------------------- ---- --- -----
+Device Version       0x26   1 16
+```
+{{%/notice%}}
 
 {{%notice warning%}}
 To use EVPN-MH, you must remove any MLAG configuration on the switch:

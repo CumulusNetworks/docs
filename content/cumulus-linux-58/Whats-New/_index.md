@@ -21,7 +21,7 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} (no EVPN MLAG or EVPN multihoming support)
 - ISSU warm boot with 802.1X
 - {{<link url="Port-Security" text="Port security with 802.1x">}}
-- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support to set Clock Identity according to ITU-T G.8264
+- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
 - NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-the-svi-perpetually-up" text="configure a dummy interface">}} to keep SVIs always UP
 - {{<link url="FRRouting/#vtysh-modal-cli" text="FRR tab completion">}} with static representation
 - Interface summary view with filtering
@@ -70,14 +70,16 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv set ">}}
 
 ```
-
+nv set system global svi-force-up enabled
+nv set interface <interface-name> link state forced-up
 ```
 
 {{< /tab >}}
 {{< tab "nv unset ">}}
 
 ```
-
+nv unset system global svi-force-up enabled
+nv unset interface <interface-name> link state forced-up
 ```
 
 {{< /tab >}}

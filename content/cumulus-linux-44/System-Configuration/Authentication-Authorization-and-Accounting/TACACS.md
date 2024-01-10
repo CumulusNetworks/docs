@@ -29,11 +29,11 @@ cumulus@switch:~$ sudo -E apt-get install tacplus-client
 
 {{%notice note%}}
 
-After you configure TACACS+ settings, you must restart both `nvued.service` and `nginx-authenticator.service`:
+After you configure TACACS+ settings, you must restart both `nvued.service` and `nginx.service`:
 
 ```
 cumulus@switch:~$ sudo systemctl restart nvued.service
-cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
+cumulus@switch:~$ sudo systemctl restart nginx.service
 ```
 
 {{%/notice%}}
@@ -152,11 +152,11 @@ The first `adduser` command prompts for information and a password. You can skip
     ...
     ```
 
-4. Restart the `nvued` service and the `nginx-authenticator` service with the following commands:
+4. Restart the `nvued` service and the `nginx` service with the following commands:
 
     ```
     cumulus@switch:~$ sudo systemctl restart nvued.service
-    cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
+    cumulus@switch:~$ sudo systemctl restart nginx.service
     ```
 
 ## TACACS+ Accounting

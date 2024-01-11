@@ -4,8 +4,10 @@ class Air {
     this.api_url = `${this.air_url}/api/v1`;
   }
 
-  async _request(method, uri) {
-    const res = await fetch(`${this.api_url}${uri}`, { method, credentials: 'include' });
+  async _request(method, uri, payload, options) {
+    const res = await fetch(
+      `${this.api_url}${uri}`, { ...options, body: payload, method, credentials: 'include' },
+    );
     if (res.status > 399) {
       throw new Error(res.statusText);
     }
@@ -17,15 +19,19 @@ class Air {
     return res.json();
   };
 
-  async _post(uri) {
-    const res = await this._request('POST', uri);
+  async _post(uri, payload) {
+    const res = await this._request(
+      'POST', uri, JSON.stringify(payload), { headers: { 'Content-type': 'application/json' }},
+    );
     return res.json();
   };
 
   async autoprovision(sim) {
     let id;
     try {
-      const res = await this._post(`/simulation/autoprovision/?simulation=${sim.refName}&source=docs`);
+      const res = await this._post(
+        `/simulation/autoprovision/?simulation=${sim.refName}`, { source: 'docs' },
+      );
       id = res['simulation']['id'];
     } catch (err) {
       console.error(err);

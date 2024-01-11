@@ -480,7 +480,7 @@ cumulus@switch:~$ ip link show br_default
     link/ether 2c:60:0c:66:b1:7f brd ff:ff:ff:ff:ff:ff
 ```
 
-{{< tabs "TabID370 ">}}
+{{< tabs "TabID483 ">}}
 {{< tab "NVUE Commands ">}}
 
 To configure all SVIs on the switch to be perpetually UP, run the `nv set system global svi-force-up enabled` command. This command adds a dummy interface to all bridges with SVIs on the switch.

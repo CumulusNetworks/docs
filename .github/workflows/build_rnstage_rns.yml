@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v2
-      - name: Run the **STAGE** RN and FOSS scripts
+      - name: Run the **STAGE** RN script
         run: |
           python3 utils/build_rnstage_rns.py
 ## comment out FOSS processing temporarily for rn-stage !!          python3 utils/build_rnstage_foss_licenses.py

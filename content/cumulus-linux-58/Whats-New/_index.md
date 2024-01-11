@@ -19,12 +19,11 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} now generally available on Spectrum-4 switches
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (copper and optical)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} (no EVPN MLAG or EVPN multihoming support)
-- ISSU warm boot with 802.1X
-- {{<link url="Port-Security" text="Port security with 802.1x">}}
+- {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support with 802.1X">}}
+- {{<link url="802.1X-Interfaces/#host-modes" text="802.1x multi host mode">}}
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
-- NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-the-svi-perpetually-up" text="configure a dummy interface">}} to keep SVIs always UP
+- NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-an-svi-perpetually-up" text="configure a dummy interface">}} to keep SVIs always UP
 - {{<link url="FRRouting/#vtysh-modal-cli" text="FRR tab completion">}} with static representation
-- Interface summary view with filtering
 - Admin state added to NVUE `nv show interface` commands
 
 {{< expand "Changed Commands" >}}
@@ -60,16 +59,10 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 
 {{< tabs "TabID40 ">}}
-{{< tab "nv show ">}}
-
-```
-
-```
-
-{{< /tab >}}
 {{< tab "nv set ">}}
 
 ```
+nv set interface swp1 dot1x host-mode
 nv set system global svi-force-up enabled
 nv set interface <interface-name> link state forced-up
 ```
@@ -78,15 +71,9 @@ nv set interface <interface-name> link state forced-up
 {{< tab "nv unset ">}}
 
 ```
+nv unset interface swp1 dot1x host-mode
 nv unset system global svi-force-up enabled
 nv unset interface <interface-name> link state forced-up
-```
-
-{{< /tab >}}
-{{< tab "nv action ">}}
-
-```
-
 ```
 
 {{< /tab >}}

@@ -344,7 +344,7 @@ The Cumulus Linux switch provides the following clock timestamp modes:
 One-step mode significantly reduces the number of PTP messages. Two-step mode is the default configuration.
 
 {{%notice note%}}
-Cumulus Linux supports one-step mode on switches with the Spectrum-2 and Spectrum-3 ASIC.
+Cumulus Linux supports one-step mode on Spectrum-2 and later.
 {{%/notice%}}
 
 {{< tabs "TabID345 ">}}

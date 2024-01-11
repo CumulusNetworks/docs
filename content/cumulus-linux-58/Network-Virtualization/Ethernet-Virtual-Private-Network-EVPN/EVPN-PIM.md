@@ -4,10 +4,6 @@ author: NVIDIA
 weight: 580
 toc: 4
 ---
-{{%notice info%}}
-On Spectrum 1A switches, EVPN multihoming needs a PIM-SM underlay to distribute BUM traffic; the Spectrum 1A switch does not support <span class="a-tooltip">[HER](## "Head End Replication")</span> with EVPN multihoming.
-{{%/notice%}}
-
 Without EVPN and <span class="a-tooltip">[PIM-SM](## "Sparse Mode")</span>, <span class="a-tooltip">[HER](## "Head End Replication")</span> is the default way to replicate BUM traffic to remote VTEPs, where the ingress VTEP generates the same number of copies as VTEPs for each overlay BUM packet. In certain deployments, this is not optimal.
 
 The following example shows a EVPN-PIM configuration, where underlay multicast distributes BUM traffic. An <span class="a-tooltip">[MDT](## "multicast Distribution Tree")</span> optimizes the flow of overlay BUM traffic in the underlay network.

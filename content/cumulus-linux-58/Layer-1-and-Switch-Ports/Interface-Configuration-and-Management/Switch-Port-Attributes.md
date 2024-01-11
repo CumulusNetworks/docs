@@ -1529,7 +1529,7 @@ The following example command splits swp1 into two interfaces (2x) and sets the 
 cumulus@switch:~$ nv set interface swp1 link breakout 2x lanes-per-port 2
 cumulus@switch:~$ nv config apply
 ```
-
+<!--
 {{%notice note%}}
 You must configure the lanes-per-port at the same time as you configure the breakout. If you want to change the number of lanes per port after you configure a breakout, you must first unset the breakout with the `nv unset interface <port> breakout` and `nv config apply` commands, then reconfigure the breakout and the lanes with the `nv set interface <interface> link breakout <breakout> lanes-per-port <lanes>` command. For example:
 
@@ -1540,16 +1540,16 @@ cumulus@switch:~$ nv set interface swp1 link breakout 2x lanes-per-port 2
 cumulus@switch:~$ nv config apply
 ```
 {{%/notice%}}
-
+-->
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/cumulus/ports_width.conf` file and add the numer of lanes per split port you want to use, then reload `switchd`:
-
+<!--
 {{%notice note%}}
 You must configure the lanes per port in the `/etc/cumulus/ports_width.conf` before you configure the breakout in the `/etc/cumulus/ports.conf` file. If the `ports.conf` file already contains breakout configuration for a port, you must set the breakout back to `1x`, then reload `switchd`. You can then set the desired lanes per port, then reconfigure the breakout.
 {{%/notice%}}
-
+-->
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/ports_width.conf
 ...

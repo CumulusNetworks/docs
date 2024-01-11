@@ -35,11 +35,11 @@ To configure the RADIUS client, edit the `/etc/pam_radius_auth.conf` file.
 
 {{%notice note%}}
 
-After editing the `/etc/pam_radius_auth.conf` file, you must restart both `nvued.service` and `nginx-authenticator.service`:
+After editing the `/etc/pam_radius_auth.conf` file, you must restart both `nvued.service` and `nginx.service`:
 
 ```
 cumulus@switch:~$ sudo systemctl restart nvued.service
-cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
+cumulus@switch:~$ sudo systemctl restart nginx.service
 ```
 
 {{%/notice%}}

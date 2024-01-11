@@ -7,8 +7,38 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3713420</td>
+<td>When you run the {{systemctl restart switchd.service}} command or reboot the switch after you set the host route preference option with the NVUE {{nv set system forwarding host-route-preference}} command or manually in the {{/etc/cumulus/switchd.conf}} file, {{switchd}} crashes and creates core files.</td>
+<td>5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3712007</td>
+<td>In RSTP mode when there is a bridge port flap, Cumulus Linux flushes, then re-adds dynamic MAC addresses on the peerlink, which might cause short traffic disruption.</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3710396</td>
+<td>In an eBGP multihop configuration with dynamic neighbors, Cumulus Linux does not update the configured TTL but uses the MAXTTL instead. This issue is only observed with dynamic peers.</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3706432</td>
+<td>On rare occasions, when the peerlink flaps, you might see traffic loss on some VLANs because the VLANs are in a blocking state. To work around this issue, identify the VLANs that are in a blocking state with the {{bridge -d -c vlan show}} command, then clear the blocking state with the {{bridge vlan set vid &lt;vlan-range&gt; dev &lt;bond&gt; state forwarding stp_nosuspend}} command.</td>
+<td>5.3.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3706151</td>
+<td>The Lenovo MSN4600-VS2RC (PN SSG7B27990 Back-to-Front/C2P Airflow) might run the fan tray fans at a high speed because the software believes the PSU fans are running in the wrong direction.</td>
+<td>5.5.1-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3702431</td>
-<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE {{nv set service snmp-server enable on}} CLI command and the listening address with the {{nv set service snmp-server listening-address &lt;address&gt;}} CLI command or the equivalent API commands.</td>
+<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE {{nv set service snmp-server enable on}}  and  {{nv set service snmp-server listening-address &lt;address&gt;}} commands or the equivalent API commands.</td>
 <td>5.4.0-5.7.0</td>
 <td></td>
 </tr>
@@ -43,6 +73,13 @@
 <td></td>
 </tr>
 <tr>
+<td>3679478</td>
+<td>Both the ASIC Monitoring service and the What-Just-Happened service try to initialize the SDK TELE module. Initialization is successful only for the first service to initialize the module and you see error log messages.
+There is no functional impact if a service tries to initialize the module again.</td>
+<td>5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3677821</td>
 <td>If you bring down an interface with Linux or NVUE commands, all the static neighbor entries disappear for that interface.</td>
 <td>5.7.0</td>
@@ -55,14 +92,14 @@
 <td></td>
 </tr>
 <tr>
-<td>3672706</td>
-<td> With port-security enabled, you can configure only 450 port-security static MAC addresses per interface.</td>
+<td>3637444</td>
+<td>Applying an inbound control plane ACL on the eth0 management interface does not work. To work around this issue, apply the ACL on the {{mgmt}} interface; for example, {{nv set interface mgmt acl &lt;acl-id&gt; inbound control-plane}}.</td>
 <td>5.7.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3637444</td>
-<td>Applying an inbound control plane ACL on the eth0 management interface does not work. To work around this issue, apply the ACL on the {{mgmt}} interface; for example, {{nv set interface mgmt acl &lt;acl-id&gt; inbound control-plane}}.</td>
+<td>3636266</td>
+<td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
 <td>5.7.0</td>
 <td></td>
 </tr>
@@ -73,15 +110,27 @@
 <td></td>
 </tr>
 <tr>
+<td>3632843</td>
+<td>When the switch receives a type5 route in BGP and there is a network statement for the same prefix, BGP sometimes removes the request to track next hops from FRR. As next hop reachability changes, BGP no longer reacts to the change. To work around this issue, run the {{clear bgp *}} command for all peerings.</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3630492</td>
 <td>On the NVIDIA SN2201 switch, the {{ledmgrd -d}} command output shows the system and PSU LED status as orange when the physical LED is green.</td>
 <td>5.5.1-5.7.0</td>
 <td></td>
 </tr>
 <tr>
+<td>3614286</td>
+<td>To avoid unnecessary traffic loss, {{ifreload}} (ifupdown2) only flaps a bond to reset its MAC address when the bond MAC address is not present on any of the bond's interfaces. Previously, ifupdown2 enforced the bond MAC address to be set to the MAC address of the first interface. </td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3610967</td>
 <td>In an EVPN symmetric routing configuration, running the NVUE {{nv set vrf &lt;vrf&gt; vlan auto}} command to derive layer 3 VNIs automatically might result in duplicate VLAN entries in the system. This most often occurs at scale when many VRFs have similar names. To work around this issue, manually specify a unique VLAN for each VRF.</td>
-<td>5.6.0-5.7.0</td>
+<td>5.3.0-5.7.0</td>
 <td></td>
 </tr>
 <tr>
@@ -112,6 +161,12 @@
 <td>3484058</td>
 <td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
 <td>5.3.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3463827</td>
+<td>On rare occasions, SPT switchover might not happen cleanly in PIM, resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
+<td>5.6.0-5.7.0</td>
 <td></td>
 </tr>
 <tr>
@@ -413,11 +468,6 @@ You can safely ignore this warning.</td>
 <td>5.6.0</td>
 </tr>
 <tr>
-<td>3683166</td>
-<td>A statistics issue in the I2C interface to modules is locked and might cause the switch to hang.</td>
-<td>5.6.0</td>
-</tr>
-<tr>
 <td>3669935</td>
 <td>When you add or delete VXLAN VNI and VLAN interfaces, a memory leak might occur in {{switchd}}.</td>
 <td>5.6.0</td>
@@ -469,6 +519,16 @@ You can safely ignore this warning.</td>
 2. Save the configuration {{nv config apply}}. 
 3. Re-add the PTP config. 
 Note: this procedure results in a switchd restart which will have an impact on the data plane.</td>
+<td>5.6.0</td>
+</tr>
+<tr>
+<td>3655027</td>
+<td>If you create a new snippet with the same name as a snippet you deleted, you receive a warning message. To work around this issue, create the new snippet with a different name than any removed snippets.</td>
+<td>5.6.0</td>
+</tr>
+<tr>
+<td>3650661</td>
+<td>Configuration changes to an already applied custom flexible snippet that includes a service restart does not restart the service when you apply the patch.</td>
 <td>5.6.0</td>
 </tr>
 <tr>
@@ -597,6 +657,14 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <td>5.5.1-5.6.0</td>
 </tr>
 <tr>
+<td>3575800</td>
+<td>When you configure the {{peerlink}} interface with NVUE but do not configure the necessary MLAG parameters with {{nv set mlag}} commands (such as the backup IP address, peer IP address, and MLAG MAC address), NVUE apply fails with the following message:
+
+ MLAG cannot be deleted when a peerlink or peerlink sub-interfaces exist.
+</td>
+<td>5.6.0</td>
+</tr>
+<tr>
 <td>3573800</td>
 <td>After you apply a change to the router MAC address on an SVI with the {{ifreload -a}} command, the old router MAC address still remains in the FDB table. To work around this issue, remove the old router MAC address with the {{sudo bridge fdb del &lt;old_mac&gt; dev bridge vlan &lt;vlan_id&gt;}} command.</td>
 <td>5.3.1-5.6.0</td>
@@ -705,11 +773,6 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td>3221628</td>
 <td>Cumulus Linux VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
 <td>5.2.0-5.6.0</td>
-</tr>
-<tr>
-<td>2771653</td>
-<td>When using W-ECMP, the weights for various BGP next hops  can sometimes be in the range of 100s or more, which consumes a lot of hardware space.</td>
-<td>4.3.0-5.6.0</td>
 </tr>
 </table>
 </tables>

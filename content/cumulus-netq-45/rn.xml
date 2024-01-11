@@ -71,18 +71,6 @@ This is due to an expired key in the installation tarball. For assistance workin
 <td>4.6.0-4.8.0</td>
 </tr>
 <tr>
-<td>3435373</td>
-<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades might fail with the following message: 
-
-
-Job upgrade failed or timed out.
-
-
-To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.</td>
-<td>4.5.0-4.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3431386</td>
 <td>When you upgrade your NetQ VM from NetQ 4.5.0 to 4.6.0 using the {{netq upgrade bundle}} command, certain pods are not correctly retagged. To work around this issue, retag and restart the affected pods with the following commands for your deployment after upgrading:
 

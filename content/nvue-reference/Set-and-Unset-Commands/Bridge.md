@@ -647,6 +647,22 @@ cumulus@switch:~$ nv set bridge domain br_default vlan-vni-offset 10000
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set global svi-force-up enabled</h>
+
+Configures all SVIs on the switch to be perpetually UP. This command adds a dummy interface to all bridges with SVIs on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set global svi-force-up enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> bridge</h>
 
 Configures the bridged interface.
@@ -990,4 +1006,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain default vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> link state forced-up enabled</h>
+
+Configures the specified SVI on the switch to be perpetually UP. The first time you configure a switch, all southbound bridge ports are down; therefore, by default, the SVI is also down. You can force the SVI to always be up by disabling interface state tracking so that the SVI is always in the UP state, even if all member ports are down. Other implementations describe this feature as no autostate. This is beneficial if you want to perform connectivity testing.
+
+To keep the SVI perpetually UP, create a dummy interface, then make the dummy interface a member of the bridge so that even if all bridge members are down, the dummy interface forces the bridge to be in an UP state.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface vlan10 link state forced-up enabled
 ```

@@ -51,10 +51,6 @@ cumulus@switch:~$ nv set service dhcp-server default pool 10.1.10.0/24 gateway 1
 cumulus@switch:~$ nv set service dhcp-server default static server1
 cumulus@switch:~$ nv set service dhcp-server default static server1 ip-address 10.0.0.2
 cumulus@switch:~$ nv set service dhcp-server default static server1 mac-address 44:38:39:00:01:7e
-cumulus@switch:~$ nv set service dhcp-server default static server2
-cumulus@switch:~$ nv set service dhcp-server default static server2 ip-address 10.0.0.3
-cumulus@switch:~$ nv set service dhcp-server default static server2 ifname swp1
-cumulus@switch:~$ nv config apply
 ```
 
 To set the DNS server IP address and domain name globally, use the `nv set service dhcp-server <vrf> domain-name-server <address>` and `nv set service dhcp-server <vrf> domain-name <domain>` commands.
@@ -402,7 +398,10 @@ You can assign an IP address and other DHCP options based on physical location o
 {{< tab "IPv4 ">}}
 
 ```
-Cumulus Linux does not provide NVUE commands for this setting.
+cumulus@switch:~$ nv set service dhcp-server default static server2
+cumulus@switch:~$ nv set service dhcp-server default static server2 ip-address 10.0.0.3
+cumulus@switch:~$ nv set service dhcp-server default static server2 ifname swp1
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -423,32 +422,17 @@ Cumulus Linux does not provide NVUE commands for this setting.
 
 1. Edit the `/etc/dhcp/dhcpd.conf` file to add the interface and IP address:
 
-   ```
+```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd.conf
+# Statics
+group {
+    host server2 {
+        ifname "swp1";
+        fixed-address 10.0.0.3;
+    }
+}
    ...
-   authoritative;
-   option cumulus-provision-url code 239 = text;
-   
-   subnet 10.0.0.0 netmask 255.255.255.0 {
-       option domain-name-servers 192.168.200.53;
-       option domain-name "example.com";
-       option routers 10.0.0.1;
-       default-lease-time 3600;
-       max-lease-time 3600;
-       ping-check off;
-   
-       pool {
-           range 10.0.0.2 10.0.0.254;
-       }
-   }
-   group {
-       host myhost {
-           ifname "swp1" ;
-           fixed-address 10.0.0.2 ;
-       }
-   }
-   ...
-   ```
+```
 
 2. Restart the `dhcpd` service:
 
@@ -464,9 +448,9 @@ Cumulus Linux does not provide NVUE commands for this setting.
    ```
    cumulus@switch:~$ sudo nano /etc/dhcp/dhcpd6.conf
    ...
-   host myhost {
+   host server2 {
        ifname "swp1" ;
-       fixed-address 2001:db8:1::100 ;
+       fixed-address 2001:db8:1::100;
    }
    ...
    ```

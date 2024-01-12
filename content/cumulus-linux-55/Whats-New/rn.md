@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3715651"></a> [3715651](#3715651) <a name="3715651"></a> <br /> | If you run NVUE commands to configure PIM for a VRF before you create the VRF, PIM does not create the <code>pimreg</code> device and the <code>pimd</code> service crashes. | 5.5.1 | 5.6.0-5.7.0|
 | <a name="3706432"></a> [3706432](#3706432) <a name="3706432"></a> <br /> | On rare occasions, when the peerlink flaps, you might see traffic loss on some VLANs because the VLANs are in a blocking state. To work around this issue, identify the VLANs that are in a blocking state with the <code>bridge -d -c vlan show</code> command, then clear the blocking state with the <code>bridge vlan set vid <vlan-range> dev <bond> state forwarding stp_nosuspend</code> command. | 5.3.0-5.7.0 | |
 | <a name="3702431"></a> [3702431](#3702431) <a name="3702431"></a> <br /> | Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE <code>nv set service snmp-server enable on</code>  and  <code>nv set service snmp-server listening-address <address></code> commands or the equivalent API commands. | 5.4.0-5.7.0 | |
 | <a name="3696061"></a> [3696061](#3696061) <a name="3696061"></a> <br /> | When the MAC address of a neighbor changes, the <code>zebra</code> IP routing manager might crash.  | 5.2.1-5.6.0 | 5.7.0|

@@ -91,18 +91,20 @@ The MLAG validation tests look for misconfigurations, peering status, and bond e
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
-| 0 | Peering | Checks if: <ul><li>MLAG peerlink is up</li><li>MLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering <!-- vale off -->is established<!-- vale on --> between two nodes in a MLAG pair</li></ul> |
-| 1 | Backup IP | Checks if: <ul><li>MLAG backup IP configuration is missing on a MLAG node</li><li>MLAG backup IP is correctly pointing to the MLAG peer and its connectivity is available</li></ul> |
-| 2 | CLAG Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in a MLAG pair</li><li>Any duplication of a MLAG sysmac exists within a bridge domain </li></ul> |
+| 0 | Peering | Checks if: <ul><li>MLAG peerlink is up</li><li>MLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering <!-- vale off -->is established<!-- vale on --> between two nodes in an MLAG pair</li></ul> |
+| 1 | Backup IP | Checks if: <ul><li>MLAG backup IP configuration is missing on an MLAG node</li><li>MLAG backup IP is correctly pointing to the MLAG peer and its connectivity is available</li></ul> |
+| 2 | CLAG Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in an MLAG pair</li><li>Any duplication of an MLAG sysmac exists within a bridge domain </li></ul> |
 | 3 | VXLAN <!-- vale off -->Anycast IP<!-- vale on --> | Checks if the VXLAN anycast IP address is consistently configured on both nodes in an MLAG pair |
 | 4 | Bridge Membership | Checks if the MLAG peerlink is part of bridge |
-| 5 | Spanning Tree | Checks if: <ul><li>STP <!-- vale off -->is enabled<!-- vale on --> and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of a MLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
+| 5 | Spanning Tree | Checks if: <ul><li>STP <!-- vale off -->is enabled<!-- vale on --> and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of an MLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |
 | 6 | Dual Home | Checks for: <ul><li>MLAG bonds that are not in dually connected state</li><li>Dually connected bonds have consistent VLAN and MTU configuration on both sides</li><li>STP has consistent view of bonds' dual connectedness</li></ul> |
 | 7 | Single Home | Checks for: <ul><li>Singly connected bonds</li><li>STP has consistent view of bond's single connectedness</li></ul> |
 | 8 | Conflicted Bonds | Checks for bonds in MLAG conflicted state and shows the reason |
 | 9 | ProtoDown Bonds | Checks for bonds in protodown state and shows the reason |
-| 10 | SVI | Checks if: <ul><li>Both sides of a MLAG pair have an SVI configured</li><li>SVI on both sides have consistent MTU setting</li></ul> |
-
+| 10 | SVI | Checks if: <ul><li>Both sides of an MLAG pair have an SVI configured</li><li>SVI on both sides have consistent MTU setting</li></ul> |
+<!--
+| 11 | Package Mismatch | Checks for package mismatch on an MLAG pair |
+-->
 ## NTP Validation Tests
 
 The NTP validation test looks for poor operational status of the NTP service.

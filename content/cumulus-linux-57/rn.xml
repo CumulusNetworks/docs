@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3713420</td>
+<td>When you run the {{systemctl restart switchd.service}} command or reboot the switch after you set the host route preference option with the NVUE {{nv set system forwarding host-route-preference}} command or manually in the {{/etc/cumulus/switchd.conf}} file, {{switchd}} crashes and creates core files.</td>
+<td>5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3712007</td>
+<td>In RSTP mode when there is a bridge port flap, Cumulus Linux flushes, then re-adds dynamic MAC addresses on the peerlink, which might cause short traffic disruption.</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3710396</td>
+<td>In an eBGP multihop configuration with dynamic neighbors, Cumulus Linux does not update the configured TTL but uses the MAXTTL instead. This issue is only observed with dynamic peers.</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3706432</td>
 <td>On rare occasions, when the peerlink flaps, you might see traffic loss on some VLANs because the VLANs are in a blocking state. To work around this issue, identify the VLANs that are in a blocking state with the {{bridge -d -c vlan show}} command, then clear the blocking state with the {{bridge vlan set vid &lt;vlan-range&gt; dev &lt;bond&gt; state forwarding stp_nosuspend}} command.</td>
 <td>5.3.0-5.7.0</td>
@@ -74,6 +92,12 @@ There is no functional impact if a service tries to initialize the module again.
 <td></td>
 </tr>
 <tr>
+<td>3636266</td>
+<td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
+<td>5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3634428</td>
 <td>The NUVE {{nv config history}} command does not display the correct TACACS user.</td>
 <td>5.7.0</td>
@@ -89,6 +113,12 @@ There is no functional impact if a service tries to initialize the module again.
 <td>3630492</td>
 <td>On the NVIDIA SN2201 switch, the {{ledmgrd -d}} command output shows the system and PSU LED status as orange when the physical LED is green.</td>
 <td>5.5.1-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3614286</td>
+<td>To avoid unnecessary traffic loss, {{ifreload}} (ifupdown2) only flaps a bond to reset its MAC address when the bond MAC address is not present on any of the bond's interfaces. Previously, ifupdown2 enforced the bond MAC address to be set to the MAC address of the first interface. </td>
+<td>5.6.0-5.7.0</td>
 <td></td>
 </tr>
 <tr>

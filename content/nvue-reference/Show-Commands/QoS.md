@@ -2949,7 +2949,7 @@ cumulus@switch:~$ nv show qos remark default-global switch-priority 2
 
 ## <h>nv show qos roce</h>
 
-Shows QoS <span style="background-color:#F5F5DC">[ROCE](## "RDMA over Converged Ethernet")</span> configuration, such as the configured buffers, utilization and DSCP markings.
+Shows QoS <span class="a-tooltip">[ROCE](## "RDMA over Converged Ethernet")</span> configuration, such as the configured buffers, utilization and DSCP markings.
 
 ### Version History
 

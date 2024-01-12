@@ -1,6 +1,5 @@
 <div class="expand-sc">
     <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
-        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
       <span> <strong>&#9660;</strong>
         {{$expandMessage := T "Expand-title"}}
     	{{ if .IsNamedParams }}

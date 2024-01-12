@@ -77,7 +77,9 @@ The following features are not supported with EVPN-MH:
 
 - {{<link url="Traditional-Bridge-Mode" text="Traditional bridge mode">}}
 - {{<link url="Inter-subnet-Routing/#asymmetric-routing" text="Distributed asymmetric routing">}}
+- {{<link url="Inter-subnet-Routing/#centralized-routing" text="Centralized routing">}}
 - {{<link url="EVPN-Enhancements/#duplicate-address-detection" text="Duplicate address detection">}}
+- Multihomed networks, such as STP bridge domains that are MH connected. EVPN-MH bonds are intended for multihomed end-node device (server) connectivity.
 
 ## Basic Configuration
 

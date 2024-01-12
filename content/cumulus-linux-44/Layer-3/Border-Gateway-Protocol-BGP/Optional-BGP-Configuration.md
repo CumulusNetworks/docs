@@ -1131,7 +1131,7 @@ BGP add-path RX enables BGP to receive multiple paths for the same prefix. A pat
 
 To view the existing capabilities, run the NCLU command `net show bgp neighbor` or the vtysh command `show ip bgp neighbors`. You can see the existing capabilities in the subsection *Add Path*, below *Neighbor capabilities.*
 
-The following example output shows that BGP can sent and receive additional BGP paths, and that the BGP neighbor on swp51 supports both.
+The following example output shows that BGP can send and receive additional BGP paths, and that the BGP neighbor on swp51 supports both.
 
 ```
 cumulus@leaf01:~$ net show bgp neighbor

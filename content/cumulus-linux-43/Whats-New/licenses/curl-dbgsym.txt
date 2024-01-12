@@ -1,0 +1,1 @@
+curl-dbgsym has no copyright file

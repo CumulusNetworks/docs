@@ -33,7 +33,7 @@ A PBR policy contains one or more policy maps. Each policy map:
 
   - A set rule determines the PBR nexthop for the policy. The set rule can contain a single nexthop IP address or it can contain a nexthop group. A nexthop group has more than one nexthop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a nexthop group.
 
-To use PBR in Cumulus linux, you define a PBR policy and apply it to the ingress interface (the interface must already have an IP address assigned). Traffic is matched against the match rules in sequential order and forwarded according to the set rule in the first match. Traffic that does not match any rule is passed onto the normal destination based routing mechanism.
+To use PBR in Cumulus Linux, you define a PBR policy and apply it to the ingress interface (the interface must already have an IP address assigned). Traffic is matched against the match rules in sequential order and forwarded according to the set rule in the first match. Traffic that does not match any rule is passed onto the normal destination based routing mechanism.
 
 {{%notice note%}}
 

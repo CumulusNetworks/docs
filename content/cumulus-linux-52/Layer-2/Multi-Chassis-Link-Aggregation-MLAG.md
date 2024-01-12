@@ -679,12 +679,14 @@ cumulus@leaf01:~$ nv config apply
 ### MLAG Routing Support
 
 In addition to the routing adjacency over the [peer link](#peer-link-routing), Cumulus Linux supports routing adjacencies from attached network devices to MLAG switches under the following conditions:
+- The router must physically attach to a single interface of a switch.
+- The attached router must peer directly to a local address on the physically connected switch.
 
-- Routers can not be attached with dual-connected MLAG bonds. Routing adjacencies must be built over single interfaces.
-
-- The attached router must peer directly to a local address on the physically connected MLAG switch. Routing adjacencies can not extend from a connected router through an MLAG switch over the peer link.
-
-- Routers can not form routing adjacencies to a virtual address (VRR or VRRP).
+{{%notice note%}}
+The router cannot:
+- Attach to the switch over a MLAG bond interface.
+- Form routing adjacencies to a virtual address (VRR or VRRP).
+{{%/notice%}}
 
 {{< figure src="/images/cumulus-linux/mlag-supported-routing.png" width="700" >}}
 
@@ -830,7 +832,7 @@ The following table shows the conflict types and actions that Cumulus Linux take
 | LACP partner MAC address | Interface | Protodown the MLAG bonds on the MLAG switch if there is an LACP partner MAC address mismatch or if there is a duplicate LACP partner MAC address. |
 | MLAG VLANs| Interface   |  Suspend the inconsistent VLANs on either MLAG peer if the VLANs are not part of the peer link or if there is mismatch of VLANs configured on the MLAG bonds between the MLAG peers. |
 | Peer link VLANs| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
-| MLAG protocol version | Global | The consistency check records an MLAG protocol version mismatch between the MLAG peers. Cumulus Linux does not take any distruptive action. |
+| MLAG protocol version | Global | The consistency check records an MLAG protocol version mismatch between the MLAG peers. Cumulus Linux does not take any disruptive action. |
 | MLAG package version | Global| The consistency check records an MLAG package version mismatch between the MLAG peers. Cumulus Linux does not take any disruptive action.|
 
 You can also manually check for MLAG inconsistencies with the following commands:
@@ -994,7 +996,7 @@ bridge-learning   yes                yes                -
 {{< /tab >}}
 {{< /tabs >}}
 
-The actions that Cumulus Linux takes when there is a conflict are distruptive. If you prefer, you can configure the switch to not take any action when there is a conflict. Edit the `/etc/network/interfaces` file to add the `clagd-args --gracefulConsistencyCheck FALSE` parameter in the peer link stanza.
+The actions that Cumulus Linux takes when there is a conflict are disruptive. If you prefer, you can configure the switch to not take any action when there is a conflict. Edit the `/etc/network/interfaces` file to add the `clagd-args --gracefulConsistencyCheck FALSE` parameter in the peer link stanza.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces

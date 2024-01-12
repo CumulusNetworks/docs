@@ -12,7 +12,7 @@ IETF has defined extensions to OSPFv3 to support multiple address families (both
 
 ## Basic OSPFv3 Configuration
 
-You can configure <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span> using either numbered interfaces or unnumbered interfaces.
+You can configure <span class="a-tooltip">[OSPF](## "Open Shortest Path First")</span> using either numbered interfaces or unnumbered interfaces.
 
 {{%notice note%}}
 NVUE commands are not supported for OSPFv3.
@@ -317,7 +317,7 @@ You can define the following OSPF parameters per interface:
 - Hello interval. The number of seconds between hello packets sent on the interface. The default is 10 seconds.
 - Dead interval. Then number of seconds before neighbors declare the router down after they stop hearing
 hello packets. The default is 40 seconds.
-- Priority in becoming the OSPF <span style="background-color:#F5F5DC">[DR](## "Designated Router")</span> on a broadcast interface. The default is priority 1.
+- Priority in becoming the OSPF <span class="a-tooltip">[DR](## "Designated Router")</span> on a broadcast interface. The default is priority 1.
 - Advertise prefix list. The prefix list defines the outbound route filter.
 - Cost. The cost determines the shortest paths to the destination.
 
@@ -417,7 +417,7 @@ To show the configured OSPF interface parameter values, run the vtysh `show ipv6
 
 ### SPF Timer Defaults
 
-OSPF3 uses the following default timers to prevent consecutive <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> from overburdening the CPU:
+OSPF3 uses the following default timers to prevent consecutive <span class="a-tooltip">[SPF](## "Shortest Path First")</span> from overburdening the CPU:
 
 - 0 milliseconds from the initial event until SPF runs
 - 50 milliseconds between consecutive SPF runs (the number doubles with each SPF, until it reaches the maximum time between SPF runs)
@@ -513,7 +513,7 @@ router ospf6
 
 ### Stub Areas
 
-External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. Typically, external link states make up a large percentage of the <span style="background-color:#F5F5DC">[LSDB](## "Link-State Database")</span>. Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
+External routes are the routes redistributed into OSPF from another protocol. They have an AS-wide flooding scope. Typically, external link states make up a large percentage of the <span class="a-tooltip">[LSDB](## "Link-State Database")</span>. Stub *areas* reduce the LSDB size by not flooding AS-external LSAs.
 
 All routers must agree that an area is a stub, otherwise they do not become OSPF neighbors.
 
@@ -608,7 +608,7 @@ router ospf6
 
 ### Administrative Distance
 
-Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPFv3 with an administrative distance of 110 and the same route from <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> with an administrative distance of 100, the switch chooses BGP.
+Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPFv3 with an administrative distance of 110 and the same route from <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> with an administrative distance of 100, the switch chooses BGP.
 
 Cumulus Linux provides several commands to change the administrative distance for OSPF routes. The default value is 110.
 

@@ -57,10 +57,11 @@ Entering incorrect information during the installation process produces configur
 - Edit the `/etc/nslcd.conf` file to update the LDAP URI and search base DN (see {{<link url="#update-the-nslcdconf-file" text="Update the nslcd.conf File">}}, below).
 - Edit the `/etc/nssswitch.conf` file to update the service selections.
 
-Be sure to restart `netd` after editing the files.
+Restart `nvued.service` and `nginx.service` after editing the files.
 
 ```
-cumulus@switch:~$ sudo systemctl restart netd.service
+cumulus@switch:~$ sudo systemctl restart nvued.service
+cumulus@switch:~$ sudo systemctl restart nginx.service
 ```
 
 {{< expand "Alternative Installation Method Using debconf-utils "  >}}
@@ -131,9 +132,8 @@ After installation, update the main configuration file (`/etc/nslcd.conf`) to ac
 This section documents some of the more important options that relate to security and queries. For details on all the available configuration options, read the {{<exlink url="http://linux.die.net/man/5/nslcd.conf" text="nslcd.conf man page">}}.
 
 {{%notice note%}}
-After first editing the `/etc/nslcd.conf` file and/or enabling LDAP in the `/etc/nsswitch.conf` file, you must restart `netd` with the `sudo systemctl restart netd` command. If you disable LDAP, you need to restart the `netd` service.
+After editing the `/etc/nslcd.conf` file or enabling LDAP in the `/etc/nsswitch.conf` file, you must restart the NVUE and nginx services with the `sudo systemctl restart nvued.service` command and the `sudo systemctl restart nginx.service` command. If you disable LDAP, you must also restart these two services.
 {{%/notice%}}
-
 ### Connection
 
 The LDAP client starts a session by connecting to the LDAP server on TCP and UDP port 389 or on port 636 for LDAPS. Depending on the configuration, this connection establishes without authentication (anonymous bind); otherwise, the client must provide a bind user and password. The variables you use to define the connection to the LDAP server are the URI and bind credentials.

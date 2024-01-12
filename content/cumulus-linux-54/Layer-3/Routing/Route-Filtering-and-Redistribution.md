@@ -281,7 +281,7 @@ The `source-protocol` match statement is only supported in {{<link url="FRRoutin
 | ------------ | ---------- |
 | `aggregator-as` | Sets the aggregator AS. |
 | `ext-community-rt` | Sets the BGP extended community RT.|
-| `originator-id` | Sets the originator ID so that BGP choses the preferred path. |
+| `originator-id` | Sets the originator ID so that BGP chooses the preferred path. |
 | `as-path-exclude` | Sets BGP AS path exclude attribute to avoid considering the AS path during best path route selection. |
 | `ext-community-soo` | Sets the BGP extended community Sight of Origin (SOO).|
 | `large-community` |Sets the BGP large community. |
@@ -385,7 +385,7 @@ ip protocol bgp route-map routemap1
 {{< /tab >}}
 {{< /tabs >}}
 
-For <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span>, you can also apply a route map on route updates from BGP to the RIB. You can match on prefix, next hop, communities, and so on. You can set the metric and next hop only. Route maps do not affect the BGP internal RIB. You can use both IPv4 and IPv6 address families. Route maps work on multi-paths; however, BGP bases the metric setting on the best path only.
+For <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span>, you can also apply a route map on route updates from BGP to the RIB. You can match on prefix, next hop, communities, and so on. You can set the metric and next hop only. Route maps do not affect the BGP internal RIB. You can use both IPv4 and IPv6 address families. Route maps work on multi-paths; however, BGP bases the metric setting on the best path only.
 
 To apply a route map to filter route updates from BGP into the RIB:
 
@@ -444,13 +444,13 @@ cumulus@switch:~$ nv config apply
 
 Route redistribution allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
 
-The following example commands redistribute routing information from <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span> routes into <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span>:
+The following example commands redistribute routing information from <span class="a-tooltip">[OSPF](## "Open Shortest Path First")</span> routes into <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span>:
 
 {{< tabs "TabID273 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast route-redistribute ospf
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute ospf
 cumulus@switch:~$ nv config apply
 ```
 
@@ -477,7 +477,7 @@ To redistribute all directly connected networks, use the `redistribute connected
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast route-redistribute connected
+cumulus@switch:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected
 cumulus@switch:~$ nv config apply
 ```
 

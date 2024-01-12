@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show interface \<interface-id\> lldp</h>
 
-Shows <span style="background-color:#F5F5DC">[LLDP](## "Link Layer Discovery Protocol")</span> statistics for the specified interface.
+Shows <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> statistics for the specified interface.
 
 ### Command Syntax
 

@@ -8,9 +8,9 @@ This section describes EVPN enhancements.
 
 ## Define RDs and RTs
 
-When <span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> learns about a local VNI and there is no explicit configuration for that VNI in FRR, the switch derives the <span style="background-color:#F5F5DC">[RD](## "route distinguisher")</span> and import and export <span style="background-color:#F5F5DC">[RTs](## "route targets")</span> for this VNI automatically. The RD uses *RouterId:VNI-Index* and the import and export RTs use *AS:VNI*. For routes that come from a layer 2 VNI (type-2 and type-3), the RD uses the VXLAN local tunnel IP address (`vxlan-local-tunnelip`) from the layer 2 VNI interface instead of the RouterId (`vxlan-local-tunnelip:VNI`). EVPN route exchange uses the RD and RTs.
+When <span class="a-tooltip">[FRR](## "FRRouting")</span> learns about a local VNI and there is no explicit configuration for that VNI in FRR, the switch derives the <span class="a-tooltip">[RD](## "route distinguisher")</span> and import and export <span class="a-tooltip">[RTs](## "route targets")</span> for this VNI automatically. The RD uses *RouterId:VNI-Index* and the import and export RTs use *AS:VNI*. For routes that come from a layer 2 VNI (type-2 and type-3), the RD uses the VXLAN local tunnel IP address (`vxlan-local-tunnelip`) from the layer 2 VNI interface instead of the RouterId (`vxlan-local-tunnelip:VNI`). EVPN route exchange uses the RD and RTs.
 
-The RD disambiguates EVPN routes in different VNIs (they can have the same MAC and IP address) while the RTs describe the VPN membership for the route. The *VNI-Index* for the RD is a unique number that the switch generates. It only has local significance; on remote switches, its only role is for route disambiguation. The switch uses this number instead of the VNI value itself because this number has to be less than or equal to 65535. In the RT, the <span style="background-color:#F5F5DC">[AS](## "Autonomous System")</span> is always a 2-byte value to allow room for a large VNI. If the router has a 4-byte AS, it only uses the lower 2 bytes. This ensures a unique RT for different VNIs while having the same RT for the same VNI across routers in the same AS.
+The RD disambiguates EVPN routes in different VNIs (they can have the same MAC and IP address) while the RTs describe the VPN membership for the route. The *VNI-Index* for the RD is a unique number that the switch generates. It only has local significance; on remote switches, its only role is for route disambiguation. The switch uses this number instead of the VNI value itself because this number has to be less than or equal to 65535. In the RT, the <span class="a-tooltip">[AS](## "Autonomous System")</span> is always a 2-byte value to allow room for a large VNI. If the router has a 4-byte AS, it only uses the lower 2 bytes. This ensures a unique RT for different VNIs while having the same RT for the same VNI across routers in the same AS.
 
 For eBGP EVPN peering, the peers are in a different AS so using an automatic RT of *AS:VNI* does not work for route import. Therefore, Cumulus Linux treats the import RT as *\*:VNI* to determine which received routes apply to a particular VNI. This only applies when the switch auto-derives the import RT.
 
@@ -228,7 +228,7 @@ address-family l2vpn evpn
 
 ## Enable EVPN in an iBGP Environment with an OSPF Underlay
 
-You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or static route underlay. This is a more complex configuration than using <span style="background-color:#F5F5DC">[eBGP](## "external BGP")</span>. In this case, <span style="background-color:#F5F5DC">[iBGP](## "internal BGP")</span> advertises EVPN routes directly between <span style="background-color:#F5F5DC">[VTEPs](## "Virtual Tunnel End Points")</span> and the spines are unaware of EVPN or BGP.
+You can use EVPN with an {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} or static route underlay. This is a more complex configuration than using <span class="a-tooltip">[eBGP](## "external BGP")</span>. In this case, <span class="a-tooltip">[iBGP](## "internal BGP")</span> advertises EVPN routes directly between <span class="a-tooltip">[VTEPs](## "Virtual Tunnel End Points")</span> and the spines are unaware of EVPN or BGP.
 
 The leafs peer with each other in a full mesh within the EVPN address family without using route reflectors. The leafs generally peer to their loopback addresses, which advertise in OSPF. The receiving VTEP imports routes into a specific VNI with a matching route target community.
 
@@ -690,7 +690,7 @@ In a typical EVPN deployment, you *reuse* SVI IP addresses on VTEPs across multi
 
 {{%notice note%}}
 - When you enable the advertise SVI IP and MAC address option, the anycast IP and MAC address pair is not advertised. Be sure **not** to enable both the `advertise-svi-ip` option and the `advertise-default-gw` option at the same time. (The `advertise-default-gw` option configures the gateway VTEPs to advertise their IP and MAC address. See {{<link url="Inter-subnet-Routing#centralized-routing" text="Advertising the Default Gateway">}}.
-- If you use <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> on your switch, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address">}}.
+- If you use <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> on your switch, refer to {{<link url="Inter-subnet-Routing#advertise-primary-ip-address" text="Advertise Primary IP Address">}}.
 {{%/notice%}}
 
 To advertise *all* SVI IP and MAC addresses on the switch, run these commands:
@@ -772,7 +772,7 @@ Disabling BUM flooding is useful in a deployment with a controller or orchestrat
 
 {{%notice note%}}
 
-For information on EVPN BUM flooding with <span style="background-color:#F5F5DC">[PIM](## "Protocol Independent Multicast")</span>, refer to {{<link url="EVPN-BUM-Traffic-with-PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
+For information on EVPN BUM flooding with <span class="a-tooltip">[PIM](## "Protocol Independent Multicast")</span>, refer to {{<link url="EVPN-BUM-Traffic-with-PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
 
 {{%/notice%}}
 
@@ -782,7 +782,7 @@ To disable BUM flooding:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set nve vxlan flooding enable off
+cumulus@leaf01:~$ nv unset nve vxlan flooding enable off
 cumulus@leaf01:~$ nv config apply
 ```
 

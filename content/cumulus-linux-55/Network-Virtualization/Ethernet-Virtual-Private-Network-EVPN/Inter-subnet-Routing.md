@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 565
 toc: 4
 ---
-EVPN includes multiple models for routing between different subnets (VLANs), also known as inter-VLAN routing. The model you choose depends if every <span style="background-color:#F5F5DC">[VTEP](## "Virtual Tunnel End Point")</span> acts as a layer 3 gateway and performs routing or if only specific VTEPs perform routing, and if routing occurs only at the ingress of the VXLAN tunnel or both the ingress and the egress of the VXLAN tunnel.
+EVPN includes multiple models for routing between different subnets (VLANs), also known as inter-VLAN routing. The model you choose depends if every <span class="a-tooltip">[VTEP](## "Virtual Tunnel End Point")</span> acts as a layer 3 gateway and performs routing or if only specific VTEPs perform routing, and if routing occurs only at the ingress of the VXLAN tunnel or both the ingress and the egress of the VXLAN tunnel.
 
 Cumulus Linux supports these models:
 
@@ -417,7 +417,7 @@ leaf01# write memory
 <!-- vale off -->
 ### Advertise Primary IP address (VXLAN Active-Active Mode)
 <!-- vale on -->
-In EVPN symmetric routing configurations with VXLAN active-active (<span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span>), all EVPN routes advertise with the anycast IP address as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch might forward traffic to a leaf switch that does not have the destination routes. To prevent dropped traffic in this failure scenario, Cumulus Linux enables the Advertise Primary IP address feature by default so that the switch handles the next hop IP address of the VTEP conditionally depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
+In EVPN symmetric routing configurations with VXLAN active-active (<span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span>), all EVPN routes advertise with the anycast IP address as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch might forward traffic to a leaf switch that does not have the destination routes. To prevent dropped traffic in this failure scenario, Cumulus Linux enables the Advertise Primary IP address feature by default so that the switch handles the next hop IP address of the VTEP conditionally depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
 - For host type-2 routes, the anycast IP address is the next hop IP address and the anycast MAC address is the router MAC address.
 - For type-5 routes, the system IP address (the unique primary loopback IP address of the VTEP) is the next hop IP address and the unique router MAC address of the VTEP is the router MAC address.

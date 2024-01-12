@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 970
 toc: 3
 ---
-<span style="background-color:#F5F5DC">[GRE](## "Generic Routing Encapsulation")</span> is a tunneling protocol that encapsulates network layer protocols inside virtual point-to-point links over an Internet Protocol network. The tunnel source and tunnel destination addresses on each side identify the two endpoints.
+<span class="a-tooltip">[GRE](## "Generic Routing Encapsulation")</span> is a tunneling protocol that encapsulates network layer protocols inside virtual point-to-point links over an Internet Protocol network. The tunnel source and tunnel destination addresses on each side identify the two endpoints.
 
 GRE packets travel directly between the two endpoints through a virtual tunnel. As a packet comes across other routers, there is no interaction with its payload; the routers only parse the outer IP packet. When the packet reaches the endpoint of the GRE tunnel, the switch de-encapsulates the outer packet, parses the payload, then forwards it to its ultimate destination.
 
@@ -18,7 +18,7 @@ GRE uses multiple protocols over a single-protocol backbone and is less demandin
 - GRE tunnels cannot coexist with VXLAN or MPLS on the switch.
 - Cumulus Linux supports a maximum of 256 GRE tunnels.
 - GRE tunnels do not support layer 3 protocols, ECMP, QoS, ACLs or NAT.
-- All GRE tunnels share the same <span style="background-color:#F5F5DC">[TTL](## "Time to live")</span> value; Cumulus Linux uses the TTL value of the tunnel you configure last.
+- All GRE tunnels share the same <span class="a-tooltip">[TTL](## "Time to live")</span> value; Cumulus Linux uses the TTL value of the tunnel you configure last.
 - You cannot configure the MTU on GRE tunnel interfaces. The GRE tunnel MTU is the maximum supported MTU on the switch by default.
 {{%/notice%}}
 
@@ -832,9 +832,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL55 - GRE" showNodes="leaf01,leaf03,spine01,spine02,server01,server04" >}}
-
-This simulation is running Cumulus Linux 5.5. The Cumulus Linux 5.6 simulation is coming soon.
+    {{< simulation name="Try It CL56 - GRE" showNodes="leaf01,leaf03,spine01,spine02,server01,server04" >}}
 
 This simulation starts with the example GRE configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

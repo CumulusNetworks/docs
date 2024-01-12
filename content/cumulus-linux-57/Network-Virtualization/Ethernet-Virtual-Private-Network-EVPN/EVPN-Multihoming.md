@@ -5,10 +5,10 @@ weight: 570
 toc: 4
 ---
 
-*EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for <span style="background-color:#F5F5DC">[MLAG](## "Multi-chassis Link Aggregation")</span> in data centers deploying Clos topologies. Replacing MLAG provides these benefits:
+*EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for <span class="a-tooltip">[MLAG](## "Multi-chassis Link Aggregation")</span> in data centers deploying Clos topologies. Replacing MLAG provides these benefits:
 
 - Eliminates the need for peerlinks or inter-switch links between the top of rack switches
-- Allows more than two <span style="background-color:#F5F5DC">[ToR](## "Top of Rack")</span> switches a redundancy group
+- Allows more than two <span class="a-tooltip">[ToR](## "Top of Rack")</span> switches a redundancy group
 - Provides a single BGP-EVPN control plane
 - Allows multi-vendor interoperability
 
@@ -16,7 +16,7 @@ EVPN-MH uses {{<link url="#supported-evpn-route-types" text="BGP-EVPN type-1, ty
 
 To configure EVPN-MH, you set an Ethernet segment system MAC address and a local Ethernet segment ID on a static or LACP bond. These two parameters generate the unique MAC-based ESI value ({{<exlink url="https://tools.ietf.org/html/rfc7432#section-5" text="type-3">}}) automatically:
 
-- The Ethernet segment system MAC address is the <span style="background-color:#F5F5DC">[LACP](## "Link Aggregation Control Protocol")</span> system identifier.
+- The Ethernet segment system MAC address is the <span class="a-tooltip">[LACP](## "Link Aggregation Control Protocol")</span> system identifier.
 - The local Ethernet segment ID configuration defines a local discriminator to uniquely enumerate each bond that shares the same Ethernet segment system MAC address.
 - The resulting 10-byte ESI value has the following format, where the MMs denote the 6-byte Ethernet segment system MAC address and the XXs denote the 3-byte local Ethernet segment ID value:
 
@@ -25,7 +25,7 @@ To configure EVPN-MH, you set an Ethernet segment system MAC address and a local
 While you can specify a different system MAC address on different Ethernet segments attached to the same switch, the Ethernet segment system MAC address must be the same on the downlinks attached to the same server.
 
 {{%notice info%}}
-On Spectrum-2 and Spectrum-3 switches, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group. However, on Spectrum A1 switches, you can include a maximum of two switches in a redundancy group or Ethernet segment.
+On Spectrum-2 and later, an Ethernet segment can span more than two switches. Each Ethernet segment is a distinct redundancy group. However, on Spectrum A1 switches, you can include a maximum of two switches in a redundancy group or Ethernet segment.
 {{%/notice%}}
 
 ## Required and Supported Features
@@ -56,8 +56,8 @@ To use EVPN-MH, you must remove any MLAG configuration on the switch:
 - {{<link url="LACP-Bypass">}}.
   - When an EVPN-MH bond enters LACP bypass state, BGP stops advertising EVPN type-1 and type-4 routes for that bond. The switch disables split-horizon and designated forwarder filters.
   - When an EVPN-MH bond exits the LACP bypass state, BGP starts advertising EVPN type-1 and type-4 routes for that bond. The switch enables split-horizon and designated forwarder filters.
-- <span style="background-color:#F5F5DC">[EVI](## "EVPN virtual instance")</span> - Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
-- Supported {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="ASICs">}} include NVIDIA Spectrum A1, Spectrum-2 and Spectrum-3.
+- <span class="a-tooltip">[EVI](## "EVPN virtual instance")</span> - Cumulus Linux supports VLAN-based service only, so the EVI is just a layer 2 VNI.
+- Supported {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="ASICs">}} include NVIDIA Spectrum A1, Spectrum-2 and later.
 
 ### Supported EVPN Route Types
 
@@ -77,7 +77,9 @@ The following features are not supported with EVPN-MH:
 
 - {{<link url="Traditional-Bridge-Mode" text="Traditional bridge mode">}}
 - {{<link url="Inter-subnet-Routing/#asymmetric-routing" text="Distributed asymmetric routing">}}
+- {{<link url="Inter-subnet-Routing/#centralized-routing" text="Centralized routing">}}
 - {{<link url="EVPN-Enhancements/#duplicate-address-detection" text="Duplicate address detection">}}
+- Multihomed networks, such as STP bridge domains that are MH connected. EVPN-MH bonds are for multihomed end-node device (server) connectivity.
 
 ## Basic Configuration
 
@@ -1025,15 +1027,12 @@ cumulus@leaf01:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf01:~$ nv set interface vlan10 ip address 10.1.10.2/24
 cumulus@leaf01:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf01:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@leaf01:~$ nv set interface vlan10 ip vrr state up
 cumulus@leaf01:~$ nv set interface vlan20 ip address 10.1.20.2/24
 cumulus@leaf01:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf01:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@leaf01:~$ nv set interface vlan20 ip vrr state up
 cumulus@leaf01:~$ nv set interface vlan30 ip address 10.1.30.2/24
 cumulus@leaf01:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf01:~$ nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
 cumulus@leaf01:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf01:~$ nv set vrf RED
 cumulus@leaf01:~$ nv set vrf BLUE
@@ -1096,15 +1095,12 @@ cumulus@leaf02:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf02:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf02:~$ nv set interface vlan10 ip address 10.1.10.3/24
 cumulus@leaf02:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf02:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@leaf02:~$ nv set interface vlan10 ip vrr state up
 cumulus@leaf02:~$ nv set interface vlan20 ip address 10.1.20.3/24
 cumulus@leaf02:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf02:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@leaf02:~$ nv set interface vlan20 ip vrr state up
 cumulus@leaf02:~$ nv set interface vlan30 ip address 10.1.30.3/24
 cumulus@leaf02:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf02:~$ nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
 cumulus@leaf02:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf02:~$ nv set vrf RED
 cumulus@leaf02:~$ nv set vrf BLUE
@@ -1167,15 +1163,12 @@ cumulus@leaf03:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf03:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf03:~$ nv set interface vlan10 ip address 10.1.10.4/24
 cumulus@leaf03:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf03:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@leaf03:~$ nv set interface vlan10 ip vrr state up
 cumulus@leaf03:~$ nv set interface vlan20 ip address 10.1.20.4/24
 cumulus@leaf03:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf03:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@leaf03:~$ nv set interface vlan20 ip vrr state up
 cumulus@leaf03:~$ nv set interface vlan30 ip address 10.1.30.4/24
 cumulus@leaf03:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf03:~$ nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
 cumulus@leaf03:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf03:~$ nv set vrf RED
 cumulus@leaf03:~$ nv set vrf BLUE
@@ -1238,15 +1231,12 @@ cumulus@leaf04:~$ nv set interface bond3 bridge domain br_default access 30
 cumulus@leaf04:~$ nv set bridge domain br_default vlan 10,20,30
 cumulus@leaf04:~$ nv set interface vlan10 ip address 10.1.10.5/24
 cumulus@leaf04:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24
-cumulus@leaf04:~$ nv set interface vlan10 ip vrr mac-address 00:00:00:00:00:10
 cumulus@leaf04:~$ nv set interface vlan10 ip vrr state up
 cumulus@leaf04:~$ nv set interface vlan20 ip address 10.1.20.5/24
 cumulus@leaf04:~$ nv set interface vlan20 ip vrr address 10.1.20.1/24
-cumulus@leaf04:~$ nv set interface vlan20 ip vrr mac-address 00:00:00:00:00:20
 cumulus@leaf04:~$ nv set interface vlan20 ip vrr state up
 cumulus@leaf04:~$ nv set interface vlan30 ip address 10.1.30.5/24
 cumulus@leaf04:~$ nv set interface vlan30 ip vrr address 10.1.30.1/24
-cumulus@leaf04:~$ nv set interface vlan30 ip vrr mac-address 00:00:00:00:00:30
 cumulus@leaf04:~$ nv set interface vlan30 ip vrr state up
 cumulus@leaf04:~$ nv set vrf RED
 cumulus@leaf04:~$ nv set vrf BLUE
@@ -1442,7 +1432,6 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.10.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:10
             state:
               up: {}
         type: svi
@@ -1456,7 +1445,6 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.20.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:20
             state:
               up: {}
         type: svi
@@ -1470,7 +1458,6 @@ cumulus@leaf01:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.30.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:30
             state:
               up: {}
         type: svi
@@ -1666,7 +1653,6 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.10.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:10
             state:
               up: {}
         type: svi
@@ -1680,7 +1666,6 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.20.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:20
             state:
               up: {}
         type: svi
@@ -1694,7 +1679,6 @@ cumulus@leaf02:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.30.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:30
             state:
               up: {}
         type: svi
@@ -1890,7 +1874,6 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.10.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:10
             state:
               up: {}
         type: svi
@@ -1904,7 +1887,6 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.20.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:20
             state:
               up: {}
         type: svi
@@ -1918,7 +1900,6 @@ cumulus@leaf03:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.30.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:30
             state:
               up: {}
         type: svi
@@ -2114,7 +2095,6 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.10.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:10
             state:
               up: {}
         type: svi
@@ -2128,7 +2108,6 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.20.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:20
             state:
               up: {}
         type: svi
@@ -2142,7 +2121,6 @@ cumulus@leaf04:~$ cat /etc/nvue.d/startup.yaml
             address:
               10.1.30.1/24: {}
             enable: on
-            mac-address: 00:00:00:00:00:30
             state:
               up: {}
         type: svi
@@ -2414,7 +2392,7 @@ iface bond3
 auto vlan10
 iface vlan10
     address 10.1.10.2/24
-    address-virtual 00:00:00:00:00:10 10.1.10.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.10.1/24
     hwaddress 44:38:39:22:01:b1
     vrf RED
     vlan-raw-device br_default
@@ -2422,7 +2400,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.2/24
-    address-virtual 00:00:00:00:00:20 10.1.20.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.20.1/24
     hwaddress 44:38:39:22:01:b1
     vrf RED
     vlan-raw-device br_default
@@ -2430,7 +2408,7 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.2/24
-    address-virtual 00:00:00:00:00:30 10.1.30.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.30.1/24
     hwaddress 44:38:39:22:01:b1
     vrf BLUE
     vlan-raw-device br_default
@@ -2532,7 +2510,7 @@ iface bond3
 auto vlan10
 iface vlan10
     address 10.1.10.3/24
-    address-virtual 00:00:00:00:00:10 10.1.10.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.10.1/24
     hwaddress 44:38:39:22:01:af
     vrf RED
     vlan-raw-device br_default
@@ -2540,7 +2518,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.3/24
-    address-virtual 00:00:00:00:00:20 10.1.20.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.20.1/24
     hwaddress 44:38:39:22:01:af
     vrf RED
     vlan-raw-device br_default
@@ -2548,7 +2526,7 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.3/24
-    address-virtual 00:00:00:00:00:30 10.1.30.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.30.1/24
     hwaddress 44:38:39:22:01:af
     vrf BLUE
     vlan-raw-device br_default
@@ -2650,7 +2628,7 @@ iface bond3
 auto vlan10
 iface vlan10
     address 10.1.10.4/24
-    address-virtual 00:00:00:00:00:10 10.1.10.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.10.1/24
     hwaddress 44:38:39:22:01:bb
     vrf RED
     vlan-raw-device br_default
@@ -2658,7 +2636,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.4/24
-    address-virtual 00:00:00:00:00:20 10.1.20.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.20.1/24
     hwaddress 44:38:39:22:01:bb
     vrf RED
     vlan-raw-device br_default
@@ -2666,7 +2644,7 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.4/24
-    address-virtual 00:00:00:00:00:30 10.1.30.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.30.1/24
     hwaddress 44:38:39:22:01:bb
     vrf BLUE
     vlan-raw-device br_default
@@ -2768,7 +2746,7 @@ iface bond3
 auto vlan10
 iface vlan10
     address 10.1.10.5/24
-    address-virtual 00:00:00:00:00:10 10.1.10.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.10.1/24
     hwaddress 44:38:39:22:01:c1
     vrf RED
     vlan-raw-device br_default
@@ -2776,7 +2754,7 @@ iface vlan10
 auto vlan20
 iface vlan20
     address 10.1.20.5/24
-    address-virtual 00:00:00:00:00:20 10.1.20.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.20.1/24
     hwaddress 44:38:39:22:01:c1
     vrf RED
     vlan-raw-device br_default
@@ -2784,7 +2762,7 @@ iface vlan20
 auto vlan30
 iface vlan30
     address 10.1.30.5/24
-    address-virtual 00:00:00:00:00:30 10.1.30.1/24
+    address-virtual 00:00:5E:00:01:01 10.1.30.1/24
     hwaddress 44:38:39:22:01:c1
     vrf BLUE
     vlan-raw-device br_default
@@ -3584,9 +3562,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL55 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
-
-This simulation is running Cumulus Linux 5.6. The Cumulus Linux 5.7 simulation is coming soon.
+    {{< simulation name="Try It CL57 - EVPN Multihomingv2" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
 
 This simulation starts with the EVPN-MH with Head End Replication configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

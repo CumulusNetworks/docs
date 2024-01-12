@@ -1008,7 +1008,7 @@ Peer priority and id: 32768 44:38:39:00:00:12; Peer role: secondary
 ```
 
 {{%notice note%}}
-The MLAG healthCheck module listens on UDP port 5342. If you have not configured a backup VRF, the module listens on all VRFs, which is normal UDP socket behaviour. Make sure to configure a backup link and backup VRF so that the MLAG healtcheck module only listens on the backup VRF.
+The MLAG healthCheck module listens on UDP port 5342. If you have not configured a backup VRF, the module listens on all VRFs, which is normal UDP socket behavior. Make sure to configure a backup link and backup VRF so that the MLAG healthcheck module only listens on the backup VRF.
 {{%/notice%}}
 
 **Comparing VRF and Management VRF Configurations**
@@ -1125,15 +1125,16 @@ Be aware of an existing issue when you use NCLU to create an iBGP peering, it cr
 ### MLAG Routing Support
 
 In addition to the routing adjacency over the [peer link](#peer-link-routing), Cumulus Linux supports routing adjacencies from attached network devices to MLAG switches under the following conditions:
+- The router must physically attach to a single interface of a switch.
+- The attached router must peer directly to a local address on the physically connected switch.
 
-- Routers can not be attached with dual-connected MLAG bonds. Routing adjacencies must be built over single interfaces.
-
-- The attached router must peer directly to a local address on the physically connected MLAG switch. Routing adjacencies can not extend from a connected router through an MLAG switch over the peer link.
-
-- Routers can not form routing adjacencies to a virtual address (VRR or VRRP).
+{{%notice note%}}
+The router cannot:
+- Attach to the switch over a MLAG bond interface.
+- Form routing adjacencies to a virtual address (VRR or VRRP).
+{{%/notice%}}
 
 {{< figure src="/images/cumulus-linux/mlag-supported-routing.png" width="700" >}}
-
 
 ## IGMP Snooping with MLAG
 

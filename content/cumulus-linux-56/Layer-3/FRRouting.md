@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 810
 toc: 3
 ---
-Cumulus Linux uses <span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> to provide the routing protocols for dynamic routing and supports the following routing protocols:
+Cumulus Linux uses <span class="a-tooltip">[FRR](## "FRRouting")</span> to provide the routing protocols for dynamic routing and supports the following routing protocols:
 
 - Open Shortest Path First ({{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="v2">}} and {{<link url="Open-Shortest-Path-First-v3-OSPFv3" text="v3">}})
 - {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol (BGP)">}}
@@ -29,7 +29,7 @@ The information in this section does not apply if you use {{<link url="NVUE-CLI"
 If you do not configure your system using {{<link url="NVUE-CLI" text="NVUE">}}, FRR does not start by default in Cumulus Linux. Before you run FRR, make sure you have enabled the relevant daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d`, `pimd`, or `pbrd`) in the `/etc/frr/daemons` file.
 
 {{%notice note%}}
-NVIDIA has not tested <span style="background-color:#F5F5DC">[RIP](## "Routing Information Protocol RIP")</span>, RIPv6, <span style="background-color:#F5F5DC">[IS-IS](## "Intermediate System - Intermediate System")</span>, or <span style="background-color:#F5F5DC">[Babel](## "a loop-avoiding distance-vector routing protocol")</span>.
+NVIDIA has not tested <span class="a-tooltip">[RIP](## "Routing Information Protocol RIP")</span>, RIPv6, <span class="a-tooltip">[IS-IS](## "Intermediate System - Intermediate System")</span>, or <span class="a-tooltip">[Babel](## "a loop-avoiding distance-vector routing protocol")</span>.
 {{%/notice%}}
 
 Cumulus Linux enables the `zebra` daemon by default. You can enable the other daemons according to how you plan to route your network.

@@ -1,7 +1,7 @@
 ---
 title: Precision Time Protocol - PTP
 author: NVIDIA
-weight: 128
+weight: 126
 toc: 3
 ---
 Cumulus Linux supports IEEE 1588-2008 Precision Timing Protocol (PTPv2), which defines the algorithm and method for synchronizing clocks of various devices across packet-based networks, including Ethernet switches and IP routers.
@@ -33,6 +33,7 @@ Cumulus Linux supports:
 
 {{%notice note%}}
 - On NVIDIA switches with Spectrum-2 and later, PTP is not supported on 1G interfaces.
+- On Spectrum-4 switches, PTP is Beta.
 - You cannot run *both* PTP and NTP on the switch.
 - PTP supports the default VRF only.
 {{%/notice%}}
@@ -95,6 +96,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
 cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface vlan10 ptp enable on
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default vlan 10
 cumulus@switch:~$ nv set interface swp1 ptp enable on
@@ -249,7 +251,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    delay_mechanism         E2E
    ```
 
-   For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
+   For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP address of the VLAN interface:
 
    ```
    [swp1]
@@ -262,7 +264,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    network_transport       UDPv4
    ```
 
-   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and  `src_ip` to the IP adress of the VLAN interface:
+   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and  `src_ip` to the IP address of the VLAN interface:
    
    ```
    [swp2]
@@ -343,7 +345,7 @@ The Cumulus Linux switch provides the following clock timestamp modes:
 One-step mode significantly reduces the number of PTP messages. Two-step mode is the default configuration.
 
 {{%notice note%}}
-Cumulus Linux supports one-step mode on switches with the Spectrum 2 and Spectrum-3 ASIC only.
+Cumulus Linux supports one-step mode on switches with the Spectrum-2 and Spectrum-3 ASIC.
 {{%/notice%}}
 
 {{< tabs "TabID345 ">}}
@@ -481,7 +483,152 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 {{< /tab >}}
 {{< /tabs >}}
+<!--
+### Noise Transfer Servo
 
+ITU-T specifies the following key elements to measure, test, and classify the accuracy of a clock:
+- Noise generation&mdash;jitter and wander noise in the output of a clock in reference to a <span class="a-tooltip">[PRTC](## "Primary Reference Time Clock")</span>.
+- Noise tolerance&mdash;how much noise the clock can tolerate before it switches to another stable source.
+- Noise transfer&mdash;smoothe out the input noise so that noise does not accumulate and increase over a network of clocks.
+- Transient response&mdash;the response from the clock to a transient.
+- Hold over&mdash;the time interval during which the clock maintains its output after losing the input reference signal.
+
+Cumulus Linux PTP has an option to use a servo specifically designed to handle ITU-T’s Noise Transfer specification. When you use this option, the <span class="a-tooltip">[PHC](## "Physical Hardware Clock")</span> is disciplined by Noise Transfer Servo, which smoothes the jitter and wander noise from the Master clock.
+
+{{%notice note%}}
+- To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces. 
+- Cumulus Linux supports Noise Transfer Servo on Spectrum ASICs that support SyncE.
+- NVIDIA recommends you do not change the default Noise Transfer Servo configuration parameters.
+- NVIDIA recommends you use Noise Transfer Servo with PTP Telecom profiles. If you use other profiles or choose not to use a profile, make sure to set the sync interval to -3 or better.
+{{%/notice%}}
+
+To enable Noise Transfer Servo:
+
+{{< tabs "TabID500 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example enables PTP, sets the profile to `default-itu-8275-1`, enables SyncE, enables PTP on swp3, and enables Noise Transfer Servo.
+
+```
+cumulus@switch:~$ nv set service ptp 1 enable on
+cumulus@switch:~$ nv set service ptp 1 current-profile default-itu-8275-1
+cumulus@switch:~$ nv set system synce enable on
+cumulus@switch:~$ nv set interface swp3 ptp enable on
+cumulus@switch:~$ nv set service ptp 1 servo noise-transfer
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/ptp4l.conf` and the `/etc/firefly_servo/servo.conf` files; see examples below.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly                      0
+free_running                   1
+slave_event_monitor            /var/run/servo_slave_event_monitor
+priority1                      128
+priority2                      128
+domainNumber                   24
+
+twoStepFlag                    1
+dscp_event                     46
+dscp_general                   46
+network_transport              L2
+dataset_comparison             G.8275.x
+G.8275.defaultDS.localPriority 128
+ptp_dst_mac                    01:80:C2:00:00:0E
+#
+# Port Data Set
+#
+logAnnounceInterval            -3
+logSyncInterval                -4
+logMinDelayReqInterval         -4
+announceReceiptTimeout         3
+delay_mechanism                E2E
+ 
+offset_from_master_min_threshold   -50
+offset_from_master_max_threshold   50
+mean_path_delay_threshold          200
+tsmonitor_num_ts                   100
+tsmonitor_num_log_sets             2
+tsmonitor_num_log_entries          4
+tsmonitor_log_wait_seconds         1
+#
+# Run time options
+#
+logging_level                  6
+path_trace_enabled             0
+use_syslog                     1
+verbose                        0
+summary_interval               0
+#
+# servo parameters
+#
+pi_proportional_const          0.000000
+pi_integral_const              0.000000
+pi_proportional_scale          0.700000
+pi_proportional_exponent       -0.300000
+pi_proportional_norm_max       0.700000
+pi_integral_scale              0.300000
+pi_integral_exponent           0.400000
+pi_integral_norm_max           0.300000
+first_step_threshold           0.000020
+step_threshold                 0.000000025
+servo_offset_threshold         20
+servo_num_offset_values        10
+write_phase_mode               1
+max_frequency                  50000000
+sanity_freq_limit              0
+#
+# Default interface options
+#
+time_stamping                  hardware
+
+[swp3]
+udp_ttl                      1
+masterOnly                   0
+delay_mechanism              E2E
+```
+
+```
+cumulus@switch:~$ sudo nano /etc/firefly_servo/servo.conf
+[global]
+free_running                        0
+domainNumber                        24
+
+offset_from_master_min_threshold    -50
+offset_from_master_max_threshold    50
+
+# Debugging & Logging
+doca_logging_level                  50
+
+init_max_time_adjustment            0
+max_time_adjustment                 1500
+hold_over_timer                     0
+# Sampling Window & servo logic
+servo_window_timer                  3000
+servo_window_min_samples            10
+servo_num_offset_values             5
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show Noise Transfer Servo configuration settings, run the `nv show service ptp <instance-id> servo` command:
+
+```
+cumulus@switch:~$ nv show service ptp 1 servo
+       operational  applied
+-----  -----------  --------------
+servo               noise-transfer
+```
+-->
 ## Optional Global Configuration
 
 Optional global PTP configuration includes configuring the DiffServ code point (DSCP). You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
@@ -538,7 +685,7 @@ When a profile is in use, avoid configuring the following interface configuratio
 
 By default, Cumulus Linux encapsulates PTP messages in UDP IPV4 frames. To encapsulate PTP messages on an interface in UDP IPV6 frames:
 
-{{< tabs "TabID274 ">}}
+{{< tabs "TabID557 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1042,8 +1189,8 @@ Cumulus Linux supports the following predefined profiles:
 - You cannot set the current profile to a profile not yet created.
 - You cannot set global PTP parameters in a profile currently in use.
 - PTP profiles do not support VLANs or bonds.
-- If you set a predefined or custom profile, do not change any global PTP settings, such as the <span style="background-color:#F5F5DC">[DSCP](## "DiffServ code point")</span> or the clock domain.
-- For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp burst <value>` and `nv set system control-plane policer lldp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
+- If you set a predefined or custom profile, do not change any global PTP settings, such as the <span class="a-tooltip">[DSCP](## "DiffServ code point")</span> or the clock domain.
+- For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp-ptp burst <value>` and `nv set system control-plane policer lldp-ptp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
 {{%/notice%}}
 
 ### Set a Predefined Profile
@@ -1173,7 +1320,7 @@ To create a custom profile:
 - Update any of the profile settings you want to change (`announce-interval`, `delay-req-interval`, `priority1`, `sync-interval`, `announce-timeout`, `domain`, `priority2`, `transport`, `delay-mechanism`, `local-priority`).
 - Set the custom profile to be the current profile.
 
-The following example commands create a custom profile called CUSTOM1 based on the predifined profile ITU 8275-1. The commands set the `domain` to 28 and the `announce-timeout` to 3, then set `CUSTOM1` to be the current profile:
+The following example commands create a custom profile called CUSTOM1 based on the predefined profile ITU 8275-1. The commands set the `domain` to 28 and the `announce-timeout` to 3, then set `CUSTOM1` to be the current profile:
 
 ```
 cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 
@@ -1187,7 +1334,7 @@ cumulus@switch:~$  nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example `/etc/ptp4l.conf` file creates a custom profile based on the predifined profile ITU 8275-1 and sets the `domain` to 28 and the `announce-timeout` to 3.
+The following example `/etc/ptp4l.conf` file creates a custom profile based on the predefined profile ITU 8275-1 and sets the `domain` to 28 and the `announce-timeout` to 3.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -1428,10 +1575,10 @@ You can configure the following monitor settings:
 | ----- | ----------- |
 | `nv set service ptp <instance> monitor min-offset-threshold` | Sets the minimum difference allowed between the master and slave time. You can set a value between -1000000000 and 0 nanoseconds. The default value is -50 nanoseconds.|
 | `nv set service ptp <instance> monitor max-offset-threshold` | Sets the maximum difference allowed between the master and slave time. You can set a value between 0 and 1000000000 nanoseconds. The default value is 50 nanoseconds.|
-| `nv set service ptp <instance> monitor path-delay-threshold` | Sets the mean time that PTP packets take to travel between the master and slave. You can set a value between 0 and 1000000000 nanoseconds . The default value is 200 nanoseconds. |
+| `nv set service ptp <instance> monitor path-delay-threshold` | Sets the mean time that PTP packets take to travel between the master and slave. You can set a value between 0 and 1000000000 nanoseconds. The default value is 200 nanoseconds. |
 | `nv set service ptp <instance> monitor max-timestamp-entries` | Sets the maximum number of timestamp entries allowed. Cumulus Linux updates the timestamps continuously. You can specify a value between 100 and 200. The default value is 100 entries.|
 
-The following example sets the minimum offeset threshold to -1000, the maximum offeset threshold to 1000, and the path delay threshold to 300:
+The following example sets the minimum offset threshold to -1000, the maximum offset threshold to 1000, and the path delay threshold to 300:
 
 ```
 cumulus@switch:~$ nv set service ptp 1 monitor min-offset-threshold -1000
@@ -1451,7 +1598,7 @@ You can configure the following monitor settings manually in the `/etc/ptp4l.con
 | `offset_from_master_max_threshold` | Sets the maximum difference allowed between the master and slave time. You can set a value between 0 and 1000000000 nanoseconds. The default value is 50 nanoseconds. |
 | `mean_path_delay_threshold` | Sets the mean time that PTP packets take to travel between the master and slave. You can set a value between 0 and 1000000000 nanoseconds. The default value is 200 nanoseconds. |
 
-The following example sets the minimum offeset threshold to -1000, the maximum offeset threshold to 1000, and the path delay threshold to 300:
+The following example sets the minimum offset threshold to -1000, the maximum offset threshold to 1000, and the path delay threshold to 300:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -1507,11 +1654,11 @@ You can configure the following monitor settings manually in the `/etc/ptp4l.con
 
 | Parameter | Description |
 | ----- | ----------- |
-| `tsmonitor_num_log_sets` | Sets the maxumum number of log sets allowed. You can specify a value between 2 and 4. The default value is 3.|
+| `tsmonitor_num_log_sets` | Sets the maximum number of log sets allowed. You can specify a value between 2 and 4. The default value is 3.|
 | `tsmonitor_num_log_entries`  |  Sets the maximum number of log entries allowed in a log set. You can specify a value between 4 and 8. The default value is 4.|
 | `tsmonitor_log_wait_seconds` |  Sets the number of seconds to wait before logging back-to-back violations. You can specify a value between 0 and 60. The default value is 1.|
 
-The following example sets the maxumum number of log sets allowed to 4, the maximum number of log entries allowed to 6, and the violation log interval to 10:
+The following example sets the maximum number of log sets allowed to 4, the maximum number of log entries allowed to 6, and the violation log interval to 10:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -1549,7 +1696,7 @@ PTP monitoring provides commands to show counters for violations as well as the 
 | Command  | Description |
 | -------- | ----------- |
 | `nv show service ptp <instance> monitor timestamp-log` | Shows the last 25 PTP timestamps.  |
-| `nv show service ptp <instance> monitor violations` |  Shows the threshold violation count and the last time a violation of a specific type occured. |
+| `nv show service ptp <instance> monitor violations` |  Shows the threshold violation count and the last time a violation of a specific type occurred. |
 | `nv show service ptp 1 monitor violations log acceptable-master` | Shows logs with violations that occur when a PTP server not in the Acceptable Master table sends an Announce request. |
 | `nv show service ptp 1 monitor violations log forced-master`  | Shows logs with violations that occur when a forced master port gets a higher clock. |
 | `nv show service ptp 1 monitor violations log max-offset` | Shows logs with violations that occur when the timestamp offset is higher than the max offset threshold. |
@@ -1946,7 +2093,7 @@ network_transport            UDPv4
 
 ### PTP Traffic Shaping
 
-To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
+To improve performance on the NVIDIA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
 
 {{%notice note%}}
 - Switches with Spectrum-2 and later do not support PTP shaping.
@@ -2004,7 +2151,7 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 
 ### Spanning Tree and PTP
 <!-- vale off -->
-PTP frames are affected by <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
+PTP frames are affected by <span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
 
 If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.
 <!-- vale on -->

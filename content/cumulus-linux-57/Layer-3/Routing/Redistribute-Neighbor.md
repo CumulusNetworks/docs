@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 790
 toc: 3
 ---
-*Redistribute neighbor* provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by announcing individual host /32 routes in the routed fabric. Other hosts on the fabric can use this new path to access the hosts in the fabric. If <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path")</span> is available, traffic can load balance across the available paths natively.
+*Redistribute neighbor* provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by announcing individual host /32 routes in the routed fabric. Other hosts on the fabric can use this new path to access the hosts in the fabric. If <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span> is available, traffic can load balance across the available paths natively.
 
 Hosts use {{<link title="Address Resolution Protocol - ARP" text="ARP">}} to resolve MAC addresses when sending to an IPv4 address. A host then builds an ARP cache table of known MAC addresses: IPv4 tuples as they receive or respond to ARP requests.
 
@@ -16,7 +16,7 @@ The current implementation of redistribute neighbor:
 - Supports IPv4 only.
 - Does not support {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRFs">}}.
 - Supports a maximum of 1024 interfaces.
-- Is not supported with <span style="background-color:#F5F5DC">[EVPN](## "Ethernet Virtual Private Network")</span>. Enabling both redistribute neighbor and EVPN leads to unreachable IPv4 ARP and IPv6 neighbor entries.
+- Is not supported with <span class="a-tooltip">[EVPN](## "Ethernet Virtual Private Network")</span>. Enabling both redistribute neighbor and EVPN leads to unreachable IPv4 ARP and IPv6 neighbor entries.
 {{%/notice%}}
 
 ## Target Use Cases and Best Practices
@@ -40,13 +40,13 @@ Follow these guidelines:
 
 Redistribute neighbor works as follows:
 
-1. The leaf or <span style="background-color:#F5F5DC">[ToR](## "Top of Rack")</span> switch learns about connected hosts when the host sends an ARP request or ARP reply.
+1. The leaf or <span class="a-tooltip">[ToR](## "Top of Rack")</span> switch learns about connected hosts when the host sends an ARP request or ARP reply.
 2. The kernel neighbor table adds an entry for the host of each leaf.
 3. The redistribute neighbor daemon (`rdnbrd`) monitors the kernel neighbor table and creates a  /32 route for each neighbor entry. This /32 route is in kernel table 10.
-4. <span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> imports routes from kernel table 10.
+4. <span class="a-tooltip">[FRR](## "FRRouting")</span> imports routes from kernel table 10.
 5. A route map controls which routes to import from table 10.
 6. FRR imports these routes as *table* routes.
-7. You configure <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> or <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span> to redistribute the table 10 routes.
+7. You configure <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> or <span class="a-tooltip">[OSPF](## "Open Shortest Path First")</span> to redistribute the table 10 routes.
 
 ## Example Configuration
 
@@ -364,9 +364,9 @@ Use the following workflow to verify that the kernel routing table populates cor
 
 ## Considerations
 
-### TCAM Route Scale
+### Route Scale
 
-This feature adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Make sure the number of hosts minus fabric routes is under the TCAM size of the switch. Review the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Networks datasheets">}} for up to date scalability limits of your hardware platform. If in doubt, contact your support representative.
+Redistribute neighbor adds each ARP entry as a /32 host route into the routing table of all switches within a summarization domain. Make sure the number of hosts plus fabric routes is under the allocated hardware LPM table size of the switch according to the forwarding resource profile in use. Review the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Networks datasheets">}} for up-to-date scalability limits of your hardware platform. If in doubt, contact your support representative.
 
 ### Uneven Traffic Distribution
 

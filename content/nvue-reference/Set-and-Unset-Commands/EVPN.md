@@ -116,6 +116,28 @@ cumulus@switch:~$ nv set evpn enable on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set evpn mac-vrf-soo</h>
+
+Configures a site ID. When you use EVPN with MLAG, EVPN might install local MAC addresses or neighbor entries as remote entries. To prevent EVPN from taking ownership of local MAC addresses or neighbor entries from MLAG, you can associate all local layer 2 VNIs with a unique site ID, which represents an MLAG pair.
+
+When you configure a site ID, Cumulus Linux:
+- Adds a Site-of-Origin extended community encoded with the local site ID to EVPN routes that originate from local layer 2 VNIs. Cumulus Linux adds the Site-of-Origin extended community when creating the route.
+- Filters all received EVPN routes with a `Site-of-Origin` extended community that matches the local site ID. Cumulus Linux filters the routes when importing the routes from the global table to the layer 2 VNI or layer 3 VNI table.
+
+The site ID is in the format `<IPv4 address>:<2-byte Value>`, where the IPv4 address is the anycast IP address (a virtual IP address for VXLAN data-path termination) and the 2-byte value is an integer between 0 and 65535. For example: 10.0.1.12:10
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set evpn mac-vrf-soo 10.0.1.12:10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set evpn multihoming</h>
 
 Configures global EVPN multihoming configuration settings.

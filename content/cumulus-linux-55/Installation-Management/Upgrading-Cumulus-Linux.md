@@ -168,7 +168,7 @@ cumulus@switch:~$ sudo cl-support
 
 ## Upgrade Cumulus Linux
 
-<span style="background-color:#F5F5DC">[ONIE](## "Open Network Install Environment")</span> is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
+<span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span> is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
 
 You can upgrade Cumulus Linux in one of two ways:
 
@@ -207,6 +207,9 @@ Be aware of the following when upgrading packages:
 - The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
 - Cumulus Linux does not support the `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
+- The supported upgrade path is the base image plus two. For example, if the starting image is Cumulus Linux 5.2, the latest release that package upgrade supports is Cumulus Linux 5.4 (5.2 + 2 = 5.4).
+- You can check the base image with the `grep RELEASE /etc/image-release` syntax.
+- Occasionally, a release contains a base OS upgrade and does not support package upgrade; release notes indicate when a release does not support package upgrade.
 
 ### Cumulus Linux Image Install (ONIE)
 

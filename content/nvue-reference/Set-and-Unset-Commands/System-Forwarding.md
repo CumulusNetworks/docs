@@ -273,6 +273,42 @@ cumulus@switch:~$ nv set system forwarding hash-seed 50
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system forwarding ecmp-weight-normalisation max-hw-weight</h>
+
+Configures the maximum number of hardware entries for weighted ECMP. You can specify a value between 10 and 255. The default value is 32.
+
+The NVIDIA Spectrum switch supports weight programming for ECMP by repeating each individual path, which consumes resources. To reduce hardware utilization of ECMP resources, you can enable weight normalization.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system forwarding ecmp-weight-normalisation max-hw-weight 100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system forwarding ecmp-weight-normalisation mode</h>
+
+Enables (`enabled`) and disables (`disabled`) ECMP weight normalization.
+
+The NVIDIA Spectrum switch supports weight programming for ECMP by repeating each individual path, which consumes resources. To reduce hardware utilization of ECMP resources, you can enable weight normalization.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system forwarding ecmp-weight-normalisation mode enabled on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system forwarding host-route-preference</h>
 
 Configures the forwarding host route preference: `route`, `neighbour`, or `route-and-neighbour`.

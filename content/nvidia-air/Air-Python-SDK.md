@@ -694,6 +694,27 @@ List existing accounts
 [<Account mrobertson@nvidia.com c51b49b6-94a7-4c93-950c-e7fa4883591>, <Account nmitchell@nvidia.com 3134711d-015e-49fb-a6ca-68248a8d4aff>]
 ```
 
+<a name="air_sdk.account.AccountApi.preferences"></a>
+### Preferences
+
+Get account preferences
+
+**Returns**:
+
+- `dict` - Response JSON
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+
+**Example**:
+
+```
+>>> air.accounts.preferences()
+{"baz": true, "foo": false}
+```
+
 Cumulus AIR API module
 
 ## AirSession
@@ -1802,7 +1823,7 @@ List all instructions for a `SimulationNode`
 **Example**:
 
 ```
->>> simulation_node.instructions.list()
+>>> simulation_node.list_instructions()
 [{'id': '56abc69b-489f-429a-aed9-600f26afc956'}, {'id': '7c9c3449-f071-4bbc-bb42-bef04e44d74e'}]
 ```
 
@@ -1819,7 +1840,7 @@ Delete all instructions for a `SimulationNode`
 **Example**:
 
 ```
->>> simulation_node.instructions.delete()
+>>> simulation_node.delete_instructions()
 ```
 
 <a name="air_sdk.simulation_node.SimulationNode.control"></a>
@@ -2451,6 +2472,9 @@ Manage a simulation
 
 ### json
 Returns a JSON string representation of the simulation
+
+### preferences
+Returns a JSON string representation of the simulation preferences
 
 ### refresh
 Syncs the simulation with all values returned by the API

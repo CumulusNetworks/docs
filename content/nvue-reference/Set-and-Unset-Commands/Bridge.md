@@ -168,6 +168,30 @@ Configures STP on the bridge domain.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set bridge domain \<domain-id\> stp force-protocol-version</h>
+
+Configures the switch to send BPDU type 0 STP configuration BPDUs. By default, the switch sends RSTP type 2 BPDUs. You can configure the switch to send BPDU type 0 STP configuration BPDUs when you need to interoperate with other systems.
+
+You can specify either `stp` or `rstp`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default stp force-protocol-version stp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set bridge domain \<domain-id\> stp mode</h>
 
 Configures STP mode on the bridge. You can specify PVRST or RSTP mode. RSTP is the default mode.
@@ -454,7 +478,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10
 
 ## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding</h>
 
-Configures <span style="background-color:#F5F5DC">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling.
+Configures <span class="a-tooltip">[BUM](## "Broadcast, unknown-unicast and multicast")</span> traffic handling.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

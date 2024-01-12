@@ -25,17 +25,6 @@
             <a class="sb-left" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-1</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/><line class="a" x1="7.5" y1="6.539" x2="7.5" y2="22.497"/></svg></a>
             <a class="no-sb" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><style>.a{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;}</style></defs><title>layout-top</title><rect class="a" x="0.5" y="0.497" width="22" height="22" rx="1" ry="1"/><line class="a" x1="0.5" y1="6.497" x2="22.5" y2="6.497"/></svg></a>
         </div>
-        <form action="{{"search/" | absURL }}"  accept-charset="utf-8">
-            <input type="hidden" id="facet.docs_version[]" name="facet.docs_version[]" value="{{.Page.Params.version}}">
-            <div id="doc-search-box">
-                <input type="text" name="q" class="doc-search-input" placeholder="Search">
-                <span>
-                    <button type="submit">
-                        <img src={{"icons/search_20x20.svg" | absURL }} alt="">
-                    </button>
-                </span>
-            </div>
-        </form>
         {{- if .Params.version -}}
         <div id="dropdown" class="dropdown">
             <button class="btn" type="button" id="dropdownMenuButton">
@@ -54,5 +43,69 @@
             </div>
         </div>
         {{- end -}}
+        {{ if eq .Page.Params.product "Cumulus Linux" }}
+        <div class="Page-breadcrumbs"></div>
+            <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/index.html">Networking Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/switch-software/index.html">Switch Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <p>Cumulus Linux</p>
+        </div>
+        {{ end }}
+        {{ if eq .Page.Params.product "Cumulus VX" }}
+        <div class="Page-breadcrumbs"></div>
+            <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/index.html">Networking Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/switch-software/index.html">Switch Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <p>Cumulus VX</p>
+        </div>
+        {{ end }}
+        {{ if eq .Page.Params.product "Cumulus NetQ" }}
+        <div class="Page-breadcrumbs"></div>
+            <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/index.html">Networking Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/management-software/index.html#cumulus-netq">Management Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <p>NVIDIA NetQ</p>
+        </div>
+        {{ end }}
+        
+        {{ if eq .Page.Params.product "NVIDIA Air" }}
+        <div class="Page-breadcrumbs"></div>
+            <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <p>NVIDIA Air</p>
+        </div>
+        {{ end }}
+        {{ if eq .Page.Params.product "Knowledge Base" }}
+        <div class="Page-breadcrumbs"></div>
+            <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/index.html">Networking Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <p>Knowledge Base</p>
+        </div>
+        {{ end }}
+
+        {{ if eq .Page.Params.product "NVUE" }}
+        <div class="Page-breadcrumbs"></div>
+            <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/index.html">Networking Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/switch-software/index.html">Switch Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href={{ .Site.Params.cl_latest | absURL }}>Cumulus Linux</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <p>NVUE Command Reference</p>
+        </div>
+        {{ end }}
+
+        {{ if eq .Page.Params.product "Technical Guides" }}
+        <div class="Page-breadcrumbs"></div>
+            <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/index.html">NVIDIA Networking</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <a href="https://docs.nvidia.com/networking/software/index.html">Networking Software</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;
+            <p>Technical Guides</p>
+        </div>
+        {{ end }}
+        
+        
     </div>
 </div>

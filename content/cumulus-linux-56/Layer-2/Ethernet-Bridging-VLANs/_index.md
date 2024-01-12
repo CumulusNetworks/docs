@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 420
 toc: 3
 ---
-Ethernet bridges enable hosts to communicate through layer 2 by connecting the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}}. The bridge <span style="background-color:#F5F5DC">[MTU](## "Maximum Transmission Unit")</span> is the minimum MTU among all its members. By default, the [bridge's MAC address]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge" >}}) is the MAC address of the first port in the `bridge-ports` list in the `/etc/network/interfaces` file. You can also assign an IP address to the bridge; see {{<link url="#bridge-mac-addresses" text="below">}}.
+Ethernet bridges enable hosts to communicate through layer 2 by connecting the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}}. The bridge <span class="a-tooltip">[MTU](## "Maximum Transmission Unit")</span> is the minimum MTU among all its members. By default, the [bridge's MAC address]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge" >}}) is the MAC address of the first port in the `bridge-ports` list in the `/etc/network/interfaces` file. You can also assign an IP address to the bridge; see {{<link url="#bridge-mac-addresses" text="below">}}.
 
 {{%notice note%}}
 - Bridge members can be individual physical interfaces, bonds, or logical interfaces that traverse an 802.1Q VLAN trunk.
@@ -46,13 +46,13 @@ cumulus@switch:~$ nv show bridge domain br_default mac-table
 
 ## bridge fdb Command Output
 
-The Linux `bridge fdb` command interacts with the <span style="background-color:#F5F5DC">[FDB](## "Forwarding Database Table")</span>, which the bridge uses to store the MAC addresses it learns and the ports on which it learns those MAC addresses. The `bridge fdb show` command output contains some specific keywords:
+The Linux `bridge fdb` command interacts with the <span class="a-tooltip">[FDB](## "Forwarding Database Table")</span>, which the bridge uses to store the MAC addresses it learns and the ports on which it learns those MAC addresses. The `bridge fdb show` command output contains some specific keywords:
 
 | Keyword| Description |
 |--- |--- |
 | `self` | The FDB entry belongs to the FDB on the device referenced by the device.<br>For example, this FDB entry belongs to the VXLAN device:<br>`vx-1000`: `00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self` |
 | `master` |The FDB entry belongs to the FDB on the device's master and the FDB entry is pointing to a master's port.<br>For example, this FDB entry is from the master device named bridge and is pointing to the VXLAN bridge port:<br>`vx-1001`: `02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge` |
-| `extern_learn` | An external control plane, such as the <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> control plane for <span style="background-color:#F5F5DC">[EVPN](## "Ethernet Virtual Private Network")</span>, manages (offloads) the FDB entry. |
+| `extern_learn` | An external control plane, such as the <span class="a-tooltip">[BGP](## "Border Gateway Protocol")</span> control plane for <span class="a-tooltip">[EVPN](## "Ethernet Virtual Private Network")</span>, manages (offloads) the FDB entry. |
 
 The following example shows the `bridge fdb show` command output:
 
@@ -74,6 +74,7 @@ cumulus@switch:~$ bridge fdb show | grep 02:02:00:00:00:08
 - If you use both VLAN-aware and traditional bridges, if a traditional bridge includes a bond subinterface that is a normal interface in a VLAN-aware bridge, the bridge flaps when you bring down the bond subinterface in the traditional bridge.
 - You cannot enslave a VLAN raw device to a different master interface (you cannot edit the `vlan-raw-device` setting in the `/etc/network/interfaces` file). You need to delete the VLAN and recreate it.
 - Cumulus Linux enables MAC learning by default on traditional and VLAN-aware bridge interfaces. Do not disable MAC learning unless you are using EVPN. See {{<link title="Ethernet Virtual Private Network - EVPN">}}.
+- The VLAN IDs in your configuration must **not** overlap with the internal reserved VLAN ranges. See [Reserved VLAN Range and Limitations]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/Reserved-VLAN-Range-and-Limitations" >}}).
 
 ## Related Information
 

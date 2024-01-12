@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 600
 toc: 3
 ---
-Cumulus Linux supports both single and traditional <span style="background-color:#F5F5DC">[VXLAN](## "Virtual Extensible LAN")</span> devices.
+Cumulus Linux supports both single and traditional <span class="a-tooltip">[VXLAN](## "Virtual Extensible LAN")</span> devices.
 
 {{%notice note%}}
 - You can configure single VXLAN devices in VLAN-aware bridge mode only.
@@ -197,7 +197,7 @@ cumulus@leaf01:~$ ifreload -a
 
 ## Automatic VLAN to VNI Mapping
 
-In an EVPN VXLAN environment, you need to map individual VLANs to VNIs. For a single VXLAN device, you can do this with a seperate NVUE command per VLAN; however, this can be cumbersome if you have to configure many VLANS or need to isolate tenants and reuse VLANs. To simplify the configuration, you can use these two commands instead:
+In an EVPN VXLAN environment, you need to map individual VLANs to VNIs. For a single VXLAN device, you can do this with a separate NVUE command per VLAN; however, this can be cumbersome if you have to configure many VLANS or need to isolate tenants and reuse VLANs. To simplify the configuration, you can use these two commands instead:
 - `nv set bridge domain <bridge> vlan <vlans> vni auto` configures the specified VLANs to use automatic mapping.
 - `nv set bridge domain <bridge> vlan-vni-offset` configures the offset you want to use for the VNIs. For example, if you specify an offset of 10000, the VNI is the VLAN plus 10000.
 
@@ -354,7 +354,7 @@ The following example changes the UDP port for VXLAN encapsulation to 1024:
 ```
 cumulus@switch:mgmt:~$ nv set nve vxlan port 1024
 ```
-<!-- remove in 5.7 -->
+<!-- remove in 5.7 
 Cumulus Linux protects against VXLAN hopping vulnerabilities by default for the standard UDP port 4789. If you configure the UDP port for VXLAN encapsulation to a port other than 4789, NVIDIA recommends you run TC filter commands on each VLAN interface on the VTEP to install rules to protect the port. If you have VRR configured on the VLAN, add a similar rule for the VRR device.
 
 The following example installs an IPv4 and an IPv6 filter on vlan10 to protect port 1024:
@@ -370,7 +370,7 @@ The following example installs an IPv4 and an IPv6 filter on VRR device vlan10-v
 cumulus@switch:mgmt:~$ tc filter add dev vlan10-v0 prio 1 protocol ip ingress flower ip_proto udp dst_port 1024 action drop
 cumulus@switch:mgmt:~$ tc filter add dev vlan10-v0 prio 2 protocol ipv6 ingress flower ip_proto udp dst_port 1024 action drop
 ```
-
+-->
 ## Related Information
 
 - For information about VXLAN devices and static VXLAN tunnels, see {{<link url="Static-VXLAN-Tunnels" text="Static VXLAN Tunnels">}}.

@@ -20,7 +20,7 @@ Configures BGP globally on the switch.
 
 ## <h>nv set router bgp autonomous-system</h>
 
-Configures the BGP <span style="background-color:#F5F5DC">[ASN](## "Autonomous System Number ")</span> on the switch to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
+Configures the BGP <span class="a-tooltip">[ASN](## "Autonomous System Number ")</span> on the switch to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
 
 ### Version History
 
@@ -195,6 +195,38 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set router bgp policy-update-timer 300
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set router bgp queue-limit input</h>
+
+Configures the input message queue limit for all peers. You can set a value between 1 and 4294967295 messages. The default setting is 10000.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router bgp queue-limit input 2048
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set router bgp queue-limit output</h>
+
+Configures the output message queue limit for all peers. You can set a value between 1 and 4294967295 messages. The default setting is 10000.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router bgp queue-limit output 2048
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1450,7 +1482,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family l2vpn-evpn enable
 
 ## <h>nv set vrf \<vrf-id\> router bgp autonomous-system</h>
 
-Configures the BGP <span style="background-color:#F5F5DC">[ASN](## "Autonomous System Number ")</span> in the specified VRF to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
+Configures the BGP <span class="a-tooltip">[ASN](## "Autonomous System Number ")</span> in the specified VRF to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
 
 ### Command Syntax
 

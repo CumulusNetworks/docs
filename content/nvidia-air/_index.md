@@ -2,7 +2,8 @@
 title: NVIDIA Air User Guide
 author: Cumulus Networks
 weight: 10
-product: Cumulus Networks Guides
+cascade:
+    product: NVIDIA Air
 ---
 
 NVIDIA Air is a cloud-hosted, data center simulation platform that behaves like a real-world production environment. Use NVIDIA Air to create a digital twin of your IT infrastructure so that you can:

@@ -109,7 +109,7 @@ NCLU commands are not currently available to configure IPv6 relays. Use the Linu
 
 ## Optional Configuration
 
-This section describes optional DHCP relay configuration. The steps provided in this section assume that you already configured basic DHCP relay configuration, described above.
+This section describes optional DHCP relay configurations. The steps provided in this section assume that you have already configured basic DHCP relay, as described above.
 
 ### DHCP Agent Information Option (Option 82)
 

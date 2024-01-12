@@ -7,17 +7,17 @@ cascade:
 ---
 ## EVPN for L2 Deployments
 
-L2 EVPN deployment uses a bridged overlay as seen in Figure 7. It provides Ethernet bridging in an EVPN network and extends VLANs between the leaf devices across VXLAN tunnels. These leaf-to-leaf VXLAN tunnels are useful in networks that require connectivity between leaf devices but do not need inter-VLAN routing. As a result, the intelligence is at the leaf layer. The spine layer simply provides connectivity between leaf devices. Leaf devices establish <span style="background-color:#F5F5DC">[VTEPs](## "Virtual Tunnel Endpoints")</span> to connect to other leaf devices. The tunnels enable communication between leaf devices and Ethernet-connected end systems in the data center.
+L2 EVPN deployment uses a bridged overlay as seen in Figure 7. It provides Ethernet bridging in an EVPN network and extends VLANs between the leaf devices across VXLAN tunnels. These leaf-to-leaf VXLAN tunnels are useful in networks that require connectivity between leaf devices but do not need inter-VLAN routing. As a result, the intelligence is at the leaf layer. The spine layer simply provides connectivity between leaf devices. Leaf devices establish <span class="a-tooltip">[VTEPs](## "Virtual Tunnel Endpoints")</span> to connect to other leaf devices. The tunnels enable communication between leaf devices and Ethernet-connected end systems in the data center.
 
 **Figure 7 - L2 EVPN Example**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/l2evpn.png" >}}
 
-<span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> is a L2 switching protocol, which ensures loop-free network topologies by always creating a single path tree structure through the network. If there is a link failure or the network is reconfigured, all network traffic is halted while the spanning tree algorithm recalculates the allowed loop-free paths. However, this is no longer necessary due to the inherent split-horizon functionality.
+<span class="a-tooltip">[STP](## "Spanning Tree Protocol")</span> is a L2 switching protocol, which ensures loop-free network topologies by always creating a single path tree structure through the network. If there is a link failure or the network is reconfigured, all network traffic is halted while the spanning tree algorithm recalculates the allowed loop-free paths. However, this is no longer necessary due to the inherent split-horizon functionality.
 
 Points to consider:
 - This is useful when L2 domains are divided by L3 fabrics and need to be stretched over them (such as legacy L2 applications, ESF, and so on.)
-- Each <span style="background-color:#F5F5DC">[ToR](## "Top of Rack")</span> (leaf) is a VTEP and hosts the VLANs (mapped to VNIs) located on its rack. 
+- Each <span class="a-tooltip">[ToR](## "Top of Rack")</span> (leaf) is a VTEP and hosts the VLANs (mapped to VNIs) located on its rack. 
 - To have an extended L2 domain, the specific VNI has to be configured on the applicable VTEPs.
 - Using this type of environment doesn't allow inter-VLAN connectivity. For routing between different VNIs, we need to look at L3 deployment models or an external gateway, outside the fabric in order to perform routing between VLANs.
 
@@ -28,7 +28,7 @@ Scenarios to consider using L2 EVPN:
 
 ## EVPN for L3 Deployments
 
-Traditionally, data centers have used L2 technologies such as STP and MLAG. As data centers evolve and expand, they tend to outgrow their limits; xSTP blocks ports, which locks out needed bandwidth, while MLAG may not provide enough redundancy. Additionally, a device outage is a significant event and larger modular-chassis devices use a lot of power.
+Traditionally, data centers have used L2 technologies such as STP and MLAG. As data centers evolve and expand, they tend to outgrow their limits; STP blocks ports, which locks out needed bandwidth, while MLAG may not provide enough redundancy. Additionally, a device outage is a significant event and larger modular-chassis devices use a lot of power.
 
 ### Routing Models
 
@@ -196,11 +196,11 @@ Scenarios for using prefix-based routing:
 
 ### Route Leaking
 
-VRFs are typically used when you want multiple independent routing and forwarding tables. To reach destinations in one VRF from another VRF, Cumulus Linux supports dynamic VRF route leaking. With route leaking, a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP. If BGP learns the routes in the source VRF, you do not need to perform any additional configuration. If <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span> learns the routes in the source VRF, if you configure the routes statically, or you need to reach directly connected networks, you need to redistribute the routes first into BGP (in the source VRF).
+VRFs are typically used when you want multiple independent routing and forwarding tables. To reach destinations in one VRF from another VRF, Cumulus Linux supports dynamic VRF route leaking. With route leaking, a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP. If BGP learns the routes in the source VRF, you do not need to perform any additional configuration. If <span class="a-tooltip">[OSPF](## "Open Shortest Path First")</span> learns the routes in the source VRF, if you configure the routes statically, or you need to reach directly connected networks, you need to redistribute the routes first into BGP (in the source VRF).
 
 You can also use route leaking to reach remote destinations as well as directly connected destinations in another VRF. Multiple VRFs can import routes from a single source VRF and a VRF can import routes from multiple source VRFs. You can use this method when a single VRF provides connectivity to external networks or common services such as DHCP or DNS that are often delivered to multiple tenant VRFs. You can control the routes leaked dynamically across VRFs with a route map.
 
-Because route leaking happens through BGP, the underlying mechanism relies on the BGP constructs of the <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> and <span style="background-color:#F5F5DC">[RTs](## "Route Targets")</span>. However, you do not need to configure these parameters; Cumulus Linux derives them automatically when you enable route leaking between a pair of VRFs.
+Because route leaking happens through BGP, the underlying mechanism relies on the BGP constructs of the <span class="a-tooltip">[RD](## "Route Distinguisher")</span> and <span class="a-tooltip">[RTs](## "Route Targets")</span>. However, you do not need to configure these parameters; Cumulus Linux derives them automatically when you enable route leaking between a pair of VRFs.
 
 Points to consider:
 - You can assign an interface to only one VRF; Cumulus Linux routes any packets arriving on that interface using the associated VRF routing table.
@@ -212,8 +212,7 @@ Points to consider:
 - Cumulus Linux does not leak routes in the management VRF with the next hop as eth0 or the management interface.
 - You can leak routes in a VRF that iBGP or multi-hop eBGP learns even if their next hops become unreachable. NVIDIA recommends route leaking for routes that BGP learns through single-hop eBGP.
 - You cannot configure VRF instances of BGP in multiple autonomous systems (AS) or an AS that is not the same as the global AS.
-- Do not use the default VRF as a shared service VRF. Create another VRF for shared services.
-- Run common services in a separate VRF (service VRF) instead of the default VRF to simplify configuration and avoid using route maps for filtering.
+- Do not use the default VRF as a shared service VRF. Create another VRF for shared services, for example service VRF, to simplify configuration and avoid using route maps for filtering.
 - To exclude certain prefixes from the import process, configure the prefixes in a route map.
 
 An EVPN symmetric routing configuration has certain limitations when leaking routes between the default VRF and non-default VRFs. The default VRF has routes to VTEP addresses that you cannot leak to any tenant VRFs. If you need to leak routes between the default VRF and a non-default VRF, you must filter out routes to the VTEP addresses to prevent leaking these routes.  
@@ -270,7 +269,7 @@ In ingress replication, the ingress NVE sends multiple copies of a packet, one f
 
 Benefits of this model include:
 - It keeps the underlay simple. The underlay needs to provide only IP unicast routing to support network virtualization. 
-- It is easy to configure - there is no additional configuration required. The replication list is automatically built from the BGP EVPN RT-3 (carrying the <span style="background-color:#F5F5DC">[VNIs](## "Virtual Network Identifiers")</span> of interest to a VTEP) messages without any further intervention from the user.
+- It is easy to configure - there is no additional configuration required. The replication list is automatically built from the BGP EVPN RT-3 (carrying the <span class="a-tooltip">[VNIs](## "Virtual Network Identifiers")</span> of interest to a VTEP) messages without any further intervention from the user.
 - This makes the solution more robust, because the chances of human error are reduced significantly.
 
 Disadvantages of this model include:
@@ -282,7 +281,7 @@ Cumulus Linux uses Head End Replication by default with EVPN multihoming.
 
 ### Multicast Replication
 
-By using multicast, the ingress NVE does not have to send a separate copy for each egress NVE. The most commonly used multicast routing protocol is called <span style="background-color:#F5F5DC">[PIM](## "Protocol Independent Multicast")</span>. <span style="background-color:#F5F5DC">[PIM-SM](## "PIM Sparse Mode")</span> is used for optimizing flooded traffic in a network with EVPN-MH.
+By using multicast, the ingress NVE does not have to send a separate copy for each egress NVE. The most commonly used multicast routing protocol is called <span class="a-tooltip">[PIM](## "Protocol Independent Multicast")</span>. <span class="a-tooltip">[PIM-SM](## "PIM Sparse Mode")</span> is used for optimizing flooded traffic in a network with EVPN-MH.
 
 Benefits of this model include:
 - It is possible to handle a large volume of BUM packets or even well-known multicast packets efficiently. 

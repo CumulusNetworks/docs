@@ -6,14 +6,13 @@ subsection: true
 cascade:
     product: Cumulus Linux
     version: "5.7"
-    draft: true
 toc: 1
 ---
 NVIDIA® Cumulus Linux is the first full-featured {{<exlink url="https://www.debian.org/releases/buster/" text="Debian Buster" >}}-based, Linux operating system for the networking industry.
 
 This user guide provides in-depth documentation on the Cumulus Linux installation process, system configuration and management, network solutions, and monitoring and troubleshooting recommendations. In addition, the quick start guide provides an end-to-end setup process to get you started.
 
-Cumulus Linux 5.7 includes the NVIDIA NetQ agent and CLI. You can use NetQ to monitor and manage your data center network infrastructure and operational health. Refer to the [NVIDIA NetQ documentation]({{<ref "/cumulus-netq-47" >}}) for details.
+Cumulus Linux 5.7 includes the NVIDIA NetQ agent and CLI. You can use NetQ to monitor and manage your data center network infrastructure and operational health. Refer to the [NVIDIA NetQ documentation]({{<ref "/cumulus-netq-48" >}}) for details.
 
 For a list of the new features in this release, see {{<link url="Whats-New" text="What's New">}}. For bug fixes and known issues present in this release, refer to the {{<link url="Cumulus-Linux-5.7-Release-Notes" text="Cumulus Linux 5.7 Release Notes">}}.
 <!-- vale off -->
@@ -36,7 +35,6 @@ You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url
 Use one of the following methods to download the Cumulus Linux user guide and view it offline:
 
 - Host the documentation on a local host {{<exlink url="https://github.com/CumulusNetworks/docs" text="using hugo.">}}
-- Download a zip file of an {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-57/CL5-html.zip" text="HTML documentation build">}} for offline use. Download the desired version, extract it locally, then open `cumulus-linux-57.html` in your web browser.
-<!-- vale off -->
+- Download a zip file of an {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-57/CL57-html.zip" text="HTML documentation build">}} for offline use. Download the desired version, extract it locally, then open `cumulus-linux-57.html` in your web browser.<!-- vale off -->
 - You can view the complete Cumulus Linux {{% version %}} user guide as a single page to print to PDF {{% pdf_link "here." %}} Click on the link one time and use the web browser print-to-PDF option to save the PDF locally.
 <!-- vale on -->

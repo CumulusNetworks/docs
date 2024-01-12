@@ -14,7 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set system wjh</h>
 
-Provides commands to configure <span style="background-color:#F5F5DC">[WJH](## "What Just Happened")</span> to provide real time visibility into network problems. You can diagnose network problems by looking at dropped packets.
+Provides commands to configure <span class="a-tooltip">[WJH](## "What Just Happened")</span> to provide real time visibility into network problems. You can diagnose network problems by looking at dropped packets.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

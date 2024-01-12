@@ -27,8 +27,9 @@
     {{ partial "pdf-head" . }}
 {{ end }}
 
-<!-- Favicon -->
+<!-- Favicon and font-awesome -->
 <link rel="icon" href="{{ "icons/favicon.png" | absURL }}" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 {{ "<!--" | safeHTML }}
     Made with Book Theme
@@ -42,4 +43,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     {{ $jsAir := resources.Get "js/air.js" }}
     <script type="application/javascript" src="{{ $jsAir.Permalink }}"></script>
+{{ end }}
+
+<!-- Canonical link element to prioritize search indexing of current version -->
+{{ if .Page.Params.old }}
+{{ $prod := (index (sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc") 0).Section }}
+<link rel="canonical" href=https://docs.nvidia.com/networking-ethernet-software{{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }} />
 {{ end }}

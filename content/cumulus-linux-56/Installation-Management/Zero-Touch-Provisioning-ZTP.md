@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 90
 toc: 3
 ---
-Use <span style="background-color:#F5F5DC">[ZTP](## "Zero Touch Provisioning")</span> to deploy network devices in large-scale environments. On first boot, Cumulus Linux runs ZTP, which executes the provisioning automation that deploys the device for its intended role in the network.
+Use <span class="a-tooltip">[ZTP](## "Zero Touch Provisioning")</span> to deploy network devices in large-scale environments. On first boot, Cumulus Linux runs ZTP, which executes the provisioning automation that deploys the device for its intended role in the network.
 
 The provisioning framework allows you to execute a one-time, user-provided script. You can develop this script using a variety of automation tools and scripting languages. You can also use it to add the switch to a configuration management (CM) platform such as {{<exlink url="http://puppet.com/" text="Puppet">}}, {{<exlink url="https://www.chef.io" text="Chef">}}, {{<exlink url="https://cfengine.com" text="CFEngine">}} or a custom, proprietary tool.
 
@@ -53,7 +53,7 @@ The USB drive mounts to a temporary directory under `/tmp` (for example, `/tmp/t
 
 ## ZTP Over DHCP
 
-If the `ztp` process does not discover a local <span style="background-color:#F5F5DC">[ONIE](## "Open Network Install Environment")</span> script or applicable USB drive, it checks DHCP every ten seconds for up to five minutes for the presence of a ZTP URL specified in `/var/run/ztp.dhcp`. The URL can be any of HTTP, HTTPS, FTP, or TFTP.
+If the `ztp` process does not discover a local <span class="a-tooltip">[ONIE](## "Open Network Install Environment")</span> script or applicable USB drive, it checks DHCP every ten seconds for up to five minutes for the presence of a ZTP URL specified in `/var/run/ztp.dhcp`. The URL can be any of HTTP, HTTPS, FTP, or TFTP.
 
 For ZTP using DHCP, provisioning initially takes place over the management network and initiates through a DHCP hook. A DHCP option specifies a configuration script. The ZTP process requests this script from the Web server and the script executes locally.
 

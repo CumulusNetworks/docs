@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 350
 toc: 3
 ---
-A DHCP server automatically provides and assigns IP addresses and other network parameters to client devices. It relies on <span style="background-color:#F5F5DC">[DHCP](## "Dynamic Host Configuration Protocol")</span> to respond to broadcast requests from clients.
+A DHCP server automatically provides and assigns IP addresses and other network parameters to client devices. It relies on <span class="a-tooltip">[DHCP](## "Dynamic Host Configuration Protocol")</span> to respond to broadcast requests from clients.
 
 {{%notice note%}}
 If you intend to run the `dhcpd` service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF/#run-services-within-the-management-vrf" text="these steps">}}.

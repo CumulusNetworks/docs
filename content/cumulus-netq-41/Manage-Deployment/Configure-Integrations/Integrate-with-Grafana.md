@@ -95,7 +95,7 @@ Now that you have the plugin installed, you need to configure access to the NetQ
 5. Enter *Net-Q* into the **Name** field.
 
 6. Enter the URL used to access the database:
-    - Cloud: *plugin.netq.cumulusnetworks.com*
+    - Cloud: *https://plugin.prod.netq.nvidia.com*
     - On-premises: *\<hostname-or-ipaddr-of-netq-appl-or-vm\>/plugin*
     - Cumulus in the Cloud (CITC): *plugin.air.netq.cumulusnetworks.com*
 
@@ -218,7 +218,7 @@ With the data source configured, you can create a dashboard with the transmit an
 
     {{<figure src="/images/netq/grafana-create-chart-select-ifname-331.png" width="600">}}
 
-11. Selectric one or more metrics to display for these hostnames and interfaces from the **metrics** list.
+11. Select one or more metrics to display for these hostnames and interfaces from the **metrics** list.
 
     {{<figure src="/images/netq/grafana-create-chart-select-metrics-331.png" width="600">}}
 

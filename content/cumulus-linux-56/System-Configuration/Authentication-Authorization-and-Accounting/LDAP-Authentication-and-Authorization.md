@@ -57,11 +57,7 @@ Entering incorrect information during the installation process produces configur
 - Edit the `/etc/nslcd.conf` file to update the LDAP URI and search base DN (see {{<link url="#update-the-nslcdconf-file" text="Update the nslcd.conf File">}}, below).
 - Edit the `/etc/nssswitch.conf` file to update the service selections.
 
-Be sure to restart `netd` after editing the files.
-
-```
-cumulus@switch:~$ sudo systemctl restart netd.service
-```
+After editing the files, restart the NVUE and nginx-authenticator services with the `sudo systemctl restart nvued.service` command and the `sudo systemctl restart nginx-authenticator.service` command.
 
 {{< expand "Alternative Installation Method Using debconf-utils "  >}}
 
@@ -131,7 +127,7 @@ After installation, update the main configuration file (`/etc/nslcd.conf`) to ac
 This section documents some of the more important options that relate to security and queries. For details on all the available configuration options, read the {{<exlink url="http://linux.die.net/man/5/nslcd.conf" text="nslcd.conf man page">}}.
 
 {{%notice note%}}
-After first editing the `/etc/nslcd.conf` file and/or enabling LDAP in the `/etc/nsswitch.conf` file, you must restart `netd` with the `sudo systemctl restart netd` command. If you disable LDAP, you need to restart the `netd` service.
+After editing the `/etc/nslcd.conf` file or enabling LDAP in the `/etc/nsswitch.conf` file, you must restart the NVUE and nginx-authenticator services with the `sudo systemctl restart nvued.service` command and the `sudo systemctl restart nginx-authenticator.service` command. If you disable LDAP, you must also restart these two services.
 {{%/notice%}}
 
 ### Connection

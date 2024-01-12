@@ -28,7 +28,7 @@ cumulus@leaf01:~$ ip -d link show type vxlan
 ```
 
 The following shows example output for the `nv show bridge domain <domain> mac-table` command:
-<!-->
+<!--
 - bond1 is in VLAN ID 10.
 - 48:b0:2d:d8:33 is the host MAC address learned on bond1.
 - A remote VTEP that participates in VLAN ID 10 is 10.0.1.34 (the FDB entries have a MAC address of 48:b0:2d:b4:4e). BUM traffic replication uses these entries.

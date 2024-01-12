@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 770
 toc: 3
 ---
-Cumulus Linux enables hardware <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
+Cumulus Linux enables hardware <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
 
 ## How Does ECMP Work?
 
@@ -125,11 +125,11 @@ Cumulus Linux enables symmetric hashing by default. Make sure that the settings 
 
 ## GTP Hashing
 
-<span style="background-color:#F5F5DC">[GTP](## "GPRS Tunneling Protocol")</span> carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP <span style="background-color:#F5F5DC">[TEID](## "Tunnel Endpoint Identifier")</span>. Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
+<span class="a-tooltip">[GTP](## "GPRS Tunneling Protocol")</span> carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP <span class="a-tooltip">[TEID](## "Tunnel Endpoint Identifier")</span>. Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
 
 Cumulus Linux supports TEID-based *ECMP hashing* for:
-- <span style="background-color:#F5F5DC">[GTP-U](## "GPRS Tunnelling Protocol User")</span> packets ingressing physical ports.
-- VXLAN encapsulated GTP-U packets terminating on egress <span style="background-color:#F5F5DC">[VTEPs](## "Virtual Tunnel End Points")</span>.
+- <span class="a-tooltip">[GTP-U](## "GPRS Tunnelling Protocol User")</span> packets ingressing physical ports.
+- VXLAN encapsulated GTP-U packets terminating on egress <span class="a-tooltip">[VTEPs](## "Virtual Tunnel End Points")</span>.
 
 For TEID-based load balancing for traffic on a bond, see {{<link url="Bonding-Link-Aggregation/#GTP Hashing" text="Bonding - Link Aggregation" >}}.
 
@@ -137,7 +137,7 @@ GTP TEID-based ECMP hashing is only applicable if the outer header egressing the
 
 {{%notice note%}}
 - Cumulus Linux supports GTP Hashing on NVIDIA Spectrum-2 and later.
-- <span style="background-color:#F5F5DC">[GTP-C](## "GPRS Tunnelling Protocol Control")</span> packets are not part of GTP hashing.
+- <span class="a-tooltip">[GTP-C](## "GPRS Tunnelling Protocol Control")</span> packets are not part of GTP hashing.
 {{%/notice%}}
 
 To enable TEID-based ECMP hashing:
@@ -512,7 +512,7 @@ In most cases, modifying hash buckets has no impact on traffic flows as the swit
 
 ## Considerations
 
-When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. <span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
+When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. <span class="a-tooltip">[FRR](## "FRRouting")</span> deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
 
 To work around this issue, you can enable IPv6 route replacement.
 

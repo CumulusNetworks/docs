@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 770
 toc: 3
 ---
-Cumulus Linux enables <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for IPv4 and IPv6 routes with multiple installed next hops. The hardware or the routing protocol configuration determines the maximum number of routes for which load sharing occurs.
+Cumulus Linux enables <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for IPv4 and IPv6 routes with multiple installed next hops. The hardware or the routing protocol configuration determines the maximum number of routes for which load sharing occurs.
 
 ## How Does ECMP Work?
 
@@ -193,11 +193,11 @@ Cumulus Linux enables symmetric hashing by default. Make sure that the settings 
 
 ### GTP Hashing
 
-<span style="background-color:#F5F5DC">[GTP](## "GPRS Tunneling Protocol")</span> carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP <span style="background-color:#F5F5DC">[TEID](## "Tunnel Endpoint Identifier")</span>. Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
+<span class="a-tooltip">[GTP](## "GPRS Tunneling Protocol")</span> carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP <span class="a-tooltip">[TEID](## "Tunnel Endpoint Identifier")</span>. Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
 
 Cumulus Linux supports TEID-based *ECMP hashing* for:
-- <span style="background-color:#F5F5DC">[GTP-U](## "GPRS Tunnelling Protocol User")</span> packets ingressing physical ports.
-- VXLAN encapsulated GTP-U packets terminating on egress <span style="background-color:#F5F5DC">[VTEPs](## "Virtual Tunnel End Points")</span>.
+- <span class="a-tooltip">[GTP-U](## "GPRS Tunnelling Protocol User")</span> packets ingressing physical ports.
+- VXLAN encapsulated GTP-U packets terminating on egress <span class="a-tooltip">[VTEPs](## "Virtual Tunnel End Points")</span>.
 
 For TEID-based load balancing for traffic on a bond, see {{<link url="Bonding-Link-Aggregation/#GTP Hashing" text="Bonding - Link Aggregation" >}}.
 
@@ -205,7 +205,7 @@ GTP TEID-based ECMP hashing is only applicable if the outer header egressing the
 
 {{%notice note%}}
 - Cumulus Linux supports GTP Hashing on NVIDIA Spectrum-2 and later.
-- <span style="background-color:#F5F5DC">[GTP-C](## "GPRS Tunnelling Protocol Control")</span> packets are not part of GTP hashing.
+- <span class="a-tooltip">[GTP-C](## "GPRS Tunnelling Protocol Control")</span> packets are not part of GTP hashing.
 {{%/notice%}}
 
 To enable TEID-based ECMP hashing:
@@ -456,7 +456,7 @@ Cumulus Linux does not provide NVUE commands for this setting.
 
 **Considerations**
 
-When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. <span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
+When the router adds or removes ECMP paths, or when the next hop IP address, interface, or tunnel changes, the next hop information for an IPv6 prefix can change. <span class="a-tooltip">[FRR](## "FRRouting")</span> deletes the existing route to that prefix from the kernel, then adds a new route with all the relevant new information. In certain situations, Cumulus Linux does not maintain resilient hashing for IPv6 flows.
 
 To work around this issue, you can enable IPv6 route replacement.
 
@@ -510,8 +510,8 @@ The benefits of using adaptive routing include:
 With adaptive routing, the switch forwards packets to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion. The change decision for port selection is set to one microsecond; you cannot change it.
 
 Cumulus Linux supports adaptive routing with:
-- Switches with the Spectrum-4 ASIC.
-- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE" >}} unicast traffic.
+- Switches with the Spectrum-4 ASIC at 400G and 200G speeds.
+- {{<link url="RDMA-over-Converged-Ethernet-RoCE" text="RoCE2" >}} unicast traffic.
 - VXLAN-encapsulated RoCE traffic.
 - Layer 3 interfaces.
 - Next hop router interfaces in the default VRF.
@@ -565,14 +565,10 @@ interface.swp52.adaptive_routing.link_util_thresh = 70
 ...
 ```
 
-{{<link url="Configuring-switchd#restart-switchd" text="Restart">}} the `switchd` service:
-<!-- vale off -->
-{{<cl/restart-switchd>}}
-<!-- vale on -->
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-To disable adaptive routing, set the `adaptive_routing.enable` parameter to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
-
-To disable adaptive routing on a specific port, set the `interface.<port>.adaptive_routing.enable` parameter  to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
+- To disable adaptive routing, set the `adaptive_routing.enable` parameter to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
+- To disable adaptive routing on a specific port, set the `interface.<port>.adaptive_routing.enable` parameter  to `FALSE` in the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -640,7 +636,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{%notice note%}}
 If you modify the `adaptive_routing.ecmp_size` parameter in the custom profile, then revert to the default profile for the switch, you must restart `switchd`.
 {{%/notice%}}
-
+-->
 ### Link Utilization
 
 Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. You can change the percentage to a value between 1 and 100.
@@ -648,7 +644,7 @@ Link utilization, when crossing a threshold, is one of the parameters in the ada
 Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
 {{%notice note%}}
-In Cumulus Linux 5.5 and earlier, link utilization is on by default. If you configured link utilization in a previous release, be sure to enable link utilization after you upgrade to Cumulus Linux 5.6.
+In Cumulus Linux 5.5 and earlier, link utilization is on by default. If you configured link utilization in a previous release, be sure to enable link utilization after you upgrade to Cumulus Linux 5.7.
 {{%/notice%}}
 
 {{< tabs "TabID624 ">}}
@@ -767,7 +763,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
--->
+
 ### Show Adaptive Routing Settings
 
 To show adaptive routing settings, run the `nv show router adaptive-routing` command:
@@ -776,9 +772,7 @@ To show adaptive routing settings, run the `nv show router adaptive-routing` com
 cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
                             operational   applied
 --------------------------  ------------  -------
-enable                      on            on     
-link-utilization-threshold  off           off    
-profile                     profile-1
+enable                      on            off
 ```
 
 To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing`.

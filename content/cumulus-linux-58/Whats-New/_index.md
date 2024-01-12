@@ -18,6 +18,7 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 - The NVIDIA SN3750-SX switch is Class C compliant
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} now generally available on Spectrum-4 switches
 - {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one step clock timestamp mode">}} now generally available on Spectrum-4 switches
+- {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PTP Noise Transfer Servo">}}
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (copper and optical)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} (no EVPN MLAG or EVPN multihoming support)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support with 802.1X">}}

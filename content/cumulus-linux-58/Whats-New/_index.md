@@ -15,15 +15,16 @@ This document supports the Cumulus Linux 5.8 release, and lists new platforms, f
 Cumulus Linux 5.8.0 contains several new features and improvements, and provides bug fixes.
 
 ### New Features and Enhancements
-
+- The NVIDIA SN3750-SX switch is Class C compliant
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} now generally available on Spectrum-4 switches
+- {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one step clock timestamp mode">}} now generally available on Spectrum-4 switches
+- {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PTP Noise Transfer Servo">}}
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (copper and optical)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} (no EVPN MLAG or EVPN multihoming support)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support with 802.1X">}}
 - {{<link url="802.1X-Interfaces/#host-modes" text="802.1x multi host mode">}}
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
 - NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-an-svi-perpetually-up" text="configure a dummy interface">}} to keep SVIs always UP
-- {{<link url="FRRouting/#vtysh-modal-cli" text="FRR tab completion">}} with static representation
 - Admin state added to NVUE `nv show interface` commands
 
 {{< expand "Changed Commands" >}}

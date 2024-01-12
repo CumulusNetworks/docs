@@ -344,7 +344,7 @@ The Cumulus Linux switch provides the following clock timestamp modes:
 One-step mode significantly reduces the number of PTP messages. Two-step mode is the default configuration.
 
 {{%notice note%}}
-Cumulus Linux supports one-step mode on switches with the Spectrum-2 and Spectrum-3 ASIC.
+Cumulus Linux supports one-step mode on Spectrum-2 and later.
 {{%/notice%}}
 
 {{< tabs "TabID345 ">}}
@@ -482,7 +482,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
+
 ### Noise Transfer Servo
 
 ITU-T specifies the following key elements to measure, test, and classify the accuracy of a clock:
@@ -627,7 +627,7 @@ cumulus@switch:~$ nv show service ptp 1 servo
 -----  -----------  --------------
 servo               noise-transfer
 ```
--->
+
 ## Optional Global Configuration
 
 Optional global PTP configuration includes configuring the DiffServ code point (DSCP). You can configure the DSCP value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.

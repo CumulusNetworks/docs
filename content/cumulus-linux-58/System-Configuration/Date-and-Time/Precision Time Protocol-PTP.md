@@ -492,7 +492,7 @@ ITU-T specifies the following key elements to measure, test, and classify the ac
 - Transient response&mdash;the response from the clock to a transient.
 - Hold over&mdash;the time interval during which the clock maintains its output after losing the input reference signal.
 
-Cumulus Linux PTP has an option to use a servo specifically designed to handle ITU-T’s Noise Transfer specification. When you use this option, the <span class="a-tooltip">[PHC](## "Physical Hardware Clock")</span> is disciplined by Noise Transfer Servo, which smoothes the jitter and wander noise from the Master clock.
+Cumulus Linux PTP has an option to use a servo specifically designed to handle the ITU-T Noise Transfer specification. When you use this option, the <span class="a-tooltip">[PHC](## "Physical Hardware Clock")</span> is disciplined by Noise Transfer Servo, which smoothes the jitter and wander noise from the Master clock.
 
 {{%notice note%}}
 - To use Noise Transfer Servo, you need to enable SyncE on the switch and on PTP interfaces. 

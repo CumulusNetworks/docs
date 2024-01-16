@@ -16,9 +16,9 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 
 ### New Features and Enhancements
 - The NVIDIA SN3750-SX switch is Class C compliant
-- {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} now generally available on Spectrum-4 switches
-- {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one step clock timestamp mode">}} now generally available on Spectrum-4 switches
-- Improved SyncE and PPS Noise transfer algorithm
+- {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} is now generally available on Spectrum-4 switches
+- {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one step clock timestamp mode">}} is now generally available on Spectrum-4 switches
+- Improved SyncE and PPS noise transfer algorithm
 - {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PTP Noise Transfer Servo">}}
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (copper and optical)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} (no EVPN MLAG or EVPN multihoming support)
@@ -26,7 +26,9 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 - {{<link url="802.1X-Interfaces/#host-modes" text="802.1x multi host mode">}}
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
 - NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-an-svi-perpetually-up" text="configure a dummy interface">}} to keep SVIs always UP
-- Admin state added to NVUE `nv show interface` commands
+- Improved FRR tab completion
+- Improved cl-support script to prevent disruption to the switch
+- Minimized data retrieval for NVUE `nv show router nexthop rib` and `nv show vrf <vrf> router rib ipv4 route` commands
 
 {{< expand "Changed Commands" >}}
 

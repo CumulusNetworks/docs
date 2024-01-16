@@ -9,7 +9,7 @@ Port security is a layer 2 traffic control feature that enables you to limit por
 You can configure what action to take when there is a port security violation (drop packets or put the port into protodown state) and add a timeout for the action to take effect. The default setting mode is to drop packets.
 
 {{%notice note%}}
-Port security supports layer 2 interfaces in trunk or access mode but **not** interfaces in a bond.
+Port security supports 802.1X interfaces, layer 2 interfaces in trunk or access mode but **not** interfaces in a bond. For information about how port security and 802.1X work together, see {{<link url="802.1X-Interfaces/#multi-host-mode-and-port-security" text="802.1x multi host mode">}}.
 {{%/notice%}}
 
 ## Configure Port Security

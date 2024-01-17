@@ -21,7 +21,7 @@ NVUE supports both traditional snippets and flexible snippets:
 
 ## Traditional Snippets
 
-Use traditional snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format, then add the configuration to the file with the `nv config patch` command.
+Use traditional snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE object model. You create a snippet in `yaml` format, then add the configuration to the file with the `nv config patch` command.
 
 {{%notice note%}}
 The `nv config patch` command requires you to use the fully qualified path name to the snippet `.yaml` file; for example you cannot use `./` with the `nv config patch` command.

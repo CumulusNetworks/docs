@@ -102,9 +102,7 @@ The MLAG validation tests look for misconfigurations, peering status, and bond e
 | 8 | Conflicted Bonds | Checks for bonds in MLAG conflicted state and shows the reason |
 | 9 | ProtoDown Bonds | Checks for bonds in protodown state and shows the reason |
 | 10 | SVI | Checks if: <ul><li>Both sides of an MLAG pair have an SVI configured</li><li>SVI on both sides have consistent MTU setting</li></ul> |
-<!--
 | 11 | Package Mismatch | Checks for package mismatch on an MLAG pair |
--->
 ## NTP Validation Tests
 
 The NTP validation test looks for poor operational status of the NTP service.

@@ -13,7 +13,7 @@ For switch performance information, refer to {{<link title="Switches" text="Swit
 Several forms of this command are available based on the inventory component you'd like to view. See the {{<link title="show/#netq-show-inventory" text="command line reference">}} for additional options, definitions, and examples.
 
 ```
-netq show inventory (brief | asic | board | cpu | disk | memory | license | os)
+netq show inventory (brief | asic | board | cpu | disk | memory | os)
 ```
 To view Cumulus Linux OS versions supported on your switches, run {{<link title="show/#netq-show-cl-manifest" text="netq show cl-manifest">}}:
 

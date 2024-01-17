@@ -1890,13 +1890,6 @@ netq [<hostname>] show inventory disk
     [opta]
     [json]
 
-netq [<hostname>] show inventory license 
-    [cumulus] 
-    [status ok | status missing] 
-    [around <text-time>] 
-    [opta] 
-    [json]
-
 netq [<hostname>] show inventory memory
     [type <memory-type>|vendor <memory-vendor>]
     [opta]
@@ -1917,7 +1910,6 @@ netq [<hostname>] show inventory os
 | board | NA | Only display motherboard information: hostname, vendor, model, base MAC address, serial number, part number, revision, manufacturing date |
 | cpu | NA | Only display processor information: hostname, architecture, model, frequency, number of cores |
 | disk | NA | Only display disk information: hostname, disk name and type, transport, size, vendor, model |
-| license | NA | Only display license information: hostname, disk name and type, transport, size, vendor, model |
 | memory | NA | Only display memory information: hostname, memory name, type, size, speed, vendor, serial number |
 | os | NA | Only display operating system information: hostname, OS name, version, when changed |
 
@@ -1931,8 +1923,6 @@ netq [<hostname>] show inventory os
 | model-id | \<asic-model-id\> | Only display results for ASIC models with this ID |
 | arch | \<cpu-arch\> | Only display results for CPUs with this architecture |
 | transport | \<disk-transport\> | Only display results for disks with this transport method |
-| cumulus | NA | Only display Cumulus Linux licenses |
-| status | \<ok\>, \<missing\>, | Only display results for devices with valid (ok) or missing licenses |
 | type | \<memory-type\> | Only display results for memory of this type |
 | version | \<os-version\> | Only display results for operating systems of this version |
 | name | \<os-name\> | Only display results for operating systems with this name |

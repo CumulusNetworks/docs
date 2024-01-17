@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 1130
 toc: 3
 ---
-The NetQ API provides access to key telemetry and system monitoring data gathered about the performance and operation of your network and devices so that you can view that data in your internal or third-party analytic tools. The API gives you access to the health of individual switches, network protocols and services, trace and validation results, and views of networkwide inventory and events.
+The NetQ API provides data about the performance and operation of your network and its devices. You can view the data with your internal tools or with third-party analytic tools. The API displays the health of individual switches, network protocols and services, trace and validation results, as well as networkwide inventory and events.
 
-This guide provides an overview of the NetQ API framework, the basics of using Swagger UI 2.0 or `bash` plus `curl` to view and test the APIs. Descriptions of each endpoint and model parameter are in individual API JSON files.
+This guide provides an overview of the NetQ API framework, including the basics of using Swagger UI 2.0 or `bash` plus `curl` to view and test the APIs. Descriptions of each endpoint and model parameter are in individual API JSON files.
 
 ## API Organization
 
@@ -30,19 +30,17 @@ The Swagger interface displays both public and internal APIs. Public APIs do not
 
 ## Get Started
 
-You can access the API gateway and execute requests from the Swagger UI or a terminal interface:
+You can access the API gateway and execute requests from the Swagger UI or a terminal interface. If you are using a terminal window, proceed to the next section.
 
 {{<tabs "Access API Gateway">}}
 
 {{<tab "Swagger UI">}}
 
-1. Open a new browser tab or window, and enter one of the following in the address bar:
+1. Open the Swagger interface by entering one of the following in your browser's address bar:
 
     - Cloud deployments:  https://api.netq.nvidia.com/swagger/
     - On-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
-    - Cumulus in the Cloud (CITC): https://api.air.netq.nvidia.com/swagger/
-
-    This opens the Swagger interface.
+    - NVIDIA Air: https://api.air.netq.nvidia.com/swagger/
 
 2. Select *auth* from the **Select a definition** dropdown at the top right of the window. This opens the authorization API.
 
@@ -50,19 +48,11 @@ You can access the API gateway and execute requests from the Swagger UI or a ter
 
 {{</tab>}}
 
-{{<tab "Terminal Window">}}
-
-1. Open a terminal window.
-
-2. Continue to Log In instructions.
-
-{{</tab>}}
-
 {{</tabs>}}
 
 ### Log In
 
-While you can view the API endpoints without authorization, you can only execute the API endpoints if you have been authorized.
+Although you can view the API endpoints without authorization, you can only execute the API endpoints if you have been authorized.
 
 {{<tabs "Log In">}}
 
@@ -104,8 +94,8 @@ To log in and obtain authorization:
 
 1. Open a terminal window.
 
-2. Login to obtain the access token. You will need the following information:
-    - Hostname or IP address, and port (443 for Cloud deployments, 32708 for on-premises deployments) of your API gateway
+2. Log in to obtain the access token. You will need the following information:
+    - Hostname or IP address, and port (443 for cloud deployments, 32708 for on-premises deployments) of your API gateway
     - Your login credentials that were provided as part of the NetQ installation process. For this release, the default is username *admin* and password *admin*.
 
     This example uses an IP address of 192.168.0.10, port of 443, and the default credentials:
@@ -120,7 +110,7 @@ To log in and obtain authorization:
     {"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....","customer_id":0,"expires_at":1597200346504,"id":"admin","is_cloud":true,"premises":[{"name":"OPID0","namespace":"NAN","opid":0},{"name":"ea-demo-dc-1","namespace":"ea1","opid":30000},{"name":"ea-demo-dc-2","namespace":"ea1","opid":30001},{"name":"ea-demo-dc-3","namespace":"ea1","opid":30002},{"name":"ea-demo-dc-4","namespace":"ea1","opid":30003},{"name":"ea-demo-dc-5","namespace":"ea1","opid":30004},{"name":"ea-demo-dc-6","namespace":"ea1","opid":30005},{"name":"ea-demo-dc-7","namespace":"ea1","opid":80006},{"name":"Cumulus Data Center","namespace":"NAN","opid":1568962206}],"reset_password":false,"terms_of_use_accepted":true}
     ```
 
-3. Copy the access token to a text file for use in making API data requests.
+3. Copy the access token to a text file. You will need this token to make API data requests.
 
 {{</tab>}}
 
@@ -139,8 +129,6 @@ You can use either the Swagger UI or a terminal window with `bash` and `curl` co
 {{<tabs "TabID133" >}}
 
 {{<tab "Swagger UI" >}}
-
-API requests are easy to execute in the Swagger UI. Just select the endpoint of interest and try it out.
 
 1. Select the endpoint from the definition dropdown at the top right of the application.
 

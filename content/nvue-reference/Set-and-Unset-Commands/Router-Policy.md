@@ -681,7 +681,7 @@ Configures the permit action exit policy to exit further rule processing. You ca
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.7.0
 
 ### Example
 
@@ -704,7 +704,7 @@ Configures the route map to go to the next rule when the matching conditions are
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.7.0
 
 ### Example
 

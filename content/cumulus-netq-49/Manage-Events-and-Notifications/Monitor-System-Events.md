@@ -48,7 +48,6 @@ You can suppress events for the following types of messages:
 - configdiff: Events generated when a configuration file has changed
 - evpn: EVPN events
 - lcm: Lifecycle management events
-- license: Software license events
 - link: Events related to links, including state and interface name
 - lldp: LLDP events
 - mlag: MLAG events

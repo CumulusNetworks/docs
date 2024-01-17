@@ -962,7 +962,7 @@ Event querying is supported for a 72-hour window within the past 30 days.
 ```
 netq [<hostname>] show events
     [severity info | severity error]
-    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_hostd_roce|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_services|tca_wjh|trace|vlan|vxlan]
+    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_hostd_roce|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_services|tca_wjh|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
 ```
@@ -977,7 +977,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | severity | info, error| Only display events with this severity level |
-| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_hostd_roce, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_services, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
+| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_hostd_roce, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_services, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON format |
 

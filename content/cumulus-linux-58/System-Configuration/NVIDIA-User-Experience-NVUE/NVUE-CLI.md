@@ -9,7 +9,7 @@ The NVUE CLI has a flat structure instead of a modal structure. Therefore, you c
 {{%notice warning%}}
 You can choose to configure Cumulus Linux either with NVUE commands **or** Linux commands (with vtysh or by manually editing configuration files). Do **not** run both NVUE configuration commands (such as `nv set`, `nv unset`, `nv action`, and `nv config`) and Linux commands to configure the switch. NVUE commands replace the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, and remove any configuration you add manually or with automation tools like Ansible, Chef, or Puppet.
 
-If you choose to configure Cumulus Linux with NVUE, you can configure features that do not yet support the NVUE Object Model by creating snippets. See {{<link url="NVUE-Snippets" text="NVUE Snippets">}}.
+If you choose to configure Cumulus Linux with NVUE, you can configure features that do not yet support the NVUE object model by creating snippets. See {{<link url="NVUE-Snippets" text="NVUE Snippets">}}.
 {{%/notice%}}
 
 ## Command Syntax

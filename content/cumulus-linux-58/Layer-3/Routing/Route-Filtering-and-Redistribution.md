@@ -340,13 +340,13 @@ You can configure the permit action exit policy for a route map to:
 
 To configure the permit action exit policy:
 
-{{< tabs "TabID3 ">}}
+{{< tabs "TabID343 ">}}
 {{< tab "NVUE Commands ">}}
 
 The following command configures the permit action exit policy to exit further rule processing:
 
 ```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy 30
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy exit 30
 cumulus@switch:~$ nv config apply
 ```
 

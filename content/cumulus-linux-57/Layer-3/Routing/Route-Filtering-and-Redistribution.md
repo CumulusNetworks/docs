@@ -346,7 +346,7 @@ To configure the permit action exit policy:
 The following command configures the permit action exit policy to exit further rule processing:
 
 ```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy 30
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy exit 30
 cumulus@switch:~$ nv config apply
 ```
 

@@ -277,7 +277,7 @@ You can use the following list of supported match and set statements with NVUE c
 | `ip-prefix-len`| Matches the specified prefix length.  |
 | `origin`| Matches the specified BGP origin. You can specify `egp`, `igp`, or `incomplete`. |
 | `type`| Matches the specified route type, such as IPv4 or IPv6.|
-| `community-list`| Matchest the specified community list. |
+| `community-list`| Matches the specified community list. |
 | `ip-nexthop` | Matches the specified next hop. |
 | `ip-prefix-list`| Matches the specified prefix list.  |
 | `peer` | Matches the specified BGP neighbor. |
@@ -320,13 +320,103 @@ The `source-protocol` match statement is only supported in {{<link url="FRRoutin
 | `weight`  | Sets the route’s weight.|
 | `community` | Sets the BGP community attribute.|
 | `ipv6-nexthop-global`  | Sets the IPv6 next hop global attribute.|
-| `metric` |  Sets the BGP attribute MED to a specific value. You can specify `metric-minus` to subtract the specified value from the MED,  `metric-plus` to add the specified value to the MED, `rtt` to set the MED to the round trip time, `rtt-minus` to subtract the round trip time from the MED, or `rtt-plus` to add the round trip time to the MED.|
+| `metric` |  Sets the BGP attribute MED to a specific value. You can specify `metric-minus` to subtract the specified value from the MED, 34`metric-plus` to add the specified value to the MED, `rtt` to set the MED to the round trip time, `rtt-minus` to subtract the round trip time from the MED, or `rtt-plus` to add the round trip time to the MED.|
 | `community-delete-list`  | Sets the BGP community delete list. |
 | `ipv6-nexthop-local`  |Sets the IPv6 next hop local attribute. |
 | `metric-type` | Sets the metric type. You can specify `type-1` or `type-2`. |
 | `ext-community-bw` | Sets the BGP extended community link bandwidth. |
 | `ipv6-nexthop-prefer-global` | Sets IPv6 inbound routes to use the global address when both a global and link-local next hop is available.|
 | `origin` | Sets the BGP route origin, such as eBGP or iBGP.|
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Permit Action Exit Policies
+
+You can configure the permit action exit policy for a route map to:
+- Exit further rule processing.
+- Go to the next rule when the matching conditions are met.
+- Go to specific rule when the matching conditions are met.
+
+To configure the permit action exit policy:
+
+{{< tabs "TabID343 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following command configures the permit action exit policy to exit further rule processing:
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy exit 30
+cumulus@switch:~$ nv config apply
+```
+
+The following command configures the permit action exit policy to go to the next rule when the matching conditions are met:
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy next-rule
+cumulus@switch:~$ nv config apply
+```
+
+The following command configures the permit action exit policy to go to rule 20 when the matching conditions are met:
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy rule 20
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+The following command configures the permit action exit policy to exit further rule processing:
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# route-map routemap1 permit 10
+switch(config-route-map)# continue 30
+switch(config-route-map)# end
+switch# write memory
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+switch# exit
+cumulus@switch:mgmt:~$ 
+```
+
+The following command configures the permit action exit policy to go to the next rule when the matching conditions are met:
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# route-map routemap1 permit 10
+switch(config-route-map)# on-match next
+switch(config-route-map)# end
+switch# write memory
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+switch# exit
+cumulus@switch:mgmt:~$ 
+```
+
+The following command configures the permit action exit policy to go to rule 20 when the matching conditions are met:
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# route-map routemap1 permit 10
+switch(config-route-map)# on-match goto 20
+switch(config-route-map)# end
+switch# write memory
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+switch# exit
+cumulus@switch:mgmt:~$ 
+```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -355,7 +445,7 @@ switch(config)# router bgp 65101
 switch(config-router)# address-family ipv4 unicast 
 switch(config-router-af)# neighbor swp51 route-map routemap2 in
 switch(config-router-af)# end
-switch# wr mem
+switch# write memory
 Note: this version of vtysh never writes vtysh.conf
 Building Configuration...
 Integrated configuration saved to /etc/frr/frr.conf

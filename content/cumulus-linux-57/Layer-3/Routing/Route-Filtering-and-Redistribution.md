@@ -331,6 +331,96 @@ The `source-protocol` match statement is only supported in {{<link url="FRRoutin
 {{< /tab >}}
 {{< /tabs >}}
 
+### Permit Action Exit Policies
+
+You can configure the permit action exit policy for a route map to:
+- Exit further rule processing.
+- Go to the next rule when the matching conditions are met.
+- Go to specific rule when the matching conditions are met.
+
+To configure the permit action exit policy:
+
+{{< tabs "TabID3 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following command configures the permit action exit policy to exit further rule processing:
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy 30
+cumulus@switch:~$ nv config apply
+```
+
+The following command configures the permit action exit policy to go to the next rule when the matching conditions are met:
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy next-rule
+cumulus@switch:~$ nv config apply
+```
+
+The following command configures the permit action exit policy to go to rule 20 when the matching conditions are met:
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy rule 20
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+The following command configures the permit action exit policy to exit further rule processing:
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# route-map routemap1 permit 10
+switch(config-route-map)# continue 30
+switch(config-route-map)# end
+switch# write memory
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+switch# exit
+cumulus@switch:mgmt:~$ 
+```
+
+The following command configures the permit action exit policy to go to the next rule when the matching conditions are met:
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# route-map routemap1 permit 10
+switch(config-route-map)# on-match next
+switch(config-route-map)# end
+switch# write memory
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+switch# exit
+cumulus@switch:mgmt:~$ 
+```
+
+The following command configures the permit action exit policy to go to rule 20 when the matching conditions are met:
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# route-map routemap1 permit 10
+switch(config-route-map)# on-match goto 20
+switch(config-route-map)# end
+switch# write memory
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+switch# exit
+cumulus@switch:mgmt:~$ 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Apply a Route Map
 
 To apply the route map, you specify the routing protocol and the route map name.

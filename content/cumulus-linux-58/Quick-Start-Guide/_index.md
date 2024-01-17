@@ -9,13 +9,13 @@ This quick start guide provides an end-to-end setup process for installing and r
 
 ## Prerequisites
 
-This guide assumes you have intermediate-level Linux knowledge. You need to be familiar with basic text editing, Unix file permissions, and process monitoring. A variety of text editors are pre-installed, including `vi` and `nano`.
+This guide assumes you have intermediate-level Linux knowledge. You need to be familiar with basic text editing, Unix file permissions, and process monitoring. Cumulus Linux includes a variety of preinstalled text editors, such as `vi` and `nano`.
 
 You must have access to a Linux or UNIX shell. If you are running Windows, use a Linux environment like {{<exlink url="http://www.cygwin.com/" text="Cygwin">}} as your command line tool for interacting with Cumulus Linux.
 
 ## Get Started
 
-Cumulus Linux is on the switch by default. To upgrade to a different Cumulus Linux release or re-install Cumulus Linux, refer to {{<link url="Installation-Management" text="Installation Management">}}. To show the current Cumulus Linux release on the switch, run the NVUE `nv show system` command.
+Cumulus Linux is on the switch by default. To upgrade to a different Cumulus Linux release or reinstall Cumulus Linux, refer to {{<link url="Installation-Management" text="Installation Management">}}. To show the current Cumulus Linux release on the switch, run the NVUE `nv show system` command.
 
 When starting Cumulus Linux for the first time, the management port makes a DHCPv4 request. To determine the IP address of the switch, you can cross reference the MAC address of the switch with your DHCP server. The MAC address is typically located on the side of the switch or on the <!-- vale off -->box<!-- vale on --> in which the unit ships.
 
@@ -26,16 +26,14 @@ To get started:
 {{%notice warning%}}
 You can choose to configure Cumulus Linux either with NVUE commands **or** Linux commands (with vtysh or by manually editing configuration files). Do **not** run both NVUE configuration commands (such as `nv set`, `nv unset`, `nv action`, `nv config`) and Linux commands to configure the switch. NVUE commands replace the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, and remove any configuration you add manually or with automation tools like Ansible, Chef, or Puppet.
 
-If you choose to configure Cumulus Linux with NVUE, you can configure features that do not yet support the NVUE Object Model by creating {{<link url="NVUE-Snippets" text="NVUE Snippets">}}.
+If you choose to configure Cumulus Linux with NVUE, you can configure features that do not yet support the NVUE object model by creating {{<link url="NVUE-Snippets" text="NVUE Snippets">}}.
 {{%/notice%}}
 
 ### Login Credentials
 
 The default installation includes two accounts:
-- The system account (root) has full system privileges. Cumulus Linux locks the root account password by default (which prohibits login).
-- The user account (cumulus) has `sudo` privileges. The cumulus account uses the default password `cumulus`.
-
-   When you log in for the first time with the cumulus account, Cumulus Linux prompts you to change the default password. After you provide a new password, the SSH session disconnects and you have to reconnect with the new password.
+- The system account (root) has full system privileges. Cumulus Linux locks the root account password, which prohibits login.
+- The user account (cumulus) has `sudo` privileges. The cumulus account uses the default password `cumulus`. When you log in for the first time with the cumulus account, Cumulus Linux prompts you to change the default password. After you provide a new password, the SSH session disconnects and you have to reconnect with the new password.
 
 {{%notice note%}}
 ONIE includes options that allow you to change the default password for the *cumulus* account automatically when you install a new Cumulus Linux image. Refer to {{<link url="Installing-a-New-Cumulus-Linux-Image#onie-installation-options" text="ONIE Installation Options" >}}. You can also  {{<link url="Zero-Touch-Provisioning-ZTP/#set-the-default-cumulus-user-password" text="change the default password using a ZTP script">}}.
@@ -57,7 +55,7 @@ Typically, switches ship from the manufacturer with a mating DB9 serial cable. S
 
 A Cumulus Linux switch always provides at least one dedicated Ethernet management port called eth0. This interface is specifically for out-of-band management use. The management interface uses DHCPv4 for addressing by default.
 
-To set a static IP address:
+To set a static IP address and gateway address for eth0:
 
 {{< tabs "TabID86 ">}}
 {{< tab "NVUE Commands ">}}
@@ -161,20 +159,54 @@ Programs that are already running (including log files) and logged in users, do 
 
 ### Verify the System Time
 
-Verify that the date and time on the switch are correct with the Linux `date` command:
+Verify that the date and time on the switch are correct. If the date and time are incorrect, the switch does not synchronize with automation tools, such as Puppet, and returns errors after you restart `switchd`.
+
+{{< tabs "TabID166 ">}}
+{{< tab "NVUE Commands ">}}
+
+To show the current date and time, run the `nv show system date-time` command:
+
+```
+cumulus@switch:~$ nv show system date-time
+                           operational                  
+-------------------------  -----------------------------
+local-time                 Wed 2023-11-22 11:22:54 EST  
+universal-time             Wed 2023-11-22 16:22:54 UTC  
+rtc-time                   Wed 2023-11-22 16:22:54      
+time-zone                  America/New_York (EST, -0500)
+system-clock-synchronized  no                           
+ntp-service                inactive                     
+rtc-in-local-tz            no                           
+unix-time                  1700670174.4371066
+```
+
+To set the software clock according to the configured time zone, run the `nv action change system date-time <YYYY-MM-DD> <HH:MM:SS>` command; for example:
+
+```
+cumulus@switch:~$ nv action change system date-time 2023-12-04 2:33:30
+System Date-time changed successfully
+Local Time is now Mon 2023-12-04 02:33:30 UTC
+Action succeeded
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+To show the current date and time on the switch, run the `date` command:
 
 ```
 cumulus@switch:~$ date
-Mon 21 Nov 2022 06:30:37 PM UTC
+Wed 11 Oct 2023 12:18:33 PM UTC
 ```
 
-If the date and time are incorrect, the switch does not synchronize with automation tools, such as Puppet, and returns errors after you restart `switchd`.
-
-To set the software clock according to the configured time zone, run the Linux `sudo date -s` command; for example:
+To set the software clock according to the configured time zone, run the `sudo date -s` command:
 
 ```
 cumulus@switch:~$ sudo date -s "Tue Jan 26 00:37:13 2021"
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 For more information about setting the system time, see {{<link url="Setting-the-Date-and-Time" text="Setting the Date and Time">}}.
 
@@ -194,7 +226,7 @@ By default, Cumulus Linux disables all data plane ports (every Ethernet port exc
 {{< tabs "TabID260 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable a port administratively:
+To enable a port administratively, run the `nv set interface <interface>` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1

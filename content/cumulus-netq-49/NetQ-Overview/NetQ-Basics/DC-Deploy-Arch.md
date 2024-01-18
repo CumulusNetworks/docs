@@ -54,10 +54,13 @@ While not recommended, you can implement NetQ within your data network. In this 
 {{<img src="/images/netq/deploy-arch-ib-example-230.png" alt="diagram of an in-band management deployment." ewidth="700">}}
 ## Server Cluster Deployments
 
-NetQ supports a server cluster deployment for users who prefer a solution with increased scalability in which the collected data by the NetQ Platform remains available through additional servers if one should fail for any reason. In this configuration, three NetQ Platforms are deployed, with one as the master and two as workers (or replicas). NetQ Agents send data to all three servers so that if the master NetQ Platform fails, one of the replicas automatically becomes the master and continues to store the telemetry data. The following example is based on an OOB-management configuration, and modified to support higher scalability for NetQ.
+NetQ supports a server cluster deployment for users who prefer a solution with increased scalability and availability; the data collected by NetQ remains available through additional servers should one fail. In this configuration, three NetQ servers are deployed---one master and two workers (or replicas). NetQ Agents send data to all three servers so that if the master server fails, one of the replicas automatically becomes the master and continues to store the telemetry data. On-premises cluster deployments support high availability through a virtual IP address that is allocated in the same subnet as the master and worker nodes. This allows for UI access in the case of a master node failure. 
+
+The following example is based on an OOB-management configuration, and modified to support higher scalability for NetQ.
 
 {{<img src="/images/netq/deploy-arch-ha-example-240.png" alt="diagram of a server cluster deployment with one master and two worker NetQ platforms." ewidth="700">}}
 
+<!-- removed for 4.9
 ### High Availability
 
 You can configure a server cluster with a high-availability, virtual IP address for load balancing control plane processing and UI access across all nodes of a cluster deployment. This deployment model requires an additional IP address that is allocated in the same subnet as the master and worker nodes. The virtual IP address also enables UI access in the case of a master node failure. The virtual IP address must be specified during a new {{<link title="Install the NetQ System" text="high-availability server cluster installation">}} with the `cluster-vip` option specified in the {{<link url="install/#netq-install-cluster-full" text="install command">}}.
@@ -65,3 +68,4 @@ You can configure a server cluster with a high-availability, virtual IP address 
 High availability is only supported for on-premises deployments.
 
 
+-->

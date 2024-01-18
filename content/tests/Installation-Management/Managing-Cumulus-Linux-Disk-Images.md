@@ -70,7 +70,7 @@ cumulus@switch:~$ sudo onie-install -i http://203.0.113.10/image-installer -z ht
 
 To see more `onie-install` options, run `man onie-install`.
 
-## Uninstall All Images and Remove the Configuration
+## Migrate from Cumulus Linux to ONIE (Uninstall All Images and Remove the Configuration)
 
 To remove all installed images and configurations and return the switch to its factory defaults, run the `onie-select -k` command.
 

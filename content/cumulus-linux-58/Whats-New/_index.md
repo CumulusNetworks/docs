@@ -26,9 +26,23 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 - {{<link url="802.1X-Interfaces/#host-modes" text="802.1X multi host mode">}}
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
 - NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-an-svi-perpetually-up" text="keep SVIs always UP">}}
-- Improved FRR (vtysh command) tab completion
 - Improved cl-support script to prevent switch disruption
 - Minimized data retrieval for the NVUE `nv show router nexthop rib` and `nv show vrf <vrf> router rib ipv4 route` commands
+- {{< expand "Improved tab completion for NVUE routing commands" >}}
+  ```
+  nv show vrf <vrf> router bgp nexthop ipv4 ip-address
+  nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd <rd> route-type <type> route
+  nv show evpn vni <vni>
+  nv show evpn access-vlan-info vlan
+  nv show evpn vni <vni> multihoming bgp-info esi
+  nv show vrf <vrf> router rib ipv4 route
+  nv show vrf <vrf> router rib ipv6 route
+  nv show vrf <vrf> router rib ipv4 route <route> protocol connected entry-index
+  nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd <rd> route-type macip route
+  nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd <rd> route-type prefix route <route> path
+  nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes <routes> path
+  ```
+  {{< /expand >}}
 <!--
 {{< expand "Changed Commands" >}}
 

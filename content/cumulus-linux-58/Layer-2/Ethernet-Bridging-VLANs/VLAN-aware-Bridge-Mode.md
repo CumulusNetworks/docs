@@ -493,7 +493,7 @@ cumulus@switch:~$ nv config apply
 To configure a specific SVI to be perpetually UP, run the `nv set interface <interface-name> link state forced-up` command:
 
 ```
-cumulus@switch:~$ nv set interface vlan10 link state forced-up
+cumulus@switch:~$ nv set interface swp3 link state forced-up
 cumulus@switch:~$ nv config apply
 ```
 

@@ -32,9 +32,9 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | check_filter_id | \<text-check-filter-id\> | Identifier for filter |
-| check_name | \<text-check-name-anchor\> | Name of validation test |
-| test_name | \<text-test-name-anchor\> |  |
-| scope | \<text-check-scope-anchor\> |  |
+| check_name | \<text-check-name-anchor\> | Name of validation check |
+| test_name | \<text-test-name-anchor\> | Name of validation test |
+| scope | \<text-check-scope-anchor\> | Name of scope |
 | scope-append | \<text-check-scope-anchor\> | Appends defined scope to existing configuration |
 | is_active | true, false | Enables or disables configuration |
 | suppress_until | \<text-suppress-until\> | Amount of time, in seconds, to suppress the specified events |
@@ -51,7 +51,7 @@ Successfully added/updated Check Filter
 - netq del check-filter
 - netq show check-filter
  - - -
- -->
+
 ## netq add events-config
 
 Suppresses system events, excluding them from event displays. You can suppress events for:

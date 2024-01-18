@@ -19,12 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3706151</td>
-<td>The Lenovo MSN4600-VS2RC (PN SSG7B27990 Back-to-Front/C2P Airflow) might run the fan tray fans at a high speed because the software believes the PSU fans are running in the wrong direction.</td>
-<td>5.5.1-5.7.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3702431</td>
 <td>Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE {{nv set service snmp-server enable on}}  and  {{nv set service snmp-server listening-address &lt;address&gt;}} commands or the equivalent API commands.</td>
 <td>5.4.0-5.7.0</td>

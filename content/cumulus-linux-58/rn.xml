@@ -19,6 +19,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3689195</td>
+<td>When you enable 802.1X auth-fail VLAN on an interface, {{hostapd}} doesn't activate auth-fail VLAN unless an explicit {{Access-Reject}} response is received.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3685007</td>
 <td>Cumulus Linux does not support 802.1X dynamic VLANs on PEAP with MS Windows-based supplicants.</td>
 <td>5.7.0-5.8.0</td>
@@ -325,6 +331,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>3614286</td>
 <td>To avoid unnecessary traffic loss, {{ifreload}} (ifupdown2) only flaps a bond to reset its MAC address when the bond MAC address is not present on any of the bond's interfaces. Previously, ifupdown2 enforced the bond MAC address to be set to the MAC address of the first interface. </td>
 <td>5.6.0-5.7.0</td>
+</tr>
+<tr>
+<td>3334275</td>
+<td>When you run the {{sensors}} command, the output shows an erroneous fault on some front panel ports.</td>
+<td>5.2.0-5.7.0</td>
 </tr>
 </table>
 </tables>

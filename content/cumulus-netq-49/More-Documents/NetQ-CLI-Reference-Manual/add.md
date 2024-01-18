@@ -8,7 +8,6 @@ pdfhidden: true
 type: nojsscroll
 ---
 
-<!--
 ## netq add check-filter
 
 You can add filters to `netq check` commands to suppress validation failures based on hostnames, failure reason, and other parameters. Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for step-by-step instructions. 
@@ -605,7 +604,7 @@ Creates a validation for various protocols and services to run on a regular inte
 ```
 netq add validation
     name <text-new-validation-name>
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr)
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan)
     interval <text-time-min>
     [alert-on-failure]
 ```
@@ -615,7 +614,7 @@ netq add validation
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | name | user defined | Unique name for the validation |
-| type | addr, agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan | Protocol or service to validate |
+| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan | Protocol or service to validate |
 | interval | \<text-time-min\> | Frequency to run the validation, in minutes. Value must include time unit of *m*, minutes. Default scheduled validations per type run every 60 minutes. |
 
 ### Options
@@ -649,7 +648,7 @@ Creates an on-demand validation for various protocols and services, with results
 
 ```
 netq add validation
-    type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr)
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan)
     [alert-on-failure]
 ```
 
@@ -657,7 +656,7 @@ netq add validation
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | addr, agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan | Protocol or service to validate |
+| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan | Protocol or service to validate |
 
 ### Options
 

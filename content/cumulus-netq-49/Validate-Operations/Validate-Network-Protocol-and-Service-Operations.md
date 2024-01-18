@@ -50,7 +50,7 @@ To create and run a request containing checks on one or more protocols or servic
 To create a request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr) [alert-on-failure]
+netq add validation type (ntp | interfaces | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr) [alert-on-failure]
 ```
 The associated Validation Result card is accessible from the full-screen Validate Network card.
 
@@ -99,7 +99,7 @@ You can create and schedule up to 15 custom validation checks. The hourly, defau
 To create a scheduled request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation name <text-new-validation-name> type (addr | agents | bgp | evpn | interfaces | license | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan) interval <text-time-min> [alert-on-failure]
+netq add validation name <text-new-validation-name> type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan) interval <text-time-min> [alert-on-failure]
 ```
 
 The following example creates a BGP validation that runs every 15 minutes:
@@ -220,11 +220,15 @@ You can remove a user-defined scheduled validation using the NetQ UI or the NetQ
 
 {{<tab "NetQ CLI">}}
 
-1. Determine the name of the scheduled validation you want to remove:
+1. Determine the name of the scheduled validation you want to remove with the following command:
 
-    ```
-    netq show validation summary [name <text-validation-name>] type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr) [around <text-time-hr>] [json]
-    ```
+```
+netq show validation summary
+    [name <text-validation-name>]
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan)
+    [around <text-time-hr>]
+    [json]
+```
 
     This example shows all scheduled validations for BGP.
 

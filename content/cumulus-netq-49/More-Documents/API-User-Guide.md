@@ -68,7 +68,7 @@ You must first obtain an access key and then use that key to authorize your acce
 
     {{<figure src="/images/netq/api-swagger-login-tryitout-320.png" width="700">}}
 
-3. Enter the username and password you used to install NetQ. For this release, the default is username *admin* and password *admin*. Do not change the `access-key` value.
+3. Enter the username and password you use to log in to the NetQ UI. Do not change the `access-key` value.
 
     {{<figure src="/images/netq/api-swagger-login-execute-320.png" width="700">}}
 

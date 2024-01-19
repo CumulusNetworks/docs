@@ -1083,7 +1083,7 @@ None
 | ---- | ---- | ---- |
 | events_config_id | \<text-events-config-id-anchor\> | Only display results for the switch or host with this name |
 | show-filter-conditions | NA | Only display results for sessions using the VNI with this name |
-| message_type | \<text-message-type-anchor\> | Only display results for configurations with this type. Values include <!-- vale off -->*agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*.<!-- vale on --> |
+| message_type | \<text-message-type-anchor\> | Only display results for configurations with this type. Values include <!-- vale off -->*agent*, *ar*, *bgp*, *btrfsinfo*, *clsupport*, *configdiff*, *evpn*, *lcm*, *link*, *lldp*, *mlag*, *mtu*, *ntp*, *ospf*, *packageinfo*, *ptm*, *ptp*, *roceconfig*, *runningconfigdiff*, *sensor*, *services*, and *ssdutil*<!-- vale on --> |
 | json | NA | Display the output in JSON format |
 ### Sample Usage
 

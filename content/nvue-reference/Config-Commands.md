@@ -18,7 +18,7 @@ You can specify the following options with the `nv config apply` command:
 
 - `--y` or `--assume-yes` automatically replies yes to all prompts.
 - `--assume-no` automatically replies no to all prompts.
-- `--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
+- `--confirm` applies the configuration change, but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the `apply --confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
 - `--confirm-status` shows the amount of time left before the automatic rollback.
 
 ### Version History
@@ -39,7 +39,7 @@ Applies a specific configuration revision. This command does not save the config
 
 - `--y` or `--assume-yes` automatically replies yes to all prompts.
 - `--assume-no` automatically replies no to all prompts.
-- `--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
+- `--confirm` applies the configuration change, but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the `apply --confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
 - `--confirm-status` shows the amount of time left before the automatic rollback.
 
 ### Command Syntax
@@ -242,4 +242,45 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv config show
+ header:
+    model: VX
+    nvue-api-version: nvue_v1
+    rev-id: 1.0
+    version: Cumulus Linux 5.7.0
+- set:
+    bridge:
+      domain:
+        br_default:
+          vlan:
+            '10':
+              vni:
+                '10': {}
+            '20':
+              vni:
+                '20': {}
+            '30':
+              vni:
+                '30': {}
+    evpn:
+      enable: on
+    interface:
+      bond1:
+        bond:
+          member:
+            swp1: {}
+          mlag:
+            id: 1
+        bridge:
+          domain:
+            br_default:
+              access: 10
+      bond1-3:
+        bond:
+          lacp-bypass: on
+          mlag:
+            enable: on
+        link:
+          mtu: 9000
+        type: bond
+...
 ```

@@ -702,7 +702,7 @@ Action succeeded
 
 ## <h>nv action clear service ptp \<instance-id\> monitor violations log min-offset</h>
 
-Clears PTP monitor violation log minumum offset value.
+Clears the PTP monitor violation log minumum offset value.
 
 ### Command Syntax
 
@@ -725,7 +725,7 @@ Action succeeded
 
 ## <h>nv action clear service ptp \<instance-id\> monitor violations log path-delay</h>
 
-Clears the PTP  monitor violation log path delay value.
+Clears the PTP monitor violation log path delay value.
 
 ### Command Syntax
 

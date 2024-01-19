@@ -2315,7 +2315,7 @@ IP Address                Hostname          Interface                 MAC Addres
 169.254.0.1               spine03           swp5                      44:38:39:00:00:26  default         no     Thu Dec  3 22:31:27 2020
 ...
 ```
-The following example shows all IPv4 neighbors using the RED VRF. Note that the VRF name is case sensitive.
+The following example shows all IPv4 neighbors using the RED VRF. Note that the VRF name is case-sensitive.
 
 ```
 cumulus@switch:~$ netq show ip neighbors vrf RED
@@ -2332,7 +2332,7 @@ IP Address                Hostname          Interface                 MAC Addres
 10.1.20.3                 leaf01            vlan20                    44:38:39:00:00:37  RED             no     Mon Oct 19 22:28:22 2020
 ```
 
-Display all IPv6 addresses on the *leaf03* switch:
+Display all IPv6 addresses on the leaf03 switch:
 
 ```
 cumulus@switch:~$ netq leaf03 show ipv6 neighbors
@@ -2501,7 +2501,7 @@ no                     0.0.0.0/0                      leaf02            Blackhol
 ...
 ```
 
-Display all IPv6 routes on the *leaf03* switch:
+Display all IPv6 routes on the leaf03 switch:
 
 ```
 cumulus@switch:~$ netq leaf03 show ipv6 routes
@@ -2536,45 +2536,6 @@ Count of matching routes records: 3
 
 - `netq show ip/ipv6 addresses`
 - `netq show ip/ipv6 neighbors`
-
-- - -
-
-<!-- vale off -->
-## netq show job-status
-<!-- vale on -->
-
-Displays the status of installation and upgrade jobs running on your NetQ appliance or VM.
-
-### Syntax
-
-```
-netq show job-status <text-opta-ip>
-    [json]
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<text-opta-ip\> | Display the status of jobs running on the appliance or VM with this IP address |
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| json | NA | Display the output in JSON format |
-
-### Sample Usage
-
-Show job status:
-
-```
-cumulus@switch:~$ netq show job-status 192.168.200.250
-```
-
-### Related Commands
-
-- ```netq show status```
 
 - - -
 

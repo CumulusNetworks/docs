@@ -5,7 +5,7 @@ weight: 680
 toc: 4
 ---
 
- Lifecycle management (LCM) lets you upgrade Cumulus Linux on one or more switches in your network via the NetQ UI or the CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time.
+ Lifecycle management (LCM) lets you upgrade Cumulus Linux on one or more switches in your network with the NetQ UI or the CLI. You do this by scheduling 'upgrade jobs' which upgrade Cumulus Linux on your switches. Each job can upgrade CL on up to 50 switches. NetQ upgrades the switches 5 at a time until all switches in the upgrade job are upgraded. You can schedule up to 5 upgrade jobs to run simultaneously.
 
 You can upgrade Cumulus Linux from:
 - Cumulus Linux 4.3.0 and 4.3.1 (Broadcom switches)
@@ -18,7 +18,7 @@ When you upgrade a switch that has not been configured using NVUE, LCM backs up 
 {{</notice>}}
 
 {{<notice note>}}
-During the Cumulus Linux upgrade process, NetQ does not upgrade or reinstall packages that are not part of the Cumulus Linux image. For example, if you installed TACACS packages on a switch, you must reinstall these packages after the upgrade is complete.
+During the Cumulus Linux upgrade process, NetQ does not upgrade or reinstall packages that are not part of the Cumulus Linux image. For example, if you installed TACACS or node_exporter packages on a switch, you must reinstall these packages after the upgrade is complete.
 {{</notice>}}
 ## Prepare for a Cumulus Linux Upgrade
 

@@ -106,7 +106,7 @@ cumulus@switch:~$ nv set vrf default router static 10.10.10.101/32 distance 2 vi
 
 ## <h>nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> tag</h>
 
-Configures the destination path distance and tag for a specific static route in the specified VRF. The tag provides additional information about the static route, such as the community tag or a route metric, and is included with the route in the routing table. The tag can be a value between 1 and 4294967295, or `none`.
+Configures the destination path distance and tag for a specific static route in the specified VRF. The tag provides additional information about the static route, such as the community tag or a route metric and is with the route in the routing table. The tag can be a value between 1 and 4294967295, or `none`.
 
 ### Command Syntax
 

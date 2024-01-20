@@ -154,7 +154,7 @@ cumulus@switch:~$ nv show interface swp1 ip neighbor-discovery prefix
 
 ## <h>nv show interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\></h>
 
-Shows ND prefix configuration for the specified interface, such as the amount of time the prefix is valid for on-link determination, the amount of time that addresses generated from a prefix remain preferred, and if the specified prefix is configured to use IPv6 autoconfiguration.
+Shows ND prefix configuration for the specified interface, such as the amount of time the prefix is valid for on-link determination, the amount of time that addresses generated from a prefix remain preferred, and if the specified prefix uses the IPv6 autoconfiguration setting.
 
 ### Command Syntax
 

@@ -102,7 +102,7 @@ cumulus@switch:~$ nv set evpn dad move-window 1200
 
 ## <h>nv set evpn enable</h>
 
-Enables and disables the EVPN control plane. When enabled, the EVPN service offered is a VLAN-based service and an EVI is created automatically for each extended VLAN. The default setting is `off`.
+Enables and disables the EVPN control plane. When enabled, the EVPN service offered is a VLAN-based service and Cumulus Linux creates an EVI automatically for each extended VLAN. The default setting is `off`.
 
 ### Version History
 
@@ -300,7 +300,7 @@ Configures EVPN route advertising.
 
 ## <h>nv set evpn route-advertise default-gateway</h>
 
-Configures the gateway VTEPs to advertise their IP and MAC address. Only turn this setting on in a centralized routing deployment and only on the centralized gateway router. When set to `on`, the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The remote layer 2 only VTEPs use ARP suppression and the hosts learn of the gateway's IP to MAC binding. The default setting is `off`.
+Configures the gateway VTEPs to advertise their IP and MAC address. Only turn this setting on in a centralized routing deployment and only on the centralized gateway router. When set to `on`, the IP addresses of SVIs in all EVIs announce as type-2 routes with the gateway extended community. The remote layer 2 only VTEPs use ARP suppression and the hosts learn of the gateway's IP to MAC binding. The default setting is `off`.
 
 ### Version History
 
@@ -348,7 +348,7 @@ cumulus@switch:~$ nv set evpn route-advertise svi-ip on
 
 ## <h>nv set evpn vni</h>
 
-Enables the EVPN control plane so that the EVPN service offered is VLAN-based and an EVI is created automatically for each extended VLAN.
+Enables the EVPN control plane so that the EVPN service offered is VLAN-based and Cumulus Linux creates an EVI automatically for each extended VLAN.
 
 {{%notice note%}}
 In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi,`

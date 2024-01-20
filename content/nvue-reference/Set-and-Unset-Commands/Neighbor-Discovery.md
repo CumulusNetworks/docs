@@ -675,7 +675,7 @@ cumulus@switch:~$ nv set interface swp1 ip neighbor-discovery router-advertiseme
 
 ## <h>nv set system global nd base-reachable-time</h>
 
-Configures how long a neighbor cache entry is valid. The entry is considered valid for at least the value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483 seconds. The default value is auto; NVUE derives the value for auto from the `/etc/sysctl.d/neigh.conf` file.
+Configures how long a neighbor cache entry is valid. The entry is valid for at least the value between the base reachable time divided by two and three times the base reachable time divided by two. You can specify a value between 30 and 2147483 seconds. The default value is auto; NVUE derives the value for auto from the `/etc/sysctl.d/neigh.conf` file.
 
 ### Version History
 

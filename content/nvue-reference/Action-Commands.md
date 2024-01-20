@@ -51,6 +51,8 @@ Configures the Cumulus Linux software clock. The switch contains a battery backe
 
 During boot up, the switch copies the time from the hardware clock to the operating system software clock. The software clock takes care of all the timekeeping. During system shutdown, the switch copies the software clock back to the battery backed hardware clock.
 
+The date format is YYYY-MM-DD. The time format is HH:MM:SS.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -126,7 +128,7 @@ Action succeeded
 
 ## <h>nv action clear evpn vni \<vni-id\> host \<host-id\></h>
 
-Clears the duplicate host address for the specified VNI
+Clears the duplicate host address for the specified VNI.
 
 ### Command Syntax
 
@@ -152,6 +154,13 @@ Action succeeded
 
 Clears the duplicate MAC address for the specified VNI.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI ID.|
+| `<mac-address>` | The MAC address you want to clear. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.6.0
@@ -167,7 +176,7 @@ Action succeeded
 
 ## <h>nv action clear interface counters</h>
 
-Clears all interface-specific counters from all interfaces. Interface counters provide information about an interface, such as the number of packets intentionally or intentionally dropped, the number of inbound and outbound packets discarded even though the switch detected no errors, the number of inbound and outbound packets not transmitted because of errors, and so on.
+Clears all interface-specific counters from all interfaces. Interface counters provide information about an interface, such as the number of packets intentionally or intentionally dropped, the number of inbound and outbound packets discarded (even if the switch detected no errors), the number of inbound and outbound packets not transmitted because of errors, and so on.
 
 This command does not clear counters in the kernel or hardware.
 
@@ -193,7 +202,7 @@ Clears the MLAG LACP conflict on the specified interface bond. A conflict can be
 
 | Syntax   |  Description  |
 | ----------    | ------------  |
-| `<interface>` | The interface that has an LACP conflict. |
+| `<interface-id>` | The interface that has an LACP conflict. |
 
 ### Version History
 
@@ -241,7 +250,7 @@ Clears the BPDU guard violation from the specified interface and recovers the in
 
 | Syntax   |  Description  |
 | ----------    | ------------  |
-| `<interface-id>` | The interface on which you want to clear PTP counters. |
+| `<interface-id>` | The interface on which you want to clear the BPDU guard violation. |
 
 ### Version History
 
@@ -286,7 +295,7 @@ Clears the protodown state of the interface and brings the interface back up.
 
 | Syntax   |  Description  |
 | ----------    | ------------  |
-| `<interface-id>` | The interface on which you want to clear the QoS buffer. |
+| `<interface-id>` | The interface on which you want to clear the protodown state. |
 
 ### Version History
 
@@ -327,7 +336,7 @@ Action succeeded
 
 ## <h>nv action clear interface \<interface-id\> qos pfc-watchdog deadlock-count</h>
 
-Clears the QoS PFC watchdog deadlock count on the specified interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+Clears the QoS PFC watchdog deadlock count on the specified interface. PFC watchdog detects and mitigates pause storms on ports where you enable PFC or link pause.
 
 ### Command Syntax
 
@@ -670,7 +679,7 @@ Action succeeded
 
 ## <h>nv action clear service ptp \<instance-id\> monitor violations log max-offset</h>
 
-Clears PTP monitor violation log maximum offset value.
+Clears the PTP monitor violation log maximum offset value.
 
 ### Command Syntax
 
@@ -693,7 +702,7 @@ Action succeeded
 
 ## <h>nv action clear service ptp \<instance-id\> monitor violations log min-offset</h>
 
-Clears PTP monitor violation log minumum offset value.
+Clears the PTP monitor violation log minumum offset value.
 
 ### Command Syntax
 
@@ -716,7 +725,7 @@ Action succeeded
 
 ## <h>nv action clear service ptp \<instance-id\> monitor violations log path-delay</h>
 
-Clears the PTP  monitor violation log path delay value.
+Clears the PTP monitor violation log path delay value.
 
 ### Command Syntax
 

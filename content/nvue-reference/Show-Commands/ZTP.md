@@ -12,7 +12,7 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show system ztp</h>
 
-Shows information about <span class="a-tooltip">[ZTP](## "Zero Touch Provisioning")</span> scripts on the switch, such as location and version, the date the script was run, and if it was a success.
+Shows information about <span class="a-tooltip">[ZTP](## "Zero Touch Provisioning")</span> scripts on the switch, such as location and version, the date the script ran, and if it was a success.
 
 ### Version History
 

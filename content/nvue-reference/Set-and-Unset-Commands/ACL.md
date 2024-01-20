@@ -985,7 +985,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 remark "The following line permits
 
 Configures the ACL rule type. You can specify `ipv4`, `ipv6` or `mac`.
 
-This command is required when configuring other ACL settings.
+You must run this command when configuring other ACL settings.
 
 ### Command Syntax
 

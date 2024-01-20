@@ -114,7 +114,7 @@ cumulus@switch:~$ nv set platform pulse-per-second in state enabled
 
 ## <h>nv set platform pulse-per-second in timestamp-correction</h>
 
-Sets the value, in nanoseconds, to add to each PPS time stamp. You can set a value between -1000000000 and 1000000000. The default value is 0.
+Sets the value, in nanoseconds, to add to each PPS timestamp. You can set a value between -1000000000 and 1000000000. The default value is 0.
 
 ### Version History
 

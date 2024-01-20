@@ -607,7 +607,7 @@ cumulus@switch:~$ nv set service telemetry histogram ingress-buffer sample-inter
 
 ## <h>nv set service telemetry snapshot-file count</h>
 
-Configures the number of snapshots you can create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is histogram_stats_0 and the 30th snapshot is histogram_stats_30. After the 30th snapshot, Cumulus Linux overwrites the original snapshot file (histogram_stats_0) and the sequence restarts. The default value is 64.
+Configures the number of snapshots you can create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is `histogram_stats_0` and the thirtieth snapshot is `histogram_stats_30`. After the thirtieth snapshot, Cumulus Linux overwrites the original snapshot file (`histogram_stats_0`) and the sequence restarts. The default value is 64.
 
 You can specify a value between 3 and 100.
 

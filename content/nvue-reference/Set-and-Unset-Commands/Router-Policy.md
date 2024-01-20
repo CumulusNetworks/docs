@@ -683,7 +683,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy rule \<value\></h>
 
-Configures the route map to go to specific rule when the matching conditions are met.
+Configures the route map to go to a specific rule when you meet the matching conditions.
 
 ### Command Syntax
 
@@ -1414,7 +1414,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set community 100:
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set community-delete-list</h>
 
-Configures a set clause in the route map to remove BGP communities from being advertised to other BGP routes.
+Configures a set clause in the route map to remove BGP communities from advertising to other BGP routes.
 
 ### Command Syntax
 
@@ -1670,7 +1670,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set label-index 10
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community-delete-list</h>
 
-Configures a set clause in the route map to remove BGP large communities from being advertised to other BGP routes.
+Configures a set clause in the route map to remove BGP large communities from advertising to other BGP routes.
 
 ### Command Syntax
 

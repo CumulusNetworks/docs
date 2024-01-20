@@ -1302,7 +1302,7 @@ cumulus@switch:~$ nv show interface swp5 qos roce status tc-map
 
 ## <h>nv show interface \<interface-id\> qos pfc-watchdog</h>
 
-Shows if PFC watchdog is enabled and shows the state for each traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+Shows if the PFC watchdog setting is ON or OFF and shows the state for each traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
 
 ### Command Syntax
 
@@ -1341,7 +1341,7 @@ PFC WD Status
 
 ## <h>nv show interface \<interface-id\> qos pfc-watchdog status</h>
 
-Shows PFC watchdog data for every traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+Shows PFC watchdog data for every traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
 
 ### Command Syntax
 
@@ -1363,7 +1363,7 @@ cumulus@switch:~$ nv show interface swp1 qos pfc-watchdog status
 
 ## <h>nv show interface \<interface-id\> qos pfc-watchdog status \<qos-tc-id\></h>
 
-Shows PFC watchdog data for a specific traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled.
+Shows PFC watchdog data for a specific traffic class. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON.
 
 ### Command Syntax
 
@@ -3209,7 +3209,7 @@ cumulus@switch:~$ nv show qos traffic-pool default-lossy switch-priority 2
 
 ## <h>nv show qos pfc-watchdog</h>
 
-Shows PFC watchdog configuration settings. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled. 
+Shows PFC watchdog configuration settings. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON. 
 
 ### Version History
 

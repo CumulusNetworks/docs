@@ -321,7 +321,7 @@ cumulus@switch:~$ nv set interface swp1 qos remark profile MYPROFILE
 
 ## <h>nv set interface \<interface-id\> qos pfc-watchdog state</h>
 
-Enables or disables PFC watchdog on the interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is enabled. The default setting is `disable`.
+Enables or disables PFC watchdog on the interface. PFC watchdog detects and mitigates pause storms on ports where PFC or link pause is ON. The default setting is `disable`.
 
 - PFC watchdog only works for lossless traffic queues.
 - You can only configure PFC watchdog on a port with PFC (or link pause) configuration.
@@ -1778,7 +1778,7 @@ Configures trust 802.1p and DSCP marking.
 
 When a frame or packet arrives on the switch, Cumulus Linux maps it to an internal COS (switch priority) value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
 
-You can define which values are trusted: 802.1p, DSCP, or both.
+You can define the trusted values: 802.1p, DSCP, or both.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

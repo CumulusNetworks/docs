@@ -115,7 +115,7 @@ timers
 
 ## <h>nv show interface \<interface-id\> ptp shaper</h>
 
-Shows if PTP shaper is enabled on the specified PTP interface.
+Shows if PTP shaper is ON or OFF on the specified PTP interface.
 
 {{%notice note%}}
 This command is available for the NVIDIA Spectrum 1 switch only for PTP-enabled ports with speeds lower than 100G.
@@ -372,7 +372,13 @@ offset-scaled-log-variance  65535
 
 ## <h>nv show service ptp \<instance-id\> monitor</h>
 
-Shows the PTP monitor configuration for the specified PTP instance, such as the minimum and maximum difference allowed between the master and slave time, the mean time that PTP packets take to travel between the master and slave, the maximum number of timestamp entries allowed, the maximum number of violation log sets allowed, the maximum number of violation log entries allowed for each set, and the violation log interval.
+Shows the PTP monitor configuration for the specified PTP instance, such as:
+- The minimum and maximum difference allowed between the master and slave time.
+- The mean time that PTP packets take to travel between the master and slave.
+- The maximum number of timestamp entries allowed.
+- The maximum number of violation log sets allowed.
+- The maximum number of violation log entries allowed for each set.
+- The violation log interval.
 
 ### Command Syntax
 
@@ -637,7 +643,7 @@ offset-scaled-log-variance  65535
 
 ## <h>nv show service ptp \<instance-id\> profile</h>
 
-Shows the predefined and custom PTP profiles configured for the specified PTP instance. Predefined profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. A custom profile is based off a predefined profile. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
+Shows the predefined and custom PTP profiles configured for the specified PTP instance. Predefined profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. You base a custom profile off a predefined profile. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
 ### Command Syntax
 

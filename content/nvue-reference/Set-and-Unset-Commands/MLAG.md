@@ -201,7 +201,7 @@ cumulus@switch:~$ nv set mlag peer-ip linklocal
 
 ## <h>nv set mlag priority</h>
 
-Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a value between 0-65535. The default setting is 32768.
+Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a value between 0 and 65535. The default setting is 32768.
 
 ### Version History
 

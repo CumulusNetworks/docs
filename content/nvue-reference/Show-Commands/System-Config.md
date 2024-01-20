@@ -33,7 +33,8 @@ snippet: {}
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system config apply</h>
-Shows the system configuration apply settings in json format. The output shows if any configuration is ignored and the current overwrite setting (`all`, which overwrites all files (whether modified by NVUE or locally modified by any other user) or `controlled`, which overwrites only the files that NVUE last modified.)
+
+Shows the system configuration apply settings in `json` format.
 
 ### Version History
 
@@ -51,7 +52,7 @@ overwrite: all
 
 ## <h>nv show system config apply ignore</h>
 
-Shows which files are ignored when you run the `nv config apply` command.
+Shows which files NVUE ignores when you run the `nv config apply` command.
 
 ### Version History
 

@@ -380,13 +380,13 @@ cumulus@switch:~$ nv set system global reserved vlan internal range 4064-4094
 
 ## <h>nv set system global reserved vlan l3-vni-vlan</h>
 
-Configures the reserved VLANs to be used with layer 3 VNIs.
+Configures the reserved VLANs to use with layer 3 VNIs.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system global reserved vlan l3-vni-vlan begin</h>
 
-Configures the reserved VLAN start range to be used with layer 3 VNIs. You can set a value between 1 and 4093.
+Configures the reserved VLAN start range to use with layer 3 VNIs. You can set a value between 1 and 4093.
 
 ### Version History
 
@@ -402,7 +402,7 @@ cumulus@switch:~$ nv set system global reserved vlan l3-vni-vlan begin 1
 
 ## <h>nv set system global reserved vlan l3-vni-vlan end</h>
 
-Configures the reserved VLAN end range to be used with layer 3 VNIs. You can set a value between 2 and 4093.
+Configures the reserved VLAN end range to use with layer 3 VNIs. You can set a value between 2 and 4093.
 
 ### Version History
 

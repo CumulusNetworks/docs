@@ -371,7 +371,7 @@ cumulus@switch:~$ nv show system reboot history
 
 ## <h>nv show system reboot reason</h>
 
-Shows the reason why the switch was rebooted.
+Shows the reason why the switch rebooted.
 
 ### Version History
 

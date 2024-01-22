@@ -636,6 +636,10 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 Adaptive routing in Cumulus Linux runs in shared buffer mode, where the switch automatically adjusts the ingress buffer behavior. To achieve better ASIC efficiency, you can change the buffer mode to ingress, where packets stay in the ingress port to absorb bigger traffic bursts and do not transfer elsewhere.
 
+{{%notice note%}}
+Cumulus Linux supports buffer mode on Spectrum-4 switches only.
+{{%/notice%}}
+
 To change the adaptive routing buffer mode to ingress:
 
 {{< tabs "TabID641 ">}}

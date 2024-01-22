@@ -314,7 +314,6 @@ The {{<link title="show" text="netq show commands">}} let you view details about
 - **inventory**: hardware component information
 - **ip**: IPv4 status
 - **ipv6**: IPv6 status
-- **job-status**: status of upgrade jobs running on the appliance or VM
 - **kubernetes**: Kubernetes cluster, daemon, pod, node, service, and replication status
 - **lldp**: LLDP status
 - **mac-commentary**: MAC commentary info for a MAC address

@@ -18,7 +18,7 @@ When you upgrade a switch that has not been configured using NVUE, LCM backs up 
 {{</notice>}}
 
 {{<notice note>}}
-During the Cumulus Linux upgrade process, NetQ does not upgrade or reinstall packages that are not part of the Cumulus Linux image. For example, if you installed TACACS or node_exporter packages on a switch, you must reinstall these packages after the upgrade is complete.
+During the Cumulus Linux upgrade process, NetQ does not upgrade or reinstall packages that are not part of the Cumulus Linux image. For example, if you installed node_exporter packages on a switch, you must reinstall these packages after the upgrade is complete.
 {{</notice>}}
 ## Prepare for a Cumulus Linux Upgrade
 

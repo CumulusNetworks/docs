@@ -8,8 +8,7 @@ toc: 5
 Installing NetQ telemetry agents on your hosts with {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-adapters/" text="NVIDIA ConnectX adapters">}} and {{<exlink url="https://www.nvidia.com/en-us/networking/products/data-processing-unit/" text="NVIDIA BlueField data processing units">}} (DPUs) allows you to track inventory data and statistics across devices. The DOCA Telemetry Service (DTS) is the agent that runs on hosts and DPUs to collect data.
 
 {{%notice note%}}
-- NIC telemetry for ConnectX adapters is supported only for on-premises NetQ deployments.
-- ConnectX telemetry is supported on DTS version 1.14.2 and later.
+ConnectX telemetry is supported on DTS version 1.14.2 and later.
 {{%/notice%}}
 
 ## Install DTS on ConnectX Hosts
@@ -33,36 +32,15 @@ docker run -d --net=host                                                        
 
 ### Configure Prometheus Targets for ConnectX Adapters
 
-The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in your network. To add adapters as a target for data collection, perform the following steps:
+The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in your network. NetQ configures the host IP addresses automatically, but you must restart the `netq-prom-adapter` pod before you can begin collecting data:
 
-1. On your NetQ VM, edit the `targets-config` ConfigMap with the `kubectl edit cm targets-config` command.
-
-Add the desired host IP addresses to the `targets` stanza, maintaining `yaml` indentation. Multiple entries must be separated by commas, and the port is 9100:
-
-```
-data:
-  targets.json: |-
-    [
-      {
-        "labels": {
-        "job": "node"
-      },
-      "targets": [
-         "10.10.10.10:9100","10.10.10.11:9100"
-        ]
-      }
-    ]
-```
-
-2. Restart the `netq-prom-adapter` pod.
-
-Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
+1. Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
 
 ```
 cumulus@netq-server:~$ kubectl get pods | grep netq-prom
 netq-prom-adapter-ffd9b874d-hxhbz                    2/2     Running   0          3h50m
 ```
-Restart the pod by deleting the running pod:
+2. Restart the pod by deleting the running pod:
 
 ```
 kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz

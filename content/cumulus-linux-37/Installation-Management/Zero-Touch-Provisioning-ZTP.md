@@ -215,8 +215,6 @@ net show interface
 exit 0
 ```
 
-Several ZTP example scripts are available in the {{<exlink url="https://github.com/CumulusNetworks/example-ztp-scripts" text="Cumulus GitHub repository">}}.
-
 ## Best Practices for ZTP Scripts
 
 ZTP scripts come in different forms and frequently perform many of the same tasks. As BASH is the most common language used for ZTP scripts, the following BASH snippets are provided to accelerate your ability to perform common tasks with robust error checking.

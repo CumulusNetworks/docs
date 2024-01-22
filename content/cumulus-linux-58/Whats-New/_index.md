@@ -80,18 +80,18 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv set ">}}
 
 ```
-nv set interface swp1 dot1x host-mode
-nv set system global svi-force-up enabled
-nv set interface <interface-name> link state forced-up
+nv set interface <interface> dot1x host-mode
+nv set bridge domain <bridge> svi-force-up enable
+nv set system global svi-force-up enable
 ```
 
 {{< /tab >}}
 {{< tab "nv unset ">}}
 
 ```
-nv unset interface swp1 dot1x host-mode
-nv unset system global svi-force-up enabled
-nv unset interface <interface-name> link state forced-up
+nv unset interface <interface> dot1x host-mode
+nv unset bridge domain <bridge> svi-force-up enable
+nv unset system global svi-force-up enable
 ```
 
 {{< /tab >}}

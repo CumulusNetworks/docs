@@ -575,68 +575,6 @@ Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 When you enable adaptive routing, Cumulus Linux uses the default profile settings for your switch ASIC type. You cannot change the default profile settings. If you need to make adjustments to the settings, contact NVIDIA Customer Support.
 
-<!--### Adaptive Routing Profiles
-
-Cumulus Linux provides these adaptive routing profiles:
-- `ar-profile-1` is the default profile for a switch with the Spectrum-2 and Spectrum-3 ASIC.
-- `ar-profile-2` is the default profile for a switch with the Spectrum-4 ASIC.
-- `ar-profile-custom` includes adaptive routing settings you can change (advanced users).
-
-You cannot make changes to the default profiles. You can customize the custom profile by editing the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file. NVUE does not provide commands.
-
-After changing parameter values and saving the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must reload `switchd` with the `sudo systemctl reload switchd.service` command.
-
-{{%notice note%}}
-- Use caution when making changes to the custom profile settings; modifications might impact traffic. NVIDIA recommends working with Cumulus Linux Technical Support when changing values in the custom profile.
-- If you change the `adaptive_routing.ecmp_size` parameter in the `/etc/cumulus/switchd.d/adaptive_routing_ar_profile_custom.conf` file, you must **restart** `switchd` with the `systemctl restart switchd` command.
-{{%/notice%}}
-
-To apply an adaptive routing profile:
-
-{{< tabs "TabID581 ">}}
-{{< tab "NVUE Commands ">}}
-
-Run the `nv set router adaptive-routing profile <profile-name>` command. The following example sets the profile to `ar-profile-custom`:
-
-```
-cumulus@switch:~$ nv set router adaptive-routing profile ar-profile-custom
-cumulus@switch:~$ nv config apply
-```
-
-To revert the profile to the default profile for the switch:
-
-```
-cumulus@switch:~$ nv unset router adaptive-routing profile
-cumulus@switch:~$ nv config apply
-```
-
-{{%notice note%}}
-When you set the profile to the custom profile, NVUE reloads `switchd`.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Add the `adaptive_routing.profile` parameter to the `/etc/cumulus/switchd.d/adaptive_routing.conf` file.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/adaptive_routing.conf
-## Global adaptive-routing enable/disable setting
-adaptive_routing.enable = TRUE
-
-## Global AR profile config
-adaptive_routing.profile = ar-profile-custom
-```
-
-Reload `switchd` with the `sudo systemctl reload switchd.service` command.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice note%}}
-If you modify the `adaptive_routing.ecmp_size` parameter in the custom profile, then revert to the default profile for the switch, you must restart `switchd`.
-{{%/notice%}}
--->
 ### Link Utilization
 
 Link utilization, when crossing a threshold, is one of the parameters in the adaptive routing decision. The default link utilization threshold percentage on an interface is 70. You can change the percentage to a value between 1 and 100.

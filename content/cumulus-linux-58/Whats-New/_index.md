@@ -25,7 +25,8 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for 802.1X">}}
 - {{<link url="802.1X-Interfaces/#host-modes" text="802.1X multi host mode">}}
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
-- NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-an-svi-perpetually-up" text="keep SVIs always UP">}}
+- New adaptive routing parameter to set the {{<link url="Equal-Cost-Multipath-Load-Sharing/#buffer-mode" text="buffer mode">}} available on Spectrum-4 switches
+- NVUE command to set {{<link url="VLAN-aware-Bridge-Mode/#keep-svis-perpetually-up" text="keep SVIs always UP">}}
 - Improved cl-support script to prevent switch disruption
 - Minimized data retrieval for the NVUE `nv show router nexthop rib` and `nv show vrf <vrf> router rib ipv4 route` commands
 - {{< expand "Improved tab completion for NVUE routing commands" >}}
@@ -43,61 +44,39 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
   nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes <routes> path
   ```
   {{< /expand >}}
-<!--
-{{< expand "Changed Commands" >}}
+- {{< expand "New NVUE Commands" >}}
+  For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for    Cumulus Linux.
+  
+  {{< tabs "TabID49 ">}}
+  {{< tab "nv show ">}}
+  
+  ```
+  nv show bridge domain <bridge> svi-force-up
+  nv show system global svi-force-up
+  ```
 
-{{< tabs "TabID66 ">}}
-{{< tab "nv show ">}}
+  {{< /tab >}}
+  {{< tab "nv set ">}}
 
-| Previous Command  |  New Command  |
-| ------------ | ------------- |
-| | |
-
-{{< /tab >}}
-{{< tab "nv set ">}}
-
-| Previous Commands  |  New Commands  |
-| ------------ | ------------- |
-|  | |
-
-{{< /tab >}}
-{{< tab "nv action ">}}
-
-| Previous Command  |  New Command  |
-| ------------ | ------------- |
-| |  |
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /expand >}}
--->
-{{< expand "New NVUE Commands" >}}
-
-For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
-
-{{< tabs "TabID40 ">}}
-{{< tab "nv set ">}}
-
-```
-nv set interface <interface> dot1x host-mode
-nv set bridge domain <bridge> svi-force-up enable
-nv set system global svi-force-up enable
-```
-
-{{< /tab >}}
-{{< tab "nv unset ">}}
-
-```
-nv unset interface <interface> dot1x host-mode
-nv unset bridge domain <bridge> svi-force-up enable
-nv unset system global svi-force-up enable
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{< /expand >}}
+  ```
+  nv set interface <interface> dot1x host-mode
+  nv set bridge domain <bridge> svi-force-up enable
+  nv set system global svi-force-up enable
+  ```
+  
+  {{< /tab >}}
+  {{< tab "nv unset ">}}
+  
+  ```
+  nv unset interface <interface> dot1x host-mode
+  nv unset bridge domain <bridge> svi-force-up enable
+  nv unset system global svi-force-up enable
+  ```
+  
+  {{< /tab >}}
+  {{< /tabs >}}
+  
+  {{< /expand >}}
 
 {{%notice info%}}
 Cumulus Linux 5.8 includes the NVUE object model. After you upgrade to Cumulus Linux 5.8, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

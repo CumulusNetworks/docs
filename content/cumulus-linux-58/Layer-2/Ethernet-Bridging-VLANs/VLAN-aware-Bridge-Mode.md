@@ -516,7 +516,7 @@ cumulus@switch:~$ ip link show br_default
     link/ether 8:b0:2d:4e:ad:89 brd ff:ff:ff:ff:ff:ff
 ```
 
-To show if the `svi-force-up` option is set to `on`, run the `nv show system global svi-force-up` command:
+To show if the `svi-force-up` option is set to `on` for all SVIs on the switch, run the `nv show system global svi-force-up` command:
 
 ```
 cumulus@switch:~$ nv show system global svi-force-up

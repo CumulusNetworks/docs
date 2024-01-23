@@ -262,6 +262,27 @@ end    4064         4064
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system global </h>
+
+Shows if the `svi-force-up` option is set to `on` for all SVIs on the switch.
+
+The first time you configure a switch, all southbound bridge ports are down; therefore, by default, all SVIs are also down. You can force all SVIs to always be UP with the `nv set system global svi-force-up enable on` option, which is beneficial if you want to perform connectivity testing.
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+nv show system global svi-force-up
+       operational  applied
+------  -----------  -------
+enable  on           on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system maintenance</h>
 
 Show the current system maintenance mode.

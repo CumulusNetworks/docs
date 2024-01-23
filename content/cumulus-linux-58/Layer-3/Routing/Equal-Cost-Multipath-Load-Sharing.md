@@ -45,44 +45,41 @@ ECMP routes resolve to next hop groups, which identify one or more next hops. To
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router nexthop rib
-Nexthop-group  address-family  installed  interface-index  ref-count  type   valid  vrf      Summary           
--------------  --------------  ---------  ---------------  ---------  -----  -----  -------  ------------------
-...
-75             ipv4            on         74               2          zebra  on     default                    
-76             ipv4            on         74               2          zebra  on     default                    
-77             unspecified     on                          2          zebra  on     default  Nexthop-group:  78
-                                                                                             Nexthop-group:  79
-                                                                                             Nexthop-group:  78
-                                                                                             Nexthop-group:  79
-78             ipv4            on         67               3          zebra  on     default                    
-79             ipv4            on         67               3          zebra  on     default                    
-90             ipv6            on         55               8          zebra  on     default                    
-96             ipv6            on         54               8          zebra  on     default                    
-108            unspecified     on                          6          zebra  on     default  Nexthop-group: 109
-                                                                                             Nexthop-group:  65
-                                                                                             Nexthop-group:  90
-                                                                                             Nexthop-group:  96
-                                                                                             Nexthop-group: 109
-                                                                                             Nexthop-group:  65
-                                                                                             Nexthop-group:  90
-                                                                                             Nexthop-group:  96
-...
+ID  Installed  UpTime    Vrf      Valid  Via                        ViaIntf  ViaVrf   Depends
+--  ---------  --------  -------  -----  -------------------------  -------  -------  -------
+14  on         19:14:01  default  on     lo                                  default
+15  on         19:14:01  default  on     eth0                                mgmt
+16  on         19:14:01  default  on     eth0                                mgmt
+19             19:14:01  default  on     swp52                               default
+20  on         19:14:01  default  on     swp51                               default
+24             07:39:53  default  on
+25  on         07:39:53  default  on     192.168.200.1              eth0     mgmt
+26  on         07:39:53  default  on
+40             19:12:21  default  on     peerlink.4094                       default
+50             19:12:09  default  on     vlan30                              default
+51             19:12:09  default  on     vlan20                              default
+52             19:12:09  default  on     vlan10                              default
+53             19:12:09  default  on     br_default                          default
+54  on         19:12:09  default  on     vlan10                              default
+55  on         19:12:09  default  on     vlan20                              default
+56  on         19:12:09  default  on     vlan30                              default
+58  on         07:39:50  default  on     fe80::4ab0:2dff:fe6c:d043  swp51    default
 ```
 
 The following example shows information for next hop group 108:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router nexthop rib 108
-                operational  applied
---------------  -----------  -------
-address-family  unspecified         
-installed       on                  
-ref-count       6                   
-type            zebra               
-valid           on                  
-vrf             default             
+                operational
+---------------  -----------
+type             zebra
+ref-count        2
+vrf              default
+valid            on
+interface-index  9
+uptime           19:15:45             
 
-resolved-via
+Via
 ===============
     Nexthop                    type        vrf      weight  Summary         
     -------------------------  ----------  -------  ------  ----------------
@@ -91,10 +88,10 @@ resolved-via
     fe80::4ab0:2dff:fec8:8fb9  ip-address  default  1       Interface: swp52
     fe80::4ab0:2dff:feff:e147  ip-address  default  1       Interface: swp51
 
-resolved-via-backup
+Via BackupNexthops
 ======================
 
-depends
+Depends
 ==========
     Nexthop-group
     -------------
@@ -103,7 +100,7 @@ depends
     96           
     109          
 
-dependents
+Dependents
 =============
 ```
 

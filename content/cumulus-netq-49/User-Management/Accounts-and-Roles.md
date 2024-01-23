@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 500
 toc: 2
 ---
-NetQ accounts are assigned one of two roles: admin or user. Accounts with admin privileges can perform the same actions as user accounts. Additionally, admins can access a management dashboard in the UI. 
+NetQ accounts are assigned one of two roles: admin or user. Accounts with admin privileges can perform the same actions as user accounts. Additionally, admins can access a management dashboard in the UI by expanding the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** on the NetQ dashboard, then selecting **Management**.
 
 From this dashboard, admins can:
 
@@ -17,7 +17,7 @@ From this dashboard, admins can:
 - Manage switches' lifecycles
 
 The following image displays the management dashboard. Accounts with *user* privileges cannot perform the functions described above and do not have access to the management dashboard.
-{{<figure src="/images/netq/management-dash-460.png" alt="netq management dashboard" width="1100" >}}
+{{<figure src="/images/netq/management-dash-490.png" alt="netq management dashboard" width="1100" >}}
 
 ## Related Information
 

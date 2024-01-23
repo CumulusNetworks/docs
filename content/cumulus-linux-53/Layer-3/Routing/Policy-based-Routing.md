@@ -69,7 +69,9 @@ To configure a PBR policy:
     cumulus@switch:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
     ```
 
-   If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+   If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table.
+
+   You can set the VRF in a virtual environment only. Cumulus Linux on an NVIDIA switch does not support setting the VRF.
 
     ```
     cumulus@switch:~$ nv set router pbr map map1 rule 1 action vrf dmz
@@ -161,7 +163,9 @@ To configure a PBR policy:
     switch(config)#
     ```
 
-    If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table:
+    If you want the rule to use a specific VRF table as its lookup, set the VRF. If you do not set a VRF, the rule uses the VRF table the interface is in as its lookup. The example command below sets the rule to use the `dmz` VRF table.
+
+    You can set the VRF in a virtual environment only. Cumulus Linux on an NVIDIA switch does not support setting the VRF.
 
     ```
     switch(config)# pbr-map map1 seq 1
@@ -170,7 +174,7 @@ To configure a PBR policy:
     switch(config)#
     ```
 
-   Instead of a next hop *group*, you can apply a next hop to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `RED` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
+    Instead of a next hop *group*, you can apply a next hop to the policy map. The example command below applies the next hop  192.168.0.31 on the output interface swp2 and VRF `RED` to the `map1` policy map. The next hop must be an IP address. The  output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is  *not* in the default VRF.
 
     ```
     switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf RED

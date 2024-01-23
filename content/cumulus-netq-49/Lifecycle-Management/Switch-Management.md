@@ -17,14 +17,14 @@ If you manage a switch using an in-band network interface, {{<link url="Lifecycl
 
 {{<tab "NetQ UI" >}}
 
-From the LCM dashboard, select the **Switch management** tab. The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
+Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select **Manage switches**. From the LCM dashboard, select the **Switch management** tab. The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
 
-{{<figure src="/images/netq/lcm-dashboard-switches-450.png" alt="switches card displaying 15 discovered switches with Cumulus Linux version 4.4.4" width="400">}}
+{{<figure src="/images/netq/lcm-switches-490.png" alt="switches card displaying 525 discovered switches" width="200">}}
 
 To view a table of all discovered switches and their attributes, select **Manage** on the Switches card.
 
 {{<notice tip>}}
-If you have more than one network OS version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
+If you have more than one network OS version running on your switches, you can click a version segment on the Switches card chart to open a list of switches filtered by that version.
 {{</notice>}}
 
 {{</tab>}}
@@ -45,11 +45,11 @@ Use the `version` options to display switches with a given OS version. For addit
 
 {{</tabs>}}
 
-This list is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
+The table of switches is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
 - Verify the missing switches are reachable using `ping`
 - Run a [switch discovery](#switch-discovery), which locates all switches running Cumulus Linux in your network's fabric
-- {{<link title="Install NetQ Agents" text="Install NetQ on the switch">}}
+- {{<link title="Install NetQ Agents" text="Install NetQ Agents on the switch">}}
 - Verify the NetQ Agent is fresh and running version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} **Menu**, then click **Agents** or run `netq show agents`)
 - {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)
 
@@ -193,7 +193,7 @@ cumulus@switch:~$
 
 ## Attach an Access Profile to a Switch
 
-After creating {{<link title="Credentials and Profiles" text="access profiles">}} from your credentials, you can attach a profile to one or more switches.
+NetQ uses access profiles to store user authentications credentials. After {{<link title="Credentials and Profiles" text="creating an access profile">}} from your credentials, you can attach a profile to one or multiple switches.
 
 {{<tabs "TabID85" >}}
 
@@ -203,17 +203,14 @@ After creating {{<link title="Credentials and Profiles" text="access profiles">}
 
 2. The table displays a list of switches. The **Access type** column specifies whether the type of authentication is basic or SSH. The **Profile name** column displays the access profile that is assigned to the switch.
 
-Select the switches you'd like to assign access profiles, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} **Manage access profile** above the table: 
+Select the switches to which you'd like to assign access profiles, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} **Manage access profile** above the table: 
 
 {{<figure src="/images/netq/manage-access-profile-450.png" alt="" width="500">}}
 
-3. Select the profile from the list, then click **Done**.
+3. Select the profile from the list, then click **Apply**. If the profile you want to use isn't listed, select **Add new profile** and {{<link title="Credentials and Profiles/#create-access-profiles" text="follow the steps to create an access profile">}}.
 
-If the profile you want to use isn't listed, select **Add new profile** and {{<link title="Credentials and Profiles/#create-access-profiles" text="follow the steps to create an access profile">}}.
+4. Select **Ok** on the confirmation dialog. The updated access profiles are now reflected in the **Profile name** column.
 
-4. Select **Ok** on the confirmation dialog. The updated access profiles are now reflected in the **Profile name** column:
-
-{{<figure src="/images/netq/updated-access-profile-450.png" alt="" width="500">}}
 
 {{</tab>}}
 
@@ -254,7 +251,7 @@ Detaching a profile from a switch restores it to the default access profile, Net
 
 1. On the Switches card, click **Manage**.
 
-2. The table displays a list of switches. In the profile name column, locate the access profile. Hover over the access type column and select **Manage access**:
+2. From the table of switches, locate the switch whose access profile you'd like to manage. Hover over the access type column and select **Manage access**:
 
 {{<figure src="/images/netq/detach-manage-access-450.png" alt="" width="500">}}
 

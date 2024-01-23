@@ -1735,7 +1735,8 @@ Cumulus Linux supports graceful BGP restart full mode and helper-only mode for I
 You can configure graceful BGP restart globally, where all BGP peers inherit the graceful restart capability, or for a BGP peer or peer group (useful for misbehaving peers or when working with third party devices).
 
 {{%notice note%}}
-BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception, or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
+- BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that ISSU initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception, or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
+- Changing graceful restart mode results in BGP session flaps.
 {{%/notice%}}
 
 {{< tabs "TabID1783 ">}}

@@ -134,7 +134,7 @@ To see only Cumulus Linux upgrade jobs, run `netq lcm show status cl-image job-I
 
 Upon successful upgrade, you can:
 
-- {{<link title="#interpreting-the-comparison-data" text="Compare network snapshots">}} taken before and after the upgrade.
+- {{<link title="Network Snapshots" text="Compare network snapshots">}} taken before and after the upgrade.
 
 - Download details about the upgrade in a JSON-formatted file, by clicking **Download report**.
 ### Post-check Failures

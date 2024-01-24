@@ -12,7 +12,8 @@ ISSU includes the following modes:
 - Maintenance
 
 {{%notice note%}}
-In earlier Cumulus Linux releases, ISSU was Smart System Manager.
+- In earlier Cumulus Linux releases, ISSU was Smart System Manager.
+- The NVIDIA SN5600 (Spectrum-4) switch does not support ISSU.
 {{%/notice%}}
 
 ## Restart Mode

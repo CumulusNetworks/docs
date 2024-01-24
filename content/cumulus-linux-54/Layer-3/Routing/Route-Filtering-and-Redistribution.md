@@ -271,7 +271,7 @@ You can use the following list of supported match and set statements with NVUE c
 | `tag` | Matches the specified tag value associated with the route. You can specify a value between 1 and 4294967295.
 
 {{%notice note%}}
-The `source-protocol` match statement is only supported in {{<link url="FRRouting/#architecture" text="zebra">}}. Cumulus Linux does not support the `match source-protocol` statement in route maps configured for routing protocols such as BGP and OSPF.
+The `source-protocol` match statement is supported in {{<link url="FRRouting/#architecture" text="zebra">}} and BGP. Cumulus Linux does not support the `match source-protocol` statement in route maps configured for other routing protocols, such as OSPF.
 {{%/notice%}}
 
 {{< /tab >}}

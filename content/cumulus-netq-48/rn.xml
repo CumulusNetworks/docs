@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3649629</td>
-<td>When you upgrade an on-premises NetQ VM from version 4.7.0 to 4.8.0, the upgrade process might take longer than 4 hours.</td>
-<td>4.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3644644</td>
 <td>When you perform an LCM upgrade of Cumulus Linux on a switch using the {{netq lcm upgrade cl-image}} CLI command, an error message of {{NetQ cloud token invalid}} is displayed though the upgrade completes successfully. This issue is not encountered when using the NetQ LCM UI to perform the upgrade.</td>
 <td>4.8.0</td>

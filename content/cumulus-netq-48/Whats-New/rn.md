@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3649629"></a> [3649629](#3649629) <a name="3649629"></a> <br /> | When you upgrade an on-premises NetQ VM from version 4.7.0 to 4.8.0, the upgrade process might take longer than 4 hours. | 4.8.0 | |
 | <a name="3644644"></a> [3644644](#3644644) <a name="3644644"></a> <br /> | When you perform an LCM upgrade of Cumulus Linux on a switch using the <code>netq lcm upgrade cl-image</code> CLI command, an error message of <code>NetQ cloud token invalid</code> is displayed though the upgrade completes successfully. This issue is not encountered when using the NetQ LCM UI to perform the upgrade. | 4.8.0 | |
 | <a name="3634648"></a> [3634648](#3634648) <a name="3634648"></a> <br /> | The topology graph might show unexpected connections when devices in the topology do not have LLDP adjacencies. | 4.8.0 | |
 | <a name="3633458"></a> [3633458](#3633458) <a name="3633458"></a> <br /> | The legacy topology diagram might categorize devices into tiers incorrectly. To work around this issue, use the updated topology diagram by selecting Topology Beta in the NetQ 4.8.0 UI. | 4.7.0-4.8.0 | |

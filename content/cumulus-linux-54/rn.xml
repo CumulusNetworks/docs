@@ -7,14 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3706432</td>
-<td>On rare occasions, when the peerlink flaps, you might see traffic loss on some VLANs because the VLANs are in a blocking state. To work around this issue, identify the VLANs that are in a blocking state with the {{bridge -d -c vlan show}} command, then clear the blocking state with the {{bridge vlan set vid &lt;vlan-range&gt; dev &lt;bond&gt; state forwarding stp_nosuspend}} command.</td>
-<td>5.3.0-5.7.0</td>
+<td>3730904</td>
+<td>When sending untagged frames to the CPU with an MTU higher than the SVD (single VXLAN device) MTU, the kernel might crash.</td>
+<td>5.4.0-5.7.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3702431</td>
-<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE {{nv set service snmp-server enable on}}  and  {{nv set service snmp-server listening-address &lt;address&gt;}} commands or the equivalent API commands.</td>
+<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with the NVUE {{nv set service snmp-server enable on}} and {{nv set service snmp-server listening-address}} commands. Alternatively, you can use the equivalent REST API methods.</td>
 <td>5.4.0-5.7.0</td>
 <td></td>
 </tr>
@@ -427,7 +427,7 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 </tr>
 <tr>
 <td>3362113</td>
-<td>If you restore an NVUE {{startup.yaml}} file after upgrade that includes breakout ports with QoS configuration or you run the {{nv config patch}} command to update a configuration with a {{yaml}} file that includes breakout ports with QoS configuration, the NVUE configuration fails to apply and subsequent attempts to run {{nv config apply}} fail with the message similar to {{Invalid config [rev_id: 11] qos config is not supported on following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
+<td>If you restore an NVUE {{startup.yaml}} file after upgrade that includes breakout ports with QoS configuration or you run the {{nv config patch}} command to update a configuration with a {{yaml}} file that includes breakout ports with QoS configuration, the NVUE configuration fails to apply. Subsequent attempts to run {{nv config apply}} fail with a message similar to {{Invalid config [rev_id: 11] qos config is not supported on the following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
 <td>5.4.0-5.7.0</td>
 <td></td>
 </tr>
@@ -599,7 +599,7 @@ cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 </tr>
 <tr>
 <td>3241567</td>
-<td>When you apply switch configuration for the first time on a freshly booted switch, you might see the error message {{Failed to start Hostname Service}} when you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
+<td>When you apply switch configuration for the first time on a freshly booted switch and you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}, you might see the error message {{Failed to start Hostname Service}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
 <td>5.3.0-5.7.0</td>
 <td></td>
 </tr>
@@ -853,13 +853,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2705056</td>
-<td>SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0, 5.0.0-5.7.0</td>
-<td>4.3.1-4.4.5</td>
-</tr>
-<tr>
-<td>2701000</td>
-<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF. To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
+<td>When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge.</td>
 <td>4.3.0, 5.0.0-5.7.0</td>
 <td>4.3.1-4.4.5</td>
 </tr>

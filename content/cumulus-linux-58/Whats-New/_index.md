@@ -25,7 +25,7 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for 802.1X">}}
 - {{<link url="802.1X-Interfaces/#host-modes" text="802.1X multi host mode">}}
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
-- New adaptive routing parameter to set the {{<link url="Equal-Cost-Multipath-Load-Sharing/#buffer-mode" text="buffer mode">}} available on Spectrum-4 switches
+- New adaptive routing parameter to set the buffer mode on Spectrum-4 switches
 - NVUE command to set {{<link url="VLAN-aware-Bridge-Mode/#keep-svis-perpetually-up" text="keep SVIs always UP">}}
 - Improved cl-support script to prevent switch disruption
 - Minimized data retrieval for the NVUE `nv show router nexthop rib` and `nv show vrf <vrf> router rib ipv4 route` commands

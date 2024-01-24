@@ -67,6 +67,8 @@ The ZTP process over DHCP follows these steps:
 6. If provisioning is necessary, the script executes locally on the switch with root privileges.
 7. ZTP examines the return code of the script. If the return code is 0, ZTP marks the provisioning state as complete in the autoprovisioning configuration file.
 
+Cumulus Linux always sends DHCP option 60 (the vendor class identifier) with value `cumulus-linux  x86_64`.
+
 ### Trigger ZTP Over DHCP
 
 If you have not yet provisioned the switch, you can trigger the ZTP process over DHCP when eth0 uses DHCP and one of the following events occur:

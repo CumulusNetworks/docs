@@ -39,9 +39,9 @@ netq show services
 
 ## View Switch Inventory in the UI
 
-Add the Inventory/Switches card to your workbench to monitor the hardware and software component inventory on switches running NetQ in your network. To add this card to your workbench, select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card**&nbsp;<span aria-label="and then">></span> **Inventory**&nbsp;<span aria-label="and then">></span> **Inventory/Switches card**&nbsp;<span aria-label="and then">></span> **Open cards**. Select the dropdown to view additional inventory information.
+Add the Inventory/Switches card to your workbench to monitor the hardware and software component inventory on switches running NetQ in your network. To add this card to your workbench, select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card**&nbsp;<span aria-label="and then">></span> **Inventory**&nbsp;<span aria-label="and then">></span> **Inventory/Switches card**&nbsp;<span aria-label="and then">></span> **Open cards**. The card displays the total number of switches in your network, divided into the number of fresh and rotten switches.
 
-{{<img src="/images/netq/inventory-switches-updated.png" alt="medium switch card displaying disk information for 15 switches" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switches-dropdown.png" alt="" width="200">}}
+{{<img src="/images/netq/switch-med-490.png" alt="medium switch card displaying 513 fresh switches and 13 rotten switches" width="200">}}
 
 ## View Distribution and Component Counts
 
@@ -51,11 +51,11 @@ Open the large Inventory/Switches card to display more granular information abou
 
 Expand the Inventory/Switches card to full-screen to view, filter or export information about ASICs, motherboards, CPUs, memory, disks, and operating system.
 
-{{<img src="/images/netq/switch-inventory-full-460.png" alt="" width="1200">}}
+{{<img src="/images/netq/full-switch-inventory-490.png" alt="" width="1200">}}
 
 ## Decommission a Switch
 
-Decommissioning a switch or host removes information about the switch or host from the NetQ database. When the NetQ Agent restarts at a later date, it sends a connection request back to the database, so NetQ can monitor the switch or host again.
+Decommissioning a switch or host removes information about the device from the NetQ database. When the NetQ Agent restarts at a later date, it sends a connection request back to the database, so NetQ can monitor the switch or host again.
 
 {{<tabs "TabID64" >}}
 

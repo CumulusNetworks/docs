@@ -15,7 +15,7 @@ NetQ 4.9.0 includes the following new features and improvements:
 
 - {{<link title="Adaptive Routing" text="Adaptive routing monitoring">}} for switches is now generally available
 - {{<link title="RoCE" text="RoCE monitoring">}} for DPUs is now generally available
-- Security enhancements
+- Performance and security enhancements
 
 
 ## Upgrade Paths

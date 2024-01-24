@@ -4728,7 +4728,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>2700701</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF. To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0, 5.0.0-5.7.0</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2699399</td>
@@ -4762,7 +4762,7 @@ To workaround this issue, run the command against each VRF independently.</td>
 </tr>
 <tr>
 <td>2668543</td>
-<td>SVIs do not inherit the pinned MAC address of the bridge.</td>
+<td>When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge.</td>
 <td>4.3.0, 5.0.0-5.7.0</td>
 </tr>
 <tr>

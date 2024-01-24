@@ -629,7 +629,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 {{< /tab >}}
 {{< /tabs >}}
 
-### Buffer Mode
+<!--### Buffer Mode
 
 Adaptive routing in Cumulus Linux runs in shared buffer mode, where the switch automatically adjusts the ingress buffer behavior. To achieve better ASIC efficiency, you can change the buffer mode to ingress, where packets stay in the ingress port to absorb bigger traffic bursts and do not transfer elsewhere.
 
@@ -674,7 +674,7 @@ To reset the buffer mode back to the default setting, set the `adaptive_routing.
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ### Example Configuration
 
 {{< tabs "TabID693 ">}}
@@ -685,7 +685,7 @@ The following example enables adaptive routing on swp1 and swp2. Global link uti
 ```
 cumulus@switch:~$ nv set interface swp51 router adaptive-routing enable on
 cumulus@switch:~$ nv set interface swp52 router adaptive-routing enable on
-cumulus@switch:~$ nv config apply 
+cumulus@switch:~$ nv config apply
 ```
 
 The following example enables adaptive routing on swp51 and swp52, sets the link utilization threshold percentage to 100 on both swp51 and swp52, and enables global link utilization:

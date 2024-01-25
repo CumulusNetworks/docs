@@ -90,7 +90,7 @@ In distributed symmetric routing, each VTEP acts as a layer 3 gateway, performin
 - In an MLAG configuration, the SVI for the layer 3 VNI cannot be part of the bridge. This ensures that the switch does not forward traffic tagged with that VLAN ID on the peer link or other trunks.
 {{%/notice%}}
 
-In an EVPN symmetric routing configuration, when the switch announces a type-2 (MAC,IP) route, in addition to containing two VNIs (the layer 2 VNI and the layer 3 VNI), the route also contains separate RTs for layer 2 and layer 3. The layer 3 RT associates the route with the tenant VRF. By default, this is auto-derived using the layer 3 VNI instead of the layer 2 VNI; however you can also configure it.
+In an EVPN symmetric routing configuration, when the switch announces a type-2 (MAC,IP) route, in addition to containing two VNIs (the layer 2 VNI and the layer 3 VNI), the route also contains separate <span class="a-tooltip">[RTs](## "route targets")</span> for layer 2 and layer 3. The layer 3 RT associates the route with the tenant VRF. By default, this is auto-derived using the layer 3 VNI instead of the layer 2 VNI; however you can also configure it.
 
 For EVPN symmetric routing, you need to perform the following additional configuration. Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenant-vrf" text="configuring RD and RTs for the tenant VRF">}} and {{<link url="#advertise-locally-attached-subnets" text="advertising the locally-attached subnets">}}.
 
@@ -191,7 +191,13 @@ vlan-id 220
 
 ### Configure RD and RTs for the Tenant VRF
 
-If you do not want Cumulus Linux to derive the RD and RTs (layer 3 RTs) for the tenant VRF automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF. The following commands provide and example.
+If you do not want Cumulus Linux to derive the <span class="a-tooltip">[RD](## "route distinguisher")</span> and <span class="a-tooltip">[RTs](## "route targets")</span> (layer 3 RTs) for the tenant VRF automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.
+
+You can configure the RD, the RT you want to attach to the host or prefix routes when importing them into EVPN, and the RTs to attach to host or prefix routes when importing them into a VRF.
+
+{{%notice note%}}
+The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. To define the RD and RTs for the layer 2 VNI, see {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
+{{%/notice%}}
 
 {{< tabs "TabID226 ">}}
 {{< tab "NVUE Commands ">}}
@@ -234,10 +240,6 @@ router bgp 65101 vrf RED
 
 {{< /tab >}}
 {{< /tabs >}}
-
-{{%notice note%}}
-The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. To define the RD and RTs for the layer 2 VNI, see {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
-{{%/notice%}}
 
 ### Advertise Locally Attached Subnets
 

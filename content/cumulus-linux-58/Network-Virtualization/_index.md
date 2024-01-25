@@ -28,7 +28,7 @@ On switches with the NVIDIA Spectrum ASICs, Cumulus Linux supports cut-through m
 
 The maximum transmission unit (MTU) size for a virtual network interface should be 50 bytes smaller than the MTU for the physical interfaces on the switch. For more information on setting MTU, read {{<link url="Switch-Port-Attributes#mtu" text="Layer 1 and Switch Port Attributes">}}.
 
-### Layer 3 and Layer 2 VNIs Cannot Share the Same ID
+### Layer 3 and Layer 2 VNI ID must be Different
 
 A layer 3 VNI and a layer 2 VNI must have different IDs. If the VNI IDs are the same, Cumulus Linux does not create the layer 2 VNI.
 

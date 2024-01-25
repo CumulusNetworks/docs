@@ -8896,7 +8896,7 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 </tr>
 <tr>
 <td>2705056</td>
-<td>SVIs do not inherit the pinned MAC address of the bridge.</td>
+<td>When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge.</td>
 <td>4.3.0, 5.0.0-5.7.0</td>
 </tr>
 </table>

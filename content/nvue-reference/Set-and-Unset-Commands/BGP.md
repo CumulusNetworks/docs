@@ -4130,7 +4130,7 @@ Provides commands to configure exporting routes from this VRF into EVPN.
 
 ## <h>nv set vrf \<vrf-id\> router bgp route-export to-evpn route-target \<rt-id\></h>
 
-Configures the route target for BGP route export.
+Configures the tenant VRF <span class="a-tooltip">[RTs](## "route targets")</span> (layer 3 RTs) for BGP route export.
 
 ### Command Syntax
 
@@ -4165,7 +4165,7 @@ Provides commands to configure importing EVPN type-2 and type-5 routes into this
 
 ## <h>nv set vrf \<vrf-id\> router bgp route-import from-evpn route-target \<rt-id\></h>
 
-Configures the route target for BGP route import.
+Configures the tenant VRF <span class="a-tooltip">[RTs](## "route targets")</span> (layer 3 RTs) for BGP route import.
 
 ### Command Syntax
 

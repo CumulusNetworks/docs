@@ -228,7 +228,13 @@ vrf RED
 
 ### Configure RD and RTs for the Tenant VRF
 
-If you do not want Cumulus Linux to derive the RD and RTs (layer 3 RTs) for the tenant VRF automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.
+If you do not want Cumulus Linux to derive the <span class="a-tooltip">[RD](## "route distinguisher")</span> and <span class="a-tooltip">[RTs](## "route targets")</span> (layer 3 RTs) for the tenant VRF automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.
+
+You can configure the RD, the RT you want to attach to the host or prefix routes when importing them into EVPN, and the RTs to attach to host or prefix routes when importing them into a VRF.
+
+{{%notice note%}}
+The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. To define the RD and RTs for the layer 2 VNI, see {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
+{{%/notice%}}
 
 {{< tabs "TabID226 ">}}
 {{< tab "NVUE Commands ">}}
@@ -236,6 +242,8 @@ If you do not want Cumulus Linux to derive the RD and RTs (layer 3 RTs) for the 
 ```
 cumulus@leaf01:~$ nv set vrf RED router bgp rd 10.1.20.2:5
 cumulus@leaf01:~$ nv set vrf RED router bgp route-import from-evpn route-target 65102:4001
+cumulus@leaf01:~$ nv set vrf RED router bgp route-export to-evpn route-target 65101:4002
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -249,6 +257,7 @@ leaf01(config)# router bgp 65101 vrf RED
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# rd 10.1.20.2:5
 leaf01(config-router-af)# route-target import 65102:4001
+leaf01(config-router-af)# route-target export 65101:4002
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
@@ -263,15 +272,12 @@ router bgp 65101 vrf RED
   address-family l2vpn evpn
   rd 10.1.20.2:5
   route-target import 65102:4001
+  route-target export 65101:4002
 ...
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
-
-{{%notice note%}}
-The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
-{{%/notice%}}
 
 ### Advertise Locally Attached Subnets
 

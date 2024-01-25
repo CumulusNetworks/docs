@@ -9,9 +9,12 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 <!-- Air:WhatsNew -->
 ## January 2024
+### 82.2024.0125-013
+- Updated Swagger API docs for `/v1/login/` and `/v2/organization/{id}/members/`
+<!-- Air:WhatsNew -->
+
 ### 82.2024.0104-012
 - Updated font used by configuration migration tool
-<!-- Air:WhatsNew -->
 
 ## Archive
 {{< expand "Changelog Archive" >}}

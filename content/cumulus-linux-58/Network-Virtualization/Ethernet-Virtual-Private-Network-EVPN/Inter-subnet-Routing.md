@@ -235,6 +235,7 @@ router bgp 65101 vrf RED
   address-family l2vpn evpn
   rd 10.1.20.2:5
   route-target import 65102:4001
+  route-target export 65101:4002
 ...
 ```
 

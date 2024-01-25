@@ -18,7 +18,7 @@ The RD disambiguates EVPN routes in different VNIs (they can have the same MAC a
 
 For eBGP EVPN peering, the peers are in a different AS so using an automatic RT of *AS:VNI* does not work for route import. Therefore, Cumulus Linux treats the import RT as *\*:VNI* to determine which received routes apply to a particular VNI. This only applies when the switch auto-derives the import RT.
 
-If you do *not* want to derive RDs and RTs automatically, you can define them manually. The following example commands are per VNI.
+If you do *not* want to derive RDs and RTs (layer 2 RTS) automatically, you can define them manually. The following example commands are per VNI.
 
 {{< tabs "TabID19 ">}}
 {{< tab "NVUE Commands ">}}

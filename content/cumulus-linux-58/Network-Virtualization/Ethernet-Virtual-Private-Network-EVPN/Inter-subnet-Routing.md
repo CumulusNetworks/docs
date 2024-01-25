@@ -90,7 +90,7 @@ In distributed symmetric routing, each VTEP acts as a layer 3 gateway, performin
 - In an MLAG configuration, the SVI for the layer 3 VNI cannot be part of the bridge. This ensures that the switch does not forward traffic tagged with that VLAN ID on the peer link or other trunks.
 {{%/notice%}}
 
-In an EVPN symmetric routing configuration, when the switch announces a type-2 (MACIP) route, in addition to containing two VNIs (the layer 2 VNI and the layer 3 VNI), the route also contains separate RTs for layer 2 and layer 3. The layer 3 RT associates the route with the tenant VRF. By default, this is auto-derived using the layer 3 VNI instead of the layer 2 VNI; however you can also configure it.
+In an EVPN symmetric routing configuration, when the switch announces a type-2 (MAC,IP) route, in addition to containing two VNIs (the layer 2 VNI and the layer 3 VNI), the route also contains separate RTs for layer 2 and layer 3. The layer 3 RT associates the route with the tenant VRF. By default, this is auto-derived using the layer 3 VNI instead of the layer 2 VNI; however you can also configure it.
 
 For EVPN symmetric routing, you need to perform the following additional configuration. Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenant-vrf" text="configuring RD and RTs for the tenant VRF">}} and {{<link url="#advertise-locally-attached-subnets" text="advertising the locally-attached subnets">}}.
 
@@ -191,7 +191,7 @@ vlan-id 220
 
 ### Configure RD and RTs for the Tenant VRF
 
-If you do not want Cumulus Linux to derive the RD and RTs (layer 3 RTs) for the tenant VRF automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.
+If you do not want Cumulus Linux to derive the RD and RTs (layer 3 RTs) for the tenant VRF automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF. The following commands provide and example.
 
 {{< tabs "TabID226 ">}}
 {{< tab "NVUE Commands ">}}
@@ -199,6 +199,8 @@ If you do not want Cumulus Linux to derive the RD and RTs (layer 3 RTs) for the 
 ```
 cumulus@leaf01:~$ nv set vrf RED router bgp rd 10.1.20.2:5
 cumulus@leaf01:~$ nv set vrf RED router bgp route-import from-evpn route-target 65102:4001
+cumulus@leaf01:~$ nv set vrf RED router bgp route-export to-evpn route-target 65101:4002
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -212,6 +214,7 @@ leaf01(config)# router bgp 65101 vrf RED
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# rd 10.1.20.2:5
 leaf01(config-router-af)# route-target import 65102:4001
+leaf01(config-router-af)# route-target export 65101:4002
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
@@ -233,7 +236,7 @@ router bgp 65101 vrf RED
 {{< /tabs >}}
 
 {{%notice note%}}
-The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
+The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. To define the RD and RTs for the layer 2 VNI, see {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
 {{%/notice%}}
 
 ### Advertise Locally Attached Subnets

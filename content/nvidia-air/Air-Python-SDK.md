@@ -90,6 +90,19 @@ curl --location --request GET 'https://air.nvidia.com/api/v1/simulation/' \
 {{< /tab >}}
 {{< /tabs >}}
 
+### Service account
+
+Internal NVIDIA users can use an SSA client ID to authenticate as a service account. First, a valid bearer token must be generated.
+
+```
+curl --user "$CLIENT_ID:$CLIENT_SECRET" --request POST $AIR_TOKEN_URL --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "grant_type=client_credentials" --data-urlencode "scope=api-access"
+{"access_token":"eyJraWQ...","token_type":"bearer","expires_in":900,"scope":"api-access"}
+```
+
+Replace $CLIENT_ID, $CLIENT_SECRET, and $AIR_TOKEN_URL with values generated during your client registration. For more detail, please refer to internal documentation on using service accounts.
+
+Once you have a bearer token, it can be used in the same way as an [Air bearer token](#bearer-token)
+
 </details>
 
 ## Examples

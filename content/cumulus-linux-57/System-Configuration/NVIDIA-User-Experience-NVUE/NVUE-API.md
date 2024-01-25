@@ -1470,6 +1470,14 @@ out-pkts             3536508                        total number of packets tran
 {{< /tab >}}
 {{< /tabs >}}
 
+### Retrieve View Types
+
+NVUE provides views for show commands, such as `brief`, `small`, `detail` and so on. To retrieve view types through the REST API, use the `‘curl -u 'cumulus:CumulusLinux!' -k -X GET http://path?view=<brief>’` syntax. For example, the equivalent REST API method for the NVUE `nv show vrf <vrf-id> router rib ipv4 route --view=brief` command is:
+
+```
+cumulus@switch:~$ ‘curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/vrf/tenant1/router/rib/ipv4/route?view=brief’
+```
+
 ### Convert CLI Changes to Use the API
 
 You can take a configuration change from the CLI and use the API to configure the same set of changes.

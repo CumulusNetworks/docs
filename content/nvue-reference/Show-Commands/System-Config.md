@@ -12,7 +12,11 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv show system config</h>
 
-Shows the system configuration in json format.
+Shows system configuration.
+
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, the command output is in `json` format.
+{{%/notice%}}
 
 ### Version History
 
@@ -22,19 +26,26 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system config
-apply:
-  ignore: {}
-  overwrite: all
-auto-save:
-  enable: off
-snippet: {}
+            operational  applied
+-----------  -----------  ---------
+             apply        apply
+             auto-save    auto-save
+             snippet      snippet
+apply
+  overwrite  all          all
+auto-save
+  enable     off          off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system config apply</h>
 
-Shows the system configuration apply settings in `json` format.
+Shows the system configuration apply settings.
+
+{{%notice note%}}
+In Cumulus Linux 5.6 and earlier, the command output is in `json` format.
+{{%/notice%}}
 
 ### Version History
 
@@ -44,8 +55,9 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show system config apply
-ignore: {}
-overwrite: all
+          operational  applied
+---------  -----------  -------
+overwrite  all          all
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

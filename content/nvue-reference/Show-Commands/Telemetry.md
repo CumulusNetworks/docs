@@ -19,7 +19,7 @@ Shows the histogram configuration settings for the specified interface and opera
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -35,13 +35,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry
 
 ## <h>nv show interface \<interface-id\> telemetry bw-gauge</h>
 
-Shows the bandwidth gauge setting for the specified interface
+Shows the bandwidth gauge setting for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -66,7 +66,7 @@ Shows histogram details for the specified interface.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -82,13 +82,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram
 
 ## <h>nv show interface \<interface-id\> telemetry histogram ingress-buffer</h>
 
-Shows ingress queue depth histogram samples collected or the specified interface.
+Shows ingress queue depth histogram samples collected for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -110,7 +110,7 @@ Shows the ingress queue depth histogram samples collected for all priority group
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -132,7 +132,7 @@ Shows the ingress queue depth histogram samples collected at the configured inte
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -159,7 +159,7 @@ Show the configured interval set for ingress queue depth histogram samples.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<pg-id>` |  The priority group ID. |
 
 ### Version History
@@ -182,7 +182,7 @@ Shows the snapshot collected for the ingress queue depth histogram samples.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<pg-id>` |  The priority group ID. |
 
 ### Version History
@@ -217,7 +217,7 @@ Shows the egress queue depth histogram samples collected at the configured inter
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -239,7 +239,7 @@ Shows the ingress queue depth histogram samples collected for all traffic classe
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -261,7 +261,7 @@ Shows the egress queue depth histogram samples collected at the configured inter
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<tc-id>` |  The traffic class ID. |
 
 ### Version History
@@ -284,7 +284,7 @@ Shows the configured interval set for egress queue depth histogram samples.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<tc-id>` |  The traffic class ID. |
 
 ### Version History
@@ -307,7 +307,7 @@ Shows the snapshot collected for the egress queue depth histogram samples.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<tc-id>` |  The traffic class ID. |
 
 ### Version History
@@ -330,7 +330,7 @@ Shows the counter histogram samples collected at the configured interval for the
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -352,7 +352,7 @@ Shows the counter histogram samples collected at the configured interval for all
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 
 ### Version History
 
@@ -374,7 +374,7 @@ Shows the counter histogram samples collected at the configured interval for the
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<counter-type-id>` |  The counter type ID. |
 
 ### Version History
@@ -397,7 +397,7 @@ Shows the configured interval set for counter histogram samples for the specifie
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<counter-type-id>` |  The counter type ID. |
 
 ### Version History
@@ -420,7 +420,7 @@ Shows the snapshot collected for the counter histogram samples for the specified
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  The interface ID. |
+| `<interface-id>` |  The interface name. |
 | `<counter-type-id>` |  The counter type ID. |
 
 ### Version History

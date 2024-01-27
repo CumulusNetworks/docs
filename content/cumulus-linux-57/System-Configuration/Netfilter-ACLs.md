@@ -67,7 +67,7 @@ The Linux packet forwarding construct is an overlay for how the silicon undernea
 - The switch silicon reorders rules when `switchd` writes to the ASIC, whereas traditional `iptables` execute the list of rules in order.
 - All rules, except for POLICE and SETCLASS rules, are terminating; after a rule matches, the action occurs and no more rules process.
 
-- When processing traffic, rules affecting the FORWARD chain that specify an ingress interface process before rules that match on an egress interface. As a workaround, rules that only affect the egress interface can have an ingress interface wildcard (only *swp+* and *bond+*) that matches any interface you apply so that you can maintain order of operations with other input interface rules. For example, with the following rules:
+- When processing traffic, rules affecting the FORWARD chain that specify an ingress interface process before rules that match on an egress interface. As a workaround, rules that only affect the egress interface can have an ingress interface wildcard (only *swp+* and *+*) that matches any interface you apply so that you can maintain order of operations with other input interface rules. For example, with the following rules:
 
     ```
     -A FORWARD -i swp1 -j ACCEPT
@@ -84,7 +84,7 @@ The Linux packet forwarding construct is an overlay for how the silicon undernea
     ```
 
 - When using rules that do a mangle and a filter lookup for a packet, Cumulus Linux processes them in parallel and combines the action.
-- If a switch port has a bond, you must assign any egress rules to the bond.
+- If a switch port has a bond, you must assign any egress rules to the member interfaces not the bond itself.
 - When using the OUTPUT chain, you must assign rules to the source. For example, if you assign a rule to the switch port in the direction of traffic but the source is a bridge (VLAN), the rule does not affect the traffic and you must apply it to the bridge.
 - If you need to apply a rule to all transit traffic, use the FORWARD chain, not the OUTPUT chain.
 - The switch puts `ebtable` rules into either the IPv4 or IPv6 memory space depending on whether the rule uses IPv4 or IPv6 to make a decision. The switch only puts layer 2 rules that match the MAC address into the IPv4 memory space.
@@ -1360,7 +1360,7 @@ To work around this limitation, set the rate and burst for all these rules to th
 -->
 ### Where to Assign Rules
 
-- If you assign a switch port to a bond, you must assign any egress rules to the bond.
+- If you assign a switch port to a bond, you must assign any egress rules to the member interfaces not the bond itself.
 - When using the OUTPUT chain, you must assign rules to the source. For example, if you assign a rule to the switch port in the direction of traffic but the source is a bridge (VLAN), the rule does not affect the traffic and you must apply the rule to the bridge.
 - If you need to apply a rule to all transit traffic, use the FORWARD chain, not the OUTPUT chain.
 
@@ -1404,19 +1404,19 @@ For example:
 
 ### Egress ACL Matching on Bonds
 
-Cumulus Linux does not support ACL rules that match on an outbound *bond* interface. For example, you cannot create the following rule:
+Cumulus Linux does not support ACL rules that match on an outbound ** interface. For example, you cannot create the following rule:
 
 ```
 [iptables]
--A FORWARD -o <bond_intf> -j DROP
+-A FORWARD -o <_intf> -j DROP
 ```
 
-To work around this issue, duplicate the ACL rule on each physical port of the bond. For example:
+To work around this issue, duplicate the ACL rule on each physical port of the . For example:
 
 ```
 [iptables]
--A FORWARD -o <bond-member-port-1> -j DROP
--A FORWARD -o <bond-member-port-2> -j DROP
+-A FORWARD -o <-member-port-1> -j DROP
+-A FORWARD -o <-member-port-2> -j DROP
 ```
 
 ### SSH Traffic to the Management VRF

@@ -354,7 +354,7 @@ Shows the configuration for a command path for the specified class.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<class-id>`    |  The name of the class. |
-| `<command-path-id>`  |  The name of the class. |
+| `<command-path-id>`  |  The command path. |
 
 ### Version History
 
@@ -363,7 +363,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show system aaa class class1 command-path
+cumulus@switch:~$ nv show system aaa class class1 command-path /vrf/
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

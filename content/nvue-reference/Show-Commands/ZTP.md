@@ -39,7 +39,7 @@ status
 
 ## <h>nv show system ztp script</h>
 
-Shows the location of the ZTP script on the switch.
+Shows the location of the ZTP scripts on the switch.
 
 ### Version History
 
@@ -58,7 +58,7 @@ location  /var/lib/cumulus/ztp/ztp_script-202304261538
 
 ## <h>nv show system ztp status</h>
 
-Shows the status of the ZTP script run on the switch.
+Shows the status of the ZTPs script run on the switch.
 
 ### Version History
 

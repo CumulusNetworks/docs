@@ -41,7 +41,7 @@ state        up                 up
 
 ## <h>nv show interface \<interface-id\> ip vrr address \<ip-prefix-id\></h>
 
-Shows the information about a specific VRR IP address on the specified interface.
+Shows information about a specific VRR IP address on the specified interface.
 
 ### Command Syntax
 
@@ -99,7 +99,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show router vrr
-```
         applied
 ------  -------
 enable  on
+```

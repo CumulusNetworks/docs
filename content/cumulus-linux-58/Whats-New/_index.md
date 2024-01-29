@@ -14,7 +14,7 @@ This document supports the Cumulus Linux 5.8 release, and lists new platforms, f
 <!-- vale on -->
 Cumulus Linux 5.8.0 contains several new features and improvements, and provides bug fixes.
 
-NVIDIA recommends this release for {{<exlink url="https://www.nvidia.com/en-us/networking/spectrumx/" text="Spectrum-X Reference Architecture 1.0">}}.
+NVIDIA recommends you use this release for {{<exlink url="https://www.nvidia.com/en-us/networking/spectrumx/" text="Spectrum-X Reference Architecture 1.0">}}.
 
 ### New Features and Enhancements
 - The NVIDIA SN3750-SX switch is Class C compliant

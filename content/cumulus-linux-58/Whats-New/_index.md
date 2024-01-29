@@ -20,14 +20,14 @@ NVIDIA recommends you use this release for {{<exlink url="https://www.nvidia.com
 - The NVIDIA SN3750-SX switch is Class C compliant
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} is now generally available on Spectrum-4 switches
 - {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one step clock timestamp mode">}} is now generally available on Spectrum-4 switches
-- Improved SyncE and PPS noise transfer algorithm
 - {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PTP Noise Transfer Servo">}}
-- Ability to force the {{<link url="Precision-Time-Protocol-PTP/#ptp-version" text="PTP version">}}
+- {{<link url="Precision-Time-Protocol-PTP/#ptp-version" text="Force PTP version">}}
+- Improved SyncE and PPS noise transfer algorithm
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (optical)
+- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} (warmboot does not support EVPN MLAG and EVPN multihoming)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for 802.1X">}}
 - {{<link url="802.1X-Interfaces/#host-modes" text="802.1X multi host mode">}}
-- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
 - NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-svis-perpetually-up" text="keep SVIs always UP">}}
 - Improved cl-support script to prevent switch disruption
 - Minimized data retrieval for the NVUE `nv show router nexthop rib` and `nv show vrf <vrf> router rib ipv4 route` commands

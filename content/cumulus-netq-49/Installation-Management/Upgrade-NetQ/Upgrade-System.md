@@ -244,7 +244,7 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 Clear the install state and save the current database:
 
 ```
-cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images
+cumulus@<hostname>:~$ netq bootstrap reset keep-db
 ```
 
 Run the install command to install the new tarball:
@@ -264,7 +264,7 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 Clear the install state on your master node and save the current database:
 
 ```
-cumulus@<hostname>:~$ netq bootstrap reset keep-db purge-images
+cumulus@<hostname>:~$ netq bootstrap reset keep-db
 ```
 
 Run the following command on your master node to initialize the cluster. Copy the output of the command to use on your worker nodes:
@@ -278,6 +278,8 @@ cumulus@<hostname>:~$ netq install cluster master-init
 Run the {{<link title="install/#netq-install-cluster-worker-init" text="netq install cluster worker-init <ssh-key>">}} command from the output on each of your worker nodes.
 
 Next, run the {{<link title="install/#netq-install-cluster-full" text="netq install cluster full">}} command on your master node using the IP addresses of your worker nodes:
+
+<!--need to update example below for 4.9 with cluster-vip-->
 
 ```
 cumulus@<hostname>:~$ netq install cluster full interface <interface-name> bundle /mnt/installables/NetQ-4.8.0.tgz workers <worker-1-ip> <worker-2-ip>

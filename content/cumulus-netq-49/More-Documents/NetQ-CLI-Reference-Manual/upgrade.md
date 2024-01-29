@@ -10,13 +10,14 @@ type: nojsscroll
 
 ## netq upgrade
 
-Upgrades NetQ on NetQ On-premises Appliances or VMs. For detailed instructions, see {{<link title="Upgrade NetQ Virtual Machines" text="Upgrade NetQ Virtual Machines">}}
+Upgrades NetQ on NetQ on-premises appliances or VMs. For detailed instructions, see {{<link title="Upgrade NetQ Virtual Machines" text="Upgrade NetQ Virtual Machines">}}
 
 ### Syntax
 
 ```
 netq upgrade bundle <text-bundle-url>
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
+    [cluster-vip <text-cluster-vip>]
 ```
 
 ### Required Arguments
@@ -31,11 +32,12 @@ netq upgrade bundle <text-bundle-url>
 | ---- | ---- | ---- |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
+| cluster-vip| \<text-cluster-vip\>| Upgrade cluster deployments, specifying the virtual IP address from the same subnet used for your master and worker nodes.|
 
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz
 ```
 
 ### Related Commands

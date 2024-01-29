@@ -60,7 +60,7 @@ cumulus@switch:~$ netq install cluster activate-job config-key ju8Kl4IhZ3cucHJvZ
 - ```netq install cluster full```
 
 - - -
-
+<!-- not supported for 4.9
 ## netq install cluster add-worker
 
 Add additional nodes to your server cluster in an on-premises deployment.
@@ -86,6 +86,8 @@ None
 - `netq install opta cluster add-worker`
 
 - - -
+
+-->
 ## netq install cluster full
 
 Installs the NetQ Platform software on the servers in an on-premises, server cluster deployment. You must have the hostname or IP address of the master node and two worker nodes, and the NetQ software bundle to run the command.
@@ -102,8 +104,7 @@ netq install cluster full
     [pod-ip-range <text-pod-ip-range>]
     workers <text-worker-01> <text-worker-02>
     [workers-ipv6 <text-worker-ipv6-01> <text-worker-ipv6-02>] 
-    [ipv6]
-    [cluster-vip <text-cluster-vip>] 
+    cluster-vip <text-cluster-vip> 
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
 
@@ -116,6 +117,7 @@ netq install cluster full
 | ip-addr | \<text-ip-addr\> | Install a server cluster with a master node with this IPv4 address to communicate with the NetQ Agents on the worker nodes |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 | workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IPv4 addresses |
+| cluster-vip | \<text-cluster-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes. |
 
 ### Options
 
@@ -125,12 +127,10 @@ netq install cluster full
 | conifg-key | \<text-opta-key\> | Use this unique key to install the server cluster |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 | workers-ipv6 | \<text-worker-ipv6-01\> \<text-worker-ipv6-02\> | Install the worker nodes with these IPv6 addresses |
-| ipv6 | NA | Include this option for IPv6 installations |
-| cluster-vip | \<text-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes. |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 
-
+<!--need to update example for 4.9 with cluster-vip-->
 ### Sample Usage
 
 ```
@@ -301,7 +301,9 @@ netq install opta cluster full
     config-key <text-opta-key>
     [pod-ip-range <text-pod-ip-range>]
     workers <text-worker-01> <text-worker-02>
+    cluster-vip <text-cluster-vip>
     [proxy-host <text-proxy-host> proxy-port <text-proxy-port>]
+    [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
 
 ### Required Arguments
@@ -312,8 +314,10 @@ netq install opta cluster full
 | interface | \<text-opta-ifname\> | Install a server cluster with a master node using this interface to communicate with the NetQ Agents on the worker nodes |
 | ip-addr | \<text-ip-addr\> | Install a server cluster with a master node with this IP address to communicate with the NetQ Agents on the worker nodes |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
-| workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IP addresses |
 | conifg-key | \<text-opta-key\> | Use this unique key to activate the software |
+| workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IP addresses |
+| cluster-vip | \<text-cluster-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes. |
+
 
 ### Options
 
@@ -322,6 +326,8 @@ netq install opta cluster full
 | proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the VM; you must also specify a port |
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the VM; you must also specify a proxy host |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
+| s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
+| s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 
 ### Sample Usage
 
@@ -335,7 +341,7 @@ cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/
 - ```netq install opta activate-job```
 
 - - -
-
+<!--removed for 4.9
 ## install opta cluster add-worker
 
 Add additional nodes to your server cluster in a cloud deployment.
@@ -361,6 +367,7 @@ None
 - `netq install cluster add-worker`
 
 - - -
+-->
 ## netq install opta standalone
 
 Installs the NetQ Collector software on a single cloud server (VM) with a single command. You must have the hostname, IP address, or interface of the server, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.

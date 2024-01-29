@@ -52,7 +52,6 @@ Reset the node to prepare it for loading the installation program. In on-premise
 ```
 netq bootstrap reset
     [keep-db | purge-db]
-    [purge-images]
 ```
 
 ### Required Arguments
@@ -65,7 +64,6 @@ None
 | ---- | ---- | ---- |
 | keep-db | NA | Save existing data before resetting the node. Only applies to deployments with local databases. |
 | purge-db | NA | Discard existing data when resetting the node. Only applies to deployments with local databases. |
-| purge-images | NA | Discard Docker images when resetting the node. Only applies to deployments with local databases. |
 
 ### Sample Usage
 
@@ -85,5 +83,39 @@ cumulus@switch:~$ netq bootstrap reset keep-db
 
 None
 
+- - -
+<!--not exposed to customers
+## netq bootstrap worker
 
+### Syntax
 
+```
+netq bootstrap worker 
+    tarball <text-tarball-name> 
+    ip-addr <text-ip-addr> 
+    master-ip <text-master-ip> 
+    cluster-vip <text-cluster-vip> 
+    [password <text-password>] 
+    [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| tarball | \<text-tarball-name\> | Full path of the installation file, for example, */mnt/installables/netq-bootstrap-4.9.0.tgz*  |
+| ip-addr | \<text-ip-addr\> | IP address used for your NetQ server |
+| master-ip | \<text-master-ip\> | IP address used for your master node |
+| cluster-vip | \<text-cluster-vip\> | Virtual IP address from the same subnet used for your master and worker nodes. |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| password | \<text-password\> | Admin password |
+| s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
+| s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
+
+## Related Commands
+
+None
+-->

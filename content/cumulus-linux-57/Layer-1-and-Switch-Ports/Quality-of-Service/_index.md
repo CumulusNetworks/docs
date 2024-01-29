@@ -1748,7 +1748,7 @@ Qos Port Statistics
 
 ```
 cumulus@switch:~$ nv action clear qos buffer pool
-all qos pool buffers cleared.
+QoS pool buffers cleared.
 Action succeeded
 ```
 

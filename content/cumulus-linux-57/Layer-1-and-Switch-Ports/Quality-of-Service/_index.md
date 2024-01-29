@@ -1753,6 +1753,12 @@ Action succeeded
 ```
 
 ```
+cumulus@switch:~$ nv action clear qos buffer multicast-switch-priority
+QoS multicast buffers cleared.
+Action succeeded
+```
+
+```
 cumulus@switch:~$ nv action clear interface swp1 qos buffer
 QoS buffers cleared on swp1.
 Action succeeded

@@ -7,14 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3730904</td>
+<td>When sending untagged frames to the CPU with an MTU higher than the SVD (single VXLAN device) MTU, the kernel might crash.</td>
+<td>5.4.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3702431</td>
-<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with NVUE {{nv set service snmp-server enable on}}  and  {{nv set service snmp-server listening-address &lt;address&gt;}} commands or the equivalent API commands.</td>
+<td>Traditional SNMP snippets do not take effect unless you first enable SNMP with the NVUE {{nv set service snmp-server enable on}} and {{nv set service snmp-server listening-address}} commands. Alternatively, you can use the equivalent REST API methods.</td>
 <td>5.4.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3698482</td>
-<td>The NVUE {{nv show system config snippet}} command does not show any data. This occurs because traditional and flexible snippets represent free-form text and are not suitable to be configured or retrieved with the NVUE CLI. To work around this issue, run the {{nv show system config snippet -o json}} or {{nv show system config snippet -o yaml}} command. You can also a run a {{GET /nvue_v1/system/config/snippet }} REST API method.</td>
+<td>The NVUE {{nv show system config snippet}} command does not show any data because traditional and flexible snippets represent free-form text that are not suitable to be configured or retrieved with the NVUE CLI. To work around this issue, run the {{nv show system config snippet -o json}} or {{nv show system config snippet -o yaml}} command. You can also a run a {{GET /nvue_v1/system/config/snippet }} REST API method.</td>
 <td>5.7.0-5.8.0</td>
 <td></td>
 </tr>
@@ -32,8 +38,31 @@
 </tr>
 <tr>
 <td>3679478</td>
-<td>Both the ASIC Monitoring service and the What-Just-Happened service try to initialize the SDK TELE module. Initialization is successful only for the first service to initialize the module and you see error log messages.
-There is no functional impact if a service tries to initialize the module again.</td>
+<td>Both the ASIC Monitoring service and the What-Just-Happened service try to initialize the SDK TELE module, however, initialization is successful only for the first service to initialize the module. There is no functional impact if a service tries to initialize the module again.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3677821</td>
+<td>If you bring down an interface with Linux or NVUE commands, all the static neighbor entries disappear for that interface.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3677429</td>
+<td>When there is a flood of ARP packets, {{switchd}} might get overwhelmed and go into a busy state. Any NVUE configuration commands  related to {{switchd}} might time out and you might see "WARN MAC table full, skipped processing #x learn records" log messages in the {{switchd.log}}. To work around this issue, wait for {{switchd}} to resolve the ARP floods, which might take a few minutes depending on the amount of ARP flooding (typically between three and five minutes), then reapply the NVUE configuration.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3672706</td>
+<td> With port-security enabled, you can configure only 450 port-security static MAC addresses per interface.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3637444</td>
+<td>Applying an inbound control plane ACL on the eth0 management interface does not work. To work around this issue, apply the ACL on the {{mgmt}} interface; for example, {{nv set interface mgmt acl &lt;acl-id&gt; inbound control-plane}}.</td>
 <td>5.7.0-5.8.0</td>
 <td></td>
 </tr>
@@ -44,9 +73,33 @@ There is no functional impact if a service tries to initialize the module again.
 <td></td>
 </tr>
 <tr>
+<td>3634428</td>
+<td>The NUVE {{nv config history}} command does not display the correct TACACS user.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3610967</td>
+<td>In an EVPN symmetric routing configuration, running the NVUE {{nv set vrf &lt;vrf&gt; vlan auto}} command to derive layer 3 VNIs automatically might result in duplicate VLAN entries in the system. This most often occurs at scale when many VRFs have similar names. To work around this issue, manually specify a unique VLAN for each VRF.</td>
+<td>5.3.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3576949</td>
+<td>When you run the NVUE {{nv set service snmp listening-address localhost vrf &lt;vrf-name&gt;}} or {{nv set service snmp listening-address localhost-v6 vrf &lt;vrf-name&gt;}} command to configure the SNMP listening address, Cumulus Linux applies the listening address to the default VRF instead of the VRF you specify.</td>
+<td>5.3.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3556762</td>
 <td>On rare occasions, SPT switchover might not happen cleanly in PIM resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
 <td>5.5.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3549798</td>
+<td>If you add a VRF, then SSH into that VRF, which is a generated service (for example, {{sshd@vrfname.service}}), the service fails as the VRF is not created in time. To work around this issue, configure the VRF first, apply the configuration, then enable the SSH service on the VRF.</td>
+<td>5.6.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>
@@ -56,9 +109,33 @@ There is no functional impact if a service tries to initialize the module again.
 <td></td>
 </tr>
 <tr>
+<td>3484058</td>
+<td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
+<td>5.3.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3463827</td>
+<td>On rare occasions, SPT switchover might not happen cleanly in PIM, resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3452681</td>
+<td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see an error message similar to {{Error: GET /nvue_v1/system/aaa/tacacs/authorization/1?rev=operational responded with 404 NOT FOUND}}.</td>
+<td>5.5.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3433577</td>
 <td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
 <td>5.5.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3424967</td>
+<td>{{sudo}} for TACACS+ users with privilege level 15 does not work when the TACACS+ server is to be reached through the {{default}} VRF (with {{vrf=default}} set in the {{/etc/tacplus_servers}} file). To work around this issue, specify the interface name that the {{default}} VRF uses in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file or run the NVUE {{nv set system aaa tacacs vrf}} command. If you don't run either command, a TACACS+ user with privilege level 15 can run {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
+<td>5.0.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>
@@ -69,7 +146,7 @@ There is no functional impact if a service tries to initialize the module again.
 </tr>
 <tr>
 <td>3362113</td>
-<td>If you restore an NVUE {{startup.yaml}} file after upgrade that includes breakout ports with QoS configuration or you run the {{nv config patch}} command to update a configuration with a {{yaml}} file that includes breakout ports with QoS configuration, the NVUE configuration fails to apply and subsequent attempts to run {{nv config apply}} fail with the message similar to {{Invalid config [rev_id: 11] qos config is not supported on following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
+<td>If you restore an NVUE {{startup.yaml}} file after upgrade that includes breakout ports with QoS configuration or you run the {{nv config patch}} command to update a configuration with a {{yaml}} file that includes breakout ports with QoS configuration, the NVUE configuration fails to apply. Subsequent attempts to run {{nv config apply}} fail with a message similar to {{Invalid config [rev_id: 11] qos config is not supported on the following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
 <td>5.4.0-5.8.0</td>
 <td></td>
 </tr>
@@ -87,9 +164,27 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
+<td>3345054</td>
+<td>The NVUE {{nv show interface &lt;interface&gt; qos}} command takes a significant time to show output or times out. To work around this issue, use specific QoS commands. For example, to show congestion control information, run the {{nv show interface &lt;interface&gt; qos congestion-control}} command.</td>
+<td>5.4.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3341214</td>
+<td>If you use the NVUE REST API to configure a local user with a hashed password, the user cannot log in and the {{/etc/nvue.d/startup.yaml}} file shows the password as plain text.</td>
+<td>5.4.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3329518</td>
 <td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} (files is listed before tacplus), a user that is present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch. NVIDIA recommends that when using TACACS+, you list {{tacplus}} before {{files}} in {{/etc/nsswitch.conf}}.  When using NVUE, ensure that {{tacacs}} has priority over {{local}}.</td>
 <td>5.4.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>
@@ -100,7 +195,7 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 </tr>
 <tr>
 <td>3241567</td>
-<td>When you apply switch configuration for the first time on a freshly booted switch, you might see the error message {{Failed to start Hostname Service}} when you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
+<td>When you apply switch configuration for the first time on a freshly booted switch and you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}, you might see the error message {{Failed to start Hostname Service}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
 <td>5.3.0-5.8.0</td>
 <td></td>
 </tr>
@@ -258,13 +353,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2705056</td>
-<td>SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0, 5.0.0-5.8.0</td>
-<td>4.3.1-4.4.5</td>
-</tr>
-<tr>
-<td>2701000</td>
-<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF. To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
+<td>When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge.</td>
 <td>4.3.0, 5.0.0-5.8.0</td>
 <td>4.3.1-4.4.5</td>
 </tr>
@@ -293,6 +382,18 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.7.0</td>
 </tr>
 <tr>
+<td>3712877</td>
+<td>Configuring the number of lanes per port after breaking out the port is not effective.
+To work around this issue, first unset the breakout with the {{nv unset interface &lt;port&gt; breakout}} and {{nv config apply}} commands, then reconfigure the breakout and the lanes with the {{nv set interface &lt;interface&gt; link breakout &lt;breakout&gt; lanes-per-port &lt;lanes&gt;}} command. For example:
+
+cumulus@switch:~$ nv unset interface swp1 link breakout
+cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv set interface swp1 link breakout 2x lanes-per-port 2
+cumulus@switch:~$ nv config apply
+</td>
+<td></td>
+</tr>
+<tr>
 <td>3712007</td>
 <td>In RSTP mode when there is a bridge port flap, Cumulus Linux flushes, then re-adds dynamic MAC addresses on the peerlink, which might cause short traffic disruption.</td>
 <td>5.6.0-5.7.0</td>
@@ -316,6 +417,16 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>3695491</td>
 <td>When you log into a Cumulus Linux switch after a fresh install through the serial console, the management VRF might not be available. (This is not an issue with ssh.) To work around this issue, log out, then log back into the console a few seconds later after the switch finishes booting.</td>
 <td>5.7.0</td>
+</tr>
+<tr>
+<td>3686389</td>
+<td>When you use NVUE commands to configure an untagged VLAN (PVID) on a bridge to a non-default value, {{nv show bridge}} commands still indicate that the untagged VLAN is 1 (the default value). The untagged VLAN you configured is properly set on bridge ports, but displays incorrectly in operational NVUE show commands.</td>
+<td>5.6.0-5.7.0</td>
+</tr>
+<tr>
+<td>3671288</td>
+<td>On rare occasions, when the BGP service receives multiple update messages due to multiple route churns in the network, the next hop might become unreachable during the time that the switch processes BGP updates and withdraws that contain EVPN prefixes. As a result, the EVPN neighbor might be missed in the kernel.</td>
+<td>5.6.0-5.7.0</td>
 </tr>
 <tr>
 <td>3632843</td>

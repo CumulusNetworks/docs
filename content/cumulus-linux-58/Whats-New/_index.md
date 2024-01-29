@@ -22,6 +22,7 @@ NVIDIA recommends this release for {{<exlink url="https://www.nvidia.com/en-us/n
 - {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one step clock timestamp mode">}} is now generally available on Spectrum-4 switches
 - Improved SyncE and PPS noise transfer algorithm
 - {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PTP Noise Transfer Servo">}}
+- Ability to force the {{<link url="Precision-Time-Protocol-PTP/#ptp-version" text="PTP version">}}
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (optical)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} (warmboot does not support EVPN MLAG and EVPN multihoming)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for 802.1X">}}
@@ -54,6 +55,7 @@ NVIDIA recommends this release for {{<exlink url="https://www.nvidia.com/en-us/n
   ```
   nv show bridge domain <bridge> svi-force-up
   nv show system global svi-force-up
+  nv show service ptp <instance-id> force-version
   ```
 
   {{< /tab >}}
@@ -63,6 +65,7 @@ NVIDIA recommends this release for {{<exlink url="https://www.nvidia.com/en-us/n
   nv set interface <interface> dot1x host-mode
   nv set bridge domain <bridge> svi-force-up enable
   nv set system global svi-force-up enable
+  nv set service ptp <instance-id> force-version
   ```
   
   {{< /tab >}}
@@ -72,6 +75,7 @@ NVIDIA recommends this release for {{<exlink url="https://www.nvidia.com/en-us/n
   nv unset interface <interface> dot1x host-mode
   nv unset bridge domain <bridge> svi-force-up enable
   nv unset system global svi-force-up enable
+  nv unset service ptp <instance-id> force-version
   ```
 
   {{< /tab >}}

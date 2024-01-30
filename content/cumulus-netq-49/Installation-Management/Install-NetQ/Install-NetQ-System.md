@@ -21,5 +21,5 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 | --- | --- | --- | :---: |
 | OPTA | Single server | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Single Cloud Server" text="Start install" >}} |
 | OPTA | Single server | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Single Cloud Server" text="Start install" >}} |
-| OPTA | Server cluster | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Cloud Server Cluster" text="Start install" >}} |
-| OPTA | Server cluster | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Cloud Server Cluster" text="Start install" >}} |
+| OPTA | High availability server cluster | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Cloud HA Server Cluster" text="Start install" >}} |
+| OPTA | High availability server cluster | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Cloud HA Server Cluster" text="Start install" >}} |

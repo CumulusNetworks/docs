@@ -1,5 +1,5 @@
 ---
-title: Set Up Your KVM Virtual Machine for a Cloud Server Cluster
+title: Set Up Your KVM Virtual Machine for a Cloud HA Server Cluster
 author: NVIDIA
 weight: 228
 toc: 5

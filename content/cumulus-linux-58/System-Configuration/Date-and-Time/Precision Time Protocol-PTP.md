@@ -2136,6 +2136,15 @@ To set the minor PTP version back to the default, remove `force-version  2.0` fr
 {{< /tab >}}
 {{< /tabs >}}
 
+To show that the PTP minor version is now 0, run the `nv show service ptp <instance> force-version` command:
+
+```
+cumulus@switch:~$ nv show service ptp 1 force-version
+               applied
+-------------  -------
+force-version  2.0
+```
+
 ### PTP Traffic Shaping
 
 To improve performance on the NVIDIA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can enable a pre-defined traffic shaping profile. For example, if you see that the PTP timing offset varies widely and does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.

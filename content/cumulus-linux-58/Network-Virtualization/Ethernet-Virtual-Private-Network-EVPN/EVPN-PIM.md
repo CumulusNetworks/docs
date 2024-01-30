@@ -15,7 +15,7 @@ In the above example, host01 sends an ARP request to resolve host03. leaf01 (in 
 For PIM-SM, type-3 routes do not result in any forwarding entries. Cumulus Linux does **not** advertise type-3 routes for a layer 2 VNI when BUM mode for that VNI is PIM-SM.
 
 {{%notice note%}}
-If you use PIM-SM based <span class="a-tooltip">[MDT](## "Multicast Distribution Tree")</span> for EVPN BUM replication, NVIDIA recommends that you deploy an EVPN multihoming configuration.
+If you use a PIM-SM based <span class="a-tooltip">[MDT](## "Multicast Distribution Tree")</span> for EVPN BUM replication, NVIDIA recommends that you use {{<link url="EVPN-Multihoming" text="EVPN multihoming">}}.
 {{%/notice%}}
 
 ## Configure Multicast VXLAN Tunnels

@@ -788,7 +788,7 @@
     <ol>
         <li>
             <p>Confirm that the SHA256 checksum matches the one posted on the NVIDIA Application Hub to ensure the image download has not been corrupted.</p>
-            <pre>$ sha256sum ./Downloads/netq-4.5.0-ubuntu-18.04-ts-qemu.qcow2<br>$ 0A00383666376471A8190E2367B27068B81D6EE00FDE885C68F4E3B3025A00B6  ./Downloads/netq-4.5.0-ubuntu-20.04-ts-qemu.qcow2</pre>
+            <pre>$ sha256sum ./Downloads/netq-4.5.0-ubuntu-20.04-ts-qemu.qcow2<br>$ 0A00383666376471A8190E2367B27068B81D6EE00FDE885C68F4E3B3025A00B6  ./Downloads/netq-4.5.0-ubuntu-20.04-ts-qemu.qcow2</pre>
         </li>
         <li>Copy the QCOW2 image to a directory where you want to run it.
             <p><strong>Tip</strong>: Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.</p>
@@ -858,7 +858,7 @@
     <ol>
         <li>
             <p>Confirm that the SHA256 checksum matches the one posted on the NVIDIA Application Hub to ensure the image download has not been corrupted.</p>
-            <pre>$ sha256sum ./Downloads/netq-4.6.0-ubuntu-18.04-ts-qemu.qcow2<br>$ 0A00383666376471A8190E2367B27068B81D6EE00FDE885C68F4E3B3025A00B6  ./Downloads/netq-4.6.0-ubuntu-20.04-ts-qemu.qcow2</pre>
+            <pre>$ sha256sum ./Downloads/netq-4.6.0-ubuntu-20.04-ts-qemu.qcow2<br>$ 0A00383666376471A8190E2367B27068B81D6EE00FDE885C68F4E3B3025A00B6  ./Downloads/netq-4.6.0-ubuntu-20.04-ts-qemu.qcow2</pre>
         </li>
         <li>Copy the QCOW2 image to a directory where you want to run it.
             <p><strong>Tip</strong>: Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.</p>
@@ -928,7 +928,7 @@
     <ol>
         <li>
             <p>Confirm that the SHA256 checksum matches the one posted on the NVIDIA Application Hub to ensure the image download has not been corrupted.</p>
-            <pre>$ sha256sum ./Downloads/netq-4.7.0-ubuntu-18.04-ts-qemu.qcow2<br>$ 0A00383666376471A8190E2367B27068B81D6EE00FDE885C68F4E3B3025A00B6  ./Downloads/netq-4.7.0-ubuntu-20.04-ts-qemu.qcow2</pre>
+            <pre>$ sha256sum ./Downloads/netq-4.7.0-ubuntu-20.04-ts-qemu.qcow2<br>$ 0A00383666376471A8190E2367B27068B81D6EE00FDE885C68F4E3B3025A00B6  ./Downloads/netq-4.7.0-ubuntu-20.04-ts-qemu.qcow2</pre>
         </li>
         <li>Copy the QCOW2 image to a directory where you want to run it.
             <p><strong>Tip</strong>: Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.</p>
@@ -998,7 +998,7 @@
     <ol>
         <li>
             <p>Confirm that the SHA256 checksum matches the one posted on the NVIDIA Application Hub to ensure the image download has not been corrupted.</p>
-            <pre>$ sha256sum ./Downloads/netq-4.8.0-ubuntu-18.04-ts-qemu.qcow2<br>$ 0A00383666376471A8190E2367B27068B81D6EE00FDE885C68F4E3B3025A00B6  ./Downloads/netq-4.8.0-ubuntu-20.04-ts-qemu.qcow2</pre>
+            <pre>$ sha256sum ./Downloads/netq-4.8.0-ubuntu-20.04-ts-qemu.qcow2<br>$ 0A00383666376471A8190E2367B27068B81D6EE00FDE885C68F4E3B3025A00B6  ./Downloads/netq-4.8.0-ubuntu-20.04-ts-qemu.qcow2</pre>
         </li>
         <li>Copy the QCOW2 image to a directory where you want to run it.
             <p><strong>Tip</strong>: Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.</p>
@@ -1061,6 +1061,75 @@
 
     {{ end }}
     
+    {{- if eq (.Get "version") "4.9" -}}
+
+    {{- if eq (.Get "deployment") "onprem" -}}
+
+    <ol>
+        <li>
+            <p>Confirm that the SHA256 checksum matches the one posted on the NVIDIA Application Hub to ensure the image download has not been corrupted.</p>
+            <pre>$ sha256sum ./Downloads/netq-4.9.0-ubuntu-20.04-ts-qemu.qcow2<br>$ 0A00383666376471A8190E2367B27068B81D6EE00FDE885C68F4E3B3025A00B6  ./Downloads/netq-4.9.0-ubuntu-20.04-ts-qemu.qcow2</pre>
+        </li>
+        <li>Copy the QCOW2 image to a directory where you want to run it.
+            <p><strong>Tip</strong>: Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.</p>
+            <pre>$ sudo mkdir /vms<br>$ sudo cp ./Downloads/netq-4.9.0-ubuntu-20.04-ts-qemu.qcow2 /vms/ts.qcow2</pre>
+        </li>
+        <li>Create the VM.
+            <p>For a Direct VM, where the VM uses a MACVLAN interface to sit on the host interface for its connectivity:</p>
+
+            <pre>$ virt-install --name=netq_ts --vcpus=16 --memory=65536 --os-type=linux --os-variant=generic --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=eth0,model=virtio --import --noautoconsole</pre>
+
+            <div class="notices note"><p>Replace the disk path value with the location where the QCOW2 image is to reside. Replace network model value (eth0 in the above example) with the name of the interface where the VM is connected to the external network.</p></div>
+
+            <p>Or, for a Bridged VM, where the VM attaches to a bridge which has already been setup to allow for external access:</p>
+
+            <pre>$ virt-install --name=netq_ts --vcpus=16 --memory=65536 --os-type=linux --os-variant=generic \ --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=bridge=br0,model=virtio --import --noautoconsole</pre>
+
+            <div class="notices note"><p>Replace network bridge value (br0 in the above example) with the name of the (pre-existing) bridge interface where the VM is connected to the external network.</p></div>
+
+            <div class="notices tip"><p>Make note of the name used during install as this is needed in a later step.</p></div>
+        </li>
+        <li>Watch the boot process in another terminal window.
+            <pre>$ virsh console netq_ts</pre>
+        </li>
+    </ol>
+
+    {{ end }}
+
+    {{- if eq (.Get "deployment") "cloud" -}}
+
+    <ol>
+        <li>
+            <p>Confirm that the SHA256 checksum matches the one posted on the NVIDIA Application Hub to ensure the image download has not been corrupted.</p>
+            <pre>$ sha256sum ./Downloads/netq-4.9.0-ubuntu-20.04-tscloud-qemu.qcow2<br>$ FE353FC06D3F843F4041D74C853D38B0A56036C5886F6233A3ED1A9464AEB783  ./Downloads/netq-4.9.0-ubuntu-20.04-tscloud-qemu.qcow2</pre>
+        </li>
+        <li>Copy the QCOW2 image to a directory where you want to run it.
+            <p><strong>Tip</strong>: Copy, instead of moving, the original QCOW2 image that was downloaded to avoid re-downloading it again later should you need to perform this process again.</p>
+            <pre>$ sudo mkdir /vms<br>$ sudo cp ./Downloads/netq-4.9.0-ubuntu-20.04-tscloud-qemu.qcow2 /vms/ts.qcow2</pre>
+        </li>
+        <li>Create the VM.
+            <p>For a Direct VM, where the VM uses a MACVLAN interface to sit on the host interface for its connectivity:</p>
+
+            <pre>$ virt-install --name=netq_ts --vcpus=4 --memory=8192 --os-type=linux --os-variant=generic --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=type=direct,source=eth0,model=virtio --import --noautoconsole</pre>
+
+            <div class="notices note"><p>Replace the disk path value with the location where the QCOW2 image is to reside. Replace network model value (eth0 in the above example) with the name of the interface where the VM is connected to the external network.</p></div>
+
+            <p>Or, for a Bridged VM, where the VM attaches to a bridge which has already been setup to allow for external access:</p>
+
+            <pre>$ virt-install --name=netq_ts --vcpus=4 --memory=8192 --os-type=linux --os-variant=generic \ --disk path=/vms/ts.qcow2,format=qcow2,bus=virtio,cache=none --network=bridge=br0,model=virtio --import --noautoconsole</pre>
+
+            <div class="notices note"><p>Replace network bridge value (br0 in the above example) with the name of the (pre-existing) bridge interface where the VM is connected to the external network.</p></div>
+
+            <div class="notices tip"><p>Make note of the name used during install as this is needed in a later step.</p></div>
+        </li>
+        <li>Watch the boot process in another terminal window.
+            <pre>$ virsh console netq_ts</pre>
+        </li>
+    </ol>
+
+    {{ end }}
+
+    {{ end }}
     
     
 {{ end }}

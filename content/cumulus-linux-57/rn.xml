@@ -86,13 +86,13 @@
 </tr>
 <tr>
 <td>3677429</td>
-<td>When there is a flood of ARP packets, {{switchd}} might get overwhelmed and go into a busy state. Any NVUE configuration commands  related to {{switchd}} might time out and you might see "WARN MAC table full, skipped processing #x learn records" log messages in the {{switchd.log}}. To work around this issue, wait for {{switchd}} to resolve the ARP floods, which might take a few minutes depending on the amount of ARP flooding (typically between three and five minutes), then reapply the NVUE configuration.</td>
+<td>When there is a flood of ARP packets, {{switchd}} might get overwhelmed and go into a busy state. Any NVUE configuration commands related to {{switchd}} might time out and you might see {{WARN MAC table full, skipped processing #x learn records}} log messages in the {{switchd.log}} file. To work around this issue, wait for {{switchd}} to resolve the ARP floods, which might take a few minutes depending on the amount of ARP flooding (typically between three and five minutes), then reapply the NVUE configuration.</td>
 <td>5.7.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3672706</td>
-<td> With port-security enabled, you can configure only 450 port-security static MAC addresses per interface.</td>
+<td> When you enable port security, you can configure a maximum of 450 port security static MAC addresses for an interface.</td>
 <td>5.7.0</td>
 <td></td>
 </tr>

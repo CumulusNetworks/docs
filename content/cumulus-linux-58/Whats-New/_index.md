@@ -14,19 +14,21 @@ This document supports the Cumulus Linux 5.8 release, and lists new platforms, f
 <!-- vale on -->
 Cumulus Linux 5.8.0 contains several new features and improvements, and provides bug fixes.
 
+NVIDIA recommends you use the Cumulus Linux 5.8.0 release for {{<exlink url="https://www.nvidia.com/en-us/networking/spectrumx/" text="Spectrum-X Reference Architecture 1.0">}}.
+
 ### New Features and Enhancements
 - The NVIDIA SN3750-SX switch is Class C compliant
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} is now generally available on Spectrum-4 switches
 - {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one step clock timestamp mode">}} is now generally available on Spectrum-4 switches
-- Improved SyncE and PPS noise transfer algorithm
 - {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PTP Noise Transfer Servo">}}
-- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (copper and optical)
+- {{<link url="Precision-Time-Protocol-PTP/#ptp-version" text="Force PTP version">}}
+- Improved SyncE and PPS noise transfer algorithm
+- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (optical)
+- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} (warmboot does not support EVPN MLAG and EVPN multihoming)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for 802.1X">}}
 - {{<link url="802.1X-Interfaces/#host-modes" text="802.1X multi host mode">}}
-- {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
-- New adaptive routing parameter to set the buffer mode on Spectrum-4 switches
-- NVUE command to set {{<link url="VLAN-aware-Bridge-Mode/#keep-svis-perpetually-up" text="keep SVIs always UP">}}
+- NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-svis-perpetually-up" text="keep SVIs always UP">}}
 - Improved cl-support script to prevent switch disruption
 - Minimized data retrieval for the NVUE `nv show router nexthop rib` and `nv show vrf <vrf> router rib ipv4 route` commands
 - {{< expand "Improved tab completion for NVUE routing commands" >}}
@@ -45,7 +47,7 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
   ```
   {{< /expand >}}
 - {{< expand "New NVUE Commands" >}}
-  For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for    Cumulus Linux.
+  For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
   
   {{< tabs "TabID49 ">}}
   {{< tab "nv show ">}}
@@ -53,6 +55,7 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
   ```
   nv show bridge domain <bridge> svi-force-up
   nv show system global svi-force-up
+  nv show service ptp <instance-id> force-version
   ```
 
   {{< /tab >}}
@@ -62,6 +65,7 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
   nv set interface <interface> dot1x host-mode
   nv set bridge domain <bridge> svi-force-up enable
   nv set system global svi-force-up enable
+  nv set service ptp <instance-id> force-version
   ```
   
   {{< /tab >}}
@@ -71,8 +75,16 @@ Cumulus Linux 5.8.0 contains several new features and improvements, and provides
   nv unset interface <interface> dot1x host-mode
   nv unset bridge domain <bridge> svi-force-up enable
   nv unset system global svi-force-up enable
+  nv unset service ptp <instance-id> force-version
   ```
+
+  {{< /tab >}}
+  {{< tab "nv action ">}}
   
+  ```
+  nv action deauthenticate interface <interface-id> dot1x authorized-sessions <mac-address> [silent]
+  ```
+
   {{< /tab >}}
   {{< /tabs >}}
   

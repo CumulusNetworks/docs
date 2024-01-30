@@ -189,6 +189,8 @@ vlan-id 220
 - When two VTEPs are operating in **VXLAN active-active** mode and performing **symmetric** routing, you need to configure the router MAC corresponding to each layer 3 VNI to ensure both VTEPs use the same MAC address. Specify the `address-virtual` (MAC address) for the SVI corresponding to the layer 3 VNI. Use the same address on both switches in the MLAG pair. Use the MLAG system MAC address. See {{<link url="#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP    Address">}}.
 {{%/notice%}}
 
+If you need to convert a layer 2 VNI to a layer 3 VNI, refer to {{<link url="Network-Virtualization/#change-a-layer-2-vni-to-layer-3" text="Change a Layer 2 VNI to Layer 3">}}.
+
 ### Configure RD and RTs for the Tenant VRF
 
 If you do not want Cumulus Linux to derive the <span class="a-tooltip">[RD](## "route distinguisher")</span> and <span class="a-tooltip">[RTs](## "route targets")</span> (layer 3 RTs) for the tenant VRF automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.

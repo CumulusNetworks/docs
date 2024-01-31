@@ -484,9 +484,11 @@ error: hw sync failed (sync_acl hardware installation failed) Rolling back .. fa
 ```
 
 In the table below, the default rules count toward the limits listed. The raw limits below assume only one ingress and one egress table are present.
+<!--
+### Spectrum 1
 
 The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which you can use for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} for the switch.
-<!-- vale off -->
+-->
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
 |------------|-------------------|-------------------|-------------------|-------------------------|
 |default |500 |250 |1000 |500|
@@ -494,7 +496,15 @@ The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/
 |acl-heavy |1750 |1000 |3500 |2000|
 |ipmc-max |1000 |500 |2000 |1000 |
 |ip-acl-heavy |6000 |0 |12000 |0|
-<!-- vale on -->
+
+<!--### Spectrum-2 and Later
+
+For Spectrum-2 and later, all profiles support the same number of rules.
+
+|Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
+|-------------------|-------------------|-------------------|-------------------------|
+|12500 |6250 |25000 |12500|
+-->
 {{%notice note%}}
 - Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
 - The ip-acl-heavy profile shows an updated number of supported atomic mode and nonatomic mode IPv4 rules. The previously published numbers were 7500 for atomic mode and 15000 for nonatomic mode IPv4 rules.

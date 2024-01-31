@@ -870,7 +870,11 @@ Configures the loopback in the specified VRF.
 
 ## <h>nv set vrf \<vrf-id\> loopback ip address \<ip-prefix-id\></h>
 
-Configures the loopback IP address in the specified VRF. For VRF default use command "nv set interface lo ip add <ip-prefix-id>".
+Configures the loopback IP address in the specified VRF.
+
+{{%notice note%}}
+For the default VRF, use the `nv set interface lo ip address <ip-prefix-id>` command.
+{{%/notice%}}
 
 ### Command Syntax
 

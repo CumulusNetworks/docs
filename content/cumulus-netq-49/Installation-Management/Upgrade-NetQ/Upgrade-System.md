@@ -9,24 +9,24 @@ This page describes how to upgrade your NetQ virtual machines. Note that the upg
 
 For deployments running:
 
-- 4.7.0, 4.6.0, or 4.5.0: {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-netq-4.7,-4.6,-or-4.5" text="upgrade directly">}} to NetQ 4.8.0
-- 4.4.1, 4.4.0, or 4.3.0: {{<link title="Back Up and Restore NetQ/" text="back up your NetQ data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.8.0">}}
-- 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your NetQ data">}} and perform a {{<link title="Install NetQ" text="new installation of NetQ 4.8.0">}}.
+- 4.8.0, 4.7.0, 4.6.0, or 4.5.0: upgrade directly to NetQ 4.9.0 by following the steps on this page
+- 4.4.1, 4.4.0, or 4.3.0: back up your data by {{<link title="Back Up and Restore NetQ" text="following the steps for earlier NetQ versions">}}, then perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
+- 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
 
-## Upgrading from NetQ 4.7, 4.6, or 4.5
+## Upgrading from NetQ 4.8, 4.7, 4.6, or 4.5
 
-You can upgrade directly to NetQ 4.8.0 if your deployment is currently running version 4.5.0, 4.6.0 or 4.7.0.
+You can upgrade directly to NetQ 4.9.0 if your deployment is currently running version 4.8.0, 4.7.0, 4.6.0, or 4.5.0.
 ### Back up your NetQ Data
 
 Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
 
 ### Update NetQ Debian Packages
 
-1. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.8:
+1. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.9:
 
     ```
     cat /etc/apt/sources.list.d/cumulus-netq.list
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.8
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.9
     ```
 
 2. Update the NetQ `debian` packages. In cluster deployments, update the packages on the master and all worker nodes.
@@ -34,7 +34,7 @@ Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back 
     ```
     cumulus@<hostname>:~$ sudo apt-get update
     Get:1 https://apps3.cumulusnetworks.com/repos/deb focal InRelease [13.8 kB]
-    Get:2 https://apps3.cumulusnetworks.com/repos/deb focal/netq-4.8 amd64 Packages [758 B]
+    Get:2 https://apps3.cumulusnetworks.com/repos/deb focal/netq-4.9 amd64 Packages [758 B]
     Hit:3 http://archive.ubuntu.com/ubuntu focal InRelease
     Get:4 http://security.ubuntu.com/ubuntu focal-security InRelease [88.7 kB]
     Get:5 http://archive.ubuntu.com/ubuntu focal-updates InRelease [88.7 kB]
@@ -67,7 +67,7 @@ Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back 
 
 1. Download the upgrade tarball.
 
-    {{<netq-install/upgrade-image version="4.8">}}
+    {{<netq-install/upgrade-image version="4.9">}}
 
 2. Copy the tarball to the `/mnt/installables/` directory on your NetQ VM.
 
@@ -133,36 +133,37 @@ sudo systemctl restart kubelet
 
 Confirm that the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
 
-5. Confirm that the NetQ CLI is {{<link url=Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
+5. Confirm that the NetQ CLI is {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
 
 #### Upgrade Using the NetQ CLI
 
-Run the appropriate commands for your current version and deployment type:
+Run the appropriate commands for your deployment type:
 
-{{<tabs "4.6.0 or 4.7.0 steps">}}
-
-{{<tab "Upgrade from NetQ 4.7.0">}}
-
-{{<tabs "CLI Upgrade-4.7">}}
+{{<tabs "tabID142">}}
 
 {{<tab "On-premises Deployments">}}
 
-{{<tabs "On-prem standalone or cluster-4.7">}}
+{{<tabs "On-prem standalone or cluster">}}
 
 {{<tab "Standalone">}}
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz
 ```
-
 {{</tab>}}
 
 {{<tab "Cluster">}}
 
-```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
-```
+Run the `netq upgrade` command, specifying the current version's tarball and your cluster's virtual IP address. The virtual IP address must be allocated from the same subnet used for your master and worker nodes.
 
+```
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz cluster-vip <vip-ip>
+```
+{{%notice note%}}
+
+If you are upgrading from a NetQ 4.8 on-premises cluster with high availability, you do not need to include the `cluster-vip` option in the ugprade command.
+
+{{%/notice%}}
 {{</tab>}}
 
 {{</tabs>}}
@@ -171,55 +172,22 @@ cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.8.0.tgz
 
 {{<tab "Cloud Deployments">}}
 
-{{<tabs "Cloud standalone or cluster-4.7">}}
+{{<tabs "Cloud standalone or cluster">}}
 
 {{<tab "Standalone">}}
 
-Clear the current install state:
-
 ```
-cumulus@<hostname>:~$ netq bootstrap reset
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz
 ```
-
-Run the following install command on your NetQ cloud VM with the config key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also {{<link title="Configure Premises" text="obtain the configuration key using the NetQ UI">}}.
-
-```
-cumulus@<hostname>:~$ netq install opta standalone full interface <interface-name> bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
-```
-
-{{%notice note%}}
-You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
-{{%/notice%}}
-
 {{</tab>}}
 
 {{<tab "Cluster">}}
 
-Clear the current install state on your master node:
+Run the `netq upgrade` command, specifying the current version's tarball and your cluster's virtual IP address. The virtual IP address must be allocated from the same subnet used for your master and worker nodes.
 
 ```
-cumulus@<hostname>:~$ netq bootstrap reset
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz cluster-vip <vip-ip>
 ```
-
-Run the following command on your master node to initialize the cluster. Copy the output of the command to use on your worker nodes:
-
-```
-cumulus@<hostname>:~$ netq install cluster master-init
-   Please run the following command on all worker nodes:
-   netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
-```
-
-Run the `netq install cluster worker-init <ssh-key>` command from the output on each of your worker nodes.
-
-Run the following command on your master NetQ cloud VM using the IP addresses of your worker nodes and the config key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also {{<link title="Configure Premises" text="obtain the configuration key using the NetQ UI">}}.
-
-```
-cumulus@<hostname>:~$ netq install opta cluster full interface <interface-name> bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key <your-config-key> workers <worker-1-ip> <worker-2-ip> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
-```
-
-{{%notice note%}}
-You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
-{{%/notice%}}
 
 {{</tab>}}
 
@@ -228,136 +196,6 @@ You can specify the IP address instead of the interface name. To do so, use `ip-
 {{</tab>}}
 
 {{</tabs>}}
-
-{{</tab>}}
-
-{{<tab "Upgrade from NetQ 4.6.0 or 4.5.0">}}
-
-{{<tabs "CLI Upgrade-4.6">}}
-
-{{<tab "On-premises Deployments">}}
-
-{{<tabs "On-prem standalone or cluster-4.6">}}
-
-{{<tab "Standalone">}}
-
-Clear the install state and save the current database:
-
-```
-cumulus@<hostname>:~$ netq bootstrap reset keep-db
-```
-
-Run the install command to install the new tarball:
-
-```
-cumulus@<hostname>:~$ netq install standalone full interface <interface-name> bundle /mnt/installables/NetQ-4.8.0.tgz
-```
-
-{{%notice note%}}
-You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
-{{%/notice%}}
-
-{{</tab>}}
-
-{{<tab "Cluster">}}
-
-Clear the install state on your master node and save the current database:
-
-```
-cumulus@<hostname>:~$ netq bootstrap reset keep-db
-```
-
-Run the following command on your master node to initialize the cluster. Copy the output of the command to use on your worker nodes:
-
-```
-cumulus@<hostname>:~$ netq install cluster master-init
-   Please run the following command on all worker nodes:
-   netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
-```
-
-Run the {{<link title="install/#netq-install-cluster-worker-init" text="netq install cluster worker-init <ssh-key>">}} command from the output on each of your worker nodes.
-
-Next, run the {{<link title="install/#netq-install-cluster-full" text="netq install cluster full">}} command on your master node using the IP addresses of your worker nodes:
-
-<!--need to update example below for 4.9 with cluster-vip-->
-
-```
-cumulus@<hostname>:~$ netq install cluster full interface <interface-name> bundle /mnt/installables/NetQ-4.8.0.tgz workers <worker-1-ip> <worker-2-ip>
-```
-
-{{%notice note%}}
-You can specify the IPv4 or IPv6 address instead of the interface name. Refer to the {{<link title="install/#netq-install-cluster-full" text="command line reference">}} for the full syntax.
-{{%/notice%}}
-
-{{</tab>}}
-
-{{</tabs>}}
-
-{{</tab>}}
-
-{{<tab "Cloud Deployments">}}
-
-{{<tabs "Cloud standalone or cluster-4.6">}}
-
-{{<tab "Standalone">}}
-
-Clear the current install state:
-
-```
-cumulus@<hostname>:~$ netq bootstrap reset
-```
-
-Run the following install command on your NetQ cloud VM with the config key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also {{<link title="Configure Premises" text="obtain the configuration key using the NetQ UI">}}.
-
-```
-cumulus@<hostname>:~$ netq install opta standalone full interface <interface-name> bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key <your-config-key> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
-```
-
-{{%notice note%}}
-You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
-{{%/notice%}}
-{{</tab>}}
-
-{{<tab "Cluster">}}
-
-Clear the current install state on your master node:
-
-```
-cumulus@<hostname>:~$ netq bootstrap reset
-```
-
-Run the following command on your master node to initialize the cluster. Copy the output of the command to use on your worker nodes:
-
-```
-cumulus@<hostname>:~$ netq install cluster master-init
-   Please run the following command on all worker nodes:
-   netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
-```
-
-Run the `netq install cluster worker-init <ssh-key>` command from the output on each of your worker nodes.
-
-Run the following command on your master NetQ cloud VM using the IP addresses of your worker nodes and the config key obtained from the email you received from NVIDIA titled NetQ Access Link. You can also {{<link title="Configure Premises" text="obtain the configuration key using the NetQ UI">}}.
-
-```
-cumulus@<hostname>:~$ netq install opta cluster full interface <interface-name> bundle /mnt/installables/NetQ-4.8.0-opta.tgz config-key <your-config-key> workers <worker-1-ip> <worker-2-ip> [proxy-host <proxy-hostname> proxy-port <proxy-port>]
-```
-
-{{%notice note%}}
-You can specify the IP address instead of the interface name. To do so, use `ip-addr <IP address>` in place of the interface referenced with `interface <interface-name>` above.
-{{%/notice%}}
-
-{{</tab>}}
-
-{{</tabs>}}
-
-{{</tab>}}
-
-{{</tabs>}}
-
-{{</tab>}}
-
-{{</tabs>}}
-
 
 Confirm the upgrade was successful:
 

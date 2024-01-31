@@ -135,6 +135,14 @@ Confirm that the kubelet process is running with the `sudo systemctl status kube
 
 5. Confirm that the NetQ CLI is {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
 
+6. Ensure that the required ports are open {{<link title="Install the NetQ System" text="according to your deployment model">}}.
+
+{{%notice note%}}
+
+If you are upgrading a cluster deployment to NetQ 4.9.0, you must open TCP port 36443 for Kubernetes control plane operations.
+
+{{%/notice%}}
+
 #### Upgrade Using the NetQ CLI
 
 Run the appropriate commands for your deployment type:
@@ -161,7 +169,7 @@ cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz clust
 ```
 {{%notice note%}}
 
-If you are upgrading from a NetQ 4.8 on-premises cluster with high availability, you do not need to include the `cluster-vip` option in the ugprade command.
+If you are upgrading from a NetQ 4.8 high availability, on-premises cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the ugprade command.
 
 {{%/notice%}}
 {{</tab>}}
@@ -177,7 +185,7 @@ If you are upgrading from a NetQ 4.8 on-premises cluster with high availability,
 {{<tab "Standalone">}}
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0-opta.tgz
 ```
 {{</tab>}}
 
@@ -186,7 +194,7 @@ cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz
 Run the `netq upgrade` command, specifying the current version's tarball and your cluster's virtual IP address. The virtual IP address must be allocated from the same subnet used for your master and worker nodes.
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz cluster-vip <vip-ip>
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0-opta.tgz cluster-vip <vip-ip>
 ```
 
 {{</tab>}}

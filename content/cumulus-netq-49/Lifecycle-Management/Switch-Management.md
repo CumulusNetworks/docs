@@ -414,6 +414,19 @@ cumulus@switch:~$ netq lcm add role exit switches border01,border02
 
 {{</tabs>}}
 
+## Host a ZTP Script with NetQ
+
+You can host a {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP/" text="Zero Touch Provisioning (ZTP) script">}} on your NetQ VM to provision switches running Cumulus Linux. To host a ZTP script, copy the script to your NetQ server and reference the path you copied to in the `netq lcm add ztp-script` CLI command: 
+
+```
+cumulus@netq-server:~$ netq lcm add ztp-script /home/cumulus/ztp.sh
+ZTP script ztp.sh uploaded successfully and can be downloaded from http://10.10.10.10/lcm/asset/ztp.sh
+cumulus@netq-server:~$ 
+```
+
+The output of the command will provide the URL to use in the DHCP server option 239 configuration to instruct switches to retrieve the script. If you would like to use your NetQ VM as a DHCP server, the {{<exlink url="https://kea.readthedocs.io/en/latest/arm/intro.html" text="Kea DHCP server package">}} is installed by default.
+
+Remove ZTP scripts from NetQ with the `netq lcm del ztp-script <ztp-script-path>` command. To list scripts that are currently added to NetQ with their download URLs, use the `netq lcm show ztp-scripts` command.
 ## Decommission a Switch with LCM
 
 Decommissioning the switch or host removes information about the switch or host from the NetQ database. When the NetQ Agent restarts at a later date, it sends a connection request back to the database, so NetQ can monitor the switch or host again.

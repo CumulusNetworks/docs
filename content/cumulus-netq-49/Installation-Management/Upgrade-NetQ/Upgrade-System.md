@@ -99,7 +99,7 @@ Perform the following steps using the `cumulus` user account.
 {{%/notice%}}
 #### Pre-installation Checks
 
-Verify the following items before upgrading NetQ. For cluster deployments, verify steps 1 and 4 on all nodes in the cluster:
+Verify the following items before upgrading NetQ. For cluster deployments, verify steps 1 and 4 on each node in the cluster:
 
 1. Confirm your VM is configured with 16 vCPUs. If your VM is configured with fewer than 16 vCPUs, power off your VM, reconfigure your hypervisor to allocate 16 vCPUs, then power the VM on before proceeding.
 

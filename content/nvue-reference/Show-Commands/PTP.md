@@ -370,6 +370,31 @@ offset-scaled-log-variance  65535
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show service ptp \<instance-id\> force-version</h>
+
+Shows the PTP version. Cumulus Linux uses a `linuxptp` package that is PTP v2.1 compliant, and sets the major PTP version to 2 and the minor PTP version to 1 by default in the configuration. If your PTP configuration does not work correctly when the minor version is set, you can change the minor version to 0.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>`  | The PTP instance number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service ptp 1 force-version
+               applied
+-------------  -------
+force-version  2.0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show service ptp \<instance-id\> monitor</h>
 
 Shows the PTP monitor configuration for the specified PTP instance, such as the minimum and maximum difference allowed between the master and slave time, the mean time that PTP packets take to travel between the master and slave, the maximum number of timestamp entries allowed, the maximum number of violation log sets allowed, the maximum number of violation log entries allowed for each set, and the violation log interval.

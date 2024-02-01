@@ -872,6 +872,10 @@ Configures the loopback in the specified VRF.
 
 Configures the loopback IP address in the specified VRF.
 
+{{%notice note%}}
+For the default VRF, use the `nv set interface lo ip address <ip-prefix-id>` command.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -886,5 +890,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set vrf default loopback ip address 10.10.10.1/32
+cumulus@switch:~$ nv set vrf RED loopback ip address 10.10.10.1/32
 ```

@@ -13,6 +13,7 @@ For deployments running:
 - 4.4.1, 4.4.0, or 4.3.0: back up your data by {{<link title="Back Up and Restore NetQ" text="following the steps for earlier NetQ versions">}}, then perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
 - 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
 
+During the upgrade process, NetQ will be temporarily unavailable.
 ## Upgrading from NetQ 4.8, 4.7, 4.6, or 4.5
 
 You can upgrade directly to NetQ 4.9.0 if your deployment is currently running version 4.8.0, 4.7.0, 4.6.0, or 4.5.0.
@@ -99,9 +100,9 @@ Perform the following steps using the `cumulus` user account.
 {{%/notice%}}
 #### Pre-installation Checks
 
-Verify the following items before upgrading NetQ. For cluster deployments, verify steps 1 and 4 on each node in the cluster:
+Verify the following items before upgrading NetQ.
 
-1. Confirm your VM is configured with 16 vCPUs. If your VM is configured with fewer than 16 vCPUs, power off your VM, reconfigure your hypervisor to allocate 16 vCPUs, then power the VM on before proceeding.
+1. Confirm your VM is configured with 16 vCPUs. If your VM is configured with fewer than 16 vCPUs, power off your VM, reconfigure your hypervisor to allocate 16 vCPUs, then power the VM on before proceeding. For cluster deployments, verify these requirements on each node in the cluster.
 
 2. Check if there is sufficient disk space:
 
@@ -115,27 +116,9 @@ NVIDIA recommends proceeding with the installation only if the `Use%` is less th
 
 3. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If the pods are in a state other than `READY`, contact the NVIDIA support team.
 
-4. Check if the certificates have expired:
+4. Confirm that the NetQ CLI is {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
 
-```
-cumulus@<hostname>:~$ sudo grep client-certificate-data /etc/kubernetes/kubelet.conf | cut -d: -f2 | xargs | base64 -d | openssl x509 -dates -noout | grep notAfter | cut -f2 -d=
-Dec 18 17:53:16 2021 GMT
-cumulus@netq-appliance:~$
-```
-
-If the date in the above output is in the past, run the following commands before proceeding with the upgrade:
-```
-sudo cp /etc/kubernetes/kubelet.conf /etc/kubernetes/kubelet.conf.bak
-sudo sed -i 's/client-certificate-data.*/client-certificate: \/var\/lib\/kubelet\/pki\/kubelet-client-current.pem/g' /etc/kubernetes/kubelet.conf
-sudo sed -i 's/client-key.*/client-key: \/var\/lib\/kubelet\/pki\/kubelet-client-current.pem/g' /etc/kubernetes/kubelet.conf
-sudo systemctl restart kubelet
-```
-
-Confirm that the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
-
-5. Confirm that the NetQ CLI is {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
-
-6. Ensure that the required ports are open {{<link title="Install the NetQ System" text="according to your deployment model">}}.
+5. Ensure that the required ports are open {{<link title="Install the NetQ System" text="according to your deployment model">}}.
 
 {{%notice note%}}
 
@@ -169,7 +152,7 @@ cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz clust
 ```
 {{%notice note%}}
 
-If you are upgrading from a NetQ 4.8 high availability, on-premises cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the ugprade command.
+If you are upgrading from a NetQ 4.8 high availability, on-premises cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the upgrade command. Specifying a virtual IP address that is different from the virtual IP address used during the installation process will cause the upgrade to fail.
 
 {{%/notice%}}
 {{</tab>}}
@@ -213,9 +196,9 @@ Confirm the upgrade was successful:
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.8.0
+    BOOTSTRAP_VERSION=4.9.0
     APPLIANCE_MANIFEST_HASH=8869b5423dfcc441ea56a3c89e680b1b2ad61f6887edccb11676bac893073beb
-    APPLIANCE_VERSION=4.8.0
+    APPLIANCE_VERSION=4.9.0
     APPLIANCE_NAME=NetQ On-premises Appliance
     ```
 {{</tab>}}
@@ -225,9 +208,9 @@ Confirm the upgrade was successful:
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.8.0
+    BOOTSTRAP_VERSION=4.9.0
     APPLIANCE_MANIFEST_HASH=271f5943ffae42f758fef09bafeb37a63d996bd6e41bf7aeeb3a4d33232f05de
-    APPLIANCE_VERSION=4.8.0
+    APPLIANCE_VERSION=4.9.0
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```
 {{</tab>}}

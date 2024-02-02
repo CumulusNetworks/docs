@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3713419"></a> [3713419](#3713419) <a name="3713419"></a> <br /> | When monitoring system statistics and network traffic with sFlow, an aggressive link flap might produce a memory leak in the sFlow service <code>hsflowd</code>. | 5.1.0-5.7.0 | |
 | <a name="3696061"></a> [3696061](#3696061) <a name="3696061"></a> <br /> | When the MAC address of a neighbor changes, the <code>zebra</code> IP routing manager might crash.  | 5.2.1-5.6.0 | 5.7.0|
 | <a name="3684998"></a> [3684998](#3684998) <a name="3684998"></a> <br /> | DHCP lease information is not collected in the <code>cl-support</code> file. | 4.3.0-5.6.0 | 5.7.0|
 | <a name="3647426"></a> [3647426](#3647426) <a name="3647426"></a> <br />None | If BGP <code>remote-as</code> is set to an integer and you try to configure the <code>local-as</code> for a BGP instance, you see the following error:<pre>% AS specified for local as is the same as the remote as and this is not allowed<br /></pre>This configuration is not allowed; it is considered to be eBGP and local preference is not advertised. | 5.0.0-5.5.1 | 4.3.2-4.4.5, 5.6.0-5.7.0|
@@ -150,6 +151,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3713419"></a> [3713419](#3713419) <a name="3713419"></a> <br /> | When monitoring system statistics and network traffic with sFlow, an aggressive link flap might produce a memory leak in the sFlow service <code>hsflowd</code>. | 5.1.0-5.7.0 | |
 | <a name="3684998"></a> [3684998](#3684998) <a name="3684998"></a> <br /> | DHCP lease information is not collected in the <code>cl-support</code> file. | 4.3.0-5.6.0 | 5.7.0|
 | <a name="3647426"></a> [3647426](#3647426) <a name="3647426"></a> <br />None | If BGP <code>remote-as</code> is set to an integer and you try to configure the <code>local-as</code> for a BGP instance, you see the following error:<pre>% AS specified for local as is the same as the remote as and this is not allowed<br /></pre>This configuration is not allowed; it is considered to be eBGP and local preference is not advertised. | 5.0.0-5.5.1 | 4.3.2-4.4.5, 5.6.0-5.7.0|
 | <a name="3585467"></a> [3585467](#3585467) <a name="3585467"></a> <br /> | NVUE and <code>ip link</code> show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly. | 5.0.0-5.6.0 | 5.7.0|

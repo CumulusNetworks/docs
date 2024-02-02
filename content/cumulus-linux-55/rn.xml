@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3751952</td>
+<td>{{ifupdown2}} tries to set the multicast database hash elasticity (bridge-hashel attribute) with a value of 4096. However, this attribute is now deprecated in the Linux kernel and the value is always 16.</td>
+<td>5.5.1-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3730904</td>
 <td>When sending untagged frames to the CPU with an MTU higher than the SVD (single VXLAN device) MTU, the kernel might crash.</td>
 <td>5.4.0-5.7.0</td>
@@ -17,6 +23,12 @@
 <td>If you run NVUE commands to configure PIM for a VRF before you create the VRF, PIM does not create the {{pimreg}} device and the {{pimd}} service crashes.</td>
 <td>5.5.1</td>
 <td>5.6.0-5.7.0</td>
+</tr>
+<tr>
+<td>3713419</td>
+<td>When monitoring system statistics and network traffic with sFlow, an aggressive link flap might produce a memory leak in the sFlow service {{hsflowd}}.</td>
+<td>5.1.0-5.7.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3702431</td>
@@ -875,6 +887,12 @@ You can safely ignore this warning.</td>
 <td>3730904</td>
 <td>When sending untagged frames to the CPU with an MTU higher than the SVD (single VXLAN device) MTU, the kernel might crash.</td>
 <td>5.4.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3713419</td>
+<td>When monitoring system statistics and network traffic with sFlow, an aggressive link flap might produce a memory leak in the sFlow service {{hsflowd}}.</td>
+<td>5.1.0-5.7.0</td>
 <td></td>
 </tr>
 <tr>

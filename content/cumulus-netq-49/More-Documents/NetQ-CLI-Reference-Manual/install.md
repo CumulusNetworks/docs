@@ -56,7 +56,6 @@ cumulus@switch:~$ netq install cluster activate-job config-key ju8Kl4IhZ3cucHJvZ
 
 ### Related Commands
 
-- ```netq install cluster join-workers```
 - ```netq install cluster full```
 
 - - -
@@ -140,48 +139,6 @@ cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/insta
 ### Related Commands
 
 - `netq install cluster activate-job`
-- `netq install cluster join-workers`
-
-- - -
-<!-- vale off -->
-## netq install cluster join-workers
-<!-- vale on -->
-
-After initiating a NetQ installation, this command configures the first two worker nodes (NetQ on-premises appliances or VMs) in a server cluster deployment.
-
-Alternately, use {{<link title="#netq-install-cluster-full" text="netq install cluster full">}} to perform this and all other steps of a NetQ installation with a single command.
-
-### Syntax
-
-```
-netq install cluster join-workers
-    <text-worker-01>
-    [<text-worker-02>]
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| join-workers | NA | Identify at least one worker node for the server cluster |
-| NA | \<text-worker-node-01\> | IP address of server to configure as the first worker node in this server cluster |
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<text-worker-node-02\> | IP address of server to configure as the second worker node in this server cluster |
-
-### Sample Usage
-
-```
-cumulus@<hostname>:~$ netq install cluster join-workers 192.168.10.23 192.168.10.25
-```
-
-### Related Commands
-
-- ```netq install cluster activate-job```
-- ```netq install cluster full```
 
 - - -
 ## netq install cluster master-init
@@ -563,44 +520,6 @@ netq install update-opta-ssl-setting
 ### Options
 
 None
-
-### Related Commands
-
-None
-
-- - -
-
-## netq install update-settings
-
-
-Overrides system variables after encountering issues during installation. File a {{<exlink url="https://enterprise-support.nvidia.com/" text="support ticket">}} with the NVIDIA Enterprise Support team before using this command. They can provide the key/value pair needed to resolve your issue.
-
-### Syntax
-
-```
-netq install update-settings
-    <text-key>
-    <text-value>
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<text-key\> | Update the environment variable with this name |
-| NA | \<text-value\> | Update the specified environment variable with this value |
-
-### Options
-
-None
-
-### Sample Usage
-
-Change timeout for tasks
-
-```
-cumulus@<hostname>:~$ netq install update-settings DEFAULT_TASK_TIMEOUT_IN_MILLIS 3000000
-```
 
 ### Related Commands
 

@@ -68,6 +68,23 @@ Created Keys                                                        FINISHED
 Verified installer version                                          FINISHED
 ...
 ```
+
+## Installation and Upgrade Hook Scripts
+
+NVIDIA might provide hook scripts to perform various tasks during a NetQ installation or upgrade. When you run the `netq install` or `netq upgrade` command, NetQ checks for the existence of these specific hook script filenames in the `/usr/bin` directory. The expected filenames for NetQ 4.9.0 are:
+
+- Pre-install script: `/usr/bin/pre_install_4.9.0.sh`
+- Post-install script: `/usr/bin/post_install_4.9.0.sh`
+- Pre-upgrade script: `/usr/bin/pre_upgrade_4.9.0.sh`
+- Post-upgrade script: `/usr/bin/post_upgrade_4.9.0.sh`
+
+After placing the script in the `/usr/bin` directory, set executable permissions with the `chmod +x /usr/bin/<filename>` command:
+
+```
+cumulus@netq-server:~$ chmod +x /usr/bin/pre_install_4.9.0.sh
+```
+
+After copying the script to the expected path and setting it to executable, the script will run during the next installation or upgrade attempt.
 ## Verify Connectivity between Agents and Appliances
 
 The `sudo opta-info.py` command displays the status of and connectivity between agents and appliances. This command is typically used when debugging NetQ.

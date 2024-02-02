@@ -334,7 +334,6 @@ The `source-protocol` match statement is supported in {{<link url="FRRouting/#ar
 ### Permit Action Exit Policies
 
 You can configure the permit action exit policy for a route map to:
-- Exit further rule processing.
 - Go to the next rule when the matching conditions are met.
 - Go to specific rule when the matching conditions are met.
 
@@ -342,13 +341,6 @@ To configure the permit action exit policy:
 
 {{< tabs "TabID343 ">}}
 {{< tab "NVUE Commands ">}}
-
-The following command configures the permit action exit policy to exit further rule processing:
-
-```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy exit 30
-cumulus@switch:~$ nv config apply
-```
 
 The following command configures the permit action exit policy to go to the next rule when the matching conditions are met:
 

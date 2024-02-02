@@ -26,80 +26,13 @@ In a standard Debian installation, all of these ARP parameters are set to *0*, l
 
 The ARP tunable parameters are set to the following values by default in Cumulus Linux.
 
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 15%" />
-<col style="width: 15%" />
-<col style="width: 50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Parameter</p></th>
-<th><p>Setting</p></th>
-<th><p>Type</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p><code>arp_accept</code></p></td>
-<td><p>0</p></td>
-<td><p>BOOL</p></td>
-<td><p>Define behavior for gratuitous ARP frames whose IP is not already present in the ARP table:</p>
-<p>0 - Don't create new entries in the ARP table.</p>
-<p>1 - Create new entries in the ARP table.</p>
-<p>Cumulus Linux uses the default <code>arp_accept</code> behavior of not creating new entries in the ARP table when a gratuitous ARP is seen on an interface or when an ARP reply packet is received. However, an individual interface can have the <code>arp_accept</code> behavior set differently than the remainder of the switch if needed. For information on how to apply this port-specific behavior, <a href="#change-port-specific-arp-parameters">see below</a>.</p></td>
-</tr>
-<tr class="even">
-<td><p><code>arp_announce</code></p></td>
-<td><p>2</p></td>
-<td><p>INT</p></td>
-<td><p>Define different restriction levels for announcing the local source IP address from IP packets in ARP requests sent on interface:</p>
-<p>0 - (default) Use any local address, configured on any interface.</p>
-<p>1 - Try to avoid local addresses that are not in the target's subnet for this interface. This mode is useful when target hosts reachable via this interface require the source IP address in ARP requests to be part of their logical network configured on the receiving interface. When we generate the request we will check all our subnets that include the target IP and will preserve the source address if it is from such subnet. If there is no such subnet we select source address according to the rules for level 2.</p>
-<p>2 - Always use the best local address for this target. In this mode we ignore the source address in the IP packet and try to select local address that we prefer for talks with the target host. Such local address is selected by looking for primary IP addresses on all our subnets on the outgoing interface that include the target IP address. If no suitable local address is found we select the first local address we have on the outgoing interface or on all other interfaces, with the hope we will receive reply for our request and even sometimes no matter the source IP address we announce.</p>
-<p>The default Debian behavior with <code>arp_announce</code> set to 0 is to send gratuitous ARPs or ARP requests using any local source IP address, not limiting the IP source of the ARP packet to an address residing on the interface used to send the packet. This reflects the historically held view in Linux that IP addresses reside <em>inside</em> the device and are not considered a property of a specific interface.</p>
-<p>Routers expect a different relationship between the IP address and the physical network. Adjoining routers look for MAC/IP addresses to reach a next-hop residing on a connecting interface for transiting traffic. By setting the <code>arp_announce</code> parameter to 2, Cumulus Linux uses the best local address for each ARP request, preferring primary addresses on the interface used to send the ARP. This most closely matches traditional router ARP request behavior.</p></td>
-</tr>
-<tr class="odd">
-<td><p><code>arp_filter</code></p></td>
-<td><p>0</p></td>
-<td><p>BOOL</p></td>
-<td><p>0 - (default) The kernel can respond to ARP requests with addresses from other interfaces. This may seem wrong but it usually makes sense, because it increases the chance of successful communication. IP addresses are owned by the complete host on Linux, not by particular interfaces. Only for more complex setups like load- balancing, does this behavior cause problems.</p>
-<p>1 - Allows you to have multiple network interfaces on the same subnet, and have the ARPs for each interface be answered based on whether or not the kernel would route a packet from the ARP'd IP address out of that interface (therefore you must use source based routing for this to work). In other words, it allows control of which cards (usually 1) will respond to an ARP request.</p>
-<p><code>arp_filter</code> for the interface will be enabled if at least one of <code>conf/{all,interface}/arp_filter</code> is set to TRUE, it is disabled otherwise.</p>
-<p>Cumulus Linux uses the default Debian Linux arp_filter setting of 0.</p>
-<p>The <code>arp_filter</code> is primarily used when multiple interfaces reside in the same subnet and is used to allow/disallow which interfaces respond to ARP requests. In the case of {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} using IP unnumbered interfaces, many interfaces appear to be in the same subnet, and so actually contain the same address. If multiple interfaces are used between a pair of routers, having <code>arp_filter</code> set to 1 causes forwarding to fail.</p>
-<p>The <code>arp_filter</code> parameter is set to allow a response on any interface in the subnet, where the <code>arp_ignore</code> setting (below) to limit cross-interface ARP behavior.</p></td>
-</tr>
-<tr class="even">
-<td><p><code>arp_ignore</code></p></td>
-<td><p>1</p></td>
-<td><p>INT</p></td>
-<td><p>Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:</p>
-<p>0 - (default) Reply for any local target IP address, configured on any interface.</p>
-<p>1 - Reply only if the target IP address is local address configured on the incoming interface.</p>
-<p>2 - Reply only if the target IP address is local address configured on the incoming interface and both with the sender's IP address are part from same subnet on this interface.</p>
-<p>3 - Do not reply for local addresses configured with scope host, only resolutions for global and link addresses are replied.</p>
-<p>4-7 - Reserved</p>
-<p>8 - Do not reply for all local addresses.</p>
-<p>The maximum value from <code>conf/{all,interface}/arp_ignore</code> is used when the ARP request is received on the {interface}.</p>
-<p>The default Debian <code>arp_ignore</code> parameter allows the device to reply to an ARP request for any IP address on any interface. While this matches the expectation that an IP address belongs to the device, not an interface, it can cause some unexpected and undesirable behavior on a router.</p>
-<p>For example, if the <code>arp_ignore</code> parameter were set to 0 and an ARP request is received on one interface for the IP address residing on a different interface, the switch responds with an ARP reply even if the interface of the target address is down. This can cause a loss of traffic due to incorrect understanding about the reachability of next-hops, and also makes troubleshooting extremely challenging for some failure conditions.</p>
-<p>In Cumulus Linux, the <code>arp_ignore</code> value is set to 1 so that it only replies to ARP requests on the interface that contains the target IP address. This acts much more like a traditional router and provides simplicity in troubleshooting and operation.</p></td>
-</tr>
-<tr class="odd">
-<td><p><code>arp_notify</code></p></td>
-<td><p>1</p></td>
-<td><p>BOOL</p></td>
-<td><p>Define mode for notification of address and device changes.</p>
-<p>0 - (default) Do nothing.</p>
-<p>1 - Generate gratuitous arp requests when device is brought up or hardware address changes.</p>
-<p>The default Debian <code>arp_notify</code> setting is to remain silent when an interface is brought up or the hardware address is changed. Since Cumulus Linux often acts as a next-hop for many end hosts, it immediately notifies attached devices when an interface comes up or the address changes. This speeds up convergence on the new information and provides the most rapid support for changes.</p></td>
-</tr>
-</tbody>
-</table>
+| Parameter |Default Setting | Type | Description |
+|---------- |-------- |----- |------------ |
+| `arp_accept` | 0 | BOOL | Defines the behavior for gratuitous ARP frames when the IP address is not already in the ARP table:<ul><li>0: Do not create new entries in the ARP table.</li><li>1: Create new entries in the ARP table.</li></ul><br>You can set `arp_accept` on an individual interface which differs from the rest of the switch (see below). |
+| `arp_announce` | 2 | INT | Defines different restriction levels for announcing the local source IP address from IP packets in ARP requests that send on an interface:<ul><li>0: Use any local address configured on any interface.</li><li>1: Avoid local addresses that are not in the target subnet for this interface. You can use this mode when target hosts reachable through this interface require the source IP address in ARP requests to be part of their logical network configured on the receiving interface. When Cumulus Linux generates the request, it checks all subnets that include the target IP address and preserves the source address if it is from such a subnet. If there is no such subnet, Cumulus Linux selects the source address according to the rules for level 2.</li><li>2: Always use the best local address for this target. In this mode, Cumulus Linux ignores the source address in the IP packet and tries to select the local address preferred for talks with the target host. To select the local address, Cumulus Linux looks for primary IP addresses on all the subnets on the outgoing interface that include the target IP address. If there is no suitable local address, Cumulus Linux selects the first local address on the outgoing interface or on all other interfaces, so that it receives a reply for the request regardless of the announced source IP address.</li></ul>The default Debian behavior (`arp_announce` is 0) sends gratuitous ARPs or ARP requests using any local source IP address and does not limit the IP source of the ARP packet to an address residing on the interface that sends the packet.<br><br>Routers expect a different relationship between the IP address and the physical network. Adjoining routers look for MAC and IP addresses to reach a next hop residing on a connecting interface for transiting traffic. By setting the `arp_announce` parameter to 2, Cumulus Linux uses the best local address for each ARP request, preferring the primary addresses on the interface that sends the ARP. |
+| `arp_filter` | 0 | BOOL | <ul><li>0: The kernel can respond to ARP requests with addresses from other interfaces to increase the chance of successful communication. The complete host on Linux (not specific interfaces) owns the IP addresses. For more complex configurations, such as load balancing, this behavior can cause problems.</li><li>1: Allows you to have multiple network interfaces on the same subnet and to answer the ARPs for each interface based on whether the kernel routes a packet from the ARPd IP address out of that interface (you must use source based routing).</li></ul>`arp_filter` for the interface is on if at least one of `conf/{all,interface}/arp_filter` is TRUE, it is off otherwise.<br><br>Cumulus Linux uses the default Debian Linux `arp_filter` setting of 0.<br>The switch uses `arp_filter` when multiple interfaces reside in the same subnet and allows certain interfaces to respond to ARP requests. For OSPF with IP unnumbered interfaces, multiple interfaces appear in the same subnet and contain the same address. If you use multiple interfaces between a pair of routers and set `arp_filter` to 1, forwarding can fail. <br><br>The `arp_filter` parameter allows a response on any interface in the subnet, where the `arp_ignore` setting (below) limits cross-interface ARP behavior. |
+| `arp_ignore` | 1 | INT | Defines different modes for sending replies in response to received ARP requests that resolve local target IP addresses:<ul><li>0: Reply for any local target IP address on any interface.</li><li>1: Reply only if the target IP address is the local address on the incoming interface.</li><li>2: Reply only if the target IP address is the local address on the incoming interface and the sender IP address is part of same subnet on this interface.</li><li>3: Do not reply for local addresses with scope host; the switch replies only for global and link addresses.</li><li>4-7: Reserved.</li><li>8: Do not reply for all local addresses.</li></ul>The switch uses the maximum value from `conf/{all,interface}/arp_ignore` when the {interface} receives the ARP request.<br><br>The default `arp_ignore` setting of 1 allows the device to reply to an ARP request for any IP address on any interface. While this matches the expectation that an IP address belongs to the device, not an interface, it can cause some unexpected behavior on a router.<br><br>For example, if `arp_ignore` is 0 and the switch receives an ARP request on one interface for the IP address residing on a different interface, the switch responds with an ARP reply even if the interface of the target address is down. This can cause traffic loss because the switch does not know if it can reach the next hops and results in troubleshooting challenges for failure conditions.<br><br>If you set `arp_ignore` to 2, the switch only replies to ARP requests if the target IP address is a local address and both the sender and target IP addresses are part of the same subnet on the incoming interface. The router does not create stale neighbor entries when a peer device sends an ARP request from a source IP address that is not on the connected subnet. Eventually, the switch sends ARP requests to the host to try to keep the entry fresh. If the host responds, the switch now has reachable neighbor entries for hosts that are not on the connected subnet. |
+| `arp_notify` | 1 | BOOL | Defines the mode to notify address and device changes.<ul><li>0: Do nothing.</li><li>1: Generate gratuitous ARP requests when the device comes up or the hardware address changes.</li></ul>The default Debian `arp_notify` setting is to remain silent when an interface comes up or the hardware address changes. Because Cumulus Linux often acts as a next hop for several end hosts, it notifies attached devices when an interface comes up or the address changes, which speeds up new information convergence and provides the most rapid support for changes. |
 
 ## Change Tunable ARP Parameters
 

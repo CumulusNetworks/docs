@@ -283,6 +283,37 @@ cumulus@switch:~$ netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
 None
 
 - - -
+## netq lcm add ztp-script
+
+Adds a ZTP script to your NetQ VM to provision switches running Cumulus Linux. The output of this command provides the URL to use in the DHCP server option 239 configuration to instruct switches to retrieve the script.
+
+### Syntax
+
+```
+netq lcm add ztp-script <text-ztp-script-path>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| ztp-script | <text-ztp-script-path\>  | File path specifying the location of the ZTP script |
+### Options
+
+None
+
+### Sample Usage
+
+```
+cumulus@netq-server:~$ netq lcm add ztp-script /home/cumulus/ztp.sh
+ZTP script ztp.sh uploaded successfully and can be downloaded from http://10.10.10.10/lcm/asset/ztp.sh
+cumulus@netq-server:~$ 
+```
+
+### Related Commands
+
+- `netq lcm del ztp-script`
+- `netq lcm show ztp-scripts`
+- - -
 ## netq lcm attach credentials
 
 Assigns an {{<link title="Credentials and Profiles" text="access profile">}} to one or more switches. For step-by-step instructions, see {{<link title="Switch Management#assign-a-profile-to-a-switch" text="Switch Management">}}.
@@ -539,6 +570,45 @@ None
 
 - - -
 -->
+## netq lcm del ztp-script
+
+Deletes a ZTP script from your NetQ server. Use the `netq lcm show ztp-scripts` command to view a list of all ZTP scripts along with their script identification numbers.
+
+### Syntax
+
+```
+netq lcm del ztp-script <text-ztp-script-id>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| ztp-script | <text-ztp-script-id\> | Delete ZTP script with this script ID |
+### Options
+
+None
+
+
+### Sample Usage
+
+```
+cumulus@netq-server:~$ netq lcm show ztp-scripts json
+[
+    {
+        "scriptId": "file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974",
+        "scriptName": "ztp1.sh",
+        "generatedDownloadUrl": http://10.10.10.10/lcm/asset/ztp.sh
+    }
+]
+
+cumulus@netq-server:~$ netq lcm del ztp-script file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974
+ZTP script ztp1.sh successfully deleted 
+```
+### Related Commands
+
+- `netq lcm add ztp-script`
+- `netq lcm show ztp-scripts`
+- - -
 ## netq lcm detach credentials
 
 Detaches an access profile from a switch and restores the default profile. Obtain the hostname by running `netq lcm show switches`.
@@ -1236,6 +1306,45 @@ bad118cc7
 ### Related Commands
 
 - ```netq lcm show status```
+- - -
+## netq lcm show ztp-scripts
+
+Displays a list of ZTP scripts along with their script identification numbers and the URL where they can be downloaded.
+
+### Syntax
+
+```
+netq lcm show ztp-scripts [<text-ztp-script-id>]
+    [json]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| ztp-scripts | <text-ztp-script-id\> | Only display ZTP script with this script ID |
+| json | NA | Display the output in JSON format |
+
+### Sample Usage
+
+```
+cumulus@netq-server:~$ netq lcm show ztp-scripts json
+[
+    {
+        "scriptId": "file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974",
+        "scriptName": "ztp1.sh",
+        "generatedDownloadUrl": http://10.10.10.10/lcm/asset/ztp.sh
+    }
+]
+```
+### Related Commands
+
+- `netq lcm add ztp-script`
+- `netq lcm del ztp-script`
 - - -
 ## netq lcm upgrade cl-image
 

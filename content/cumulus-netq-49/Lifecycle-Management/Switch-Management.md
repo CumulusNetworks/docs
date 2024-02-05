@@ -426,7 +426,21 @@ cumulus@netq-server:~$
 
 The output of the command will provide the URL to use in the DHCP server option 239 configuration to instruct switches to retrieve the script. If you would like to use your NetQ VM as a DHCP server, you can use the {{<exlink url="https://kea.readthedocs.io/en/latest/arm/intro.html" text="Kea DHCP server package">}}, which is installed by default.
 
-Remove ZTP scripts from NetQ with the `netq lcm del ztp-script <ztp-script-path>` command. To list scripts that are currently added to NetQ along with their download URLs, use the `netq lcm show ztp-scripts` command.
+To list scripts that are currently added to NetQ along with their download URLs and script identification numbers, use the `netq lcm show ztp-scripts` command. You can remove ZTP scripts from NetQ with the `netq lcm del ztp-script <text-ztp-script-id>` command. 
+
+```
+cumulus@netq-server:~$ netq lcm show ztp-scripts json
+[
+    {
+        "scriptId": "file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974",
+        "scriptName": "ztp1.sh",
+        "generatedDownloadUrl": http://10.10.10.10/lcm/asset/ztp.sh
+    }
+]
+
+cumulus@netq-server:~$ netq lcm del ztp-script file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974
+ZTP script ztp1.sh successfully deleted 
+```
 ## Decommission a Switch with LCM
 
 Decommissioning the switch or host removes information about the switch or host from the NetQ database. When the NetQ Agent restarts at a later date, it sends a connection request back to the database, so NetQ can monitor the switch or host again.

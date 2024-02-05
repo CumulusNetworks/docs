@@ -32,7 +32,7 @@ docker run -d --net=host                                                        
 
 ### Restart the Prometheus Adapter Pod
 
-The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in your network. You must restart the `netq-prom-adapter` pod to update the scraping interval before you can begin collecting data:
+The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in your network. You must restart the `netq-prom-adapter` pod to update the scrape interval before you can begin collecting data:
 
 1. Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
 

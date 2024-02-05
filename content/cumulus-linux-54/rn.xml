@@ -468,6 +468,12 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <td></td>
 </tr>
 <tr>
+<td>3713419</td>
+<td>When monitoring system statistics and network traffic with sFlow, an aggressive link flap might produce a memory leak in the sFlow service {{hsflowd}}.</td>
+<td>5.1.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3702431</td>
 <td>Traditional SNMP snippets do not take effect unless you first enable SNMP with the NVUE {{nv set service snmp-server enable on}} and {{nv set service snmp-server listening-address}} commands. Alternatively, you can use the equivalent REST API methods.</td>
 <td>5.4.0-5.7.0</td>

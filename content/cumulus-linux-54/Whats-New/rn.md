@@ -91,6 +91,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="3730904"></a> [3730904](#3730904) <a name="3730904"></a> <br /> | When sending untagged frames to the CPU with an MTU higher than the SVD (single VXLAN device) MTU, the kernel might crash. | 5.4.0-5.7.0 | |
+| <a name="3713419"></a> [3713419](#3713419) <a name="3713419"></a> <br /> | When monitoring system statistics and network traffic with sFlow, an aggressive link flap might produce a memory leak in the sFlow service <code>hsflowd</code>. | 5.1.0-5.7.0 | |
 | <a name="3702431"></a> [3702431](#3702431) <a name="3702431"></a> <br /> | Traditional SNMP snippets do not take effect unless you first enable SNMP with the NVUE <code>nv set service snmp-server enable on</code> and <code>nv set service snmp-server listening-address</code> commands. Alternatively, you can use the equivalent REST API methods. | 5.4.0-5.7.0 | |
 | <a name="3696061"></a> [3696061](#3696061) <a name="3696061"></a> <br /> | When the MAC address of a neighbor changes, the <code>zebra</code> IP routing manager might crash.  | 5.2.1-5.6.0 | 5.7.0|
 | <a name="3695430"></a> [3695430](#3695430) <a name="3695430"></a> <br /> | When you configure extended nexthop encoding for a peer group, the peers in the group do not inherit the configuration. To work around this issue, configure extended nexthop encoding on each individual peer in the group. NVIDIA recommends that you upgrade to Cumulus Linux 5.6 or later to avoid this issue. | 5.4.0-5.6.0 | 5.7.0|

@@ -248,6 +248,12 @@ The configuration above does not persist if you reboot the switch. To make the c
 
 ## ARP Timers
 
-Cumulus Linux does not interact directly with end systems as much as end systems interact with each another. Therefore, after ARP places a neighbor into a reachable state, if Cumulus Linux does not interact with the client again for a long enough period of time, the neighbor can move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process tracks neighbors that move into a stale, delay, or probe state, and attempts to refresh their state before removing them from the Linux kernel and from hardware forwarding. The `neighmgrd` process adds a neighbor if the sender IP in the ARP packet is in one of the SVI's subnets (you can disable this check by setting `subnet_checks` to *0* in the `/etc/cumulus/neighmgr.conf` file).
+Cumulus Linux does not interact directly with end systems as much as end systems interact with each another. Therefore, after ARP places a neighbor into a reachable state, if Cumulus Linux does not interact with the client again for a long enough period of time, the neighbor can move into a stale state. To keep neighbors in the reachable state, Cumulus Linux includes a background process (`/usr/bin/neighmgrd`). The background process can track neighbors that move into a stale, delay, or probe state, and attempt to refresh their state before removing them from the Linux kernel and from hardware forwarding. If you want the `neighmgrd` process to add a neighbor if the sender IP address in the ARP packet is in one of the SVI's subnets, create the `/etc/cumulus/neighmgr.conf` file and add the `subnet_checks=1` parameter under the `[snooper]` header. By default, the `subnet_checks` option is set to 0 (disabled) so that `neighmgrd` allows out-of-network neighbors to be processed from SVIs.
 
 The ARP refresh timer defaults to 1080 seconds (18 minutes).
+
+```
+cumulus@leaf02:mgmt:~$ sudo nano /etc/cumulus/neighmgr.conf
+[snooper]
+subnet_checks=1
+```

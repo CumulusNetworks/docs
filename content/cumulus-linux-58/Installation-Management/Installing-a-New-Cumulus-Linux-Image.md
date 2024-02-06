@@ -227,13 +227,56 @@ Follow the steps below to install the Cumulus Linux image referencing a local fi
 {{< /tab >}}
 {{< tab "Install from Cumulus Linux ">}}
 
-1. Copy the Cumulus Linux image to the switch.
+The `onie-install` command lets you stage a Cumulus Linux image and other files, such as a ZTP script or an NVUE `startup.yaml` file, then run the installation on the switch when you are ready.
 
-2. From the Cumulus Linux command prompt, run the `onie-install` command, then reboot the switch.
+You can provide the following file paths with the `onie-install` command:
+- The local file path (absolute or relative path)
+- `http://server/path/`
+- `https://server/path/`
+- `scp://user@server/path/`
+- `ftp://server/path/` (anonymous only)
 
-    ```
-    cumulus@switch:~$ sudo onie-install -a -i /path/to/local/file/cumulus-install-x86_64.bin
-    ```
+Use these options to stage additional files with the Cumulus Linux image:
+- `-z` stages a <span class="a-tooltip">[ZTP](## "Zero Touch Provisioning")</span> script.
+- `-t` stages an NVUE `startup.yaml` file.
+
+The following example stages an image that is hosted on an HTTP server:
+
+```
+cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer 
+```
+
+The following example stages an image that is hosted on an HTTP server and a ZTP script hosted on an HTTP server:
+
+```
+cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -z http://203.0.113.10/ztp-script
+```
+
+The following example stages an image that is hosted on an HTTP server and a local NVUE `startup.yaml` file:
+  
+```
+cumulus@cumulus:~$ sudo onie-install -i http://203.0.113.10/image-installer -t /etc/nvue.d/startup.yaml
+```
+
+To activate the staged installation, use the `-a` option, then reboot the switch:
+
+```
+cumulus@cumulus:~$ sudo onie-install -a
+WARNING: This will wipe out all system data
+WARNING: Make sure to back up your data
+Are you sure (N/y)? y
+Activating staged installer...done.
+Reboot required to take effect.
+```
+
+You can combine the `-i`, `-z`, `-t` and `-a` options all at once. In addition, you can use the `-f` (force) option together with the `-a` option to suppress the yes and no prompts:
+
+```
+cumulus@cumulus:~$ sudo onie-install -fa -i http://203.0.113.10/image-installer -z http://203.0.113.10/ztp-script -t /etc/nvue.d/startup.yaml
+Staging installer image... Adding ZTP script...done.
+Activating staged installer...done.
+Reboot required to take effect.
+```
 
 {{< /tab >}}
 {{< /tabs >}}

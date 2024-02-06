@@ -832,7 +832,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL56 - GRE" showNodes="leaf01,leaf03,spine01,spine02,server01,server04" >}}
+    {{< simulation name="cadet-snapshot" showNodes="leaf01,leaf03,spine01,spine02,server01,server04" >}}
 
 This simulation starts with the example GRE configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

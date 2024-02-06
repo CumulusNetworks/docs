@@ -32,7 +32,7 @@
 </tr>
 <tr>
 <td>3712007</td>
-<td>In RSTP mode when there is a bridge port flap, Cumulus Linux flushes, then re-adds dynamic MAC addresses on the peerlink, which might cause short traffic disruption.</td>
+<td>In RSTP mode when there is a bridge port flap, Cumulus Linux flushes, then re-adds dynamic MAC addresses on the peer link, which might cause short traffic disruption.</td>
 <td>5.6.0-5.7.0</td>
 <td></td>
 </tr>
@@ -50,7 +50,7 @@
 </tr>
 <tr>
 <td>3698680</td>
-<td>If you run the {{ifreload -a}} command when ACLs exist but non_atomic update mode is set in the {{switchd.conf}} file, traffic pauses on unaffected interfaces.</td>
+<td>If you run the {{ifreload -a}} command when ACLs exist but nonatomic update mode is set in the {{switchd.conf}} file, traffic pauses on unaffected interfaces.</td>
 <td>5.6.0-5.7.0</td>
 <td></td>
 </tr>
@@ -86,7 +86,7 @@
 </tr>
 <tr>
 <td>3671288</td>
-<td>On rare occasions, when the BGP service receives multiple update messages due to multiple route churns in the network, the next hop might become unreachable during the time that the switch processes BGP updates and withdraws that contain EVPN prefixes. As a result, the EVPN neighbor might be missed in the kernel.</td>
+<td>On rare occasions, when the BGP service receives multiple update messages due to multiple route churns in the network, the next hop might become unreachable during the time that the switch processes BGP updates and withdraws with EVPN prefixes. As a result, the EVPN neighbor might be missed in the kernel.</td>
 <td>5.6.0-5.7.0</td>
 <td></td>
 </tr>
@@ -184,7 +184,7 @@ Note: this procedure results in a switchd restart which will have an impact on t
 </tr>
 <tr>
 <td>3632843</td>
-<td>When the switch receives a type5 route in BGP and there is a network statement for the same prefix, BGP sometimes removes the request to track next hops from FRR. As next hop reachability changes, BGP no longer reacts to the change. To work around this issue, run the {{clear bgp *}} command for all peerings.</td>
+<td>When the switch receives a type-5 route in BGP and there is a network statement for the same prefix, BGP sometimes removes the request to track next hops from FRR. As next hop reachability changes, BGP no longer reacts to the change. To work around this issue, run the {{clear bgp *}} command for all peerings.</td>
 <td>5.6.0-5.7.0</td>
 <td></td>
 </tr>
@@ -393,7 +393,7 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 </tr>
 <tr>
 <td>3538321</td>
-<td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the Slave state and one of the ports might remain in an Uncalibrated state. To work around this issue, toggle the port that is in the Uncalibrated state up and down to recover the PTP state so that one of the ports is selected as the Slave.</td>
+<td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the slave state and one of the ports might remain in an uncalibrated state. To work around this issue, toggle the port that is in the uncalibrated state up and down so that one of the ports is selected as the slave.</td>
 <td>5.6.0-5.7.0</td>
 <td></td>
 </tr>
@@ -478,7 +478,7 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 </tr>
 <tr>
 <td>3424967</td>
-<td>{{sudo}} for TACACS+ users with privilege level 15 does not work when the TACACS+ server is to be reached through the {{default}} VRF (with {{vrf=default}} set in the {{/etc/tacplus_servers}} file). To work around this issue, specify the interface name that the {{default}} VRF uses in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file or run the NVUE {{nv set system aaa tacacs vrf}} command. If you don't run either command, a TACACS+ user with privilege level 15 can run {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
+<td>{{sudo}} for TACACS+ users with privilege level 15 does not work when reaching the TACACS+ server through the {{default}} VRF. To work around this issue, specify the interface name that the {{default}} VRF uses in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file or run the NVUE {{nv set system aaa tacacs vrf}} command. If you don't run either command, a TACACS+ user with privilege level 15 can run {{vrf task exec default sudo ...}} to execute the {{sudo}} command.</td>
 <td>5.0.0-5.7.0</td>
 <td></td>
 </tr>
@@ -502,7 +502,7 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 </tr>
 <tr>
 <td>3362113</td>
-<td>If you restore an NVUE {{startup.yaml}} file after upgrade that includes breakout ports with QoS configuration or you run the {{nv config patch}} command to update a configuration with a {{yaml}} file that includes breakout ports with QoS configuration, the NVUE configuration fails to apply. Subsequent attempts to run {{nv config apply}} fail with a message similar to {{Invalid config [rev_id: 11] qos config is not supported on the following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
+<td>If you restore an NVUE {{startup.yaml}} file or run the {{nv config patch}} command after an upgrade that includes breakout ports with QoS configuration, the NVUE configuration fails to apply. Subsequent attempts to run {{nv config apply}} fail with a message similar to {{Invalid config [rev_id: 11] qos config is not supported on the following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
 <td>5.4.0-5.7.0</td>
 <td></td>
 </tr>
@@ -557,7 +557,7 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 </tr>
 <tr>
 <td>3326659</td>
-<td>If you have a large number of MAC addresses, they do not age out at the MAC ageing timeout value configured on the switch. It might take up to 30 seconds more for the MAC addresses to age out and be deleted from the hardware. To work around this issue, wait for the ageing timeout value plus 30 seconds to allow for the MAC addresses to age out and be deleted from the hardware.</td>
+<td>If you have a large number of MAC addresses, they do not age out at the MAC ageing timeout value configured on the switch. It might take up to 30 seconds more for the MAC addresses to age out and be deleted from the hardware. To work around this issue, wait for the ageing timeout value plus 30 seconds.</td>
 <td>5.4.0-5.7.0</td>
 <td></td>
 </tr>
@@ -669,7 +669,7 @@ cumulus@switch:~$ sudo ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3084476</td>
-<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.7.0</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -777,7 +777,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2671652</td>
-<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
 <td>4.4.0-4.4.5, 5.5.0-5.7.0</td>
 <td></td>
 </tr>

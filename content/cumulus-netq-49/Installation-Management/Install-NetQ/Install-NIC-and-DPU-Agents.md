@@ -30,9 +30,9 @@ docker run -d --net=host                                                        
               --rm --name doca-telemetry -it $DTS_IMAGE /usr/bin/telemetry-run.sh
 ```
 
-### Restart the Prometheus Adapter Pod
+### Modify Scrape Interval
 
-The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in your network. You must restart the `netq-prom-adapter` pod to update the scrape interval before you can begin collecting data:
+The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in your network. The default scrape interval is every minute. If you want to change the frequency of the scrape interval, make your adjustments, then restart the `netq-prom-adapter` pod to begin collecting data with the updated parameters:
 
 1. Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
 

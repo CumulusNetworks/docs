@@ -394,11 +394,9 @@ The errors are temporary and have no impact on functionality or traffic.</td>
 <tr>
 <td>3452763</td>
 <td>When you use the NVUE API with TACACS+, users might see a 403 Forbidden message if no TACACS+ user has logged in some other way, such as with SSH.  To work around this issue, log in any TACACS+ user through SSH before you use the NVUE API with TACACS+ users, or run the following commands:
-
-cumulus@switch:~$ sudo touch /run/tacacs_client_map
-cumulus@switch:~$ sudo chown root:shadow /run/tacacs_client_map
-cumulus@switch:~$ sudo chmod 0644 /run/tacacs_client_map
-</td>
+{{cumulus@switch:~$ sudo touch /run/tacacs_client_map}}
+{{cumulus@switch:~$ sudo chown root:shadow /run/tacacs_client_map}}
+{{cumulus@switch:~$ sudo chmod 0644 /run/tacacs_client_map}}</td>
 <td>5.5.0-5.5.1</td>
 <td>5.6.0-5.7.0</td>
 </tr>
@@ -1205,11 +1203,9 @@ The errors are temporary and have no impact on functionality or traffic.</td>
 <tr>
 <td>3452763</td>
 <td>When you use the NVUE API with TACACS+, users might see a 403 Forbidden message if no TACACS+ user has logged in some other way, such as with SSH.  To work around this issue, log in any TACACS+ user through SSH before you use the NVUE API with TACACS+ users, or run the following commands:
-
-cumulus@switch:~$ sudo touch /run/tacacs_client_map
-cumulus@switch:~$ sudo chown root:shadow /run/tacacs_client_map
-cumulus@switch:~$ sudo chmod 0644 /run/tacacs_client_map
-</td>
+{{cumulus@switch:~$ sudo touch /run/tacacs_client_map}}
+{{cumulus@switch:~$ sudo chown root:shadow /run/tacacs_client_map}}
+{{cumulus@switch:~$ sudo chmod 0644 /run/tacacs_client_map}}</td>
 <td>5.5.0-5.5.1</td>
 <td>5.6.0-5.7.0</td>
 </tr>

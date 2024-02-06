@@ -29,7 +29,7 @@ NVIDIA recommends you use the Cumulus Linux 5.8.0 release for {{<exlink url="htt
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for 802.1X">}}
 - {{<link url="802.1X-Interfaces/#host-modes" text="802.1X multi host mode">}}
 - NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-svis-perpetually-up" text="keep SVIs always UP">}}
-- {{<link url="Installing-a-New-Cumulus-Linux-Image/#install-using-a-local-file" text="Install a NVUE startup.yaml file">}} from Cumulus Linux.
+- {{<link url="Installing-a-New-Cumulus-Linux-Image/#install-using-a-local-file" text="Stage an NVUE startup.yaml file during binary image installation">}} from Cumulus Linux.
 - Improved cl-support script to prevent switch disruption
 - Minimized data retrieval for the NVUE `nv show router nexthop rib` and `nv show vrf <vrf> router rib ipv4 route` commands
 - {{< expand "Improved tab completion for NVUE routing commands" >}}

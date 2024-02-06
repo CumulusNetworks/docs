@@ -1103,8 +1103,14 @@ Create a new image
 **Example**:
 
 ```
->>> air.images.create(name='my_image', filename='/tmp/my_image.qcow2', agent_enabled=False)
+>>> image = air.images.create(name='my_image', filename='/tmp/my_image.qcow2', agent_enabled=False)
+>>> image
 <Image my_image 01298e0c-4ef1-43ec-9675-93160eb29d9f>
+>>> image.upload_status
+'COMPLETE'
+>>> alt_img = air.images.create(name='my_alt_img', filename='/tmp/alt_img.qcow2', agent_enabled=False)
+>>> alt_img.upload_status
+'FAILED'
 ```
 
 

@@ -10,8 +10,8 @@ This page describes how to upgrade your NetQ virtual machines. Note that the upg
 For deployments running:
 
 - 4.8.0, 4.7.0, 4.6.0, or 4.5.0: upgrade directly to NetQ 4.9.0 by following the steps on this page
-- 4.4.1, 4.4.0, or 4.3.0: back up your data, following {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="the instructions for your NetQ version">}}, then perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
-- 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ/#back-up-netq-4.4.1-or-earlier" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
+- 4.4.1, 4.4.0, or 4.3.0: {{<link title="Back Up and Restore NetQ" text="back up your data">}}, then perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
+- 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
 
 During the upgrade process, NetQ will be temporarily unavailable.
 ## Upgrading from NetQ 4.8, 4.7, 4.6, or 4.5

@@ -13,34 +13,13 @@ You must run backup and restore scripts with sudo privileges.
 
 ## Back Up Your NetQ Data
 
-NetQ stores its data in a Cassandra database. You perform backups by running scripts provided with the software and located in the `/usr/sbin` directory. When you run a backup, the script creates a single `tar` file in the `/opt/backuprestore/` directory. 
-
-To create a backup, refer to the following steps for your NetQ version.
-
-### Back Up NetQ 4.5.0 or Later
-
-1. Run the backup script `/usr/sbin/vm-backuprestore.sh`:
-
-```
-cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
-```
-
-2. Verify the backup file creation was successful:
-
-   ```
-   cumulus@netq-appliance:~$ cd /opt/backuprestore/
-   cumulus@netq-appliance:~/opt/backuprestore$ ls
-   ```
-
-### Back Up NetQ 4.4.1 or Earlier
-
 1. Retrieve the `vm-backuprestore.sh` script:
 
 <p style="text-indent: 40px">a. On the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}, log in to your account.<br></p>
 <p style="text-indent: 40px">b. Select <b>NVIDIA Licensing Portal</b>.<br></p>
 <p style="text-indent: 40px">c. Select <b>Software Downloads</b> from the menu.<br></p>
 <p style="text-indent: 40px">d. Click <b>Product Family</b> and select <b>NetQ</b>.<br></p>
-<p style="text-indent: 40px">e. Locate the NetQ Upgrade Backup Restore file and select <b>Download</b>.<br></p>
+<p style="text-indent: 40px">e. Locate the latest <i>NetQ Upgrade Backup Restore</i> file and select <b>Download</b>.<br></p>
 <p style="text-indent: 40px">f. If prompted, read the license agreement and proceed with the download.<br></p>
 
 2. Copy the `vm-backuprestore.sh` script to your NetQ server:

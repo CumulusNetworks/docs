@@ -379,22 +379,6 @@ You can specify a range of VLANs as well. For example:
 
     cumulus@switch:~$ net add vlan 1-200
 
-### Configure ARP Timers
-
-Cumulus Linux does not often interact directly with end systems as much
-as end systems interact with one another. Thus, after a successful
-{{<exlink url="http://linux-ip.net/html/ether-arp.html" text="address resolution protocol">}}
-(ARP) places a neighbor into a reachable state, Cumulus Linux may not
-interact with the client again for a long enough period of time for the
-neighbor to move into a stale state. To keep neighbors in the reachable
-state, Cumulus Linux includes a background process
-(`/usr/bin/neighmgrd`) that tracks neighbors that move into a stale,
-delay or probe state, and attempts to refresh their state ahead of any
-removal from the Linux kernel, and thus before it would be removed from
-the hardware forwarding.
-
-The ARP refresh timer defaults to 1080 seconds (18 minutes). You can change this setting by following the procedures outlined in {{<link url="Address-Resolution-Protocol-ARP">}}.
-
 ### Configure Multiple Ports in a Range
 
 The `bridge-ports` attribute takes a range of numbers. The "swp1-52" in

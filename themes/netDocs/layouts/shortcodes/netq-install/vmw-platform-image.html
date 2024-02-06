@@ -687,3 +687,39 @@
 {{ end }}
 
 {{ end }}
+
+{{- if eq (.Get "version") "4.9" -}}
+
+{{- if eq (.Get "deployment") "onprem" -}}
+
+<ol>
+    <li>On the <a href="https://nvid.nvidia.com/">NVIDIA Application Hub</a>, log in to your account.<br>
+        <li>Select<strong> NVIDIA Licensing Portal</strong>.</li>  
+        <li>Select<strong> Software Downloads</strong> from the menu.</li>
+        <li>Click <strong>Product Family</strong> and select <strong>NetQ</strong>.</li>
+        <li>Locate the <strong>NetQ SW 4.9 VMWare</strong> image and select <strong>Download</strong>.</li>
+        <li>If prompted, read the license agreement and proceed with the download.</li>
+</ol>
+
+<div class="notices note"><p>For enterprise customers, if you do not see a link to the <b>NVIDIA Licensing Portal</b> on the <a href="https://nvid.nvidia.com/">NVIDIA Application Hub</a>, contact NVIDIA support.</p>
+    <br>
+    <p>For NVIDIA employees, download NetQ directly from the <a href="http://ui.licensing.nvidia.com/">NVIDIA Licensing Portal.</a></p></div>
+{{ end }}
+
+{{- if eq (.Get "deployment") "cloud" -}}
+
+<ol>
+    <li>On the <a href="https://nvid.nvidia.com/">NVIDIA Application Hub</a>, log in to your account.<br>
+        <li>Select<strong> NVIDIA Licensing Portal</strong>.</li>  
+        <li>Select<strong> Software Downloads</strong> from the menu.</li>
+        <li>Click <strong>Product Family</strong> and select <strong>NetQ</strong>.</li>
+        <li>Locate the <strong>NetQ SW 4.9 VMWare Cloud</strong> image and select <strong>Download</strong>.</li>
+        <li>If prompted, read the license agreement and proceed with the download.</li>
+</ol>
+
+<div class="notices note"><p>For enterprise customers, if you do not see a link to the <b>NVIDIA Licensing Portal</b> on the <a href="https://nvid.nvidia.com/">NVIDIA Application Hub</a>, contact NVIDIA support.</p>
+    <br>
+    <p>For NVIDIA employees, download NetQ directly from the <a href="http://ui.licensing.nvidia.com/">NVIDIA Licensing Portal.</a></p></div>
+{{ end }}
+
+{{ end }}

@@ -19,7 +19,7 @@ If you manage a switch using an in-band network interface, {{<link url="Lifecycl
 
 Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select **Manage switches**. From the LCM dashboard, select the **Switch management** tab. The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
 
-{{<figure src="/images/netq/lcm-switches-490.png" alt="switches card displaying 525 discovered switches" width="200">}}
+{{<figure src="/images/netq/lcm-switches-490.png" alt="switches card displaying 525 discovered switches" width="200" height="auto">}}
 
 To view a table of all discovered switches and their attributes, select **Manage** on the Switches card.
 
@@ -69,7 +69,7 @@ To discover switches running Cumulus Linux:
 
 3. Enter a name for the scan.
 
-    {{<figure src="/images/netq/discover-switches-profile-450.png" width="500">}}
+    {{<figure src="/images/netq/discover-switches-profile-450.png" width="500" height="auto">}}
 
 4. Choose whether you want to look for switches by entering IP address ranges or import switches using a comma-separated values (CSV) file.
 
@@ -205,7 +205,7 @@ NetQ uses access profiles to store user authentications credentials. After {{<li
 
 Select the switches to which you'd like to assign access profiles, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} **Manage access profile** above the table: 
 
-{{<figure src="/images/netq/manage-access-profile-450.png" alt="" width="500">}}
+{{<figure src="/images/netq/manage-access-profile-450.png" alt="" width="500" height="auto">}}
 
 3. Select the profile from the list, then click **Apply**. If the profile you want to use isn't listed, select **Add new profile** and {{<link title="Credentials and Profiles/#create-access-profiles" text="follow the steps to create an access profile">}}.
 
@@ -253,11 +253,11 @@ Detaching a profile from a switch restores it to the default access profile, Net
 
 2. From the table of switches, locate the switch whose access profile you'd like to manage. Hover over the access type column and select **Manage access**:
 
-{{<figure src="/images/netq/detach-manage-access-450.png" alt="" width="500">}}
+{{<figure src="/images/netq/detach-manage-access-450.png" alt="" width="500" height="auto">}}
 
 3. To assign a different access profile to the switch, select it from the list. To detach the access profile, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18"/> **Detach**.
 
-{{<figure src="/images/netq/manage-access-profile-spine-450.png" alt="" width="500">}}
+{{<figure src="/images/netq/manage-access-profile-spine-450.png" alt="" width="500" height="auto">}}
 
 After you detach the profile from the switch, NetQ reassigns it to the Netq-Default profile.
 
@@ -308,7 +308,7 @@ Role assignment is optional, but recommended. Assigning roles can prevent switch
 
     Note that the **Role** column is updated with the role assigned to the selected switch(es). To return to the full list of switches, click **All**.
 
-    {{<figure src="/images/netq/role-column-450.png" alt="table displaying role column with updated role assignments" width="700">}}
+    {{<figure src="/images/netq/role-column-450.png" alt="table displaying role column with updated role assignments" width="700" height="auto">}}
 
 6. Continue selecting switches and assigning roles until most or all switches have roles assigned.
 
@@ -414,6 +414,33 @@ cumulus@switch:~$ netq lcm add role exit switches border01,border02
 
 {{</tabs>}}
 
+## Host a ZTP Script with NetQ
+
+You can host a {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Zero-Touch-Provisioning-ZTP/" text="Zero Touch Provisioning (ZTP) script">}} on your NetQ VM to provision switches running Cumulus Linux. To host a ZTP script, copy the script to your NetQ server and reference the path you copied to in the `netq lcm add ztp-script` CLI command: 
+
+```
+cumulus@netq-server:~$ netq lcm add ztp-script /home/cumulus/ztp.sh
+ZTP script ztp.sh uploaded successfully and can be downloaded from http://10.10.10.10/lcm/asset/ztp.sh
+cumulus@netq-server:~$ 
+```
+
+The output of the command will provide the URL to use in the DHCP server option 239 configuration to instruct switches to retrieve the script. If you would like to use your NetQ VM as a DHCP server, you can use the {{<exlink url="https://kea.readthedocs.io/en/latest/arm/intro.html" text="Kea DHCP server package">}}, which is installed by default.
+
+To list scripts that are currently added to NetQ along with their download URLs and script identification numbers, use the `netq lcm show ztp-scripts` command. You can remove ZTP scripts from NetQ with the `netq lcm del ztp-script <text-ztp-script-id>` command. 
+
+```
+cumulus@netq-server:~$ netq lcm show ztp-scripts json
+[
+    {
+        "scriptId": "file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974",
+        "scriptName": "ztp1.sh",
+        "generatedDownloadUrl": http://10.10.10.10/lcm/asset/ztp.sh
+    }
+]
+
+cumulus@netq-server:~$ netq lcm del ztp-script file_e96b2807bdb2c77c89334d03952097dd2224a25df68a6e91d6ab19fc9c265974
+ZTP script ztp1.sh successfully deleted 
+```
 ## Decommission a Switch with LCM
 
 Decommissioning the switch or host removes information about the switch or host from the NetQ database. When the NetQ Agent restarts at a later date, it sends a connection request back to the database, so NetQ can monitor the switch or host again.
@@ -428,7 +455,7 @@ Decommissioning the switch or host removes information about the switch or host 
 
 3. Select the devices to decommission, then select **Decommission switch** above the table:
 
-{{<figure src="/images/netq/decom-switch-box-450.png" alt="" width="600">}}
+{{<figure src="/images/netq/decom-switch-box-450.png" alt="" width="600" height="auto">}}
 
 If you attempt to decommission a switch that is assigned a default, unmodified access profile, the process will fail. {{<link title="Credentials and Profiles" text="Create a unique access profile">}} (or update the default with unique credentials), then {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="attach the profile">}} to the switch you want to decommission.
 

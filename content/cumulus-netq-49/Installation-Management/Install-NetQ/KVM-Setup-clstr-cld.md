@@ -1,5 +1,5 @@
 ---
-title: Set Up Your KVM Virtual Machine for a Cloud Server Cluster
+title: Set Up Your KVM Virtual Machine for a Cloud HA Server Cluster
 author: NVIDIA
 weight: 228
 toc: 5
@@ -17,11 +17,11 @@ Follow these steps to set up and configure your VM on a cluster of servers in a 
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/kvm-platform-image deployment="cloud" version="4.8">}}
+    {{<netq-install/kvm-platform-image deployment="cloud" version="4.9">}}
 
 4. Set up and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="4.8">}}
+    {{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="4.9">}}
 
 5. Log in to the VM and change the password.
 
@@ -53,7 +53,7 @@ Make a note of the private IP address you assign to the worker node. You need it
 
 13. Install and activate the NetQ software using the CLI:
 
-{{<netq-install/install-with-cli version="4.8" deployment="cloud-cluster">}}
+{{<netq-install/install-with-cli version="4.9" deployment="cloud-cluster">}}
 
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.
 

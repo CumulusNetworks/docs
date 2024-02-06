@@ -5,11 +5,8 @@ weight: 520
 toc: 3
 ---
 
-The following sections describe how to back up and restore your NetQ data and VMs.
+The following sections describe how to back up and restore your NetQ data and VMs for on-premises deployments. Cloud deployments are backed up automatically.
 
-{{<notice note>}}
-These procedures only apply to on-premises deployments. Cloud deployments are backed up automatically.
-{{</notice>}}
 {{<notice note>}}
 You must run backup and restore scripts with sudo privileges.
 {{</notice>}}
@@ -19,6 +16,22 @@ You must run backup and restore scripts with sudo privileges.
 NetQ stores its data in a Cassandra database. You perform backups by running scripts provided with the software and located in the `/usr/sbin` directory. When you run a backup, the script creates a single `tar` file in the `/opt/backuprestore/` directory. 
 
 To create a backup, refer to the following steps for your NetQ version.
+
+### Back Up NetQ 4.5.0 or Later
+
+1. Run the backup script `/usr/sbin/vm-backuprestore.sh`:
+
+```
+cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
+```
+
+2. Verify the backup file creation was successful:
+
+   ```
+   cumulus@netq-appliance:~$ cd /opt/backuprestore/
+   cumulus@netq-appliance:~/opt/backuprestore$ ls
+   ```
+
 ### Back Up NetQ 4.4.1 or Earlier
 
 1. Retrieve the `vm-backuprestore.sh` script:
@@ -72,23 +85,6 @@ cumulus@netq-appliance:~$
    cumulus@netq-appliance:~/opt/backuprestore$ ls
    backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
    ```
-
-### Back Up NetQ 4.5.0 or Later
-
-1. Run the backup script `/usr/sbin/vm-backuprestore.sh`:
-
-```
-cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
-```
-
-2. Verify the backup file creation was successful:
-
-   ```
-   cumulus@netq-appliance:~$ cd /opt/backuprestore/
-   cumulus@netq-appliance:~/opt/backuprestore$ ls
-   ```
-
-
 ## Restore Your NetQ Data
 
 Restore NetQ data with the backup file you created in the steps above. The restore option of the backup script copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. You should not see any data loss as a result of a restore operation.
@@ -111,8 +107,8 @@ Data restored successfully
   The config key restored is EhVuZXRxLWVuZHBvaW50LWdhdGVfYXkYsagDIix2OUJhMUpyekMwSHBBaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==, alternately the config key is available in file /tmp/config-key
  
   Pass the config key while bootstrapping:
-  Example(standalone): netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
-  Example(cluster):    netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
+  Example(standalone): netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.9.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
+  Example(cluster):    netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.9.0.tgz config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
   Alternately you can setup config-key post bootstrap in case you missed to pass it during bootstrap
   Example(standalone): netq install standalone activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==
   Example(cluster):    netq install cluster activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIix2OUJhMUpyekMwSHBbaitUdTVDaTRvbVJDR3F6Qlo4VHhZRytjUUhLZGJRPQ==

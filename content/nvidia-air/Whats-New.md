@@ -8,10 +8,14 @@ product: NVIDIA Air
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
 <!-- Air:WhatsNew -->
+## February 2024
+### 82.2024.0206-010
+- Signing up for a new account now requires a valid business email address
+<!-- Air:WhatsNew -->
+
 ## January 2024
 ### 82.2024.0125-013
 - Updated Swagger API docs for `/v1/login/` and `/v2/organization/{id}/members/`
-<!-- Air:WhatsNew -->
 
 ### 82.2024.0104-012
 - Updated font used by configuration migration tool

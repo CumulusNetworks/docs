@@ -11,15 +11,17 @@ Follow these steps to set up and configure your VM on a single server in a cloud
 
     {{<netq-install/vm-reqs deployment="cloud" hypervisor="kvm">}}
 
-2. Confirm that the required ports are open for communications. {{<netq-install/port-reqs deployment="cloud" server="single">}}
+2. Confirm that the required ports are open for communications. 
+
+    {{<netq-install/port-reqs deployment="cloud" server="single">}}
 
 3. Download the NetQ images.
 
-    {{<netq-install/kvm-platform-image deployment="cloud" version="4.8">}}
+    {{<netq-install/kvm-platform-image deployment="cloud" version="4.9">}}
 
 4. Set up and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="4.8">}}
+    {{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="4.9">}}
 
 5. Log in to the VM and change the password.
 
@@ -35,6 +37,6 @@ Follow these steps to set up and configure your VM on a single server in a cloud
 
 8. Install and activate the NetQ software using the CLI:
 
-{{<netq-install/install-with-cli version="4.8" deployment="cloud-single">}}
+{{<netq-install/install-with-cli version="4.9" deployment="cloud-single">}}
 
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

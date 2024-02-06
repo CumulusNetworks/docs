@@ -7,9 +7,27 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3751952</td>
+<td>{{ifupdown2}} tries to set the multicast database hash elasticity (bridge-hashel attribute) with a value of 4096. However, this attribute is now deprecated in the Linux kernel and the value is always 16.</td>
+<td>5.5.1-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3738626</td>
+<td>If you configure a VNI before an SVI, you can't add or remove the VRR address from the SVI. To work around this issue, configure the SVI before the VNI.</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3730904</td>
 <td>When sending untagged frames to the CPU with an MTU higher than the SVD (single VXLAN device) MTU, the kernel might crash.</td>
 <td>5.4.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3713419</td>
+<td>When monitoring system statistics and network traffic with sFlow, an aggressive link flap might produce a memory leak in the sFlow service {{hsflowd}}.</td>
+<td>5.1.0-5.7.0</td>
 <td></td>
 </tr>
 <tr>
@@ -277,6 +295,20 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 <td>Under rare conditions, running NVUE commands that capture output larger than 4k bytes from Linux tools or utilities might result in failures with 500 INTERNAL SERVER ERROR or Unrecoverable internal error messages. This issue occurs when there are non-ascii characters in large outputs that Cumulus Linux can't decode. This failure is observed only in Cumulus Linux 5.6 and earlier.</td>
 <td>5.6.0</td>
 <td>5.7.0</td>
+</tr>
+<tr>
+<td>3587393</td>
+<td>If you use the NVIDIA SN5600 (Spectrum-4) switch with Ixia test equipment, you might experience delayed link up due to intermittent link flaps. 
+To work around this issue when using copper cables:
+&lt;ul&gt;&lt;li&gt;Use Ixia IxOS version 9.37 with HF002156, or version 9.39 or later.&lt;/li&gt;
+&lt;li&gt;Use the DAC cable on ports 10 through 50.&lt;/li&gt;
+&lt;li&gt;Use NVIDIA cables with the recommended firmware revision.&lt;/li&gt;
+&lt;li&gt;Configure AN on the Cumulus Linux switch and AN/LT on Ixia.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue when using fiber cables:
+&lt;ul&gt;&lt;li&gt;Configure 800g/Force.&lt;/li&gt;
+&lt;li&gt;Use the recommended NVIDIA optical adapters.&lt;/li&gt;&lt;/ul&gt;</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3585467</td>

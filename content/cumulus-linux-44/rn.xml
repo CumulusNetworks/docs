@@ -776,7 +776,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2671652</td>
-<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
 <td>4.4.0-4.4.6, 5.5.0-5.7.0</td>
 <td></td>
 </tr>
@@ -2985,7 +2985,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2671652</td>
-<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
 <td>4.4.0-4.4.5, 5.5.0-5.7.0</td>
 <td></td>
 </tr>
@@ -5080,7 +5080,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2671652</td>
-<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
 <td>4.4.0-4.4.5, 5.5.0-5.7.0</td>
 <td></td>
 </tr>
@@ -6330,7 +6330,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3084476</td>
-<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.7.0</td>
 </tr>
 <tr>
@@ -6766,7 +6766,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3084476</td>
-<td>The default QOS traffic shaping configuration does not restore after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
+<td> After you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file, the default QOS traffic shaping configuration does not restore. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.7.0</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -7371,7 +7371,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2671652</td>
-<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
 <td>4.4.0-4.4.5, 5.5.0-5.7.0</td>
 <td></td>
 </tr>
@@ -9555,7 +9555,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2671652</td>
-<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
 <td>4.4.0-4.4.5, 5.5.0-5.7.0</td>
 <td></td>
 </tr>
@@ -12037,7 +12037,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2671652</td>
-<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
 <td>4.4.0-4.4.5, 5.5.0-5.7.0</td>
 <td></td>
 </tr>
@@ -14284,7 +14284,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2671652</td>
-<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (greater than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
+<td>In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink.</td>
 <td>4.4.0-4.4.5, 5.5.0-5.7.0</td>
 <td></td>
 </tr>

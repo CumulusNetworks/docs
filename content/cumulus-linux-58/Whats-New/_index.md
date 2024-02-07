@@ -21,7 +21,6 @@ Cumulus Linux 5.8.0 provides a critical bug fix to correct FRR log rotation sett
 NVIDIA recommends you use the Cumulus Linux 5.8.0 release for {{<exlink url="https://www.nvidia.com/en-us/networking/spectrumx/" text="Spectrum-X Reference Architecture 1.0">}}.
 
 ### New Features and Enhancements
-- The NVIDIA SN3750-SX switch is Class C compliant
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} is now generally available on Spectrum-4 switches
 - {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one step clock timestamp mode">}} is now generally available on Spectrum-4 switches
 - {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PTP Noise Transfer Servo">}}

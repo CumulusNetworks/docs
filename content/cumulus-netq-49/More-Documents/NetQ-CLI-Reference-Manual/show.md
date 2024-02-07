@@ -198,7 +198,7 @@ Displays basic configuration, health, and connectivity status for all nodes or a
 The output displays:
 
 <!-- vale off -->
-- Whether each node has communicated recently (last 90 seconds)
+- Whether each node has communicated recently (last 120 seconds)
 - If each node is in time synchronization with the NetQ appliance or virtual machine
 - The NetQ Agent software version currently running on the node
 - How long the node has been operationally up
@@ -4412,8 +4412,8 @@ None
 cumulus@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 4.8.0
-Installer Version: 4.8.0
+Version: 4.9.0
+Installer Version: 4.9.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdsaHpjKzcwNmJiNVROOExRRXdLL3l5RVNLSHRhUE5sZS9FRjN0cTNzaHh1NmRtMkZpYmg3WWxKUE9lZTd5bnVlV2huaTZxZ0xxV3ZMYkpLMGdkc3RQcGdzNUlqanNMR3RzRTFpaEdNa3RZNlJYenQxLzh4Z3pVRXp3WTBWZDB4aWJrdDF3RGQwSjhnbExlbVk1RDM4VUdBVFVkMWQwcndLQ3gxZEhRdEM5L1UzZUs5cHFlOVdBYmE0ZHdiUFlaazZXLzM0ZmFsdFJxaG8rNUJia0pkTkFnWHdkZGZ5RXA1Vjc3Z2I1TUU3Q1BxOXp2Q1lXZW84cGtXVS9Wc0gxWklNWnhsa2crYlZ4MDRWUnN4ZnNIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==

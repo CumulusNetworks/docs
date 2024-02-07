@@ -355,7 +355,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.8" opsys="cl">}}
+{{<netq-install/cli-version version="4.9" opsys="cl">}}
 <!-- vale on -->
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -389,9 +389,9 @@ To obtain the NetQ CLI package:
     admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
-    You should see version 4.8.0 and update 44 in the results. For example:
+    You should see version 4.9.0 and update 45 in the results. For example:
 
-    - netq-apps_<strong>4.8.0</strong>-deb10u<strong>44</strong>~1699076923.80e664937_amd64.deb
+    netq-apps_<strong>4.9.0</strong>-deb10u<strong>45</strong>~1706971648.d2ce145e5_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -437,7 +437,7 @@ To obtain the NetQ CLI package:
     root@rhel7:~# rpm -q -netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.8" opsys="rh">}}
+{{<netq-install/cli-version version="4.9" opsys="rh">}}
 <!-- vale on -->
 5. Continue with the next section.
 
@@ -458,7 +458,7 @@ To obtain the NetQ CLI package:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.8" opsys="ub">}}
+{{<netq-install/cli-version version="4.9" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 
@@ -488,9 +488,9 @@ To generate AuthKeys:
 
 3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, then select **Management**.
 
-    {{<figure src="/images/netq/side-nav-man-470.png" alt="" width="300">}}
+    {{<figure src="/images/netq/menu-management-490.png" alt="" width="300">}}
 
-4. Select **Manage** on the User Accounts card.
+4. On the User Accounts card, select **Manage**.
 
 5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> **Generate keys** above the table.
 
@@ -552,7 +552,7 @@ If you have multiple premises and want to query data from a different premises t
 {{<tab "Cloud Deployments">}}
 
 <!-- vale off -->
-To access and configure the CLI for your NetQ cloud deployment, you must generate AuthKeys. You'll need your username and password to generate them. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were obtained during your {{<link title="Access the NetQ UI#log-in-to-netq" text="intial login to the NetQ Cloud">}} and premises activation.
+To access and configure the CLI for your NetQ cloud deployment, you must generate AuthKeys. You'll need your username and password to generate them. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were obtained during your {{<link title="Access the NetQ UI#log-in-to-netq" text="initial login to the NetQ Cloud">}} and premises activation.
 <!-- vale on -->
 
 To generate AuthKeys:
@@ -563,9 +563,9 @@ To generate AuthKeys:
 
 3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, then select **Management**.
 
-    {{<figure src="/images/netq/side-nav-man-470.png" alt="" width="300">}}
+    {{<figure src="/images/netq/menu-management-490.png" alt="" width="300">}}
 
-4. Select **Manage** on the User Accounts card.
+4. On the User Accounts card, select **Manage**.
 
 5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> **Generate keys** above the table.
 

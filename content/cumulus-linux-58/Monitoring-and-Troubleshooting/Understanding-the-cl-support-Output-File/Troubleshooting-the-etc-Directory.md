@@ -29,6 +29,7 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | ca-certificates |
 | ca-certificates.conf |
 | calendar |
+| cloud |
 | console-setup |
 | containerd |
 | cron.d |
@@ -37,7 +38,6 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | cron.monthly |
 | crontab |
 | cron.weekly |
-| cruft |
 | cumulus |
 | dbus-1 |
 | debconf.conf |
@@ -45,6 +45,7 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | debsums-ignore |
 | default |
 | deluser.conf |
+| depmod.d |
 | dhcp |
 | dhcpsnoop|
 | discover.conf.d |
@@ -54,10 +55,10 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | docker |
 | dpkg |
 | e2fsck.conf |
-| emacs |
 | environment |
-| etckeeper |
+| etc |
 | ethertypes |
+| firefly_servo |
 | fonts |
 | freeipmi |
 | frr |
@@ -70,8 +71,9 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | gshadow |
 | gshadow- |
 | gss |
-| gunicorn.conf.py |
 | hdparm.conf |
+| hostapd |
+| hostapd.conf |
 | host.conf |
 | hostname |
 | hosts |
@@ -91,6 +93,7 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | iproute2 |
 | issue |
 | issue.net |
+| kdump |
 | kernel |
 | ldap |
 | ld.so.cache |
@@ -139,6 +142,7 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | nginx |
 | nsswitch.conf |
 | ntp.conf |
+| nvue |
 | nvue-auth.yaml |
 | nvue.d |
 | openvswitch |
@@ -146,6 +150,7 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | os-release |
 | pam.conf |
 | pam.d |
+| pam_radius_auth.conf |
 | passwd |
 | passwd- |
 | perl |
@@ -165,7 +170,6 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | resolv.conf |
 | resolvconf |
 | resolv.conf.bak |
-| restapi.conf |
 | rmt |
 | rpc |
 | rsyslog.conf |
@@ -180,14 +184,12 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | sensors3.conf |
 | sensors.d |
 | services |
-| sgml |
 | shadow |
 | shadow- |
 | shells |
 | skel |
 | smartd.conf |
 | smartmontools |
-| smi.conf |
 | snmp |
 | ssh |
 | ssl |
@@ -198,6 +200,7 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | sudoers |
 | sudoers.d |
 | sv |
+| synced |
 | sysctl.conf |
 | sysctl.d |
 | systemd |
@@ -209,13 +212,12 @@ The following list shows the output from `ls -l` on the `/etc` directory structu
 | ufw |
 | update-motd.d |
 | vim |
+| vmware-tools |
 | vrf |
 | watchdog.conf |
 | wgetrc |
 | what-just-happened |
-| wireshark |
 | X11 |
 | xattr.conf |
 | xdg |
-| xml |
 <!-- vale on -->

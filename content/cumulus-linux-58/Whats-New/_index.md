@@ -21,7 +21,6 @@ Cumulus Linux 5.8.0 provides a critical bug fix to correct FRR log rotation sett
 NVIDIA recommends you use the Cumulus Linux 5.8.0 release for {{<exlink url="https://www.nvidia.com/en-us/networking/spectrumx/" text="Spectrum-X Reference Architecture 1.0">}}.
 
 ### New Features and Enhancements
-- The NVIDIA SN3750-SX switch is Class C compliant
 - {{<link url="Precision-Time-Protocol-PTP" text="PTP">}} is now generally available on Spectrum-4 switches
 - {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one step clock timestamp mode">}} is now generally available on Spectrum-4 switches
 - {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PTP Noise Transfer Servo">}}
@@ -29,7 +28,7 @@ NVIDIA recommends you use the Cumulus Linux 5.8.0 release for {{<exlink url="htt
 - Improved SyncE and PPS noise transfer algorithm
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (optical)
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
-- {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} (warmboot does not support EVPN MLAG and EVPN multihoming)
+- {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} available for Beta (without support for EVPN MLAG or EVPN multihoming)
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for 802.1X">}}
 - {{<link url="802.1X-Interfaces/#host-modes" text="802.1X multi host mode">}}
 - NVUE command to {{<link url="VLAN-aware-Bridge-Mode/#keep-svis-perpetually-up" text="keep SVIs always UP">}}

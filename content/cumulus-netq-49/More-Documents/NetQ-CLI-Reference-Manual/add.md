@@ -48,8 +48,8 @@ Successfully added/updated Check Filter
 
 ### Related Commands
 
-- netq del check-filter
-- netq show check-filter
+- `netq del check-filter`
+- `netq show check-filter`
  - - -
 
 ## netq add events-config

@@ -30,9 +30,9 @@ docker run -d --net=host                                                        
               --rm --name doca-telemetry -it $DTS_IMAGE /usr/bin/telemetry-run.sh
 ```
 
-### Configure Prometheus Targets for ConnectX Adapters
+### Restart the Prometheus Adapter Pod
 
-The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in your network. NetQ configures the host IP addresses automatically, but you must restart the `netq-prom-adapter` pod before you can begin collecting data:
+The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in your network. You must restart the `netq-prom-adapter` pod to update the scrape interval before you can begin collecting data:
 
 1. Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
 

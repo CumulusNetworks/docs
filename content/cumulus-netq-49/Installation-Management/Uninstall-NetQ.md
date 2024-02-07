@@ -110,7 +110,7 @@ First remove the data collected to free up used disk space. Then remove the soft
 
 1. Log in to the NetQ system server.
 
-2. Remove the data:
+2. Remove the data using the following command. For cluster deployments, run this command on each node in the cluster:
 
   ```
   netq bootstrap reset purge-db

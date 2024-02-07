@@ -133,7 +133,7 @@ netq install cluster full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz workers 10.20.10.25 10.20.10.45
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.9.0.tgz workers 10.20.10.25 10.20.10.45
 ```
 
 ### Related Commands
@@ -490,7 +490,7 @@ netq install standalone full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.8.0.tgz
+cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.9.0.tgz
 ```
 
 ### Related Commands

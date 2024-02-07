@@ -1,3 +1,35 @@
+{{- if eq (.Get "version") "4.9" -}}
+
+You should see version 4.9.0 and update 45 in the results. For example:
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<ul>
+        <ul>
+            <li>netq-apps_<strong>4.9.0</strong>-cl4u<strong>45</strong>~1706975387.d2ce145e5_armel.deb</li>
+            <li>netq-apps_<strong>4.9.0</strong>-cl4u<strong>45</strong>~1706967436.d2ce145e5_amd64.deb</li>
+        </ul>
+</ul>
+
+{{ end }}
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>Ubuntu 20.04: netq-apps_<strong>4.9.0</strong>-ub20.04u<strong>45</strong>~1706973134.d2ce145e5_amd64.deb</li>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "rh" -}}
+
+<ul>
+    <li>netq-apps_<strong>4.9.0</strong>-rh7u<strong>45</strong>~1706972846.d2ce145.x86_64.rpm</li>
+</ul>
+
+{{ end }}
+
+{{ end }}
+
 {{- if eq (.Get "version") "4.8" -}}
 
 You should see version 4.8.0 and update 44 in the results. For example:

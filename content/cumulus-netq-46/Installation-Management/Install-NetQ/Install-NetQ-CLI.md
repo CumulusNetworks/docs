@@ -552,7 +552,7 @@ If you have multiple premises and want to query data from a different premises t
 {{<tab "Cloud Deployments">}}
 
 <!-- vale off -->
-To access and configure the CLI for your NetQ cloud deployment, you must generate AuthKeys. You'll need your username and password to generate them. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were obtained during your {{<link title="Access the NetQ UI#log-in-to-netq" text="intial login to the NetQ Cloud">}} and premises activation.
+To access and configure the CLI for your NetQ cloud deployment, you must generate AuthKeys. You'll need your username and password to generate them. These keys provide authorized access (access key) and user authentication (secret key). Your credentials and NetQ Cloud addresses were obtained during your {{<link title="Access the NetQ UI#log-in-to-netq" text="initial login to the NetQ Cloud">}} and premises activation.
 <!-- vale on -->
 
 To generate AuthKeys:

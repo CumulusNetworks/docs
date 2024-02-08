@@ -19,8 +19,9 @@ W: GPG error: http://apt.cumulusnetworks.com/repo CumulusLinux-5-latest InReleas
 Install the new keys, then upgrade the switch:
 
 ```
-cumulus@switch:~$ sudo apt-get update
-cumulus@switch:~$ sudo apt-get install --allow-unauthenticated cumulus-archive-keyring
+cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
+cumulus@switch:~$ sudo apt install cumulus-archive-keyring_4-cl5.6.0u5_all.deb
+cumulus@switch:~$ sudo apt update
 ```
 
 ## Package Upgrade from Cumulus Linux 3.7.x to 3.7.16

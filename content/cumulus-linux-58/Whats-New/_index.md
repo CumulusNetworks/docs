@@ -95,7 +95,7 @@ NVIDIA recommends you use the Cumulus Linux 5.8.0 release for {{<exlink url="htt
   {{< /expand >}}
 
 {{%notice note%}}
-The repository key stored in Cumulus Linux 5.5 and earlier has expired. Before performing a package upgrade to Cumulus Linux 5.8.0 from Cumulus Linux 5.5 and earlier, you must install the new key. See [this knowledge base article]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
+The repository key stored in Cumulus Linux 5.5.0 and earlier has expired. Before performing a package upgrade to Cumulus Linux 5.8.0 from Cumulus Linux 5.5.0 and earlier, you must install the new key. See [this knowledge base article]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 {{%/notice%}}
 
 {{%notice info%}}

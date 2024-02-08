@@ -4,11 +4,15 @@ author: NVIDIA
 weight: 292
 toc: 4
 ---
-## Package Upgrade from Cumulus Linux 5.5 or Earlier to 5.8.0
+## Package Upgrade from Cumulus Linux 5.5.0 or Earlier to 5.8.0
 
 ### Issue
 
-When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading.
+When you try to upgrade a switch from Cumulus Linux 5.5.0 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading:
+
+```
+W: GPG error: http://apt.cumulusnetworks.com/repo CumulusLinux-5-latest InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 191184DAB33070E2
+```
 
 ### Resolution
 

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3766994</td>
+<td>Cumulus Linux 5.6 and 5.7 do not include FRR log rotation, which can result in a very large log file that affects disk usage. To work around this issue, install the {{frr-logrotate}} package with the {{sudo -E apt-get update &amp;&amp; apt-get install frr-logrotate}} command.</td>
+<td>5.6.0-5.7.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3751952</td>
 <td>{{ifupdown2}} tries to set the multicast database hash elasticity (bridge-hashel attribute) with a value of 4096. However, this attribute is now deprecated in the Linux kernel and the value is always 16.</td>
 <td>5.5.1-5.7.0</td>
@@ -657,6 +663,11 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 <td>5.6.0</td>
 </tr>
 <tr>
+<td>3606739</td>
+<td>The thermal control service, {{hw-management-tc.service}}, stops and switch fan speeds run at 100% when the ASIC temperature can't be read. This can occur if the SDK is not started.</td>
+<td>5.5.1-5.6.0</td>
+</tr>
+<tr>
 <td>3603237</td>
 <td>If the secondary MLAG peer continuously reboots, you might experience momentary traffic loss.</td>
 <td>5.5.1-5.6.0</td>
@@ -668,7 +679,7 @@ In addition, the CL5.7.0 default configuration for {{vi}} now disables modelines
 </tr>
 <tr>
 <td>3599699</td>
-<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt; command.</td>
+<td>Cumulus Linux assigns an IPv4 and IPv6 loopback address to a VRF interface by default. As a result, ping and route lookups for unique remote IP addresses on different VTEPs might not work if there is no source IP on the switch that belongs to the same subnet. To work around this issue, remove the loopback address on the VRF with the {{nv unset vrf &lt;vrf&gt; loopback ip address}} command. Only remove the loopback address if you are not running NTP as NTP requires a loopback address to work. Alternatively, you can change the {{ping}} command to use a source address (such as an SVI address) with the {{ip vrf exec &lt;VRF&gt; ping &lt;REMOTE_IP&gt; -I &lt;SVI_SRC_IP&gt;}} command.</td>
 <td>5.5.0-5.6.0</td>
 </tr>
 <tr>

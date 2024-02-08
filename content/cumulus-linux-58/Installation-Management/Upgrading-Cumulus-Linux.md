@@ -218,8 +218,9 @@ When you use package upgrade to upgrade your switch, configuration data stays in
 When you upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, expired GPG keys prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 ```
-cumulus@switch:~$ sudo apt-get update
-cumulus@switch:~$ sudo apt-get install --allow-unauthenticated cumulus-archive-keyring
+cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
+cumulus@switch:~$ sudo apt install cumulus-archive-keyring_4-cl5.6.0u5_all.deb
+cumulus@switch:~$ sudo apt update
 ```
 {{%/notice%}}
 

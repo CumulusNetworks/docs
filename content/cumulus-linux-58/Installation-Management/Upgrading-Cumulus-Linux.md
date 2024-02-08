@@ -221,6 +221,7 @@ When you upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with packag
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt update
+cumulus@switch:~$ sudo apt upgrade
 ```
 {{%/notice%}}
 

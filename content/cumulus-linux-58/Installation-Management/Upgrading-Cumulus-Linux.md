@@ -214,6 +214,15 @@ Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where y
 
 When you use package upgrade to upgrade your switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
 
+{{%notice note%}}
+When you upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, expired GPG keys prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+
+```
+cumulus@switch:~$ sudo apt-get update
+cumulus@switch:~$ sudo apt-get install --allow-unauthenticated cumulus-archive-keyring
+```
+{{%/notice%}}
+
 #### Disk Space Requirements
 
 Make sure you have enough disk space to perform a package upgrade. Cumulus Linux 5.8.0 requires:

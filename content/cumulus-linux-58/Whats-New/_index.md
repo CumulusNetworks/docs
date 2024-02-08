@@ -25,7 +25,7 @@ NVIDIA recommends you use the Cumulus Linux 5.8.0 release for {{<exlink url="htt
 - {{<link url="Precision-Time-Protocol-PTP/#clock-timestamp-mode" text="PTP one step clock timestamp mode">}} is now generally available on Spectrum-4 switches
 - {{<link url="Precision-Time-Protocol-PTP/#noise-transfer-servo" text="PTP Noise Transfer Servo">}}
 - {{<link url="Precision-Time-Protocol-PTP/#ptp-version" text="Force PTP version">}}
-- Improved SyncE and PPS noise transfer algorithm
+- Improved SyncE and PPS noise transfer algorithm on the NVIDIA SN3750-SX switch
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} support at 1G speed (optical)
 - {{<link url="Synchronous-Ethernet-SyncE" text="SyncE">}} Clock Identity set according to ITU-T G.8264
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} available for Beta (without support for EVPN MLAG or EVPN multihoming)

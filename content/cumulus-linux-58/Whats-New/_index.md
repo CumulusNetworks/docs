@@ -94,6 +94,10 @@ NVIDIA recommends you use the Cumulus Linux 5.8.0 release for {{<exlink url="htt
   
   {{< /expand >}}
 
+{{%notice note%}}
+The repository key stored in Cumulus Linux 5.5 and earlier has expired. Before performing a package upgrade to Cumulus Linux 5.8.0 from Cumulus Linux 5.5 and earlier, you must install the new key. See [this knowledge base article]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
+{{%/notice%}}
+
 {{%notice info%}}
 Cumulus Linux 5.8 includes the NVUE object model. After you upgrade to Cumulus Linux 5.8, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 - Update your automation tools to use NVUE.

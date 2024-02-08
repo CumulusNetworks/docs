@@ -4,6 +4,21 @@ author: NVIDIA
 weight: 292
 toc: 4
 ---
+## Package Upgrade from Cumulus Linux 5.5 or Earlier to 5.8.0
+
+### Issue
+
+When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading.
+
+### Resolution
+
+Install the new keys, then upgrade the switch:
+
+```
+cumulus@switch:~$ sudo apt-get update
+cumulus@switch:~$ sudo apt-get install --allow-unauthenticated cumulus-archive-keyring
+```
+
 ## Package Upgrade from Cumulus Linux 3.7.x to 3.7.16
 
 ### Issue
@@ -25,21 +40,6 @@ cumulus@switch:~$ wget http://repo3.cumulusnetworks.com/public-key/repo3-2023-ke
 cumulus@switch:~$ sudo apt-key add repo3-2023-key
 cumulus@switch:~$ sudo -E apt-get update
 cumulus@switch:~$ sudo -E apt-get upgrade
-```
-
-## Package Upgrade from Cumulus Linux 5.6.0 to 5.8.0
-
-### Issue
-
-When you try to upgrade a switch from Cumulus Linux 5.6.0 to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading.
-
-### Resolution
-
-Install the new keys, then upgrade the switch:
-
-```
-cumulus@switch:~$ sudo apt-get update
-cumulus@switch:~$ sudo apt-get install --allow-unauthenticated cumulus-archive-keyring
 ```
 
 <!--You can resolve this issue in one of three ways.

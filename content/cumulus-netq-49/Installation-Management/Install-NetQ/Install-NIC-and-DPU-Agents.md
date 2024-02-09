@@ -34,13 +34,19 @@ docker run -d --net=host                                                        
 
 The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in your network. The default scrape interval is every minute. If you want to change the frequency of the scrape interval, make your adjustments, then restart the `netq-prom-adapter` pod to begin collecting data with the updated parameters:
 
-1. Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
+1. Log in to your NetQ VM via SSH.
+
+2. Edit the Prometheus ConfigMap with the `kubectl edit cm prometheus-config` command.
+
+3. Make your updates by editing the `scrape_interval` parameter. 
+
+4. Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
 
 ```
 cumulus@netq-server:~$ kubectl get pods | grep netq-prom
 netq-prom-adapter-ffd9b874d-hxhbz                    2/2     Running   0          3h50m
 ```
-2. Restart the pod by deleting the running pod:
+5. Restart the pod by deleting the running pod:
 
 ```
 kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz

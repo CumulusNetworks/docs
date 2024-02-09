@@ -801,6 +801,10 @@ You can configure control plane ACLs to apply a single rule for all packets forw
 
 Cumulus Linux applies inbound control plane ACLs in the INPUT chain and outbound control plane ACLs in the OUTPUT chain.
 
+{{%notice note%}}
+Cumulus Linux does not support a **deny all** control plane rule.  This type of rule blocks traffic for interprocess communication and impacts overall system functionality.
+{{%/notice%}}
+
 The following example command applies the input control plane ACL called ACL1.
 
 ```

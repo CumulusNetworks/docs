@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3771168"></a> [3771168](#3771168) <a name="3771168"></a> <br /> | When you perform an ISSU upgrade on a Spectrum 1 switch, the <code>switchd</code> service might crash. | 5.8.0 | |
 | <a name="3744830"></a> [3744830](#3744830) <a name="3744830"></a> <br /> | When configured with NVUE, the Radius secret key can be a maximum of 19 characters long. | 5.7.0-5.8.0 | |
 | <a name="3730904"></a> [3730904](#3730904) <a name="3730904"></a> <br /> | When sending untagged frames to the CPU with an MTU higher than the SVD (single VXLAN device) MTU, the kernel might crash. | 5.4.0-5.8.0 | |
 | <a name="3702431"></a> [3702431](#3702431) <a name="3702431"></a> <br /> | Traditional SNMP snippets do not take effect unless you first enable SNMP with the NVUE <code>nv set service snmp-server enable on</code> and <code>nv set service snmp-server listening-address</code> commands. Alternatively, you can use the equivalent REST API methods. | 5.4.0-5.8.0 | |
@@ -74,10 +75,12 @@ pdfhidden: True
 | <a name="2705056"></a> [2705056](#2705056) <a name="2705056"></a> <br /> | When configured with NVUE, SVIs do not inherit the pinned MAC address of the bridge. | 4.3.0, 5.0.0-5.8.0 | 4.3.1-4.4.5|
 | <a name="2684925"></a> [2684925](#2684925) <a name="2684925"></a> <br /> | The NVUE <code>nv show vrf default router bgp peer</code> command produces a 404 not found error. | 4.4.0-4.4.5, 5.0.0-5.8.0 | |
 | <a name="2671652"></a> [2671652](#2671652) <a name="2671652"></a> <br /> | In VXLAN routing environments, you might experience sub-optimal route convergence delays (longer than five seconds) when a prefix transitions to a new ECMP next-hop group. This condition might occur when a VTEP loses ECMP routes through all uplink peerings, then installs the routes through a different path, such as an MLAG peerlink. | 4.4.0-4.4.5, 5.5.0-5.8.0 | |
+| <a name="2543915"></a> [2543915](#2543915) <a name="2543915"></a> <br />CM-26301 | When you enable a service in the management VRF, <code>systemctl</code> issues a warning similar to the following:<pre>Warning: The unit file, source configuration file or drop-ins of ntp&#64;mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</pre>You can safely ignore this warning. | 4.0.0-4.4.5, 5.0.0-5.8.0 | |
 
 ### Fixed Issues in 5.8.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="3766994"></a> [3766994](#3766994) <a name="3766994"></a> <br /> | Cumulus Linux 5.6 and 5.7 do not include FRR log rotation, which can result in a very large log file that affects disk usage. To work around this issue, install the <code>frr-logrotate</code> package with the <code>sudo -E apt-get update && apt-get install frr-logrotate</code> command. | 5.6.0-5.7.0 | |
 | <a name="3751952"></a> [3751952](#3751952) <a name="3751952"></a> <br /> | <code>ifupdown2</code> tries to set the multicast database hash elasticity (bridge-hashel attribute) with a value of 4096. However, this attribute is now deprecated in the Linux kernel and the value is always 16. | 5.5.1-5.7.0 | |
 | <a name="3738626"></a> [3738626](#3738626) <a name="3738626"></a> <br /> | If you configure a VNI before an SVI, you can't add or remove the VRR address from the SVI. To work around this issue, configure the SVI before the VNI. | 5.6.0-5.7.0 | |
 | <a name="3718614"></a> [3718614](#3718614) <a name="3718614"></a> <br /> | When a corrupt or invalid ZTP script exists on the ZTP file server, the ZTP service on the switch might crash and report <code>Too many open files</code> after approximately 1000 download attempts.  To recover and restart ZTP, reboot the switch. Always provide a valid ZTP script when using ZTP download. | 5.7.0 | |

@@ -482,6 +482,8 @@ iface br_default
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL57 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
+This simulation is running Cumulus Linux 5.7. The Cumulus Linux 5.8 simulation is coming soon.
+
 This simulation starts with the example static VXLAN configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
 To validate the configuration, run the verification commands shown below.

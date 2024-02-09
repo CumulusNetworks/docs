@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3771168</td>
+<td>When you perform an ISSU upgrade on a Spectrum 1 switch, the {{switchd}} service might crash.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3744830</td>
 <td>When configured with NVUE, the Radius secret key can be a maximum of 19 characters long.</td>
 <td>5.7.0-5.8.0</td>
@@ -389,12 +395,27 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.4.0-4.4.5, 5.5.0-5.8.0</td>
 <td></td>
 </tr>
+<tr>
+<td>2543915</td>
+<td>When you enable a service in the management VRF, {{systemctl}} issues a warning similar to the following:
+
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+
+You can safely ignore this warning.</td>
+<td>4.0.0-4.4.5, 5.0.0-5.8.0</td>
+<td></td>
+</tr>
 </table>
 <table name="Fixed Issues in 5.8.0">
 <tr>
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>3766994</td>
+<td>Cumulus Linux 5.6 and 5.7 do not include FRR log rotation, which can result in a very large log file that affects disk usage. To work around this issue, install the {{frr-logrotate}} package with the {{sudo -E apt-get update &amp;&amp; apt-get install frr-logrotate}} command.</td>
+<td>5.6.0-5.7.0</td>
 </tr>
 <tr>
 <td>3751952</td>

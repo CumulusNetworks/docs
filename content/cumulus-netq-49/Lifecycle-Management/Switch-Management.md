@@ -19,7 +19,7 @@ If you manage a switch using an in-band network interface, {{<link url="Lifecycl
 
 Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select **Manage switches**. From the LCM dashboard, select the **Switch management** tab. The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
 
-{{<figure src="/images/netq/lcm-switches-490.png" alt="switches card displaying 525 discovered switches" width="200" height="auto">}}
+{{<figure src="/images/netq/lcm-switches-490.png" alt="switches card displaying 525 discovered switches" width="200" height="330">}}
 
 To view a table of all discovered switches and their attributes, select **Manage** on the Switches card.
 

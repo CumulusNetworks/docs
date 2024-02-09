@@ -493,7 +493,9 @@ Displays the Cumulus Linux OS versions supported for a given device or all devic
 - ASIC vendor the OS supports
 - CPU architecture the OS supports
 - Cumulus Linux version associated with the indicated ASIC and CPU
-
+{{<notice note>}}
+This command is supported on switches running Cumulus Linux 4.4.5 and earlier.
+{{</notice>}}
 ### Syntax
 
 ```
@@ -4649,8 +4651,12 @@ netq show trace summary
 Display full results for given trace:
 
 ```
-cumulus@switch:~$ netq show trace summary name Lf01toBor01Daily json
-cumulus@switch:~$ netq show trace results f501f9b0-cca3-4fa1-a60d-fb6f495b7a0e
+cumulus@switch:~$ netq show trace results e58bcf94-6922-40e4-ab2e-ff29aefe0120
+Job ID                                             ID                        Errors       Warnings         Hops     MTU    Failure reason               Timestamp
+-------------------------------------------------- ------------------------- ------------ ---------------- -------- ------ ---------------------------- -------------------------
+e58bcf94-6922-40e4-ab2e-ff29aefe0120               1                         0            0                2        9216   N/A                          Tue Jan 16 08:25:02 2024
+e58bcf94-6922-40e4-ab2e-ff29aefe0120               1                         0            0                2        9216   N/A                          Tue Jan 16 08:20:02 2024
+e58bcf94-6922-40e4-ab2e-ff29aefe0120               1                         0            0                2        9216   N/A                          Tue Jan 16 08:15:02 2024
 ```
 
 Display configuration settings:

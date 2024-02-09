@@ -602,8 +602,8 @@ cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
-When you enable or disable link utilization, NVUE restarts `switchd`.
+{{%notice warning%}}
+Enabling or disabling link utilization restarts the `switchd` service, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.
 {{%/notice%}}
 
 {{< /tab >}}

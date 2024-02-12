@@ -7,6 +7,61 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3773879</td>
+<td>When you upgrade a switch running Cumulus Linux using NetQ LCM, any configuration files in {{/etc/cumulus/switchd.d}} for adaptive routing or other features are not restored after the upgrade. To work around this issue, manually back up these files and 
+restore them after the upgrade.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3772274</td>
+<td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3771124</td>
+<td>When you reconfigure a VNI to map to a different VRF or remove and recreate a VNI in the same VRF, NetQ EVPN validations might incorrectly indicate a failure for the VRF consistency test.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3769936</td>
+<td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3760442</td>
+<td>When you export events from NetQ to a CSV file, the timestamp of the exported events does not match the timestamp reported in the NetQ UI based on the user profile's time zone setting.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3757698</td>
+<td>When you change the hostname of a NetQ cluster node after installation, details for the node are not visible in the NetQ UI. To work around this issue, restart the NetQ agent on cluster nodes with the {{netq config restart agent}} command after changing the hostname .</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3752422</td>
+<td>When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3721754</td>
+<td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3656965</td>
+<td>After you upgrade NetQ and try to decommission a switch, the decommission might fail with the message "Timeout encountered while processing."</td>
+<td>4.8.0-4.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3633458</td>
 <td>The legacy topology diagram might categorize devices into tiers incorrectly. To work around this issue, use the updated topology diagram by selecting Topology Beta in the NetQ 4.8.0 UI.</td>
 <td>4.7.0-4.9.0</td>
@@ -37,6 +92,41 @@
 <th> Issue ID </th>
 <th> Description </th>
 <th> Affects </th>
+</tr>
+<tr>
+<td>3761602</td>
+<td> NetQ does not display queue histogram data for switches running Cumulus Linux 5.8.0 and NetQ agent version 4.8.0. To work around this issue, upgrade the NetQ agent package to 4.9.0.</td>
+<td>4.8.0</td>
+</tr>
+<tr>
+<td>3739222</td>
+<td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
+<td>4.2.0-4.8.0</td>
+</tr>
+<tr>
+<td>3738840</td>
+<td>When you upgrade a Cumulus Linux switch configured for TACACS authentication using NetQ LCM, the switch's TACACS configuration is not restored after upgrade.</td>
+<td>4.8.0</td>
+</tr>
+<tr>
+<td>3688985</td>
+<td>After upgrading a NetQ VM with LDAP authentication configured, adding a new LDAP user to NetQ fails with the error message "LDAP not enabled."</td>
+<td>4.8.0</td>
+</tr>
+<tr>
+<td>3676723</td>
+<td>When you use the NetQ agent on a Cumulus Linux switch to export gNMI data and there is a period of inactivity in the gNMI stream, the NetQ agent service might stop. To recover from this issue, restart the service with the {{netq config restart agent}} command.</td>
+<td>4.7.0-4.8.0</td>
+</tr>
+<tr>
+<td>3670180</td>
+<td>The medium Validation Summary card might incorrectly display a failure or lack of data for the latest time interval. To work around this issue, expand the card to the largest view for an accurate representation of validation results.</td>
+<td>4.8.0</td>
+</tr>
+<tr>
+<td>3650422</td>
+<td>The OPTA-on-switch service does not send agent data when the NetQ CLI is not configured. To work around this issue, configure the NetQ CLI on the switch.</td>
+<td>4.8.0</td>
 </tr>
 <tr>
 <td>3644644</td>

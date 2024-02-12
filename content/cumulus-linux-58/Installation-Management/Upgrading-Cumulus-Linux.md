@@ -214,11 +214,22 @@ Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where y
 
 When you use package upgrade to upgrade your switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
 
+{{%notice note%}}
+When you upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, expired GPG keys prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+
+```
+cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
+cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
+cumulus@switch:~$ sudo apt update
+cumulus@switch:~$ sudo apt upgrade
+```
+{{%/notice%}}
+
 #### Disk Space Requirements
 
 Make sure you have enough disk space to perform a package upgrade. Cumulus Linux 5.8.0 requires:
-- 1.5GB GB of free disk space to upgrade from 5.7
-- 1.8GB of free disk space to upgrade from 5.6
+- 0.8GB of free disk space to upgrade from 5.7
+- 1GB of free disk space to upgrade from 5.6
 
 Before you upgrade, run the `sudo df -h` command to show how much disk space you are currently using on the switch.
 

@@ -581,7 +581,7 @@ Link utilization, when crossing a threshold, is one of the parameters in the ada
 Link utilization is off by default; you must enable the global link utilization setting to use the link utilization thresholds set on adaptive routing interfaces. You cannot enable or disable link utilization per interface.
 
 {{%notice note%}}
-In Cumulus Linux 5.5 and earlier, link utilization is on by default. If you configured link utilization in a previous release, be sure to enable link utilization after you upgrade to Cumulus Linux 5.8.
+In Cumulus Linux 5.5 and earlier, link utilization is on by default. If you configured link utilization in a previous release, be sure to enable link utilization after you upgrade.
 {{%/notice%}}
 
 {{< tabs "TabID624 ">}}
@@ -602,8 +602,8 @@ cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice note%}}
-When you enable or disable link utilization, NVUE reloads `switchd`.
+{{%notice warning%}}
+Enabling or disabling link utilization restarts the `switchd` service, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -626,7 +626,7 @@ interface.swp51.adaptive_routing.enable = TRUE
 interface.swp51.adaptive_routing.link_util_thresh = 100
 ```
 
-Reload `switchd` with the `sudo systemctl reload switchd.service` command.
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -15,7 +15,7 @@ This document supports the Cumulus Linux 5.8 release, and lists new platforms, f
 Cumulus Linux 5.8.0 contains several new features and improvements, and provides bug fixes.
 
 {{%notice note%}}
-Cumulus Linux 5.8.0 provides a critical bug fix to correct FRR log rotation settings for Cumulus Linux 5.6 and 5.7. Refer to issue ID 3766994 in the {{<link title="Cumulus Linux 5.8 Release Notes/#fixed-issues-in-580" text="Cumulus Linux 5.8 Release Notes">}}.
+Cumulus Linux 5.8.0 provides a critical bug fix to correct FRR log rotation settings for Cumulus Linux 5.6 and 5.7. Refer to issue ID 3766994 in the {{<link title="Cumulus Linux 5.8 Release Notes" text="Cumulus Linux 5.8 Release Notes">}}.
 {{%/notice%}}
 
 NVIDIA recommends you use the Cumulus Linux 5.8.0 release for {{<exlink url="https://www.nvidia.com/en-us/networking/spectrumx/" text="Spectrum-X Reference Architecture 1.0">}}.
@@ -93,6 +93,10 @@ NVIDIA recommends you use the Cumulus Linux 5.8.0 release for {{<exlink url="htt
   {{< /tabs >}}
   
   {{< /expand >}}
+
+{{%notice note%}}
+The repository key stored in Cumulus Linux 5.5.0 and earlier has expired. Before performing a package upgrade to Cumulus Linux 5.8.0 from Cumulus Linux 5.5.0 and earlier, you must install the new key. See [this knowledge base article]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
+{{%/notice%}}
 
 {{%notice info%}}
 Cumulus Linux 5.8 includes the NVUE object model. After you upgrade to Cumulus Linux 5.8, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

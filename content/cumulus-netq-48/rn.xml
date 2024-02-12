@@ -7,6 +7,54 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3761602</td>
+<td> NetQ does not display queue histogram data for switches running Cumulus Linux 5.8.0 and NetQ agent version 4.8.0. To work around this issue, upgrade the NetQ agent package to 4.9.0.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3739222</td>
+<td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
+<td>4.2.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3738840</td>
+<td>When you upgrade a Cumulus Linux switch configured for TACACS authentication using NetQ LCM, the switch's TACACS configuration is not restored after upgrade.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3688985</td>
+<td>After upgrading a NetQ VM with LDAP authentication configured, adding a new LDAP user to NetQ fails with the error message "LDAP not enabled."</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3676723</td>
+<td>When you use the NetQ agent on a Cumulus Linux switch to export gNMI data and there is a period of inactivity in the gNMI stream, the NetQ agent service might stop. To recover from this issue, restart the service with the {{netq config restart agent}} command.</td>
+<td>4.7.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3670180</td>
+<td>The medium Validation Summary card might incorrectly display a failure or lack of data for the latest time interval. To work around this issue, expand the card to the largest view for an accurate representation of validation results.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3656965</td>
+<td>After you upgrade NetQ and try to decommission a switch, the decommission might fail with the message "Timeout encountered while processing."</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3650422</td>
+<td>The OPTA-on-switch service does not send agent data when the NetQ CLI is not configured. To work around this issue, configure the NetQ CLI on the switch.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3644644</td>
 <td>When you perform an LCM upgrade of Cumulus Linux on a switch using the {{netq lcm upgrade cl-image}} CLI command, an error message of {{NetQ cloud token invalid}} is displayed though the upgrade completes successfully. This issue is not encountered when using the NetQ LCM UI to perform the upgrade.</td>
 <td>4.8.0</td>

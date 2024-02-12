@@ -1128,7 +1128,7 @@ cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 action perm
 
 ## <h>nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy</h>
 
-Shopws the permit action exit policy for the specified route map rule.
+Shows the permit action exit policy for the specified route map rule.
 
 ### Command Syntax
 

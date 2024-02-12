@@ -2267,6 +2267,30 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action deauthenticate interface \<interface-id\> dot1x authorized-sessions \<mac-address\></h>
+
+Deauthenticates the 802.1X supplicant on the specified interface. If you do not want to notify the supplicant that they are being deauthenticated, you can add the `silent` option.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface on which you want to deauthenticate the 802.1X supplicant. |
+| `<mac-address>` |  The MAC address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action deauthenticate interface swp1 dot1x authorized-sessions 00:55:00:00:00:09 silent
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action delete system security ca-certificate \<cert-id\></h>
 
 Deletes the CA certificate you specify.

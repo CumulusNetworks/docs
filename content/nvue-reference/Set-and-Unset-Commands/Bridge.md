@@ -356,6 +356,30 @@ cumulus@switch:~$ nv set bridge domain br_default stp vlan 10 max-age 6
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set bridge domain \<domain-id\> svi-force-up enable</h>
+
+Configures the SVIs in a specific bridge to be perpetually UP. The first time you configure a switch, all southbound bridge ports are down; therefore, by default, all SVIs are also down. You can run this command to force the SVIs in a bridge to always be UP even if all member ports are DOWN, which is beneficial if you want to perform connectivity testing.
+
+You can specify `on` or `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set bridge domain br_default svi-force-up enable on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set bridge domain \<domain-id\> type vlan-aware</h>
 
 Configures the bridge domain to be VLAN-aware.
@@ -990,4 +1014,22 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain default vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system global svi-force-up enable</h>
+
+Configures all SVIs in all bridges on the switch to be perpetually UP. The first time you configure a switch, all southbound bridge ports are down; therefore, by default, all SVIs are also down. You can run this command to force all SVIs on all bridges to always be UP even when all member ports are DOWN, which is beneficial if you want to perform connectivity testing.
+
+You can specify `on` or `off`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.8.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system global svi-force-up enable on
 ```

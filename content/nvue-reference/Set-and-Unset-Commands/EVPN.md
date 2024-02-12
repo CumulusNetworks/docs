@@ -422,7 +422,7 @@ cumulus@switch:~$ nv set evpn vni 10 route-target both 65101:10
 
 ## <h>nv set evpn vni \<vni-id\> route-target export \<rt-id\></h>
 
-Configures the route targets you want to export for the specified VNI.
+Configures the layer 2 <span class="a-tooltip">[RTs](## "route targets")</span> you want to export for the specified VNI.
 
 {{%notice note%}}
 In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi <vni-id> route-target export <rt-id>`
@@ -449,7 +449,7 @@ cumulus@switch:~$ nv set evpn vni 10 route-target export 65101:10
 
 ## <h>nv set evpn vni \<vni-id\> route-target import \<rt-id\></h>
 
-Configures the route targets you want to import for the specified VNI.
+Configures the layer 2 <span class="a-tooltip">[RTs](## "route targets")</span> you want to import for the specified VNI.
 
 {{%notice note%}}
 In Cumulus Linux 5.3 and earlier, this command is `nv set evpn evi <vni-id> route-target import <rt-id>`

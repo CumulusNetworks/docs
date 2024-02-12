@@ -15,12 +15,12 @@ ConnectX telemetry is supported on DTS version 1.14.2 and later.
 
 To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="DOCA Telemetry Service">}} container on a host with ConnectX adapters, perform the following steps:
 
-1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container** and copy the image path.
+1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.16.1-doca2.6.0-host** image path.
 
 2. Run the DTS container with Docker on the host. Use the image path obtained in the previous step for the **DTS_IMAGE** variable and configure the IP address of your NetQ server for the `-i` option:
 
 ```
-export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.14.2-doca2.2.0-host
+export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.16.1-doca2.6.0-host
 docker run -v "/opt/mellanox/doca/services/telemetry/config:/config" --rm --name doca-telemetry-init -ti $DTS_IMAGE /bin/bash -c "DTS_CONFIG_DIR=host_netq /usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh -i=10.10.10.1 -p=30001"
 docker run -d --net=host                                                              \
               --privileged                                                            \
@@ -38,7 +38,7 @@ The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in
 
 2. Edit the Prometheus ConfigMap with the `kubectl edit cm prometheus-config` command.
 
-3. Make your updates by editing the `scrape_interval` parameter. 
+3. Edit the `scrape_interval` parameter. 
 
 4. Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
 
@@ -56,7 +56,7 @@ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz
 
 To install and configure the DOCA Telemetry Service (DTS) container on a DPU, perform the following steps:
 
-1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container** and copy the image path.
+1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.16.1-doca2.6.0-host** image path.
 
 2. Retrieve the container `yaml` configuration file onto the host. Use the path specified in the *Adjusting the .yaml Configuration* section in the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="NGC instructions">}}. Copy it to `/etc/kubelet.d/doca_telemetry_standalone.yaml`:
 

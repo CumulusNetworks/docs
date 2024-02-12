@@ -15,7 +15,7 @@ NetQ 4.9.0 includes the following new features and improvements:
 
 - {{<link title="Adaptive Routing" text="Adaptive routing monitoring">}} for switches is generally available
 - {{<link title="RoCE" text="RoCE monitoring">}} for DPUs is generally available
-- Prometheus endpoints for ConnectX adapters update dynamically and no longer require manual configuration
+- Prometheus endpoints for ConnectX adapters update dynamically and no longer require manual configuration. {{<link title="Install NIC and DPU Agents" text="Upgrade the DOCA Telemetry Service">}} on your NICs and DPUs to enable this feature.
 - You can now {{<link title="Switch Management#host-a-ztp-script-with-netq" text="host a ZTP script with NetQ">}}
 - Performance and security enhancements
 

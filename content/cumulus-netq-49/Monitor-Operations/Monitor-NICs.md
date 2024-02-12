@@ -8,7 +8,7 @@ toc: 3
 With the NetQ UI, you can view the attributes of individual network interface controllers (NICs), including their connection adapters and firmware versions. For NIC inventory information, refer to {{<link title="NIC Inventory" text="NIC Inventory">}}.
 
 {{<notice note>}}
-NIC telemetry for ConnectX adapters is supported for on-premises NetQ deployments. You must have {{<link title="Install NIC and DPU Agents" text="DOCA Telemetry Service enabled">}} and Prometheus targets configured to display NIC data in NetQ.
+You must have {{<link title="Install NIC and DPU Agents" text="DOCA Telemetry Service enabled">}} to display NIC data in NetQ.
 {{</notice>}}
 
 ## View NIC Attributes in the UI

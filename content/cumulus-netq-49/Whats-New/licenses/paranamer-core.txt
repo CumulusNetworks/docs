@@ -1,9 +1,4 @@
 BSD 3-clause "New" or "Revised" License
-Files: debian/*
-Copyright: 2014-2021, Markus Koschany <apo@debian.org>
-           2015,      Emmanuel Bourg <ebourg@apache.org>
-License: BSD-3-clause
-
 License: BSD-3-clause
 
 Redistribution and use in source and binary forms, with or without
@@ -32,6 +27,11 @@ Redistribution and use in source and binary forms, with or without
 
 
 BSD 3-clause "New" or "Revised" License
+Files: debian/*
+Copyright: 2014-2021, Markus Koschany <apo@debian.org>
+           2015,      Emmanuel Bourg <ebourg@apache.org>
+License: BSD-3-clause
+
 License: BSD-3-clause
 
 Redistribution and use in source and binary forms, with or without

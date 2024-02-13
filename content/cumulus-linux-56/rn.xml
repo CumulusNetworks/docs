@@ -22,7 +22,7 @@ cumulus@switch:~$ sudo apt upgrade
 <td>3766994</td>
 <td>Cumulus Linux 5.6 and 5.7 do not include FRR log rotation, which can result in a very large log file that affects disk usage. To work around this issue, run the following commands as the cumulus user on the Cumulus Linux 5.6 or 5.7 switch. The commands do not impact any other system function.
 
-cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/f/frr-logrotate/frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb
+cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/f/frr-logrotate/frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb 
 cumulus@switch:~$ dpkg --install frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb
 </td>
 <td>5.6.0-5.7.0</td>

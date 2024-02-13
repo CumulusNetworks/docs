@@ -15,7 +15,7 @@ This document supports the Cumulus Linux 5.8 release, and lists new platforms, f
 Cumulus Linux 5.8.0 contains several new features and improvements, and provides bug fixes.
 
 {{%notice note%}}
-Cumulus Linux 5.8.0 provides a critical bug fix to correct FRR log rotation settings for Cumulus Linux 5.6 and 5.7. Refer to issue ID 3766994 in the {{<link title="Cumulus Linux 5.8 Release Notes" text="Cumulus Linux 5.8 Release Notes">}}.
+Cumulus Linux 5.8.0 provides a critical bug fix to correct FRR log rotation settings for Cumulus Linux 5.6 and 5.7. Refer to issue ID 3766994 in the {{<link title="Cumulus Linux 5.8 Release Notes/#fixed-issues-in-580" text="Cumulus Linux 5.8 Release Notes">}}.
 {{%/notice%}}
 
 NVIDIA recommends you use the Cumulus Linux 5.8.0 release for {{<exlink url="https://www.nvidia.com/en-us/networking/spectrumx/" text="Spectrum-X Reference Architecture 1.0">}}.

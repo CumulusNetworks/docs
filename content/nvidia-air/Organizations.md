@@ -37,7 +37,7 @@ Images uploaded to an organization have the following requirements:
 
 - A simulation can not include both private and shared images.
 
-The following table summarizes the organization requirements for the various image types and combinations that can be used in a simulation:
+The following table summarizes the required organization assignment for simulations for each image type and combination used in a simulation:
 
 | Images In Use | Organization Requirements |
 | ------ | --------- |

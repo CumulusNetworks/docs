@@ -13,11 +13,16 @@ To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/
 
 1. Obtain the DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container**, then **View all tags**. Copy the **1.16.1-doca2.6.0-host** image path.
 
-2. Run the DTS container with Docker on the host. Use the image path obtained in the previous step for the **DTS_IMAGE** variable and configure the IP address of your NetQ server for the `-i` option:
+2. Initialize the DTS container with Docker on the host. Use the image path obtained in the previous step for the **DTS_IMAGE** variable and configure the IP address of your NetQ server for the `-i` option:
 
 ```
 export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.16.1-doca2.6.0-host
 docker run -v "/opt/mellanox/doca/services/telemetry/config:/config" --rm --name doca-telemetry-init -ti $DTS_IMAGE /bin/bash -c "DTS_CONFIG_DIR=host_netq /usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh -i=10.10.10.1 -p=30001"
+```
+
+3. Run the DTS container on the host:
+
+```
 docker run -d --net=host                                                              \
               --privileged                                                            \
               -v "/opt/mellanox/doca/services/telemetry/config:/config"               \

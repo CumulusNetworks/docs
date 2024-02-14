@@ -115,7 +115,7 @@ netq install cluster full
 | ip-addr | \<text-ip-addr\>,\<text-ipv6-addr\>  | Install a server cluster with a master node with this IPv4 or IPv6 address to communicate with the NetQ Agents on the worker nodes |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 | workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IPv4 addresses |
-| cluster-vip | \<text-cluster-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes. |
+| cluster-vip | \<text-cluster-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes |
 ### Options
 
 | Option | Value | Description |
@@ -263,7 +263,7 @@ netq install opta cluster full
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 | conifg-key | \<text-opta-key\> | Use this unique key to activate the software |
 | workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IP addresses |
-| cluster-vip | \<text-cluster-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes. |
+| cluster-vip | \<text-cluster-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes |
 
 
 ### Options

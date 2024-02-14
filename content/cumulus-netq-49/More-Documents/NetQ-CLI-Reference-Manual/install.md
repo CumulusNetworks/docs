@@ -89,9 +89,9 @@ None
 -->
 ## netq install cluster full
 
-Installs the NetQ Platform software on the servers in an on-premises, server cluster deployment. You must have the hostname or IP address of the master node and two worker nodes, and the NetQ software bundle to run the command.
+Installs the NetQ software for an on-premises, server cluster deployment. Run this command on your *master* node. You must have the hostname or IP address of the master node, two worker nodes, virtual IP address, and the NetQ software bundle to run the command.
 
-Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}} and refer to the {{<link title="Install the NetQ System" text="installation instructions">}} for a step-by-step guide.
+Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
 ### Syntax
 
@@ -111,29 +111,25 @@ netq install cluster full
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| full | NA | Install a server cluster, running all initialization and configuration commands automatically |
 | interface | \<text-opta-ifname\> | Install a server cluster with a master node using this interface to communicate with the NetQ Agents on the worker nodes |
-| ip-addr | \<text-ip-addr\> | Install a server cluster with a master node with this IPv4 address to communicate with the NetQ Agents on the worker nodes |
+| ip-addr | \<text-ip-addr\>,\<text-ipv6-addr\>  | Install a server cluster with a master node with this IPv4 or IPv6 address to communicate with the NetQ Agents on the worker nodes |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
 | workers | \<text-worker-01\> \<text-worker-02\> | Install the worker nodes with these IPv4 addresses |
 | cluster-vip | \<text-cluster-vip\> | Specify a virtual IP address from the same subnet used for your master and worker nodes. |
-
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-ipv6-addr\> | Install a server cluster with a master node with this IPv6 address to communicate with the NetQ Agents on the worker nodes |
 | conifg-key | \<text-opta-key\> | Use this unique key to install the server cluster |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 | workers-ipv6 | \<text-worker-ipv6-01\> \<text-worker-ipv6-02\> | Install the worker nodes with these IPv6 addresses |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 
-<!--need to update example for 4.9 with cluster-vip-->
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.9.0.tgz workers 10.20.10.25 10.20.10.45
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.9.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands
@@ -236,18 +232,13 @@ cumulus@switch:~$ netq install opta activate-job config-key ju8Kl4IhZ3cucHJvZDEu
 
 - - -
 
-## netq install opta cluster
+## netq install opta cluster full
 
-Installs the NetQ Collector software on a master node and two worker nodes. For cloud deployments, it installs the software on the VM. For a multi-site on-premises deployment, it installs the software on one or two secondary servers at the external premises. You must have the hostname, IP address, or interface of the servers, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
+Installs the NetQ software on a master node and two worker nodes. For cloud deployments, it installs the software on the VM. For a multi-site on-premises deployment, it installs the software on one or two secondary servers at the external premises. You must have the hostname, IP address (or interface of the servers), a virtual IP address, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
 
 Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
-Obtain the config-key as follows:
-
-<!-- vale off -->
-- Cloud: Locate and retrieve key from email titled *A new site has been added to your NVIDIA NetQ account* (sent to your NetQ administrator)
-- Remote: Follow the instructions in {{<link title="Configure Premises" text="Configure Multiple Premises">}}
-<!-- vale on -->
+Obtain the config-key from the email sent to your NetQ administrator titled *A new site has been added to your NVIDIA NetQ account*. You can also obtain the configuration key through the NetQ UI in the {{<link title="Configure Premises" text="premises management configuration">}}.
 
 ### Syntax
 
@@ -267,7 +258,6 @@ netq install opta cluster full
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| full | NA | Install a server with NetQ Collector software, running all initialization and configuration commands automatically |
 | interface | \<text-opta-ifname\> | Install a server cluster with a master node using this interface to communicate with the NetQ Agents on the worker nodes |
 | ip-addr | \<text-ip-addr\> | Install a server cluster with a master node with this IP address to communicate with the NetQ Agents on the worker nodes |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
@@ -288,9 +278,8 @@ netq install opta cluster full
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
-cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/installables/NetQ-4.0.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD workers 10.20.10.25 10.20.10.45
+cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/installables/NetQ-4.0.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands
@@ -325,15 +314,13 @@ None
 
 - - -
 -->
-## netq install opta standalone
+## netq install opta standalone full
 
-Installs the NetQ Collector software on a single cloud server (VM) with a single command. You must have the hostname, IP address, or interface of the server, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
+Installs the NetQ software on a single cloud server (VM). You must have the hostname, IP address (or interface of the server), the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
 
 Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
-<!-- vale off -->
-Obtain the config-key from the email sent to your NetQ administrator titled *A new site has been added to your NVIDIA NetQ account*.
-<!-- vale on -->
+Obtain the config-key from the email sent to your NetQ administrator titled *A new site has been added to your NVIDIA NetQ account*. You can also obtain the configuration key through the NetQ UI in the {{<link title="Configure Premises" text="premises management configuration">}}.
 
 ### Syntax
 
@@ -351,7 +338,6 @@ netq install opta standalone full
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| full | NA | Install a server with NetQ Collector software, running all initialization and configuration commands automatically |
 | interface | \<text-opta-ifname\> | Install NetQ on the server with this interface as the communication interface for the NetQ Agents on the monitored switches and hosts |
 | ip-addr | \<text-ip-addr\> | Install NetQ on the server with this IP address to communicate with the NetQ Agents on the monitored switches and hosts |
 | bundle | \<text-bundle-url\> | Install the NetQ software bundle at this location; you must specify a full path |
@@ -361,9 +347,9 @@ netq install opta standalone full
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 | proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the VM; you must also specify a port |
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the VM; you must also specify a proxy host |
-| pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 
@@ -453,7 +439,7 @@ cumulus@switch:~$ netq install standalone activate-job config-key ju8Kl4IhZ3cucH
 
 ## netq install standalone full
 
-Installs the NetQ Platform software on the NetQ On-premises Appliance or VM in an on-premises, single server deployment, all with a single command. You must have the hostname or IP address of the server, and the NetQ software bundle to run the command. A configuration key is optional.
+Installs the NetQ software on the NetQ VM in an on-premises, single server deployment. You must have the hostname or IP address of the server, and the NetQ software bundle to run the command. A configuration key is optional.
 
 Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 

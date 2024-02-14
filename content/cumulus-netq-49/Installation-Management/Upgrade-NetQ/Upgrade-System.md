@@ -145,6 +145,10 @@ If you are upgrading a cluster deployment to NetQ 4.9.0, you must open TCP port 
 ```
 cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz
 ```
+
+{{%notice info%}}
+If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-standalone-full" text="netq install standalone full">}} command.
+{{%/notice%}}
 {{</tab>}}
 
 {{<tab "Cluster">}}
@@ -158,6 +162,10 @@ cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz clust
 
 If you are upgrading from a NetQ 4.8 high availability, on-premises cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the upgrade command. Specifying a virtual IP address that is different from the virtual IP address used during the installation process will cause the upgrade to fail. 
 
+{{%/notice%}}
+
+{{%notice info%}}
+If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-cluster-full" text="netq install cluster full">}} command.
 {{%/notice%}}
 {{</tab>}}
 
@@ -174,6 +182,10 @@ If you are upgrading from a NetQ 4.8 high availability, on-premises cluster with
 ```
 cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0-opta.tgz
 ```
+{{%notice info%}}
+If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-opta-standalone-full" text="netq install opta standalone full">}} command.
+{{%/notice%}}
+
 {{</tab>}}
 
 {{<tab "Cluster">}}
@@ -183,19 +195,17 @@ Run the `netq upgrade` command, specifying the current version's tarball and you
 ```
 cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0-opta.tgz cluster-vip <vip-ip>
 ```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-{{</tab>}}
-
-{{</tabs>}}
-
 {{%notice info%}}
-If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="netq install">}} command for your deployment type.
+If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-opta-cluster-full" text="netq install opta cluster full">}} command.
 {{%/notice%}}
 
+{{</tab>}}
+
+{{</tabs>}}
+
+{{</tab>}}
+
+{{</tabs>}}
 
 2. Confirm the upgrade was successful:
 

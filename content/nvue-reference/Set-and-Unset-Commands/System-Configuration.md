@@ -493,6 +493,11 @@ Configures the restart mode for the switch. You can restart the switch in one of
 - `fast` restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The restart process maintains the forwarding entries of the switching ASIC and the data plane is not affected. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, after switchd restarts.
 - `warm` restarts the system with minimal impact to traffic and without affecting the data plane. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
 
+{{%notice note%}}
+- Cumulus Linux 5.7 and earlier supports fast mode for all protocols and warm boot for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
+- Cumulus Linux 5.8 supports fast mode for all protocols and warm mode for 802.1X, layer 2 forwarding, layer 3 forwarding with BGP, and static routing. Warm mode for VXLAN routing with EVPN is available for beta and open to customer feedback. Cumulus Linux does not support warm boot with EVPN MLAG or EVPN multihoming.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.5.0

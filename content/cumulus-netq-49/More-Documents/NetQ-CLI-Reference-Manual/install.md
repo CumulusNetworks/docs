@@ -234,7 +234,7 @@ cumulus@switch:~$ netq install opta activate-job config-key ju8Kl4IhZ3cucHJvZDEu
 
 ## netq install opta cluster full
 
-Installs the NetQ software on a master node and two worker nodes. For cloud deployments, it installs the software on the VM. For a multi-site on-premises deployment, it installs the software on one or two secondary servers at the external premises. You must have the hostname, IP address (or interface of the servers), a virtual IP address, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
+Installs the NetQ software for a cloud, server cluster deployment.  You must have the hostname, IP address (or interface of the servers), a virtual IP address, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
 
 Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 

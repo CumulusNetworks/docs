@@ -28,17 +28,22 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router rib
-Address-family  Summary               
---------------  ----------------------
-ipv4            Route:    10.0.0.10/32
-                Route:     10.0.0.9/32
-                Route:   10.10.10.1/32
-                Route: 10.10.10.101/32
-                Route: 10.10.10.102/32
-                Route:   10.10.10.2/32
-                Route:   10.10.10.3/32
-                Route:   10.10.10.4/32
-ipv6            Route:       fe80::/64
+AFI   Prefix         
+----  ---------------
+ipv4  10.0.1.12/32   
+      10.0.1.34/32   
+      10.0.1.255/32  
+      10.10.10.1/32  
+      10.10.10.2/32  
+      10.10.10.3/32  
+      10.10.10.4/32  
+      10.10.10.63/32 
+      10.10.10.64/32 
+      10.10.10.101/32
+      10.10.10.102/32
+      10.10.10.103/32
+      10.10.10.104/32
+ipv6  fe80::/64
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -62,19 +67,42 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show vrf default router rib ipv4
-
 route
 ========
-    Route            Summary            
-    ---------------  -------------------
-    10.0.0.9/32      Protocol:       bgp
-    10.0.0.10/32     Protocol:       bgp
-    10.10.10.1/32    Protocol: connected
-    10.10.10.2/32    Protocol:       bgp
-    10.10.10.3/32    Protocol:       bgp
-    10.10.10.4/32    Protocol:       bgp
-    10.10.10.101/32  Protocol:       bgp
-    10.10.10.102/32  Protocol:       bgp
+    Route            Protocol   Distance  ResolvedVia  ResolvedViaIntf  Uptime    NHGId  Metric  TableId  Flags       
+    ---------------  ---------  --------  -----------  ---------------  --------  -----  ------  -------  ------------
+    10.0.1.12/32     connected  0                                       07:01:03  7      0                fib-selected
+                                                                                                          installed   
+                                                                                                          offloaded   
+                                                                                                          selected    
+    10.0.1.34/32     bgp        20                                      00:01:54  144    0                fib-selected
+                                                                                                          installed   
+                                                                                                          selected    
+    10.0.1.255/32    bgp        20                                      00:01:54  144    0                fib-selected
+                                                                                                          installed   
+                                                                                                          selected    
+    10.10.10.1/32    connected  0                                       07:03:56  7      0                fib-selected
+                                                                                                          installed   
+                                                                                                          offloaded   
+                                                                                                          selected    
+    10.10.10.2/32    bgp        20                                      00:01:53  221    0                fib-selected
+                                                                                                          installed   
+                                                                                                          selected    
+    10.10.10.3/32    bgp        20                                      00:01:54  144    0                fib-selected
+                                                                                                          installed   
+                                                                                                          selected    
+    10.10.10.4/32    bgp        20                                      00:01:54  144    0                fib-selected
+                                                                                                          installed   
+                                                                                                          selected    
+    10.10.10.63/32   bgp        20                                      00:01:54  144    0                fib-selected
+                                                                                                          installed   
+                                                                                                          selected    
+    10.10.10.64/32   bgp        20                                      00:01:54  144    0                fib-selected
+                                                                                                          installed   
+                                                                                                          selected    
+    10.10.10.101/32  bgp        20                                      00:01:54  115    0                fib-selected
+                                                                                                          installed
+...
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -97,7 +125,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router rib ipv4 protocol bgp
+cumulus@switch:~$ nv show vrf default router rib ipv4 protocol
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -112,7 +140,7 @@ Shows the IPv4 or IPv6 routing table for the specified protocol for the specifie
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<afi>` |  The route address family (IPv4 or IPv6). |
-| `<import-protocol-id>` |  The protocol name: `bgp`, `isis`, `ospf`, `rip`, `sharp`, `table`, `connected`, `kernel`, `ospf6`, `ripng`, or `static`. |
+| `<protocol>` |  The protocol name: `bgp`, `isis`, `ospf`, `rip`, `sharp`, `table`, `connected`, `kernel`, `ospf6`, `ripng`, or `static`. |
 
 ### Version History
 

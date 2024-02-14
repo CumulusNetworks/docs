@@ -188,14 +188,14 @@ Additional options are available for the `nv show` commands. For example, you ca
 
 | <div style="width:200px">Option | Description |
 | ------ | ----------- |
-| `--view` | Shows these different views: `acl-statistics`, `brief`, `detail`, `lldp`, `mac`, `mlag-cc`, `pluggables`, `qos-profile`, and `small`. This option is available for the `nv show interface` command only.</br></b>For example, the `nv show interface --view=small` command shows a list of the interfaces on the switch and the `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port.</br></b>The `nv show interface --view=mac` command shows the MAC address of each interface and the `nv show interface --view=qos-profile` command shows the QoS profile for the interfaces on the switch.</br></b>Note: The description column only shows in the output when you use the `--view=detail` option.|
+| `--view` | Shows different views. A view is a subset of information provided by certain `nv show` commands. To see the views available for an `nv show` command, run the command with `--view` and press TAB.|
 | `--filter` | Filters show command output on column data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.</br>To filter on multiple column outputs, enclose the filter types in parentheses; for example, `nv show interface --filter "type=bridge&mtu=9216"` shows data for bridges with MTU 9216.</br>You can use wildcards; for example, `nv show interface swp1 --filter "ip.address=1*"` shows all IP addresses that start with `1` for swp1.</br>You can filter on all revisions (operational, applied, and pending); for example, `nv show interface  --filter "ip.address=1*" --rev=applied` shows all IP addresses that start with `1` for swp1 in the applied revision.|
 | `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev 1`. You can also show only applied or only operational information in the `nv show` output. For example, to show only the applied settings for swp1 configuration, run the `nv show interface swp1 --rev=applied` command. To show only the operational settings for swp1 configuration, run the `nv show interface swp1 --rev=operational` command. |
 | `--applied`       | Shows configuration applied with the `nv config apply` command. For example, `nv show --applied interface bond1`. |
 | `--operational`   | Shows the running configuration (the actual system state). For example, `nv show --operational interface bond1` shows the running configuration for bond1. The running and applied configuration should be the same. If different, inspect the logs. |
 | `--pending`       | Shows the last applied configuration and any pending set or unset configuration that you have not yet applied. For example, `nv show --pending interface bond1`.|
 | `--startup`  | Shows configuration saved with the `nv config save` command. This is the configuration after the switch boots. |
-| `--output`        | Shows command output in table (`auto`), `json`, or `yaml` format. For example:<br>`nv show --ouptut auto interface bond1`<br>`nv show --output json interface bond1`<br>`nv show --ouptut yaml interface bond1` |
+| `--output`        | Shows command output in table (`auto`), `json`, or `yaml` format. For example:<br>`nv show --output auto interface bond1`<br>`nv show --output json interface bond1`<br>`nv show --output yaml interface bond1` |
 | `--color`         | Turns colored output on or off. For example, `nv show --color on interface bond1`|
 | `--paginate`      | Paginates the output. For example, `nv show --paginate on interface bond1`. |
 | `--help` | Shows `help` for the NVUE commands. |
@@ -210,6 +210,15 @@ mode                          helper-only        Role of router during graceful 
 path-selection-deferral-time  360                Used by the restarter as an upper-bounds for waiting for peeringes...
 restart-time                  120                Amount of time taken to restart by router. It is advertised to the...
 stale-routes-time             360                Specifies an upper-bounds on how long we retain routes from a resta...
+```
+
+The following example shows the views available for the `nv show interface` command:
+
+```
+cumulus@switch:~$ nv show interface --view <<TAB>>
+acl-statistics  detail          lldp            mlag-cc         port-security   synce-counters  
+brief           dot1x-counters  lldp-detail     neighbor        qos-profile     
+counters        dot1x-summary   mac             pluggables      small
 ```
 
 **Monitoring Commands and FRR Daemons**

@@ -55,6 +55,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3739008</td>
+<td>The Lenovo MSN4600-VS2RC (PN SSG7B27990 Back-to-Front/C2P Airflow) might run the fan tray fans at a high speed because the software believes the PSU fans are running in the wrong direction.</td>
+<td>5.5.1-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3730904</td>
 <td>When sending untagged frames to the CPU with an MTU higher than the SVD (single VXLAN device) MTU, the kernel might crash.</td>
 <td>5.4.0-5.8.0</td>
@@ -466,11 +472,6 @@ cumulus@switch:~$ dpkg --install frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb
 <tr>
 <td>3751952</td>
 <td>{{ifupdown2}} tries to set the multicast database hash elasticity (bridge-hashel attribute) with a value of 4096. However, this attribute is now deprecated in the Linux kernel and the value is always 16.</td>
-<td>5.5.1-5.7.0</td>
-</tr>
-<tr>
-<td>3739008</td>
-<td>The Lenovo MSN4600-VS2RC (PN SSG7B27990 Back-to-Front/C2P Airflow) might run the fan tray fans at a high speed because the software believes the PSU fans are running in the wrong direction.</td>
 <td>5.5.1-5.7.0</td>
 </tr>
 <tr>

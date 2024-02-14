@@ -21,7 +21,7 @@ During the upgrade process, NetQ will be temporarily unavailable.
 
 2. Verify that Kubernetes is running with the `kubectl get pods` command.
 
-    If either of these commands display errors, you will not be able to upgrade NetQ. You must reset the NetQ server with the `netq bootstrap reset keep-db` command and perform a {{<link title="Install the NetQ System" text="fresh installation">}}.
+    If either of these commands display errors, you will not be able to upgrade NetQ. Reset the NetQ server with the `netq bootstrap reset keep-db` command and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="netq install">}} command for your deployment type.
 
 3. {{<link title="Back Up and Restore NetQ" text="Back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
 
@@ -193,7 +193,7 @@ cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0-opta.tgz 
 {{</tabs>}}
 
 {{%notice info%}}
-If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="installation command">}}.
+If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="netq install">}} command for your deployment type.
 {{%/notice%}}
 
 

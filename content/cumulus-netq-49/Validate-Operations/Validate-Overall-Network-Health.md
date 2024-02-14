@@ -73,8 +73,8 @@ The following example shows the EVPN chart:
 
 {{<figure src="/images/netq/full-screen-evpn-validation.png" alt="EVPN validation data" width="1300">}}
 
-## View All Network Protocol and Service Validation Results
+## View Default Network Protocol and Service Validation Results
 
-Expand the Validation Summary card to full-screen to view all validation check results for all network protocols and services during a designated time period.
+Expand the Validation Summary card to full-screen to view all default validation checks during a designated time period. Some validations, such as RoCE and address, are not included in the default validation checks and will not appear in this view. You can run an {{<link title="Validate Network Protocol and Service Operations#on-demand-validations" text="on-demand validation">}} to view results for those protocols and services. 
 
 {{<figure src="/images/netq/fullscreen-val-460.png" alt="fullscreen validation summary card displaying EVPN metrics" width="1300">}}

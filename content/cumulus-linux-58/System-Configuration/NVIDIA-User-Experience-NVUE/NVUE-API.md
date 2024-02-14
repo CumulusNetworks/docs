@@ -1248,6 +1248,24 @@ cumulus@switch:~$ nv show interface lo ip address
 {{</ tab >}}
 {{</ tabs>}}
 
+### View Differences Between Configurations
+
+To view differences between configurations, run the API `GET /nvue_v1/<resource>?rev=<rev-A>&diff=<rev-B>` method with the configurations you want to `diff`. This method is equivalent to the NVUE `nv config diff <rev-A> <rev-B>` command.
+
+To see the difference between the startup revision and the applied revision:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' --insecure -X GET /nvue_v1/interface?rev=startup&diff=applied
+```
+
+To see the difference between revision 1 and revision 2:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:cumulus' --insecure -X GET /nvue_v1/<resource>?rev=1&diff=2
+```
+
+You can change the order of the revisions; for example, `GET /nvue_v1/<resource>?rev=2&diff=1`.
+
 ### Troubleshoot Configuration Changes
 
 When a configuration change fails, you see an error in the change request.

@@ -17,11 +17,16 @@ To install and configure the {{<exlink url="https://catalog.ngc.nvidia.com/orgs/
 
 1. Obtain the latest DTS container image path from {{<exlink url="https://catalog.ngc.nvidia.com/orgs/nvidia/teams/doca/containers/doca_telemetry" text="the NGC catalog">}}. Select **Get Container** and copy the image path.
 
-2. Run the DTS container with Docker on the host. Use the image path obtained in the previous step for the **DTS_IMAGE** variable and configure the IP address of your NetQ server for the `-i` option:
+2. Initialize the DTS container with Docker on the host. Use the image path obtained in the previous step for the **DTS_IMAGE** variable and configure the IP address of your NetQ server for the `-i` option:
 
 ```
 export DTS_IMAGE=nvcr.io/nvidia/doca/doca_telemetry:1.14.2-doca2.2.0-host
 docker run -v "/opt/mellanox/doca/services/telemetry/config:/config" --rm --name doca-telemetry-init -ti $DTS_IMAGE /bin/bash -c "DTS_CONFIG_DIR=host_netq /usr/bin/telemetry-init.sh && /usr/bin/enable-fluent-forward.sh -i=10.10.10.1 -p=30001"
+```
+
+3. Run the DTS container on the host:
+
+```
 docker run -d --net=host                                                              \
               --privileged                                                            \
               -v "/opt/mellanox/doca/services/telemetry/config:/config"               \
@@ -34,13 +39,19 @@ docker run -d --net=host                                                        
 
 The Prometheus adapter pod in NetQ collects statistics from ConnectX adapters in your network. The default scrape interval is every minute. If you want to change the frequency of the scrape interval, make your adjustments, then restart the `netq-prom-adapter` pod to begin collecting data with the updated parameters:
 
-1. Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
+1. Log in to your NetQ VM via SSH.
+
+2. Edit the Prometheus ConfigMap with the `kubectl edit cm prometheus-config` command.
+
+3. Make your updates by editing the `scrape_interval` parameter. 
+
+4. Retrieve the current pod name with the `kubectl get pods | grep netq-prom` command:
 
 ```
 cumulus@netq-server:~$ kubectl get pods | grep netq-prom
 netq-prom-adapter-ffd9b874d-hxhbz                    2/2     Running   0          3h50m
 ```
-2. Restart the pod by deleting the running pod:
+5. Restart the pod by deleting the running pod:
 
 ```
 kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz

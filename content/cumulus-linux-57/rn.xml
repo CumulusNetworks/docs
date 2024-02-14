@@ -49,8 +49,8 @@ cumulus@switch:~$ dpkg --install frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb
 <tr>
 <td>3739008</td>
 <td>The Lenovo MSN4600-VS2RC (PN SSG7B27990 Back-to-Front/C2P Airflow) might run the fan tray fans at a high speed because the software believes the PSU fans are running in the wrong direction.</td>
-<td>5.5.1-5.7.0</td>
-<td>5.8.0</td>
+<td>5.5.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3738626</td>

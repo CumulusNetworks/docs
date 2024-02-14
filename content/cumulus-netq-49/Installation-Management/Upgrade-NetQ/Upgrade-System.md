@@ -14,14 +14,18 @@ For deployments running:
 - 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
 
 During the upgrade process, NetQ will be temporarily unavailable.
-## Upgrading from NetQ 4.8, 4.7, 4.6, or 4.5
 
-You can upgrade directly to NetQ 4.9.0 if your deployment is currently running version 4.8.0, 4.7.0, 4.6.0, or 4.5.0.
-### Back up your NetQ Data
+## Before You Upgrade
 
-Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
+1. Verify that the admin app is running with the `netq show status` command.
 
-### Update NetQ Debian Packages
+2. Verify that Kubernetes is running with the `kubectl get pods` command.
+
+    If either of these commands display errors, you will not be able to upgrade NetQ. You must reset the NetQ server with the `netq bootstrap reset keep-db` command and perform a {{<link title="Install the NetQ System" text="fresh installation">}}.
+
+3. {{<link title="Back Up and Restore NetQ" text="Back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
+
+## Update NetQ Debian Packages
 
 1. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.9:
 
@@ -64,7 +68,7 @@ Before you upgrade, you can {{<link title="Back Up and Restore NetQ" text="back 
     ```
 
 
-### Download the Upgrade Software
+## Download the Upgrade Software
 
 1. Download the upgrade tarball.
 
@@ -91,14 +95,14 @@ username@hostname:~$ sudo chmod +x /home/cumulus/backup_restore_configs.py
 ```
 -->
 
-### Run the Upgrade
+## Run the Upgrade
 
 {{%notice note%}}
 
 Perform the following steps using the `cumulus` user account.
 
 {{%/notice%}}
-#### Pre-installation Checks
+### Pre-installation Checks
 
 Verify the following items before upgrading NetQ.
 
@@ -126,9 +130,9 @@ If you are upgrading a cluster deployment to NetQ 4.9.0, you must open TCP port 
 
 {{%/notice%}}
 
-#### Upgrade Using the NetQ CLI
+### Upgrade Using the NetQ CLI
 
-Run the appropriate commands for your deployment type:
+1. Run the appropriate commands for your deployment type:
 
 {{<tabs "tabID142">}}
 
@@ -152,7 +156,7 @@ cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz clust
 ```
 {{%notice note%}}
 
-If you are upgrading from a NetQ 4.8 high availability, on-premises cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the upgrade command. Specifying a virtual IP address that is different from the virtual IP address used during the installation process will cause the upgrade to fail.
+If you are upgrading from a NetQ 4.8 high availability, on-premises cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the upgrade command. Specifying a virtual IP address that is different from the virtual IP address used during the installation process will cause the upgrade to fail. 
 
 {{%/notice%}}
 {{</tab>}}
@@ -188,7 +192,12 @@ cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0-opta.tgz 
 
 {{</tabs>}}
 
-Confirm the upgrade was successful:
+{{%notice info%}}
+If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="installation command">}}.
+{{%/notice%}}
+
+
+2. Confirm the upgrade was successful:
 
 {{<tabs "TabID230" >}}
 

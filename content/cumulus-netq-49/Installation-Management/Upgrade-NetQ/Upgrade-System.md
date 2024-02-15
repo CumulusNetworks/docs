@@ -15,6 +15,10 @@ For deployments running:
 
 During the upgrade process, NetQ will be temporarily unavailable.
 
+{{%notice info%}}
+NetQ 4.9 does not support on-premises, cluster deployments.
+{{%/notice%}}
+
 ## Before You Upgrade
 
 1. Verify that the admin app is running with the `netq show status` command.
@@ -76,25 +80,6 @@ During the upgrade process, NetQ will be temporarily unavailable.
 
 2. Copy the tarball to the `/mnt/installables/` directory on your NetQ VM.
 
-<!--
-
-3. For on-premises deployments, download the configuration backup script, `backup_restore_configs.py`:
-
-<p style="text-indent: 40px; display:inline">a. On the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}, log in to your account.<br></p>
-<p style="text-indent: 40px; display:inline">b. Select <b>NVIDIA Licensing Portal</b>.<br></p>
-<p style="text-indent: 40px; display:inline">c. Select <b>Software Downloads</b> from the menu.<br></p>
-<p style="text-indent: 40px; display:inline">d. Click <b>Product Family</b> and select <b>NetQ</b>.<br></p>
-<p style="text-indent: 40px; display:inline">e. Locate the <b>NetQ SW 4.7.0 Upgrade Backup Restore Configs Script</b> file and select <b>Download</b>.<br></p>
-<p style="text-indent: 40px; display:inline">f. If prompted, agree to the license agreement and proceed with the download.<br></p>
-
-4.  For on-premises deployments, copy the `backup_restore_configs.py` script to `/home/cumulus/` on your NetQ server and change the permissions:
-
-```
-username@hostname:~$ scp ./backup_restore_configs.py cumulus@10.10.10.10:/home/cumulus/
-username@hostname:~$ sudo chmod +x /home/cumulus/backup_restore_configs.py
-```
--->
-
 ## Run the Upgrade
 
 {{%notice note%}}
@@ -153,20 +138,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 
 {{<tab "Cluster">}}
 
-Run the `netq upgrade` command, specifying the current version's tarball and your cluster's virtual IP address. The virtual IP address must be allocated from the same subnet used for your master and worker nodes.
-
-```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz cluster-vip <vip-ip>
-```
-{{%notice note%}}
-
-If you are upgrading from a NetQ 4.8 high availability, on-premises cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the upgrade command. Specifying a virtual IP address that is different from the virtual IP address used during the installation process will cause the upgrade to fail. 
-
-{{%/notice%}}
-
-{{%notice info%}}
-If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-cluster-full" text="netq install cluster full">}} command.
-{{%/notice%}}
+NetQ 4.9 does not support on-premises, cluster deployments.
 {{</tab>}}
 
 {{</tabs>}}

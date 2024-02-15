@@ -41,11 +41,11 @@ The following table summarizes the required organization assignment for simulati
 
 | Images In Use | Organization Requirements |
 | ------ | --------- |
-| Public only | Simulations in any or no organization | 
-| Private only | Simulations assigned to the image organization |
-| Shared only | Simulations with an unassigned organization | 
-| Private and Public | Simulations assigned to the image organization |
-| Shared and Public | Simulations with an unassigned organization |
+| Public only | Simulations can be assigned to any or no organization | 
+| Private only | Simulations must be assigned to the image organization |
+| Shared only | Simulations must have an unassigned organization | 
+| Private and Public | Simulations must be assigned to the image organization |
+| Shared and Public | Simulations must have an unassigned organization |
 | Private and Shared | Unsupported |
 
 ## Manage Organizations

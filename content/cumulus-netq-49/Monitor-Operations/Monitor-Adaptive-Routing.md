@@ -9,7 +9,7 @@ Adaptive routing is a load balancing feature that improves network utilization f
 
 {{<notice note>}}
 
-Adaptive routing monitoring is supported on Spectrum-2 switches and later. It requires a switch fabric running Cumulus Linux 5.5.0 or later.
+Adaptive routing monitoring is supported on Spectrum-3 switches and later. It requires a switch fabric running Cumulus Linux 5.5.0 or later.
 
 {{</notice>}}
 

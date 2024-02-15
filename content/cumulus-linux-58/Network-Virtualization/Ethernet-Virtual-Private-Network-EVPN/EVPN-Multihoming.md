@@ -42,7 +42,7 @@ You must enable the following features to use EVPN-MH:
 Cumulus Linux uses <span class="a-tooltip">[HER](## "Head End Replication")</span> by default with EVPN multihoming. If you prefer to use EVPN BUM traffic handling with EVPN-PIM on multihomed sites through Type-4/ESR routes, configure EVPN-PIM as described in {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
 
 {{%notice info%}}
-On Spectrum A1 switches, EVPN multihoming needs a {{<link title="EVPN BUM Traffic with PIM-SM" text="PIM-SM underlay to distribute BUM traffic">}}; the Spectrum A1 switch does not support HER with EVPN multihoming. To check if you have a Spectrum A1 switch, run the `sudo decode-syseeprom version | egrep -i "tlv|--|device version"` command. If the command output shows the `Device Version` value at 16 or higher, you have a Spectrum A1 switch:
+On Spectrum A1 switches, NVIDIA recommends that you use a {{<link title="EVPN BUM Traffic with PIM-SM" text="PIM-SM underlay to distribute BUM traffic">}} with EVPN multihoming for better performance. To check if you have a Spectrum A1 switch, run the `sudo decode-syseeprom version | egrep -i "tlv|--|device version"` command. If the command output shows the `Device Version` value at 16 or higher, you have a Spectrum A1 switch:
 
 ```
 cumulus@switch:~$ sudo decode-syseeprom version | egrep -i "tlv|--|device version"

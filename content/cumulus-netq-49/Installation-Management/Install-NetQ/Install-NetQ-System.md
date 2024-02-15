@@ -12,9 +12,13 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 | --- | --- | --- | :---: |
 | On-premises | Single server | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Single On-premises Server" text="Start install" >}} |
 | On-premises | Single server | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Single On-premises Server" text="Start install" >}} |
+<!--remove deployments for 4.9
 | On-premises | High availability server cluster | KVM | {{<link title="Set Up Your KVM Virtual Machine for an On-premises HA Server Cluster" text="Start install" >}} |
 | On-premises | High availability server cluster | VMware | {{<link title="Set Up Your VMware Virtual Machine for an On-premises HA Server Cluster" text="Start install" >}} |
-
+-->
+{{%notice infonopad%}}
+NetQ 4.9 does not support on-premises, cluster deployments.
+{{%/notice%}}
 ## Cloud (On-Premises Telemetry Aggregator)
 
 | Deployment Type | Server Arrangement | Hypervisor | Requirements & Installation |

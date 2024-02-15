@@ -1774,7 +1774,7 @@ For warm boot to restart the switch with no interruption to traffic for existing
 
 ### Restart Modes
 
-Cumulus Linux supports graceful BGP restart full mode and helper-only mode for IPv4 and IPv6. The default setting is helper-only mode.
+Cumulus Linux supports graceful BGP restart full mode and helper-only mode for IPv4, IPv6 and EVPN. The default setting is helper-only mode.
 - In full mode, the switch is in both a helper and restarter role.
 - In helper-only mode, the switch is in a helper role only, where routes originated and advertised from a BGP peer are not deleted.
 

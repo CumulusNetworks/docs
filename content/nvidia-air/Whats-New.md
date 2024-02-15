@@ -9,9 +9,13 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 <!-- Air:WhatsNew -->
 ## February 2024
+### 82.2024.0215-013
+- Fixed an issue where the simulation API did not return all jobs for a loading simulation
+- Fixed an issue where the login API incorrectly returned a 500 error
+<!-- Air:WhatsNew -->
+
 ### 82.2024.0206-010
 - Signing up for a new account now requires a valid business email address
-<!-- Air:WhatsNew -->
 
 ## January 2024
 ### 82.2024.0125-013

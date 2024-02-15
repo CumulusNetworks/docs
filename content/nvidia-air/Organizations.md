@@ -23,15 +23,15 @@ To assign a simulation to an organization, click the **Edit** icon to open the *
 
 ## Organizations and Images
 
-Public images are published for all users of NVIDIA Air, and simulations using public images can be assigned to any organization, or the organization can be left unassigned.
+_Public_ images are published for all users of NVIDIA Air, and simulations using public images can be assigned to any organization, or the organization can be left unassigned.
 
-An Organization Administrator can upload a private image for use in simulations assigned to the organization. The administrator can also share these images with individual users of NVIDIA Air outside of that organization for use in simulations that are launched with an unassigned organization.
+An Organization Administrator can upload a _private_ image for use in simulations assigned to the organization. Images in an organization can be _shared_ with individual users of NVIDIA Air outside of that organization for use in simulations.
 
 ### Requirements
 
 Images uploaded to an organization have the following requirements:
 
-- Private images in an organization that are not shared elsewhere must be used in simulations that are assigned to the same organization.
+- Private images in an organization that are not shared must be used in simulations that are assigned to the same organization.
 
 - If you share an image with a user outside of an organization, it is no longer considered private and shared images must be used in simulations with an unassigned organization.
 

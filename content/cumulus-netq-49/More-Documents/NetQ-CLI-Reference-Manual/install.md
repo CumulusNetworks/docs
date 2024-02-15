@@ -89,7 +89,7 @@ None
 -->
 ## netq install cluster full
 
-{{%notice info%}}
+{{%notice infonopad%}}
 NetQ 4.9 does not support on-premises, cluster deployments.
 {{%/notice%}}
 

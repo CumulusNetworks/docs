@@ -15,7 +15,7 @@ For deployments running:
 
 During the upgrade process, NetQ will be temporarily unavailable.
 
-{{%notice info%}}
+{{%notice infonopad%}}
 NetQ 4.9 does not support on-premises, cluster deployments.
 {{%/notice%}}
 

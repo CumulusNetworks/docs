@@ -89,6 +89,10 @@ None
 -->
 ## netq install cluster full
 
+{{%notice info%}}
+NetQ 4.9 does not support on-premises, cluster deployments.
+{{%/notice%}}
+
 Installs the NetQ software for an on-premises, server cluster deployment. Run this command on your *master* node. You must have the hostname or IP address of the master node, two worker nodes, virtual IP address, and the NetQ software bundle to run the command.
 
 Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.

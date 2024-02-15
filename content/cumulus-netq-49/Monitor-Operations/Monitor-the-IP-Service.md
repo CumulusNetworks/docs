@@ -57,4 +57,4 @@ netq check addresses
 
 IPv4 and IPv6 address, neighbor, and route information is available in the NetQ UI. To access this information, select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**. Then select **IP addresses**, **IP neighbors**, or **IP routes** from the list of options. The following image displays a list of IP addresses:
 
-{{<figure src="/images/netq/ip-adds-crop-460.png" alt="" width="1100">}}
+{{<figure src="/images/netq/ip-addr-490.png" alt="" width="1100">}}

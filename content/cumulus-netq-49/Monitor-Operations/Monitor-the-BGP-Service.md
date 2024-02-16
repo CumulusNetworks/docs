@@ -21,13 +21,13 @@ netq check bgp
 ```
 ## View BGP in the UI
 
-To add the BGP card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All BGP Sessions card&nbsp;<span aria-label="and then">></span> Open cards**. In this example, there are 13 nodes running the BGP protocol, 0 open events (from the last 24 hours), and 10 nodes with unestablished sessions.
+To add the BGP card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All BGP Sessions card&nbsp;<span aria-label="and then">></span> Open cards**. In this example, there are 44 nodes running the BGP protocol, 252 open events (from the last 24 hours), and 9 nodes with unestablished sessions.
 
-{{<figure src="/images/netq/bgp-med-card-450.png" alt="" width="200" >}}
+{{<figure src="/images/netq/med-bgp-490.png" alt="" width="200" >}}
 
 Expand to the large card for additional BGP info. By default, the card displays the **Sessions summary** tab. From here you can see which devices are handling the most BGP sessions, or select the dropdown to view nodes with the most unestablished BGP sessions. You can view BGP-related events by selecting the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> **Events** tab.
 
-{{<figure src="/images/netq/bgp-large-card-450.png" alt="" width="650">}}
+{{<figure src="/images/netq/bgp-large-490.png" alt="" width="650">}}
 
 Expand the BGP card to full-screen to view, filter, or export:
 
@@ -38,7 +38,7 @@ Expand the BGP card to full-screen to view, filter, or export:
 
 {{<figure src="/images/netq/bgp-fullscreen-card-450.png" alt="" width="1100">}}
 
-From this table, you can select a row, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** above the table.
+From this table, you can select a row, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Open card** above the table.
 
 NetQ adds a new, BGP 'single-session' card to your workbench. From this card, you can view session state changes and compare them with events, and monitor the running BGP configuration and changes to the configuration file.
 

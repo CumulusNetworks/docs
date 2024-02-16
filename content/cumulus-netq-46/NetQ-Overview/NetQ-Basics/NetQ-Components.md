@@ -32,6 +32,7 @@ The NetQ Agents running on Cumulus Linux or SONiC switches gather the following 
   - Interfaces
   - IP addresses (v4 and v6)
   - IP routes (v4 and v6)
+  - IP nexthops (v4 and v6)
   - Links
   - Bridge FDB (MAC address table)
   - ARP Entries/Neighbors (IPv4 and IPv6)

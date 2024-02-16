@@ -1485,12 +1485,12 @@ None
 
 ```
 cumulus@switch:~$ netq config show agent 
-netq-agent                value      default
-------------------------  ---------  ---------
+netq-agent             value      default
+---------------------  ---------  ---------
 exhibitport
 exhibiturl
 server                    127.0.0.1  127.0.0.1
-cpu-limit                 50         50
+cpu-limit                 100        100
 agenturl
 wjh                                  Enabled
 asic-monitor                         Enabled

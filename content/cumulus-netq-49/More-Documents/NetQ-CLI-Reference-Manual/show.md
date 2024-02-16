@@ -43,7 +43,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$netq show adaptive-routing config global
+cumulus@switch:~$ netq show adaptive-routing config global
 
 Matching arconfig records:
 Hostname          Is AR   Is RoCE  RoCE Mode Last Updated

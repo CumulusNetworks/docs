@@ -12,7 +12,7 @@ Several NetQ features function exclusively on NVIDIA Spectrum switches. The foll
 |What Just Happened | Partial support; no latency and congestion monitoring | Yes | Yes | Yes | Yes |
 |LCM with on-switch OPTA | No | Yes | Yes | Yes |
 |Flow analysis| No | Yes | Yes | Yes |
-|Adaptive routing monitoring | No | Yes | Yes | Yes |
+|Adaptive routing monitoring | No | No | Yes | Yes |
 |ECMP monitoring| Yes | Yes | Yes | Yes |
 |PTP monitoring| Yes | Yes | Yes | Yes |
 |RoCE monitoring| Yes | Yes | Yes | Yes |

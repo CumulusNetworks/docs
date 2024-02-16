@@ -425,17 +425,27 @@ cumulus@switch:~$ netq config add agent kubernetes-monitor poll-period 15
 The following example shows how to view the NetQ Agent configuration:
 
 ```
-cumulus@switch:~$ netq config show agent
+cumulus@switch:~$ sudo netq config show agent
 netq-agent             value      default
 ---------------------  ---------  ---------
-enable-opta-discovery  True       True
 exhibitport
-agenturl
-server                 127.0.0.1  127.0.0.1
 exhibiturl
-vrf                    default    default
-agentport              8981       8981
-port                   31980      31980
+server                    127.0.0.1  127.0.0.1
+cpu-limit                 100        100
+agenturl
+wjh                                  Enabled
+asic-monitor                         Enabled
+enable-opta-discovery     False      False
+agentport                 8981       8981
+port                      31980      31980
+vrf                       default    default
+is-gnmi-enabled           False      False
+netq_stream_port          7680       7680
+netq_stream_address       127.0.0.1  127.0.0.1
+is-ssl-enabled            False      False
+ssl-cert
+generate-unique-hostname  False      False
+()
 ```
 
 {{<notice note>}}

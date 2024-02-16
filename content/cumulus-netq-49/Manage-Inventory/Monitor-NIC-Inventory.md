@@ -8,7 +8,7 @@ toc: 4
 Use the UI or CLI to view your network interface controller (NIC) inventory. For NIC performance information, refer to {{<link title="NICs" text="NIC Monitoring">}}.
 
 {{<notice note>}}
-NIC telemetry for ConnectX adapters is supported for on-premises NetQ deployments. You must have {{<link title="Install NIC and DPU Agents" text="DOCA Telemetry Service enabled">}} and Prometheus targets configured to display NIC data in NetQ.
+You must have {{<link title="Install NIC and DPU Agents" text="DOCA Telemetry Service enabled">}} to display NIC data in NetQ.
 {{</notice>}}
 
 

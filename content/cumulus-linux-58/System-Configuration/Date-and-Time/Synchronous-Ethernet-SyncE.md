@@ -256,32 +256,20 @@ To show SyncE statistics for a specific interface, run the NVUE `nv show interfa
 
 ```
 cumulus@switch:~$ nv show interface swp2 counters synce
-                 operational  applied
----------------  -----------  -------
-rx-esmc          248899
-rx-esmc-dnu      0
-rx-esmc-e-eec    0
-rx-esmc-e-prc    241259
-rx-esmc-e-prtc   0
-rx-esmc-eec1     0
-rx-esmc-error    0
-rx-esmc-prc      4125
-rx-esmc-prtc     0
-rx-esmc-ssu-a    0
-rx-esmc-ssu-b    0
-rx-esmc-unknown  3515
-tx-esmc          249107
-tx-esmc-dnu      245111
-tx-esmc-e-eec    0
-tx-esmc-e-prc    107
-tx-esmc-e-prtc   0
-tx-esmc-eec1     2488
-tx-esmc-error    4
-tx-esmc-prc      1401
-tx-esmc-prtc     0
-tx-esmc-ssu-a    0
-tx-esmc-ssu-b    0
-tx-esmc-unknown  0
+Packet Type                       Received       Transmitted    
+---------------------             ------------   ------------   
+ESMC                                      700            708
+ESMC Error                                  0              0
+ESMC DNU                                  549              0
+ESMC EEC1                                   1            558
+ESMC E-EEC                                  0              0
+ESMC SSU B                                  0              0
+ESMC SSU A                                  0              0
+ESMC PRC                                  150            150
+ESMC E-PRC                                  0              0
+ESMC PRTC                                   0              0
+ESMC E-PRTC                                 0              0
+ESMC Unknown                                0              0
 ```
 
 ## Clear SyncE Interface Counters

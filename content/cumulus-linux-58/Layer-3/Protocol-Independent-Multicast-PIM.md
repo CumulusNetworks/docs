@@ -2086,6 +2086,12 @@ iface eth2 inet manual
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
+
+vrf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
 interface lo
 ip pim
 interface swp51
@@ -2098,11 +2104,6 @@ ip igmp last-member-query-interval 100
 ip igmp last-member-query-count 2
 ip igmp query-max-response-time 1000
 ip pim
-vrf default
-ip pim rp 10.10.10.101 224.0.0.0/4
-exit-vrf
-vrf mgmt
-exit-vrf
 router bgp 65101 vrf default
 bgp router-id 10.10.10.1
 timers bgp 3 9
@@ -2122,6 +2123,7 @@ maximum-paths 64
 distance bgp 20 200 200
 neighbor swp51 activate
 exit-address-family
+! end of router bgp 65101 vrf default
 ```
 
 {{< /tab >}}
@@ -2130,6 +2132,11 @@ exit-address-family
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
+vrf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
 interface lo
 ip pim
 interface swp51
@@ -2138,14 +2145,10 @@ interface vlan20
 ip igmp
 ip igmp version 3
 ip igmp query-interval 125
-ip igmp last-member-query-interval 10
-ip igmp query-max-response-time 100
+ip igmp last-member-query-interval 100
+ip igmp last-member-query-count 2
+ip igmp query-max-response-time 1000
 ip pim
-vrf default
-ip pim rp 10.10.10.101 224.0.0.0/4
-exit-vrf
-vrf mgmt
-exit-vrf
 router bgp 65102 vrf default
 bgp router-id 10.10.10.2
 timers bgp 3 9
@@ -2165,6 +2168,7 @@ maximum-paths 64
 distance bgp 20 200 200
 neighbor swp51 activate
 exit-address-family
+! end of router bgp 65102 vrf default
 ```
 
 {{< /tab >}}
@@ -2173,17 +2177,17 @@ exit-address-family
 ```
 cumulus@spine01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
+rf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
 interface lo
 ip pim
 interface swp1
 ip pim
 interface swp2
 ip pim
-vrf default
-ip pim rp 10.10.10.101 224.0.0.0/4
-exit-vrf
-vrf mgmt
-exit-vrf
 router bgp 65199 vrf default
 bgp router-id 10.10.10.101
 timers bgp 3 9
@@ -2208,6 +2212,7 @@ distance bgp 20 200 200
 neighbor swp1 activate
 neighbor swp2 activate
 exit-address-family
+! end of router bgp 65199 vrf default
 ```
 
 {{< /tab >}}

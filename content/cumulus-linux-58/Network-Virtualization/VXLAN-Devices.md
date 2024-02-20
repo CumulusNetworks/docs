@@ -232,6 +232,20 @@ cumulus@switch:mgmt:~$ nv set bridge domain br_default vlan-vni-offset 10000
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
+To unset the above configuration, run the `nv unset` commands in the reverse order. You must omit the bridge name from the `nv unset interface swp1-2 bridge domain br_default` command and `auto` from the `nv unset bridge domain br_default vlan 10,20,30 vni auto` commands.
+
+```
+cumulus@switch:mgmt:~$ nv unset bridge domain br_default vlan-vni-offset
+cumulus@switch:mgmt:~$ nv unset bridge domain br_default vlan 10,20,30 vni
+cumulus@switch:mgmt:~$ nv unset interface vlan30
+cumulus@switch:mgmt:~$ nv unset interface vlan20
+cumulus@switch:mgmt:~$ nv unset interface vlan10
+cumulus@switch:mgmt:~$ nv unset bridge domain br_default vlan 10,20,30
+cumulus@switch:mgmt:~$ nv unset interface swp1-2 bridge domain
+cumulus@switch:mgmt:~$ nv unset interface lo ip address 10.10.10.1/32
+cumulus@switch:mgmt:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "/etc/nvue.d/startup.yaml ">}}
 
@@ -242,13 +256,7 @@ cumulus@switch:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       domain:
         br_default:
           vlan:
-            '10':
-              vni:
-                auto: {}
-            '20':
-              vni:
-                auto: {}
-            '30':
+            10,20,30:
               vni:
                 auto: {}
           vlan-vni-offset: 10000
@@ -258,24 +266,18 @@ cumulus@switch:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.1/32: {}
         type: loopback
-      swp1:
-        bridge:
-          domain:
-            br_default: {}
-        type: swp
-      swp2:
+      swp1-2:
         bridge:
           domain:
             br_default: {}
         type: swp
       vlan10:
-        type: svi
         vlan: 10
-      vlan20:
+      vlan10,20,30:
         type: svi
+      vlan20:
         vlan: 20
       vlan30:
-        type: svi
         vlan: 30
     nve:
       vxlan:

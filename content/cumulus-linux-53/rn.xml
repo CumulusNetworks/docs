@@ -27,20 +27,20 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3696061</td>
 <td>When the MAC address of a neighbor changes, the {{zebra}} IP routing manager might crash. </td>
-<td>5.2.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.2.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
-<td>4.3.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>4.3.0-4.4.5, 5.0.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3663182</td>
 <td>Changing non-default BGP timers with NCLU or vtysh commands sets the hold time and keep alive interval to 0 seconds. To work around this issue, restart the FRR service with the {{sudo systemctl restart frr.service}} command.</td>
-<td>5.3.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.3.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3647426</td>
@@ -55,8 +55,8 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <tr>
 <td>3613258</td>
 <td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed between {{switchd}} and the kernel.</td>
-<td>5.2.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.2.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3610967</td>
@@ -67,8 +67,8 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <tr>
 <td>3585467</td>
 <td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
-<td>5.0.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3580435</td>
@@ -77,8 +77,8 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 smartd[501]: Device: /dev/sda [SAT], CHECK POWER STATUS spins up disk (0x00 -&gt; 0xff)
 
 This is a cosmetic issue and does not affect how the switch operates. To prevent this message from occurring, run the {{hdparm -S 24 /dev/sda}} command to change the HD timeout.</td>
-<td>5.3.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.3.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3576949</td>
@@ -89,14 +89,14 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <tr>
 <td>3573800</td>
 <td>After you apply a change to the router MAC address on an SVI with the {{ifreload -a}} command, the old router MAC address still remains in the FDB table. To work around this issue, remove the old router MAC address with the {{sudo bridge fdb del &lt;old_mac&gt; dev bridge vlan &lt;vlan_id&gt;}} command.</td>
-<td>5.3.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.3.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3567708</td>
 <td>In an EVPN multihoming environment with VRRP, when the master VRRP router fails, the standby router takes around 30 seconds to become active.</td>
-<td>5.3.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.3.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3562767</td>
@@ -195,8 +195,8 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <tr>
 <td>3445841</td>
 <td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}}) is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
-<td>5.0.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3434791</td>
@@ -219,8 +219,8 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <tr>
 <td>3428677</td>
 <td>In certain cases, Cumulus Linux does not process next hop updates because the {{zebra}} IP routing manager thinks the state of the next hops is unchanged. As a result, route installation fails and remains in a rejected state.</td>
-<td>5.3.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.3.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3424967</td>
@@ -325,8 +325,8 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <tr>
 <td>3347677</td>
 <td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.</td>
-<td>5.1.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.1.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3340890</td>
@@ -471,8 +471,8 @@ Vlan: 0
 <tr>
 <td>3266197</td>
 <td>When you disable BGP globally with the {{nv set router bgp enable off}} command, applying the configuration with NVUE might fail due to an FRR reload failure.</td>
-<td>5.2.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.2.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3266050</td>
@@ -483,14 +483,14 @@ Vlan: 0
 <tr>
 <td>3264269</td>
 <td>When you change the BGP router ID that causes a change to an EVPN VNI RD, EVPN EAD-per-EVI routes are not updated properly.</td>
-<td>5.3.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.3.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3258232</td>
 <td>If you use NVUE to configure multiple SNMP listener addresses at the same time, the SNMP service fails to start. To work around this issue, configure multiple SNMP listener addresses one at a time.</td>
-<td>5.3.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.3.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3255899</td>
@@ -543,8 +543,8 @@ Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID.
 <tr>
 <td>3221628</td>
 <td>Cumulus Linux VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
-<td>5.2.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.2.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3187469</td>
@@ -623,8 +623,8 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3135952</td>
@@ -871,14 +871,14 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3696061</td>
 <td>When the MAC address of a neighbor changes, the {{zebra}} IP routing manager might crash. </td>
-<td>5.2.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.2.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
-<td>4.3.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>4.3.0-4.4.5, 5.0.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3647426</td>
@@ -893,8 +893,8 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <tr>
 <td>3613258</td>
 <td>With VM migration from one VTEP to another, traffic loss might occur during a MAC move as locally learned MAC addresses are frequently refreshed between {{switchd}} and the kernel.</td>
-<td>5.2.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.2.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3610967</td>
@@ -905,8 +905,8 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <tr>
 <td>3585467</td>
 <td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
-<td>5.0.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3576949</td>
@@ -993,8 +993,8 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <tr>
 <td>3445841</td>
 <td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}}) is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
-<td>5.0.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3432897</td>
@@ -1011,8 +1011,8 @@ To work around this issue, disable next hop groups in zebra with the vtysh {{zeb
 <tr>
 <td>3428677</td>
 <td>In certain cases, Cumulus Linux does not process next hop updates because the {{zebra}} IP routing manager thinks the state of the next hops is unchanged. As a result, route installation fails and remains in a rejected state.</td>
-<td>5.3.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.3.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3424967</td>
@@ -1094,8 +1094,8 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <tr>
 <td>3347677</td>
 <td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.</td>
-<td>5.1.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.1.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3340890</td>
@@ -1249,8 +1249,8 @@ Vlan: 0
 <tr>
 <td>3266197</td>
 <td>When you disable BGP globally with the {{nv set router bgp enable off}} command, applying the configuration with NVUE might fail due to an FRR reload failure.</td>
-<td>5.2.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.2.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3266050</td>
@@ -1261,14 +1261,14 @@ Vlan: 0
 <tr>
 <td>3264269</td>
 <td>When you change the BGP router ID that causes a change to an EVPN VNI RD, EVPN EAD-per-EVI routes are not updated properly.</td>
-<td>5.3.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.3.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3258232</td>
 <td>If you use NVUE to configure multiple SNMP listener addresses at the same time, the SNMP service fails to start. To work around this issue, configure multiple SNMP listener addresses one at a time.</td>
-<td>5.3.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.3.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3255899</td>
@@ -1321,8 +1321,8 @@ Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID.
 <tr>
 <td>3221628</td>
 <td>Cumulus Linux VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
-<td>5.2.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.2.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3187469</td>
@@ -1401,8 +1401,8 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3135952</td>

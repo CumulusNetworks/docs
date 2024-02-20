@@ -1857,7 +1857,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 type: unnumbered
           pim:
             address-family:
-              ipv4-unicast:
+              ipv4:
                 rp:
                   10.10.10.101: {}
             enable: on
@@ -1916,7 +1916,7 @@ cumulus@spine01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 type: unnumbered
           pim:
             address-family:
-              ipv4-unicast:
+              ipv4:
                 rp:
                   10.10.10.101: {}
             enable: on

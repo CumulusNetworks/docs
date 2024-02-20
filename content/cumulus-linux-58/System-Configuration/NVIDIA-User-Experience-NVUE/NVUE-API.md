@@ -189,7 +189,7 @@ cumulus@switch:~$ nv set system control-plane acl API-PROTECT inbound
 
 ## Supported Objects
 
-The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-57/api/index.html" text="here.">}}
+The NVUE object model supports most features on the Cumulus Linux switch. The following list shows the supported objects. The NVUE API supports more objects within each of these objects. You can find a full listing of the supported API endpoints {{<mib_link url="cumulus-linux-58/api/index.html" text="here.">}}
 
 | High-level Objects | Description |
 | ------------------ | ----------- |
@@ -3454,8 +3454,8 @@ To try out the NVUE REST API, use the {{<exlink url="https://air.nvidia.com/mark
 
 ## Resources
 
-For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-57/api/index.html" text="NVUE API Swagger documentation.">}}
-The full object model download is available {{<mib_link url="cumulus-linux-57/api/openapi.json" text="here.">}}
+For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-58/api/index.html" text="NVUE API Swagger documentation.">}}
+The full object model download is available {{<mib_link url="cumulus-linux-58/api/openapi.json" text="here.">}}
 
 ## Considerations
 

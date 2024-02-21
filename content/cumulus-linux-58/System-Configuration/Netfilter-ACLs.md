@@ -470,13 +470,13 @@ include /etc/cumulus/acl/policy.d/01_new.datapathacl
 
 ## Hardware Limitations for ACL Rules
 
-The maximum number of rules that the hardware process depends on:
+The maximum number of rules that the switch hardware can process depends on:
 
 - The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously.
 - The number of default rules that Cumulus Linux provides.
 - Whether the rules apply on ingress or egress.
-- Whether the rules are in atomic or nonatomic mode; Cumulus Linux uses nonatomic mode rules when you enable nonatomic updates ({{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="see above">}}).
-- Other resources that share the same table space, such as mroute entries and internal VLAN counters.
+- Whether the rules are in {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic or nonatomic mode">}}; Cumulus Linux uses nonatomic mode rules when you enable nonatomic updates.
+- Other resources that share the same table space, such as multicast route entries and internal VLAN counters.
 
 If you exceed the maximum number of rules or run out of related memory resources for the ACL table, `cl-acltool -i` generates one of the following errors:
 
@@ -521,7 +521,7 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale are different from {{<link url="Supported-Route-Table-Entries" text="forwarding resource profiles">}} that control MAC table, IPv4, and IPv6 entry scale.
 {{%/notice%}}
 
-### Spectrum-2 and Later ATCAM
+### ATCAM on Spectrum-2 and Later
 
 Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum 1. There is no TCAM resource profile on Spectrum-2 and later.
 
@@ -1462,11 +1462,11 @@ failed with No More Resources
 
 For information on ACL resource limitations, refer to {{<link url="#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
 
-You might also see resource errors when you try to configure a large number of VLAN interfaces (more than between 1000 and 2000) because certain VLAN counters share space with ACL memory in the ATCAM on Spectrum-2 and Spectrum-3 switches.
+You might see resource errors when you try to configure a large number of VLAN interfaces (more than between 1000 and 2000) because certain VLAN counters share space with ACL memory in the ATCAM on Spectrum-2 and Spectrum-3 switches.
 
 To free up resources, you can:
 - Reduce the number of VLAN interfaces to the number you really need in the network.
-- Free up VLAN flow counter space; edit the `/etc/mlx/datapath/stats.conf` file to uncomment and set the `hal.mlx.stats.vlan.enable` option to `FALSE`, then reloadg `switchd`:
+- Free up VLAN flow counter space; edit the `/etc/mlx/datapath/stats.conf` file to uncomment and set the `hal.mlx.stats.vlan.enable` option to `FALSE`, then reload `switchd`:
 
   ```
   cumulus@switch:$ sudo nano /etc/mlx/datapath/stats.conf
@@ -1479,7 +1479,7 @@ To free up resources, you can:
   cumulus@switch:$ sudo systemctl reload switchd.service
   ```
 
-The flow counters are internal counters to use for debugging; you do not see the counters in `nv show interface <interface> counters` or `cl-netstat` commands.
+The flow counters are internal counters for debugging; you do not see the counters in `nv show interface <interface> counters` or `cl-netstat` commands.
 
 To see how much space the flow counters consume, examine the `Flow Counters` line in the `cl-resource-query` output.
 

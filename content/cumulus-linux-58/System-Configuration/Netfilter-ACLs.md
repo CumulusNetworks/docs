@@ -518,7 +518,7 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
 {{%notice note%}}
-Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale are different from {{<link title="Supported-Route-Table-Entries" text="forwarding resource profiles">}} that control MAC table, IPv4, and IPv6 entry scale.
+Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale are different from {{<link url="Supported-Route-Table-Entries" text="forwarding resource profiles">}} that control MAC table, IPv4, and IPv6 entry scale.
 {{%/notice%}}
 
 ### Spectrum-2 and Later ATCAM
@@ -544,7 +544,7 @@ For information about nonatomic and atomic mode, refer to {{<link title="#nonato
 
 ## ATCAM Resource Exhaustion
 
-If you see error messages similar to ` No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link title="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing netfilter resources.
+If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link title="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing netfilter resources.
 
 ## Supported Rule Types
 

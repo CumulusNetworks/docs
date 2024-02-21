@@ -27,8 +27,8 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
-<td>4.3.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>4.3.0-4.4.5, 5.0.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3647426</td>
@@ -43,8 +43,8 @@ This configuration is not allowed; it is considered to be eBGP and local prefere
 <tr>
 <td>3585467</td>
 <td>NVUE and {{ip link}} show traditional bridge VLAN subinterface counts incorrectly. The ingress (Rx) count increments correctly but the egress (Tx) count does not increment. This issues occurs because the hardware does not support transmit counters for a VLAN subinterface; therefore, no statistics from the hardware are updated. Statistics for software forwarded packets show correctly.</td>
-<td>5.0.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3560622</td>
@@ -87,8 +87,8 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <tr>
 <td>3445841</td>
 <td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}}) is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
-<td>5.0.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3432897</td>
@@ -152,8 +152,8 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <tr>
 <td>3347677</td>
 <td>In an MLAG configuration, when a link failure occurs on the peerlink or the peerlink shuts down, the switch in the secondary role attracts traffic to its local VTEP as it advertises the local VTEP IP address momentarily just before the VXLAN device is protodown. This traffic is dropped for a brief moment (between 5 and 10 seconds) because the MLAG bonds on the secondary switch are already protodown.</td>
-<td>5.1.0-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.1.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -363,8 +363,8 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3141818</td>

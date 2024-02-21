@@ -1,10 +1,10 @@
 ---
-title: Supported Route Table Entries
+title: Forwarding Table Size and Profiles
 author: NVIDIA
 weight: 740
 toc: 3
 ---
-Cumulus Linux advertises the maximum number of route table entries supported on the switch, including:
+Cumulus Linux advertises the maximum number of forwarding table entries supported on the switch, including:
 
 - Layer 3 IPv4 <span class="a-tooltip">[LPM](## "Longest Prefix Match")</span> entries that have a mask less than /32
 - Layer 3 IPv6 LPM entries that have a mask of /64 or less
@@ -15,8 +15,6 @@ Cumulus Linux advertises the maximum number of route table entries supported on 
 - MAC addresses
 
 To determine the current table sizes on a switch, use `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}`.
-
-## Forwarding Table Size and Profiles
 
 Each switching architecture has specific resources available for forwarding table entries. Cumulus Linux stores:
 - Forwarding table resources in a <span class="a-tooltip">[KVD](## "Key Value Database")</span>.

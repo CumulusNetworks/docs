@@ -22,12 +22,10 @@ Each switching architecture has specific resources available for forwarding tabl
 - Forwarding table resources in a <span class="a-tooltip">[KVD](## "Key Value Database")</span>.
 - ACL table entries and other switching functions in a fast memory area called the TCAM on Spectrum 1, and <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> on Spectrum-2 and later.
 
-Based on your network design, you might need to adjust various switch parameters to allocate resources, as needed.
-
-Cumulus Linux provides various general profiles for forwarding table resources.
+Cumulus Linux provides various general profiles for forwarding table resources, and, based on your network design, you might need to adjust various switch parameters to allocate resources, as needed.
 
 {{%notice note%}}
-The values provided in the profiles below are the maximum values that Cumulus Linux software allocates; the theoretical hardware limits might be higher. These limits refer to values that NVIDIA checks as part of the unidimensional scale validation. If you try to achieve maximum scalability with multiple features enabled, results might differ from the values listed in this guide.
+The values provided in the profiles below are the maximum values that Cumulus Linux software allocates; the theoretical hardware limits might be higher. These limits refer to values that NVIDIA checks as part of unidimensional scale validation. If you try to achieve maximum scalability with multiple features enabled, results might differ from the values listed in this guide.
 {{%/notice%}}
 
 ### Spectrum 1
@@ -114,6 +112,6 @@ After you specify a different profile, restart `switchd` with the `sudo systemct
 
 To show the different forwarding profiles that your switch supports and the MAC address, layer 3 neighbor, and LPM scale availability for each forwarding profile, run the `nv show system forwarding profile-option` command.
 
-## ACL and VLAN Memory Resources ()
+## ACL and VLAN Memory Resources
 
 In addition to forwarding table memory resources, there are limitations on other memory resources for ACLs and VLAN interfaces; refer to {{<link url="Netfilter-ACLs/#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.

@@ -472,7 +472,7 @@ include /etc/cumulus/acl/policy.d/01_new.datapathacl
 
 The maximum number of rules that the switch hardware can process depends on:
 
-- The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously.
+- The combination of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously.
 - The number of default rules that Cumulus Linux provides.
 - Whether the rules apply on ingress or egress.
 - Whether the rules are in {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic or nonatomic mode">}}; Cumulus Linux uses nonatomic mode rules when you enable nonatomic updates.
@@ -489,11 +489,11 @@ To troubleshoot this issue and manage netfilter resources with high VLAN and ACL
 
 NVIDIA Spectrum switches use a TCAM or <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
 
-### Spectrum 1 TCAM Profiles
+### TCAM Profiles on Spectrum 1
 
 The NVIDIA Spectrum 1 ASIC (model numbers 2xx0) has one common TCAM space for both ingress and egress ACLs, which the switch also uses for multicast route entries.
 
-Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum 1 switches with different TCAM profiles in combination with the ACL atomic and nonatomic update setting.
+Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum 1 switches with different TCAM profiles in combination with the ACL {{<link title="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
 
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules | Multicast Route Entries |
 |------------|-------------------|-------------------|-------------------|-------------------------|-----------------|
@@ -503,7 +503,10 @@ Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectru
 |ipmc-max |1000 |500 |2000 |1000 | 13000|
 |ip-acl-heavy |6000 |0 |12000 |0| 0|
 
-For information about nonatomic and atomic mode, refer to {{<link title="#nonatomic-update-mode-and-atomic-update-mode" text="Nonatomic Update Mode and Atomic Update Mode">}}.
+{{%notice note%}}
+- Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
+- The ip-acl-heavy profile shows an updated number of supported atomic mode and nonatomic mode IPv4 rules. The previously published numbers were 7500 for atomic mode and 15000 for nonatomic mode IPv4 rules.
+{{%/notice%}}
 
 To configure the profile you want to use, set the `tcam_resource.profile` parameter in the `/etc/mlx/datapath/tcam_profile.conf` file, then restart `switchd`:
 
@@ -525,9 +528,9 @@ Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale ar
 
 Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum 1. There is no TCAM resource profile on Spectrum-2 and later.
 
-The following table shows the tested ACL rule limits on Spectrum-2 and later. Because the KVD and ATCAM space is shared with forwarding table entries, multicast route entries, and VLAN flow counters, these ACL limits might vary based on your use of other tables.
+The following table shows the tested ACL rule limits. Because the KVD and ATCAM space is shared with forwarding table entries, multicast route entries, and VLAN flow counters, these ACL limits might vary based on your use of other tables.
 
-These limits are valid when using any of the Spectrum-2 and later forwarding profiles, except for the l2-heavy-3 and v6-lpm-heavy1 profiles, which reduce the ACL scale significantly.
+These limits are valid when using any Spectrum-2 and later forwarding profile, except for the l2-heavy-3 and v6-lpm-heavy1 profiles, which reduce the ACL scale significantly.
 
 For Spectrum-2 and later, all profiles support the same number of rules.
 
@@ -536,11 +539,6 @@ For Spectrum-2 and later, all profiles support the same number of rules.
 |12500 |6250 |25000 |12500|
 
 For information about nonatomic and atomic mode, refer to {{<link title="#nonatomic-update-mode-and-atomic-update-mode" text="Nonatomic Update Mode and Atomic Update Mode">}}.
-
-{{%notice note%}}
-- Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
-- The ip-acl-heavy profile shows an updated number of supported atomic mode and nonatomic mode IPv4 rules. The previously published numbers were 7500 for atomic mode and 15000 for nonatomic mode IPv4 rules.
-{{%/notice%}}
 
 ## ATCAM Resource Exhaustion
 

@@ -256,7 +256,13 @@ cumulus@switch:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       domain:
         br_default:
           vlan:
-            10,20,30:
+            '10':
+              vni:
+                auto: {}
+            '20':
+              vni:
+                auto: {}
+            '30':
               vni:
                 auto: {}
           vlan-vni-offset: 10000
@@ -266,18 +272,24 @@ cumulus@switch:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
           address:
             10.10.10.1/32: {}
         type: loopback
-      swp1-2:
+      swp1:
+        bridge:
+          domain:
+            br_default: {}
+        type: swp
+      swp2:
         bridge:
           domain:
             br_default: {}
         type: swp
       vlan10:
-        vlan: 10
-      vlan10,20,30:
         type: svi
+        vlan: 10
       vlan20:
+        type: svi
         vlan: 20
       vlan30:
+        type: svi
         vlan: 30
     nve:
       vxlan:

@@ -865,3 +865,14 @@ You cannot enable VLAN translation on a bridge in VLAN-aware mode. Only traditio
 ### Bridge Conversion
 
 You cannot convert traditional mode bridges automatically to and from a VLAN-aware bridge. You must delete the original configuration and bring down all member switch ports before creating a new bridge.
+
+### VLAN Memory Resource Limitations
+
+On Spectrum-2 and later, Cumulus Linux uses internal debugging flow counters for each VLAN that require ATCAM memory space. When you configure a large number of VLAN interfaces (more than between 1000 and 2000), you might not be able to apply ACLs because there are no more flow counter resources and you might see error messages in the `/var/log/switchd.log` file similar to the following:
+
+```
+error: hw sync failed (sync_acl hardware installation failed) Rolling back .. failed.
+error: hw sync failed (Bulk counter init failed with No More Resources). Rolling back ..
+```
+
+To troubleshoot this issue and manage netfilter resources with high VLAN and ACL scale, refer to {{<link title="Netfilter-ACLs/#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.

@@ -485,7 +485,7 @@ error: hw sync failed (sync_acl hardware installation failed) Rolling back .. fa
 error: hw sync failed (Bulk counter init failed with No More Resources). Rolling back ..
 ```
 
-To troubleshoot this issue and manage netfilter resources with high VLAN and ACL scale, refer to {{<link title="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.
+To troubleshoot this issue and manage netfilter resources with high VLAN and ACL scale, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.
 
 NVIDIA Spectrum switches use a TCAM or <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
 
@@ -493,7 +493,7 @@ NVIDIA Spectrum switches use a TCAM or <span class="a-tooltip">[ATCAM](## "Algor
 
 The NVIDIA Spectrum 1 ASIC (model numbers 2xx0) has one common TCAM space for both ingress and egress ACLs, which the switch also uses for multicast route entries.
 
-Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum 1 switches with different TCAM profiles in combination with the ACL {{<link title="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
+Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum 1 switches with different TCAM profiles in combination with the ACL {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
 
 |Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules | Multicast Route Entries |
 |------------|-------------------|-------------------|-------------------|-------------------------|-----------------|
@@ -521,7 +521,7 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 ```
 
 {{%notice note%}}
-Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale are different from {{<link url="Supported-Route-Table-Entries" text="forwarding resource profiles">}} that control MAC table, IPv4, and IPv6 entry scale.
+Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale are different from {{<link url="Forwarding-Table-Size-and-Profiles" text="forwarding resource profiles">}} that control MAC table, IPv4, and IPv6 entry scale.
 {{%/notice%}}
 
 ### ATCAM on Spectrum-2 and Later
@@ -538,11 +538,11 @@ For Spectrum-2 and later, all profiles support the same number of rules.
 |-------------------|-------------------|-------------------|-------------------------|
 |12500 |6250 |25000 |12500|
 
-For information about nonatomic and atomic mode, refer to {{<link title="#nonatomic-update-mode-and-atomic-update-mode" text="Nonatomic Update Mode and Atomic Update Mode">}}.
+For information about nonatomic and atomic mode, refer to {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="Nonatomic Update Mode and Atomic Update Mode">}}.
 
 ## ATCAM Resource Exhaustion
 
-If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link title="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing netfilter resources.
+If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing netfilter resources.
 
 ## Supported Rule Types
 

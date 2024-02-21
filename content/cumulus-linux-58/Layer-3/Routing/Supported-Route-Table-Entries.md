@@ -16,7 +16,9 @@ Cumulus Linux advertises the maximum number of route table entries supported on 
 
 To determine the current table sizes on a switch, use `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}`.
 
-## Supported Route Entries
+## Forwarding Table Size and Profiles
+
+Each switching architecture has specific resources available for forwarding table entries. Cumulus Linux stores forwarding table resources in a KVD 
 
 Cumulus Linux provides several generalized profiles, described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
 

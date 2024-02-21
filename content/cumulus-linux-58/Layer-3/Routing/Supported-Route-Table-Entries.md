@@ -16,17 +16,21 @@ Cumulus Linux advertises the maximum number of route table entries supported on 
 
 To determine the current table sizes on a switch, use `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}`.
 
-## Supported Route Entries
+## Forwarding Table Size and Profiles
 
-Cumulus Linux provides several generalized profiles, described below. These profiles work only with layer 2 and layer 3 unicast forwarding.
+Each switching architecture has specific resources available for forwarding table entries. Cumulus Linux stores:
+- Forwarding table resources in a <span class="a-tooltip">[KVD](## "Key Value Database")</span>.
+- ACL table entries and other switching functions in a fast memory area called the TCAM on Spectrum 1, and <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> on Spectrum-2 and later.
 
-The following tables list the number of MAC addresses, layer 3 neighbors, and LPM routes validated for each forwarding table profile. If you do not specify any profiles as described below, the switch uses the *default* values.
+Cumulus Linux provides various general profiles for forwarding table resources, and, based on your network design, you might need to adjust various switch parameters to allocate resources, as needed.
 
 {{%notice note%}}
-The values provided in the profiles below are the maximum values that Cumulus Linux software allocates; the theoretical hardware limits might be higher. These limits refer to values that NVIDIA checks as part of the unidimensional scale validation. If you try to achieve maximum scalability with multiple features enabled, results might differ from the values listed in this guide.
+The values provided in the profiles below are the maximum values that Cumulus Linux software allocates; the theoretical hardware limits might be higher. These limits refer to values that NVIDIA checks as part of unidimensional scale validation. If you try to achieve maximum scalability with multiple features enabled, results might differ from the values listed in this guide.
 {{%/notice%}}
 
 ### Spectrum 1
+
+Forwarding resource profiles control unicast forwarding table entry allocations. On the Spectrum 1 switch, TCAM profiles control multicast forwarding table entry allocations. For more information about multicast route entry limitations, refer to {{<link url="Netfilter-ACLs/#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
 <!-- vale off -->
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| LPM  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
@@ -40,6 +44,8 @@ The values provided in the profiles below are the maximum values that Cumulus Li
 | lpm-balanced   | 6k            | 4k (IPv4) and 3k (IPv6)   | 60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
 
 ### Spectrum-2 and Later
+
+On Spectrum-2 and later, forwarding resource profiles control both unicast and multicast forwarding table entry allocations.
 
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| LPM  |
 | --------------  | ------------- | ------------------------- | ------------------------------ |
@@ -106,32 +112,6 @@ After you specify a different profile, restart `switchd` with the `sudo systemct
 
 To show the different forwarding profiles that your switch supports and the MAC address, layer 3 neighbor, and LPM scale availability for each forwarding profile, run the `nv show system forwarding profile-option` command.
 
-## TCAM Profiles - Spectrum 1
+## ACL and VLAN Memory Resources
 
-Specify the profile you want to use with the `tcam_resource.profile` variable in the `/etc/mlx/datapath/tcam_profile.conf` file. The following example specifies ipmc-max:
-
-```
-cumulus@switch:~$ cat /etc/mlx/datapath/tcam_profile.conf
-...
-tcam_resource.profile = ipmc-max
-```
-
-After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect.
-
-When you enable {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="nonatomic updates">}} (`acl.non_atomic_update_mode` is `TRUE` in the `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are:
-
-| Profile    | Mroute Entries | ACL Entries                |
-| ---------- | -------------- | -------------------------- |
-| default    | 1000           | 500 (IPv6) or 1000 (IPv4)  |
-| ipmc-heavy | 8500           | 1000 (IPv6) or 1500 (IPv4) |
-| acl-heavy  | 450            | 2000 (IPv6) or 3500 (IPv4) |
-| ipmc-max   | 13000          | 1000 (IPv6) or 2000 (IPv4) |
-
-When you disable {{<link url="Netfilter-ACLs#nonatomic-update-mode-and-atomic-update-mode" text="nonatomic updates">}} (`acl.non_atomic_update_mode` is `FALSE` in the `/etc/cumulus/switchd.conf` file), the maximum number of mroute and ACL entries for each profile are:
-
-| Profile    | Mroute Entries | ACL Entries                |
-| ---------- | -------------- | -------------------------- |
-| default    | 1000           | 250 (IPv6) or 500 (IPv4)   |
-| ipmc-heavy | 8500           | 500 (IPv6) or 750 (IPv4)   |
-| acl-heavy  | 450            | 1000 (IPv6) or 1750 (IPv4) |
-| ipmc-max   | 13000          | 500 (IPv6) or 1000 (IPv4)  |
+In addition to forwarding table memory resources, there are limitations on other memory resources for ACLs and VLAN interfaces; refer to {{<link url="Netfilter-ACLs/#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.

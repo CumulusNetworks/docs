@@ -468,47 +468,81 @@ cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.conf
 include /etc/cumulus/acl/policy.d/01_new.datapathacl
 ```
 
-## Hardware Limitations on Number of Rules
+## Hardware Limitations for ACL Rules
 
-The maximum number of rules that the hardware process depends on:
+The maximum number of rules that the switch hardware can process depends on:
 
-- The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously.
+- The combination of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously.
 - The number of default rules that Cumulus Linux provides.
 - Whether the rules apply on ingress or egress.
-- Whether the rules are in atomic or nonatomic mode; Cumulus Linux uses nonatomic mode rules when you enable nonatomic updates ({{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="see above">}}).
+- Whether the rules are in {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic or nonatomic mode">}}; Cumulus Linux uses nonatomic mode rules when you enable nonatomic updates.
+- Other resources that share the same table space, such as multicast route entries and internal VLAN counters.
 
-If you exceed the maximum number of rules for a particular table, `cl-acltool -i` generates the following error:
+If you exceed the maximum number of rules or run out of related memory resources for the ACL table, `cl-acltool -i` generates one of the following errors:
 
 ```
 error: hw sync failed (sync_acl hardware installation failed) Rolling back .. failed.
+error: hw sync failed (Bulk counter init failed with No More Resources). Rolling back ..
 ```
 
-In the table below, the default rules count toward the limits listed. The raw limits below assume only one ingress and one egress table are present.
-<!--
-### Spectrum 1
+To troubleshoot this issue and manage netfilter resources with high VLAN and ACL scale, refer to {{<link title="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.
 
-The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which you can use for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} for the switch.
--->
-|Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
-|------------|-------------------|-------------------|-------------------|-------------------------|
-|default |500 |250 |1000 |500|
-|ipmc-heavy|750 |500 |1500 |1000|
-|acl-heavy |1750 |1000 |3500 |2000|
-|ipmc-max |1000 |500 |2000 |1000 |
-|ip-acl-heavy |6000 |0 |12000 |0|
+NVIDIA Spectrum switches use a TCAM or <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
 
-<!--### Spectrum-2 and Later
+### TCAM Profiles on Spectrum 1
+
+The NVIDIA Spectrum 1 ASIC (model numbers 2xx0) has one common TCAM space for both ingress and egress ACLs, which the switch also uses for multicast route entries.
+
+Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum 1 switches with different TCAM profiles in combination with the ACL {{<link title="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
+
+|Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules | Multicast Route Entries |
+|------------|-------------------|-------------------|-------------------|-------------------------|-----------------|
+|default |500 |250 |1000 |500| 1000 |
+|ipmc-heavy|750 |500 |1500 |1000| 8500 |
+|acl-heavy |1750 |1000 |3500 |2000| 450|
+|ipmc-max |1000 |500 |2000 |1000 | 13000|
+|ip-acl-heavy |6000 |0 |12000 |0| 0|
+
+{{%notice note%}}
+- Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
+- The ip-acl-heavy profile shows an updated number of supported atomic mode and nonatomic mode IPv4 rules. The previously published numbers were 7500 for atomic mode and 15000 for nonatomic mode IPv4 rules.
+{{%/notice%}}
+
+To configure the profile you want to use, set the `tcam_resource.profile` parameter in the `/etc/mlx/datapath/tcam_profile.conf` file, then restart `switchd`:
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/tcam_profile.conf
+...
+tcam_resource.profile = ipmc-max
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+{{%notice note%}}
+Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale are different from {{<link url="Supported-Route-Table-Entries" text="forwarding resource profiles">}} that control MAC table, IPv4, and IPv6 entry scale.
+{{%/notice%}}
+
+### ATCAM on Spectrum-2 and Later
+
+Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum 1. There is no TCAM resource profile on Spectrum-2 and later.
+
+The following table shows the tested ACL rule limits. Because the KVD and ATCAM space is shared with forwarding table entries, multicast route entries, and VLAN flow counters, these ACL limits might vary based on your use of other tables.
+
+These limits are valid when using any Spectrum-2 and later forwarding profile, except for the l2-heavy-3 and v6-lpm-heavy1 profiles, which reduce the ACL scale significantly.
 
 For Spectrum-2 and later, all profiles support the same number of rules.
 
 |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
 |-------------------|-------------------|-------------------|-------------------------|
 |12500 |6250 |25000 |12500|
--->
-{{%notice note%}}
-- Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
-- The ip-acl-heavy profile shows an updated number of supported atomic mode and nonatomic mode IPv4 rules. The previously published numbers were 7500 for atomic mode and 15000 for nonatomic mode IPv4 rules.
-{{%/notice%}}
+
+For information about nonatomic and atomic mode, refer to {{<link title="#nonatomic-update-mode-and-atomic-update-mode" text="Nonatomic Update Mode and Atomic Update Mode">}}.
+
+## ATCAM Resource Exhaustion
+
+If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link title="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing netfilter resources.
 
 ## Supported Rule Types
 
@@ -1378,9 +1412,11 @@ To work around this limitation, set the rate and burst for all these rules to th
 - When using the OUTPUT chain, you must assign rules to the source. For example, if you assign a rule to the switch port in the direction of traffic but the source is a bridge (VLAN), the rule does not affect the traffic and you must apply the rule to the bridge.
 - If you need to apply a rule to all transit traffic, use the FORWARD chain, not the OUTPUT chain.
 
-### ACL Rule Installation Failure
+### Troubleshooting ACL Rule Installation Failures
 
-After an ACL rule installation failure, you see a generic error message like the following:
+On Spectrum-2 and later, in addition to ACLs, items stored in KVD and ATCAM include internal counters for VLANs and interfaces in a bridge. If the network includes a large number of VLAN interfaces (more than between 1000 to 2000), the counters might occupy a significant amount of space and reduce the amount of available space for ACLs.
+
+If netfilter ACL space is exhausted, you might see error messages similar to the following when you try to apply ACLs:
 
 ```
 cumulus@switch:$ sudo cl-acltool -i -p 00control_plane.rules
@@ -1391,6 +1427,60 @@ error: hw sync failed (sync_acl hardware installation failed)
 Installing acl policy... Rolling back ..
 failed.
 ```
+
+```
+error: hw sync failed (Bulk counter init failed with No More Resources). Rolling back ..
+```
+
+You might also see messages similar to the following in the `/var/log/syslog` file:
+
+```
+2023-12-07T16:31:32.386792-05:00 mlx-4700-51 sx_sdk: 1951 [FLOW_COUNTER] [NOTICE ]:
+Spectrum_flow_counter_bulk_set: cm_bulk_block_add failed toallocated bulk size 64
+```
+
+You might also see messages similar to the following in the `/var/log/switchd.log` file:
+
+```
+2023-12-07T16:31:32.387219-05:00 mlx-4700-51 switchd[7354]: hal_mlx_sdk_counter_wrap.c:366 ERR
+sx_api_flow_counter_bulk_set create failed with: No More Resources
+2023-12-07T16:31:32.387338-05:00 mlx-4700-51 switchd[7354]: hal_mlx_flx_acl.c:9531 ERR
+flow_counter_bulk_set create failed with: No More Resources
+2023-12-07T16:31:32.387415-05:00 mlx-4700-51 switchd[7354]: hal_mlx_flx_acl.c:3202 ERR BULK
+counter init failed with No More Resources
+2023-12-07T16:31:32.387481-05:00 mlx-4700-51 switchd[7354]: hal_mlx_flx_acl.c:2765
+ hal_mlx_flx_chain_desc_install returned 0
+2023-12-07T16:31:32.387554-05:00 mlx-4700-51 switchd[7354]: hal_mlx_flx_acl.c:1981 ERR
+acl_plan_install returned 0
+2023-12-07T16:31:32.393928-05:00 mlx-4700-51 switchd[7354]: sync_acl.c:225 ERR BULK counter init
+failed with No More Resources
+2023-12-07T16:31:32.394047-05:00 mlx-4700-51 switchd[7354]: sync_acl.c:6669 ERR BULK counter init
+failed with No More Resources
+```
+
+For information on ACL resource limitations, refer to {{<link url="#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
+
+You might see resource errors when you try to configure a large number of VLAN interfaces (more than between 1000 and 2000) because certain VLAN counters share space with ACL memory in the ATCAM on Spectrum-2 and Spectrum-3 switches.
+
+To free up resources, you can:
+- Reduce the number of VLAN interfaces to the number you really need in the network.
+- Free up VLAN flow counter space; edit the `/etc/mlx/datapath/stats.conf` file to uncomment and set the `hal.mlx.stats.vlan.enable` option to `FALSE`, then reload `switchd`:
+
+  ```
+  cumulus@switch:$ sudo nano /etc/mlx/datapath/stats.conf
+  # Once the stat controls are enabled/disabled,
+  # run 'systemctl reload switchd' for changes to take effect
+  hal.mlx.stats.vlan.enable = FALSE
+  ```
+
+  ```
+  cumulus@switch:$ sudo systemctl reload switchd.service
+  ```
+
+The flow counters are internal counters for debugging; you do not see the counters in `nv show interface <interface> counters` or `cl-netstat` commands.
+
+To see how much space the flow counters consume, examine the `Flow Counters` line in the `cl-resource-query` output.
+
 <!--
 ### INPUT Chain Rules
 

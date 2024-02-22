@@ -868,7 +868,7 @@ You cannot convert traditional mode bridges automatically to and from a VLAN-awa
 
 ### VLAN Memory Resource Limitations
 
-On Spectrum-2 and later, Cumulus Linux uses internal debugging flow counters for each VLAN that require ATCAM memory space. When you configure more than 1000 VLAN interfaces, you might not be able to apply ACLs because there are no more flow counter resources. In addition, you might see error messages in the `/var/log/switchd.log` file similar to the following:
+On Spectrum-2 and later, Cumulus Linux uses internal debugging flow counters for each VLAN that require <span class="a-tooltip">[KVD](## "Key Value Database")</span> and <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> memory space. When you configure more than 1000 VLAN interfaces, you might not be able to apply ACLs if flow counter resources deplete the ACL resource space. In addition, you might see error messages in the `/var/log/switchd.log` file similar to the following:
 
 ```
 error: hw sync failed (sync_acl hardware installation failed) Rolling back .. failed.

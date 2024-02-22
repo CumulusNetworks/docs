@@ -470,7 +470,7 @@ include /etc/cumulus/acl/policy.d/01_new.datapathacl
 
 ## Hardware Limitations for ACL Rules
 
-The maximum number of rules that the switch hardware can process depends on:
+The maximum number of rules that the switch hardware can store depends on:
 
 - The combination of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously.
 - The number of default rules that Cumulus Linux provides.
@@ -487,7 +487,7 @@ error: hw sync failed (Bulk counter init failed with No More Resources). Rolling
 
 To troubleshoot this issue and manage netfilter resources with high VLAN and ACL scale, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.
 
-NVIDIA Spectrum switches use a TCAM or <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
+NVIDIA Spectrum switches use a TCAM or <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
 
 ### TCAM Profiles on Spectrum 1
 
@@ -526,7 +526,7 @@ Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale ar
 
 ### ATCAM on Spectrum-2 and Later
 
-Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum 1. There is no TCAM resource profile on Spectrum-2 and later.
+Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum 1. There is no TCAM resource profile on Spectrum-2 and later.
 
 The following table shows the tested ACL rule limits. Because the KVD and ATCAM space is shared with forwarding table entries, multicast route entries, and VLAN flow counters, these ACL limits might vary based on your use of other tables.
 
@@ -1463,7 +1463,7 @@ For information on ACL resource limitations, refer to {{<link url="#hardware-lim
 You might see resource errors when you try to configure more than 1000 VLAN interfaces because certain VLAN counters share space with ACL memory in the ATCAM on Spectrum-2 and Spectrum-3 switches.
 
 To free up resources, you can:
-- Reduce the number of VLAN interfaces to the number you really need in the network.
+- Reduce the number of specified VLANs or VLAN interfaces to the number you really need in the network.
 - Free up VLAN flow counter space; edit the `/etc/mlx/datapath/stats.conf` file to uncomment and set the `hal.mlx.stats.vlan.enable` option to `FALSE`, then reload `switchd`:
 
   ```

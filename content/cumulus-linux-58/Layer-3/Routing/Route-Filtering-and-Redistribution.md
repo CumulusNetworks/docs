@@ -17,10 +17,10 @@ Prefix lists are access lists for route advertisements that match routes instead
 
 ### Configure a Prefix List
 
-The following example commands configure a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30. For networks 10.0.0.0/24, 10.10.10.0/24, and 10.0.0.10/32, only 10.0.0.0/24 matches (10.10.10.0/24 has a different prefix and 10.0.0.10/32 has a greater subnet mask).
-
 {{< tabs "TabID22 ">}}
 {{< tab "NVUE Commands ">}}
+
+The following example commands configure a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30. For networks 10.0.0.0/24, 10.10.10.0/24, and 10.0.0.10/32, only 10.0.0.0/24 matches (10.10.10.0/24 has a different prefix and 10.0.0.10/32 has a greater subnet mask).
 
 ```
 cumulus@switch:~$ nv set router policy prefix-list prefixlist1 rule 1 match 10.0.0.0/16 max-prefix-len 30
@@ -37,13 +37,36 @@ cumulus@switch:~$ nv set router policy prefix-list prefixlistipv6 rule 1 action 
 cumulus@switch:~$ nv config apply
 ```
 
+The following example commands configure a prefix list that permits all prefixes in the range 10.1.1.0/24 with a subnet mask less than 32 but more than 26. For networks 10.1.1.0/29, 10.10.10.0/24, and 10.1.1.2/32, only 10.1.1.2/32 matches (10.10.10.0/24 has a different prefix and a lower subnet mask and 10.1.1.0/29 has a higher subnet mask).
+
+```
+cumulus@switch:~$ nv set router policy prefix-list prefixlist1 rule 1 match 10.1.1.0/24 max-prefix-len 32
+cumulus@switch:~$ nv set router policy prefix-list prefixlist1 rule 1 match 10.1.1.0/24 min-prefix-len 26
+cumulus@switch:~$ nv set router policy prefix-list prefixlist1 rule 1 action permit
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
+
+The following example commands configure a prefix list that permits all prefixes in the range 10.0.0.0/16 with a subnet mask less than or equal to /30. For networks 10.0.0.0/24, 10.10.10.0/24, and 10.0.0.10/32, only 10.0.0.0/24 matches (10.10.10.0/24 has a different prefix and 10.0.0.10/32 has a greater subnet mask).
 
 ```
 cumulus@switch:~$ sudo vtysh
 switch# configure terminal
 switch(config)# ip prefix-list prefixlist1 seq 1 permit 10.0.0.0/16 le 30
+switch(config)# exit
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+The following example commands configure a prefix list that permits all prefixes in the range 10.1.1.0/24 with a subnet mask less than 32 but more than 26. For networks 10.1.1.0/29, 10.10.10.0/24, and 10.1.1.2/32, only 10.1.1.2/32 matches (10.10.10.0/24 has a different prefix and a lower subnet mask and 10.1.1.0/29 has a higher subnet mask).
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# ip prefix-list prefixlist1 seq 1 permit 10.1.1.0/24 ge 26 le 32
 switch(config)# exit
 switch# write memory
 switch# exit

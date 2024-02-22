@@ -14,11 +14,11 @@ Cumulus Linux advertises the maximum number of forwarding table entries supporte
 - ECMP next hops, which are IP address entries in the routing table that specify the next closest or most optimal router in its routing path
 - MAC addresses
 
-To determine the current table sizes on a switch, use `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}`.
+To determine the current table sizes on a switch, run the `{{<link url="Resource-Diagnostics-Using-cl-resource-query" text="cl-resource-query">}}` command.
 
 Each switching architecture has specific resources available for forwarding table entries. Cumulus Linux stores:
 - Forwarding table resources in a <span class="a-tooltip">[KVD](## "Key Value Database")</span>.
-- ACL table entries and other switching functions in a fast memory area called the TCAM on Spectrum 1, and <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> on Spectrum-2 and later.
+- ACL table entries and other switching functions in a fast memory area called the TCAM on Spectrum 1, and the <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> on Spectrum-2 and later.
 
 Cumulus Linux provides various general profiles for forwarding table resources, and, based on your network design, you might need to adjust various switch parameters to allocate resources, as needed.
 

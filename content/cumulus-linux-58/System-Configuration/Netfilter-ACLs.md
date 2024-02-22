@@ -1414,7 +1414,7 @@ To work around this limitation, set the rate and burst for all these rules to th
 
 ### Troubleshooting ACL Rule Installation Failures
 
-On Spectrum-2 and later, in addition to ACLs, items stored in KVD and ATCAM include internal counters for VLANs and interfaces in a bridge. If the network includes a large number of VLAN interfaces (more than between 1000 to 2000), the counters might occupy a significant amount of space and reduce the amount of available space for ACLs.
+On Spectrum-2 and later, in addition to ACLs, items stored in KVD and ATCAM include internal counters for VLANs and interfaces in a bridge. If the network includes more than 1000 VLAN interfaces, the counters might occupy a significant amount of space and reduce the amount of available space for ACLs.
 
 If netfilter ACL space is exhausted, you might see error messages similar to the following when you try to apply ACLs:
 
@@ -1460,7 +1460,7 @@ failed with No More Resources
 
 For information on ACL resource limitations, refer to {{<link url="#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
 
-You might see resource errors when you try to configure a large number of VLAN interfaces (more than between 1000 and 2000) because certain VLAN counters share space with ACL memory in the ATCAM on Spectrum-2 and Spectrum-3 switches.
+You might see resource errors when you try to configure more than 1000 VLAN interfaces because certain VLAN counters share space with ACL memory in the ATCAM on Spectrum-2 and Spectrum-3 switches.
 
 To free up resources, you can:
 - Reduce the number of VLAN interfaces to the number you really need in the network.

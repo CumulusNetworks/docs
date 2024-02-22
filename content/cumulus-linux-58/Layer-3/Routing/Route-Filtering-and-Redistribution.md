@@ -28,7 +28,7 @@ cumulus@switch:~$ nv set router policy prefix-list prefixlist1 rule 1 action per
 cumulus@switch:~$ nv config apply
 ```
 
-For IPv6, you need to run an additional command to set the prefix list type to IPv6. For example:
+For IPv6, you need to run the `nv set router policy prefix-list <name> type ipv6` command to set the prefix list type to IPv6. For example:
 
 ```
 cumulus@switch:~$ nv set router policy prefix-list prefixlistipv6 type ipv6

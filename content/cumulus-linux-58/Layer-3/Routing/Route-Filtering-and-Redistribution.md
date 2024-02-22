@@ -37,7 +37,7 @@ cumulus@switch:~$ nv set router policy prefix-list prefixlistipv6 rule 1 action 
 cumulus@switch:~$ nv config apply
 ```
 
-The following example commands configure a prefix list that permits all prefixes in the range 10.1.1.0/24 with a subnet mask less than 32 but more than 26. For networks 10.1.1.0/29, 10.10.10.0/24, and 10.1.1.2/32, only 10.1.1.2/32 matches (10.10.10.0/24 has a different prefix and a lower subnet mask and 10.1.1.0/29 has a higher subnet mask).
+The following example commands configure a prefix list that permits all prefixes in the range 10.1.1.0/24 with a subnet mask less than 32 but more than 26. For networks 10.1.1.0/25, 10.10.10.0/24, and 10.1.1.2/32, only 10.1.1.2/32 matches (10.1.1.0/25 has a lower subnet mask, and 10.10.10.0/24 has a different prefix and a lower subnet mask).
 
 ```
 cumulus@switch:~$ nv set router policy prefix-list prefixlist1 rule 1 match 10.1.1.0/24 max-prefix-len 32

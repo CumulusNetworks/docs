@@ -18,7 +18,7 @@ To determine the current table sizes on a switch, run the `{{<link url="Resource
 
 Each switching architecture has specific resources available for forwarding table entries. Cumulus Linux stores:
 - Forwarding table resources in a <span class="a-tooltip">[KVD](## "Key Value Database")</span>.
-- ACL table entries and other switching functions in a fast memory area called the TCAM on Spectrum 1, and the <span class="a-tooltip">[ATCAM](## "Algorythmic TCAM")</span> on Spectrum-2 and later.
+- ACL table entries and other switching functions in a fast memory area called the TCAM on Spectrum 1, and the <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> on Spectrum-2 and later.
 
 Cumulus Linux provides various general profiles for forwarding table resources, and, based on your network design, you might need to adjust various switch parameters to allocate resources, as needed.
 
@@ -32,12 +32,12 @@ Forwarding resource profiles control unicast forwarding table entry allocations.
 <!-- vale off -->
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| LPM  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
-| default        | 40k           | 32k (IPv4) and 8k (IPv6) | 64k (IPv4) and 22k (IPv6-long), 1k (IPv4-Mcast) |
-| l2-heavy       | 88k           | 48k (IPv4) and 18k (IPv6) | 8k (IPv4) and 8k (IPv6-long), 1k (IPv4-Mcast)   |
-| l2-heavy-1     | 176k          | 4k (IPv4) and 2k (IPv6)   | 4k (IPv4) and 2k (IPv6-long), 1k (IPv4-Mcast)   |
-| l2-heavy-2     | 86k           | 86k (IPv4) and 4k (IPv6)  | 8k (IPv4), 4k (IPv6-long), 1k (IPv4-Mcast)|
-| v4-lpm-heavy   | 8k            | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long), 1k (IPv4-Mcast) |
-| v4-lpm-heavy-1 | 6k            | 6k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long), 1k (IPv4-Mcast) |
+| default        | 40k           | 32k (IPv4) and 8k (IPv6) | 64k (IPv4) and 22k (IPv6-long) |
+| l2-heavy       | 88k           | 48k (IPv4) and 18k (IPv6) | 8k (IPv4) and 8k (IPv6-long)   |
+| l2-heavy-1     | 176k          | 4k (IPv4) and 2k (IPv6)   | 4k (IPv4) and 2k (IPv6-long)   |
+| l2-heavy-2     | 86k           | 86k (IPv4) and 4k (IPv6)  | 8k (IPv4), 4k (IPv6-long)|
+| v4-lpm-heavy   | 8k            | 8k (IPv4) and 16k (IPv6)  | 80k (IPv4) and 16k (IPv6-long)|
+| v4-lpm-heavy-1 | 6k            | 6k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
 | v6-lpm-heavy   | 27k           | 8k (IPv4) and 36k (IPv6)  | 8k (IPv4), 32k (IPv6-long) and 32k (IPv6/64) |
 | lpm-balanced   | 6k            | 4k (IPv4) and 3k (IPv6)   | 60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
 

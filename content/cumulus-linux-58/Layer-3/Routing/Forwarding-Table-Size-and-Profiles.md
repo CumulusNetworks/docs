@@ -18,7 +18,7 @@ To determine the current table sizes on a switch, run the `{{<link url="Resource
 
 Each switching architecture has specific resources available for forwarding table entries. Cumulus Linux stores:
 - Forwarding table resources in a <span class="a-tooltip">[KVD](## "Key Value Database")</span>.
-- ACL table entries and other switching functions in a fast memory area called the TCAM on Spectrum 1, and the <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> on Spectrum-2 and later.
+- ACL table entries and other switching functions in a fast memory area called the <span class="a-tooltip">[TCAM](## "Ternary Content Addressable Memory")</span> on Spectrum 1, and the <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> on Spectrum-2 and later.
 
 Cumulus Linux provides various general profiles for forwarding table resources, and, based on your network design, you might need to adjust various switch parameters to allocate resources, as needed.
 

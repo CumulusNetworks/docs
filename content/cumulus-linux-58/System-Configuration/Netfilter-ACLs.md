@@ -525,7 +525,7 @@ error: hw sync failed (Bulk counter init failed with No More Resources). Rolling
 
 To troubleshoot this issue and manage netfilter resources with high VLAN and ACL scale, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.
 
-NVIDIA Spectrum switches use a TCAM or <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
+NVIDIA Spectrum switches use a <span class="a-tooltip">[TCAM](## "Ternary Content Addressable Memory")</span> or <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
 
 ### TCAM Profiles on Spectrum 1
 
@@ -1498,7 +1498,7 @@ failed with No More Resources
 
 For information on ACL resource limitations, refer to {{<link url="#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
 
-You might see resource errors when you try to configure more than 1000 VLAN interfaces because certain VLAN counters share space with ACL memory in the ATCAM on Spectrum-2 and Spectrum-3 switches.
+On Spectrum-2 and later, you might see resource errors when you try to configure more than 1000 VLAN interfaces because certain VLAN counters share space with ACL memory in the ATCAM.
 
 To free up resources, you can:
 - Reduce the number of specified VLANs or VLAN interfaces to the number you really need in the network.
@@ -1519,21 +1519,6 @@ The flow counters are internal counters for debugging; you do not see the counte
 
 To see how much space the flow counters consume, examine the `Flow Counters` line in the `cl-resource-query` output.
 
-<!--
-### INPUT Chain Rules
-
-Cumulus Linux implements INPUT chain rules using a trap mechanism and assigns trap IDs to packets that go to the CPU. The default INPUT chain rules map to these trap IDs. However, if a packet matches multiple traps, an internal priority mechanism resolves them which can be different from the rule priorities. The default expected rule does not police the packet but another rule polices it instead. For example, the LOCAL rule polices ICMP packets that go to the CPU instead of the ICMP rule. Also, multiple rules can share the same trap, where the largest of the policer values applies.
-
-To work around this issue, create rules on the INPUT and FORWARD chains (INPUT,FORWARD).
-
-{{%notice note%}}
-FORWARD chain rules can drop packets that go through the switch. Exercise caution when defining these rules and be as specific as possible.
-{{%/notice%}}
-
-### Hardware Policing of Packets in the Input Chain
-
-Certain platforms have limitations on hardware policing packets in the INPUT chain. To work around these limitations, Cumulus Linux supports kernel based policing of these packets in software using limit or hashlimit matches. Cumulus Linux does not hardware offload rules with these matches, but ignores them during hardware install.
--->
 ### ACLs Do not Match when the Output Port on the ACL is a Subinterface
 
 The ACL does not match on packets when you configure a subinterface as the output port. The ACL matches on packets only if the primary port is as an output port. If a subinterface is an output or egress port, the packets match correctly.

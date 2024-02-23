@@ -143,14 +143,33 @@ The incremental nonatomic update operation follows this order:
 
 To always reload `switchd` with nonatomic updates:
 
-1. Edit `/etc/cumulus/switchd.conf`.
-2. Add the following line to the file:
+{{< tabs "TabID146 ">}}
+{{< tab "NVUE Commands ">}}
 
-    ```
-    acl.non_atomic_update_mode = TRUE
-    ```
+```
+cumulus@switch:~$ nv set system acl mode non-atomic 
+cumulus@switch:~$ nv config apply
+```
 
-3. Reload `switchd` with the `sudo systemctl reload switchd.service` command for the changes to take effect. The reload does **not** interrupt network services.
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.conf` file to add `acl.non_atomic_update_mode = TRUE`, then reload `switchd` for the changes to take effect:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+acl.non_atomic_update_mode = TRUE
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
+```
+
+Reloading `switchd` does **not** interrupt network services.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 During regular *non-incremental nonatomic updates*, traffic stops, then continues after all the new configuration is in the hardware.

@@ -118,13 +118,13 @@ To increase the number of configurable ACL rules, configure the switch to operat
 
 {{< img src = "/images/cumulus-linux/acl-update-operation-nonatomic.png" >}}
 
-Instead of reserving 50% of your TCAM space for atomic updates, incremental update uses the available free space to write the new TCAM rules and swap over to the new rules after this is complete. Cumulus Linux then deletes the old rules and frees up the original TCAM space. If there is insufficient free space to complete this task, the original nonatomic update runs, which interrupts traffic.
+Instead of reserving 50% of your TCAM space for atomic updates, nonatomic mode runs incremental updates that use available free space to write the new TCAM rules, then swap over to the new rules. Cumulus Linux deletes the old rules and frees up the original TCAM space. If there is insufficient free space to complete this task, the regular nonatomic (non-incremental) update runs, which interrupts traffic.
 
 {{< img src = "/images/cumulus-linux/acl-update-del.png" >}}
 
 {{< img src = "/images/cumulus-linux/acl-update-add.png" >}}
 
-You can enable nonatomic updates for `switchd`, which offer better scaling because all TCAM resources actively impact traffic. With atomic updates, half of the hardware resources are on standby and do not actively impact traffic.
+Nonatomic updates offer better scaling because all TCAM resources actively impact traffic. With atomic updates, half of the hardware resources are on standby and do not actively impact traffic.
 
 *Incremental nonatomic updates* are table based, so they do not interrupt network traffic when you install new rules. The rules map to the following tables and update in this order:
 
@@ -138,10 +138,10 @@ The incremental nonatomic update operation follows this order:
 2. Cumulus Linux checks if the rules in a table are different from installation time; if a table does not have any changes, it does not reinstall the rules.
 3. If there are changes in a table, the new rules populate in new groups or slices in hardware, then that table switches over to the new groups or slices.
 4. Finally, old resources for that table free up. This process repeats for each of the tables listed above.
-5. If there are insufficient resources to hold both the new rule set and old rule set, Cumulus Linux tries the regular nonatomic mode, which interrupts network traffic.
+5. If there are insufficient resources to hold both the new rule set and old rule set, Cumulus Linux tries regular nonatomic mode, which interrupts network traffic.
 6. If the regular nonatomic update fails, Cumulus Linux reverts back to the previous rules.
 
-To always reload `switchd` with nonatomic updates:
+To set nonatomic mode:
 
 {{< tabs "TabID146 ">}}
 {{< tab "NVUE Commands ">}}
@@ -175,7 +175,7 @@ Reloading `switchd` does **not** interrupt network services.
 During regular *non-incremental nonatomic updates*, traffic stops, then continues after all the new configuration is in the hardware.
 {{%/notice%}}
 
-### Use iptables, ip6tables, and ebtables Directly
+### iptables, ip6tables, and ebtables
 
 Do not use `iptables`, `ip6tables`, `ebtables` directly; installed rules only apply to the Linux kernel and Cumulus Linux does not hardware accelerate. When you run `cl-acltool -i`, Cumulus Linux resets all rules and deletes anything that is not in `/etc/cumulus/acl/policy.conf`.
 
@@ -203,10 +203,9 @@ However, Cumulus Linux does not synchronize the rule to hardware. Running `cl-ac
 
 ### Estimate the Number of Rules
 
-To estimate the number of rules you can create from an ACL entry, first determine if that entry is an ingress or an egress. Then, determine if it is an IPv4-mac or IPv6 type rule. This determines the slice to which the rule belongs. Use the following to determine how many entries the switch uses for each type.
+To estimate the number of rules you can create from an ACL entry, first determine if the ACL entry is ingress or egress. Then, determine if the entry is an `IPv4-mac` or `IPv6` type rule. This determines the slice to which the rule belongs. Use the following to determine how many entries the switch uses for each type.
 
 By default, each entry occupies one double wide entry, except if the entry is one of the following:
-
 - An entry with multiple comma-separated input interfaces splits into one rule for each input interface. For example, this entry splits into two rules:
 
   ```
@@ -219,7 +218,7 @@ By default, each entry occupies one double wide entry, except if the entry is on
     -A FORWARD -i swp+ -o swp1s0,swp1s1 -p icmp -j ACCEPT
     ```
 
-- An entry with both input and output comma-separated interfaces splits into one rule for each combination of input and output interface This entry splits into four rules:
+- An entry with both input and output comma-separated interfaces splits into one rule for each combination of input and output interface. This entry splits into four rules:
 
     ```
     -A FORWARD -i swp1s0,swp1s1 -o swp1s2,swp1s3 -p icmp -j ACCEPT
@@ -250,7 +249,7 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 {{%notice note%}}
 - Cumulus Linux reserves `mark` values between 0 and 100; for example, if you use `--mark-set 10`, you see an error. Use mark values between 101 and 4196.
 - You cannot mark multiple VLANs with the same value.
-- If you enable {{<link url="EVPN-Multihoming" text="EVPN-MH">}} and configure VLAN match rules in ebtables with a {{mark}} target, the ebtables rule might overwrite the {{mark}} set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class {{mark}} might not get hit. To work around this issue, add ebtable rules to {{ACCEPT}} the packets already marked by EVPN-MH traffic class rules on ingress.
+- If you enable {{<link url="EVPN-Multihoming" text="EVPN-MH">}} and configure VLAN match rules in ebtables with a `mark` target, the ebtables rule might overwrite the `mark` set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class `mark` might not get hit. To work around this issue, add ebtable rules to `ACCEPT` the packets already marked by EVPN-MH traffic class rules on ingress.
 {{%/notice%}}
 
 ## Install and Manage ACL Rules with NVUE
@@ -297,7 +296,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    cumulus@switch:~$ nv config apply
    ```
 
-To see all installed rules, examine the `/etc/cumulus/acl/policy.d/50_nvue.rules` file:
+To see the installed rule, either examine the `/etc/cumulus/acl/policy.d/50_nvue.rules` file or run the NVUE `nv show acl <rule-name> rule <ID>` command:
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_nvue.rules
@@ -306,6 +305,20 @@ cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_nvue.rules
 ## ACL EXAMPLE1 in dir inbound on interface swp1 ##
 -t mangle -A PREROUTING -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
 ...
+```
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 
+                     operational   applied     
+-------------------  ------------  ------------
+match                                          
+  ip                                           
+    source-ip        10.0.14.2/32  10.0.14.2/32
+    dest-ip          10.0.15.8/32  10.0.15.8/32
+    protocol         tcp           tcp         
+    tcp                                        
+      [source-port]  ANY           ANY         
+      [dest-port]    ANY           ANY
 ```
 
 To remove this rule, run the `nv unset acl <acl-name>` and `nv unset interface <interface> acl <acl-name>` commands. These commands delete the rule from the `/etc/cumulus/acl/policy.d/50_nvue.rules` file.
@@ -332,14 +345,21 @@ cumulus@switch:~$ sudo cl-acltool -L all
  -------------------------------
 Listing rules of type iptables:
 -------------------------------
-
 TABLE filter :
-Chain INPUT (policy ACCEPT 90 packets, 14456 bytes)
-pkts bytes target prot opt in out source destination
-0 0 DROP all -- swp+ any 240.0.0.0/5 anywhere
-0 0 DROP all -- swp+ any loopback/8 anywhere
-0 0 DROP all -- swp+ any base-address.mcast.net/8 anywhere
-0 0 DROP all -- swp+ any 255.255.255.255 anywhere ...
+Chain INPUT (policy ACCEPT 432K packets, 31M bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 DROP       all  --  swp+   any     240.0.0.0/5          anywhere            
+    0     0 DROP       all  --  swp+   any     127.0.0.0/8          anywhere            
+    0     0 DROP       all  --  swp+   any     base-address.mcast.net/4  anywhere            
+    0     0 DROP       all  --  swp+   any     255.255.255.255      anywhere            
+    0     0 ACCEPT     all  --  swp+   any     anywhere             anywhere            
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 457K packets, 35M bytes)
+ pkts bytes target     prot opt in     out     source               destination
+...
 ```
 
 To list installed rules using native `iptables`, `ip6tables` and `ebtables`, use the `-L` option with the respective commands:
@@ -400,9 +420,8 @@ Here is an example ACL policy file:
 You can use wildcards or variables to specify chain and interface lists.
 
 {{%notice note%}}
-You can only use *swp+* and *bond+* as wildcard names.
-
-swp+ rules apply as an aggregate, *not* per port. If you want to apply per port policing, specify a specific port instead of the wildcard.
+- You can only use *swp+* and *bond+* as wildcard names.
+- swp+ rules apply as an aggregate, *not* per port. If you want to apply per port policing, specify a specific port instead of the wildcard.
 {{%/notice%}}
 
 ```

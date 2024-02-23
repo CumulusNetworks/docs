@@ -506,7 +506,7 @@ error: hw sync failed (Bulk counter init failed with No More Resources). Rolling
 
 To troubleshoot this issue and manage netfilter resources with high VLAN and ACL scale, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.
 
-NVIDIA Spectrum switches use a TCAM or <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
+NVIDIA Spectrum switches use a <span class="a-tooltip">[TCAM](## "Ternary Content Addressable Memory")</span> or <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
 
 ### TCAM Profiles on Spectrum 1
 
@@ -1431,7 +1431,6 @@ To work around this limitation, set the rate and burst for all these rules to th
 - When using the OUTPUT chain, you must assign rules to the source. For example, if you assign a rule to the switch port in the direction of traffic but the source is a bridge (VLAN), the rule does not affect the traffic and you must apply the rule to the bridge.
 - If you need to apply a rule to all transit traffic, use the FORWARD chain, not the OUTPUT chain.
 
-
 ### Troubleshooting ACL Rule Installation Failures
 
 On Spectrum-2 and later, in addition to ACLs, items stored in KVD and ATCAM include internal counters for VLANs and interfaces in a bridge. If the network includes more than 1000 VLAN interfaces, the counters might occupy a significant amount of space and reduce the amount of available space for ACLs.
@@ -1480,7 +1479,7 @@ failed with No More Resources
 
 For information on ACL resource limitations, refer to {{<link url="#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
 
-You might see resource errors when you try to configure more than 1000 VLAN interfaces because certain VLAN counters share space with ACL memory in the ATCAM on Spectrum-2 and Spectrum-3 switches.
+On Spectrum-2 and Spectrum-3 switches, you might see resource errors when you try to configure more than 1000 VLAN interfaces because certain VLAN counters share space with ACL memory in the ATCAM.
 
 To free up resources, you can:
 - Reduce the number of specified VLANs or VLAN interfaces to the number you really need in the network.

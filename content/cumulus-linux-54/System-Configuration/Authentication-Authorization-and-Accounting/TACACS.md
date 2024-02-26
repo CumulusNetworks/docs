@@ -47,11 +47,11 @@ If you use NVUE commands to configure TACACS+, you must also set the priority fo
 
 {{%notice note%}}
 
-After you change TACACS+ settings, you must restart both `nvued.service` and `nginx-authenticator.service`:
+After you change TACACS+ settings, you must restart both `nvued.service` and `nginx.service`:
 
 ```
 cumulus@switch:~$ sudo systemctl restart nvued.service
-cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
+cumulus@switch:~$ sudo systemctl restart nginx.service
 ```
 
 {{%/notice%}}
@@ -327,7 +327,9 @@ cumulus@switch:~$ nv config apply
 
 ## Local Fallback Authentication
 
-If a site wants to allow local fallback authentication for a user when none of the TACACS servers are reachable, you can add a privileged user account as a local account on the switch.
+You can configure the switch to allow local fallback authentication for a user when the TACACS servers are unreachable, do not include the user for authentication, or have the user in the exclude user list.
+
+To allow local fallback authentication for a user, add a local privileged user account on the switch with the same username as a TACACS user. A local user is always active even when the TACACS service is not running.
 
 {{%notice note%}}
 NVUE does not provide commands to configure local fallback authentication.
@@ -340,7 +342,7 @@ To configure local fallback authentication:
     The following example shows the `/etc/nsswitch.conf` file with no `tacplus` keyword in the line starting with `passwd`.
 
     ```
-    cumulus@switch:~$ sudo vi /etc/nsswitch.conf
+    cumulus@switch:~$ sudo nano /etc/nsswitch.conf
     #
     # Example configuration of GNU Name Service Switch functionality.
     # If you have the `glibc-doc-reference' and `info' packages installed, try:
@@ -368,11 +370,24 @@ The first `adduser` command prompts for information and a password. You can skip
 
 3. Edit the `/etc/nsswitch.conf` file to add the keyword `tacplus` back to the line starting with `passwd` (the keyword you removed in the first step).
 
-4. Restart the `nvued` service and the `nginx-authenticator` service with the following commands:
+   ```
+    cumulus@switch:~$ sudo nano /etc/nsswitch.conf
+    #
+    # Example configuration of GNU Name Service Switch functionality.
+    # If you have the `glibc-doc-reference' and `info' packages installed, try:
+    # `info libc "Name Service Switch"' for information about this file.
+    passwd:         tacplus files
+    group:          tacplus files
+    shadow:         files
+    gshadow:        files
+    ...
+    ```
+
+4. Restart the `nvued` service and the `nginx` service with the following commands:
 
     ```
     cumulus@switch:~$ sudo systemctl restart nvued.service
-    cumulus@switch:~$ sudo systemctl restart nginx-authenticator.service
+    cumulus@switch:~$ sudo systemctl restart nginx.service
     ```
 <!-- vale off -->
 ## TACACS+ Per-command Authorization

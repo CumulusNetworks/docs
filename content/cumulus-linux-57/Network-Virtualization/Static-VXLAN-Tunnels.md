@@ -140,7 +140,7 @@ iface vni20
 
 auto bridge
 iface bridge
-    bridge-ports swp1 swp2 vni10 vn20
+    bridge-ports swp1 swp2 vni10 vni20
     bridge-vlan-aware yes
     bridge-vids 10 20
     bridge-pvid 1
@@ -246,7 +246,7 @@ iface vni20
 
 auto bridge
 iface bridge
-    bridge-ports swp1 swp2 vni10 vn20
+    bridge-ports swp1 swp2 vni10 vni20
     bridge-vlan-aware yes
     bridge-vids 10 20
     bridge-pvid 1
@@ -480,9 +480,7 @@ iface br_default
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL56 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
-
-This simulation is running Cumulus Linux 5.6. The Cumulus Linux 5.7 simulation is coming soon.
+    {{< simulation name="Try It CL57 - Static VXLAN" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
 This simulation starts with the example static VXLAN configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

@@ -7,36 +7,56 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3649629</td>
-<td>When you upgrade an on-premises NetQ VM from version 4.7.0 to 4.8.0, the upgrade process might take longer than 4 hours.</td>
+<td>3761602</td>
+<td> NetQ does not display queue histogram data for switches running Cumulus Linux 5.8.0 and NetQ agent version 4.8.0. To work around this issue, upgrade the NetQ agent package to 4.9.0.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3739222</td>
+<td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
+<td>4.2.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3738840</td>
+<td>When you upgrade a Cumulus Linux switch configured for TACACS authentication using NetQ LCM, the switch's TACACS configuration is not restored after upgrade.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3688985</td>
+<td>After upgrading a NetQ VM with LDAP authentication configured, adding a new LDAP user to NetQ fails with the error message "LDAP not enabled."</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3676723</td>
+<td>When you use the NetQ agent on a Cumulus Linux switch to export gNMI data and there is a period of inactivity in the gNMI stream, the NetQ agent service might stop. To recover from this issue, restart the service with the {{netq config restart agent}} command.</td>
+<td>4.7.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3670180</td>
+<td>The medium Validation Summary card might incorrectly display a failure or lack of data for the latest time interval. To work around this issue, expand the card to the largest view for an accurate representation of validation results.</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3656965</td>
+<td>After you upgrade NetQ and try to decommission a switch, the decommission might fail with the message "Timeout encountered while processing."</td>
+<td>4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3650422</td>
+<td>The OPTA-on-switch service does not send agent data when the NetQ CLI is not configured. To work around this issue, configure the NetQ CLI on the switch.</td>
 <td>4.8.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3644644</td>
 <td>When you perform an LCM upgrade of Cumulus Linux on a switch using the {{netq lcm upgrade cl-image}} CLI command, an error message of {{NetQ cloud token invalid}} is displayed though the upgrade completes successfully. This issue is not encountered when using the NetQ LCM UI to perform the upgrade.</td>
-<td>4.8.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3638703</td>
-<td>Upgrading to NetQ 4.8.0 might fail with the message {{Error: web socket connection broken to master}}. To work around this problem:
-
-For standalone on-premises deployments:
-
-1. Run the {{sudo netq bootstrap reset keep-db purge-images}} command 
-
-2. Run the install command using the NetQ 4.8.0 tarball: {{sudo netq install standalone full interface &lt;interface-name&gt; bundle /mnt/installables/NetQ-4.8.0.tgz}} 
-
-For cluster on-premises deployments: 
-
-1. Run the {{sudo netq bootstrap reset keep-db purge-images}} command 
-
-2. Run the {{sudo netq install cluster master-init}} command 
-
-3. Take the command output from step 2 and run it on each worker node 
-
-4. Run the install command using the NetQ 4.8.0 tarball: {{sudo netq install cluster full interface &lt;interface-name&gt; bundle /mnt/installables/NetQ-4.8.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt;}}</td>
 <td>4.8.0</td>
 <td></td>
 </tr>
@@ -71,18 +91,6 @@ sudo kubectl set image deployment/netq-prom-adapter prometheus=docker-registry:5
 <td>3549877</td>
 <td>NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes.</td>
 <td>4.6.0-4.8.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3435373</td>
-<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades might fail with the following message: 
-
-
-Job upgrade failed or timed out.
-
-
-To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.</td>
-<td>4.5.0-4.8.0</td>
 <td></td>
 </tr>
 <tr>

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3739222</td>
+<td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
+<td>4.2.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3491935</td>
 <td>NetQ might generate continuous TCA events for the NetQ VM squashfs mounts when disk utilization TCA rules are configured for all hosts.  </td>
 <td>4.5.0-4.6.0</td>
@@ -69,18 +75,6 @@ ERROR: Failed to install the master node
 This is due to an expired key in the installation tarball. For assistance working around this issue, contact NVIDIA support.</td>
 <td>4.3.0-4.5.0</td>
 <td>4.6.0-4.8.0</td>
-</tr>
-<tr>
-<td>3435373</td>
-<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades might fail with the following message: 
-
-
-Job upgrade failed or timed out.
-
-
-To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.</td>
-<td>4.5.0-4.8.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3431386</td>

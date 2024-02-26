@@ -21,6 +21,7 @@ Cumulus Linux 5.7.0 contains several new features and improvements, and provides
 - {{<link url="ASIC-Monitoring" text="Updated histograms for ASIC monitoring">}} to include ingress buffer utilization and bandwidth utilization for a port.
 - {{<link url="Pulse-Per-Second-PPS" text="Pulse Per Second (PPS) synchronization">}}
 - {{<link url="BGP-Weighted-Equal-Cost-Multipath/#weight-normalization" text="Weight normalization for BGP weighted ECMP">}}
+- The NVIDIA SN3750-SX switch is Class B compliant
 - NVUE enhancements include:
   - {{<link url="Port-Security" text="Port security commands">}}
   - {{<link url="Network-Address-Translation-NAT" text="NAT commands">}}
@@ -529,11 +530,7 @@ nv action import system security certificate
 {{< /expand >}}
 
 {{%notice note%}}
-Cumulus 5.7 provides updated {{<link url="Supported-Route-Table-Entries/#spectrum-1" text="Spectrum-1 forwarding profile numbers">}} to optimize hardware resources and prevent overutilization.
-{{%/notice%}}
-
-{{%notice note%}}
-Cumulus Linux 5.7 only supports Head-End Replication (HREP) for handling BUM traffic in an EVPN configuration. BUM handling using a PIM-SM Multicast tree is not supported.
+Cumulus 5.7 provides updated {{<link url="Forwarding-Table-Size-and-Profiles" text="Spectrum-1 forwarding profile numbers">}} to optimize hardware resources and prevent overutilization.
 {{%/notice%}}
 
 {{%notice info%}}

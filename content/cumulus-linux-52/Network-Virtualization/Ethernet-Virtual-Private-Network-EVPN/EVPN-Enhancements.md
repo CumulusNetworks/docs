@@ -8,6 +8,10 @@ This section describes EVPN enhancements.
 
 ## Define RDs and RTs
 
+{{%notice note%}}
+The RD and RTs for the layer 2 VNI are different from the tenant VRF RD and RTs. To define the tenant VRF RD and RTs, see {{<link url="Inter-subnet-Routing/#configure-rd-and-rts-for-the-tenant-vrf" text="Configure the RD and RTs for the Tenant VRF">}}.
+{{%/notice%}}
+
 When [FRR](## "FRRouting") learns about a local VNI and there is no explicit configuration for that VNI in FRR, the switch derives the [RD](## "route distinguisher") and import and export [RTs](## "route targets") for this VNI automatically. The RD uses *RouterId:VNI-Index* and the import and export RTs use *AS:VNI*. For routes that come from a layer 2 VNI (type-2 and type-3), the RD uses the VXLAN local tunnel IP address (`vxlan-local-tunnelip`) from the layer 2 VNI interface instead of the RouterId (`vxlan-local-tunnelip:VNI`). EVPN route exchange uses the RD and RTs.
 
 The RD disambiguates EVPN routes in different VNIs (they can have the same MAC and IP address) while the RTs describe the VPN membership for the route. The *VNI-Index* for the RD is a unique number that the switch generates. It only has local significance; on remote switches, its only role is for route disambiguation. The switch uses this number instead of the VNI value itself because this number has to be less than or equal to 65535. In the RT, the [AS](## "Autonomous System") is always a 2-byte value to allow room for a large VNI. If the router has a 4-byte AS, it only uses the lower 2 bytes. This ensures a unique RT for different VNIs while having the same RT for the same VNI across routers in the same AS.

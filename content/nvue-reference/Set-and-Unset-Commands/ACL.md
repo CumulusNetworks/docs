@@ -20,7 +20,11 @@ Configures Access Control lists (ACLs) on the switch.
 
 ## <h>nv set system acl mode</h>
 
-Configures the ACL mode; atomic or non-atomic.
+Configures the ACL mode; atomic or non-atomic. The default setting is atomic mode.
+
+Atomic mode limits the number of ACL rules that you can configure. To increase the number of configurable ACL rules, configure the switch to operate in nonatomic mode, which offers better scaling because all TCAM resources actively impact traffic. With atomic updates, half of the hardware resources are on standby and do not actively impact traffic.
+
+Incremental nonatomic updates are table based, so they do not interrupt network traffic when you install new rules.
 
 ### Version History
 
@@ -29,7 +33,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system acl mode atomic
+cumulus@switch:~$ nv set system acl mode non-atomic
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -985,7 +989,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 remark "The following line permits
 
 Configures the ACL rule type. You can specify `ipv4`, `ipv6` or `mac`.
 
-This command is required when configuring other ACL settings.
+You must run this command when configuring other ACL settings.
 
 ### Command Syntax
 

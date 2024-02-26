@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3739222</td>
+<td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
+<td>4.2.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3549877</td>
 <td>NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes.</td>
 <td>4.6.0-4.8.0</td>
@@ -67,18 +73,6 @@ To work around this issue, run the {{sudo apt remove -y shim-signed grub-efi-amd
 <td>RoCE validations might not display data in the NetQ UI and CLI for Cumulus Linux switches when the NVUE service is not running. This issue will resolve itself within 24 hours after the next full status update from the NetQ agent. </td>
 <td>4.6.0</td>
 <td>4.7.0-4.8.0</td>
-</tr>
-<tr>
-<td>3435373</td>
-<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades might fail with the following message: 
-
-
-Job upgrade failed or timed out.
-
-
-To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.</td>
-<td>4.5.0-4.8.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3431386</td>

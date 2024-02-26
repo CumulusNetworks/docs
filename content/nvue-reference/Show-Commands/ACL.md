@@ -764,13 +764,13 @@ bfd            on     2000          2000           Policer CBS:     11
 
 ## <h>nv show system control-plane policer \<policer-id\></h>
 
-Shows configuration information for a specific control plane policer.
+Shows configuration information for a specific control plane policer. The policer can be: `acl-log`, `arp`, `bfd`, `bgp`, `brief`, `catch-all`, `clag`, `dhcp`, `eapol`, `icmp6-def-mld`, `icmp6-neigh`, `icmp-def`, `igmp`, `ip2me`, `l3-local`, `lacp`, `lldp-ptp`, `nat`, `pim-ospf-rip`, `rpvst`, `span-cpu`, `ssh`, `stp`, or `unknown-ipmc`.
 
 ### Command Syntax
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<policer-id>` | The policer ID: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `unknown-ipmc`, `catch-all`. |
+| `<policer-id>` | The policer ID. |
 
 ### Version History
 
@@ -799,13 +799,13 @@ statistics
 
 ## <h>nv show system control-plane policer \<policer-id\> statistics</h>
 
-Shows statistics for a specific control plane policer.
+Shows statistics for a specific control plane policer. The policer can be: `acl-log`, `arp`, `bfd`, `bgp`, `brief`, `catch-all`, `clag`, `dhcp`, `eapol`, `icmp6-def-mld`, `icmp6-neigh`, `icmp-def`, `igmp`, `ip2me`, `l3-local`, `lacp`, `lldp-ptp`, `nat`, `pim-ospf-rip`, `rpvst`, `span-cpu`, `ssh`, `stp`, or `unknown-ipmc`.
 
 ### Command Syntax
 
 | Syntax |  Description |
 | --------- | -------------- |
-| `<policer-id>` | The policer ID: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `unknown-ipmc`, `catch-all`. |
+| `<policer-id>` | The policer ID. |
 
 ### Version History
 

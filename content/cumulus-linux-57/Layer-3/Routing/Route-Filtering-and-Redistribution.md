@@ -295,7 +295,7 @@ You can use the following list of supported match and set statements with NVUE c
 | `tag` | Matches the specified tag value associated with the route. You can specify a value between 1 and 4294967295.
 
 {{%notice note%}}
-The `source-protocol` match statement is only supported in {{<link url="FRRouting/#architecture" text="zebra">}}. Cumulus Linux does not support the `match source-protocol` statement in route maps configured for routing protocols such as BGP and OSPF.
+The `source-protocol` match statement is supported in {{<link url="FRRouting/#architecture" text="zebra">}} and BGP. Cumulus Linux does not support the `match source-protocol` statement in route maps configured for other routing protocols, such as OSPF.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -327,6 +327,88 @@ The `source-protocol` match statement is only supported in {{<link url="FRRoutin
 | `ext-community-bw` | Sets the BGP extended community link bandwidth. |
 | `ipv6-nexthop-prefer-global` | Sets IPv6 inbound routes to use the global address when both a global and link-local next hop is available.|
 | `origin` | Sets the BGP route origin, such as eBGP or iBGP.|
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Permit Action Exit Policies
+
+You can configure the permit action exit policy for a route map to:
+- Go to the next rule when the matching conditions are met.
+- Go to specific rule when the matching conditions are met.
+
+To configure the permit action exit policy:
+
+{{< tabs "TabID3 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following command configures the permit action exit policy to go to the next rule when the matching conditions are met:
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy next-rule
+cumulus@switch:~$ nv config apply
+```
+
+The following command configures the permit action exit policy to go to rule 20 when the matching conditions are met:
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy rule 20
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+The following command configures the permit action exit policy to exit further rule processing:
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# route-map routemap1 permit 10
+switch(config-route-map)# continue 30
+switch(config-route-map)# end
+switch# write memory
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+switch# exit
+cumulus@switch:mgmt:~$ 
+```
+
+The following command configures the permit action exit policy to go to the next rule when the matching conditions are met:
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# route-map routemap1 permit 10
+switch(config-route-map)# on-match next
+switch(config-route-map)# end
+switch# write memory
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+switch# exit
+cumulus@switch:mgmt:~$ 
+```
+
+The following command configures the permit action exit policy to go to rule 20 when the matching conditions are met:
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# route-map routemap1 permit 10
+switch(config-route-map)# on-match goto 20
+switch(config-route-map)# end
+switch# write memory
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+switch# exit
+cumulus@switch:mgmt:~$ 
+```
 
 {{< /tab >}}
 {{< /tabs >}}

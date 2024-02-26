@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3739222</td>
+<td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
+<td>4.2.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3676723</td>
+<td>When you use the NetQ agent on a Cumulus Linux switch to export gNMI data and there is a period of inactivity in the gNMI stream, the NetQ agent service might stop. To recover from this issue, restart the service with the {{netq config restart agent}} command.</td>
+<td>4.7.0-4.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3633458</td>
 <td>The legacy topology diagram might categorize devices into tiers incorrectly. To work around this issue, use the updated topology diagram by selecting Topology Beta in the NetQ 4.8.0 UI.</td>
 <td>4.7.0-4.8.0</td>
@@ -41,18 +53,6 @@
 <td>Queue histogram data received from switches might encounter a delay before appearing in the NetQ UI.</td>
 <td>4.7.0</td>
 <td>4.8.0</td>
-</tr>
-<tr>
-<td>3435373</td>
-<td>If your NetQ on-premises VM is not configured with at least 16 vCPUs, upgrades might fail with the following message: 
-
-
-Job upgrade failed or timed out.
-
-
-To work around this issue, reconfigure your VM to use 16 vCPUs before upgrading.</td>
-<td>4.5.0-4.8.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3429528</td>

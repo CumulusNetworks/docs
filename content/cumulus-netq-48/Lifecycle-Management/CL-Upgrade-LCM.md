@@ -5,7 +5,7 @@ weight: 680
 toc: 4
 ---
 
- Lifecycle management (LCM) lets you upgrade Cumulus Linux on one or more switches in your network via the NetQ UI or the CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time.
+ Lifecycle management (LCM) lets you upgrade Cumulus Linux on one or more switches in your network with the NetQ UI or the CLI. You do this by scheduling 'upgrade jobs' which upgrade Cumulus Linux on your switches. Each job can upgrade CL on up to 50 switches. NetQ upgrades the switches 5 at a time until all switches in the upgrade job are upgraded. You can schedule up to 5 upgrade jobs to run simultaneously.
 
 You can upgrade Cumulus Linux from:
 - Cumulus Linux 4.3.0 and 4.3.1 (Broadcom switches)
@@ -15,6 +15,10 @@ You can upgrade switches running Cumulus Linux 5.0.0 or later that are managed w
 
 {{<notice warning>}}
 When you upgrade a switch that has not been configured using NVUE, LCM backs up and restores flat file configurations in Cumulus Linux. After you upgrade a switch that has been managed with flat files and subsequently run NVUE configuration commands, NVUE will overwrite the configuration restored by NetQ LCM. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} for additional information.
+{{</notice>}}
+
+{{<notice note>}}
+During the Cumulus Linux upgrade process, NetQ does not upgrade or reinstall packages that are not part of the Cumulus Linux image. For example, if you installed node_exporter packages on a switch, you must reinstall these packages after the upgrade is complete.
 {{</notice>}}
 ## Prepare for a Cumulus Linux Upgrade
 
@@ -130,7 +134,7 @@ To see only Cumulus Linux upgrade jobs, run `netq lcm show status cl-image job-I
 
 Upon successful upgrade, you can:
 
-- {{<link title="#interpreting-the-comparison-data" text="Compare network snapshots">}} taken before and after the upgrade.
+- {{<link title="Network Snapshots" text="Compare network snapshots">}} taken before and after the upgrade.
 
 - Download details about the upgrade in a JSON-formatted file, by clicking **Download report**.
 ### Post-check Failures

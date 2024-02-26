@@ -660,7 +660,17 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 permit
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy</h>
 
-Configures the permit action exit policy.
+Configures the permit action exit policy. You can specify an alternative exit policy to take if the entry matches, instead of the normal policy of exiting the route map and permitting the route. You can configure the permit action exit policy to exit further rule processing, go to the next rule, or go to a specific rule.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy exit \<value\></h>
+
+Configures the permit action exit policy to exit further rule processing. You can specify a value between 1 and 65535.
 
 ### Command Syntax
 
@@ -671,19 +681,42 @@ Configures the permit action exit policy.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.7.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy exit 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy next-rule \<value\></h>
+
+Configures the route map to go to the next rule when the matching conditions are met.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 action permit exit-policy next-rule
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy rule \<value\></h>
 
-Configures the route map to go to specific rule when the matching conditions are met.
+Configures the route map to go to a specific rule when you meet the matching conditions.
 
 ### Command Syntax
 
@@ -1414,7 +1447,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set community 100:
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set community-delete-list</h>
 
-Configures a set clause in the route map to remove BGP communities from being advertised to other BGP routes.
+Configures a set clause in the route map to remove BGP communities from advertising to other BGP routes.
 
 ### Command Syntax
 
@@ -1670,7 +1703,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set label-index 10
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set large-community-delete-list</h>
 
-Configures a set clause in the route map to remove BGP large communities from being advertised to other BGP routes.
+Configures a set clause in the route map to remove BGP large communities from advertising to other BGP routes.
 
 ### Command Syntax
 

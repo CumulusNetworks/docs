@@ -453,7 +453,7 @@ cumulus@switch:~$ nv show service snmp-server mibs
 
 ## <h>nv show service snmp-server viewname</h>
 
-Shows the configured SNMP server view names. SNMP views are named groups of MIB objects that you can associate with user accounts to allow limited access to view and modify SNMP statistics and system configuration.
+Shows the configured SNMP server view names. SNMP views are groups of MIB objects that you can associate with user accounts to allow limited access to view and modify SNMP statistics and system configuration.
 
 ### Version History
 

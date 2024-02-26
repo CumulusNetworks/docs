@@ -492,10 +492,11 @@ The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/
 |ipmc-heavy|750 |500 |1500 |1000|
 |acl-heavy |1750 |1000 |3500 |2000|
 |ipmc-max |1000 |500 |2000 |1000 |
-|ip-acl-heavy |7500 |0 |15000 |0|
+|ip-acl-heavy |6000 |0 |12000 |0|
 <!-- vale on -->
 {{%notice note%}}
-Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
+- Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
+- The ip-acl-heavy profile shows an updated number of supported atomic mode and nonatomic mode IPv4 rules. The previously published numbers were 7500 for atomic mode and 15000 for nonatomic mode IPv4 rules.
 {{%/notice%}}
 
 ## Supported Rule Types

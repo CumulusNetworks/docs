@@ -13,7 +13,9 @@ You can add additional nodes to your server cluster on-premises and cloud deploy
 
 Run the following CLI command to add a new worker node for on-premises deployments:
 
-```netq install cluster add-worker <text-worker-01>```
+```
+netq install cluster add-worker <text-worker-01>
+```
 
 {{</tab>}}
 
@@ -21,7 +23,9 @@ Run the following CLI command to add a new worker node for on-premises deploymen
 
 Run the following CLI command to add a new worker node for cloud deployments:
 
-```netq install opta cluster add-worker <text-worker-01>```
+```
+netq install opta cluster add-worker <text-worker-01>
+```
 
 {{</tab>}}
 

@@ -180,6 +180,53 @@ Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
+Cumulus Linux 5.8:
+
+```
+cumulus@switch:~$ nv show router nexthop rib                  
+Installed - Install state                       
+ID   Installed  UpTime    Vrf      Valid  Via                        ViaIntf        ViaVrf   Depends
+---  ---------  --------  -------  -----  -------------------------  -------------  -------  -------
+7    on         00:10:43  default  on     lo                                        default         
+8    on         00:13:36  default  on     eth0                                      mgmt            
+9    on         00:13:36  default  on     eth0                                      mgmt            
+10              00:10:43  default  on                                                               
+11   on         00:10:43  default  on     192.168.200.1              eth0           mgmt            
+12   on         00:10:43  default  on                                                               
+15   on         00:10:43  default  on                                                               
+30   on         00:10:43  default  on                                                               
+32   on         00:13:33  default  on     swp53                                     default         
+34              00:13:33  default  on     swp51                                     default         
+36              00:13:33  default  on     swp52                                     default         
+38              00:13:33  default  on     swp54                                     default         
+68              00:10:50  default  on     peerlink.4094                             default         
+76   on         00:10:48  default  on     fe80::4ab0:2dff:fe59:eedc  peerlink.4094  default         
+88              00:10:46  default  on     br_default                                default         
+89              00:10:46  default  on     vlan10v0                                  RED             
+90   on         00:10:46  default  on     vlan10                                    RED             
+91              00:10:46  default  on     vlan10v0                                  RED             
+92              00:10:46  default  on     vlan4024_l3                               RED             
+93              00:10:46  default  on     vlan20                                    RED             
+94   on         00:10:46  default  on     vlan10                                    RED             
+95   on         00:10:46  default  on     vlan20                                    RED             
+96   on         00:10:46  default  on     vlan30                                    BLUE            
+97              00:10:46  default  on     vlan4036_l3                               BLUE            
+98   on         00:10:46  default  on     vlan30                                    BLUE            
+105             00:10:46  default  on     vlan4024_l3v0                             RED             
+106             00:10:46  default  on     vlan20v0                                  RED             
+107             00:10:46  default  on     vlan20v0                                  RED             
+108             00:10:46  default  on     vlan30v0                                  BLUE            
+109             00:10:46  default  on     vlan4036_l3v0                             BLUE            
+110             00:10:46  default  on     vlan30v0                                  BLUE            
+113             00:10:41  default  on     vxlan48                                   default         
+115  on         00:01:57  default  on     fe80::4ab0:2dff:fe3f:44c1  swp51          default         
+119  on         00:00:48  default  on     fe80::4ab0:2dff:fe25:2e13  swp52          default         
+132  on         00:00:48  default  on     fe80::4ab0:2dff:fe4e:2c21  swp53          default         
+138  on         00:00:48  default  on     fe80::4ab0:2dff:fead:9d3f  swp54          default       
+```
+
+Cumulus Linux 5.4.0 thru 5.7:
+
 ```
 cumulus@switch:~$ nv show router nexthop rib
 Nexthop-group  address-family  installed  interface-index  ref-count  type   valid  vrf      Summary           

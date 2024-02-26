@@ -1590,13 +1590,10 @@ To minimize the negative effects that occur when BGP restarts, you can enable th
 When BGP establishes a session, BGP peers use the BGP OPEN message to negotiate a graceful restart. If the BGP peer also supports graceful restart, it activates for that neighbor session. If the BGP session stops, the BGP peer (the restart helper) flags all routes associated with the device as stale but continues to forward packets to these routes for a certain period of time. The restarting device also continues to forward packets during the graceful restart. After the device comes back up and establishes BGP sessions again with its peers (restart helpers), it waits to learn all routes that these peers announce before selecting a cumulative path; after which, it updates its forwarding tables and re-announces the appropriate routes to its peers. These procedures ensure that if there are any routing changes while the BGP speaker is restarting, the network converges.
 
 {{%notice note%}}
-Cumulus Linux supports BGP graceful restart for both IPv4 and IPv6.
-{{%/notice%}}
-
-You must enable BGP graceful restart (restarting router mode) to achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Smart-System-Manager" text="Smart System Manager">}} for more information.
-
-{{%notice note%}}
-BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that the Smart System Manager initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
+- Cumulus Linux supports BGP graceful restart for both IPv4 and IPv6.
+- You must enable BGP graceful restart (restarting router mode) to achieve a switch restart or switch software upgrade with minimal traffic loss in a BGP configuration. Refer to {{<link url="Smart-System-Manager" text="Smart System Manager">}} for more information.
+- BGP goes through a graceful restart (as a restarting router) with a planned switch restart event that the Smart System Manager initiates. Any other time BGP restarts, such as when the BGP daemon restarts due to a software exception, or you restart the FRR service, BGP goes through a regular restart where the BGP session with peers terminates and Cumulus Linux removes the learned routes from the forwarding plane.
+- For warm boot to restart the switch with no interruption to traffic for existing route entries, you must enable BGP graceful restart in all BGP VRFs.
 {{%/notice%}}
 
 To enable graceful restart globally on the switch:

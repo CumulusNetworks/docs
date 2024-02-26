@@ -84,7 +84,7 @@ cumulus@switch:~$ nv set system ssh-server vrf RED
 
 ## <h>nv set system ssh-server allow-users \<user-id\></h>
 
-Configures the user accounts that are allowed to establish an SSH session.
+Configures the user accounts that you to allow to establish an SSH session.
 
 ### Command Syntax
 

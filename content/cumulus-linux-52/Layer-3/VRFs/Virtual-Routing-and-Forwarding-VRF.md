@@ -318,6 +318,27 @@ switch# exit
 {{< /tab >}}
 {{< /tabs >}}
 
+### Routes from eBGP Multihop Neighbors
+
+If the routes you want to leak are connected routes sourced from an eBGP multihop neighbor, you must disable the next hop connection verification process for eBGP multihop peering sessions in the target VRF so that Cumulus Linux can add these routes to the routing table.
+
+To disable the next hop connection verification process, you need to run vtysh commands; NVUE does not provide commands for this option.
+
+The following example disables the next hop connection verification process for eBGP multihop peering sessions in the target VRF BLUE:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101 vrf BLUE
+leaf01(config-router)# bgp disable-ebgp-connected-route-check
+leaf01(config-router)# end
+leaf01# write memory
+leaf01# exit
+```
+
+If you need to force Cumulus Linux to reimport the routes into the target VRF, run the `clear ip bgp vrf <source-vrf> *` command on the VRF from which you are leaking routes.
+
 ### Verify Route Leaking Configuration
 
 To check the status of VRF route leaking, run the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command or the `net show bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:

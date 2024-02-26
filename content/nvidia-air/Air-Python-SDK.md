@@ -90,6 +90,19 @@ curl --location --request GET 'https://air.nvidia.com/api/v1/simulation/' \
 {{< /tab >}}
 {{< /tabs >}}
 
+### Service account
+
+Internal NVIDIA users can use an SSA client ID to authenticate as a service account. First, a valid bearer token must be generated.
+
+```
+curl --user "$CLIENT_ID:$CLIENT_SECRET" --request POST $AIR_TOKEN_URL --header "Content-Type: application/x-www-form-urlencoded" --data-urlencode "grant_type=client_credentials" --data-urlencode "scope=api-access"
+{"access_token":"eyJraWQ...","token_type":"bearer","expires_in":900,"scope":"api-access"}
+```
+
+Replace $CLIENT_ID, $CLIENT_SECRET, and $AIR_TOKEN_URL with values generated during your client registration. For more detail, please refer to internal documentation on using service accounts.
+
+Once you have a bearer token, it can be used in the same way as an [Air bearer token](#bearer-token)
+
 </details>
 
 ## Examples
@@ -154,7 +167,11 @@ graph "sample_topology" {
     "cumulus0":"swp2" -- "cumulus1":"swp2"
 }
 ```
-Create the topology, organization, and simulation, then start the simulation:
+Create the organization, then create and start the simulation:
+
+{{<notice note>}}
+Organization creation is currently only supported for NVIDIA users.
+{{</notice>}}
 
 {{< tabs "TabID55113 ">}}
 {{< tab "SDK ">}}
@@ -164,22 +181,16 @@ Create the topology, organization, and simulation, then start the simulation:
 >>> user = 'user@nvidia.com'
 >>> api_token = 'fake_api_token'
 >>> air = AirApi(username=user, password=api_token)
->>> dot_file_path = '/Users/alexag/topology.dot'
->>> topology = air.topologies.create(dot=dot_file_path)
+>>> dot_file_path = '/tmp/topology.dot'
 >>> org_name = 'My Organization'
 >>> org = air.organizations.create(name=org_name, members=[{'username': f'{user}', 'roles': ['Organization Admin']}])
->>> sim_title = 'My Simulation'
->>> simulation = air.simulations.create(topology=topology, title=sim_title, organization=org)
->>> simulation.start()
+>>> simulation = air.simulations.create(topology_data=dot_file_path, organization=org)
 ```
 {{< /tab >}}
 {{< tab "cURL ">}}
 
 
 Create the organization:
-{{<notice note>}}
-Organization creation is currently only supported for NVIDIA users. 
-{{</notice>}}
 ```
 curl --location --request POST 'https://air.nvidia.com/api/v1/organization/' \
 --header 'Accept: application/json' \
@@ -194,41 +205,15 @@ curl --location --request POST 'https://air.nvidia.com/api/v1/organization/' \
   ]
 }'
 ```
-Create the topology:
-```
-curl --location --request POST 'https://air.nvidia.com/api/v1/topology/' \
---header 'Accept: application/json' \
---header 'Authorization: Bearer <bearer_token>' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "name": "test_topo",
-    "organization": "https://air.nvidia.com/api/v1/organization/63227c22-366c-4416-af25-73bbed6eacff/",
-    "dot": "graph 'sample_topo' {\n  'cumulus0' [ memory='1024' os='cumulus-vx-4.4.0' cpu='1']\n  'cumulus1' [ memory='1024' os='cumulus-vx-4.4.0' cpu='1']\n    'cumulus0':'swp1' -- 'cumulus1':'swp1'\n    'cumulus0':'swp2' -- 'cumulus1':'swp2'\n}\n"
-  }'
-```
 
-Create the simulation:
+Create and start the simulation:
 ```
-curl --location --request POST 'https://air.nvidia.com/api/v1/simulation/' \
+curl --location --request POST 'https://air.nvidia.com/api/v2/simulation/' \
 --header 'Authorization: Bearer <bearer_token>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "topology": "<topology_uuid>",
-  "name": "user@nvidia.com",
-  "expires": "true",
-  "sleep": "true",
-  "title": "My Simulation",
+  "topology_data": "graph \"My Simulation\" {\n  \"cumulus0\" [ memory=\"1024\" os=\"cumulus-vx-5.7.0\" cpu=\"1\" ]\n  \"cumulus1\" [ memory=\"1024\" os=\"cumulus-vx-5.7.0\" cpu=\"1\"]\n    \"cumulus0\":\"swp1\" -- \"cumulus1\":\"swp1\"\n    \"cumulus0\":\"swp2\" -- \"cumulus1\":\"swp2\"\n}\n",
   "organization": "<organization_uuid>"
-}'
-```
-Start the simulation:
-```
-curl --location --request POST 'https://air.nvidia.com/api/v1/simulation/<simulation_uuid>/control/' \
---header 'Authorization: Bearer <bearer_token>' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "action": "load",
-  "start": true
 }'
 ```
 {{< /tab >}}
@@ -482,21 +467,19 @@ Use the image you created in a custom topology:
 >>> topology_name = 'My Topology'
 >>> node_name = 'server01'
 >>> dot_graph = f'graph \"{topology_name}\" {{ \"{node_name}\" [ os=\"{image_name}\"] }}'
->>> topology = air.topologies.create(dot=dot_graph)
+>>> simulation = air.simulations.create(topology_data=dot_graph)
 ```
 
 {{< /tab >}}
 {{< tab "cURL">}}
 
 ```
-curl --request POST 'https://air.nvidia.com/api/v1/topology/' \
+curl --request POST 'https://air.nvidia.com/api/v2/simulation/' \
 --header 'Accept: application/json' \
 --header 'Authorization: Bearer <bearer_token>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name": "My Topology",
-    "organization": "https://air.nvidia.com/api/v1/organization/63227c22-366c-4416-af25-73bbed6eacff/",
-    "dot": "graph 'sample_topo' {\n  'cumulus0' [ memory='1024' os='<image_uuid>' cpu='1']\n  'cumulus1' [ memory='1024' os='<image_uuid>' cpu='1']\n    'cumulus0':'swp1' -- 'cumulus1':'swp1'\n    'cumulus0':'swp2' -- 'cumulus1':'swp2'\n}\n"
+    "topology_data": "graph \"My Topology\" {\n  \"cumulus0\" [ memory=\"1024\" os=\"<image_uuid>\" cpu=\"1\" ]\n  \"cumulus1\" [ memory=\"1024\" os=\"<image_uuid>\" cpu=\"1\" ]\n    \"cumulus0\":\"swp1\" -- \"cumulus1\":\"swp1\"\n    \"cumulus0\":\"swp2\" -- \"cumulus1\":\"swp2"\n}\n"
   }'
 ```
 
@@ -1103,8 +1086,14 @@ Create a new image
 **Example**:
 
 ```
->>> air.images.create(name='my_image', filename='/tmp/my_image.qcow2', agent_enabled=False)
+>>> image = air.images.create(name='my_image', filename='/tmp/my_image.qcow2', agent_enabled=False)
+>>> image
 <Image my_image 01298e0c-4ef1-43ec-9675-93160eb29d9f>
+>>> image.upload_status
+'COMPLETE'
+>>> alt_img = air.images.create(name='my_alt_img', filename='/tmp/alt_img.qcow2', agent_enabled=False)
+>>> alt_img.upload_status
+'FAILED'
 ```
 
 
@@ -2712,11 +2701,13 @@ List existing simulations
 <a name="air_sdk.simulation.SimulationApi.create"></a>
 ### create
 
-Create a new simulation
+Create a new simulation. The caller must provide either `topology` or `topology_data`.
 
 **Arguments**:
 
-- `topology` _str | `Topology`_ - `Topology` or ID
+- `topology` _str | `Topology`, optional_ - `Topology` or ID
+- `topology_data` _str | fd, optional_ - Topology in DOT format.
+  This can be passed as a string containing the raw DOT data, a path to the DOT file on your local disk, or as a file descriptor for a local file
 - `kwargs` _dict, optional_ - All other optional keyword arguments are applied as key/value
   pairs in the request's JSON payload
   
@@ -2737,6 +2728,12 @@ Create a new simulation
 ```
 >>> air.simulations.create(topology=topology, title='my_sim')
 <Simulation my_sim 01298e0c-4ef1-43ec-9675-93160eb29d9f>
+>>> air.simulations.create(topology_data='/tmp/my_net.dot', organization=my_org)
+<Simulation my_sim c0a4c018-0b85-4439-979d-9814166aaeac>
+>>> air.simulations.create(topology_data='graph "my_sim" { "server1" [ function="server" os="generic/ubuntu2204"] }', organization=my_org)
+<Simulation my_sim b9c0c68e-d4bd-4e9e-8a49-9faf41efaf70>
+>>> air.simulations.create(topology_data=open('/tmp/my_net.dot', 'r', encoding='utf-8')), organization=my_org)
+<Simulation my_sim 86162934-baa7-4d9a-a826-5863f92b03ef>
 ```
 
 

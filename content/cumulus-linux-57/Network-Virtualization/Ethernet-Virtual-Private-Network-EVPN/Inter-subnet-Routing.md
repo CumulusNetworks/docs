@@ -90,93 +90,14 @@ In distributed symmetric routing, each VTEP acts as a layer 3 gateway, performin
 - In an MLAG configuration, the SVI for the layer 3 VNI cannot be part of the bridge. This ensures that the switch does not forward traffic tagged with that VLAN ID on the peer link or other trunks.
 {{%/notice%}}
 
-In an EVPN symmetric routing configuration, when the switch announces a type-2 (MAC/IP) route, in addition to containing two VNIs (the layer 2 VNI and the layer 3 VNI), the route also contains separate RTs for layer 2 and layer 3. The layer 3 RT associates the route with the tenant VRF. By default, this is auto-derived in a similar way to the layer 2 RT, using the layer 3 VNI instead of the layer 2 VNI; however you can also configure it.
+In an EVPN symmetric routing configuration, when the switch announces a type-2 (MAC/IP) route, in addition to containing two VNIs (the layer 2 VNI and the layer 3 VNI), the route also contains separate RTs for layer 2 and layer 3. The layer 3 RT associates the route with the tenant VRF. By default, this is auto-derived using the layer 3 VNI instead of the layer 2 VNI; however you can also configure it.
 
-For EVPN symmetric routing, you need to perform additional configuration:
-
-- {{<link url="#configure-a-per-tenant-vxlan-interface" text="Configure a per-tenant VXLAN interface">}} that specifies the layer 3 VNI for the tenant. This VXLAN interface is part of the bridge and the router MAC address of the remote VTEP installs over this interface.
-- {{<link url="#configure-an-svi-for-the-layer-3-vni" text="Configure an SVI">}} (layer 3 interface) corresponding to the per-tenant VXLAN interface. This attaches to the VRF of the tenant. Remote host routes for symmetric routing install over this SVI.
-- {{<link url="#configure-the-vrf-to-layer-3-vni-mapping" text="Specify the VRF to layer 3 VNI mapping">}}. This configuration is for the BGP control plane.
-
-Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenant-vrf" text="configuring RD and RTs for the tenant VRF">}} and {{<link url="#advertise-locally-attached-subnets" text="advertising the locally-attached subnets">}}.
-
-### Configure a Per Tenant VXLAN Interface
+For EVPN symmetric routing, you need to perform the following additional configuration. Optional configuration includes {{<link url="#configure-rd-and-rts-for-the-tenant-vrf" text="configuring RD and RTs for the tenant VRF">}} and {{<link url="#advertise-locally-attached-subnets" text="advertising the locally-attached subnets">}}.
 
 {{< tabs "TabID113 ">}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10 
-cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.10
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file. For example:
-
-```
-cumulus@leaf01:~$ sudo nano /etc/network/interfaces
-...
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    vxlan-local-tunnelip 10.10.10.1
-
-auto bridge
-  iface bridge
-    bridge-ports vni10
-    bridge-vlan-aware yes
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Configure an SVI for the Layer 3 VNI
-
-{{< tabs "TabID154 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@leaf01:~$ nv set vrf RED
-cumulus@leaf01:~$ nv set interface vlan10 ip vrf RED
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/network/interfaces` file. For example:
-
-```
-cumulus@leaf01:~$ sudo nano /etc/network/interfaces
-...
-auto vlan10
-iface vlan10
-    vlan-id 10
-    vlan-raw-device bridge
-    vrf RED
-...
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice info%}}
-
-- Do not add the Layer 3 VNI VLAN IDs to the bridge `vids` list in the layer 2 bridge configuration.
-- When two VTEPs are operating in **VXLAN active-active** mode and performing **symmetric** routing, you need to configure the router MAC corresponding to each layer 3 VNI to ensure both VTEPs use the same MAC address. Specify the `address-virtual` (MAC address) for the SVI corresponding to the layer 3 VNI. Use the same address on both switches in the MLAG pair. Use the MLAG system MAC address. See {{<link url="#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
-
-{{%/notice%}}
-
-
-### Configure the VRF to Layer 3 VNI Mapping
-
-{{< tabs "TabID206 ">}}
-{{< tab "NVUE Commands ">}}
+Specify the VRF to layer 3 VNI mapping. This configuration is for the BGP control plane.
 
 ```
 cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
@@ -187,9 +108,9 @@ cumulus@leaf01:~$ nv config apply
 When you run the `nv set vrf RED evpn vni 4001` command, NVUE:
 - Creates a layer 3 VNI called vni4001
 - Assigns the vni4001 a VLAN automatically from the reserved VLAN range and adds `_l3` (layer 3) at the end (for example vlan220_l3)
-- Creates a layer 3 bridge called br_l3vni
-- Adds vni4001 to the br_l3vni bridge
-- Assigns vlan4024 to vrf RED
+- Creates a layer 3 bridge called `br_l3vni`
+- Adds vni4001 to the `br_l3vni` bridge
+- Assigns vlan4024 to VRF RED
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/network/interfaces
@@ -199,13 +120,12 @@ iface vni4001
     bridge-access 220
     bridge-learning off
     vxlan-id 4001
-
 auto vlan220_l3
 iface vlan220_l3
-    vrf RED
-    vlan-raw-device br_l3vni
-    address-virtual 44:38:39:BE:EF:AA
-    vlan-id 220
+vrf RED
+vlan-raw-device br_l3vni
+address-virtual 44:38:39:BE:EF:AA
+vlan-id 220
 ...
 ```
 {{%/notice%}}
@@ -213,23 +133,71 @@ iface vlan220_l3
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/frr/frr.conf` file. For example:
+1. Configure a per-tenant VXLAN interface that specifies the layer 3 VNI for the tenant. This VXLAN interface is part of the bridge and the router MAC address of the remote VTEP installs over this interface.
 
-```
-cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
-...
-vrf RED
-  vni 4001
-!
-...
-```
+   Edit the `/etc/network/interfaces` file. For example:
+
+   ```
+   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+   ...
+   auto vni10
+   iface vni10
+       bridge-access 10
+       vxlan-id 10
+       vxlan-local-tunnelip 10.10.10.1
+   
+   auto bridge
+     iface bridge
+       bridge-ports vni10
+       bridge-vlan-aware yes
+   ...
+   ```
+
+2. Configure an SVI (layer 3 interface) corresponding to the per-tenant VXLAN interface. This attaches to the VRF of the tenant. Remote host routes for symmetric routing install over this SVI.
+
+   Edit the `/etc/network/interfaces` file. For example:
+
+   ```
+   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+   ...
+   auto vlan10
+   iface vlan10
+       vlan-id 10
+       vlan-raw-device bridge
+       vrf RED
+   ...
+   ```
+
+3. Specify the VRF to layer 3 VNI mapping. This configuration is for the BGP control plane.
+
+   Edit the `/etc/frr/frr.conf` file. For example:
+
+   ```
+   cumulus@leaf01:~$ sudo nano /etc/frr/frr.conf
+   ...
+   vrf RED
+     vni 4001
+   !
+   ...
+   ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice info%}}
+- Do not add the layer 3 VNI VLAN IDs to the bridge `vids` list in the layer 2 bridge configuration.
+- When two VTEPs are operating in **VXLAN active-active** mode and performing **symmetric** routing, you need to configure the router MAC corresponding to each layer 3 VNI to ensure both VTEPs use the same MAC address. Specify the `address-virtual` (MAC address) for the SVI corresponding to the layer 3 VNI. Use the same address on both switches in the MLAG pair. Use the MLAG system MAC address. See {{<link url="#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP    Address">}}.
+{{%/notice%}}
+
 ### Configure RD and RTs for the Tenant VRF
 
-If you do not want Cumulus Linux to derive the RD and RTs (layer 3 RTs) for the tenant VRF automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.
+If you do not want Cumulus Linux to derive the <span class="a-tooltip">[RD](## "route distinguisher")</span> and <span class="a-tooltip">[RTs](## "route targets")</span> (layer 3 RTs) for the tenant VRF automatically, you can configure them manually by specifying them under the `l2vpn evpn` address family for that specific VRF.
+
+You can configure the RD, the RT you want to attach to the host or prefix routes when importing them into EVPN, and the RTs to attach to host or prefix routes when importing them into a VRF.
+
+{{%notice note%}}
+The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. To define the RD and RTs for the layer 2 VNI, see {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
+{{%/notice%}}
 
 {{< tabs "TabID226 ">}}
 {{< tab "NVUE Commands ">}}
@@ -237,6 +205,8 @@ If you do not want Cumulus Linux to derive the RD and RTs (layer 3 RTs) for the 
 ```
 cumulus@leaf01:~$ nv set vrf RED router bgp rd 10.1.20.2:5
 cumulus@leaf01:~$ nv set vrf RED router bgp route-import from-evpn route-target 65102:4001
+cumulus@leaf01:~$ nv set vrf RED router bgp route-export to-evpn route-target 65101:4002
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -250,6 +220,7 @@ leaf01(config)# router bgp 65101 vrf RED
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# rd 10.1.20.2:5
 leaf01(config-router-af)# route-target import 65102:4001
+leaf01(config-router-af)# route-target export 65101:4002
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
@@ -264,15 +235,12 @@ router bgp 65101 vrf RED
   address-family l2vpn evpn
   rd 10.1.20.2:5
   route-target import 65102:4001
+  route-target export 65101:4002
 ...
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
-
-{{%notice note%}}
-The tenant VRF RD and RTs are different from the RD and RTs for the layer 2 VNI. See {{<link url="EVPN-Enhancements#define-rds-and-rts" text="Define RDs and RTs">}}.
-{{%/notice%}}
 
 ### Advertise Locally Attached Subnets
 
@@ -1682,9 +1650,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL56 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
-
-This simulation is running Cumulus Linux 5.6. The Cumulus Linux 5.7 simulation is coming soon.
+    {{< simulation name="Try It CL57 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
 
 This simulation starts with the example downstream VNI configuration. To simplify the example, only one spine is in the topology. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

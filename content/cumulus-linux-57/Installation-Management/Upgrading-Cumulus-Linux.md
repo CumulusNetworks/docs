@@ -37,8 +37,8 @@ Understanding the location of configuration data is important for successful upg
 | `/etc/cumulus/control-plane/policers.conf` | Configuration for control plane policers | {{<link title="Netfilter - ACLs#control-plane-policers">}} | N/A |
 | `/etc/cumulus/datapath/qos/qos_features.conf` | QoS configuration <br><br><b>Note:</b> In Cumulus Linux 5.0 and later, default ECN configuration parameters start with `default_ecn_red_conf` instead of `default_ecn_conf`. | {{<link title="Quality of Service">}} | N/A |
 | `/etc/mlx/datapath/qos/qos_infra.conf` | QoS configuration | {{<link title="Quality of Service">}} | N/A |
-| `/etc/mlx/datapath/tcam_profile.conf` | Configuration for the forwarding table profiles| {{<link title="Supported Route Table Entries#tcam-resource-profiles-for-spectrum-switches">}} | N/A |
-| `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Supported Route Table Entries">}} | N/A |
+| `/etc/mlx/datapath/tcam_profile.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
+| `/etc/cumulus/datapath/traffic.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
 | `/etc/cumulus/ports.conf` | Breakout cable configuration file | {{<link title="Switch Port Attributes">}} | N/A; read the guide on breakout cables |
 | `/etc/cumulus/switchd.conf` | `switchd` configuration | {{<link title="Configuring switchd">}} | N/A; read the guide on `switchd` configuration |
 | `/etc/cumulus/switchd.d/qos.conf` | QoS configuration | {{<link title="Quality of Service">}} | N/A |
@@ -217,8 +217,8 @@ When you use package upgrade to upgrade your switch, configuration data stays in
 #### Disk Space Requirements
 
 Make sure you have enough disk space to perform a package upgrade. Cumulus Linux 5.7.0 requires:
-- 0.6GB GB of free disk space to upgrade from 5.5
-- 1.5GB of free disk space to upgrade from 5.4
+- 1.5GB of free disk space to upgrade from 5.6
+- 1.8GB of free disk space to upgrade from 5.5
 
 Before you upgrade, run the `sudo df -h` command to show how much disk space you are currently using on the switch.
 

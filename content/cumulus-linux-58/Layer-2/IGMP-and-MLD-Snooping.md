@@ -347,7 +347,7 @@ The supported values for `bridge-hashmax` are 512, 1024, 2048, 4096, 8192, 16384
 
 {{%notice note%}}
 * Spectrum 1 switches limit multicast groups to 16300 in the MDB with OMF disabled and 14800 multicast groups with OMF enabled.
-* On Spectrum 1 switches, to support this uppper limit you must change the {{<link url="Supported-Route-Table-Entries/#forwarding-resource-profiles" text="forwarding resource profile">}} to `rash-custom-profile1`, then restart `switchd`.
+* On Spectrum 1 switches, to support this uppper limit you must change the {{<link url="Forwarding-Table-Size-and-Profiles" text="forwarding resource profile">}} to `rash-custom-profile1`, then restart `switchd`.
 {{%/notice%}}
 <!-- vale off -->
 ## DIP-based Multicast Forwarding

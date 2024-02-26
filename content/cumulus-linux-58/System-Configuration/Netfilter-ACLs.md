@@ -118,13 +118,13 @@ To increase the number of configurable ACL rules, configure the switch to operat
 
 {{< img src = "/images/cumulus-linux/acl-update-operation-nonatomic.png" >}}
 
-Instead of reserving 50% of your TCAM space for atomic updates, incremental update uses the available free space to write the new TCAM rules and swap over to the new rules after this is complete. Cumulus Linux then deletes the old rules and frees up the original TCAM space. If there is insufficient free space to complete this task, the original nonatomic update runs, which interrupts traffic.
+Instead of reserving 50% of your TCAM space for atomic updates, nonatomic mode runs incremental updates that use available free space to write the new TCAM rules, then swap over to the new rules. Cumulus Linux deletes the old rules and frees up the original TCAM space. If there is insufficient free space to complete this task, the regular nonatomic (non-incremental) update runs, which interrupts traffic.
 
 {{< img src = "/images/cumulus-linux/acl-update-del.png" >}}
 
 {{< img src = "/images/cumulus-linux/acl-update-add.png" >}}
 
-You can enable nonatomic updates for `switchd`, which offer better scaling because all TCAM resources actively impact traffic. With atomic updates, half of the hardware resources are on standby and do not actively impact traffic.
+Nonatomic updates offer better scaling because all TCAM resources actively impact traffic. With atomic updates, half of the hardware resources are on standby and do not actively impact traffic.
 
 *Incremental nonatomic updates* are table based, so they do not interrupt network traffic when you install new rules. The rules map to the following tables and update in this order:
 
@@ -138,25 +138,44 @@ The incremental nonatomic update operation follows this order:
 2. Cumulus Linux checks if the rules in a table are different from installation time; if a table does not have any changes, it does not reinstall the rules.
 3. If there are changes in a table, the new rules populate in new groups or slices in hardware, then that table switches over to the new groups or slices.
 4. Finally, old resources for that table free up. This process repeats for each of the tables listed above.
-5. If there are insufficient resources to hold both the new rule set and old rule set, Cumulus Linux tries the regular nonatomic mode, which interrupts network traffic.
+5. If there are insufficient resources to hold both the new rule set and old rule set, Cumulus Linux tries regular nonatomic mode, which interrupts network traffic.
 6. If the regular nonatomic update fails, Cumulus Linux reverts back to the previous rules.
 
-To always reload `switchd` with nonatomic updates:
+To set nonatomic mode:
 
-1. Edit `/etc/cumulus/switchd.conf`.
-2. Add the following line to the file:
+{{< tabs "TabID146 ">}}
+{{< tab "NVUE Commands ">}}
 
-    ```
-    acl.non_atomic_update_mode = TRUE
-    ```
+```
+cumulus@switch:~$ nv set system acl mode non-atomic 
+cumulus@switch:~$ nv config apply
+```
 
-3. Reload `switchd` with the `sudo systemctl reload switchd.service` command for the changes to take effect. The reload does **not** interrupt network services.
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.conf` file to add `acl.non_atomic_update_mode = TRUE`, then reload `switchd` for the changes to take effect:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+acl.non_atomic_update_mode = TRUE
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
+```
+
+Reloading `switchd` does **not** interrupt network services.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 During regular *non-incremental nonatomic updates*, traffic stops, then continues after all the new configuration is in the hardware.
 {{%/notice%}}
 
-### Use iptables, ip6tables, and ebtables Directly
+### iptables, ip6tables, and ebtables
 
 Do not use `iptables`, `ip6tables`, `ebtables` directly; installed rules only apply to the Linux kernel and Cumulus Linux does not hardware accelerate. When you run `cl-acltool -i`, Cumulus Linux resets all rules and deletes anything that is not in `/etc/cumulus/acl/policy.conf`.
 
@@ -184,10 +203,9 @@ However, Cumulus Linux does not synchronize the rule to hardware. Running `cl-ac
 
 ### Estimate the Number of Rules
 
-To estimate the number of rules you can create from an ACL entry, first determine if that entry is an ingress or an egress. Then, determine if it is an IPv4-mac or IPv6 type rule. This determines the slice to which the rule belongs. Use the following to determine how many entries the switch uses for each type.
+To estimate the number of rules you can create from an ACL entry, first determine if the ACL entry is ingress or egress. Then, determine if the entry is an `IPv4-mac` or `IPv6` type rule. This determines the slice to which the rule belongs. Use the following to determine how many entries the switch uses for each type.
 
 By default, each entry occupies one double wide entry, except if the entry is one of the following:
-
 - An entry with multiple comma-separated input interfaces splits into one rule for each input interface. For example, this entry splits into two rules:
 
   ```
@@ -200,7 +218,7 @@ By default, each entry occupies one double wide entry, except if the entry is on
     -A FORWARD -i swp+ -o swp1s0,swp1s1 -p icmp -j ACCEPT
     ```
 
-- An entry with both input and output comma-separated interfaces splits into one rule for each combination of input and output interface This entry splits into four rules:
+- An entry with both input and output comma-separated interfaces splits into one rule for each combination of input and output interface. This entry splits into four rules:
 
     ```
     -A FORWARD -i swp1s0,swp1s1 -o swp1s2,swp1s3 -p icmp -j ACCEPT
@@ -231,7 +249,7 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 {{%notice note%}}
 - Cumulus Linux reserves `mark` values between 0 and 100; for example, if you use `--mark-set 10`, you see an error. Use mark values between 101 and 4196.
 - You cannot mark multiple VLANs with the same value.
-- If you enable {{<link url="EVPN-Multihoming" text="EVPN-MH">}} and configure VLAN match rules in ebtables with a {{mark}} target, the ebtables rule might overwrite the {{mark}} set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class {{mark}} might not get hit. To work around this issue, add ebtable rules to {{ACCEPT}} the packets already marked by EVPN-MH traffic class rules on ingress.
+- If you enable {{<link url="EVPN-Multihoming" text="EVPN-MH">}} and configure VLAN match rules in ebtables with a `mark` target, the ebtables rule might overwrite the `mark` set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class `mark` might not get hit. To work around this issue, add ebtable rules to `ACCEPT` the packets already marked by EVPN-MH traffic class rules on ingress.
 {{%/notice%}}
 
 ## Install and Manage ACL Rules with NVUE
@@ -278,7 +296,7 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    cumulus@switch:~$ nv config apply
    ```
 
-To see all installed rules, examine the `/etc/cumulus/acl/policy.d/50_nvue.rules` file:
+To see the installed rule, either examine the `/etc/cumulus/acl/policy.d/50_nvue.rules` file or run the NVUE `nv show acl <rule-name> rule <ID>` command:
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_nvue.rules
@@ -287,6 +305,20 @@ cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_nvue.rules
 ## ACL EXAMPLE1 in dir inbound on interface swp1 ##
 -t mangle -A PREROUTING -i swp1 -s 10.0.14.2/32 -d 10.0.15.8/32 -p tcp -j ACCEPT
 ...
+```
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 
+                     operational   applied     
+-------------------  ------------  ------------
+match                                          
+  ip                                           
+    source-ip        10.0.14.2/32  10.0.14.2/32
+    dest-ip          10.0.15.8/32  10.0.15.8/32
+    protocol         tcp           tcp         
+    tcp                                        
+      [source-port]  ANY           ANY         
+      [dest-port]    ANY           ANY
 ```
 
 To remove this rule, run the `nv unset acl <acl-name>` and `nv unset interface <interface> acl <acl-name>` commands. These commands delete the rule from the `/etc/cumulus/acl/policy.d/50_nvue.rules` file.
@@ -313,14 +345,21 @@ cumulus@switch:~$ sudo cl-acltool -L all
  -------------------------------
 Listing rules of type iptables:
 -------------------------------
-
 TABLE filter :
-Chain INPUT (policy ACCEPT 90 packets, 14456 bytes)
-pkts bytes target prot opt in out source destination
-0 0 DROP all -- swp+ any 240.0.0.0/5 anywhere
-0 0 DROP all -- swp+ any loopback/8 anywhere
-0 0 DROP all -- swp+ any base-address.mcast.net/8 anywhere
-0 0 DROP all -- swp+ any 255.255.255.255 anywhere ...
+Chain INPUT (policy ACCEPT 432K packets, 31M bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+    0     0 DROP       all  --  swp+   any     240.0.0.0/5          anywhere            
+    0     0 DROP       all  --  swp+   any     127.0.0.0/8          anywhere            
+    0     0 DROP       all  --  swp+   any     base-address.mcast.net/4  anywhere            
+    0     0 DROP       all  --  swp+   any     255.255.255.255      anywhere            
+    0     0 ACCEPT     all  --  swp+   any     anywhere             anywhere            
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 457K packets, 35M bytes)
+ pkts bytes target     prot opt in     out     source               destination
+...
 ```
 
 To list installed rules using native `iptables`, `ip6tables` and `ebtables`, use the `-L` option with the respective commands:
@@ -381,9 +420,8 @@ Here is an example ACL policy file:
 You can use wildcards or variables to specify chain and interface lists.
 
 {{%notice note%}}
-You can only use *swp+* and *bond+* as wildcard names.
-
-swp+ rules apply as an aggregate, *not* per port. If you want to apply per port policing, specify a specific port instead of the wildcard.
+- You can only use *swp+* and *bond+* as wildcard names.
+- swp+ rules apply as an aggregate, *not* per port. If you want to apply per port policing, specify a specific port instead of the wildcard.
 {{%/notice%}}
 
 ```
@@ -468,47 +506,81 @@ cumulus@switch:~$ sudo nano /etc/cumulus/acl/policy.conf
 include /etc/cumulus/acl/policy.d/01_new.datapathacl
 ```
 
-## Hardware Limitations on Number of Rules
+## Hardware Limitations for ACL Rules
 
-The maximum number of rules that the hardware process depends on:
+The maximum number of rules that the switch hardware can store depends on:
 
-- The mix of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously.
+- The combination of IPv4 and IPv6 rules; Cumulus Linux does not support the maximum number of rules for both IPv4 and IPv6 simultaneously.
 - The number of default rules that Cumulus Linux provides.
 - Whether the rules apply on ingress or egress.
-- Whether the rules are in atomic or nonatomic mode; Cumulus Linux uses nonatomic mode rules when you enable nonatomic updates ({{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="see above">}}).
+- Whether the rules are in {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic or nonatomic mode">}}; Cumulus Linux uses nonatomic mode rules when you enable nonatomic updates.
+- Other resources that share the same table space, such as multicast route entries and internal VLAN counters.
 
-If you exceed the maximum number of rules for a particular table, `cl-acltool -i` generates the following error:
+If you exceed the maximum number of rules or run out of related memory resources for the ACL table, `cl-acltool -i` generates one of the following errors:
 
 ```
 error: hw sync failed (sync_acl hardware installation failed) Rolling back .. failed.
+error: hw sync failed (Bulk counter init failed with No More Resources). Rolling back ..
 ```
 
-In the table below, the default rules count toward the limits listed. The raw limits below assume only one ingress and one egress table are present.
-<!--
-### Spectrum 1
+To troubleshoot this issue and manage netfilter resources with high VLAN and ACL scale, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.
 
-The NVIDIA Spectrum ASIC has one common {{<exlink url="https://en.wikipedia.org/wiki/Content-addressable_memory#Ternary_CAMs" text="TCAM">}} for both ingress and egress, which you can use for other non-ACL-related resources. However, the number of supported rules varies with the {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM profile">}} for the switch.
--->
-|Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
-|------------|-------------------|-------------------|-------------------|-------------------------|
-|default |500 |250 |1000 |500|
-|ipmc-heavy|750 |500 |1500 |1000|
-|acl-heavy |1750 |1000 |3500 |2000|
-|ipmc-max |1000 |500 |2000 |1000 |
-|ip-acl-heavy |6000 |0 |12000 |0|
+NVIDIA Spectrum switches use a <span class="a-tooltip">[TCAM](## "Ternary Content Addressable Memory")</span> or <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
 
-<!--### Spectrum-2 and Later
+### TCAM Profiles on Spectrum 1
+
+The NVIDIA Spectrum 1 ASIC (model numbers 2xx0) has one common TCAM space for both ingress and egress ACLs, which the switch also uses for multicast route entries.
+
+Cumulus Linux controls the ACL and multicast route entry scale on NVIDIA Spectrum 1 switches with different TCAM profiles in combination with the ACL {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="atomic and nonatomic update setting">}}.
+
+|Profile |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules | Multicast Route Entries |
+|------------|-------------------|-------------------|-------------------|-------------------------|-----------------|
+|default |500 |250 |1000 |500| 1000 |
+|ipmc-heavy|750 |500 |1500 |1000| 8500 |
+|acl-heavy |1750 |1000 |3500 |2000| 450|
+|ipmc-max |1000 |500 |2000 |1000 | 13000|
+|ip-acl-heavy |6000 |0 |12000 |0| 0|
+
+{{%notice note%}}
+- Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
+- The ip-acl-heavy profile shows an updated number of supported atomic mode and nonatomic mode IPv4 rules. The previously published numbers were 7500 for atomic mode and 15000 for nonatomic mode IPv4 rules.
+{{%/notice%}}
+
+To configure the profile you want to use, set the `tcam_resource.profile` parameter in the `/etc/mlx/datapath/tcam_profile.conf` file, then restart `switchd`:
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/tcam_profile.conf
+...
+tcam_resource.profile = ipmc-max
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart switchd.service
+```
+
+{{%notice note%}}
+Spectrum 1 TCAM resource profiles that control ACLs and multicast route scale are different from {{<link url="Forwarding-Table-Size-and-Profiles" text="forwarding resource profiles">}} that control MAC table, IPv4, and IPv6 entry scale.
+{{%/notice%}}
+
+### ATCAM on Spectrum-2 and Later
+
+Switches with Spectrum-2 and later use a newer <span class="a-tooltip">[KVD](## "Key Value Database")</span> scheme and an <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> design that is more flexible and allows a higher ACL scale than Spectrum 1. There is no TCAM resource profile on Spectrum-2 and later.
+
+The following table shows the tested ACL rule limits. Because the KVD and ATCAM space is shared with forwarding table entries, multicast route entries, and VLAN flow counters, these ACL limits might vary based on your use of other tables.
+
+These limits are valid when using any Spectrum-2 and later forwarding profile, except for the l2-heavy-3 and v6-lpm-heavy1 profiles, which reduce the ACL scale significantly.
 
 For Spectrum-2 and later, all profiles support the same number of rules.
 
 |Atomic Mode IPv4 Rules |Atomic Mode IPv6 Rules |Nonatomic Mode IPv4 Rules |Nonatomic Mode IPv6 Rules |
 |-------------------|-------------------|-------------------|-------------------------|
 |12500 |6250 |25000 |12500|
--->
-{{%notice note%}}
-- Even though the table above specifies the ip-acl-heavy profile supports no IPv6 rules, Cumulus Linux does not prevent you from configuring IPv6 rules. However, there is no guarantee that IPv6 rules work under the ip-acl-heavy profile.
-- The ip-acl-heavy profile shows an updated number of supported atomic mode and nonatomic mode IPv4 rules. The previously published numbers were 7500 for atomic mode and 15000 for nonatomic mode IPv4 rules.
-{{%/notice%}}
+
+For information about nonatomic and atomic mode, refer to {{<link url="#nonatomic-update-mode-and-atomic-update-mode" text="Nonatomic Update Mode and Atomic Update Mode">}}.
+
+## ATCAM Resource Exhaustion
+
+If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing netfilter resources.
 
 ## Supported Rule Types
 
@@ -1378,9 +1450,11 @@ To work around this limitation, set the rate and burst for all these rules to th
 - When using the OUTPUT chain, you must assign rules to the source. For example, if you assign a rule to the switch port in the direction of traffic but the source is a bridge (VLAN), the rule does not affect the traffic and you must apply the rule to the bridge.
 - If you need to apply a rule to all transit traffic, use the FORWARD chain, not the OUTPUT chain.
 
-### ACL Rule Installation Failure
+### Troubleshooting ACL Rule Installation Failures
 
-After an ACL rule installation failure, you see a generic error message like the following:
+On Spectrum-2 and later, in addition to ACLs, items stored in KVD and ATCAM include internal counters for VLANs and interfaces in a bridge. If the network includes more than 1000 VLAN interfaces, the counters might occupy a significant amount of space and reduce the amount of available space for ACLs.
+
+If netfilter ACL space is exhausted, you might see error messages similar to the following when you try to apply ACLs:
 
 ```
 cumulus@switch:$ sudo cl-acltool -i -p 00control_plane.rules
@@ -1391,21 +1465,60 @@ error: hw sync failed (sync_acl hardware installation failed)
 Installing acl policy... Rolling back ..
 failed.
 ```
-<!--
-### INPUT Chain Rules
 
-Cumulus Linux implements INPUT chain rules using a trap mechanism and assigns trap IDs to packets that go to the CPU. The default INPUT chain rules map to these trap IDs. However, if a packet matches multiple traps, an internal priority mechanism resolves them which can be different from the rule priorities. The default expected rule does not police the packet but another rule polices it instead. For example, the LOCAL rule polices ICMP packets that go to the CPU instead of the ICMP rule. Also, multiple rules can share the same trap, where the largest of the policer values applies.
+```
+error: hw sync failed (Bulk counter init failed with No More Resources). Rolling back ..
+```
 
-To work around this issue, create rules on the INPUT and FORWARD chains (INPUT,FORWARD).
+You might also see messages similar to the following in the `/var/log/syslog` file:
 
-{{%notice note%}}
-FORWARD chain rules can drop packets that go through the switch. Exercise caution when defining these rules and be as specific as possible.
-{{%/notice%}}
+```
+2023-12-07T16:31:32.386792-05:00 mlx-4700-51 sx_sdk: 1951 [FLOW_COUNTER] [NOTICE ]:
+Spectrum_flow_counter_bulk_set: cm_bulk_block_add failed toallocated bulk size 64
+```
 
-### Hardware Policing of Packets in the Input Chain
+You might also see messages similar to the following in the `/var/log/switchd.log` file:
 
-Certain platforms have limitations on hardware policing packets in the INPUT chain. To work around these limitations, Cumulus Linux supports kernel based policing of these packets in software using limit or hashlimit matches. Cumulus Linux does not hardware offload rules with these matches, but ignores them during hardware install.
--->
+```
+2023-12-07T16:31:32.387219-05:00 mlx-4700-51 switchd[7354]: hal_mlx_sdk_counter_wrap.c:366 ERR
+sx_api_flow_counter_bulk_set create failed with: No More Resources
+2023-12-07T16:31:32.387338-05:00 mlx-4700-51 switchd[7354]: hal_mlx_flx_acl.c:9531 ERR
+flow_counter_bulk_set create failed with: No More Resources
+2023-12-07T16:31:32.387415-05:00 mlx-4700-51 switchd[7354]: hal_mlx_flx_acl.c:3202 ERR BULK
+counter init failed with No More Resources
+2023-12-07T16:31:32.387481-05:00 mlx-4700-51 switchd[7354]: hal_mlx_flx_acl.c:2765
+ hal_mlx_flx_chain_desc_install returned 0
+2023-12-07T16:31:32.387554-05:00 mlx-4700-51 switchd[7354]: hal_mlx_flx_acl.c:1981 ERR
+acl_plan_install returned 0
+2023-12-07T16:31:32.393928-05:00 mlx-4700-51 switchd[7354]: sync_acl.c:225 ERR BULK counter init
+failed with No More Resources
+2023-12-07T16:31:32.394047-05:00 mlx-4700-51 switchd[7354]: sync_acl.c:6669 ERR BULK counter init
+failed with No More Resources
+```
+
+For information on ACL resource limitations, refer to {{<link url="#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
+
+On Spectrum-2 and later, you might see resource errors when you try to configure more than 1000 VLAN interfaces because certain VLAN counters share space with ACL memory in the ATCAM.
+
+To free up resources, you can:
+- Reduce the number of specified VLANs or VLAN interfaces to the number you really need in the network.
+- Free up VLAN flow counter space; edit the `/etc/mlx/datapath/stats.conf` file to uncomment and set the `hal.mlx.stats.vlan.enable` option to `FALSE`, then reload `switchd`:
+
+  ```
+  cumulus@switch:$ sudo nano /etc/mlx/datapath/stats.conf
+  # Once the stat controls are enabled/disabled,
+  # run 'systemctl reload switchd' for changes to take effect
+  hal.mlx.stats.vlan.enable = FALSE
+  ```
+
+  ```
+  cumulus@switch:$ sudo systemctl reload switchd.service
+  ```
+
+The flow counters are internal counters for debugging; you do not see the counters in `nv show interface <interface> counters` or `cl-netstat` commands.
+
+To see how much space the flow counters consume, examine the `Flow Counters` line in the `cl-resource-query` output.
+
 ### ACLs Do not Match when the Output Port on the ACL is a Subinterface
 
 The ACL does not match on packets when you configure a subinterface as the output port. The ACL matches on packets only if the primary port is as an output port. If a subinterface is an output or egress port, the packets match correctly.

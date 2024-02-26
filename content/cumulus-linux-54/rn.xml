@@ -304,6 +304,13 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td></td>
 </tr>
 <tr>
+<td>3420056</td>
+<td>
+The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
+<td>4.4.0-4.4.5, 5.0.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3419928</td>
 <td>The NVUE PIM timer command option names {{keep-alive}} and {{rp-keep-alive}} are inconsistent and need to change to  {{keepalive}} and {{rp-keepalive}}.</td>
 <td>5.4.0-5.8.0</td>

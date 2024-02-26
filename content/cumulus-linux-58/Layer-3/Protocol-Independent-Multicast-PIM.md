@@ -1493,7 +1493,7 @@ cumulus@switch:~$ cl-resource-query  | grep Mcast
 Total Mcast Routes:         450,   0% of maximum value    450
 ```
 
-Refer to {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
+Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Size and Profiles">}}.
 
 ### Verify the MSDP Session State
 

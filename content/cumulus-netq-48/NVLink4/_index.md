@@ -2,7 +2,6 @@
 title: NVLink4
 author: NVIDIA
 weight: 1090
-draft: true
 ---
 
 With NetQ, you can monitor the performance of your NVLink devices, manage NVOS upgrades, create NVLink domains, and troubleshoot issues. This section describes the NetQ integration with NVLink4.

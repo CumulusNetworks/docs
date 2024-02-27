@@ -187,7 +187,6 @@ Additional options are available for certain `nv show` commands. For example, yo
 | `--applied`| Shows configuration applied with the `nv config apply` command. For example, `nv show --applied`. |
 | `--brief-help` | Shows help about the `nv show` command. For example, `nv show interface swp1 --brief-help`|
 | `--color`  | Turns colored output on or off. For example, `nv show interface swp1 --color on`|
-| `--complete` | Show the complete `nv show` command. For example, `nv show interface swp1 --complete`. |
 | `--filter` | Filters show command output on column data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.</br>To filter on multiple column outputs, enclose the filter types in parentheses; for example, `nv show interface --filter "type=bridge&mtu=9216"` shows data for bridges with MTU 9216.</br>You can use wildcards; for example, `nv show interface swp1 --filter "ip.address=1*"` shows all IP addresses that start with `1` for swp1.</br>You can filter on all revisions (operational, applied, and pending); for example, `nv show interface  --filter "ip.address=1*" --rev=applied` shows all IP addresses that start with `1` for swp1 in the applied revision.|
 | `--hostname`| Shows system configuration for the switch with the specified hostname. For example, `nv show --hostname leaf01`.|
 | `--operational` | Shows the running configuration (the actual system state). For example, `nv show interface swp1 --operational` shows the running configuration for swp1. The running and applied configuration should be the same. If different, inspect the logs. |
@@ -198,10 +197,7 @@ Additional options are available for certain `nv show` commands. For example, yo
 | `--startup`  | Shows configuration saved with the `nv config save` command. This is the configuration after the switch boots. For example: `nv show interface --startup.`|
 | `--tab`| Show information in tab format. For example, `nv show interface swp1 --tab.`|
 | `--view` | Shows different views. A view is a subset of information provided by certain `nv show` commands. To see the views available for an `nv show` command, run the command with `--view` and press TAB.|
-<!-- 
-| `--api`| Shows |
-| `--legacy`| Shows|
-| `--message`| Shows |-->
+
 The following example shows *pending* BGP graceful restart configuration:
 
 ```

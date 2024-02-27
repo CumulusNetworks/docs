@@ -1893,7 +1893,7 @@ This example creates a notification integration with a Slack channel called *slk
     cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
     Successfully added/updated channel slk-netq-events
      
-    cumulus@switch:~$ netq add notification rule sysconf key configdiff value updated
+    cumulus@switch:~$ netq add notification rule sysconf key message_type value configdiff
     Successfully added/updated rule sysconf
      
     cumulus@switch:~$ netq add notification filter configChange severity info rule sysconf channel slk-netq-events
@@ -1913,7 +1913,7 @@ This example creates a notification integration with a Slack channel called *slk
     --------------- ---------------- --------------------
     bgpHostname     hostname         spine-01
     evpnVni         vni              42
-    sysconf         configdiff       updated
+    sysconf         message_type     configdiff 
 
     cumulus@switch:~$ netq show notification filter
     Matching config_notify records:

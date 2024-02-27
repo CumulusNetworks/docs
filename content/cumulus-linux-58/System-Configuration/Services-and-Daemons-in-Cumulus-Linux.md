@@ -6,32 +6,32 @@ toc: 3
 ---
 *Services* (also known as *daemons*) and *processes* are at the heart of how a Linux system functions. Most of the time, a service takes care of itself; you just enable and start it, then let it run. However, because a Cumulus Linux switch is a Linux system, you can dig deeper if you like. Services can start multiple processes as they run. Services are important to monitor on a Cumulus Linux switch.
 
-You manage services in Cumulus Linux in the following ways:
-
-- Identify all active or stopped services
-- Identify boot time state of a specific service
-- Disable or enable a specific service
-- Identify active listener ports
+You manage services in Cumulus Linux to identify all active or stopped services and the boot time state of a specific service, disable or enable a specific service, and identify active listener ports.
 
 ## systemd and the systemctl Command
 
-You manage services using `systemd` with the `systemctl` command. You run the `systemctl` command with any service on the switch to start, stop, restart, reload, enable, disable, reenable, or get the status of the service.
+You manage services that use `systemd` with the `systemctl` command.
 
-```
-cumulus@switch:~$ sudo systemctl start | stop | restart | status | reload | enable | disable | reenable SERVICENAME.service
-```
+| Command Options | Description|
+| --------| -----------|
+|`status` | Returns the status of the specified service. |
+|`start` | Starts the service. |
+|`stop`| Stops the service. |
+|`restart` | Stops, then starts the service, all the while maintaining state. If there are dependent services or services that mark the restarted service as *Required*, the other services also restart. For example, running `systemctl restart frr.service` restarts any of the routing protocol services that you enable and that are running, such as `bgpd` or `ospfd`.|
+| `reload` | Reloads the configuration for the service. |
+| `enable` | Enables the service to start when the system boots, but does not start it unless you use the `systemctl start SERVICENAME.service` command or reboot the switch. |
+| `disable` | Disables the service, but does not stop it unless you use the `systemctl stop SERVICENAME.service` command or reboot the switch. You can start or stop a disabled service.|
+| `reenable` | Disables, then enables a service. Run this command so that any new *Wants* or *WantedBy* lines create the symlinks necessary for ordering. This does not affect on other services.|
 
-For example to restart networking, run the command:
+You do not need to interact with the services directly using these commands. If a critical service crashes or encounters an error, `systemd` restarts it automatically. `systemd` is the caretaker of services in modern Linux systems and responsible for starting all the necessary services at boot time.
+
+The following example restarts the networking service:
 
 ```
 cumulus@switch:~$ sudo systemctl restart networking.service
 ```
 
-{{%notice note%}}
-Add the service name **after** the `systemctl` argument.
-{{%/notice%}}
-
-To show all running services, use the `systemctl status` command. For example:
+The following example shows all running services:
 
 ```
 cumulus@switch:~$ sudo systemctl status
@@ -76,19 +76,9 @@ cumulus@switch:~$ sudo systemctl status
               ...
 ```
 
-### systemctl Commands
-
-`systemctl` has commands that perform a specific operation on a given service:
-- **status** returns the status of the specified service.
-- **start** starts the service.
-- **stop** stops the service.
-- **restart** stops, then starts the service, all the while maintaining state. If there are dependent services or services that mark the restarted service as *Required*, the other services also restart. For example, running `systemctl restart frr.service` restarts any of the routing protocol services that you enable and that are running, such as `bgpd` or `ospfd`.
-- **reload** reloads the configuration for the service.
-- **enable** enables the service to start when the system boots, but does not start it unless you use the `systemctl start SERVICENAME.service` command or reboot the switch.
-- **disable** disables the service, but does not stop it unless you use the `systemctl stop SERVICENAME.service` command or reboot the switch. You can start or stop a disabled service.
-- **reenable** disables, then enables a service. Run this command so that any new *Wants* or *WantedBy* lines create the symlinks necessary for ordering. This has no side effects on other services.
-
-You do not need to interact with the services directly using these commands. If a critical service crashes or encounters an error, `systemd` restarts it automatically. `systemd` is the caretaker of services in modern Linux systems and responsible for starting all the necessary services at boot time.
+{{%notice note%}}
+Add the service name **after** the `systemctl` argument.
+{{%/notice%}}
 
 ### Ensure a Service Starts after Multiple Restarts
 
@@ -148,25 +138,30 @@ To see active or stopped services, run the `cl-service-summary` command:
 
 ```
 cumulus@switch:~$ cl-service-summary
-Service cron               enabled    active
-Service ssh                enabled    active
-Service syslog             enabled    active
-Service asic-monitor       enabled    inactive
-Service clagd              enabled    inactive
-Service cumulus-poe                   inactive
-Service lldpd              enabled    active
-Service mstpd              enabled    active
-Service neighmgrd          enabled    active
-Service nvued              enabled    active
-Service netq-agent         enabled    active
-Service ntp                enabled    active
-Service ptmd               enabled    active
-Service pwmd               enabled    active
-Service smond              enabled    active
-Service switchd            enabled    active
-Service sysmonitor         enabled    active
-Service rdnbrd             disabled   inactive
-Service frr                enabled    inactive
+Service cron               enabled    active   
+Service ssh                enabled    active   
+Service rsyslog            enabled    active   
+Service asic-monitor       enabled    inactive 
+Service clagd              disabled   active   
+Service cumulus-poe                   inactive 
+Service lldpd              enabled    active   
+Service mstpd              enabled    active   
+Service neighmgrd          enabled    active   
+Service netd               enabled    active   
+Service netq-agent         disabled   inactive 
+Service ntp                disabled   inactive 
+Service portwd             enabled    inactive 
+Service ptmd               enabled    active   
+Service pwmd               enabled    active   
+Service smond              enabled    active   
+Service switchd            enabled    active   
+Service sysmonitor         enabled    active   
+Service vxrd                          inactive 
+Service vxsnd                         inactive 
+Service rdnbrd             disabled   inactive 
+Service frr                enabled    active   
+Service ntp@mgmt           disabled   inactive 
+Service ntp@ntp            disabled   inactive
 ...
 ```
 
@@ -174,33 +169,35 @@ You can also run the `systemctl list-unit-files --type service` command to list 
 
 ```
 cumulus@switch:~$ systemctl list-unit-files --type service
-UNIT FILE                              STATE
-aclinit.service                        enabled
-acltool.service                        enabled
-acpid.service                          disabled
-asic-monitor.service                   enabled
-auditd.service                         enabled
-autovt@.service                        disabled
-bmcd.service                           disabled
-bootlog.service                        enabled
-bootlogd.service                       masked  
-bootlogs.service                       masked  
-bootmisc.service                       masked  
-checkfs.service                        masked  
-checkroot-bootclean.service            masked  
-checkroot.service                      masked
-clagd.service                          enabled
-console-getty.service                  disabled
-console-shell.service                  disabled
-container-getty@.service               static  
-cron.service                           enabled
-cryptdisks-early.service               masked  
-cryptdisks.service                     masked  
-cumulus-aclcheck.service               static  
-cumulus-core.service                   static  
-cumulus-fastfailover.service           enabled
-cumulus-firstboot.service              disabled
-cumulus-platform.service               enabled  
+UNIT FILE                                  STATE           VENDOR PRESET
+aclinit.service                            enabled         enabled      
+acltool.service                            enabled         enabled      
+acpid.service                              disabled        enabled      
+air-agent@.service                         indirect        enabled      
+apt-daily-upgrade.service                  static          -            
+apt-daily.service                          static          -            
+asic-monitor.service                       enabled         enabled      
+atftpd.service                             generated       -            
+auditd.service                             enabled         enabled      
+autovt@.service                            alias           -            
+blk-availability.service                   enabled         enabled      
+bmcd.service                               disabled        enabled      
+bootlog.service                            enabled         enabled      
+cl-system-services.service                 enabled         enabled      
+clagd.service                              disabled        enabled      
+clagd_rebootNotifier.service               disabled        enabled      
+console-getty.service                      disabled        disabled     
+console-setup.service                      enabled         enabled      
+container-getty@.service                   static          -            
+containerd.service                         disabled        enabled      
+cron.service                               enabled         enabled      
+cryptdisks-early.service                   masked          enabled      
+cryptdisks.service                         masked          enabled      
+csmgrd.service                             enabled         enabled      
+cumulus-aclcheck.service                   static          -            
+cumulus-cleanup-health_check.service       static          -            
+cumulus-cleanup-lttng_traces.service       static          -            
+cumulus-core.service                       static          -
 ...
 ```
 
@@ -216,7 +213,6 @@ To identify which services you need for networking:
 
 <pre style="line-height: 1rem;">cumulus@switch:~$ systemctl list-dependencies --after network.target
 <span style="color: #5cdd49;"> <strong>●</strong> </span> ├─switchd.service
-<span style="color: #5cdd49;"> <strong>●</strong> </span> ├─wd_keepalive.service
 <span style="color: #6a0900;"> <strong>●</strong> </span> └─network-pre.target</pre>
 
 To identify the services needed for a multi-user environment, run:
@@ -236,20 +232,20 @@ The following table lists the most important services in Cumulus Linux.
 <!-- vale off -->
 |Service Name|Description|Affects Forwarding?|
 |------------ |-----------|-------------------|
-|switchd|Hardware abstraction daemon. Synchronizes the kernel with the ASIC.|YES|
-|sx\_sdk|Interfaces with the Spectrum ASIC. Only on Spectrum switches.|YES|
-|frr|{{<link url="FRRouting" text="FRR">}}. Handles routing protocols. There are separate processes for each routing protocol, such as `bgpd` and `ospfd`.|YES if routing|
-|clagd|Cumulus link aggregation daemon. Handles {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.|YES if using MLAG|
-|neighmgrd|Keeps neighbor entries refreshed, snoops on ARP and ND packets if ARP suppression is on, and refreshes VRR MAC addresses.|YES|
-|mstpd|{{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Spanning tree protocol">}} daemon.|YES if using layer 2|
-|ptmd|{{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager">}}. Verifies cabling based on {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} output. Also sets up {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} sessions.|YES if using BFD|
-|nvued| Handles the NVUE object model.|NO|
-|rsyslog|Handles logging of syslog messages.|NO|
-|ntp|{{<link url="Network-Time-Protocol-NTP" text="Network time protocol">}}.|NO|
-|ledmgrd|{{<link url="Network-Switch-Port-LED-and-Status-LED-Guidelines" text="LED manager">}}. Reads the state of system LEDs.|NO|
-|sysmonitor|Watches and logs critical system load (free memory, disk, CPU).|NO|
-|lldpd|Handles Tx/Rx of {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} information.|NO|
-|smond|Reads {{<link url="Monitoring-System-Hardware" text="platform sensors and fan information">}} from pwmd.|NO|
-|pwmd|Reads and sets fan speeds.|NO|
+|`switchd`|Hardware abstraction daemon. Synchronizes the kernel with the ASIC.|YES|
+|`sx_sdk`|Interfaces with the Spectrum ASIC. Only on Spectrum switches.|YES|
+|`frr`|{{<link url="FRRouting" text="FRR">}}. Handles routing protocols. There are separate processes for each routing protocol, such as `bgpd` and `ospfd`.|YES if routing|
+|`clagd`|Cumulus link aggregation daemon. Handles {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}.|YES if using MLAG|
+|`neighmgrd`|Keeps neighbor entries refreshed, snoops on ARP and ND packets if ARP suppression is on, and refreshes VRR MAC addresses.|YES|
+|`mstpd`|{{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="Spanning tree protocol">}} daemon.|YES if using layer 2|
+|`ptmd`|{{<link url="Prescriptive-Topology-Manager-PTM" text="Prescriptive Topology Manager">}}. Verifies cabling based on {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} output. Also sets up {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} sessions.|YES if using BFD|
+|`nvued`| Handles the NVUE object model.|NO|
+|`rsyslog`|Handles logging of syslog messages.|NO|
+|`ntp`|{{<link url="Network-Time-Protocol-NTP" text="Network time protocol">}}.|NO|
+|`ledmgrd`|{{<link url="Network-Switch-Port-LED-and-Status-LED-Guidelines" text="LED manager">}}. Reads the state of system LEDs.|NO|
+|`sysmonitor`|Watches and logs critical system load (free memory, disk, CPU).|NO|
+|`lldpd`|Handles Tx/Rx of {{<link url="Link-Layer-Discovery-Protocol" text="LLDP">}} information.|NO|
+|`smond`|Reads {{<link url="Monitoring-System-Hardware" text="platform sensors and fan information">}} from pwmd.|NO|
+|`pwmd`|Reads and sets fan speeds.|NO|
 
 <!-- vale on -->

@@ -530,7 +530,7 @@ nv action import system security certificate
 {{< /expand >}}
 
 {{%notice note%}}
-Cumulus 5.7 provides updated {{<link url="Supported-Route-Table-Entries/#spectrum-1" text="Spectrum-1 forwarding profile numbers">}} to optimize hardware resources and prevent overutilization.
+Cumulus 5.7 provides updated {{<link url="Forwarding-Table-Size-and-Profiles" text="Spectrum-1 forwarding profile numbers">}} to optimize hardware resources and prevent overutilization.
 {{%/notice%}}
 
 {{%notice info%}}

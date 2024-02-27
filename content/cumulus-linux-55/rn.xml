@@ -507,6 +507,13 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td></td>
 </tr>
 <tr>
+<td>3420056</td>
+<td>
+The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
+<td>4.4.0-4.4.5, 5.0.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3419940</td>
 <td>When generating a {{cl-support}} file either manually or when an issue occurs on the system, you see the following kernel error messages:
 
@@ -539,6 +546,12 @@ This error message is benign and has no functional impact.</td>
 <td>If you restart FRR with the log file debugging level set to {{informational}}, BGP crashes.</td>
 <td>5.4.0-5.5.1</td>
 <td>5.6.0-5.8.0</td>
+</tr>
+<tr>
+<td>3393966</td>
+<td>Configuring the network statement with the NVUE {{nv set vrf &lt;vrf&gt; router ospf area &lt;area-id&gt; network &lt;network-id&gt;}} command might bring down all the OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement.</td>
+<td>5.5.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3378733</td>
@@ -1328,6 +1341,13 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 <td></td>
 </tr>
 <tr>
+<td>3420056</td>
+<td>
+The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
+<td>4.4.0-4.4.5, 5.0.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3419940</td>
 <td>When generating a {{cl-support}} file either manually or when an issue occurs on the system, you see the following kernel error messages:
 
@@ -1360,6 +1380,12 @@ This error message is benign and has no functional impact.</td>
 <td>If you restart FRR with the log file debugging level set to {{informational}}, BGP crashes.</td>
 <td>5.4.0-5.5.1</td>
 <td>5.6.0-5.8.0</td>
+</tr>
+<tr>
+<td>3393966</td>
+<td>Configuring the network statement with the NVUE {{nv set vrf &lt;vrf&gt; router ospf area &lt;area-id&gt; network &lt;network-id&gt;}} command might bring down all the OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement.</td>
+<td>5.5.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3378733</td>

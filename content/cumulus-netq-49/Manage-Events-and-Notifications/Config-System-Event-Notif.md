@@ -1403,7 +1403,7 @@ This example creates a notification integration with a Slack channel called *slk
     --------------- ---------------- --------------------
     bgpHostname     hostname         spine-01
     evpnVni         vni              42
-    sysconf         configdiff       updated
+    sysconf         message_type     configdiff 
 
     cumulus@switch:~$ netq show notification filter
     Matching config_notify records:

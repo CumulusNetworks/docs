@@ -305,17 +305,34 @@ cumulus@switch:~$ nv config apply
 The interface must be a physical interface; you cannot enable TLVs on bonds.  
 {{%/notice%}}
 
+### Transmit LLDP-MED Inventory TLVs
+
+By default, Cumulus Linux transmits <span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> Inventory TLV advertisements on enabled ports.
+
+LLDP-MED is an extension to LLDP that operates between endpoint devices, such as IP phones and switches. Inventory management TLV enables an endpoint to transmit detailed inventory information about itself to the switch, such as the hardware revision, firmware version, software version, serial number, manufacturer name, and model name.
+
+You can disable LLDP-MED inventory TLV transmission if you want LLDP to receive LLDP-MED inventory TLVs (and publish them using SNMP, if enabled) but *not* send them.
+
+To disable LLDP-MED inventory TLVs, run the `nv set service lldp lldp-med-inventory-tlv off` command:
+
+```
+cumulus@switch:~$ nv set service lldp lldp-med-inventory-tlv off
+cumulus@switch:~$ nv config apply
+```
+
 ### Show DCBX TLV Settings
 
-To show if IEEE 802.1 TLV transmission is on, run the NVUE `nv show service lldp` command:
+To show if IEEE 802.1 TLV or LLDP-MED Inventory TLV transmission is on, run the NVUE `nv show service lldp` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show service lldp
-                    operational  applied  description
-------------------  -----------  -------  ----------------------------------------------------------------------
-dot1-tlv            on           on       Enable dot1 TLV advertisements on enabled ports
-tx-hold-multiplier  4            4        < TTL of transmitted packets is calculated by multiplying the tx-in...
-tx-interval         30           30       change transmit delay
+                        operational  applied
+----------------------  -----------  -------
+tx-interval             30           30     
+tx-hold-multiplier      4            4      
+dot1-tlv                off          off    
+lldp-med-inventory-tlv  on           on     
+mode                    default      default
 ```
 
 To show if Qos TLV transmission is on for an interface, run the NVUE `nv show interface <interface>` command:

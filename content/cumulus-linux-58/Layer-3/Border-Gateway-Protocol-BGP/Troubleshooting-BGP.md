@@ -12,7 +12,30 @@ Run the following commands to help you troubleshoot BGP.
 
 ## Show BGP configuration Summary
 
-To show a summary of the BGP configuration on the switch, run the vtysh `show ip bgp summary` command. For example:
+To show a summary of the BGP configuration on the switch, run the NVUE `nv show router bgp` command or the vtysh `show ip bgp summary` command. For example:
+
+```
+cumulus@switch:~$ nv show router bgp 
+                                applied      pending    
+------------------------------  -----------  -----------
+enable                          on           on         
+autonomous-system               65101        65101      
+router-id                       10.10.10.1   10.10.10.1 
+policy-update-timer             5            5          
+graceful-shutdown               off          off        
+wait-for-install                off          off        
+graceful-restart                                        
+  mode                          helper-only  helper-only
+  restart-time                  120          120        
+  path-selection-deferral-time  360          360        
+  stale-routes-time             360          360        
+convergence-wait                                        
+  time                          0            0          
+  establish-wait-time           0            0          
+queue-limit                                             
+  input                         10000        10000      
+  output                        10000        10000  
+```
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -220,19 +243,19 @@ To show the route count, run the following NVUE commands:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast route-counters
-               operational  applied
---------------  -----------  -------
-adj-rib-in      0                   
-all-rib         8                   
-best-routes     2                   
-damped          0                   
-history         0                   
-removed         0                   
-route-count     8                   
-routes-counted  8                   
-stale           0                   
-usable          8                   
-valid           8
+                operational
+--------------  -----------
+route-count     8          
+adj-rib-in      0          
+damped          0          
+removed         0          
+history         0          
+stale           0          
+valid           8          
+all-rib         8          
+routes-counted  8          
+best-routes     7          
+usable          8 
 ```
 
 To show all the advertised routes, run these commands:
@@ -480,7 +503,7 @@ switch# show interface swp51
   flags: <UP,BROADCAST,RUNNING,MULTICAST>
   Type: Ethernet
   HWaddr: 10:d8:68:d4:a6:81
-  inet6 fe80::12d8:68ff:fed4:a681/64
+  inet6 fe80::12d8:68ff:fed4:a681/6
   Interface Type Other
   protodown: off
   ND advertised reachable time is 0 milliseconds

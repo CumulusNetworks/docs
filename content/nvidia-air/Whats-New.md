@@ -9,9 +9,13 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 <!-- Air:WhatsNew -->
 ## February 2024
+### 82.2024.0229-012
+- Fixed an issue that would cause the console not to render for a device
+- Updated the default NetQ URL
+<!-- Air:WhatsNew -->
+
 ### 82.2024.0222-010
 - Added an API endpoint to automatically generate an out-of-band network
-<!-- Air:WhatsNew -->
 
 ### 82.2024.0215-013
 - Fixed an issue where the simulation API did not return all jobs for a loading simulation

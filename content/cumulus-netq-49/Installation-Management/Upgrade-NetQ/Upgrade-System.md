@@ -14,11 +14,6 @@ For deployments running:
 - 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
 
 During the upgrade process, NetQ will be temporarily unavailable.
-
-{{%notice infonopad%}}
-NetQ 4.9 does not support on-premises, cluster deployments.
-{{%/notice%}}
-
 ## Before You Upgrade
 
 1. Verify that the admin app is running with the `netq show status` command.
@@ -138,7 +133,20 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 
 {{<tab "Cluster">}}
 
-NetQ 4.9 does not support on-premises, cluster deployments.
+Run the `netq upgrade` command, specifying the current version's tarball and your cluster's virtual IP address. The virtual IP address must be allocated from the same subnet used for your master and worker nodes.
+
+```
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz cluster-vip <vip-ip>
+```
+{{%notice note%}}
+
+If you are upgrading from a NetQ 4.8 high availability, on-premises cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the upgrade command. Specifying a virtual IP address that is different from the virtual IP address used during the installation process will cause the upgrade to fail. 
+
+{{%/notice%}}
+
+{{%notice info%}}
+If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-cluster-full" text="netq install cluster full">}} command.
+{{%/notice%}}
 {{</tab>}}
 
 {{</tabs>}}

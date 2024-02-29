@@ -98,11 +98,9 @@ cumulus@netq-appliance:~$
 ```
 NVIDIA recommends proceeding with the installation only if the `Use%` is less than 70%. You can delete previous software tarballs in the `/mnt/installables/` directory to regain some space. If you cannot decrease disk usage to under 70%, contact the NVIDIA support team.
 
-3. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If the pods are in a state other than `READY`, contact the NVIDIA support team.
+3. Confirm that the NetQ CLI is {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
 
-4. Confirm that the NetQ CLI is {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
-
-5. Ensure that the required ports are open {{<link title="Install the NetQ System" text="according to your deployment model">}}.
+4. Ensure that the required ports are open {{<link title="Install the NetQ System" text="according to your deployment model">}}.
 
 {{%notice note%}}
 

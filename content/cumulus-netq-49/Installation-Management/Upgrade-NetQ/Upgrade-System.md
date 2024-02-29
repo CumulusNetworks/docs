@@ -19,11 +19,11 @@ During the upgrade process, NetQ will be temporarily unavailable.
 1. Verify that Kubernetes is running and the admin app is up:
 
 ```
-root@masternode:/home/cumulus# kubectl get pods|grep admin
+cumulus@masternode:~$ /home/cumulus# kubectl get pods|grep admin
     netq-app-admin-masternode                            1/1     Running            0               15m
 ```
 
-If the output of this command display errors or returns an empty response, you will not be able to upgrade NetQ. Try waiting and then re-run the command. If after several attempts the command continues to fail, reset the NetQ server with `netq bootstrap reset keep-db` and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="netq install">}} command for your deployment type.
+If the output of this command displays errors or returns an empty response, you will not be able to upgrade NetQ. Try waiting and then re-run the command. If after several attempts the command continues to fail, reset the NetQ server with `netq bootstrap reset keep-db` and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="netq install">}} command for your deployment type.
 
 2. {{<link title="Back Up and Restore NetQ" text="Back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
 

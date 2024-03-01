@@ -1,0 +1,86 @@
+This copyright file applies both to the source package console-setup
+and the binary Debian packages built from it.
+
+In short, if you use console-setup with precompiled keyboard files,
+then all installed files are covered by simple permissive non-copyleft
+free software licenses.  However, several of the tools used for the
+compilation of the package (in particular 'ckbcomp' and 'bdf2psf') are
+covered by GPL, version 2 or later.  The Perl program 'ckbcomp' is
+installed in the system when console-setup is not used with
+precompiled keyboard files.
+
+The exact copyright terms follow.
+
+All console fonts are public domain by nature.
+
+The source BDF-fonts in the directory Fonts/bdf are distributed under
+many different licenses, see in the file copyright.fonts for details.
+
+The program 'bdf2psf' used to convert the fonts from BDF format to the
+format used on the consoles of Linux and FreeBSD is covered by GPL,
+version 2 or later.
+
+The keyboard files are borrowed from the XKeyboardConfig package.  For
+the licenses of the keyboard files, see the file copyright.xkb.  The
+XKeyboardConfig package was downloaded from
+
+http://xlibs.freedesktop.org/xkbdesc/xkeyboard-config-0.8.tar.gz
+
+Please notice, that Debian packages do not include the XKB files (they
+are provided by a separate package xkb-data).  When, however, the
+Debian package console-setup-mini is installed, it includes
+precompiled version of the keyboard files, so the terms in the file
+/usr/share/doc/keyboard-configuration/copyright.xkb.gz apply.
+
+The manual pages are distributed according to GNU all-permissive license:
+
+Copyright (C) 2007, 2011 Anton Zinoviev <anton@lml.bas.bg>
+
+Copying and distribution of this file, with or without
+modification, are permitted in any medium without royalty provided
+the copyright notice and this notice are preserved.  This file is
+offered as-is, without any warranty.
+
+The programs 'setupcon' and 'ckbcomp-mini' are distributed according
+to the following license:
+
+Copyright (C) 2011 Anton Zinoviev <anton@lml.bas.bg>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this file (the "Program"), to deal in the Program without
+restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Program, and to permit persons to whom the Program is furnished to
+do so, subject to the following conditions: The above copyright notice
+and this permission notice shall be included in all copies or
+substantial portions of the Program.
+
+THE PROGRAM IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+PROGRAM OR THE USE OR OTHER DEALINGS IN THE PROGRAM.
+
+Everything else in this package is
+
+Copyright (c) 1999,2000,2001,2002,2003,2006,2007,2008,2009,2010,2011 Anton Zinoviev, anton@lml.bas.bg
+
+It is distributed under terms of the GNU General Public License
+version 2.0 or (at your choice) any later version.
+
+It is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+02110-1301, USA
+
+In the source package of console-setup the complete text of the GNU
+General Public License, version 2 can be found in the file GPL-2.  On
+Debian GNU/Linux systems, the complete text of the GNU General Public
+License can be found in /usr/share/common-licenses/GPL-2.

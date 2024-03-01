@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3782543</td>
+<td>When you configure the BGP setting {{bgp max-med on-startup}} with vtysh, the MED on some peers might not be set to 4294967294 as expected on startup.  The {{max-med}} might also fail to reset after the startup timer expires.</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3773177</td>
 <td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
@@ -517,6 +523,13 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td></td>
 </tr>
 <tr>
+<td>3420056</td>
+<td>
+The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
+<td>4.4.0-4.4.5, 5.0.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3419928</td>
 <td>The NVUE PIM timer command option names {{keep-alive}} and {{rp-keep-alive}} are inconsistent and need to change to  {{keepalive}} and {{rp-keepalive}}.</td>
 <td>5.4.0-5.8.0</td>
@@ -525,6 +538,12 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <tr>
 <td>3405024</td>
 <td>You cannot remove PBR map configuration with source and destination rules. To work around this issue, delete the entire PBR map clause.</td>
+<td>5.5.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3393966</td>
+<td>Configuring the network statement with the NVUE {{nv set vrf &lt;vrf&gt; router ospf area &lt;area-id&gt; network &lt;network-id&gt;}} command might bring down all the OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement.</td>
 <td>5.5.0-5.8.0</td>
 <td></td>
 </tr>

@@ -1,0 +1,38 @@
+This is Debian's prepackaged version of Andrew Tridgell and
+Paul Mackerras' rsync utility.
+
+This package provides the rsync program, which is a replacement
+for rcp that uses the rsync algorythm to transfer only the
+differences between two sets of files.
+
+This package was put together by Philip Hands <phil@hands.com>,
+from sources obtained from:
+  http://rsync.samba.org/ftp/rsync/rsync-2.5.4.tar.gz
+The current version was downloaded from:
+  https://rsync.samba.org/ftp/rsync/src/rsync-3.1.3.tar.gz
+on 2018-12-02 by Samuel Henrique <samueloph@debian.org>.
+
+The changes were very minimal - merely adding support for the Debian
+package maintenance scheme by adding various debian/* files.
+The only significant change is passing the -4 / -6 options through to ssh.
+See the debian/patches/ directory.
+
+
+
+COPYRIGHT
+---------
+
+Copyright (C) 1996-2011 by Andrew Tridgell, Wayne Davison, and others.
+
+Rsync was originally written by Andrew Tridgell and is currently
+maintained by Wayne Davison.  It has been improved by many developers
+from around the world.
+
+Rsync may be used, modified and redistributed only under the terms of
+the GNU General Public License, found in the file:
+
+  /usr/share/common-licenses/GPL-3
+
+on Debian systems, or at
+
+  https://www.gnu.org/licenses/gpl.html

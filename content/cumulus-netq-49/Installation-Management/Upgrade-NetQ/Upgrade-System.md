@@ -14,20 +14,18 @@ For deployments running:
 - 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
 
 During the upgrade process, NetQ will be temporarily unavailable.
-
-{{%notice infonopad%}}
-NetQ 4.9 does not support on-premises, cluster deployments.
-{{%/notice%}}
-
 ## Before You Upgrade
 
-1. Verify that the admin app is running with the `netq show status` command.
+1. Verify that Kubernetes is running and the admin app is up:
 
-2. Verify that Kubernetes is running with the `kubectl get pods` command.
+```
+cumulus@masternode:~$ /home/cumulus# kubectl get pods|grep admin
+    netq-app-admin-masternode                            1/1     Running            0               15m
+```
 
-    If either of these commands display errors, you will not be able to upgrade NetQ. Reset the NetQ server with the `netq bootstrap reset keep-db` command and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="netq install">}} command for your deployment type.
+If the output of this command displays errors or returns an empty response, you will not be able to upgrade NetQ. Try waiting and then re-run the command. If after several attempts the command continues to fail, reset the NetQ server with `netq bootstrap reset keep-db` and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="netq install">}} command for your deployment type.
 
-3. {{<link title="Back Up and Restore NetQ" text="Back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
+2. {{<link title="Back Up and Restore NetQ" text="Back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
 
 ## Update NetQ Debian Packages
 
@@ -103,11 +101,9 @@ cumulus@netq-appliance:~$
 ```
 NVIDIA recommends proceeding with the installation only if the `Use%` is less than 70%. You can delete previous software tarballs in the `/mnt/installables/` directory to regain some space. If you cannot decrease disk usage to under 70%, contact the NVIDIA support team.
 
-3. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If the pods are in a state other than `READY`, contact the NVIDIA support team.
+3. Confirm that the NetQ CLI is {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
 
-4. Confirm that the NetQ CLI is {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
-
-5. Ensure that the required ports are open {{<link title="Install the NetQ System" text="according to your deployment model">}}.
+4. Ensure that the required ports are open {{<link title="Install the NetQ System" text="according to your deployment model">}}.
 
 {{%notice note%}}
 
@@ -138,7 +134,20 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 
 {{<tab "Cluster">}}
 
-NetQ 4.9 does not support on-premises, cluster deployments.
+Run the `netq upgrade` command, specifying the current version's tarball and your cluster's virtual IP address. The virtual IP address must be allocated from the same subnet used for your master and worker nodes.
+
+```
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz cluster-vip <vip-ip>
+```
+{{%notice note%}}
+
+If you are upgrading from a NetQ 4.8 high availability, on-premises cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the upgrade command. Specifying a virtual IP address that is different from the virtual IP address used during the installation process will cause the upgrade to fail. 
+
+{{%/notice%}}
+
+{{%notice info%}}
+If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-cluster-full" text="netq install cluster full">}} command.
+{{%/notice%}}
 {{</tab>}}
 
 {{</tabs>}}

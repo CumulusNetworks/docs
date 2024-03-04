@@ -12,11 +12,11 @@ While Cumulus Linux can support RoCE environments, the end hosts must support th
 
 RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband apps.
 
-## Enable RDMA over Converged Ethernet lossless (with PFC and ECN)
+## RDMA over Converged Ethernet lossless (with PFC and ECN)
 
 RoCE uses the Infiniband (IB) Protocol over converged Ethernet. The IB global route header rides directly on top of the Ethernet header. The lossless Ethernet layer handles congestion hop by hop.
 
-To configure RoCE with PFC and ECN:
+To enable RoCE with PFC and ECN:
 
 ```
 cumulus@switch:~$ nv set qos roce
@@ -26,7 +26,7 @@ cumulus@switch:~$ nv config apply
 {{% notice note %}}
 NVUE defaults to `roce mode lossless`. The command `nv set qos roce` and `nv set qos roce mode lossless` are equivalent.
 
-If you enable `mode lossy`, configuring `nv set qos roce` without a `mode` does not change the RoCE mode. To change to lossless, you must configure `mode lossless`.
+If you enable `roce mode lossy`, configuring `nv set qos roce` without a `mode` does not change the RoCE mode. To change to lossless, you must configure lossless mode with the `nv set qos roce mode lossless` command.
 {{% /notice %}}
 
 {{%notice note%}}
@@ -39,7 +39,7 @@ RoCEv2 requires flow control for lossless Ethernet. RoCEv2 uses the Infiniband (
 
 RoCEv2 congestion management uses RFC 3168 to signal congestion experienced to the receiver. The receiver generates an RoCEv2 congestion notification packet directed to the source of the packet.
 
-To configure RoCE with ECN:
+To enable RoCE with ECN:
 
 ```
 cumulus@switch:~$ nv set qos roce mode lossy
@@ -48,7 +48,7 @@ cumulus@switch:~$ nv config apply
 
 ## Remove RoCE Configuration
 
-To remove RoCE configurations:
+To remove RoCE configuration:
 
 ```
 cumulus@switch:~$ nv unset qos roce
@@ -225,7 +225,7 @@ tx-stats
     unicast-no-buffer-discard  663060754115           Tx buffer discards for RoCE traffic
 ```
 
-To reset the counters that the `nv show interface <interface> qos roce` command displays, run the `nv action clear interface <interface> qos roce counters` command.
+To reset the counters in the `nv show interface <interface> qos roce` command output, run the `nv action clear interface <interface> qos roce counters` command.
 
 ## Change RoCE Configuration
 

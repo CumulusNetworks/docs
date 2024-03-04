@@ -747,7 +747,8 @@ cumulus@switch:~$ ip -p -j link show swp5
 To recover from the `protodown` state, remove the protodown reason and protodown from the interface with the NVUE `nv action clear interface <interface> bridge domain <domain> stp bpduguardviolation` command or the Linux `mstpctl clearbpduguardviolation <bridge> <interface>` command.
 
 {{%notice note%}}
-Bringing up the disabled port does not correct the problem if the configuration on the connected end station does not resolve.
+- Bringing up the disabled port does not correct the problem if the configuration on the connected end station does not resolve.
+- If you remove the interface from the bridge while the interface is in a `protodown` state, you must use the `ip link set <interface>> protodown off protodown_reason stp off` command to recover from the `protodown` state.
 {{%/notice%}}
 
 ### Bridge Assurance

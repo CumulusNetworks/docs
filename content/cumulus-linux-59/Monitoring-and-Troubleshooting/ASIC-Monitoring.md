@@ -22,6 +22,7 @@ Cumulus Linux supports:
 - The ingress queue length histogram on Spectrum-2 and later.
 - The counter histogram (transmitted packet, transmitted byte, received packet, received byte, and CRC counters) on Spectrum-2 and later.
 - The counter histogram (layer 1 received byte counters and layer 1 transmitted byte counters) on Spectrum-4 only.
+- The latency histogram, which shows the amount of time a packet waits at the egress port for its turn in the egress buffer.
 {{%/notice%}}
 
 ## Histogram Collection Example
@@ -100,6 +101,7 @@ Histogram settings include the type of data you want to collect, the ports you w
     - CRC counters (`crc`)
     - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
     - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
+- The latency histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
 - You can enable up to two counter histogram counter types per physical interface. The counter histogram does not support bonds or virtual interfaces.
 - The value for the minimum boundary size must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. The default minimum boundary size is 960 bytes.
 - The default value for the sampling time is 1024 nanoseconds.
@@ -107,7 +109,7 @@ Histogram settings include the type of data you want to collect, the ports you w
 {{< tabs "TabID81 ">}}
 {{< tab "NVUE Commands ">}}
 
-The histogram type can be `egress-buffer`, `ingress-buffer`, or `counter`.
+The histogram type can be `egress-buffer`, `ingress-buffer`, `counter`, or `latency`.
 
 - To change global histogram settings, run the `nv set service telemetry histogram <type>` command.
 - To enable histograms on interfaces or to change interface level settings, run the `nv set interface <interface> telemetry histogram <type>` command.
@@ -178,6 +180,29 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
+{{< tab "Latency Histogram Examples ">}}
+
+The following example configures the latency histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. These settings apply to interfaces that have the `latency` histogram enabled and do not have different values configured for these settings at the interface level:
+
+```
+cumulus@switch:~$ nv set service telemetry histogram latency bin-min-boundary 960 
+cumulus@switch:~$ nv set service telemetry histogram latency histogram-size 12288 
+cumulus@switch:~$ nv set service telemetry histogram latency sample-interval 1024
+cumulus@switch:~$ nv config apply
+```
+
+The following example enables the latency histogram for traffic class 0 on swp1 through swp8 with the globally applied minimum boundary, histogram size, and sample interval. The example also enables the latency histogram for traffic class 1 on swp9 through swp16 and sets the minimum boundary to 768 bytes, the histogram size to 9600 bytes, and the sampling interval to 2048 nanoseconds.
+
+```
+cumulus@switch:~$ nv set service telemetry enable on
+cumulus@switch:~$ nv set interface swp1-8 telemetry histogram latency traffic-class 0
+cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-class 1 bin-min-boundary 768
+cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-class 1 histogram-size 9600
+cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-class 1 sample-interval 2048
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
 {{< /tabs >}}
 
 {{< /tab >}}
@@ -191,7 +216,7 @@ The following table describes the ASIC monitor settings.
 |------- |----------- |
 | `port_group_list` | Specifies the names of the monitors (port groups) you want to use to collect data, such as `histogram_pg`. You can provide any name you want for the port group. You must use the same name for all the port group settings.<br><br>Example:<pre>monitor.port_group_list = [histogram_pg,discards_pg,buffers_pg, all_packets_pg]</pre>**Note**: You must specify at least one port group. If the port group list is empty, `systemd` shuts down the `asic-monitor` service. |
 | `<port_group_name>.port_set` | Specifies the range of ports you want to monitor; for example, `swp4,swp8,swp10-swp50`.<br><br>Example:<pre>monitor.histogram_pg.port_set = swp1-swp50</pre> |
-| `<port_group_name>.stat_type` | Specifies the type of data that the port group collects.<br><br>For egress queue length histograms, specify `histogram_tc`. For example:<pre>monitor.histogram_pg.stat_type = histogram_tc</pre>For ingress queue lenght histograms, specify `histogram_pg`. For example: <pre>monitor.histogram_pg.stat_type = histogram_pg</pre>For counter histograms, specify `histogram_counter`. For example:<pre>monitor.histogram_pg.stat_type = histogram_counter</pre>. |
+| `<port_group_name>.stat_type` | Specifies the type of data that the port group collects.<br><br>For egress queue length histograms, specify `histogram_tc`. For example:<pre>monitor.histogram_pg.stat_type = histogram_tc</pre>For ingress queue length histograms, specify `histogram_pg`. For example: <pre>monitor.histogram_pg.stat_type = histogram_pg</pre>For counter histograms, specify `histogram_counter`. For example:<pre>monitor.histogram_pg.stat_type = histogram_counter</pre>. For latency histograms, specify `histogram_latency`. For example:<pre> monitor.histogram_pg.stat_type = histogram_latency</pre>.|
 | `<port_group_name>.cos_list` | For histogram monitoring, each CoS (Class of Service) value in the list has its own histogram on each port. The global limit on the number of histograms is an average of one histogram per port.<br><br>Example:<pre>monitor.histogram_pg.cos_list = [0]</pre> |
 | `<port_group_name>.counter_type` | Specifies the counter type for counter histogram monitoring. The counter types can be `tx-pkt`,`rx-pkt`,`tx-byte`,`rx-byte`.<br><br>Example:<pre>monitor.histogram_pg.counter_type = [rx_byte]</pre> |
 | `<port_group_name>.trigger_type` | Specifies the type of trigger that initiates data collection. The only option is timer. At least one port group must have a configured timer, otherwise no data is ever collected.<br><br>Example:<pre>monitor.histogram_pg.trigger_type = timer</pre> |
@@ -329,6 +354,53 @@ monitor.histogram_pg.timer                            = 1s
 monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
 monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
 monitor.histogram_pg.histogram.sample_time_ns         = 1024
+```
+
+{{< /tab >}}
+{{< tab "Latency Histogram Examples ">}}
+
+The following example configures the latency histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. These settings apply to interfaces that have the `latency` histogram enabled and do not have different values configured for these settings at the interface level:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
+...
+monitor.port_group_list                               = [latency_pg] 
+monitor.histogram_pg.port_set                         = allports
+monitor.histogram_pg.stat_type                        = histogram_latency
+monitor.histogram_pg.cos_list                         = [0-15]
+monitor.histogram_pg.trigger_type                     = timer
+monitor.histogram_pg.timer                            = 1s
+...
+monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
+monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
+monitor.histogram_pg.histogram.sample_time_ns         = 1024
+```
+
+The following example enables the latency histogram for traffic class 0 on swp1 through swp8 with the globally applied minimum boundary, histogram size, and sample interval. The example also enables the latency histogram for traffic class 1 on swp9 through swp16 and sets the minimum boundary to 768 bytes, the histogram size to 9600 bytes, and the sampling interval to 2048 nanoseconds.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
+...
+monitor.port_group_list                                = [histogram_gr1, histogram_gr2] 
+monitor.histogram_gr1.port_set                         = swp1-swp8
+monitor.histogram_gr1.stat_type                        = histogram_latency
+monitor.histogram_gr1.cos_list                         = [0]
+monitor.histogram_gr1.trigger_type                     = timer
+monitor.histogram_gr1.timer                            = 1s
+...
+monitor.histogram_gr1.histogram.minimum_bytes_boundary = 960
+monitor.histogram_gr1.histogram.histogram_size_bytes   = 12288
+monitor.histogram_gr1.histogram.sample_time_ns         = 1024
+
+monitor.histogram_gr2.port_set                         = swp9-swp16
+monitor.histogram_gr2.stat_type                        = histogram_tc
+monitor.histogram_gr2.cos_list                         = [1]
+monitor.histogram_gr2.trigger_type                     = timer
+monitor.histogram_gr2.timer                            = 1s
+...
+monitor.histogram_gr2.histogram.minimum_bytes_boundary = 960
+monitor.histogram_gr2.histogram.histogram_size_bytes   = 12288
+monitor.histogram_gr2.histogram.sample_time_ns         = 1024
 ```
 
 {{< /tab >}}
@@ -528,7 +600,7 @@ Set the log options in the `/etc/cumulus/datapath/monitor.conf` file, then resta
 
 | Setting| Description|
 |------- |----------- |
-| `<port_group_name>.log.queue_bytes` | Set this option to `log` to create a log message when the queue length or counter number reaches the threshold set. |
+| `<port_group_name>.log.action_list` | Set this option to `log` to create a log message when the queue length or counter number reaches the threshold set. |
 | `<port_group_name>.log.queue_bytes` | Specifies the length of the queue in bytes after which the switch sends a log message. |
 | `<port_group_name>.log.count` | Specifies the number of counters to reach after which the switch sends a log message. |
 

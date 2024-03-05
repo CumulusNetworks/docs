@@ -27,9 +27,9 @@ Cumulus Linux constructs the SyncE clock identity as follows:
 Basic SyncE configuration requires you:
 - Enable SyncE on the switch.
 - Configure SyncE on at least one interface so that the interface is a timing source that passes to the selection algorithm.
+- Set the SyncE bundle ID to prevent loops if more than one link comes from the same clock source. You can set a value between 0 and 256. A value of 0 indicates no bundle.
 
 The basic configuration shown below uses the default SyncE settings:
-<!-- - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.-->
 - The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is set to 100.
 - The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using the interface for synchronization is set to 5 minutes.
 
@@ -39,6 +39,7 @@ The basic configuration shown below uses the default SyncE settings:
 ```
 cumulus@switch:~$ nv set system synce enable on
 cumulus@switch:~$ nv set interface swp2 synce enable on
+cumulus@switch:~$ nv set interface swp2 synce bundle-id 10
 cumulus@switch:~$ nv config apply
 ```
 
@@ -47,7 +48,7 @@ cumulus@switch:~$ nv config apply
 
 Edit the `/etc/synced/synced.conf` file to configure the interface, then enable and start the SyncE service. Adding an interface section in the `/etc/synced/synced.conf` file enables SyncE on that interface.
 
-The following example enables SyncE on swp1, swp2, swp3.
+The following example enables SyncE on swp2.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -57,12 +58,9 @@ twtr_seconds=10
 priority=1
 loglevel=info
 
-[swp1]
-
-[swp3]
-
-[swp4]
+[swp2]
 priority=4
+bundle-id=10
 ```
 
 ```

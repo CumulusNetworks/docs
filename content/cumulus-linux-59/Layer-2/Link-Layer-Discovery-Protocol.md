@@ -307,16 +307,12 @@ The interface must be a physical interface; you cannot enable TLVs on bonds.
 
 ### Transmit LLDP-MED Inventory TLVs
 
-By default, Cumulus Linux transmits <span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> Inventory TLV advertisements on enabled ports.
+<span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> is an extension to LLDP that operates between endpoint devices, such as IP phones and switches. Inventory management TLV enables an endpoint to transmit detailed inventory information about itself to the switch, such as the manufacturer, model, firmware, and serial number.
 
-LLDP-MED is an extension to LLDP that operates between endpoint devices, such as IP phones and switches. Inventory management TLV enables an endpoint to transmit detailed inventory information about itself to the switch, such as the hardware revision, firmware version, software version, serial number, manufacturer name, and model name.
-
-You can disable LLDP-MED inventory TLV transmission if you want LLDP to receive LLDP-MED inventory TLVs (and publish them using SNMP, if enabled) but *not* send them.
-
-To disable LLDP-MED inventory TLVs, run the `nv set service lldp lldp-med-inventory-tlv off` command:
+To enable LLDP-MED inventory TLVs on the switch, run the `nv set service lldp lldp-med-inventory-tlv on` command:
 
 ```
-cumulus@switch:~$ nv set service lldp lldp-med-inventory-tlv off
+cumulus@switch:~$ nv set service lldp lldp-med-inventory-tlv on
 cumulus@switch:~$ nv config apply
 ```
 

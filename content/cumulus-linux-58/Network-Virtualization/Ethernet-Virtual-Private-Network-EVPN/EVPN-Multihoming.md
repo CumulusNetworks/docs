@@ -42,7 +42,7 @@ You must enable the following features to use EVPN-MH:
 Cumulus Linux uses <span class="a-tooltip">[HER](## "Head End Replication")</span> by default with EVPN multihoming. If you prefer to use EVPN BUM traffic handling with EVPN-PIM on multihomed sites through Type-4/ESR routes, configure EVPN-PIM as described in {{<link title="EVPN BUM Traffic with PIM-SM" text="EVPN BUM Traffic with PIM-SM">}}.
 
 {{%notice info%}}
-On Spectrum A1 switches, EVPN multihoming needs a {{<link title="EVPN BUM Traffic with PIM-SM" text="PIM-SM underlay to distribute BUM traffic">}}; the Spectrum A1 switch does not support HER with EVPN multihoming. To check if you have a Spectrum A1 switch, run the `sudo decode-syseeprom version | egrep -i "tlv|--|device version"` command. If the command output shows the `Device Version` value at 16 or higher, you have a Spectrum A1 switch:
+On Spectrum A1 switches, NVIDIA recommends that you use a {{<link title="EVPN BUM Traffic with PIM-SM" text="PIM-SM underlay to distribute BUM traffic">}} with EVPN multihoming for better performance. To check if you have a Spectrum A1 switch, run the `sudo decode-syseeprom version | egrep -i "tlv|--|device version"` command. If the command output shows the `Device Version` value at 16 or higher, you have a Spectrum A1 switch:
 
 ```
 cumulus@switch:~$ sudo decode-syseeprom version | egrep -i "tlv|--|device version"
@@ -3575,9 +3575,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL57 - EVPN Multihomingv2" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
-
-This simulation is running Cumulus Linux 5.7. The Cumulus Linux 5.8 simulation is coming soon.
+    {{< simulation name="Try It CL58 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
 
 This simulation starts with the EVPN-MH with Head End Replication configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

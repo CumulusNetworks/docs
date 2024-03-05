@@ -11,5 +11,5 @@ This section describes layer 3 configuration. Read this section to understand ro
 - {{<link url="Protocol-Independent-Multicast-PIM" text="Protocol Independent Multicast">}} (PIM)
 - {{<link url="Bidirectional-Forwarding-Detection-BFD" text="Bidirectional Forwarding Detection">}} (BFD)
 - {{<link url="Network-Address-Translation-NAT" text="Network Address Translation">}} (NAT)
-- {{<link url="Virtual-Router-Redundancy-VRR" text="Virtual Router Redundancy Protocol">}} (VRRP)
+- {{<link url="Virtual-Router-Redundancy-Protocol-VRRP" text="Virtual Router Redundancy Protocol">}} (VRRP)
 - {{<link url="FRRouting" text="FRRouting">}} (FRR)

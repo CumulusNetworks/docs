@@ -106,6 +106,26 @@ cumulus@switch:~$ nv set service lldp dot1-tlv on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set service lldp lldp-med-inventory-tlv></h>
+
+Configures the `lldpd` service to send <span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> Inventory TLV advertisements. By default, Cumulus Linux transmits LLDP-MED Inventory TLV advertisements on enabled ports.
+
+LLDP-MED is an extension to LLDP that operates between endpoint devices, such as IP phones and switches. Inventory management TLV enables an endpoint to transmit detailed inventory information about itself to the switch, such as the hardware revision, firmware version, software version, serial number, manufacturer name, and model name.
+
+You can disable LLDP-MED inventory TLV transmission if you want LLDP to receive LLDP-MED inventory TLVs (and publish them using SNMP, if enabled) but not send them.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp lldp-med-inventory-tlv off
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set service lldp mode \<mode\></h>
 
 Configures the `lldpd` service to send only CDP frames or only LLDP frames. By default, the `lldpd` service sends LLDP frames unless it detects a CDP peer, then it sends CDP frames. You can set the following options:

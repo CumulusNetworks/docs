@@ -24,15 +24,14 @@ MAC addresses are associated with switch interfaces. They are classified as:
 
 The NetQ UI provides a listing of current MAC addresses that you can filter by hostname, timestamp, MAC address, VLAN, and origin. You can sort the list by these parameters and also remote, static, and next hop.
 
-The NetQ CLI provides the following commands:
+Monitor MAC addresses with the following commands. Refer to the {{<link title="show/#netq-show-macs" text="command line reference">}} for additional options, definitions, and examples.
 
 ```
-netq show macs [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
-netq <hostname> show macs [<mac>] [vlan <1-4096>] [origin | count] [around <text-time>] [json]
-netq <hostname> show macs egress-port <egress-port> [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
-netq [<hostname>] show mac-history <mac> [vlan <1-4096>] [diff] [between <text-time> and <text-endtime>] [listby <text-list-by>] [json]
-netq [<hostname>] show mac-commentary <mac> vlan <1-4096> [between <text-time> and <text-endtime>] [json]
-netq [<hostname>] show events [severity info | severity error ] message_type macs [between <text-time> and <text-endtime>] [json]
+netq show macs
+netq <hostname> show macs egress-port <egress-port>
+netq show mac-history <mac>
+netq show mac-commentary <mac> vlan <1-4096>
+netq show events message_type macs
 ```
 
 ## View MAC Addresses Networkwide
@@ -556,7 +555,7 @@ You can get more descriptive information about changes to a given MAC address on
 
 To view MAC address commentary:
 
-1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
+1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
 2. Under the **Network** heading, select **MACs**.
 

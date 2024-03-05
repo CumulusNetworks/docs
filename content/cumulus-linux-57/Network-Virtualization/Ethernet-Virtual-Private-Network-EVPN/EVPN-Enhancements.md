@@ -454,7 +454,7 @@ Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce AR
 {{%notice note%}}
 - ARP and ND suppression only suppresses the flooding of known hosts. To disable all flooding refer to the {{<link title="#Disable BUM Flooding" text="Disable BUM Flooding" >}} section.
 - NVIDIA recommends that you keep ARP and ND suppression enabled on all VXLAN interfaces on the switch. If you must disable suppression for a special use case, you cannot disable ARP and ND suppression on some VXLAN interfaces but not others.
-- When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Supported-Route-Table-Entries/#forwarding-table-profiles" text="forwarding table profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment. Refer to {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="Global Timer Settings">}}.
+- When deploying EVPN and VXLAN using a hardware profile *other* than the default {{<link url="Forwarding-Table-Size-and-Profiles" text="forwarding table profile">}}, ensure that both the soft maximum and hard maximum garbage collection threshold settings have a value larger than the number of neighbor (ARP and ND) entries you expect in your deployment. Refer to {{<link url="Address-Resolution-Protocol-ARP/#neighbor-base-reachable-timer" text="Global Timer Settings">}}.
 {{%/notice%}}
 
 ### ND Suppression and IPv6 Address Reuse

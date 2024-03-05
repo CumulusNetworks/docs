@@ -1280,16 +1280,34 @@ To show the IGMP configuration settings for an interface, run the `nv show inter
 ```
 cumulus@lhr:~$ nv show interface swp3 ip igmp
                             operational  applied
---------------------------  -----------  -------
-enable                                   on     
-fast-leave                               off    
-last-member-query-count                  2      
-last-member-query-interval               10     
-query-interval                           125    
-query-max-response-time                  100    
-version                                  3      
-[static-group]                                  
-[group]           
+---------------------------  -----------  -------
+enable                                    on
+version                      3            3
+fast-leave                                off
+query-interval               125          125
+query-max-response-time      100          100
+last-member-query-interval                10
+last-member-query-count      2            2
+[static-group]
+interface-state              up
+ip-address                   33.1.1.10
+ifindex                      3
+querier                      local
+querier-ip                   33.1.1.10
+query-start-count            0
+group-membership-interval    350
+older-host-present-interval  350
+other-querier-interval       300
+robustness-variable          2
+startup-query-interval       31
+last-member-query-time       20
+timers
+  query-timer                00:00:12
+  query-other-timer          --:--:--
+flags
+  multicast                  on
+  broadcast                  on
+  lan-delay                  on             
 ```
 
 To show IGMP operational data for an interface, run the NVUE `nv show interface <interface> ip igmp -o json` command or the vtysh `show ip igmp statistics` command.
@@ -1441,8 +1459,8 @@ To troubleshoot this issue:
 
    ```
    fhr# show ip pim rp-info
-   RP address       group/prefix-list   OIF               I am RP    Source
-   10.10.10.101     224.0.0.0/4         swp51             no         Static
+   RP address       group/prefix-list   OIF               I am RP    Source      Group-Type
+   10.10.10.101     224.0.0.0/4         swp51             no         Static      ASM
    ```
 
 ### No S,G on the RP for an Active Group
@@ -1475,7 +1493,7 @@ cumulus@switch:~$ cl-resource-query  | grep Mcast
 Total Mcast Routes:         450,   0% of maximum value    450
 ```
 
-Refer to {{<link url="Supported-Route-Table-Entries#tcam-resource-profiles-for-spectrum-switches" text="TCAM Resource Profiles for Spectrum Switches">}}.
+Refer to {{<link url="Forwarding-Table-Size-and-Profiles" text="Forwarding Table Size and Profiles">}}.
 
 ### Verify the MSDP Session State
 
@@ -1735,7 +1753,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             enable: on
         router:
           pim:
-            enable: on
+           enable: on
         type: svi
         vlan: 10
     router:
@@ -1764,7 +1782,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 type: unnumbered
           pim:
             address-family:
-              ipv4-unicast:
+              ipv4:
                 rp:
                   10.10.10.101: {}
             enable: on
@@ -1839,7 +1857,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 type: unnumbered
           pim:
             address-family:
-              ipv4-unicast:
+              ipv4:
                 rp:
                   10.10.10.101: {}
             enable: on
@@ -1898,7 +1916,7 @@ cumulus@spine01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
                 type: unnumbered
           pim:
             address-family:
-              ipv4-unicast:
+              ipv4:
                 rp:
                   10.10.10.101: {}
             enable: on
@@ -2068,6 +2086,12 @@ iface eth2 inet manual
 ```
 cumulus@leaf01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
+
+vrf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
 interface lo
 ip pim
 interface swp51
@@ -2076,14 +2100,10 @@ interface vlan10
 ip igmp
 ip igmp version 3
 ip igmp query-interval 125
-ip igmp last-member-query-interval 10
-ip igmp query-max-response-time 100
+ip igmp last-member-query-interval 100
+ip igmp last-member-query-count 2
+ip igmp query-max-response-time 1000
 ip pim
-vrf default
-ip pim rp 10.10.10.101 224.0.0.0/4
-exit-vrf
-vrf mgmt
-exit-vrf
 router bgp 65101 vrf default
 bgp router-id 10.10.10.1
 timers bgp 3 9
@@ -2103,6 +2123,7 @@ maximum-paths 64
 distance bgp 20 200 200
 neighbor swp51 activate
 exit-address-family
+! end of router bgp 65101 vrf default
 ```
 
 {{< /tab >}}
@@ -2111,6 +2132,11 @@ exit-address-family
 ```
 cumulus@leaf02:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
+vrf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
 interface lo
 ip pim
 interface swp51
@@ -2119,14 +2145,10 @@ interface vlan20
 ip igmp
 ip igmp version 3
 ip igmp query-interval 125
-ip igmp last-member-query-interval 10
-ip igmp query-max-response-time 100
+ip igmp last-member-query-interval 100
+ip igmp last-member-query-count 2
+ip igmp query-max-response-time 1000
 ip pim
-vrf default
-ip pim rp 10.10.10.101 224.0.0.0/4
-exit-vrf
-vrf mgmt
-exit-vrf
 router bgp 65102 vrf default
 bgp router-id 10.10.10.2
 timers bgp 3 9
@@ -2146,6 +2168,7 @@ maximum-paths 64
 distance bgp 20 200 200
 neighbor swp51 activate
 exit-address-family
+! end of router bgp 65102 vrf default
 ```
 
 {{< /tab >}}
@@ -2154,17 +2177,17 @@ exit-address-family
 ```
 cumulus@spine01:mgmt:~$ sudo cat /etc/frr/frr.conf
 ...
+rf default
+ip pim rp 10.10.10.101 224.0.0.0/4
+exit-vrf
+vrf mgmt
+exit-vrf
 interface lo
 ip pim
 interface swp1
 ip pim
 interface swp2
 ip pim
-vrf default
-ip pim rp 10.10.10.101 224.0.0.0/4
-exit-vrf
-vrf mgmt
-exit-vrf
 router bgp 65199 vrf default
 bgp router-id 10.10.10.101
 timers bgp 3 9
@@ -2189,6 +2212,7 @@ distance bgp 20 200 200
 neighbor swp1 activate
 neighbor swp2 activate
 exit-address-family
+! end of router bgp 65199 vrf default
 ```
 
 {{< /tab >}}
@@ -2196,9 +2220,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL57 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
-
-This simulation is running Cumulus Linux 5.7. The Cumulus Linux 5.8 simulation is coming soon.
+    {{< simulation name="Try It CL58 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
 

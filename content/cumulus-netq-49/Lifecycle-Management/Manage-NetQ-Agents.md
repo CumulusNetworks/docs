@@ -110,7 +110,7 @@ sudo netq config show agent
     [json]
 ```
 
-The following example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF. There is no special configuration to monitor Kubernetes, FRR, interface statistics, or WJH, and there are no limits on CPU usage or change to the default logging level.
+The following example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF.
 
 ```
 cumulus@switch:~$ sudo netq config show agent
@@ -118,13 +118,21 @@ netq-agent             value      default
 ---------------------  ---------  ---------
 exhibitport
 exhibiturl
-server                 127.0.0.1  127.0.0.1
-cpu-limit              100        100
+server                    127.0.0.1  127.0.0.1
+cpu-limit                 100        100
 agenturl
-enable-opta-discovery  True       True
-agentport              8981       8981
-port                   31980      31980
-vrf                    default    default
+wjh                                  Enabled
+asic-monitor                         Enabled
+enable-opta-discovery     False      False
+agentport                 8981       8981
+port                      31980      31980
+vrf                       default    default
+is-gnmi-enabled           False      False
+netq_stream_port          7680       7680
+netq_stream_address       127.0.0.1  127.0.0.1
+is-ssl-enabled            False      False
+ssl-cert
+generate-unique-hostname  False      False
 ()
 ```
 

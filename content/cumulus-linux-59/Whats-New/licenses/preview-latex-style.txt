@@ -1,0 +1,137 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: AUCTeX
+Upstream-Contact: General discussion about AUCTeX <auctex@gnu.org>
+  Discussion about AUCTeX development <auctex-devel@gnu.org>
+  Bug reporting list for AUCTeX <bug-auctex@gnu.org>
+  Announcements about AUCTeX <info-auctex@gnu.org>
+Source: http://www.gnu.org/software/auctex/
+
+Files: *
+Copyright: 1985-2017, Free Software Foundation, Inc
+License: GPL-3+
+
+Files: debian/*
+Copyright: 1997-2017, Davide G. M. Salvetti
+License: GPL-3+
+
+Files: doc/auctex.texi
+       doc/changes.texi
+       doc/copying.texi
+       doc/faq.texi
+       doc/fdl.texi
+       doc/history.texi
+       doc/install.texi
+       doc/macros.texi
+       doc/preview-faq.texi
+       doc/preview-latex.texi
+       doc/preview-problems.texi
+       doc/preview-readme.texi
+       doc/preview-todo.texi
+       doc/quickstart.texi
+       doc/todo.texi
+       doc/wininstall.texi
+Copyright: 1992-2017, Free Software Foundation, Inc
+License: GFDL-NIV-1.3
+
+Files: doc/intro.texi
+Copyright: 2008, Free Software Foundation, Inc
+License: permissive
+
+Files: doc/tex-ref.tex
+Copyright: 1987-2017, Free Software Foundation, Inc
+License: preserve-notice
+
+Files: install-sh
+Copyright: 1991, the Massachusetts Institute of Technology
+License: MIT
+
+Files: mkinstalldirs
+Copyright: 1993, Noah Friedman <friedman@prep.ai.mit.edu>
+License: publicdomain
+
+Files: style/j-article.el
+       style/j-book.el
+       style/j-report.el
+       style/jarticle.el
+       style/jbook.el
+       style/jreport.el
+       style/jsarticle.el
+       style/jsbook.el
+       style/report.el
+Copyright: Ralf Angeli
+License: tobeclarified
+
+Files: style/amsbsy.el style/amstext.el
+Copyright: Carsten Dominik
+License: tobeclarified
+
+Files: style/amsart.el style/amsbook.el style/article.el style/book.el
+  style/czech.el style/danish.el style/english.el style/german.el
+  style/graphics.el style/ngerman.el style/slovak.el style/swedish.el
+Copyright: tobeclarified
+License: tobeclarified
+
+Files: style/dk.el style/dutch.el style/plfonts.el style/plhb.el
+  style/virtex.el
+Copyright: Per Abrahamsen
+License: tobeclarified
+
+License: GFDL-NIV-1.3
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the
+  Free Software Foundation; either version 3, or (at your option) any
+  later version.
+  .
+  This program is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  General Public License for more details.
+  .
+  You should have received a copy of the GNU General Public License along
+  with this program.  If not, see <http://www.gnu.org/licenses/>.
+  .
+  On Debian GNU/Linux System, you can find a copy of the GNU General Public
+  License version 3 in the file "/usr/share/common-licenses/GPL-3".
+
+License: GPL-3+
+  This program is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the
+  Free Software Foundation; either version 3, or (at your option) any
+  later version.
+  .
+  This program is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  General Public License for more details.
+  .
+  You should have received a copy of the GNU General Public License along
+  with this program.  If not, see <http://www.gnu.org/licenses/>.
+  .
+  On Debian GNU/Linux System, you can find a copy of the GNU General Public
+  License version 3 in the file "/usr/share/common-licenses/GPL-3".
+
+License: MIT
+  Permission to use, copy, modify, distribute, and sell this software and
+  its documentation for any purpose is hereby granted without fee,
+  provided that the above copyright notice appear in all copies and that
+  both that copyright notice and this permission notice appear in
+  supporting documentation, and that the name of M.I.T. not be used in
+  advertising or publicity pertaining to distribution of the software
+  without specific, written prior permission.  M.I.T. makes no
+  representations about the suitability of this software for any purpose.
+  It is provided "as is" without express or implied warranty.
+
+License: permissive
+  This configure script is free software; the Free Software Foundation
+  gives unlimited permission to copy, distribute and modify it.
+
+License: preserve-notice
+  Permission is granted to make and distribute copies of this card
+  provided the copyright notice and this permission notice are preserved
+  on all copies.
+
+License: publicdomain
+  Public domain
+
+License: tobeclarified
+  Supposedly GPL-3+ as the rest of the code; ask <auctex-devel@gnu.org>.

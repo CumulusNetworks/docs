@@ -11,8 +11,8 @@ This quick start provides the basics so that you can get started with the NVIDIA
 
 The following browsers are fully supported:
 
-- Google Chrome 91 or later
-- Mozilla Firefox 89 or later
+- Google Chrome 120 or later
+- Mozilla Firefox 121 or later
 
 The following browsers are supported on a best-effort basis:
 
@@ -21,11 +21,15 @@ The following browsers are supported on a best-effort basis:
 
 ## Login
 
-NVIDIA Air uses the same credentials as the NVIDIA developer forums for account access. To log in, go to {{<exlink url="https://air.nvidia.com" text="air.nvidia.com">}}. Enter the email address you use for the forums or the one you intend to use to sign up, then click **Get Started**:
+A valid business email address is required to access NVIDIA Air. To log in, go to {{<exlink url="https://air.nvidia.com" text="air.nvidia.com">}}. Enter your business email address, then click **Get Started**:
 
 {{<img src="/images/guides/nvidia-air/Login.png" alt="" width="800px">}}
 
-The page redirects you to the NVIDIA forums login page. Either click the **Create account** link to sign up or enter your password to log in with an existing account:
+{{%notice note%}}
+If your email address is not accepted as a valid business email address and you believe this to be incorrect, please contact us at {{<exlink url="mailto:air-support@nvidia.com" text="air-support@nvidia.com">}}
+{{%/notice%}}
+
+The page redirects you to the NVIDIA login page. Either click the **Create account** link to sign up or enter your password to log in with an existing account:
 
 {{<img src="/images/guides/nvidia-air/LoginForums.png" alt="" width="800px">}}
 
@@ -217,19 +221,12 @@ The SSH keys upload automatically to the oob-mgmt-server.
 
 ## Resource Budgets
 
-The number of simulation resources a user can consume is limited based on the user's account. For an account using a company email, a user is granted the following limits:
+The number of simulation resources a user can consume is limited for each user's account. For an account using a valid business email, a user is granted the following limits:
 
 - 60 vCPUs
 - 90GB memory
 - 650GB storage
 - 4 running simulations
-
-For an account using a non-company email, a user is granted the following limits:
-
-- 30 vCPUs
-- 55GB memory
-- 350GB storage
-- 1 running simulation
 
 NVIDIA users are granted the following limits:
 

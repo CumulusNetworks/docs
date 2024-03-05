@@ -227,6 +227,20 @@ tx-stats
 
 To reset the counters that the `nv show interface <interface> qos roce` command displays, run the `nv action clear interface <interface> qos roce counters` command.
 
+## Default RoCE Mode Configuration
+
+The following table shows the default RoCE configuration for lossy and lossless mode.
+
+| Configuration | Lossy Mode| Lossless Mode|
+| --------| ----- | ------- |
+| Port trust mode | YES | YES |
+| Port switch priority to traffic class mapping<ul><li>Switch priority 3 to traffic class 3 (RoCE)</li><li>Switch priority 6 to traffic class 6 (CNP)</li><li>Other switch priority to traffic class 0</li></ul> | YES | YES |
+| Port ETS:<ul><li>Traffic class 6 (CNP) - Strict</li><li>Traffic class 3 (RoCE) - WRR 50%</li><li>Traffic class 0 (Other traffic) - WRR 50%</li></ul>|YES|YES|
+| Port ECN absolute threshold is 1501500 bytes for traffic class 3 (RoCE)|YES|YES|
+| LLDP and Application TLV (RoCE)<br>(UDP, Protocol:4791, Priority: 3)| YES | YES |
+| Enable PFC on switch priority 3 (RoCE)|NO|YES|
+| Switch priority 3 allocated to RoCE lossless traffic pool| NO | YES |
+
 ## Change RoCE Configuration
 
 You can adjust RoCE settings using NVUE after you enable RoCE. To change the memory allocation for RoCE lossless mode to 60 percent:

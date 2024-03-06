@@ -19,7 +19,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - ARP packet path is now handled in hardware to offload most ARP processing and save CPU cycles
 - Warmboot support for VXLAN EVPN is now generally available
 - Cumulus Linux upgrade to Debian 12 (bookworm)
-- Latency histogram for ASIC monitoring
+- {{<link url="ASIC-Monitoring" text="Latency histogram">}} for ASIC monitoring
 - Default firewall rules
 - LLDP application priority TLV
 - Support Native vtysh/FRR output

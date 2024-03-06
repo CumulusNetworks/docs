@@ -47,7 +47,7 @@ cumulus@switch:~$ nv config apply
 
 Edit the `/etc/synced/synced.conf` file to configure the interface, then enable and start the SyncE service. Adding an interface section in the `/etc/synced/synced.conf` file enables SyncE on that interface.
 
-The following example enables SyncE on swp1, swp2, swp3.
+The following example enables SyncE on swp2.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -57,12 +57,7 @@ twtr_seconds=10
 priority=1
 loglevel=info
 
-[swp1]
-
-[swp3]
-
-[swp4]
-priority=4
+[swp2]
 ```
 
 ```

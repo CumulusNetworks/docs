@@ -138,7 +138,7 @@ Exception List
 No Data
 ```
 
-To show detailed RoCE information about a single interface, run the `nv show interface qos roce status` command.
+To show detailed RoCE information about a single interface, run the `nv show interface <interface> qos roce status` command.
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp16 qos roce status

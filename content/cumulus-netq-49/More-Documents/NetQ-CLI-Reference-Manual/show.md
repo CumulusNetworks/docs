@@ -1305,6 +1305,7 @@ Wed Jul 26 02:39:27 2023       1052005  0        0        0        0        0   
 ```
 
 - - -
+<!--removed in 4.9; still in CLI output
 ## netq show impact kubernetes
 
 Displays the impact on pods, services, replica sets or deployments when a specific ToR switch becomes unavailable.
@@ -1417,6 +1418,7 @@ nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-2
 - ```netq show kubernetes```
 
 - - -
+-->
 ## netq show interfaces
 
 Displays the health of all interfaces or a single interface on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter by the interface type, state of the interface, or the remote interface. For a given switch or host, you can view the total number of configured interfaces.
@@ -2540,7 +2542,7 @@ Count of matching routes records: 3
 - `netq show ip/ipv6 neighbors`
 
 - - -
-
+<!--removed form 4.9; still present in output
 ## netq show kubernetes
 
 Displays the configuration and health of the non-NetQ Kubernetes components in your container environment. This command lets you:
@@ -2670,7 +2672,7 @@ netq [<hostname>] show kubernetes service
 | daemon-set | NA |  Only display Kubernetes daemon-set information |
 | deployment | NA | Only display Kubernetes deployment information |
 | pod | NA | Only display Kubernetes pod information |
-| replication-controller | NA | Only display Kubernetes replicaiton controller information |
+| replication-controller | NA | Only display Kubernetes replication controller information |
 | replica-set | NA | Only display Kubernetes replication set information |
 | service | NA | Only display Kubernetes service information |
 | connectivity | NA | Only display connectivity information for the daemon-set, deployment, or service |
@@ -2731,8 +2733,7 @@ Refer to {{<link title="Monitor Container Environments Using Kubernetes API Serv
 - ```netq config del agent kubernetes-monitor```
 - ```netq config show agent kubernetes-monitor```
 - ```netq show impact kubernetes```
-
-- - -
+-->
 <!--
 ## netq show line-utilization
 

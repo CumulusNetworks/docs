@@ -42,8 +42,6 @@ Display syntax for all commands with the `agent` keyword:
 ```
 cumulus@switch:~$ netq agent help OR netq help agent
 Commands:
-    netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
-    netq config del agent kubernetes-monitor
     netq check agents [label <text-label-name> | hostnames <text-list-hostnames>] [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [json]
     netq show unit-tests agent [json]
     netq config (add|del) agent (stats|sensors)

@@ -52,15 +52,15 @@ The following example enables SyncE on swp2.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
-...
+....
+# NVUE SyncE state is enable on
+
 [global]
-twtr_seconds=10
+twtr_seconds=300
 priority=1
-loglevel=info
 
 [swp2]
-priority=4
-bundle-id=10
+bundle=10
 ```
 
 ```

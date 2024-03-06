@@ -14,8 +14,8 @@ Cumulus Linux provides several histograms:
 - *Egress queue length* shows information about egress buffer utilization over time.
 - *Ingress queue length* shows information about ingress buffer utilization over time.
 - *Counter* shows information about bandwidth utilization for a port over time.
-- *Latency* shows the amount of time the switch processes a packet; from the time it enters the ingress port to the time it waits for its turn in the egress buffer.
-- *Packet drops* due to errors (Linux only).
+- *Latency* shows information about packet latency over time.
+- *Packet drops due to errors* (Linux only).
 
 {{%notice note%}}
 Cumulus Linux supports:
@@ -61,7 +61,7 @@ To configure ASIC monitoring, you specify:
 - The switch ports to monitor.
   - For the egress queue length and latency histograms, you can specify the traffic class you want to monitor for a port or range of ports.
   - For the ingress queue length histogram, you can specify the priority group you want to monitor for a port or range of ports.
-- How and when to start reading the ASIC: at a specific queue length, number of packets or bytes received or transmitted.
+- How and when to start reading the ASIC: at a specific queue length, number of packets or bytes received or transmitted, or number of nanoseconds latency.
 - What actions to take: create a snapshot file, send a message to the `/var/log/syslog` file, or both.
 
 ### Enable ASIC Monitoring
@@ -114,7 +114,7 @@ The histogram type can be `egress-buffer`, `ingress-buffer`, `counter`, or `late
 - To enable histograms on interfaces or to change interface level settings, run the `nv set interface <interface> telemetry histogram <type>` command.
   
 {{< tabs "TabID93 ">}}
-{{< tab "Egress Queue Length Examples ">}}
+{{< tab "Egress Queue Length ">}}
 
 The following example configures the egress queue length histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. These settings apply to interfaces that have the `egress-buffer` histogram enabled and do not have different values configured for these settings at the interface level:
 
@@ -137,7 +137,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Ingress Queue Length Examples ">}}
+{{< tab "Ingress Queue Length ">}}
 
 The following example configures the ingress queue length histogram and sets the minimum boundary size to 960 bytes, the histogram size to 12288 bytes, and the sampling interval to 1024 nanoseconds. These settings apply to interfaces that have the `ingress-buffer` histogram enabled and do not have different values configured for these settings at the interface level:
 
@@ -160,7 +160,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Counter Histogram Examples ">}}
+{{< tab "Counter Histogram ">}}
 
 The following example configures the counter histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. The histogram monitors all counter types. These settings apply to interfaces that have the `counter` histogram enabled and do not have different values configured for these settings at the interface level:
 
@@ -179,7 +179,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Latency Histogram Examples ">}}
+{{< tab "Latency Histogram ">}}
 
 The following example configures the latency histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. These settings apply to interfaces that have the `latency` histogram enabled and do not have different values configured for these settings at the interface level:
 
@@ -519,7 +519,7 @@ swp1       4          4
 To create a snapshot:
 - Set how often to write to a snapshot file. The default value is 1 second.
 - Provide the snapshot file name and location. The default location and file name is `/var/lib/cumulus/histogram_stats`.
-- Configure the number of snapshots you can create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is `histogram_stats_0` and the 30th snapshot is `histogram_stats_30`. After the 30th snapshot, Cumulus Linux overwrites the original snapshot file (`histogram_stats_0`) and the sequence restarts. The default value is 64.
+- Configure the number of snapshots to create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is `histogram_stats_0` and the 30th snapshot is `histogram_stats_30`. After the 30th snapshot, Cumulus Linux overwrites the original snapshot file (`histogram_stats_0`) and the sequence restarts. The default value is 64.
 <!-- vale on -->
 {{%notice note%}}
 Snapshots provide you with more data; however, they can occupy a lot of disk space on the switch. To reduce disk usage, you can use a volatile partition for the snapshot files; for example, `/var/run/cumulus/histogram_stats`.
@@ -554,6 +554,7 @@ Edit the `snapshot.file` settings in the `/etc/cumulus/datapath/monitor.conf` fi
 - To show an ingress queue snapshot, run the `nv show interface <interface> telemetry histogram ingress-buffer priority-group <value> snapshot` command
 - To show an egress queue snapshot, run the `nv show interface <interface> telemetry histogram egress-buffer traffic-class <type> snapshot`
 - To show a counter snapshot, run the `nv show interface <interface> telemetry histogram counter counter-type <type> snapshot`
+- To show a latency snapshot, run the `nv show interface <interface> telemetry histogram latency traffic-class <type> snapshot`
 
 The following example shows an ingress queue snapshot:
 
@@ -592,7 +593,7 @@ cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer
 cumulus@switch:~$ nv config apply
 ```
 
-The following example sends a message to the `/var/log/syslog` file after the number of received packets on ports 1 through 8 reaches 500:
+The following example sends a message to the `/var/log/syslog` file after the number of received packets on swp1 through swp8 reaches 500:
 
 ```
 cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet threshold log
@@ -600,7 +601,7 @@ cumulus@switch:~$ nnv set interface swp1-swp8 telemetry histogram counter counte
 cumulus@switch:~$ nv config apply
 ```
 
-The following example sends a message to the `/var/log/syslog` file after the packet latency for traffic class 0 on swp1 through swp8 reaches 500 nanoseconds:
+The following example sends a message to the `/var/log/syslog` file after packet latency for traffic class 0 on swp1 through swp8 reaches 500 nanoseconds:
 
 ```
 cumulus@switch:~$ nv set interface swp1-8 telemetry histogram latency traffic-class 0 threshold action log

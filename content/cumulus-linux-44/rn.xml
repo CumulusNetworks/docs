@@ -21,8 +21,8 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.8.0</td>
-<td></td>
+<td>4.3.0-5.6.0</td>
+<td>5.7.0-5.8.0</td>
 </tr>
 <tr>
 <td>3647424</td>
@@ -2141,8 +2141,8 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.8.0</td>
-<td></td>
+<td>4.3.0-5.6.0</td>
+<td>5.7.0-5.8.0</td>
 </tr>
 <tr>
 <td>3647424</td>
@@ -4390,8 +4390,8 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.8.0</td>
-<td></td>
+<td>4.3.0-5.6.0</td>
+<td>5.7.0-5.8.0</td>
 </tr>
 <tr>
 <td>3647424</td>
@@ -6603,8 +6603,8 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.8.0</td>
-<td></td>
+<td>4.3.0-5.6.0</td>
+<td>5.7.0-5.8.0</td>
 </tr>
 <tr>
 <td>3647424</td>
@@ -8998,8 +8998,8 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.8.0</td>
-<td></td>
+<td>4.3.0-5.6.0</td>
+<td>5.7.0-5.8.0</td>
 </tr>
 <tr>
 <td>3647424</td>

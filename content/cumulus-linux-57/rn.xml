@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3782543</td>
+<td>When you configure the BGP setting {{bgp max-med on-startup}} with vtysh, the MED on some peers might not be set to 4294967294 as expected on startup.  The {{max-med}} might also fail to reset after the startup timer expires.</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3773177</td>
 <td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
@@ -105,12 +111,6 @@ cumulus@switch:~$ dpkg --install frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb
 <td>If you run the {{ifreload -a}} command when ACLs exist but nonatomic update mode is set in the {{switchd.conf}} file, traffic pauses on unaffected interfaces.</td>
 <td>5.6.0-5.7.0</td>
 <td>5.8.0</td>
-</tr>
-<tr>
-<td>3698482</td>
-<td>The NVUE {{nv show system config snippet}} command does not show any data because traditional and flexible snippets represent free-form text that are not suitable to be configured or retrieved with the NVUE CLI. To work around this issue, run the {{nv show system config snippet -o json}} or {{nv show system config snippet -o yaml}} command. You can also a run a {{GET /nvue_v1/system/config/snippet }} REST API method.</td>
-<td>5.7.0-5.8.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3695491</td>
@@ -280,6 +280,19 @@ To work around this issue when using fiber cables:
 <td>3424967</td>
 <td>{{sudo}} for TACACS+ users with privilege level 15 does not work when reaching the TACACS+ server through the {{default}} VRF. To work around this issue, specify the interface name that the {{default}} VRF uses in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file or run the NVUE {{nv set system aaa tacacs vrf}} command. If you don't run either command, a TACACS+ user with privilege level 15 can run {{vrf task exec default sudo ...}} to execute the {{sudo}} command.</td>
 <td>5.0.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3420056</td>
+<td>
+The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
+<td>4.4.0-4.4.5, 5.0.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3393966</td>
+<td>Configuring the network statement with the NVUE {{nv set vrf &lt;vrf&gt; router ospf area &lt;area-id&gt; network &lt;network-id&gt;}} command might bring down all the OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement.</td>
+<td>5.5.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>

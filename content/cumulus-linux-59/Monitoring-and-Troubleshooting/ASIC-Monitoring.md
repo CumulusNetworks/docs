@@ -14,7 +14,7 @@ Cumulus Linux provides several histograms:
 - *Egress queue length* shows information about egress buffer utilization over time.
 - *Ingress queue length* shows information about ingress buffer utilization over time.
 - *Counter* shows information about bandwidth utilization for a port over time.
-- *Latency* shows the amount of time a packet waits at the egress port for its turn in the egress buffer.
+- *Latency* shows the amount of time the switch processes a packet; from the time it enters the ingress port to the time it waits for its turn in the egress buffer.
 - *Packet drops* due to errors (Linux only).
 
 {{%notice note%}}
@@ -579,16 +579,32 @@ Parsing the snapshot file and finding the information you need can be tedious; u
 
 ### Log files
 
-In addition to snapshots, you can configure the switch to send log messages to the `/var/log/syslog` file when the queue length reaches a specified number of bytes or the number of counters reach a specified value.
-
-The following example sends a message to the `/var/log/syslog` file after the ingress queue length for priority group 1 on ports swp9 through swp16 reaches 5000 bytes:
+In addition to snapshots, you can configure the switch to send log messages to the `/var/log/syslog` file when the queue length reaches a specified number of bytes, the number of counters reach a specified value, or the latency reaches a specific number of nanoseconds.
 
 {{< tabs "TabID293 ">}}
 {{< tab "NVUE Commands ">}}
 
+The following example sends a message to the `/var/log/syslog` file after the ingress queue length for priority group 1 on swp9 through swp16 reaches 5000 bytes:
+
 ```
 cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 threshold action log
 cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 threshold value 5000
+cumulus@switch:~$ nv config apply
+```
+
+The following example sends a message to the `/var/log/syslog` file after the number of received packets on ports 1 through 8 reaches 500:
+
+```
+cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet threshold log
+cumulus@switch:~$ nnv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet threshold value 500
+cumulus@switch:~$ nv config apply
+```
+
+The following example sends a message to the `/var/log/syslog` file after the packet latency for traffic class 0 on swp1 through swp8 reaches 500 nanoseconds:
+
+```
+cumulus@switch:~$ nv set interface swp1-8 telemetry histogram latency traffic-class 0 threshold action log
+cumulus@switch:~$ nv set interface swp1-8 telemetry histogram latency traffic-class 0 threshold value 500
 cumulus@switch:~$ nv config apply
 ```
 
@@ -602,12 +618,33 @@ Set the log options in the `/etc/cumulus/datapath/monitor.conf` file, then resta
 | `<port_group_name>.log.action_list` | Set this option to `log` to create a log message when the queue length or counter number reaches the threshold set. |
 | `<port_group_name>.log.queue_bytes` | Specifies the length of the queue in bytes after which the switch sends a log message. |
 | `<port_group_name>.log.count` | Specifies the number of counters to reach after which the switch sends a log message. |
+| `<port_group_name>.log.value` | Specifies the number of latency nanoseconds to reach after which the switch sends a log message. |
+
+The following example sends a message to the `/var/log/syslog` file after the ingress queue length reaches 5000 bytes:
 
 ```
 ...
-monitor.histogram_pg.action_list                      = [log]
+monitor.histogram_pg.action_list  = [log]
 ...
-monitor.histogram_pg.log.queue_bytes                  = 5000
+monitor.histogram_pg.log.queue_bytes  = 5000
+```
+
+The following example sends a message to the `/var/log/syslog` file after the number of packets reaches 500:
+
+```
+...
+monitor.histogram_pg.action_list  = [log]
+...
+monitor.histogram_pg.log.count  = 500
+```
+
+The following example sends a message to the `/var/log/syslog` file after packet latency reaches 500 nanoseconds:
+
+```
+...
+monitor.histogram_pg.action_list  = [log]
+...
+monitor.histogram_pg.log.value  = 500
 ```
 
 {{< /tab >}}

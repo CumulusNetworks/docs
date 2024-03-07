@@ -997,6 +997,24 @@ Delete the image. Once successful, the object should no longer be used and will 
 - `kwargs` _dict, optional_ - All optional keyword arguments are applied as key/value
   pairs in the request's JSON payload
 
+### publish
+Publish an image for public use
+
+**Arguments**:
+
+  - `contact` _str_ - The email address for the contact person associated with this image.
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Publish failed
+
+### unpublish
+Unpublish the image from public use
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Unpublish failed
+
 <a name="air_sdk.image.Image.upload"></a>
 ### upload
 

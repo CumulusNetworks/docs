@@ -37,6 +37,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3771168</td>
+<td>When you perform an ISSU upgrade on a Spectrum 1 switch, the {{switchd}} service might crash.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3770993</td>
 <td>When a supplicant is authorized successfully on an interface in 802.1x multi-host mode, {{ping}} traffic coming into the 802.1x interface towards a local SVI might not be successful.</td>
 <td>5.8.0</td>

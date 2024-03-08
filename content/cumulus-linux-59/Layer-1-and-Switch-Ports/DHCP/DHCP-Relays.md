@@ -318,7 +318,7 @@ cumulus@leaf01:~$ nv config apply
 
 ### DHCP Relay for IPv6 in a Non-default VRF
 
-For DHCP relay in a symmetric routing deployment, you must assign a unique IPv6 address to a non-default VRF. Cumulus Linux uses this IPv6 address as the source IP address when sending packets to the DHCP server so that the DHCP server can send the packet back to this VTEP. If the VRF does not have a unique IPv6 address assigned to the VRF interface, the return packet from the DHCP server might arrive on any of the VTEPs that own the non-unique IP address.
+For IPv6 DHCP relay in a symmetric routing deployment, you must assign a unique IPv6 address to a non-default VRF. Cumulus Linux uses this IPv6 address as the source IP address when sending packets to the DHCP server so that the DHCP server can send the packet back to this VTEP. If the VRF does not have a unique IPv6 address assigned to the VRF interface, the return packet from the DHCP server might arrive on any of the VTEPs that own the non-unique IP address.
 
 This is also a requirement for IPv4 when you enable {{<link url="#control-the-gateway-ip-address-with-rfc-3527" text="RFC 3527">}}; RFC does not apply to IPv6. IPv6 has the functionality of RFC 3527 in normal functionality.
 

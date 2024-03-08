@@ -895,7 +895,7 @@ Displays the results of a switch discovery job, including a summary of the job i
 ### Syntax
 
 ```
-netq lcm show discovery-jobs
+netq lcm show discovery-job
     [json]
 ```
 

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3782543</td>
+<td>When you configure the BGP setting {{bgp max-med on-startup}} with vtysh, the MED on some peers might not be set to 4294967294 as expected on startup.  The {{max-med}} might also fail to reset after the startup timer expires.</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3775648</td>
 <td>Enabling or disabling link utilization causes the {{switchd}} service to restart, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.</td>
 <td>5.8.0</td>
@@ -37,6 +43,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3770993</td>
+<td>When a supplicant is authorized successfully on an interface in 802.1x multi-host mode, {{ping}} traffic coming into the 802.1x interface towards a local SVI might not be successful.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3770865</td>
 <td>On the NVIDIA SN5600 switch, performing a fresh image install or a power cycle can cause the PCIE link speed to get downgraded from Gen3(8GTs) to Gen1(2.5GTs). To recover, reboot the switch.</td>
 <td>5.8.0</td>
@@ -55,6 +67,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3739008</td>
+<td>The Lenovo MSN4600-VS2RC (PN SSG7B27990 Back-to-Front/C2P Airflow) might run the fan tray fans at a high speed because the software believes the PSU fans are running in the wrong direction.</td>
+<td>5.5.1-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3730904</td>
 <td>When sending untagged frames to the CPU with an MTU higher than the SVD (single VXLAN device) MTU, the kernel might crash.</td>
 <td>5.4.0-5.8.0</td>
@@ -64,12 +82,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>3702431</td>
 <td>Traditional SNMP snippets do not take effect unless you first enable SNMP with the NVUE {{nv set service snmp-server enable on}} and {{nv set service snmp-server listening-address}} commands. Alternatively, you can use the equivalent REST API methods.</td>
 <td>5.4.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3698482</td>
-<td>The NVUE {{nv show system config snippet}} command does not show any data because traditional and flexible snippets represent free-form text that are not suitable to be configured or retrieved with the NVUE CLI. To work around this issue, run the {{nv show system config snippet -o json}} or {{nv show system config snippet -o yaml}} command. You can also a run a {{GET /nvue_v1/system/config/snippet }} REST API method.</td>
-<td>5.7.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>
@@ -204,6 +216,19 @@ To work around this issue when using fiber cables:
 <td>3424967</td>
 <td>{{sudo}} for TACACS+ users with privilege level 15 does not work when reaching the TACACS+ server through the {{default}} VRF. To work around this issue, specify the interface name that the {{default}} VRF uses in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file or run the NVUE {{nv set system aaa tacacs vrf}} command. If you don't run either command, a TACACS+ user with privilege level 15 can run {{vrf task exec default sudo ...}} to execute the {{sudo}} command.</td>
 <td>5.0.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3420056</td>
+<td>
+The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
+<td>4.4.0-4.4.5, 5.0.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3393966</td>
+<td>Configuring the network statement with the NVUE {{nv set vrf &lt;vrf&gt; router ospf area &lt;area-id&gt; network &lt;network-id&gt;}} command might bring down all the OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement.</td>
+<td>5.5.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>

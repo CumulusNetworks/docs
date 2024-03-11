@@ -320,6 +320,68 @@ cumulus@switch:~$ nv set service lldp lldp-med-inventory-tlv off
 cumulus@switch:~$ nv config apply
 ```
 
+### Transmit Application Priority TLVs
+
+Configure the switch to transmit DCBX application priority TLVs so that the network can receive and queue traffic properly.
+
+You can configure the switch to send application priority TLVs for:
+- [iSCSI](## "Internet Small Computer System Interface") over TCP port 3260.
+- [NVMe](## "Non-Volatile Memory Express ") over TCP port 4420 or 8009.
+- Applications over a specific TCP port or UDP port.
+
+To configure application priority TLV transmission, run NVUE commands to set:
+- The application, TCP port, or UDP port and the associated application priority. If you do not set an application priority, Cumulus Linux uses the default priority 0.
+- Set the interface from which you want to transmit application priority TLVs. LLDP starts sending PDUs with the application priority TLVs after you apply the configuration on the specified interface.
+
+{{%notice note%}}
+Cumulus Linux does not support application priority TLV transmission on bonds.
+{{%/notice%}}
+
+The following example associates application priority 3 with iSCSI over TCP port 3260, then enables transmission of the application priority TLVs on swp1.
+
+```
+cumulus@switch:~$ nv set service lldp application-tlv app iSCSI priority 3
+cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
+cumulus@switch:~$ nv config apply
+```
+
+The following example associates application priority 5 with NVMe over TCP port 4420 to 5, then enables transmission of the application priority TLVs on swp1.
+
+```
+cumulus@switch:~$ nv set service lldp application-tlv tcp-port 4420 priority 5
+cumulus@switch:~$ nv set interface swp1 lldp application-tlv tcp-port 4420 
+cumulus@switch:~$ nv config apply
+```
+
+The following example associates application priority 6 with the application using TCP port 4217, then enables transmission of application priority TLVs on swp1:
+
+```
+cumulus@switch:~$ nv set service lldp application-tlv tcp-port 4217 priority 6
+cumulus@switch:~$ nv set interface swp1 lldp application-tlv tcp-port 4217
+cumulus@switch:~$ nv config apply
+```
+
+The following example associates application priority with the application using UDP port 4317, then enables transmission of application priority TLVs on swp1:
+
+```
+cumulus@switch:~$ nv set service lldp application-tlv udp-port 4317 priority 4
+cumulus@switch:~$ nv set interface swp1 lldp application-tlv udp-port 4317
+cumulus@switch:~$ nv config apply
+```
+
+The following example associates application priority 0 (the default priority) with iSCSI over TCP port 3260, then enables transmission of application TLVs on swp1.
+
+```
+cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
+cumulus@switch:~$ nv config apply
+```
+
+To stop LLDP from sending PDUs with application priority TLVs, unset the interface configuration; for example:
+
+```
+cumulus@switch:~$ nv unset interface swp1 lldp application-tlv
+```
+
 ### Show DCBX TLV Settings
 
 To show if IEEE 802.1 TLV or LLDP-MED Inventory TLV transmission is on, run the NVUE `nv show service lldp` command:
@@ -347,6 +409,42 @@ lldp
   dcbx-ets-recomm-tlv                        off          DCBX ETS recommendation TLV flag
   dcbx-pfc-tlv                               on           DCBX PFC TLV flag
 ... 
+```
+
+To show the priority mapping for UDP ports for which application priority TLVs transmit:
+
+```
+cumulus@switch:~$ nv show service lldp application-tlv udp-port
+```
+
+To show the priority mapping for applications for which application priority TLVs transmit:
+
+```
+cumulus@switch:~$ nv show service lldp application-tlv app
+```
+
+To show the priority mapping for TCP ports for which application priority TLVs transmit:
+
+```
+cumulus@switch:~$ nv show service lldp application-tlv tcp-port
+```
+
+To show the UDP port numbers for which application priority TLVs transmit:
+
+```
+cumulus@switch:~$ nv show interface swp1 lldp application-tlv udp-port 
+```
+
+To show the application names for which application priority TLVs transmit:
+
+```
+cumulus@switch:~$ nv show interface swp1 lldp application-tlv app
+```
+
+To show all the application TLVs configured on an interface:
+
+```
+cumulus@switch:~$ nv show interface swp1 lldp application-tlv 
 ```
 
 ## Troubleshooting

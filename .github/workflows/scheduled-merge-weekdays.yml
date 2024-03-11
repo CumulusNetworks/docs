@@ -1,9 +1,9 @@
 # From https://github.com/marketplace/actions/nightly-merge
-name: 'Scheduled Merge'
-## OLD SCHEDULED MERGE - NOT CURRENTLY SCHEDULED
-#on:
-#  schedule:
-#    - cron:  '0 16,22 * * *'
+name: 'Scheduled Merge - Weekdays'
+
+on:
+  schedule:
+    - cron:  '0 16,22 * * 1-5'
 
 jobs:
   nightly-merge:
@@ -14,7 +14,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Auto Merge Stage into Master
+    - name: Auto Merge Stage into Master - weekdays
       uses: CumulusNetworks/gh-action-nightly-merge@v1.2.6
       with:
         source_branch: 'stage'

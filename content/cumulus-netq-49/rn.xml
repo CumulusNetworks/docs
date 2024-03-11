@@ -38,21 +38,27 @@ restore them after the upgrade.</td>
 <td></td>
 </tr>
 <tr>
-<td>3757698</td>
-<td>When you change the hostname of a NetQ cluster node after installation, details for the node are not visible in the NetQ UI. To work around this issue, restart the NetQ agent on cluster nodes with the {{netq config restart agent}} command after changing the hostname .</td>
-<td>4.9.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3752422</td>
 <td>When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data.</td>
 <td>4.9.0</td>
 <td></td>
 </tr>
 <tr>
+<td>3738840</td>
+<td>When you upgrade a Cumulus Linux switch configured for TACACS authentication using NetQ LCM, the switch's TACACS configuration is not restored after upgrade.</td>
+<td>4.8.0-4.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3721754</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3688985</td>
+<td>After upgrading a NetQ VM with LDAP authentication configured, adding a new LDAP user to NetQ fails with the error message "LDAP not enabled."</td>
+<td>4.8.0-4.9.0</td>
 <td></td>
 </tr>
 <tr>
@@ -99,19 +105,14 @@ restore them after the upgrade.</td>
 <td>4.8.0</td>
 </tr>
 <tr>
+<td>3757698</td>
+<td>When you change the hostname of a NetQ cluster node after installation, details for the node are not visible in the NetQ UI. To work around this issue, restart the NetQ agent on cluster nodes with the {{netq config restart agent}} command after changing the hostname .</td>
+<td></td>
+</tr>
+<tr>
 <td>3739222</td>
 <td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
 <td>4.2.0-4.8.0</td>
-</tr>
-<tr>
-<td>3738840</td>
-<td>When you upgrade a Cumulus Linux switch configured for TACACS authentication using NetQ LCM, the switch's TACACS configuration is not restored after upgrade.</td>
-<td>4.8.0</td>
-</tr>
-<tr>
-<td>3688985</td>
-<td>After upgrading a NetQ VM with LDAP authentication configured, adding a new LDAP user to NetQ fails with the error message "LDAP not enabled."</td>
-<td>4.8.0</td>
 </tr>
 <tr>
 <td>3676723</td>

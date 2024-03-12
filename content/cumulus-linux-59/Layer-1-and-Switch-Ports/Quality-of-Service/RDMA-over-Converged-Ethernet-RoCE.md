@@ -12,11 +12,25 @@ While Cumulus Linux can support RoCE environments, the end hosts must support th
 
 RoCE helps you obtain a *converged network*, where all services run over the Ethernet infrastructure, including Infiniband apps.
 
-## Enable RDMA over Converged Ethernet lossless (with PFC and ECN)
+## Default RoCE Mode Configuration
+
+The following table shows the default RoCE configuration for lossy and lossless mode.
+
+| Configuration | Lossy Mode| Lossless Mode|
+| --------| ----- | ------- |
+| Port trust mode | YES | YES |
+| Port switch priority to traffic class mapping<ul><li>Switch priority 3 to traffic class 3 (RoCE)</li><li>Switch priority 6 to traffic class 6 (CNP)</li><li>Other switch priority to traffic class 0</li></ul> | YES | YES |
+| Port ETS:<ul><li>Traffic class 6 (CNP) - Strict</li><li>Traffic class 3 (RoCE) - WRR 50%</li><li>Traffic class 0 (Other traffic) - WRR 50%</li></ul>|YES|YES|
+| Port ECN absolute threshold is 1501500 bytes for traffic class 3 (RoCE)|YES|YES|
+| LLDP and Application TLV (RoCE)<br>(UDP, Protocol:4791, Priority: 3)| YES | YES |
+| Enable PFC on switch priority 3 (RoCE)|NO|YES|
+| Switch priority 3 allocated to RoCE lossless traffic pool| NO | YES |
+
+## RDMA over Converged Ethernet lossless (with PFC and ECN)
 
 RoCE uses the Infiniband (IB) Protocol over converged Ethernet. The IB global route header rides directly on top of the Ethernet header. The lossless Ethernet layer handles congestion hop by hop.
 
-To configure RoCE with PFC and ECN:
+To enable RoCE with PFC and ECN:
 
 ```
 cumulus@switch:~$ nv set qos roce
@@ -26,7 +40,7 @@ cumulus@switch:~$ nv config apply
 {{% notice note %}}
 NVUE defaults to `roce mode lossless`. The command `nv set qos roce` and `nv set qos roce mode lossless` are equivalent.
 
-If you enable `mode lossy`, configuring `nv set qos roce` without a `mode` does not change the RoCE mode. To change to lossless, you must configure `mode lossless`.
+If you enable `roce mode lossy`, configuring `nv set qos roce` without a `mode` does not change the RoCE mode. To change to lossless, you must configure lossless mode with the `nv set qos roce mode lossless` command.
 {{% /notice %}}
 
 {{%notice note%}}
@@ -39,7 +53,7 @@ RoCEv2 requires flow control for lossless Ethernet. RoCEv2 uses the Infiniband (
 
 RoCEv2 congestion management uses RFC 3168 to signal congestion experienced to the receiver. The receiver generates an RoCEv2 congestion notification packet directed to the source of the packet.
 
-To configure RoCE with ECN:
+To enable RoCE with ECN:
 
 ```
 cumulus@switch:~$ nv set qos roce mode lossy
@@ -48,7 +62,7 @@ cumulus@switch:~$ nv config apply
 
 ## Remove RoCE Configuration
 
-To remove RoCE configurations:
+To remove RoCE configuration:
 
 ```
 cumulus@switch:~$ nv unset qos roce
@@ -124,7 +138,7 @@ Exception List
 No Data
 ```
 
-To show detailed RoCE information about a single interface, run the `nv show interface qos roce status` command.
+To show detailed RoCE information about a single interface, run the `nv show interface <interface> qos roce status` command.
 
 ```
 cumulus@switch:mgmt:~$ nv show interface swp16 qos roce status
@@ -225,7 +239,7 @@ tx-stats
     unicast-no-buffer-discard  663060754115           Tx buffer discards for RoCE traffic
 ```
 
-To reset the counters that the `nv show interface <interface> qos roce` command displays, run the `nv action clear interface <interface> qos roce counters` command.
+To reset the counters in the `nv show interface <interface> qos roce` command output, run the `nv action clear interface <interface> qos roce counters` command.
 
 ## Change RoCE Configuration
 

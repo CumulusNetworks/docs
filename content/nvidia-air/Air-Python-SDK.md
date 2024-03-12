@@ -575,6 +575,21 @@ curl --request POST 'https://air.nvidia.com/api/v1/simulation-node/<simulation_n
 To avoid a race condition on Cumulus Linux nodes running a version prior to 5.0.0, schedule the node instructions prior to starting the simulation. If you do not perform the steps in this order, the instructions might fail to complete. 
 {{</notice>}}
 
+### Adjusting Request Timeouts
+
+By default, the SDK implements the following timeouts for all API requests:
+
+* Establishing a connection to the server (`connect_timeout`): 16 seconds
+* Receiving a response to a request (`read_timeout`): 61 seconds
+
+These values can be adjusted after instantiating the `AirApi` client:
+
+```
+>>> air = AirApi(username='<username>', password='<api_token>')
+>>> air.client.default_connect_timeout = 30
+>>> air.client.default_read_timeout = 120
+```
+
 ## Developing
 
 Contributions to the SDK are very welcome. All code must pass linting and unit testing before it will be merged.
@@ -979,6 +994,24 @@ Delete the image. Once successful, the object should no longer be used and will 
 
 - `kwargs` _dict, optional_ - All optional keyword arguments are applied as key/value
   pairs in the request's JSON payload
+
+### publish
+Publish an image for public use
+
+**Arguments**:
+
+  - `contact` _str_ - The email address for the contact person associated with this image.
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Publish failed
+
+### unpublish
+Unpublish the image from public use
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Unpublish failed
 
 <a name="air_sdk.image.Image.upload"></a>
 ### upload

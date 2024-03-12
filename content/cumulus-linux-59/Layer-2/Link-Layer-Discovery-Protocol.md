@@ -391,7 +391,7 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
 cumulus@switch:~$ nv config apply
 ```
 
-The following example associates application priority 5 with NVMe over TCP port 4420 to 5, then enables transmission of the application priority TLVs on swp1.
+The following example associates application priority 5 with NVMe over TCP port 4420, then enables transmission of the application priority TLVs on swp1.
 
 ```
 cumulus@switch:~$ nv set service lldp application-tlv tcp-port 4420 priority 5

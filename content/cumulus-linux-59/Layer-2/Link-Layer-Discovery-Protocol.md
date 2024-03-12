@@ -362,9 +362,9 @@ mode                    default      default
 
 ### Transmit Application Priority TLVs
 
-Configure the switch to transmit DCBX application priority TLVs so that the network can receive and queue traffic properly.
+You can configure the switch to transmit DCBX application priority TLVs so that the network can receive and queue traffic properly.
 
-You can configure the switch to send application priority TLVs for:
+Cumulus Linux supports sending application priority TLVs for:
 - <span class="a-tooltip">[iSCSI](## "Internet Small Computer System Interface")</span> over TCP port 3260.
 - <span class="a-tooltip">[NVMe](## "Non-Volatile Memory Express")</span> over TCP port 4420 or 8009.
 - Applications over a specific TCP port or UDP port.

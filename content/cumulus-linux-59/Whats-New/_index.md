@@ -18,10 +18,10 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 
 - {{<link url="ASIC-Monitoring" text="Latency histogram">}} for ASIC monitoring
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} is now generally available
+- Transmit {{<link url="Link-Layer-Discovery-Protocol/#transmit-application-priority-tlvs" text="LLDP application priority TLVs">}}
 - ARP packet path is now handled in hardware to offload most ARP processing and save CPU cycles
 - Cumulus Linux upgrade to Debian 12 (bookworm)
 - Default firewall rules
-- LLDP application priority TLV
 - Support Native vtysh/FRR output
 - Configure CLI Session Parameters (Pagination and Timeout)
 - Interface summary view with filtering

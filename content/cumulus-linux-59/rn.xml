@@ -37,6 +37,20 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3587393</td>
+<td>If you use the NVIDIA SN5600 (Spectrum-4) switch with Ixia test equipment, you might experience delayed link up due to intermittent link flaps. 
+To work around this issue when using copper cables:
+&lt;ul&gt;&lt;li&gt;Use Ixia IxOS version 9.37 with HF002156, or version 9.39 or later.&lt;/li&gt;
+&lt;li&gt;Use the DAC cable on ports 10 through 50.&lt;/li&gt;
+&lt;li&gt;Use NVIDIA cables with the recommended firmware revision.&lt;/li&gt;
+&lt;li&gt;Configure AN on the Cumulus Linux switch and AN/LT on Ixia.&lt;/li&gt;&lt;/ul&gt;
+To work around this issue when using fiber cables:
+&lt;ul&gt;&lt;li&gt;Configure 800g/Force.&lt;/li&gt;
+&lt;li&gt;Use the recommended NVIDIA optical adapters.&lt;/li&gt;&lt;/ul&gt;</td>
+<td>5.6.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3424967</td>
 <td>{{sudo}} for TACACS+ users with privilege level 15 does not work when reaching the TACACS+ server through the {{default}} VRF. To work around this issue, specify the interface name that the {{default}} VRF uses in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file or run the NVUE {{nv set system aaa tacacs vrf}} command. If you don't run either command, a TACACS+ user with privilege level 15 can run {{vrf task exec default sudo ...}} to execute the {{sudo}} command.</td>
 <td>5.0.0-5.9.0</td>

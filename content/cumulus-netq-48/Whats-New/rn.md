@@ -14,6 +14,9 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3819364"></a> [3819364](#3819364) <a name="3819364"></a> <br /> | When you attempt to delete a scheduled trace using the NetQ UI, the trace record is not deleted. | 4.7.0-4.8.0 | |
+| <a name="3782784"></a> [3782784](#3782784) <a name="3782784"></a> <br /> | After performing a new NetQ cluster installation, some MLAG and EVPN NetQ validations might incorrectly report errors. To work around this issue, run the <code>netq check mlag legacy</code> and <code>netq check evpn legacy</code> commands instead of running a default streaming check.  | 4.8.0 | |
+| <a name="3781503"></a> [3781503](#3781503) <a name="3781503"></a> <br /> | When you upgrade a Cumulus Linux switch running the nslcd service with NetQ LCM, the <code>nslcd</code> service fails to start after the upgrade. To work around this issue, manually back up your <code>nslcd</code> configuration and restore it after the upgrade. | 4.8.0 | |
 | <a name="3761602"></a> [3761602](#3761602) <a name="3761602"></a> <br /> |  NetQ does not display queue histogram data for switches running Cumulus Linux 5.8.0 and NetQ agent version 4.8.0. To work around this issue, upgrade the NetQ agent package to 4.9.0. | 4.8.0 | |
 | <a name="3739222"></a> [3739222](#3739222) <a name="3739222"></a> <br /> | The <code>opta-check</code> command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected. | 4.2.0-4.8.0 | |
 | <a name="3738840"></a> [3738840](#3738840) <a name="3738840"></a> <br /> | When you upgrade a Cumulus Linux switch configured for TACACS authentication using NetQ LCM, the switch's TACACS configuration is not restored after upgrade. | 4.8.0 | |

@@ -7,6 +7,24 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3819364</td>
+<td>When you attempt to delete a scheduled trace using the NetQ UI, the trace record is not deleted.</td>
+<td>4.7.0-4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3814701</td>
+<td>After you upgrade NetQ, devices that were in a rotten state before the upgrade might not appear in the UI or CLI after the upgrade. To work around this issue, decommission rotten devices before performing the upgrade.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3813819</td>
+<td>When you perform a switch discovery by specifying an IP range, an error message is displayed if switches included in the range have different credentials. To work around this issue, batch switches based on their credentials and run a switch discovery for each batch.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3773879</td>
 <td>When you upgrade a switch running Cumulus Linux using NetQ LCM, any configuration files in {{/etc/cumulus/switchd.d}} for adaptive routing or other features are not restored after the upgrade. To work around this issue, manually back up these files and 
 restore them after the upgrade.</td>
@@ -28,6 +46,19 @@ restore them after the upgrade.</td>
 <tr>
 <td>3769936</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3764718</td>
+<td>When you reboot the master node of a NetQ cluster deployment, NIC telemetry is no longer collected. To recover from this issue, restart the Prometheus pod with the following commands: 
+1. Retrieve the Prometheus pod name with the {{kubectl get pods | grep netq-prom}} command 
+2. Restart the pod by deleting the pod name with the {{kubectl delete pod &lt;pod-name&gt;}} command 
+
+Example: 
+cumulus@netq-server:~$ kubectl get pods | grep netq-prom
+netq-prom-adapter-ffd9b874d-hxhbz                    2/2     Running   0          3h50m
+cumulus@netq-server:~$ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz </td>
 <td>4.9.0</td>
 <td></td>
 </tr>
@@ -100,14 +131,19 @@ restore them after the upgrade.</td>
 <th> Affects </th>
 </tr>
 <tr>
-<td>3761602</td>
-<td> NetQ does not display queue histogram data for switches running Cumulus Linux 5.8.0 and NetQ agent version 4.8.0. To work around this issue, upgrade the NetQ agent package to 4.9.0.</td>
+<td>3782784</td>
+<td>After performing a new NetQ cluster installation, some MLAG and EVPN NetQ validations might incorrectly report errors. To work around this issue, run the {{netq check mlag legacy}} and {{netq check evpn legacy}} commands instead of running a default streaming check. </td>
 <td>4.8.0</td>
 </tr>
 <tr>
-<td>3757698</td>
-<td>When you change the hostname of a NetQ cluster node after installation, details for the node are not visible in the NetQ UI. To work around this issue, restart the NetQ agent on cluster nodes with the {{netq config restart agent}} command after changing the hostname .</td>
-<td></td>
+<td>3781503</td>
+<td>When you upgrade a Cumulus Linux switch running the nslcd service with NetQ LCM, the {{nslcd}} service fails to start after the upgrade. To work around this issue, manually back up your {{nslcd}} configuration and restore it after the upgrade.</td>
+<td>4.8.0</td>
+</tr>
+<tr>
+<td>3761602</td>
+<td> NetQ does not display queue histogram data for switches running Cumulus Linux 5.8.0 and NetQ agent version 4.8.0. To work around this issue, upgrade the NetQ agent package to 4.9.0.</td>
+<td>4.8.0</td>
 </tr>
 <tr>
 <td>3739222</td>

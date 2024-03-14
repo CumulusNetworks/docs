@@ -25,6 +25,22 @@
 <td></td>
 </tr>
 <tr>
+<td>3813078</td>
+<td>When you perform a NetQ upgrade, the upgrade might fail with the following error message:
+Command '['kubectl', 'version --client']' returned non-zero exit status 1.
+To work around this issue, run the {{netq bootstrap reset keep-db}} command and then reinstall NetQ using the {{netq install}} &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/More-Documents/NetQ-CLI-Reference-Manual/install/"&gt;command for your deployment.&lt;/a&gt;</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3808200</td>
+<td>When you perform a {{netq bootstrap reset}} on a NetQ cluster VM and perform a fresh install with the {{netq install}} command, the install might fail with the following error: 
+ master-node-installer: Running sanity check on cluster_vip: 10.10.10.10 Virtual IP 10.10.10.10 is already used
+To work around this issue, run the {{netq install}} command again.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3773879</td>
 <td>When you upgrade a switch running Cumulus Linux using NetQ LCM, any configuration files in {{/etc/cumulus/switchd.d}} for adaptive routing or other features are not restored after the upgrade. To work around this issue, manually back up these files and 
 restore them after the upgrade.</td>
@@ -100,7 +116,7 @@ cumulus@netq-server:~$ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz </td
 </tr>
 <tr>
 <td>3633458</td>
-<td>The legacy topology diagram might categorize devices into tiers incorrectly. To work around this issue, use the updated topology diagram by selecting Topology Beta in the NetQ 4.8.0 UI.</td>
+<td>The legacy topology diagram might categorize devices into tiers incorrectly. To work around this issue, use the updated topology diagram by selecting Topology Beta in the latest version of the NetQ UI.</td>
 <td>4.7.0-4.9.0</td>
 <td></td>
 </tr>

@@ -836,9 +836,10 @@ spine01           swp53s2    module_temperature   {‘degree_c’: 85,     {‘d
 None
 
 - - -
-<!--
+
 ## netq show ecmp
 
+Displays equal-cost multi-path (ECMP) routing data.
 ### Syntax
 
 ```
@@ -857,17 +858,92 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| group-id | \<text-group-id\> |  |
+| group-id | \<text-group-id\> | Only display results for a next-hop group with this ID |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq show ecmp
+Matching ecmp_info records:
+Hostname          Group Id Imbalance Agg. Traffic Paths                     Start Time                 End Time
+----------------- -------- --------- ------------ ------------------------- -------------------------- --------------------------
+nvidia-cl-test-l1 42       0 %       0 b/s        port: swp43s0: (index:108 Wed Feb 28 02:54:00 2024   Wed Feb 28 02:57:00 2024
+                                                  , hal-port:32) - 0 b/s,
+                                                  port: swp43s1: (index:109
+                                                  , hal-port:34) - 0 b/s,
+                                                  port: swp44s0: (index:110
+                                                  , hal-port:36) - 0 b/s,
+                                                  port: swp44s1: (index:111
+                                                  , hal-port:38) - 0 b/s,
+                                                  port: swp42s0: (index:106
+                                                  , hal-port:40) - 0 b/s,
+                                                  port: swp42s1: (index:107
+                                                  , hal-port:42) - 0 b/s,
+                                                  port: swp41s0: (index:104
+                                                  , hal-port:44) - 0 b/s,
+                                                  port: swp41s1: (index:105
+                                                  , hal-port:46) - 0 b/s,
+                                                  port: swp47s0: (index:116
+                                                  , hal-port:48) - 0 b/s,
+                                                  port: swp47s1: (index:117
+                                                  , hal-port:50) - 0 b/s,
+                                                  port: swp48s0: (index:118
+                                                  , hal-port:52) - 0 b/s,
+                                                  port: swp48s1: (index:119
+                                                  , hal-port:54) - 0 b/s,
+                                                  port: swp46s0: (index:114
+                                                  , hal-port:56) - 0 b/s,
+                                                  port: swp46s1: (index:115
+                                                  , hal-port:58) - 0 b/s,
+                                                  port: swp45s0: (index:112
+                                                  , hal-port:60) - 0 b/s,
+                                                  port: swp45s1: (index:113
+                                                  , hal-port:62) - 0 b/s
+nvidia-cl-test-l1 42       0 %       0 b/s        port: swp43s0: (index:108 Wed Feb 28 02:51:00 2024   Wed Feb 28 02:54:00 2024
+                                                  , hal-port:32) - 0 b/s,
+                                                  port: swp43s1: (index:109
+                                                  , hal-port:34) - 0 b/s,
+                                                  port: swp44s0: (index:110
+                                                  , hal-port:36) - 0 b/s,
+                                                  port: swp44s1: (index:111
+                                                  , hal-port:38) - 0 b/s,
+                                                  port: swp42s0: (index:106
+                                                  , hal-port:40) - 0 b/s,
+                                                  port: swp42s1: (index:107
+                                                  , hal-port:42) - 0 b/s,
+                                                  port: swp41s0: (index:104
+                                                  , hal-port:44) - 0 b/s,
+                                                  port: swp41s1: (index:105
+                                                  , hal-port:46) - 0 b/s,
+                                                  port: swp47s0: (index:116
+                                                  , hal-port:48) - 0 b/s,
+                                                  port: swp47s1: (index:117
+                                                  , hal-port:50) - 0 b/s,
+                                                  port: swp48s0: (index:118
+                                                  , hal-port:52) - 0 b/s,
+                                                  port: swp48s1: (index:119
+                                                  , hal-port:54) - 0 b/s,
+                                                  port: swp46s0: (index:114
+                                                  , hal-port:56) - 0 b/s,
+                                                  port: swp46s1: (index:115
+                                                  , hal-port:58) - 0 b/s,
+                                                  port: swp45s0: (index:112
+                                                  , hal-port:60) - 0 b/s,
+                                                  port: swp45s1: (index:113
+                                                  , hal-port:62) - 0 b/s
+
+```
+
 ### Related Commands
+
+- `netq show ecmp-hash-config`
 - - -
 ## netq show ecmp-hash-config
 
+Displays equal-cost multi-path (ECMP) hashing configuration.
 ### Syntax
 
 ```
@@ -891,9 +967,59 @@ None
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq show ecmp-hash-config 
+Matching ecmp_hash records:
+Hostname          Seed     Max Paths Resilient Hash Enable Resilient Hash Entries Symmetric Hash enable Last Updated
+----------------- -------- --------- --------------------- ---------------------- --------------------- ------------------------
+nvidia-cl-r1-s1   random   129       False                 64                     True                  Sun Feb 18 15:41:43 2024
+nvidia-cl-r1-s2   random   129       False                 64                     True                  Sun Feb 11 16:37:13 2024
+nvidia-cl-r1-s3   random   129       False                 64                     True                  Sun Feb 11 16:38:40 2024
+nvidia-cl-r1-s4   random   129       False                 64                     True                  Tue Feb 20 20:49:49 2024
+nvidia-cl-r2-s1   random   129       False                 64                     True                  Sun Feb 11 16:30:38 2024
+nvidia-cl-r2-s2   random   129       False                 64                     True                  Thu Feb 15 05:46:03 2024
+nvidia-cl-r2-s3   random   65        False                 64                     True                  Sun Feb 18 09:59:34 2024
+nvidia-cl-r2-s4   random   129       False                 64                     True                  Tue Feb 20 07:10:39 2024
+nvidia-cl-r3-s1   random   129       False                 64                     True                  Mon Feb 19 12:43:04 2024
+nvidia-cl-r3-s2   random   129       False                 64                     True                  Sun Feb 11 16:30:38 2024
+nvidia-cl-r3-s3   random   129       False                 64                     True                  Sun Feb 11 16:52:37 2024
+nvidia-cl-r3-s4   random   129       False                 64                     True                  Sun Feb 11 17:11:14 2024
+nvidia-cl-r4-s1   random   129       False                 64                     True                  Sun Feb 11 16:25:58 2024
+nvidia-cl-r4-s2   random   65        False                 64                     True                  Mon Feb 19 09:40:51 2024
+nvidia-cl-r4-s3   random   129       False                 64                     True                  Sun Feb 11 16:38:41 2024
+nvidia-cl-r4-s4   random   129       False                 64                     True                  Sun Feb 11 16:25:57 2024
+nvidia-cl-ssp1    random   129       False                 64                     True                  Sun Feb 11 17:37:49 2024
+nvidia-cl-ssp2    random   65        False                 64                     True                  Mon Feb 19 09:41:06 2024
+nvidia-cl-ssp3    random   129       False                 64                     True                  Sun Feb 11 16:38:45 2024
+nvidia-cl-ssp4    random   129       False                 64                     True                  Thu Feb 15 15:21:50 2024
+nvidia-cl-ssp5    random   129       False                 64                     True                  Tue Feb 20 12:53:29 2024
+nvidia-cl-ssp6    random   129       False                 64                     True                  Sun Feb 11 18:07:59 2024
+nvidia-cl-ssp7    random   129       False                 64                     True                  Sun Feb 11 17:10:05 2024
+nvidia-cl-ssp8    random   129       False                 64                     True                  Sun Feb 11 17:48:49 2024
+nvidia-cl-su2-l1  random   129       False                 64                     True                  Sun Feb 11 17:11:15 2024
+nvidia-cl-su2-l2  random   129       False                 64                     True                  Sun Feb 11 16:38:13 2024
+nvidia-cl-su2-l3  random   129       False                 64                     True                  Sun Feb 11 17:42:34 2024
+nvidia-cl-su2-l4  random   129       False                 64                     True                  Sun Feb 11 17:05:59 2024
+nvidia-cl-su3-l1  random   65        False                 64                     True                  Mon Feb 19 09:41:23 2024
+nvidia-cl-su3-l2  random   129       False                 64                     True                  Sun Feb 11 16:30:37 2024
+nvidia-cl-su3-l3  random   129       False                 64                     True                  Sun Feb 11 16:30:36 2024
+nvidia-cl-su3-l4  random   129       False                 64                     True                  Sun Feb 11 16:41:50 2024
+nvidia-cl-su4-l1  random   129       False                 64                     True                  Fri Feb 16 09:18:33 2024
+nvidia-cl-su4-l2  random   129       False                 64                     True                  Sun Feb 11 16:25:57 2024
+nvidia-cl-su4-l3  random   65        False                 64                     True                  Mon Feb 19 09:41:06 2024
+nvidia-cl-su4-l4  random   129       False                 64                     True                  Sun Feb 11 17:14:05 2024
+nvidia-cl-test-l1 random   89        False                 64                     True                  Wed Feb 28 01:27:08 2024
+nvidia-cl-test-l2 random   89        False                 64                     True                  Wed Feb 28 01:26:39 2024
+nvidia-cl-test-l3 random   89        False                 64                     True                  Wed Feb 28 01:27:18 2024
+nvidia-cl-test-l4 random   89        False                 64                     True                  Wed Feb 28 01:26:50 2024
+nvidia-cl-test-s1 random   97        False                 64                     True                  Tue Feb 27 22:34:36 2024
+nvidia-cl-test-s2 random   97        False                 64                     True                  Wed Feb 28 01:58:56 2024
+```
+
 ### Related Commands
+
+- `netq show ecmp`
 - - -
--->
 ## netq show ethtool-stats
 
 Displays transmit and receive statistics for network interfaces on one or all devices, including frame errors, ACL drops, buffer drops, and more. You can filter the output by device and view the statistics for a time in the past.

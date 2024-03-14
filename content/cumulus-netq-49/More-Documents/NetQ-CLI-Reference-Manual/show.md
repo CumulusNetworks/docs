@@ -9,7 +9,7 @@ type: nojsscroll
 ---
 ## netq show adaptive-routing config
 
-Displays a list of switches that are running adaptive routing and RoCE settings for those switches. The second form of this command displays a list of interfaces on the switch and their configurations.
+Displays a list of switches that are running adaptive routing and RoCE settings for those switches. The second form of this command displays whether or not adaptive routing is running at the interface-level.
 ### Syntax
 
 ```

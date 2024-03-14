@@ -9,7 +9,7 @@ Adaptive routing is a load balancing feature that improves network utilization f
 
 {{<notice note>}}
 
-Adaptive routing monitoring is supported on Spectrum-3 switches and later. It requires a switch fabric running Cumulus Linux 5.5.0 or later.
+Adaptive routing monitoring is supported on Spectrum-3 switches and later. It requires a switch fabric running Cumulus Linux 5.5.0 and later.
 
 {{</notice>}}
 
@@ -19,7 +19,7 @@ To display adaptive routing data, you must have adaptive routing configured on t
 
 ## Adaptive Routing Commands
 
-Monitor adaptive routing with the {{<link title="show/#netq-show-adaptive-routing-config" text="netq show adaptive-routing config">}} command.
+Monitor adaptive routing with the {{<link title="show/#netq-show-adaptive-routing-config" text="netq show adaptive-routing config">}} commands. The output of these commands display adaptive routing information either globally on the switch or at the interface level.
 
 ```
 netq show adaptive-routing config global
@@ -32,14 +32,19 @@ netq show adaptive-routing config interface
 
 2. Under the Network section, select **Adaptive routing**.
 
+{{<figure src="/images/netq/ar-dashboard-480.png" alt="adaptive routing dashboard displaying two devices with AR enabled" width="1100">}}
+
 The adaptive routing dashboard displays:
 
-- devices with adaptive routing (enabled or disabled) and their RoCE modes (lossy or lossless).
-- a list of interfaces on the switch and their configurations, including link utilization status (visible by selecting **View details** in the 'interfaces' column).
-- a summary of adaptive routing events, including ECMP traffic imbalances.
-- a list of up to 10 switches, which can be sorted by highest P95 value, highest standard deviation, or ports with the widest deviation from the P95 value (aggregated over the past 3 minutes). From this panel, you can select **View more** in the 'view histogram' column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.
+- Devices with adaptive routing configured (enabled or disabled) and their RoCE modes (lossy or lossless).
+- A list of interfaces on the switch and their configurations. In the Interfaces column, select **View details** to view interfaces with adaptive routing configured:
 
-{{<figure src="/images/netq/ar-dashboard-480.png" alt="adaptive routing dashboard displaying two devices with AR enabled" width="1100">}}
+{{<figure src="/images/netq/int-details-490.png" alt="list of interfaces adaptive routing configured" width="600">}}
+
+- A summary of adaptive routing events, including ECMP traffic imbalances.
+- A list of up to 10 switches, which can be sorted by highest P95 value, highest standard deviation, or ports with the widest deviation from the P95 value (aggregated over the past 3 minutes). From this panel, you can select **View more** in the View histogram column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.
+
+
 
 ## Related Information
 

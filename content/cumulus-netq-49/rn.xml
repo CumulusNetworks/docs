@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3820671</td>
+<td>When you upgrade NetQ cluster deployments with DPUs in the device inventory, the DPUs might not be visible in the NetQ UI after the upgrade. To work around this issue, restart the DTS container on the DPUs in your network.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3819688</td>
+<td>When you upgrade NetQ cluster deployments, the configured LCM credential profile assigned to switches in the inventory is reset to the default access profile. To work around this issue, reconfigure the correct access profile on switches before managing them with LCM after the upgrade. </td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3819364</td>
 <td>When you attempt to delete a scheduled trace using the NetQ UI, the trace record is not deleted.</td>
 <td>4.7.0-4.9.0</td>
@@ -34,9 +46,21 @@ To work around this issue, run the {{netq bootstrap reset keep-db}} command and 
 </tr>
 <tr>
 <td>3808200</td>
-<td>When you perform a {{netq bootstrap reset}} on a NetQ cluster VM and perform a fresh install with the {{netq install}} command, the install might fail with the following error: 
+<td>When you perform a {{netq bootstrap reset}} on a NetQ cluster VM and perform a fresh install with the {{netq install}} command, the install might fail with the following error:
  master-node-installer: Running sanity check on cluster_vip: 10.10.10.10 Virtual IP 10.10.10.10 is already used
 To work around this issue, run the {{netq install}} command again.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3798677</td>
+<td>In a NetQ cluster environment, if your master node goes offline and is restored, subsequent NetQ validations for MLAG and EVPN might unexpectedly indicate failures. To work around this issue, either restart NetQ agents on devices in the inventory or wait up to 24 hours for the issue to clear.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3787946</td>
+<td>When you install a NetQ cluster deployment on a subnet with other NetQ clusters or other devices using VRRP, there might be connectivity loss to the cluster virtual IP (VIP). The VIP is established using the VRRP protocol, and during cluster installation a virtual router ID (VRID) is selected. If another device on the subnet running VRRP selects the same VRID, connectivity issues may occur. To work around this issue, avoid multiple VRRP speakers on the subnet, or ensure the VRID used on all VRRP devices is unique. To validate the VRID used by NetQ, check the assigned {{virtual_router_id}} value in {{/mnt/keepalived/keepalived.conf}}.</td>
 <td>4.9.0</td>
 <td></td>
 </tr>

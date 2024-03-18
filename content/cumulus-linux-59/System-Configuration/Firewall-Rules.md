@@ -19,7 +19,7 @@ DoS rules protect the switch control plane and CPU from DOS attacks.
 
 Cumulus Linux provides the following DoS rules.
 
-| Rule Name | Description |
+| Rule ID | Description |
 | --------- | ---- |
 | `FW_RULE_DEFAULT_01` | Allows internal loopback traffic only. |
 | `FW_RULE_DEFAULT_02` | Accepts already established connections and outbound traffic. |
@@ -40,14 +40,14 @@ Cumulus Linux provides the following DoS rules.
 
 ## Whitelist Rules
 
-Whitelist rules specify the services or application ports enabled on the switch. 
+Whitelist rules specify the services or application ports enabled on the switch.
 
 Cumulus Linux provides the following firewall rules.
 
-| Rule Name | Description |
+| Rule ID | Description |
 | --------- | ---- |
-| FW_RULE_WHITELIST_00 | |
-| FW_RULE_WHITELIST_01 | |
+| FW_RULE_WHITELIST_00 | Enables TCP ports.|
+| FW_RULE_WHITELIST_01 | Enables UDP ports.|
 
 The following table lists the ports that Cumulus Linux enables by default.
 
@@ -57,7 +57,7 @@ The following table lists the ports that Cumulus Linux enables by default.
 |TCP| 179 |BGP |
 |UDP| 68 |DHCP Client |
 |UDP| 67 |DHCP Server |
-|Nv sUDP | 123 | NTP |
+|UDP | 123 | NTP |
 |UDP| 323 |Chrony |
 |UDP | 161 | SNMP |
 |UDP | 6306 | A multicast socket used internally. |
@@ -67,7 +67,7 @@ The following table lists the ports that Cumulus Linux enables by default.
 |TCP/UDP | 49 | TACACS |
 |TCP/UDP | 53 | DNS |
 |TCP | 8765 | NVUE NGINX |
-|UDP | 6343 | 6344 sFlow |
+|UDP | 6343, 6344 | sFlow |
 |UDP | 514  |remote syslog |
 |UDP | 3786 | BFD |
 |UDP | 4784 | Multi-Hop BFD |
@@ -99,7 +99,7 @@ cumulus@switch:~$ nv config apply
 
 ## Default Firewall Rule Files
 
-The `/etc/cumulus/acl/policy.d/00control_plane.rules` file stores the DoS rules:
+The `/etc/cumulus/acl/policy.d/00control_plane.rules` file stores the DoS rules.
 
 {{< expand "/etc/cumulus/acl/policy.d/00control_plane.rules" >}}
 

@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3800536"></a> [3800536](#3800536) <a name="3800536"></a> <br /> | Some third-party modules cause false-alarm interrupts during SERDES tuning, which overloads the ASIC and causes an ASIC response delay. | 5.8.0-5.9.0 | |
 | <a name="3773177"></a> [3773177](#3773177) <a name="3773177"></a> <br /> | When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.<br><pre>cumulus&#64;switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt update<br>cumulus&#64;switch:~$ sudo apt upgrade</pre> | 4.0.0-4.4.5, 5.0.0-5.9.0 | |
 | <a name="3771168"></a> [3771168](#3771168) <a name="3771168"></a> <br /> | When you perform an ISSU upgrade on a Spectrum 1 switch, the <code>switchd</code> service might crash. | 5.8.0-5.9.0 | |
 | <a name="3689195"></a> [3689195](#3689195) <a name="3689195"></a> <br /> | When you enable 802.1X auth-fail VLAN on an interface, <code>hostapd</code> doesn't activate the auth-fail VLAN unless it receives an explicit <code>Access-Reject</code> response. | 5.7.0-5.9.0 | |

@@ -397,7 +397,7 @@ Various commands---including `netq config`, `netq notification`, and `netq insta
 
 The agent commands configure individual NetQ Agents. 
 
-The agent configuration commands can add and remove agents from switches and hosts, start and stop agent operations, debug the agent, specify default commands, and enable or disable a variety of monitoring features (including Kubernetes, sensors, FRR (FRRouting), CPU usage limit, and What Just Happened).
+The agent configuration commands can add and remove agents from switches and hosts, start and stop agent operations, debug the agent, specify default commands, and enable or disable a variety of monitoring features (including sensors, FRR (FRRouting), CPU usage limit, and What Just Happened).
 
 {{<notice note>}}
 Commands apply to one agent at a time. Run them from the switch or host where the NetQ Agent resides.
@@ -414,12 +414,6 @@ The following example shows how to configure the agent to send sensor data:
 
 ```
 cumulus@switch~:$ netq config add agent sensors
-```
-
-The following example shows how to start monitoring with Kubernetes:
-
-```
-cumulus@switch:~$ netq config add agent kubernetes-monitor poll-period 15
 ```
 
 The following example shows how to view the NetQ Agent configuration:

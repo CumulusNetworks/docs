@@ -12,4 +12,3 @@ This section describes how to monitor your inventory from networkwide and device
 - {{<link title="Host Inventory">}}
 - {{<link title="DPU Inventory">}}
 - {{<link title="Device Groups">}}
-- {{<link title="Monitor Container Environments Using Kubernetes API Server">}}

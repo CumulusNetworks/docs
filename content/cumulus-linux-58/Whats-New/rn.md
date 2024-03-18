@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3800536"></a> [3800536](#3800536) <a name="3800536"></a> <br /> | Some third-party modules cause false-alarm interrupts during SERDES tuning, which overloads the ASIC and causes an ASIC response delay. | 5.8.0 | |
 | <a name="3782543"></a> [3782543](#3782543) <a name="3782543"></a> <br /> | When you configure the BGP setting <code>bgp max-med on-startup</code> with vtysh, the MED on some peers might not be set to 4294967294 as expected on startup.  The <code>max-med</code> might also fail to reset after the startup timer expires. | 5.6.0-5.8.0 | |
 | <a name="3775648"></a> [3775648](#3775648) <a name="3775648"></a> <br /> | Enabling or disabling link utilization causes the <code>switchd</code> service to restart, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration. | 5.8.0 | |
 | <a name="3775534"></a> [3775534](#3775534) <a name="3775534"></a> <br /> | When you use the NVUE command to configure a static route with distance, the configuration renders incorrectly in the <code>/etc/frr/frr.conf</code> file and the configuration fails.  | 5.8.0 | |

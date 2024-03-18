@@ -53,6 +53,12 @@ To work around this issue, run the {{netq install}} command again.</td>
 <td></td>
 </tr>
 <tr>
+<td>3800434</td>
+<td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3798677</td>
 <td>In a NetQ cluster environment, if your master node goes offline and is restored, subsequent NetQ validations for MLAG and EVPN might unexpectedly indicate failures. To work around this issue, either restart NetQ agents on devices in the inventory or wait up to 24 hours for the issue to clear.</td>
 <td>4.9.0</td>
@@ -109,6 +115,12 @@ cumulus@netq-server:~$ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz </td
 <td></td>
 </tr>
 <tr>
+<td>3755207</td>
+<td>When you export digital optics table data from NetQ, some fields might be visible in the UI that are not exported to CSV or JSON files.</td>
+<td>4.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3752422</td>
 <td>When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data.</td>
 <td>4.9.0</td>
@@ -124,12 +136,6 @@ cumulus@netq-server:~$ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz </td
 <td>3721754</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3688985</td>
-<td>After upgrading a NetQ VM with LDAP authentication configured, adding a new LDAP user to NetQ fails with the error message "LDAP not enabled."</td>
-<td>4.8.0-4.9.0</td>
 <td></td>
 </tr>
 <tr>
@@ -189,6 +195,11 @@ cumulus@netq-server:~$ kubectl delete pod netq-prom-adapter-ffd9b874d-hxhbz </td
 <td>3739222</td>
 <td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
 <td>4.2.0-4.8.0</td>
+</tr>
+<tr>
+<td>3688985</td>
+<td>After upgrading a NetQ VM with LDAP authentication configured, adding a new LDAP user to NetQ fails with the error message "LDAP not enabled."</td>
+<td>4.8.0</td>
 </tr>
 <tr>
 <td>3676723</td>

@@ -284,6 +284,8 @@ You can customize configuration profiles for NetQ Agents running on switches. Wh
 The default NetQ agent configuration profile sets the VRF to `mgmt`, the log level to `info`, the WJH status to disabled, and the CPU limit to disabled.
 ### Create Configuration Profiles
 
+Before creating a configuration profile, generate AuthKeys using the UI. {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="Copy the access key and secret key">}} to an accessible location.
+
 {{<tabs "TabID281">}}
 
 {{<tab "NetQ UI">}}
@@ -296,13 +298,9 @@ The default NetQ agent configuration profile sets the VRF to `mgmt`, the log lev
 
 4. Enter a profile name and choose the settings from the options presented in the UI. Select **Advanced** to set values for the log level and CPU limit:
 
-{{<figure src="/images/netq/lcm-switch-agentconfig-profile-480.png" alt="card displaying agent configuration profile settings" height="450" width="450">}}
+{{<figure src="/images/netq/agent-config-lcm-490.png" alt="card displaying agent configuration profile settings" width="500">}}
 
 5. Enter your NetQ CLI {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="authentication keys">}} and select **Add**.
-
-{{%notice note%}}
-If you use an in-band interface to manage your switch, you must use the CLI to create NetQ agent configuration profiles using the `inband-interface` option.
-{{%/notice%}}
 
 {{</tab>}}
 

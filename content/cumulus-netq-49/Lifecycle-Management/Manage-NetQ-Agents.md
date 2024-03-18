@@ -106,7 +106,7 @@ You can view the current configuration of a NetQ Agent to determine what data it
 
 ```
 sudo netq config show agent 
-    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|ssl|stats|wjh|wjh-threshold] 
+    [cpu-limit|frr-monitor|loglevel|ssl|stats|wjh|wjh-threshold] 
     [json]
 ```
 
@@ -234,7 +234,7 @@ cumulus@switch:~$ sudo netq config restart agent
 
 ### Configure a NetQ Agent to Collect Data from Selected Services
 
-You can enable and disable data collection about FRRouting (FRR), Kubernetes, and What Just Happened (WJH).
+You can enable and disable data collection about FRRouting (FRR) and What Just Happened (WJH).
 
 To configure the agent to start or stop collecting FRR data, run:
 
@@ -243,16 +243,6 @@ cumulus@chassis~:$ sudo netq config add agent frr-monitor
 cumulus@switch:~$ sudo netq config restart agent
 
 cumulus@chassis~:$ sudo netq config del agent frr-monitor
-cumulus@switch:~$ sudo netq config restart agent
-```
-
-To configure the agent to start or stop collecting Kubernetes data, run:
-
-```
-cumulus@switch:~$ sudo netq config add agent kubernetes-monitor
-cumulus@switch:~$ sudo netq config restart agent
-
-cumulus@switch:~$ sudo netq config del agent kubernetes-monitor
 cumulus@switch:~$ sudo netq config restart agent
 ```
 

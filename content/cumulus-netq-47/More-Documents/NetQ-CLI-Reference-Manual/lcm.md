@@ -145,7 +145,8 @@ Adds a NetQ configuration profile.
 ### Syntax
 
 ```
-netq lcm add netq-config config-profile-name <text-config-profile> 
+netq lcm add netq-config 
+    config-profile-name <text-config-profile> 
     access-key <text-access-key> 
     secret-key <text-secret-key> 
     [cpu-limit <text-cpu-limit>] 
@@ -681,8 +682,10 @@ cd1be0fc123c5d7a42f8
 - `netq lcm show credentials`
 
 - - -
-<!--
+
 ## netq lcm install netq-image
+
+Installs NetQ on switches.
 
 ### Syntax
 
@@ -697,9 +700,35 @@ netq lcm install netq-image
     cl_version <text-cumulus-linux-version> 
     [config_profile <text-config-profile>]
 ```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| job-name | \<text-job-name\> | Name for the installation |
+| netq-version | \<text-netq-version\> | Install this NetQ version in x.z.y format |
+| upgrade-cli | True, False | Upgrade the NetQ CLI as part of the installation (True) |
+| hostname | \<text-switch-hostname\> | Hostname of the switch |
+| ip | <text-switch-ip\> | IP address of the switch|
+| cpu_arch | <text-cpu-arch\> | CPU architecture for the switch|
+| cl-version | \<text-cumulus-linux-version\> | Install this CL version in x.y.z format |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| config_profile | <text-config-profile\> | Configuration file applied after the installation |
+
+### Sample Usage
+
+```
+netq lcm install netq-image job-name install55 netq-version 4.7.0 upgrade-cli True hostname r-qa-sw-eth-2055 ip 10.209.20.55 cpu_arch x86_64 cl_version 5.3.0
+```
+### Related Commands
+
+- `netq lcm discover`
 
 - - -
--->
+
 <!-- NVLink command
 ## netq lcm restart nvos
 
@@ -895,7 +924,7 @@ Displays the results of a switch discovery job, including a summary of the job i
 ### Syntax
 
 ```
-netq lcm show discovery-jobs
+netq lcm show discovery-job
     [json]
 ```
 

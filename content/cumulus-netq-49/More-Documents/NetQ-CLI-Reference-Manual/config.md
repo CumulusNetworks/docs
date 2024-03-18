@@ -236,7 +236,7 @@ cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
 
 
 - - -
-
+<!--removed from docs; as of 4.9 still in output
 ## netq config add agent kubernetes-monitor
 
 Configures the NetQ Agent to monitor Kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds). Note that you must restart the NetQ Agent to enable the configuration.
@@ -287,7 +287,7 @@ Restarting netq-agent... Success!
 - ```netq config restart agent```
 
 - - -
-
+-->
 ## netq config add agent loglevel
 
 Configures the amount of information to log about the NetQ Agent activity, from only critical issues to every available message. Identified issues get logged to */var/log/netq-agent.log* file. The default log level is *info*.
@@ -1006,7 +1006,7 @@ Disables or removes NetQ Agent configurations on a switch.
 
 ```
 netq config del agent 
-    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|kubernetes-monitor|loglevel|server|ssl|stats|wjh] 
+    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|loglevel|server|ssl|stats|wjh] 
     [json]
 ```
 ### Required Arguments
@@ -1021,7 +1021,6 @@ None
 | cluster-servers | NA | Remove all cluster servers configured to receive NetQ Agent data |
 | cpu-limit | NA | Remove CPU usage limit for the NetQ Agent on this device | 
 | frr-monitor | NA | Stop the NetQ Agent from monitoring FRR when running in a container |
-| kubernetes-monitor | NA | Stop the NetQ Agent from monitoring Kubernetes containers |
 | loglevel | NA | Stop the NetQ Agent from logging events about the agent |
 | server | NA | Delete the current destination of NetQ Agent data and API requests |
 | ssl | NA | Delete SSL configuration |
@@ -1458,7 +1457,7 @@ Displays the configuration of the NetQ Agent on a switch. Several forms of this 
 
 ```
 netq config show agent 
-    [asic-monitor|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|services|ssl|stats|wjh|wjh-drop-filter|wjh-threshold] 
+    [asic-monitor|cpu-limit|frr-monitor|loglevel|services|ssl|stats|wjh|wjh-drop-filter|wjh-threshold] 
     [json]
 ```
 ### Required Arguments
@@ -1472,7 +1471,6 @@ None
 | asic-monitor | NA | Display NetQ Agent ASIC monitoring configuration |
 | cpu-limit | NA | View the maximum percentage of CPU resources that the NetQ Agent can use |
 | frr-monitor | NA | Display FRR monitoring configuration |
-| kubernetes-monitor | NA | Display the Kubernetes monitoring configuration |
 | loglevel | NA | Display the NetQ Agent logging level configuration |
 | services | NA | Display custom services and processes configuration |
 | ssl | NA | Display SSL configuration |

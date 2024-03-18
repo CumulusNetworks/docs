@@ -24,9 +24,9 @@ netq show ecmp
 netq show ecmp-hash-config
 ```
 
-## View ECMP Next Hops in the UI
+## View ECMP Resource Utilization in the UI
 
-You can view ECMP next hops in the full-screen switch card.  In the workbench header, select {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices**, then click **Open a device card**. Select a switch from the list. When the card opens on the dashboard, expand it to the largest size.
+You can view resource utilization for ECMP next hops in the full-screen switch card.  In the workbench header, select {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices**, then click **Open a device card**. Select a switch from the list. When the card opens on the dashboard, expand it to the largest size.
 
 Select **Forwarding resources** from the side menu. The ECMP next hops column displays the maximum number of hops seen in the forwarding table, the number used, and the percentage of this usage compared to the maximum number.
 

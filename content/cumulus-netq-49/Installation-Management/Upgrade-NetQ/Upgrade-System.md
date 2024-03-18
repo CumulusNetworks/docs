@@ -197,7 +197,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
     BOOTSTRAP_VERSION=4.9.0
-    APPLIANCE_MANIFEST_HASH=8869b5423dfcc441ea56a3c89e680b1b2ad61f6887edccb11676bac893073beb
+    APPLIANCE_MANIFEST_HASH=a9d82e8df46178c9a0b3ac17678d4ae8aeba54a89c502fc8042de1f784fc3ef2
     APPLIANCE_VERSION=4.9.0
     APPLIANCE_NAME=NetQ On-premises Appliance
     ```
@@ -209,7 +209,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
     BOOTSTRAP_VERSION=4.9.0
-    APPLIANCE_MANIFEST_HASH=271f5943ffae42f758fef09bafeb37a63d996bd6e41bf7aeeb3a4d33232f05de
+    APPLIANCE_MANIFEST_HASH=c743bca6bb7ca28a17e7b27559bb13f2098e4d7a810b658bfd248a46fd0e09c5
     APPLIANCE_VERSION=4.9.0
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```

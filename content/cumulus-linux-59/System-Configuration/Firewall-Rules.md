@@ -7,17 +7,17 @@ toc: 3
 
 The Cumulus Linux default firewall rules protect the switch control plane and CPU from DOS and other potentially malicious network attacks.
 
-In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols, which can make the switch more vulnerable to network attacks. Cumulus Linux 5.9 and later provides a set of default firewall rules that allow only specific addresses and ports and drops packets from the addresses or ports that are not allowed.
+In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops packets from the disallowed addresses and ports.
 
 {{%notice note%}}
-The default set of firewall rules consist of IP and transport level rules. To block specific layer 2 packets such as ARP, LLDP, or STP or any packets sent to the CPU as part of generic traps, you must configure separate COPP rules using control plane ACLs in the INPUT or OUTPUT chain of ebtables.
+The default set of firewall rules consist of IP and transport level rules. To block specific layer 2 packets such as ARP, LLDP, or STP or any packets sent to the CPU as part of generic traps, you must configure separate rules using control plane ACLs in the INPUT or OUTPUT chain of ebtables. See {{<link url="Netfilter-ACLs" text="Netfilter ACLs">}}.
 {{%/notice%}}
 
 ## DoS Rules
 
 DoS rules protect the switch control plane and CPU from DOS attacks.
 
-Cumulus Linux provides the following DoS rules:
+Cumulus Linux provides the following DoS rules.
 
 | Rule Name | Description |
 | --------- | ---- |
@@ -42,7 +42,7 @@ Cumulus Linux provides the following DoS rules:
 
 Whitelist rules specify the services or application ports enabled on the switch.
 
-Cumulus Linux provides the following Whitelist rules:
+Cumulus Linux provides the following Whitelist rules.
 
 | Rule Name | Description |
 | --------- | ----------- |

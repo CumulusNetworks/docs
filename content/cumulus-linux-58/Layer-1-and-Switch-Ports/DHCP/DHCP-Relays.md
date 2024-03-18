@@ -316,6 +316,100 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+### DHCP Relay for IPv6 in a Non-default VRF
+
+For IPv6 DHCP relay in a symmetric routing deployment, you must assign a unique IPv6 address to a non-default VRF. Cumulus Linux uses this IPv6 address as the source IP address when sending packets to the DHCP server so that the DHCP server can send the packet back to this VTEP. If the VRF does not have a unique IPv6 address assigned to the VRF interface, the return packet from the DHCP server might arrive on any of the VTEPs that own the non-unique IP address.
+
+This is also a requirement for IPv4 when you enable {{<link url="#control-the-gateway-ip-address-with-rfc-3527" text="RFC 3527">}}; RFC does not apply to IPv6. IPv6 has the functionality of RFC 3527 in normal functionality.
+
+The following example:
+- Configures VRF RED with IPv6 address 2001:db8:666::1/128.
+- Configures VLAN 10 and 20 in VRF RED to face hosts that generate DHCP Requests.
+- Sets the DHCP server to 2001:db8:199::2 and the layer 3 VNI for this VRF to 4001, which uses SVI vlan4024_l3.
+- Configures VRF RED to advertise the connected routes so that the loopback IPv6 address is reachable.
+
+{{< tabs "TabID367 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf RED loopback ip address 2001:db8:666::1/128
+cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface downstream vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface downstream vlan20
+cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface upstream RED server-address 2001:db8:199::2
+cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface upstream vlan4024_l3
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv6-unicast route-export to-evpn enable on
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/network/interfaces` file to configure VRF RED with IPv6 address 2001:db8:666::1/128:
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
+   ...
+   auto RED
+   iface RED
+           address 2001:db8:666::1/128
+           vrf-table auto
+   ```
+
+2. Configure VRF RED to advertise the connected routes so that the loopback IPv6 address is reachable:
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo vtysh 
+   ...
+   leaf01# configure terminal
+   leaf01(config)# router bgp 65101 vrf RED
+   leaf01(config-router)# address-family l2vpn evpn
+   leaf01(config-router-af)# advertise ipv6 unicast 
+   leaf01(config-router-af)# end
+   leaf01# write memory
+   ```
+
+   The `/etc/frr/frr.conf` file now contains the following entries:
+
+   ```
+   ...
+   router bgp 65101 vrf RED
+    bgp router-id 10.10.10.1
+   ..
+    !
+    address-family ipv6 unicast
+     redistribute connected
+     maximum-paths 64
+     maximum-paths ibgp 64
+    exit-address-family
+    !
+    address-family l2vpn evpn
+     advertise ipv6 unicast
+    exit-address-family
+   exit
+   ```
+
+3. Edit the `/etc/default/isc-dhcp-relay6-RED` file.
+
+   - Set the `-l ` option to the VLANs that receive DHCP requests from hosts.
+   - Set the `<ip-address-dhcp-server>%<interface-facing-dhcp-server>` option to associate the DHCP Server with VRF RED.
+   - Set the `-u` option to indicate where the switch receives replies from the DHCP server (SVI vlan4024_l3).
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay6-RED
+   INTF_CMD="-l vlan10 -l vlan20"
+   SERVERS="-u 2001:db8:199::2%RED -u vlan4024_l3"
+   ```
+
+4. Start and enable the DHCP service so that it starts automatically the next time the switch boots:
+
+   ```
+   sudo systemctl start dhcrelay6@RED.service
+   sudo systemctl enable dhcrelay6@RED.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Configure Multiple DHCP Relays
 
 Cumulus Linux supports multiple DHCP relay daemons on a switch to enable relaying of packets from different bridges to different upstream interfaces.

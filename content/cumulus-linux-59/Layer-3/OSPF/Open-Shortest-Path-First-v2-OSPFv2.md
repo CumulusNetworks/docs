@@ -753,7 +753,7 @@ These commands create a summary route for all the routes in the range 172.16.1.0
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv show vrf default router ospf area 0 range 172.16.1.0/24
+cumulus@leaf01:~$ nv shsetow vrf default router ospf area 0 range 172.16.1.0/24
 cumulus@leaf01:~$ nv config apply
 ```
 

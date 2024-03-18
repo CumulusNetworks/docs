@@ -207,7 +207,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
     0 sources with unknown address
     ```
 
-4. View the time servers chrony is using.
+4. View the time servers that chrony is using.
 
     ```
     root@ubuntu:~# chronyc sources
@@ -243,7 +243,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
     rtcsync
     ```
 
-5. View the server chrony is currently tracking.
+5. View the server that chrony is currently tracking.
 
     ```
     root@ubuntu:~# chronyc tracking
@@ -391,7 +391,7 @@ To obtain the NetQ CLI package:
 
     You should see version 4.9.0 and update 45 in the results. For example:
 
-    netq-apps_<strong>4.9.0</strong>-deb10u<strong>45</strong>~1706971648.d2ce145e5_amd64.deb
+    netq-apps_<strong>4.9.0</strong>-deb10u<strong>45</strong>~1710407608.ea9740d7c_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 

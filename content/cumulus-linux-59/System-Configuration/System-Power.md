@@ -1,7 +1,7 @@
 ---
 title: System Power
 author: NVIDIA
-weight: 278
+weight: 290
 toc: 3
 ---
 In certain situations, you might need to power off the switch instead of rebooting. To power off the switch, you can run the Linux `poweroff` command.

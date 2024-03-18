@@ -16,7 +16,7 @@ Using the NetQ UI or CLI, lifecycle management (LCM) allows you to:
 
 {{%notice note%}}
 
-- Lifecycle management is enabled for on-premises deployments and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
+Lifecycle management is enabled for on-premises deployments and disabled for cloud deployments by default. Contact your NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
 
 {{%/notice%}}
 

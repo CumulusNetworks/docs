@@ -5,9 +5,9 @@ weight: 650
 toc: 2
 ---
 
-- {{<link title="Adaptive Routing">}}
 - {{<link title="BGP">}}
 - {{<link title="DPUs">}}
+- {{<link title="ECMP">}}
 - {{<link title="EVPN">}}
 - {{<link title="Hosts">}}
 - {{<link title="Interfaces">}}

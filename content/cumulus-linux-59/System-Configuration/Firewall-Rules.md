@@ -17,37 +17,37 @@ The default set of firewall rules consist of IP and transport level rules. To bl
 
 DoS rules protect the switch control plane and CPU from DOS attacks.
 
-Cumulus Linux provides the following DoS rules.
+Cumulus Linux provides the following firewall policies for DoS rules.
 
-| Rule ID | Description |
+| Policy ID | Description |
 | --------- | ---- |
-| `FW_RULE_DEFAULT_01` | Allows internal loopback traffic only. |
-| `FW_RULE_DEFAULT_02` | Accepts already established connections and outbound traffic. |
-| `FW_RULE_DEFAULT_03` | Sets the `- allow` option to color the packets from a specific interface. Used when different policies need to be applied for different `eth` interfaces. |
-| `FW_RULE_DOS_01` | Drops packets if the first TCP segment is not SYN. |
-| `FW_RULE_DOS_02` | Drops fragmented IP packets. |
-| `FW_RULE_DOS_03` | Drops XMAS tree packets. |
-| `FW_RULE_DOS_04` | Drops NULL packets.|
-| `FW_RULE_DOS_06` | Drops invalid packets. |
-| `FW_RULE_DOS_08` | Drops strange MSS values. |
-| `FW_RULE_DOS_10` | Provides service brute-force protection. |
-| `FW_RULE_DOS_14` | Drops packets with routing Header Type 0. |
-| `FW_RULE_DOS_15` | Drops packets with a hop limit greater than 1. |
-| `FW_LIMIT_DOS_01` | Limits excessive TCP reset packets. |
-| `FW_LIMIT_DOS_02` | Protects against SYN flood.|
-| `FW_LIMIT_DOS_03` | Limits TCP connections for each IP address. |
-| `FW_RULE_DOS_13` | Logs all remaining packets and drops them in the end. |
+| `FW_RULE_DEFAULT_01` | Rules to allow internal loopback traffic only. |
+| `FW_RULE_DEFAULT_02` | Rules to accept already established connections and outbound traffic. |
+| `FW_RULE_DEFAULT_03` | Rules to set the `- allow` option to color the packets from a specific interface. Used when different policies need to be applied for different `eth` interfaces. |
+| `FW_RULE_DOS_01` | Rules to drop packets if the first TCP segment is not SYN. |
+| `FW_RULE_DOS_02` | Rules to drop fragmented IP packets. |
+| `FW_RULE_DOS_03` | Rules to drop XMAS tree packets. |
+| `FW_RULE_DOS_04` | Rules to drop NULL packets.|
+| `FW_RULE_DOS_06` | Rules to drop invalid packets. |
+| `FW_RULE_DOS_08` | Rules to drop strange MSS values. |
+| `FW_RULE_DOS_10` | Rules for service brute-force protection. |
+| `FW_RULE_DOS_14` | Rules to drop packets with routing Header Type 0. |
+| `FW_RULE_DOS_15` | Rules to drop packets with a hop limit greater than 1. |
+| `FW_LIMIT_DOS_01` | Rules to limit excessive TCP reset packets. |
+| `FW_LIMIT_DOS_02` | Rules to protect against SYN flood.|
+| `FW_LIMIT_DOS_03` | Rules to limit TCP connections for each IP address. |
+| `FW_RULE_DOS_13` | Rules to log all remaining packets, then drop them. |
 
 ## Whitelist Rules
 
 Whitelist rules specify the services or application ports enabled on the switch.
 
-Cumulus Linux provides the following firewall rules.
+Cumulus Linux provides the following firewall policies for whitelist rules.
 
-| Rule ID | Description |
+| Policy ID | Description |
 | --------- | ---- |
-| FW_RULE_WHITELIST_00 | Enables TCP ports.|
-| FW_RULE_WHITELIST_01 | Enables UDP ports.|
+| `FW_RULE_WHITELIST_00` | Rules to enable TCP ports.|
+| `FW_RULE_WHITELIST_01` | Rules to enable UDP ports.|
 
 The following table lists the ports that Cumulus Linux enables by default.
 
@@ -206,3 +206,5 @@ cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/98control_plane_whitelist.r
 -A INPUT -m comment --comment rule_id:999,acl_name:acl-default-whitelist,dir:inbound,interface_id:control-plane  -m limit --limit 1/min -j DROP
 ```
 {{< /expand >}}
+
+To add additional firewall rules, refer to {{<link url="Netfilter-ACLs" text="Netfilter ACLs">}}.

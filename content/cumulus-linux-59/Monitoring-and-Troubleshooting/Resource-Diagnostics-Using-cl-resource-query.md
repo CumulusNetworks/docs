@@ -50,4 +50,4 @@ Dynamic Config SNAT entries:            0,   0% of maximum value     64
 Dynamic Config DNAT entries:            0,   0% of maximum value     64
 ```
 
-Ingress ACL and Egress ACL entries show the counts in single wide (*not* double-wide). For information about ACL entries, see {{<link url="Netfilter-ACLs#estimate-the-number-of-rules" text="Estimate the Number of ACL Rules">}}.
+Ingress ACL and Egress ACL entries show the counts in single wide (*not* double-wide). For information about ACL entries, see {{<link url="Access-Control-List-Configuration#estimate-the-number-of-rules" text="Estimate the Number of ACL Rules">}}.

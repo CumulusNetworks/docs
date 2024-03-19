@@ -22,7 +22,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 
 | Feature | Supported in a Virtual Environment |
 | -----------------------------------------------------| ------------|
-|{{<link url="Netfilter-ACLs" text="ACL configuration ">}}|<font color="red">No</font> |
+|{{<link url="Access-Control-Lists" text="Access Control Lists ">}}|<font color="red">No</font> |
 |{{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}| <font color="red">No</font> |
 |{{<link url="Precision-Time-Protocol-PTP" >}}| <font color="red">No</font> |
 |{{<link url="Port-Security" >}}| <font color="red">No</font> |
@@ -40,7 +40,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 <!--
 | Feature | In a Virtual Environment | In a Virtual Environment with Emulated ASIC |
 | -----------------------------------------------------| ------------| --------------|
-|{{<link url="Netfilter-ACLs" text="ACL configuration ">}}|<font color="red">No</font> | <font color="green">yes</font>|
+|{{<link url="Access-Control-Lists" text="Access Control Lists ">}}|<font color="red">No</font> | <font color="green">yes</font>|
 |{{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}} | <font color="red">No</font> | <font color="red">No</font> |
 |{{<link url="Precision-Time-Protocol-PTP" >}}| <font color="red">No</font> | <font color="green">yes</font> |
 |{{<link url="Port-Security" >}}| <font color="red">No</font> | <font color="green">yes</font> |

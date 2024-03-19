@@ -401,7 +401,7 @@ Cumulus Linux uses `ebtables` to mark layer 2, 802.1p COS values.
 Cumulus Linux uses `iptables` to match IPv4 traffic and `ip6tables` to match IPv6 traffic for DSCP marking.
 
 {{% notice info %}}
-For more information on configuring and applying ACLs, refer to {{<link title="Netfilter - ACLs" text="Netfilter - ACLs" >}}.
+For more information on configuring and applying ACLs, refer to {{<link title="Access Control List Configuration" text="Access Control List Configuration" >}}.
 {{% /notice %}}
 
 #### Mark Layer 2 COS
@@ -1082,7 +1082,7 @@ Cumulus Linux supports both a single-rate policer and a dual-rate policer (*tric
 You configure traffic policing using ebtables, iptables, or ip6table rules.
 
 {{% notice info %}}
-For more information on configuring and applying ACLs, refer to {{<link title="Netfilter - ACLs" text="Netfilter - ACLs" >}}.
+For more information on configuring and applying ACLs, refer to {{<link title="Access Control List Configuration" text="Access Control List Configuration" >}}.
 {{% /notice %}}
 <!-- vale off -->
 #### Single-rate Policer

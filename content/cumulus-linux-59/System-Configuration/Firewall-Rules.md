@@ -7,10 +7,10 @@ toc: 3
 
 The Cumulus Linux default firewall rules protect the switch control plane and CPU from DOS and other potentially malicious network attacks.
 
-In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops packets that are disallowedß.
+In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops packets that are disallowed.
 
 {{%notice note%}}
-The default set of firewall rules consist of IP and transport level rules. To block specific layer 2 packets such as ARP, LLDP, or STP or any packets sent to the CPU as part of generic traps, you must configure separate rules using control plane ACLs in the INPUT or OUTPUT chain of ebtables. See {{<link url="Netfilter-ACLs" text="Netfilter ACLs">}}.
+The default set of firewall rules consists of IP and transport level rules. To block specific layer 2 packets such as ARP, LLDP, or STP or any packets sent to the CPU as part of generic traps, you must configure separate rules using control plane ACLs in the INPUT or OUTPUT chain of ebtables. See {{<link url="Netfilter-ACLs" text="Netfilter ACLs">}}.
 {{%/notice%}}
 
 ## DoS Rules

@@ -73,7 +73,7 @@ cumulus@switch:~$ sudo ifup swp1 --admin-state
 
 For additional information on interface administrative state and physical state, refer to [this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux" >}}).
 
-## Interface Classes
+<!--## Interface Classes
 
 `ifupdown2` enables you to group interfaces into separate classes. A class is a user-defined label that groups interfaces that share a common function (such as `uplink`, `downlink` or `compute`). You specify classes in the `/etc/network/interfaces` file.
 
@@ -154,7 +154,7 @@ cumulus@switch:~$ sudo bash -c "ifreload -s -a && ifreload -a"
 {{%/notice%}}
 
 For more information, see the individual man pages for `ifup(8)`, `ifdown(8)`, `ifreload(8)`.
-
+-->
 ## Loopback Interface
 
 Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface called *lo* is up and assigned an IP address of 127.0.0.1.

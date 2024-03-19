@@ -1,7 +1,7 @@
 ---
 title: Firewall Rules
 author: NVIDIA
-weight: 200
+weight: 210
 toc: 3
 ---
 
@@ -10,7 +10,7 @@ The Cumulus Linux default firewall rules protect the switch control plane and CP
 In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops packets that are disallowed.
 
 {{%notice note%}}
-The default set of firewall rules consists of IP and transport level rules. To block specific layer 2 packets such as ARP, LLDP, or STP or any packets sent to the CPU as part of generic traps, you must configure separate rules using control plane ACLs in the INPUT or OUTPUT chain of ebtables. See {{<link url="Netfilter-ACLs" text="Netfilter ACLs">}}.
+The default set of firewall rules consists of IP and transport level rules. To block specific layer 2 packets such as ARP, LLDP, or STP or any packets sent to the CPU as part of generic traps, you must configure separate rules using control plane ACLs in the INPUT or OUTPUT chain of ebtables. See {{<link url="Access-Control-List-Configuration" text="Access Control List Configuration">}}.
 {{%/notice%}}
 
 ## DoS Rules
@@ -99,4 +99,4 @@ Cumulus Linux stores:
 - DoS policy rules in the `/etc/cumulus/acl/policy.d/01control_plane.rules` file. 
 - Whitelist policy rules and `FW_RULE_DOS_13` policy rules in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file. `FW_RULE_DOS_13` policy rules drop packets that don't match any whitelist rules.
 
-The firewall rules are numbered out of sequence so that you can add rules if necessary. To add additional rules with NVUE or manually in the `/etc/cumulus/acl/policy.conf` file, refer to {{<link url="Netfilter-ACLs" text="Netfilter ACLs">}}.
+The firewall rules are numbered out of sequence so that you can add rules if necessary. To add additional rules with NVUE or manually in the `/etc/cumulus/acl/policy.conf` file, refer to {{<link url="Access-Control-List-Configuration" text="Access Control List Configuration">}}.

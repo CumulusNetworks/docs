@@ -24,7 +24,7 @@ DoS rules protect the switch control plane and CPU from DOS attacks. Cumulus Lin
 | `FW_RULE_DEFAULT_03` | Rules to set the `- allow` option to color the packets from a specific interface. Used when different policies need to be applied for different `eth` interfaces. |
 | `FW_RULE_DOS_01` | Rules to drop packets if the first TCP segment is not SYN. |
 | `FW_RULE_DOS_02` | Rules to drop fragmented IP packets. |
-| `FW_RULE_DOS_03` | Rules to drop XMAS tree packets. |
+| `FW_RULE_DOS_03` | Rules to drop Christmas tree packets; packets with all TCP flags set. |
 | `FW_RULE_DOS_04` | Rules to drop NULL packets.|
 | `FW_RULE_DOS_06` | Rules to drop invalid packets. |
 | `FW_RULE_DOS_08` | Rules to drop strange MSS values. |
@@ -96,7 +96,7 @@ cumulus@switch:~$ nv config apply
 ## Default Firewall Rule Files
 
 Cumulus Linux stores:
-- DoS policy rules in the `/etc/cumulus/acl/policy.d/00control_plane.rules` file. 
+- DoS policy rules in the `/etc/cumulus/acl/policy.d/01control_plane.rules` file. 
 - Whitelist policy rules and `FW_RULE_DOS_13` policy rules in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file. `FW_RULE_DOS_13` policy rules drop packets that don't match any whitelist rules.
 
 The firewall rules are numbered out of sequence so that you can add rules if necessary. To add additional rules with NVUE or manually in the `/etc/cumulus/acl/policy.conf` file, refer to {{<link url="Netfilter-ACLs" text="Netfilter ACLs">}}.

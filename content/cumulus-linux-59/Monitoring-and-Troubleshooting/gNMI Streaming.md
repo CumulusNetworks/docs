@@ -692,10 +692,10 @@ The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. T
 
 | Reason ID | Reason | Severity | Description |
 | --------- | ------ | -------- | ----------- |
-| 601 | Ingress port ACL | Notice | Validate ACL configuration |
-| 602 | Ingress router ACL | Notice | Validate ACL configuration |
-| 603 | Egress router ACL | Notice | Validate ACL configuration |
-| 604 | Egress port ACL | Notice | Validate ACL configuration |
+| 601 | Ingress port ACL | Notice | Validate Access Control List configuration |
+| 602 | Ingress router ACL | Notice | Validate Access Control List |
+| 603 | Egress router ACL | Notice | Validate Access Control List |
+| 604 | Egress port ACL | Notice | Validate Access Control List |
 
 #### Buffer Drop Reasons
 

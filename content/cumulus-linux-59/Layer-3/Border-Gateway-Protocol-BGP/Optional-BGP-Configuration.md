@@ -193,7 +193,7 @@ router bgp 65101
 
 {{%notice note%}}
 - When you configure `ttl-security hops` on a peer group instead of a specific neighbor, FRR does not add it to either the running configuration or to the `/etc/frr/frr.conf` file. To work around this issue, add `ttl-security hops` to individual neighbors instead of the peer group.
-- Enabling `ttl-security hops` does not program the hardware with relevant information. Cumulus Linux forwards frames to the CPU and then drops them. Use the NVUE Command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Netfilter - ACLs">}}.
+- Enabling `ttl-security hops` does not program the hardware with relevant information. Cumulus Linux forwards frames to the CPU and then drops them. Use the NVUE Command to explicitly add the relevant entry to hardware. For more information about ACLs, see {{<link title="Access Control Lists">}}.
 {{%/notice%}}
 
 {{< /tab >}}

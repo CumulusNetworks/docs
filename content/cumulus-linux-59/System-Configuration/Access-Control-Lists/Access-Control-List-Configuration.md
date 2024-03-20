@@ -4,16 +4,16 @@ author: NVIDIA
 weight: 220
 toc: 3
 ---
-You can use several different tools to configure ACLs in Cumulus Linux:
-- `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools you use to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
-- `cl-acltool` is a Cumulus Linux-specific userspace tool you use to administer filtering rules and configure default ACLs. `cl-acltool` operates on various configuration files and uses `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, `cl-acltool` programs rules in hardware for switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
+Cumulus Linux provides several tools to configure <span class="a-tooltip">[ACLs](## "Access Control Lists")</span>:
 - NVUE is a Cumulus Linux-specific userspace tool you can use to configure custom ACLs.
+- `iptables`, `ip6tables`, and `ebtables` are Linux userspace tools you use to administer filtering rules for IPv4 packets, IPv6 packets, and Ethernet frames (layer 2 using MAC addresses).
+- `cl-acltool` is a Cumulus Linux-specific userspace tool you can use to administer filtering rules and configure default ACLs. `cl-acltool` operates on various configuration files and uses `iptables`, `ip6tables`, and `ebtables` to install rules into the kernel. In addition, `cl-acltool` programs rules in hardware for switch port interfaces, which `iptables`, `ip6tables` and `ebtables` cannot do on their own.
 
 ## Traffic Rules
 
 ### Chains
 
-Netfilter describes the way that the Linux kernel classifies and controls packets to, from, and across the switch. Netfilter does not require a separate software daemon to run; it is part of the Linux kernel. Netfilter asserts policies at layer 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
+ACLs in Cumulus Linux classify and control packets to, from, and across the switch, asserting policies at layer 2, 3 and 4 of the {{<exlink url="https://en.wikipedia.org/wiki/OSI_model" text="OSI model">}} by inspecting packet and frame headers according to a list of rules. The `iptables`, `ip6tables`, and `ebtables` userspace applications provide syntax you use to define rules.
 
 The rules inspect or operate on packets at several points (*chains*) in the life of the packet through the system:
 
@@ -522,7 +522,7 @@ error: hw sync failed (sync_acl hardware installation failed) Rolling back .. fa
 error: hw sync failed (Bulk counter init failed with No More Resources). Rolling back ..
 ```
 
-To troubleshoot this issue and manage netfilter resources with high VLAN and ACL scale, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.
+To troubleshoot this issue and manage resources with high VLAN and ACL scale, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}}.
 
 NVIDIA Spectrum switches use a <span class="a-tooltip">[TCAM](## "Ternary Content Addressable Memory")</span> or <span class="a-tooltip">[ATCAM](## "Algorithmic TCAM")</span> to quickly look up various tables that include ACLs, multicast routes, and certain internal VLAN counters. Depending on the size of the network ACLs, multicast routes, and VLAN counters, you might need to adjust some parameters to fit your network requirements into the tables.
 
@@ -579,7 +579,7 @@ For information about nonatomic and atomic mode, refer to {{<link url="#nonatomi
 
 ## ATCAM Resource Exhaustion
 
-If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing netfilter resources.
+If you see error messages similar to `No More Resources .. Rolling back` when you try to apply ACLs, refer to {{<link url="#troubleshooting-acl-rule-installation-failures" text="Troubleshooting ACL Rule Installation Failures">}} for information on troublshooting and managing resources.
 
 ## Supported Rule Types
 
@@ -1453,7 +1453,7 @@ To work around this limitation, set the rate and burst for all these rules to th
 
 On Spectrum-2 and later, in addition to ACLs, items stored in KVD and ATCAM include internal counters for VLANs and interfaces in a bridge. If the network includes more than 1000 VLAN interfaces, the counters might occupy a significant amount of space and reduce the amount of available space for ACLs.
 
-If netfilter ACL space is exhausted, you might see error messages similar to the following when you try to apply ACLs:
+If ACL space is exhausted, you might see error messages similar to the following when you try to apply ACLs:
 
 ```
 cumulus@switch:$ sudo cl-acltool -i -p 00control_plane.rules

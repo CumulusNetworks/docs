@@ -22,8 +22,8 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} is now generally available
 - Transmit {{<link url="Link-Layer-Discovery-Protocol/#transmit-application-priority-tlvs" text="LLDP application priority TLVs">}}
 - {{<link url="Firewall-Rules" text="Firewall rules">}}
+- {{<link url="CLI-Configuration" text="CLI Session pagination and timeout options">}}
 - Support Native vtysh/FRR output
-- Configure CLI Session Parameters (Pagination and Timeout)
 - Interface summary view with filtering
 - Admin State added to `nv show interface` output
 - Support for Upgrade Mode
@@ -48,12 +48,18 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   {{< tab "nv set ">}}
 
   ```
+  nv set system cli pagination state
+  nv set system cli pagination pager
+  nv set system cli inactive-timeout
   ```
   
   {{< /tab >}}
   {{< tab "nv unset ">}}
   
   ```
+  nv unset system cli pagination state
+  nv unset system cli pagination pager
+  nv unset system cli inactive-timeout
   ```
 
   {{< /tab >}}

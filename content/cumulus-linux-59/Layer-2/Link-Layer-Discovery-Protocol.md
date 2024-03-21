@@ -257,6 +257,19 @@ Cumulus Linux transmits the following 802.3 TLVs by default. You do not need to 
 | Link Aggregation    | 3       | Indicates if the port supports link aggregation and if it is on.  |
 | Maximum Frame Size  | 4       | The MTU configuration on the port. The MTU on the port is the <span class="a-tooltip">[MFS](## "Maximum Frame Size ")</span>. |
 <!-- vale off -->
+
+### LLDP-MED Inventory TLVs
+
+LLDP-MED Inventory TLVs enable an endpoint to transmit detailed inventory information about itself to the switch, such as the manufacturer, model, firmware, and serial number.
+
+### Application Priority TLVs
+
+| Name           | Description |
+|----------------| ----------- |
+| Priority | The priority of the configured application. |
+| Sel | 2 for applications that use TCP, iSCSI, NVME over TCP with port 4420 or 8009.<br>3 for applications that use UDP. |
+| Protocol ID | TCP port or UDP port |
+
 ### Transmit IEEE 802.1 TLVs
 <!-- vale on -->
 You can transmit the 802.1 TLV types (VLAN name, Port VLAN ID, and IEEE 802.1 Link Aggregation) when exchanging LLDP messages. By default, 802.1 TLV transmission is off and the switch sends all LLDP frames without 802.1 TLVs.

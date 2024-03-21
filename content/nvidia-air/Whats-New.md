@@ -9,13 +9,17 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 <!-- Air:WhatsNew -->
 ## March 2024
+### 82.2024.0321-013
+- Increased the number of retries when the Air Agent connects to the API
+- Fixed an issue when deleting an organization with existing simulations
+<!-- Air:WhatsNew -->
+
 ### 82.2024.0314-013
 - Fixed an issue where MAC addresses were not properly validated
 - Fixed an issue where node hostnames were allowed to contain whitespace
 - Fixed an issue where attempting to create a simulation could improperly return a 400
 - Fixed an issue that caused invalid links to be created during DOT file parsing
 - Fixed an issue that prevented updating a shared topology after a simulation was deleted
-<!-- Air:WhatsNew -->
 
 ## February 2024
 ### 82.2024.0229-012

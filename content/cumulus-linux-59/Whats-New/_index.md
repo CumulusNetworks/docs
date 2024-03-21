@@ -42,12 +42,25 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   {{< tab "nv show ">}}
   
   ```
+  nv show interface <interface> lldp application-tlv
+  nv show interface <interface> lldp application-tlv app
+  nv show interface <interface> lldp application-tlv tcp-port
+  nv show interface <interface> lldp application-tlv udp-port
+  nv show service lldp application-tlv app
+  nv show service lldp application-tlv tcp-port
+  nv show service lldp application-tlv udp-port
   ```
 
   {{< /tab >}}
   {{< tab "nv set ">}}
 
   ```
+  nv set service lldp application-tlv app <application> priority <priority> 
+  nv set service lldp application-tlv tcp-port <port> priority <priority> 
+  nv set service lldp application-tlv udp-port <port> priority <priority> 
+  nv set interface <interface> lldp application-tlv app <application> 
+  nv set interface <interface> lldp application-tlv tcp-port <port>
+  nv set interface <interface> lldp application-tlv udp-port <port> 
   nv set system cli pagination state
   nv set system cli pagination pager
   nv set system cli inactive-timeout
@@ -57,6 +70,12 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   {{< tab "nv unset ">}}
   
   ```
+  nv unset service lldp application-tlv app <application> priority <priority> 
+  nv unset service lldp application-tlv tcp-port <port> priority <priority> 
+  nv unset service lldp application-tlv udp-port <port> priority <priority> 
+  nv unset interface <interface> lldp application-tlv app <application> 
+  nv unset interface <interface> lldp application-tlv tcp-port <port>
+  nv unset interface <interface> lldp application-tlv udp-port <port> 
   nv unset system cli pagination state
   nv unset system cli pagination pager
   nv unset system cli inactive-timeout

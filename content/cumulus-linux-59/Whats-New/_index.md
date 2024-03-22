@@ -21,7 +21,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - {{<link url="ASIC-Monitoring" text="Latency histogram">}} for ASIC monitoring
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} is now generally available
 - Transmit {{<link url="Link-Layer-Discovery-Protocol/#transmit-application-priority-tlvs" text="LLDP application priority TLVs">}}
-- NVUE commands for LDAP authentication and encryption
+- {{<link url="LDAP-Authentication-and-Authorization" text="NVUE commands for LDAP authentication and encryption">}}
 - {{<link url="Firewall-Rules" text="Firewall rules">}}
 - {{<link url="CLI-Configuration" text="CLI Session pagination and timeout options">}}
 - NVUE commands to perform a {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} and show if a reboot is required.

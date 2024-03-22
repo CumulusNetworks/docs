@@ -5,11 +5,11 @@ weight: 640
 toc: 4
 ---
 
-This section describes how to create and modify two types of profiles: access profiles and agent configuration profiles. Access profiles store user authentications credentials. Agent configuration profiles specify settings for a NetQ agent running on a switch. Both types of profiles must be applied to a switch for the changes to take effect. 
+You must have switch access credentials to install and upgrade software on a switch. These user authentication credentials are stored in NetQ as access profiles. The profiles must be applied to a switch before you can upgrade or install software. 
 
 ## Access Profiles
 
-Authentication credentials are stored in access profiles which can be assigned to individual switches. You can create credentials with either basic (SSH username/password) or SSH (public/private key) authentication. This section describes how to create, edit, and delete access profiles. After you create a profile, {{<link title="Switch Management/#attach-an-access-profile-to-a-switch" text="attach it to individual switches">}} so that you can perform upgrades on those switches. 
+Authentication credentials are stored in access profiles which can be assigned to individual switches. You can create credentials with either basic (SSH username/password) or SSH (public/private key) authentication. This section describes how to create, edit, and delete access profiles. After you create a profile, attach it to individual switches so that you can perform upgrades on those switches. 
 
 {{<notice note>}}
 By default, NVIDIA supplies an access profile called <i>Netq-Default</i>. You must create a new access profile or update the default profile with unique credentials to perform upgrades and other lifecycle management tasks. 
@@ -63,7 +63,7 @@ For security, your private key is stored in an encrypted format, and only provid
 
 7. (Optional) To verify that the new profile is listed among available profiles, select **View profiles** from the Access Profiles card.
 
-8. (Optional) {{<link title="Switch Management/#attach-an-access-profile-to-a-switch" text="Attach the profile to a switch">}} so that you can perform upgrades.
+8. (Optional) Attach the profile to a switch so that you can perform upgrades.
 
 {{</tab>}}
 
@@ -75,7 +75,7 @@ For security, your private key is stored in an encrypted format, and only provid
 
 6. (Optional) To verify that the new profile is listed among available profiles, select **View profiles** from the Access Profiles card.
 
-7. (Optional) {{<link title="Switch Management/#attach-an-access-profile-to-a-switch" text="Attach the profile to a switch">}} so that you can perform upgrades.
+7. (Optional) Attach the profile to a switch so that you can perform upgrades.
 
 {{</tab>}}
 
@@ -183,7 +183,7 @@ To configure SSH authentication using a public/private key (requires sudoer perm
 
 ### Delete Access Profiles
 
-You cannot delete a profile that is currently attached to a switch. You must {{<link title="Switch Management/#attach-an-access-profile-to-a-switch" text="attach a different profile to the switch">}} first. Note that you cannot delete the *Netq-Default* profile. 
+You cannot delete a profile that is currently attached to a switch. You must attach a different profile to the switch first. Note that you cannot delete the *Netq-Default* profile (but you can edit it). 
 
 {{<tabs "TabID247" >}}
 
@@ -259,70 +259,93 @@ If you use a username and password for the credentials, the username appears in 
 
 {{</tabs>}}
 
-## Agent Configuration Profiles
+## Attach an Access Profile to a Switch
 
-You can customize configuration profiles for NetQ Agents running on switches. When you create a configuration profile, you can adjust the following agent settings:
+NetQ uses access profiles to store user authentications credentials. After creating an access profile from your credentials, you can attach a profile to one or multiple switches.
 
-- The VRF the NetQ agent uses to communicate with the NetQ server
-- Whether WJH is enabled or disabled
-- The agent log level
-- The agent CPU limit
+{{<tabs "TabID85" >}}
 
-The default NetQ agent configuration profile sets the VRF to `mgmt`, the log level to `info`, the WJH status to disabled, and the CPU limit to disabled.
-### Create Configuration Profiles
+{{<tab "NetQ UI" >}}
 
-Before creating a configuration profile, generate AuthKeys using the UI. {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="Copy the access key and secret key">}} to an accessible location.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**. On the Switches card, select **Manage**.
 
-{{<tabs "TabID281">}}
+2. The table displays a list of switches. The **Access type** column specifies whether the type of authentication is basic or SSH. The **Profile name** column displays the access profile that is assigned to the switch.
 
-{{<tab "NetQ UI">}}
+Select the switches to which you'd like to assign access profiles, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} **Manage access profile** above the table: 
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**.
+{{<figure src="/images/netq/manage-access-profile-450.png" alt="" width="500" height="375">}}
 
-2. Select **NetQ agent configurations**.
+3. Select the profile from the list, then click **Apply**. If the profile you want to use isn't listed, select **Add new profile** and follow the steps to create an access profile.
 
-3. On the NetQ agent configurations card, select **Add config**.
+4. Select **Ok** on the confirmation dialog. The updated access profiles are now reflected in the **Profile name** column.
 
-4. Enter a profile name and choose the settings from the options presented in the UI. Select **Advanced** to set values for the log level and CPU limit:
-
-{{<figure src="/images/netq/agent-config-lcm-490.png" alt="card displaying agent configuration profile settings" width="500">}}
-
-5. Enter your NetQ CLI {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="authentication keys">}} and select **Add**.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-Create a NetQ agent configuration profile with the {{<link title="lcm/#netq-lcm-add-netq-config" text="netq lcm add netq-config">}} command. If you manage the switch using an in-band interface, you must specify the interface name using the `inband-interface` option:
+The command syntax to attach a profile to a switch is:
 
 ```
-cumulus@netq-server:~$ netq lcm add netq-config 
-    config-profile-name <text-config-profile> 
-    accesskey <text-access-key> 
-    secret-key <text-secret-key> 
-    [cpu-limit <text-cpu-limit>] 
-    [log-level error | log-level warn | log-level info | log-level debug] 
-    [vrf default | vrf mgmt | vrf <text-config-vrf>] 
-    [wjh enable | wjh disable] 
-    [inband-interface <text-inband-interface>]
+netq lcm attach credentials 
+    profile_id <text-switch-profile-id> 
+    hostnames <text-switch-hostnames>
 ```
+
+1. Run `netq lcm show credentials` to display a list of access profiles. Note the profile ID that you'd like to assign to a switch.
+
+2. Run `netq lcm show switches` to display a list of switches. Note the hostname of the switch(es) you'd like to attach a profile to.
+
+3. Next, attach the credentials to the switch:
+
+```
+netq lcm attach credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 hostnames tor-1,tor-2
+Attached profile to switch(es).
+```
+
+4. Run `netq lcm show switches` and verify the change in the credential profile column.
 
 {{</tab>}}
 
 {{</tabs>}}
 
-### Apply Configuration Profiles
+## Reassign or Detach an Access Profile
 
-After you create an agent configuration profile, you must apply the profile to a switch to update the agent settings.
+Detaching a profile from a switch restores it to the default access profile, Netq-Default.
 
-1. Run a {{<link url="Switch-Management/#switch-discovery" text="switch discovery">}}.
+{{<tabs "TabID110" >}}
 
-2. Select a switch from the **Discovered with NetQ** category and select **Change config**.
+{{<tab "NetQ UI" >}}
 
-{{<figure src="/images/netq/lcm-switch-discovery-configure-configprofile-48.png" alt="card displaying discovered switch and change configuration option" width="500">}}
+1. On the Switches card, click **Manage**.
 
-3. Select a configuration profile, then click **Next**.
+2. From the table of switches, locate the switch whose access profile you'd like to manage. Hover over the access type column and select **Manage access**:
 
-4. Specify which NetQ agent version you want to run on the switch, then click **Next**.
+{{<figure src="/images/netq/detach-manage-access-450.png" alt="" width="500" height="270">}}
 
-5. Click **Install** to begin the pre-check process. After the pre-checks are successful, NetQ applies the configuration profile and installs the agent version you specified.
+3. To assign a different access profile to the switch, select it from the list. To detach the access profile, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18"/> **Detach**.
+
+{{<figure src="/images/netq/manage-access-profile-spine-450.png" alt="" width="500" height="450">}}
+
+After you detach the profile from the switch, NetQ reassigns it to the Netq-Default profile.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+The syntax for the detach command is `netq lcm detach credentials hostname <text-switch-hostname>`.
+
+1. To obtain a list of hostnames, run `netq lcm show switches`.
+
+2. Detach the access profile and specify the hostname. The following example detaches spine-1 from its assigned access profile:
+
+```
+cumulus@switch:~$ netq lcm detach credentials hostname spine-1
+Detached profile from switch.
+```
+
+3. Run `netq lcm show switches` and verify the change in the credential profile column.
+
+{{</tab>}}
+
+{{</tabs>}}

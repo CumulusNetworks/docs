@@ -18,8 +18,6 @@ During the Cumulus Linux upgrade process, NetQ does not upgrade or reinstall pac
 {{</notice>}}
 ## Prepare for a Cumulus Linux Upgrade
 
-If the NetQ Agent is already installed on the switches you'd like to upgrade, follow the steps below. If the NetQ Agent is *not* installed on the switches you'd like to upgrade, run a {{<link title="Upgrade Cumulus Linux/#Upgrade-Cumulus-Linux-on-Switches-Without NetQ-Agent-Installed" text="switch discovery">}}, then proceed with the upgrade.
-
 Before you upgrade, make sure you have the appropriate files and credentials:
 
 {{<tabs "TabID34" >}}
@@ -32,7 +30,7 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 3. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-4. (Optional) Assign a {{<link title="Switch Management/#assign-roles-to-switches" text="role">}} to each switch.
+4. (Optional) {{<link title="Switch Management/#assign-roles-to-switches" text="Assign a role">}} to each switch.
 
 {{</tab>}}
 
@@ -40,7 +38,7 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 ## Upgrade Cumulus Linux
 
-After you complete the preparation steps, upgrade Cumulus Linux:
+If the NetQ Agent is already installed on the switches you'd like to upgrade, follow the steps below. If the NetQ Agent is *not* installed on the switches you'd like to upgrade, run a {{<link title="Switch Management/#switch-discovery" text="switch discovery">}} to find all Cumulus Linux switches with and without NetQ currently installed and perform the CL upgrade during as part of the discovery workflow.
 
 {{<tabs "TabID51" >}}
 
@@ -136,40 +134,3 @@ Upon successful upgrade, you can:
 ### Post-check Failures
 
 A successful upgrade can still have post-check warnings. For example, you updated the OS, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages appear in the Post-Upgrade Tasks section of the preview. Click the warning category to view the detailed messages.
-## Upgrade Cumulus Linux on Switches Without NetQ Agent Installed
-
-To upgrade Cumulus Linux on switches without NetQ installed, create a {{<link url="Switch-Management/#switch-discovery" text="switch discovery">}}. The discovery results are then used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure. You can run up to five jobs simultaneously; however, a given switch can only appear in one running job at a time.
-
-{{<tabs "Upgrade switches without NetQ agent" >}}
-
-{{<tab "NetQ UI" >}}
-
-1. Run a {{<link url="Switch-Management/#switch-discovery" text="switch discovery">}} to discover switches without NetQ installed and add them to the device inventory.
-
-2. Select which switches you want to upgrade from each discovered category by clicking the checkbox on each switch card. Then click **Next**.
-
-    {{<figure src="/images/netq/switch-discovery-selected-450.png" width="500">}}
-
-3. Accept the default NetQ version or click **Custom** and select an alternate version.
-
-4. By default, the NetQ Agent and CLI are upgraded on the selected switches. If you *do not* want to upgrade the NetQ CLI, click **Advanced** and change the selection to **No**.
-
-5. Click **Next**.
-
-6. NetQ performs several checks to eliminate preventable problems during the upgrade process. When all of the pre-checks pass, select **Install**.
-
-    After starting the upgrade you can monitor the progress from the preview page or the Upgrade History page.
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
-1. Run a {{<link url="Switch-Management/#switch-discovery" text="switch discovery">}} to discover switches without NetQ installed and add them to the device inventory.
-
-Use the {{<link title="lcm/#netq-lcm-discover" text="netq lcm discover">}} command, specifying a single IP address, a range of IP addresses where your switches are located in the network, or a CSV file containing the IP address.
-
-2. After discovery and determining which switches you need to upgrade, run the upgrade process as described {{<link url="#perform-a-cumulus-linux-upgrade" text="above">}}.
-
-{{</tab>}}
-
-{{</tabs>}}

@@ -21,6 +21,8 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 3. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
+4. (Optional) Create an agent configuration profile, as described in the next section.
+
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -31,21 +33,75 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 3. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 
+4. (Optional) Create an agent configuration profile, as described in the next section.
+
+{{</tab>}}
+
+{{</tabs>}}
+
+## Agent Configuration Profiles
+
+You can set up a configuration profile to indicate how you want NetQ configured when it is installed or upgraded on your Cumulus Linux switches. When you create a configuration profile, you can adjust the following agent settings:
+
+- The VRF the NetQ agent uses to communicate with the NetQ server
+- Whether WJH is enabled or disabled
+- The agent log level
+- The agent CPU limit
+
+The default configuration profile, *NetQ default config*, is set up to run in the management VRF and provide info-level logging. Both WJH and CPU limiting are disabled.
+### Create Configuration Profiles
+
+Before creating a configuration profile, generate AuthKeys using the UI. {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="Copy the access key and secret key">}} to an accessible location.
+
+{{<tabs "TabID281">}}
+
+{{<tab "NetQ UI">}}
+
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**.
+
+2. Select **NetQ agent configurations**.
+
+3. On the NetQ agent configurations card, select **Add config**.
+
+4. Enter a profile name and choose the settings from the options presented in the UI. Select **Advanced** to set values for the log level and CPU limit:
+
+{{<figure src="/images/netq/agent-config-lcm-490.png" alt="card displaying agent configuration profile settings" width="500">}}
+
+5. Enter your NetQ CLI {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="authentication keys">}} and select **Add**.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+Create a NetQ agent configuration profile with the {{<link title="lcm/#netq-lcm-add-netq-config" text="netq lcm add netq-config">}} command. If you manage the switch using an in-band interface, you must specify the interface name using the `inband-interface` option:
+
+```
+cumulus@netq-server:~$ netq lcm add netq-config 
+    config-profile-name <text-config-profile> 
+    accesskey <text-access-key> 
+    secret-key <text-secret-key> 
+    [cpu-limit <text-cpu-limit>] 
+    [log-level error | log-level warn | log-level info | log-level debug] 
+    [vrf default | vrf mgmt | vrf <text-config-vrf>] 
+    [wjh enable | wjh disable] 
+    [inband-interface <text-inband-interface>]
+```
+
 {{</tab>}}
 
 {{</tabs>}}
 
 ## Perform a NetQ Agent Upgrade
 
-After you complete the preparation steps, upgrade the NetQ Agents:
+The steps below assume that a version of NetQ is already installed on your switches. If NetQ is not installed, run a {{<link title="Switch Management/#switch-discovery" text="switch discovery">}} to find all Cumulus Linux switches with and without NetQ currently installed and perform the upgrade as part of the discovery workflow.
 
 {{<tabs "TabID61" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. From the LCM dashboard, select the **Switch management** tab. Locate the Switches card and click **Manage**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**. 
 
-2. Select the switches you want to upgrade.
+2. Locate the Switches card and click **Manage**. Select the switches you want to upgrade.
 
 3. Click {{<img src="/images/netq/netq-upgrade-icon-blk.png" height="18" width="18">}} **Upgrade NetQ** above the table and follow the steps in the UI.
 
@@ -53,19 +109,11 @@ After you complete the preparation steps, upgrade the NetQ Agents:
 
 5. Enter a name for the upgrade job. The name can contain a maximum of 22 characters (including spaces).
 
-6. Review each switch:
+6. Review each switch. If you'd like to change the agent configuration profile, click **Change config**, then select an alternate profile to apply to all selected switches. Alternately, you can apply different profiles to each switch by clicking the current profile and selecting an alternate profile.
 
-    - Is the configuration profile the one you want to apply? If not, click **Change config**, then select an alternate profile to apply to all selected switches.
+{{<figure src="/images/netq/upgrade-config-490.png" alt="card displaying agent configuration profiles" width="500">}}
 
 <div style="padding-left: 18px;">
-
-{{<notice tip>}}
-
-You can apply <em>different</em> profiles to switches in a <em>single</em> upgrade job by selecting a subset of switches then choosing a different profile. You can also change the profile on a per-switch basis by clicking the current profile link and selecting an alternate one.
-
-{{<img src="/images/netq/lcm-netq-upgrade-select-alternate-profile-320.png" alt="dialog displaying two profiles that can be applied to both multiple and individual switches" width="450">}}
-
-{{</notice>}}
 
 </div>
 

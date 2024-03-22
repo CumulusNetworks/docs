@@ -148,6 +148,7 @@ After the connection to the server is complete, the BIND operation authenticates
 ```
 cumulus@switch:~$ nv set system aaa ldap uri ldaps://ldap.example.com priority 1
 cumulus@switch:~$ nv set system aaa ldap bind-dn cn=CLswitch,dc=example,dc=com
+cumulus@switch:~$ nv set system aaa ldap bind-password CuMuLuS
 cumulus@switch:~$ nv config apply
 ```
 
@@ -196,6 +197,46 @@ base passwd ou=people,dc=example,dc=com
 base group ou=groups,dc=example,dc=com
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
+### Search Scope
+
+You can configure the search scope to one level or the subtree.
+
+{{< tabs "TabID206 ">}}
+{{< tab "NVUE Commands ">}}
+
+To set the search scope to one level:
+
+```
+cumulus@switch:~$ nv set system aaa ldap scope one-level
+cumulus@switch:~$ nv config apply
+```
+
+To set the search scope to one level:
+
+```
+cumulus@switch:~$ nv set system aaa ldap scope subtree
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/nsswitch.conf` file to set the `scope` option to either `one` or `sub` and uncomment the line.
+
+```
+cumulus@switch:~$ sudo nano /etc/nslcd.conf
+...
+# The search scope.
+scope one
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Search Filters
 
 To limit the search scope when authenticating users, use search filters to specify criteria when searching for objects within the directory. The default filters applied are:
@@ -217,6 +258,100 @@ map    passwd shell "/bin/bash"
 {{%notice note%}}
 In LDAP, the ***map*** refers to one of the supported maps specified in the `manpage` for `nslcd.conf` (such as *passwd* or *group*).
 {{%/notice%}}
+
+### LDAP Version
+
+Cumulus Linux uses LDAP version 3 by default. If you need to change the LDAP version to 2:
+
+{{< tabs "TabID265 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system aaa ldap version 2
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/nsswitch.conf` file to change the `ldap_version` option and uncomment the line.
+
+```
+cumulus@switch:~$ sudo nano /etc/nslcd.conf
+...
+# The LDAP protocol version to use.
+ldap_version 2
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### LDAP Timeouts
+
+Cumulus Linux provides two timeout settings:
+- The bind timeout sets the number of seconds before the BIND operation times out.
+- The search timeout sets the number of seconds before the search times out.
+
+{{< tabs "TabID295 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets both the BIND session timeout and the search timeout to 60 seconds:
+
+```
+cumulus@switch:~$ nv set system aaa ldap timeout-bind 60
+cumulus@switch:~$ nv set system aaa ldap timeout-search 60
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/nsswitch.conf` file to add the `bind_timelimit` option and the `timelimit` option.
+
+```
+cumulus@switch:~$ sudo nano /etc/nslcd.conf
+...
+bind_timelimit 60
+timelimit 60
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### SSL Options
+
+{{< tabs "TabID324 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system aaa ldap ssl mode
+cumulus@switch:~$ nv set system aaa ldap ssl port
+cumulus@switch:~$ nv set system aaa ldap ssl cert-verify
+cumulus@switch:~$ nv set system aaa ldap ssl ca-list
+cumulus@switch:~$ nv set system aaa ldap ssl ciphers
+cumulus@switch:~$ nv set system aaa ldap ssl crl-check
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/nsswitch.conf` file to
+
+```
+cumulus@switch:~$ sudo nano /etc/nslcd.conf
+...
+# SSL options
+ssl on
+tls_reqcert try
+tls_cacertfile /etc/ssl/certs/rtp-example-ca.crt
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Create Home Directory on Login
 <!-- vale off -->

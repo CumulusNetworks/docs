@@ -21,14 +21,14 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - {{<link url="ASIC-Monitoring" text="Latency histogram">}} for ASIC monitoring
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} is now generally available
 - Transmit {{<link url="Link-Layer-Discovery-Protocol/#transmit-application-priority-tlvs" text="LLDP application priority TLVs">}}
+- NVUE commands for LDAP authentication and encryption
 - {{<link url="Firewall-Rules" text="Firewall rules">}}
 - {{<link url="CLI-Configuration" text="CLI Session pagination and timeout options">}}
+- NVUE commands to perform a {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} and show if a reboot is required.
 - Support Native vtysh/FRR output
 - Interface summary view with filtering
 - Admin State added to `nv show interface` output
-- Support for Upgrade Mode
 - Cumulus Linux includes a default `startup.yaml` file and updated `nvued` defaults
-- NVUE commands for LDAP authentication and encryption
 - nv show platform command redesign
 - Forwarding profiles standardized at 85% KVD utilization
 - {{< expand "Improved tab completion for NVUE routing commands" >}}
@@ -49,6 +49,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   nv show service lldp application-tlv app
   nv show service lldp application-tlv tcp-port
   nv show service lldp application-tlv udp-port
+  nv show system reboot required
   ```
 
   {{< /tab >}}
@@ -85,6 +86,8 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   {{< tab "nv action ">}}
   
   ```
+  nv action upgrade system packages to <version> dry-run
+  nv action upgrade system packages to <version>
   ```
 
   {{< /tab >}}

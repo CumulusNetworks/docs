@@ -264,11 +264,19 @@ To upgrade the switch using package upgrade:
     cumulus@switch:~$ sudo -E apt-get upgrade --dry-run
     ```
 
+   {{%notice note%}}
+   Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <version> dry-run` command to review potential issues when upgrading to the latest 5.9.x or later release. You can use this NVUE command instead of the `sudo -E apt-get upgrade --dry-run` command if you prefer.
+   {{%/notice%}}
+
 4. Upgrade all the packages to the latest distribution.
 
     ```
     cumulus@switch:~$ sudo -E apt-get upgrade
     ```
+
+   {{%notice note%}}
+Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <version>` command to perform a package upgrade to the latest 5.9.x or later release. You can use this NVUE command instead of the `sudo -E apt-get upgrade` command if you prefer.
+{{%/notice%}}
 
     If you do not need to reboot the switch after the upgrade completes, the upgrade ends, restarts all upgraded services, and logs messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, the process only upgrades the `frr` package.
 
@@ -304,6 +312,10 @@ To upgrade the switch using package upgrade:
     When the upgrade is complete, you can search for the files with the `sudo find / -mount -type f -name '*.dpkg-*'` command.
 
     If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
+
+   {{%notice note%}}
+Cumulus Linux 5.9 provides the NVUE `nv show system reboot required` command to show if a reboot is required.
+{{%/notice%}}
 
 5. Reboot the switch if the upgrade messages indicate that you need to perform a system restart.
 

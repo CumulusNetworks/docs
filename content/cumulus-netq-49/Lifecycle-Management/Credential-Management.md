@@ -12,9 +12,9 @@ This section describes how to create and modify two types of profiles: access pr
 Authentication credentials are stored in access profiles which can be assigned to individual switches. You can create credentials with either basic (SSH username/password) or SSH (public/private key) authentication. This section describes how to create, edit, and delete access profiles. After you create a profile, {{<link title="Switch Management/#attach-an-access-profile-to-a-switch" text="attach it to individual switches">}} so that you can perform upgrades on those switches. 
 
 {{<notice note>}}
-By default, NVIDIA supplies two access profiles: Netq-Default and Nvl4-Default (for NVLink devices). NVIDIA strongly recommends creating new access profiles or updating the default profiles with unique credentials. 
+By default, NVIDIA supplies an access profile called <i>Netq-Default</i>. You must create a new access profile or update the default profile with unique credentials to perform upgrades and other lifecycle management tasks. 
 
-You cannot delete default profiles.
+You cannot delete the default profile.
 {{</notice>}}
 
 ### Create Access Profiles
@@ -68,14 +68,6 @@ For security, your private key is stored in an encrypted format, and only provid
 {{</tab>}}
 
 {{<tab "Basic Authentication">}}
-
-Be sure to use credentials for an account that has permission to configure switches.
-
-{{<notice tip>}}
-
-The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read [Cumulus Linux User Accounts]({{<ref "cumulus-linux-53/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts">}}).
-
-{{</notice>}}
 
 4. Enter a username and password.
 
@@ -141,13 +133,13 @@ When prompted, hit the enter/return key.
 
 {{<tab "NetQ UI" >}}
 
-1. Open the LCM dashboard.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**.
 
 2. On the Access Profiles card, select **View profiles**.
 
-3. Select the checkbox next to the profile you'd like to edit. Then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} **Edit** above the table.
+3. Select the the profile you'd like to edit. Then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} **Edit** above the table.
 
-4. Make your edits, then click **Update**.
+4. Make your changes, then click **Update**.
 
 {{</tab>}}
 
@@ -191,7 +183,7 @@ To configure SSH authentication using a public/private key (requires sudoer perm
 
 ### Delete Access Profiles
 
-Any profile that is assigned to a switch can't be deleted. You must {{<link title="Switch Management/#attach-an-access-profile-to-a-switch" text="attach a different profile to the switch">}} first. Note that *Netq-Default* and *Nvl4-Default* can't be deleted. 
+You cannot delete a profile that is currently attached to a switch. You must {{<link title="Switch Management/#attach-an-access-profile-to-a-switch" text="attach a different profile to the switch">}} first. Note that you cannot delete the *Netq-Default* profile. 
 
 {{<tabs "TabID247" >}}
 
@@ -201,9 +193,9 @@ Any profile that is assigned to a switch can't be deleted. You must {{<link titl
 
 2. From the list of profiles, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete** in the profile's row. 
 
-{{<figure src="/images/netq/delete-profile-450.png" alt="" width="600">}}
+{{<figure src="/images/netq/access-profile-del-490.png" alt="" width="700">}}
 
-The delete icon only appears next to custom profiles that are not already attached to a switch.
+The delete icon only appears next to custom profiles that are not attached to a switch.
 
 3. Select **Remove**.
 
@@ -222,11 +214,6 @@ credential_profile_d Netq-Default             BASIC                           cu
 c20090ce28ff2bb46a4b
 9bf23cda98f1bdf91128
 5c9
-credential_profile_3 Nvl4-Default             BASIC                           admin            **************   1                                    Fri Feb  3 19:18:26 2023
-5a2eead7344fb91218bc
-dec29b12c66ebef0d806
-659b20e8805e4ff629bc
-23e
 credential_profile_3 n-1000                   BASIC                           admin            **************   0                                    Fri Feb  3 21:49:10 2023
 eddab251bddea9653df7
 cd1be0fc123c5d7a42f8

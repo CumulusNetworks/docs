@@ -57,6 +57,8 @@ The table of switches is the starting point for network OS upgrades or NetQ inst
 
 A switch discovery searches your network for all Cumulus Linux switches (with and without NetQ currently installed) and determines the versions of Cumulus Linux and NetQ installed. These results can be used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure.
 
+If you intend to upgrade your switches, generate AuthKeys using the UI.  {{<link title="Install NetQ CLI/#configure-the-netq-cli" text="Copy the access key and secret key">}} to an accessible location. You will enter the AuthKeys later on in this process.
+
 To discover switches running Cumulus Linux:
 
 {{<tabs "Discover switches" >}}
@@ -135,12 +137,14 @@ Click **Remove** if you decide to use a different file or want to use IP address
 
     - **Discovered without NetQ**: Switches found without NetQ installed
     - **Discovered with NetQ**: Switches found with some version of NetQ installed
-    - **Discovered but Rotten**: Switches found that are unreachable
-    - **Incorrect Credentials**: Switches found that are unreachable because the provided access credentials do not match those for the switches
-    - **OS not Supported**: Switches found that are running a Cumulus Linux version not supported by LCM upgrades
-    - **Not Discovered**: IP addresses which did not have an associated Cumulus Linux switch
+    - **Discovered but rotten**: Switches found that are unreachable
+    - **Incorrect credentials**: Switches found that are unreachable because the provided access credentials do not match those for the switches
+    - **OS not supported**: Switches found that are running a Cumulus Linux version not supported by LCM upgrades
+    - **Not discovered**: IP addresses which did not have an associated Cumulus Linux switch
 
     If the discovery process does not find any switches for a particular category, then it does not display that category.
+
+After performing a switch discovery, you can install or upgrade Cumulus Linux and NetQ.
 
 {{</tab>}}
 
@@ -150,133 +154,44 @@ Use the {{<link title="lcm/#netq-lcm-discover" text="netq lcm discover">}} comma
 
 You must also specify the access profile ID, which you can obtain with the `netq lcm show credentials` command.
 
-       cumulus@switch:~$ netq lcm discover ip-range 10.0.1.12 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
-       NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556db
+```
+cumulus@switch:~$ netq lcm discover ip-range 192.168.0.15 profile_id credential_profile_d9e875bd2e6784617b304c20090ce28ff2bb46a4b9bf23cda98f1bdf911285c9
+    NetQ Discovery Started with job id: job_scan_9ea69d30-e86e-11ee-b32d-71890ec96f40
+```
 
-When the network discovery is complete, NetQ presents the number of Cumulus Linux switches it has found. The output displays their discovery status, which can be one of the following:
-
-- **Discovered without NetQ**: Switches found without NetQ installed
-- **Discovered with NetQ**: Switches found with some version of NetQ installed
-- **Discovered but Rotten**: Switches found that are unreachable
-- **Incorrect Credentials**: Switches found that are unreachable because the provided access credentials do not match those for the switches
-- **OS not Supported**: Switches found that are running Cumulus Linux version not supported by the LCM upgrade feature
-- **NOT\_FOUND**: IP addresses which did not have an associated Cumulus Linux switch
-
-Note that if you previously ran a switch discovery, you can display its results with `netq lcm show discovery-job`:
+When the network discovery is complete, run `netq lcm show discovery-job` and include the job ID which you obtained from the previous command. If you do not specify a job ID, the output includes a list of all job IDs from all discovery jobs.
 
 ```
-cumulus@switch:~$ netq lcm show discovery-job job_scan_921f0a40-5440-11eb-97a2-5b3ed2e556db
+cumulus@switch:~$ netq lcm show discovery-job job_scan_9ea69d30-e86e-11ee-b32d-71890ec96f40
 Scan COMPLETED
 
 Summary
 -------
-Start Time: 2021-01-11 19:09:47.441000
-End Time: 2021-01-11 19:09:59.890000
+Start Time: 2024-03-22 17:10:56.363000
+End Time: 1970-01-01 00:00:00.000000
 Total IPs: 1
 Completed IPs: 1
 Discovered without NetQ: 0
 Discovered with NetQ: 0
 Incorrect Credentials: 0
 OS Not Supported: 0
-Not Discovered: 1
+Not Discovered: 0
 
-
-Hostname          IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Discovery Status Upgrade Status
------------------ ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ---------------- --------------
-N/A               10.0.1.12                 N/A                N/A      N/A         N/A           []                           NOT_FOUND        NOT_UPGRADING
-cumulus@switch:~$ 
+Hostname          IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Discovery Status
+----------------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ----------------
+noc-pr            192.168.0.15              00:01:00:00:11:00  x86_64   5.8.0       4.8.0         []                           WITH_NETQ_ROTTEN
 ```
 
-{{</tab>}}
+NetQ presents the number of Cumulus Linux switches it has found. The output displays their discovery status, which can be one of the following:
 
-{{</tabs>}}
+- **Discovered without NetQ**: Switches found without NetQ installed
+- **Discovered with NetQ**: Switches found with some version of NetQ installed
+- **Discovered but Rotten**: Switches found that are unreachable
+- **Incorrect Credentials**: Switches found that are unreachable because the provided access credentials do not match those for the switches
+- **OS not Supported**: Switches found that are running Cumulus Linux version not supported by the LCM upgrade feature
+- **Not Discovered**: IP addresses which did not have an associated Cumulus Linux switch
 
-## Attach an Access Profile to a Switch
-
-NetQ uses access profiles to store user authentications credentials. After {{<link title="Credentials and Profiles" text="creating an access profile">}} from your credentials, you can attach a profile to one or multiple switches.
-
-{{<tabs "TabID85" >}}
-
-{{<tab "NetQ UI" >}}
-
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**. On the Switches card, select **Manage**.
-
-2. The table displays a list of switches. The **Access type** column specifies whether the type of authentication is basic or SSH. The **Profile name** column displays the access profile that is assigned to the switch.
-
-Select the switches to which you'd like to assign access profiles, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} **Manage access profile** above the table: 
-
-{{<figure src="/images/netq/manage-access-profile-450.png" alt="" width="500" height="375">}}
-
-3. Select the profile from the list, then click **Apply**. If the profile you want to use isn't listed, select **Add new profile** and {{<link title="Credentials and Profiles/#create-access-profiles" text="follow the steps to create an access profile">}}.
-
-4. Select **Ok** on the confirmation dialog. The updated access profiles are now reflected in the **Profile name** column.
-
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
-The command syntax to attach a profile to a switch is:
-
-```
-netq lcm attach credentials 
-    profile_id <text-switch-profile-id> 
-    hostnames <text-switch-hostnames>
-```
-
-1. Run `netq lcm show credentials` to display a list of access profiles. Note the profile ID that you'd like to assign to a switch.
-
-2. Run `netq lcm show switches` to display a list of switches. Note the hostname of the switch(es) you'd like to attach a profile to.
-
-3. Next, attach the credentials to the switch:
-
-```
-netq lcm attach credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 hostnames tor-1,tor-2
-Attached profile to switch(es).
-```
-
-4. Run `netq lcm show switches` and verify the change in the credential profile column.
-
-{{</tab>}}
-
-{{</tabs>}}
-
-## Reassign or Detach an Access Profile
-
-Detaching a profile from a switch restores it to the default access profile, Netq-Default.
-
-{{<tabs "TabID110" >}}
-
-{{<tab "NetQ UI" >}}
-
-1. On the Switches card, click **Manage**.
-
-2. From the table of switches, locate the switch whose access profile you'd like to manage. Hover over the access type column and select **Manage access**:
-
-{{<figure src="/images/netq/detach-manage-access-450.png" alt="" width="500" height="270">}}
-
-3. To assign a different access profile to the switch, select it from the list. To detach the access profile, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18"/> **Detach**.
-
-{{<figure src="/images/netq/manage-access-profile-spine-450.png" alt="" width="500" height="450">}}
-
-After you detach the profile from the switch, NetQ reassigns it to the Netq-Default profile.
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
-The syntax for the detach command is `netq lcm detach credentials hostname <text-switch-hostname>`.
-
-1. To obtain a list of hostnames, run `netq lcm show switches`.
-
-2. Detach the access profile and specify the hostname. The following example detaches spine-1 from its assigned access profile:
-
-```
-cumulus@switch:~$ netq lcm detach credentials hostname spine-1
-Detached profile from switch.
-```
-
-3. Run `netq lcm show switches` and verify the change in the credential profile column.
+After performing a switch discovery, you can install or upgrade Cumulus Linux and NetQ.
 
 {{</tab>}}
 
@@ -307,8 +222,6 @@ Role assignment is optional, but recommended. Assigning roles can prevent switch
 5. Click **Assign**.
 
     Note that the **Role** column is updated with the role assigned to the selected switch(es). To return to the full list of switches, click **All**.
-
-    {{<figure src="/images/netq/role-column-450.png" alt="table displaying role column with updated role assignments" width="700" height="300">}}
 
 6. Continue selecting switches and assigning roles until most or all switches have roles assigned.
 
@@ -345,32 +258,30 @@ The **Role** column displays assigned roles:
 
 ```
 cumulus@switch:~$ netq lcm show switches
-Hostname          Role       IP Address                MAC Address        CPU      CL Version           NetQ Version             Last Changed
------------------ ---------- ------------------------- ------------------ -------- -------------------- ------------------------ -------------------------
-leaf01            leaf       192.168.200.11            44:38:39:00:01:7A  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:37 2020
-                                                                                                        104fb9ed
-spine04           spine      192.168.200.24            44:38:39:00:01:6C  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:16 2020
-                                                                                                        104fb9ed
-leaf03            leaf       192.168.200.13            44:38:39:00:01:84  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:56 2020
-                                                                                                        104fb9ed
-leaf04            leaf       192.168.200.14            44:38:39:00:01:8A  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:07 2020
-                                                                                                        104fb9ed
-border02                     192.168.200.64            44:38:39:00:01:7C  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:56:49 2020
-                                                                                                        104fb9ed
-border01                     192.168.200.63            44:38:39:00:01:74  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:56:37 2020
-                                                                                                        104fb9ed
-fw2                          192.168.200.62            44:38:39:00:01:8E  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:24:58 2020
-                                                                                                        104fb9ed
-spine01           spine      192.168.200.21            44:38:39:00:01:82  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:07 2020
-                                                                                                        104fb9ed
-spine02           spine      192.168.200.22            44:38:39:00:01:92  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:08 2020
-                                                                                                        104fb9ed
-spine03           spine      192.168.200.23            44:38:39:00:01:70  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:16 2020
-                                                                                                        104fb9ed
-fw1                          192.168.200.61            44:38:39:00:01:8C  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:24:58 2020
-                                                                                                        104fb9ed
-leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:53 2020
-                                                                                                        104fb9ed
+Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Credential Profile                   Last Changed
+----------------- ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ------------------------------------ -------------------------
+noc-pr                       192.168.0.15              00:01:00:00:11:00  x86_64   5.8.0       4.8.0-cl4u44~ []                           Netq-Default                         Thu Mar 14 05:34:57 2024
+                                                                                               1699073372.80
+                                                                                               e664937
+noc-se                       192.168.0.15              00:01:00:00:12:00  x86_64   5.8.0       4.8.0-cl4u44~ []                           Netq-Default                         Thu Mar 14 05:35:27 2024
+                                                                                               1699073372.80
+                                                                                               e664937
+spine-1           spine      192.168.0.15              00:01:00:00:13:00  x86_64   5.8.0       4.8.0-cl4u44~ []                           Netq-Default                         Thu Mar 14 05:35:27 2024
+                                                                                               1699073372.80
+                                                                                               e664937
+spine-2           spine      192.168.0.15              00:01:00:00:14:00  x86_64   5.8.0       4.8.0-cl4u44~ []                           Netq-Default                         Thu Mar 14 05:35:27 2024
+                                                                                               1699073372.80
+                                                                                               e664937
+spine-3           spine      192.168.0.15              00:01:00:00:15:00  x86_64   5.8.0       4.8.0-cl4u44~ []                           Netq-Default                         Thu Mar 14 05:35:27 2024
+                                                                                               1699073372.80
+                                                                                               e664937
+tor-2                        192.168.0.15              00:01:00:00:17:00  x86_64   5.8.0       4.8.0-cl4u44~ []                           Netq-Default                         Thu Mar 14 05:35:27 2024
+                                                                                               1699073372.80
+                                                                                               e664937
+exit-1            exit       192.168.0.15              00:01:00:00:01:00  x86_64   5.8.0       4.8.0-cl4u44~ []                           Netq-Default                         Thu Mar 14 05:35:27 2024
+                                                                                               1699073372.80
+                                                                                               e664937
+exit-2            exit       192.168.0.15              00:01:00:00:02:00  x86_64   5.8.0       4.8.0-cl4u44~ []                           CL-auth-profile                      Wed Mar 20 16:03:15 2024
 ```
 {{</tab>}}
 

@@ -188,8 +188,7 @@
                 <div class="footer-content">
                     <div class="mb-4">
                       <img src={{"images/nvidia-logo-white.svg" | absURL }} />
-                        <p>© {{ dateFormat "2006" now }}&nbsp;&nbsp;NVIDIA Corporation.</p>
-                        <p><a href={{"license" | absURL }}><img src={{"images/by-nc-sa.svg" | absURL }} alt="Cumulus Networks CC-by-NC-SA License"></a></p>
+                      <p>© {{ dateFormat "2006" now }}&nbsp;&nbsp;NVIDIA Corporation.</p>
                     </div>
                     <ul class="mb-4">
                         <li><h4 class="text-jade mb-3">Products</h4></li>
@@ -221,11 +220,19 @@
 <div class="footer-bottom">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-14">
+              <ul>
+                <p>Copyright © {{ dateFormat "2006" now }}&nbsp;&nbsp;NVIDIA Corporation</p>
+              </ul>
                 <ul>
-                    <li><a href="//www.nvidia.com/en-us/about-nvidia/legal-info/">Trademarks</a></li>
-                    <li><a href="//www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy</a></li>
-                    <li><a href="//www.nvidia.com/en-us/about-nvidia/nv-accounts/">Terms of service</a></li>
+                    <li><a href="//www.nvidia.com/en-us/about-nvidia/privacy-policy/">Privacy Policy |</a></li>
+                    <li><a href="//www.nvidia.com/en-us/about-nvidia/privacy-center/">Manage My Privacy |</a></li>
+                    <li><a href="//www.nvidia.com/en-us/preferences/start/">Do Not Sell or Share My Data |</a></li>
+                    <li><a href="//www.nvidia.com/en-us/about-nvidia/terms-of-service/">Terms of Service |</a></li>
+                    <li><a href="//www.nvidia.com/en-us/about-nvidia/accessibility/">Accessibility |</a></li>
+                    <li><a href="//www.nvidia.com/en-us/about-nvidia/company-policies/">Corporate Policies |</a></li>
+                    <li><a href="//www.nvidia.com/en-us/security/">Product Security |</a></li>
+                    <li><a href="//www.nvidia.com/en-us/contact/">Contact</a></li>
                 </ul>
             </div>
         </div>

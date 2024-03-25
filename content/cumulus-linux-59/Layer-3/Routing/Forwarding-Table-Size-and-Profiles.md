@@ -28,7 +28,7 @@ The values provided in the profiles below are the maximum values that Cumulus Li
 
 ### Spectrum 1
 
-Forwarding resource profiles control unicast forwarding table entry allocations. On the Spectrum 1 switch, TCAM profiles control multicast forwarding table entry allocations. For more information about multicast route entry limitations, refer to {{<link url="Netfilter-ACLs/#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
+Forwarding resource profiles control unicast forwarding table entry allocations. On the Spectrum 1 switch, TCAM profiles control multicast forwarding table entry allocations. For more information about multicast route entry limitations, refer to {{<link url="Access-Control-List-Configuration/#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
 <!-- vale off -->
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| LPM  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
@@ -112,4 +112,4 @@ To show the different forwarding profiles that your switch supports and the MAC 
 
 ## ACL and VLAN Memory Resources
 
-In addition to forwarding table memory resources, there are limitations on other memory resources for ACLs and VLAN interfaces; refer to {{<link url="Netfilter-ACLs/#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.
+In addition to forwarding table memory resources, there are limitations on other memory resources for ACLs and VLAN interfaces; refer to {{<link url="Access-Control-List-Configuration/#hardware-limitations-for-acl-rules" text="Hardware Limitations for ACL Rules">}}.

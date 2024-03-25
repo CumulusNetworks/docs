@@ -21,14 +21,14 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - {{<link url="ASIC-Monitoring" text="Latency histogram">}} for ASIC monitoring
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} is now generally available
 - Transmit {{<link url="Link-Layer-Discovery-Protocol/#transmit-application-priority-tlvs" text="LLDP application priority TLVs">}}
+- {{<link url="LDAP-Authentication-and-Authorization" text="NVUE commands for LDAP authentication and encryption">}}
 - {{<link url="Firewall-Rules" text="Firewall rules">}}
+- {{<link url="CLI-Configuration" text="CLI Session pagination and timeout options">}}
+- NVUE commands to perform a {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} and show if a reboot is required.
 - Support Native vtysh/FRR output
-- Configure CLI Session Parameters (Pagination and Timeout)
 - Interface summary view with filtering
 - Admin State added to `nv show interface` output
-- Support for Upgrade Mode
 - Cumulus Linux includes a default `startup.yaml` file and updated `nvued` defaults
-- NVUE commands for LDAP authentication and encryption
 - nv show platform command redesign
 - Forwarding profiles standardized at 85% KVD utilization
 - {{< expand "Improved tab completion for NVUE routing commands" >}}
@@ -42,24 +42,52 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   {{< tab "nv show ">}}
   
   ```
+  nv show interface <interface> lldp application-tlv
+  nv show interface <interface> lldp application-tlv app
+  nv show interface <interface> lldp application-tlv tcp-port
+  nv show interface <interface> lldp application-tlv udp-port
+  nv show service lldp application-tlv app
+  nv show service lldp application-tlv tcp-port
+  nv show service lldp application-tlv udp-port
+  nv show system reboot required
   ```
 
   {{< /tab >}}
   {{< tab "nv set ">}}
 
   ```
+  nv set service lldp application-tlv app <application> priority <priority> 
+  nv set service lldp application-tlv tcp-port <port> priority <priority> 
+  nv set service lldp application-tlv udp-port <port> priority <priority> 
+  nv set interface <interface> lldp application-tlv app <application> 
+  nv set interface <interface> lldp application-tlv tcp-port <port>
+  nv set interface <interface> lldp application-tlv udp-port <port> 
+  nv set system cli pagination state
+  nv set system cli pagination pager
+  nv set system cli inactive-timeout
   ```
   
   {{< /tab >}}
   {{< tab "nv unset ">}}
   
   ```
+  nv unset service lldp application-tlv app <application> priority <priority> 
+  nv unset service lldp application-tlv tcp-port <port> priority <priority> 
+  nv unset service lldp application-tlv udp-port <port> priority <priority> 
+  nv unset interface <interface> lldp application-tlv app <application> 
+  nv unset interface <interface> lldp application-tlv tcp-port <port>
+  nv unset interface <interface> lldp application-tlv udp-port <port> 
+  nv unset system cli pagination state
+  nv unset system cli pagination pager
+  nv unset system cli inactive-timeout
   ```
 
   {{< /tab >}}
   {{< tab "nv action ">}}
   
   ```
+  nv action upgrade system packages to <version> dry-run
+  nv action upgrade system packages to <version>
   ```
 
   {{< /tab >}}

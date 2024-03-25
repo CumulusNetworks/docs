@@ -700,7 +700,6 @@ netq lcm edit credentials
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| credentials | NA | Edit the access credentials used to upgrade switches |
 | profile_id | <text-credential-profile-id\> | Edit the profile assigned this ID |
 
 ### Options

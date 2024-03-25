@@ -7,11 +7,11 @@ toc: 3
 
 Using the NetQ UI or CLI, lifecycle management (LCM) allows you to:
 
-- {{<link title="Switch Management" text="Manage switch inventory">}}
-- Install or {{<link title="Upgrade NetQ Agent" text="upgrade NetQ (Agents and CLI)">}} and {{<link title="Upgrade Cumulus Linux" text="Cumulus Linux">}} on switches running Cumulus Linux
-- {{<link title="NetQ and Network OS Images" text="Manage Cumulus Linux and NetQ images">}}
+- {{<link title="Switch Management" text="Manage Cumulus Linux switch inventory">}} and roles
+- {{<link title="NetQ and Network OS Images" text="Manage Cumulus Linux and NetQ images">}} in a local repository
+- Install or {{<link title="Upgrade NetQ Agent" text="upgrade NetQ (Agents and CLI)">}} and {{<link title="Upgrade Cumulus Linux" text="Cumulus Linux">}} on switches
+- Create NetQ Agent {{<link title="Upgrade NetQ Agent/#agent-configuration-profiles" text="configuration profiles">}}
 - {{<link title="Credentials and Profiles" text="Configure switch access credentials and profiles">}} (required for installations and upgrades)
-- {{<link title="Network Snapshots" text="Create snapshots">}} of the network state at various times
 - View a history of upgrade attempts
 
 {{%notice note%}}
@@ -30,10 +30,16 @@ You can access the LCM dashboard in a few ways:
 
 {{<figure src="/images/netq/manage-switch-assets-450.png" alt="dashboard displaying switch management tab" width="700">}}
 
-## Access Lifecycle Management with the CLI
+## LCM Summary
 
-Lifecycle management workflows use the `netq lcm` command set. Refer to the {{<link title="lcm" text="command line reference">}} for a comprehensive list of options and definitions.
+This table summarizes LCM functionalities in the UI and CLI:
 
+| <div style="width:30px">Function </div> | <div style="width:220px">Description</div> | <div style="width:220px">NetQ UI Cards</div> | <div style="width:220px">NetQ CLI Commands</div> |
+| --- | --- | --- | --- |
+| Switch management | Discover switches, view switch inventory, assign roles, set user access credentials, perform software installation and upgrade networkwide | <ul><li>Switches</li><li>Access profiles</li></ul> | <ul><li>netq lcm show switches</li><li>netq lcm add role</li><li>netq lcm upgrade</li><li>netq lcm add/del/show credentials</li><li>netq lcm discover</li></ul> |
+| Image management | View, add, and remove images for software installation and upgrade | <ul><li>Cumulus Linux images</li><li>NetQ images</li></ul> | <ul><li>netq lcm add/del/show netq-image</li><li>netq lcm add/del/show cl-images</li><li>netq lcm add/show default-version</li></ul> |
+| NetQ agent configurations | Customize configuration profiles for NetQ Agents running on switches | <ul><li>NetQ agent configurations</li>| <ul><li>netq lcm add/del/show netq-config</li></ul> |
+| Job history | View the results of installation, upgrade, and configuration assignment jobs | <ul><li>CL Upgrade History</li><li>NetQ Install and Upgrade History</li></ul> | <ul><li>netq lcm show status</li><li>netq lcm show upgrade-jobs</li></ul> |
 ## LCM Support for In-band Management
 
 If you manage a switch using an in-band network interface, the `inband-interface` option must be specified in the {{<link url="Install-NetQ-Agents/#configure-netq-agents-using-the-netq-cli" text="agent configuration">}} for LCM operations:
@@ -53,4 +59,4 @@ If you manage a switch using an in-band network interface, the `inband-interface
     ```
     sudo netq config add agent server 192.168.1.254 vrf default inband-interface swp1
     ```
-After the NetQ Agent is configured for in-band connections, you can {{<link title="Credentials and Profiles/#agent-configuration-profiles" text="create custom agent configuration profiles">}} using the CLI, then {{<link title="Credentials and Profiles/#apply-configuration-profiles" text="apply the custom  profiles">}} to switches during upgrades.
+After the NetQ Agent is configured for in-band connections, you can {{<link title="Upgrade NetQ Agent/#agent-configuration-profiles" text="create custom agent configuration profiles">}}, then {{<link title="Upgrade NetQ Agent/#apply-configuration-profiles" text="apply the custom profiles">}} to switches during upgrades.

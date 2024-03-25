@@ -114,8 +114,7 @@ When you enable EVPN-MH, all SVI MAC addresses advertise as type-2 routes. You d
 ### Enable EVPN-MH
 
 {{%notice note%}}
-- On a switch with the Spectrum 1 ASIC, you must enable EVPN-MH with the Linux commands. On a switch with Spectrum-2 and later, you can use the NVUE command.
-- NVIDIA recommends that you enable EVPN-MH on all VTEPs throughout the fabric to avoid duplicate packets.
+NVIDIA recommends that you enable EVPN-MH on all VTEPs throughout the fabric to avoid duplicate packets.
 {{%/notice%}}
 
 <!-- vale on -->
@@ -1007,7 +1006,7 @@ Route Distinguisher: 10.10.10.3:2
 
 ## Considerations
 
-If you enable EVPN-MH and configure {{<link url="Netfilter-ACLs/#match-on-vlan-ids-on-layer-2-interfaces" text="VLAN match rules in ebtables with a {{mark}} target">}}, the ebtables rule might overwrite the {{mark}} set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class {{mark}} might not get hit. To work around this issue, add ebtable rules to {{ACCEPT}} the packets already marked by EVPN-MH traffic class rules on ingress.
+If you enable EVPN-MH and configure {{<link title="Access Control List Configuration/#match-on-vlan-ids-on-layer-2-interfaces" text="VLAN match rules in ebtables with a {{mark}} target">}}, the ebtables rule might overwrite the {{mark}} set by traffic class rules you configure for EVPN-MH on ingress. Egress EVPN MH traffic class rules that match the ingress traffic class {{mark}} might not get hit. To work around this issue, add ebtable rules to {{ACCEPT}} the packets already marked by EVPN-MH traffic class rules on ingress.
 
 ## Configuration Example
 

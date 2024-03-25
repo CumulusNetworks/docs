@@ -11,7 +11,7 @@ Cumulus Linux uses Pluggable Authentication Modules (PAM) and Name Service Switc
 - PAM handles the interaction between the user and the system, providing login handling, session setup, authentication of users, and authorization of user actions.
 
 {{%notice note%}}
-To configure LDAP authentication on Linux, you can use `libnss-ldap`, `libnss-ldapd`, or `libnss-sss`. This chapter describes `libnss-ldapd` only. From internal testing, this library worked best with Cumulus Linux and is the easiest to configure, automate, and troubleshoot.
+To configure LDAP authentication on Linux, you can use `libnss-ldap`, `libnss-ldapd`, or `libnss-sss`. This chapter describes `libnss-ldapd` only. From internal testing, this library works best with Cumulus Linux and is the easiest to configure, automate, and troubleshoot.
 {{%/notice%}}
 <!-- vale off -->
 ## Install libnss-ldapd
@@ -123,9 +123,9 @@ Instead of running the installer and following the interactive prompts, as descr
    ```
 
 {{< /expand >}}
-<!-- vale off -->
-## Update the nslcd.conf File
-<!-- vale on -->
+
+## Configure LDAP Server Settings
+
 After installation, update the main configuration file (`/etc/nslcd.conf`) to accommodate the expected LDAP server settings.
 
 This section documents some of the more important options that relate to security and queries. For details on all the available configuration options, read the {{<exlink url="http://linux.die.net/man/5/nslcd.conf" text="nslcd.conf man page">}}.
@@ -142,7 +142,24 @@ The URI is mandatory and specifies the LDAP server location using the FQDN or IP
 
 After the connection to the server is complete, the BIND operation authenticates the session. The BIND credentials are optional; if you do not specify the credentials, the switch assumes an anonymous bind. Configure authenticated (Simple) BIND by specifying the user (`binddn`) and password (`bindpw`) in the configuration. Another option is to use SASL (Simple Authentication and Security Layer) BIND, which provides authentication services using other mechanisms, like Kerberos. Contact your LDAP server administrator for this information as it depends on the configuration of the LDAP server and the credentials for the client device.
 
+{{< tabs "TabID145 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
+cumulus@switch:~$ nv set system aaa ldap uri ldaps://ldap.example.com priority 1
+cumulus@switch:~$ nv set system aaa ldap bind-dn cn=CLswitch,dc=example,dc=com
+cumulus@switch:~$ nv set system aaa ldap bind-password CuMuLuS
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/nslcd.conf` file to add the URI and BIND credentials:
+
+```
+cumulus@switch:~$ sudo nano /etc/nslcd.conf
+...
 # The location at which the LDAP server(s) should be reachable.
 uri ldaps://ldap.example.com
 # The DN to bind with for normal lookups.
@@ -150,17 +167,75 @@ binddn cn=CLswitch,ou=infra,dc=example,dc=com
 bindpw CuMuLuS
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Search Function
 
 When an LDAP client requests information about a resource, it must connect and bind to the server. Then, it performs one or more resource queries depending on the lookup. All search queries to the LDAP server use the configured search *base*, *filter*, and the desired entry (*uid=myuser*). If the LDAP directory is large, this search takes a long time. Define a more specific search base for the common *maps* (*passwd* and *group*).
 
+{{< tabs "TabID176 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
+cumulus@switch:~$ nv set system aaa ldap base-dn dc=example,dc=com
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/nsswitch.conf` file to add the search base:
+
+```
+cumulus@switch:~$ sudo nano /etc/nsswitch.conf
+...
 # The search base that will be used for all queries.
 base dc=example,dc=com
 # Mapped search bases to speed up common queries.
 base passwd ou=people,dc=example,dc=com
 base group ou=groups,dc=example,dc=com
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Search Scope
+
+You can configure the search scope to one level or the subtree.
+
+{{< tabs "TabID206 ">}}
+{{< tab "NVUE Commands ">}}
+
+To set the search scope to one level:
+
+```
+cumulus@switch:~$ nv set system aaa ldap scope one-level
+cumulus@switch:~$ nv config apply
+```
+
+To set the search scope to one level:
+
+```
+cumulus@switch:~$ nv set system aaa ldap scope subtree
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/nsswitch.conf` file to set the `scope` option to either `one` or `sub` and uncomment the line.
+
+```
+cumulus@switch:~$ sudo nano /etc/nslcd.conf
+...
+# The search scope.
+scope one
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Search Filters
 
@@ -183,6 +258,100 @@ map    passwd shell "/bin/bash"
 {{%notice note%}}
 In LDAP, the ***map*** refers to one of the supported maps specified in the `manpage` for `nslcd.conf` (such as *passwd* or *group*).
 {{%/notice%}}
+
+### LDAP Version
+
+Cumulus Linux uses LDAP version 3 by default. If you need to change the LDAP version to 2:
+
+{{< tabs "TabID265 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system aaa ldap version 2
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/nsswitch.conf` file to change the `ldap_version` option and uncomment the line.
+
+```
+cumulus@switch:~$ sudo nano /etc/nslcd.conf
+...
+# The LDAP protocol version to use.
+ldap_version 2
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### LDAP Timeouts
+
+Cumulus Linux provides two timeout settings:
+- The bind timeout sets the number of seconds before the BIND operation times out.
+- The search timeout sets the number of seconds before the search times out.
+
+{{< tabs "TabID295 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets both the BIND session timeout and the search timeout to 60 seconds:
+
+```
+cumulus@switch:~$ nv set system aaa ldap timeout-bind 60
+cumulus@switch:~$ nv set system aaa ldap timeout-search 60
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/nsswitch.conf` file to add the `bind_timelimit` option and the `timelimit` option.
+
+```
+cumulus@switch:~$ sudo nano /etc/nslcd.conf
+...
+bind_timelimit 60
+timelimit 60
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### SSL Options
+
+{{< tabs "TabID324 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system aaa ldap ssl mode
+cumulus@switch:~$ nv set system aaa ldap ssl port
+cumulus@switch:~$ nv set system aaa ldap ssl cert-verify
+cumulus@switch:~$ nv set system aaa ldap ssl ca-list
+cumulus@switch:~$ nv set system aaa ldap ssl ciphers
+cumulus@switch:~$ nv set system aaa ldap ssl crl-check
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/nsswitch.conf` file to
+
+```
+cumulus@switch:~$ sudo nano /etc/nslcd.conf
+...
+# SSL options
+ssl on
+tls_reqcert try
+tls_cacertfile /etc/ssl/certs/rtp-example-ca.crt
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Create Home Directory on Login
 <!-- vale off -->
@@ -293,7 +462,7 @@ Linux uses the *sudo* command to allow non-administrator users (such as the defa
 
 ## Active Directory Configuration
 
-Active Directory (AD) is a fully featured LDAP-based NIS server create by Microsoft. It offers unique features that classic OpenLDAP servers do not have. AD can be more complicated to configure on the client and each version works a little differently with Linux-based LDAP clients. Some more advanced configuration examples, from testing LDAP clients on Cumulus Linux with Active Directory (AD/LDAP), are available in the [knowledge base]({{<ref "/knowledge-base/Security/Authentication/LDAP-on-Cumulus-Linux-Using-Server-2008-Active-Directory" >}}).
+Active Directory (AD) is a fully featured LDAP-based NIS server created by Microsoft. It offers unique features that classic OpenLDAP servers do not have. AD can be more complicated to configure on the client and each version works a little differently with Linux-based LDAP clients. Some more advanced configuration examples, from testing LDAP clients on Cumulus Linux with Active Directory (AD/LDAP), are available in the [knowledge base]({{<ref "/knowledge-base/Security/Authentication/LDAP-on-Cumulus-Linux-Using-Server-2008-Active-Directory" >}}).
 
 ## LDAP Verification Tools
 

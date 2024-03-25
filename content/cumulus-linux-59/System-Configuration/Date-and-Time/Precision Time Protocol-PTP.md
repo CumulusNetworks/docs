@@ -394,11 +394,19 @@ To revert the clock timestamp mode to the default setting (two-step mode), chang
 
 ### PTP Priority
 
+The <span class="a-tooltip">[BMC](## "Best Master Clock")</span> selects the PTP master according to the criteria in the following order:
+1. Priority 1
+2. Clock class
+3. Clock accuracy
+4. Clock variance
+5. Priority 2
+6. Port ID
+
 Use the PTP priority to select the best master clock. You can set priority 1 and 2:
 - Priority 1 overrides the clock class and quality selection criteria to select the best master clock.
 - Priority 2 identifies primary and backup clocks among identical redundant Grandmasters.
 
-The range for both priority1 and priority2 is between 0 and 255. The default priority is 128. For the boundary clock, use a number above 128. The lower priority applies first.
+The range for both priority 1 and priority 2 is between 0 and 255. The default priority is 128. For the boundary clock, use a number above 128. The lower priority applies first.
 
 The following example commands set priority 1 and priority 2 to 200 when a profile is not set:
 

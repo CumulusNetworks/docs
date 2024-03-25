@@ -1470,7 +1470,7 @@ cumulus@switch:~$ nv set router policy route-map MAP1 rule 10 set community-dele
 
 ## <h>nv set router policy route-map \<route-map-id\> rule \<rule-id\> set ip-nexthop</h>
 
-Configures a set clause in the route map for the next hop address for an incoming packet regardless of the explicit route for the packet. You can specify the IP address of the peer, or leave it unchanged.
+Configures a set clause in the route map for the next hop address for a packet regardless of the explicit route for the packet. You can specify the IP address of the next hop. Alternatively, you can specify `peer-addr` to set the next hop as the IP address of the peer for incoming route maps or the local peering address on the switch for outgoing route maps.
 
 ### Command Syntax
 

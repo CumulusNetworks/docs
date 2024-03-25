@@ -337,6 +337,14 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ### PTP Priority
 
+The <span class="a-tooltip">[BMC](## "Best Master Clock")</span> selects the PTP master according to the criteria in the following order:
+1. Priority 1
+2. Clock class
+3. Clock accuracy
+4. Clock variance
+5. Priority 2
+6. Port ID
+
 Use the PTP priority to select the best master clock. You can set priority 1 and 2:
 - Priority 1 overrides the clock class and quality selection criteria to select the best master clock.
 - Priority 2 identifies primary and backup clocks among identical redundant Grandmasters.

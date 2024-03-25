@@ -131,7 +131,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 <!-- vale on -->
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
-| `nv show acl` | Shows ACL configuration. |
+| `nv show acl` | Shows Access Control List configuration. |
 | `nv show action`| Shows information about the action commands that reset counters and remove conflicts.|
 | `nv show bridge` | Shows bridge domain configuration.|
 | `nv show evpn` |Shows EVPN configuration. |

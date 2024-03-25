@@ -33,8 +33,8 @@ Understanding the location of configuration data is important for successful upg
 | `/etc/network/` | Network configuration files, most notably `/etc/network/interfaces` and `/etc/network/interfaces.d/` | {{<link title="Switch Port Attributes">}} | N/A |
 | `/etc/resolv.conf` | DNS resolution| Not unique to Cumulus Linux: {{<exlink url="https://wiki.debian.org/NetworkConfiguration#The_resolv.conf_configuration_file" text="wiki.debian.org/NetworkConfiguration">}} | {{<exlink url="https://www.debian.org/doc/manuals/debian-reference/ch05.en.html">}} |
 | `/etc/hosts`  | Configuration file for the hostname of the switch | {{<link title="Quick Start Guide">}} | {{<exlink url="https://wiki.debian.org/HowTo/ChangeHostname">}} |
-| `/etc/cumulus/acl/*` | Netfilter configuration | {{<link title="Netfilter - ACLs">}} |N/A |
-| `/etc/cumulus/control-plane/policers.conf` | Configuration for control plane policers | {{<link title="Netfilter - ACLs#control-plane-policers">}} | N/A |
+| `/etc/cumulus/acl/*` | Netfilter configuration | {{<link title="Access Control List Configuration">}} |N/A |
+| `/etc/cumulus/control-plane/policers.conf` | Configuration for control plane policers | {{<link title="Access Control List Configuration#control-plane-policers">}} | N/A |
 | `/etc/cumulus/datapath/qos/qos_features.conf` | QoS configuration <br><br><b>Note:</b> In Cumulus Linux 5.0 and later, default ECN configuration parameters start with `default_ecn_red_conf` instead of `default_ecn_conf`. | {{<link title="Quality of Service">}} | N/A |
 | `/etc/mlx/datapath/qos/qos_infra.conf` | QoS configuration | {{<link title="Quality of Service">}} | N/A |
 | `/etc/mlx/datapath/tcam_profile.conf` | Configuration for the forwarding table profiles| {{<link title="Forwarding Table Size and Profiles">}} | N/A |
@@ -264,11 +264,19 @@ To upgrade the switch using package upgrade:
     cumulus@switch:~$ sudo -E apt-get upgrade --dry-run
     ```
 
+   {{%notice note%}}
+   Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <version> dry-run` command to review potential issues when upgrading to the latest 5.9.x or later release. You can use this NVUE command instead of the `sudo -E apt-get upgrade --dry-run` command if you prefer.
+   {{%/notice%}}
+
 4. Upgrade all the packages to the latest distribution.
 
     ```
     cumulus@switch:~$ sudo -E apt-get upgrade
     ```
+
+   {{%notice note%}}
+Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <version>` command to perform a package upgrade to the latest 5.9.x or later release. You can use this NVUE command instead of the `sudo -E apt-get upgrade` command if you prefer.
+{{%/notice%}}
 
     If you do not need to reboot the switch after the upgrade completes, the upgrade ends, restarts all upgraded services, and logs messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, the process only upgrades the `frr` package.
 
@@ -304,6 +312,10 @@ To upgrade the switch using package upgrade:
     When the upgrade is complete, you can search for the files with the `sudo find / -mount -type f -name '*.dpkg-*'` command.
 
     If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
+
+   {{%notice note%}}
+Cumulus Linux 5.9 provides the NVUE `nv show system reboot required` command to show if a reboot is required.
+{{%/notice%}}
 
 5. Reboot the switch if the upgrade messages indicate that you need to perform a system restart.
 

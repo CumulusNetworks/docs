@@ -1516,10 +1516,6 @@ By default, to calculate the split port width, Cumulus Linux uses the formula `s
 
 If you need to use a different port width than the default, you can set the number of lanes per port.
 
-{{%notice note%}}
-QSFP56-DD transceiver ports split into four interfaces (4x) default to one lane per interface for backwards compatibility. You can change the lane setting to two lanes per interface.
-{{%/notice%}}
-
 The following example command splits swp1 into two interfaces (2x) and sets the number of lanes per split port to 2.
 
 {{< tabs "TabID1383 ">}}

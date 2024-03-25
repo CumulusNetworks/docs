@@ -56,6 +56,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.3.1, 4.4.0-5.4.0</td>
+<td>4.3.2, 5.5.0-5.8.0</td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
@@ -2174,6 +2180,12 @@ cumulus@switch:~$ sudo apt upgrade
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.8.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.3.1, 4.4.0-5.4.0</td>
+<td>4.3.2, 5.5.0-5.8.0</td>
 </tr>
 <tr>
 <td>3387852</td>
@@ -4425,6 +4437,12 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.3.1, 4.4.0-5.4.0</td>
+<td>4.3.2, 5.5.0-5.8.0</td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
@@ -6636,6 +6654,12 @@ cumulus@switch:~$ sudo apt upgrade
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.8.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.3.1, 4.4.0-5.4.0</td>
+<td>4.3.2, 5.5.0-5.8.0</td>
 </tr>
 <tr>
 <td>3387852</td>
@@ -9031,6 +9055,12 @@ cumulus@switch:~$ sudo apt upgrade
 The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1 when you use 10G QSA adaptors. To work around this issue, use 25G QSA adaptors.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.8.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.3.1, 4.4.0-5.4.0</td>
+<td>4.3.2, 5.5.0-5.8.0</td>
 </tr>
 <tr>
 <td>3387852</td>

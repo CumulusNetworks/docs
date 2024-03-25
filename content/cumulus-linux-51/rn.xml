@@ -118,8 +118,8 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <tr>
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>5.0.0-5.4.0</td>
-<td>4.3.2-4.4.5, 5.5.0-5.8.0</td>
+<td>4.2.1-4.3.1, 4.4.0-5.4.0</td>
+<td>4.3.2, 5.5.0-5.8.0</td>
 </tr>
 <tr>
 <td>3413785</td>

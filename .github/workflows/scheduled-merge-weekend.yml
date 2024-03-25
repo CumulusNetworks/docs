@@ -1,9 +1,14 @@
 # From https://github.com/marketplace/actions/nightly-merge
-name: 'Scheduled Merge'
+name: 'Scheduled Merge - Weekend'
+
+  # Cron syntax is 'Minute[0,59] Hour[0,23] Day-of-month[1,31] Month-of-year[1,12] Day-of-week[0,6 with 0=Sunday]
+  # The following example runs only on Sundays at 1400 UTC (0900 EST, 0600 PST)
+
+  # To enable, uncomment the entire 'on' stanza below. It is currently enabled to merge stage to master on Sundays at 1400 UTC.
 
 on:
   schedule:
-    - cron:  '0 16,22 * * *'
+    - cron:  '0 14 * * 0'
 
 jobs:
   nightly-merge:

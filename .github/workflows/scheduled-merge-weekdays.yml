@@ -1,0 +1,26 @@
+# From https://github.com/marketplace/actions/nightly-merge
+name: 'Scheduled Merge - Weekdays'
+
+on:
+  schedule:
+    - cron:  '0 16,22 * * 1-5'
+
+jobs:
+  nightly-merge:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Auto Merge Stage into Master - weekdays
+      uses: CumulusNetworks/gh-action-nightly-merge@v1.2.6
+      with:
+        source_branch: 'stage'
+        target_branch: 'master'
+        user_name: Cumulus Docs Auto Merge
+        user_email: ethernet.docs@nvidia.com
+
+      env:
+        GITHUB_TOKEN: ${{ secrets.STU_GITHUB_TOKEN }}

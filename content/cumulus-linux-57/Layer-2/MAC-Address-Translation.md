@@ -24,7 +24,7 @@ The following example matches Ethernet packets with source MAC address 01:12:34:
 
 ```
 cumulus@switch:~$ nv set acl MACL1 type mac
-cumulus@switch:~$ nv set acl MACL1 rule 1 match mac source-mac b8:ce:f6:3c:62:06  
+cumulus@switch:~$ nv set acl MACL1 rule 1 match mac source-mac 01:12:34:32:11:01 
 cumulus@switch:~$ nv set acl MACL1 rule 1 action source-nat translate-mac 99:de:fc:32:11:01 
 cumulus@switch:~$ nv config apply
 

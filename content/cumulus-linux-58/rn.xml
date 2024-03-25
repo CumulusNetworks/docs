@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3800536</td>
+<td>Some third-party modules cause false-alarm interrupts during SERDES tuning, which overloads the ASIC and causes an ASIC response delay.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3782543</td>
 <td>When you configure the BGP setting {{bgp max-med on-startup}} with vtysh, the MED on some peers might not be set to 4294967294 as expected on startup.  The {{max-med}} might also fail to reset after the startup timer expires.</td>
 <td>5.6.0-5.8.0</td>
@@ -82,12 +88,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>3702431</td>
 <td>Traditional SNMP snippets do not take effect unless you first enable SNMP with the NVUE {{nv set service snmp-server enable on}} and {{nv set service snmp-server listening-address}} commands. Alternatively, you can use the equivalent REST API methods.</td>
 <td>5.4.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3689195</td>
-<td>When you enable 802.1X auth-fail VLAN on an interface, {{hostapd}} doesn't activate the auth-fail VLAN unless it receives an explicit {{Access-Reject}} response.</td>
-<td>5.7.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>

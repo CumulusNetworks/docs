@@ -48,5 +48,8 @@
 <!-- Canonical link element to prioritize search indexing of current version -->
 {{ if .Page.Params.old }}
 {{ $prod := (index (sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc") 0).Section }}
-<link rel="canonical" href=https://docs.nvidia.com/networking-ethernet-software{{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }} />
+<link rel="canonical" href=https://docs.nvidia.com/{{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }} />
+    {{else}}
+    {{ $prod := (index (sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc") 0).Section }}
+    <link rel="canonical" href=https://docs.nvidia.com/{{ (index (where (where .Site.Pages "Section" $prod) "Title" .Page.Title) 0).RelPermalink | default (.Site.GetPage $prod).RelPermalink }} />
 {{ end }}

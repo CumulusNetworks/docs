@@ -38,7 +38,7 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 ## Upgrade Cumulus Linux
 
-If the NetQ Agent is already installed on the switches you'd like to upgrade, follow the steps below. If the NetQ Agent is *not* installed on the switches you'd like to upgrade, run a {{<link title="Switch Management/#switch-discovery" text="switch discovery">}} to find all Cumulus Linux switches with and without NetQ currently installed and perform the CL upgrade during as part of the discovery workflow.
+If the NetQ Agent is already installed on the switches you'd like to upgrade, follow the steps below. If the NetQ Agent is *not* installed on the switches you'd like to upgrade, run a {{<link title="Switch Management/#switch-discovery" text="switch discovery">}} to find all Cumulus Linux switches with and without NetQ currently installed and perform the CL upgrade as part of the discovery workflow.
 
 {{<tabs "TabID51" >}}
 

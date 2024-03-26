@@ -8,7 +8,7 @@ toc: 4
 Lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. From the inventory list, you can assign access profiles and roles to switches, and select switches for software installation and upgrades. You can also decommission switches, which removes them from the NetQ database.
 
 {{%notice note%}}
-If you manage a switch using an in-band network interface, {{<link url="Lifecycle-Management/#lcm-support-for-in-band-management" text="additional configurations">}} are required for LCM operations.
+If you manage a switch using an in-band network interface, ensure that you have {{<link url="Lifecycle-Management/#lcm-support-for-in-band-management" text="configured the agent">}} before performing any LCM operations on the switch.
 {{%/notice%}}
 
 ## View the LCM Switch Inventory

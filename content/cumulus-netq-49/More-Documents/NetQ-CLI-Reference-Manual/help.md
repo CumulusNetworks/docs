@@ -35,19 +35,24 @@ netq help verbose
 
 ### Sample Usage
 
-<!--need updated example-->
-
-Display syntax for all commands with the `agent` keyword:
+Display syntax for all commands with the `addresses` keyword:
 
 ```
-cumulus@switch:~$ netq agent help OR netq help agent
+cumulus@switch:~$ netq addresses help OR netq help addresses
 Commands:
-    netq check agents [label <text-label-name> | hostnames <text-list-hostnames>] [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [json]
-    netq show unit-tests agent [json]
-    netq config (add|del) agent (stats|sensors)
+   netq <hostname> show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
+   netq show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [subnet|supernet|gateway] [around <text-time>] [json]
+   netq <hostname> show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
+   netq show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [subnet|supernet|gateway] [around <text-time>] [json]
+   netq check addresses [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <addr-number-range-list> | exclude <addr-number-range-list>] [around <text-time>] [json | summary]
+Keywords:
+   addresses                    : IPv4/v6 addresses
+   subnet                       : Display all addresses in the subnet of a given address
+   supernet                     : Display all addresses in a supernet
+    workers-ipv6            : Workers nodes IPv6 addresses
 ```
 
-Display the NetQ command format rules:
+Display the NetQ command formatting rules:
 
 ```
 cumulus@netq-ts:~$ netq help verbose

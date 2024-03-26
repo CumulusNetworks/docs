@@ -1483,15 +1483,14 @@ None
 
 ```
 cumulus@switch:~$ netq config show agent 
-netq-agent             value      default
----------------------  ---------  ---------
+netq-agent                value      default
+------------------------  ---------  ---------
 exhibitport
 exhibiturl
 server                    127.0.0.1  127.0.0.1
 cpu-limit                 100        100
 agenturl
 wjh                                  Enabled
-asic-monitor                         Enabled
 enable-opta-discovery     False      False
 agentport                 8981       8981
 port                      31980      31980
@@ -1603,27 +1602,34 @@ None
 
 ```
 cumulus@switch:~$ netq config show all 
-netq-agent             value      default
----------------------  ---------  ---------
+netq-agent                value      default
+------------------------  ---------  ---------
 exhibitport
 exhibiturl
-server                 127.0.0.1  127.0.0.1
-cpu-limit              100        100
+server                    127.0.0.1  127.0.0.1
+cpu-limit                 100        100
 agenturl
-enable-opta-discovery  False      False
-agentport              8981       8981
-port                   31980      31980
-vrf                    default    default
+wjh                                  Enabled
+enable-opta-discovery     False      False
+agentport                 8981       8981
+port                      31980      31980
+vrf                       default    default
+is-gnmi-enabled           False      False
+netq_stream_port          7680       7680
+netq_stream_address       127.0.0.1  127.0.0.1
+is-ssl-enabled            False      False
+ssl-cert
+generate-unique-hostname  False      False
 ()
-netq-cli     value            default
------------  ---------------  ---------
-server       192.168.200.250  127.0.0.1
-netq-user
-premises     0
-port         32708            32708
-count        2000             2000
-vrf          default          default
-api-logging  False            False
+netq-cli     value              default
+-----------  -----------------  ---------
+server       10.188.45.236      127.0.0.1
+netq-user    admin
+premises     admin-1708956199
+port         32708              32708
+count        4000               4000
+vrf          default            default
+api-logging  False              False
 ()
 ```
 

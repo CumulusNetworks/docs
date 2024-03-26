@@ -471,7 +471,7 @@ Verifies interface communication status for all nodes (leafs, spines, and hosts)
 
 - Administrative and operational state status
 - Link speed consistency
-- Autonegotiation-settings consistency
+- Consistency of auto-negotiation settings
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
 

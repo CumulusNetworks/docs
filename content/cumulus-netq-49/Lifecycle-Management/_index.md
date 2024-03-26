@@ -39,10 +39,10 @@ This table summarizes LCM functionalities in the UI and CLI:
 | Switch management | Discover switches, view switch inventory, assign roles, set user access credentials, perform software installation and upgrade networkwide | <ul><li>Switches</li><li>Access profiles</li></ul> | <ul><li>netq lcm show switches</li><li>netq lcm add role</li><li>netq lcm upgrade</li><li>netq lcm add/del/show credentials</li><li>netq lcm discover</li></ul> |
 | Image management | View, add, and remove images for software installation and upgrade | <ul><li>Cumulus Linux images</li><li>NetQ images</li></ul> | <ul><li>netq lcm add/del/show netq-image</li><li>netq lcm add/del/show cl-images</li><li>netq lcm add/show default-version</li></ul> |
 | NetQ agent configurations | Customize configuration profiles for NetQ Agents running on switches | <ul><li>NetQ agent configurations</li>| <ul><li>netq lcm add/del/show netq-config</li></ul> |
-| Job history | View the results of installation, upgrade, and configuration assignment jobs | <ul><li>CL Upgrade History</li><li>NetQ Install and Upgrade History</li></ul> | <ul><li>netq lcm show status</li><li>netq lcm show upgrade-jobs</li></ul> |
+| Job history | View the results of installation, upgrade, and configuration assignment jobs | <ul><li>CL upgrade history</li><li>NetQ install and upgrade history</li></ul> | <ul><li>netq lcm show status</li><li>netq lcm show upgrade-jobs</li></ul> |
 ## LCM Support for In-band Management
 
-If you manage a switch using an in-band network interface, the `inband-interface` option must be specified in the {{<link url="Install-NetQ-Agents/#configure-netq-agents-using-the-netq-cli" text="agent configuration">}} for LCM operations:
+If you manage a switch using an in-band network interface, the `inband-interface` option must be specified in the {{<link url="Install-NetQ-Agents/#configure-netq-agents-using-the-netq-cli" text="initial agent configuration">}} for LCM operations to function as expected. You can configure the agent by specifying the in-band interface in the `/etc/netq/netq.yml` file. Alternately, you can use the CLI and include the `inband-interface` option.
 
 - `/etc/netq/netq.yml` configuration file example:
 

@@ -29,9 +29,9 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - Interface summary view with filtering
 - Admin State added to `nv show interface` output
 - Cumulus Linux includes a default `startup.yaml` file and updated `nvued` defaults
-- nv show platform command redesign
+- `nv show platform` command redesign
 - Forwarding profiles standardized at 85% KVD utilization
-- QSFP-DD/OSFP 4x breakout now allocates two lanes per port instead of one lane. Be sure to configure the lanes per port on both ends of a connection to be the same.
+- {{<link url="Switch-Port-Attributes/#breakout-ports" text="QSFP-DD/OSFP 4x">}} now allocates two lanes per port instead of one lane. Be sure to configure the lanes per port on both ends of a connection to be the same.
 - {{< expand "Improved tab completion for NVUE routing commands" >}}
   ```
   ```

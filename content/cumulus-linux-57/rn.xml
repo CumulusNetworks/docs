@@ -119,12 +119,6 @@ cumulus@switch:~$ dpkg --install frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb
 <td>5.8.0</td>
 </tr>
 <tr>
-<td>3689195</td>
-<td>When you enable 802.1X auth-fail VLAN on an interface, {{hostapd}} doesn't activate the auth-fail VLAN unless it receives an explicit {{Access-Reject}} response.</td>
-<td>5.7.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3686389</td>
 <td>When you use NVUE commands to configure an untagged VLAN (PVID) on a bridge to a non-default value, {{nv show bridge}} commands still indicate that the untagged VLAN is 1 (the default value). The untagged VLAN you configured is properly set on bridge ports, but displays incorrectly in operational NVUE show commands.</td>
 <td>5.6.0-5.7.0</td>

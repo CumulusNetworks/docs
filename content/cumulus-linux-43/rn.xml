@@ -2097,7 +2097,7 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <tr>
 <td>3413826</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>5.0.0-5.4.0</td>
+<td>4.2.1-4.3.1, 4.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3410952</td>
@@ -2333,6 +2333,12 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
 <td>4.3.1</td>
 <td>4.3.2-4.4.5</td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-5.4.0</td>
+<td>5.5.0-5.8.0</td>
 </tr>
 <tr>
 <td>3410952</td>

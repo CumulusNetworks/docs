@@ -148,15 +148,17 @@ Upgrade mode updates all the components and services on the switch to the latest
 If the switch is in warm restart mode, restarting the switch after an upgrade does not result in traffic loss (this is a hitless upgrade).
 
 Upgrade mode includes the following options:
-- **all** runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
-- **dry-run** provides information on the components you want to upgrade.
+- You can upgrade all the system components to the **latest** release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
+- You can perform an upgrade dry run, which provides information on the components you want to upgrade so that you can review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies).
 
-The following command upgrades all the system components:
+The following command upgrades all the system components to the latest release:
 
 {{< tabs "88 ">}}
 {{< tab "NVUE Command ">}}
 
-The NVUE command is not supported.
+```
+cumulus@switch:~$ nv action upgrade system packages to 5.9.0
+```
 
 {{< /tab >}}
 {{< tab "csmgrctl Command ">}}
@@ -173,7 +175,9 @@ The following command provides information on the components you want to upgrade
 {{< tabs "114 ">}}
 {{< tab "NVUE Command ">}}
 
-The NVUE command is not supported.
+```
+cumulus@switch:~$ nv action upgrade system packages to 5.9.0 dry-run
+```
 
 {{< /tab >}}
 {{< tab "csmgrctl Command ">}}

@@ -150,12 +150,12 @@ cumulus@switch:~$ sudo cl-support
 You can upgrade Cumulus Linux in one of two ways:
 
 - Install a Cumulus Linux image of the new release, using ONIE.
-- Upgrade only the changed packages using the `sudo -E apt-get update` and `sudo -E apt-get upgrade` command.
+- Upgrade only the changed packages using package upgrade.
 
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
 
 {{%notice note%}}
-- To upgrade to Cumulus Linux 5.9.0 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
+- To upgrade to Cumulus Linux 5.9.0 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with package upgrade.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
@@ -180,10 +180,10 @@ Run **package upgrade** if you are upgrading from Cumulus Linux 5.0.0 to a later
 Be aware of the following when upgrading packages:
 
 - You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from 4.x to 5.x.
-- The `sudo -E  apt-get upgrade` command might restart or stop services as part of the upgrade process.
-- The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
+- The package upgrade command might restart or stop services as part of the upgrade process.
+- The package upgrade command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
-- Cumulus Linux does not support the `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
+- Cumulus Linux does not support the `sudo -E apt-get dist-upgrade` command.
 
 ### Cumulus Linux Image Install (ONIE)
 
@@ -265,7 +265,7 @@ To upgrade the switch using package upgrade:
     ```
 
    {{%notice note%}}
-   Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <version> dry-run` command to review potential issues when upgrading to the latest 5.9.x or later release. You can use this NVUE command instead of the `sudo -E apt-get upgrade --dry-run` command if you prefer.
+   Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <version> dry-run` command to review potential issues when upgrading to the latest minor release. You can use this NVUE command instead of the `sudo -E apt-get upgrade --dry-run` command if you prefer.
    {{%/notice%}}
 
 4. Upgrade all the packages to the latest distribution.
@@ -275,7 +275,7 @@ To upgrade the switch using package upgrade:
     ```
 
    {{%notice note%}}
-Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <version>` command to perform a package upgrade to the latest 5.9.x or later release. You can use this NVUE command instead of the `sudo -E apt-get upgrade` command if you prefer.
+Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <version>` command to perform a package upgrade to the latest minor release. You can use this NVUE command instead of the `sudo -E apt-get upgrade` command if you prefer. After upgrade is complete, you can run the `nv show system reboot required` command to determine if you need to reboot the switch.
 {{%/notice%}}
 
     If you do not need to reboot the switch after the upgrade completes, the upgrade ends, restarts all upgraded services, and logs messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, the process only upgrades the `frr` package.
@@ -313,10 +313,6 @@ Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <versi
 
     If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 
-   {{%notice note%}}
-Cumulus Linux 5.9 provides the NVUE `nv show system reboot required` command to show if a reboot is required.
-{{%/notice%}}
-
 5. Reboot the switch if the upgrade messages indicate that you need to perform a system restart.
 
     ```
@@ -328,6 +324,10 @@ Cumulus Linux 5.9 provides the NVUE `nv show system reboot required` command to 
     cumulus@switch:~$ sudo reboot
     ```
 
+   {{%notice note%}}
+Cumulus Linux 5.9 provides the NVUE `nv show system reboot required` command to show if a reboot is required.
+{{%/notice%}}
+
 6. Verify correct operation with the old configurations on the new version.
 
 {{%notice info%}}
@@ -338,12 +338,12 @@ The first time you run the NVUE `nv config apply` command after upgrading to Cum
 
 ### Upgrade Notes
 
-*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.0.0 and run the `sudo -E apt-get upgrade` command on that switch, the packages upgrade to the latest releases in the latest 5.x release.
+*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.0.0 and perform a package upgrade, the packages upgrade to the latest releases in the latest 5.x release.
 
-Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
+Cumulus Linux is a collection of different Debian Linux packages; be aware of the following:
 
-- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 5.9.0, these two files display the release as 5.9.0 after the upgrade.
-- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.6.0, followed by a package upgrade to 5.9.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 5.6.0, which is the originally installed base image.
+- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.9.0, these two files display the release as 5.9.0 after the upgrade.
+- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.6.0, followed by a package upgrade to 5.9.0, the `/etc/image-release` file continues to display Cumulus Linux 5.6.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 
@@ -386,7 +386,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.1.0-mlx-amd64.bin
     ```
 
-   To upgrade the switch with package upgrade instead of booting into ONIE, run the `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands; see {{<link url="#package-upgrade" text="Package Upgrade">}}.
+   To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
 5. Save the changes to the NVUE configuration from steps 2-3 and reboot the switch:
 
@@ -463,7 +463,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
     cumulus@switch:~$ sudo onie-install -a -i http://10.0.1.251/downloads/cumulus-linux-4.1.0-mlx-amd64.bin
     ```
 
-   To upgrade the switch with package upgrade instead of booting into ONIE, run the `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands; see {{<link url="#package-upgrade" text="Package Upgrade">}}.
+   To upgrade the switch with package upgrade instead of booting into ONIE, see {{<link url="#package-upgrade" text="Package Upgrade">}}.
 
 5. Reboot the switch:
 

@@ -4,11 +4,9 @@ author: NVIDIA
 weight: 400
 toc: 3
 ---
-<span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> shows information about connected devices.
+<span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> shows information about connected devices. The `lldpd` daemon implements the IEEE802.1AB LLDP standard and starts at system boot.
 
-The `lldpd` daemon implements the IEEE802.1AB LLDP standard and starts at system boot. All `lldpd` command line arguments are in the `/etc/default/lldpd` file.
-
-`lldpd` supports CDP (Cisco Discovery Protocol, v1 and v2) and logs by default into `/var/log/daemon.log` with an `lldpd` prefix.
+LLDP in Cumulus Linux supports CDP (Cisco Discovery Protocol v1 and v2) and logs by default into `/var/log/daemon.log` with an `lldpd` prefix.
 
 ## Configure LLDP Timers
 
@@ -48,23 +46,41 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 
 ## Disable LLDP on an Interface
 
-To disable LLDP on a single interface, edit the `/etc/default/lldpd` file. This file specifies the default options to present to the `lldpd` service when it starts. The following example uses the `-I` option to disable LLDP on swp43:
+To disable LLDP on an interface:
+
+{{< tabs "TabID51 ">}}
+{{< tab "NVUE Commands ">}}
+
+NVUE does not provide commands to disable LLDP on an interface. However, you can create an NVUE flexible snippet. See {{<link url="NVUE-Snippets/#flexible-snippet-examples" text="Flexible Snippets">}}.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "TabID59 ">}}
+{{< tab "Persistent Configuration ">}}
+
+Create the `/etc/lldp.d/lldp-interfaces.conf` file and add the `configure system interface pattern-blacklist` option. The following example disables LLDP on swp1 and swp2:
 
 ```
-cumulus@switch:~$ sudo nano /etc/default/lldpd
+cumulus@leaf01:~$ sudo nano /etc/lldpd.d/lldp-interfaces.conf
+configure system interface pattern-blacklist swp1,swp2
+```
 
-# Add "-x" to DAEMON_ARGS to start SNMP subagent
-# Enable CDP by default
-DAEMON_ARGS="-c -I *,!swp43"
+An alternative method is to use the `system interface pattern` keyword to send LLDP on all interfaces except for swp1 and swp2:
+
+```
+cumulus@leaf01:~$ sudo nano /etc/lldpd.d/lldp-interfaces.conf
+configure system interface pattern eth*,swp*,!swp1,!swp2
 ```
 
 Restart the `lldpd` service for the changes to take effect:
 
 ```
-cumulus@switch:~$ sudo systemctl restart lldpd
+cumulus@leaf01:~$ sudo systemctl restart lldpd
 ```
 
-{{< expand "Runtime Configuration (Advanced) "  >}}
+{{< /tab >}}
+{{< tab "Runtime Configuration (Advanced)">}}
 
 {{%notice warning%}}
 A runtime configuration does not persist when you reboot the switch; you lose all changes.
@@ -73,13 +89,13 @@ A runtime configuration does not persist when you reboot the switch; you lose al
 To configure active interfaces:
 
 ```
-cumulus@switch:~$ sudo lldpcli configure system interface pattern "swp*"
+cumulus@leaf01:~$ sudo lldpcli configure system interface pattern "swp*"
 ```
 
 To configure inactive interfaces:
 
 ```
-cumulus@switch:~$ sudo lldpcli configure system interface pattern *,!eth0,swp*
+cumulus@leaf01:~$ sudo lldpcli configure system interface pattern *,!eth0,swp*
 ```
 
 {{%notice note%}}
@@ -89,10 +105,56 @@ The active interface list always overrides the inactive interface list.
 To reset any interface list to none:
 
 ```
-cumulus@switch:~$ sudo lldpcli configure system interface pattern ""
+cumulus@leaf01:~$ sudo lldpcli configure system interface pattern ""
 ```
 
-{{< /expand >}}
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following example show that swp1 through swp4 are up and advertising LLDP between leaf01 and leaf02:
+
+```
+cumulus@leaf01:~$ sudo lldpctl | egrep 'Inter|Port|SysName'
+Interface:    eth0, via: LLDP, RID: 1, Time: 1 day, 03:07:48
+    SysName:      oob-mgmt-switch
+  Port:
+    PortID:       ifname swp2
+    PortDescr:    swp2
+Interface:    swp3, via: LLDP, RID: 2, Time: 0 day, 06:52:48
+    SysName:      leaf02
+  Port:
+    PortID:       ifname swp3
+    PortDescr:    swp3
+Interface:    swp4, via: LLDP, RID: 2, Time: 0 day, 00:07:38
+    SysName:      leaf02
+  Port:
+    PortID:       ifname swp4
+    PortDescr:    swp4
+```
+
+The following example shows that after disabling LLDP on swp1 and swp2, only swp3 and swp4 are generating and receiving LLDP on leaf01. leaf02 is only receiving LLDP on swp3 and swp4 from leaf01:
+
+```
+cumulus@leaf02:~$ sudo lldpctl | egrep 'Inter|Port|SysName'
+Interface:    eth0, via: LLDP, RID: 2, Time: 0 day, 00:09:16
+    SysName:      oob-mgmt-switch
+  Port:
+    PortID:       ifname swp3
+    PortDescr:    swp3
+Interface:    swp3, via: LLDP, RID: 1, Time: 0 day, 00:08:47
+    SysName:      leaf01
+  Port:
+    PortID:       ifname swp3
+    PortDescr:    swp3
+Interface:    swp4, via: LLDP, RID: 1, Time: 0 day, 00:09:16
+    SysName:      leaf01
+  Port:
+    PortID:       ifname swp4
+    PortDescr:    swp4
+```
 
 ## Enable the SNMP Subagent
 
@@ -215,6 +277,25 @@ mode                force-send-cdpv2  force-send-cdpv2
 tx-hold-multiplier  4                 4
 tx-interval         30                30
 ```
+
+## CDP PortID Behavior
+
+LLDP emulates CDP by default on interfaces where it detects a CDP neighbor. CDP only supports the `PortID` value (TLV) in the protocol; however, LLDP has a separate `PortID` and `PortDescription` field.
+
+By default, when the switch sends a CDP packet, if there is an alias (description) on the interface, LLDP sends the alias in the CDP `PortID` field. When an LLDP neighbor receives a CDP packet, the receiving switch displays the CDP Port ID in both the `PortID` and `PortDescription` fields.
+
+If you want LLDP to send the `portID` (`ifname`) value to a CDP neighbor instead of the interface alias, you can configure the following options:
+- To transmit both the `PortID` and `PortDescription` in the same `PortID` field, insert the interface name in the interface `alias` field.
+- To send the `ifname` instead of the interface alias over CDP, configure the `configure lldp portidsubtype macaddress` option in the `/etc/lldp.d/lldp_global.conf` file. The default configuration is `portidsubtype ifname`.
+
+The following table shows the TLVs sent for each configuration.
+
+| LLDP Configuration | LLDP PortID Value Sent | LLDP Port Description Value Sent | CDP PortID Value Sent |
+| ------------------ | ---------------------- | -------------------------------- | --------------------- |
+| `configure lldp portidsubtype ifname` (default)| interface `ifname` | interface `alias` | interface `alias` |
+| `configure lldp portidsubtype ifname` MAC address | interface `mac address` | interface `ifname` | interface `ifname` |
+
+Use CDP only or LLDP only to get the desired behavior of `PortID`, `Description`, or `MacAddress` (LLDP only) across all neighbors. For more information, see {{<link url="#set-lldp-mode" text="LLDP Mode">}}.
 
 ## LLDP DCBX TLVs
 

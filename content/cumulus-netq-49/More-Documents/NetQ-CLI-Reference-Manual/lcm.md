@@ -1260,6 +1260,8 @@ netq lcm show switches
 
 ### Sample Usage
 
+Display switches running Cumulus Linux 5.5.0:
+
 ```
 cumulus@switch:~$ netq lcm show switches cl-version 5.5.0
 Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Credential Profile                   Last Changed

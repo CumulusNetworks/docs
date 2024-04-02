@@ -6,7 +6,7 @@ toc: 3
 ---
 <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> shows information about connected devices. The `lldpd` daemon implements the IEEE802.1AB LLDP standard and starts at system boot.
 
-LLDP in Cumulus Linux supports CDP (Cisco Discovery Protocol, v1 and v2) and logs by default into `/var/log/daemon.log` with an `lldpd` prefix.
+LLDP in Cumulus Linux supports CDP (Cisco Discovery Protocol v1 and v2) and logs by default into `/var/log/daemon.log` with an `lldpd` prefix.
 
 ## Configure LLDP Timers
 
@@ -48,13 +48,16 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 
 To disable LLDP on an interface:
 
-{{< tabs "TabID53 ">}}
+{{< tabs "TabID51 ">}}
 {{< tab "NVUE Commands ">}}
 
 NVUE does not provide commands to disable LLDP on an interface. However, you can create an NVUE flexible snippet. See {{<link url="NVUE-Snippets/#flexible-snippet-examples" text="Flexible Snippets">}}.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+{{< tabs "TabID59 ">}}
+{{< tab "Persistent Configuration ">}}
 
 Create the `/etc/lldp.d/lldp-interfaces.conf` file and add the `configure system interface pattern-blacklist` option. The following example disables LLDP on swp1 and swp2:
 
@@ -75,11 +78,6 @@ Restart the `lldpd` service for the changes to take effect:
 ```
 cumulus@leaf01:~$ sudo systemctl restart lldpd
 ```
-
-{{%notice note%}}
-The Linux `man lldpctl` command provides additional information on the `configure system interface pattern-blacklist` and
-the `configure system interface pattern` commands. The `man` page incorrectly states that you can whitelist and blacklist an interface by suffixing it with an exclamation mark. The exclamation mark must be a **prefix**, not a suffix.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Runtime Configuration (Advanced)">}}
@@ -109,6 +107,9 @@ To reset any interface list to none:
 ```
 cumulus@leaf01:~$ sudo lldpcli configure system interface pattern ""
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -285,10 +286,10 @@ tx-interval         30                30
 
 LLDP emulates CDP by default on interfaces where it detects a CDP neighbor. CDP only supports the `PortID` value (TLV) in the protocol; however, LLDP has a separate `PortID` and `PortDescription` field.
 
-By default, when the switch sends a CDP packet, if there is an alias (description) on the interface, the LLDP daemon sends the alias in the CDP `PortID` field. When an LLDP neighbor receives a CDP packet, the output of `lldpctl` on the receiving switch displays the CDP `PortID` field in both the `PortID` and `PortDescription` fields.
+By default, when the switch sends a CDP packet, if there is an alias (description) on the interface, LLDP sends the alias in the CDP `PortID` field. When an LLDP neighbor receives a CDP packet, the receiving switch displays the CDP Port ID in both the `PortID` and `PortDescription` fields.
 
-If you want the LLDP daemon to send the `portID` (`ifname`) value to a CDP neighbor instead of the interface alias, you can configure the following options:
-- To transmit both the `PortID` and `PortDescription` in the same `PortID` field on CDP interfaces, insert the interface name in the interface `alias` field.
+If you want LLDP to send the `portID` (`ifname`) value to a CDP neighbor instead of the interface alias, you can configure the following options:
+- To transmit both the `PortID` and `PortDescription` in the same `PortID` field, insert the interface name in the interface `alias` field.
 - To send the `ifname` instead of the interface alias over CDP, configure the `configure lldp portidsubtype macaddress` option in the `/etc/lldp.d/lldp_global.conf` file. The default configuration is `portidsubtype ifname`.
 
 The following table shows the TLVs sent for each configuration.
@@ -297,8 +298,6 @@ The following table shows the TLVs sent for each configuration.
 | ------------------ | ---------------------- | -------------------------------- | --------------------- |
 | `configure lldp portidsubtype ifname` (default)| interface `ifname` | interface `alias` | interface `alias` |
 | `configure lldp portidsubtype ifname` MAC address | interface `mac address` | interface `ifname` | interface `ifname` |
-
-See the `man lldpcli` page for more information.
 
 Use CDP only or LLDP only to get the desired behavior of `PortID`, `Description`, or `MacAddress` (LLDP only) across all neighbors. For more information, see {{<link url="#set-lldp-mode" text="LLDP Mode">}}.
 

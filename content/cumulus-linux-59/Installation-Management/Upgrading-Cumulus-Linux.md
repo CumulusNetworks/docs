@@ -210,7 +210,7 @@ To upgrade the switch:
 - Cumulus Linux continues to support the old port split format in the `/etc/cumulus/ports.conf` file; however NVIDIA recommends that you use the new format.
 {{%/notice%}}
 
-Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
+Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any package upgrades within that release train. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged during the package upgrade.
 
 When you use package upgrade to upgrade your switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
 
@@ -250,6 +250,74 @@ overlay          28G   7.9G     18G    31%
 
 To upgrade the switch using package upgrade:
 
+{{< tabs "TabID253 ">}}
+{{< tab "NVUE Commands ">}}
+
+1. Back up the configurations from the switch.
+
+2. Fetch the latest update metadata from the repository and review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies).
+
+   ```
+   cumulus@switch:~$ nv action upgrade system packages to 5.9.0 dry-run
+   ```
+
+3. Upgrade all the packages to the latest distribution.
+
+    ```
+    cumulus@switch:~$ nv action upgrade system packages to 5.9.0
+    ```
+
+   If you do not need to reboot the switch after the upgrade completes, the upgrade ends, restarts all upgraded services, and logs messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, the process only upgrades the `frr` package.
+
+    ```
+    Policy: Service frr.service action stop postponed
+    Policy: Service frr.service action start postponed
+    Policy: Restarting services: frr.service
+    Policy: Finished restarting services
+    Policy: Removed /usr/sbin/policy-rc.d
+    Policy: Upgrade is finished
+    ```
+
+    If the upgrade process encounters changed configuration files that have new versions in the release to which you are upgrading, you see a message similar to this:
+
+    ```
+    Configuration file '/etc/frr/daemons'
+    ==> Modified (by you or by a script) since installation.
+    ==> Package distributor has shipped an updated version.
+    What would you like to do about it ? Your options are:
+    Y or I : install the package maintainer's version
+    N or O : keep your currently-installed version
+    D : show the differences between the versions
+    Z : start a shell to examine the situation
+    The default action is to keep your current version.
+    *** daemons (Y/I/N/O/D/Z) [default=N] ?
+    ```
+
+    - To see the differences between the currently installed version and the new version, type `D`.
+    - To keep the currently installed version, type `N`. The new package version installs with the suffix `.dpkg-dist` (for example, `/etc/frr/daemons.dpkg-dist`). When the upgrade completes and **before** you reboot, merge your changes with the changes from the newly installed file.
+    - To install the new version, type `I`. Your currently installed version has the suffix `.dpkg-old`.
+    - Cumulus Linux includes `/etc/apt/sources.list` in the `cumulus-archive-keyring` package. During upgrade, you must select if you want the new version from the package or the existing file.
+
+    When the upgrade is complete, you can search for the files with the `sudo find / -mount -type f -name '*.dpkg-*'` command.
+
+    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
+
+4. Run the following command to show if you need to reboot the switch:
+    ```
+    cumulus@switch:~$ nv show system reboot required
+    ```
+
+5. Reboot the switch if required:
+
+   ```
+   cumulus@switch:~$ nv action reboot system
+   ```
+
+6. Verify correct operation with the old configurations on the new version.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 1. Back up the configurations from the switch.
 
 2. Fetch the latest update metadata from the repository.
@@ -264,19 +332,11 @@ To upgrade the switch using package upgrade:
     cumulus@switch:~$ sudo -E apt-get upgrade --dry-run
     ```
 
-   {{%notice note%}}
-   Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <version> dry-run` command to review potential issues when upgrading to the latest minor release. You can use this NVUE command instead of the `sudo -E apt-get upgrade --dry-run` command if you prefer.
-   {{%/notice%}}
-
 4. Upgrade all the packages to the latest distribution.
 
     ```
     cumulus@switch:~$ sudo -E apt-get upgrade
     ```
-
-   {{%notice note%}}
-Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <version>` command to perform a package upgrade to the latest minor release. You can use this NVUE command instead of the `sudo -E apt-get upgrade` command if you prefer. After upgrade is complete, you can run the `nv show system reboot required` command to determine if you need to reboot the switch.
-{{%/notice%}}
 
     If you do not need to reboot the switch after the upgrade completes, the upgrade ends, restarts all upgraded services, and logs messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, the process only upgrades the `frr` package.
 
@@ -324,11 +384,10 @@ Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <versi
     cumulus@switch:~$ sudo reboot
     ```
 
-   {{%notice note%}}
-Cumulus Linux 5.9 provides the NVUE `nv show system reboot required` command to show if a reboot is required.
-{{%/notice%}}
-
 6. Verify correct operation with the old configurations on the new version.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice info%}}
 The first time you run the NVUE `nv config apply` command after upgrading to Cumulus Linux 5.4, NVUE might override certain existing configuration for features that are now configurable with NVUE. Immediately after you reboot the switch to complete the upgrade, NVIDIA recommends you either:

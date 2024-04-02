@@ -267,53 +267,17 @@ To upgrade the switch using package upgrade:
     cumulus@switch:~$ nv action upgrade system packages to 5.9.0
     ```
 
-   If you do not need to reboot the switch after the upgrade completes, the upgrade ends, restarts all upgraded services, and logs messages in the `/var/log/syslog` file similar to the ones shown below. In the examples below, the process only upgrades the `frr` package.
-
-    ```
-    Policy: Service frr.service action stop postponed
-    Policy: Service frr.service action start postponed
-    Policy: Restarting services: frr.service
-    Policy: Finished restarting services
-    Policy: Removed /usr/sbin/policy-rc.d
-    Policy: Upgrade is finished
-    ```
-
-    If the upgrade process encounters changed configuration files that have new versions in the release to which you are upgrading, you see a message similar to this:
-
-    ```
-    Configuration file '/etc/frr/daemons'
-    ==> Modified (by you or by a script) since installation.
-    ==> Package distributor has shipped an updated version.
-    What would you like to do about it ? Your options are:
-    Y or I : install the package maintainer's version
-    N or O : keep your currently-installed version
-    D : show the differences between the versions
-    Z : start a shell to examine the situation
-    The default action is to keep your current version.
-    *** daemons (Y/I/N/O/D/Z) [default=N] ?
-    ```
-
-    - To see the differences between the currently installed version and the new version, type `D`.
-    - To keep the currently installed version, type `N`. The new package version installs with the suffix `.dpkg-dist` (for example, `/etc/frr/daemons.dpkg-dist`). When the upgrade completes and **before** you reboot, merge your changes with the changes from the newly installed file.
-    - To install the new version, type `I`. Your currently installed version has the suffix `.dpkg-old`.
-    - Cumulus Linux includes `/etc/apt/sources.list` in the `cumulus-archive-keyring` package. During upgrade, you must select if you want the new version from the package or the existing file.
-
-    When the upgrade is complete, you can search for the files with the `sudo find / -mount -type f -name '*.dpkg-*'` command.
-
     If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 
-4. Run the following command to show if you need to reboot the switch:
+4. After the upgrade completes, check if you need to reboot the switch, then reboot the switch if required:
+
     ```
     cumulus@switch:~$ nv show system reboot required
+    yes
+    cumulus@switch:~$ nv action reboot system
     ```
 
-5. Reboot the switch if required:
-
-   ```
-   cumulus@switch:~$ nv action reboot system
-   ```
-
-6. Verify correct operation with the old configurations on the new version.
+5. Verify correct operation with the old configurations on the new version.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

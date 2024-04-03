@@ -136,6 +136,8 @@ To backup and restore the configuration commands:
    cumulus@switch:~$ source backup.config
    ```
 
+   If the backup configuration contains an obfuscated password, you need to reconfigure the password after you run the `source backup.config` command; otherwise authentication fails.
+
 4. Verify the configuration on the switch, then run the `nv config save` command to save the configuration to the `/etc/nvue.d/startup.yaml` file.
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.

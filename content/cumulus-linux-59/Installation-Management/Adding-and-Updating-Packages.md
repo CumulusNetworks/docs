@@ -212,6 +212,10 @@ The system lists the packages for upgrade and prompts you to continue.
 
 The above commands upgrade all installed versions with their latest versions but do not install any new packages.
 
+{{%notice note%}}
+Cumulus Linux 5.9 provides the NVUE `nv action upgrade system packages to <version>` command to upgrade all the packages installed on the system to their latest versions. You can use this NVUE command instead of the `sudo -E apt-get upgrade` command if you prefer. After upgrade is complete, you can run the `nv show system reboot required` command to determine if you need to reboot the switch.
+{{%/notice%}}
+
 ## Add New Packages
 
 To add a new package, first ensure the package is not already on the system:

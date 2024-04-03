@@ -19,7 +19,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - Cumulus Linux upgrade to Debian 12 (bookworm)
 - {{<link url="ASIC-Monitoring" text="Latency histogram">}} for ASIC monitoring
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} is now generally available
-- {{<link url="Link-Layer-Discovery-Protocol/#transmit-application-priority-tlvs" text="LLDP application priority TLVs">}} transmission
+- {{<link url="Link-Layer-Discovery-Protocol/#transmit-application-priority-tlvs" text="LLDP application priority TLV">}} transmission
 - {{<link url="Firewall-Rules" text="Firewall rules">}}
 - {{<link url="CLI-Configuration" text="CLI Session pagination and timeout options">}}
 - {{<link url="User-Accounts/#epassword-security" text="Password security commands">}}
@@ -39,6 +39,11 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   {{< tab "nv show ">}}
   
   ```
+  nv show interface <interface-id> telemetry histogram latency
+  nv show interface <interface-id> telemetry histogram latency traffic-class
+  nv show interface <interface-id> telemetry histogram latency traffic-class <if-tc-id>
+  nv show interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold
+  nv show interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> snapshot
   nv show interface <interface> lldp application-tlv
   nv show interface <interface> lldp application-tlv app
   nv show interface <interface> lldp application-tlv tcp-port
@@ -46,6 +51,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   nv show service lldp application-tlv app
   nv show service lldp application-tlv tcp-port
   nv show service lldp application-tlv udp-port
+  nv show service telemetry histogram latency
   nv show system reboot required
   ```
 
@@ -53,30 +59,54 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   {{< tab "nv set ">}}
 
   ```
+
+  nv set interface <interface> lldp application-tlv app <application> 
+  nv set interface <interface> lldp application-tlv tcp-port <port>
+  nv set interface <interface> lldp application-tlv udp-port <port>
+  nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id>
+  nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold action log
+  nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold value
+  nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> bin-min-boundary
+  nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> histogram-size
   nv set service lldp application-tlv app <application> priority <priority> 
   nv set service lldp application-tlv tcp-port <port> priority <priority> 
   nv set service lldp application-tlv udp-port <port> priority <priority> 
-  nv set interface <interface> lldp application-tlv app <application> 
-  nv set interface <interface> lldp application-tlv tcp-port <port>
-  nv set interface <interface> lldp application-tlv udp-port <port> 
+  nv set service telemetry histogram latency bin-min-boundary
+  nv set service telemetry histogram latency histogram-size
   nv set system cli pagination state
   nv set system cli pagination pager
   nv set system cli inactive-timeout
+  nv set system control-plane acl acl-default-dos inbound
+  nv set system control-plane acl acl-default-whitelist inbound
   ```
   
   {{< /tab >}}
   {{< tab "nv unset ">}}
   
   ```
-  nv unset service lldp application-tlv app <application> priority <priority> 
-  nv unset service lldp application-tlv tcp-port <port> priority <priority> 
-  nv unset service lldp application-tlv udp-port <port> priority <priority> 
+
   nv unset interface <interface> lldp application-tlv app <application> 
   nv unset interface <interface> lldp application-tlv tcp-port <port>
   nv unset interface <interface> lldp application-tlv udp-port <port> 
+  nv unset interface <interface-id> telemetry histogram latency
+  nv unset interface <interface-id> telemetry histogram latency traffic-class
+  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id>
+  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold
+  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold action
+  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold value
+  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> bin-min-boundary
+  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> histogram-size
+  nv unset service lldp application-tlv app <application> priority <priority> 
+  nv unset service lldp application-tlv tcp-port <port> priority <priority> 
+  nv unset service lldp application-tlv udp-port <port> priority <priority> 
+  nv unset service telemetry histogram latency
+  nv unset service telemetry histogram latency bin-min-boundary
+  nv unset service telemetry histogram latency histogram-size
   nv unset system cli pagination state
   nv unset system cli pagination pager
   nv unset system cli inactive-timeout
+  nv unset system control-plane acl acl-default-dos
+  nv unset system control-plane acl acl-default-whitelist
   ```
 
   {{< /tab >}}

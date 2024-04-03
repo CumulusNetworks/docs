@@ -317,6 +317,74 @@ To log into the switch using root with SSH, either:
      cumulus@switch:~$ sudo systemctl reload ssh.service
      ```
 
+## Password Security
+
+A user password is the key credential that verifies the user accessing the switch and acts as the first line of defense to secure the switch. The complexity of the password, replacement capabilities, and change frequency define the security level of the first perimeter of the switch. To further improve and harden the switch, Cumulus Linux provides a password security option that enforces password policies.
+
+When you enable the password security option, Cumulus Linux applies policies that apply to all users on the switch; user passwords must include at least one lower case character, one upper case character, one digit, one special character, and cannot be usernames. In addition, passwords must be a minimum of eight characters long, expire in 365 days, and provide a warning 15 days before expiration.
+
+You can change these password security policies; see {{<link url="User-Accounts/#configure-password-policies" text="Configure Password Policies">}} below.
+
+### Enable Password Security
+
+To enable password security, run the `nv set system security password-hardening state enabled` command:
+
+```
+cumulus@switch:~$ nv set system security password-hardening state enabled
+cumulus@switch:~$ nv config apply
+```
+
+To disable password security, run the `nv unset system security password-hardening` command.
+
+### Configure Password Policies
+
+The following table describes the password policies that Cumulus Linux provides and shows the default settings when password security is enabled. You can change these settings with NVUE commands.
+
+| Policy |  Description  | Default Setting |
+|-----   |-------------- | ----------------|
+| Lower case | Passwords must include at least one lower case character. You can specify `enabled` or `disabled`.| `enabled` |
+| Upper case | Passwords must include at least one upper class character. You can specify `enabled` or `disabled`.  | `enabled` |
+| Digits | Passwords must include at least one digit. You can specify `enabled` or `disabled`.| `enabled` |
+| Special characters | Passwords must include at least one special character. You can specify `enabled` or `disabled`. | `enabled` |
+| Password length |The minimum password length. You can specify a value between 6 and 32 characters. | 8 characters |
+| Expiration in days | The duration in days after which passwords expire. You can set a value between 1 and 365 days.| 180 days|
+| Password expiration warning | The number of days before a password expires to provide a warning. You can set a value between 1 and 30 days.| 15 days|
+| Prevent usernames as passwords | Passwords cannot be usernames. You can specify `enabled` or `disabled`.| `enabled` |
+| Password reuse| The number of times you can reuse the same password. You can set a value between 1 and 100.|  10|
+
+The following example commands disable enforcement of uppercase characters, digits, and special characters:
+
+```
+cumulus@switch:~$ nv set system security password-hardening lower-class disabled
+cumulus@switch:~$ nv set system security password-hardening upper-class disabled
+cumulus@switch:~$ nv set system security password-hardening digits-class disabled
+cumulus@switch:~$ nv set system security password-hardening special-class disabled
+```
+
+The following example commands set the minimum password length to 10 characters, the password expiration to 30 days, and the expiration warning to 5 days before expiration.
+
+```
+cumulus@switch:~$ nv set system security password-hardening len-min 10
+cumulus@switch:~$ nv set system security password-hardening expiration 30
+cumulus@switch:~$ nv set system security password-hardening expiration-warning 5
+```
+
+The following example commands prevent usernames as passwords and sets the number of times you can reuse a password to 20:
+
+```
+cumulus@switch:~$ nv set system security password-hardening reject-user-passw-match enabled
+cumulus@switch:~$ nv set system security password-hardening history-cnt 20
+```
+
+### Show Password Policies
+
+To show the currently configured password policies, run the `nv show system security password-hardening` command:
+
+```
+cumulus@switch:~$ nv show system security password-hardening
+
+```
+
 ## Related Information
 
 - {{<exlink url="https://man7.org/linux/man-pages/man3/crypt.3.html" text="crypt man page">}}

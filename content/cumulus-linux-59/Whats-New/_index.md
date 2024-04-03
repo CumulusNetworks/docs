@@ -19,12 +19,11 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - Cumulus Linux upgrade to Debian 12 (bookworm)
 - {{<link url="ASIC-Monitoring" text="Latency histogram">}} for ASIC monitoring
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} is now generally available
-- Transmit {{<link url="Link-Layer-Discovery-Protocol/#transmit-application-priority-tlvs" text="LLDP application priority TLVs">}}
-- {{<link url="LDAP-Authentication-and-Authorization" text="NVUE commands for LDAP authentication and encryption">}}
+- {{<link url="Link-Layer-Discovery-Protocol/#transmit-application-priority-tlvs" text="LLDP application priority TLVs">}} transmission
 - {{<link url="Firewall-Rules" text="Firewall rules">}}
 - {{<link url="CLI-Configuration" text="CLI Session pagination and timeout options">}}
-- Password security commands
-- NVUE commands for {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}}.
+- {{<link url="User-Accounts/#epassword-security" text="Password security commands">}}
+- NVUE commands for {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}}
 - Support native vtysh (FRR) output in NVUE show commands
 - Admin State added to `nv show interface` output
 - `nv show platform` command redesign

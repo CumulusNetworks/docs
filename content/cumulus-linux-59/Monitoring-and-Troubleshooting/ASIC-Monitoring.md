@@ -181,23 +181,21 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Latency Histogram ">}}
 
-The following example configures the latency histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. These settings apply to interfaces that have the `latency` histogram enabled and do not have different values configured for these settings at the interface level:
+The following example configures the latency histogram and sets the minimum boundary size to 960 and the histogram size to 12288. These settings apply to interfaces that have the `latency` histogram enabled and do not have different values configured for these settings at the interface level:
 
 ```
 cumulus@switch:~$ nv set service telemetry histogram latency bin-min-boundary 960 
 cumulus@switch:~$ nv set service telemetry histogram latency histogram-size 12288 
-cumulus@switch:~$ nv set service telemetry histogram latency sample-interval 1024
 cumulus@switch:~$ nv config apply
 ```
 
-The following example enables the latency histogram for traffic class 0 on swp1 through swp8 with the globally applied minimum boundary, histogram size, and sample interval. The example also enables the latency histogram for traffic class 1 on swp9 through swp16 and sets the minimum boundary to 768 bytes, the histogram size to 9600 bytes, and the sampling interval to 2048 nanoseconds.
+The following example enables the latency histogram for traffic class 0 on swp1 through swp8 with the globally applied minimum boundary and histogram size. The example also enables the latency histogram for traffic class 1 on swp9 through swp16 and sets the minimum boundary to 768 bytes and the histogram size to 9600 bytes.
 
 ```
 cumulus@switch:~$ nv set service telemetry enable on
 cumulus@switch:~$ nv set interface swp1-8 telemetry histogram latency traffic-class 0
 cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-class 1 bin-min-boundary 768
 cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-class 1 histogram-size 9600
-cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-class 1 sample-interval 2048
 cumulus@switch:~$ nv config apply
 ```
 
@@ -358,7 +356,7 @@ monitor.histogram_pg.histogram.sample_time_ns         = 1024
 {{< /tab >}}
 {{< tab "Latency Histogram Examples ">}}
 
-The following example configures the latency histogram and sets the minimum boundary size to 960, the histogram size to 12288, and the sampling interval to 1024. These settings apply to interfaces that have the `latency` histogram enabled and do not have different values configured for these settings at the interface level:
+The following example configures the latency histogram and sets the minimum boundary size to 960 and the histogram size to 12288. These settings apply to interfaces that have the `latency` histogram enabled and do not have different values configured for these settings at the interface level:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
@@ -372,10 +370,9 @@ monitor.histogram_pg.timer                            = 1s
 ...
 monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
 monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
-monitor.histogram_pg.histogram.sample_time_ns         = 1024
 ```
 
-The following example enables the latency histogram for traffic class 0 on swp1 through swp8 with the globally applied minimum boundary, histogram size, and sample interval. The example also enables the latency histogram for traffic class 1 on swp9 through swp16 and sets the minimum boundary to 768 bytes, the histogram size to 9600 bytes, and the sampling interval to 2048 nanoseconds.
+The following example enables the latency histogram for traffic class 0 on swp1 through swp8 with the globally applied minimum boundary and histogram size. The example also enables the latency histogram for traffic class 1 on swp9 through swp16 and sets the minimum boundary to 768 bytes and the histogram size to 9600 bytes.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/datapath/monitor.conf
@@ -389,7 +386,6 @@ monitor.histogram_gr1.timer                            = 1s
 ...
 monitor.histogram_gr1.histogram.minimum_bytes_boundary = 960
 monitor.histogram_gr1.histogram.histogram_size_bytes   = 12288
-monitor.histogram_gr1.histogram.sample_time_ns         = 1024
 
 monitor.histogram_gr2.port_set                         = swp9-swp16
 monitor.histogram_gr2.stat_type                        = histogram_latency
@@ -399,7 +395,6 @@ monitor.histogram_gr2.timer                            = 1s
 ...
 monitor.histogram_gr2.histogram.minimum_bytes_boundary = 960
 monitor.histogram_gr2.histogram.histogram_size_bytes   = 12288
-monitor.histogram_gr2.histogram.sample_time_ns         = 1024
 ```
 
 {{< /tab >}}

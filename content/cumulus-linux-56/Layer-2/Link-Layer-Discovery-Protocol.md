@@ -286,14 +286,14 @@ By default, when the switch sends a CDP packet, if there is an alias (descriptio
 
 If you want LLDP to send the `portID` (`ifname`) value to a CDP neighbor instead of the interface alias, you can configure the following options:
 - To transmit both the `PortID` and `PortDescription` in the same `PortID` field, insert the interface name in the interface `alias` field.
-- To send the `ifname` instead of the interface alias over CDP, configure the `configure lldp portidsubtype macaddress` option in the `/etc/lldp.d/lldp_global.conf` file. The default configuration is `portidsubtype ifname`.
+- To send the `ifname` instead of the interface alias over CDP, configure the `configure lldp portidsubtype macaddress` option in the `/etc/lldpd.d/lldp_global.conf` file. The default configuration is `portidsubtype ifname`.
 
 The following table shows the TLVs sent for each configuration.
 
 | LLDP Configuration | LLDP PortID Value Sent | LLDP Port Description Value Sent | CDP PortID Value Sent |
 | ------------------ | ---------------------- | -------------------------------- | --------------------- |
 | `configure lldp portidsubtype ifname` (default)| interface `ifname` | interface `alias` | interface `alias` |
-| `configure lldp portidsubtype ifname` MAC address | interface `mac address` | interface `ifname` | interface `ifname` |
+| `configure lldp portidsubtype macaddress` MAC address | interface `mac address` | interface `ifname` | interface `ifname` |
 
 Use CDP only or LLDP only to get the desired behavior of `PortID`, `Description`, or `MacAddress` (LLDP only) across all neighbors. For more information, see {{<link url="#set-lldp-mode" text="LLDP Mode">}}.
 

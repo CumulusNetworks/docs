@@ -32,7 +32,6 @@ To access the CLI from a switch or server:
 
     ```
     cumulus@switch:~$ netq show agents
-    cumulus@switch:~$ netq check bgp
     ```
 <!-- vale on -->
 
@@ -46,7 +45,7 @@ The NetQ command line has a flat structure as opposed to a modal structure: you 
 
 ### Command Syntax
 
-All NetQ CLI commands begin with `netq`. NetQ commands fall into one of four syntax categories: validation (check), monitoring (show), configuration, and trace.
+All NetQ CLI commands begin with `netq`. The commands you use to monitor your network fall into one of four syntax categories: validation (check), monitoring (show), configuration, and trace.
 
 ```
 netq check <network-protocol-or-service> [options]
@@ -102,40 +101,40 @@ As you enter commands, you can get help with the valid keywords or options using
 
 ```
 cumulus@switch:~$ netq check <<press Tab>>
+    addresses   :  IPv4/v6 addresses
     agents      :  Netq agent
     bgp         :  BGP info
     cl-version  :  Cumulus Linux version
-    clag        :  Cumulus Multi-chassis LAG
     evpn        :  EVPN
     interfaces  :  network interface port
     mlag        :  Multi-chassis LAG (alias of clag)
     mtu         :  Link MTU
     ntp         :  NTP
     ospf        :  OSPF info
+    roce        :  RoCE
     sensors     :  Temperature/Fan/PSU sensors
     vlan        :  VLAN
-    vxlan       :  VXLAN data path
+    vxlan       :  VxLAN
 cumulus@switch:~$ netq check
 ```
 
 ### Command Help
 
-As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out which options are available for a BGP check, enter `help` after entering some of the `netq check` command. In the following example, you can see that there are no additional required parameters and you can use three optional parameters &mdash; `hostnames`, `vrf`, and `around` &mdash; with a BGP check:
+As you enter commands, you can get help with command syntax by entering `help` as part of the command. For example, to find out which options are available for an IP addresses check, enter the `netq check addresses` command followed by `help`:
 
 ```
-cumulus@switch:~$ netq check bgp help
+cumulus@switch:~$ netq check addresses help
 Commands:
-    netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [check_filter_id <text-check-filter-id>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
-   netq show unit-tests bgp [check_filter_id <text-check-filter-id>] [json]
+    netq check addresses [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <addr-number-range-list> | exclude <addr-number-range-list>] [around <text-time>] [json | summary]
 ```
 
-To see an exhaustive list of commands, run:
+To see an exhaustive list of commands and their definitions, run:
 
 ```
 cumulus@switch:~$ netq help list
 ```
 
-To get usage information for NetQ, run:
+To display NetQ command formatting rules, run:
 
 ```
 cumulus@switch:~$ netq help verbose
@@ -289,59 +288,7 @@ cumulus@switch:~$ netq check bgp json
 
 ### Monitoring Commands
 
-The {{<link title="show" text="netq show commands">}} let you view details about the current or historical configuration and status of various protocols and services. You can view the configuration and status for the following:
-
-<!-- vale off -->
-- **address-history**: Address history info for an IP address/prefix
-- **agents**: NetQ Agents status on switches and hosts
-- **bgp**: BGP status across the network fabric
-- **cl-btrfs-info**: BTRFS file system data for monitored Cumulus Linux switches
-- **cl-manifest**: Information about the versions of Cumulus Linux available on monitored switches
-- **cl-pkg-info**: Information about software packages installed on monitored switches
-- **cl-resource**: ACL and forwarding information
-- **cl-ssd-util**: SSD utilization information
-- **clag**: CLAG/MLAG status
-- **dom**: Digital Optical Monitoring information
-- **ecmp**: Equal-cost multi-path routing
-- **ethtool-stats**: Interface statistics
-- **events**: Display changes over time
-- **events-config**: Event suppression configuration
-- **evpn**: EVPN status
-- **interfaces**: Interface information
-- **interface-stats**: Interface performance statistics
-- **interface-utilization**: Interface statistics plus utilization
-- **interfaces**: network interface port status
-- **inventory**: hardware component information
-- **ip**: IPv4 status
-- **ipv6**: IPv6 status
-- **kubernetes**: Kubernetes cluster, daemon, pod, node, service, and replication status
-- **lldp**: LLDP status
-- **mac-commentary**: MAC commentary info for a MAC address
-- **mac-history**: Historical information for a MAC address
-- **macs**: MAC table or address information
-- **mlag**: MLAG status (an alias for CLAG)
-- **neighbor-history**: Neighbor history info for an IP address
-- **notification**: Notifications sent to various channels
-- **ntp**: NTP status
-- **opta-health**: Display health of apps on the OPTA
-- **opta-platform**: NetQ Appliance version information and uptime
-- **ospf**: OSPF status
-- **ptp**: Precision Time Protocol status
-- **recommended-pkg-version**: Current host information to be considered
-- **resource-util**: Display usage of memory, CPU and disk resources
-- **roce-config**: Display RoCE configuration
-- **roce-counters**: Displays RDMA over Converged Ethernet counters for a given switch
-- **sensors**: Temperature/Fan/PSU sensor status
-- **services**: System services status
-- **stp topology**: Spanning Tree Protocol topology
-- **tca**: Threshold crossing alerts
-- **trace**: Control plane trace path across fabric
-- **unit-tests**: Show list of unit tests for `netq check`
-- **validation**: Scheduled validation check
-- **vlan**: VLAN status
-- **vxlan**: VXLAN data path status
-- **wjh-drop**: dropped packet data from NVIDIA&reg; Mellanox&reg; What Just Happened&reg;
-<!-- vale on -->
+The {{<link title="show" text="netq show commands">}} let you view details about the current or historical configuration and status of various protocols and services. 
 
 The commands take the form of `netq [<hostname>] show <network-protocol-or-service> [options]`, where the options vary according to the protocol or service. You can restrict the commands from showing the information for *all* devices to showing information only for a selected device using the `hostname` option.
 
@@ -391,7 +338,7 @@ leaf01            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed    
 {{< /expand >}}
 ### Configuration Commands
 
-Various commands---including `netq config`, `netq notification`, and `netq install`---allow you to manage NetQ Agent and CLI server configurations, configure lifecycle management, set up container monitoring, and manage notifications.
+Various commands---{{<link title="config" text="netq config">}}, {{<link title="lcm" text="netq lcm">}}, {{<link title="add" text="netq add">}}, and {{<link title="del" text="netq del">}}---allow you to manage NetQ Agent and CLI server configurations, configure lifecycle management, set up container monitoring, and manage notifications.
 
 #### NetQ Agent Configuration
 
@@ -400,7 +347,7 @@ The agent commands configure individual NetQ Agents.
 The agent configuration commands can add and remove agents from switches and hosts, start and stop agent operations, debug the agent, specify default commands, and enable or disable a variety of monitoring features (including sensors, FRR (FRRouting), CPU usage limit, and What Just Happened).
 
 {{<notice note>}}
-Commands apply to one agent at a time. Run them from the switch or host where the NetQ Agent resides.
+Commands apply to one agent at a time. Run them from the switch or host where the NetQ Agent resides. You must run the <code>netq config</code> commands with sudo privileges.
 {{</notice>}}
 
 The agent configuration commands include:
@@ -408,12 +355,6 @@ The agent configuration commands include:
 ```
 netq config (add|del|show) agent
 netq config (start|stop|status|restart) agent
-```
-
-The following example shows how to configure the agent to send sensor data:
-
-```
-cumulus@switch~:$ netq config add agent sensors
 ```
 
 The following example shows how to view the NetQ Agent configuration:
@@ -478,13 +419,6 @@ The following example shows how to enable the CLI on a NetQ on-premises applianc
 ```
 cumulus@switch~:$ netq config add cli server 10.1.3.101
 ```
-
-The following example shows how to enable the CLI on a NetQ Cloud Appliance or VM for the Chicago premises and the default port:
-
-```
-netq config add cli server api.netq.cumulusnetworks.com access-key <user-access-key> secret-key <user-secret-key> premises chicago port 443
-```
-
 #### NetQ System Configuration Commands
 
 Use the following commands to manage the NetQ system itself:
@@ -548,7 +482,7 @@ The following example shows how to add a Cumulus Linux installation image to the
 
 ### Trace Commands
 
-The {{<link title="trace" text="netq trace commands">}} lets you view the available paths between two nodes on the network currently and at a time in the past. You can perform a layer 2 or layer 3 trace, and view the output in one of three formats: JSON, pretty, and detail. JSON output provides the output in a JSON file format for ease of importing to other applications or software. Pretty output lines up the paths in a pseudo-graphical manner to help visualize multiple paths. Detail output is useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. The detail output displays a table with a row for each path.
+The {{<link title="trace" text="netq trace commands">}} let you view the available paths between two nodes on the network. You can perform a layer 2 or layer 3 trace, and view the output in one of three formats: JSON, pretty, and detail. JSON output provides the output in a JSON file format for ease of importing to other applications or software. Pretty output lines up the paths in a pseudo-graphical manner to help visualize multiple paths. Detail output is useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. The detail output displays a table with a row for each path.
 
 The trace command syntax is:
 

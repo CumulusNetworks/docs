@@ -26,7 +26,6 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - Password security commands
 - NVUE commands for {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}}.
 - Support native vtysh (FRR) output in NVUE show commands
-- Interface summary view with filtering
 - Admin State added to `nv show interface` output
 - `nv show platform` command redesign
 - By default, the 4x breakout on {{<link url="Switch-Port-Attributes/#breakout-ports" text="QSFP-DD/OSFP 8 lane ports">}} now allocates two lanes per port instead of one lane. You can change this setting with the NVUE `nv set interface <interface> link breakout <breakout> lanes-per-port` command. Be sure to configure the lanes per port on both ends of a connection to be the same.

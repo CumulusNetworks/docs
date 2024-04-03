@@ -317,6 +317,51 @@ To log into the switch using root with SSH, either:
      cumulus@switch:~$ sudo systemctl reload ssh.service
      ```
 
+## Password Security
+
+A user password is the key credential used to verify the user accessing the switch and acts as the first line of defense to secure the switch. The complexity of the password, replacement capabilities, and change frequency define the security level of the first perimeter of the switch. To further improve and harden the switch, you need to use a secure mechanism to enforce password policies.
+
+You can configure the following password policies that apply to all users on the switch:
+- Enforce lower case characters, upper case characters, digits, and special characters.
+- Enforce a minimum password length. You can specify a value between 6 and 32 characters. The default setting is 8 characters.
+- Set a password expiration in days.
+- Set the number of days before a password expires to provide a warning.
+- Disallow using a username as a password.
+- Set the number of password hashes to save to avoid password reuse. You can set a value between 1 and 100. The default is 10.  
+
+To enable password security:
+
+```
+cumulus@switch:~$ nv set system security password-hardening state enabled
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands 
+
+```
+cumulus@switch:~$ nv set system security password-hardening lower-class enabled
+cumulus@switch:~$ nv set system security password-hardening upper-class enabled
+cumulus@switch:~$ nv set system security password-hardening digits-class enabled
+cumulus@switch:~$ nv set system security password-hardening special-class enabled
+```
+
+The following example commands 
+
+```
+cumulus@switch:~$ nv set system security password-hardening len-min 10
+cumulus@switch:~$ nv set system security password-hardening expiration 30
+cumulus@switch:~$ nv set system security password-hardening expiration-warning 5
+cumulus@switch:~$ nv set system security password-hardening reject-user-passw-match enabled
+cumulus@switch:~$ nv set system security password-hardening history-cnt 20
+```
+
+To show 
+
+```
+cumulus@switch:~$ nv show system security password-hardening
+
+```
+
 ## Related Information
 
 - {{<exlink url="https://man7.org/linux/man-pages/man3/crypt.3.html" text="crypt man page">}}

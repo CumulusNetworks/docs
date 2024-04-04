@@ -348,11 +348,11 @@ The following table describes the password policies that Cumulus Linux provides 
 | Special characters | Passwords must include at least one special character. You can specify `enabled` or `disabled`. | `enabled` |
 | Password length |The minimum password length. You can specify a value between 6 and 32 characters. | 8 characters |
 | Expiration in days | The duration in days after which passwords expire. You can set a value between 1 and 365 days.| 180 days|
-| Password expiration warning | The number of days before a password expires to provide a warning. You can set a value between 1 and 30 days.| 15 days|
+| Password expiration warning | The number of days before a password expires to send a warning. You can set a value between 1 and 30 days.| 15 days|
 | Prevent usernames as passwords | Passwords cannot be usernames. You can specify `enabled` or `disabled`.| `enabled` |
 | Password reuse| The number of times you can reuse the same password. You can set a value between 1 and 100.|  10|
 
-The following example commands disable enforcement of uppercase characters, digits, and special characters:
+The following example commands disable enforcement of lowercase and uppercase characters, digits, and special characters:
 
 ```
 cumulus@switch:~$ nv set system security password-hardening lower-class disabled
@@ -360,6 +360,10 @@ cumulus@switch:~$ nv set system security password-hardening upper-class disabled
 cumulus@switch:~$ nv set system security password-hardening digits-class disabled
 cumulus@switch:~$ nv set system security password-hardening special-class disabled
 ```
+
+{{%notice note%}}
+Special characters include ` ~ ! @ # $ % ^ & * ( ) - _ + = | [ { } ] ; : ' , < . > / ? and white space.
+{{%/notice%}}
 
 The following example commands set the minimum password length to 10 characters, the password expiration to 30 days, and the expiration warning to 5 days before expiration.
 

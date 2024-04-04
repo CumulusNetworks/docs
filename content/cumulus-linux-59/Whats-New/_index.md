@@ -23,104 +23,103 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - {{<link url="Firewall-Rules" text="Firewall rules">}}
 - {{<link url="CLI-Configuration" text="CLI Session pagination and timeout options">}}
 - {{<link url="User-Accounts/#epassword-security" text="Password security commands">}}
-- NVUE commands for {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}}
-- Support native vtysh (FRR) output in NVUE show commands
-- Admin State added to `nv show interface` output
-- `nv show platform` command redesign
-- By default, the 4x breakout on {{<link url="Switch-Port-Attributes/#breakout-ports" text="QSFP-DD/OSFP 8 lane ports">}} now allocates two lanes per port instead of one lane. You can change this setting with the NVUE `nv set interface <interface> link breakout <breakout> lanes-per-port` command. Be sure to configure the lanes per port on both ends of a connection to be the same.
-- {{< expand "Improved tab completion for NVUE routing commands" >}}
-  ```
-  ```
-  {{< /expand >}}
-- {{< expand "New NVUE Commands" >}}
-  For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
+- {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="4x breakout on QSFP-DD/OSFP 8 lane ports">}} now allocates two lanes per port by default instead of one.
+- NVUE
+  - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
+  - `nv show` commands support native vtysh (FRR) output
+  - `nv show interface` output now includes the admin state
+  - `nv show platform` command redesign
+  - {{< expand "Improved tab completion for NVUE routing commands" >}}
+```
+```
+{{< /expand >}}
+  - {{< expand "New NVUE Commands" >}}
+For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
   
-  {{< tabs "TabID49 ">}}
-  {{< tab "nv show ">}}
+{{< tabs "TabID49 ">}}
+{{< tab "nv show ">}}
+
+```
+nv show interface <interface-id> telemetry histogram latency
+nv show interface <interface-id> telemetry histogram latency traffic-class
+nv show interface <interface-id> telemetry histogram latency traffic-class <if-tc-id>
+nv show interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold
+nv show interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> snapshot
+nv show interface <interface> lldp application-tlv
+nv show interface <interface> lldp application-tlv app
+nv show interface <interface> lldp application-tlv tcp-port
+nv show interface <interface> lldp application-tlv udp-port
+nv show service lldp application-tlv app
+nv show service lldp application-tlv tcp-port
+nv show service lldp application-tlv udp-port
+nv show service telemetry histogram latency
+nv show system reboot required
+```
+
+{{< /tab >}}
+{{< tab "nv set ">}}
+
+```
+nv set interface <interface> lldp application-tlv app <application> 
+nv set interface <interface> lldp application-tlv tcp-port <port>
+nv set interface <interface> lldp application-tlv udp-port <port>
+nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id>
+nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold action log
+nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold value
+nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> bin-min-boundary
+nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> histogram-size
+nv set service lldp application-tlv app <application> priority <priority> 
+nv set service lldp application-tlv tcp-port <port> priority <priority> 
+nv set service lldp application-tlv udp-port <port> priority <priority> 
+nv set service telemetry histogram latency bin-min-boundary
+nv set service telemetry histogram latency histogram-size
+nv set system cli pagination state
+nv set system cli pagination pager
+nv set system cli inactive-timeout
+nv set system control-plane acl acl-default-dos inbound
+nv set system control-plane acl acl-default-whitelist inbound
+```
+
+{{< /tab >}}
+{{< tab "nv unset ">}}
+
+```
+nv unset interface <interface> lldp application-tlv app <application> 
+nv unset interface <interface> lldp application-tlv tcp-port <port>
+nv unset interface <interface> lldp application-tlv udp-port <port> 
+nv unset interface <interface-id> telemetry histogram latency
+nv unset interface <interface-id> telemetry histogram latency traffic-class
+nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id>
+nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold
+nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold action
+nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold value
+nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> bin-min-boundary
+nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> histogram-size
+nv unset service lldp application-tlv app <application> priority <priority> 
+nv unset service lldp application-tlv tcp-port <port> priority <priority> 
+nv unset service lldp application-tlv udp-port <port> priority <priority> 
+nv unset service telemetry histogram latency
+nv unset service telemetry histogram latency bin-min-boundary
+nv unset service telemetry histogram latency histogram-size
+nv unset system cli pagination state
+nv unset system cli pagination pager
+nv unset system cli inactive-timeout
+nv unset system control-plane acl acl-default-dos
+nv unset system control-plane acl acl-default-whitelist
+```
+
+{{< /tab >}}
+{{< tab "nv action ">}}
+
+```
+nv action upgrade system packages to <version> dry-run
+nv action upgrade system packages to <version>
+```
+
+{{< /tab >}}
+{{< /tabs >}}
   
-  ```
-  nv show interface <interface-id> telemetry histogram latency
-  nv show interface <interface-id> telemetry histogram latency traffic-class
-  nv show interface <interface-id> telemetry histogram latency traffic-class <if-tc-id>
-  nv show interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold
-  nv show interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> snapshot
-  nv show interface <interface> lldp application-tlv
-  nv show interface <interface> lldp application-tlv app
-  nv show interface <interface> lldp application-tlv tcp-port
-  nv show interface <interface> lldp application-tlv udp-port
-  nv show service lldp application-tlv app
-  nv show service lldp application-tlv tcp-port
-  nv show service lldp application-tlv udp-port
-  nv show service telemetry histogram latency
-  nv show system reboot required
-  ```
-
-  {{< /tab >}}
-  {{< tab "nv set ">}}
-
-  ```
-
-  nv set interface <interface> lldp application-tlv app <application> 
-  nv set interface <interface> lldp application-tlv tcp-port <port>
-  nv set interface <interface> lldp application-tlv udp-port <port>
-  nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id>
-  nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold action log
-  nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold value
-  nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> bin-min-boundary
-  nv set interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> histogram-size
-  nv set service lldp application-tlv app <application> priority <priority> 
-  nv set service lldp application-tlv tcp-port <port> priority <priority> 
-  nv set service lldp application-tlv udp-port <port> priority <priority> 
-  nv set service telemetry histogram latency bin-min-boundary
-  nv set service telemetry histogram latency histogram-size
-  nv set system cli pagination state
-  nv set system cli pagination pager
-  nv set system cli inactive-timeout
-  nv set system control-plane acl acl-default-dos inbound
-  nv set system control-plane acl acl-default-whitelist inbound
-  ```
-  
-  {{< /tab >}}
-  {{< tab "nv unset ">}}
-  
-  ```
-
-  nv unset interface <interface> lldp application-tlv app <application> 
-  nv unset interface <interface> lldp application-tlv tcp-port <port>
-  nv unset interface <interface> lldp application-tlv udp-port <port> 
-  nv unset interface <interface-id> telemetry histogram latency
-  nv unset interface <interface-id> telemetry histogram latency traffic-class
-  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id>
-  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold
-  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold action
-  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> threshold value
-  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> bin-min-boundary
-  nv unset interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> histogram-size
-  nv unset service lldp application-tlv app <application> priority <priority> 
-  nv unset service lldp application-tlv tcp-port <port> priority <priority> 
-  nv unset service lldp application-tlv udp-port <port> priority <priority> 
-  nv unset service telemetry histogram latency
-  nv unset service telemetry histogram latency bin-min-boundary
-  nv unset service telemetry histogram latency histogram-size
-  nv unset system cli pagination state
-  nv unset system cli pagination pager
-  nv unset system cli inactive-timeout
-  nv unset system control-plane acl acl-default-dos
-  nv unset system control-plane acl acl-default-whitelist
-  ```
-
-  {{< /tab >}}
-  {{< tab "nv action ">}}
-  
-  ```
-  nv action upgrade system packages to <version> dry-run
-  nv action upgrade system packages to <version>
-  ```
-
-  {{< /tab >}}
-  {{< /tabs >}}
-  
-  {{< /expand >}}
+{{< /expand >}}
 
 {{%notice note%}}
 The repository key stored in Cumulus Linux 5.5.0 and earlier has expired. Before performing a package upgrade to Cumulus Linux 5.9.0 from Cumulus Linux 5.5.0 and earlier, you must install the new key. See [this knowledge base article]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).

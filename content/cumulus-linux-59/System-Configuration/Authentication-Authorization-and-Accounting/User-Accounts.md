@@ -352,7 +352,7 @@ The following table describes the password policies that Cumulus Linux provides 
 | Prevent usernames as passwords | Passwords cannot be usernames. You can specify `enabled` or `disabled`.| `enabled` |
 | Password reuse| The number of times you can reuse the same password. You can set a value between 1 and 100.|  10|
 
-The following example commands disable enforcement of uppercase characters, digits, and special characters:
+The following example commands disable enforcement of lowercase and uppercase characters, digits, and special characters:
 
 ```
 cumulus@switch:~$ nv set system security password-hardening lower-class disabled

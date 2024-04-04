@@ -1567,6 +1567,10 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+In 5.9 and later, the 4x breakout on QSFP-DD/OSFP 8 lane ports allocates two lanes per port by default instead of one lane. Be sure to configure the lanes per port on both ends of a connection to be the same.
+{{%/notice%}}
+
 ### Remove a Breakout Port
 
 To remove a breakout port:

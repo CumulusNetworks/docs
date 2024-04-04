@@ -1540,7 +1540,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/ports_width.conf` file and add the numer of lanes per split port you want to use, then reload `switchd`:
+Edit the `/etc/cumulus/ports_width.conf` file and add the number of lanes per split port you want to use, then reload `switchd`:
 <!--
 {{%notice note%}}
 You must configure the lanes per port in the `/etc/cumulus/ports_width.conf` before you configure the breakout in the `/etc/cumulus/ports.conf` file. If the `ports.conf` file already contains breakout configuration for a port, you must set the breakout back to `1x`, then reload `switchd`. You can then set the desired lanes per port, then reconfigure the breakout.
@@ -1894,6 +1894,14 @@ When you remove two transceivers simultaneously from a switch, both interfaces s
 <!-- vale on -->
 
 The NVIDIA Spectrum-2 (25G) switch only supports RS FEC.
+
+### Connecting NVIDIA SN4410, SN4700, SN5600 to a Spectrum-3 and Earlier Peer Switch
+
+When you connect an NVIDIA SN4410, SN4700, or SN5600 switch to any Spectrum 1, Spectrum-2, or Spectrum-3 peer switch (with four lanes) using a 4x breakout configuration and the default lanes per port setting, links do not come up. To work around this issue, provide the lanes per port configuration shown below:
+
+```
+cumulus@switch:~$ nv set interface <interface> link breakout 4x lanes-per-port 1
+```
 
 ## Related Information
 

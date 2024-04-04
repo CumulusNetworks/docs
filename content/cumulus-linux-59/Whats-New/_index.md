@@ -27,7 +27,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - NVUE
   - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
   - `nv show` commands support native vtysh (FRR) output
-  - `nv show interface` output now includes the admin state
+  - `nv show interface` command output now includes the admin state of an interface in addition to the physical state.
   - `nv show platform` command redesign
   - {{< expand "Improved tab completion for NVUE routing commands" >}}
 ```

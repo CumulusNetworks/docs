@@ -303,7 +303,7 @@ Use CDP only or LLDP only to get the desired behavior of `PortID`, `Description`
 
 ## LLDP DCBX TLVs
 
-<span class="a-tooltip">[DCBX](## "Data Center Bridging Capability Exchange protocol ")</span> is an extension of LLDP. Cumulus Linux supports DCBX <span class="a-tooltip">[TLVs](## "Type-Length-Value ")</span> to provide additional information in LLDP packets to peers.
+<span class="a-tooltip">[DCBX](## "Data Center Bridging Capability Exchange protocol ")</span> is an extension of LLDP that supports <span class="a-tooltip">[TLVs](## "Type-Length-Value ")</span> to provide additional information in LLDP packets to peers.
 
 Cumulus Linux supports the following LLDP DCBX TLVs:
 - IEEE 802.1
@@ -320,7 +320,7 @@ Cumulus Linux supports the following LLDP DCBX TLVs:
 
 ### IEEE 802.1 TLVs
 
-You can transmit the following 802.1 TLVs when exchanging LLDP messages. By default, 802.1 TLV transmission is off and the switch sends all LLDP frames without 802.1 TLVs.
+You can transmit the following IEEE 802.1 TLVs when exchanging LLDP messages. By default, IEEE 802.1 TLV transmission is `off` and the switch sends all LLDP frames without IEEE 802.1 TLVs.
 
 | Name             | Subtype | Description |
 |----------------- | ------- | ----------- |
@@ -328,16 +328,16 @@ You can transmit the following 802.1 TLVs when exchanging LLDP messages. By defa
 | VLAN Name        | 3       | The name of any VLAN to which the port belongs. |
 | Link Aggregation | 7       | Indicates if the port supports link aggregation and if it is on. |
 
-To enable 802.1 TLV transmission, run the `nv set service lldp dot1-tlv on` command:
+To enable IEEE 802.1 TLV transmission, run the `nv set service lldp dot1-tlv on` command:
 
 ```
 cumulus@switch:~$ nv set service lldp dot1-tlv on
 cumulus@switch:~$ nv config apply
 ```
 
-To disable 802.1 TLV transmission, run the `nv unset service lldp dot1-tlv` command.
+To disable IEEE 802.1 TLV transmission, run the `nv unset service lldp dot1-tlv` command.
 
-To show if IEEE 802.1 TLV Inventory TLV transmission is on, run the NVUE `nv show service lldp` command:
+To show if IEEE 802.1 TLV transmission is `on`, run the NVUE `nv show service lldp` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show service lldp
@@ -345,14 +345,13 @@ cumulus@leaf01:mgmt:~$ nv show service lldp
 ----------------------  -----------  -------
 tx-interval             30           30     
 tx-hold-multiplier      4            4      
-dot1-tlv                off          off    
-lldp-med-inventory-tlv  on           on     
-mode                    default      default
+dot1-tlv                off          off   
+...
 ```
 
 ### IEEE 802.3 TLVs
 
-Cumulus Linux transmits the following 802.3 TLVs by default. You do not need to enable them.
+Cumulus Linux transmits the following IEEE 802.3 TLVs by default. You do not need to enable them.
 
 | Name                | Subtype | Description |
 |-------------------- | ------- | ----------- |
@@ -431,7 +430,7 @@ cumulus@switch:~$ nv config apply
 
 #### Show QoS TLV Transmission Settings
 
-To show if Qos TLV transmission is on for an interface, run the NVUE `nv show interface <interface>` command:
+To show if Qos TLV transmission is `on` for an interface, run the NVUE `nv show interface <interface>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1
@@ -468,7 +467,7 @@ tx-interval             30           30
 tx-hold-multiplier      4            4      
 dot1-tlv                off          off    
 lldp-med-inventory-tlv  on           on     
-mode                    default      default
+...
 ```
 
 ### Application Priority TLVs
@@ -530,7 +529,7 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv udp-port 4317
 cumulus@switch:~$ nv config apply
 ```
 
-The following example associates application priority 0 (the default priority) with iSCSI over TCP port 3260 and enables transmission of application TLVs on swp1.
+The following example associates application priority 0 (the default priority) with iSCSI over TCP port 3260 and enables transmission of application TLVs on swp1. Because priority 0 is the default priority setting, you do not need to run the NVUE command to associate the priority with iSCSI over TCP port 3260.
 
 ```
 cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
@@ -586,7 +585,7 @@ cumulus@switch:~$ nv unset interface swp1 lldp application-tlv udp-port 4317
 cumulus@switch:~$ nv config apply
 ```
 
-The following example stops associating application priority 0 (the default priority) with iSCSI over TCP port 3260 and disables transmission of application TLVs on swp1.
+The following example stops associating application priority 0 (the default priority) with iSCSI over TCP port 3260 and disables transmission of application TLVs on swp1. Because priority 0 is the default priority setting, you do not need to run the NVUE command to stop associating the priority with iSCSI over TCP port 3260.
 
 ```
 cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app iSCSI

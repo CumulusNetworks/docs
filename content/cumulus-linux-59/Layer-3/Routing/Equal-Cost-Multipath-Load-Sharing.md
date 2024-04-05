@@ -602,9 +602,7 @@ cumulus@switch:~$ nv set router adaptive-routing link-utilization-threshold on
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice warning%}}
-Enabling or disabling link utilization restarts the `switchd` service, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.
-{{%/notice%}}
+Enabling or disabling link utilization reloads the `switchd` service.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -626,7 +624,7 @@ interface.swp51.adaptive_routing.enable = TRUE
 interface.swp51.adaptive_routing.link_util_thresh = 100
 ```
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}

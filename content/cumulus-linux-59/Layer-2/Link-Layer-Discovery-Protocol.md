@@ -484,8 +484,16 @@ cumulus@switch:~$ nv config apply
 The following example associates application priority 5 with NVMe over TCP port 4420, then enables transmission of the application priority TLVs on swp1.
 
 ```
-cumulus@switch:~$ nv set service lldp application-tlv tcp-port 4420 priority 5
-cumulus@switch:~$ nv set interface swp1 lldp application-tlv tcp-port 4420 
+cumulus@switch:~$ nv set service lldp application-tlv app NVME_4420 priority 5
+cumulus@switch:~$ nv set interface swp1 lldp application-tlv app NVME_4420
+cumulus@switch:~$ nv config apply
+```
+
+The following example associates application priority 7 with NVMe over TCP port 8009, then enables transmission of the application priority TLVs on swp1.
+
+```
+cumulus@switch:~$ nv set service lldp application-tlv app NVME_8009 priority 7
+cumulus@switch:~$ nv set interface swp1 lldp application-tlv app NVME_8009
 cumulus@switch:~$ nv config apply
 ```
 
@@ -526,61 +534,59 @@ To show all the application TLVs configured on an interface:
 
 ```
 cumulus@switch:~$ nv show interface swp1 lldp application-tlv
-              operational          applied   
-----------     -----------          --------- 
-[udp-port]   933                    933
-[udp-port]   8721                   8721
-[tcp-port]   1209                   1209
-[tcp-port]   5933                   5933
-[app]        NVME_4420              NVME_4420 
-[app]        iSCSI                  iSCSI    
+             operational  applied  
+----------  -----------  ---------
+[udp-port]  4317         4317
+[tcp-port]  4217         4217  
+[app]       NVME_4420    NVME_4420
+[app]       iSCSI        iSCSI
 ```
 
 To show the priority mapping for UDP ports:
 
 ```
 cumulus@switch:~$ nv show service lldp application-tlv udp-port
-Port              Priority 
----------- ------------- 
-4317              3
+Port  priority
+----  --------
+4317  4 
 ```
 
 To show the priority mapping for applications:
 
 ```
 cumulus@switch:~$ nv show service lldp application-tlv app
-AppName           Priority 
---------------- ------------ 
-iSCSI           2 
+AppName    priority
+---------  --------
+NVME_4420  5       
+iSCSI      3 
 ```
 
 To show the priority mapping for TCP ports:
 
 ```
 cumulus@switch:~$ nv show service lldp application-tlv tcp-port
-Port              Priority 
------------ ------------ 
-3260                  6
-4420                  3
+Port  priority
+----  --------
+4217  6
 ```
 
 To show the UDP port numbers for which application priority TLVs transmit on an interface:
 
 ```
 cumulus@switch:~$ nv show interface swp1 lldp application-tlv udp-port
-Ports             
-----
-4023
-4067
+Ports
+-----
+4317
 ```
 
 To show the application names for which application priority TLVs transmit on an interface:
 
 ```
 cumulus@switch:~$ nv show interface swp1 lldp application-tlv app
-AppName            
-------------- 
-ISCSI  
+AppName  
+---------
+NVME_4420
+iSCSI
 ```
 
 ## Troubleshooting

@@ -303,66 +303,41 @@ Use CDP only or LLDP only to get the desired behavior of `PortID`, `Description`
 
 ## LLDP DCBX TLVs
 
-<span class="a-tooltip">[DCBX](## "Data Center Bridging Capability Exchange protocol ")</span> is an extension of LLDP. Cumulus Linux supports DCBX <span class="a-tooltip">[TLVs](## "Type-Length-Value ")</span> to provide additional information in LLDP packets to peers, such as VLAN information and <span class="a-tooltip">[QoS](## "Quality of Service ")</span>. Adding QoS configuration as part of the DCBX TLVs allows automated configuration on hosts and switches that connect to the switch.
+<span class="a-tooltip">[DCBX](## "Data Center Bridging Capability Exchange protocol ")</span> is an extension of LLDP that supports <span class="a-tooltip">[TLVs](## "Type-Length-Value ")</span> to provide additional information in LLDP packets to peers.
+
+Cumulus Linux supports the following LLDP DCBX TLVs:
+- IEEE 802.1
+- IEEE 802.3
+- QoS
+- LLDP-MED Inventory
+- Application Priority
 
 {{%notice info%}}
-- Cumulus Linux can send a maximum of 250 VLANS per switch port in one LLDP frame.
+- You can send a maximum of 250 VLANS per switch port in one LLDP frame.
 - Cumulus Linux does not support CEE DCBX TLVs.
 - Cumulus Linux limits DCBX support to enabling DCBX TLVs (either with ROCE global configuration or per interface) as documented in the {{<exlink url="https://ieeexplore.ieee.org/document/8403927" text="IEEE 802.1Q standard">}}.
 {{%/notice%}}
 
-Cumulus Linux supports the following TLVs:
-<!-- vale off -->
 ### IEEE 802.1 TLVs
-<!-- vale on -->
+
+You can transmit the following IEEE 802.1 TLVs when exchanging LLDP messages. By default, IEEE 802.1 TLV transmission is `off` and the switch sends all LLDP frames without IEEE 802.1 TLVs.
+
 | Name             | Subtype | Description |
 |----------------- | ------- | ----------- |
 | Port VLAN ID     | 1       | The port VLAN identifier. |
 | VLAN Name        | 3       | The name of any VLAN to which the port belongs. |
 | Link Aggregation | 7       | Indicates if the port supports link aggregation and if it is on. |
 
-### QoS TLVs
-
-| Name               | Subtype | Description |
-|------------------- | ------- | ----------- |
-| ETS Configuration  | 9       | The <span class="a-tooltip">[ETS](## "Enhanced Transmission Selection ")</span> configuration settings on the switch.|
-| ETS Recommendation | A       | The recommended <span class="a-tooltip">[ETS](## "Enhanced Transmission Selection ")</span> settings that the switch wants the connected peer interface to use. |
-| PFC Configuration  | B       | The <span class="a-tooltip">[PFC](## "Priority-based Flow Control ")</span> configuration settings on the switch. |
-<!-- vale off -->
-### IEEE 802.3 TLVs
-<!-- vale on -->
-Cumulus Linux transmits the following 802.3 TLVs by default. You do not need to enable them.
-
-| Name                | Subtype | Description |
-|-------------------- | ------- | ----------- |
-| Link Aggregation    | 3       | Indicates if the port supports link aggregation and if it is on.  |
-| Maximum Frame Size  | 4       | The MTU configuration on the port. The MTU on the port is the <span class="a-tooltip">[MFS](## "Maximum Frame Size ")</span>. |
-<!-- vale off -->
-
-### LLDP-MED Inventory TLVs
-
-LLDP-MED Inventory TLVs enable an endpoint to transmit detailed inventory information about itself to the switch, such as the manufacturer, model, firmware, and serial number.
-
-### Application Priority TLVs
-
-| Name           | Description |
-|----------------| ----------- |
-| Priority | The priority of the configured application. |
-| Sel | 2 for applications that use TCP, iSCSI, NVME over TCP with port 4420 or 8009.<br>3 for applications that use UDP. |
-| Protocol ID | TCP port or UDP port |
-
-### Transmit IEEE 802.1 TLVs
-<!-- vale on -->
-You can transmit the 802.1 TLV types (VLAN name, Port VLAN ID, and IEEE 802.1 Link Aggregation) when exchanging LLDP messages. By default, 802.1 TLV transmission is off and the switch sends all LLDP frames without 802.1 TLVs.
-
-To enable 802.1 TLV transmission, run the `nv set service lldp dot1-tlv on` command:
+To enable IEEE 802.1 TLV transmission, run the `nv set service lldp dot1-tlv on` command:
 
 ```
 cumulus@switch:~$ nv set service lldp dot1-tlv on
 cumulus@switch:~$ nv config apply
 ```
 
-To show if IEEE 802.1 TLV Inventory TLV transmission is on, run the NVUE `nv show service lldp` command:
+To disable IEEE 802.1 TLV transmission, run the `nv unset service lldp dot1-tlv` command.
+
+To show if IEEE 802.1 TLV transmission is `on`, run the NVUE `nv show service lldp` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show service lldp
@@ -370,14 +345,30 @@ cumulus@leaf01:mgmt:~$ nv show service lldp
 ----------------------  -----------  -------
 tx-interval             30           30     
 tx-hold-multiplier      4            4      
-dot1-tlv                off          off    
-lldp-med-inventory-tlv  on           on     
-mode                    default      default
+dot1-tlv                off          off   
+...
 ```
 
-### Transmit QoS TLVs
+### IEEE 802.3 TLVs
 
-You can enable QoS TLV transmission (ETS Configuration, ETS Recommendation, PFC Configuration) on an interface. By default, all QoS TLV transmission is off on all interfaces.
+Cumulus Linux transmits the following IEEE 802.3 TLVs by default. You do not need to enable them.
+
+| Name                | Subtype | Description |
+|-------------------- | ------- | ----------- |
+| Link Aggregation    | 3       | Indicates if the port supports link aggregation and if it is on.  |
+| Maximum Frame Size  | 4       | The MTU configuration on the port. The MTU on the port is the <span class="a-tooltip">[MFS](## "Maximum Frame Size ")</span>. |
+
+### QoS TLVs
+
+Adding <span class="a-tooltip">[QoS](## "Quality of Service ")</span> configuration as part of the DCBX TLVs allows automated configuration on hosts and switches that connect to the switch.
+
+You can transmit the following QoS TLVs. By default, all QoS TLV transmission is `off` on all interfaces.
+
+| Name               | Subtype | Description |
+|------------------- | ------- | ----------- |
+| ETS Configuration  | 9       | The <span class="a-tooltip">[ETS](## "Enhanced Transmission Selection ")</span> configuration settings on the switch.|
+| ETS Recommendation | A       | The recommended <span class="a-tooltip">[ETS](## "Enhanced Transmission Selection ")</span> settings that the switch wants the connected peer interface to use. |
+| PFC Configuration  | B       | The <span class="a-tooltip">[PFC](## "Priority-based Flow Control ")</span> configuration settings on the switch. |
 
 {{%notice info%}}
 Adding the QoS TLVs to LLDP packets on an interface relies on PFC and ETS configuration from `switchd`. Refer to {{<link url="Quality-of-Service" text="Quality of Service">}} for information on configuring PFC and ETS.
@@ -414,9 +405,32 @@ cumulus@switch:~$ nv config apply
 The interface must be a physical interface; you cannot enable TLVs on bonds.  
 {{%/notice%}}
 
+#### Disable QoS TLV Transmission
+
+To disable PFC Configuration TLV transmission, run the `nv unset interface <interface> lldp dcbx-pfc-tlv` command:
+
+```
+cumulus@switch:~$ nv unset interface swp1 lldp dcbx-pfc-tlv
+cumulus@switch:~$ nv config apply
+```
+
+To disable ETS Configuration TLV transmission, run the `nv unset interface <interface> lldp dcbx-ets-config-tlv` command:
+
+```
+cumulus@switch:~$ nv unset interface swp1 lldp dcbx-ets-config-tlv
+cumulus@switch:~$ nv config apply 
+```
+
+To disable ETS Recommendation TLV transmission, run the `nv unset interface <interface> lldp dcbx-ets-recomm-tlv` command:
+
+```
+cumulus@switch:~$ nv unset interface swp1 lldp dcbx-ets-recomm-tlv
+cumulus@switch:~$ nv config apply
+```
+
 #### Show QoS TLV Transmission Settings
 
-To show if Qos TLV transmission is on for an interface, run the NVUE `nv show interface <interface>` command:
+To show if Qos TLV transmission is `on` for an interface, run the NVUE `nv show interface <interface>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1
@@ -430,16 +444,18 @@ lldp
 ... 
 ```
 
-### Transmit LLDP-MED Inventory TLVs
+### LLDP-MED Inventory TLVs
 
 <span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> is an extension to LLDP that operates between endpoint devices, such as IP phones and switches. Inventory management TLV enables an endpoint to transmit detailed inventory information about itself to the switch, such as the manufacturer, model, firmware, and serial number.
 
-To enable LLDP-MED inventory TLVs on the switch, run the `nv set service lldp lldp-med-inventory-tlv on` command:
+To enable LLDP-MED inventory TLV transmission, run the `nv set service lldp lldp-med-inventory-tlv on` command:
 
 ```
 cumulus@switch:~$ nv set service lldp lldp-med-inventory-tlv on
 cumulus@switch:~$ nv config apply
 ```
+
+To disable LLDP-MED inventory TLV transmission, run the `nv unset service lldp lldp-med-inventory-tlv` command.
 
 To show if LLDP-MED Inventory TLV transmission is on, run the NVUE `nv show service lldp` command:
 
@@ -451,10 +467,10 @@ tx-interval             30           30
 tx-hold-multiplier      4            4      
 dot1-tlv                off          off    
 lldp-med-inventory-tlv  on           on     
-mode                    default      default
+...
 ```
 
-### Transmit Application Priority TLVs
+### Application Priority TLVs
 
 You can configure the switch to transmit DCBX application priority TLVs so that the network can receive and queue traffic properly.
 
@@ -505,7 +521,7 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv tcp-port 4217
 cumulus@switch:~$ nv config apply
 ```
 
-The following example associates application priority with the application using UDP port 4317, then enables transmission of application priority TLVs on swp1:
+The following example associates application priority 4 with the application using UDP port 4317, then enables transmission of application priority TLVs on swp1:
 
 ```
 cumulus@switch:~$ nv set service lldp application-tlv udp-port 4317 priority 4
@@ -513,7 +529,7 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv udp-port 4317
 cumulus@switch:~$ nv config apply
 ```
 
-The following example associates application priority 0 (the default priority) with iSCSI over TCP port 3260, then enables transmission of application TLVs on swp1.
+The following example associates application priority 0 (the default priority) with iSCSI over TCP port 3260 and enables transmission of application TLVs on swp1. Because priority 0 is the default priority setting, you do not need to run the NVUE command to associate the priority with iSCSI over TCP port 3260.
 
 ```
 cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
@@ -522,24 +538,97 @@ cumulus@switch:~$ nv config apply
 
 #### Disable Application Priority TLV Transmission
 
-To stop LLDP from sending PDUs with application priority TLVs, unset the interface configuration; for example:
+To stop LLDP from sending PDUs with application priority TLVs on an interface, unset the interface configuration; for example:
 
 ```
 cumulus@switch:~$ nv unset interface swp1 lldp application-tlv
+cumulus@switch:~$ nv config apply
+```
+
+The following example stops associating application priority 3 with iSCSI, then disables transmission of the application priority TLVs on swp1.
+
+```
+cumulus@switch:~$ nv unset service lldp application-tlv app iSCSI priority 3
+cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app iSCSI
+cumulus@switch:~$ nv config apply
+```
+
+The following example stops associating application priority 5 with NVMe over TCP port 4420, then disables transmission of the application priority TLVs on swp1.
+
+```
+cumulus@switch:~$ nv unset service lldp application-tlv app NVME_4420 priority 5
+cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app NVME_4420
+cumulus@switch:~$ nv config apply
+```
+
+The following example stops associating application priority 7 with NVMe over TCP port 8009, then disables transmission of the application priority TLVs on swp1.
+
+```
+cumulus@switch:~$ nv unset service lldp application-tlv app NVME_8009 priority 7
+cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app NVME_8009
+cumulus@switch:~$ nv config apply
+```
+
+The following example stops associating application priority 6 with the application using TCP port 4217, then disables transmission of application priority TLVs on swp1:
+
+```
+cumulus@switch:~$ nv unset service lldp application-tlv tcp-port 4217 priority 6
+cumulus@switch:~$ nv unset interface swp1 lldp application-tlv tcp-port 4217
+cumulus@switch:~$ nv config apply
+```
+
+The following example stops associating application priority 4 with the application using UDP port 4317, then disables transmission of application priority TLVs on swp1:
+
+```
+cumulus@switch:~$ nv unset service lldp application-tlv udp-port 4317 priority 4
+cumulus@switch:~$ nv unset interface swp1 lldp application-tlv udp-port 4317
+cumulus@switch:~$ nv config apply
+```
+
+The following example stops associating application priority 0 (the default priority) with iSCSI over TCP port 3260 and disables transmission of application TLVs on swp1. Because priority 0 is the default priority setting, you do not need to run the NVUE command to stop associating the priority with iSCSI over TCP port 3260.
+
+```
+cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app iSCSI
+cumulus@switch:~$ nv config apply
 ```
 
 #### Show Application Priority TLV Settings
 
+To show all application priority TLV configuration on the switch:
+
+```
+cumulus@switch:~$ nv show service lldp application-tlv
+udp-port
+===========
+    Port  priority
+    ----  --------
+    4317  4       
+
+tcp-port
+===========
+    Port  priority
+    ----  --------
+    4217  6       
+app
+======
+    AppName    priority
+    ---------  --------
+    NVME_4420  5       
+    NVME_8009  7       
+    iSCSI      3
+```
+
 To show all the application TLVs configured on an interface:
 
 ```
-cumulus@switch:~$ nv show interface swp1 lldp application-tlv
-             operational  applied  
+cumulus@switch:~$ nv show interface swp1 lldp application-tlv 
+            operational  applied  
 ----------  -----------  ---------
-[udp-port]  4317         4317
-[tcp-port]  4217         4217  
+[udp-port]  4317         4317     
+[tcp-port]  4217         4217     
 [app]       NVME_4420    NVME_4420
-[app]       iSCSI        iSCSI
+[app]       NVME_8009    NVME_8009
+[app]       iSCSI        iSCSI 
 ```
 
 To show the priority mapping for UDP ports:
@@ -558,6 +647,7 @@ cumulus@switch:~$ nv show service lldp application-tlv app
 AppName    priority
 ---------  --------
 NVME_4420  5       
+NVME_8009  7       
 iSCSI      3 
 ```
 
@@ -586,6 +676,7 @@ cumulus@switch:~$ nv show interface swp1 lldp application-tlv app
 AppName  
 ---------
 NVME_4420
+NVME_8009
 iSCSI
 ```
 

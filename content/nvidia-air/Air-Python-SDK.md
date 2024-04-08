@@ -219,6 +219,30 @@ curl --location --request POST 'https://air.nvidia.com/api/v2/simulation/' \
 {{< /tab >}}
 {{< /tabs >}}
 
+Optionally, a ZTP script can also be included during simulation creation. The script will automatically be hosted by the oob-mgmt-server and fetched by nodes that support ZTP.
+
+{{< tabs "TabID224">}}
+{{< tab "SDK ">}}
+
+```
+>>> ztp_contents = '<ztp_script_content_here>'
+>>> simulation = air.simulations.create(topology_data=dot_file_path, ztp_script=ztp_contents)
+```
+{{< /tab >}}
+{{< tab "cURL ">}}
+
+```
+curl --location --request POST 'https://air.nvidia.com/api/v2/simulation/' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "topology_data": "graph \"My Simulation\" {\n  \"cumulus0\" [ memory=\"1024\" os=\"cumulus-vx-5.7.0\" cpu=\"1\" ]\n  \"cumulus1\" [ memory=\"1024\" os=\"cumulus-vx-5.7.0\" cpu=\"1\"]\n    \"cumulus0\":\"swp1\" -- \"cumulus1\":\"swp1\"\n    \"cumulus0\":\"swp2\" -- \"cumulus1\":\"swp2\"\n}\n",
+  "ztp_script": "<ztp_script_content_here>"
+}'
+```
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Delete a Simulation
 {{< tabs "TabID55289 ">}}
 {{< tab "SDK ">}}

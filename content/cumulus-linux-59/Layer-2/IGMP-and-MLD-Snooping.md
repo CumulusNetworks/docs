@@ -37,20 +37,20 @@ Edit the `/etc/network/interfaces` file to add `bridge-mcquerier 1` to the bridg
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto vlan10
-iface vlan10
-  address 10.1.10.2/24
-  vlan-id 10
-  vlan-raw-device bridge
-  bridge-igmp-querier-src 10.10.10.1
+auto br_default.10
+vlan br_default.10
+    bridge-igmp-querier-src 10.10.10.1
 
 auto br_default
 iface br_default
-  bridge-ports swp1 swp2 swp3
-  bridge-vlan-aware yes
-  bridge-vids 10 20
-  bridge-pvid 1
-  bridge-mcquerier 1
+    hwaddress 1c:34:da:b9:46:fd
+    bridge-vlan-aware yes
+    bridge-vids 10
+    bridge-pvid 1
+    bridge-stp yes
+    bridge-mcsnoop yes
+    bridge-mcquerier yes
+    mstpctl-forcevers rstp
 ...
 ```
 

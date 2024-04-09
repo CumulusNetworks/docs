@@ -204,6 +204,51 @@ NVUE does not support configuring traditional bridges. The following example con
      bridge-ports swp1 swp2
      bridge-vlan-aware no
    ```
+
+#### VLAN-aware RSTP Timers Example
+
+NVUE does not support configuring RSTP timers on VLAN-aware bridges. The following example configures non-default RSTP timers for the NVUE default bridge `br_default`:
+
+1. Create a `.yaml` file and add the following traditional snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano vlan-aware_bridge_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             ifupdown2_eni:
+               br_default: |
+                 mstpctl-maxage 10
+                 mstpctl-hello 1
+                 mstpctl-fdelay 8
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch vlan-aware_bridge_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the end of the `/etc/network/interfaces` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/network/interfaces
+   ...
+   auto br_default
+   iface br_default
+       mstpctl-maxage 10
+       mstpctl-hello 1
+       mstpctl-fdelay 8
+   ...
+   ```
+
 <!-- vale off -->
 ### /etc/cumulus/switchd.conf Snippets
 <!-- vale on -->

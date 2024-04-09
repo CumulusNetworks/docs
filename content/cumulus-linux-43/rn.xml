@@ -313,12 +313,6 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>5.0.0-5.8.0</td>
 </tr>
 <tr>
-<td>2803044</td>
-<td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2794766</td>
 <td>The Mellanox 3700C switch reports a slow memory leak in sx_sdk. Memory increases by about 240B/hour and does not free up.</td>
 <td>4.3.0-4.4.5</td>
@@ -2755,12 +2749,6 @@ snmpd.service - Simple Network Management Protocol (SNMP) Daemon.
 To work around this issue, run the {{sudo systemctl restart snmpd.service}} command.</td>
 <td>4.3.0-4.4.5</td>
 <td>5.0.0-5.8.0</td>
-</tr>
-<tr>
-<td>2803044</td>
-<td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2794766</td>

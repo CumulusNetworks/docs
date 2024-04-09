@@ -426,12 +426,6 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>4.3.2-4.4.5</td>
 </tr>
 <tr>
-<td>3549798</td>
-<td>If you add a VRF, then SSH into that VRF, which is a generated service (for example, {{sshd@vrfname.service}}), the service fails as the VRF is not created in time. To work around this issue, configure the VRF first, apply the configuration, then enable the SSH service on the VRF.</td>
-<td>5.6.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3538321</td>
 <td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the slave state and one of the ports might remain in an uncalibrated state. To work around this issue, toggle the port that is in the uncalibrated state up and down so that one of the ports is selected as the slave.</td>
 <td>5.6.0-5.8.0</td>
@@ -579,12 +573,6 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
-<td>3345054</td>
-<td>The NVUE {{nv show interface &lt;interface&gt; qos}} command takes a significant time to show output or times out. To work around this issue, use specific QoS commands. For example, to show congestion control information, run the {{nv show interface &lt;interface&gt; qos congestion-control}} command.</td>
-<td>5.4.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3341214</td>
 <td>If you use the NVUE REST API to configure a local user with a hashed password, the user cannot log in and the {{/etc/nvue.d/startup.yaml}} file shows the password as plain text.</td>
 <td>5.4.0-5.8.0</td>
@@ -690,8 +678,8 @@ To work around this issue, reference the OID without the preceding period ( {{.}
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3135952</td>

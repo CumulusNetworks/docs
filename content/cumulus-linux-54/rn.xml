@@ -967,12 +967,6 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
-<td>3345054</td>
-<td>The NVUE {{nv show interface &lt;interface&gt; qos}} command takes a significant time to show output or times out. To work around this issue, use specific QoS commands. For example, to show congestion control information, run the {{nv show interface &lt;interface&gt; qos congestion-control}} command.</td>
-<td>5.4.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3344846</td>
 <td>The Spectrum-3 hardware configuration is not optimized for the best PTP accuracy when using 25GbE.  You might see higher than expected PTP offsets on this platforms and interface speed.</td>
 <td>5.4.0-5.5.1</td>
@@ -1181,8 +1175,8 @@ The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3135952</td>

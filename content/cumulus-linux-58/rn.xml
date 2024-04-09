@@ -91,12 +91,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
-<td>3689195</td>
-<td>When you enable 802.1X auth-fail VLAN on an interface, {{hostapd}} doesn't activate the auth-fail VLAN unless it receives an explicit {{Access-Reject}} response.</td>
-<td>5.7.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3685007</td>
 <td>Cumulus Linux does not support 802.1X dynamic VLANs on PEAP with MS Windows-based supplicants.</td>
 <td>5.7.0-5.8.0</td>
@@ -121,12 +115,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
-<td>3677429</td>
-<td>When there is a flood of ARP packets, {{switchd}} might get overwhelmed and go into a busy state. Any NVUE configuration commands for {{switchd}} might time out and you might see {{WARN MAC table full, skipped processing #x learn records}} log messages in the {{switchd.log}} file. To work around this issue, wait for {{switchd}} to resolve the ARP floods, which might take a few minutes depending on the amount of ARP flooding (typically between three and five minutes), then reapply the NVUE configuration.</td>
-<td>5.7.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3672706</td>
 <td> When you enable port security, you can configure a maximum of 450 port security static MAC addresses for an interface.</td>
 <td>5.7.0-5.8.0</td>
@@ -141,12 +129,6 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3636266</td>
 <td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
-<td>5.7.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3634428</td>
-<td>The NUVE {{nv config history}} command does not display the correct TACACS user.</td>
 <td>5.7.0-5.8.0</td>
 <td></td>
 </tr>
@@ -180,12 +162,6 @@ To work around this issue when using fiber cables:
 <td>3556762</td>
 <td>On rare occasions, SPT switchover might not happen cleanly in PIM resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
 <td>5.5.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3549798</td>
-<td>If you add a VRF, then SSH into that VRF, which is a generated service (for example, {{sshd@vrfname.service}}), the service fails as the VRF is not created in time. To work around this issue, configure the VRF first, apply the configuration, then enable the SSH service on the VRF.</td>
-<td>5.6.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>
@@ -263,12 +239,6 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
-<td>3345054</td>
-<td>The NVUE {{nv show interface &lt;interface&gt; qos}} command takes a significant time to show output or times out. To work around this issue, use specific QoS commands. For example, to show congestion control information, run the {{nv show interface &lt;interface&gt; qos congestion-control}} command.</td>
-<td>5.4.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3341214</td>
 <td>If you use the NVUE REST API to configure a local user with a hashed password, the user cannot log in and the {{/etc/nvue.d/startup.yaml}} file shows the password as plain text.</td>
 <td>5.4.0-5.8.0</td>
@@ -325,6 +295,20 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 <td>3145869</td>
 <td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
 <td>5.2.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3141826</td>
+<td>A slow memory leak (~5KB over 24 hour period at a 60 second polling interval) might occur in SNMP when you walk the following system MIB objects (1.3.6.1.2.1).
+
+1.3.6.1.2.1.47 --&gt; Entity MIB
+ 1.3.6.1.2.1.99 --&gt; Entity Sensor MIB
+ 1.3.6.1.2.1.23 --&gt; rip2
+ 1.3.6.1.2.1.2 --&gt; interface/interfaces
+ 1.3.6.1.2.1.31 --&gt; ifMIB
+ 1.3.6.1.2.1.4 --&gt; IP
+ 1.3.6.1.2.1.25 --&gt; hostResource</td>
+<td>5.0.1-5.8.0</td>
 <td></td>
 </tr>
 <tr>

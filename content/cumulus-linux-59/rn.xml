@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3800536</td>
-<td>Some third-party modules cause false-alarm interrupts during SERDES tuning, which overloads the ASIC and causes an ASIC response delay.</td>
-<td>5.8.0-5.9.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3773177</td>
 <td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
@@ -28,12 +22,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td>3771168</td>
 <td>When you perform an ISSU upgrade on a Spectrum 1 switch, the {{switchd}} service might crash.</td>
 <td>5.8.0-5.9.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3689195</td>
-<td>When you enable 802.1X auth-fail VLAN on an interface, {{hostapd}} doesn't activate the auth-fail VLAN unless it receives an explicit {{Access-Reject}} response.</td>
-<td>5.7.0-5.9.0</td>
 <td></td>
 </tr>
 <tr>
@@ -54,6 +42,24 @@ To work around this issue when using fiber cables:
 &lt;ul&gt;&lt;li&gt;Configure 800g/Force.&lt;/li&gt;
 &lt;li&gt;Use the recommended NVIDIA optical adapters.&lt;/li&gt;&lt;/ul&gt;</td>
 <td>5.6.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3556762</td>
+<td>On rare occasions, SPT switchover might not happen cleanly in PIM resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
+<td>5.5.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3538321</td>
+<td>In rare cases, an STP topology change on PTP over a VLAN can result in the switch losing the slave state and one of the ports might remain in an uncalibrated state. To work around this issue, toggle the port that is in the uncalibrated state up and down so that one of the ports is selected as the slave.</td>
+<td>5.6.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3452681</td>
+<td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see an error message similar to {{Error: GET /nvue_v1/system/aaa/tacacs/authorization/1?rev=operational responded with 404 NOT FOUND}}.</td>
+<td>5.5.0-5.9.0</td>
 <td></td>
 </tr>
 <tr>
@@ -94,9 +100,21 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3341214</td>
+<td>If you use the NVUE REST API to configure a local user with a hashed password, the user cannot log in and the {{/etc/nvue.d/startup.yaml}} file shows the password as plain text.</td>
+<td>5.4.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3329518</td>
 <td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} (files is listed before tacplus), a user that is present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch. NVIDIA recommends that when using TACACS+, you list {{tacplus}} before {{files}} in {{/etc/nsswitch.conf}}.  When using NVUE, ensure that {{tacacs}} has priority over {{local}}.</td>
 <td>5.4.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>If you use {{su}} to change to a user specified through TACACS+, the user becomes the local tacacs0 thru tacacs15 user instead of the named user to run {{sudo}} commands. As a result, the named user password might not match the local tacacs0 thru tacacs15 user password.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.9.0</td>
 <td></td>
 </tr>
 <tr>
@@ -299,13 +317,28 @@ You can safely ignore this warning.</td>
 <th> Affects </th>
 </tr>
 <tr>
+<td>3800536</td>
+<td>Some third-party modules cause false-alarm interrupts during SERDES tuning, which overloads the ASIC and causes an ASIC response delay.</td>
+<td>5.8.0</td>
+</tr>
+<tr>
 <td>3782543</td>
 <td>When you configure the BGP setting {{bgp max-med on-startup}} with vtysh, the MED on some peers might not be set to 4294967294 as expected on startup.  The {{max-med}} might also fail to reset after the startup timer expires.</td>
 <td>5.6.0-5.8.0</td>
 </tr>
 <tr>
+<td>3775648</td>
+<td>Enabling or disabling link utilization causes the {{switchd}} service to restart, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.</td>
+<td>5.8.0</td>
+</tr>
+<tr>
 <td>3770993</td>
 <td>When a supplicant is authorized successfully on an interface in 802.1x multi-host mode, {{ping}} traffic coming into the 802.1x interface towards a local SVI might not be successful.</td>
+<td>5.8.0</td>
+</tr>
+<tr>
+<td>3770865</td>
+<td>On the NVIDIA SN5600 switch, performing a fresh image install or a power cycle can cause the PCIE link speed to get downgraded from Gen3(8GTs) to Gen1(2.5GTs). To recover, reboot the switch.</td>
 <td>5.8.0</td>
 </tr>
 <tr>
@@ -332,6 +365,39 @@ You can safely ignore this warning.</td>
 <td>3679478</td>
 <td>Both the ASIC Monitoring service and the What Just Happened (WJH) service try to initialize the SDK TELE module; however, initialization is successful only for the first service to initialize the module. There is no functional impact if a service tries to initialize the module again.</td>
 <td>5.7.0-5.8.0</td>
+</tr>
+<tr>
+<td>3672706</td>
+<td> When you enable port security, you can configure a maximum of 450 port security static MAC addresses for an interface.</td>
+<td>5.7.0-5.8.0</td>
+</tr>
+<tr>
+<td>3484058</td>
+<td>When you power on the NVIDIA SN3420 switch with no connected cables, the QSFP ports LEDs light in amber.</td>
+<td>5.3.0-5.8.0</td>
+</tr>
+<tr>
+<td>3463827</td>
+<td>On rare occasions, SPT switchover might not happen cleanly in PIM, resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
+<td>5.6.0-5.8.0</td>
+</tr>
+<tr>
+<td>3433577</td>
+<td>When you use a single VXLAN device (SVD) with MLAG and static VXLAN tunnels, Cumulus Linux incorrectly associates the MAC addresses it learns from the VXLAN fabric to the bridge PVID. This issue can lead to a feedback loop between the {{clagd}} service and {{switchd}}, and might result in critical CPU usage with an out of memory condition. Do not use an SVD when enabling MLAG in a static VXLAN environment.</td>
+<td>5.5.0-5.8.0</td>
+</tr>
+<tr>
+<td>3141826</td>
+<td>A slow memory leak (~5KB over 24 hour period at a 60 second polling interval) might occur in SNMP when you walk the following system MIB objects (1.3.6.1.2.1).
+
+1.3.6.1.2.1.47 --&gt; Entity MIB
+ 1.3.6.1.2.1.99 --&gt; Entity Sensor MIB
+ 1.3.6.1.2.1.23 --&gt; rip2
+ 1.3.6.1.2.1.2 --&gt; interface/interfaces
+ 1.3.6.1.2.1.31 --&gt; ifMIB
+ 1.3.6.1.2.1.4 --&gt; IP
+ 1.3.6.1.2.1.25 --&gt; hostResource</td>
+<td>5.0.1-5.8.0</td>
 </tr>
 </table>
 </tables>

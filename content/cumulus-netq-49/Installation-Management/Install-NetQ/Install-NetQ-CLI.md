@@ -293,7 +293,7 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and ad
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-4.9
 ...
 ```
 
@@ -306,17 +306,13 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.9
 ...
 ```
 
 {{</tab>}}
 
 {{</tabs>}}
-
-    {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
-    {{</notice>}}
 
 ## Install NetQ CLI
 
@@ -333,7 +329,7 @@ Cumulus Linux 4.4 and later includes the `netq-apps` package by default. To upgr
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.9
 ...
 ```
 
@@ -413,12 +409,12 @@ To obtain the NetQ CLI package:
     ...
     [cumulus-arch-netq-latest]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-latest/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.9/$basearch
     gpgcheck=1
     enabled=1
     [cumulus-noarch-netq-latest]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-latest/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.9/noarch
     gpgcheck=1
     enabled=1
     ...

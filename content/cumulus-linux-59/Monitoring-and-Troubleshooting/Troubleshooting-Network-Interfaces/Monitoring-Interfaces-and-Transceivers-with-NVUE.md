@@ -94,7 +94,7 @@ link
     in-drops               5                           
     in-errors              0                           
     in-pkts                5                           
-    out-bytes              9.73 MB                     ß
+    out-bytes              9.73 MB
     out-drops              0                           
     out-errors             0                           
     out-pkts               140188                      

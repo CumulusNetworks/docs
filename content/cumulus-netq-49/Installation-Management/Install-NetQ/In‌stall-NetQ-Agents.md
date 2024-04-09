@@ -72,12 +72,12 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upg
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.9
 ...
 ```
 
 {{<notice tip>}}
-You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.3: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.3</pre>
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.9: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.9</pre>
 {{</notice>}}
 
 2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
@@ -149,7 +149,7 @@ To obtain the NetQ Agent package:
 
        admin@switch:~$ sudo vi /etc/apt/sources.list
        ...
-       deb https://apps3.cumulusnetworks.com/repos/deb buster netq-latest
+       deb https://apps3.cumulusnetworks.com/repos/deb buster netq-4.9
        ...
 1. Add the SONiC repo key:
 
@@ -239,14 +239,14 @@ To obtain the NetQ Agent package:
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-4.0]
+    [cumulus-arch-netq-4.9]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.9/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-4.0]
+    [cumulus-noarch-netq-4.9]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.9/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -414,7 +414,7 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and ad
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-4.9
 ...
 ```
 
@@ -427,7 +427,7 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.9
 ...
 ```
 

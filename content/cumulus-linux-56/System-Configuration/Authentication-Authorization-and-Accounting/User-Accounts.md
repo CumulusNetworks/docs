@@ -69,14 +69,18 @@ Use the following groups to set permissions for local user accounts. To add user
 | `nvapply` | Allows the user to run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
 
 The following example:
-- Creates a new user account called `admin2`, adds the full name `First Last`, and sets the password to `CumulusLinux!`
-- Sets the group membership to `sudo` and `nvapply` (permissions to use `sudo`, `nv show`, `nv set`, and `nv apply`).
+- Creates a new user account called `admin2`, creates a home directory for the user, adds the full name `First Last`, and sets the password to `CumulusLinux!`
+- Sets the group membership (role) to `sudo` and `nvapply` (permissions to use `sudo`, `nv show`, `nv set`, and `nv apply`).
 
 ```
-cumulus@switch:~$ sudo useradd admin2 -c "First Last" -p CumulusLinux!
+cumulus@switch:~$ sudo useradd admin2 -m -c "First Last" -p CumulusLinux!
 cumulus@switch:~$ sudo adduser admin2 sudo
 cumulus@switch:~$ sudo adduser admin2 nvapply
 ```
+
+{{%notice note%}}
+When you use Linux commands to add a new user, you must create a home directory for the user with the `-m` option. NVUE commands create a home directory automatically.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -80,14 +80,18 @@ If you are an NVUE-managed user, you can update your own password with the Linux
 {{< tab "Linux Commands ">}}
 
 The following example:
-- Creates a new user account called `admin2`, adds the full name `First Last`, and sets the password to `CumulusLinux!`
+- Creates a new user account called `admin2`, creates a home directory for the user, adds the full name `First Last`, and sets the password to `CumulusLinux!`
 - Sets the group membership (role) to `sudo` and `nvapply` (permissions to use `sudo`, `nv show`, `nv set`, and `nv apply`).
 
 ```
-cumulus@switch:~$ sudo useradd admin2 -c "First Last" -p CumulusLinux!
+cumulus@switch:~$ sudo useradd admin2 -m -c "First Last" -p CumulusLinux!
 cumulus@switch:~$ sudo adduser admin2 sudo
 cumulus@switch:~$ sudo adduser admin2 nvapply
 ```
+
+{{%notice note%}}
+When you use Linux commands to add a new user, you must create a home directory for the user with the `-m` option. NVUE commands create a home directory automatically.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

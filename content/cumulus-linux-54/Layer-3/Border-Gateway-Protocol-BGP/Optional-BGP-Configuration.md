@@ -2146,6 +2146,14 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+Cumulus Linux considers the full list of communities on a BGP route as a single string to evaluate. If you try to match `$` (ends with), Cumulus Linux matches the last community value in the list of communities, not the individual community values within the list.
+
+For example, if you use the regular expression `".*:(20)$"`, Cumulus Linux matches all the BGP routes with a list of communities ending in 20.
+- Routes with communities 45000:10 55000:40 65000:15000 123:20 match.
+- Routes with communities 45000:10 55000:20 65000:15000 do **not** match.
+{{%/notice%}}
+
 ## Related Information
 
 - {{<exlink url="https://tools.ietf.org/html/rfc4360" text="RFC 4360, BGP Extended Communities Attribute">}}

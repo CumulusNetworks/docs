@@ -77,7 +77,7 @@ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.9
 ```
 
 {{<notice tip>}}
-You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.9: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.9</pre>
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.3: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.3</pre>
 {{</notice>}}
 
 2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
@@ -434,10 +434,6 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.9
 {{</tab>}}
 
 {{</tabs>}}
-
-    {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
-    {{</notice>}}
 
 {{</tab>}}
 

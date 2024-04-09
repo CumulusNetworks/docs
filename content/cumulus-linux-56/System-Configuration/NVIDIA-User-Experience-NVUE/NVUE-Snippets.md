@@ -503,17 +503,17 @@ The following flexible snippet called `lldp_config_snipppet` disables LLDP on sw
 ```
 cumulus@leaf01:mgmt:~$ sudo nano lldp_config_snipppet.yaml
 - set:
-  system:
-   config:
-    snippet:
-     lldp-interfaces-config:
-      file: "/etc/lldpd.d/lldp-interfaces.conf"
-      content: |
-       configure system interface pattern-blacklist swp1,swp2
-      services:
-       lldp:
-        service: lldpd
-        action: restart
+    system:
+      config:
+        snippet:
+          lldp-interfaces-config:
+            file: "/etc/lldpd.d/lldp-interfaces.conf"
+            content: |
+              configure system interface pattern-blacklist swp1,swp2
+              services:
+                lldp:
+                  service: lldpd
+                  action: restart
 ```
 
 The following flexible snippet disables LLDP on swp1 and swp2 using the `system interface pattern` keyword:
@@ -521,17 +521,17 @@ The following flexible snippet disables LLDP on swp1 and swp2 using the `system 
 ```
 cumulus@leaf01:mgmt:~$ sudo nano lldp_config_snipppet.yaml
 - set:
-  system:
-   config:
-    snippet:
-     lldp-interfaces-config:
-      file: "/etc/lldpd.d/lldp-interfaces.conf"
-      content: |
-       configure system interface pattern eth*,swp*,!swp1,!swp2
-      services:
-       lldp:
-        service: lldpd
-        action: restart
+    system:
+      config:
+        snippet:
+          lldp-interfaces-config:
+            file: "/etc/lldpd.d/lldp-interfaces.conf"
+            content: |
+              configure system interface pattern eth*,swp*,!swp1,!swp2
+            services:
+              lldp:
+                service: lldpd
+                action: restart
 ```
 
 After you patch and apply the configuration above, the snippet creates a new file in the `/etc/lldp.d` directory, then restarts the `lldpd` service to stop LLDP transmitting and receiving on swp1 and swp2. Other interfaces continue to participate in LLDP.

@@ -1126,7 +1126,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Add the table ID at the end of the interface section of the  `/etc/ptp4l.conf` file:
+1. Add the table ID at the end of the interface section of the `/etc/ptp4l.conf` file:
 
    ```
    [swp1]
@@ -1143,6 +1143,40 @@ cumulus@switch:~$ nv config apply
 {{< /tabs >}}
 
 To show the unicast master table configuration on the switch, run the `nv show service ptp <instance-id> unicast-master <table-id>` command.
+
+To show unicast PTP related counters, run the `nv show interface <interface>> counters ptp` command and examine the `Signaling` section in the output.
+
+```
+cumulus@switch:~$ nv show interface swp1 counters ptp
+Packet Type                       Received       Transmitted    
+---------------------             ------------   ------------   
+Announce                                    0            681
+Sync                                        0          43530
+Follow-up                                   0          43530
+Delay Request                           42064              0
+Delay Response                              0          42064
+Peer Delay Request                          0              0
+Peer Delay Response                         0              0
+Management                                  0              0
+Signaling                                  94            282
+  Announce Grant Request                   94              0
+  Announce Grant Response                   0             94
+  Announce Deny Response                    0              0
+  Sync Grant Request                       94              0
+  Sync Grant Response                       0             94
+  Sync Deny Response                        0              0
+  Delay Grant Request                      94              0
+  Delay Grant Response                      0             94
+  Delay Deny Response                       0              0
+  Cancel Announce Request                   0              0
+  Cancel Sync Request                       0              0
+  Cancel Delay Request                      0              0
+```
+
+{{%notice note%}}
+- The client sends unicast requests together in one signaling message (Announce, Sync, Delay request TLV), and the unicast server sees one signaling message and three TLVs. The counter increments for each request received.
+- The server responds with a grant signaling message individually for each response; the response includes three signaling messages each with one TLV. The counters increment individually.
+{{%/notice%}}
 
 ### Optional Unicast Interface Configuration
 

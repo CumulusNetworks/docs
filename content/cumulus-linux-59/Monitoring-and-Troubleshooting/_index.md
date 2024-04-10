@@ -123,21 +123,11 @@ To show general information about the switch, run the `nv show platform hardware
 
 ```
 cumulus@switch:~$ nv show platform hardware
-              operational      
--------------  -----------------
-base-mac       44:38:39:22:01:7A
-cpu            n/a              
-disk-size      n/a              
-manufacturer   Cumulus          
-memory         1758728 kB       
-model          VX               
-part-number    5.9.0            
-port-layout    n/a              
-product-name   VX               
-serial-number  44:38:39:22:01:7a
-system-mac     44:38:39:22:01:b1
-asic-model     n/a              
-asic-vendor    n/a
+             operational                  
+-----------  -----------------------------
+model        QEMU Virtual CPU version 2.5+
+core-count   1                            
+utilization  0.6%
 ```
 <!-- vale off -->
 ## Diagnostics Using cl-support

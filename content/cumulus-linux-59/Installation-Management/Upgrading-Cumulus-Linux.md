@@ -258,13 +258,13 @@ To upgrade the switch using package upgrade:
 2. Fetch the latest update metadata from the repository and review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies).
 
    ```
-   cumulus@switch:~$ nv action upgrade system packages to 5.9.0 dry-run
+   cumulus@switch:~$ nv action upgrade system packages to latest dry-run
    ```
 
 3. Upgrade all the packages to the latest distribution.
 
     ```
-    cumulus@switch:~$ nv action upgrade system packages to 5.9.0
+    cumulus@switch:~$ nv action upgrade system packages to latest
     ```
 
     If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).

@@ -53,7 +53,10 @@ nv show service lldp application-tlv app
 nv show service lldp application-tlv tcp-port
 nv show service lldp application-tlv udp-port
 nv show service telemetry histogram latency
+nv show system cli
+nv show system cli pagination
 nv show system reboot required
+nv show system security password-hardening
 ```
 
 {{< /tab >}}
@@ -73,11 +76,22 @@ nv set service lldp application-tlv tcp-port <port> priority <priority>
 nv set service lldp application-tlv udp-port <port> priority <priority> 
 nv set service telemetry histogram latency bin-min-boundary
 nv set service telemetry histogram latency histogram-size
+nv set system cli pagination
 nv set system cli pagination state
 nv set system cli pagination pager
 nv set system cli inactive-timeout
 nv set system control-plane acl acl-default-dos inbound
 nv set system control-plane acl acl-default-whitelist inbound
+nv set system security password-hardening digits-class
+nv set system security password-hardening expiration
+nv set system security password-hardening expiration-warning
+nv set system security password-hardening history-cnt
+nv set system security password-hardening len-min
+nv set system security password-hardening lower-class
+nv set system security password-hardening reject-user-passw-match
+nv set system security password-hardening special-class
+nv set system security password-hardening state
+nv set system security password-hardening upper-class
 ```
 
 {{< /tab >}}
@@ -106,14 +120,25 @@ nv unset system cli pagination pager
 nv unset system cli inactive-timeout
 nv unset system control-plane acl acl-default-dos
 nv unset system control-plane acl acl-default-whitelist
+nv unset system security password-hardening
+nv unset system security password-hardening digits-class
+nv unset system security password-hardening expiration
+nv unset system security password-hardening expiration-warning
+nv unset system security password-hardening history-cnt
+nv unset system security password-hardening len-min
+nv unset system security password-hardening lower-class
+nv unset system security password-hardening reject-user-passw-match
+nv unset system security password-hardening special-class
+nv unset system security password-hardening state
+nv unset system security password-hardening upper-class
 ```
 
 {{< /tab >}}
 {{< tab "nv action ">}}
 
 ```
-nv action upgrade system packages to <version> dry-run
-nv action upgrade system packages to <version>
+nv action upgrade system packages to latest dry-run
+nv action upgrade system packages to latest
 ```
 
 {{< /tab >}}

@@ -157,7 +157,7 @@ The following command upgrades all the system components to the latest release:
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv action upgrade system packages to 5.9.0
+cumulus@switch:~$ nv action upgrade system packages to latest
 ```
 
 {{< /tab >}}
@@ -176,7 +176,7 @@ The following command provides information on the components you want to upgrade
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv action upgrade system packages to 5.9.0 dry-run
+cumulus@switch:~$ nv action upgrade system packages to latest dry-run
 ```
 
 {{< /tab >}}

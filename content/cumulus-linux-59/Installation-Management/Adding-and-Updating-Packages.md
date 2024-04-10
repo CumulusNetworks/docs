@@ -125,18 +125,26 @@ The search commands look for the search terms not only in the package name but i
 
 ## List Packages Installed on the System
 
-The `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system with the version, run the following command.
+The `apt-cache` command shows information about all the packages available in the repository. To see which packages are actually installed on your system, run the following command.
 
 {{< tabs "TabID130 ">}}
 {{< tab "NVUE Command ">}}
 
 ```
 cumulus@switch:~$ nv show platform software installed
-Installed Package   description                                                      package                  version
------------------   -------------------                                              ----------               --------------------
-acpi                displays information on ACPI devices                             acpi                     1.7-1.1
-acpi-support-base   scripts for handling base ACPI events such as the power button   acpi-support-base        0.142-8
-acpid               Advanced Configuration and Power Interface event daemon          acpid                    1:2.0.31-1
+acpi                                   libfreeipmi17                          libyajl2
+acpid                                  libfreetype6                           libyaml-0-2
+acpi-support-base                      libfstrm0                              libyang2
+adduser                                libfuse2                               libyuv0
+apt                                    libgav1-1                              libzmq5
+arping                                 libgcc-12-dev                          libzstd1
+arptables                              libgcc-s1                              linux-base
+atftp                                  libgcrypt20                            linux-image-6.1.0-cl-1-amd64
+atftpd                                 libgd3                                 linux-image-amd64
+auditd                                 libgdbm6                               linux-libc-dev
+babeltrace                             libgdbm-compat4                        linux-perf
+base-files                             libgee-0.8-2                           linuxptp
+base-passwd                            libgeoip1                              linux-selftests
 ...
 ```
 
@@ -174,11 +182,11 @@ The following example command shows which version of the `vrf` package is on the
 
 ```
 cumulus@switch:~$ nv show platform software installed vrf
-             running              applied  pending  description
------------  -------------------  -------  -------  -----------
-description  Linux tools for VRF                    Description
-package      vrf                                    Package
-version      1.0-cl5.7.0u9                         Version
+             operational        
+-----------  -------------------
+package      vrf                
+version      1.0-cl5.9.0u2      
+description  Linux tools for VRF
 ```
 
 {{< /tab >}}

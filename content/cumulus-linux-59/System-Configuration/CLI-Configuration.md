@@ -10,12 +10,10 @@ Cumulus Linux provides several options to configure the CLI; you can set a CLI s
 
 To reduce the window of opportunity for unauthorized user access to an unattended CLI session on the switch, or to end an inactive session and release the resources associated with it, set the CLI session to exit after a certain amount of idle time.
 
-You can set the CLI session timeout to a value between 0 and 86400 seconds. The default value is 0 (disabled).
-
 {{< tabs "15 ">}}
 {{< tab "NVUE Command ">}}
 
-Run the `nv set system cli inactive-timeout <seconds>` command:
+Run the `nv set system cli inactive-timeout <seconds>` command. You can set the CLI session timeout to a value between 0 and 86400 minutes. The default value is 0 (disabled).
 
 ```
 cumulus@switch:~$ nv set system cli inactive-timeout 300
@@ -25,16 +23,24 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Command ">}}
 
-Edit the `TMOUT` value in the `/etc/profile.d/nvue_cli.sh` file.
+In the `/etc/profile.d/nvue_cli.sh` file, add the `TMOUT` value in seconds:
 
 ```
 cumulus@switch:~$ sudo nano /etc/profile.d/nvue_cli.sh
 ...
-TMOUT=300
+readonly TMOUT=18000
+export TMOUT
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show the configured CLI session timeout, run the command:
+
+```
+cumulus@switch:~$ nv show system cli 
+
+```
 
 ## Configure the CLI Pager
 
@@ -62,9 +68,33 @@ Edit the `NVUE_PAGINATE` and the `NVUE_PAGER` values in the `/etc/profile.d/nvue
 ```
 cumulus@switch:~$ sudo nano /etc/profile.d/nvue_cli.sh
 ...
-NVUE_PAGINATE=enabled
-NVUE_PAGER=more
+export NVUE_PAGINATE=on
+export NVUE_PAGER=more
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Show CLI Settings
+
+To show the current CLI settings, run the `nv show system cli` command:
+
+```
+cumulus@switch:~$ nv show system cli
+                  applied
+----------------  -------
+inactive-timeout  12000  
+pagination               
+  state           enabled
+  pager           more
+```
+
+To show the configured pager options only, run the `nv show system cli pagination` command:
+
+```
+cumulus@switch:~$ nv show system cli pagination
+       applied
+-----  -------
+state  enabled
+pager  more
+```

@@ -1071,6 +1071,18 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+### Block Traffic towards the eth0 Interface
+
+To block traffic towards the eth0 interface, apply an ACL on the system control plane instead of on the eth0 interface. The following example creates an ACL called DENY-IN that blocks traffic from ingressing eth0 with source IP address 192.168.200.10:
+
+```
+cumulus@switch:~$ nv set acl DENY-IN rule 10 action deny
+cumulus@switch:~$ nv set acl DENY-IN rule 10 match ip source-ip 192.168.200.10
+cumulus@switch:~$ nv set acl DENY-IN type ipv4
+cumulus@switch:~$ nv set system control-plane acl DENY-IN inbound
+cumulus@switch:~$ nv config apply
+```
+
 ### Match on ECN Bits in the TCP IP Header
 
 <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span> allows end-to-end notification of network congestion without dropping packets. You can add ECN rules to match on the <span class="a-tooltip">[ECE](## "ECN-Echo")</span>, <span class="a-tooltip">[CWR](## "Congestion Window Received")</span>, and <span class="a-tooltip">[ECT](## "ECN Capable Transport")</span> flags in the TCP IPv4 header.

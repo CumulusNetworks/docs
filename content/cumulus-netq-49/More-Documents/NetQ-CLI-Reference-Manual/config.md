@@ -1544,22 +1544,44 @@ Show the configuration for all commands:
 
 ```
 cumulus@switch:~$ netq config show agent commands
- Service Key        Period    Active       Command
-------------------  --------  --------  ---------------------------------------------------
-ports               3600      yes       Netq Predefined Command
-proc-net-dev        30        yes       Netq Predefined Command
-agent_stats         300       yes       Netq Predefined Command
-agent_util_stats    30        yes       Netq Predefined Command
-ssd-util-json       86400     yes       /usr/sbin/smartctl -a /dev/sda
-lldp-json           30        yes       /usr/sbin/lldpctl -f json
-resource-util-json  30        yes       findmnt / -n -o FS-OPTIONS
-os-release          N/A       yes       cat /etc/os-release
-eprom               N/A       yes       /usr/cumulus/bin/decode-syseeprom -j
-lscpu               N/A       yes       /usr/bin/lscpu
-meminfo             N/A       yes       cat /proc/meminfo
-lsblk               N/A       yes       lsblk -d -n -o name,size,type,vendor,tran,rev,model
-dmicode             N/A       yes       dmidecode -t 17
-is-opta             N/A       yes       cat /etc/app-release
+ Service Key               Period  Active       Command
+-----------------------  --------  --------  ---------------------------------------------------------------------
+bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']
+evpn-vni                       60  yes       ['/usr/bin/vtysh', '-c', 'show bgp l2vpn evpn vni json']
+lldp-json                     120  yes       /usr/sbin/lldpctl -f json
+clagctl-json                   60  yes       /usr/bin/clagctl -j
+dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
+ptmctl-json                   600  yes       /usr/bin/ptmctl -d -j
+mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
+ports                        3600  yes       Netq Predefined Command
+proc-net-dev                   30  yes       Netq Predefined Command
+dom                          1800  yes       Netq Predefined Command
+roce                           60  yes       Netq Predefined Command
+roce-config                    60  yes       Netq Predefined Command
+nvue-roce-config               60  yes       Netq Predefined Command
+agent_stats                   300  yes       Netq Predefined Command
+agent_util_stats               30  yes       Netq Predefined Command
+tcam-resource-json            300  yes       /usr/cumulus/bin/cl-resource-query -j
+config-mon-json               120  yes       Netq Predefined Command
+nvue-mon-json                  60  yes       Netq Predefined Command
+running-config-mon-json        30  yes       Netq Predefined Command
+cl-support-json               180  yes       Netq Predefined Command
+resource-util-json            120  yes       findmnt / -n -o FS-OPTIONS
+smonctl-json                  120  yes       /usr/sbin/smonctl -j
+sensors-json                 1800  yes       sensors -u
+ssd-util-json               86400  yes       /usr/sbin/smartctl -a /dev/sda
+ssd-util-nvme-json          86400  yes       /usr/sbin/smartctl -a /dev/nvme0
+ospf-neighbor-json             60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all neighbor detail json']
+ospf-interface-json            60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all interface json']
+ecmp-hash-info                 60  yes       cat /etc/cumulus/datapath/traffic.conf
+ecmp-info                      60  yes       Netq Predefined Command
+ptp-config-info                60  yes       cat /etc/ptp4l.conf
+ptp-clock-info                 60  yes       Netq Predefined Command
+ptp-clock-status               60  yes       Netq Predefined Command
+ptp-statistics                 60  yes       Netq Predefined Command
+ptp-correction                 30  yes       Netq Predefined Command
+log-exporter                   60  yes       Netq Predefined Command
+adaptive-routing-config       120  yes       Netq Predefined Command
 ```
 
 Show the configuration for a specified command:
@@ -1573,8 +1595,8 @@ agent_stats           300  yes       Netq Predefined Command
 
 ### Related Commands
 
-- ```netq config add agent commands```
-- ```netq config agent factory-reset commands```
+- `netq config add agent commands`
+- `netq config agent factory-reset commands`
 
 - - -
 ## netq config show all

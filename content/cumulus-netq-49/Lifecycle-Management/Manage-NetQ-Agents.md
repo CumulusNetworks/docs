@@ -364,34 +364,38 @@ evpn-vni                       60  yes       ['/usr/bin/vtysh', '-c', 'show bgp 
 lldp-json                     120  yes       /usr/sbin/lldpctl -f json
 clagctl-json                   60  yes       /usr/bin/clagctl -j
 dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
-ptmctl-json                   120  yes       ptmctl
+ptmctl-json                   600  yes       /usr/bin/ptmctl -d -j
 mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
 ports                        3600  yes       Netq Predefined Command
 proc-net-dev                   30  yes       Netq Predefined Command
+dom                          1800  yes       Netq Predefined Command
+roce                           60  yes       Netq Predefined Command
+roce-config                    60  yes       Netq Predefined Command
+nvue-roce-config               60  yes       Netq Predefined Command
 agent_stats                   300  yes       Netq Predefined Command
 agent_util_stats               30  yes       Netq Predefined Command
-tcam-resource-json            120  yes       /usr/cumulus/bin/cl-resource-query -j
-btrfs-json                   1800  yes       /sbin/btrfs fi usage -b /
+tcam-resource-json            300  yes       /usr/cumulus/bin/cl-resource-query -j
 config-mon-json               120  yes       Netq Predefined Command
+nvue-mon-json                  60  yes       Netq Predefined Command
 running-config-mon-json        30  yes       Netq Predefined Command
 cl-support-json               180  yes       Netq Predefined Command
 resource-util-json            120  yes       findmnt / -n -o FS-OPTIONS
-smonctl-json                   30  yes       /usr/sbin/smonctl -j
-ssd-util-json               86400  yes       sudo /usr/sbin/smartctl -a /dev/sda
+smonctl-json                  120  yes       /usr/sbin/smonctl -j
+sensors-json                 1800  yes       sensors -u
+ssd-util-json               86400  yes       /usr/sbin/smartctl -a /dev/sda
+ssd-util-nvme-json          86400  yes       /usr/sbin/smartctl -a /dev/nvme0
 ospf-neighbor-json             60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all neighbor detail json']
 ospf-interface-json            60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all interface json']
+ecmp-hash-info                 60  yes       cat /etc/cumulus/datapath/traffic.conf
+ecmp-info                      60  yes       Netq Predefined Command
+ptp-config-info                60  yes       cat /etc/ptp4l.conf
+ptp-clock-info                 60  yes       Netq Predefined Command
+ptp-clock-status               60  yes       Netq Predefined Command
+ptp-statistics                 60  yes       Netq Predefined Command
+ptp-correction                 30  yes       Netq Predefined Command
+log-exporter                   60  yes       Netq Predefined Command
+adaptive-routing-config       120  yes       Netq Predefined Command
 ```
-
-The NetQ predefined commands include:
-
-- **agent_stats**: Collects statistics about the NetQ Agent every 5 minutes.
-- **agent_util_stats**: Collects switch CPU and memory utilization by the NetQ Agent every 30 seconds.
-- **cl-support-json**: Polls the switch every 3 minutes to determine if an agent generated a `cl-support` file.
-- **config-mon-json**: Polls the */etc/network/interfaces*, */etc/frr/frr.conf*, */etc/lldpd.d/README.conf*, and */etc/ptm.d/topology.dot* files every 2 minutes to determine if the contents of any of these files has changed. If a change occurred, the agent transmits the contents of the file and its modification time to the NetQ appliance or VM.
-- **ports**: Polls for optics plugged into the switch every hour.
-- **proc-net-dev**: Polls for network statistics on the switch every 30 seconds.
-- **running-config-mon-json**: Polls the `clagctl` parameters every 30 seconds and sends a diff of any changes to the NetQ appliance or VM.
-
 ### Modify the Polling Frequency
 
 You can change the polling frequency (in seconds) of a modular command. For example, to change the polling frequency of the `lldp-json` command to 60 seconds from its default of 120 seconds, run:

@@ -344,15 +344,6 @@ nv show interface <interface-id> ip gateway
 nv show interface <interface-id> ip gateway <ip-address-id>
 ...
 ```
-<!-- vale off -->
-Use the tab key to get help for the command lists you want to see. For example, to show the list of command options available for swp1, run the `nv list-commands interface swp1` command and press the tab key:
-<!-- vale on -->
-```
-cumulus@switch:~$ nv list-commands interface swp1 <<press tab>>
-acl            counters       ip             neighbor       ptp            storm-control  tunnel
-bond           dot1x          link           pluggable      qos            synce          
-bridge         evpn           lldp           port-security  router         telemetry
-```
 
 To view the NVUE command reference for Cumulus Linux, which describes all the NVUE CLI commands and provides examples, go to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvue-reference/" text="NVUE Command Reference">}}.
 

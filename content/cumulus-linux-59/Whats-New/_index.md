@@ -26,7 +26,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="4x breakout on QSFP-DD/OSFP 8 lane ports">}} now allocates two lanes per port by default instead of one.
 - NVUE
   - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
-  - `nv show` commands support native vtysh (FRR) output
+  - `nv show --output raw` option shows {{<link url="NVUE-CLI/#monitoring-commands" text="native vtysh (FRR) output">}}
   - `nv show interface` command output now includes the admin state of an interface in addition to the physical state.
   - `nv show platform` command redesign
   - {{< expand "Improved tab completion for NVUE routing commands" >}}

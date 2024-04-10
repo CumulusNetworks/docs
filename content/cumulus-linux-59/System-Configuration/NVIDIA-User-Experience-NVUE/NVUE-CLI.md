@@ -190,7 +190,7 @@ Additional options are available for certain `nv show` commands. For example, yo
 | `--filter` | Filters show command output on column data. For example, the `nv show interface --filter mtu=1500` shows only the interfaces with MTU set to 1500.</br>To filter on multiple column outputs, enclose the filter types in parentheses; for example, `nv show interface --filter "type=bridge&mtu=9216"` shows data for bridges with MTU 9216.</br>You can use wildcards; for example, `nv show interface swp1 --filter "ip.address=1*"` shows all IP addresses that start with `1` for swp1.</br>You can filter on all revisions (operational, applied, and pending); for example, `nv show interface  --filter "ip.address=1*" --rev=applied` shows all IP addresses that start with `1` for swp1 in the applied revision.|
 | `--hostname`| Shows system configuration for the switch with the specified hostname. For example, `nv show --hostname leaf01`.|
 | `--operational` | Shows the running configuration (the actual system state). For example, `nv show interface swp1 --operational` shows the running configuration for swp1. The running and applied configuration should be the same. If different, inspect the logs. |
-| `--output`        | Shows command output in table (`auto`), `json`, or `yaml` format. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml` |
+| `--output`        | Shows command output in table (`auto`), `json`, `yaml` or plain text (`raw`) format, such as vtysh native output. For example:<br>`nv show interface bond1 --output auto`<br>`nv show interface bond1 --output json`<br>`nv show interface bond1 --output yaml`<br>`nv show router bgp -output raw`|
 | `--paginate`      | Paginates the output. For example, `nv show interface bond1 --paginate on`. |
 | `--pending`       | Shows the last applied configuration and any pending set or unset configuration that you have not yet applied. For example, `nv show interface bond1 --pending`.|
 | `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev 1`. You can also show only applied or only operational information in the `nv show` output. For example, to show only the applied settings for swp1 configuration, run the `nv show interface swp1 --rev=applied` command. To show only the operational settings for swp1 configuration, run the `nv show interface swp1 --rev=operational` command. |
@@ -343,15 +343,6 @@ nv show interface <interface-id> ip address <ip-prefix-id>
 nv show interface <interface-id> ip gateway
 nv show interface <interface-id> ip gateway <ip-address-id>
 ...
-```
-<!-- vale off -->
-Use the tab key to get help for the command lists you want to see. For example, to show the list of command options available for swp1, run the `nv list-commands interface swp1` command and press the tab key:
-<!-- vale on -->
-```
-cumulus@switch:~$ nv list-commands interface swp1 <<press tab>>
-acl            counters       ip             neighbor       ptp            storm-control  tunnel
-bond           dot1x          link           pluggable      qos            synce          
-bridge         evpn           lldp           port-security  router         telemetry
 ```
 
 To view the NVUE command reference for Cumulus Linux, which describes all the NVUE CLI commands and provides examples, go to the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/nvue-reference/" text="NVUE Command Reference">}}.

@@ -522,7 +522,7 @@ cumulus@leaf01:mgmt:~$ sudo nano lldp_config_snipppet.yaml
                   action: restart
 ```
 
-The following flexible snippet disables LLDP on swp1 and swp2 using the `system interface pattern` keyword:
+The following flexible snippet called `lldp_config_snipppet` disables LLDP on swp1 and swp2 using the `system interface pattern` keyword:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo nano lldp_config_snipppet.yaml

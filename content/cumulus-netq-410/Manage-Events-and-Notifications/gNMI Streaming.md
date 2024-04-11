@@ -65,13 +65,21 @@ Cumulus Linux supports the following OpenConfig models:
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform.yang" text="openconfig-platform">}} | Platform data (Name, Description, Version) |
 | {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/lldp/openconfig-lldp.yang" text="openconfig-lldp">}} | LLDP data (PortIdType, PortDescription, LastUpdate, SystemName, SystemDescription, ChassisId, Ttl, Age, ManagementAddress, ManagementAddressType, Capability) |
 
+<!--
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform-cpu.yang" text="openconfig-platform-cpu">}} | State, Utilization |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform-fan.yang" text="openconfig-platform-fan">}} | FanState, FanSpeed |
+| {{<exlink url="https://github.com/openconfig/public/blob/master/release/models/platform/openconfig-platform-psu.yang" text="openconfig-platform-psu">}} | Enabled, PsuState, InputCurrent, OutputCurrent, OutputVoltage, OutputPower |
+-->
 gNMI clients can also use the following NVIDIA models:
 
 | Model| Supported Data |
 | --------- | ------ |
 | nvidia-if-wjh-drop-aggregate | Aggregated WJH drops, including L1, L2, router, ACL, tunnel, and buffer drops |
 | nvidia-if-ethernet-ext | Extended Ethernet counters (AlignmentError, InAclDrops, InBufferDrops, InDot3FrameErrors, InDot3LengthErrors, InL3Drops, InPfc0Packets, InPfc1Packets, InPfc2Packets, InPfc3Packets, InPfc4Packets, InPfc5Packets, InPfc6Packets, InPfc7Packets, OutNonQDrops, OutPfc0Packets, OutPfc1Packets, OutPfc2Packets, OutPfc3Packets, OutPfc4Packets, OutPfc5Packets, OutPfc6Packets, OutPfc7Packets, OutQ0WredDrops, OutQ1WredDrops, OutQ2WredDrops, OutQ3WredDrops, OutQ4WredDrops, OutQ5WredDrops, OutQ6WredDrops, OutQ7WredDrops, OutQDrops, OutQLength, OutWredDrops, SymbolErrors, OutTxFifoFull)|
-
+<!--
+| nvidia-platform-general-ext | Name, DiskTotalSize, DiskUsed, MemoryTotalSize, MemoryUsed, AmbientTemperature |
+| nvidia-platform-asic | AsicName, AsicTemp |
+-->
 The client should use the following YANG models as a reference:
 
 {{<expand "nvidia-if-ethernet-ext">}}

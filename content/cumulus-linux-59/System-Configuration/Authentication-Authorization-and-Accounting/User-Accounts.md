@@ -80,14 +80,18 @@ If you are an NVUE-managed user, you can update your own password with the Linux
 {{< tab "Linux Commands ">}}
 
 The following example:
-- Creates a new user account called `admin2`, adds the full name `First Last`, and sets the password to `CumulusLinux!`
+- Creates a new user account called `admin2`, creates a home directory for the user, adds the full name `First Last`, and sets the password to `CumulusLinux!`
 - Sets the group membership (role) to `sudo` and `nvapply` (permissions to use `sudo`, `nv show`, `nv set`, and `nv apply`).
 
 ```
-cumulus@switch:~$ sudo useradd admin2 -c "First Last" -p CumulusLinux!
+cumulus@switch:~$ sudo useradd admin2 -m -c "First Last" -p CumulusLinux!
 cumulus@switch:~$ sudo adduser admin2 sudo
 cumulus@switch:~$ sudo adduser admin2 nvapply
 ```
+
+{{%notice note%}}
+When you use Linux commands to add a new user, you must create a home directory for the user with the `-m` option. NVUE commands create a home directory automatically.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -319,22 +323,20 @@ To log into the switch using root with SSH, either:
 
 ## Password Security
 
-A user password is the key credential that verifies the user accessing the switch and acts as the first line of defense to secure the switch. The complexity of the password, replacement capabilities, and change frequency define the security level of the first perimeter of the switch. To further improve and harden the switch, Cumulus Linux provides a password security option that enforces password policies.
-
-When you enable the password security option, Cumulus Linux applies policies that apply to all users on the switch; user passwords must include at least one lower case character, one upper case character, one digit, one special character, and cannot be usernames. In addition, passwords must be a minimum of eight characters long, expire in 365 days, and provide a warning 15 days before expiration.
+A user password is the key credential that verifies the user accessing the switch and acts as the first line of defense to secure the switch. The complexity of the password, replacement capabilities, and change frequency define the security level of the first perimeter of the switch. To further improve and harden the switch, Cumulus Linux enables a password security option that enforces password policies that apply to all users on the switch; user passwords must include at least one lower case character, one upper case character, one digit, one special character, and cannot be usernames. In addition, passwords must be a minimum of eight characters long, expire in 365 days, and provide a warning 15 days before expiration.
 
 You can change these password security policies; see {{<link url="User-Accounts/#configure-password-policies" text="Configure Password Policies">}} below.
 
-### Enable Password Security
+### Disable Password Security
 
-To enable password security, run the `nv set system security password-hardening state enabled` command:
+The password security option is enabled by default. To disable password security, run the `nv unset system security password-hardening` command:
 
 ```
-cumulus@switch:~$ nv set system security password-hardening state enabled
+cumulus@switch:~$ nv unset system security password-hardening
 cumulus@switch:~$ nv config apply
 ```
 
-To disable password security, run the `nv unset system security password-hardening` command.
+To re-enable password security, run the `nv set system security password-hardening state enabled` command.
 
 ### Configure Password Policies
 
@@ -373,10 +375,10 @@ cumulus@switch:~$ nv set system security password-hardening expiration 30
 cumulus@switch:~$ nv set system security password-hardening expiration-warning 5
 ```
 
-The following example commands prevent usernames as passwords and sets the number of times you can reuse a password to 20:
+The following example commands allow usernames as passwords and sets the number of times you can reuse a password to 20:
 
 ```
-cumulus@switch:~$ nv set system security password-hardening reject-user-passw-match enabled
+cumulus@switch:~$ nv set system security password-hardening reject-user-passw-match disabled
 cumulus@switch:~$ nv set system security password-hardening history-cnt 20
 ```
 
@@ -386,7 +388,18 @@ To show the currently configured password policies, run the `nv show system secu
 
 ```
 cumulus@switch:~$ nv show system security password-hardening
-
+                         operational  applied 
+-----------------------  -----------  --------
+state                    enabled      enabled 
+reject-user-passw-match  disabled     disabled
+lower-class              enabled      enabled 
+upper-class              enabled      enabled 
+digits-class             disabled     disabled
+special-class            disabled     disabled
+expiration-warning       15           15      
+expiration               180          180     
+history-cnt              20           20      
+len-min                  8            8
 ```
 
 ## Related Information

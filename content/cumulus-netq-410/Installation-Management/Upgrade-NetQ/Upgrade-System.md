@@ -107,17 +107,9 @@ NVIDIA recommends proceeding with the installation only if the `Use%` is less th
 
 {{%notice note%}}
 
-If you are upgrading a cluster deployment to NetQ 4.9.0, you must open TCP port 36443 for Kubernetes control plane operations.
+If you are upgrading a cluster deployment from NetQ v4.8.0 or earlier, you must open TCP port 36443 for Kubernetes control plane operations.
 
 {{%/notice%}}
-
-5. Run the following command to ensure that the NetQ version is consistent between the *netq-agent* package, the *netq-apps* package, and the tarball you downloaded in the previous section:
-
-```
-cumulus@<hostname>:~$ dpkg -l | grep netq
-ii  netq-agent                      4.9.0-ub20.04u45~1710409093.ea9740d7c amd64        Cumulus NetQ Telemetry Agent for Ubuntu
-ii  netq-apps                       4.9.0-ub20.04u45~1710409093.ea9740d7c amd64        Cumulus NetQ Fabric Validation Application for Ubuntu
-```
 
 ### Upgrade Using the NetQ CLI
 

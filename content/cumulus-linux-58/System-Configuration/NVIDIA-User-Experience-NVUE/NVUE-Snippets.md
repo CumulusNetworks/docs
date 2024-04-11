@@ -504,6 +504,8 @@ cumulus@leaf01:mgmt:~$ sudo nano apt-flex-snippet.yaml
             permissions: "0644"
 ```
 
+The following flexible snippet called `lldp_config_snipppet` disables LLDP on swp1 and swp2 using the `configure system interface pattern-blacklist` command:
+
 ```
 cumulus@leaf01:mgmt:~$ sudo nano lldp_config_snipppet.yaml
 - set:
@@ -520,7 +522,7 @@ cumulus@leaf01:mgmt:~$ sudo nano lldp_config_snipppet.yaml
                   action: restart
 ```
 
-The following flexible snippet disables LLDP on swp1 and swp2 using the `system interface pattern` keyword:
+The following flexible snippet called `lldp_config_snipppet` disables LLDP on swp1 and swp2 using the `system interface pattern` keyword:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo nano lldp_config_snipppet.yaml

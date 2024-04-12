@@ -157,8 +157,10 @@ The following command upgrades all the system components to the latest release:
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv action upgrade system packages to latest
+cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default
 ```
+
+By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
 
 {{< /tab >}}
 {{< tab "csmgrctl Command ">}}
@@ -176,8 +178,10 @@ The following command provides information on the components you want to upgrade
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv action upgrade system packages to latest dry-run
+cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dry-run
 ```
+
+By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
 
 {{< /tab >}}
 {{< tab "csmgrctl Command ">}}

@@ -134,8 +134,8 @@ nv unset system security password-hardening upper-class
 {{< tab "nv action ">}}
 
 ```
-nv action upgrade system packages to latest dry-run
-nv action upgrade system packages to latest
+nv action upgrade system packages to latest use-vrf <vrf> dry-run
+nv action upgrade system packages to latest use-vrf <vrf>
 ```
 
 {{< /tab >}}

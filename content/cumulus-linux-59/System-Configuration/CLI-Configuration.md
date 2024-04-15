@@ -13,7 +13,7 @@ To reduce the window of opportunity for unauthorized user access to an unattende
 {{< tabs "15 ">}}
 {{< tab "NVUE Command ">}}
 
-Run the `nv set system cli inactive-timeout <seconds>` command. You can set the CLI session timeout to a value between 0 and 86400 minutes. The default value is 0 (disabled).
+Run the `nv set system cli inactive-timeout <minutes>` command. You can set the CLI session timeout to a value between 0 and 86400 minutes. The default value is 0 (disabled).
 
 ```
 cumulus@switch:~$ nv set system cli inactive-timeout 300
@@ -35,16 +35,9 @@ export TMOUT
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the configured CLI session timeout, run the command:
-
-```
-cumulus@switch:~$ nv show system cli 
-
-```
-
 ## Configure the CLI Pager
 
-The CLI pager enables you to view the contents of a file or the output of a command one page at a time in the terminal window, using the up and down arrow keys or the space bar.
+The CLI pager enables you to view the contents of a large file or the output of a command one page at a time in the terminal window, using the up and down arrow keys or the space bar.
 
 To configure the CLI pager, set the pager state and the pager options.
 
@@ -83,7 +76,7 @@ To show the current CLI settings, run the `nv show system cli` command:
 cumulus@switch:~$ nv show system cli
                   applied
 ----------------  -------
-inactive-timeout  12000  
+inactive-timeout  300  
 pagination               
   state           enabled
   pager           more

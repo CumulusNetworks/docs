@@ -37,7 +37,7 @@ export TMOUT
 
 ## Configure the CLI Pager
 
-The CLI pager enables you to view the contents of a file or the output of a command one page at a time in the terminal window, using the up and down arrow keys or the space bar.
+The CLI pager enables you to view the contents of a large file or the output of a command one page at a time in the terminal window, using the up and down arrow keys or the space bar.
 
 To configure the CLI pager, set the pager state and the pager options.
 

@@ -19,7 +19,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - Cumulus Linux upgrade to Debian 12 (bookworm)
 - {{<link url="ASIC-Monitoring" text="Latency histogram">}} for ASIC monitoring
 - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} is now generally available
-- {{<link url="Link-Layer-Discovery-Protocol/#transmit-application-priority-tlvs" text="LLDP application priority TLV">}} transmission
+- {{<link url="/Link-Layer-Discovery-Protocol/#application-priority-tlvs" text="LLDP application priority TLV">}} transmission
 - {{<link url="Firewall-Rules" text="Firewall rules">}}
 - {{<link url="CLI-Configuration" text="CLI Session pagination and timeout options">}}
 - {{<link url="User-Accounts/#password-security" text="Password security commands">}}

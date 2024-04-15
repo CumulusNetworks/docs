@@ -100,3 +100,7 @@ Cumulus Linux stores:
 - Whitelist policy rules and `FW_RULE_DOS_13` policy rules in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file. `FW_RULE_DOS_13` policy rules drop packets that don't match any whitelist rules.
 
 The firewall rules are numbered out of sequence so that you can add rules if necessary. To add additional rules with NVUE or manually in the `/etc/cumulus/acl/policy.conf` file, refer to {{<link url="Access-Control-List-Configuration" text="Access Control List Configuration">}}.
+
+## Considerations
+
+Default firewall rules include a log rule for packets towards the control plane that do not match any ACLs you define and any default firewall ACL rules that precede the log rule. The switch generates a console log for packets that match the log rule. To avoid console logs for these packets, add an accept or deny rule for the packets that cause the console logs.

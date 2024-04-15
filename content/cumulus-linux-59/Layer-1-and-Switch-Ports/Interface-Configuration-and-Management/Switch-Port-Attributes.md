@@ -294,12 +294,15 @@ To show the FEC mode on a switch port, run the NVUE `nv show interface <interfac
 
 ```
 cumulus@switch:~$ nv show interface swp1 link
-                  operational   applied  pending  description
-----------------  ------------  -------  -------  ----------------------------------------------------------------------
-auto-negotiate    off           on       on       Link speed and characteristic auto negotiation
-breakout                        1x       1x       sub-divide or disable ports (only valid on plug interfaces)
-duplex            full          full     full     Link duplex
-fec                             auto     auto     Link forward error correction mechanism
+                       operational        applied
+---------------------  -----------------  -------
+admin-status           up                        
+oper-status            up                        
+protodown              disabled                  
+auto-negotiate         off                on     
+duplex                 full               full   
+speed                  1G                 auto   
+fec                                       auto
 ...
 ```
 

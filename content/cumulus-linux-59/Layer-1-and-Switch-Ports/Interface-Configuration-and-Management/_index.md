@@ -4,49 +4,30 @@ author: NVIDIA
 weight: 290
 toc: 3
 ---
-This section discusses how to configure and manage network interfaces.
-
 Cumulus Linux uses `ifupdown2` to manage network interfaces, which is a new implementation of the Debian network interface manager `ifupdown`.
 
-## Basic Commands
+## Bring an Interface Up or Down
 
-### Bring Up the Physical Connection to an Interface
+An interface can be in:
+- An admin state, where the port, bridge, or bond is up or down.
+- A physical state, where the connection for the port, bridge, or bond is up or down.
 
-To bring up the physical connection to an interface or apply changes to an existing interface, run the `sudo ifup <interface>` command. The following example command brings up the physical connection to swp1:
+In Cumulus Linux, you can put an interface into an admin up or down state but you cannot change the physical connection.
 
-```
-cumulus@switch:~$ sudo ifup swp1
-```
-
-To bring down the physical connection to a single interface, run the `sudo ifdown <interface>` command. The following example command brings down the physical connection to swp1:
-
-```
-cumulus@switch:~$ sudo ifdown swp1
-```
-
-The `ifdown` command always deletes logical interfaces after bringing them down. When you bring down the physical connection to an interface, it comes back up automatically after you reboot the switch or apply configuration changes with `ifreload -a`.
-
-{{%notice note%}}
-By default, `ifupdown` is quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
-{{%/notice%}}
-
-### Bring Up an Interface Administratively
-
-When you bring an interface up or down administratively (admin up or admin down), you bring down a port, bridge, or bond but not the physical connection for the port, bridge, or bond.
-
-When you put an interface into an admin down state, the interface *remains down* after any future reboots or configuration changes with `ifreload -a`.
-
-{{< tabs "TabID39 ">}}
+{{< tabs "TabID17 ">}}
 {{< tab "NVUE Commands ">}}
 
-To put an interface into an admin *down* state:
+{{< tabs "TabID20 ">}}
+{{< tab "Persistent Configuration ">}}
+
+To put an interface into an admin *down* state, where the interface *remains down* after any future reboots or configuration changes:
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state down
 cumulus@switch:~$ nv config apply
 ```
 
-To bring the interface back *up*:
+To put an interface into an admin up state, where the interface *remains up* after any future reboots or configuration changes:
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state up
@@ -54,107 +35,86 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
+{{< tab "Runtime Configuration ">}}
+
+To put an interface into an admin up state, where the link state *does not* persist after a reboot:
+
+```
+cumulus@switch:~$ nv set interface swp1
+cumulus@switch:~$ nv config apply
+```
+
+To put an interface into an admin down state, where the link state *does not* persist after a reboot:
+
+```
+cumulus@switch:~$ nv unset interface swp1
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To put an interface into an *admin* *down* state:
+{{< tabs "TabID60 ">}}
+{{< tab "Persistent Configuration ">}}
+
+To put an interface into an admin down state, where the interface *remains down* after any future reboots or configuration changes with `ifreload -a`:
 
 ```
-cumulus@switch:~$ sudo ifdown swp1 --admin-state
+cumulus@switch:~$ sudo ifdown swp1
 ```
 
-To bring the interface back *up*:
+To put an interface into an admin up state, where the interface *remains up* after any future reboots or configuration changes with `ifreload -a`:
 
 ```
-cumulus@switch:~$ sudo ifup swp1 --admin-state
+cumulus@switch:~$ sudo ifup swp1
 ```
+
+{{%notice note%}}
+By default, the `ifupdown` and `ifup` command is quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Runtime Configuration ">}}
+
+To put an interface into an admin up state, where the link state *does not* persist after a reboot, edit the `/etc/network/interfaces` file to add the interface stanza, then run the `ifreload -a` command:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+auto lo
+iface lo inet loopback
+    address 10.10.10.1/32
+auto mgmt
+iface mgmt
+    address 127.0.0.1/8
+    address ::1/128
+    vrf-table auto
+auto eth0
+iface eth0 inet dhcp
+    ip-forward off
+    ip6-forward off
+    vrf mgmt
+auto swp1
+iface swp1
+...
+```
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+To put an interface into an admin down state, where the link state *does not* persist after a reboot, remove the interface stanza from the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{< /tab >}}
 {{< /tabs >}}
 
 For additional information on interface administrative state and physical state, refer to [this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Monitoring/Monitor-Interface-Administrative-State-and-Physical-State-on-Cumulus-Linux" >}}).
 
-<!--## Interface Classes
-
-`ifupdown2` enables you to group interfaces into separate classes. A class is a user-defined label that groups interfaces that share a common function (such as `uplink`, `downlink` or `compute`). You specify classes in the `/etc/network/interfaces` file.
-
-The most common class is *auto*, which you configure like this:
-
-```
-auto swp1
-iface swp1
-```
-
-You can add other classes using the *allow* prefix. For example, if you have multiple interfaces used for uplinks, you can define a class called *uplinks:*
-
-```
-auto swp1
-allow-uplink swp1
-iface swp1 inet static
-    address 10.1.1.1/31
-
-auto swp2
-allow-uplink swp2
-iface swp2 inet static
-    address 10.1.1.3/31
-```
-
-This allows you to perform operations on only these interfaces using the `--allow=uplinks` option. You can still use the `-a` options because these interfaces are also in the *auto* class:
-
-```
-cumulus@switch:~$ sudo ifup --allow=uplinks
-cumulus@switch:~$ sudo ifreload -a
-```
-
-If you are using {{<link title="Management VRF">}}, you can use the special interface class called *mgmt* and put the management interface into that class. The management VRF must have an IPv6 address in addition to an IPv4 address to work correctly.
-
-```
-allow-mgmt eth0
-iface eth0 inet dhcp
-    vrf mgmt
-
-allow-mgmt mgmt
-iface mgmt
-    address 127.0.0.1/8
-    address ::1/128
-    vrf-table auto
-```
-
-All `ifupdown2` commands (`ifup`, `ifdown`, `ifquery`, `ifreload`) can take a class. Include the `--allow=<class>` option when you run the command. For example, to reload the configuration for the management interface described above, run:
-
-```
-cumulus@switch:~$ sudo ifreload --allow=mgmt
-```
-
-Use the `-a` option to bring up or down all interfaces with the common `auto` class in the `/etc/network/interfaces` file.
-
-To administratively bring up all interfaces marked `auto`, run:
-
-```
-cumulus@switch:~$ sudo ifup -a
-```
-
-To administratively bring down all interfaces marked `auto`, run:
-
-```
-cumulus@switch:~$ sudo ifdown -a
-```
-
-To reload all network interfaces marked `auto`, use the `ifreload` command. This command is equivalent to running `ifdown` then `ifup`; however, `ifreload` skips unchanged configurations:
-
-```
-cumulus@switch:~$ sudo ifreload -a
-```
-
-{{%notice note%}}
-Cumulus Linux checks syntax by default. As a precaution, apply configurations only if the syntax check passes. Use the following compound command:
-
-```
-cumulus@switch:~$ sudo bash -c "ifreload -s -a && ifreload -a"
-```
-{{%/notice%}}
-
-For more information, see the individual man pages for `ifup(8)`, `ifdown(8)`, `ifreload(8)`.
--->
 ## Loopback Interface
 
 Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface called *lo* is up and assigned an IP address of 127.0.0.1.
@@ -844,17 +804,40 @@ addon_scripts_support=1
 
 ## Troubleshooting
 
-To see the link and administrative state of an interface:
+To show the physical and admin state of all interfaces on the switch:
+
+```
+cumulus@switch:~$ nv show interface
+Interface      State  Speed  MTU    Type      Remote Host      Remote Port  Summary                                 
+-------------  -----  -----  -----  --------  ---------------  -----------  ----------------------------------------
+bond1          up            9216   bond                                                                            
+bond2          up            9216   bond                                                                            
+bond3          up            9216   bond                                                                            
+br_default                   9216   bridge                                  IP Address:  fe80::4638:39ff:fe22:17a/64
+eth0           up     1G     1500   eth       oob-mgmt-switch  swp10        IP Address:            192.168.200.11/24
+                                                                            IP Address:  fe80::4638:39ff:fe22:17a/64
+lo             up            65536  loopback                                IP Address:                10.10.10.1/32
+...
+```
+
+To show the physical and admin state of an interface:
 
 {{< tabs "TabID875 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv show interface swp1 link state
+cumulus@switch:~$ nv show interface swp1
+                          operational        applied
+------------------------  -----------------  -------
+...  
+  oper-status             down                      
+  admin-status            down 
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+Run the `ip link show dev <interface>` command.
 
 In the following example, swp1 is administratively UP and the physical link is UP (LOWER_UP).
 
@@ -899,6 +882,37 @@ To show the description (alias) for an interface:
 
 ```
 cumulus@switch$ nv show interface swp1
+                         operational        applied
+------------------------  -----------------  -------
+type                      swp                swp    
+router                                              
+  pbr                                               
+    [map]                                           
+  ospf                                              
+    enable                                   off    
+  pim                                               
+    enable                                   off    
+  adaptive-routing                                  
+    enable                                   off    
+  ospf6                                             
+    enable                                   off    
+lldp                                                
+  dcbx-pfc-tlv            off                       
+  dcbx-ets-config-tlv     off                       
+  dcbx-ets-recomm-tlv     off                       
+  [neighbor]                                        
+evpn                                                
+  multihoming                                       
+    uplink                                   off    
+ptp                                                 
+  enable                                     off    
+[acl]                                               
+synce                                               
+  enable                                     off    
+neighbor                                            
+  [ipv4]                                            
+  [ipv6]                                            
+description               server1            server1
 ```
 
 {{< /tab >}}

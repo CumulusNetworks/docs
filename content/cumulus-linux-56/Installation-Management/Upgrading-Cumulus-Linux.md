@@ -313,7 +313,7 @@ To upgrade the switch using package upgrade:
 6. Verify correct operation with the old configurations on the new version.
 
 {{%notice info%}}
-The first time you run the NVUE `nv config apply` command after upgrading to Cumulus Linux 5.4, NVUE might override certain existing configuration for features that are now configurable with NVUE. Immediately after you reboot the switch to complete the upgrade, NVIDIA recommends you either:
+The first time you run the NVUE `nv config apply` command after upgrading to Cumulus Linux 5.6, NVUE might override certain existing configuration for features that are now configurable with NVUE. Immediately after you reboot the switch to complete the upgrade, NVIDIA recommends you either:
 - Run NVUE commands to configure these features.
 - Configure NVUE to ignore changes to the relevant configuration files for these features; refer to {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}.
 {{%/notice%}}

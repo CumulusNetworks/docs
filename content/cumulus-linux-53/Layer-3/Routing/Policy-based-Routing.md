@@ -403,6 +403,21 @@ cumulus@switch:~$ nv unset router pbr map map1
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice note%}}
+To remove a PBR map and the corresponding next hop group, you must first delete the PBR map and run `nv config apply`, then remove the corresponding next hop group; for example:
+
+```
+cumulus@switch:~$ nv unset router pbr map map1 rule 1
+cumulus@switch:~$ nv config apply
+```
+
+```
+cumulus@switch:~$ nv unset router nexthop group group1
+cumulus@switch:~$ nv config apply
+```
+
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 

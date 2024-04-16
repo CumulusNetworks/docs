@@ -15,7 +15,7 @@ You can install NetQ either on your premises or as a remote, cloud solution. If 
 | On-premises | High-availability server cluster | KVM | {{<link title="Set Up Your KVM Virtual Machine for an On-premises HA Server Cluster" text="Start install" >}} |
 | On-premises | High-availability server cluster | VMware | {{<link title="Set Up Your VMware Virtual Machine for an On-premises HA Server Cluster" text="Start install" >}} |
 
-## Cloud (On-Premises Telemetry Aggregator)
+## Cloud/OPTA (On-Premises Telemetry Aggregator)
 
 | Deployment Type | Server Arrangement | Hypervisor | Requirements & Installation |
 | --- | --- | --- | :---: |

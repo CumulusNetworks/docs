@@ -13,6 +13,7 @@ Consider the following before you install the NetQ system:
 
 1. Determine whether to deploy fully **on-premises** or as a **remote** solution.
 2. Choose whether to install the software on a **single server** or as a **server cluster**.
+3. Alternately, you can launch NetQ using NVIDIA Base Command Manager. To get started, refer to the {{<exlink url="https://docs.nvidia.com/base-command-manager/#product-manuals" text="Base Command Manager administrator and containerization manuals">}}.
 
 ## Deployment Type: On-premises or Remote
 

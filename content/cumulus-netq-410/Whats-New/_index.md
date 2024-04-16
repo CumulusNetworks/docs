@@ -11,9 +11,20 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale off -->
 ## What's New in NetQ 4.10.0
 <!-- vale on -->
-NetQ 4.10.0 includes the following new features and improvements:
 
+NetQ 4.10 now integrates with Base Command Manager, a toolkit to streamline cluster provisioning, workload management, and infrastructure monitoring. With Base Command Manager and NetQ, administrators can monitor telemetry data and perform health checks on a network’s fabric.
 
+BCM 10 also provides a Kubernetes wizard to manage NetQ provisioning for high availability, on-prem single or multi-node clusters. Using the wizard, administrators can:
+
+- Avoid port conflicts between BCM and NetQ
+- Verify that all the installation prerequisites are met
+- Choose between single-node or high-availability deployments
+- Configure files and directories in exclude lists
+- Synchronize clocks
+- Deploy the NetQ server
+- Connect the cluster management daemon, CMDaemon, to the NetQ server to pull telemetry data
+
+To get started, refer to the {{<exlink url="https://docs.nvidia.com/base-command-manager/#product-manuals" text="Base Command Manager administrator and containerization manuals">}}.
 ## Upgrade Paths
 
 For deployments running:

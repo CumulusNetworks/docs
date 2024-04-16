@@ -103,4 +103,4 @@ The firewall rules are numbered out of sequence so that you can add rules if nec
 
 ## Considerations
 
-Default firewall rules include a log rule for packets towards the control plane that do not match any ACLs you define and any default firewall ACL rules that precede the log rule. The switch generates a console log for packets that match the log rule. To avoid console logs for these packets, add an accept or deny rule for the packets that cause the console logs.
+Default firewall rules include a log rule for packets that arrive in the control plane and do not match user defined or default firewall rules. The switch generates a log message for packets that match the log rule. To avoid console logs for these packets, add an `accept` or `deny` rule for the packets that cause the console logs.

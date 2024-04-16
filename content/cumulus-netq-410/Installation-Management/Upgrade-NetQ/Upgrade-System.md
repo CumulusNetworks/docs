@@ -39,6 +39,7 @@ If the output of this command displays errors or returns an empty response, you 
 2. Update the NetQ `debian` packages. In cluster deployments, update the packages on the master and all worker nodes:
 
     ```
+    cumulus@<hostname>:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add
     cumulus@<hostname>:~$ sudo apt-get update
     Get:1 https://apps3.cumulusnetworks.com/repos/deb focal InRelease [13.8 kB]
     Get:2 https://apps3.cumulusnetworks.com/repos/deb focal/netq-4.10 amd64 Packages [758 B]

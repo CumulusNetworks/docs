@@ -8,9 +8,9 @@ Cumulus Linux uses `ifupdown2` to manage network interfaces, which is a new impl
 
 ## Bring an Interface Up or Down
 
-Interface status can be:
-- Administrative state, where the interface is configured to be up or down.
-- Operational state, reflecting the current operational status of an interface.
+An interface status can be in an:
+- Administrative state, where you configure the interface to be up or down.
+- Operational state, which reflects the current operational status of an interface.
 
 {{< tabs "TabID17 ">}}
 {{< tab "NVUE Commands ">}}
@@ -22,7 +22,7 @@ cumulus@switch:~$ nv set interface swp1
 cumulus@switch:~$ nv config apply
 ```
 
-After an interface is brought up, you can administratively bring it down:
+After you bring up an interface, you can bring it down administratively by changing the link state to `down`:
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state down
@@ -68,7 +68,7 @@ iface swp1
 ...
 ```
 
-To administratively bring and interface down after it is configured, add `link-down yes` to the interface stanza in `/etc/network/interfaces` and run `ifreload -a`:
+To bring an interface down administratively after you configure it, add `link-down yes` to the interface stanza in the `/etc/network/interfaces` file, then run `ifreload -a`:
 
 ```
 auto swp1
@@ -76,14 +76,13 @@ iface swp1
  link-down yes
 ```
 
-If an interface is configured in `/etc/network/interfaces`, you can turn it down administratively using the `ifdown swp1` command, and bring an interface back up with the `ifup swp1` command. These changes are not persistent through a reboot. After a reboot, the configuration present in `/etc/network/interfaces` takes effect. 
+If you configure an interface in the `/etc/network/interfaces` file, you can bring it down administratively with the `ifdown swp1` command, then bring the interface back up with the `ifup swp1` command. These changes do not persist after a reboot. After a reboot, the configuration present in `/etc/network/interfaces` takes effect.
 
 {{%notice note%}}
 By default, the `ifupdown` and `ifup` command is quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
 {{%/notice%}}
 
 To remove an interface from the configuration entirely, remove the interface stanza from the `/etc/network/interfaces` file, then run the `ifreload -a` command.
-
 
 {{< /tab >}}
 {{< /tabs >}}

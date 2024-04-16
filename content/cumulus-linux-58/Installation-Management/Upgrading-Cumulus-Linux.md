@@ -383,7 +383,7 @@ NVIDIA has not tested running different versions of Cumulus Linux on MLAG peer s
 
     ```
     cumulus@switch:~$ nv set interface swp1 link state up
-    cumulus@switch:~$ nv set interface peerlink link state down
+    cumulus@switch:~$ nv set interface peerlink link state up
     cumulus@switch:~$ nv config apply
     cumulus@switch:~$ nv config save
     ```

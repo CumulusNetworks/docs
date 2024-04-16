@@ -1,3 +1,28 @@
+{{ $versionList := slice }}
+{{ $majordict := dict }}
+{{ $majorlist := slice }}
+{{ $sorted_list := slice }}
+{{ $cur_ver := .Page.Params.version | default .Site.Params.latest }}
+
+{{ range where .Site.Sections "Params.product" .Page.Params.product }}
+    {{ if ne .Page.Params.version nil }}
+        {{ $splitver := split .Page.Params.version "." }}
+        {{ if eq (len $splitver) 2 }}
+                {{ $verlist := (index $majordict (index $splitver 0)) }}
+                {{ $verlist = $verlist | append (index $splitver 1) }}
+                {{ $majordict = merge $majordict (dict (index $splitver 0) $verlist) }}
+                {{ $majorlist = $majorlist | append (index $splitver 0) }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ range sort ($majorlist | uniq) "value" "desc" }}
+    {{ $majorver := . }}
+    {{ range sort (index $majordict .) "value" "desc"  }}
+        {{$sorted_list = $sorted_list | append  (printf "%s.%s" $majorver .) }}
+    {{ end }}
+{{ end }}
+
 <!-- First, get a list of versions for this product and map it to the version landing page -->
 {{range where .Site.Sections "Params.product" .Page.Params.product }}
     {{  $.Scratch.SetInMap "version_page_map" (string .Params.version) .Page.RelPermalink }}
@@ -32,17 +57,19 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <!-- Sort our list of versions so it's high to low -->
-                {{ range sort (where .Site.Sections "Params.product" .Page.Params.product) ".Page.Params.version" "desc"}}
+                {{ range $sorted_list}}
                     <!-- The version is the key in version_links. Get the Permalink of the page stored as a value  -->
                     {{ if not ($.Scratch.Get "version_page_map") }}
-                        <a class="dropdown-item" href="{{ .Page.RelPermalink }}">v{{.Page.Params.version}} </a>
+                        <a class="dropdown-item" href="{{ $.Page.RelPermalink }}">v{{.}}</a>
                     {{ else }}
-                        <a class="dropdown-item" href="{{index ($.Scratch.Get "version_page_map") (string .Page.Params.version)}}">v{{.Page.Params.version}} </a>
+                        <a class="dropdown-item" href="{{index ($.Scratch.Get "version_page_map") .}}">v{{.}} </a>
                     {{ end }}
                 {{ end }}
             </div>
         </div>
         {{- end -}}
+
+
         {{ if eq .Page.Params.product "Cumulus Linux" }}
         <div class="Page-breadcrumbs"></div>
             <a  href="https://docs.nvidia.com/" >NVIDIA Docs Hub</a>&nbsp;<i class="fa fa-chevron-right" style="font-size:small"></i>&nbsp;

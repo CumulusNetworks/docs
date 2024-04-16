@@ -24,10 +24,10 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - {{<link url="User-Accounts/#password-security" text="Password security commands">}}
 - {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="4x breakout on QSFP-DD/OSFP 8 lane ports">}} now allocates two lanes per port by default instead of one.
 - BGP now shows paths in a sorted order with the best path always first.
-- New command line argument `ifreoload -a --diff` that processes and applies only the incremental changes to an existing network configuration instead of reloading or verifying the entire setup.
+- New `ifreload -a --diff` option that processes and applies only incremental changes instead of reloading the entire configuration.
 - NVUE
   - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
-  - NVUE ships with a `/etc/nvue.d/startup.yaml` file
+  - NVUE ships with a default `/etc/nvue.d/startup.yaml` file
   - `nv show --output raw` option shows {{<link url="NVUE-CLI/#monitoring-commands" text="native vtysh (FRR) output">}}
   - `nv show interface` command output now includes the admin state of an interface in addition to the physical state.
   - `nv show platform` command redesign

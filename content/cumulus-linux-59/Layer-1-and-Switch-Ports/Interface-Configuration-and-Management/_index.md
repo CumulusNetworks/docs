@@ -8,43 +8,35 @@ Cumulus Linux uses `ifupdown2` to manage network interfaces, which is a new impl
 
 ## Bring an Interface Up or Down
 
-An interface can be in:
-- An admin state, where the port, bridge, or bond is up or down.
-- A physical state, where the connection for the port, bridge, or bond is up or down.
-
-In Cumulus Linux, you can put an interface into an admin up or down state but you cannot change the physical connection.
+An interface status can be in an:
+- Administrative state, where you configure the interface to be up or down.
+- Operational state, which reflects the current operational status of an interface.
 
 {{< tabs "TabID17 ">}}
 {{< tab "NVUE Commands ">}}
 
-{{< tabs "TabID20 ">}}
-{{< tab "Persistent Configuration ">}}
-
-To put an interface into an admin *down* state, where the interface *remains down* after any future reboots or configuration changes:
-
-```
-cumulus@switch:~$ nv set interface swp1 link state down
-cumulus@switch:~$ nv config apply
-```
-
-To put an interface into an admin up state, where the interface *remains up* after any future reboots or configuration changes:
-
-```
-cumulus@switch:~$ nv set interface swp1 link state up
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Runtime Configuration ">}}
-
-To put an interface into an admin up state, where the link state *does not* persist after a reboot:
+To configure and bring an interface up administratively, use the `nv set interface` command:
 
 ```
 cumulus@switch:~$ nv set interface swp1
 cumulus@switch:~$ nv config apply
 ```
 
-To put an interface into an admin down state, where the link state *does not* persist after a reboot:
+After you bring up an interface, you can bring it down administratively by changing the link state to `down`:
+
+```
+cumulus@switch:~$ nv set interface swp1 link state down
+cumulus@switch:~$ nv config apply
+```
+
+To bring the interface back up, change the link state back to `up`:
+
+```
+cumulus@switch:~$ nv set interface swp1 link state up
+cumulus@switch:~$ nv config apply
+```
+
+To remove an interface from the configuration entirely, use the `nv unset interface` command:
 
 ```
 cumulus@switch:~$ nv unset interface swp1
@@ -52,34 +44,9 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< /tabs >}}
-
-{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-{{< tabs "TabID60 ">}}
-{{< tab "Persistent Configuration ">}}
-
-To put an interface into an admin down state, where the interface *remains down* after any future reboots or configuration changes with `ifreload -a`:
-
-```
-cumulus@switch:~$ sudo ifdown swp1
-```
-
-To put an interface into an admin up state, where the interface *remains up* after any future reboots or configuration changes with `ifreload -a`:
-
-```
-cumulus@switch:~$ sudo ifup swp1
-```
-
-{{%notice note%}}
-By default, the `ifupdown` and `ifup` command is quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< tab "Runtime Configuration ">}}
-
-To put an interface into an admin up state, where the link state *does not* persist after a reboot, edit the `/etc/network/interfaces` file to add the interface stanza, then run the `ifreload -a` command:
+To configure and bring an interface up administratively, edit the `/etc/network/interfaces` file to add the interface stanza, then run the `ifreload -a` command:
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
@@ -101,14 +68,22 @@ iface swp1
 ...
 ```
 
+To bring an interface down administratively after you configure it, add `link-down yes` to the interface stanza in the `/etc/network/interfaces` file, then run `ifreload -a`:
+
 ```
-cumulus@switch:~$ ifreload -a
+auto swp1
+iface swp1
+ link-down yes
 ```
 
-To put an interface into an admin down state, where the link state *does not* persist after a reboot, remove the interface stanza from the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+If you configure an interface in the `/etc/network/interfaces` file, you can bring it down administratively with the `ifdown swp1` command, then bring the interface back up with the `ifup swp1` command. These changes do not persist after a reboot. After a reboot, the configuration present in `/etc/network/interfaces` takes effect.
 
-{{< /tab >}}
-{{< /tabs >}}
+{{%notice note%}}
+- By default, the `ifupdown` and `ifup` command is quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
+- For configurations at scale, you can run the `ifreload -a --diff` command to apply only current configuration changes instead of processing the entire `/etc/network/interfaces` file.
+{{%/notice%}}
+
+To remove an interface from the configuration entirely, remove the interface stanza from the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -804,7 +779,7 @@ addon_scripts_support=1
 
 ## Troubleshooting
 
-To show the physical and admin state of all interfaces on the switch:
+To show the state of all interfaces on the switch:
 
 ```
 cumulus@switch:~$ nv show interface
@@ -820,7 +795,7 @@ lo             up            65536  loopback                                IP A
 ...
 ```
 
-To show the physical and admin state of an interface:
+To show the physical (operational) and admin state of an interface:
 
 {{< tabs "TabID875 ">}}
 {{< tab "NVUE Commands ">}}

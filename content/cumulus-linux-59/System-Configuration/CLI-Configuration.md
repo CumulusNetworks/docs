@@ -23,10 +23,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Command ">}}
 
-In the `/etc/profile.d/nvue_cli.sh` file, add the `TMOUT` value in seconds:
+Create a file in the `/etc/profile.d/` directory and add the following lines with the `TMOUT` value in seconds:
 
 ```
-cumulus@switch:~$ sudo nano /etc/profile.d/nvue_cli.sh
+cumulus@switch:~$ sudo nano /etc/profile.d/tmout.sh
 ...
 readonly TMOUT=18000
 export TMOUT
@@ -37,7 +37,7 @@ export TMOUT
 
 ## Configure the CLI Pager
 
-The CLI pager enables you to view the contents of a large file or the output of a command one page at a time in the terminal window, using the up and down arrow keys or the space bar.
+The CLI pager enables you to view the contents of a large file or the output of an NVUE command one page at a time in the terminal window, using the up and down arrow keys or the space bar.
 
 To configure the CLI pager, set the pager state and the pager options.
 

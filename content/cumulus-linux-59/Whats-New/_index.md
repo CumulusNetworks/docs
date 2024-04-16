@@ -27,7 +27,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - New command line argument `ifreoload -a --diff` that processes and applies only the incremental changes to an existing network configuration instead of reloading or verifying the entire setup.
 - NVUE
   - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
-  - NVUE ships with a `/etc/nvue.d/startup.yaml` file
+  - NVUE ships with a default `/etc/nvue.d/startup.yaml` file
   - `nv show --output raw` option shows {{<link url="NVUE-CLI/#monitoring-commands" text="native vtysh (FRR) output">}}
   - `nv show interface` command output now includes the admin state of an interface in addition to the physical state.
   - `nv show platform` command redesign

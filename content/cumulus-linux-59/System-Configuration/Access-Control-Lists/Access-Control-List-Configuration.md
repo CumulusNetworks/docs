@@ -150,22 +150,33 @@ cumulus@switch:~$ nv set system acl mode non-atomic
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice note%}}
+- On Spectrum-2 and later, NVUE reloads `switchd` after you run and apply the `nv set system acl mode` command. Reloading `switchd` does **not** interrupt network services.
+- On Spectrum 1, NVUE restarts `switchd` after you run and apply the `nv set system acl mode` command. Restarting `switchd` causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/switchd.conf` file to add `acl.non_atomic_update_mode = TRUE`, then reload `switchd` for the changes to take effect:
+1. Edit the `/etc/cumulus/switchd.conf` file to add `acl.non_atomic_update_mode = TRUE`:
 
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
-...
-acl.non_atomic_update_mode = TRUE
-```
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+   ...
+   acl.non_atomic_update_mode = TRUE
+   ```
 
-```
-cumulus@switch:~$ sudo systemctl reload switchd.service
-```
+2. On Spectrum-2 and later, reload `switchd` for the changes to take effect. Reloading `switchd` does **not** interrupt network services.
 
-Reloading `switchd` does **not** interrupt network services.
+   ```
+   cumulus@switch:~$ sudo systemctl reload switchd.service
+   ```
+
+   On Spectrum 1, restart `switchd` for the changes to take effect. Restarting `switchd` causes all network ports to reset in addition to resetting the switch hardware configuration.
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart switchd.service
+   ```
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -142,17 +142,11 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands ">}}
 
-1. Modify the `/etc/hostname` file with the desired hostname:
+Change the hostname with the `hostnamectl` command:
 
-    ```
-    cumulus@switch:~$ sudo nano /etc/hostname
-    ```
-
-2. In `/etc/hosts` file, replace the 127.0.1.1 IP address with the new hostname:
-
-    ```
-    cumulus@switch:~$ sudo nano /etc/hosts
-    ```
+```
+cumulus@switch:~$ sudo hostnamectl set-hostname <hostname>
+```
 
 {{< /tab >}}
 

@@ -79,7 +79,8 @@ iface swp1
 If you configure an interface in the `/etc/network/interfaces` file, you can bring it down administratively with the `ifdown swp1` command, then bring the interface back up with the `ifup swp1` command. These changes do not persist after a reboot. After a reboot, the configuration present in `/etc/network/interfaces` takes effect.
 
 {{%notice note%}}
-By default, the `ifupdown` and `ifup` command is quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
+- By default, the `ifupdown` and `ifup` command is quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
+- For configurations at scale, you can run the `ifreload -a --diff` command to apply only current configuration changes instead of processing the entire `/etc/network/interfaces` file.
 {{%/notice%}}
 
 To remove an interface from the configuration entirely, remove the interface stanza from the `/etc/network/interfaces` file, then run the `ifreload -a` command.
@@ -778,7 +779,7 @@ addon_scripts_support=1
 
 ## Troubleshooting
 
-To show the physical and admin state of all interfaces on the switch:
+To show the state of all interfaces on the switch:
 
 ```
 cumulus@switch:~$ nv show interface
@@ -794,7 +795,7 @@ lo             up            65536  loopback                                IP A
 ...
 ```
 
-To show the physical and admin state of an interface:
+To show the physical (operational) and admin state of an interface:
 
 {{< tabs "TabID875 ">}}
 {{< tab "NVUE Commands ">}}

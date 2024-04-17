@@ -22,16 +22,15 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - {{<link url="Firewall-Rules" text="Firewall rules">}}
 - {{<link url="CLI-Configuration" text="CLI Session pagination and timeout options">}}
 - {{<link url="User-Accounts/#password-security" text="Password security commands">}}
-- {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="4x breakout on QSFP-DD/OSFP 8 lane ports">}} now allocates two lanes per port by default instead of one.
-- BGP now shows paths in a sorted order with the best path always first.
-- New command line argument `ifreoload -a --diff` that processes and applies only the incremental changes to an existing network configuration instead of reloading or verifying the entire setup.
+- {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="4x breakout on QSFP-DD/OSFP 8 lane ports">}} now allocates two lanes per port by default instead of one
+- {{<link url="Interface-Configuration-and-Management/#bring-an-interface-up-or-down" text="New Linux ifreload -a --diff option">}} processes and applies only incremental changes instead of reloading entire configuration
 - NVUE
   - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
-  - NVUE ships with a `/etc/nvue.d/startup.yaml` file
-  - `nv show --output raw` option shows {{<link url="NVUE-CLI/#monitoring-commands" text="native vtysh (FRR) output">}}
-  - `nv show interface` command output now includes the admin state of an interface in addition to the physical state.
+  - {{<link url="NVUE-CLI/#monitoring-commands" text="New nv show --output raw option">}} shows native vtysh (FRR) output
+  - {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="nv show interface <interface> command output">}} shows both the admin and physical state of an interface
   - `nv show platform` command redesign
-  - Improved tab completion for NVUE routing commands
+  - NVUE ships with a default `/etc/nvue.d/startup.yaml` file
+  - BGP now shows paths in a sorted order with the best path always first
 - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 {{< tabs "TabID49 ">}}

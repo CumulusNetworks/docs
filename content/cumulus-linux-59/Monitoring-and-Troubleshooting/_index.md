@@ -119,15 +119,23 @@ model        QEMU Virtual CPU version 2.5+                    Model name
 utilization  11.8%                                            Utilization over 2 frames of top
 ```
 
-To show general information about the switch, run the `nv show platform hardware` command:
+To show general information about the switch, run the `nv show platform` command:
 
 ```
-cumulus@switch:~$ nv show platform hardware
-             operational                  
------------  -----------------------------
-model        QEMU Virtual CPU version 2.5+
-core-count   1                            
-utilization  0.6%
+cumulus@switch:~$ nv show platform
+               operational                         
+-------------  ------------------------------------
+system-mac     44:38:39:22:01:b1                   
+manufacturer   Cumulus                             
+product-name   VX                                  
+cpu            NA                                  
+memory         1756460 kB                          
+disk-size      n/a                                 
+port-layout    n/a                                 
+part-number    5.9.0                               
+serial-number  44:38:39:22:01:7a                   
+asic-model     n/a                                 
+system-uuid    e928ee83-20f7-4515-bfab-c204db3e604c
 ```
 <!-- vale off -->
 ## Diagnostics Using cl-support

@@ -28,10 +28,10 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
   - {{<link url="NVUE-CLI/#monitoring-commands" text="New nv show --output raw option">}} shows native vtysh (FRR) output
   - {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="nv show interface <interface> command output">}} shows both the admin and physical state of an interface
-  - `nv show platform` command redesign
   - NVUE ships with a default `/etc/nvue.d/startup.yaml` file
+  - `nv show platform` command redesign 
   - BGP now shows paths in a sorted order with the best path always first
-- {{< expand "New NVUE Commands" >}}
+  - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 {{< tabs "TabID49 ">}}
 {{< tab "nv show ">}}
@@ -140,11 +140,6 @@ nv action upgrade system packages to latest use-vrf <vrf>
 
 {{< /tab >}}
 {{< /tabs >}}
-{{< /expand >}}
-- {{< expand "Removed NVUE Commands" >}}
-```
-nv show 
-```
 {{< /expand >}}
 
 {{%notice note%}}

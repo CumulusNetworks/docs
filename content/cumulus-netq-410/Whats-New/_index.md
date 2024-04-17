@@ -12,9 +12,9 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 ## What's New in NetQ 4.10.0
 <!-- vale on -->
 
-NetQ 4.10 now integrates with Base Command Manager, a toolkit to streamline cluster provisioning, workload management, and infrastructure monitoring. With Base Command Manager and NetQ, administrators can monitor telemetry data and perform health checks on a network’s fabric.
+NetQ 4.10 now integrates with Base Command Manager (BCM), a toolkit to streamline cluster provisioning, workload management, and infrastructure monitoring. With Base Command Manager and NetQ, administrators can monitor telemetry data and perform health checks on a network’s fabric.
 
-BCM 10 also provides a Kubernetes wizard to manage NetQ provisioning for high availability, on-prem single or multi-node clusters. Using the wizard, administrators can:
+Base Command Manager 10 also provides a Kubernetes wizard to manage NetQ provisioning for high availability, on-prem single or multi-node clusters. Using the wizard, administrators can:
 
 - Avoid port conflicts between BCM and NetQ
 - Verify that all the installation prerequisites are met

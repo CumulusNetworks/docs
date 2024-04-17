@@ -609,7 +609,7 @@ To clear the protodown state and the reason:
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv action clear interface swp1 link protodown link-flap 
+cumulus@switch:~$ nv action clear interface swp1 link flap-protection violation 
 ```
 
 After a few seconds the port state returns to `up`. Run the `nv show <interface> link state` command to verify that the interface is no longer in a protodown state and that the reason clears:
@@ -621,7 +621,7 @@ operational    applied
   up             up
 ```
 
-To clear all the interfaces from a protodown state, run the `nv action clear system link protodown link-flap`.
+To clear all the interfaces from a protodown state, run the `nv action clear system link flap-protection violation`.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

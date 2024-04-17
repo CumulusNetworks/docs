@@ -85,8 +85,9 @@ cumulus@switch:~$ nv set system acl mode non-atomic
 cumulus@switch:~$ nv config apply
 ```
 
-{{%notice warning%}}
-On Spectrum 1 switches, NVUE restarts `switchd` after you run the apply the `nv set system acl mode` command.
+{{%notice note%}}
+- On Spectrum-2 and later NVUE reloads `switchd` after you run and apply the `nv set system acl mode` command.
+- On Spectrum 1 switches, NVUE **restarts** `switchd` after you run and apply the `nv set system acl mode` command.
 {{%/notice%}}
 
 The following command example sets the reserved VLAN range between 4064 and 4094:

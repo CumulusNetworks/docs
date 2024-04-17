@@ -18,49 +18,48 @@ You can run NVUE commands to monitor your system hardware.
 
 | Command | Description |
 | ----------- | ----------- |
-| `nv show platform hardware`| Shows platform hardware information on the switch, such as the base MAC address, model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address. |
-| `nv show system cpu` | Shows information about the switch CPU, such as the core-count, the model, and the utilization percentage.|
-| `nv show platform environment` | Shows a list of sensors, fans, LEDs, and PSUs on the switch.|
+| `nv show platform`| Shows platform hardware information on the switch, such as the model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address. |
+| `nv show platform environment` | Shows the type and state of all the physical sensors, fans, LEDs, and PSUs on the switch.|
 |`nv show platform environment fan` | Shows information about the fans on the switch, such as the minimum, maximum and current speed, the fan state, and the fan direction.|
 | `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|
 | `nv show platform environment psu` | Shows information about the PSUs on the switch, such as the PSU name and state.|
-| `nv show platform environment sensor` | Shows information about the sensors on the switch, such as the critical, maximum, minimum and current temperature and the current state of the sensor.|
+| `nv show platform environment temperature` | Shows information about the sensors on the switch, such as the critical, maximum, minimum and current temperature and the current state of the sensor.|
+| `nv show platform environment voltage` | Shows the list of voltage sensors on the switch.|
+| `nv show platform inventory` | Shows the switch inventory, which includes fan and PSU hardware version, model, serial number, state, and type. For information about a specific fan or PSU, run the `nv show platform inventory <inventory-name>` command.|
 
-The following example shows the `nv show platform hardware` command output:
+The following example shows the `nv show platform` command output:
 
 ```
-cumulus@switch:~$ nv show platform hardware
+cumulus@switch:~$ nv show platform
                operational      
 -------------  -----------------
-base-mac       44:38:39:22:01:7A
-cpu            n/a              
-disk-size      n/a              
-manufacturer   Cumulus          
-memory         1758728 kB       
-model          VX               
-part-number    5.9.0            
-port-layout    n/a              
-product-name   VX               
-serial-number  44:38:39:22:01:7a
-system-mac     44:38:39:22:01:b1
-asic-model     n/a              
-asic-vendor    n/a
+system-mac     44:38:39:22:01:b1                      
+manufacturer   Cumulus                                
+product-name   VX                                     
+cpu            x86_64 QEMU Virtual CPU version 2.5+ x1
+memory         1756460 kB                             
+disk-size      n/a                                    
+port-layout    n/a                                    
+part-number    5.9.0                                  
+serial-number  44:38:39:22:01:7a                      
+asic-model     n/a                                    
+system-uuid    e928ee83-20f7-4515-bfab-c204db3e604c
 ```
 
 The following example shows the `nv show platform environment fan` command output. The airflow direction must be the same for all fans. If Cumulus Linux detects that the fan airflow direction is not uniform, it logs a message in the `var/log/syslog` file.
 
 ```
 cumulus@switch:~$ nv show platform environment fan
-Name      Fan Direction  Limit variance  Max Speed  Min Speed  Current Speed (RPM)  Fan State
---------  -------------  --------------  ---------  ---------  -------------------  ---------
-Fan1      F2B            15              29000      2500       6000                 ok       
-Fan2      F2B            15              29000      2500       6000                 ok       
-Fan3      F2B            15              29000      2500       6000                 ok       
-Fan4      F2B            15              29000      2500       6000                 ok       
-Fan5      F2B            15              29000      2500       6000                 ok       
-Fan6      F2B            15              29000      2500       6000                 ok       
-PSU1Fan1  F2B            15              29000      2500       6000                 ok       
-PSU2Fan1  F2B            15              29000      2500       6000                 ok    
+Name      Fan State  Current Speed (RPM)  Max Speed  Min Speed  Fan Direction
+--------  ---------  -------------------  ---------  ---------  -------------
+FAN1/1    ok         6000                 29000      2500       F2B         
+FAN1/2    ok         6000                 29000      2500       F2B         
+FAN2/1    ok         6000                 29000      2500       F2B         
+FAN2/2    ok         6000                 29000      2500       F2B         
+FAN3/1    ok         6000                 29000      2500       F2B         
+FAN3/2    ok         6000                 29000      2500       F2B         
+PSU1/FAN  ok         6000                 29000      2500       F2B         
+PSU2/FAN  ok         6000                 29000      2500       F2B   
 ```
 
 {{%notice note%}}

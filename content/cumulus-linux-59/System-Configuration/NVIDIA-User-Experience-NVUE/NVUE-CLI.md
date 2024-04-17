@@ -320,12 +320,13 @@ To show the full list of NVUE commands, run `nv list-commands`. For example:
 ```
 cumulus@switch:~$ nv list-commands
 nv show platform
-nv show platform hardware
-nv show platform hardware component
-nv show platform hardware component <component-id>
+nv show platform inventory
+nv show platform inventory <inventory-id>
 nv show platform software
 nv show platform software installed
 nv show platform software installed <installed-id>
+nv show platform firmware
+nv show platform firmware <platform-component-id>
 nv show platform capabilities
 nv show platform environment
 ...

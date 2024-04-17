@@ -85,6 +85,10 @@ cumulus@switch:~$ nv set system acl mode non-atomic
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice warning%}}
+On Spectrum 1 switches, NVUE restarts `switchd` after you run the apply the `nv set system acl mode` command.
+{{%/notice%}}
+
 The following command example sets the reserved VLAN range between 4064 and 4094:
 
 ```
@@ -127,14 +131,14 @@ The following table describes the `/etc/cumulus/switchd.conf` file parameters an
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
-| Parameter| Description | switchd reload or restart |
+| Parameter| Description | <div style="width:200px">switchd reload or restart |
 | -------|  --------- | --------- |
 | `stats.poll_interval` | The statistics polling interval in milliseconds.</br>The default setting is 2000. | restart |
 | `buf_util.poll_interval` | The buffer utilization polling interval in milliseconds. 0 disables buffer utilization polling.</br>The default setting is 0. | restart |
 | `buf_util.measure_interval` | The buffer utilization measurement interval in minutes.</br>The default setting is 0. | restart |
 | `acl.optimize_hw` | Optimizes ACL hardware resources for better utilization.</br>The default setting is FALSE. | restart |
 | `acl.flow_based_mirroring` | Enables flow-based mirroring.</br>The default setting is TRUE. | restart |
-| `acl.non_atomic_update_mode`  | Enables non atomic ACL updates</br>The default setting is FALSE. | reload |
+| `acl.non_atomic_update_mode`  | Enables non atomic ACL updates</br>The default setting is FALSE. | Spectrum-2 and later: reload<br>Spectrum A1: restart|
 | `arp.next_hops` | Sends ARPs for next hops.</br>The default setting is TRUE. | restart |
 | `route.table` | The kernel routing table ID. The range is between 1 and 2^31.</br> The default is 254. | restart |
 | `route.host_max_percent` | The maximum neighbor table occupancy in hardware (a percentage of the hardware table size).</br>The default setting is 100. | restart |

@@ -8,11 +8,15 @@ product: NVIDIA Air
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
 <!-- Air:WhatsNew -->
+## April 2024
+### 82.2024.0418-011
+- Fixed an issue where node rebuild was improperly handled when a worker was offline
+<!-- Air:WhatsNew -->
+
 ## March 2024
 ### 82.2024.0321-013
 - Increased the number of retries when the Air Agent connects to the API
 - Fixed an issue when deleting an organization with existing simulations
-<!-- Air:WhatsNew -->
 
 ### 82.2024.0314-013
 - Fixed an issue where MAC addresses were not properly validated

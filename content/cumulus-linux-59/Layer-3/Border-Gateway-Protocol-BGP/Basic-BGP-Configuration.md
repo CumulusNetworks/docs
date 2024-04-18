@@ -553,82 +553,102 @@ router bgp 65199
 
 ## Verify Configuration
 
-To verify that the switch can see its BGP neighbors, run the `net show bgp summary` command or the vtysh `show ip bgp summary` command:
+To verify that the switch can see its BGP neighbors, run the vtysh `show ip bgp summary` command:
 
 {{< tabs "550 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ net show bgp summary
-show bgp ipv4 unicast summary
-=============================
-BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
-BGP table version 3
-RIB entries 5, using 1000 bytes of memory
-Peers 1, using 23 KiB of memory
-
-Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
-spine01(swp51)  4      65199        54        55        0    0    0 00:02:29            1        3
-
-Total number of neighbors 1
+cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
+leaf01# show ip bgp summary
+IPv4 Unicast Summary (VRF default):
+BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
+BGP table version 16
+RIB entries 15, using 2880 bytes of memory
+Peers 2, using 40 KiB of memory
+
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+spine01(swp51)  4      65199       599       603        0    0    0 00:29:35            6        8 N/A
+spine02(swp52)  4      65199       582       585        0    0    0 00:28:43            3        8 N/A
+
+Total number of neighbors 2
 ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:mgmt:~$ net show bgp summary
-show bgp ipv4 unicast summary
-=============================
-BGP router identifier 10.10.10.101, local AS number 65199 vrf-id 0
-BGP table version 3
-RIB entries 5, using 1000 bytes of memory
-Peers 1, using 23 KiB of memory
-
-Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt
-leaf01(swp1)    4      65101        73        73        0    0    0 00:03:25            2        3
-
-Total number of neighbors 1
+cumulus@spine01:mgmt:~$ sudo vtysh
 ...
+spine01# show ip bgp summary
+IPv4 Unicast Summary (VRF default):
+BGP router identifier 10.10.10.101, local AS number 65199 vrf-id 0
+BGP table version 7
+RIB entries 13, using 2496 bytes of memory
+Peers 4, using 79 KiB of memory
+
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+leaf01(swp1)    4      65101       637       634        0    0    0 00:31:20            4        7 N/A
+leaf02(swp2)    4      65102       639       636        0    0    0 00:31:25            4        7 N/A
+swp3            4          0         0         0        0    0    0    never         Idle        0 N/A
+leaf04(swp4)    4      65104       636       635        0    0    0 00:31:23            1        7 N/A
+
+Total number of neighbors 4
 ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-To verify that you can see the prefixes of the other neighbor in the routing table, run the `net show route bgp` command or the vtysh `show ip route` command.
+To verify that you can see the prefixes of the other neighbor in the routing table, run the vtysh `show ip route` command.
 
 {{< tabs "608 ">}}
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:mgmt:~$ net show route bgp
-RIB entry for bgp
-=================
+cumulus@leaf01:mgmt:~$ sudo vtysh
+...
+leaf01# show ip route
 Codes: K - kernel route, C - connected, S - static, R - RIP,
        O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-       F - PBR, f - OpenFabric,
+       T - Table, A - Babel, D - SHARP, F - PBR, f - OpenFabric,
+       Z - FRR,
        > - selected route, * - FIB route, q - queued, r - rejected, b - backup
        t - trapped, o - offload failure
-B>* 10.10.10.101/32 [20/0] via fe80::4638:39ff:fe00:1, swp51, weight 1, 00:00:51
+
+C>* 10.1.10.0/24 is directly connected, vlan10, 00:36:43
+C>* 10.1.20.0/24 is directly connected, vlan20, 00:36:43
+C>* 10.1.30.0/24 is directly connected, vlan30, 00:36:43
+C>* 10.10.10.1/32 is directly connected, lo, 00:38:34
+B>* 10.10.10.2/32 [20/0] via fe80::4ab0:2dff:fe51:3d2a, swp52, weight 1, 00:32:23
+  *                      via fe80::4ab0:2dff:feb1:8706, swp51, weight 1, 00:32:23
+B>* 10.10.10.4/32 [20/0] via fe80::4ab0:2dff:fe51:3d2a, swp52, weight 1, 00:32:19
+  *                      via fe80::4ab0:2dff:feb1:8706, swp51, weight 1, 00:32:19
+B>* 10.10.10.101/32 [20/0] via fe80::4ab0:2dff:feb1:8706, swp51, weight 1, 00:33:18
+B>* 10.10.10.102/32 [20/0] via fe80::4ab0:2dff:fe51:3d2a, swp52, weight 1, 00:32:2
 ```
 
 {{< /tab >}}
 {{< tab "spine01 ">}}
 
 ```
-cumulus@spine01:mgmt:~$ net show route bgp
-RIB entry for bgp
-=================
+cumulus@spine01:mgmt:~$ sudo vtysh
+...
+spine01# show ip route
 Codes: K - kernel route, C - connected, S - static, R - RIP,
        O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
-       T - Table, v - VNC, V - VNC-Direct, A - Babel, D - SHARP,
-       F - PBR, f - OpenFabric,
+       T - Table, A - Babel, D - SHARP, F - PBR, f - OpenFabric,
+       Z - FRR,
        > - selected route, * - FIB route, q - queued, r - rejected, b - backup
        t - trapped, o - offload failure
-B>* 10.1.10.0/24 [20/0] via fe80::4638:39ff:fe00:2, swp1, weight 1, 00:00:11
-B>* 10.10.10.1/32 [20/0] via fe80::4638:39ff:fe00:2, swp1, weight 1, 00:00:11
+
+B>* 10.1.10.0/24 [20/0] via fe80::4ab0:2dff:fe90:b5c8, swp2, weight 1, 00:37:24
+B>* 10.1.20.0/24 [20/0] via fe80::4ab0:2dff:fe90:b5c8, swp2, weight 1, 00:37:24
+B>* 10.1.30.0/24 [20/0] via fe80::4ab0:2dff:fe90:b5c8, swp2, weight 1, 00:37:24
+B>* 10.10.10.1/32 [20/0] via fe80::4ab0:2dff:feb5:d65e, swp1, weight 1, 00:37:20
+B>* 10.10.10.2/32 [20/0] via fe80::4ab0:2dff:fe90:b5c8, swp2, weight 1, 00:37:24
+B>* 10.10.10.4/32 [20/0] via fe80::4ab0:2dff:fea4:fab6, swp4, weight 1, 00:37:22
+C>* 10.10.10.101/32 is directly connected, lo, 00:37:31
 ```
 
 {{< /tab >}}

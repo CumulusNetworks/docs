@@ -337,7 +337,7 @@ Cumulus Linux supports BGP W-ECMP with {{<link title="#adaptive-routing" text="a
 
 ## Troubleshooting
 
-To show the extended community in a received or local route, run the vtysh `show bgp` command or the `net show bgp` command.
+To show the extended community in a received or local route, run the vtysh `show bgp` command.
 
 The following example shows that the switch receives an IPv4 unicast route with the BGP link bandwidth attribute from two peers. The link bandwidth extended community is in bytes per second and shows in megabits per second: `Extended Community: LB:65002:131072000 (1000.000 Mbps) and Extended Community: LB:65001:65536000 (500.000 Mbps)`.
 
@@ -368,7 +368,7 @@ Paths: (2 available, best #2, table default)
 The bandwidth value used by W-ECMP is only to determine the percentage of load to a given next hop and has no impact on actual link or flow bandwidth.
 {{%/notice%}}
 
-To show EVPN type-5 routes, run the `net show bgp l2vpn evpn route type prefix` command or the vtysh `show bgp l2vpn evpn route type prefix` command.
+To show EVPN type-5 routes, run the vtysh `show bgp l2vpn evpn route type prefix` command.
 
 The bandwidth shows both as bytes per second (unsigned 32 bits) as well as in Gbps, Mbps, or Kbps. For example:
 
@@ -385,7 +385,7 @@ Origin codes: i - IGP, e - EGP, ? - incomplete
             RT:65050:104001 LB:65050:134217728 (1.000 Gbps) ET:8 Rmac:36:4f:15:ea:81:90
 ```
 
-To see weights associated with next hops for a route with multiple paths, run the `net show route` command or the vtysh `show ip route` command. For example:
+To see weights associated with next hops for a route with multiple paths, run the vtysh `show ip route` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh

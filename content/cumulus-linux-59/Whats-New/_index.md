@@ -65,7 +65,7 @@ environment       pulse-per-second
 |--------------------|------------------|
 | `nv show platform` | Shows the software installed on the switch. |
 | `nv show platform capabilities` | Shows the switch platform capabilities.|
-| `nv show platform environment` | Shows a list of sensors, fans, LEDs, and PSUs on the switch.|
+| `nv show platform environment` | Shows information about the sensors, fans, LEDs, and PSUs on the switch.|
 | `nv show platform hardware` | Shows information about the switch hardware, such as the model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address.|
 | `nv show platform pulse-per-second` | Shows a summary of the PPS In and PPS out configuration settings.|
 | `nv show platform software` | Shows the software installed on the switch and includes version numbers. |

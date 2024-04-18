@@ -226,54 +226,6 @@ If you run an NVUE show command but the corresponding FRR routing daemons are no
 - If PIM and IGMP are not running when you run the `nv show interface <interface> ip igmp -o json` command, NVUE returns `Error: The requested item does not exist` because the PIM daemon is not running in FRR.
 - If PIM is running but IGMP is not running when you the `nv show interface <interface> ip igmp group -o json` command, NVUE does not return an error message but shows an empty { } response.
 
-### Net Show commands
-
-In addition to the `nv show` commands, Cumulus Linux continues to provide a subset of the NCLU `net show` commands. Use these commands to get additional views of various parts of your network configuration.
-
-```
-cumulus@leaf01:mgmt:~$ net show <<TAB>>
-    bfd            :  Bidirectional forwarding detection
-    bgp            :  Border Gateway Protocol
-    bridge         :  a layer2 bridge
-    clag           :  Multi-Chassis Link Aggregation
-    commit         :  apply the commit buffer to the system
-    configuration  :  settings, configuration state, etc
-    counters       :  net show counters
-    debugs         :  Debugs
-    dhcp-snoop     :  DHCP snooping for IPv4
-    dhcp-snoop6    :  DHCP snooping for IPv6
-    dot1x          :  Configure, Enable, Delete or Show IEEE 802.1X EAPOL
-    evpn           :  Ethernet VPN
-    hostname       :  local hostname
-    igmp           :  Internet Group Management Protocol
-    interface      :  An interface, such as swp1, swp2, etc.
-    ip             :  Internet Protocol version 4/6
-    ipv6           :  Internet Protocol version 6
-    lldp           :  Link Layer Discovery Protocol
-    mpls           :  Multiprotocol Label Switching
-    mroute         :  Static unicast routes in MRIB for multicast RPF lookup
-    msdp           :  Multicast Source Discovery Protocol
-    neighbor       :  A BGP, OSPF, PIM, etc neighbor
-    ospf           :  Open Shortest Path First (OSPFv2)
-    ospf6          :  Open Shortest Path First (OSPFv3)
-    package        :  A Cumulus Linux package name
-    pbr            :  Policy Based Routing
-    pim            :  Protocol Independent Multicast
-    port-mirror    :  port-mirror
-    port-security  :  Port security
-    ptp            :  Precision Time Protocol
-    roce           :  Enable RoCE on all interfaces, default mode is lossless
-    rollback       :  revert to a previous configuration state
-    route          :  EVPN route information
-    route-map      :  Route-map
-    snmp-server    :  Configure the SNMP server
-    system         :  System
-    time           :  Time
-    version        :  Version number
-    vrf            :  Virtual routing and forwarding
-    vrrp           :  Virtual Router Redundancy Protocol
-```
-
 ### Configuration Management Commands
 
 The NVUE configuration management commands manage and apply configurations.
@@ -454,179 +406,7 @@ To reset the NVUE configuration on the switch back to the default values, run th
 cumulus@switch:~$ nv config apply empty
 ```
 
-## Example Configuration Commands
-
-This section provides examples of how to configure a Cumulus Linux switch using NVUE commands.
-
-### Configure the System Hostname
-
-The example below shows the NVUE commands required to change the hostname for the switch to leaf01:
-
-```
-cumulus@switch:~$ nv set system hostname leaf01
-cumulus@switch:~$ nv config apply
-```
-
-### Configure the System DNS Server
-
-The example below shows the NVUE commands required to define the DNS server for the switch:
-
-```
-cumulus@switch:~$ nv set service dns mgmt server 192.168.200.1
-cumulus@switch:~$ nv config apply
-```
-
-### Configure an Interface
-
-The example below shows the NVUE commands required to bring up swp1.
-
-```
-cumulus@switch:~$ nv set interface swp1
-cumulus@switch:~$ nv config apply 
-```
-
-### Configure a Bond
-
-The example below shows the NVUE commands required to configure the front panel port interfaces swp1 thru swp4 to be slaves in bond0.
-
-```
-cumulus@switch:~$ nv set interface bond0 bond member swp1-4
-cumulus@switch:~$ nv config apply
-```
-
-### Configure a Bridge
-
-The example below shows the NVUE commands required to create a VLAN-aware bridge that contains two switch ports (swp1 and swp2) and includes 3 VLANs; tagged VLANs 10 and 20 and an untagged (native) VLAN of 1.
-
-With NVUE, there is a default bridge called `br_default`, which has no ports assigned to it. The example below configures this default bridge.
-
-```
-cumulus@switch:~$ nv set interface swp1-2 bridge domain br_default
-cumulus@switch:~$ nv set bridge domain br_default vlan 10,20
-cumulus@switch:~$ nv set bridge domain br_default untagged 1
-cumulus@switch:~$ nv config apply
-```
-
-### Configure MLAG
-
-The example below shows the NVUE commands required to configure MLAG on leaf01. The commands:
-- Place swp1 into bond1 and swp2 into bond2.
-- Configure the MLAG ID to 1 for bond1 and to 2 for bond2.
-- Add bond1 and bond2 to the default bridge (br_default).
-- Create the inter-chassis bond (swp49 and swp50) and the peer link (peerlink)
-- Set the peer link IP address to `linklocal`, the MLAG system MAC address to 44:38:39:BE:EF:AA, and the backup interface to 10.10.10.2.
-
-```
-cumulus@leaf01:~$ nv set interface bond1 bond member swp1
-cumulus@leaf01:~$ nv set interface bond2 bond member swp2
-cumulus@leaf01:~$ nv set interface bond1 bond mlag id 1
-cumulus@leaf01:~$ nv set interface bond2 bond mlag id 2
-cumulus@switch:~$ nv set interface bond1-2 bridge domain br_default 
-cumulus@leaf01:~$ nv set interface peerlink bond member swp49-50
-cumulus@leaf01:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
-cumulus@leaf01:~$ nv set mlag backup 10.10.10.2
-cumulus@leaf01:~$ nv set mlag peer-ip linklocal
-cumulus@leaf01:~$ nv config apply
-```
-
-### Configure BGP Unnumbered
-
-The example below shows the NVUE commands required to configure BGP unnumbered on leaf01. The commands:
-- Assign the ASN for this BGP node to 65101.
-- Set the router ID to 10.10.10.1.
-- Distribute routing information to the peer on swp51.
-- Originate prefixes 10.10.10.1/32 from this BGP node.
-
-```
-cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
-cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
-cumulus@leaf01:~$ nv config apply
-```
-
-## Example Monitoring Commands
-
-This section provides monitoring command examples.
-
-### Show Installed Software
-
-The following example command lists the software installed on the switch:
-
-```
-cumulus@switch:~$ nv show platform software
-Installed Software
-=====================
-Installed software            description                     package                      version                       
----------------------------   ---------------------------     --------------------------   -----------------------------
-acpi                          displays information on ACPI    acpi                         1.7-1.1                       
-                              devices                                                                                  
-acpi-support-base             scripts for handling base       acpi-support-base            0.142-8                       
-                              ACPI events such as the                                                                  
-                              power button                                                                             
-acpid                         Advanced Configuration and      acpid                        1:2.0.31-1                    
-                              Power Interface event daemon                                                             
-adduser                       add and remove users and        adduser                      3.118                         
-                              groups                                                                                   
-apt                           commandline package manager     apt                          1.8.2.3             
-...
-```
-
-### Show Interface Configuration
-
-The following example command shows the running, applied, and pending (if available) swp1 interface configuration.
-
-```
-cumulus@leaf01:~$ nv show interface swp1
-                          operational        applied   
-------------------------  -----------------  ----------
-type                      swp                swp       
-[acl]                                                  
-bridge                                                 
-  [domain]                br_default         br_default
-evpn                                                   
-  multihoming                                          
-    uplink                                   off       
-ptp                                                    
-  enable                                     off       
-router                                                 
-  adaptive-routing                                     
-    enable                                   off       
-  ospf                                                 
-    enable                                   off       
-  ospf6                                                
-    enable                                   off       
-  pbr                                                  
-    [map]                                              
-  pim            
-...
-```
-
-## Example Configuration Management Commands
-
-This section provides examples of how to use the configuration management commands to apply, save, and detach configurations.
-
-### Apply and Save a Configuration
-
-The following example command configures the front panel port interfaces swp1 through swp4 to be slaves in bond0. The configuration is only in a pending configuration state. The configuration is **not** applied. NVUE has not yet made any changes to the running configuration.
-
-```
-cumulus@switch:~$ nv set interface bond0 bond member swp1-4
-```
-
-To apply the pending configuration to the running configuration, run the `nv config apply` command. The configuration does **not** persist after a reboot.
-
-```
-cumulus@switch:~$ nv config apply
-```
-
-To save the applied configuration to the startup configuration, run the `nv config save` command. This command overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot.
-
-```
-cumulus@switch:~$ nv config save
-```
-
-### Detach a Pending Configuration
+## Detach a Pending Configuration
 
 The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. Cumulus Linux saves the detached configuration to a file with a numerical value to distinguish it from other pending configurations.
 
@@ -635,7 +415,7 @@ cumulus@switch:~$ nv set interface lo ip address 10.10.10.1/32
 cumulus@switch:~$ nv config detach
 ```
 
-### View Differences Between Configurations
+## View Differences Between Configurations
 
 To view differences between configurations, run the `nv config diff` command.
 
@@ -667,7 +447,7 @@ cumulus@switch:~$ nv config diff applied startup
       wjh:
 ```
 
-### Replace and Patch a Pending Configuration
+## Replace and Patch a Pending Configuration
 
 The following example replaces the pending configuration with the contents of the YAML configuration file called `nv-02/13/2021.yaml` located in the `/deps` directory:
 

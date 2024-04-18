@@ -104,17 +104,11 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/hostname` file with the desired hostname:
+Change the hostname with the `hostnamectl` command:
 
-    ```
-    cumulus@switch:~$ sudo nano /etc/hostname
-    ```
-
-2. In the `/etc/hosts` file, replace the 127.0.1.1 IP address with the new hostname:
-
-    ```
-    cumulus@switch:~$ sudo nano /etc/hosts
-    ```
+```
+cumulus@switch:~$ sudo hostnamectl set-hostname leaf01
+```
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -433,7 +427,7 @@ cumulus@switch:~$ nv config save
 ## Show Platform and System Settings
 
 - To show the hostname of the switch, the time zone, and the version of Cumulus Linux running on the switch, run the NVUE `nv show system` command.
-- To show switch platform information, such as the system MAC address and base MAC address, manufacturer, ASIC model, CPU, hard disk drive size, RAM size, and port layout, run the NVUE `nv show platform hardware` command.
+- To show switch platform information, such as the system MAC address, manufacturer, ASIC model, CPU, hard disk drive size, RAM size, and port layout, run the NVUE `nv show platform` command.
 
 ## Next Steps
 

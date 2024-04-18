@@ -28,10 +28,49 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
   - {{<link url="NVUE-CLI/#monitoring-commands" text="New nv show --output raw option">}} shows native vtysh (FRR) output
   - {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="nv show interface <interface> command output">}} shows both the admin and physical state of an interface
-  - `nv show platform` command redesign
   - NVUE ships with a default `/etc/nvue.d/startup.yaml` file
   - BGP now shows paths in a sorted order with the best path always first
-- {{< expand "New NVUE Commands" >}}
+  - {{< expand "Redesigned nv show platform commands" >}}
+{{< tabs "TabID34 ">}}
+{{< tab "5.9 commands ">}}
+
+```
+cumulus@leaf01:mgmt:~$ nv show platform <<TAB>>
+capabilities      environment       firmware          inventory         pulse-per-second  software
+```
+
+| Command | Description |
+|--------------------|------------------|
+| `nv show platform` | Shows platform hardware information on the switch, such as the model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address. |
+| `nv show platform capabilities` | Shows the switch platform capabilities.|
+| `nv show platform environment` | Shows information about the sensors, fans, LEDs, and PSUs on the switch.|
+| `nv show platform firmware` | Shows information about the switch firmware.|
+| `nv show platform inventory` | Shows the switch inventory, which includes fan and PSU hardware version, model, serial number, state, and type. |
+| `nv show platform pulse-per-second` | Shows a summary of the PPS In and PPS out configuration settings.|
+| `nv show platform software` | Shows the software installed on the switch.|
+
+{{< /tab >}}
+{{< tab "5.8 and earlier">}}
+
+```
+cumulus@leaf01:mgmt:~$ nv show platform <<TAB>>
+capabilities      hardware          software
+environment       pulse-per-second
+```
+
+| Command | Description |
+|--------------------|------------------|
+| `nv show platform` | Shows the software installed on the switch. |
+| `nv show platform capabilities` | Shows the switch platform capabilities.|
+| `nv show platform environment` | Shows a list of sensors, fans, LEDs, and PSUs on the switch.|
+| `nv show platform hardware` | Shows information about the switch hardware, such as the model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address.|
+| `nv show platform pulse-per-second` | Shows a summary of the PPS In and PPS out configuration settings.|
+| `nv show platform software` | Shows the software installed on the switch and includes version numbers. |
+
+{{< /tab >}}
+{{< /tabs >}}
+{{< /expand >}}
+  - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 {{< tabs "TabID49 ">}}
 {{< tab "nv show ">}}
@@ -140,11 +179,6 @@ nv action upgrade system packages to latest use-vrf <vrf>
 
 {{< /tab >}}
 {{< /tabs >}}
-{{< /expand >}}
-- {{< expand "Removed NVUE Commands" >}}
-```
-nv show 
-```
 {{< /expand >}}
 
 {{%notice note%}}

@@ -472,7 +472,7 @@ lldp-med-inventory-tlv  on           on
 
 ### Application Priority TLVs
 
-DCBX Application priority TLVs allow automated configuration of hosts and devices connected to the switch. You can configure the switch to transmit DCBX application priority TLVs in LLDP packets.
+DCBX Application priority TLVs allow hosts to receive per-application priority values in LLDP packets.
 
 Cumulus Linux supports application priority TLVs for:
 - <span class="a-tooltip">[iSCSI](## "Internet Small Computer System Interface")</span> using TCP port 3260.

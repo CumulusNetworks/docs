@@ -163,7 +163,7 @@ VLAN  VNI
 
 ## General BGP Commands
 
-If you use BGP for the underlay routing, run the vtysh `show bgp summary` command or the `net show bgp summary` command to view a summary of the layer 3 fabric connectivity:
+If you use BGP for the underlay routing, run the vtysh `show bgp summary` command to view a summary of the layer 3 fabric connectivity:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -208,7 +208,7 @@ spine04(swp54)  4      65199       814       805        0    0    0 00:37:35    
 Total number of neighbors 4
 ```
 
-Run the vtysh `show ip route` command or the `net show route` command to examine the underlay routing and determine how the switch reaches remote VTEPs. The following example shows output from a leaf switch:
+Run the vtysh `show ip route` command to examine the underlay routing and determine how the switch reaches remote VTEPs. The following example shows output from a leaf switch:
 {{<notice note>}}
 This is the routing table of the global (underlay) routing table. Use the `vrf` keyword to see routes for specific VRFs where the hosts reside.
 {{</notice>}}
@@ -257,7 +257,7 @@ B>* 10.10.10.104/32 [20/0] via fe80::ae56:f0ff:fef3:590c, swp54, weight 1, 00:42
 
 ## Show EVPN Address Family Peers
 
-Run the vtysh `show bgp l2vpn evpn summary` command or the `net show bgp l2vpn evpn summary` command to see the BGP peers participating in the EVPN address family and their states. The following example output from a leaf switch shows eBGP peering with four spine switches to exchange EVPN routes; all peering sessions are in the *established* state.
+Run the vtysh `show bgp l2vpn evpn summary` command to see the BGP peers participating in the EVPN address family and their states. The following example output from a leaf switch shows eBGP peering with four spine switches to exchange EVPN routes; all peering sessions are in the *established* state.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -372,7 +372,7 @@ MAC address        Type    State  LocMobSeq  RemMobSeq  Interface  RemoteVtep  E
 48:b0:2d:eb:26:6e  remote         1          0                     10.0.1.34      
 ```
 
-Run the vtysh `show evpn mac vni all` command or the `net show evpn mac vni all` command to examine MAC addresses for all VNIs.
+Run the vtysh `show evpn mac vni all` command to examine MAC addresses for all VNIs.
 
 You can examine the details for a specific MAC addresses or query all remote MAC addresses behind a specific VTEP:
 
@@ -399,7 +399,7 @@ c8:7d:bc:96:71:f3 remote       10.0.1.2                             0/0
 
 ## Examine Local and Remote Neighbors for a VNI
 
-Run the vtysh `show evpn arp-cache vni <vni>` command or the `net show evpn arp-cache vni <vni>` command to examine all local and remote neighbors (ARP entries) for a VNI. This command is only relevant for a layer 2 VNI and the output shows both IPv4 and IPv6 neighbor entries:
+Run the vtysh `show evpn arp-cache vni <vni>` command to examine all local and remote neighbors (ARP entries) for a VNI. This command is only relevant for a layer 2 VNI and the output shows both IPv4 and IPv6 neighbor entries:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -417,7 +417,7 @@ fe80::74ed:2aff:fe8a:6724 local        active   76:ed:2a:8a:67:24               
 ...
 ```
 
-Run the vtysh `show evpn arp-cache vni all` command or the `net show evpn arp-cache vni all` command to examine neighbor entries for all VNIs.
+Run the vtysh `show evpn arp-cache vni all` command to examine neighbor entries for all VNIs.
 
 ## Examine Remote Router MAC Addresses
 
@@ -495,7 +495,7 @@ You can drill down and show information about a specific vlan with the `nv show 
 
 ## Show the VRF Routing Table in FRR
 
-Run the vtysh `show ip route vrf <vrf-name>` command or the `net show route vrf <vrf-name>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
+Run the vtysh `show ip route vrf <vrf-name>` command to examine the VRF routing table. Use this command for symmetric routing to verify that remote host and prefix routes are in the VRF routing table and point to the appropriate gateway next hop.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -525,7 +525,7 @@ In the output above, EVPN specifies the next hops for these routes to be *onlink
 
 ## Show the Global BGP EVPN Routing Table
 
-Run the vtysh `show bgp l2vpn evpn route` command or the `net show bgp l2vpn evpn route` command to display all EVPN routes, both local and remote. Cumulus Linux bases the routes on the RD as they are across VNIs and VRFs:
+Run the vtysh `show bgp l2vpn evpn route` command to display all EVPN routes, both local and remote. Cumulus Linux bases the routes on the RD as they are across VNIs and VRFs:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -612,7 +612,7 @@ prefix: An IPv4 or IPv6 prefix
 
 ## Show a Specific EVPN Route
 
-To drill down on a specific route for more information, run the vtysh `show bgp l2vpn evpn route rd <rd-value>` command or the `net show bgp l2vpn evpn route rd <rd-value>` command. This command displays all EVPN routes with that RD and with the path attribute details for each path. Additional filtering is possible based on route type or by specifying the MAC and/or IP address. The following example shows the specific MAC/IP route of server05. The output shows that this remote host is behind VTEP 10.10.10.3 and is reachable through four paths; one through each spine switch. This example is from a symmetric routing configuration, so the route shows both the layer 2 VNI (20) and the layer 3 VNI (4001), as well as the EVPN route target attributes corresponding to each and the associated router MAC address.
+To drill down on a specific route for more information, run the vtysh `show bgp l2vpn evpn route rd <rd-value>` command. This command displays all EVPN routes with that RD and with the path attribute details for each path. Additional filtering is possible based on route type or by specifying the MAC and/or IP address. The following example shows the specific MAC/IP route of server05. The output shows that this remote host is behind VTEP 10.10.10.3 and is reachable through four paths; one through each spine switch. This example is from a symmetric routing configuration, so the route shows both the layer 2 VNI (20) and the layer 3 VNI (4001), as well as the EVPN route target attributes corresponding to each and the associated router MAC address.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -727,7 +727,7 @@ To view the EVPN RIB with NVUE, run the `nv show vrf <vrf> router bgp address-fa
 
 ## Show the VRF BGP Routing Table
 
-For symmetric routing, the switch imports received type-2 and type-5 routes into the VRF routing table (according to address family: IPv4 unicast or IPv6 unicast) based on a match on the route target attributes. To examine the BGP VRF routing table, run the vtysh `show bgp vrf <vrf-name> ipv4 unicast` and `show bgp vrf <vrf-name> ipv6 unicast` command. You can also run the `net show bgp vrf <vrf-name> ipv4 unicast` command or the `net show bgp vrf <vrf-name> ipv6 unicast` command.
+For symmetric routing, the switch imports received type-2 and type-5 routes into the VRF routing table (according to address family: IPv4 unicast or IPv6 unicast) based on a match on the route target attributes. To examine the BGP VRF routing table, run the vtysh `show bgp vrf <vrf-name> ipv4 unicast` and `show bgp vrf <vrf-name> ipv6 unicast` command.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -772,7 +772,7 @@ The following configurations use the **router flag** (R-bit):
 
 When the MAC/IP (type-2) route contains the IPv6-MAC pair with the R-bit flag, the route belongs to a router. If the R-bit is zero, the route belongs to a host. If the router is in a local LAN segment, the switch implementing the proxy ND function learns of this information by snooping on neighbor advertisement messages for the associated IPv6 address. Other EVPN peers exchange this information by using the ND extended community in BGP updates.
 
-To show that the neighbor table includes the EVPN arp-cache and that the IPv6-MAC entry belongs to a router, run the vtysh `show evpn arp-cache vni <vni> ip <address>` command or the `net show evpn arp-cache vni <vni> ip <address>` command. For example:
+To show that the neighbor table includes the EVPN arp-cache and that the IPv6-MAC entry belongs to a router, run the vtysh `show evpn arp-cache vni <vni> ip <address>` command. For example:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -789,7 +789,7 @@ IP: 10.1.20.105
 
 ## Examine MAC Moves
 
-The first time a MAC moves from behind one VTEP to behind another, BGP associates a MAC Mobility (MM) extended community attribute of sequence number 1, with the type-2 route for that MAC. From there, each time this MAC moves to a new VTEP, the MM sequence number increments by 1. You can examine the MM sequence number associated with a MAC's type-2 route with the vtysh `show bgp l2vpn evpn route vni <vni> mac <mac>` command or the `net show bgp l2vpn evpn route vni <vni> mac <mac>` command. The example output below shows the type-2 route for a MAC that has moved three times:
+The first time a MAC moves from behind one VTEP to behind another, BGP associates a MAC Mobility (MM) extended community attribute of sequence number 1, with the type-2 route for that MAC. From there, each time this MAC moves to a new VTEP, the MM sequence number increments by 1. You can examine the MM sequence number associated with a MAC's type-2 route with the vtysh `show bgp l2vpn evpn route vni <vni> mac <mac>` command. The example output below shows the type-2 route for a MAC that has moved three times:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -811,7 +811,7 @@ Displayed 1 paths for requested prefix
 
 ## Examine Static MAC Addresses
 
-You can identify static or *sticky* MACs in EVPN by the presence of `MM:0, sticky MAC` in the Extended Community line of the output from the vtysh `show bgp l2vpn evpn route vni <vni> mac <mac>` command or the `net show bgp l2vpn evpn route vni <vni> mac <mac>` command.
+You can identify static or *sticky* MACs in EVPN by the presence of `MM:0, sticky MAC` in the Extended Community line of the output from the vtysh `show bgp l2vpn evpn route vni <vni> mac <mac>` command.
 
 ```
 cumulus@switch:~$ sudo vtysh

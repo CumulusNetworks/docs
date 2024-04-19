@@ -75,7 +75,7 @@ cumulus@leaf01:~$ sudo nano /etc/dhcpsnoop/dhcp_snoop.json
 ```
 
 When DHCP snooping detects a violation, Cumulus Linux drops the packet and logs a message in the `/var/log/dhcpsnoop.log` file.
-
+<!--
 ## Show the DHCP Binding Table
 
 To show the DHCP binding table, run the `net show dhcp-snoop table` command for IPv4 or the `net show dhcp-snoop6 table` command for IPv6. The following example command shows the DHCP binding table for IPv4:
@@ -89,3 +89,4 @@ swp5 1002 10.0.0.3  00:02:00:00:00:04 7200  ACK   br0
 
 swp5 1000 10.0.1.3  00:02:00:00:00:04 7200  ACK   br0
 ```
+-->

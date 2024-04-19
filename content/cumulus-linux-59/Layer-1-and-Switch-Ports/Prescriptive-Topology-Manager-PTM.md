@@ -227,25 +227,14 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-To check PTM status on an interface, run the `net show interface <interface>` command or the vtysh `show interface <interface>` command.
+To check PTM status on an interface, run the vtysh `show interface <interface>` command.
 
 ```
-cumulus@switch:~$ net show interface swp4
-       Name  MAC                Speed  MTU   Mode
------  ----  -----------------  -----  ----  -------------
-ADMDN  swp4  48:b0:2d:59:0a:de  N/A    1500  NotConfigured
-
-Routing
--------
-Interface swp4 is up, line protocol is up
+cumulus@switch:~$ show interface swp51
+Interface swp51 is up, line protocol is up
   Link ups:       0    last: (never)
   Link downs:     0    last: (never)
   PTM status: disabled
-  vrf: default
-  index 3 metric 0 mtu 1550 speed 4294967295
-  flags: <UP,BROADCAST,RUNNING,MULTICAST>
-  Type: Ethernet
-  HWaddr: c4:54:44:bd:01:41
 ...
 ```
 

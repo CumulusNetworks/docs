@@ -31,6 +31,9 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   - NVUE ships with a default `/etc/nvue.d/startup.yaml` file
   - BGP now shows paths in a sorted order with the best path always first
   - {{< expand "Redesigned nv show platform commands" >}}
+{{%notice info%}}
+The NVUE `nv show platform` commands have changed. If you are using automation, be sure to update your automation scripts.
+{{%/notice%}}
 {{< tabs "TabID34 ">}}
 {{< tab "5.9 commands ">}}
 
@@ -62,7 +65,7 @@ environment       pulse-per-second
 |--------------------|------------------|
 | `nv show platform` | Shows the software installed on the switch. |
 | `nv show platform capabilities` | Shows the switch platform capabilities.|
-| `nv show platform environment` | Shows a list of sensors, fans, LEDs, and PSUs on the switch.|
+| `nv show platform environment` | Shows information about the sensors, fans, LEDs, and PSUs on the switch.|
 | `nv show platform hardware` | Shows information about the switch hardware, such as the model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address.|
 | `nv show platform pulse-per-second` | Shows a summary of the PPS In and PPS out configuration settings.|
 | `nv show platform software` | Shows the software installed on the switch and includes version numbers. |

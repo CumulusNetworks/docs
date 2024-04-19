@@ -474,7 +474,7 @@ lldp-med-inventory-tlv  on           on
 
 DCBX Application priority TLVs allow automated configuration of hosts and devices connected to the switch. You can configure the switch to transmit DCBX application priority TLVs in LLDP packets.
 
-Cumulus Linux supports sending application priority TLVs for:
+Cumulus Linux supports application priority TLVs for:
 - <span class="a-tooltip">[iSCSI](## "Internet Small Computer System Interface")</span> using TCP port 3260.
 - <span class="a-tooltip">[NVMe](## "Non-Volatile Memory Express")</span> using TCP port 4420 and 8009.
 - Applications using a specific TCP port or UDP port.
@@ -486,8 +486,9 @@ To enable application priority TLV transmission, run NVUE commands to set:
 - The interface on which you want to enable application priority TLV transmission. LLDP starts sending PDUs with the application priority TLVs after you apply the configuration on the specified interface.
 
 {{%notice note%}}
-- Cumulus Linux does not support application priority TLV transmission on bonds.
-- You can configure a maximum of 10 application TLV priorities on the switch and Cumulus Linux can send a maximum of 10 application priority TLVs in an LLDP PDU.
+- You cannot enable application priority TLV transmission on bonds.
+- You can configure a maximum of 10 application TLV priorities on the switch.
+- Cumulus Linux can send a maximum of 10 application priority TLVs in an LLDP PDU.
 {{%/notice%}}
 
 The following example sets the application priority of iSCSI traffic to 3 in the application priority TLV sent in LLDP PDUs on swp1.
@@ -661,7 +662,7 @@ Port  priority
 4217  6
 ```
 
-To show the UDP port priority mapping:
+To show the UDP port priority mapping for swp1:
 
 ```
 cumulus@switch:~$ nv show interface swp1 lldp application-tlv udp-port

@@ -405,7 +405,7 @@ You can use flexible snippets to add configuration to the following files that N
 |`/etc/default/isc-dhcp-server6-<VRF>`| Configuration file for DHCP servers for IPv6. Changes to this file require a `dhcpd6@<VRF>.service` restart |
 |`/etc/dhcp/dhcpd-<VRF>.conf`| Configuration file for the `dhcpd` service. Changes to this file require a `dhcpd@<VRF>.service` restart|
 |`/etc/dhcp/dhcpd6-<VRF>.conf`| Configuration file for the `dhcpd` service for IPv6. Changes to this file require a `dhcpd6@<VRF>.service` restart |
-|`/etc/ntp.conf`| Configuration file for NTP servers. Changes to this file require an `ntp` service restart.|
+|`etc/ntpsec/ntp.conf`| Configuration file for NTP servers. Changes to this file require an `ntp` service restart.|
 |`/etc/default/isc-dhcp-relay6-<VRF>`| Configuration file for DHCP relay for IPv6. Changes to this file require a `dhcrelay6@<VRF>.service` restart.|
 |`/etc/snmp/snmpd.conf`| Configuration file for SNMP. Changes to this file require an `snmpd` restart.|
 |`/etc/cumulus/datapath/traffic.conf`| Configuration file for forwarding table profiles. Changes to this file require a `switchd` restart.|

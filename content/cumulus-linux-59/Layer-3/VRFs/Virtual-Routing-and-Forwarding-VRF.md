@@ -362,7 +362,7 @@ To show more detailed status information, you can run the following NVUE command
 
 To view the BGP routing table, run the NVUE `nv show vrf <vrf-name> router bgp address-family ipv4-unicast` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
 
-To view the FRR IP routing table, run the vtysh `show ip route vrf <vrf-name>` command or the `net show route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
+To view the FRR IP routing table, run the vtysh `show ip route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
 
 The following example commands show all routes in VRF `RED`, including routes leaked from VRF `BLUE`:
 

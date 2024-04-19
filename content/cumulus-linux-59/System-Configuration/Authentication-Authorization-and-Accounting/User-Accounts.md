@@ -332,7 +332,7 @@ You can change these password security policies; see {{<link url="User-Accounts/
 The password security option is enabled by default. To disable password security, run the `nv unset system security password-hardening` command:
 
 ```
-cumulus@switch:~$ nv unset system security password-hardening
+cumulus@switch:~$ nv set system security password-hardening state disabled
 cumulus@switch:~$ nv config apply
 ```
 

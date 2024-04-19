@@ -919,7 +919,7 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-To show that BUM flooding is off, run the vtysh `show bgp l2vpn evpn vni` command or the `net show bgp l2vpn evpn vni` command. For example:
+To show that BUM flooding is off, run the vtysh `show bgp l2vpn evpn vni` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -940,7 +940,7 @@ Flags: * - Kernel
 * 4001       L3   10.1.20.2:5           65101:4001                65101:4001               RED
 ```
 
-Run the vtysh `show bgp l2vpn evpn route type multicast` command or the `net show bgp l2vpn evpn route type multicast` command to make sure there are no EVPN type-3 routes that originate locally.
+Run the vtysh `show bgp l2vpn evpn route type multicast` command to make sure there are no EVPN type-3 routes that originate locally.
 
 ## Extended Mobility
 
@@ -954,7 +954,7 @@ To reuse the same distributed gateway on VLANs fabric wide, you can set the fabr
 
 Cumulus Linux enables extended mobility by default.
 
-To examine the sequence numbers for a host or virtual machine MAC address and IP address, run the vtysh `show evpn mac vni <vni> mac <address>` command or the `net show evpn mac vni <vni> mac <address>` command. For example:
+To examine the sequence numbers for a host or virtual machine MAC address and IP address, run the vtysh `show evpn mac vni <vni> mac <address>` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1269,7 +1269,7 @@ IP: 10.0.0.9
   Duplicate, detected at Tue Nov  6 18:55:29 2018
 ```
 
-To show a list of MAC addresses detected as duplicate for a specific VNI or for all VNIs, run the vtysh `show evpn mac vni <vni-id|all> duplicate` command or the `net show evpn mac vni <vni-id|all> duplicate` command. The following example command shows a list of duplicate MAC addresses for VNI 1001:
+To show a list of MAC addresses detected as duplicate for a specific VNI or for all VNIs, run the vtysh `show evpn mac vni <vni-id|all> duplicate` command. The following example command shows a list of duplicate MAC addresses for VNI 1001:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1280,7 +1280,7 @@ MAC               Type   Intf/Remote VTEP      VLAN
 aa:bb:cc:dd:ee:ff local  hostbond3             1001
 ```
 
-To show a list of IP addresses detected as duplicate for a specific VNI or for all VNIs, run the vtysh `show evpn arp-cache vni <vni-id|all> duplicate` command or the `net show evpn arp-cache vni <vni-id|all> duplicate` command. The following example command shows a list of duplicate IP addresses for VNI 1001:
+To show a list of IP addresses detected as duplicate for a specific VNI or for all VNIs, run the vtysh `show evpn arp-cache vni <vni-id|all> duplicate` command. The following example command shows a list of duplicate IP addresses for VNI 1001:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1293,7 +1293,7 @@ IP                Type   State    MAC                Remote VTEP
 10.10.0.12        remote active   aa:22:aa:aa:aa:aa  172.16.0.16
 ```
 
-To show configured duplicate address detection parameters, run the vtysh `show evpn` command or the `net show evpn` command:
+To show configured duplicate address detection parameters, run the vtysh `show evpn` command:
 
 ```
 cumulus@switch:~$ sudo vtysh

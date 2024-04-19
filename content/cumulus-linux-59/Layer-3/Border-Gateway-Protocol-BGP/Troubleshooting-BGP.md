@@ -58,13 +58,13 @@ leaf02(peerlink.4094) 4      65101     30919     30913        0    0    0 01:47:
 Total number of neighbors 5
 ```
 
-To view the routing table as defined by BGP, run the vtysh `show ip bgp ipv4 unicast` command or the `net show bgp ipv4 unicast` command. For example:
+To view the routing table as defined by BGP, run the vtysh `show ip bgp ipv4 unicast` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# show ip bgp ipv4 unicast
-GP table version is 88, local router ID is 10.10.10.1, vrf id 0
+BGP table version is 88, local router ID is 10.10.10.1, vrf id 0
 Default local pref 100, local AS 65101
 Status codes:  s suppressed, d damped, h history, * valid, > best, = multipath,
                i internal, r RIB-failure, S Stale, R Removed
@@ -100,33 +100,39 @@ To show a more detailed breakdown of a specific neighbor, run the vtysh `show ip
 cumulus@switch:~$ nv show vrf default router bgp neighbor swp51
                                operational                applied   
 -----------------------------  -------------------------  ----------
-description                                               none      
-enforce-first-as                                          off       
-multihop-ttl                                              auto      
-nexthop-connected-check                                   on        
-passive-mode                                              off       
-password                                                  none      
-address-family                                                      
-  ipv4-unicast                                                      
-    enable                                                on        
-    add-path-tx                                           off       
-    nexthop-setting                                       auto      
-    route-reflector-client                                off       
-    route-server-client                                   off       
-    soft-reconfiguration                                  off       
-    aspath                                                          
-      private-as                                          none      
-      replace-peer-as                                     off       
-      allow-my-asn                                                  
-        enable                                            off       
-    attribute-mod                                                   
-      aspath                   off                        on        
-      med                      off                        on        
-      nexthop                  off                        on        
+password                                                   *         
+enforce-first-as                                           off       
+passive-mode                                               off       
+nexthop-connected-check                                    on        
+description                                                none      
+bfd                                                                  
+  enable                                                   off       
+ttl-security                                                                  
+  enable                        on                         off       
+  hops                          1                                    
+local-as                                                             
+  enable                                                   off       
+timers                                                               
+  keepalive                     3                          auto      
+  hold                          9                          auto      
+  connection-retry              10                         auto      
+  route-advertisement           none                       auto      
+address-family                                                       
+  ipv4-unicast                                                       
+    enable                                                 on        
+    route-reflector-client                                 off       
+    route-server-client                                    off       
+    soft-reconfiguration                                   off       
+    nexthop-setting                                        auto      
+    add-path-tx                                            off       
+    attribute-mod                                                    
+      aspath                    off                        on        
+      med                       off                        on        
+      nexthop                   off                        on
 ...
 ```
 
-To see details of a specific route, such as its source and destination, run the vtysh `show ip bgp <route>` command or the `net show bgp <route>` command.
+To see details of a specific route, such as its source and destination, run the vtysh `show ip bgp <route>` command.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -481,7 +487,7 @@ fe80::4ab0:2dff:fe93:d92d  swp52
 
 ## Troubleshoot BGP Unnumbered
 
-To verify that FRR learns the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the vtysh `show interface <interface>` command or the `net show interface <interface>` command.
+To verify that FRR learns the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the vtysh `show interface <interface>` command.
 
 If you do not enable `ipv6 nd suppress-ra` on both ends of the interface, `Neighbor address(s):` shows the link-local address of the other end (the address that BGP uses when that interface uses BGP).
 

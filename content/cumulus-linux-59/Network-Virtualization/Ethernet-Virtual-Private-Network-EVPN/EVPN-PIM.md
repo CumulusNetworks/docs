@@ -69,7 +69,7 @@ One multicast group per layer 2 VNI is optimal configuration for underlay bandwi
 <!-- vale off -->
 ## Verify EVPN-PIM
 <!-- vale on -->
-Run the `net show mroute` command or the vtysh `show ip mroute` command to review the multicast route information in FRR. When using EVPN-PIM, every VTEP acts as both source and destination for a VNI-MDT group, therefore, mroute entries on each VTEP should look like this:
+Run the vtysh `show ip mroute` command to review the multicast route information in FRR. When using EVPN-PIM, every VTEP acts as both source and destination for a VNI-MDT group, therefore, mroute entries on each VTEP should look like this:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -117,7 +117,7 @@ cumulus@switch:~$ bridge fdb show | grep 00:00:00:00:00:00
 The `show ip mroute count` command, often used to check multicast packet counts does *not* update for encapsulated BUM traffic originating or terminating on the VTEPs.
 {{%/notice%}}
 
-Run the `net show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to ensure that your layer 2 VNI has the correct flooding information:
+Run the vtysh `show evpn vni <vni>` command to ensure that your layer 2 VNI has the correct flooding information:
 
 ```
 cumulus@switch:~$ sudo vtysh

@@ -472,21 +472,22 @@ lldp-med-inventory-tlv  on           on
 
 ### Application Priority TLVs
 
-You can configure the switch to transmit DCBX application priority TLVs so that the network can receive and queue traffic properly.
+You can configure the switch to transmit DCBX application priority TLVs in LLDP packets.
 
 Cumulus Linux supports sending application priority TLVs for:
-- <span class="a-tooltip">[iSCSI](## "Internet Small Computer System Interface")</span> over TCP port 3260.
-- <span class="a-tooltip">[NVMe](## "Non-Volatile Memory Express")</span> over TCP port 4420 or 8009.
-- Applications over a specific TCP port or UDP port.
+- <span class="a-tooltip">[iSCSI](## "Internet Small Computer System Interface")</span> with TCP port 3260.
+- <span class="a-tooltip">[NVMe](## "Non-Volatile Memory Express")</span> with TCP port 4420 and 8009.
+- Applications with a specific TCP port or UDP port.
 
 #### Enable Application Priority TLV Transmission
 
 To enable application priority TLV transmission, run NVUE commands to set:
 - The application, TCP port, or UDP port and the associated application priority. If you do not set an application priority, Cumulus Linux uses the default priority 0.
-- The interface from which you want to transmit application priority TLVs. LLDP starts sending PDUs with the application priority TLVs after you apply the configuration on the specified interface.
+- The interface on which you want to enable application priority TLV transmission. LLDP starts sending PDUs with the application priority TLVs after you apply the configuration on the specified interface.
 
 {{%notice note%}}
-Cumulus Linux does not support application priority TLV transmission on bonds.
+- Cumulus Linux does not support application priority TLV transmission on bonds.
+- You can configure a maximum of 10 application TLV priorities on the switch and Cumulus Linux can send a maximum of 10 application priority TLVs in an LLDP PDU.
 {{%/notice%}}
 
 The following example associates application priority 3 with iSCSI, then enables transmission of the application priority TLVs on swp1.

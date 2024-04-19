@@ -105,29 +105,21 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 {{%notice note%}}
-When you run the `nv set vrf RED evpn vni 4001` command, NVUE:
-- Creates a layer 3 VNI called vni4001
-- Assigns the vni4001 a VLAN automatically from the reserved VLAN range and adds `_l3` (layer 3) at the end (for example vlan220_l3)
-- Creates a layer 3 bridge called `br_l3vni`
-- Adds vni4001 to the `br_l3vni` bridge
-- Assigns vlan4024 to VRF RED
 
-```
-cumulus@leaf01:~$ sudo cat /etc/network/interfaces
-...
-auto vni4001
-iface vni4001
-    bridge-access 220
-    bridge-learning off
-    vxlan-id 4001
-auto vlan220_l3
-iface vlan220_l3
-vrf RED
-vlan-raw-device br_l3vni
-address-virtual 44:38:39:BE:EF:AA
-vlan-id 220
-...
-```
+When you run the `nv set vrf RED evpn vni 4001` command, NVUE:
+
+- Creates a layer 3 bridge called `br_l3vni` if a layer 3 VNI was not previously configured
+- Creates a layer 3 VNI called `vni4001` in VRF RED
+- Assigns `vni4001` a VLAN automatically and creates a VLAN interface with `_l3` (layer 3) at the end of the interface name (for example, `vlan220_l3`) in VRF RED. The VLAN is added to bridge `br_l3vni`
+- Adds `vni4001` to the VLAN-VNI map of a single VxLAN device in bridge `br_l3vni`
+
+This behavior is different in an MLAG environment. If MLAG is configured and you run the `nv set vrf RED evpn vni 4001` command, NVUE:
+
+- Creates a layer 3 VNI called `vni4001` in VRF RED
+- Assigns `vni4001` a VLAN automatically out of the global reserved layer 3 VNI VLAN range and creates a VLAN interface with `_l3` (layer 3) at the end of the interface name (for example, `vlan220_l3`) in VRF RED. The VLAN is added to bridge `br_default`
+- Adds `vni4001` to the VLAN-VNI map of the single VxLAN device in bridge `br_default`
+
+The global reserved layer 3 VNI VLAN range is different than the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="switch internal reserved VLAN range.">}} You can configure it with the {{<link url="VLAN-aware-Bridge-Mode/#reserved-vlan-range" text="`nv set system global reserved vlan l3-vni-vlan` command">}}.
 {{%/notice%}}
 
 {{< /tab >}}

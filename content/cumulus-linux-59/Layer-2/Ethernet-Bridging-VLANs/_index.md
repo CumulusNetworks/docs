@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 420
 toc: 3
 ---
-Ethernet bridges enable hosts to communicate through layer 2 by connecting the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}}. The bridge <span class="a-tooltip">[MTU](## "Maximum Transmission Unit")</span> is the minimum MTU among all its members. By default, the [bridge's MAC address]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge" >}}) is the MAC address of the first port in the `bridge-ports` list in the `/etc/network/interfaces` file. You can also assign an IP address to the bridge; see {{<link url="#bridge-mac-addresses" text="below">}}.
+Ethernet bridges enable hosts to communicate through layer 2 by connecting the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}}. The bridge <span class="a-tooltip">[MTU](## "Maximum Transmission Unit")</span> is the minimum MTU among all its members.
 
 {{%notice note%}}
 - Bridge members can be individual physical interfaces, bonds, or logical interfaces that traverse an 802.1Q VLAN trunk.

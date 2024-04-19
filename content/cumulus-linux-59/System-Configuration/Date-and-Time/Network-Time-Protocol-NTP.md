@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 124
 toc: 3
 ---
-The `ntpd` daemon running on the switch implements the NTP protocol. It synchronizes the system time with time servers in the `/etc/ntp.conf` file. The `ntpd` daemon starts at boot by default.
+The `ntpd` daemon running on the switch implements the NTP protocol. It synchronizes the system time with time servers in the `/etc/ntpsec/ntp.conf` file. The `ntpd` daemon starts at boot by default.
 
 {{%notice note%}}
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-within-the-management-vrf" text="these steps">}} to configure the service.
@@ -12,7 +12,7 @@ If you intend to run this service within a {{<link url="Virtual-Routing-and-Forw
 
 ## Configure NTP Servers
 
-The default NTP configuration includes the following servers, which are in the `/etc/ntp.conf` file:
+The default NTP configuration includes the following servers, which are in the `/etc/ntpsec/ntp.conf` file:
 
 - server 0.cumulusnetworks.pool.ntp.org iburst
 - server 1.cumulusnetworks.pool.ntp.org iburst
@@ -34,10 +34,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ntp.conf` file to add or update NTP server information:
+Edit the `/etc/ntpsec/ntp.conf` file to add or update NTP server information:
 
 ```
-cumulus@switch:~$ sudo nano /etc/ntp.conf
+cumulus@switch:~$ sudo nano /etc/ntpsec/ntp.conf
 # pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
 # pick a different set every time it starts up.  Please consider joining the
 # pool: <http://www.pool.ntp.org/join.html>
@@ -103,10 +103,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ntp.conf` file to delete NTP servers.
+Edit the `/etc/ntpsec/ntp.conf` file to delete NTP servers.
 
 ```
-cumulus@switch:~$ sudo nano /etc/ntp.conf
+cumulus@switch:~$ sudo nano /etc/ntpsec/ntp.conf
 ...
 # pool.ntp.org maps to about 1000 low-stratum NTP servers.  Your server will
 # pick a different set every time it starts up.  Please consider joining the
@@ -133,10 +133,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ntp.conf` file and modify the entry under the `Specify interfaces` comment.
+Edit the `/etc/ntpsec/ntp.conf` file and modify the entry under the `Specify interfaces` comment.
 
 ```
-cumulus@switch:~$ sudo nano /etc/ntp.conf
+cumulus@switch:~$ sudo nano /etc/ntpsec/ntp.conf
 ...
 # Specify interfaces
 interface listen swp10
@@ -148,26 +148,26 @@ interface listen swp10
 
 ## Use NTP in a DHCP Environment
 
-You can use DHCP to specify your NTP servers. Ensure that the DHCP-generated configuration file `/run/ntp.conf.dhcp` exists. The `/etc/dhcp/dhclient-exit-hooks.d/ntp` script generates this file, which is a copy of the default `/etc/ntp.conf` file with a modified server list from the DHCP server. If this file does not exist and you plan on using DHCP in the future, you can copy your current `/etc/ntp.conf` file to the location of the DHCP file.
+You can use DHCP to specify your NTP servers. Ensure that the DHCP-generated configuration file `/run/ntp.conf.dhcp` exists. The `/etc/dhcp/dhclient-exit-hooks.d/ntp` script generates this file, which is a copy of the default `/etc/ntpsec/ntp.conf` file with a modified server list from the DHCP server. If this file does not exist and you plan on using DHCP in the future, you can copy your current `/etc/ntpsec/ntp.conf` file to the location of the DHCP file.
 
-To use DHCP to specify your NTP servers, run the `sudo -E systemctl edit ntp.service` command and add the `ExecStart=` line:
+To use DHCP to specify your NTP servers, run the `sudo -E systemctl edit ntpsec.service` command and add the `ExecStart=` line:
 
 ```
-cumulus@switch:~$ sudo -E systemctl edit ntp.service
+cumulus@switch:~$ sudo -E systemctl edit ntpsec.service
 [Service]
 ExecStart=
 ExecStart=/usr/sbin/ntpd -n -u ntp:ntp -g -c /run/ntp.conf.dhcp
 ```
 
 {{%notice note%}}
-The `sudo -E systemctl edit ntp.service` command always updates the base `ntp.service` even if you use `ntp@mgmt.service`. The `ntp@mgmt.service` is re-generated automatically.
+The `sudo -E systemctl edit ntpsec.service` command always updates the base `ntpsec.service` even if you use `ntp@mgmt.service`. The `ntpsec@mgmt.service` is re-generated automatically.
 {{%/notice%}}
 
 To validate that your configuration, run these commands:
 
 ```
 cumulus@switch:~$ sudo systemctl restart ntp
-cumulus@switch:~$ sudo systemctl status -n0 ntp.service
+cumulus@switch:~$ sudo systemctl status -n0 ntpsec.service
 ```
 
 If the state is not *Active*, or the alternate configuration file does not appear in the `ntp` command line, it is likely that you made a configuration mistake. Correct the mistake and rerun the commands above to verify.
@@ -190,7 +190,7 @@ For added security, you can configure NTP to use authorization keys.
     1  M  CumulusLinux!
     ```
 
-2. In the `/etc/ntp.conf` file, add a pointer to the `/etc/ntp.keys` file you created above and specify the key identifier. For example:
+2. In the `/etc/ntpsec/ntp.conf` file, add a pointer to the `/etc/ntp.keys` file you created above and specify the key identifier. For example:
 
     ```
     keys /etc/ntp/ntp.keys
@@ -218,10 +218,10 @@ The NTP client is the Cumulus Linux switch.
     1  M  CumulusLinux!
     ```
 
-2. Edit the `/etc/ntp.conf` file to specify the server you want to use, the key identifier, and a pointer to the `/etc/ntp.keys` file you created in step 1. For example:
+2. Edit the `/etc/ntpsec/ntp.conf` file to specify the server you want to use, the key identifier, and a pointer to the `/etc/ntp.keys` file you created in step 1. For example:
 
     ```
-    cumulus@switch:~$ sudo nano /etc/ntp.conf
+    cumulus@switch:~$ sudo nano /etc/ntpsec/ntp.conf
     ...
     # You do need to talk to an NTP server or two (or three).
     #pool ntp.your-provider.example

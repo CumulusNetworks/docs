@@ -334,7 +334,7 @@ NVUE manages the following configuration files:
 | `/etc/mlx/datapath/qos/qos_infra.conf` |  Configures QoS platform specific configurations, such as buffer allocations and Alpha values.|
 | `/etc/cumulus/switchd.d/qos.conf` | Configures QoS settings. |
 | `/etc/cumulus/ports.conf` | Configures port breakouts.|
-| `/etc/ntp.conf` | Configures NTP settings. |
+| `etc/ntpsec/ntp.conf` | Configures NTP settings. |
 | `/etc/ptp4l.conf` | Configures PTP settings.|
 | `/etc/snmp/snmpd.conf`| Configures SNMP settings.|
 

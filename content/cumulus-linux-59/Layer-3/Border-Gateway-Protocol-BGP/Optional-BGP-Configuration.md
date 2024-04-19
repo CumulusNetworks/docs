@@ -536,7 +536,7 @@ line vty
 {{< /tab >}}
 {{< /tabs >}}
 
-With the above configuration, the vtysh `show ip bgp vrf RED summary` command and the `net show bgp vrf RED summary` command output shows the local ASN as 65532.
+With the above configuration, the vtysh `show ip bgp vrf RED summary` command output shows the local ASN as 65532.
 
 ```
 cumulus@border01:mgmt:~$ sudo vtysh
@@ -556,7 +556,7 @@ Total number of neighbors 1
 ...
 ```
 
-The vtysh `show ip bgp summary` command and the `net show bgp summary` command displays the global table, where the local ASN 65132 peers with spine01.
+The vtysh `show ip bgp summary` command displays the global table, where the local ASN 65132 peers with spine01.
 
 ```
 cumulus@border01:mgmt:~$ sudo vtysh
@@ -1066,7 +1066,7 @@ Hostname: spine01
 ...
 ```
 
-To view the current additional paths, run the vtysh `show ip bgp <prefix>` command or the `net show bgp <prefix>` command. The example output shows that the TX node adds an additional path for receiving. Each path has a unique AddPath ID.
+To view the current additional paths, run the vtysh `show ip bgp <prefix>` command. The example output shows that the TX node adds an additional path for receiving. Each path has a unique AddPath ID.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -1158,7 +1158,7 @@ The following example configuration shows how BGP add-path TX advertises the bes
 | -- | -- |
 | {{< img src = "/images/cumulus-linux/bgp-add-path-tx.png" >}} | In this configuration:<ul><li>Every leaf and every spine has a different ASN</li><li>eBGP is configured between:<ul><li>leaf01 and spine01, spine02</li><li>leaf03 and spine01, spine02</li><li>leaf01 and leaf02 (leaf02 only has a single peer, which is leaf01)</li></ul><li>leaf01 is configured to advertise the best path learned from each AS to BGP neighbor leaf02</li><li>leaf03 generates a loopback IP address (10.10.10.3/32) into BGP with a network statement</li></ul>|
 <!-- vale on -->
-When you run the `show ip bgp 10.10.10.3/32` command or the `net show bgp 10.10.10.3/32` command on leaf02, the command output shows the leaf03 loopback IP address and two BGP paths, both from leaf01:
+When you run the `show ip bgp 10.10.10.3/32` command on leaf02, the command output shows the leaf03 loopback IP address and two BGP paths, both from leaf01:
 
 ```
 cumulus@leaf02:mgmt:~$ sudo vtysh
@@ -1692,7 +1692,7 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-When you enable graceful BGP shutdown, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes from eBGP peers and sets the `local-pref` for that route to `0` (refer to {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8326" text="RFC8326">}}). To see the configuration, run the vtysh `show ip bgp <route>` command or the `net show bgp <route>` command. For example:
+When you enable graceful BGP shutdown, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes from eBGP peers and sets the `local-pref` for that route to `0` (refer to {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8326" text="RFC8326">}}). To see the configuration, run the vtysh `show ip bgp <route>` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1972,7 +1972,7 @@ path-selection-deferral-time  360          360
 stale-routes-time             360          360
 ```
 
-To show graceful BGP restart information on a specific BGP peer, run the vtysh `show ip bgp neighbor <neighbor> graceful-restart` command or the `net show bgp neighbor <neighbour> graceful-restart` command.
+To show graceful BGP restart information on a specific BGP peer, run the vtysh `show ip bgp neighbor <neighbor> graceful-restart` command.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -2056,7 +2056,7 @@ router bgp 65199
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the configured timers and information about the transitions when a convergence event occurs, run the vtysh `show ip bgp summary` command or the `net show bgp summary` command.
+To show the configured timers and information about the transitions when a convergence event occurs, run the vtysh `show ip bgp summary` command.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -2078,7 +2078,7 @@ Total number of neighbors 1
 ...
 ```
 
-The vtysh `show ip bgp summary json` command and the `net show bgp summary json` command shows the last convergence event.
+The vtysh `show ip bgp summary json` command shows the last convergence event.
 
 ## BGP Community Lists
 <!-- vale off -->

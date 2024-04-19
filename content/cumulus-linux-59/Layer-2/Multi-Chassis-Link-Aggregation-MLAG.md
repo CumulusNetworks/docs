@@ -792,23 +792,26 @@ peer-priority   32768                                       Mlag Peer Priority
 peer-role       secondary                                   Mlag Peer Role
 ```
 
-Run the `net show clag` command or the `clagctl` command to show the MLAG interface information:
+To show the MLAG interface information, run the `clagctl` command:
 
 ```
-cumulus@leaf01:mgmt:~$ net show clag
+cumulus@leaf01:mgmt:~$ clagctl
 The peer is alive
-     Our Priority, ID, and Role: 32768 44:38:39:00:00:11 primary
-    Peer Priority, ID, and Role: 32768 44:38:39:00:00:12 secondary
-          Peer Interface and IP: peerlink.4094 fe80::4638:39ff:fe00:12 (linklocal)
+     Our Priority, ID, and Role: 32768 48:b0:2d:8b:f4:cb primary
+    Peer Priority, ID, and Role: 32768 48:b0:2d:cf:ba:45 secondary
+          Peer Interface and IP: peerlink.4094 fe80::4ab0:2dff:fecf:ba45 (linklocal)
                       Backup IP: 10.10.10.2 (active)
                      System MAC: 44:38:39:be:ef:aa
 
 CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
-           bond1   bond1              1         -                      -
-           bond2   bond2              2         -                      -
-           bond3   bond3              3         -                      -
+           bond1   -                  1         lacp partner mac       -              
+                                                mismatch
+           bond2   -                  2         lacp partner mac       -              
+                                                mismatch
+           bond3   -                  3         lacp partner mac       -              
+                                                mismatch
 ```
 
 ### Show All MLAG Settings
@@ -1135,7 +1138,7 @@ In addition to the standard UP and DOWN administrative states, an interface that
 
 When an interface goes into a `protodown` state, it results in a local OPER DOWN (carrier down) on the interface.
 
-To show an interface in `protodown` state, run the Linux `ip link show` command or the `net show bridge link` command. For example:
+To show an interface in `protodown` state, run the Linux `ip link show` command. For example:
 
 ```
 cumulus@leaf01:mgmt:~$ ip link show

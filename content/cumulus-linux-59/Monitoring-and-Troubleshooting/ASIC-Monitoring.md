@@ -106,7 +106,7 @@ Histogram settings include the type of data you want to collect, the ports you w
 - The default value for the sampling time is 1024 nanoseconds.
 
 {{%notice note%}}
-When you configure minimum boundary and histogram sizes, the configured byte value is rounded down to the nearest multiple of the switch ASIC cell size before being programmed into hardware. The cell size is a fixed number of bytes on each switching ASIC:
+When you configure minimum boundary and histogram sizes, Cumulus Linux rounds down the configured byte value to the nearest multiple of the switch ASIC cell size before programming it into hardware. The cell size is a fixed number of bytes on each switching ASIC:
 
 - Spectrum-1: 96 bytes
 - Spectrum-2 and Spectrum-3: 144 bytes

@@ -118,7 +118,7 @@ neighbor fabric bfd 4 400 400
 {{< /tab >}}
 {{< /tabs >}}
 
-To see neighbor information in BGP, including BFD status, run the vtysh `show ip bgp neighbor <interface>` command or the `net show bgp neighbor <interface>` command. For example:
+To see neighbor information in BGP, including BFD status, run the vtysh `show ip bgp neighbor <interface>` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh 
@@ -272,7 +272,7 @@ You configure the echo function by setting the following parameters in the topol
 
 ## Troubleshooting
 
-To troubleshoot BFD, run the `net show bfd detail` command or the Linux `ptmctl -b` command.
+To troubleshoot BFD, run the Linux `ptmctl -b` command.
 
 ```
 cumulus@switch:~$ net show bfd detail

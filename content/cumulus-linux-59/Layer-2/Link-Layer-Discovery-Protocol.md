@@ -472,12 +472,12 @@ lldp-med-inventory-tlv  on           on
 
 ### Application Priority TLVs
 
-You can configure the switch to transmit DCBX application priority TLVs in LLDP packets.
+DCBX Application priority TLVs allow automated configuration of hosts and devices connected to the switch. You can configure the switch to transmit DCBX application priority TLVs in LLDP packets.
 
 Cumulus Linux supports sending application priority TLVs for:
-- <span class="a-tooltip">[iSCSI](## "Internet Small Computer System Interface")</span> with TCP port 3260.
-- <span class="a-tooltip">[NVMe](## "Non-Volatile Memory Express")</span> with TCP port 4420 and 8009.
-- Applications with a specific TCP port or UDP port.
+- <span class="a-tooltip">[iSCSI](## "Internet Small Computer System Interface")</span> using TCP port 3260.
+- <span class="a-tooltip">[NVMe](## "Non-Volatile Memory Express")</span> using TCP port 4420 and 8009.
+- Applications using a specific TCP port or UDP port.
 
 #### Enable Application Priority TLV Transmission
 
@@ -490,7 +490,7 @@ To enable application priority TLV transmission, run NVUE commands to set:
 - You can configure a maximum of 10 application TLV priorities on the switch and Cumulus Linux can send a maximum of 10 application priority TLVs in an LLDP PDU.
 {{%/notice%}}
 
-The following example associates application priority 3 with iSCSI, then enables transmission of the application priority TLVs on swp1.
+The following example sets the application priority of iSCSI traffic to 3 in the application priority TLV sent in LLDP PDUs on swp1.
 
 ```
 cumulus@switch:~$ nv set service lldp application-tlv app iSCSI priority 3
@@ -498,7 +498,7 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
 cumulus@switch:~$ nv config apply
 ```
 
-The following example associates application priority 5 with NVMe over TCP port 4420, then enables transmission of the application priority TLVs on swp1.
+The following example sets the application priority of NVMe traffic using TCP port 4420 to 5 in the application priority TLV sent in LLDP PDUs on swp1.
 
 ```
 cumulus@switch:~$ nv set service lldp application-tlv app NVME_4420 priority 5
@@ -506,7 +506,7 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv app NVME_4420
 cumulus@switch:~$ nv config apply
 ```
 
-The following example associates application priority 7 with NVMe over TCP port 8009, then enables transmission of the application priority TLVs on swp1.
+The following example sets the application priority of NVMe traffic using TCP port 8009 to 7 in the application priority TLV sent in LLDP PDUs on swp1.
 
 ```
 cumulus@switch:~$ nv set service lldp application-tlv app NVME_8009 priority 7
@@ -514,7 +514,7 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv app NVME_8009
 cumulus@switch:~$ nv config apply
 ```
 
-The following example associates application priority 6 with the application using TCP port 4217, then enables transmission of application priority TLVs on swp1:
+The following example sets the application priority for TCP traffic using port 4217 to 6 in the application priority TLV sent in LLDP PDUs on swp1.
 
 ```
 cumulus@switch:~$ nv set service lldp application-tlv tcp-port 4217 priority 6
@@ -522,7 +522,7 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv tcp-port 4217
 cumulus@switch:~$ nv config apply
 ```
 
-The following example associates application priority 4 with the application using UDP port 4317, then enables transmission of application priority TLVs on swp1:
+The following example sets the application priority for UDP traffic using port 4317 to 4 in the application priority TLV sent in LLDP PDUs on swp1.
 
 ```
 cumulus@switch:~$ nv set service lldp application-tlv udp-port 4317 priority 4
@@ -530,7 +530,7 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv udp-port 4317
 cumulus@switch:~$ nv config apply
 ```
 
-The following example associates application priority 0 (the default priority) with iSCSI over TCP port 3260 and enables transmission of application TLVs on swp1. Because priority 0 is the default priority setting, you do not need to run the NVUE command to associate the priority with iSCSI over TCP port 3260.
+The following example sets the application priority of iSCSI traffic using port 3260 to 0 (the default priority) in the application priority TLV sent in LLDP PDUs on swp1.
 
 ```
 cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
@@ -546,7 +546,7 @@ cumulus@switch:~$ nv unset interface swp1 lldp application-tlv
 cumulus@switch:~$ nv config apply
 ```
 
-The following example stops associating application priority 3 with iSCSI, then disables transmission of the application priority TLVs on swp1.
+The following example unsets application priority 3 for iSCSI, then disables transmission of the application priority TLVs on swp1.
 
 ```
 cumulus@switch:~$ nv unset service lldp application-tlv app iSCSI priority 3
@@ -554,7 +554,7 @@ cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app iSCSI
 cumulus@switch:~$ nv config apply
 ```
 
-The following example stops associating application priority 5 with NVMe over TCP port 4420, then disables transmission of the application priority TLVs on swp1.
+The following example unsets application priority 5 for NVMe using TCP port 4420, then disables transmission of the application priority TLVs on swp1.
 
 ```
 cumulus@switch:~$ nv unset service lldp application-tlv app NVME_4420 priority 5
@@ -562,7 +562,7 @@ cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app NVME_4420
 cumulus@switch:~$ nv config apply
 ```
 
-The following example stops associating application priority 7 with NVMe over TCP port 8009, then disables transmission of the application priority TLVs on swp1.
+The following example unsets application priority 7 for NVMe using TCP port 8009, then disables transmission of the application priority TLVs on swp1.
 
 ```
 cumulus@switch:~$ nv unset service lldp application-tlv app NVME_8009 priority 7
@@ -570,7 +570,7 @@ cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app NVME_8009
 cumulus@switch:~$ nv config apply
 ```
 
-The following example stops associating application priority 6 with the application using TCP port 4217, then disables transmission of application priority TLVs on swp1:
+The following example unsets application priority 6 for the application using TCP port 4217, then disables transmission of application priority TLVs on swp1:
 
 ```
 cumulus@switch:~$ nv unset service lldp application-tlv tcp-port 4217 priority 6
@@ -578,7 +578,7 @@ cumulus@switch:~$ nv unset interface swp1 lldp application-tlv tcp-port 4217
 cumulus@switch:~$ nv config apply
 ```
 
-The following example stops associating application priority 4 with the application using UDP port 4317, then disables transmission of application priority TLVs on swp1:
+The following example unsets application priority 4 for the application using UDP port 4317, then disables transmission of application priority TLVs on swp1:
 
 ```
 cumulus@switch:~$ nv unset service lldp application-tlv udp-port 4317 priority 4
@@ -586,7 +586,7 @@ cumulus@switch:~$ nv unset interface swp1 lldp application-tlv udp-port 4317
 cumulus@switch:~$ nv config apply
 ```
 
-The following example stops associating application priority 0 (the default priority) with iSCSI over TCP port 3260 and disables transmission of application TLVs on swp1. Because priority 0 is the default priority setting, you do not need to run the NVUE command to stop associating the priority with iSCSI over TCP port 3260.
+The following example unsets application priority 0 (the default priority) for iSCSI using TCP port 3260 and disables transmission of application TLVs on swp1.
 
 ```
 cumulus@switch:~$ nv unset interface swp1 lldp application-tlv app iSCSI
@@ -632,7 +632,7 @@ cumulus@switch:~$ nv show interface swp1 lldp application-tlv
 [app]       iSCSI        iSCSI 
 ```
 
-To show the priority mapping for UDP ports:
+To show the UDP port priority mapping:
 
 ```
 cumulus@switch:~$ nv show service lldp application-tlv udp-port
@@ -641,7 +641,7 @@ Port  priority
 4317  4 
 ```
 
-To show the priority mapping for applications:
+To show the application priority mapping:
 
 ```
 cumulus@switch:~$ nv show service lldp application-tlv app
@@ -652,7 +652,7 @@ NVME_8009  7
 iSCSI      3 
 ```
 
-To show the priority mapping for TCP ports:
+To show the TCP port priority mapping:
 
 ```
 cumulus@switch:~$ nv show service lldp application-tlv tcp-port
@@ -661,7 +661,7 @@ Port  priority
 4217  6
 ```
 
-To show the UDP port numbers for which application priority TLVs transmit on an interface:
+To show the UDP port priority mapping:
 
 ```
 cumulus@switch:~$ nv show interface swp1 lldp application-tlv udp-port
@@ -670,7 +670,7 @@ Ports
 4317
 ```
 
-To show the application names for which application priority TLVs transmit on an interface:
+To show the application names that have application priority TLVs enabled for swp1:
 
 ```
 cumulus@switch:~$ nv show interface swp1 lldp application-tlv app

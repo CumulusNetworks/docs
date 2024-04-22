@@ -138,7 +138,9 @@ Configures VXLAN flooding (how to handle BUM traffic).
 
 ## <h>nv set nve vxlan flooding enable</h>
 
-Turns VXLAN flooding on or off.
+Turns VXLAN flooding `on` or `off`.
+
+Enabling VXLAN flooding requires head-end replication. Make sure to set head-end replication on with the `nv set nve vxlan flooding head-end-replication evpn` command when you enable VXLAN flooding.
 
 ### Version History
 

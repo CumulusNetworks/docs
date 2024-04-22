@@ -10,7 +10,7 @@ version: '5.x'
 ### From where do I download Cumulus VX images?
 <!-- vale on -->
 
-Cumulus VX is available as a free download on the {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}. You must create an account and log in to download a Cumulus VX image. Images are available for all supported hypervisors.
+Cumulus VX is available as a free download on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/cumulus-vx/download/" text="NVIDIA Networking portal">}}. You must create an account and log in to download a Cumulus VX image. Images are available for all supported hypervisors.
 
 ### Which Hypervisors does Cumulus VX support?
 

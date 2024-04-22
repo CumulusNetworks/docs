@@ -125,7 +125,7 @@ The global reserved layer 3 VNI VLAN range is different than the {{<link url="VL
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Configure a per-tenant VNI interface and associated VLAN for the VNI. Configure the VNI and VLAN in the map for the VxLAN device in a bridge for you layer 3 VNIs. The router MAC address of the VTEPs are installed over the VNI interface and remote host routes for symmetric routing are installed over the VLAN interface:
+1. Configure a per-tenant VNI interface and associated VLAN for the VNI. Configure the VNI and VLAN in the map for the VxLAN device placed in a bridge for the layer 3 VNIs. The router MAC address of the VTEPs are installed over the VNI interface and remote host routes for symmetric routing are installed over the VLAN interface:
 
    Edit the `/etc/network/interfaces` file. For example:
 

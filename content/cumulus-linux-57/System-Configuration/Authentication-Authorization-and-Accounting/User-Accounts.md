@@ -22,7 +22,7 @@ The *root* account:
 
 You can add additional user accounts as needed.
 - You control local user account access to NVUE commands by changing the group membership (role) for a user. Like the *cumulus* account, these accounts must be in the `sudo` group or include the NVUE `system-admin` role to {{<link url="Using-sudo-to-Delegate-Privileges" text="execute privileged commands">}}.
-- You can set a plain text password or a hashed password for the local user account. To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
+- You can set a plain text password or a hashed password for the local user account. To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into single user mode">}}.
 - You can provide a full name for the local user account (optional).
 
 ### Default Roles
@@ -80,11 +80,16 @@ If you are an NVUE-managed user, you can update your own password with the Linux
 {{< tab "Linux Commands ">}}
 
 The following example:
-- Creates a new user account called `admin2`, creates a home directory for the user, adds the full name `First Last`, and sets the password to `CumulusLinux!`
+- Creates a new user account called `admin2`, creates a home directory for the user, and adds the full name `First Last`.
+- Securely sets the password for the user with `passwd`.
 - Sets the group membership (role) to `sudo` and `nvapply` (permissions to use `sudo`, `nv show`, `nv set`, and `nv apply`).
 
 ```
-cumulus@switch:~$ sudo useradd admin2 -m -c "First Last" -p CumulusLinux!
+cumulus@switch:~$ sudo useradd admin2 -m -c "First Last"
+cumulus@switch:~$ sudo passwd admin2
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
 cumulus@switch:~$ sudo adduser admin2 sudo
 cumulus@switch:~$ sudo adduser admin2 nvapply
 ```

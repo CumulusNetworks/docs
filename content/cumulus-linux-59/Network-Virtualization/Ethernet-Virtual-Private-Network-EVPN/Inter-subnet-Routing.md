@@ -125,42 +125,43 @@ The global reserved layer 3 VNI VLAN range is different than the {{<link url="VL
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Configure a per-tenant VXLAN interface that specifies the layer 3 VNI for the tenant. This VXLAN interface is part of the bridge and the router MAC address of the remote VTEP installs over this interface.
+1. Configure a per-tenant VNI interface and associated VLAN for the VNI. Configure the VNI and VLAN in the map for the VxLAN device in a bridge for you layer 3 VNIS. The router MAC address of the VTEPs are installed over the VNI interface and remote host routes for symmetric routing are installed over the VLAN interface.
 
    Edit the `/etc/network/interfaces` file. For example:
 
-   ```
-   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
-   ...
-   auto vni10
-   iface vni10
-       bridge-access 10
-       vxlan-id 10
-       vxlan-local-tunnelip 10.10.10.1
-   
-   auto bridge
-     iface bridge
-       bridge-ports vni10
-       bridge-vlan-aware yes
-   ...
-   ```
+```
+cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+...
+auto vni4001
+iface vni4001
+  bridge-access 220
+  bridge-learning off
+  vxlan-id 4001
 
-2. Configure an SVI (layer 3 interface) corresponding to the per-tenant VXLAN interface. This attaches to the VRF of the tenant. Remote host routes for symmetric routing install over this SVI.
+auto vlan220_l3
+iface vlan220_l3
+  vrf RED
+  vlan-raw-device br_l3vni
+  vlan-id 220
 
-   Edit the `/etc/network/interfaces` file. For example:
+auto vxlan99
+iface vxlan99
+  bridge-vlan-vni-map 220=4001
+  bridge-learning off
 
-   ```
-   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+auto br_l3vni
+iface br_l3vni
+  bridge-ports vxlan99
+  hwaddress 44:38:39:22:01:7a
+  bridge-vlan-aware yes
    ...
-   auto vlan10
-   iface vlan10
-       vlan-id 10
-       vlan-raw-device bridge
-       vrf RED
-   ...
-   ```
+```
 
-3. Specify the VRF to layer 3 VNI mapping. This configuration is for the BGP control plane.
+{{%notice note%}}
+When you are using MLAG, the VNIs and VxLAN device must belong to the same bridge as your MLAG peerlink. In environments without MLAG configured, you can configure a separate bridge for L3VNIs as displayed above.
+{{%/notice%}}
+
+2. Specify the VRF to layer 3 VNI mapping. This configuration is for the BGP control plane.
 
    Edit the `/etc/frr/frr.conf` file. For example:
 

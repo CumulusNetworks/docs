@@ -832,11 +832,17 @@ To disable BUM flooding:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv unset nve vxlan flooding
+cumulus@leaf01:~$ nv set nve vxlan flooding enable off
 cumulus@leaf01:~$ nv config apply
 ```
 
-To reenable BUM flooding, run the `nv set nve vxlan flooding enable on` command.
+To reenable BUM flooding, run the following commands. Enabling BUM flooding requires head-end replication.
+
+```
+cumulus@leaf01:~$ nv set nve vxlan flooding enable on
+cumulus@leaf01:~$ nv set nve vxlan flooding head-end-replication evpn
+cumulus@leaf01:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}

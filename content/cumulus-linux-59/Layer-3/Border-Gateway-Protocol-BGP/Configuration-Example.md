@@ -173,7 +173,7 @@ cumulus@spine02:mgmt:~$ nv config apply
 {{< /tab >}}
 {{< tab "/etc/nvue.d/startup.yaml ">}}
 
-The NVUE `nv config save` command saves the configuration in the `/etc/nvue.d/startup.yaml` file. For example:
+NVUE saves the configuration in the `/etc/nvue.d/startup.yaml` file. For example:
 
 {{< tabs "TabID169 ">}}
 {{< tab "leaf01 ">}}

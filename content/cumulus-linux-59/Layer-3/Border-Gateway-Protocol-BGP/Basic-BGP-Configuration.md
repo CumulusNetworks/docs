@@ -82,7 +82,7 @@ To configure BGP numbered on a BGP node, you need to:
    cumulus@leaf01:~$ nv config apply
    ```
 
-After you run `nv config save`, the NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
@@ -164,7 +164,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
    cumulus@spine01:~$ nv config apply
    ```
 
-After you run `nv config save`, the NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
@@ -362,7 +362,7 @@ cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast netw
 cumulus@leaf01:~$ nv config apply
 ```
 
-After you run `nv config save`, the NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
@@ -412,7 +412,7 @@ cumulus@spine01:~$ nv set vrf default router bgp address-family ipv6-unicast net
 cumulus@spine01:~$ nv config apply
 ```
 
-After you run `nv config save`, the NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+The NVUE Commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml

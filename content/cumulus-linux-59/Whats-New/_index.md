@@ -38,7 +38,8 @@ The NVUE `nv show platform` commands have changed. If you are using automation, 
 
 ```
 cumulus@leaf01:mgmt:~$ nv show platform <<TAB>>
-capabilities      environment       firmware          inventory         pulse-per-second  software
+capabilities      firmware          pulse-per-second  
+environment       inventory         software
 ```
 
 | Command | Description |
@@ -78,6 +79,9 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
+nv show acl acl-default-dos
+nv show acl acl-default-dos rule <rule>
+nv show acl acl-default-whitelist
 nv show interface <interface-id> telemetry histogram latency
 nv show interface <interface-id> telemetry histogram latency traffic-class
 nv show interface <interface-id> telemetry histogram latency traffic-class <if-tc-id>
@@ -87,6 +91,8 @@ nv show interface <interface> lldp application-tlv
 nv show interface <interface> lldp application-tlv app
 nv show interface <interface> lldp application-tlv tcp-port
 nv show interface <interface> lldp application-tlv udp-port
+nv show platform firmware
+nv show platform inventory
 nv show service lldp application-tlv app
 nv show service lldp application-tlv tcp-port
 nv show service lldp application-tlv udp-port

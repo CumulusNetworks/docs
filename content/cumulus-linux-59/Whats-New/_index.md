@@ -29,6 +29,9 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   - {{<link url="NVUE-CLI/#monitoring-commands" text="New nv show --output raw option">}} shows native vtysh (FRR) output
   - {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="nv show interface <interface> command output">}} shows both the admin and physical state of an interface
   - NVUE ships with a {{<link url="NVUE-CLI/#default-startup-file" text="default /etc/nvue.d/startup.yaml file">}}
+  {{%notice note%}}
+The default startup file sets the default hostname as cumulus; Cumulus Linux does not accept the DHCP host-name option.
+{{%/notice%}}
   - {{< expand "Redesigned nv show platform commands" >}}
 {{%notice info%}}
 The NVUE `nv show platform` commands have changed. If you are using automation, be sure to update your automation scripts.

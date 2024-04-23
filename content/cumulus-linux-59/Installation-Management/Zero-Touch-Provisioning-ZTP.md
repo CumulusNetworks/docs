@@ -67,7 +67,6 @@ The ZTP process over DHCP follows these steps:
 6. If provisioning is necessary, the script executes locally on the switch with root privileges.
 7. ZTP examines the return code of the script. If the return code is 0, ZTP marks the provisioning state as complete in the autoprovisioning configuration file.
 
-
 ### Trigger ZTP Over DHCP
 
 If you have not yet provisioned the switch, you can trigger the ZTP process over DHCP when eth0 uses DHCP and one of the following events occur:
@@ -92,7 +91,7 @@ option cumulus-provision-url code 239 = text;
   option cumulus-provision-url "http://192.0.2.1/demo.sh";
 }
 ```
-
+<!-- NO LONGER VALID in 5.9 RM-3875237
 In addition, you can specify the hostname of the switch with the `host-name` option:
 
 ```
@@ -106,7 +105,7 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
 {{%notice note%}}
 Do not use an underscore (_) in the hostname; underscores are not permitted in hostnames.
 {{%/notice%}}
-
+-->
 ### DHCP on Front Panel Ports
 
 ZTP runs DHCP on all the front panel switch ports and on any active interface. ZTP assesses the list of active ports on every retry cycle. When it receives the DHCP lease and option 239 is present in the response, ZTP starts to execute the script.

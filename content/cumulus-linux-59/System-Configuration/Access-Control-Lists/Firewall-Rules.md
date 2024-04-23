@@ -232,4 +232,4 @@ To add additional rules with NVUE or manually in the `/etc/cumulus/acl/policy.co
 
 ## Considerations
 
-Default firewall rules include a log rule for packets that arrive in the control plane and do not match user defined or default firewall rules. The switch generates a log message for packets that match the log rule. To avoid console logs for these packets, add an `accept` or `deny` rule for the packets that cause the console logs. Refer to {{<link url="Access-Control-List-Configuration/#control-plane-acls" text="Access Control List Configuration">}}.
+Default firewall rules include a log rule for packets that arrive in the control plane and do not match user defined or default firewall rules. The switch generates a log message for packets that match the log rule. To avoid console logs for these packets, add an `accept` or `deny` rule for the packets that cause the console logs. Refer to {{<link url="Access-Control-List-Configuration/#control-plane-acls" text="Control Plane ACLs">}}.

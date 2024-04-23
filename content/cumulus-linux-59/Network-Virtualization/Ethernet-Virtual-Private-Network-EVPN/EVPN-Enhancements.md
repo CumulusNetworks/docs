@@ -264,7 +264,7 @@ cumulus@leaf01:~$ nv set interface swp52 router ospf network-type point-to-point
 cumulus@leaf01:~$ nv config apply
 ```
 
-After you run `nv config save`, the NVUE commands create the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+NVUE creates the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml

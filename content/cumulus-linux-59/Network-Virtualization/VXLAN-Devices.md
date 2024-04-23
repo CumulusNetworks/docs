@@ -115,7 +115,7 @@ cumulus@leaf01:~$ nv set interface swp2 bridge domain br_default access 20
 cumulus@leaf01:~$ nv config apply
 ```
 
-The `nv config save` command creates the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
+NVUE creates the following configuration snippet in the `/etc/nvue.d/startup.yaml` file:
 
 ```
 cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml

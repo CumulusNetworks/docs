@@ -16,7 +16,7 @@ The default set of firewall rules consists of IP and transport level rules. To b
 ## DoS Rules
 
 DoS rules protect the switch control plane and CPU from DOS attacks. Cumulus Linux provides the following firewall DoS rules to:
-- Allow internal loopback traffic only.
+- Allow only internal traffic to the loopback interfaces.
 - Accept already established connections and outbound traffic.
 - Set the `- allow` option to color the packets from a specific interface. Used when different policies need to be applied for different `eth` interfaces.
 - Drop packets if the first TCP segment is not SYN.
@@ -25,12 +25,12 @@ DoS rules protect the switch control plane and CPU from DOS attacks. Cumulus Lin
 - Drop NULL packets.
 - Drop invalid packets.
 - Drop strange MSS values.
-- Service brute-force protection.
+- Provide brute-force protection.
 - Drop packets with routing Header Type 0.
 - Drop packets with a hop limit greater than 1.
 - Limit excessive TCP reset packets.
 - Protect against SYN flood.
-- Limit TCP connections for each IP address.
+- Rate limit new TCP connections for each IP address.
 - Log all remaining packets, then drop them.
 
 ## Whitelist Rules
@@ -212,7 +212,7 @@ rule
             Log Rate:                                       1
 ```
 
-To show information about a specific rule:
+To show information about a specific rule, run the `nv show acl acl-default-dos rule <rule>` command::
 
 ```
 cumulus@switch:~$ nv show acl acl-default-dos rule 30
@@ -234,4 +234,4 @@ To add additional rules with NVUE or manually in the `/etc/cumulus/acl/policy.co
 
 ## Considerations
 
-Default firewall rules include a log rule for packets that arrive in the control plane and do not match user defined or default firewall rules. The switch generates a log message for packets that match the log rule. To avoid console logs for these packets, add an `accept` or `deny` rule for the packets that cause the console logs.
+Default firewall rules include a log rule for packets that arrive in the control plane and do not match user defined or default firewall rules. The switch generates a log message for packets that match the log rule. To avoid console logs for these packets, add an `accept` or `deny` rule for the packets that cause the console logs. Refer to {{<link url="Access-Control-List-Configuration/#control-plane-acls" text="Access Control List Configuration">}}.

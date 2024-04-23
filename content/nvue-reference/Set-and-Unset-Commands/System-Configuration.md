@@ -68,6 +68,9 @@ Configures the configuration auto save feature.
 
 Turns auto save on or off. The auto save option lets you save the pending configuration to the startup configuration file automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
 
+- In Cumulus Linux 5.9 and later, auto save is `on` by default.
+- In Cumulus Linux 5.8 and earlier, auto save is `off` by default.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.4.0

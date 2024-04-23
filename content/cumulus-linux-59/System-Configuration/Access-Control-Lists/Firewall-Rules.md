@@ -15,7 +15,7 @@ The default set of firewall rules consists of IP and transport level rules. To b
 
 ## DoS Rules
 
-DoS rules protect the switch control plane and CPU from DOS attacks. Cumulus Linux provides the following firewall DoS rules to:
+DoS rules protect the switch control plane and CPU from DOS attacks. Cumulus Linux provides firewall DoS rules to:
 - Allow only internal traffic to the loopback interfaces.
 - Accept already established connections and outbound traffic.
 - Set the `- allow` option to color the packets from a specific interface. Used when different policies need to be applied for different `eth` interfaces.
@@ -35,9 +35,7 @@ DoS rules protect the switch control plane and CPU from DOS attacks. Cumulus Lin
 
 ## Whitelist Rules
 
-Whitelist rules specify the services or application ports enabled on the switch. Cumulus Linux provides the following firewall whitelist rules.
-- Rules to enable TCP ports.
-- Rules to enable UDP ports.
+Whitelist rules specify the services or application ports enabled on the switch. Cumulus Linux provides firewall whitelist rules to enable TCP ports and UDP ports.
 
 The following table lists the ports that Cumulus Linux enables by default.
 
@@ -89,7 +87,7 @@ cumulus@switch:~$ nv config apply
 
 ## Show Firewall Rules
 
-To show the DoS policy rules, run the `nv show acl acl-default-dos` command:
+To show the DoS rules, run the `nv show acl acl-default-dos` command:
 
 ```
 cumulus@switch:~$ nv show acl acl-default-dos
@@ -132,7 +130,7 @@ rule
             match.ip.protocol:                   tcp
 ```
 
-To show the whitelist policy rules, run the `nv show acl acl-default-dos` command:
+To show the whitelist rules, run the `nv show acl acl-default-whitelist` command:
 
 ```
 cumulus@switch:~$ nv show acl acl-default-whitelist 
@@ -212,7 +210,7 @@ rule
             Log Rate:                                       1
 ```
 
-To show information about a specific rule, run the `nv show acl acl-default-dos rule <rule>` command::
+To show information about a specific rule, run the `nv show acl acl-default-dos rule <rule>` command:
 
 ```
 cumulus@switch:~$ nv show acl acl-default-dos rule 30
@@ -226,9 +224,9 @@ match
 ## Default Firewall Rule Files
 
 Cumulus Linux stores:
-- DoS policy rules in the `/etc/cumulus/acl/policy.d/01control_plane.rules` file. 
-- Whitelist policy rules in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file.
-- DoS policy rules to log all remaining packets, then drop them, in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file.
+- DoS rules in the `/etc/cumulus/acl/policy.d/01control_plane.rules` file. 
+- Whitelist rules in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file.
+- DoS rules to log all remaining packets, then drop them, in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file.
 
 To add additional rules with NVUE or manually in the `/etc/cumulus/acl/policy.conf` file, refer to {{<link url="Access-Control-List-Configuration" text="Access Control List Configuration">}}.
 

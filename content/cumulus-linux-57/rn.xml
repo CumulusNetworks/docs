@@ -161,12 +161,6 @@ cumulus@switch:~$ dpkg --install frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb
 <td>5.8.0</td>
 </tr>
 <tr>
-<td>3637444</td>
-<td>Applying an inbound control plane ACL on the eth0 management interface does not take effect. To work around this issue, apply the ACL on the {{mgmt}} interface; for example, {{nv set interface mgmt acl &lt;acl-id&gt; inbound control-plane}}.</td>
-<td>5.7.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3636266</td>
 <td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
 <td>5.7.0-5.8.0</td>
@@ -208,12 +202,6 @@ To work around this issue when using fiber cables:
 &lt;ul&gt;&lt;li&gt;Configure 800g/Force.&lt;/li&gt;
 &lt;li&gt;Use the recommended NVIDIA optical adapters.&lt;/li&gt;&lt;/ul&gt;</td>
 <td>5.6.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3576949</td>
-<td>When you run the NVUE {{nv set service snmp listening-address localhost vrf &lt;vrf-name&gt;}} or {{nv set service snmp listening-address localhost-v6 vrf &lt;vrf-name&gt;}} command to configure the SNMP listening address, Cumulus Linux applies the listening address to the default VRF instead of the VRF you specify.</td>
-<td>5.3.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>

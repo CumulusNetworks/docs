@@ -94,6 +94,13 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <td></td>
 </tr>
 <tr>
+<td>3350027</td>
+<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see dynamic flow deletion errors in {{switchd.log}}. 
+These errors do not affect new dynamic NAT flows from new NAT rules.</td>
+<td>5.4.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3347538</td>
 <td>When connecting NVIDIA-to-NVIDIA in PAM4, you must enable auto-negotiation.</td>
 <td>5.4.0-5.9.0</td>
@@ -370,6 +377,11 @@ You can safely ignore this warning.</td>
 <td>3672706</td>
 <td> When you enable port security, you can configure a maximum of 450 port security static MAC addresses for an interface.</td>
 <td>5.7.0-5.8.0</td>
+</tr>
+<tr>
+<td>3610967</td>
+<td>In an EVPN symmetric routing configuration, running the NVUE {{nv set vrf &lt;vrf&gt; vlan auto}} command to derive layer 3 VNIs automatically might result in duplicate VLAN entries in the system. This most often occurs at scale when many VRFs have similar names. To work around this issue, manually specify a unique VLAN for each VRF.</td>
+<td>5.3.0-5.8.0</td>
 </tr>
 <tr>
 <td>3484058</td>

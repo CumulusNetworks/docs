@@ -191,12 +191,6 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <td>5.7.0-5.8.0</td>
 </tr>
 <tr>
-<td>3576949</td>
-<td>When you run the NVUE {{nv set service snmp listening-address localhost vrf &lt;vrf-name&gt;}} or {{nv set service snmp listening-address localhost-v6 vrf &lt;vrf-name&gt;}} command to configure the SNMP listening address, Cumulus Linux applies the listening address to the default VRF instead of the VRF you specify.</td>
-<td>5.3.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3573800</td>
 <td>After you apply a change to the router MAC address on an SVI with the {{ifreload -a}} command, the old router MAC address still remains in the FDB table. To work around this issue, remove the old router MAC address with the {{sudo bridge fdb del &lt;old_mac&gt; dev bridge vlan &lt;vlan_id&gt;}} command.</td>
 <td>5.3.1-5.6.0</td>
@@ -1029,12 +1023,6 @@ smartd[501]: Device: /dev/sda [SAT], CHECK POWER STATUS spins up disk (0x00 -&gt
 This is a cosmetic issue and does not affect how the switch operates. To prevent this message from occurring, run the {{hdparm -S 24 /dev/sda}} command to change the HD timeout.</td>
 <td>5.3.1-5.6.0</td>
 <td>5.7.0-5.8.0</td>
-</tr>
-<tr>
-<td>3576949</td>
-<td>When you run the NVUE {{nv set service snmp listening-address localhost vrf &lt;vrf-name&gt;}} or {{nv set service snmp listening-address localhost-v6 vrf &lt;vrf-name&gt;}} command to configure the SNMP listening address, Cumulus Linux applies the listening address to the default VRF instead of the VRF you specify.</td>
-<td>5.3.0-5.8.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3573800</td>

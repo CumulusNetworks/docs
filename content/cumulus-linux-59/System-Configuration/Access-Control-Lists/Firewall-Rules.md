@@ -87,12 +87,148 @@ cumulus@switch:~$ nv set system control-plane acl acl-default-whitelist inbound
 cumulus@switch:~$ nv config apply
 ```
 
+## Show Firewall Rules
+
+To show the DoS policy rules, run the `nv show acl acl-default-dos` command:
+
+```
+cumulus@switch:~$ nv show acl acl-default-dos
+      applied  pending
+----  -------  -------
+type  ipv4     ipv4   
+rule
+=======
+    Number  Summary                                 
+    ------  ----------------------------------------
+    30      match.ip.protocol:                   tcp
+    40      match.ip.protocol:                   tcp
+    41      match.ip.protocol:                   tcp
+    42      match.ip.protocol:                   tcp
+    50                                              
+    60      match.ip.protocol:                   tcp
+    70      match.ip.protocol:                   tcp
+    80      match.ip.protocol:                   tcp
+    90      match.ip.protocol:                   tcp
+            match.ip.tcp.all-mss-except:   536-65535
+    100     match.ip.recent-list.action:         set
+            match.ip.tcp.dest-port:               22
+    110     match.ip.recent-list.action:      update
+            match.ip.recent-list.hit-count:       50
+            match.ip.recent-list.update-interval: 60
+            match.ip.tcp.dest-port:               22
+    120     match.ip.hashlimit.burst:              2
+            match.ip.hashlimit.expire:         30000
+            match.ip.hashlimit.mode:          src-ip
+            match.ip.hashlimit.name:          TCPRST
+            match.ip.hashlimit.rate-above:     5/min
+            match.ip.hashlimit.source-mask:       32
+            match.ip.protocol:                   tcp
+    130     match.ip.hashlimit.burst:             30
+            match.ip.hashlimit.expire:         30000
+            match.ip.hashlimit.mode:          src-ip
+            match.ip.hashlimit.name:      TCPGENERAL
+            match.ip.hashlimit.rate-above: 50/second
+            match.ip.hashlimit.source-mask:       32
+            match.ip.protocol:                   tcp
+```
+
+To show the whitelist policy rules, run the `nv show acl acl-default-dos` command:
+
+```
+cumulus@switch:~$ nv show acl acl-default-whitelist 
+      applied  pending
+----  -------  -------
+type  ipv4     ipv4
+rule
+=======
+    Number  Summary                                          
+    ------  -------------------------------------------------
+    5       match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                       ssh
+    10      match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                       bgp
+    15      match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                      ldap
+    20      match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                      8765
+    25      match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                     https
+    30      match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                      clag
+    35      match.ip.protocol:                            tcp
+            match.ip.tcp.source-port:                      49
+    40      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:               dhcp-client
+    45      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:               dhcp-server
+    50      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       ntp
+    55      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       323
+    60      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      snmp
+    65      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      tftp
+    70      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      ldap
+    75      match.ip.protocol:                            udp
+            match.ip.udp.source-port:                    1812
+    80      match.ip.protocol:                            udp
+            match.ip.udp.source-port:                    1813
+    85      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      6343
+    90      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      6344
+    95      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       514
+    100     match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       bfd
+    105     match.ip.protocol:                            udp
+            match.ip.udp.dest-port:              bfd-multihop
+    110     match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      4789
+    115     match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       319
+    120     match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       320
+    125     match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                      9339
+    130     match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                     31980
+            match.ip.tcp.dest-port:                     31982
+    135     match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                       639
+    140     match.ip.protocol:                            udp
+            match.ip.udp.source-port:                      53
+    145     match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                      9999
+    150     match.ip.protocol:                           ospf
+    155     match.ip.protocol:                            pim
+    160     match.ip.protocol:                           vrrp
+    165     match.ip.protocol:                           igmp
+    170     match.ip.protocol:                           icmp
+    9999    Log Level:                                      3
+            action.log.log-prefix: IPTables-Dropped-<Domain>:
+            Log Rate:                                       1
+```
+
+To show information about a specific rule:
+
+```
+cumulus@switch:~$ nv show acl acl-default-dos rule 30
+              applied  pending
+------------  -------  -------
+match                         
+  ip                          
+    protocol  tcp      tcp
+```
+
 ## Default Firewall Rule Files
 
 Cumulus Linux stores:
 - DoS policy rules in the `/etc/cumulus/acl/policy.d/01control_plane.rules` file. 
 - Whitelist policy rules in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file.
-- DoS policy rules to log all remaining packets, then drop them in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file.
+- DoS policy rules to log all remaining packets, then drop them, in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file.
 
 To add additional rules with NVUE or manually in the `/etc/cumulus/acl/policy.conf` file, refer to {{<link url="Access-Control-List-Configuration" text="Access Control List Configuration">}}.
 

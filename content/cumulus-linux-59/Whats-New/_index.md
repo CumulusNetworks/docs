@@ -12,6 +12,11 @@ This document supports the Cumulus Linux 5.9 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.9.0
 <!-- vale on -->
+
+{{%notice note%}}
+Due to a critical issue, NVIDIA does not recommend that you install Cumulus Linux 5.9 on a switch with the Spectrum-4 ASIC. For more information, contact Technical Support.
+{{%/notice%}}
+
 Cumulus Linux 5.9.0 contains several new features and improvements, and provides bug fixes.
 
 ### New Features and Enhancements

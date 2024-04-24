@@ -17,7 +17,7 @@ Follow these steps to set up and configure your VM on a single server in an on-p
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="onprem" version="4.9">}}
+    {{<netq-install/vmw-platform-image deployment="onprem" version="4.10">}}
 
 4. Set up and configure your VM.
 

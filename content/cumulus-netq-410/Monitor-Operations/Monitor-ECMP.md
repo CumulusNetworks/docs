@@ -70,5 +70,8 @@ The adaptive routing dashboard displays:
 
 {{<figure src="/images/netq/int-details-490.png" alt="list of interfaces adaptive routing configured" width="600">}}
 
-- A summary of adaptive routing events, including ECMP traffic imbalances.
+- A summary of adaptive routing events, including ECMP traffic imbalances:
+
+{{<figure src="/images/netq/ecmp-imbalance-490.png" alt="dashboard displaying ECMP imbalances" width="1000">}}
+
 - A list of up to 10 switches, which can be sorted by highest P95 value, highest standard deviation, or ports with the widest deviation from the P95 value (aggregated over the past 3 minutes). From this panel, you can select **View more** in the View histogram column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.

@@ -50,7 +50,7 @@ The following table lists the ports that Cumulus Linux enables by default.
 |UDP | 161 | SNMP |
 |UDP | 6306 | A multicast socket used internally. |
 |UDP | 69 | TFTP |
-|CP/UDP| 389 | LDAP |
+|TCP/UDP| 389 | LDAP |
 |UDP |1812,1813 | RADIUS |
 |TCP/UDP | 49 | TACACS |
 |TCP/UDP | 53 | DNS |
@@ -61,11 +61,18 @@ The following table lists the ports that Cumulus Linux enables by default.
 |UDP | 4784 | Multi-Hop BFD |
 |TCP | 5342 | MLAG |
 |UDP | 4789 | VXLAN |
-|UDP | 319/320 | PTP |
+|UDP | 319,320 | PTP |
 |TCP | 443 | HTTPS |
 |TCP | 9339 | gNMI |
 |TCP | 31980,31982 | NETQ Agent |
 |OSPF | NA | NA |
+|UDP | 53 (SPORT) | DNS response packets |
+|TCP | 9999 | XMLRPC |
+|ICMP | NA | Ping |
+|PIM | NA | NA |
+|IGMP | NA | NA |
+|VRRP | NA | NA |
+|TCP |639 | MSDP |
 
 ## Unset the Default Firewall Rules
 
@@ -82,6 +89,24 @@ To set the firewall rules back to the default Cumulus Linux 5.9 setting:
 ```
 cumulus@switch:~$ nv set system control-plane acl acl-default-dos inbound
 cumulus@switch:~$ nv set system control-plane acl acl-default-whitelist inbound
+cumulus@switch:~$ nv config apply
+```
+
+## Add Firewall Rules
+
+You cannot modify the `acl-default-dos` and `acl-default-whitelist` rules. However, you can append or insert additional rules. Additionally, you can add your own ACLs and {{<link url="Access-Control-List-Configuration/#control-plane-acls" text="apply them on the control plane">}}; control plane ACLs take precedence over `acl-default-whitelist` rules when the default firewall rules are enabled.
+
+If you use non-default ports for an application, NVIDIA recommends that you add a whitelist rule for the non-default port. For example, if you use ports 3020 and 3022 for radius server accounting and authentication instead of 1812 and 1813, you can add the following whitelist rules:
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 73 match ip udp source-port 3020
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 73 match ip connection-state new
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 73 match ip connection-state established
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 73 action permit
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 74 match ip udp source-port  3022
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 74 match ip connection-state new
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 74 match ip connection-state established
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 74 action permit
 cumulus@switch:~$ nv config apply
 ```
 
@@ -128,6 +153,57 @@ rule
             match.ip.hashlimit.rate-above: 50/second
             match.ip.hashlimit.source-mask:       32
             match.ip.protocol:                   tcp
+```
+
+Run the `nv show acl acl-default-dos --rev=applied -o json` command to show additional information, such as the connection state, hit count and update interval:
+
+```
+cumulus@switch:~$ nv show acl acl-default-dos --rev=applied -o json
+{
+  "rule": {
+    "100": {
+      "action": {
+        "recent": {}
+      },
+      "match": {
+        "ip": {
+          "connection-state": {
+            "new": {}
+          },
+          "recent-list": {
+            "action": "set"
+          },
+          "tcp": {
+            "dest-port": {
+              "22": {}
+            }
+          }
+        }
+      }
+    },
+    "110": {
+      "action": {
+        "deny": {}
+      },
+      "match": {
+        "ip": {
+          "connection-state": {
+            "new": {}
+          },
+          "recent-list": {
+            "action": "update",
+            "hit-count": 50,
+            "update-interval": 60
+          },
+          "tcp": {
+            "dest-port": {
+              "22": {}
+            }
+          }
+        }
+      }
+    },
+...
 ```
 
 To show the whitelist rules, run the `nv show acl acl-default-whitelist` command:
@@ -210,6 +286,52 @@ rule
             Log Rate:                                       1
 ```
 
+Run the `nv show acl acl-default-whitelist --rev=applied -o json` command to show additional information, such as the connection state:
+
+```
+cumulus@switch:~$ nv show acl acl-default-whitelist --rev=applied -o json
+{
+  "rule": {
+    "10": {
+      "action": {
+        "permit": {}
+      },
+      "match": {
+        "ip": {
+          "connection-state": {
+            "established": {},
+            "new": {}
+          },
+          "protocol": "tcp",
+          "tcp": {
+            "dest-port": {
+              "bgp": {}
+            }
+          }
+        }
+      }
+    },
+    "100": {
+      "action": {
+        "permit": {}
+      },
+      "match": {
+        "ip": {
+          "connection-state": {
+            "established": {},
+            "new": {}
+          },
+          "protocol": "udp",
+          "udp": {
+            "dest-port": {
+              "bfd": {}
+            }
+          }
+        }
+      }
+...
+```
+
 To show information about a specific rule, run the `nv show acl acl-default-dos rule <rule>` command:
 
 ```
@@ -221,14 +343,32 @@ match
     protocol  tcp      tcp
 ```
 
-## Default Firewall Rule Files
+ Run the `nv show acl acl-default-dos rule <rule> --rev=applied -o json` command to see additional information, such as the connection state:
 
-Cumulus Linux stores:
-- DoS rules in the `/etc/cumulus/acl/policy.d/01control_plane.rules` file. 
-- Whitelist rules in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file.
-- DoS rules to log all remaining packets, then drop them, in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file.
+```
+cumulus@switch:~$ nv show acl acl-default-dos rule 30 --rev=applied -o json
+{
+  "action": {
+    "permit": {}
+  },
+  "match": {
+    "ip": {
+      "connection-state": {
+        "established": {},
+        "related": {}
+      },
+      "protocol": "tcp"
+    }
+  }
+}
+```
 
-To add additional rules with NVUE or manually in the `/etc/cumulus/acl/policy.conf` file, refer to {{<link url="Access-Control-List-Configuration" text="Access Control List Configuration">}}.
+## Default Firewall Rule Files without NVUE
+
+Cumulus Linux enables the default firewall rules on the switch even before you apply NVUE configuration for the first time. The default firewall rules are in the `01control_plane.rules` and `98control_plane_whitelist.rules` files in the `/etc/cumulus/acl/policy.d/` directory.
+
+If you prefer to configure the switch by editing Linux files instead of running NVUE commands, you can make changes to these files to add additional rules.
+
 <!--
 ## Considerations
 

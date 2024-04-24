@@ -369,8 +369,6 @@ Cumulus Linux enables the default firewall rules on the switch even before you a
 
 If you prefer to configure the switch by editing Linux files instead of running NVUE commands, you can make changes to these files to add additional rules.
 
-<!--
-## Considerations
+## Syslog Messages
 
-Default firewall rules include a log rule for packets that arrive in the control plane and do not match user defined or default firewall rules. The switch generates a log message for packets that match the log rule. To avoid console logs for these packets, add an `accept` or `deny` rule for the packets that cause the console logs. Refer to {{<link url="Access-Control-List-Configuration/#control-plane-acls" text="Control Plane ACLs">}}.
--->
+Default firewall rules include a log rule for packets that arrive in the control plane and do not match user defined or default firewall rules. The switch generates a log message in `/var/log/syslog` for packets that match the log rule.

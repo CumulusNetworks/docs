@@ -229,7 +229,8 @@ Cumulus Linux stores:
 - DoS rules to log all remaining packets, then drop them, in the `/etc/cumulus/acl/policy.d/98control_plane_whitelist.rules` file.
 
 To add additional rules with NVUE or manually in the `/etc/cumulus/acl/policy.conf` file, refer to {{<link url="Access-Control-List-Configuration" text="Access Control List Configuration">}}.
-
+<!--
 ## Considerations
 
 Default firewall rules include a log rule for packets that arrive in the control plane and do not match user defined or default firewall rules. The switch generates a log message for packets that match the log rule. To avoid console logs for these packets, add an `accept` or `deny` rule for the packets that cause the console logs. Refer to {{<link url="Access-Control-List-Configuration/#control-plane-acls" text="Control Plane ACLs">}}.
+-->

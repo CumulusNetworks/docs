@@ -2528,6 +2528,54 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action upgrade system packages to latest use-vrf \<vrf\></h>
+
+Upgrades all the packages to the latest distribution.
+
+By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as default, you must use the `use-vrf <vrf>` option.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action upgrade system packages to latest use-vrf \<vrf\> dry-run</h>
+
+Fetches the latest update metadata from the repository so you can review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies).
+
+By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as default, you must use the `use-vrf <vrf>` option.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default dry-run
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show action</h>
 
 Shows actions, such as cleared interface counters and routes, removed protodown MLAG bond conflicts, and disconnected system users.

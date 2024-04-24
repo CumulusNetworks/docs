@@ -33,7 +33,7 @@ pdfhidden: True
 | <a name="3755207"></a> [3755207](#3755207) <a name="3755207"></a> <br /> | When you export digital optics table data from NetQ, some fields might be visible in the UI that are not exported to CSV or JSON files. | 4.9.0 | |
 | <a name="3752422"></a> [3752422](#3752422) <a name="3752422"></a> <br /> | When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data. | 4.9.0 | |
 | <a name="3738840"></a> [3738840](#3738840) <a name="3738840"></a> <br /> | When you upgrade a Cumulus Linux switch configured for TACACS authentication using NetQ LCM, the switch's TACACS configuration is not restored after upgrade. | 4.8.0-4.9.0 | |
-| <a name="3721754"></a> [3721754](#3721754) <a name="3721754"></a> <br /> | Please clear the release notes for this bug, it is fixed now. | 4.9.0 | |
+| <a name="3721754"></a> [3721754](#3721754) <a name="3721754"></a> <br /> | After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view. | 4.9.0 | |
 | <a name="3613811"></a> [3613811](#3613811) <a name="3613811"></a> <br /> | LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the <code>mgmt</code> VRF on Cumulus Linux switches when interface eth0 is in use. | 4.8.0-4.9.0 | |
 
 ### Fixed Issues in 4.9.0

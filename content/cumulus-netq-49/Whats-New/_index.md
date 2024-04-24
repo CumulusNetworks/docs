@@ -35,7 +35,7 @@ Cloud cluster deployments running NetQ 4.9.0 require a virtual IP address. Refer
 
 The NetQ 4.9.0 server is compatible with NetQ Agents 4.8.0 and 4.7.0. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 5.0.0 and later (Spectrum switches)
+- Cumulus Linux 5.0.0 to 5.8.0 (Spectrum switches)
 - Cumulus Linux 4.3.0, 4.3.1, and 4.3.2 (Broadcom switches)
 - SONiC 202012
 - CentOS 7

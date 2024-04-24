@@ -9,7 +9,7 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux 5.0.0 and later (Spectrum switches)
+- Cumulus Linux 5.0.0 to 5.8.0 (Spectrum switches)
 - Cumulus Linux 4.3.0, 4.3.1, and 4.3.2 (Broadcom switches)
 - SONiC 202012
 - CentOS 7

@@ -13,6 +13,7 @@ Consider the following before you install the NetQ system:
 
 1. Determine whether to deploy fully **on-premises** or as a **remote** solution.
 2. Choose whether to install the software on a **single server** or as a **server cluster**.
+3. Alternately, you can launch NetQ using NVIDIA Base Command Manager. To get started, refer to the {{<exlink url="https://docs.nvidia.com/base-command-manager/#product-manuals" text="Base Command Manager administrator and containerization manuals">}}.
 
 ## Deployment Type: On-premises or Remote
 
@@ -55,7 +56,7 @@ Select the server-cluster arrangement to obtain scalability and high availabilit
 
 NetQ supports high availability server-cluster deployments using a virtual IP address. Even if the master node fails, NetQ services remain operational. However, keep in mind that the master hosts the Kubernetes control plane so anything that requires connectivity with the Kubernetes cluster&mdash;such as upgrading NetQ or rescheduling pods to other workers if a worker goes down&mdash;will not work.
 
-During the installation process, you configure a virtual IP address that enables redundancy for the Kubernetes control plane. In this configuration, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure.
+During the installation process, you configure a virtual IP address that enables redundancy for the Kubernetes control plane. In this configuration, the majority of nodes must be operational for NetQ to function. For example, a three-node cluster can tolerate a one-node failure, but not a two-node failure. For more information, refer to the {{<exlink url="https://etcd.io/docs/v3.3/faq/" text="etcd documentation">}}.
 
 ### Cluster Deployments and Load Balancers
 

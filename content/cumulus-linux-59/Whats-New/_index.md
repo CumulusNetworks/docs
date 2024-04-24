@@ -12,6 +12,13 @@ This document supports the Cumulus Linux 5.9 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.9.0
 <!-- vale on -->
+
+{{%notice info%}}
+- Due to a critical issue, NVIDIA does not recommend that you install Cumulus Linux 5.9 on a switch with the Spectrum-4 ASIC. For more information, contact Technical Support.
+- You can only upgrade to Cumulus 5.9 from a previous release by installing the binary image; package upgrade is not supported.
+- Cumulus Linux 5.9 provides a set of default firewall rules that allows only specific addresses and ports, and drops packets that are disallowed. Be sure to review the {{<link url="Firewall-Rules" text="firewall rules">}} before upgrading.
+{{%/notice%}}
+
 Cumulus Linux 5.9.0 contains several new features and improvements, and provides bug fixes.
 
 ### New Features and Enhancements
@@ -22,6 +29,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - {{<link url="Firewall-Rules" text="Firewall rules">}}
 - {{<link url="CLI-Configuration" text="CLI Session pagination and timeout options">}}
 - {{<link url="User-Accounts/#password-security" text="Password security commands">}}
+- {{<link url="SSH-for-Remote-Access/#ssh-strict-mode" text="SSH strict mode">}}
 - {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="4x breakout on QSFP-DD/OSFP 8 lane ports">}} now allocates two lanes per port by default instead of one
 - {{<link url="Interface-Configuration-and-Management/#bring-an-interface-up-or-down" text="New Linux ifreload -a --diff option">}} processes and applies only incremental changes instead of reloading entire configuration
 - NVUE

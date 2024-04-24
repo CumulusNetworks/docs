@@ -108,7 +108,7 @@ To back up and restore the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, then run the `nv config patch` command. The following example assumes you copied startup.yaml to the `/home/cumulus` directory on the switch:
+3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, then run the `nv config patch` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
 
    ```
    cumulus@switch:~$ nv config patch /home/cumulus/startup.yaml

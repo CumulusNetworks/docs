@@ -34,6 +34,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - {{<link url="SSH-for-Remote-Access/#ssh-strict-mode" text="SSH strict mode">}}
 - {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="4x breakout on QSFP-DD/OSFP 8 lane ports">}} now allocates two lanes per port by default instead of one
 - {{<link url="Interface-Configuration-and-Management/#bring-an-interface-up-or-down" text="New Linux ifreload -a --diff option">}} processes and applies only incremental changes instead of reloading entire configuration
+- Cumulus Linux no longer supports NCLU; all `net show` commands have been removed
 - NVUE
   - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
   - {{<link url="NVUE-CLI/#monitoring-commands" text="New nv show --output raw option">}} shows native vtysh (FRR) output

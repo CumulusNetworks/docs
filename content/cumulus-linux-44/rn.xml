@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -2128,7 +2128,7 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -4248,7 +4248,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -6497,7 +6497,7 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -8710,7 +8710,7 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -11105,7 +11105,7 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -13371,7 +13371,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb

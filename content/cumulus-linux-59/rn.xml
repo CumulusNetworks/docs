@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -28,6 +28,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td>3677533</td>
 <td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart, and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
 <td>5.7.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3610967</td>
+<td>In an EVPN symmetric routing configuration, running the NVUE {{nv set vrf &lt;vrf&gt; vlan auto}} command to derive layer 3 VNIs automatically might result in duplicate VLAN entries in the system. This most often occurs at scale when many VRFs have similar names. To work around this issue, manually specify a unique VLAN for each VRF.</td>
+<td>5.3.0-5.9.0</td>
 <td></td>
 </tr>
 <tr>
@@ -377,11 +383,6 @@ You can safely ignore this warning.</td>
 <td>3672706</td>
 <td> When you enable port security, you can configure a maximum of 450 port security static MAC addresses for an interface.</td>
 <td>5.7.0-5.8.0</td>
-</tr>
-<tr>
-<td>3610967</td>
-<td>In an EVPN symmetric routing configuration, running the NVUE {{nv set vrf &lt;vrf&gt; vlan auto}} command to derive layer 3 VNIs automatically might result in duplicate VLAN entries in the system. This most often occurs at scale when many VRFs have similar names. To work around this issue, manually specify a unique VLAN for each VRF.</td>
-<td>5.3.0-5.8.0</td>
 </tr>
 <tr>
 <td>3484058</td>

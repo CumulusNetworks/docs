@@ -13,8 +13,10 @@ This document supports the Cumulus Linux 5.9 release, and lists new platforms, f
 ## What's New in Cumulus Linux 5.9.0
 <!-- vale on -->
 
-{{%notice note%}}
-Due to a critical issue, NVIDIA does not recommend that you install Cumulus Linux 5.9 on a switch with the Spectrum-4 ASIC. For more information, contact Technical Support.
+{{%notice info%}}
+- Due to a critical issue, NVIDIA does not recommend that you install Cumulus Linux 5.9 on a switch with the Spectrum-4 ASIC. For more information, contact Technical Support.
+- You can only upgrade to Cumulus 5.9 from a previous release by installing the binary image; package upgrade is not supported.
+- Cumulus Linux 5.9 provides a set of default firewall rules that allows only specific addresses and ports, and drops packets that are disallowed. Be sure to review the {{<link url="Firewall-Rules" text="firewall rules">}} before upgrading.
 {{%/notice%}}
 
 Cumulus Linux 5.9.0 contains several new features and improvements, and provides bug fixes.

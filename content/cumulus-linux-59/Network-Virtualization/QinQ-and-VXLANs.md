@@ -135,7 +135,7 @@ iface br_default
 {{< /tabs >}}
 
 ### View the Configuration
-
+<!--
 In the output below, customer A is on VLAN 100 (S-TAG) and customer B is on VLAN 200 (S-TAG).
 
 To check the remote provider switch, run the `net show  <bridge-name> vlan` command:
@@ -164,9 +164,9 @@ vni-1000        100  PVID, Egress Untagged  1000
 vni-3000        200  PVID, Egress Untagged  3000
 ```
 
-<!-- vale off -->
+-->
 To verify that the bridge is configured for QinQ, run the `ip -d link show bridge` commands and check for *vlan\_protocol 802.1ad* in the output:
-<!-- vale on -->
+
 ```
 cumulus@switch:~$ sudo ip -d link show bridge
 287: bridge: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default

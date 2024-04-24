@@ -132,7 +132,12 @@ cumulus@switch:~$ dpkg --install frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb
 </tr>
 <tr>
 <td>3679478</td>
-<td>Both the ASIC Monitoring service and the What Just Happened (WJH) service try to initialize the SDK TELE module; however, initialization is successful only for the first service to initialize the module. There is no functional impact if a service tries to initialize the module again.</td>
+<td>During switch boot, you see the following messages in the syslog:
+
+2024-03-04T10:34:49.650950+00:00 cumulus sx_sdk: 2262 [TELE] [ERROR  ]: Tele impl module is already initialized
+2024-03-04T10:34:49.651041+00:00 cumulus sx_sdk: 2262 [TELE] [ERROR  ]: sdk_tele_init failed, for chip type CHIP_TYPE_SWITCH_SPECTRUM3, err = Already initialized
+
+This is due to both the ASIC Monitoring service and the What Just Happened (WJH) service trying to initialize the SDK TELE module. You can ignore the messages because the TELE service has already initialized properly.</td>
 <td>5.7.0-5.8.0</td>
 <td></td>
 </tr>

@@ -131,7 +131,7 @@ restore them after the upgrade.</td>
 </tr>
 <tr>
 <td>3721754</td>
-<td>Please clear the release notes for this bug, it is fixed now.</td>
+<td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
 <td>4.9.0</td>
 <td></td>
 </tr>

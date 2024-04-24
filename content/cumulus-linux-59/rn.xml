@@ -31,12 +31,6 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
-<td>3610967</td>
-<td>In an EVPN symmetric routing configuration, running the NVUE {{nv set vrf &lt;vrf&gt; vlan auto}} command to derive layer 3 VNIs automatically might result in duplicate VLAN entries in the system. This most often occurs at scale when many VRFs have similar names. To work around this issue, manually specify a unique VLAN for each VRF.</td>
-<td>5.3.0-5.9.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3587393</td>
 <td>If you use the NVIDIA SN5600 (Spectrum-4) switch with Ixia test equipment, you might experience delayed link up due to intermittent link flaps. 
 To work around this issue when using copper cables:
@@ -376,13 +370,23 @@ You can safely ignore this warning.</td>
 </tr>
 <tr>
 <td>3679478</td>
-<td>Both the ASIC Monitoring service and the What Just Happened (WJH) service try to initialize the SDK TELE module; however, initialization is successful only for the first service to initialize the module. There is no functional impact if a service tries to initialize the module again.</td>
+<td>During switch boot, you see the following messages in the syslog:
+
+2024-03-04T10:34:49.650950+00:00 cumulus sx_sdk: 2262 [TELE] [ERROR  ]: Tele impl module is already initialized
+2024-03-04T10:34:49.651041+00:00 cumulus sx_sdk: 2262 [TELE] [ERROR  ]: sdk_tele_init failed, for chip type CHIP_TYPE_SWITCH_SPECTRUM3, err = Already initialized
+
+This is due to both the ASIC Monitoring service and the What Just Happened (WJH) service trying to initialize the SDK TELE module. You can ignore the messages because the TELE service has already initialized properly.</td>
 <td>5.7.0-5.8.0</td>
 </tr>
 <tr>
 <td>3672706</td>
 <td> When you enable port security, you can configure a maximum of 450 port security static MAC addresses for an interface.</td>
 <td>5.7.0-5.8.0</td>
+</tr>
+<tr>
+<td>3610967</td>
+<td>In an EVPN symmetric routing configuration, running the NVUE {{nv set vrf &lt;vrf&gt; vlan auto}} command to derive layer 3 VNIs automatically might result in duplicate VLAN entries in the system. This most often occurs at scale when many VRFs have similar names. To work around this issue, manually specify a unique VLAN for each VRF.</td>
+<td>5.3.0-5.8.0</td>
 </tr>
 <tr>
 <td>3484058</td>

@@ -240,6 +240,76 @@ cumulus@switch:~$ sudo systemctl enable ssh.service
 {{< /tab >}}
 {{< /tabs >}}
 
+### SSH Strict Mode
+
+By default, SSH strict mode is `on`; Cumulus Linux disables X11, TCP forwarding, and compression and enforces secure ciphers.
+
+{{< tabs "TabID247 ">}}
+{{< tab "NVUE Commands ">}}
+
+To disable SSH strict mode, run the `nv set system ssh-server strict disabled` command:
+
+```
+cumulus@switch:~$ nv set system ssh-server strict disabled
+cumulus@switch:~$ nv config apply
+```
+
+To renable strict mode, run the `nv set system ssh-server strict enabled` command.
+
+To show if strict mode is `on` or `off`, run the `nv show system ssh-server` command:
+
+```
+cumulus@switch:~$ nv show system ssh-server
+
+                             applied
+---------------------------  --------
+authentication-retries       6
+login-timeout                120
+inactive-timeout             0
+permit-root-login            enabled
+max-sessions-per-connection  30
+state                        enabled
+strict                       disabled
+...  
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/ssh/sshd_config` file and change the `AllowTcpForwarding`, `X11Forwarding` and `Compression` parameters to `yes`. Also, remove the ciphers and keys under `#RekeyLimit default none` in the `Ciphers and keying` section of the file.
+
+```
+cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
+...
+
+# Ciphers and keying
+#RekeyLimit default none
+...
+#AllowAgentForwarding yes
+AllowTcpForwarding yes
+#GatewayPorts no
+X11Forwarding yes
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PermitTTY yes
+PrintMotd no
+#PrintLastLog yes
+#TCPKeepAlive yes
+#PermitUserEnvironment no
+Compression yes
+ClientAliveInterval 0
+ClientAliveCountMax 0
+#UseDNS no
+#PidFile /var/run/sshd.pid
+MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+#VersionAddendum none
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Configure Timeouts and Sessions
 
 You can configure the following SSH timeout and session options:
@@ -512,16 +582,17 @@ To show all the current SSH server configuration settings, run the NVUE `nv show
 cumulus@switch:~$ nv show system ssh-server
                              applied          
 ---------------------------  -----------------
-authentication-retries       6                
-inactive-timeout             0                
-login-timeout                120              
-max-sessions-per-connection  10               
-permit-root-login            prohibit-password
-state                        enabled          
-max-unauthenticated                           
-  session-count              100              
-  throttle-percent           30               
-  throttle-start             10
+authentication-retries       6                  6                
+login-timeout                120                120              
+inactive-timeout             0                  0                
+permit-root-login            prohibit-password  prohibit-password
+max-sessions-per-connection  10                 10               
+state                        enabled            enabled          
+strict                       enabled            enabled          
+max-unauthenticated                                              
+  session-count              100                100              
+  throttle-percent           30                 30               
+  throttle-start             10                 10 
 ```
 
 To show the current number of active SSH sessions, run the NVUE `nv show system ssh-server active-sessions` command or the Linux `w` command:

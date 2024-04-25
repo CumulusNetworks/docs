@@ -12,7 +12,7 @@ This guide walks a network architect or administrator through the various techno
 
 ## Cumulus Linux Network Operating System
 
-Cumulus Linux is the industry-leading open network operating system (NOS) that drives [open networking switches](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/) built on commodity hardware and switching silicon. It is the key that brings the same hardware and software disaggregation advantages to the network that IT departments already enjoy for their application servers and storage resources.
+Cumulus Linux is the industry-leading open network operating system (NOS) that drives open networking switches built on commodity hardware and switching silicon. It is the key that brings the same hardware and software disaggregation advantages to the network that IT departments already enjoy for their application servers and storage resources.
 
 Incumbent and traditional networking vendors create lock-in by bundling a proprietary operating system on custom built and proprietary networking hardware. Open networking switches often contain the same hardware forwarding chipsets as traditional vendors. When you need to run Linux on a server today, you have your choice of any bare metal server from any manufacturer that meets your needs and budget. The commitment to the operating system is a separate choice from the hardware that it runs on.
 

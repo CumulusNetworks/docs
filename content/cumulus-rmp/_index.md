@@ -51,10 +51,7 @@ feature:
 ## Cumulus RMP Features
 
 Cumulus RMP shares much of the same functionality as Cumulus Linux and
-comes preinstalled on your choice of
-[1G switches](https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/).
-For more information about each feature, follow the links below to the
-[Cumulus Linux user guide]({{<ref "/cumulus-linux-37">}}):
+comes preinstalled on your choice of 1G switches. For more information about each feature, follow the links below to the [Cumulus Linux user guide]({{<ref "/cumulus-linux-37">}}):
 
 | **Layer 2 Support**                                                                              | **Cumulus RMP** | **Cumulus Linux** |
 | ------------------------------------------------------------------------------------------------ | --------------- | ----------------- |

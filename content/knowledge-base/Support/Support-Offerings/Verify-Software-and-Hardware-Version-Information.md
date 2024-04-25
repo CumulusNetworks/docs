@@ -24,7 +24,7 @@ DISTRIB_DESCRIPTION="Cumulus Linux 4.2.0"
 <!-- vale off -->
 ## Use decode-syseeprom to Verify Hardware Model, Version and Other Vendor-specific Details
 <!-- vale on -->
-Similar to how Cisco offers the `show idprom` command for IOS and `show sprom` for NX-OS, NVIDIA created the `decode-syseeprom` command to provide a universal {{<exlink url="http://en.wikipedia.org/wiki/EEPROM" text="EEPROM">}} format that delivers a consistent way to display hardware platform-specific information. All vendors approved on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux hardware compatibility list">}} adhere to this EEPROM format for Cumulus Linux certification.
+Similar to how Cisco offers the `show idprom` command for IOS and `show sprom` for NX-OS, NVIDIA created the `decode-syseeprom` command to provide a universal {{<exlink url="http://en.wikipedia.org/wiki/EEPROM" text="EEPROM">}} format that delivers a consistent way to display hardware platform-specific information.
 
 For example:
 

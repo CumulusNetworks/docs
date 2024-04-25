@@ -5,8 +5,6 @@ weight: 5
 toc: 2
 ---
 This document supports the Cumulus Linux 5.9 release, and lists new platforms, features, and enhancements.
-
-- For a list of all the platforms supported in Cumulus Linux 5.9, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 5.9, see the {{<link title="Cumulus Linux 5.9 Release Notes" text="Cumulus Linux 5.9 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.9, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
@@ -42,7 +40,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   - {{<link url="NVUE-CLI/#auto-save" text="Auto save">}} is enabled by default; when you run `nv config apply`, NVUE saves the configuration to the startup configuration file
   - NVUE ships with a {{<link url="NVUE-CLI/#default-startup-file" text="default /etc/nvue.d/startup.yaml file">}}
   {{%notice note%}}
-- The default startup file sets the default hostname as cumulus; Cumulus Linux does not accept the DHCP host-name option.
+- The default startup file sets the default hostname as cumulus; Cumulus Linux does not accept the DHCP host-name option. If you do not manage your switch with NVUE and want to change this behavior with Linux configuration files, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
 - To merge in configuration changes or to restore a backup `startup.yaml` file, you must use the `nv config patch` command instead of the `nv config replace` command.
 {{%/notice%}}
   - {{< expand "Redesigned nv show platform commands" >}}

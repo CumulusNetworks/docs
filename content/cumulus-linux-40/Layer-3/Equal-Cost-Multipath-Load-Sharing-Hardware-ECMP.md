@@ -93,7 +93,7 @@ cl-ecmpcalc: error: --sport and --dport required for TCP and UDP frames
 
 `cl-ecmpcalc` can only take input interfaces that can be converted to a single physical port in the port tab file, such as the physical switch ports (swp). Virtual interfaces like bridges, bonds, and subinterfaces are not supported.
 
-`cl-ecmpcalc` is supported only on switches with the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3">}} chipsets.
+`cl-ecmpcalc` is supported only on switches with the Mellanox Spectrum and the Broadcom Maverick, Tomahawk, Trident II, Trident II+ and Trident3 chipsets.
 
 ### ECMP Hash Buckets
 
@@ -267,7 +267,7 @@ Resilient hashing is not enabled by default. See below for [steps on configuring
 
 ### Resilient Hashing on Broadcom Switches
 
-Resilient hashing is supported only on switches with the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Broadcom Tomahawk, Trident II, Trident II+, and Trident3">}} ASICs. You can run `net show system` to determine the ASIC.
+Resilient hashing is supported only on switches with the Broadcom Tomahawk, Trident II, Trident II+, and Trident3 ASICs. You can run `net show system` to determine the ASIC.
 
 The Broadcom ASIC assigns packets to hash buckets and assigns hash buckets to next hops as follows:
 

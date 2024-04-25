@@ -25,18 +25,6 @@ For a list of the new features in this release, see {{<link url="Whats-New" text
 
 To implement various Cumulus Linux features, Cumulus Networks has forked various software projects, like CFEngine, `Netdev` and some Puppet Labs packages. The forked code resides in the Cumulus Networks {{<exlink url="https://github.com/CumulusNetworks" text="GitHub repository" >}}.
 
-<!-- Cumulus Networks has also developed and released new applications as
-open source. The list of open source projects is on the
-{{ /* link title="Cumulus Linux 3.7 Open Source Packages" text="open source software" */}} page.-->
-
-## Hardware Compatibility List
-
-You can find the most up-to-date hardware compatibility list (HCL)
-{{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="here" >}}. Use the HCL to confirm that
-your switch model is supported by Cumulus Linux. The HCL is updated
-regularly, listing products by port configuration, manufacturer, and SKU
-part number.
-
 ## Extended Support Release
 
 This version of Cumulus Linux is an Extended Support Release (ESR). Cumulus Linux 3.7 ESR started with Cumulus Linux 3.7.12 and all future releases in the 3.7 product family will all be ESR releases. To learn about ESR, please read [this article]({{<ref "/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" >}}).

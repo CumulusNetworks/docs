@@ -35,12 +35,6 @@ netq config restart cli
 <td></td>
 </tr>
 <tr>
-<td>3819688</td>
-<td>When you upgrade NetQ cluster deployments, the configured LCM credential profile assigned to switches in the inventory is reset to the default access profile. To work around this issue, reconfigure the correct access profile on switches before managing them with LCM after the upgrade. </td>
-<td>4.9.0-4.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3814701</td>
 <td>After you upgrade NetQ, devices that were in a rotten state before the upgrade might not appear in the UI or CLI after the upgrade. To work around this issue, decommission rotten devices before performing the upgrade.</td>
 <td>4.9.0-4.10.0</td>
@@ -113,6 +107,11 @@ To work around this issue, re-run the {{netq upgrade}} command. </td>
 <tr>
 <td>3820671</td>
 <td>When you upgrade NetQ cluster deployments with DPUs in the device inventory, the DPUs might not be visible in the NetQ UI after the upgrade. To work around this issue, restart the DTS container on the DPUs in your network.</td>
+<td>4.9.0</td>
+</tr>
+<tr>
+<td>3819688</td>
+<td>When you upgrade NetQ cluster deployments, the configured LCM credential profile assigned to switches in the inventory is reset to the default access profile. To work around this issue, reconfigure the correct access profile on switches before managing them with LCM after the upgrade. </td>
 <td>4.9.0</td>
 </tr>
 <tr>

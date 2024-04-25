@@ -7,7 +7,6 @@ toc: 2
 This document supports the Cumulus Linux 4.0 release, and lists new platforms and features.
 
 - For complete details on the differences between Cumulus Linux 4.0 and Cumulus Linux 3.7, see [this article]({{<ref "/knowledge-base/Setup-and-Getting-Started/Whats-New-and-Different-in-Cumulus-Linux-400" >}}).
-- For a list of all the platforms supported in Cumulus Linux 4.0, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 4.0, see the {{<link url="Cumulus-Linux-4.0-Release-Notes" text="Cumulus Linux 4.0 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.0, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 

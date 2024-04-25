@@ -146,7 +146,7 @@ You only specify this parameter when head end replication is
 
 ### Hardware Requirements
 
-Switches with the Broadcom Tomahawk, Trident II+, or Trident II ASIC or switches with the Mellanox Spectrum ASIC running Cumulus Linux 2.5.4 or later. Refer to the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}} for a list of supported switch models.
+Switches with the Broadcom Tomahawk, Trident II+, or Trident II ASIC or switches with the Mellanox Spectrum ASIC running Cumulus Linux 2.5.4 or later.
 
 ### Configuration Requirements
 

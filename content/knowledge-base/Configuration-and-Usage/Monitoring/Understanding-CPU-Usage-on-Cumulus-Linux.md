@@ -35,7 +35,7 @@ So, when you look at CPU statistics, you are looking at how the switch is handli
 
 For the control plane, the primary concerns, as mentioned above, are *routing and switching table sizes* and *stability under stress*.
 
-The amount of memory in the switching ASICs limits the *routing and switching table sizes*. For Cumulus Linux switches, the NVIDIA hardware guides have these numbers, which you can find on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}}.
+The amount of memory in the switching ASICs limits the *routing and switching table sizes*.
 
 *Stability under stress*: The amount of network churn that a switch is capable of handling well depends much more on your particular network design than anything else. A solid network design and choice of routing protocols to match your requirements reduces the amount of protocol processing required during a network event, and increases the stability of your network. All modern switches of the same throughput category use CPUs of essentially the same performance category. Also, Cumulus Linux uses *control plane policing* and *QoS-based buffering* to protect the CPU and help ensure the processing of critical control plane traffic during times of network instability.
 

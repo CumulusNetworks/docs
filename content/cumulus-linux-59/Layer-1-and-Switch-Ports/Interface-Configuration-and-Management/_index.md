@@ -43,6 +43,10 @@ cumulus@switch:~$ nv unset interface swp1
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice note%}}
+NVUE applies only current configuration changes instead of processing the entire `/etc/network/interfaces` file.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 

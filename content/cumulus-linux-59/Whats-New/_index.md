@@ -13,6 +13,8 @@ This document supports the Cumulus Linux 5.9 release, and lists new platforms, f
 ## What's New in Cumulus Linux 5.9.0
 <!-- vale on -->
 
+Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" text="this Knowledge base article">}}.
+
 {{%notice info%}}
 - Due to a critical issue, NVIDIA does not recommend that you install Cumulus Linux 5.9 on a switch with the Spectrum-4 ASIC. For more information, contact Technical Support.
 - You can only upgrade to Cumulus 5.9 from a previous release by installing the binary image; package upgrade is not supported.
@@ -32,13 +34,16 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - {{<link url="SSH-for-Remote-Access/#ssh-strict-mode" text="SSH strict mode">}}
 - {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="4x breakout on QSFP-DD/OSFP 8 lane ports">}} now allocates two lanes per port by default instead of one
 - {{<link url="Interface-Configuration-and-Management/#bring-an-interface-up-or-down" text="New Linux ifreload -a --diff option">}} processes and applies only incremental changes instead of reloading entire configuration
+- Cumulus Linux no longer supports NCLU; all `net show` commands have been removed
 - NVUE
   - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
   - {{<link url="NVUE-CLI/#monitoring-commands" text="New nv show --output raw option">}} shows native vtysh (FRR) output
   - {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="nv show interface <interface> command output">}} shows both the admin and physical state of an interface
+  - {{<link url="NVUE-CLI/#auto-save" text="Auto save">}} is enabled by default; when you run `nv config apply`, NVUE saves the configuration to the startup configuration file
   - NVUE ships with a {{<link url="NVUE-CLI/#default-startup-file" text="default /etc/nvue.d/startup.yaml file">}}
   {{%notice note%}}
-The default startup file sets the default hostname as cumulus; Cumulus Linux does not accept the DHCP host-name option.
+- The default startup file sets the default hostname as cumulus; Cumulus Linux does not accept the DHCP host-name option.
+- To merge in configuration changes or to restore a backup `startup.yaml` file, you must use the `nv config patch` command instead of the `nv config replace` command.
 {{%/notice%}}
   - {{< expand "Redesigned nv show platform commands" >}}
 {{%notice info%}}

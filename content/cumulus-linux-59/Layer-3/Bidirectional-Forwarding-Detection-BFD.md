@@ -275,7 +275,7 @@ You configure the echo function by setting the following parameters in the topol
 To troubleshoot BFD, run the Linux `ptmctl -b` command.
 
 ```
-cumulus@switch:~$ net show bfd detail
+cumulus@switch:~$ ptmctl -b
 
 ----------------------------------------------------------------------------------------
 port  peer                 state  local  type       diag  det   tx_timeout  rx_timeout

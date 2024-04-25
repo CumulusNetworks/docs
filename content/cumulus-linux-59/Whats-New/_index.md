@@ -40,7 +40,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
   - {{<link url="NVUE-CLI/#auto-save" text="Auto save">}} is enabled by default; when you run `nv config apply`, NVUE saves the configuration to the startup configuration file
   - NVUE ships with a {{<link url="NVUE-CLI/#default-startup-file" text="default /etc/nvue.d/startup.yaml file">}}
   {{%notice note%}}
-- The default startup file sets the default hostname as cumulus; Cumulus Linux does not accept the DHCP host-name option.
+- The default startup file sets the default hostname as cumulus; Cumulus Linux does not accept the DHCP host-name option. If you do not manage your switch with NVUE and want to change this behavior with Linux configuration files, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
 - To merge in configuration changes or to restore a backup `startup.yaml` file, you must use the `nv config patch` command instead of the `nv config replace` command.
 {{%/notice%}}
   - {{< expand "Redesigned nv show platform commands" >}}

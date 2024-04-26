@@ -320,7 +320,7 @@ When you apply a configuration with `nv config apply`, NVUE also writes to under
 NVUE provides a default `/etc/nvue.d/startup.yaml` file that includes configuration such as the switch hostname, default firewall rules, and `cumulus` user account credentials. The file also enables the NVUE API. This file is the factory configuration file that you can restore at any time.
 
 {{%notice info%}}
-- The default startup configuration file sets the default hostname as `cumulus`; therefore, Cumulus Linux does not accept the DHCP `host-name` option. To set a different hostname, see {{<link url="Quick-Start-Guide/#configure-the-hostname" text="Configure the Hostname">}}.
+- The default startup configuration file sets the default hostname as `cumulus`; therefore, Cumulus Linux does not accept the DHCP `host-name` option. To set a different hostname with NVUE, see {{<link url="Quick-Start-Guide/#configure-the-hostname" text="Configure the Hostname">}}. If you do not manage your switch with NVUE and want to change this behavior with Linux configuration files, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
 - The default startup configuration includes the local user account for the `cumulus` user. You cannot use the `nv config replace` command to install a configuration without the `cumulus` account configured while logged into the switch as the `cumulus` user. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command instead.
 {{%/notice%}}
 

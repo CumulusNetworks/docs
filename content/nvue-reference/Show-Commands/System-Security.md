@@ -119,3 +119,31 @@ Introduced in Cumulus Linux 5.7.0
 ```
 cumulus@switch:~$ nv show system security certificate cert-2 installed
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system security password-hardening</h>
+
+Shows the currently configured password policies for the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system security password-hardening
+                         operational  applied 
+-----------------------  -----------  --------
+state                    enabled      enabled 
+reject-user-passw-match  disabled     disabled
+lower-class              enabled      enabled 
+upper-class              enabled      enabled 
+digits-class             disabled     disabled
+special-class            disabled     disabled
+expiration-warning       15           15      
+expiration               180          180     
+history-cnt              20           20      
+len-min                  8            8
+```

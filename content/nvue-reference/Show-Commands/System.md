@@ -32,6 +32,48 @@ timezone  Etc/UTC
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system cli
+
+Shows the current CLI settings. CLI settings include timeout and pager configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system cli
+                  applied
+----------------  -------
+inactive-timeout  300  
+pagination               
+  state           enabled
+  pager           more
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system cli pagination
+
+Shows if the pager is enabled and the configured pager settings (`more`, `less`, or `vim`.)
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system cli pagination
+       applied
+-----  -------
+state  enabled
+pager  more
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system counter polling-interval</h>
 
 Shows the polling interval for the switch counters for both the logical and physical interfaces.
@@ -407,4 +449,21 @@ cumulus@switch:~$ nv show system reboot reason
 gentime  2023-04-26T15:47:34.033663+00:00         
 reason   Unknown                                  
 user     system/root
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system reboot required
+
+Shows if you need to reboot the switch after upgrade.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system reboot required
+yes
 ```

@@ -13,7 +13,7 @@ Follow these steps to set up and configure your VM for a cloud deployment:
 
 2. Confirm that the required ports are open for communications. {{<netq-install/port-reqs deployment="cloud" server="single">}}
 
-3. Download the NetQ Platform image.
+3. Download the NetQ image.
 
     {{<netq-install/vmw-platform-image deployment="cloud" version="4.9">}}
 

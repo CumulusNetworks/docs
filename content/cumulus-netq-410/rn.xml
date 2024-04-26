@@ -26,11 +26,7 @@
 </tr>
 <tr>
 <td>3851922</td>
-<td>After you run an LCM switch discovery in a NetQ cluster environment, NetQ CLI commands on switches might fail with the message {{Failed to process command}}. To work around this issue, manually configure the CLI on switches referencing the cluster VIP with the following commands:
-
-netq config add cli server &lt;vip-ip&gt;
-netq config restart cli
-</td>
+<td>After you run an LCM switch discovery in a NetQ cluster environment, NetQ CLI commands on switches might fail with the message {{Failed to process command}}.</td>
 <td>4.10.0</td>
 <td></td>
 </tr>

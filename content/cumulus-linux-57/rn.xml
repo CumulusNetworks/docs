@@ -142,12 +142,6 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 <td></td>
 </tr>
 <tr>
-<td>3677821</td>
-<td>If you bring down an interface with Linux or NVUE commands, all the static neighbor entries disappear for that interface.</td>
-<td>5.7.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3677533</td>
 <td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart, and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
 <td>5.7.0-5.8.0</td>

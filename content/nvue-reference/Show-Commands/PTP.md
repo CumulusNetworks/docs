@@ -395,6 +395,31 @@ force-version  2.0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show service ptp \<instance-id\> ipv6-scope</h>
+
+Shows the PTP IPv6-scope configuration setting.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>`  | The PTP instance number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service ptp 1 ipv6-scope
+            operational  applied
+----------  -----------  -------
+ipv6-scope               global
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show service ptp \<instance-id\> monitor</h>
 
 Shows the PTP monitor configuration for the specified PTP instance, such as:

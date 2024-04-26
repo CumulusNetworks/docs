@@ -274,6 +274,11 @@ You must open the following ports on your NetQ on-premises server:
     <td>kube-apiserver</td>
     </tr>
     <tr>
+    <td style=“text-align:right”>30001</td>
+    <td style=“text-align:center”>TCP</td>
+    <td>DPU communication</td>
+    </tr>
+    <tr>
     <td style=“text-align:right”>31980</td>
     <td style=“text-align:center”>TCP</td>
     <td>NetQ Agent communication</td>
@@ -392,5 +397,4 @@ Additionally, for internal cluster communication, you must open these ports:
 
 {{ end }}
 
-<div class="notices note"><p>Port 32666 is no longer used for the NetQ UI.</p></div>
 {{ end }}

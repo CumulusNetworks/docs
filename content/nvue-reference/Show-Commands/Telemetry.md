@@ -542,6 +542,41 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-cla
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show service telemetry bw-gauge</h>
+
+Shows a summary of the bandwidth gauge for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service telemetry bw-gauge
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show service telemetry bw-gauge interface</h>
+
+Shows a summary of the bandwidth for all interfaces with bandwidth gauge enabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service telemetry bw-gauge interface
+Interface  Tx (Mbps)  Rx (Mbps)
+---------  ---------  ---------
+swp1       4          4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show service telemetry histogram</h>
 
 Shows telemetry histogram configuration settings and operational data.
@@ -626,37 +661,18 @@ swp2              -                       0,1,8                    tx-byte,tx-by
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry bw-gauge</h>
+## <h>nv show service telemetry histogram latency</h>
 
-Shows a summary of the bandwidth gauge for all interfaces.
+Shows latency Histogram configuration and operational data.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.7.0
+Introduced in Cumulus Linux 5.9.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry bw-gauge
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show service telemetry bw-gauge interface</h>
-
-Shows a summary of the bandwidth for all interfaces with bandwidth gauge enabled.
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show service telemetry bw-gauge interface
-Interface  Tx (Mbps)  Rx (Mbps)
----------  ---------  ---------
-swp1       4          4
+cumulus@switch:~$ nv show service telemetry histogram latency
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

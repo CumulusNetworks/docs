@@ -1130,6 +1130,58 @@ Configures a control plane ACL to apply a single rule for all packets forwarded 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system control-plane acl acl-default-dos inbound</h>
+
+Enables or disables the Cumulus Linux default Dos firewall rules that protect the switch control plane and CPU from DOS attacks. Cumulus Linux provides firewall DoS rules to:
+- Allow only internal traffic to the loopback interfaces.
+- Accept already established connections and outbound traffic.
+- Set the - allow option to color the packets from a specific interface. Used when different policies - need to be applied for different eth interfaces.
+- Drop packets if the first TCP segment is not SYN.
+- Drop fragmented IP packets.
+- Drop Christmas tree packets; packets with all TCP flags set.
+- Drop NULL packets.
+- Drop invalid packets.
+- Drop strange MSS values.
+- Provide brute-force protection.
+- Drop packets with routing Header Type 0.
+- Drop packets with a hop limit greater than 1.
+- Limit excessive TCP reset packets.
+- Protect against SYN flood.
+- Rate limit new TCP connections for each IP address.
+- Log all remaining packets, then drop them.
+
+In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops packets that are disallowed.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv unset system control-plane acl acl-default-dos inbound 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system control-plane acl acl-default-whitelist inbound</h>
+
+Enables or disables the Cumulus Linux default whitelist firewall rules that specify the services or application ports enabled on the switch. Cumulus Linux provides firewall whitelist rules to enable TCP ports and UDP ports.
+
+In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops packets that are disallowed.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv unset system control-plane acl acl-default-whitelist inbound
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system control-plane acl \<acl-id\> inbound control-plane</h>
 
 Configures an inbound control plane ACL.

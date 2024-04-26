@@ -25,7 +25,7 @@ DAMAGE.
 
 
 BSD 2-clause "Simplified" License
-Copyright 2016-2018 Kornel LesiÅ„ski
+Copyright 2016-2018 Kornel Lesiński
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 

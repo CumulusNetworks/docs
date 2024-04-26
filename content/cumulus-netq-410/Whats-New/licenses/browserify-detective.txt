@@ -1,13 +1,9 @@
 MIT License
-Upstream-Contact: https://github.com/TrySound/postcss-value-parser/issues
-Source: https://github.com/TrySound/postcss-value-parser
-
-Files: *
-Copyright: 2017 Bogdan Chadkin <trysound@yandex.ru>
+2017 Josh Duff <me@JoshDuff.com>
 License: Expat
 
 Files: debian/*
-Copyright: 2017 Pirate Praveen <praveen@debian.org>
+Copyright: 2017 Bastien Roucariès <rouca@debian.org>
 License: Expat
 
 License: Expat

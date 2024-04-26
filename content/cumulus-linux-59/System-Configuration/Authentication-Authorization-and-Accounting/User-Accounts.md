@@ -114,7 +114,7 @@ You can also create custom roles and assign a custom role to a user. See {{<link
 
 Instead of a plain text password, you can provide a hashed password for a local user.
 
-You must specify the hashed password in Linux `crypt` format; the password must be a minimum of 15 to 20 characters long and must include special characters, digits, lower case alphabetic letters, and more. Typically, the password format is set to `$id$salt$hashed`, where `$id` is the hashing algorithm. In GNU or Linux:
+You must specify the hashed password in Linux `crypt` format; the password must be a minimum of 15 to 20 characters long and must include special characters, digits, lowercase alphabetic letters, and more. Typically, the password format is set to `$id$salt$hashed`, where `$id` is the hashing algorithm. In GNU or Linux:
   - `$1$` is MD5
   - `$2a$` is Blowfish
   - `$2y$` is Blowfish
@@ -328,7 +328,7 @@ To log into the switch using root with SSH, either:
 
 ## Password Security
 
-A user password is the key credential that verifies the user accessing the switch and acts as the first line of defense to secure the switch. The complexity of the password, replacement capabilities, and change frequency define the security level of the first perimeter of the switch. To further improve and harden the switch, Cumulus Linux enables a password security option that enforces password policies that apply to all users on the switch; user passwords must include at least one lower case character, one upper case character, one digit, one special character, and cannot be usernames. In addition, passwords must be a minimum of eight characters long, expire in 365 days, and provide a warning 15 days before expiration.
+A user password is the key credential that verifies the user accessing the switch and acts as the first line of defense to secure the switch. The complexity of the password, replacement capabilities, and change frequency define the security level of the first perimeter of the switch. To further improve and harden the switch, Cumulus Linux enables a password security option that enforces password policies that apply to all users on the switch; user passwords must include at least one lowercase character, one uppercase character, one digit, one special character, and cannot be usernames. In addition, passwords must be a minimum of eight characters long, expire in 365 days, and provide a warning 15 days before expiration.
 
 You can change these password security policies; see {{<link url="User-Accounts/#configure-password-policies" text="Configure Password Policies">}} below.
 
@@ -349,8 +349,8 @@ The following table describes the password policies that Cumulus Linux provides 
 
 | Policy |  Description  | Default Setting |
 |-----   |-------------- | ----------------|
-| Lower case | Passwords must include at least one lower case character. You can specify `enabled` or `disabled`.| `enabled` |
-| Upper case | Passwords must include at least one upper class character. You can specify `enabled` or `disabled`.  | `enabled` |
+| Lowercase | Passwords must include at least one lowercase character. You can specify `enabled` or `disabled`.| `enabled` |
+| Uppercase | Passwords must include at least one uppercase character. You can specify `enabled` or `disabled`.  | `enabled` |
 | Digits | Passwords must include at least one digit. You can specify `enabled` or `disabled`.| `enabled` |
 | Special characters | Passwords must include at least one special character. You can specify `enabled` or `disabled`. | `enabled` |
 | Password length |The minimum password length. You can specify a value between 6 and 32 characters. | 8 characters |

@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3856614"></a> [3856614](#3856614) <a name="3856614"></a> <br /> | When daylight saving time changes, the MLAG <code>initDelay</code> timer resets and all MLAG bonds go down. | 4.3.2-4.4.6 | |
 | <a name="3773177"></a> [3773177](#3773177) <a name="3773177"></a> <br /> | When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.<br><pre>cumulus&#64;switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt update<br>cumulus&#64;switch:~$ sudo apt upgrade</pre> | 4.0.0-4.4.6, 5.0.0-5.8.0 | |
 | <a name="3684998"></a> [3684998](#3684998) <a name="3684998"></a> <br /> | DHCP lease information is not collected in the <code>cl-support</code> file. | 4.3.0-5.6.0 | 5.7.0-5.8.0|
 | <a name="3647424"></a> [3647424](#3647424) <a name="3647424"></a> <br />None | When you remove the <code>update-source</code> configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same <code>update-source</code> configuration. | 4.3.0-5.5.1 | 5.6.0-5.8.0|
@@ -312,6 +313,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3856614"></a> [3856614](#3856614) <a name="3856614"></a> <br /> | When daylight saving time changes, the MLAG <code>initDelay</code> timer resets and all MLAG bonds go down. | 4.3.2-4.4.5 | |
 | <a name="3773177"></a> [3773177](#3773177) <a name="3773177"></a> <br /> | When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.<br><pre>cumulus&#64;switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt update<br>cumulus&#64;switch:~$ sudo apt upgrade</pre> | 4.0.0-4.4.5, 5.0.0-5.8.0 | |
 | <a name="3684998"></a> [3684998](#3684998) <a name="3684998"></a> <br /> | DHCP lease information is not collected in the <code>cl-support</code> file. | 4.3.0-5.6.0 | 5.7.0-5.8.0|
 | <a name="3647424"></a> [3647424](#3647424) <a name="3647424"></a> <br />None | When you remove the <code>update-source</code> configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same <code>update-source</code> configuration. | 4.3.0-4.4.5 | |
@@ -606,6 +608,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3856614"></a> [3856614](#3856614) <a name="3856614"></a> <br /> | When daylight saving time changes, the MLAG <code>initDelay</code> timer resets and all MLAG bonds go down. | 4.3.2-4.4.5 | |
 | <a name="3773177"></a> [3773177](#3773177) <a name="3773177"></a> <br /> | When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.<br><pre>cumulus&#64;switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt update<br>cumulus&#64;switch:~$ sudo apt upgrade</pre> | 4.0.0-4.4.5, 5.0.0-5.8.0 | |
 | <a name="3684998"></a> [3684998](#3684998) <a name="3684998"></a> <br /> | DHCP lease information is not collected in the <code>cl-support</code> file. | 4.3.0-5.6.0 | 5.7.0-5.8.0|
 | <a name="3647424"></a> [3647424](#3647424) <a name="3647424"></a> <br />None | When you remove the <code>update-source</code> configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same <code>update-source</code> configuration. | 4.3.0-4.4.5 | |
@@ -924,6 +927,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3856614"></a> [3856614](#3856614) <a name="3856614"></a> <br /> | When daylight saving time changes, the MLAG <code>initDelay</code> timer resets and all MLAG bonds go down. | 4.3.2-4.4.5 | |
 | <a name="3773177"></a> [3773177](#3773177) <a name="3773177"></a> <br /> | When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.<br><pre>cumulus&#64;switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt update<br>cumulus&#64;switch:~$ sudo apt upgrade</pre> | 4.0.0-4.4.5, 5.0.0-5.8.0 | |
 | <a name="3684998"></a> [3684998](#3684998) <a name="3684998"></a> <br /> | DHCP lease information is not collected in the <code>cl-support</code> file. | 4.3.0-5.6.0 | 5.7.0-5.8.0|
 | <a name="3647424"></a> [3647424](#3647424) <a name="3647424"></a> <br />None | When you remove the <code>update-source</code> configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same <code>update-source</code> configuration. | 4.3.0-4.4.5 | |
@@ -1233,6 +1237,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3856614"></a> [3856614](#3856614) <a name="3856614"></a> <br /> | When daylight saving time changes, the MLAG <code>initDelay</code> timer resets and all MLAG bonds go down. | 4.3.2-4.4.5 | |
 | <a name="3773177"></a> [3773177](#3773177) <a name="3773177"></a> <br /> | When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.<br><pre>cumulus&#64;switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt update<br>cumulus&#64;switch:~$ sudo apt upgrade</pre> | 4.0.0-4.4.5, 5.0.0-5.8.0 | |
 | <a name="3684998"></a> [3684998](#3684998) <a name="3684998"></a> <br /> | DHCP lease information is not collected in the <code>cl-support</code> file. | 4.3.0-5.6.0 | 5.7.0-5.8.0|
 | <a name="3647424"></a> [3647424](#3647424) <a name="3647424"></a> <br />None | When you remove the <code>update-source</code> configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same <code>update-source</code> configuration. | 4.3.0-4.4.5 | |
@@ -1567,6 +1572,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3856614"></a> [3856614](#3856614) <a name="3856614"></a> <br /> | When daylight saving time changes, the MLAG <code>initDelay</code> timer resets and all MLAG bonds go down. | 4.3.2-4.4.5 | |
 | <a name="3773177"></a> [3773177](#3773177) <a name="3773177"></a> <br /> | When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.<br><pre>cumulus&#64;switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt update<br>cumulus&#64;switch:~$ sudo apt upgrade</pre> | 4.0.0-4.4.5, 5.0.0-5.8.0 | |
 | <a name="3684998"></a> [3684998](#3684998) <a name="3684998"></a> <br /> | DHCP lease information is not collected in the <code>cl-support</code> file. | 4.3.0-5.6.0 | 5.7.0-5.8.0|
 | <a name="3647424"></a> [3647424](#3647424) <a name="3647424"></a> <br />None | When you remove the <code>update-source</code> configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same <code>update-source</code> configuration. | 4.3.0-4.4.5 | |
@@ -1876,6 +1882,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3856614"></a> [3856614](#3856614) <a name="3856614"></a> <br /> | When daylight saving time changes, the MLAG <code>initDelay</code> timer resets and all MLAG bonds go down. | 4.3.2-4.4.5 | |
 | <a name="3773177"></a> [3773177](#3773177) <a name="3773177"></a> <br /> | When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.<br><pre>cumulus&#64;switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb<br>cumulus&#64;switch:~$ sudo apt update<br>cumulus&#64;switch:~$ sudo apt upgrade</pre> | 4.0.0-4.4.5, 5.0.0-5.8.0 | |
 | <a name="3684998"></a> [3684998](#3684998) <a name="3684998"></a> <br /> | DHCP lease information is not collected in the <code>cl-support</code> file. | 4.3.0-5.6.0 | 5.7.0-5.8.0|
 | <a name="3647424"></a> [3647424](#3647424) <a name="3647424"></a> <br />None | When you remove the <code>update-source</code> configuration for a BGP neighbor, the peering is reset if the neighbor is a member of a peer group with the same <code>update-source</code> configuration. | 4.3.0-4.4.5 | |

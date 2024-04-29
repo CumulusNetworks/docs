@@ -7,6 +7,104 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3875696</td>
+<td>The default TX State for 1G Base-X optical modules that are unconfigured or admin down in Cumulus Linux 5.7.0 and later is OFF.  However, on the first boot after upgrade from an earlier release, a module TX power might be ON or OFF depending on the TX State it was before the upgrade. The TX_Disable line is not properly set on first boot. To work around this issue, reboot the switch again, or {{ifup}} or {{ifdown}} the 1G Base-X interface to disable TX Power.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3863858</td>
+<td>VRR interfaces might show {{dadfailed}} on their IPv6 link-local address.</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3832116</td>
+<td>When you configure a SPAN session either with the NVUE {{nv set system port-mirror session}} command or in the {{/etc/cumulus/switchd.d/port-mirror.conf}} file and the default route is configured to 0.0.0.0/0, the SPAN session might not work as expected. To work around this issue, remove the default route 0.0.0.0/0 and use alternate routes instead.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3824750</td>
+<td>With Ansible module nvidia.nvue, NVUED honors input from ansible module only. So user must provide full config.
+
+With current playbook step, which is:
+------------------------------------
+   - name: Configure EVPN BGP uplinks loop when last no loop
+      nvidia.nvue.vrf:
+           state: merged
+           revid: '{{ revision.revid }}'
+           data:
+             - id: "default"
+               router:
+                 bgp:
+                   address_family:
+                     ipv4_unicast:
+                       network:
+                         - id: "{{ switches[inventory_hostname].lo_ip }}/32"
+                         - id: "{{ switches[inventory_hostname].lo_vxlan_ip }}/32"
+                   autonomous_system: "{{ switches[inventory_hostname].asn }}"
+                   enable: 'on'
+                   router_id: "{{ switches[inventory_hostname].lo_ip }}"
+                   neighbor:
+                     - id: "swp10"
+                       remote_as: "external"
+                       type: 'unnumbered'
+                       peer_group: 'underlay'
+                       address_family:
+                         l2vpn_evpn:
+                           enable: "on"
+
+------------------------------------
+NVUED will receive below config. Where we can see the path ['vrf', 'default', 'router', 'bgp', 'address-family', 'l2vpn-evpn'] has value None.
+
+------------------------------------
+{'vrf': {'default': {'router': {'bgp': {'address-family': {'ipv4-unicast': {'network': {'10.10.10.3/32': {}}, 'enable': 'on', 'route-export': None, 'redistribute': None}, 'ipv6-unicast': None, 'l2vpn-evpn': None}, 'autonomous-system': 65103, 'enable': 'on', 'router-id': '10.10.10.3', 'neighbor': {'swp10': {'remote-as': 'external', 'type': 'unnumbered', 'peer-group': 'underlay', 'address-family': {'l2vpn-evpn': {'enable': 'on'}}, 'enable': 'on', 'update-source': None}}, 'peer-group': None, 'route-import': None}, 'ospf': None, 'pim': None, 'static': None}, 'evpn': None}}, 'router': {'bgp': {'enable': 'on'}}, 'interface': {'swp10': {'type': 'swp'}}}
+------------------------------------
+
+NVUED generate exception in this case. Which should be fixed, since user may not provide full config in one step in all cases.
+
+Now, let&apos;s change ansible playbook step to have full config for address_family l2vpn_evpn. Below is modified step:
+------------------------------------
+   - name: Configure EVPN BGP uplinks loop when last no loop
+      nvidia.nvue.vrf:
+           state: merged
+           revid: '{{ revision.revid }}'
+           data:
+             - id: "default"
+               router:
+                 bgp:
+                   address_family:
++                    l2vpn_evpn:
++                      enable: "on". 
+                     ipv4_unicast:
+                       network:
+                         - id: "{{ switches[inventory_hostname].lo_ip }}/32"
+                         - id: "{{ switches[inventory_hostname].lo_vxlan_ip }}/32"
+                   autonomous_system: "{{ switches[inventory_hostname].asn }}"
+                   enable: 'on'
+                   router_id: "{{ switches[inventory_hostname].lo_ip }}"
+                   neighbor:
+                     - id: "swp10"
+                       remote_as: "external"
+                       type: 'unnumbered'
+                       peer_group: 'underlay'
+                       address_family:
+                         l2vpn_evpn:
+                           enable: "on"
+------------------------------------
+
+This works fine and it can be used for workaround.</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3782996</td>
+<td>If you have installed a large number ACLs,  you might see a {{switchd}} memory leak over a period of time that stops the {{switchd}} process because it is out of memory .</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3782543</td>
 <td>When you configure the BGP setting {{bgp max-med on-startup}} with vtysh, the MED on some peers might not be set to 4294967294 as expected on startup.  The {{max-med}} might also fail to reset after the startup timer expires.</td>
 <td>5.6.0-5.8.0</td>
@@ -33,6 +131,27 @@ cumulus@switch:~$ dpkg --install frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb
 </td>
 <td>5.6.0-5.7.0</td>
 <td>5.8.0</td>
+</tr>
+<tr>
+<td>3765395</td>
+<td>The {{nv unset nve vxlan flooding}} and {{nv set nve vxlan flooding enable off}} commands do not disable BUM flooding. To work around this issue, disable BUM flooding with vtysh commands:
+{{no format}}
+leaf01# configure terminal
+leaf01(config)# router bgp &lt;asn&gt;
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# flooding disable
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+{{no format}} </td>
+<td>5.5.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3752266</td>
+<td>If you configure DHCP Server HA, the switch failover might cause the DHCP service to report a {{time mismatch too great}} error.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3751952</td>
@@ -160,6 +279,12 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 <td>5.8.0</td>
 </tr>
 <tr>
+<td>3637444</td>
+<td>Applying an inbound control plane ACL on the eth0 management interface does not take effect. To work around this issue, apply the ACL on the {{mgmt}} interface; for example, {{nv set interface mgmt acl &lt;acl-id&gt; inbound control-plane}}.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3636266</td>
 <td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
 <td>5.7.0-5.8.0</td>
@@ -207,6 +332,20 @@ To work around this issue when using fiber cables:
 <td>3556762</td>
 <td>On rare occasions, SPT switchover might not happen cleanly in PIM resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
 <td>5.5.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3546857</td>
+<td>The {{nv show bridge vlan}} command does not show tagged and untagged VLAN information for the bridge.
+
+</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3541653</td>
+<td>During warm boot with layer 3 traffic, you might experience packet loss for approximately 15 milliseconds.</td>
+<td>5.6.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>

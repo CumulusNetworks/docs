@@ -356,7 +356,7 @@ netq install opta standalone full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.9.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
+cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.10.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
 ```
 
 ### Related Commands
@@ -476,7 +476,7 @@ netq install standalone full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.9.0.tgz
+cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.10.0.tgz
 ```
 
 ### Related Commands

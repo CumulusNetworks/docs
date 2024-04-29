@@ -23,7 +23,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 
 ### New Features and Enhancements
 - Cumulus Linux upgrade to Debian 12 (bookworm)
-- All systems that ship with SSD include a 32 GB or larger secondary partition for future use
+- All switches that ship with a 32 GB or larger SSD now include a secondary partition for future use
 - {{<link url="ASIC-Monitoring" text="Latency histogram">}} for ASIC monitoring
 - {{<link url="/Link-Layer-Discovery-Protocol/#application-priority-tlvs" text="LLDP application priority TLV">}} transmission
 - {{<link url="Firewall-Rules" text="Firewall rules">}}

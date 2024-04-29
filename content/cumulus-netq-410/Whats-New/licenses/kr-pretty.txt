@@ -26,7 +26,7 @@ Upstream-Name: github.com/kr/pretty
 Source: https://github.com/kr/pretty/
 
 Files: *
-Copyright: 2011â€“2016 Keith Rarick <kr@xph.us>
+Copyright: 2011–2016 Keith Rarick <kr@xph.us>
 License: Expat
 
 Files: debian/*

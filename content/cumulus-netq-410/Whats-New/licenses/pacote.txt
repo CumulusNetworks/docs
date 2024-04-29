@@ -1,7 +1,7 @@
 ISC License
 The ISC License
 
-Copyright (c) Isaac Z. Schlueter, Kat MarchÃ¡n, npm, Inc., and Contributors
+Copyright (c) Isaac Z. Schlueter, Kat Marchán, npm, Inc., and Contributors
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
@@ -19,7 +19,7 @@ IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE
 ISC License
 The ISC License
 
-Copyright (c) Isaac Z. Schlueter, Kat MarchÃ¡n, npm, Inc., and Contributors
+Copyright (c) Isaac Z. Schlueter, Kat Marchán, npm, Inc., and Contributors
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above

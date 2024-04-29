@@ -2,7 +2,7 @@ BSD 3-clause "New" or "Revised" License
 Source: https://github.com/pmezard/go-difflib
 
 Files: *
-Copyright: 2013 Patrick MÃ©zard
+Copyright: 2013 Patrick Mézard
 License: BSD-3-clause
 
 Files: debian/*

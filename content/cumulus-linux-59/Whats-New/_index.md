@@ -50,12 +50,12 @@ The {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="
 {{< tabs "TabID49 ">}}
 {{< tab "5.9 commands ">}}
 
-`nv show interface` and `nv show interface <interface>` output shows the administrative status and the operational status of an interface
+`nv show interface` and `nv show interface <interface>` output shows the administrative status and the operational status of an interface.
 
 {{< /tab >}}
 {{< tab "5.8 and earlier">}}
 
-`nv show interface` and `nv show interface <interface>` output shows the NVUE configured state of an interface
+`nv show interface` and `nv show interface <interface>` output shows the operational status of the interface.
 
 {{< /tab >}}
 {{< /tabs >}}

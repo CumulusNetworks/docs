@@ -10,13 +10,13 @@
 <td>3739222</td>
 <td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
 <td>4.2.0-4.8.0</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 </tr>
 <tr>
 <td>3442456</td>
 <td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
 <td>4.2.0-4.6.0</td>
-<td>4.7.0-4.9.0</td>
+<td>4.7.0-4.10.0</td>
 </tr>
 <tr>
 <td>3438973</td>
@@ -30,19 +30,19 @@ ERROR: Failed to install the master node
 
 This is due to an expired key in the installation tarball. For assistance working around this issue, contact NVIDIA support.</td>
 <td>4.3.0-4.5.0</td>
-<td>4.6.0-4.9.0</td>
+<td>4.6.0-4.10.0</td>
 </tr>
 <tr>
 <td>3395385</td>
 <td>When you use NetQ LCM to upgrade a Cumulus Linux switch in an MLAG pair, the upgrade might fail.</td>
 <td>4.4.1-4.5.0</td>
-<td>4.6.0-4.9.0</td>
+<td>4.6.0-4.10.0</td>
 </tr>
 <tr>
 <td>3360627</td>
 <td>When the switch RoCE egress pool buffer limit is configured as unlimited, the maximum buffer usage for RoCE counters might display incorrect values in the NetQ UI.</td>
 <td>4.4.1-4.5.0</td>
-<td>4.6.0-4.9.0</td>
+<td>4.6.0-4.10.0</td>
 </tr>
 <tr>
 <td>3305144</td>
@@ -52,7 +52,7 @@ This is due to an expired key in the installation tarball. For assistance workin
 argument of type ‘NoneType’ is not iterable
 </td>
 <td>4.4.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3303284</td>
@@ -62,7 +62,7 @@ argument of type ‘NoneType’ is not iterable
 ERROR: Expecting value: line 1 column 1 (char 0)
 </td>
 <td>4.3.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3290068</td>
@@ -75,7 +75,7 @@ Failed to proceed ahead with backup procedure. Exiting !
 
 Contact NVIDIA support for assistance performing a backup.</td>
 <td>4.4.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3266922</td>
@@ -85,25 +85,25 @@ Contact NVIDIA support for assistance performing a backup.</td>
 local variable ‘url’ referenced before assignment
 </td>
 <td>4.4.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3241664</td>
 <td>When you start the {{netq-agent}} service, the WJH service is enabled by default.  However, when you run the {{netq config show agent wjh}} command, the output might reflect the WJH service as disabled.</td>
 <td>4.4.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3179145</td>
 <td>The NetQ agent does not collect VLAN information from WJH data. This has been resolved, however when you upgrade to a NetQ version with the fix, historical WJH data will not be displayed in the UI.</td>
 <td>4.3.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3015875</td>
 <td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
 <td>4.1.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 </table>
 <table name="Fixed Issues in 4.4.1">
@@ -124,13 +124,13 @@ local variable ‘url’ referenced before assignment
 <td>3739222</td>
 <td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
 <td>4.2.0-4.8.0</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 </tr>
 <tr>
 <td>3442456</td>
 <td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
 <td>4.2.0-4.6.0</td>
-<td>4.7.0-4.9.0</td>
+<td>4.7.0-4.10.0</td>
 </tr>
 <tr>
 <td>3438973</td>
@@ -144,7 +144,7 @@ ERROR: Failed to install the master node
 
 This is due to an expired key in the installation tarball. For assistance working around this issue, contact NVIDIA support.</td>
 <td>4.3.0-4.5.0</td>
-<td>4.6.0-4.9.0</td>
+<td>4.6.0-4.10.0</td>
 </tr>
 <tr>
 <td>3305144</td>
@@ -154,7 +154,7 @@ This is due to an expired key in the installation tarball. For assistance workin
 argument of type ‘NoneType’ is not iterable
 </td>
 <td>4.4.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3303284</td>
@@ -164,7 +164,7 @@ argument of type ‘NoneType’ is not iterable
 ERROR: Expecting value: line 1 column 1 (char 0)
 </td>
 <td>4.3.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3290068</td>
@@ -177,7 +177,7 @@ Failed to proceed ahead with backup procedure. Exiting !
 
 Contact NVIDIA support for assistance performing a backup.</td>
 <td>4.4.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3266922</td>
@@ -187,25 +187,25 @@ Contact NVIDIA support for assistance performing a backup.</td>
 local variable ‘url’ referenced before assignment
 </td>
 <td>4.4.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3241664</td>
 <td>When you start the {{netq-agent}} service, the WJH service is enabled by default.  However, when you run the {{netq config show agent wjh}} command, the output might reflect the WJH service as disabled.</td>
 <td>4.4.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3179145</td>
 <td>The NetQ agent does not collect VLAN information from WJH data. This has been resolved, however when you upgrade to a NetQ version with the fix, historical WJH data will not be displayed in the UI.</td>
 <td>4.3.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 <tr>
 <td>3015875</td>
 <td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
 <td>4.1.0-4.4.1</td>
-<td>4.5.0-4.9.0</td>
+<td>4.5.0-4.10.0</td>
 </tr>
 </table>
 <table name="Fixed Issues in 4.4.0">

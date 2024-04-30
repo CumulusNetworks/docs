@@ -124,3 +124,23 @@ NVUE restarts the `switchd` service.
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Reserved Layer 3 VNI VLANs
+
+In addition to the internal reserved VLAN range, there is a reserved range of VLANs allocated for layer 3 VNIs (L3VNIs) in EVPN symmetric routing deployments when you use NVUE to configure L3VNIs in MLAG environments. The default range is 4000-4064. You can display the range with the `nv show system global reserved vlan l3-vni-vlan` command:
+
+```
+cumulus@switch:~$ nv show system global reserved vlan l3-vni-vlan
+operational  applied
+-----  -----------  -------
+begin  4000         4000
+end    4064         4064
+```
+
+You should not configure this range of VLANs in the same bridge as your MLAG interfaces and L3VNIs. You can configure the range with the `nv set system global reserved vlan l3-vni-vlan [ begin | end] <vlan>` command. For more information, see [symmetric routing]({{<ref "/cumulus-linux-59/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing#symmetric-routing" >}}).
+
+{{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing.md#symmetric-routing" text="symmetric routing">}}
+
+{{%notice note%}}
+The global reserved layer 3 VNI VLAN range is not applicable to switches that are not configured with NVUE or for symmetric routing deployments without MLAG.
+{{%/notice%}}

@@ -2,7 +2,7 @@ GNU General Public License v2.0 w/Classpath exception
 GNU Classpath License
 =====================
 
-Â 
+ 
 
 
 The GNU General Public License (GPL)

@@ -93,6 +93,7 @@ Restarting the `asic-monitor` service does not disrupt traffic or require you to
 Histogram settings include the type of data you want to collect, the ports you want the histogram to monitor, the sampling time of the histogram, the histogram size, and the minimum boundary size for the histogram.
 - The ingress queue length histogram can monitor a specific priority group for a port or range of ports.
 - The egress queue length histogram and the latency histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
+- The latency histogram can monitor a specific traffic class for a port or range of ports. Traffic class 0 through 7 is for unicast traffic and traffic class 8 through 15 is for multicast traffic.
 - The counter histogram can monitor the following counter types:
     - Received packet counters (`rx-packet`)
     - Transmitted packet counters (`tx-packet`)
@@ -220,7 +221,7 @@ The following table describes the ASIC monitor settings.
 | Setting| Description|
 |------- |----------- |
 | `port_group_list` | Specifies the names of the monitors (port groups) you want to use to collect data, such as `histogram_pg`. You can provide any name you want for the port group. You must use the same name for all the port group settings.<br><br>Example:<pre>monitor.port_group_list = [histogram_pg,discards_pg,buffers_pg,all_packets_pg]</pre>**Note**: You must specify at least one port group. If the port group list is empty, `systemd` shuts down the `asic-monitor` service. |
-| `<port_group_name>.port_set` | Specifies the range of ports you want to monitor; for example, `swp4,swp8,swp10-swp50`.<br><br>Example:<pre>monitor.histogram_pg.port_set = swp1-swp50</pre> |
+| `<port_group_name>.port_set` | Specifies the range of ports you want to monitor, such as `swp4,swp8,swp10-swp50`. To specify all ports, use the `all_ports` option.<br><br>Example:<pre>monitor.histogram_pg.port_set = swp1-swp50</pre><pre>monitor.histogram_pg.port_set = all_ports</pre> |
 | `<port_group_name>.stat_type` | Specifies the type of data that the port group collects.<br><br>For egress queue length histograms, specify `histogram_tc`. For example:<pre>monitor.histogram_pg.stat_type = histogram_tc</pre>For ingress queue length histograms, specify `histogram_pg`. For example: <pre>monitor.histogram_pg.stat_type = histogram_pg</pre>For counter histograms, specify `histogram_counter`. For example:<pre>monitor.histogram_pg.stat_type = histogram_counter</pre>. For latency histograms, specify `histogram_latency`. For example:<pre> monitor.histogram_pg.stat_type = histogram_latency</pre>.|
 | `<port_group_name>.cos_list` | For histogram monitoring, each CoS (Class of Service) value in the list has its own histogram on each port. The global limit on the number of histograms is an average of one histogram per port.<br><br>Example:<pre>monitor.histogram_pg.cos_list = [0]</pre> |
 | `<port_group_name>.counter_type` | Specifies the counter type for counter histogram monitoring. The counter types can be `tx-pkt`,`rx-pkt`,`tx-byte`,`rx-byte`.<br><br>Example:<pre>monitor.histogram_pg.counter_type = [rx_byte]</pre> |
@@ -432,7 +433,7 @@ A collect action triggers the collection of additional information. You can dais
 
 In the following example:
 - Queue length histograms collect for swp1 through swp50 every second.
-- The results write to the `/var/lib/cumulus/histogram_stats` snapshot file.
+- The results write to the `/var/run/cumulus/histogram_stats` snapshot file.
 - When the queue length reaches 500 bytes, the system sends a message to the /var/log/syslog file and collects additional data; buffer occupancy and all packets per port.
 - Buffer occupancy data writes to the `/var/lib/cumulus/buffer_stats` snapshot file and all packets per port data writes to the `/var/lib/cumulus/all_packet_stats` snapshot file.
 - In addition, packet drops on swp1 through swp50 collect every two seconds. If the number of packet drops is greater than 100, the monitor writes the results to the `/var/lib/cumulus/discard_stats` snapshot file and sends a message to the `/var/log/syslog` file.
@@ -446,7 +447,7 @@ monitor.histogram_pg.cos_list                         = [0]
 monitor.histogram_pg.trigger_type                     = timer
 monitor.histogram_pg.timer                            = 1s
 monitor.histogram_pg.action_list                      = [snapshot,collect,log]
-monitor.histogram_pg.snapshot.file                    = /var/lib/cumulus/histogram_stats
+monitor.histogram_pg.snapshot.file                    = /var/run/cumulus/histogram_stats
 monitor.histogram_pg.snapshot.file_count              = 64
 monitor.histogram_pg.histogram.minimum_bytes_boundary = 960
 monitor.histogram_pg.histogram.histogram_size_bytes   = 12288
@@ -521,20 +522,20 @@ swp1       4          4
 <!-- vale off -->
 To create a snapshot:
 - Set how often to write to a snapshot file. The default value is 1 second.
-- Provide the snapshot file name and location. The default location and file name is `/var/lib/cumulus/histogram_stats`.
+- Provide the snapshot file name and location. The default location and file name is `/var/run/cumulus/histogram_stats`.
 - Configure the number of snapshots to create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is `histogram_stats_0` and the 30th snapshot is `histogram_stats_30`. After the 30th snapshot, Cumulus Linux overwrites the original snapshot file (`histogram_stats_0`) and the sequence restarts. The default value is 64.
 <!-- vale on -->
 {{%notice note%}}
 Snapshots provide you with more data; however, they can occupy a lot of disk space on the switch. To reduce disk usage, you can use a volatile partition for the snapshot files; for example, `/var/run/cumulus/histogram_stats`.
 {{%/notice%}}
 
-The following example creates the `/var/lib/cumulus/histogram_stats` snapshot every 5 seconds. The number of snapshots that you can create before the first snapshot file is overwritten is set to 30.
+The following example creates the `/var/run/cumulus/histogram_stats` snapshot every 5 seconds. The number of snapshots that you can create before the first snapshot file is overwritten is set to 30.
 
 {{< tabs "TabID171 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
+cumulus@switch:~$ nv set service telemetry snapshot-file name /var/run/cumulus/histogram_stats
 cumulus@switch:~$ nv set service telemetry snapshot-file count 30
 cumulus@switch:~$ nv set service telemetry snapshot-interval 5
 cumulus@switch:~$ nv config apply
@@ -548,7 +549,7 @@ Edit the `snapshot.file` settings in the `/etc/cumulus/datapath/monitor.conf` fi
 | Setting| Description|
 |------- |----------- |
 | `<port_group_name>.action_list` | Specifies one or more actions that occur when data collects:<br>`snapshot` writes a snapshot of the data collection results to a file. If you specify this action, you must also specify a snapshot file (described below). You can also specify a threshold that initiates the snapshot action.<br><br>Example:<pre>monitor.histogram_pg.action_list = [snapshot]</pre>`collect` gathers additional data. If you specify this action, you must also specify the port groups for the additional data you want to collect.<br><br>Example:<pre>monitor.histogram_pg.action_list = [collect<br>monitor.histogram_pg.collect.port_group_list = [buffers_pg,all_packet_pg]</pre>`log` sends a message to the `/var/log/syslog` file. If you specify this action, you must also specify a threshold that initiates the log action.<br>Example:<pre>monitor.histogram_pg.action_list = [log]<br>monitor.histogram_pg.log.queue_bytes = 500</pre>You can use all three of these actions in one monitoring step. For example<pre>monitor.histogram_pg.action_list = [snapshot,collect,log]</pre> **Note**: If an action appears in the action list but does not have the required settings (such as a threshold for the log action), the ASIC monitor stops and reports an error. |
-| `<port_group_name>.snapshot.file` | Specifies the name for the snapshot file. All snapshots use this name, with a sequential number appended to it. See the `snapshot.file_count` setting.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file = /var/lib/cumulus/histogram_stats</pre> |
+| `<port_group_name>.snapshot.file` | Specifies the name for the snapshot file. All snapshots use this name, with a sequential number appended to it. See the `snapshot.file_count` setting.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file = /var/run/cumulus/histogram_stats</pre> |
 | `<port_group_name>.snapshot.file_count` | Specifies the number of snapshots you can create before Cumulus Linux overwrites the first snapshot file. In the following example, because the snapshot file count is set to 64, the first snapshot file is `histogram_stats_0` and the 64th snapshot is `histogram_stats_63`. After the 65th snapshot, Cumulus Linux overwrites the original snapshot file (histogram_stats_0) and the sequence restarts.<br><br>Example:<pre>monitor.histogram_pg.snapshot.file_count = 64</pre>**Note**: While more snapshots provide you with more data, they can occupy a lot of disk space on the switch. |
 <!-- vale on -->
 {{< /tab >}}

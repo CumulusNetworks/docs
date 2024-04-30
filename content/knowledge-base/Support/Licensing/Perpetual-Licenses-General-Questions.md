@@ -13,9 +13,9 @@ Cumulus Linux 4.4 and later does **not** require a license key to enable the fro
 <!-- vale off -->
 ## How can I evaluate Cumulus Linux?
 <!-- vale on -->
-If you do not have a switch on the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="hardware compatibility list">}} (HCL) available for testing, reserve a {{<exlink url="https://www.nvidia.com/en-us/networking/cumulus-linux-free-trial/" text="Cumulus in the Cloud">}} simulation and try out a test setup in your browser.
+If you do not have supported hardware, reserve a {{<exlink url="https://www.nvidia.com/en-us/networking/cumulus-linux-free-trial/" text="Cumulus in the Cloud">}} simulation and try out a test setup in your browser.
 
-If you already have hardware from the HCL, fill out {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="this form">}} and wait for an NVIDIA representative to contact you.
+If you already have supported hardware, fill out {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="this form">}} and wait for an NVIDIA representative to contact you.
 
 ## How is Cumulus Linux licensed?
 
@@ -44,7 +44,7 @@ Contact the NVIDIA {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" t
 <!-- vale on -->
 NVIDIA partners with approved resellers and distributors to facilitate your license procurement. Sign up on the {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="NVIDIA website">}} for help and information on approved resellers.
 
-NVIDIA does not sell any hardware; however, resellers often do. Check the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}} for the list of supported hardware.
+NVIDIA does not sell any hardware; however, resellers often do.
 <!-- vale off -->
 ## On how many switches can I run Cumulus Linux?
 <!-- vale on -->

@@ -26,8 +26,8 @@ The `netq show status verbose` command shows the status of NetQ components after
 cumulus@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 4.9.0
-Installer Version: 4.9.0
+Version: 4.10.0
+Installer Version: 4.10.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdsaHpjKzcwNmJiNVROOExRRXdLL3l5RVNLSHRhUE5sZS9FRjN0cTNzaHh1NmRtMkZpYmg3WWxKUE9lZTd5bnVlV2huaTZxZ0xxV3ZMYkpLMGdkc3RQcGdzNUlqanNMR3RzRTFpaEdNa3RZNlJYenQxLzh4Z3pVRXp3WTBWZDB4aWJrdDF3RGQwSjhnbExlbVk1RDM4VUdBVFVkMWQwcndLQ3gxZEhRdEM5L1UzZUs5cHFlOVdBYmE0ZHdiUFlaazZXLzM0ZmFsdFJxaG8rNUJia0pkTkFnWHdkZGZ5RXA1Vjc3Z2I1TUU3Q1BxOXp2Q1lXZW84cGtXVS9Wc0gxWklNWnhsa2crYlZ4MDRWUnN4ZnNIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==
@@ -71,17 +71,17 @@ Verified installer version                                          FINISHED
 
 ## Installation and Upgrade Hook Scripts
 
-NVIDIA might provide hook scripts to patch issues encountered during a NetQ installation or upgrade. When you run the `netq install` or `netq upgrade` command, NetQ checks for specific hook script filenames in the `/usr/bin` directory. The expected filenames for NetQ 4.9.0 are:
+NVIDIA might provide hook scripts to patch issues encountered during a NetQ installation or upgrade. When you run the `netq install` or `netq upgrade` command, NetQ checks for specific hook script filenames in the `/usr/bin` directory. The expected filenames for NetQ 4.10.0 are:
 
-- Pre-install script: `/usr/bin/pre_install_4.9.0.sh`
-- Post-install script: `/usr/bin/post_install_4.9.0.sh`
-- Pre-upgrade script: `/usr/bin/pre_upgrade_4.9.0.sh`
-- Post-upgrade script: `/usr/bin/post_upgrade_4.9.0.sh`
+- Pre-install script: `/usr/bin/pre_install_4.10.0.sh`
+- Post-install script: `/usr/bin/post_install_4.10.0.sh`
+- Pre-upgrade script: `/usr/bin/pre_upgrade_4.10.0.sh`
+- Post-upgrade script: `/usr/bin/post_upgrade_4.10.0.sh`
 
 After placing the script in the `/usr/bin` directory, set executable permissions with the `chmod +x /usr/bin/<filename>` command:
 
 ```
-cumulus@netq-server:~$ chmod +x /usr/bin/pre_install_4.9.0.sh
+cumulus@netq-server:~$ chmod +x /usr/bin/pre_install_4.10.0.sh
 ```
 
 After copying the script to the expected path and setting it to executable, the script will run during the next installation or upgrade attempt.

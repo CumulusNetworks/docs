@@ -8,7 +8,7 @@ toc: 4
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
 - Cumulus Linux 5.0.0 and later (Spectrum switches)
-- Cumulus Linux 4.3.0, 4.3.1, and 4.3.2 (Broadcom switches)
+- Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
 - SONiC 202012
 - CentOS 7
 - RHEL 7.1
@@ -72,7 +72,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upg
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.9
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ...
 ```
 
@@ -149,7 +149,7 @@ To obtain the NetQ Agent package:
 
        admin@switch:~$ sudo vi /etc/apt/sources.list
        ...
-       deb https://apps3.cumulusnetworks.com/repos/deb buster netq-4.9
+       deb https://apps3.cumulusnetworks.com/repos/deb buster netq-latest
        ...
 1. Add the SONiC repo key:
 
@@ -239,14 +239,14 @@ To obtain the NetQ Agent package:
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-4.9]
+    [cumulus-arch-netq-4.10]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.9/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-latest/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-4.9]
+    [cumulus-noarch-netq-4.10]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.9/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-latest/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -370,7 +370,7 @@ driftfile /var/lib/chrony/drift
 makestep 1.0 3
 rtcsync
 ```
-   5. View the server  chrony is currently tracking.
+   5. View the server which chrony is currently tracking.
 ```
 root@ubuntu:~# chronyc tracking
 Reference ID    : 5BBD59C7 (golem.canonical.com)
@@ -414,9 +414,12 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and ad
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-4.9
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 ...
 ```
+    {{<notice note>}}
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
+    {{</notice>}}
 
 {{</tab>}}
         
@@ -427,9 +430,12 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.9
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
 ...
 ```
+    {{<notice note>}}
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
+    {{</notice>}}
 
 {{</tab>}}
 
@@ -462,7 +468,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.9.0" opsys="cl">}}
+    {{<netq-install/agent-version version="4.10.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -518,7 +524,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -qa | grep -i netq
     ```
 
-    {{<netq-install/agent-version version="4.9.0" opsys="rh">}}
+    {{<netq-install/agent-version version="4.10.0" opsys="rh">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -547,7 +553,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.9.0" opsys="ub">}}
+    {{<netq-install/agent-version version="4.10.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 

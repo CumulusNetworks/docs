@@ -19,11 +19,11 @@ Follow these steps to set up and configure your VM on a cluster of servers in an
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/kvm-platform-image deployment="onprem" version="4.9">}}
+    {{<netq-install/kvm-platform-image deployment="onprem" version="4.10">}}
 
 4. Set up and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.9">}}
+    {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.10">}}
 
 5. Log in to the VM and change the password.
 
@@ -54,6 +54,6 @@ Make a note of the private IP address you assign to the worker node. You need it
 
 13. Install and activate the NetQ software using the CLI:
 
-{{<netq-install/install-with-cli version="4.9" deployment="onprem-cluster-ha">}}
+{{<netq-install/install-with-cli version="4.10" deployment="onprem-cluster-ha">}}
 
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

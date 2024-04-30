@@ -43,6 +43,10 @@ cumulus@switch:~$ nv unset interface swp1
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice note%}}
+NVUE applies only current configuration changes instead of processing the entire `/etc/network/interfaces` file.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -79,7 +83,7 @@ iface swp1
 If you configure an interface in the `/etc/network/interfaces` file, you can bring it down administratively with the `ifdown swp1` command, then bring the interface back up with the `ifup swp1` command. These changes do not persist after a reboot. After a reboot, the configuration present in `/etc/network/interfaces` takes effect.
 
 {{%notice note%}}
-- By default, the `ifupdown` and `ifup` command is quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
+- By default, the `ifupdown` and `ifup` commands are quiet. Use the verbose option (`-v`) to show commands as they execute when you bring an interface down or up.
 - For configurations at scale, you can run the `ifreload -a --diff` command to apply only current configuration changes instead of processing the entire `/etc/network/interfaces` file.
 {{%/notice%}}
 
@@ -779,23 +783,29 @@ addon_scripts_support=1
 
 ## Troubleshooting
 
-To show the state of all interfaces on the switch:
+To show the administrative and physical (operational) state of all interfaces on the switch:
 
 ```
 cumulus@switch:~$ nv show interface
-Interface      State  Speed  MTU    Type      Remote Host      Remote Port  Summary                                 
--------------  -----  -----  -----  --------  ---------------  -----------  ----------------------------------------
-bond1          up            9216   bond                                                                            
-bond2          up            9216   bond                                                                            
-bond3          up            9216   bond                                                                            
-br_default                   9216   bridge                                  IP Address:  fe80::4638:39ff:fe22:17a/64
-eth0           up     1G     1500   eth       oob-mgmt-switch  swp10        IP Address:            192.168.200.11/24
-                                                                            IP Address:  fe80::4638:39ff:fe22:17a/64
-lo             up            65536  loopback                                IP Address:                10.10.10.1/32
+Interface  Admin Status  Oper Status  Speed  MTU    Type      Remote Host      Remote Port  Summary                                 
+---------  ------------  -----------  -----  -----  --------  ---------------  -----------  ----------------------------------------
+eth0       up            up           1G     1500   eth       oob-mgmt-switch  swp10        IP Address:            192.168.200.11/24
+                                                                                            IP Address:  fe80::4638:39ff:fe22:17a/64
+lo         up            unknown             65536  loopback                                IP Address:                  127.0.0.1/8
+                                                                                            IP Address:                      ::1/128
+mgmt       up            up                  65575  vrf                                     IP Address:                  127.0.0.1/8
+                                                                                            IP Address:                      ::1/128
+swp1       up            up           1G     9216   swp                                     IP Address: fe80::4ab0:2dff:fe50:fecf/64
+swp2       down          down                1500   swp                                                                             
+swp3       down          down                1500   swp                                                                             
+swp4       down          down                1500   swp                                                                             
+swp5       down          down                1500   swp                                                                             
+swp6       down          down                1500   swp                                                                             
+swp7       down          down                1500   swp
 ...
 ```
 
-To show the physical (operational) and admin state of an interface:
+To show the administrative and physical (operational) state of an interface:
 
 {{< tabs "TabID875 ">}}
 {{< tab "NVUE Commands ">}}
@@ -804,6 +814,7 @@ To show the physical (operational) and admin state of an interface:
 cumulus@switch:~$ nv show interface swp1
                           operational        applied
 ------------------------  -----------------  -------
+Interface  Admin Status  Oper Status  Speed  MTU    Type      Remote Host  Remote Port  Summary
 ...  
   oper-status             down                      
   admin-status            down 

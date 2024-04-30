@@ -47,18 +47,18 @@ On Spectrum-2 and later, forwarding resource profiles control both unicast and m
 
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| LPM  |
 | --------------  | ------------- | ------------------------- | ------------------------------ |
-| default         | 50k           | 41k (IPv4) and 20k (IPv6) | 82k (IPv4), 74k (IPv6-long), 1k (IPv4-Mcast)|
-| l2-heavy        | 115k          | 74k (IPv4) and 37k (IPv6) | 16k (IPv4), 24k (IPv6-long), 1k (IPv4-Mcast)|
-| l2-heavy-1      | 239k          | 16k (IPv4) and 12k (IPv6) | 16k (IPv4), 16k (IPv6-long), 1k (IPv4-Mcast)|
-| l2-heavy-2      | 124k          | 132k (IPv4) and 12k (IPv6)| 16k (IPv4), 16k (IPv6-long), 1k (IPv4-Mcast)|
-| l2-heavy-3      | 107k          | 90k (IPv4) and 80k (IPv6) | 25k (IPv4), 10k (IPv6-long), 1k (IPv4-Mcast) |
-| v4-lpm-heavy    | 16k           | 41k (IPv4) and 24k (IPv6) | 124k (IPv4), 24k (IPv6-long), 1k (IPv4-Mcast)|
-| v4-lpm-heavy-1  | 16k           | 16k (IPv4) and 4k (IPv6)  | 256k (IPv4), 8k (IPv6-long), 1k (IPv4-Mcast)|
-| v6-lpm-heavy    | 16k           | 16k (IPv4) and 62k (IPv6) | 16k (IPv4), 99k (IPv6-long), 1k (IPv4-Mcast)|
-| v6-lpm-heavy-1  | 5k            | 4k (IPv4) and 4k (IPv6)   | 90k (IPv4), 235k (IPv6-long), 1k (IPv4-Mcast)|
-| lpm-balanced    | 16k           | 16k (IPv4) and 12k (IPv6) | 124k (IPv4), 124k (IPv6-long), 1k (IPv4-Mcast)|
-| ipmc-heavy      | 57k           | 41k (IPv4) and 20k (IPv6) | 82k (IPv4), 66k (IPv6-long), 8k (IPv4-Mcast) |
-| ipmc-max        | 41K           | 41k (IPv4) and 20k (IPv6) | 74k (IPv4), 66k (IPv6-long), 15k (IPv4-Mcast)|
+| default         | 50k           | 41k (IPv4) and 20k (IPv6) | 82k (IPv4), 74k (IPv6-short), 1k (IPv4-Mcast)|
+| l2-heavy        | 115k          | 74k (IPv4) and 37k (IPv6) | 16k (IPv4), 24k (IPv6-short), 1k (IPv4-Mcast)|
+| l2-heavy-1      | 239k          | 16k (IPv4) and 12k (IPv6) | 16k (IPv4), 16k (IPv6-short), 1k (IPv4-Mcast)|
+| l2-heavy-2      | 124k          | 132k (IPv4) and 12k (IPv6)| 16k (IPv4), 16k (IPv6-short), 1k (IPv4-Mcast)|
+| l2-heavy-3      | 107k          | 90k (IPv4) and 80k (IPv6) | 25k (IPv4), 10k (IPv6-short), 1k (IPv4-Mcast) |
+| v4-lpm-heavy    | 16k           | 41k (IPv4) and 24k (IPv6) | 124k (IPv4), 24k (IPv6-short), 1k (IPv4-Mcast)|
+| v4-lpm-heavy-1  | 16k           | 16k (IPv4) and 4k (IPv6)  | 256k (IPv4), 8k (IPv6-short), 1k (IPv4-Mcast)|
+| v6-lpm-heavy    | 16k           | 16k (IPv4) and 62k (IPv6) | 16k (IPv4), 99k (IPv6-short), 1k (IPv4-Mcast)|
+| v6-lpm-heavy-1  | 5k            | 4k (IPv4) and 4k (IPv6)   | 90k (IPv4), 235k (IPv6-short), 1k (IPv4-Mcast)|
+| lpm-balanced    | 16k           | 16k (IPv4) and 12k (IPv6) | 124k (IPv4), 124k (IPv6-short), 1k (IPv4-Mcast)|
+| ipmc-heavy      | 57k           | 41k (IPv4) and 20k (IPv6) | 82k (IPv4), 66k (IPv6-short), 8k (IPv4-Mcast) |
+| ipmc-max        | 41K           | 41k (IPv4) and 20k (IPv6) | 74k (IPv4), 66k (IPv6-short), 15k (IPv4-Mcast)|
 
 The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number is half of the /64 IPv6 prefix number.
 

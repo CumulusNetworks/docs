@@ -108,11 +108,11 @@ To back up and restore the configuration file:
 
 2. Copy the `/etc/nvue.d/startup.yaml` file off the switch to a different location.
 
-3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, then run the `nv config apply startup` command:
+3. After upgrade is complete, restore the configuration. Copy the `/etc/nvue.d/startup.yaml` file to the switch, then run the `nv config patch` command. In the following example `startup.yaml` is in the `/home/cumulus` directory on the switch:
 
    ```
-   cumulus@switch:~$ nv config apply startup
-   applied
+   cumulus@switch:~$ nv config patch /home/cumulus/startup.yaml
+   cumulus@switch:~$ nv config apply
    ```
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
@@ -215,7 +215,7 @@ Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where y
 When you use package upgrade to upgrade your switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
 
 {{%notice note%}}
-When you upgrade a switch from Cumulus Linux 5.5 or earlier to 5.9.0 with package upgrade, expired GPG keys prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+When you upgrade a switch from Cumulus Linux 5.5 or earlier with package upgrade, expired GPG keys prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 ```
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -224,7 +224,7 @@ cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 ```
 {{%/notice%}}
-
+<!--
 #### Disk Space Requirements
 
 Make sure you have enough disk space to perform a package upgrade. Cumulus Linux 5.9.0 requires:
@@ -245,7 +245,7 @@ tmpfs           7.7G      0    7.7G     0%    /sys/fs/cgroup
 tmpfs           7.7G    16K    7.7G     1%    /tmp
 overlay          28G   7.9G     18G    31%   
 ```
-
+-->
 #### Upgrade the Switch
 
 To upgrade the switch using package upgrade:
@@ -363,8 +363,8 @@ To upgrade the switch using package upgrade:
 
 Cumulus Linux is a collection of different Debian Linux packages; be aware of the following:
 
-- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.9.0, these two files display the release as 5.9.0 after the upgrade.
-- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.6.0, followed by a package upgrade to 5.9.0, the `/etc/image-release` file continues to display Cumulus Linux 5.6.0, which is the originally installed base image.
+- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.8.0, these two files display the release as 5.8.0 after the upgrade.
+- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.6.0, followed by a package upgrade to 5.8.0, the `/etc/image-release` file continues to display Cumulus Linux 5.6.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 

@@ -424,14 +424,6 @@ If you configure an IP address without a subnet mask, it becomes a /32 IP addres
 
 You can add multiple loopback addresses. For more information, see {{<link url="Interface-Configuration-and-Management/#loopback-interface" text="Interface Configuration and Management">}}.
 
-{{%notice info%}}
-If you run NVUE commands to configure the switch, run the `nv config save` command before you reboot. The command saves the applied configuration to the startup configuration so that the changes persist after the reboot.
-
-```
-cumulus@switch:~$ nv config save
-```
-{{%/notice%}}
-
 ## Show Platform and System Settings
 
 - To show the hostname of the switch, the time zone, and the version of Cumulus Linux running on the switch, run the NVUE `nv show system` command.

@@ -610,6 +610,174 @@ macip: MAC-IP (Type-2) route
 multicast: Multicast
 prefix: An IPv4 or IPv6 prefix
 
+## Show the EVPN Local RIB
+
+To show the EVPN local RIB, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib` command. This command shows the local RIB in brief format to improve performance for high scale environments. To show the local RIB in more detail, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib --view=detail` command. To show the local RIB in json format, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib -o json` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib
+rd
+=====
+                                                                                
+    PathCnt - Number of paths present for the prefix, MultipathCount - Number of    
+    paths that are part of the ECMP, RouteType - Route type, Route - Route ID,      
+    EVPNPrefixStr - EVPN prefix string, VNI - Peer VNI, Weight - Path Weight        
+                                                                                
+    RD             PathCnt  MultipathCount  DestFlags        RouteType  Route                EVPNPrefixStr                                                       VNI  Weight
+    -------------  -------  --------------  ---------------  ---------  -------------------  ------------------------------------------------------------------  ---  ------
+    10.10.10.1:2   5        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]                                                       
+    10.10.10.1:3   5        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
+                   5        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
+    10.10.10.2:2   1        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]                                                       
+    10.10.10.2:3   1        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
+                   1        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
+    10.10.10.2:4   1        1               bestpath-exists  2          0+44:38:39:22:01:7a  [2]:[0]:[48]:[44:38:39:22:01:7a]                                               
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:11:fe:7e]                                               
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]                                               
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]:[32]:[10.1.20.102]                            
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]:[128]:[fe80::4ab0:2dff:fedc:a4c5]             
+                   1        1               bestpath-exists             0+10.0.1.12          [3]:[0]:[32]:[10.0.1.12]                                                       
+    10.10.10.2:5   1        1               bestpath-exists  2          0+44:38:39:22:01:7a  [2]:[0]:[48]:[44:38:39:22:01:7a]                                               
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:98:57:4e]                                               
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]                                               
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]:[32]:[10.1.30.103]                            
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]:[128]:[fe80::4ab0:2dff:feee:bfd3]             
+                   1        1               bestpath-exists             0+10.0.1.12          [3]:[0]:[32]:[10.0.1.12]                                                       
+    10.10.10.2:6   1        1               bestpath-exists  2          0+44:38:39:22:01:7a  [2]:[0]:[48]:[44:38:39:22:01:7a]                                               
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ac:26:be]                                               
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ac:26:be]:[32]:[10.1.10.101]                            
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:ac:26:be]:[128]:[fe80::4ab0:2dff:feac:26be]             
+                   1        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:d4:1e:6b]                                               
+                   1        1               bestpath-exists             0+10.0.1.12          [3]:[0]:[32]:[10.0.1.12]                                                       
+    10.10.10.3:2   5        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]                                                       
+    10.10.10.3:3   5        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
+                   5        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
+    10.10.10.3:4   5        1               bestpath-exists  2          0+44:38:39:22:01:8a  [2]:[0]:[48]:[44:38:39:22:01:8a]                                               
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:d0:a7:fc]                                               
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]                                               
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[32]:[10.1.20.105]                            
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[128]:[fe80::4ab0:2dff:fef5:f711]             
+                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
+    10.10.10.3:5   5        1               bestpath-exists  2          0+44:38:39:22:01:8a  [2]:[0]:[48]:[44:38:39:22:01:8a]                                               
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]                                               
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[32]:[10.1.30.106]                            
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[128]:[fe80::4ab0:2dff:fe0c:ce31]             
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:71:0f:89]                                               
+                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
+    10.10.10.3:6   5        1               bestpath-exists  2          0+44:38:39:22:01:8a  [2]:[0]:[48]:[44:38:39:22:01:8a]                                               
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]                                               
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[32]:[10.1.10.104]                            
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[128]:[fe80::4ab0:2dff:fe9e:d87e]             
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:84:7a:8c]                                               
+                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
+    10.10.10.4:2   5        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]                                                       
+    10.10.10.4:3   5        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
+                   5        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
+    10.10.10.4:4   5        1               bestpath-exists  2          0+48:b0:2d:d0:a7:fc  [2]:[0]:[48]:[48:b0:2d:d0:a7:fc]                                               
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]                                               
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[32]:[10.1.20.105]                            
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[128]:[fe80::4ab0:2dff:fef5:f711]             
+                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
+    10.10.10.4:5   5        1               bestpath-exists  2          0+48:b0:2d:0c:ce:31  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]                                               
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[32]:[10.1.30.106]                            
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[128]:[fe80::4ab0:2dff:fe0c:ce31]             
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:71:0f:89]                                               
+                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
+    10.10.10.4:6   5        1               bestpath-exists  2          0+48:b0:2d:84:7a:8c  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]                                               
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[32]:[10.1.10.104]                            
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[128]:[fe80::4ab0:2dff:fe9e:d87e]             
+                   5        1               bestpath-exists                                  [2]:[0]:[48]:[48:b0:2d:84:7a:8c]                                               
+                   5        1               bestpath-exists             0+10.0.1.34          [3]:[0]:[32]:[10.0.1.34]                                                       
+    10.10.10.63:2  5        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
+                   5        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
+    10.10.10.63:3  5        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]                                                       
+    10.10.10.64:2  5        1               bestpath-exists  5          0+10.1.10.0/24       [5]:[0]:[24]:[10.1.10.0]                                                       
+                   5        1               bestpath-exists                                  [5]:[0]:[24]:[10.1.20.0]                                                       
+    10.10.10.64:3  5        1               bestpath-exists  5          0+10.1.30.0/24       [5]:[0]:[24]:[10.1.30.0]
+```
+
+## Show EVPN RD Routes
+
+To show EVPN RD routes, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd` command. This command shows the EVPN RD routes in brief format to improve performance for high scale environments. To show the EVPN RD routes in more detail, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd --view=detail` command. To show the local RIB in json format, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd -o json` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd                                                                               
+PathCnt - Number of paths present for the prefix, MultipathCount - Number of    
+paths that are part of the ECMP, EVPNPrefixStr - EVPN prefix string             
+                                                                                
+RD             PathCnt  MultipathCount  DestFlags        EVPNPrefixStr                                                     
+-------------  -------  --------------  ---------------  ------------------------------------------------------------------
+10.10.10.1:2   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0]                                          
+10.10.10.1:3   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
+               5        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
+10.10.10.2:2   1        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0]                                          
+10.10.10.2:3   1        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
+               1        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
+10.10.10.2:4   1        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:7a]                                  
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:11:fe:7e]                                  
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]                                  
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]:[32]:[10.1.20.102]               
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:dc:a4:c5]:[128]:[fe80::4ab0:2dff:fedc:a4c5]
+               1        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.12]                                          
+10.10.10.2:5   1        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:7a]                                  
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:98:57:4e]                                  
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]                                  
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]:[32]:[10.1.30.103]               
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ee:bf:d3]:[128]:[fe80::4ab0:2dff:feee:bfd3]
+               1        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.12]                                          
+10.10.10.2:6   1        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:7a]                                  
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ac:26:be]                                  
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ac:26:be]:[32]:[10.1.10.101]               
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:ac:26:be]:[128]:[fe80::4ab0:2dff:feac:26be]
+               1        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:d4:1e:6b]                                  
+               1        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.12]                                          
+10.10.10.3:2   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0]                                          
+10.10.10.3:3   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
+               5        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
+10.10.10.3:4   5        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:8a]                                  
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:d0:a7:fc]                                  
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]                                  
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[32]:[10.1.20.105]               
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[128]:[fe80::4ab0:2dff:fef5:f711]
+               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
+10.10.10.3:5   5        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:8a]                                  
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]                                  
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[32]:[10.1.30.106]               
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[128]:[fe80::4ab0:2dff:fe0c:ce31]
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:71:0f:89]                                  
+               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
+10.10.10.3:6   5        1               bestpath-exists  [2]:[0]:[48]:[44:38:39:22:01:8a]                                  
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]                                  
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[32]:[10.1.10.104]               
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[128]:[fe80::4ab0:2dff:fe9e:d87e]
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:84:7a:8c]                                  
+               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
+10.10.10.4:2   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0]                                          
+10.10.10.4:3   5        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
+               5        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
+10.10.10.4:4   5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:d0:a7:fc]                                  
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]                                  
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[32]:[10.1.20.105]               
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:f5:f7:11]:[128]:[fe80::4ab0:2dff:fef5:f711]
+               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
+10.10.10.4:5   5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]                                  
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[32]:[10.1.30.106]               
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:0c:ce:31]:[128]:[fe80::4ab0:2dff:fe0c:ce31]
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:71:0f:89]                                  
+               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
+10.10.10.4:6   5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]                                  
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[32]:[10.1.10.104]               
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:9e:d8:7e]:[128]:[fe80::4ab0:2dff:fe9e:d87e]
+               5        1               bestpath-exists  [2]:[0]:[48]:[48:b0:2d:84:7a:8c]                                  
+               5        1               bestpath-exists  [3]:[0]:[32]:[10.0.1.34]                                          
+10.10.10.63:2  5        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
+               5        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
+10.10.10.63:3  5        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0]                                          
+10.10.10.64:2  5        1               bestpath-exists  [5]:[0]:[24]:[10.1.10.0]                                          
+               5        1               bestpath-exists  [5]:[0]:[24]:[10.1.20.0]                                          
+10.10.10.64:3  5        1               bestpath-exists  [5]:[0]:[24]:[10.1.30.0] 
+```
+
 ## Show a Specific EVPN Route
 
 To drill down on a specific route for more information, run the vtysh `show bgp l2vpn evpn route rd <rd-value>` command. This command displays all EVPN routes with that RD and with the path attribute details for each path. Additional filtering is possible based on route type or by specifying the MAC and/or IP address. The following example shows the specific MAC/IP route of server05. The output shows that this remote host is behind VTEP 10.10.10.3 and is reachable through four paths; one through each spine switch. This example is from a symmetric routing configuration, so the route shows both the layer 2 VNI (20) and the layer 3 VNI (4001), as well as the EVPN route target attributes corresponding to each and the associated router MAC address.

@@ -10,7 +10,7 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
 - Cumulus Linux 5.0.0 and later (Spectrum switches)
-- Cumulus Linux 4.3.0, 4.3.1, and 4.3.2 (Broadcom switches)
+- Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
 - SONiC 202012
 - CentOS 7
 - RHEL 7.1
@@ -355,7 +355,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.9" opsys="cl">}}
+{{<netq-install/cli-version version="4.10" opsys="cl">}}
 <!-- vale on -->
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -389,9 +389,9 @@ To obtain the NetQ CLI package:
     admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
-    You should see version 4.9.0 and update 45 in the results. For example:
+    You should see version 4.10.0 and update 46 in the results. For example:
 
-    netq-apps_<strong>4.9.0</strong>-deb10u<strong>45</strong>~1710407608.ea9740d7c_amd64.deb
+    netq-apps_<strong>4.10.0</strong>-deb10u<strong>46</strong>~1713949850.127fb0c1b_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -402,8 +402,8 @@ To obtain the NetQ CLI package:
 1. Reference and update the local `yum` repository and key.
 
     ```
-    root@rhel7:~# rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
-    root@rhel7:~# wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
+    root@rhel7:~# sudo rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
+    root@rhel7:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
     ```
 
 2.  Edit `/etc/yum.repos.d/cumulus-host-el.repo` to set the `enabled=1` flag for the two NetQ repositories.
@@ -437,7 +437,7 @@ To obtain the NetQ CLI package:
     root@rhel7:~# rpm -q -netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.9" opsys="rh">}}
+{{<netq-install/cli-version version="4.10" opsys="rh">}}
 <!-- vale on -->
 5. Continue with the next section.
 
@@ -458,7 +458,7 @@ To obtain the NetQ CLI package:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.9" opsys="ub">}}
+{{<netq-install/cli-version version="4.10" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 

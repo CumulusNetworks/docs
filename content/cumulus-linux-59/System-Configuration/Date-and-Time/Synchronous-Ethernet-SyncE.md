@@ -27,7 +27,7 @@ Cumulus Linux constructs the SyncE clock identity as follows:
 Basic SyncE configuration requires you:
 - Enable SyncE on the switch.
 - Configure SyncE on at least one interface so that the interface is a timing source that passes to the selection algorithm.
-- Set the SyncE bundle ID to prevent loops if more than one link comes from the same clock source. You can set a value between 0 and 256. A value of 0 indicates no bundle.
+- Set the SyncE bundle ID to prevent loops if more than one link comes from the same clock source. You can set a value between 1 and 256.
 
 The basic configuration shown below uses the default SyncE settings:
 <!-- - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.-->

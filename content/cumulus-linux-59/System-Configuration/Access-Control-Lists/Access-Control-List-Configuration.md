@@ -290,6 +290,8 @@ To create this rule with NVUE, follow the steps below. NVUE adds all options in 
    cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
    ```
 
+   For firewall IPv4 type ACLs on the control plane, you can match on the hashlimit module (`hashimit`), the connection state (`connection-state`), and the recent module (`recent-list`). Refer to {{<link url="Firewall-Rules/#add-firewall-rules" text="Firewall Rules">}}.
+
 2. Apply the rule to an inbound or outbound interface with the `nv set interface <interface> acl` command.
    
    - For rules affecting the -t mangle -A PREROUTING chain (-A FORWARD in previous releases), apply the rule to an inbound or outbound interface: For example:
@@ -1081,6 +1083,18 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Block Traffic towards the eth0 Interface
+
+To block traffic towards the eth0 interface, apply an ACL on the system control plane instead of on the eth0 interface. The following example creates an ACL called DENY-IN that blocks traffic from ingressing eth0 with source IP address 192.168.200.10:
+
+```
+cumulus@switch:~$ nv set acl DENY-IN rule 10 action deny
+cumulus@switch:~$ nv set acl DENY-IN rule 10 match ip source-ip 192.168.200.10
+cumulus@switch:~$ nv set acl DENY-IN type ipv4
+cumulus@switch:~$ nv set system control-plane acl DENY-IN inbound
+cumulus@switch:~$ nv config apply
+```
 
 ### Match on ECN Bits in the TCP IP Header
 

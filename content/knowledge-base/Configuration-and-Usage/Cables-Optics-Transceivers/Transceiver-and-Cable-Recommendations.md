@@ -3,6 +3,7 @@ title: Transceiver and Cable Recommendations
 author: NVIDIA
 weight: 332
 toc: 4
+draft: true
 ---
 
 The NVIDIA {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Cumulus Linux Hardware Compatibility List">}} (HCL) provides a list of pluggables that NVIDIA recommends for use with systems running Cumulus Linux. The list includes:

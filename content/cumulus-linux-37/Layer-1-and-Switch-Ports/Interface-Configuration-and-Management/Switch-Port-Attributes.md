@@ -974,7 +974,7 @@ When you commit your change, `switchd` restarts to apply the changes. The restar
    ...
    ```
 
-   The `/etc/cumulus/ports.conf` file varies across different hardware platforms. Check the current list of supported platforms in {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list" text="the hardware compatibility list">}}.
+   The `/etc/cumulus/ports.conf` file varies across different hardware platforms.
 
 2. Configure the breakout ports in the `/etc/network/interfaces` file. The following example shows the swp1 breakout ports (swp1s0, swp1s1, swp1s2, and swp1s3).
 
@@ -1105,7 +1105,7 @@ depending upon the manufacturer; these include:
 
 - Mellanox SN2700, SN2700B, SN2410 and SN2410B switches
 - Switches with Broadcom Tomahawk, Trident II, Trident II+ and Trident3
-  chipsets (check the {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="HCL">}})
+  chipsets
 
 You *cannot* have more than 128 total logical ports on a Broadcom
 switch.

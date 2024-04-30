@@ -194,7 +194,7 @@ Additional options are available for certain `nv show` commands. For example, yo
 | `--paginate`      | Paginates the output. For example, `nv show interface bond1 --paginate on`. |
 | `--pending`       | Shows the last applied configuration and any pending set or unset configuration that you have not yet applied. For example, `nv show interface bond1 --pending`.|
 | `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev 1`. You can also show only applied or only operational information in the `nv show` output. For example, to show only the applied settings for swp1 configuration, run the `nv show interface swp1 --rev=applied` command. To show only the operational settings for swp1 configuration, run the `nv show interface swp1 --rev=operational` command. |
-| `--startup`  | Shows configuration saved with the `nv config save` command. This is the configuration after the switch boots. For example: `nv show interface --startup.`|
+| `--startup`  | Shows configuration saved with the `nv config apply` command. This is the configuration after the switch boots. For example: `nv show interface --startup.`|
 | `--tab`| Show information in tab format. For example, `nv show interface swp1 --tab.`|
 | `--view` | Shows different views. A view is a subset of information provided by certain `nv show` commands. To see the views available for an `nv show` command, run the command with `--view` and press TAB.|
 
@@ -232,7 +232,7 @@ The NVUE configuration management commands manage and apply configurations.
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
-| `nv config apply` | Applies the pending configuration (`nv config apply`) or a specific revision (`nv config apply 2`) to become the applied configuration. To see the list of revisions you can apply, run `nv config apply <<Tab>>`. <br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}Cumulus Linux applies but does not save the configuration; the configuration does not persist after a reboot.{{%/notice%}}You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.</br></br>To save the pending configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command, enable {{<link url="#configure-auto-save" text="auto save">}}.|
+| `nv config apply` | Saves the pending configuration (`nv config apply`) or a specific revision (`nv config apply 2`) to the startup configuration automatically (when auto save is `on`, which is the default setting). To see the list of revisions you can apply, run `nv config apply <<Tab>>`. <br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}Cumulus Linux applies but does not save the configuration; the configuration does not persist after a reboot.{{%/notice%}}You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.</br>|
 | `nv config detach` | Detaches the configuration from the current pending configuration and uses an integer to identify it; for example, `4`. To list all the current detached pending configurations, run `nv config diff <<press tab>`.|
 | `nv config diff <revision> <revision>` | Shows differences between configurations, such as the pending configuration and the applied configuration, or the detached configuration and the pending configuration.|
 | `nv config find <string>`| Finds a portion of the applied configuration according to the search string you provide. For example to find swp1 in the applied configuration, run `nv config find swp1`.|
@@ -240,7 +240,7 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config patch <nvue-file>` | Updates the pending configuration with the specified YAML configuration file. |
 | `nv config replace <nvue-file>` | Replaces the pending configuration with the specified YAML configuration file. |
 |`nv config revision` | Shows all the configuration revisions on the switch. |
-| `nv config save` | Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot. |
+| `nv config save` | When you have the auto save option `off`, this command overwrites the startup configuration with the applied configuration by writing to the `/etc/nvu.d/startup.yaml` file. The configuration persists after a reboot. |
 | `nv config show` | Shows the currently applied configuration in `yaml` format. This command also shows NVUE version information. |
 | `nv config show -o commands` | Shows the currently applied configuration commands. |
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
@@ -315,6 +315,16 @@ cumulus@switch:~$ sudo systemctl start nvue-startup.service
 
 When you apply a configuration with `nv config apply`, NVUE also writes to underlying Linux files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`. You can view these configuration files; however, do *not* manually edit them while using NVUE. If you need to configure certain network settings manually or use automation such as Ansible to configure the switch, see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}} below.
 
+### Default Startup File
+
+NVUE provides a default `/etc/nvue.d/startup.yaml` file that includes configuration such as the switch hostname, default firewall rules, and `cumulus` user account credentials. The file also enables the NVUE API. This file is the factory configuration file that you can restore at any time.
+
+{{%notice info%}}
+- The default startup configuration file sets the default hostname as `cumulus`; therefore, Cumulus Linux does not accept the DHCP `host-name` option. To set a different hostname with NVUE, see {{<link url="Quick-Start-Guide/#configure-the-hostname" text="Configure the Hostname">}}. If you do not manage your switch with NVUE and want to change this behavior with Linux configuration files, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
+- The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command.
+- You cannot delete a user account that is logged into the switch.
+{{%/notice%}}
+
 ## Configuration Files that NVUE Manages
 
 NVUE manages the following configuration files:
@@ -334,7 +344,7 @@ NVUE manages the following configuration files:
 | `/etc/mlx/datapath/qos/qos_infra.conf` |  Configures QoS platform specific configurations, such as buffer allocations and Alpha values.|
 | `/etc/cumulus/switchd.d/qos.conf` | Configures QoS settings. |
 | `/etc/cumulus/ports.conf` | Configures port breakouts.|
-| `/etc/ntp.conf` | Configures NTP settings. |
+| `etc/ntpsec/ntp.conf` | Configures NTP settings. |
 | `/etc/ptp4l.conf` | Configures PTP settings.|
 | `/etc/snmp/snmpd.conf`| Configures SNMP settings.|
 
@@ -367,26 +377,25 @@ cumulus@switch:~$ nv config find bond1
 
 You can configure NVUE to ignore certain underlying Linux files when applying configuration changes. For example, if you push certain configuration to the switch using Ansible and Jinja2 file templates or you want to use custom configuration for a particular service such as PTP, you can ensure that NVUE never writes to those configuration files.
 
-The following example configures NVUE to ignore the Linux `/etc/ptp4l.conf` file when applying configuration changes and saves the configuration so it persists after a reboot.
+The following example configures NVUE to ignore the Linux `/etc/ptp4l.conf` file when applying configuration changes.
 
 ```
 cumulus@switch:~$ nv set system config apply ignore /etc/ptp4l.conf
 cumulus@switch:~$ nv config apply
-cumulus@switch:~$ nv config save
 ```
 
-## Configure Auto Save
+## Auto Save
 
-By default, when you run the `nv config apply` command to apply a configuration setting, NVUE applies the pending configuration to become the applied configuration but does not update the startup configuration file (`/etc/nvue.d/startup.yaml`). To save the applied configuration to the startup configuration so that the changes persist after the reboot, you must run the `nv config save` command. The auto save option lets you save the pending configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+By default, when you run the `nv config apply` command to apply a configuration setting, NVUE applies the pending configuration to become the applied configuration and automatically saves the changes to the startup configuration file (`/etc/nvue.d/startup.yaml`).
 
-To enable auto save:
+To disable auto save so that NVUE does not save applied configuration changes, run the `nv set system config auto-save enable off` command:
 
 ```
-cumulus@switch:~$ nv set system config auto-save enable on
+cumulus@switch:~$ nv set system config auto-save enable off
 cumulus@switch:~$ nv config apply
 ```
 
-To disable auto save, run the `nv set system config auto-save enable off` command.
+When you disable auto save, you must run the `nv config save` command to save the applied configuration to the startup configuration so that the changes persist after a reboot.
 
 ## Add Configuration Apply Messages
 
@@ -403,7 +412,8 @@ cumulus@switch:~$ nv config apply -m "this is my message"
 To reset the NVUE configuration on the switch back to the default values, run the following command:
 
 ```
-cumulus@switch:~$ nv config apply empty
+cumulus@switch:~$ nv config replace /usr/lib/python3/dist-packages/cue_config_v1/initial.yaml
+cumulus@switch:~$ nv config apply
 ```
 
 ## Detach a Pending Configuration
@@ -460,3 +470,8 @@ The following example patches the pending configuration (runs the set or unset c
 ```
 cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 ```
+<!--
+{{%notice info%}}
+- When you run the `nv config replace` command and auto save is `on`, NVUE removes the default startup configuration.
+{{%/notice%}}
+-->

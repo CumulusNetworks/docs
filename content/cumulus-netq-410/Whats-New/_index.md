@@ -27,14 +27,14 @@ Base Command Manager 10 also provides a Kubernetes wizard to manage NetQ provisi
 To get started, refer to the {{<exlink url="https://docs.nvidia.com/base-command-manager/#product-manuals" text="Base Command Manager administrator and containerization manuals">}}.
 
 {{%notice info%}}
-NetQ 4.10.0 does not support upgrading switches to Cumulus Linux version 5.9.0 with {{<link title="Upgrade Cumulus Linux" text="NetQ LCM">}}. To upgrade switches manually, see {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}}.
+NetQ 4.10.0 does not support upgrading switches to Cumulus Linux version 5.9.0 with {{<link title="Upgrade Cumulus Linux" text="NetQ Lifecycle Management">}}. To upgrade switches manually, see {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}}.
 {{%/notice%}}
 ## Upgrade Paths
 
 For deployments running:
 
 - 4.9.0, 4.8.0: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.10.0. NetQ 4.8.0 on-premises cluster deployments must incrementally [upgrade to 4.9.0]({{<ref "/cumulus-netq-49/Installation-Management/Upgrade-NetQ/Upgrade-System" >}}) before upgrading to 4.10.0.
-- 4.7.0 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
+- 4.7.0 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}.
 
 ## Compatible Agent Versions
 

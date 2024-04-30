@@ -129,7 +129,7 @@ netq install cluster full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.9.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.10.0.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands

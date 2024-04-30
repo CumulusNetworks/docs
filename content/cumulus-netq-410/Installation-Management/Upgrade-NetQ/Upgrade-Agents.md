@@ -5,7 +5,7 @@ weight: 420
 toc: 4
 ---
 
-After upgrading your {{<link title="Upgrade NetQ Virtual Machines" text="NetQ VM">}}, upgrade the NetQ Agent:
+After {{<link title="Upgrade NetQ Virtual Machines" text="upgrading your NetQ VM">}}, upgrade the NetQ Agent:
 
 1. Log in to your switch or host.
 

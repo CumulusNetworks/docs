@@ -415,7 +415,46 @@ The following example shows the `nv show vrf default router bgp address-family l
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib -o raw
-
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[0]:[::]
+Paths: (0 available, no best path)
+  Not advertised to any peer
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[16]:[21.0.0.0]
+Paths: (0 available, no best path)
+  Not advertised to any peer
+Route Distinguisher: 6.0.0.6:2
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[16]:[21.1.0.0]
+Paths: (1 available, best #1)
+  Advertised to non peer-group peers:
+  spine11(220.10.0.17) spine12(220.11.0.17)
+  Route [5]:[0]:[16]:[21.1.0.0] VNI 300011
+  Local
+    6.0.0.6 (leaf11) from 0.0.0.0 (6.0.0.6)
+      Origin incomplete, metric 0, weight 32768, valid, sourced, local, bestpath-from-AS Local, best (First path received)
+      Extended Community: ET:8 RT:65011:300011 Rmac:00:01:00:00:06:05
+      Last update: Wed Mar  6 12:14:41 2024
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[16]:[21.2.0.0]
+Paths: (1 available, best #1)
+  Advertised to non peer-group peers:
+  spine11(220.10.0.17) spine12(220.11.0.17)
+  Route [5]:[0]:[16]:[21.2.0.0] VNI 300011
+  Local
+    6.0.0.6 (leaf11) from 0.0.0.0 (6.0.0.6)
+      Origin incomplete, metric 0, weight 32768, valid, sourced, local, bestpath-from-AS Local, best (First path received)
+      Extended Community: ET:8 RT:65011:300011 Rmac:00:01:00:00:06:05
+      Last update: Wed Mar  6 12:14:41 2024
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[64]:[2020:0:1::]
+Paths: (0 available, no best path)
+  Not advertised to any peer
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[64]:[2020:0:1:1::]
+Paths: (1 available, best #1)
+  Advertised to non peer-group peers:
+  spine11(220.10.0.17) spine12(220.11.0.17)
+  Route [5]:[0]:[64]:[2020:0:1:1::] VNI 300011
+  Local
+    6.0.0.6 (leaf11) from 0.0.0.0 (6.0.0.6)
+      Origin incomplete, metric 1024, weight 32768, valid, sourced, local, bestpath-from-AS Local, best (First path received)
+      Extended Community: ET:8 RT:65011:300011 Rmac:00:01:00:00:06:05
+      Last update: Wed Mar  6 12:14:41 2024
 ```
 
 {{< expand "NVUE Commands that support --output raw" >}}

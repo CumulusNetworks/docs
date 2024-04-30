@@ -9,10 +9,8 @@
 <tr>
 <td>3878394</td>
 <td>When ZTP runs a script that contains {{wget}}, ZTP fails and you see a message similar to the following:
-
 ZTP: ZTP DHCP: Unexpected error: 'ascii' codec can't decode byte 0xe2 in position 181: ordinal not in range(128)
 ZTP: Script returned failure 
-
 To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td>5.9.0</td>
 <td></td>

@@ -13,80 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3824750</td>
-<td>With Ansible module nvidia.nvue, NVUED honors input from ansible module only. So user must provide full config.
-
-With current playbook step, which is:
-------------------------------------
-   - name: Configure EVPN BGP uplinks loop when last no loop
-      nvidia.nvue.vrf:
-           state: merged
-           revid: '{{ revision.revid }}'
-           data:
-             - id: "default"
-               router:
-                 bgp:
-                   address_family:
-                     ipv4_unicast:
-                       network:
-                         - id: "{{ switches[inventory_hostname].lo_ip }}/32"
-                         - id: "{{ switches[inventory_hostname].lo_vxlan_ip }}/32"
-                   autonomous_system: "{{ switches[inventory_hostname].asn }}"
-                   enable: 'on'
-                   router_id: "{{ switches[inventory_hostname].lo_ip }}"
-                   neighbor:
-                     - id: "swp10"
-                       remote_as: "external"
-                       type: 'unnumbered'
-                       peer_group: 'underlay'
-                       address_family:
-                         l2vpn_evpn:
-                           enable: "on"
-
-------------------------------------
-NVUED will receive below config. Where we can see the path ['vrf', 'default', 'router', 'bgp', 'address-family', 'l2vpn-evpn'] has value None.
-
-------------------------------------
-{'vrf': {'default': {'router': {'bgp': {'address-family': {'ipv4-unicast': {'network': {'10.10.10.3/32': {}}, 'enable': 'on', 'route-export': None, 'redistribute': None}, 'ipv6-unicast': None, 'l2vpn-evpn': None}, 'autonomous-system': 65103, 'enable': 'on', 'router-id': '10.10.10.3', 'neighbor': {'swp10': {'remote-as': 'external', 'type': 'unnumbered', 'peer-group': 'underlay', 'address-family': {'l2vpn-evpn': {'enable': 'on'}}, 'enable': 'on', 'update-source': None}}, 'peer-group': None, 'route-import': None}, 'ospf': None, 'pim': None, 'static': None}, 'evpn': None}}, 'router': {'bgp': {'enable': 'on'}}, 'interface': {'swp10': {'type': 'swp'}}}
-------------------------------------
-
-NVUED generate exception in this case. Which should be fixed, since user may not provide full config in one step in all cases.
-
-Now, let&apos;s change ansible playbook step to have full config for address_family l2vpn_evpn. Below is modified step:
-------------------------------------
-   - name: Configure EVPN BGP uplinks loop when last no loop
-      nvidia.nvue.vrf:
-           state: merged
-           revid: '{{ revision.revid }}'
-           data:
-             - id: "default"
-               router:
-                 bgp:
-                   address_family:
-+                    l2vpn_evpn:
-+                      enable: "on". 
-                     ipv4_unicast:
-                       network:
-                         - id: "{{ switches[inventory_hostname].lo_ip }}/32"
-                         - id: "{{ switches[inventory_hostname].lo_vxlan_ip }}/32"
-                   autonomous_system: "{{ switches[inventory_hostname].asn }}"
-                   enable: 'on'
-                   router_id: "{{ switches[inventory_hostname].lo_ip }}"
-                   neighbor:
-                     - id: "swp10"
-                       remote_as: "external"
-                       type: 'unnumbered'
-                       peer_group: 'underlay'
-                       address_family:
-                         l2vpn_evpn:
-                           enable: "on"
-------------------------------------
-
-This works fine and it can be used for workaround.</td>
-<td>5.6.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3782996</td>
 <td>If you have installed a large number ACLs,  you might see a {{switchd}} memory leak over a period of time that stops the {{switchd}} process because it is out of memory .</td>
 <td>5.6.0-5.8.0</td>
@@ -123,15 +49,13 @@ cumulus@switch:~$ dpkg --install frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb
 <tr>
 <td>3765395</td>
 <td>The {{nv unset nve vxlan flooding}} and {{nv set nve vxlan flooding enable off}} commands do not disable BUM flooding. To work around this issue, disable BUM flooding with vtysh commands:
-{{no format}}
 leaf01# configure terminal
-leaf01(config)# router bgp &lt;asn&gt;
+leaf01(config)# router bgp 
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# flooding disable
 leaf01(config-router-af)# end
 leaf01# write memory
-leaf01# exit
-{{no format}} </td>
+leaf01# exit</td>
 <td>5.5.0-5.8.0</td>
 <td></td>
 </tr>

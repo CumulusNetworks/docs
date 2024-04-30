@@ -14,7 +14,6 @@ This document supports the Cumulus Linux 5.9 release, and lists new platforms, f
 Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" text="this Knowledge base article">}}.
 
 {{%notice info%}}
-- Due to a critical issue, NVIDIA does not recommend that you install Cumulus Linux 5.9 on a switch with the Spectrum-4 ASIC. For more information, contact Technical Support.
 - You can only upgrade to Cumulus 5.9 from a previous release by installing the binary image; package upgrade is not supported.
 - Cumulus Linux 5.9 provides a set of default firewall rules that allows only specific IP addresses and ports, and drops packets that are disallowed. Be sure to review the {{<link url="Firewall-Rules" text="firewall rules">}} before upgrading.
 {{%/notice%}}
@@ -50,12 +49,12 @@ The {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="
 {{< tabs "TabID49 ">}}
 {{< tab "5.9 commands ">}}
 
-`nv show interface` and `nv show interface <interface>` output shows the administrative status and the operational status of an interface
+`nv show interface` and `nv show interface <interface>` output shows the administrative status and the operational status of an interface.
 
 {{< /tab >}}
 {{< tab "5.8 and earlier">}}
 
-`nv show interface` and `nv show interface <interface>` output shows the NVUE configured state of an interface
+`nv show interface` and `nv show interface <interface>` output shows the operational status of the interface.
 
 {{< /tab >}}
 {{< /tabs >}}

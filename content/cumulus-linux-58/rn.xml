@@ -7,9 +7,91 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3875696</td>
+<td>The default TX State for 1G Base-X optical modules that are unconfigured or admin down in Cumulus Linux 5.7.0 and later is OFF.  However, on the first boot after upgrade from an earlier release, a module TX power might be ON or OFF depending on the TX State it was before the upgrade. The TX_Disable line is not properly set on first boot. To work around this issue, reboot the switch again, or {{ifup}} or {{ifdown}} the 1G Base-X interface to disable TX Power.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3875419</td>
+<td>The cleanup scrip inadvertently removes the active LTTng session directory used by {{lttng-sessiond}} for trace dumping. This issue occurs under specific conditions when more than five LTTng trace folders are present, leading to intermittent failures in trace logging. To work around this issue, manually move the timestamped {{lttng}} logs to a different directory.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3873462</td>
+<td>The {{clagd.service}} shows {{disabled}} in the {{systemctl status clagd.service}} command output even though the service is properly started on boot.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3863858</td>
+<td>VRR interfaces might show {{dadfailed}} on their IPv6 link-local address.</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3863063</td>
+<td>When simultaneously changing the {{maxage}} and {{forward-delay}} bridge timers in RSTP for VLAN-aware bridges, the commands might not be accepted if the {{2xfdelay-1}} is less than the previously configured {{maxage}} timer because {{ifupdown2}} configures the forward delay first. To work around this issue, run the {{ifreload -a}} command again to process the {{forward-delay}} command after the new {{maxage}} configuration has been accepted.  You have to repeat the {{ifreload -a}} command after a reboot to set the forward delay correctly in the bridge.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3851499</td>
+<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3837121</td>
+<td>With a large route map and community list configuration, FRR reload takes much longer than normal (approximately 13 seconds) and in some cases, CPU utilization is high.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3832116</td>
+<td>When you configure a SPAN session either with the NVUE {{nv set system port-mirror session}} command or in the {{/etc/cumulus/switchd.d/port-mirror.conf}} file and the default route is configured to 0.0.0.0/0, the SPAN session might not work as expected. To work around this issue, remove the default route 0.0.0.0/0 and use alternate routes instead.</td>
+<td>5.7.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3828243</td>
+<td>After you change the remote AS for a peer group, the switch no longer has any peers associated with the peer group. To work around this issue, reconfigure all the associated peers after you change the remote AS for the peer group.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3813710</td>
+<td>The What Just Happened service ({{wjhd}}) fails to start if an interface alias (description) contains the text {{Ethernet}} and add syslog messages similar to the following:
+
+router1: wjhd: exception: stoi
+router1: wjhd: Fail to deinit SDK telemetry, error: [3]: [Invalid Handle]
+</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3812857</td>
+<td>When enabling telemetry on an interface, NVUE doesn’t validate if some of the configuration is correct. For example if you configure swp1s0, but enter swp1 by mistake, NVUE accepts and applies this configuration. If the ASIC monitor service finds that this port is not available, it skips the configuration associated with this port. NVUE applies configuration for other valid ports as expected.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3800536</td>
 <td>Some third-party modules cause false-alarm interrupts during SERDES tuning, which overloads the ASIC and causes an ASIC response delay.</td>
 <td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3798580</td>
+<td>With ROCE enabled, LLDP DCBX TLVs might carry an incorrect PFC map when bond interfaces are present on the switch.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3782996</td>
+<td>If you have installed a large number ACLs,  you might see a {{switchd}} memory leak over a period of time that stops the {{switchd}} process because it is out of memory .</td>
+<td>5.6.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>
@@ -31,8 +113,14 @@
 <td></td>
 </tr>
 <tr>
+<td>3773991</td>
+<td>When you use warm mode to reboot a switch with a large number of EVPN routes and BGP graceful restart is enabled, stale routes might be relearned from BGP neighbors after the switch boots. This might cause traffic loss until BGP is fully converged after the reboot.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -58,6 +146,41 @@ cumulus@switch:~$ sudo apt upgrade
 <td>3770865</td>
 <td>On the NVIDIA SN5600 switch, performing a fresh image install or a power cycle can cause the PCIE link speed to get downgraded from Gen3(8GTs) to Gen1(2.5GTs). To recover, reboot the switch.</td>
 <td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3767037</td>
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+
+cumulus@switch:~$ sudo apt-get update
+cumulus@switch:~$ sudo apt-get install --allow-unauthenticated cumulus-archive-keyring
+</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3765395</td>
+<td>The {{nv unset nve vxlan flooding}} and {{nv set nve vxlan flooding enable off}} commands do not disable BUM flooding. To work around this issue, disable BUM flooding with vtysh commands:
+leaf01# configure terminal
+leaf01(config)# router bgp 
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# flooding disable
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit</td>
+<td>5.5.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3759515</td>
+<td>After upgrading to Cumulus Linux 5.8, MLAG reports bonds as {{bpdu guard mismatch}}. To work around this issue, restart the MLAG service with the {{systemctl restart clagd}} on the device that reports the conflict.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3752266</td>
+<td>If you configure DHCP Server HA, the switch failover might cause the DHCP service to report a {{time mismatch too great}} error.</td>
+<td>5.7.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>
@@ -98,25 +221,18 @@ cumulus@switch:~$ sudo apt upgrade
 </tr>
 <tr>
 <td>3679478</td>
-<td>Both the ASIC Monitoring service and the What Just Happened (WJH) service try to initialize the SDK TELE module; however, initialization is successful only for the first service to initialize the module. There is no functional impact if a service tries to initialize the module again.</td>
-<td>5.7.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3677821</td>
-<td>If you bring down an interface with Linux or NVUE commands, all the static neighbor entries disappear for that interface.</td>
+<td>During switch boot, you see the following messages in the syslog:
+
+2024-03-04T10:34:49.650950+00:00 cumulus sx_sdk: 2262 [TELE] [ERROR  ]: Tele impl module is already initialized
+2024-03-04T10:34:49.651041+00:00 cumulus sx_sdk: 2262 [TELE] [ERROR  ]: sdk_tele_init failed, for chip type CHIP_TYPE_SWITCH_SPECTRUM3, err = Already initialized
+
+This is due to both the ASIC Monitoring service and the What Just Happened (WJH) service trying to initialize the SDK TELE module. You can ignore the messages because the TELE service has already initialized properly.</td>
 <td>5.7.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3677533</td>
 <td>Due to resource constraints on the Spectrum 1 switch, {{staticd}} performance drops and  takes longer to read static routes compared to the time BGP takes to complete a graceful restart, and advertise routes and EOR to its helpers. As a result, static routes are advertised after the EOR is sent to graceful restart helpers, which delete the stale static routes and relearn them after receiving the EOR from the restarting node. Temporary traffic loss might occur.</td>
-<td>5.7.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3677429</td>
-<td>When there is a flood of ARP packets, {{switchd}} might get overwhelmed and go into a busy state. Any NVUE configuration commands for {{switchd}} might time out and you might see {{WARN MAC table full, skipped processing #x learn records}} log messages in the {{switchd.log}} file. To work around this issue, wait for {{switchd}} to resolve the ARP floods, which might take a few minutes depending on the amount of ARP flooding (typically between three and five minutes), then reapply the NVUE configuration.</td>
 <td>5.7.0-5.8.0</td>
 <td></td>
 </tr>
@@ -134,13 +250,7 @@ cumulus@switch:~$ sudo apt upgrade
 </tr>
 <tr>
 <td>3636266</td>
-<td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
-<td>5.7.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3634428</td>
-<td>The NUVE {{nv config history}} command does not display the correct TACACS user.</td>
+<td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address is not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
 <td>5.7.0-5.8.0</td>
 <td></td>
 </tr>
@@ -165,20 +275,22 @@ To work around this issue when using fiber cables:
 <td></td>
 </tr>
 <tr>
-<td>3576949</td>
-<td>When you run the NVUE {{nv set service snmp listening-address localhost vrf &lt;vrf-name&gt;}} or {{nv set service snmp listening-address localhost-v6 vrf &lt;vrf-name&gt;}} command to configure the SNMP listening address, Cumulus Linux applies the listening address to the default VRF instead of the VRF you specify.</td>
-<td>5.3.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3556762</td>
 <td>On rare occasions, SPT switchover might not happen cleanly in PIM resulting in some dropped packets. If you use PIM-SM to replicate EVPN BUM traffic, you might see a brief drop of multicast traffic before recovering due to normal PIM-SM traffic timeout.</td>
 <td>5.5.0-5.8.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3549798</td>
-<td>If you add a VRF, then SSH into that VRF, which is a generated service (for example, {{sshd@vrfname.service}}), the service fails as the VRF is not created in time. To work around this issue, configure the VRF first, apply the configuration, then enable the SSH service on the VRF.</td>
+<td>3546857</td>
+<td>The {{nv show bridge vlan}} command does not show tagged and untagged VLAN information for the bridge.
+
+</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3541653</td>
+<td>During warm boot with layer 3 traffic, you might experience packet loss for approximately 15 milliseconds.</td>
 <td>5.6.0-5.8.0</td>
 <td></td>
 </tr>
@@ -257,12 +369,6 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
-<td>3345054</td>
-<td>The NVUE {{nv show interface &lt;interface&gt; qos}} command takes a significant time to show output or times out. To work around this issue, use specific QoS commands. For example, to show congestion control information, run the {{nv show interface &lt;interface&gt; qos congestion-control}} command.</td>
-<td>5.4.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3341214</td>
 <td>If you use the NVUE REST API to configure a local user with a hashed password, the user cannot log in and the {{/etc/nvue.d/startup.yaml}} file shows the password as plain text.</td>
 <td>5.4.0-5.8.0</td>
@@ -319,6 +425,20 @@ To work around this issue, reference the OID without the preceding period ( {{.}
 <td>3145869</td>
 <td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
 <td>5.2.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3141826</td>
+<td>A slow memory leak (~5KB over 24 hour period at a 60 second polling interval) might occur in SNMP when you walk the following system MIB objects (1.3.6.1.2.1).
+
+1.3.6.1.2.1.47 --&gt; Entity MIB
+ 1.3.6.1.2.1.99 --&gt; Entity Sensor MIB
+ 1.3.6.1.2.1.23 --&gt; rip2
+ 1.3.6.1.2.1.2 --&gt; interface/interfaces
+ 1.3.6.1.2.1.31 --&gt; ifMIB
+ 1.3.6.1.2.1.4 --&gt; IP
+ 1.3.6.1.2.1.25 --&gt; hostResource</td>
+<td>5.0.1-5.8.0</td>
 <td></td>
 </tr>
 <tr>

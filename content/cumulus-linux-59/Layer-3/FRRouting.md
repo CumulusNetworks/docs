@@ -483,10 +483,6 @@ nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <prefix>
 nv show vrf <vrf-id> router bgp nexthop ipv6
 nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address
 nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <prefix>
-nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <prefix> path
-nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <prefix> path
-nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <prefix> resolved-via
-nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <prefix> resolved-via
 nv show vrf default router rib ipv4 route
 nv show vrf default router rib ipv6 route
 nv show vrf default router rib

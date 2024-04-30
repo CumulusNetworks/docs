@@ -15,6 +15,7 @@ Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, re
 
 {{%notice info%}}
 - You can only upgrade to Cumulus 5.9 from a previous release by installing the binary image; package upgrade is not supported.
+- The NVIDIA SN5600 switch supports Cumulus Linux 5.9 and later; do not install Cumulus Linux 5.8 and earlier on this switch.
 - Cumulus Linux 5.9 provides a set of default firewall rules that allows only specific IP addresses and ports, and drops packets that are disallowed. Be sure to review the {{<link url="Firewall-Rules" text="firewall rules">}} before upgrading.
 {{%/notice%}}
 
@@ -35,7 +36,7 @@ Cumulus Linux 5.9.0 contains several new features and improvements, and provides
 - Cumulus Linux no longer supports NCLU; all `net show` commands have been removed
 - NVUE
   - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
-  - {{<link url="NVUE-CLI/#monitoring-commands" text="New nv show --output raw option">}} shows native vtysh (FRR) output
+  - {{<link url="FRRouting/#nvue-show-commands-and-vtysh-output" text="New nv show --output raw option">}} shows native vtysh (FRR) output
   - {{<link url="NVUE-CLI/#auto-save" text="Auto save">}} is enabled by default; when you run `nv config apply`, NVUE saves the configuration to the startup configuration file
   - NVUE ships with a {{<link url="NVUE-CLI/#default-startup-file" text="default /etc/nvue.d/startup.yaml file">}}
   {{%notice note%}}

@@ -49,7 +49,7 @@ You can import certificates onto the switch (fetch certificates from an external
 #### Import a Certificate
 
 {{%notice note%}}
-- You can import a maximum of 25 entity certificates and a maximum of 50 CA certificates.
+- You can import a maximum of 25 entity certificates and a maximum of 25 CA certificates.
 - The certificate you import contains sensitive private key information. NVIDIA recommends that you use a secure transport such as SFTP, SCP, or HTTPS.
 {{%/notice%}}
 

@@ -14,40 +14,56 @@ This document supports the Cumulus Linux 5.9 release, and lists new platforms, f
 Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" text="this Knowledge base article">}}.
 
 {{%notice info%}}
-- Due to a critical issue, NVIDIA does not recommend that you install Cumulus Linux 5.9 on a switch with the Spectrum-4 ASIC. For more information, contact Technical Support.
 - You can only upgrade to Cumulus 5.9 from a previous release by installing the binary image; package upgrade is not supported.
-- Cumulus Linux 5.9 provides a set of default firewall rules that allows only specific addresses and ports, and drops packets that are disallowed. Be sure to review the {{<link url="Firewall-Rules" text="firewall rules">}} before upgrading.
+- Cumulus Linux 5.9 provides a set of default firewall rules that allows only specific IP addresses and ports, and drops packets that are disallowed. Be sure to review the {{<link url="Firewall-Rules" text="firewall rules">}} before upgrading.
 {{%/notice%}}
 
 Cumulus Linux 5.9.0 contains several new features and improvements, and provides bug fixes.
 
 ### New Features and Enhancements
 - Cumulus Linux upgrade to Debian 12 (bookworm)
+- All switches that ship with a 32 GB or larger SSD now include a secondary partition for future use
 - {{<link url="ASIC-Monitoring" text="Latency histogram">}} for ASIC monitoring
-- {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} is now generally available
 - {{<link url="/Link-Layer-Discovery-Protocol/#application-priority-tlvs" text="LLDP application priority TLV">}} transmission
 - {{<link url="Firewall-Rules" text="Firewall rules">}}
 - {{<link url="CLI-Configuration" text="CLI Session pagination and timeout options">}}
 - {{<link url="User-Accounts/#password-security" text="Password security commands">}}
 - {{<link url="SSH-for-Remote-Access/#ssh-strict-mode" text="SSH strict mode">}}
+- {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Warmboot support for VXLAN EVPN">}} is now generally available
 - {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="4x breakout on QSFP-DD/OSFP 8 lane ports">}} now allocates two lanes per port by default instead of one
 - {{<link url="Interface-Configuration-and-Management/#bring-an-interface-up-or-down" text="New Linux ifreload -a --diff option">}} processes and applies only incremental changes instead of reloading entire configuration
 - Cumulus Linux no longer supports NCLU; all `net show` commands have been removed
 - NVUE
   - {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="ISSU upgrade mode">}} and {{<link url="Upgrading-Cumulus-Linux/#upgrade-the-switch" text="package upgrade">}} commands
   - {{<link url="NVUE-CLI/#monitoring-commands" text="New nv show --output raw option">}} shows native vtysh (FRR) output
-  - {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="nv show interface <interface> command output">}} shows both the admin and physical state of an interface
   - {{<link url="NVUE-CLI/#auto-save" text="Auto save">}} is enabled by default; when you run `nv config apply`, NVUE saves the configuration to the startup configuration file
   - NVUE ships with a {{<link url="NVUE-CLI/#default-startup-file" text="default /etc/nvue.d/startup.yaml file">}}
   {{%notice note%}}
 - The default startup file sets the default hostname as cumulus; Cumulus Linux does not accept the DHCP host-name option. If you do not manage your switch with NVUE and want to change this behavior with Linux configuration files, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}}).
-- To merge in configuration changes or to restore a backup `startup.yaml` file, you must use the `nv config patch` command instead of the `nv config replace` command.
+- The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command.
 {{%/notice%}}
+  - {{< expand "Redesigned nv show interface commands" >}}
+{{%notice info%}}
+The {{<link url="Interface-Configuration-and-Management/#troubleshooting" text="nv show interface command outputs">}} have changed. If you are using automation, be sure to update your automation scripts.
+{{%/notice%}}
+{{< tabs "TabID49 ">}}
+{{< tab "5.9 commands ">}}
+
+`nv show interface` and `nv show interface <interface>` output shows the administrative status and the operational status of an interface.
+
+{{< /tab >}}
+{{< tab "5.8 and earlier">}}
+
+`nv show interface` and `nv show interface <interface>` output shows the operational status of the interface.
+
+{{< /tab >}}
+{{< /tabs >}}
+{{< /expand >}}
   - {{< expand "Redesigned nv show platform commands" >}}
 {{%notice info%}}
 The NVUE `nv show platform` commands have changed. If you are using automation, be sure to update your automation scripts.
 {{%/notice%}}
-{{< tabs "TabID34 ">}}
+{{< tabs "TabID62 ">}}
 {{< tab "5.9 commands ">}}
 
 ```
@@ -89,7 +105,7 @@ environment       pulse-per-second
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
-{{< tabs "TabID49 ">}}
+{{< tabs "TabID108 ">}}
 {{< tab "nv show ">}}
 
 ```

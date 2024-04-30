@@ -31,6 +31,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3847280</td>
+<td>The {{netq-opta}} package fails to install on Cumulus Linux 5.9.0. On-switch OPTA is not supported on Cumulus Linux 5.9.0.</td>
+<td>4.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3814701</td>
 <td>After you upgrade NetQ, devices that were in a rotten state before the upgrade might not appear in the UI or CLI after the upgrade. To work around this issue, decommission rotten devices before performing the upgrade.</td>
 <td>4.9.0-4.10.0</td>

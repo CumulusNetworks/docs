@@ -10,61 +10,55 @@
 <td>3819364</td>
 <td>When you attempt to delete a scheduled trace using the NetQ UI, the trace record is not deleted.</td>
 <td>4.7.0-4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3739222</td>
 <td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
 <td>4.2.0-4.8.0</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 </tr>
 <tr>
 <td>3676723</td>
 <td>When you use the NetQ agent on a Cumulus Linux switch to export gNMI data and there is a period of inactivity in the gNMI stream, the NetQ agent service might stop. To recover from this issue, restart the service with the {{netq config restart agent}} command.</td>
 <td>4.7.0-4.8.0</td>
-<td>4.9.0</td>
-</tr>
-<tr>
-<td>3633458</td>
-<td>The legacy topology diagram might categorize devices into tiers incorrectly. To work around this issue, use the updated topology diagram by selecting Topology Beta in the latest version of the NetQ UI.</td>
-<td>4.7.0-4.9.0</td>
-<td></td>
+<td>4.9.0-4.10.0</td>
 </tr>
 <tr>
 <td>3575935</td>
 <td>When you upgrade to NetQ 4.7.0, configured premises names might get reset to the default name {{OPID0}}.</td>
 <td>4.7.0</td>
-<td>4.8.0-4.9.0</td>
+<td>4.8.0-4.10.0</td>
 </tr>
 <tr>
 <td>3575934</td>
 <td>When you upgrade to NetQ 4.7.0, the password for the {{admin}} user is reset to the default password.</td>
 <td>4.7.0</td>
-<td>4.8.0-4.9.0</td>
+<td>4.8.0-4.10.0</td>
 </tr>
 <tr>
 <td>3555031</td>
 <td>NetQ incorrectly reports a low health SSD event on SN5600 switches. To work around this issue, configure an event suppression rule for {{ssdutil}} messages from SN5600 switches in your network.</td>
 <td>4.7.0</td>
-<td>4.8.0-4.9.0</td>
+<td>4.8.0-4.10.0</td>
 </tr>
 <tr>
 <td>3549877</td>
 <td>NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes.</td>
 <td>4.6.0-4.8.0</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 </tr>
 <tr>
 <td>3530739</td>
 <td>Queue histogram data received from switches might encounter a delay before appearing in the NetQ UI.</td>
 <td>4.7.0</td>
-<td>4.8.0-4.9.0</td>
+<td>4.8.0-4.10.0</td>
 </tr>
 <tr>
 <td>3429528</td>
 <td>EVPN and RoCE validation cards in the NetQ UI might not display data when Cumulus Linux switches are configured with high VNI scale.</td>
 <td>4.6.0-4.8.0</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 </tr>
 </table>
 <table name="Fixed Issues in 4.7.0">

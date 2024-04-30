@@ -10,7 +10,7 @@
 <td>2893000</td>
 <td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
 <td>2.4.0-4.0.1</td>
-<td>4.1.0-4.9.0</td>
+<td>4.1.0-4.10.0</td>
 </tr>
 <tr>
 <td>2551641</td>
@@ -70,7 +70,7 @@
 <td>2893000</td>
 <td>CVE-2021-44228: Apache Log4j2 &lt;=2.14.1 JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints.</td>
 <td>2.4.0-4.0.1</td>
-<td>4.1.0-4.9.0</td>
+<td>4.1.0-4.10.0</td>
 </tr>
 <tr>
 <td>2551641</td>

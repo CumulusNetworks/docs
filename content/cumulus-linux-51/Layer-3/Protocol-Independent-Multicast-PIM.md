@@ -486,7 +486,7 @@ Address         Interface      Nexthop
 
 Use multicast boundaries to limit the distribution of multicast traffic and push multicast to a subset of the network. With boundaries in place, the switch drops or accepts incoming IGMP or PIM joins according to a prefix list. To configure the boundary, apply an IP multicast boundary OIL (outgoing interface list) on an interface.
 
-First create a prefix list, then run the following commands:
+First create a prefix list consisting of multicast group addresses, then run the following commands:
 
 {{< tabs "TabID983 ">}}
 {{< tab "NVUE Commands ">}}
@@ -810,7 +810,7 @@ cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast 
 cumulus@switch:~$ nv config apply
 ```
 
-The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called allowRP:
+The following example command configures PIM to only ignore the RP check for RP addresses in the prefix list called allowRP:
 
 ```
 cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp rp-list allowRP
@@ -833,7 +833,7 @@ switch# write memory
 switch# exit
 ```
 
-The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called allowRP:
+The following example command configures PIM to only ignore the RP check for RP addresses in the prefix list called allowRP:
 
 ```
 cumulus@switch:~$ sudo vtysh

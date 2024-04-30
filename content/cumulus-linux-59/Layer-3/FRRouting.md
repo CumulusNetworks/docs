@@ -407,6 +407,91 @@ end
 If you try to configure a routing protocol that is not running, vtysh ignores those commands.
 {{%/notice%}}
 
+## NVUE Show Commands and vtysh Output
+
+NVUE provides the `--output raw` option for certain NVUE show commands to show vtysh native output.
+
+The following example shows the `nv show vrf default router bgp address-family l2vpn-evpn loc-rib` command with the `--output raw` option:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib -o raw
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[0]:[::]
+Paths: (0 available, no best path)
+  Not advertised to any peer
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[16]:[21.0.0.0]
+Paths: (0 available, no best path)
+  Not advertised to any peer
+Route Distinguisher: 6.0.0.6:2
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[16]:[21.1.0.0]
+Paths: (1 available, best #1)
+  Advertised to non peer-group peers:
+  spine11(220.10.0.17) spine12(220.11.0.17)
+  Route [5]:[0]:[16]:[21.1.0.0] VNI 300011
+  Local
+    6.0.0.6 (leaf11) from 0.0.0.0 (6.0.0.6)
+      Origin incomplete, metric 0, weight 32768, valid, sourced, local, bestpath-from-AS Local, best (First path received)
+      Extended Community: ET:8 RT:65011:300011 Rmac:00:01:00:00:06:05
+      Last update: Wed Mar  6 12:14:41 2024
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[16]:[21.2.0.0]
+Paths: (1 available, best #1)
+  Advertised to non peer-group peers:
+  spine11(220.10.0.17) spine12(220.11.0.17)
+  Route [5]:[0]:[16]:[21.2.0.0] VNI 300011
+  Local
+    6.0.0.6 (leaf11) from 0.0.0.0 (6.0.0.6)
+      Origin incomplete, metric 0, weight 32768, valid, sourced, local, bestpath-from-AS Local, best (First path received)
+      Extended Community: ET:8 RT:65011:300011 Rmac:00:01:00:00:06:05
+      Last update: Wed Mar  6 12:14:41 2024
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[64]:[2020:0:1::]
+Paths: (0 available, no best path)
+  Not advertised to any peer
+BGP routing table entry for 6.0.0.6:2:[5]:[0]:[64]:[2020:0:1:1::]
+Paths: (1 available, best #1)
+  Advertised to non peer-group peers:
+  spine11(220.10.0.17) spine12(220.11.0.17)
+  Route [5]:[0]:[64]:[2020:0:1:1::] VNI 300011
+  Local
+    6.0.0.6 (leaf11) from 0.0.0.0 (6.0.0.6)
+      Origin incomplete, metric 1024, weight 32768, valid, sourced, local, bestpath-from-AS Local, best (First path received)
+      Extended Community: ET:8 RT:65011:300011 Rmac:00:01:00:00:06:05
+      Last update: Wed Mar  6 12:14:41 2024
+```
+
+{{< expand "NVUE Commands that support --output raw" >}}
+
+```
+nv show evpn multihoming esi
+nv show evpn multihoming esi <esi_id>
+nv show evpn vni <vni_id> multihoming esi
+nv show evpn vni <vni_id> multihoming esi <esi_id>
+nv show evpn vni <vni_id>
+nv show vrf <tenant vrf> evpn
+nv show vrf <tenant vrf> evpn bgp-info
+nv show vrf <vrf> evpn nexthop-vtep <vtep>
+nv show evpn vni <vni_id> bgp-info
+nv show vrf default router bgp address-family l2vpn-evpn loc-rib
+nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd <rd-id>
+nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <type> route
+nv show vrf <vrf-id> router bgp address-family <afi-safi> loc-rib
+nv show vrf <vrf-id> router bgp address-family <afi-safi> loc-rib route
+nv show vrf default router bgp neighbor
+nv show vrf default router bgp neighbor <neighbor-id>
+nv show vrf <vrf-id> router bgp nexthop
+nv show vrf <vrf-id> router bgp nexthop ipv4
+nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address
+nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <prefix>
+nv show vrf <vrf-id> router bgp nexthop ipv6
+nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address
+nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <prefix>
+nv show vrf default router rib ipv4 route
+nv show vrf default router rib ipv6 route
+nv show vrf default router rib
+nv show vrf default router rib ipv4
+nv show vrf default router rib ipv6
+```
+
+{{< /expand >}}
+
 ## Next Hop Tracking
 
 Routing daemons track the validity of next hops through notifications from the `zebra` daemon. For example, FRR uninstalls BGP routes that resolve to a next hop over a connected route in `zebra` when `bgpd` receives a next hop tracking (NHT) notification after `zebra` removes the connected route if the associated interface goes down.

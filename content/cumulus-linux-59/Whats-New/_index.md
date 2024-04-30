@@ -14,7 +14,6 @@ This document supports the Cumulus Linux 5.9 release, and lists new platforms, f
 Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" text="this Knowledge base article">}}.
 
 {{%notice info%}}
-- Due to a critical issue, NVIDIA does not recommend that you install Cumulus Linux 5.9 on a switch with the Spectrum-4 ASIC. For more information, contact Technical Support.
 - You can only upgrade to Cumulus 5.9 from a previous release by installing the binary image; package upgrade is not supported.
 - Cumulus Linux 5.9 provides a set of default firewall rules that allows only specific IP addresses and ports, and drops packets that are disallowed. Be sure to review the {{<link url="Firewall-Rules" text="firewall rules">}} before upgrading.
 {{%/notice%}}

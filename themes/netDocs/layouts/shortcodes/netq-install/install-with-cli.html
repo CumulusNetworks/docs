@@ -47,7 +47,12 @@
 
 <p>Run the following commands on your <em>master</em> node, using the IP addresses of your worker nodes and the HA cluster virtual IP address (VIP):</p>
 
-<div class="notices info"><p>The HA cluster virtual IP must be allocated from the same subnet used for your master and worker nodes.</p></div>
+<div class="notices info"><p></p><p>The HA cluster virtual IP must be:</p>
+    <ul>
+    <li>An unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. The default interface is the interface used in the <code>netq install</code> <a href="/cumulus-netq-410/More-Documents/NetQ-CLI-Reference-Manual/install/#netq-install-cluster-full">command</a>.</li>
+    <li>A different IP address than the primary IP assigned to the default interface.</li>
+    </ul>
+    <p></p></div>
 
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.10.0.tgz workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; cluster-vip &lt;vip-ip&gt;</code></pre>
     
@@ -86,7 +91,12 @@
     
 <p>Run the following command on your NetQ cloud appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key <a href=https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Configure-Integrations/Premises-Management/ target=_blank>through the NetQ UI</a>. Use the IP addresses of your worker nodes and the HA cluster virtual IP address (VIP).</p>
 
-<div class="notices info"><p>The HA cluster virtual IP must be allocated from the same subnet used for your master and worker nodes.</p></div>
+<div class="notices info"><p></p><p>The HA cluster virtual IP must be:</p>
+    <ul>
+    <li>An unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. The default interface is the interface used in the <code>netq install</code> <a href="/cumulus-netq-410/More-Documents/NetQ-CLI-Reference-Manual/install/#netq-install-cluster-full">command</a>.</li>
+    <li>A different IP address than the primary IP assigned to the default interface.</li>
+    </ul>
+    <p></p></div>
 
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.10.0-opta.tgz config-key &lt;your-config-key&gt; workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; cluster-vip &lt;vip-ip&gt; [proxy-host &lt;proxy-hostname&gt; proxy-port &lt;proxy-port&gt;]</code></pre>
     
@@ -109,7 +119,12 @@
     
 <p>Run the following command on your NetQ cloud appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key <a href=https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/Installation-Management/Configure-Integrations/Premises-Management/ target=_blank>through the NetQ UI</a>. Use the IP addresses of your worker nodes and the HA cluster virtual IP address (VIP). </p>
 
-<div class="notices info"><p>The HA cluster virtual IP must be allocated from the same subnet used for your master and worker nodes.</p></div>
+<div class="notices info"><p></p><p>The HA cluster virtual IP must be:</p>
+    <ul>
+    <li>An unused IP address allocated from the same subnet assigned to the default interface for your master and worker nodes. The default interface is the interface used in the <code>netq install</code> <a href="/cumulus-netq-410/More-Documents/NetQ-CLI-Reference-Manual/install/#netq-install-cluster-full">command</a>.</li>
+    <li>A different IP address than the primary IP assigned to the default interface.</li>
+    </ul>
+    <p></p></div>
 
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.10.0-opta.tgz config-key &lt;your-config-key&gt; workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; cluster-vip &lt;vip-ip&gt; [proxy-host &lt;proxy-hostname&gt; proxy-port &lt;proxy-port&gt;]
     </code></pre>

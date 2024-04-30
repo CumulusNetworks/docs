@@ -33,9 +33,8 @@ NetQ 4.10.0 does not support upgrading switches to Cumulus Linux version 5.9.0 w
 
 For deployments running:
 
-- 4.9.0, 4.8.0, 4.7.0, 4.6.0, or 4.5.0: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.10.0
-- 4.4.1, 4.4.0, or 4.3.0: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
-- 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
+- 4.9.0, 4.8.0: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.10.0. NetQ 4.8.0 on-premises cluster deployments must incrementally [upgrade to 4.9.0]({{<ref "/cumulus-netq-49/Installation-Management/Upgrade-NetQ/Upgrade-System" >}}) before upgrading to 4.10.0.
+- 4.7.0 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
 
 ## Compatible Agent Versions
 

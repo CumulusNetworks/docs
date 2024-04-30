@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3875419</td>
+<td>The cleanup scrip inadvertently removes the active LTTng session directory used by {{lttng-sessiond}} for trace dumping. This issue occurs under specific conditions when more than five LTTng trace folders are present, leading to intermittent failures in trace logging. To work around this issue, manually move the timestamped {{lttng}} logs to a different directory.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3873462</td>
 <td>The {{clagd.service}} shows {{disabled}} in the {{systemctl status clagd.service}} command output even though the service is properly started on boot.</td>
 <td>5.8.0</td>
@@ -244,7 +250,7 @@ This is due to both the ASIC Monitoring service and the What Just Happened (WJH)
 </tr>
 <tr>
 <td>3636266</td>
-<td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
+<td>When an unresolved next hop is present in a next hop group, especially over an SVI interface, the switch checks if the neighbor MAC address is in the forwarding table. If the neighbor's MAC address is not there, the switch skips this next hop from backend programming and you see the {{switchd}} error {{ERR NH: l3 nhg v6 l3 nhg contains one or more unresolvable nexthops}}. There is no impact to switch functionality as unresolved neighbors are not programmed in hardware until they are resolved.</td>
 <td>5.7.0-5.8.0</td>
 <td></td>
 </tr>

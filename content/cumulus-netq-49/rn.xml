@@ -14,37 +14,37 @@ master-node-installer: Migrating H2 db list index out of range.
 
 To work around this issue, re-run the {{netq upgrade}} command. </td>
 <td>4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3820671</td>
 <td>When you upgrade NetQ cluster deployments with DPUs in the device inventory, the DPUs might not be visible in the NetQ UI after the upgrade. To work around this issue, restart the DTS container on the DPUs in your network.</td>
 <td>4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3819688</td>
 <td>When you upgrade NetQ cluster deployments, the configured LCM credential profile assigned to switches in the inventory is reset to the default access profile. To work around this issue, reconfigure the correct access profile on switches before managing them with LCM after the upgrade. </td>
 <td>4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3819364</td>
 <td>When you attempt to delete a scheduled trace using the NetQ UI, the trace record is not deleted.</td>
 <td>4.7.0-4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3814701</td>
 <td>After you upgrade NetQ, devices that were in a rotten state before the upgrade might not appear in the UI or CLI after the upgrade. To work around this issue, decommission rotten devices before performing the upgrade.</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3813819</td>
 <td>When you perform a switch discovery by specifying an IP range, an error message is displayed if switches included in the range have different credentials. To work around this issue, batch switches based on their credentials and run a switch discovery for each batch.</td>
 <td>4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3813078</td>
@@ -52,7 +52,7 @@ To work around this issue, re-run the {{netq upgrade}} command. </td>
 Command '['kubectl', 'version --client']' returned non-zero exit status 1.
 To work around this issue, run the {{netq bootstrap reset keep-db}} command and then reinstall NetQ using the {{netq install}} &lt;a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq/More-Documents/NetQ-CLI-Reference-Manual/install/"&gt;command for your deployment.&lt;/a&gt;</td>
 <td>4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3808200</td>
@@ -60,24 +60,24 @@ To work around this issue, run the {{netq bootstrap reset keep-db}} command and 
  master-node-installer: Running sanity check on cluster_vip: 10.10.10.10 Virtual IP 10.10.10.10 is already used
 To work around this issue, run the {{netq install}} command again.</td>
 <td>4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3800434</td>
 <td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3798677</td>
 <td>In a NetQ cluster environment, if your master node goes offline and is restored, subsequent NetQ validations for MLAG and EVPN might unexpectedly indicate failures. To work around this issue, either restart NetQ agents on devices in the inventory or wait up to 24 hours for the issue to clear.</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3787946</td>
 <td>When you install a NetQ cluster deployment on a subnet with other NetQ clusters or other devices using VRRP, there might be connectivity loss to the cluster virtual IP (VIP). The VIP is established using the VRRP protocol, and during cluster installation a virtual router ID (VRID) is selected. If another device on the subnet running VRRP selects the same VRID, connectivity issues may occur. To work around this issue, avoid multiple VRRP speakers on the subnet, or ensure the VRID used on all VRRP devices is unique. To validate the VRID used by NetQ, check the assigned {{virtual_router_id}} value in {{/mnt/keepalived/keepalived.conf}}.</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 <td></td>
 </tr>
 <tr>
@@ -85,60 +85,60 @@ To work around this issue, run the {{netq install}} command again.</td>
 <td>When you upgrade a switch running Cumulus Linux using NetQ LCM, any configuration files in {{/etc/cumulus/switchd.d}} for adaptive routing or other features are not restored after the upgrade. To work around this issue, manually back up these files and 
 restore them after the upgrade.</td>
 <td>4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3772274</td>
 <td>After you upgrade NetQ, data from snapshots taken prior to the NetQ upgrade will contain unreliable data and should not be compared to any snapshots taken after the upgrade. In cluster deployments, snapshots from prior NetQ versions will not be visible in the UI.</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3771124</td>
 <td>When you reconfigure a VNI to map to a different VRF or remove and recreate a VNI in the same VRF, NetQ EVPN validations might incorrectly indicate a failure for the VRF consistency test.</td>
 <td>4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3769936</td>
 <td>When there is a NetQ interface validation failure for admin state mismatch, the validation failure might clear unexpectedly while one side of the link is still administratively down.</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3760442</td>
 <td>When you export events from NetQ to a CSV file, the timestamp of the exported events does not match the timestamp reported in the NetQ UI based on the user profile's time zone setting.</td>
 <td>4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3755207</td>
 <td>When you export digital optics table data from NetQ, some fields might be visible in the UI that are not exported to CSV or JSON files.</td>
 <td>4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3752422</td>
 <td>When you run a NetQ trace and specify MAC addresses for the source and destination, NetQ displays the message “No valid path to destination” and does not display trace data.</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3738840</td>
 <td>When you upgrade a Cumulus Linux switch configured for TACACS authentication using NetQ LCM, the switch's TACACS configuration is not restored after upgrade.</td>
 <td>4.8.0-4.9.0</td>
-<td></td>
+<td>4.10.0</td>
 </tr>
 <tr>
 <td>3721754</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3613811</td>
 <td>LCM operations using in-band management are unsupported on switches that use eth0 connected to an out-of-band network. To work around this issue, configure NetQ to use out-of-band management in the {{mgmt}} VRF on Cumulus Linux switches when interface eth0 is in use.</td>
-<td>4.8.0-4.9.0</td>
+<td>4.8.0-4.10.0</td>
 <td></td>
 </tr>
 </table>

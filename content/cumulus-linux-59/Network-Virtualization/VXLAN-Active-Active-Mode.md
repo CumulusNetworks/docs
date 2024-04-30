@@ -26,7 +26,8 @@ MLAG dynamically adds and removes the anycast IP address as the loopback interfa
 - The active-active configuration for a given VXLAN interface must be consistent between both switches in the MLAG pair; MLAG ensures that the configuration is consistent before bringing up the VXLAN interfaces.
   - The anycast virtual IP address for VXLAN termination must be the same on both switches in the MLAG pair.
   - You must configure a VXLAN interface with the same VXLAN ID, which must be administratively up on both switches in the MLAG pair. Run the `clagctl` command to check if any VXLAN switches are in a PROTO_DOWN state.
-- If you use VXLAN active-active with EVPN symmetric mode, you must set the anycast MAC address on both switches in the MLAG pair; see {{<link url="Inter-subnet-Routing/#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}. 
+- If you use VXLAN active-active with EVPN symmetric mode, you must set the anycast MAC address on both switches in the MLAG pair; see {{<link url="Inter-subnet-Routing/#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
+- NVIDIA recommends that you configure the anycast IP address **before** you configure the MLAG interfaces.
 {{%/notice%}}
 
 To configure the anycast IP address:
@@ -204,12 +205,6 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
            bond1   -                  1         -                      anycast-ip-mismatch
          vxlan48   -                  -         -                      vxlan-single,anycast-ip-mismatch
 ```
-
-## Considerations
-
-If you configure the anycast IP address with the `nv set nve vxlan mlag shared-address <anycast-address>` command after you configure MLAG, the `nv show mlag consistency-checker` command does not show the local anycast IP address and the `clagctl` command shows the VXLAN interface in a protodown state with the reason `vxlan-single`, `no-anycast-ip`, or `anycast-ip-mismatch`. 
-
-To avoid this issue, make sure to apply the anycast IP address configuration **before** you apply the MLAG interface configuration. Alternatively, you can configure the anycast IP address and the MLAG interfaces together with a single `nv config patch` command.
 
 <!-- vale off -->
 ## Configuration Example

@@ -127,7 +127,7 @@ NVUE restarts the `switchd` service.
 
 ## Reserved Layer 3 VNI VLANs
 
-In addition to the internal reserved VLAN range, Cumulus Linux allocates a reserved range of VLANs for layer 3 VNIs in EVPN symmetric routing deployments when you use NVUE to configure layer 3 VNIs in MLAG environments. The default range is 4000-4064. You can display the range with the `nv show system global reserved vlan l3-vni-vlan` command:
+In addition to the internal reserved VLAN range, Cumulus Linux allocates a reserved VLAN range for layer 3 VNIs in EVPN symmetric routing deployments. Use this reserved VLAN range when you configure layer 3 VNIs in MLAG environments with NVUE commands. You can display the range with the `nv show system global reserved vlan l3-vni-vlan` command:
 
 ```
 cumulus@switch:~$ nv show system global reserved vlan l3-vni-vlan
@@ -137,8 +137,8 @@ begin  4000         4000
 end    4064         4064
 ```
 
-Do not use this range of VLANs in the same bridge as your MLAG interfaces and layer 3 VNIs. You can configure the range with the `nv set system global reserved vlan l3-vni-vlan [ begin | end] <vlan>` command. For more information, see {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing.md#symmetric-routing" text="symmetric routing">}}.
+Do not use this range of VLANs in the same bridge as your MLAG interfaces and layer 3 VNIs. You can configure the range with the `nv set system global reserved vlan l3-vni-vlan begin <vlan>` and `nv set system global reserved vlan l3-vni-vlan end <vlan>`commands. For more information, see {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing.md#symmetric-routing" text="symmetric routing">}}.
 
 {{%notice note%}}
-The global reserved layer 3 VNI VLAN range is not applicable to switches that are not configured with NVUE or for symmetric routing deployments without MLAG.
+The global reserved layer 3 VNI VLAN range does not apply to switches that you configure manually with Linux commands instead of NVUE or for symmetric routing deployments without MLAG.
 {{%/notice%}}

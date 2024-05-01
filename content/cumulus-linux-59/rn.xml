@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3881789</td>
+<td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
+<td>5.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3878394</td>
 <td>When ZTP runs a script that contains {{wget}}, ZTP fails and you see a message similar to the following:
 ZTP: ZTP DHCP: Unexpected error: 'ascii' codec can't decode byte 0xe2 in position 181: ordinal not in range(128)

@@ -10,13 +10,13 @@
 <td>3739222</td>
 <td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
 <td>4.2.0-4.8.0</td>
-<td>4.9.0</td>
+<td>4.9.0-4.10.0</td>
 </tr>
 <tr>
 <td>3491935</td>
 <td>NetQ might generate continuous TCA events for the NetQ VM squashfs mounts when disk utilization TCA rules are configured for all hosts.  </td>
 <td>4.5.0-4.6.0</td>
-<td>4.7.0-4.9.0</td>
+<td>4.7.0-4.10.0</td>
 </tr>
 <tr>
 <td>3454057</td>
@@ -24,13 +24,13 @@
 
 Failed to add/update TCA http status_code: 409</td>
 <td>4.5.0-4.6.0</td>
-<td>4.7.0-4.9.0</td>
+<td>4.7.0-4.10.0</td>
 </tr>
 <tr>
 <td>3448057</td>
 <td>NetQ NTP validations will report time syncronization failures for switches running the NTP service in the default VRF.</td>
 <td>4.5.0-4.6.0</td>
-<td>4.7.0-4.9.0</td>
+<td>4.7.0-4.10.0</td>
 </tr>
 <tr>
 <td>3446351</td>
@@ -54,13 +54,13 @@ E: Sub-process /usr/bin/dpkg returned an error code (1)
 
 To work around this issue, run the {{sudo apt remove -y shim-signed grub-efi-amd64-bin --allow-remove-essential}} command and rerun the {{sudo apt upgrade}} command.</td>
 <td>4.5.0-4.6.0</td>
-<td>4.7.0-4.9.0</td>
+<td>4.7.0-4.10.0</td>
 </tr>
 <tr>
 <td>3442456</td>
 <td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
 <td>4.2.0-4.6.0</td>
-<td>4.7.0-4.9.0</td>
+<td>4.7.0-4.10.0</td>
 </tr>
 <tr>
 <td>3438973</td>
@@ -74,7 +74,7 @@ ERROR: Failed to install the master node
 
 This is due to an expired key in the installation tarball. For assistance working around this issue, contact NVIDIA support.</td>
 <td>4.3.0-4.5.0</td>
-<td>4.6.0-4.9.0</td>
+<td>4.6.0-4.10.0</td>
 </tr>
 <tr>
 <td>3431386</td>
@@ -103,19 +103,19 @@ sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'
 
 </td>
 <td>4.5.0-4.6.0</td>
-<td>4.7.0-4.9.0</td>
+<td>4.7.0-4.10.0</td>
 </tr>
 <tr>
 <td>3395385</td>
 <td>When you use NetQ LCM to upgrade a Cumulus Linux switch in an MLAG pair, the upgrade might fail.</td>
 <td>4.4.1-4.5.0</td>
-<td>4.6.0-4.9.0</td>
+<td>4.6.0-4.10.0</td>
 </tr>
 <tr>
 <td>3367267</td>
 <td>When you upgrade a switch with NetQ LCM using the {{root}} user, the upgrade fails with the following message:  Destination /home/root does not exist.  To work around this issue, perform the upgrade using a different user account.</td>
 <td>4.5.0</td>
-<td>4.6.0-4.9.0</td>
+<td>4.6.0-4.10.0</td>
 </tr>
 <tr>
 <td>3362224</td>
@@ -127,13 +127,13 @@ Expecting value: line 1 column 1 (char 0)
 
 To work around this issue, use the NetQ UI to configure the access profile.</td>
 <td>4.5.0</td>
-<td>4.6.0-4.9.0</td>
+<td>4.6.0-4.10.0</td>
 </tr>
 <tr>
 <td>3360627</td>
 <td>When the switch RoCE egress pool buffer limit is configured as unlimited, the maximum buffer usage for RoCE counters might display incorrect values in the NetQ UI.</td>
 <td>4.4.1-4.5.0</td>
-<td>4.6.0-4.9.0</td>
+<td>4.6.0-4.10.0</td>
 </tr>
 </table>
 <table name="Fixed Issues in 4.5.0">

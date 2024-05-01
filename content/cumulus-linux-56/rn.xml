@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3863858</td>
+<td>VRR interfaces might show {{dadfailed}} on their IPv6 link-local address.</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3782996</td>
+<td>If you have installed a large number ACLs,  you might see a {{switchd}} memory leak over a period of time that stops the {{switchd}} process because it is out of memory .</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3782543</td>
 <td>When you configure the BGP setting {{bgp max-med on-startup}} with vtysh, the MED on some peers might not be set to 4294967294 as expected on startup.  The {{max-med}} might also fail to reset after the startup timer expires.</td>
 <td>5.6.0-5.8.0</td>
@@ -14,7 +26,7 @@
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -33,6 +45,19 @@ cumulus@switch:~$ dpkg --install frr-logrotate_8.4.3-0+cl5.7.0u1_amd64.deb
 </td>
 <td>5.6.0-5.7.0</td>
 <td>5.8.0</td>
+</tr>
+<tr>
+<td>3765395</td>
+<td>The {{nv unset nve vxlan flooding}} and {{nv set nve vxlan flooding enable off}} commands do not disable BUM flooding. To work around this issue, disable BUM flooding with vtysh commands:
+leaf01# configure terminal
+leaf01(config)# router bgp 
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# flooding disable
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit</td>
+<td>5.5.0-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3751952</td>
@@ -379,12 +404,6 @@ This is a cosmetic issue and does not affect how the switch operates. To prevent
 <td>5.7.0-5.8.0</td>
 </tr>
 <tr>
-<td>3576949</td>
-<td>When you run the NVUE {{nv set service snmp listening-address localhost vrf &lt;vrf-name&gt;}} or {{nv set service snmp listening-address localhost-v6 vrf &lt;vrf-name&gt;}} command to configure the SNMP listening address, Cumulus Linux applies the listening address to the default VRF instead of the VRF you specify.</td>
-<td>5.3.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3575800</td>
 <td>When you configure the {{peerlink}} interface with NVUE but do not configure the necessary MLAG parameters with {{nv set mlag}} commands (such as the backup IP address, peer IP address, and MLAG MAC address), NVUE apply fails with the following message:
 
@@ -426,8 +445,16 @@ For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turn
 <td>4.3.2-4.4.5</td>
 </tr>
 <tr>
-<td>3549798</td>
-<td>If you add a VRF, then SSH into that VRF, which is a generated service (for example, {{sshd@vrfname.service}}), the service fails as the VRF is not created in time. To work around this issue, configure the VRF first, apply the configuration, then enable the SSH service on the VRF.</td>
+<td>3546857</td>
+<td>The {{nv show bridge vlan}} command does not show tagged and untagged VLAN information for the bridge.
+
+</td>
+<td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3541653</td>
+<td>During warm boot with layer 3 traffic, you might experience packet loss for approximately 15 milliseconds.</td>
 <td>5.6.0-5.8.0</td>
 <td></td>
 </tr>
@@ -579,12 +606,6 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
-<td>3345054</td>
-<td>The NVUE {{nv show interface &lt;interface&gt; qos}} command takes a significant time to show output or times out. To work around this issue, use specific QoS commands. For example, to show congestion control information, run the {{nv show interface &lt;interface&gt; qos congestion-control}} command.</td>
-<td>5.4.0-5.8.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3341214</td>
 <td>If you use the NVUE REST API to configure a local user with a hashed password, the user cannot log in and the {{/etc/nvue.d/startup.yaml}} file shows the password as plain text.</td>
 <td>5.4.0-5.8.0</td>
@@ -690,8 +711,8 @@ To work around this issue, reference the OID without the preceding period ( {{.}
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3135952</td>

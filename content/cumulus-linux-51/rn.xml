@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -370,8 +370,8 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
  1.3.6.1.2.1.31 --&gt; ifMIB
  1.3.6.1.2.1.4 --&gt; IP
  1.3.6.1.2.1.25 --&gt; hostResource</td>
-<td>5.0.1-5.6.0</td>
-<td>5.7.0-5.8.0</td>
+<td>5.0.1-5.8.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3141818</td>

@@ -101,8 +101,16 @@ Histogram settings include the type of data you want to collect, the ports you w
     - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
     - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
 - You can enable up to two counter histogram counter types per physical interface. The counter histogram does not support bonds or virtual interfaces.
-- The value for the minimum boundary size must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. The default minimum boundary size is 960 bytes.
+- The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. 
 - The default value for the sampling time is 1024 nanoseconds.
+
+{{%notice note%}}
+When you configure minimum boundary and histogram sizes, Cumulus Linux rounds down the configured byte value to the nearest multiple of the switch ASIC cell size before programming it into hardware. The cell size is a fixed number of bytes on each switching ASIC:
+
+- Spectrum-1: 96 bytes
+- Spectrum-2 and Spectrum-3: 144 bytes
+- Spectrum-4: 192 bytes 
+{{%/notice%}}
 
 {{< tabs "TabID81 ">}}
 {{< tab "NVUE Commands ">}}

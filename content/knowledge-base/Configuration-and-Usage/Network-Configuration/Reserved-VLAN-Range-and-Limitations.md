@@ -36,9 +36,9 @@ The minimum number of VLAN IDs required in the reserved VLAN range depends on th
 
 ## Determine the Reserved VLAN Range
 
-- NVIDIA Spectrum switches running Cumulus Linux 5.0 and later require a reserved VLAN for every bridge and QinQ bridge, plus 2.
-- NVIDIA Spectrum switches running Cumulus Linux 4.4 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 sub interface, and QinQ bridge, plus 1.
-- Broadcom switches running Cumulus Linux 4.3 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 sub interface, and QinQ bridge, plus 1.
+- NVIDIA Spectrum switches running Cumulus Linux 5.0 and later require a reserved VLAN for every bridge and QinQ bridge, plus two.
+- NVIDIA Spectrum switches running Cumulus Linux 4.4 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 subinterface, and QinQ bridge, plus one.
+- Broadcom switches running Cumulus Linux 4.3 and earlier require a reserved VLAN for every bridge, physical interface, layer 3 subinterface, and QinQ bridge, plus one.
 
 The example below provides Linux-type shell commands to help you determine the in-use and configured VLAN counts and values. These commands are only a guide. Follow the guidelines below to determine how to best calculate the values.
 
@@ -51,26 +51,26 @@ The example below provides Linux-type shell commands to help you determine the i
 
 2. Determine the total number of bridges in the configuration. The example below uses the `bridge-ports` statement as a counting key.
 
-```
-cumulus@switch:~$ sudo cat /etc/network/interfaces | grep "bridge-ports" | wc -l
-cumulus@switch:~$ sudo cat /etc/network/interfaces.d/*.intf | grep "bridge-ports" | wc -l
-cumulus@switch:~$ sudo cat /etc/network/interfaces | grep "bridge-ports" | wc -l
-cumulus@switch:~$ sudo cat /etc/network/interfaces.d/*.intf | grep "bridge-ports" | wc -l
-```
+   ```
+   cumulus@switch:~$ sudo cat /etc/network/interfaces | grep "bridge-ports" | wc -l
+   cumulus@switch:~$ sudo cat /etc/network/interfaces.d/*.intf | grep "bridge-ports" | wc -l
+   cumulus@switch:~$ sudo cat /etc/network/interfaces | grep "bridge-ports" | wc -l
+   cumulus@switch:~$ sudo cat /etc/network/interfaces.d/*.intf | grep "bridge-ports" | wc -l
+   ```
 
 3. If you use double-tagged Q-in-Q, determine the total number of implicit bridges not defined in the configuration. The example below uses a unique interfaces+inner tag (swpX.Y) as a counting key.
 
-```
-cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/interfaces | sort -u | wc -l
-cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/interfaces.d/*.intf | sort -u | wc -l
-```
+   ```
+   cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/interfaces | sort -u |    wc -l
+   cumulus@switch:~$ sudo grep -o -h "iface swp.*\.[[:digit:]]*\." /etc/network/interfaces.d/*.intf |    sort -u | wc -l
+   ```
 
-4. If your switch is running Cumulus Linux 5.0 or later, go to step 5. If your switch is running Cumulus Linux 4.4 or earlier, determine the total number of layer 3 sub interfaces in the configuration. The example below uses the `vlan-raw-device` statement as a counting key.
+4. If your switch is running Cumulus Linux 5.0 or later, go to step 5. If your switch is running Cumulus Linux 4.4 or earlier, determine the total number of layer 3 subinterfaces in the configuration. The example below uses the `vlan-raw-device` statement as a counting key.
 
-```
-cumulus@switch:~$ sudo cat /etc/network/interfaces | grep "vlan-raw-device" | wc -l
-cumulus@switch:~$ sudo cat /etc/network/interfaces.d/*.intf | grep "vlan-raw-device" | wc -l
-```
+   ```
+   cumulus@switch:~$ sudo cat /etc/network/interfaces | grep "vlan-raw-device" | wc -l
+   cumulus@switch:~$ sudo cat /etc/network/interfaces.d/*.intf | grep "vlan-raw-device" | wc -l
+   ```
 
 5. Add the totals from step 1 through step 4.
    - For NVIDIA Spectrum switches running 5.0 and later: Bridges + (implied QinQ bridges) + 2 = MINIMUM for configuration.
@@ -81,10 +81,10 @@ Never exceed this count, even temporarily, so that you have room for future expa
 
 6. Select a contiguous range of VLANs that covers the desired count from step 5 and does not overlap with VLAN IDs in the configuration. The example below determines which VLAN IDs are in the configuration:
 
-```
-cumulus@switch:~$ grep -h "iface swp" /etc/network/interfaces | grep -iv "\#" | cut -s -d '.' -f 2- | tr '.' '\n' | sort -u | sort -n
-cumulus@switch:~$ grep -h "iface swp" /etc/network/interfaces.d/*.intf | grep -iv "\#" | cut -s -d '.' -f 2- | tr '.' '\n' | sort -u | sort -n
-```
+   ```
+   cumulus@switch:~$ grep -h "iface swp" /etc/network/interfaces | grep -iv "\#" | cut -s -d '.' -f 2- |    tr '.' '\n' | sort -u | sort -n
+   cumulus@switch:~$ grep -h "iface swp" /etc/network/interfaces.d/*.intf | grep -iv "\#" | cut -s -d '.   ' -f 2- | tr '.' '\n' | sort -u | sort -n
+   ```
 
 ## Change the Reserved VLAN Range
 
@@ -127,7 +127,7 @@ NVUE restarts the `switchd` service.
 
 ## Reserved Layer 3 VNI VLANs
 
-In addition to the internal reserved VLAN range, there is a reserved range of VLANs allocated for layer 3 VNIs (L3VNIs) in EVPN symmetric routing deployments when you use NVUE to configure L3VNIs in MLAG environments. The default range is 4000-4064. You can display the range with the `nv show system global reserved vlan l3-vni-vlan` command:
+In addition to the internal reserved VLAN range, Cumulus Linux allocates a reserved range of VLANs for layer 3 VNIs in EVPN symmetric routing deployments when you use NVUE to configure layer 3 VNIs in MLAG environments. The default range is 4000-4064. You can display the range with the `nv show system global reserved vlan l3-vni-vlan` command:
 
 ```
 cumulus@switch:~$ nv show system global reserved vlan l3-vni-vlan
@@ -137,9 +137,7 @@ begin  4000         4000
 end    4064         4064
 ```
 
-You should not use this range of VLANs in the same bridge as your MLAG interfaces and L3VNIs. You can configure the range with the `nv set system global reserved vlan l3-vni-vlan [ begin | end] <vlan>` command. For more information, see {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing.md#symmetric-routing" text="symmetric routing">}}.
-
-
+Do not use this range of VLANs in the same bridge as your MLAG interfaces and layer 3 VNIs. You can configure the range with the `nv set system global reserved vlan l3-vni-vlan [ begin | end] <vlan>` command. For more information, see {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing.md#symmetric-routing" text="symmetric routing">}}.
 
 {{%notice note%}}
 The global reserved layer 3 VNI VLAN range is not applicable to switches that are not configured with NVUE or for symmetric routing deployments without MLAG.

@@ -12,6 +12,56 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+## <h>nv set system cli pagination state</h>
+
+Enables or disables the CLI pager (pagination) state. The CLI pager enables you to view the contents of a large file or the output of an NVUE command one page at a time in the terminal window, using the up and down arrow keys or the space bar.
+
+You can set the pager state to `enabled` or `disabled`. The default value is `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system cli pagination state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system cli pagination pager</h>
+
+Configures the CLI pager settings. You can set the pager options to `more`, `less`, or `vim`. The default value is `less`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system cli pagination pager more
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system cli inactive-timeout</h>
+
+Configures the CLI session timeout. The timeout reduces the window of opportunity for unauthorized user access to an unattended CLI sessions on the switch, or ends an inactive session and releases the resources associated with it. You can specify a value between 0 and 86400 minutes. The default value is 0 (disabled).
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system cli inactive-timeout 300
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system config</h>
 
 Configures system configuration settings.
@@ -67,6 +117,9 @@ Configures the configuration auto save feature.
 ## <h>nv set system config auto-save enable</h>
 
 Turns auto save on or off. The auto save option lets you save the pending configuration to the startup configuration file automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+
+- In Cumulus Linux 5.9 and later, auto save is `on` by default.
+- In Cumulus Linux 5.8 and earlier, auto save is `off` by default.
 
 ### Version History
 

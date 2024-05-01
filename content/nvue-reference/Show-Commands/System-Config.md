@@ -105,7 +105,12 @@ cumulus@switch:~$ nv show system config apply ignore /etc/frr/frr.conf
 
 Shows if configuration auto save is on or off.
 
-By default, when you run the `nv config apply` command to apply a configuration setting, NVUE applies the pending configuration to become the applied configuration but does not update the startup configuration file (`/etc/nvue.d/startup.yaml`). To save the applied configuration to the startup configuration so that the changes persist after the reboot, you must run the `nv config save` command. The auto save option lets you save the pending configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+When auto save is `off`, when you run the `nv config apply` command to apply a configuration setting, NVUE applies the pending configuration to become the applied configuration but does not update the startup configuration file (`/etc/nvue.d/startup.yaml`). To save the applied configuration to the startup configuration so that the changes persist after the reboot, you must run the `nv config save` command.
+
+When auto save is `on` when you run the `nv config apply` command, NVUE saves the configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+
+- In Cumulus Linux 5.9 and later, auto save is `on` by default.
+- In Cumulus Linux 5.8 and earlier, auto save is `off` by default.
 
 ### Version History
 

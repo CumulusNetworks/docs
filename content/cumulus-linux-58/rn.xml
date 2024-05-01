@@ -32,13 +32,15 @@
 </tr>
 <tr>
 <td>3863063</td>
-<td>When simultaneously changing the {{maxage}} and {{forward-delay}} bridge timers in RSTP for VLAN-aware bridges, the commands might not be accepted if the {{2xfdelay-1}} is less than the previously configured {{maxage}} timer because {{ifupdown2}} configures the forward delay first. To work around this issue, run the {{ifreload -a}} command again to process the {{forward-delay}} command after the new {{maxage}} configuration has been accepted.  You have to repeat the {{ifreload -a}} command after a reboot to set the forward delay correctly in the bridge.</td>
+<td>When simultaneously changing the {{maxage}} and {{forward-delay}} bridge timers in RSTP for VLAN-aware bridges, the commands might not be accepted if the {{2xfdelay-1}} is less than the previously configured {{maxage}} timer because {{ifupdown2}} configures the forward delay first. 
+To work around this issue, run the {{ifreload -a}} command again to process the {{forward-delay}} command after the new {{maxage}} configuration has been accepted. 
+ You have to repeat the {{ifreload -a}} command after a reboot to set the forward delay correctly in the bridge.</td>
 <td>5.8.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3851499</td>
-<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
+<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
 <td>5.8.0</td>
 <td></td>
 </tr>
@@ -98,6 +100,12 @@ router1: wjhd: Fail to deinit SDK telemetry, error: [3]: [Invalid Handle]
 <td>3782543</td>
 <td>When you configure the BGP setting {{bgp max-med on-startup}} with vtysh, the MED on some peers might not be set to 4294967294 as expected on startup.  The {{max-med}} might also fail to reset after the startup timer expires.</td>
 <td>5.6.0-5.8.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3775686</td>
+<td>Suppress route advertisement for BGP under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR reads kernel route updates slowly, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
+<td>5.8.0</td>
 <td></td>
 </tr>
 <tr>

@@ -137,7 +137,7 @@ begin  4000         4000
 end    4064         4064
 ```
 
-Do not use this range of VLANs in the same bridge as your MLAG interfaces and layer 3 VNIs. You can configure the range with the `nv set system global reserved vlan l3-vni-vlan begin <vlan>` and `nv set system global reserved vlan l3-vni-vlan end <vlan>`commands. For more information, see {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing.md#symmetric-routing" text="symmetric routing">}}.
+Do not use this range of VLANs in the same bridge as your MLAG interfaces and layer 3 VNIs. You can configure the range with the `nv set system global reserved vlan l3-vni-vlan begin <vlan>` and `nv set system global reserved vlan l3-vni-vlan end <vlan>` commands. For more information, see {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing.md#symmetric-routing" text="symmetric routing">}}.
 
 {{%notice note%}}
 The global reserved layer 3 VNI VLAN range does not apply to switches that you configure manually with Linux commands instead of NVUE or for symmetric routing deployments without MLAG.

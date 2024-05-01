@@ -112,7 +112,7 @@ cumulus@switch:~$ nv config apply
 
 ## Hashlimit and Recent List Match
 
-For firewall IPv4 type ACLs on the control plane, you can match on the hashlimit module and the recent module. These matches are not supported for data plane ACLs, which get installed in hardware.
+For firewall IPv4 type ACLs on the control plane, you can match on hashlimit and recent list. These matches are not supported for data plane ACLs, which get installed in hardware.
 
 Cumulus Linux provides the following commands for matching on `hashlimit`.
 

@@ -762,6 +762,28 @@ cumulus@switch:~$ nv show interface swp1 link flag
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> link protodown-reason</h>
+
+Shows the link protodown reason details for an interface.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link protodown-reason
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> link state</h>
 
 Shows the state of the specified interface; if the link is up or down.

@@ -198,6 +198,29 @@ rate                400
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show acl <acl-id> rule <rule-id> action recent</h>
+
+Shows the recent action for the ACL rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl acl-default-whitelist rule 73 action recent
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show acl \<acl-id\> rule \<rule-id\> match</h>
 
 Shows the ACL match criteria for the specified ACL rule.
@@ -252,6 +275,33 @@ protocol                  tcp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip connection-state</h>
+
+Shows the connection state for the match IP ACL rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl acl-default-whitelist rule 73 match ip connection-state
+applied    
+-----------
+new        
+established
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip ecn flags</h>
 
 Shows the ECN protocol flag match criteria for the specified ACL rule.
@@ -277,6 +327,52 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 match ip ecn flags
                tcp-ece
                tcp-cwr
                tcp-ece
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip hashlimit</h>
+
+Shows the hash limit for the match IP ACL rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl acl-default-whitelist rule 73 match ip hashlimit
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl \<acl-id\> rule \<rule-id\> match ip recent-list</h>
+
+Shows the recent list for the match IP ACL rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl acl-default-whitelist rule 73 match ip recent-list
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

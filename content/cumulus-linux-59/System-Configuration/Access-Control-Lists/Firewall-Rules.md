@@ -114,43 +114,50 @@ cumulus@switch:~$ nv config apply
 
 For firewall IPv4 type ACLs on the control plane, you can match on the hashlimit module and the recent module. These matches are not supported for data plane ACLs, which get installed in hardware.
 
-Cumulus Linux provides the following commands to match on the hashlimit and the recent module.
+Cumulus Linux provides the following commands for the match on hashlimit module.
 
 |Command | Description |
 | ------ | ----------- |
 | `nv set acl <acl> rule <rule> match ip hashlimit name` | The hashlimit name. |
 | `nv set acl <acl> rule <rule> match ip hashlimit mode` | The hashlimit mode. You can specify `src-ip` or `dst-ip`.  |
 | `nv set acl <acl> rule <rule> match ip hashlimit burst` | The hashlimit burst rate. You can specify a value between 1 and 4294967295.  |
-| `nv set acl <acl> rule <rule> match ip hashlimit rate` | The hashlimit rate. You must specify an integer/second, min, or hour]. The maximum rate is 1000000/second. |
+| `nv set acl <acl> rule <rule> match ip hashlimit rate-above` | The hashlimit rate. You can specify `integer/second`, `integer/min`, or `integer/hour`. The maximum rate is 1000000/second. |
 | `nv set acl <acl> rule <rule> match ip hashlimit expire` | The hashlimit expiration in milliseconds. |
-| `nv set acl <acl> rule <rule> match ip recent-list name`| The recent module name.  | 
-| `nv set acl <acl> rule <rule> match ip recent-list action`| The recent action. You can specify `set` or `update`. | 
-| `nv set acl <acl> rule <rule> match ip recent-list hit-count`| The number of hits in an interval. You can specify a value between 1 and 4294967295. |
-| `nv set acl <acl> rule <rule> match ip recent-list update-interval`| The interval within which you want to check. You can specify a value between 1 and 4294967295. |
+| `nv set acl <acl> rule <rule> match ip hashlimit source-mask` | The source mask used to mask the source IP address. |
+| `nv set acl <acl> rule <rule> match ip hashlimit destination-mask` | The destination mask used to mask the destination IP address. |
 
-The following example shows a rule that matches on the hashlimit module.
+The following example shows a ACL that matches on the hashlimit module.
 
 {{%notice note%}}
-To configure the hashlimit module match, you must run all the `nv set acl <acl> rule <rule> match ip hashlimit` commands (`name`, `mode`, `expire`, `burst`, and `rate`.)
+To configure the hashlimit module match, you must set the hashlimit name, mode, expire, burst, and rate above.
 {{%/notice%}}
 
 ```
-cumulus@switch:~$ nv set acl acl1 type ipv4
-cumulus@switch:~$ nv set acl acl1 rule 1 match ip hashlimit name myhash
-cumulus@switch:~$ nv set acl acl1 rule 1 match ip hashlimit mode src-ip 
-cumulus@switch:~$ nv set acl acl1 rule 1 match ip hashlimit expire 100
-cumulus@switch:~$ nv set acl acl1 rule 1 match ip hashlimit burst 100
-cumulus@switch:~$ nv set acl acl1 rule 1 match ip hashlimit rate 1000/second
-cumulus@switch:~$ nv set acl acl1 rule 1 action deny
-cumulus@switch:~$ nv set interface swp1 acl acl1 inbound control-plane
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip hashlimit name myhash
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip hashlimit mode src-ip 
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip hashlimit expire 100
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip hashlimit burst 100
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip hashlimit rate-above 1000/second
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip hashlimit source-mask 32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action deny
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
 cumulus@switch:~$ nv config apply
-
 ```
+
+Cumulus Linux provides the following commands to match on the recent module.
+
+|Command | Description |
+| ------ | ----------- |
+| `nv set acl <acl> rule <rule> match ip recent-list name`| The recent module name.  |
+| `nv set acl <acl> rule <rule> match ip recent-list action`| The recent action. You can specify `set` or `update`. |
+| `nv set acl <acl> rule <rule> match ip recent-list hit-count`| The number of hits in an interval. You can specify a value between 1 and 4294967295. |
+| `nv set acl <acl> rule <rule> match ip recent-list update-interval`| The interval within which you want to check. You can specify a value between 1 and 4294967295. |
 
 The following rule example shows a rule that matches on the recent module.
 
 {{%notice note%}}
-To configure the recent module match, you must run the `nv set acl <acl> rule <rule> match ip recent-list name` and ``nv set acl <acl> rule <rule> match ip recent-list action` commands. The `nv set acl <acl> rule <rule> match ip recent-list hit-count` and `nv set acl <acl> rule <rule> match ip recent-list update-interval` are optional.
+To configure the recent module match, you must set the recent list name and action.
 {{%/notice%}}
 
 ```

@@ -435,6 +435,148 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram counter counter-typ
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> telemetry histogram latency</h>
+
+Shows the latency histogram details for the interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram latency
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram latency traffic-class</h>
+
+Shows the latency histogram samples collected for all traffic classes for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| tc-id | The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-class
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram latency traffic-class \<tc-id\></h>
+
+Shows the latency histogram samples collected for the specified traffic class on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| tc-id | The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-class 2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> telemetry histogram latency traffic-class \<tc-id\> threshold</h>
+
+Shows the configured interval set for latency histogram samples for the specified traffic class on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface name. |
+| tc-id | The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-class 2 threshold
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface <interface-id> telemetry histogram latency traffic-class <if-tc-id> snapshot</h>
+
+Shows the snapshot collected for latency histogram samples for the specified traffic class on the specified interface.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-class 2 snapshot
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show service telemetry bw-gauge</h>
+
+Shows a summary of the bandwidth gauge for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service telemetry bw-gauge
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show service telemetry bw-gauge interface</h>
+
+Shows a summary of the bandwidth for all interfaces with bandwidth gauge enabled.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service telemetry bw-gauge interface
+Interface  Tx (Mbps)  Rx (Mbps)
+---------  ---------  ---------
+swp1       4          4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show service telemetry histogram</h>
 
 Shows telemetry histogram configuration settings and operational data.
@@ -519,37 +661,18 @@ swp2              -                       0,1,8                    tx-byte,tx-by
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry bw-gauge</h>
+## <h>nv show service telemetry histogram latency</h>
 
-Shows a summary of the bandwidth gauge for all interfaces.
+Shows latency Histogram configuration and operational data.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.7.0
+Introduced in Cumulus Linux 5.9.0
 
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry bw-gauge
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show service telemetry bw-gauge interface</h>
-
-Shows a summary of the bandwidth for all interfaces with bandwidth gauge enabled.
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show service telemetry bw-gauge interface
-Interface  Tx (Mbps)  Rx (Mbps)
----------  ---------  ---------
-swp1       4          4
+cumulus@switch:~$ nv show service telemetry histogram latency
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

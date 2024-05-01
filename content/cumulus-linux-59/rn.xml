@@ -77,6 +77,12 @@ This occurs when you try to replace the default NVUE configuration for the {{cum
 <td></td>
 </tr>
 <tr>
+<td>3775686</td>
+<td>Suppress route advertisement for BGP under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR reads kernel route updates slowly, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
+<td>5.8.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3775534</td>
 <td>When you use the NVUE command to configure a static route with distance, the configuration renders incorrectly in the {{/etc/frr/frr.conf}} file and the configuration fails. </td>
 <td>5.8.0-5.9.0</td>

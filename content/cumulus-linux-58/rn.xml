@@ -101,6 +101,12 @@ router1: wjhd: Fail to deinit SDK telemetry, error: [3]: [Invalid Handle]
 <td></td>
 </tr>
 <tr>
+<td>3775686</td>
+<td>Suppress route advertisement for BGP under scale (more than 30000 routes) advertises partial updates to downstream neighbors. Because FRR reads kernel route updates slowly, the netlink socket receive buffer gets full and further update notifications are dropped.</td>
+<td>5.8.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3775648</td>
 <td>Enabling or disabling link utilization causes the {{switchd}} service to restart, which causes all network ports to reset, interrupts network services, and resets the switch hardware configuration.</td>
 <td>5.8.0</td>

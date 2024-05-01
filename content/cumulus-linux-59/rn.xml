@@ -8,7 +8,8 @@
 </tr>
 <tr>
 <td>3881789</td>
-<td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
+<td>If you configure the anycast IP address with the {{nv set nve vxlan mlag shared-address &lt;anycast-address&gt;}} command after you configure MLAG, the anycast IP address configuration is not applied and the VXLAN interface is in a protodown state.  To work around this issue, run {{sudo ifreload -a}}. 
+To avoid this issue, either apply the anycast configuration before you apply the MLAG configuration or configure the anycast IP address and MLAG together with a single  {{nv config apply}} command.</td>
 <td>5.9.0</td>
 <td></td>
 </tr>
@@ -54,7 +55,9 @@ This occurs when you try to replace the default NVUE configuration for the {{cum
 </tr>
 <tr>
 <td>3863063</td>
-<td>When simultaneously changing the {{maxage}} and {{forward-delay}} bridge timers in RSTP for VLAN-aware bridges, the commands might not be accepted if the {{2xfdelay-1}} is less than the previously configured {{maxage}} timer because {{ifupdown2}} configures the forward delay first. To work around this issue, run the {{ifreload -a}} command again to process the {{forward-delay}} command after the new {{maxage}} configuration has been accepted.  You have to repeat the {{ifreload -a}} command after a reboot to set the forward delay correctly in the bridge.</td>
+<td>When simultaneously changing the {{maxage}} and {{forward-delay}} bridge timers in RSTP for VLAN-aware bridges, the commands might not be accepted if the {{2xfdelay-1}} is less than the previously configured {{maxage}} timer because {{ifupdown2}} configures the forward delay first. 
+To work around this issue, run the {{ifreload -a}} command again to process the {{forward-delay}} command after the new {{maxage}} configuration has been accepted. 
+ You have to repeat the {{ifreload -a}} command after a reboot to set the forward delay correctly in the bridge.</td>
 <td>5.8.0-5.9.0</td>
 <td></td>
 </tr>
@@ -66,7 +69,7 @@ This occurs when you try to replace the default NVUE configuration for the {{cum
 </tr>
 <tr>
 <td>3851499</td>
-<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
+<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
 <td>5.8.0-5.9.0</td>
 <td></td>
 </tr>

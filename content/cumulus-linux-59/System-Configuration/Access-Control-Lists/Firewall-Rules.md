@@ -103,12 +103,121 @@ cumulus@switch:~$ nv set acl acl-default-whitelist rule 73 match ip udp source-p
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 73 match ip connection-state new
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 73 match ip connection-state established
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 73 action permit
-cumulus@switch:~$ nv set acl acl-default-whitelist rule 74 match ip udp source-port  3022
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 74 match ip udp source-port 3022
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 74 match ip connection-state new
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 74 match ip connection-state established
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 74 action permit
 cumulus@switch:~$ nv config apply
 ```
+
+## Hashlimit and Recent List Match
+
+For firewall IPv4 type ACLs on the control plane, you can match on hashlimit and recent list. These matches are not supported for data plane ACLs, which get installed in hardware.
+
+Cumulus Linux provides the following commands for matching on `hashlimit`.
+
+|Command | Description |
+| ------ | ----------- |
+| `nv set acl <acl> rule <rule> match ip hashlimit name` | The hashlimit name. |
+| `nv set acl <acl> rule <rule> match ip hashlimit mode` | The hashlimit mode. You can specify `src-ip` or `dst-ip`.  |
+| `nv set acl <acl> rule <rule> match ip hashlimit burst` | The hashlimit burst rate; the maximum number of packets to match in a burst. You can specify a value between 1 and 4294967295. |
+| `nv set acl <acl> rule <rule> match ip hashlimit rate-above` | The limit rate. You can specify `<integer/second>`, `<integer/min>`, or `<integer/hour>`. The maximum rate is 1000000/second. |
+| `nv set acl <acl> rule <rule> match ip hashlimit expire` | The number of milliseconds after which hash entries expire. |
+| `nv set acl <acl> rule <rule> match ip hashlimit source-mask` | The source address grouping prefix length. |
+| `nv set acl <acl> rule <rule> match ip hashlimit destination-mask` | The destination address grouping prefix length. |
+
+The following example shows an ACL that drops packets when matching on `hashlimit`.
+
+{{%notice note%}}
+To configure the hashlimit match, you must set the hashlimit name, mode, expiration, burst, and rate; the source mask and destination mask settings are optional.
+{{%/notice%}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit name ssh
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit mode src-ip 
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit expire 100
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit burst 100
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit rate-above 100/second
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit source-mask 32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+NVUE writes this rule in the `/etc/cumulus/acl/policy.d/50_nvue.rules` file:
+
+```
+cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_nvue.rules
+[iptables]
+## ACL EXAMPLE1 in dir inbound on interface swp1 ##
+# rule-id #10:  #
+-A INPUT -i swp1 -m comment --comment rule_id:10,acl_name:EXAMPLE1,dir:inbound,interface_id:swp1 -s 10.0.14.2/32 -p tcp -m hashlimit --hashlimit-name ssh --hashlimit-mode srcip --hashlimit-htable-expire 100 --hashlimit-burst 100 --hashlimit-above 100/second --hashlimit-srcmask 32 -j DROP
+```
+
+You can also show the ACL settings with the `nv show acl <acl>` command:
+
+```
+cumulus@switch:~$ nv show acl EXAMPLE1
+      applied
+----  -------
+type  ipv4
+rule
+=======
+    Number  Summary                                   
+    ------  ------------------------------------------
+    10      match.ip.hashlimit.burst:              100
+            match.ip.hashlimit.expire:             100
+            match.ip.hashlimit.mode:            src-ip
+            match.ip.hashlimit.name:            ssh
+            match.ip.hashlimit.rate-above: 100/second
+            match.ip.hashlimit.source-mask:         32
+            match.ip.protocol:                     tcp
+            match.ip.source-ip:           10.0.14.2/32
+```
+
+Cumulus Linux provides the following commands to match on `recent list`.
+
+|Command | Description |
+| ------ | ----------- |
+| `nv set acl <acl> rule <rule> match ip recent-list name`| The recent module name.  |
+| `nv set acl <acl> rule <rule> match ip recent-list action`| The recent action. You can specify `set` or `update`. |
+| `nv set acl <acl> rule <rule> match ip recent-list hit-count`| The number of hits in an interval. You can specify a value between 1 and 4294967295. |
+| `nv set acl <acl> rule <rule> match ip recent-list update-interval`| The update interval. You can specify a value between 1 and 4294967295. |
+
+The following example shows an ACL that drops packets when matching on `recent-list`.
+
+{{%notice note%}}
+To configure the recent module match, you must set the recent list name and action; other `recent-list` settings are optional.
+{{%/notice%}}
+
+```
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/32
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip recent-list name bruteforce
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip recent-list action set
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip recent-list hit-count 5
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip recent-list update-interval 3600
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action deny
+cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
+cumulus@switch:~$ nv config apply
+```
+
+NVUE writes this rule in the `/etc/cumulus/acl/policy.d/50_nvue.rules` file:
+
+```
+cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_nvue.rules
+[iptables]
+
+## ACL EXAMPLE1 in dir inbound on interface swp1 ##
+# rule-id #10:  #
+-A INPUT -i swp1 -m comment --comment rule_id:10,acl_name:EXAMPLE1,dir:inbound,interface_id:swp1 -s 10.0.14.2/32 -p tcp -m recent --name bruteforce --set  --hitcount 5 --seconds 360 -j DROP
+```
+
+You can also show the ACL settings with the NVUE `nv show acl <acl>` command.
 
 ## Show Firewall Rules
 

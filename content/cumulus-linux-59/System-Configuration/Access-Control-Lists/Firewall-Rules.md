@@ -152,7 +152,6 @@ NVUE writes this rule in the `/etc/cumulus/acl/policy.d/50_nvue.rules` file:
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/acl/policy.d/50_nvue.rules
 [iptables]
-
 ## ACL EXAMPLE1 in dir inbound on interface swp1 ##
 # rule-id #10:  #
 -A INPUT -i swp1 -m comment --comment rule_id:10,acl_name:EXAMPLE1,dir:inbound,interface_id:swp1 -s 10.0.14.2/32 -p tcp -m hashlimit --hashlimit-name ssh --hashlimit-mode srcip --hashlimit-htable-expire 100 --hashlimit-burst 100 --hashlimit-above 100/second --hashlimit-srcmask 32 -j DROP

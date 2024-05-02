@@ -4,29 +4,27 @@ author: NVIDIA
 weight: 370
 toc: 3
 ---
-In data center topologies, right cabling is time consuming and error prone. <span class="a-tooltip">[PTM](## "Prescriptive Topology Manager")</span> is a dynamic cabling verification tool that can detect and eliminate errors. PTM uses a Graphviz-DOT specified network cabling plan in a `topology.dot` file and couples it with runtime information from LLDP to verify that the cabling matches the specification. The check occurs on every link transition on each node in the network.
+<span class="a-tooltip">[PTM](## "Prescriptive Topology Manager")</span> is a dynamic cabling verification tool that can detect and eliminate errors. PTM uses a Graphviz-DOT specified network cabling plan in a `topology.dot` file and couples it with runtime information from LLDP to verify that the cabling matches the specification. The check occurs on every link transition on each node in the network.
 
-You can customize the `topology.dot` file to control `ptmd` at both the global/network level and the node/port level.
-
-PTM runs as a daemon, named `ptmd`.
+You can customize the `topology.dot` file to control the PTM service (`ptmd`) at both the global and network level, and the node and port level.
 
 ## Supported Features
 
-- Topology verification using <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span>. `ptmd` creates a client connection to the LLDP daemon, `lldpd`, and retrieves the neighbor relationship between the nodes/ports in the network and compares them against the prescribed topology specified in the `topology.dot` file.
+- Topology verification using <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span>. The `ptmd` service creates a client connection to the LLDP service (`lldpd`), and retrieves the neighbor relationship between the nodes or ports in the network and compares them against the prescribed topology specified in the `topology.dot` file.
 - PTM only supports physical interfaces, such as swp1 or eth0. You cannot specify virtual interfaces, such as bonds or subinterfaces in the topology file.
-- Cumulus Linux does not support forwarding path failure detection using {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection">}} (BFD); however, you can use demand mode. For more information on how BFD operates in Cumulus Linux, refer to {{<link title="Bidirectional Forwarding Detection - BFD">}} and `man ptmd(8)`.
+- Cumulus Linux does not support forwarding path failure detection using {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection">}} (BFD); however, you can use demand mode. For more information on how BFD operates in Cumulus Linux, refer to {{<link title="Bidirectional Forwarding Detection - BFD">}}.
 - Integration with <span class="a-tooltip">[FRR](## "FRRouting")</span> (PTM to FRR notification).
-- Client management: `ptmd` creates an abstract named socket `/var/run/ptmd.socket` on startup. Other applications can connect to this socket to receive notifications and send commands.
-- Event notifications: see Scripts below.
-- User configuration through a `topology.dot` file; {{<link url="#configure-ptm" text="see below">}}.
+- Client management; the `ptmd` service creates an abstract named socket `/var/run/ptmd.socket` on startup. Other applications can connect to this socket to receive notifications and send commands.
+- Event notifications.
+- Configuration with a `topology.dot` file; {{<link url="#configure-ptm" text="see below">}}.
 
 ## Configure PTM
 
-`ptmd` verifies the physical network topology against a DOT-specified network graph file, `/etc/ptm.d/topology.dot`.
+The `ptmd` service verifies the physical network topology against a DOT-specified network graph file, `/etc/ptm.d/topology.dot`.
 
 PTM supports {{<exlink url="http://en.wikipedia.org/wiki/DOT_%28graph_description_language%29" text="undirected graphs">}}.
 
-At startup, `ptmd` connects to `lldpd` (the LLDP daemon) over a Unix socket and retrieves the neighbor name and port information. It then compares the retrieved port information with the configuration information that it reads from the topology file. If there is a match, it is a PASS, otherwise it is a FAIL.
+At startup, the `ptmd` service connects to the `lldpd` service over a Unix socket and retrieves the neighbor name and port information. It then compares the retrieved port information with the configuration information that it reads from the topology file. If there is a match, it is a `PASS`, otherwise it is a `FAIL`.
 
 {{%notice note%}}
 PTM performs its LLDP neighbor check using the PortID ifname TLV information.
@@ -34,23 +32,23 @@ PTM performs its LLDP neighbor check using the PortID ifname TLV information.
 
 ## ptmd Scripts
 
-`ptmd` executes scripts at `/etc/ptm.d/if-topo-pass` and `/etc/ptm.d/if-topo-fail`for each interface that goes through a change and runs `if-topo-pass` when an LLDP or BFD check passes or `if-topo-fails` when the check fails. The scripts receive an argument string that is the result of the `ptmctl` command; see {{%link url="#ptmd-service-commands" text="`ptmd` commands below"%}}.
+The `ptmd` service executes scripts at `/etc/ptm.d/if-topo-pass` and `/etc/ptm.d/if-topo-fail` for each interface that goes through a change and runs `if-topo-pass` when an LLDP or BFD check passes, or `if-topo-fails` when the check fails. The scripts receive an argument string that is the result of the `ptmctl` command; see {{%link url="#ptmd-service-commands" text="`ptmd` commands below"%}}.
 
 You can modify these default scripts.
 
 ## Configuration Parameters
 
-You can configure `ptmd` parameters in the topology file. The parameters are host-only, global, per-port/node and templates.
+You can configure `ptmd` parameters in the topology file. The parameters are host-only, global, per-port or node and templates.
 
 <!-- vale off -->
 <!-- Vale issue #253 -->
 ### Host-only Parameters
 <!-- vale on -->
-*Host-only parameters* apply to the entire host on which PTM is running. You can include the `hostnametype` host-only parameter, which specifies if PTM uses only the hostname (`hostname`) or the fully qualified domain name (`fqdn`) while looking for the `self-node` in the graph file. For example, in the graph file below PTM ignores the FQDN and only looks for *switch04* because that is the hostname of the switch on which it is running:
+*Host-only parameters* apply to the entire host on which PTM is running. You can include the `hostnametype` host-only parameter that specifies if PTM uses only the hostname (`hostname`) or the fully qualified domain name (`fqdn`) while looking for the `self-node` in the graph file. For example, in the graph file below PTM ignores the FQDN and only looks for *switch04* because that is the hostname of the switch on which it is running:
 
 {{%notice tip%}}
 - Always wrap the hostname in double quotes; for example, `"www.example.com"` to prevent `ptmd` from failing.
-- To avoid errors when starting the `ptmd` process, make sure that `/etc/hosts` and `/etc/hostname` both reflect the hostname you are using in the `topology.dot` file.
+- To avoid errors when starting the `ptmd` service, make sure that `/etc/hosts` and `/etc/hostname` both reflect the hostname you are using in the `topology.dot` file.
 {{%/notice%}}
 
 ```
@@ -62,7 +60,7 @@ graph G {
 }
 ```
 
-In this next example, PTM compares using the FQDN and looks for *switch05.cumulusnetworks.com*, which is the FQDN of the switch ion which it is running:
+In this next example, PTM compares using the FQDN and looks for *switch05.cumulusnetworks.com*, which is the FQDN of the switch on which it is running:
 
 ```
 graph G {
@@ -102,7 +100,7 @@ graph G {
 
 ### Templates
 
-*Templates* provide flexibility in choosing different parameter combinations and applying them to a given port. A template instructs `ptmd` to reference a named parameter string instead of a default one. There are two parameter strings `ptmd` supports:
+*Templates* provide flexibility so that you can choose different parameter combinations and apply them to a given port. A template instructs `ptmd` to reference a named parameter string instead of a default one. PTM supports two parameter strings:
 
 - `bfdtmpl` specifies a custom parameter tuple for BFD.
 - `lldptmpl` specifies a custom parameter tuple for LLDP.
@@ -129,9 +127,9 @@ In this template, LLDP1 and LLDP2 are templates for LLDP parameters. BFD1 and BF
 
 `ptmd` supports the following <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> parameters:
 
-- `upMinTx` is the minimum transmit interval, which defaults to *300ms*, specified in milliseconds.
-- `requiredMinRx` is the minimum interval between received BFD packets, which defaults to *300ms*, specified in milliseconds.
-- `detectMult` is the detect multiplier, which defaults to *3*, and can be any non-zero value.
+- `upMinTx` is the minimum transmit interval specified in milliseconds. The default value is 300ms.
+- `requiredMinRx` is the minimum interval between received BFD packets specified in milliseconds. The default value is 300ms.
+- `detectMult` is the detect multiplier. The default value is 3. You set this parameter to any non-zero value.
 - `afi` is the address family for the edge. The address family must be one of the following:
   - *v4*: BFD sessions build for only IPv4 connected peers. This is the default value.
   - *v6*: BFD sessions build for only IPv6 connected peers.
@@ -160,7 +158,7 @@ graph G {
 ```
 
 {{%notice note%}}
-When you specify `match_hostname=fqdn`, `ptmd` matches the entire FQDN, (*cumulus-2.domain.com* in the example below). If you do not specify anything for `match_hostname`, `ptmd` matches based on hostname only, (*cumulus-3* below), and ignores the rest of the URL:
+When you specify `match_hostname=fqdn`, PTM matches the entire FQDN, (*cumulus-2.domain.com* in the example below). If you do not specify a value for `match_hostname`, PTM matches based on hostname only, (*cumulus-3* below), and ignores the rest of the URL:
 
 ```
 graph G {
@@ -176,7 +174,7 @@ graph G {
 
 ## Check Link State
 
-You can enable PTM to perfom additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that `ptmd` defines.
+You can enable PTM to perform additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that PTM defines.
 
 {{%notice note%}}
 You only need to enable PTM to check link state. You do not need to enable PTM to determine BFD status.
@@ -242,25 +240,31 @@ Interface swp51 is up, line protocol is up
 
 PTM sends client notifications in CSV format.
 
-To start or restart the `ptmd` service, run the following command. The `topology.dot` file must be present for the service to start.
+To start the `ptmd` service, run the `sudo systemctl start ptmd.service` command. The `topology.dot` file must be present for the service to start.
 
 ```
-cumulus@switch:~$ sudo systemctl start|restart|force-reload ptmd.service
+cumulus@switch:~$ sudo systemctl start ptmd.service
 ```
 
-To instruct `ptmd` to read the `topology.dot` file again to apply the new configuration to the running state without restarting:
+To restart the `ptmd` service, run the `sudo systemctl restart ptmd.service` command:
+
+```
+cumulus@switch:~$ sudo systemctl restart ptmd.service
+```
+
+To instruct the `ptmd` service to read the `topology.dot` file again to apply the new configuration to the running state without restarting, run the `sudo systemctl reload ptmd.service` command:
 
 ```
 cumulus@switch:~$ sudo systemctl reload ptmd.service
 ```
 
-To stop the `ptmd` service:
+To stop the `ptmd` service, run the `sudo systemctl stop ptmd.service` command:
 
 ```
 cumulus@switch:~$ sudo systemctl stop ptmd.service
 ```
 
-To retrieve the current running state of `ptmd`:
+To retrieve the current running state of the `ptmd` service, run the `sudo systemctl status ptmd.service` command:
 
 ```
 cumulus@switch:~$ sudo systemctl status ptmd.service
@@ -268,7 +272,7 @@ cumulus@switch:~$ sudo systemctl status ptmd.service
 
 ## ptmctl Commands
 
-`ptmctl` is a client of `ptmd` that retrieves the operational state of the ports configured on the switch and information about BFD sessions from `ptmd`. `ptmctl` parses the CSV notifications sent by `ptmd`. See `man ptmctl` for more information.
+`ptmctl` is a client of the `ptmd` service that retrieves the operational state of the ports configured on the switch and information about BFD sessions from `ptmd`. `ptmctl` parses the CSV notifications sent by `ptmd`. See `man ptmctl` for more information.
 
 ### ptmctl Examples
 
@@ -276,9 +280,9 @@ The examples below contain the following keywords in the output of the `cbl stat
 
 | `cbl` status Keyword<img width=200/> | Definition<img width=400/> |
 |-------- |-------- |
-| pass | The topology file defines the interface, the interface receives LLDP information, and the LLDP information for the interface matches the information in the topology file. |
-| fail | The topology file defines the interface, the interface receives LLDP information, and the LLDP information for the interface does not match the information in the topology file. |
-| N/A | The topology file defines the interface but the interface does not receive LLDP information. The interface might be down or disconnected, or the neighbor is not sending LLDP packets.<br>The `N/A` and `fail` status might indicate a wiring problem to investigate.<br>The `N/A` status does not show when you use the `-l` option with `ptmctl`; The output shows only interfaces that are receiving LLDP information. |
+| `pass` | The topology file defines the interface, the interface receives LLDP information, and the LLDP information for the interface matches the information in the topology file. |
+| `fail` | The topology file defines the interface, the interface receives LLDP information, and the LLDP information for the interface does not match the information in the topology file. |
+| `N/A` | The topology file defines the interface, but the interface does not receive LLDP information. The interface might be down or disconnected, or the neighbor is not sending LLDP packets.<br>The `N/A` and `fail` status might indicate a wiring problem to investigate.<br>The `N/A` status does not show when you use the `-l` option with `ptmctl`; the output shows only interfaces that are receiving LLDP information. |
 
 For basic output, use `ptmctl` without any options:
 
@@ -315,7 +319,7 @@ N/A   N/A       N/A       N/A         N/A         N/A              N/A          
 N/A   N/A       N/A       N/A         N/A         N/A              N/A              N/A
 ```
 
-To return information on active BFD sessions `ptmd` is tracking, use the `-b` option:
+To show information about the active BFD sessions that the `ptmd` serice is tracking, use the `-b` option:
 
 ```
 cumulus@switch:~$ sudo ptmctl -b
@@ -328,7 +332,7 @@ swp1  11.0.0.2    Up     N/A           singlehop  N/A
 N/A   12.12.12.1  Up     12.12.12.4    multihop   N/A
 ```
 
-To return LLDP information, use the `-l` option. The output returns only the active neighbors that `ptmd` is tracking.
+To show LLDP information, use the `-l` option. The output shows only the active neighbors that the `ptmd` service is tracking.
 
 ```
 cumulus@switch:~$ sudo ptmctl -l
@@ -341,7 +345,7 @@ swp45 h1       swp1    swp1   IfName 5m:59s
 swp46 h2       swp1    swp1   IfName 5m:59s
 ```
 
-To return detailed information on active BFD sessions `ptmd` is tracking, use the `-b` and `-d` option (results are for an IPv6-connected peer):
+To show detailed information about the active BFD sessions that the `ptmd` service is tracking, use the `-b` and `-d` option:
 
 ```
 cumulus@switch:~$ sudo ptmctl -b -d
@@ -400,7 +404,7 @@ If you encounter errors with the `topology.dot` file, you can use `dot` (include
 
 Open the topology file with Graphviz to ensure that it is readable and that the file format is correct.
 
-If you edit `topology.dot` file from a Windows system, be sure to double check the file formatting; there might be extra characters that keep the graph from working correctly.
+If you edit the `topology.dot` file from a Windows system, be sure to doublecheck the file formatting; there might be extra characters that keep the graph from working correctly.
 {{%/notice%}}
 
 ## Basic Topology Example

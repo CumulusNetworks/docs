@@ -488,6 +488,7 @@ cumulus@server02:~$ sudo tail /var/log/syslog | grep dhcpd
 2016-12-05T19:03:35.380081+00:00 server02 dhcpd: Advertise NA: address 2001:db8:1::110 to client with duid 00:01:00:01:1f:d8:75:3a:44:38:39:00:00:03 iaid = 956301315 valid for 600 seconds
 2016-12-05T19:03:35.380470+00:00 server02 dhcpd: Sending Relay-reply to 2001:db8:101::1 port 547
 ```
+
 ## Considerations
 
 DHCP packets received on bridge ports and sent to the CPU for processing cause the RX_DROP counter to increment on the interface.

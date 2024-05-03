@@ -113,6 +113,7 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 nv show acl acl-default-dos
 nv show acl acl-default-dos rule <rule>
 nv show acl acl-default-whitelist
+nv show acl acl-default-whitelist rule <rule>
 nv show acl <acl-id> rule <rule-id> match ip connection-state
 nv show acl <acl-id> rule <rule-id> match ip recent-list
 nv show acl <acl-id> rule <rule-id> match ip hashlimit

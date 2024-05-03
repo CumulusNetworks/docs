@@ -18,7 +18,7 @@ Provides commands to configure <span class="a-tooltip">[LLDP](## "Link Layer Dis
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> lldp application-tlv app \<application\> </h>
+## <h>nv set interface \<interface-id\> lldp application-tlv app \<application-id\> </h>
 
 Configures the interface on which LLDP sends application priority TLVs in LLDP PDUs.
 
@@ -27,7 +27,7 @@ Configures the interface on which LLDP sends application priority TLVs in LLDP P
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-|`<application>` |  The application name. |
+|`<application-id>` |  The application name. |
 
 ### Version History
 
@@ -41,7 +41,7 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> lldp application-tlv tcp-port \<port\></h>
+## <h>nv set interface \<interface-id\> lldp application-tlv tcp-port \<port-id\></h>
 
 Configures the interface on which LLDP sends application priority TLVs in LLDP PDUs for TCP traffic using the specified port.
 
@@ -50,7 +50,7 @@ Configures the interface on which LLDP sends application priority TLVs in LLDP P
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-|`<port>` |  The port number. |
+|`<port-id>` |  The port number. |
 
 ### Version History
 
@@ -64,16 +64,16 @@ cumulus@switch:~$ nv set interface swp1 lldp application-tlv tcp-port 4217
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> lldp application-tlv udp-port \<port\></h>
+## <h>nv set interface \<interface-id\> lldp application-tlv udp-port \<port-id\></h>
 
-Configures the interface on which LLDP sends application priority TLVs in LLDP PDUs for UDP traffic using the specified port.
+Configures the interface on which LLDP sends application priority TLVs in LLDP PDUs for UDP traffic.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-|`<port>` |  The port number. |
+|`<port-id>` |  The port number. |
 
 ### Version History
 
@@ -198,7 +198,7 @@ cumulus@switch:~$ nv set service lldp application-tlv app iSCSI priority 3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service lldp application-tlv tcp-port \<port\> priority \<priority\></h>
+## <h>nv set service lldp application-tlv tcp-port \<port-id\> priority \<priority\></h>
 
 Configures the application priority for TCP traffic for the specified port.
 
@@ -206,7 +206,7 @@ Configures the application priority for TCP traffic for the specified port.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<port>` |  The port number. |
+|`<port-id>` |  The port number. |
 |`<priority>` |  The priority ID. |
 
 ### Version History
@@ -221,7 +221,7 @@ cumulus@switch:~$ nv set service lldp application-tlv tcp-port 4217 priority 6
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service lldp application-tlv udp-port \<port\> priority \<priority\></h>
+## <h>nv set service lldp application-tlv udp-port \<port-id\> priority \<priority\></h>
 
 Configures the application priority for UDP traffic for the specified port.
 
@@ -229,7 +229,7 @@ Configures the application priority for UDP traffic for the specified port.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<port>` |  The port number. |
+|`<portid>` |  The port number. |
 |`<priority>` |  The priority ID. |
 
 ### Version History

@@ -672,7 +672,7 @@ cumulus@switch:~$ nv set service telemetry histogram egress-buffer sample-interv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram ingress-buffer bin-min-boundary 96-4294967295
+## <h>nv set service telemetry histogram ingress-buffer bin-min-boundary</h>
 
 Configures the minimum boundary size of the ingress queue histograms. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of ingress queues per bin. You can specify a value, which must be a multiple of 96, between 96 and 4294967295. The default minimum boundary size is 960 bytes.
 

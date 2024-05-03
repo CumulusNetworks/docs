@@ -192,7 +192,7 @@ Configures the priority group you want to monitor for the specified interface.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<pg-id>` |  The priority group you want to monitor |
+| `<pg-id>` |  The priority group you want to monitor. |
 
 ### Version History
 
@@ -215,7 +215,7 @@ Configures the minimum boundary size of the ingress buffer histogram for the spe
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<pg-id>` |  The priority group you want to monitor |
+| `<pg-id>` |  The priority group you want to monitor. |
 
 ### Version History
 
@@ -238,7 +238,7 @@ Configures the size of the ingress buffer histogram for the specified priority g
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<pg-id>` |  The priority group you want to monitor |
+| `<pg-id>` |  The priority group you want to monitor. |
 
 ### Version History
 
@@ -261,7 +261,7 @@ Configures the ingress buffer histogram sampling interval for the specified prio
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<pg-id>` |  The priority group you want to monitor |
+| `<pg-id>` |  The priority group you want to monitor. |
 
 ### Version History
 
@@ -284,7 +284,7 @@ Configures the switch to send log messages to the `/var/log/syslog` file when th
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<pg-id>` |  The priority group you want to monitor |
+| `<pg-id>` |  The priority group you want to monitor. |
 
 ### Version History
 
@@ -307,7 +307,7 @@ Configures the ingress queue length to reach for the specified priority group an
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<pg-id>` |  The priority group you want to monitor |
+| `<pg-id>` |  The priority group you want to monitor. |
 
 ### Version History
 
@@ -447,7 +447,7 @@ Configures the egress queue length to reach for the specified traffic class befo
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<tc-id>` |  The traffic class you want to monitor |
+| `<tc-id>` |  The traffic class you want to monitor. |
 
 ### Version History
 
@@ -470,7 +470,7 @@ Enables the latency histogram for the specified traffic class on the specified i
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<tc-id>` |  The traffic class you want to monitor |
+| `<tc-id>` |  The traffic class you want to monitor. |
 
 ### Version History
 
@@ -516,7 +516,7 @@ Configures the threshold (in nannoseconds) after which the switch sends a messag
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<tc-id>` |  The traffic class you want to monitor |
+| `<tc-id>` |  The traffic class you want to monitor. |
 
 ### Version History
 
@@ -539,7 +539,7 @@ Configures the minimum boundary for the latency histogram for the specified traf
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<tc-id>` |  The traffic class you want to monitor |
+| `<tc-id>` |  The traffic class you want to monitor. |
 
 ### Version History
 
@@ -562,7 +562,7 @@ Configures the size of the latency histogram for the specified traffic class on 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
-| `<tc-id>` |  The traffic class you want to monitor |
+| `<tc-id>` |  The traffic class you want to monitor. |
 
 ### Version History
 

@@ -536,7 +536,7 @@ BIOS  1.13.0-1ubuntu1.1_04/01/2014  SeaBIOS      default
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show platform firmware \<component\></h>
+## <h>nv show platform firmware \<component-id\></h>
 
 Shows information about the specified firmware component.
 
@@ -595,6 +595,12 @@ SWITCH    3           5.9.0  44:38:39:22:01:7a  ok     switch
 ## <h>nv show platform inventory \<inventory-id\></h>
 
 Shows information about the specified inventory type.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<inventory-id>`  |  The inventory ID. |
 
 ### Version History
 

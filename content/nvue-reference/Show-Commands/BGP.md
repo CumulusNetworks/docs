@@ -5755,6 +5755,13 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l
 
 Shows the BGP graceful restart stale path timer settings for the specified neighbor for EVPN.
 
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.9.0
@@ -5770,6 +5777,13 @@ cumulus@switch:~$ nv show vrf default router bgp neighbor swp51 address-family l
 ## <h>nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn graceful-restart timers selection-deferral</h>
 
 Shows the BGP graceful restart selection deferral timer for the specified neighbor for EVPN.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
 

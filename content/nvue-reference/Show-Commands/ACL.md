@@ -29,6 +29,212 @@ EXAMPLE1  ipv4  rule: 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show acl acl-default-dos</h>
+
+Shows the firewall DoS rules on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl acl-default-dos 
+      applied  pending
+----  -------  -------
+type  ipv4     ipv4   
+rule
+=======
+    Number  Summary                                 
+    ------  ----------------------------------------
+    30      match.ip.protocol:                   tcp
+    40      match.ip.protocol:                   tcp
+    41      match.ip.protocol:                   tcp
+    42      match.ip.protocol:                   tcp
+    50                                              
+    60      match.ip.protocol:                   tcp
+    70      match.ip.protocol:                   tcp
+    80      match.ip.protocol:                   tcp
+    90      match.ip.protocol:                   tcp
+            match.ip.tcp.all-mss-except:   536-65535
+    100     match.ip.recent-list.action:         set
+            match.ip.tcp.dest-port:               22
+    110     match.ip.recent-list.action:      update
+            match.ip.recent-list.hit-count:      100
+            match.ip.recent-list.update-interval: 60
+            match.ip.tcp.dest-port:               22
+    120     match.ip.hashlimit.burst:              2
+            match.ip.hashlimit.expire:         30000
+            match.ip.hashlimit.mode:          src-ip
+            match.ip.hashlimit.name:          TCPRST
+            match.ip.hashlimit.rate-above:     5/min
+            match.ip.hashlimit.source-mask:       32
+            match.ip.protocol:                   tcp
+    130     match.ip.hashlimit.burst:             30
+            match.ip.hashlimit.expire:         30000
+            match.ip.hashlimit.mode:          src-ip
+            match.ip.hashlimit.name:      TCPGENERAL
+            match.ip.hashlimit.rate-above: 50/second
+            match.ip.hashlimit.source-mask:       32
+            match.ip.protocol:                   tcp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl acl-default-dos rule \<rule-id\></h>
+
+Shows information about the specified firewall DoS rule on the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show acl acl-default-dos rule 120
+                   applied  pending
+-----------------  -------  -------
+match                              
+  ip                               
+    protocol       tcp      tcp    
+    hashlimit                      
+      name         TCPRST   TCPRST 
+      rate-above   5/min    5/min  
+      burst        2        2      
+      source-mask  32       32     
+      expire       30000    30000  
+      mode         src-ip   src-ip
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show acl acl-default-whitelist</h>
+
+Shows the firewall whitelist rules on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl acl-default-whitelist
+      applied  pending
+----  -------  -------
+type  ipv4     ipv4   
+rule
+=======
+    Number  Summary                                          
+    ------  -------------------------------------------------
+    5       match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                       ssh
+    10      match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                       bgp
+    15      match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                      ldap
+    20      match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                      8765
+    25      match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                     https
+    30      match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                      clag
+    35      match.ip.protocol:                            tcp
+            match.ip.tcp.source-port:                      49
+    40      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:               dhcp-client
+    45      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:               dhcp-server
+    50      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       ntp
+    55      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       323
+    60      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      snmp
+    65      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      tftp
+    70      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      ldap
+    73      match.ip.udp.source-port:                    3020
+    74      match.ip.udp.source-port:                    3022
+    75      match.ip.protocol:                            udp
+            match.ip.udp.source-port:                    1812
+    80      match.ip.protocol:                            udp
+            match.ip.udp.source-port:                    1813
+    85      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      6343
+    90      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      6344
+    95      match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       514
+    100     match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       bfd
+    105     match.ip.protocol:                            udp
+            match.ip.udp.dest-port:              bfd-multihop
+    110     match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      4789
+    115     match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       319
+    120     match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                       320
+    125     match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                      9339
+    130     match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                     31980
+            match.ip.tcp.dest-port:                     31982
+    135     match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                       639
+    140     match.ip.protocol:                            udp
+            match.ip.udp.source-port:                      53
+    145     match.ip.protocol:                            tcp
+            match.ip.tcp.dest-port:                      9999
+    150     match.ip.protocol:                           ospf
+    155     match.ip.protocol:                            pim
+    160     match.ip.protocol:                           vrrp
+    165     match.ip.protocol:                           igmp
+    170     match.ip.protocol:                           icmp
+    175     match.ip.protocol:                            udp
+            match.ip.udp.dest-port:                      clag
+    9999    Log Level:                                      5
+            action.log.log-prefix: IPTables-Dropped:
+            Log Rate:                                       1
+```
+
+## <h>nv show acl acl-default-whitelist rule \<rule-id\></h>
+
+Shows information about the specified firewall whitelist rule on the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show acl acl-default-whitelist rule 150
+              applied  pending
+------------  -------  -------
+match                         
+  ip                          
+    protocol  ospf     ospf 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show acl \<acl-id\></h>
 
 Shows the specified ACL configuration.

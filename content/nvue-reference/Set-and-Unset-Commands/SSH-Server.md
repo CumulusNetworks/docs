@@ -243,7 +243,7 @@ cumulus@switch:~$ nv set system ssh-server state disabled
 
 ## <h>nv set system ssh-server strict</h>
 
-Enables or disables SSH strict mode. By default, SSH strict mode is `on`; Cumulus Linux disables X11, TCP forwarding, and compression and enforces secure ciphers.
+Enables or disables SSH strict mode. By default, SSH strict mode is `on` so that Cumulus Linux disables X11, TCP forwarding, and compression and enforces secure ciphers.
 
 ### Version History
 

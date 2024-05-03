@@ -204,7 +204,7 @@ rule
     175     match.ip.protocol:                            udp
             match.ip.udp.dest-port:                      clag
     9999    Log Level:                                      5
-            action.log.log-prefix: IPTables-Dropped-<Domain>:
+            action.log.log-prefix: IPTables-Dropped:
             Log Rate:                                       1
 ```
 

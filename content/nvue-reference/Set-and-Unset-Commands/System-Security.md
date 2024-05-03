@@ -14,8 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 ## <h>nv set system security password-hardening digits-class</h>
 
-Configures the password policy so that passwords must include at least one digit. You can specify `enabled` or `disabled`.
-The default setting is `enabled` when password security is enabled.
+Configures the password policy so that passwords must include at least one digit. You can specify `enabled` or `disabled`. The default setting is `enabled` when password security is enabled.
 
 ### Version History
 

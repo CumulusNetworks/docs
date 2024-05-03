@@ -357,7 +357,7 @@ Shows the configuration settings for a specific OSPF area network subnet for the
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.9.0
 
 ### Example
 

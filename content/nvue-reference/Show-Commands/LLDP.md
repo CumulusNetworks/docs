@@ -174,7 +174,6 @@ Shows the UDP port priority mapping for the interface.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |  The interface name.|
-| `<port-id>` | The UDP port ID. |
 
 ### Version History
 

@@ -446,6 +446,52 @@ cumulus@switch:~$ nv show platform environment voltage <sensor>
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show platform firmware</h>
+
+Shows information about the switch firmware.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform firmware
+Name  Actual FW                     Part Number  FW Source
+----  ----------------------------  -----------  ---------
+BIOS  1.13.0-1ubuntu1.1_04/01/2014  SeaBIOS      default
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform firmware \<component-id\></h>
+
+Shows information about the specified firmware component.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<component-id>`  |  The component name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform firmware BIOS
+                operational                 
+---------------  ----------------------------
+part-number      SeaBIOS                     
+actual-firmware  1.13.0-1ubuntu1.1_04/01/2014
+fw-source        default 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show platform hardware</h>
 
 Shows platform hardware information on the switch, such as the base MAC address, model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address.
@@ -513,52 +559,6 @@ cumulus@switch:~$ nv show platform hardware component device
 -----  -----------  -------  -------
 model  vx                           
 type   switch
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show platform firmware</h>
-
-Shows information about the switch firmware.
-
-### Version History
-
-Introduced in Cumulus Linux 5.9.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show platform firmware
-Name  Actual FW                     Part Number  FW Source
-----  ----------------------------  -----------  ---------
-BIOS  1.13.0-1ubuntu1.1_04/01/2014  SeaBIOS      default
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show platform firmware \<component-id\></h>
-
-Shows information about the specified firmware component.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<component-id>`  |  The component name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.9.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show platform firmware BIOS
-                operational                 
----------------  ----------------------------
-part-number      SeaBIOS                     
-actual-firmware  1.13.0-1ubuntu1.1_04/01/2014
-fw-source        default 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

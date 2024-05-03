@@ -439,6 +439,12 @@ iSCSI      3
 
 Shows the priority mapping for the specified application.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<app-id>`    |  The application name.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.9.0
@@ -477,6 +483,12 @@ Port  priority
 
 Shows the priority mapping for the specified TCP port.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<port-id>`    |  The port ID.|
+
 ### Version History
 
 Introduced in Cumulus Linux 5.9.0
@@ -504,7 +516,6 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv show service lldp application-tlv udp-port
-cumulus@leaf01:mgmt:~$ nv show service lldp application-tlv udp-port
 Port  priority
 ----  --------
 4317  4
@@ -515,6 +526,12 @@ Port  priority
 ## <h>nv show service lldp application-tlv udp-port \<port-id\></h>
 
 Shows the priority mapping for the specified UDP port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<port-id>`    |  The port ID.|
 
 ### Version History
 

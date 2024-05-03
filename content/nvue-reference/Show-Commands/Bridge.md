@@ -417,7 +417,7 @@ mcheck          : no          admin-port-path-cost : 0
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show bridge domain \<domain-id\> stp port \<port\></h>
+## <h>nv show bridge domain \<domain-id\> stp port \<port-id\></h>
 
 Shows STP information for a specific bridge port.
 
@@ -426,7 +426,7 @@ Shows STP information for a specific bridge port.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The name of the bridge domain. |
-| `<port>` | The bridge port. |
+| `<port-id>` | The bridge port. |
 
 ### Version History
 

@@ -184,8 +184,6 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action log level 5
 
 ## <h>nv set acl \<acl-id\> rule \<rule-id\> action log rate</h>
 
-You can set a value between 1 and 50000.
-
 Configures the number of logs per minute you want to generate for the specified ACL rule. You can set a value between 1 and 50000.
 
 ### Command Syntax
@@ -791,7 +789,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip hashlimit burst 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl <acl-id> rule \<rule-id\> match ip hashlimit source-mask</h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip hashlimit source-mask</h>
 
 Configures the hashlimit source mask you want to match; the source mask used to mask the source IP address.
 

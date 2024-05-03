@@ -289,7 +289,7 @@ Action succeeded
 
 ## <h>nv action clear interface \<interface-id\> link flap-protection violation</h>
 
-Clears the protodown state of the interface and brings the interface back up.
+Clears the `protodown` state of the interface and brings the interface back up.
 
 {{%notice note%}}
 In Cumulus Linux 5.8 and earlier, this command is `nv action clear interface <interface-id> link protodown link-flap`.
@@ -299,11 +299,11 @@ In Cumulus Linux 5.8 and earlier, this command is `nv action clear interface <in
 
 | Syntax   |  Description  |
 | ----------    | ------------  |
-| `<interface-id>` | The interface on which you want to clear the protodown state. |
+| `<interface-id>` | The interface on which you want to clear the `protodown` state. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.7.0
+Introduced in Cumulus Linux 5.9.0
 
 ### Example
 
@@ -752,7 +752,7 @@ Action succeeded
 
 ## <h>nv action clear system link flap-protection violation</h>
 
-Clears the protodown links on the switch.
+Clears the `protodown` links on the switch.
 
 {{%notice note%}}
 In Cumulus Linux 5.8 and earlier, this command is `nv action clear system link protodown link-flap`.
@@ -760,7 +760,7 @@ In Cumulus Linux 5.8 and earlier, this command is `nv action clear system link p
 
 ### Version History
 
-Introduced in Cumulus Linux 5.7.0
+Introduced in Cumulus Linux 5.9.0
 
 ### Example
 
@@ -2532,7 +2532,7 @@ Action succeeded
 
 Upgrades all the packages to the latest distribution.
 
-By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as default, you must use the `use-vrf <vrf>` option.
+By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
 
 ### Command Syntax
 
@@ -2556,7 +2556,7 @@ cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default
 
 Fetches the latest update metadata from the repository so you can review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies).
 
-By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as default, you must use the `use-vrf <vrf>` option.
+By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
 
 ### Command Syntax
 

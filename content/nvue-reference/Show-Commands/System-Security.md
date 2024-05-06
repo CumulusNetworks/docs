@@ -30,6 +30,12 @@ cumulus@switch:~$ nv show system security ca-certificate
 
 Shows brief information about a specific CA certificate.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<cert-id>` |  The CA certificate name. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -45,6 +51,12 @@ cumulus@switch:~$ nv show system security ca-certificate cert-1
 ## <h>nv show system security ca-certificate \<cert-id\> dump</h>
 
 Shows detailed information about a specific CA certificate.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<cert-id>` |  The CA certificate name. |
 
 ### Version History
 
@@ -78,6 +90,12 @@ cumulus@switch:~$ nv show system security certificate
 
 Shows brief information about a specific entity certificate.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<cert-id>` |  The certificate name. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -94,6 +112,12 @@ cumulus@switch:~$ nv show system security certificate cert-2
 
 Shows detailed information about a specific entity certificate.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<cert-id>` |  The certificate name. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -109,6 +133,12 @@ cumulus@switch:~$ nv show system security certificate cet2 dump
 ## <h>nv show system security certificate \<cert-id\> installed</h>
 
 Shows the applications that are using a specific entity certificate.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<cert-id>` |  The certificate name. |
 
 ### Version History
 

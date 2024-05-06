@@ -3,7 +3,6 @@ title: SyncE
 author: Cumulus Networks
 weight: 375
 type: nojsscroll
-draft: true
 ---
 <style>
 h { color: RGB(118,185,0)}

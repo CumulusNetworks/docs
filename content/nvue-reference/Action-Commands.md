@@ -1168,35 +1168,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast out</h>
-
-Clears IPv4 outbound routes for a specific BGP peer in the specified VRF.
-
-This command does not:
-- Clear counters in the kernel or hardware.
-- Reset BGP neighbor adjacencies.
-- Readvertise all routes to BGP peers.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ----------    | ------------  |
-| `<vrf-id>` |  The VRF name.  |
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv4-unicast out
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast soft in</h>
 
 Clears IPv4 inbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
@@ -1258,6 +1229,35 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast out</h>
+
+Clears IPv4 outbound routes for a specific BGP peer in the specified VRF.
+
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv4-unicast out
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast in</h>
 
 Clears IPv6 inbound routes for a specific BGP peer in the specified VRF.
@@ -1282,35 +1282,6 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv6-unicast in
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast out</h>
-
-Clears IPv6 outbound routes for a specific BGP peer in the specified VRF.
-
-This command does not:
-- Clear counters in the kernel or hardware.
-- Reset BGP neighbor adjacencies.
-- Readvertise all routes to BGP peers.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ----------    | ------------  |
-| `<vrf-id>` |  The VRF name.  |
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv6-unicast out
 Action succeeded
 ```
 
@@ -1377,6 +1348,35 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast out</h>
+
+Clears IPv6 outbound routes for a specific BGP peer in the specified VRF.
+
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family ipv6-unicast out
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn in</h>
 
 Clears EVPN inbound routes for a specific BGP peer in the specified VRF.
@@ -1401,35 +1401,6 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family l2vpn-evpn in
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn out</h>
-
-Clears EVPN outbound routes for a specific BGP peer in the specified VRF.
-
-This command does not:
-- Clear counters in the kernel or hardware.
-- Reset BGP neighbor adjacencies.
-- Readvertise all routes to BGP peers.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ----------    | ------------  |
-| `<vrf-id>` |  The VRF name.  |
-| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family l2vpn-evpn out
 Action succeeded
 ```
 
@@ -1491,6 +1462,35 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family l2vpn-evpn soft out
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn out</h>
+
+Clears EVPN outbound routes for a specific BGP peer in the specified VRF.
+
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+| `<neighbor-id>` | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router bgp neighbor swp51 address-family l2vpn-evpn out
 Action succeeded
 ```
 
@@ -1644,35 +1644,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast out</h>
-
-Clears IPv4 outbound routes for a specific BGP peer group in the specified VRF.
-
-This command does not:
-- Clear counters in the kernel or hardware.
-- Reset BGP neighbor adjacencies.
-- Readvertise all routes to BGP peers.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ----------    | ------------  |
-| `<vrf-id>` |  The VRF name.  |
-| `<peer-group-id>` |  The peer group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv4-unicast out
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast soft in</h>
 
 Clears IPv4 inbound routes for a specific BGP peer group in the specified VRF.
@@ -1734,6 +1705,35 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast out</h>
+
+Clears IPv4 outbound routes for a specific BGP peer group in the specified VRF.
+
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+| `<peer-group-id>` |  The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv4-unicast out
+Action succeeded
+```
+
 ## <h>nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast in</h>
 
 Clears IPv6 inbound routes for a specific BGP peer group in the specified VRF.
@@ -1758,35 +1758,6 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv6-unicast in
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast out</h>
-
-Clears IPv6 outbound routes for a specific BGP peer group in the specified VRF.
-
-This command does not:
-- Clear counters in the kernel or hardware.
-- Reset BGP neighbor adjacencies.
-- Readvertise all routes to BGP peers.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ----------    | ------------  |
-| `<vrf-id>` |  The VRF name.  |
-| `<peer-group-id>` |  The peer group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv6-unicast out
 Action succeeded
 ```
 
@@ -1853,6 +1824,35 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast out</h>
+
+Clears IPv6 outbound routes for a specific BGP peer group in the specified VRF.
+
+This command does not:
+- Clear counters in the kernel or hardware.
+- Reset BGP neighbor adjacencies.
+- Readvertise all routes to BGP peers.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+| `<peer-group-id>` |  The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv6-unicast out
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn in</h>
 
 Clears EVPN inbound routes for a specific BGP peer group in the specified VRF.
@@ -1909,6 +1909,38 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family l2vpn-evpn soft in
 Action succeeded
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn soft out</h>
+
+Clears EVPN outbound routes for a specific BGP peer group in the specified VRF.
+
+This command:
+- Does not clear counters in the kernel or hardware
+- Does not reset BGP neighbor adjacencies.
+- Does not readvertise all routes to BGP peers.
+
+If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+| `<peer-group-id>` |  The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family l2vpn-evpn soft out
+Action succeeded
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn out</h>
@@ -2056,38 +2088,6 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES out
 Action succeeded
 ```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn soft out</h>
-
-Clears EVPN outbound routes for a specific BGP peer group in the specified VRF.
-
-This command:
-- Does not clear counters in the kernel or hardware
-- Does not reset BGP neighbor adjacencies.
-- Does not readvertise all routes to BGP peers.
-
-If you do not specify the direction `out`, the command affects both inbound and outbound routes depending on whether soft-reconfiguration inbound is enabled.
-
-### Command Syntax
-
-| Syntax   |  Description  |
-| ----------    | ------------  |
-| `<vrf-id>` |  The VRF name.  |
-| `<peer-group-id>` |  The peer group name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action clear vrf default router bgp peer-group SPINES address-family l2vpn-evpn soft out
-Action succeeded
-```
-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

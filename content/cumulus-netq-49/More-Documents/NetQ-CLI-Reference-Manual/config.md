@@ -236,7 +236,7 @@ cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
 
 
 - - -
-
+<!--removed from docs; as of 4.9 still in output
 ## netq config add agent kubernetes-monitor
 
 Configures the NetQ Agent to monitor Kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds). Note that you must restart the NetQ Agent to enable the configuration.
@@ -287,7 +287,7 @@ Restarting netq-agent... Success!
 - ```netq config restart agent```
 
 - - -
-
+-->
 ## netq config add agent loglevel
 
 Configures the amount of information to log about the NetQ Agent activity, from only critical issues to every available message. Identified issues get logged to */var/log/netq-agent.log* file. The default log level is *info*.
@@ -1006,7 +1006,7 @@ Disables or removes NetQ Agent configurations on a switch.
 
 ```
 netq config del agent 
-    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|kubernetes-monitor|loglevel|server|ssl|stats|wjh] 
+    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|loglevel|server|ssl|stats|wjh] 
     [json]
 ```
 ### Required Arguments
@@ -1021,7 +1021,6 @@ None
 | cluster-servers | NA | Remove all cluster servers configured to receive NetQ Agent data |
 | cpu-limit | NA | Remove CPU usage limit for the NetQ Agent on this device | 
 | frr-monitor | NA | Stop the NetQ Agent from monitoring FRR when running in a container |
-| kubernetes-monitor | NA | Stop the NetQ Agent from monitoring Kubernetes containers |
 | loglevel | NA | Stop the NetQ Agent from logging events about the agent |
 | server | NA | Delete the current destination of NetQ Agent data and API requests |
 | ssl | NA | Delete SSL configuration |
@@ -1458,7 +1457,7 @@ Displays the configuration of the NetQ Agent on a switch. Several forms of this 
 
 ```
 netq config show agent 
-    [asic-monitor|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|services|ssl|stats|wjh|wjh-drop-filter|wjh-threshold] 
+    [asic-monitor|cpu-limit|frr-monitor|loglevel|services|ssl|stats|wjh|wjh-drop-filter|wjh-threshold] 
     [json]
 ```
 ### Required Arguments
@@ -1472,7 +1471,6 @@ None
 | asic-monitor | NA | Display NetQ Agent ASIC monitoring configuration |
 | cpu-limit | NA | View the maximum percentage of CPU resources that the NetQ Agent can use |
 | frr-monitor | NA | Display FRR monitoring configuration |
-| kubernetes-monitor | NA | Display the Kubernetes monitoring configuration |
 | loglevel | NA | Display the NetQ Agent logging level configuration |
 | services | NA | Display custom services and processes configuration |
 | ssl | NA | Display SSL configuration |
@@ -1485,15 +1483,14 @@ None
 
 ```
 cumulus@switch:~$ netq config show agent 
-netq-agent             value      default
----------------------  ---------  ---------
+netq-agent                value      default
+------------------------  ---------  ---------
 exhibitport
 exhibiturl
 server                    127.0.0.1  127.0.0.1
 cpu-limit                 100        100
 agenturl
 wjh                                  Enabled
-asic-monitor                         Enabled
 enable-opta-discovery     False      False
 agentport                 8981       8981
 port                      31980      31980
@@ -1547,22 +1544,44 @@ Show the configuration for all commands:
 
 ```
 cumulus@switch:~$ netq config show agent commands
- Service Key        Period    Active       Command
-------------------  --------  --------  ---------------------------------------------------
-ports               3600      yes       Netq Predefined Command
-proc-net-dev        30        yes       Netq Predefined Command
-agent_stats         300       yes       Netq Predefined Command
-agent_util_stats    30        yes       Netq Predefined Command
-ssd-util-json       86400     yes       /usr/sbin/smartctl -a /dev/sda
-lldp-json           30        yes       /usr/sbin/lldpctl -f json
-resource-util-json  30        yes       findmnt / -n -o FS-OPTIONS
-os-release          N/A       yes       cat /etc/os-release
-eprom               N/A       yes       /usr/cumulus/bin/decode-syseeprom -j
-lscpu               N/A       yes       /usr/bin/lscpu
-meminfo             N/A       yes       cat /proc/meminfo
-lsblk               N/A       yes       lsblk -d -n -o name,size,type,vendor,tran,rev,model
-dmicode             N/A       yes       dmidecode -t 17
-is-opta             N/A       yes       cat /etc/app-release
+ Service Key               Period  Active       Command
+-----------------------  --------  --------  ---------------------------------------------------------------------
+bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']
+evpn-vni                       60  yes       ['/usr/bin/vtysh', '-c', 'show bgp l2vpn evpn vni json']
+lldp-json                     120  yes       /usr/sbin/lldpctl -f json
+clagctl-json                   60  yes       /usr/bin/clagctl -j
+dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
+ptmctl-json                   600  yes       /usr/bin/ptmctl -d -j
+mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
+ports                        3600  yes       Netq Predefined Command
+proc-net-dev                   30  yes       Netq Predefined Command
+dom                          1800  yes       Netq Predefined Command
+roce                           60  yes       Netq Predefined Command
+roce-config                    60  yes       Netq Predefined Command
+nvue-roce-config               60  yes       Netq Predefined Command
+agent_stats                   300  yes       Netq Predefined Command
+agent_util_stats               30  yes       Netq Predefined Command
+tcam-resource-json            300  yes       /usr/cumulus/bin/cl-resource-query -j
+config-mon-json               120  yes       Netq Predefined Command
+nvue-mon-json                  60  yes       Netq Predefined Command
+running-config-mon-json        30  yes       Netq Predefined Command
+cl-support-json               180  yes       Netq Predefined Command
+resource-util-json            120  yes       findmnt / -n -o FS-OPTIONS
+smonctl-json                  120  yes       /usr/sbin/smonctl -j
+sensors-json                 1800  yes       sensors -u
+ssd-util-json               86400  yes       /usr/sbin/smartctl -a /dev/sda
+ssd-util-nvme-json          86400  yes       /usr/sbin/smartctl -a /dev/nvme0
+ospf-neighbor-json             60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all neighbor detail json']
+ospf-interface-json            60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all interface json']
+ecmp-hash-info                 60  yes       cat /etc/cumulus/datapath/traffic.conf
+ecmp-info                      60  yes       Netq Predefined Command
+ptp-config-info                60  yes       cat /etc/ptp4l.conf
+ptp-clock-info                 60  yes       Netq Predefined Command
+ptp-clock-status               60  yes       Netq Predefined Command
+ptp-statistics                 60  yes       Netq Predefined Command
+ptp-correction                 30  yes       Netq Predefined Command
+log-exporter                   60  yes       Netq Predefined Command
+adaptive-routing-config       120  yes       Netq Predefined Command
 ```
 
 Show the configuration for a specified command:
@@ -1576,8 +1595,8 @@ agent_stats           300  yes       Netq Predefined Command
 
 ### Related Commands
 
-- ```netq config add agent commands```
-- ```netq config agent factory-reset commands```
+- `netq config add agent commands`
+- `netq config agent factory-reset commands`
 
 - - -
 ## netq config show all
@@ -1605,27 +1624,34 @@ None
 
 ```
 cumulus@switch:~$ netq config show all 
-netq-agent             value      default
----------------------  ---------  ---------
+netq-agent                value      default
+------------------------  ---------  ---------
 exhibitport
 exhibiturl
-server                 127.0.0.1  127.0.0.1
-cpu-limit              100        100
+server                    127.0.0.1  127.0.0.1
+cpu-limit                 100        100
 agenturl
-enable-opta-discovery  False      False
-agentport              8981       8981
-port                   31980      31980
-vrf                    default    default
+wjh                                  Enabled
+enable-opta-discovery     False      False
+agentport                 8981       8981
+port                      31980      31980
+vrf                       default    default
+is-gnmi-enabled           False      False
+netq_stream_port          7680       7680
+netq_stream_address       127.0.0.1  127.0.0.1
+is-ssl-enabled            False      False
+ssl-cert
+generate-unique-hostname  False      False
 ()
-netq-cli     value            default
------------  ---------------  ---------
-server       192.168.200.250  127.0.0.1
-netq-user
-premises     0
-port         32708            32708
-count        2000             2000
-vrf          default          default
-api-logging  False            False
+netq-cli     value              default
+-----------  -----------------  ---------
+server       10.188.45.236      127.0.0.1
+netq-user    admin
+premises     admin-1708956199
+port         32708              32708
+count        4000               4000
+vrf          default            default
+api-logging  False              False
 ()
 ```
 

@@ -15,7 +15,7 @@ Follow these steps to set up and configure your VM on a single server in a cloud
 
     {{<netq-install/port-reqs deployment="cloud" server="single">}}
 
-3. Download the NetQ images.
+3. Download the NetQ image.
 
     {{<netq-install/kvm-platform-image deployment="cloud" version="4.9">}}
 

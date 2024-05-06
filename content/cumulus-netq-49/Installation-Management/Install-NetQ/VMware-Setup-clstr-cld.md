@@ -17,7 +17,7 @@ Follow these steps to set up and configure your VM on a cluster of servers in a 
 
     {{<netq-install/port-reqs deployment="cloud" server="cluster">}}
 
-3. Download the NetQ Platform image.
+3. Download the NetQ image.
 
     {{<netq-install/vmw-platform-image deployment="cloud" version="4.9">}}
 

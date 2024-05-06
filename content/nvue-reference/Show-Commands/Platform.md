@@ -14,11 +14,15 @@ h { color: RGB(118,185,0)}
 
 Shows a list of all the software and hardware components on the switch.
 
+In Cumulus Linux 5.9 and later, the `nv show platform` command shows only platform hardware information on the switch, such as the model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
 ### Example
+
+In Cumulus Linux 5.8 and earlier:
 
 ```
 cumulus@switch:~$ nv show platform
@@ -52,6 +56,25 @@ software
   [installed]  bwm-ng                                                 
   [installed]  bzip2
 ...
+```
+
+In Cumulus Linux 5.9 and later:
+
+```
+cumulus@switch:~$ nv show platform
+               operational                            
+-------------  ---------------------------------------
+system-mac     44:38:39:22:01:b1                      
+manufacturer   Cumulus                                
+product-name   VX                                     
+cpu            x86_64 QEMU Virtual CPU version 2.5+ x1
+memory         1751856 kB                             
+disk-size      n/a                                    
+port-layout    n/a                                    
+part-number    5.9.0                                  
+serial-number  44:38:39:22:01:7a                      
+asic-model     n/a                                    
+system-uuid    b41196dc-78f1-4048-8079-f3c0fbeef739 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -331,6 +354,144 @@ cumulus@switch:~$ nv show platform environment sensor Temp
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show platform environment temperature</h>
+
+Shows the physical temperature sensors on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform environment temperature
+Name                                Cur Temp (°C)  Crit Temp  Max Temp  Min Temp  State
+----------------------------------  -------------  ---------  --------  --------  -----
+Board-Sensor-Near-Virtual-Switch    25.0           85         80        5         ok   
+Board-Sensor-at-Front-Left-Corner   25.0           85         80        5         ok   
+Board-Sensor-at-Front-Right-Corner  25.0           85         80        5         ok   
+Board-Sensor-near-CPU               25.0           85         80        5         ok   
+Board-Sensor-near-Fan               25.0           85         80        5         ok   
+PSU1-Temp-Sensor                    25.0           85         80        5         ok   
+PSU2-Temp-Sensor                    25.0           85         80        5         ok
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform environment temperature \<sensor-id\></h>
+
+Shows the current, critical, maximum, and minimum temperature for the specified sensor.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<sensor-id>`  |  The sensor ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform environment temperature PSU1-Temp-Sensor
+         operational
+-------  -----------
+state    ok         
+current  25.0       
+min      5          
+max      80         
+crit     85
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform environment voltage</h>
+
+Shows the voltage sensors on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform environment voltage
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform environment voltage \<sensor-id\></h>
+
+Shows the details for the specified voltage sensor.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<sensor-id>`  |  The sensor ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform environment voltage <sensor>
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform firmware</h>
+
+Shows information about the switch firmware.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform firmware
+Name  Actual FW                     Part Number  FW Source
+----  ----------------------------  -----------  ---------
+BIOS  1.13.0-1ubuntu1.1_04/01/2014  SeaBIOS      default
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform firmware \<component-id\></h>
+
+Shows information about the specified firmware component.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<component-id>`  |  The component name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform firmware BIOS
+                operational                 
+---------------  ----------------------------
+part-number      SeaBIOS                     
+actual-firmware  1.13.0-1ubuntu1.1_04/01/2014
+fw-source        default 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show platform hardware</h>
 
 Shows platform hardware information on the switch, such as the base MAC address, model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address.
@@ -398,6 +559,64 @@ cumulus@switch:~$ nv show platform hardware component device
 -----  -----------  -------  -------
 model  vx                           
 type   switch
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform inventory</h>
+
+Shows the switch inventory, which includes fan and PSU hardware version, model, serial number, state, and type.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform inventory
+          Hw version  Model  Serial             State  Type  
+--------  ----------  -----  -----------------  -----  ------
+FAN1/1    N/A         N/A    N/A                ok     fan   
+FAN1/2    N/A         N/A    N/A                ok     fan   
+FAN2/1    N/A         N/A    N/A                ok     fan   
+FAN2/2    N/A         N/A    N/A                ok     fan   
+FAN3/1    N/A         N/A    N/A                ok     fan   
+FAN3/2    N/A         N/A    N/A                ok     fan   
+PSU1      N/A         N/A    N/A                ok     psu   
+PSU1/FAN  N/A         N/A    N/A                ok     fan   
+PSU2      N/A         N/A    N/A                ok     psu   
+PSU2/FAN  N/A         N/A    N/A                ok     fan   
+SWITCH    3           5.9.0  44:38:39:22:01:7a  ok     switch
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show platform inventory \<inventory-id\></h>
+
+Shows information about the specified inventory type.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<inventory-id>`  |  The inventory ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show platform inventory FAN3/2
+                  operational
+----------------  -----------
+state             ok         
+hardware-version  N/A        
+model             N/A        
+serial            N/A        
+type              fan
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

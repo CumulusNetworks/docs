@@ -17,6 +17,7 @@ GRE uses multiple protocols over a single-protocol backbone and is less demandin
 - You cannot configure two tunnels with same local and remote tunnel IP address.
 - GRE tunnels cannot coexist with VXLAN or MPLS on the switch.
 - Cumulus Linux supports a maximum of 256 GRE tunnels.
+- You can only configure GRE tunnels in the default VRF.
 - GRE tunnels do not support layer 3 protocols, ECMP, QoS, ACLs or NAT.
 - All GRE tunnels share the same [TTL](## "Time to live") value; Cumulus Linux uses the TTL value of the tunnel you configure last.
 - You cannot configure the MTU on GRE tunnel interfaces. The GRE tunnel MTU is the maximum supported MTU on the switch by default.

@@ -101,8 +101,16 @@ Histogram settings include the type of data you want to collect, the ports you w
     - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
     - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
 - You can enable up to two counter histogram counter types per physical interface. The counter histogram does not support bonds or virtual interfaces.
-- The value for the minimum boundary size must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. The default minimum boundary size is 960 bytes.
+- The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. 
 - The default value for the sampling time is 1024 nanoseconds.
+
+{{%notice note%}}
+When you configure minimum boundary and histogram sizes, Cumulus Linux rounds down the configured byte value to the nearest multiple of the switch ASIC cell size before programming it into hardware. The cell size is a fixed number of bytes on each switching ASIC:
+
+- Spectrum-1: 96 bytes
+- Spectrum-2 and Spectrum-3: 144 bytes
+- Spectrum-4: 192 bytes 
+{{%/notice%}}
 
 {{< tabs "TabID81 ">}}
 {{< tab "NVUE Commands ">}}
@@ -191,7 +199,7 @@ The following table describes the ASIC monitor settings.
 |------- |----------- |
 | `port_group_list` | Specifies the names of the monitors (port groups) you want to use to collect data, such as `histogram_pg`. You can provide any name you want for the port group. You must use the same name for all the port group settings.<br><br>Example:<pre>monitor.port_group_list = [histogram_pg,discards_pg,buffers_pg, all_packets_pg]</pre>**Note**: You must specify at least one port group. If the port group list is empty, `systemd` shuts down the `asic-monitor` service. |
 | `<port_group_name>.port_set` | Specifies the range of ports you want to monitor; for example, `swp4,swp8,swp10-swp50`.<br><br>Example:<pre>monitor.histogram_pg.port_set = swp1-swp50</pre> |
-| `<port_group_name>.stat_type` | Specifies the type of data that the port group collects.<br><br>For egress queue length histograms, specify `histogram_tc`. For example:<pre>monitor.histogram_pg.stat_type = histogram_tc</pre>For ingress queue lenght histograms, specify `histogram_pg`. For example: <pre>monitor.histogram_pg.stat_type = histogram_pg</pre>For counter histograms, specify `histogram_counter`. For example:<pre>monitor.histogram_pg.stat_type = histogram_counter</pre>. |
+| `<port_group_name>.stat_type` | Specifies the type of data that the port group collects.<br><br>For egress queue length histograms, specify `histogram_tc`. For example:<pre>monitor.histogram_pg.stat_type = histogram_tc</pre>For ingress queue length histograms, specify `histogram_pg`. For example: <pre>monitor.histogram_pg.stat_type = histogram_pg</pre>For counter histograms, specify `histogram_counter`. For example:<pre>monitor.histogram_pg.stat_type = histogram_counter</pre>. |
 | `<port_group_name>.cos_list` | For histogram monitoring, each CoS (Class of Service) value in the list has its own histogram on each port. The global limit on the number of histograms is an average of one histogram per port.<br><br>Example:<pre>monitor.histogram_pg.cos_list = [0]</pre> |
 | `<port_group_name>.counter_type` | Specifies the counter type for counter histogram monitoring. The counter types can be `tx-pkt`,`rx-pkt`,`tx-byte`,`rx-byte`.<br><br>Example:<pre>monitor.histogram_pg.counter_type = [rx_byte]</pre> |
 | `<port_group_name>.trigger_type` | Specifies the type of trigger that initiates data collection. The only option is timer. At least one port group must have a configured timer, otherwise no data is ever collected.<br><br>Example:<pre>monitor.histogram_pg.trigger_type = timer</pre> |
@@ -528,7 +536,7 @@ Set the log options in the `/etc/cumulus/datapath/monitor.conf` file, then resta
 
 | Setting| Description|
 |------- |----------- |
-| `<port_group_name>.log.queue_bytes` | Set this option to `log` to create a log message when the queue length or counter number reaches the threshold set. |
+| `<port_group_name>.log.action_list` | Set this option to `log` to create a log message when the queue length or counter number reaches the threshold set. |
 | `<port_group_name>.log.queue_bytes` | Specifies the length of the queue in bytes after which the switch sends a log message. |
 | `<port_group_name>.log.count` | Specifies the number of counters to reach after which the switch sends a log message. |
 

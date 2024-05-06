@@ -2095,16 +2095,25 @@ footer {
   ul {
     margin: 0;
     padding: 0;
+    list-style-type: square;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 27px;
+    letter-spacing: -0.1px;
+    height: 30px;
+  
     li {
       display: inline-block;
       position: relative;
+      
+ 
 
       &:not(:first-of-type) {
-        padding-left: 25px;
+        padding-left: 0px;
+        
       }
 
       &:not(:first-of-type):after {
-        content: '';
         position: absolute;
         top: 50%;
         left: 9px;
@@ -2115,12 +2124,17 @@ footer {
         background: white;
       }
 
+      p {
+        font-size: 14px;
+      }
+
       a {
         color: white !important;
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 300;
         line-height: 27px;
         letter-spacing: -0.1px;
+        text-decoration: none;
 
         &:hover {
           color: $nvidia-green !important;

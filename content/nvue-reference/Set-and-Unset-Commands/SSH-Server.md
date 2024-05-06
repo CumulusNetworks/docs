@@ -238,3 +238,19 @@ Introduced in Cumulus Linux 5.6.0
 ```
 cumulus@switch:~$ nv set system ssh-server state disabled
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system ssh-server strict</h>
+
+Enables or disables SSH strict mode. By default, SSH strict mode is `on` so that Cumulus Linux disables X11, TCP forwarding, and compression and enforces secure ciphers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server strict disabled
+```

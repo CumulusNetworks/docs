@@ -1,3 +1,36 @@
+{{- if eq (.Get "version") "4.10" -}}
+
+You should see version 4.10.0 and update 46 in the results. For example:
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<ul>
+        <ul>
+            <li>Cumulus Linux 5.8.0 and earlier, ARM platforms: netq-apps_<strong>4.10.0</strong>-cl4u<strong>46</strong>~1713494875.127fb0c1b_armel.deb</li>
+            <li>Cumulus Linux 5.8.0 or earlier, amd64 platforms: netq-apps_<strong>4.10.0</strong>-cl4u<strong>46</strong>~1713945871.127fb0c1b_amd64.deb</li>
+            <li>Cumulus Linux 5.9.0 and later: netq-apps_<strong>4.10.0</strong>-cld12u<strong>46</strong>~1713949601.127fb0c1b_amd64.deb</li>
+        </ul>
+</ul>
+
+{{ end }}
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>Ubuntu 20.04: netq-apps_<strong>4.10.0</strong>-ub20.04u<strong>46</strong>~1713954968.127fb0c1b_amd64.deb</li>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "rh" -}}
+
+<ul>
+    <li>netq-apps_<strong>4.10.0</strong>-rh7u<strong>46</strong>~1713954667.127fb0c.x86_64.rpm</li>
+</ul>
+
+{{ end }}
+
+{{ end }}
+
 {{- if eq (.Get "version") "4.9" -}}
 
 You should see version 4.9.0 and update 45 in the results. For example:
@@ -6,8 +39,8 @@ You should see version 4.9.0 and update 45 in the results. For example:
 
 <ul>
         <ul>
-            <li>netq-apps_<strong>4.9.0</strong>-cl4u<strong>45</strong>~1706975387.d2ce145e5_armel.deb</li>
-            <li>netq-apps_<strong>4.9.0</strong>-cl4u<strong>45</strong>~1706967436.d2ce145e5_amd64.deb</li>
+            <li>netq-apps_<strong>4.9.0</strong>-cl4u<strong>45</strong>~1710411662.ea9740d7c_armel.deb</li>
+            <li>netq-apps_<strong>4.9.0</strong>-cl4u<strong>45</strong>~1710403644.ea9740d7c_amd64.deb</li>
         </ul>
 </ul>
 
@@ -15,7 +48,7 @@ You should see version 4.9.0 and update 45 in the results. For example:
 {{- if eq (.Get "opsys") "ub" -}}
 
 <ul>
-    <li>Ubuntu 20.04: netq-apps_<strong>4.9.0</strong>-ub20.04u<strong>45</strong>~1706973134.d2ce145e5_amd64.deb</li>
+    <li>Ubuntu 20.04: netq-apps_<strong>4.9.0</strong>-ub20.04u<strong>45</strong>~1710409093.ea9740d7c_amd64.deb</li>
 </ul>
 
 {{ end }}
@@ -23,7 +56,7 @@ You should see version 4.9.0 and update 45 in the results. For example:
 {{- if eq (.Get "opsys") "rh" -}}
 
 <ul>
-    <li>netq-apps_<strong>4.9.0</strong>-rh7u<strong>45</strong>~1706972846.d2ce145.x86_64.rpm</li>
+    <li>netq-apps_<strong>4.9.0</strong>-rh7u<strong>45</strong>~1710408794.ea9740d.x86_64.rpm</li>
 </ul>
 
 {{ end }}

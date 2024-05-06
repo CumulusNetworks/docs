@@ -18,6 +18,75 @@ Provides commands to configure <span class="a-tooltip">[LLDP](## "Link Layer Dis
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> lldp application-tlv app \<application-id\> </h>
+
+Configures the interface on which LLDP sends application priority TLVs in LLDP PDUs.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+|`<application-id>` |  The application name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 lldp application-tlv app iSCSI
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> lldp application-tlv tcp-port \<port-id\></h>
+
+Configures the interface on which LLDP sends application priority TLVs in LLDP PDUs for TCP traffic using the specified port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+|`<port-id>` |  The port number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 lldp application-tlv tcp-port 4217
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set interface \<interface-id\> lldp application-tlv udp-port \<port-id\></h>
+
+Configures the interface on which LLDP sends application priority TLVs in LLDP PDUs for UDP traffic.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+|`<port-id>` |  The port number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set interface swp1 lldp application-tlv udp-port 4317
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set interface \<interface-id\> lldp dcbx-ets-config-tlv</h>
 
 Configures ETS TLV transmission on the interface. The default setting is `off`.
@@ -102,6 +171,95 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@switch:~$ nv set service lldp dot1-tlv on
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service lldp application-tlv app \<application\> priority \<priority\></h>
+
+Configures the specified application TLV priority.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<application-id>` |  The application name. |
+|`<priority>` |  The priority ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp application-tlv app iSCSI priority 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service lldp application-tlv tcp-port \<port-id\> priority \<priority\></h>
+
+Configures the application priority for TCP traffic for the specified port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<port-id>` |  The port number. |
+|`<priority>` |  The priority ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp application-tlv tcp-port 4217 priority 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service lldp application-tlv udp-port \<port-id\> priority \<priority\></h>
+
+Configures the application priority for UDP traffic for the specified port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<portid>` |  The port number. |
+|`<priority>` |  The priority ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp application-tlv udp-port 4317 priority 4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set service lldp lldp-med-inventory-tlv></h>
+
+Configures the `lldpd` service to send <span class="a-tooltip">[LLDP-MED](## "LLDP for Media Endpoint Devices")</span> Inventory TLV advertisements. By default, Cumulus Linux transmits LLDP-MED Inventory TLV advertisements on enabled ports.
+
+LLDP-MED is an extension to LLDP that operates between endpoint devices, such as IP phones and switches. Inventory management TLV enables an endpoint to transmit detailed inventory information about itself to the switch, such as the hardware revision, firmware version, software version, serial number, manufacturer name, and model name.
+
+You can disable LLDP-MED inventory TLV transmission if you want LLDP to receive LLDP-MED inventory TLVs (and publish them using SNMP, if enabled) but not send them.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set service lldp lldp-med-inventory-tlv off
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

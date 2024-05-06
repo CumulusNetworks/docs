@@ -7,8 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3856614</td>
+<td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>4.3.2-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -21,8 +27,8 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.8.0</td>
-<td></td>
+<td>4.3.0-5.6.0</td>
+<td>5.7.0-5.8.0</td>
 </tr>
 <tr>
 <td>3647424</td>
@@ -311,12 +317,6 @@ snmpd.service - Simple Network Management Protocol (SNMP) Daemon.
 To work around this issue, run the {{sudo systemctl restart snmpd.service}} command.</td>
 <td>4.3.0-4.4.5</td>
 <td>5.0.0-5.8.0</td>
-</tr>
-<tr>
-<td>2803044</td>
-<td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2794766</td>
@@ -2030,7 +2030,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
 Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
 For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.3.1, 5.0.0-5.8.0</td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
 </tr>
 <tr>
 <td>3544701</td>
@@ -2097,7 +2097,7 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <tr>
 <td>3413826</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>5.0.0-5.4.0</td>
+<td>4.2.1-4.3.1, 4.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3410952</td>
@@ -2225,7 +2225,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 </tr>
 <tr>
 <td>3773177</td>
-<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
+<td>When you try to upgrade a switch from Cumulus Linux 5.5 or earlier to 5.8.0 or later with package upgrade, you see errors for expired GPG keys that prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
 
 cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
 cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
@@ -2238,16 +2238,16 @@ cumulus@switch:~$ sudo apt upgrade
 <tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.8.0</td>
-<td></td>
+<td>4.3.0-5.6.0</td>
+<td>5.7.0-5.8.0</td>
 </tr>
 <tr>
 <td>3647731</td>
 <td>CVE-2023-38408: The PKCS#11 feature in ssh-agent in OpenSSH before 9.3p2 has an insufficiently trustworthy search path, leading to remote code execution if an agent is forwarded to an attacker-controlled system. (Code in /usr/lib is not necessarily safe for loading into ssh-agent.) NOTE: this issue exists because of an incomplete fix for CVE-2016-10009.
 Mitigation: Do not use ssh-agent forwarding (the man page for ssh_config says that "agent forwarding should be enabled with caution"), or start the ssh-agent program with the -P option to allow only specific PKCS#11 libraries (or none with -P '').
 For Cumulus Linux 4.3.2, the /usr/bin/ssh-agent program has all permissions turned off (chmod 0) to prevent its execution if a vulnerable version is detected.</td>
-<td>4.0.0-4.3.1, 5.0.0-5.8.0</td>
-<td>4.3.2-4.4.5</td>
+<td>4.0.0-4.3.1, 5.0.0-5.6.0</td>
+<td>4.3.2-4.4.5, 5.7.0-5.8.0</td>
 </tr>
 <tr>
 <td>3647424</td>
@@ -2333,6 +2333,12 @@ switchd[8587]: hal_bcm.c:2207 CRIT knet_vlan_translate_delete(update): port 1 ex
 <td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
 <td>4.3.1</td>
 <td>4.3.2-4.4.5</td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-5.4.0</td>
+<td>5.5.0-5.8.0</td>
 </tr>
 <tr>
 <td>3410952</td>
@@ -2749,12 +2755,6 @@ snmpd.service - Simple Network Management Protocol (SNMP) Daemon.
 To work around this issue, run the {{sudo systemctl restart snmpd.service}} command.</td>
 <td>4.3.0-4.4.5</td>
 <td>5.0.0-5.8.0</td>
-</tr>
-<tr>
-<td>2803044</td>
-<td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2794766</td>

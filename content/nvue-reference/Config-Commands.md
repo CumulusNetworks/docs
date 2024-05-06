@@ -12,7 +12,9 @@ h { color: RGB(118,185,0)}
 
 ## <h>nv config apply </h>
 
-Applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. To save the startup configuration automatically when you run `nv config apply` without having to run the `nv config save` command, run the `nv set system config auto-save enable on` command, described in the System Configuration section of the Set and Unset commands.
+In Cumulus Linux 5.8 and earlier, the `nv config apply` command applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. To save the startup configuration automatically when you run `nv config apply` without having to run the `nv config save` command, run the `nv set system config auto-save enable on` command.
+
+In Cumulus Linux 5.9 and later, auto save is `on` by default; the `nv config apply` command automatically saves the configuration and the configuration persists after a reboot.
 
 You can specify the following options with the `nv config apply` command:
 
@@ -214,9 +216,35 @@ cumulus@switch:~$ nv config replace myconfig.yaml
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv config revision</h>
+
+Shows the configuration revisions on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@switch:~$ nv config revision
+Rev ID                State              Apply ID                          Apply Date           Type      User     Reason         Message                        
+--------------------  -----------------  --------------------------------  -------------------  --------  -------  -------------  -------------------------------
+1                     applied_and_saved  rev_1_apply_1                     2024-04-26 11:24:50  CLI       root     Config update  Password sync for user: cumulus
+2                     applied_and_saved  rev_2_apply_2                     2024-04-26 16:06:14  CLI       cumulus  Config update  Config update by cumulus       
+3                     applied_and_saved  rev_3_apply_1                     2024-04-26 16:17:21  CLI       cumulus  Config update  Config update by cumulus       
+4                     applied_and_saved  rev_4_apply_1                     2024-04-26 16:34:04  CLI       cumulus  Config update  Config update by cumulus
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv config save</h>
 
 Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot.
+
+In Cumulus Linux 5.9 and later, auto save is `on` by default; NVUE saves the configuration to the `/etc/nvue.d/startup.yaml` file automatically. Run this command to save the applied configuration if NVUE auto save if `off`.
+
+In Cumulus Linux 5.8 and earlier, auto save is `off` by default.
 
 ### Version History
 

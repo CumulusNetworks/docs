@@ -58,8 +58,7 @@ If you modify the configuration in the `/etc/cumulus/datapath/traffic.conf` file
 
 The following example `/etc/cumulus/datapath/traffic.conf` datapath
 configuration file applies to 10G, 40G, and 100G switches on Broadcom
-Tomahawk, Trident II, Trident II+, or Trident3 and Mellanox Spectrum
-{{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="platforms">}} only. However, see the note
+Tomahawk, Trident II, Trident II+, or Trident3 and Mellanox Spectrum platforms only. However, see the note
 above for all the supported ASICs.
 
 Keep in mind the following about the configuration:
@@ -669,7 +668,7 @@ traffic is received. If the ECN bits are set, they remain set. The only
 way to overwrite ECN bits is to enable it - that is, set the ECN bits to
 *11*.
 
-ECN is supported on {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum switches">}}.
+ECN is supported on Broadcom Tomahawk, Tomahawk2, Trident II, Trident II+ and Trident3, and Mellanox Spectrum switches.
 
 <details>
 <summary>Click to learn how to configure ECN ... </summary>

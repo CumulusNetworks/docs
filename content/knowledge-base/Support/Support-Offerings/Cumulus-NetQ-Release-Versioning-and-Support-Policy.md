@@ -30,8 +30,8 @@ NetQ software installation file names include a version number, in the form of x
 
 For example:
 
-- netq-apps_<strong>4.8.0</strong>-deb10u<strong>44</strong>~1699076923.80e664937_amd64.deb
-- netq-agent_<strong>4.8.0</strong>-deb10u<strong>44</strong>~1699076923.80e664937_amd64.deb
+- netq-apps_<strong>4.10.0</strong>-deb10u<strong>46</strong>~1713949850.127fb0c1b_amd64.deb
+- netq-agent_<strong>4.10.0</strong>-deb10u<strong>46</strong>~1713949850.127fb0c1b_amd64.deb
 
 ## Release, Support Lifecycle and Support Policy
 
@@ -48,6 +48,8 @@ The following table depicts the NetQ release support matrix:
 
 | NetQ Release | Release Date | End of Support |
 | :--------: | --------- | --------- |
+| 4.10.z | 30-Apr-2024 | 30-Apr-2026 |
+| 4.9.z | 18-Mar-2024 | 18-Mar-2026 |
 | 4.8.z | 10-Nov-2023 | 10-Nov-2025 |
 | 4.7.z | 11-Aug-2023 | 11-Aug-2025 |
 | 4.6.z | 01-May-2023 | 01-May-2025 |
@@ -61,4 +63,4 @@ The following table depicts the NetQ release support matrix:
 
 ## Upgrade Process
 
-For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-48/Installation-Management" >}}).
+For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-410/Installation-Management" >}}).

@@ -7,7 +7,7 @@ toc: 4
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 5.0.0 and later (Spectrum switches)
+- Cumulus Linux 5.0.0 to 5.8.0 (Spectrum switches)
 - Cumulus Linux 4.3.0, 4.3.1, and 4.3.2 (Broadcom switches)
 - SONiC 202012
 - CentOS 7
@@ -72,7 +72,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upg
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.9
 ...
 ```
 
@@ -149,7 +149,7 @@ To obtain the NetQ Agent package:
 
        admin@switch:~$ sudo vi /etc/apt/sources.list
        ...
-       deb https://apps3.cumulusnetworks.com/repos/deb buster netq-latest
+       deb https://apps3.cumulusnetworks.com/repos/deb buster netq-4.9
        ...
 1. Add the SONiC repo key:
 
@@ -239,14 +239,14 @@ To obtain the NetQ Agent package:
     ```
     root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
     ...
-    [cumulus-arch-netq-4.0]
+    [cumulus-arch-netq-4.9]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.9/$basearch
     gpgcheck=1
     enabled=1
-    [cumulus-noarch-netq-4.0]
+    [cumulus-noarch-netq-4.9]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.0/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.9/noarch
     gpgcheck=1
     enabled=1
     ...
@@ -414,7 +414,7 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and ad
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-4.9
 ...
 ```
 
@@ -427,17 +427,13 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.9
 ...
 ```
 
 {{</tab>}}
 
 {{</tabs>}}
-
-    {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
-    {{</notice>}}
 
 {{</tab>}}
 

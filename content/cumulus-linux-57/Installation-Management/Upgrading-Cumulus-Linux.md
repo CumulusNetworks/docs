@@ -180,6 +180,7 @@ Run **package upgrade** if you are upgrading from Cumulus Linux 5.0.0 to a later
 Be aware of the following when upgrading packages:
 
 - You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from 4.x to 5.x.
+- You can only use package upgrade to upgrade a switch with an image install to a maximum of two releases; for example, you can package upgrade a switch running the Cumulus Linux 5.5 image to 5.6 or 5.7 (5.5 plus two releases).
 - The `sudo -E  apt-get upgrade` command might restart or stop services as part of the upgrade process.
 - The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
@@ -308,7 +309,7 @@ To upgrade the switch using package upgrade:
 6. Verify correct operation with the old configurations on the new version.
 
 {{%notice info%}}
-The first time you run the NVUE `nv config apply` command after upgrading to Cumulus Linux 5.4, NVUE might override certain existing configuration for features that are now configurable with NVUE. Immediately after you reboot the switch to complete the upgrade, NVIDIA recommends you either:
+The first time you run the NVUE `nv config apply` command after upgrading to Cumulus Linux 5.7, NVUE might override certain existing configuration for features that are now configurable with NVUE. Immediately after you reboot the switch to complete the upgrade, NVIDIA recommends you either:
 - Run NVUE commands to configure these features.
 - Configure NVUE to ignore changes to the relevant configuration files for these features; refer to {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}.
 {{%/notice%}}

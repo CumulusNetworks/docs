@@ -14,20 +14,18 @@ For deployments running:
 - 4.2.0 or earlier: upgrade incrementally {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="to version 4.3.0">}}. Then {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation of NetQ 4.9.0">}}
 
 During the upgrade process, NetQ will be temporarily unavailable.
-
-{{%notice infonopad%}}
-NetQ 4.9 does not support on-premises, cluster deployments.
-{{%/notice%}}
-
 ## Before You Upgrade
 
-1. Verify that the admin app is running with the `netq show status` command.
+1. Verify that Kubernetes is running and the admin app is up:
 
-2. Verify that Kubernetes is running with the `kubectl get pods` command.
+```
+cumulus@masternode:~$ /home/cumulus# kubectl get pods|grep admin
+    netq-app-admin-masternode                            1/1     Running            0               15m
+```
 
-    If either of these commands display errors, you will not be able to upgrade NetQ. Reset the NetQ server with the `netq bootstrap reset keep-db` command and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="netq install">}} command for your deployment type.
+If the output of this command displays errors or returns an empty response, you will not be able to upgrade NetQ. Try waiting and then re-run the command. If after several attempts the command continues to fail, reset the NetQ server with `netq bootstrap reset keep-db` and perform a fresh installation of the tarball with the appropriate {{<link title="install" text="netq install">}} command for your deployment type.
 
-3. {{<link title="Back Up and Restore NetQ" text="Back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
+2. {{<link title="Back Up and Restore NetQ" text="Back up your NetQ data">}}. This is an optional step for on-premises deployments. NVIDIA automatically creates backups for NetQ cloud deployments.
 
 ## Update NetQ Debian Packages
 
@@ -41,6 +39,7 @@ NetQ 4.9 does not support on-premises, cluster deployments.
 2. Update the NetQ `debian` packages. In cluster deployments, update the packages on the master and all worker nodes.
 
     ```
+    cumulus@<hostname>:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add
     cumulus@<hostname>:~$ sudo apt-get update
     Get:1 https://apps3.cumulusnetworks.com/repos/deb focal InRelease [13.8 kB]
     Get:2 https://apps3.cumulusnetworks.com/repos/deb focal/netq-4.9 amd64 Packages [758 B]
@@ -62,11 +61,11 @@ NetQ 4.9 does not support on-premises, cluster deployments.
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (4.9.0-ub20.04u45~1706973134.d2ce145e5) ...
+    Unpacking netq-agent (4.9.0-ub20.04u45~1710409093.ea9740d7c) ...
     ...
-    Unpacking netq-apps (4.9.0-ub20.04u45~1706973134.d2ce145e5) ...
-    Setting up netq-apps (4.9.0-ub20.04u45~1706973134.d2ce145e5) ...
-    Setting up netq-agent (4.9.0-ub20.04u45~1706973134.d2ce145e5) ...
+    Unpacking netq-apps (4.9.0-ub20.04u45~1710409093.ea9740d7c) ...
+    Setting up netq-apps (4.9.0-ub20.04u45~1710409093.ea9740d7c) ...
+    Setting up netq-agent (4.9.0-ub20.04u45~1710409093.ea9740d7c) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
@@ -103,17 +102,23 @@ cumulus@netq-appliance:~$
 ```
 NVIDIA recommends proceeding with the installation only if the `Use%` is less than 70%. You can delete previous software tarballs in the `/mnt/installables/` directory to regain some space. If you cannot decrease disk usage to under 70%, contact the NVIDIA support team.
 
-3. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If the pods are in a state other than `READY`, contact the NVIDIA support team.
+3. Confirm that the NetQ CLI is {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
 
-4. Confirm that the NetQ CLI is {{<link url="Install-NetQ-CLI/#configure-the-netq-cli" text="properly configured">}}. The `netq show agents` command should complete successfully and display agent status.
-
-5. Ensure that the required ports are open {{<link title="Install the NetQ System" text="according to your deployment model">}}.
+4. Ensure that the required ports are open {{<link title="Install the NetQ System" text="according to your deployment model">}}.
 
 {{%notice note%}}
 
 If you are upgrading a cluster deployment to NetQ 4.9.0, you must open TCP port 36443 for Kubernetes control plane operations.
 
 {{%/notice%}}
+
+5. Run the following command to ensure that the NetQ version is consistent between the *netq-agent* package, the *netq-apps* package, and the tarball you downloaded in the previous section:
+
+```
+cumulus@<hostname>:~$ dpkg -l | grep netq
+ii  netq-agent                      4.9.0-ub20.04u45~1710409093.ea9740d7c amd64        Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps                       4.9.0-ub20.04u45~1710409093.ea9740d7c amd64        Cumulus NetQ Fabric Validation Application for Ubuntu
+```
 
 ### Upgrade Using the NetQ CLI
 
@@ -138,7 +143,20 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 
 {{<tab "Cluster">}}
 
-NetQ 4.9 does not support on-premises, cluster deployments.
+Run the `netq upgrade` command, specifying the current version's tarball and your cluster's virtual IP address. The virtual IP address must be allocated from the same subnet used for your master and worker nodes.
+
+```
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.9.0.tgz cluster-vip <vip-ip>
+```
+{{%notice note%}}
+
+If you are upgrading from a NetQ 4.8 high availability, on-premises cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the upgrade command. Specifying a virtual IP address that is different from the virtual IP address used during the installation process will cause the upgrade to fail. 
+
+{{%/notice%}}
+
+{{%notice info%}}
+If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-cluster-full" text="netq install cluster full">}} command.
+{{%/notice%}}
 {{</tab>}}
 
 {{</tabs>}}
@@ -188,7 +206,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
     BOOTSTRAP_VERSION=4.9.0
-    APPLIANCE_MANIFEST_HASH=8869b5423dfcc441ea56a3c89e680b1b2ad61f6887edccb11676bac893073beb
+    APPLIANCE_MANIFEST_HASH=a9d82e8df46178c9a0b3ac17678d4ae8aeba54a89c502fc8042de1f784fc3ef2
     APPLIANCE_VERSION=4.9.0
     APPLIANCE_NAME=NetQ On-premises Appliance
     ```
@@ -200,7 +218,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
     BOOTSTRAP_VERSION=4.9.0
-    APPLIANCE_MANIFEST_HASH=271f5943ffae42f758fef09bafeb37a63d996bd6e41bf7aeeb3a4d33232f05de
+    APPLIANCE_MANIFEST_HASH=c743bca6bb7ca28a17e7b27559bb13f2098e4d7a810b658bfd248a46fd0e09c5
     APPLIANCE_VERSION=4.9.0
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```

@@ -219,6 +219,30 @@ curl --location --request POST 'https://air.nvidia.com/api/v2/simulation/' \
 {{< /tab >}}
 {{< /tabs >}}
 
+Optionally, a ZTP script can also be included during simulation creation. The script will automatically be hosted by the oob-mgmt-server and fetched by nodes that support ZTP.
+
+{{< tabs "TabID224">}}
+{{< tab "SDK ">}}
+
+```
+>>> ztp_contents = '<ztp_script_content_here>'
+>>> simulation = air.simulations.create(topology_data=dot_file_path, ztp_script=ztp_contents)
+```
+{{< /tab >}}
+{{< tab "cURL ">}}
+
+```
+curl --location --request POST 'https://air.nvidia.com/api/v2/simulation/' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "topology_data": "graph \"My Simulation\" {\n  \"cumulus0\" [ memory=\"1024\" os=\"cumulus-vx-5.7.0\" cpu=\"1\" ]\n  \"cumulus1\" [ memory=\"1024\" os=\"cumulus-vx-5.7.0\" cpu=\"1\"]\n    \"cumulus0\":\"swp1\" -- \"cumulus1\":\"swp1\"\n    \"cumulus0\":\"swp2\" -- \"cumulus1\":\"swp2\"\n}\n",
+  "ztp_script": "<ztp_script_content_here>"
+}'
+```
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Delete a Simulation
 {{< tabs "TabID55289 ">}}
 {{< tab "SDK ">}}
@@ -574,6 +598,21 @@ curl --request POST 'https://air.nvidia.com/api/v1/simulation-node/<simulation_n
 {{<notice info>}}
 To avoid a race condition on Cumulus Linux nodes running a version prior to 5.0.0, schedule the node instructions prior to starting the simulation. If you do not perform the steps in this order, the instructions might fail to complete. 
 {{</notice>}}
+
+### Adjusting Request Timeouts
+
+By default, the SDK implements the following timeouts for all API requests:
+
+* Establishing a connection to the server (`connect_timeout`): 16 seconds
+* Receiving a response to a request (`read_timeout`): 61 seconds
+
+These values can be adjusted after instantiating the `AirApi` client:
+
+```
+>>> air = AirApi(username='<username>', password='<api_token>')
+>>> air.client.default_connect_timeout = 30
+>>> air.client.default_read_timeout = 120
+```
 
 ## Developing
 
@@ -979,6 +1018,24 @@ Delete the image. Once successful, the object should no longer be used and will 
 
 - `kwargs` _dict, optional_ - All optional keyword arguments are applied as key/value
   pairs in the request's JSON payload
+
+### publish
+Publish an image for public use
+
+**Arguments**:
+
+  - `contact` _str_ - The email address for the contact person associated with this image.
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Publish failed
+
+### unpublish
+Unpublish the image from public use
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Unpublish failed
 
 <a name="air_sdk.image.Image.upload"></a>
 ### upload

@@ -494,7 +494,7 @@ Address         Interface      Nexthop
 
 Use multicast boundaries to limit the distribution of multicast traffic and push multicast to a subset of the network. With boundaries in place, the switch drops or accepts incoming IGMP or PIM joins according to a prefix list. To configure the boundary, apply an IP multicast boundary OIL (outgoing interface list) on an interface.
 
-First create a prefix list, then run the following commands:
+First create a prefix list consisting of multicast group addresses, then run the following commands:
 
 {{< tabs "TabID983 ">}}
 {{< tab "NVUE Commands ">}}
@@ -818,7 +818,7 @@ cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast 
 cumulus@switch:~$ nv config apply
 ```
 
-The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called allowRP:
+The following example command configures PIM to only ignore the RP check for RP addresses in the prefix list called allowRP:
 
 ```
 cumulus@switch:~$ nv set interface swp50 router pim address-family ipv4-unicast allow-rp rp-list allowRP
@@ -841,7 +841,7 @@ switch# write memory
 switch# exit
 ```
 
-The following example command configures PIM to only ignore the RP check for the upstream neighbors in the prefix list called allowRP:
+The following example command configures PIM to only ignore the RP check for RP addresses in the prefix list called allowRP:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -1005,11 +1005,11 @@ cumulus@switch:~$ nv config apply
 ### IGMP Settings
 
 You can set the following optional IGMP settings on a PIM interface:
-- The last member query interval, which is the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 6553 seconds. The default setting is 10.
-- The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 100.
-- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message on the interface. You can specify a value between 1 and 255. The default setting is 2.
-- How often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 65535 seconds. The default setting is 125.
-- Fast leave processing, where the switch immediately removes a port from the forwarding entry for a multicast group when the port receives a leave message. The default setting is off.
+- The last member query interval, which is the interval between the queries in response to the leave message received by the last member of the group. You can specify a value between 1 and 6553 seconds. The default setting is 10.
+- The maximum response time for IGMP general queries. You can specify a value between 1 and 6553 seconds. The default setting is 100. The maximum response time must be less than the last member query interval.
+- The last member query count, which is the number of group-specific queries that a querier can send after receiving a leave message from the last member of the group. You can specify a value between 1 and 255. The default setting is 2.
+- How often IGMP sends query messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 65535 seconds. The default setting is 125.
+- Fast leave, where the switch immediately removes a port from the forwarding entry for a multicast group when the port receives a leave message. The default setting is off.
 
 {{< tabs "TabID356 ">}}
 {{< tab "NVUE Commands ">}}
@@ -2220,9 +2220,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL57 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
-
-This simulation is running Cumulus Linux 5.7. The Cumulus Linux 5.8 simulation is coming soon.
+    {{< simulation name="Try It CL58 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
 

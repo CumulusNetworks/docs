@@ -9,7 +9,7 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux 5.0.0 and later (Spectrum switches)
+- Cumulus Linux 5.0.0 to 5.8.0 (Spectrum switches)
 - Cumulus Linux 4.3.0, 4.3.1, and 4.3.2 (Broadcom switches)
 - SONiC 202012
 - CentOS 7
@@ -207,7 +207,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
     0 sources with unknown address
     ```
 
-4. View the time servers chrony is using.
+4. View the time servers that chrony is using.
 
     ```
     root@ubuntu:~# chronyc sources
@@ -243,7 +243,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
     rtcsync
     ```
 
-5. View the server chrony is currently tracking.
+5. View the server that chrony is currently tracking.
 
     ```
     root@ubuntu:~# chronyc tracking
@@ -293,7 +293,7 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-bionic.list` and ad
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-bionic.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-4.9
 ...
 ```
 
@@ -306,17 +306,13 @@ Create the file `/etc/apt/sources.list.d/cumulus-host-ubuntu-focal.list` and add
 ```
 root@ubuntu:~# vi /etc/apt/sources.list.d/cumulus-apps-deb-focal.list
 ...
-deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-latest
+deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.9
 ...
 ```
 
 {{</tab>}}
 
 {{</tabs>}}
-
-    {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
-    {{</notice>}}
 
 ## Install NetQ CLI
 
@@ -333,7 +329,7 @@ Cumulus Linux 4.4 and later includes the `netq-apps` package by default. To upgr
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.9
 ...
 ```
 
@@ -391,7 +387,7 @@ To obtain the NetQ CLI package:
 
     You should see version 4.9.0 and update 45 in the results. For example:
 
-    netq-apps_<strong>4.9.0</strong>-deb10u<strong>45</strong>~1706971648.d2ce145e5_amd64.deb
+    netq-apps_<strong>4.9.0</strong>-deb10u<strong>45</strong>~1710407608.ea9740d7c_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -413,12 +409,12 @@ To obtain the NetQ CLI package:
     ...
     [cumulus-arch-netq-latest]
     name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-latest/$basearch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.9/$basearch
     gpgcheck=1
     enabled=1
     [cumulus-noarch-netq-latest]
     name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-latest/noarch
+    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-4.9/noarch
     gpgcheck=1
     enabled=1
     ...

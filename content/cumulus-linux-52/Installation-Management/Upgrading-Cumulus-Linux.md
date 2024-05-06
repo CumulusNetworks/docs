@@ -136,6 +136,8 @@ To backup and restore the configuration commands:
    cumulus@switch:~$ source backup.config
    ```
 
+   If the backup configuration contains an obfuscated password, you need to reconfigure the password after you run the `source backup.config` command; otherwise authentication fails.
+
 4. Verify the configuration on the switch, then run the `nv config save` command to save the configuration to the `/etc/nvue.d/startup.yaml` file.
 
 For information about the NVUE object model and commands, see {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience - NVUE">}}.
@@ -195,6 +197,7 @@ Run **package upgrade** if you are upgrading from Cumulus Linux 5.0.0 to a later
 Be aware of the following when upgrading packages:
 
 - You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from 4.x to 5.x.
+- You can only use package upgrade to upgrade a switch with an image install to a maximum of two releases; for example, you can package upgrade a switch running the Cumulus Linux 5.0 image to 5.1 or 5.2 (5.0 plus two releases).
 - The `sudo -E  apt-get upgrade` command might restart or stop services as part of the upgrade process.
 - The `sudo -E apt-get upgrade` command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.

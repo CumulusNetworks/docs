@@ -941,7 +941,7 @@ ACLs in Cumulus Linux are based on Linux iptables with the following default beh
 - There is no implicit deny. ACLs must end in a `match any` and `action deny` rule to drop all unmatched traffic.
 - There is no support for wildcard masks. You must list subnets individually.
 
-For more information, refer to the {{<kb_link latest="cl" url="System-Configuration/Netfilter-ACLs.md" text="Netfilter - ACLs" >}} section of the Cumulus Linux User Guide.
+For more information, refer to the {{<kb_link latest="cl" url="System-Configuration/Access-Control-Lists/Access-Control-List-Configuration.md" text="ACLs" >}} section of the Cumulus Linux User Guide.
 
 <!-- vale on -->
 In addition to NCLU commands, you can configure ACLs straight by setting ebtables and iptables rules. To ease ACL management on the system, you can use a tool called `cl-acltool`.

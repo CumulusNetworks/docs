@@ -2178,7 +2178,7 @@ Fixed: 2.4.10-10+deb8u19</td>
 <tr>
 <td>2803044</td>
 <td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
+<td>3.7.14.2-3.7.15</td>
 </tr>
 <tr>
 <td>2801262</td>
@@ -3139,7 +3139,7 @@ Fixed: 2.4.10-10+deb8u19</td>
 <tr>
 <td>2803044</td>
 <td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
+<td>3.7.14.2-3.7.15</td>
 <td>3.7.16</td>
 </tr>
 <tr>
@@ -5849,7 +5849,7 @@ Fixed: 2.4.10-10+deb8u19</td>
 <tr>
 <td>2803044</td>
 <td>In an EVPN configuration with IP or MAC mobility, higher MM EVPN routes do not remove the old ARP entries during VIP migration between VTEP racks.</td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.5</td>
+<td>3.7.14.2-3.7.15</td>
 <td>3.7.16</td>
 </tr>
 <tr>

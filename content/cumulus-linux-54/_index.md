@@ -28,10 +28,6 @@ To implement various Cumulus Linux features, NVIDIA has forked various software 
 
 NVIDIA has also developed and released new applications as open source. The list of open source projects is on the {{<link title="Cumulus Linux 5.4 Packages" text="Cumulus Linux packages" >}} page.
 
-## Hardware Compatibility List
-
-You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="here" >}}. Use the HCL to confirm that Cumulus Linux supports your switch model. The HCL lists products by port configuration, manufacturer and SKU part number.
-
 ## Download the User Guide
 
 The following options exist for downloading the user guide for offline use:

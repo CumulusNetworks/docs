@@ -774,7 +774,7 @@ cumulus@switch:~$ nv set service telemetry snapshot-file count 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry snapshot-file name <value></h>
+## <h>nv set service telemetry snapshot-file name \<value\></h>
 
 Configures the snapshot file name and location. The default location and file name is `/var/lib/cumulus/histogram_stats`.
 

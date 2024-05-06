@@ -216,7 +216,7 @@ cumulus@switch:~$ nv action clear interface swp1 bond mlag lacp-conflict
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action clear interface \<interface-id\> bridge domain <domain-id> stp bpduguardviolation</h>
+## <h>nv action clear interface \<interface-id\> bridge domain \<domain-id\> stp bpduguardviolation</h>
 
 Clears the BPDU guard violation from the specified interface and recovers the interface from the `protodown` state.
 

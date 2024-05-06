@@ -1263,7 +1263,7 @@ Turns PTP on or off in the specified VRF.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf>` |  The VRF name. |
+| `<vrf-id>` |  The VRF name. |
 
 ### Version History
 

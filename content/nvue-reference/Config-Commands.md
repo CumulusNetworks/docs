@@ -37,7 +37,11 @@ cumulus@switch:~$ nv config apply --y
 
 ## <h>nv config apply \<revision\></h>
 
-Applies a specific configuration revision. This command does not save the configuration; the configuration does not persist after a reboot. You can specify the following options with this command:
+Applies a specific configuration revision.
+
+In Cumulus Linux 5.8 and earlier, the `nv config apply <revision>` command applies the configuration for the revision. This command does not save the configuration; the configuration does not persist after a reboot. To save the revision automatically when you run `nv config apply <revision>` without having to run the `nv config save` command, run the `nv set system config auto-save enable on` command.
+
+In Cumulus Linux 5.9 and later, auto save is `on` by default; the `nv config apply <revision>` command automatically saves the configuration for the revision and the configuration persists after a reboot. You can specify the following options with this command:
 
 - `--y` or `--assume-yes` automatically replies yes to all prompts.
 - `--assume-no` automatically replies no to all prompts.
@@ -80,7 +84,7 @@ cumulus@switch:~$ nv config detach
 
 ## <h>nv config diff \<revision-base\> \<revision-target\></h>
 
-Shows differences between configurations, such as the startup configuration and the applied configuration, or the applied configuration and a specific configuration revision.
+Shows the differences between configurations, such as the startup configuration and the applied configuration, or the applied configuration and a specific configuration revision.
 
 ### Command Syntax
 

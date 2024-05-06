@@ -132,7 +132,7 @@ Sets the action you want the PBR map rule to take, such as apply a next hop grou
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<pbr-map-id>` | The PBR route map name. |
-| `<rule-id> `  |  The PBR rule number. |
+| `<rule-id`  |  The PBR rule number. |
 
 ### Version History
 

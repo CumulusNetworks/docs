@@ -525,7 +525,7 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-cla
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface <interface-id> telemetry histogram latency traffic-class \<tc-id\> snapshot</h>
+## <h>nv show interface \<interface-id\> telemetry histogram latency traffic-class \<tc-id\> snapshot</h>
 
 Shows the snapshot collected for latency histogram samples for the specified traffic class on the specified interface.
 

@@ -459,7 +459,7 @@ cumulus@switch:~$ nv set acl acl_3 rule 1 action source-nat translate-ip 172.30.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<range-id\> to <ipv4></h>
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<range-id\> to \<ipv4\></h>
 
 Configures a dynamic NAT action rule to translate a source IP address range to a public address.
 
@@ -482,7 +482,7 @@ cumulus@switch:~$ nv set acl acl_1 rule 1 action source-nat translate-ip 172.30.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl <acl-id> rule <rule-id> action source-nat translate-mac <mac></h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-mac \<mac\></h>
 
 Configures MAC address translation to translate a source MAC address to a public address. MAC address translation is equivalent to static NAT but operates at layer 2 on Ethernet frames.
 

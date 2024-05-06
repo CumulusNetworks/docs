@@ -956,7 +956,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast mult
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id> router bgp address-family ipv6-unicast multipaths compare-cluster-length</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast multipaths compare-cluster-length</h>
 
 Turns on cluster length comparison for IPv6 for the specified VRF. When `on` and iBGP paths have a cluster list, their lengths must be equal to be selected as multipaths. The default setting is `off`.
 
@@ -5725,7 +5725,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 type unnumbered
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> update-source </h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> update-source</h>
 
 Configures the BGP source of routing updates. You can specify an interface, or an IPv4 or IPv6 address.
 

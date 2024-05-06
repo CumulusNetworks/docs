@@ -399,6 +399,7 @@ Shows configuration of a specific class assigned to the specified role.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<role-id>` |  The name of the role. |
+| `<class-id>` |  The name of the class. |
 
 ### Version History
 

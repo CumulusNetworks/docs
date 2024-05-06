@@ -2176,7 +2176,7 @@ cumulus@switch:~$ nv set qos roce enable off
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set qos roce mode</h>
+## <h>nv set qos roce mode</h>
 
 Configures the RoCE mode. You can specify `lossy` or `lossless`. The default setting is `lossless`.
 

@@ -269,7 +269,7 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 ### DHCP Relay for IPv4 in an EVPN Symmetric Environment with MLAG
 
 
-In EVPN symmetric environments with MLAG, enabling RFC 3527 support is required. You can specify an interface such as the loopback or VRF interface for the gateway address. The specified interface must be reachable in the tenant VRF configured for DHCP relay and be assigned a unique IPv4 address. EVPN symmetric routing environments with an anycast gateway that reuses the same SVI IP address on multiple leaf switches require a unique IP address for the VRF interface and must include the layer 3 VNI for this VRF in the DHCP Relay configuration. 
+In multi-tenant EVPN symmetric environments with MLAG, enabling RFC 3527 support is required. You can specify an interface such as the loopback or VRF interface for the gateway address. The specified interface must be reachable in the tenant VRF configured for DHCP relay and be assigned a unique IPv4 address. EVPN symmetric routing environments with an anycast gateway that reuses the same SVI IP address on multiple leaf switches require a unique IP address for the VRF interface and must include the layer 3 VNI for this VRF in the DHCP Relay configuration. 
 
 The following example:
 
@@ -361,7 +361,7 @@ Configuring IPv4 DHCP relay in a Multi-tenant EVPN symmetric environment using N
 
 ### DHCP Relay for IPv4 in an EVPN Symmetric Environment without MLAG
 
-In EVPN symmetric environments without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
+In multi-tenant EVPN symmetric environments without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
 
 The following example:
 

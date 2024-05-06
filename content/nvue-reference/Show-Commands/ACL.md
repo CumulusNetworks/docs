@@ -406,7 +406,7 @@ rate                400
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show acl <acl-id> rule <rule-id> action recent</h>
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action recent</h>
 
 Shows the recent action for the ACL rule.
 

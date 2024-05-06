@@ -580,7 +580,7 @@ cumulus@switch:~$ nv set bridge domain br_default vlan 10 vni 10 flooding multic
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set bridge domain \<domain-id\> vlan \<vid> vni \<vni-id\> mac-learning</h>
+## <h>nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> mac-learning</h>
 
 Turns MAC learning on or off for the VNI. The default setting is `off`.
 

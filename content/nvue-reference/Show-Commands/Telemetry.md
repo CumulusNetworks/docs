@@ -133,6 +133,7 @@ Shows the ingress queue depth histogram samples collected at the configured inte
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface name. |
+| `<pg-id>` |  The priority group ID. |
 
 ### Version History
 

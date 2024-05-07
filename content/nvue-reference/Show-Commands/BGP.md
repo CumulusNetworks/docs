@@ -1951,7 +1951,7 @@ You must add `-o json` at the end of the command to see the output.
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id> ` | The path ID. |
+| `<path-` | The path ID. |
 
 ### Version History
 
@@ -2004,7 +2004,7 @@ You must add `-o json` at the end of the command to see the output.
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id> ` | The path ID. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -2041,7 +2041,7 @@ You must add `-o json` at the end of the command to see the output.
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id> ` | The path ID. |
+| `<path-id` | The path ID. |
 | `<nexthop-id>` | The nexthop ID. |
 
 ### Version History
@@ -2077,7 +2077,7 @@ You must add `-o json` at the end of the command to see the output.
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id> ` | The path ID. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -2109,7 +2109,7 @@ You must add `-o json` at the end of the command to see the output.
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id> ` | The path ID. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -2134,7 +2134,7 @@ Shows best path information, such as the selection reason, for the specified IPv
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id> ` | The path ID. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -2158,7 +2158,7 @@ Shows the AS paths for the specified IPv6 route in the local RIB.
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id> ` | The path ID. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -2182,7 +2182,7 @@ Shows the community names for the community list for the specified IPv6 route pa
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id> ` | The path ID. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -2206,7 +2206,7 @@ Shows the community names for the large community list for the specified IPv6 ro
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id> ` | The path ID. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 
@@ -2230,7 +2230,7 @@ Shows the community names for the extended community list for the specified IPv6
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<route-id>` | The IPv6 address and route prefix in CIDR notation. |
-| `<path-id> ` | The path ID. |
+| `<path-id>` | The path ID. |
 
 ### Version History
 

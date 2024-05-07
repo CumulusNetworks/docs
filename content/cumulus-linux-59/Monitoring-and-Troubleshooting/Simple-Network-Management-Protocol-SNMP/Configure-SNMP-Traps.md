@@ -414,12 +414,13 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 You can use MIB names instead of OIDs, which greatly improves the readability of the `snmpd.conf` file. You enable this by installing the `snmp-mibs-downloader`, which downloads SNMP MIBs to the switch before enabling traps.
 
-1. Open `/etc/apt/sources.list` in a text editor.
-
-2. Add the `non-free` repository, then save the file:
+1. Open `/etc/apt/sources.list` in a text editor, add the `non-free` repository, then save the file:
 
    ```
-   cumulus@switch:~$ sudo deb http://ftp.us.debian.org/debian/ buster main non-free
+   cumulus@switch:~$ sudo nano /etc/apt/sources.list
+   ...
+   deb  http://deb.debian.org/debian bookworm main non-free
+   ...
    ```
 
 3. Update the switch:

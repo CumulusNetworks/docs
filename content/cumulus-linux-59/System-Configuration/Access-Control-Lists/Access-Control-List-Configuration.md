@@ -779,7 +779,7 @@ cumulus@switch:~$ /usr/lib/cumulus/switchdctl --load /etc/cumulus/control-plane/
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=statistics` command.
+To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=brief` command.
 
 {{%notice note%}}
 Cumulus Linux provides default control plane policer values. You can adjust these values to accommodate higher scale requirements for specific protocols as needed.

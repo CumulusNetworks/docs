@@ -141,6 +141,7 @@ Shows specific bond member configuration for the specified interface.
 | Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
+| `<member-id>` | The bond name. |
 
 ### Version History
 
@@ -459,6 +460,7 @@ Shows information about a specific gateway IP address for the specified interfac
 | Syntax | Description |
 | --------- | -------------- |
 | `<interface-id>` | The interface name. |
+| `<ip-address-id>` | The gateway IP address. |
 
 ### Version History
 

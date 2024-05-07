@@ -214,6 +214,7 @@ Shows information about the source NAT translate rule for the specified port or 
 | --------- | -------------- |
 | `<acl-id>` | The ACL name.|
 | `<rule-id>` | The rule number.|
+| `<translate-port-id>` | The port ID or the port range. |
 
 ### Version History
 

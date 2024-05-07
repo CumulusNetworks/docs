@@ -423,19 +423,19 @@ You can use MIB names instead of OIDs, which greatly improves the readability of
    ...
    ```
 
-3. Update the switch:
+2. Update the switch:
 
    ```
    cumulus@switch:~$ sudo -E apt-get update
    ```
 
-4. Install the `snmp-mibs-downloader`:
+3. Install the `snmp-mibs-downloader`:
 
    ```
    cumulus@switch:~$ sudo -E apt-get install snmp-mibs-downloader
    ```
 
-5. Open the `/etc/snmp/snmp.conf` file to verify that the `mibs :` line is in comments:
+4. Open the `/etc/snmp/snmp.conf` file to verify that the `mibs :` line is in comments:
 
    ```
    #
@@ -445,7 +445,7 @@ You can use MIB names instead of OIDs, which greatly improves the readability of
    #mibs :
    ```
 
-6. Open the `/etc/default/snmpd` file to verify that the `export MIBS=` line is in comments:
+5. Open the `/etc/default/snmpd` file to verify that the `export MIBS=` line is in comments:
 
    ``` 
    # This file controls the activity of snmpd and snmptrapd
@@ -455,7 +455,7 @@ You can use MIB names instead of OIDs, which greatly improves the readability of
    #export MIBS=
    ```
 
-7. After you confirm the configuration, remove or comment out the `non-free` repository in `/etc/apt/sources.list`.
+6. After you confirm the configuration, remove or comment out the `non-free` repository in `/etc/apt/sources.list`.
 
    ```
    #deb http://ftp.us.debian.org/debian/ buster main non-free

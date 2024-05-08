@@ -272,6 +272,12 @@ Vtepip      es-ref-count  nexthop-group
 
 Shows EVPN next hop group information for the specified VTEP.
 
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<vtep-id>` | The VTEP ID. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.5.0
@@ -426,6 +432,12 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
 ## <h>nv show evpn multihoming bgp-info esi \<esi-id\></h>
 
 Shows EVPN multihoming BGP information for the specified ESI.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<esi-id>` | The ESI identifier. |
 
 ### Version History
 
@@ -657,7 +669,6 @@ Shows information about the specified EVPN multihoming Ethernet segment ID.
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` | The VNI name. |
 | `<esi-id>` | The ESI identifier. |
 
 ### Version History
@@ -695,7 +706,6 @@ Shows information about the specified EVPN multihoming Ethernet segment ID for r
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` | The VNI name. |
 | `<esi-id>` | The ESI identifier. |
 
 ### Version History
@@ -721,8 +731,8 @@ Shows information about a specific EVPN multihoming Ethernet segment ID for the 
 
 | Syntax | Description |
 | --------- | -------------- |
-| `<vni-id>` | The VNI name. |
 | `<esi-id>` | The ESI identifier. |
+| `<ipv4-address-id>` | The IPv4 address. |
 
 ### Version History
 
@@ -1286,7 +1296,6 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 | Syntax | Description |
 | --------- | -------------- |
 | `<vni-id>` | The VNI name. |
-| `<rt-id>` | The route target ID. |
 
 ### Version History
 
@@ -1340,7 +1349,6 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 | Syntax | Description |
 | --------- | -------------- |
 | `<vni-id>` | The VNI name. |
-| `<rt-id>` | The route target ID. |
 
 ### Version History
 
@@ -1394,7 +1402,6 @@ In Cumulus Linux 5.3 and earlier, this command is `nv show evpn evi <vni-id> rou
 | Syntax | Description |
 | --------- | -------------- |
 | `<vni-id>` | The VNI name. |
-| `<rt-id>` | The route target ID. |
 
 ### Version History
 

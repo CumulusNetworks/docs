@@ -1493,6 +1493,474 @@ cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 outbound control-plane
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action deny</h>
+
+Configures a deny action for the firewall whitelist rule to deny packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action deny
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action dest-nat translate-ip \<range-id\></h>
+
+Configures an IP address destination <span class="a-tooltip">[NAT](## "Network Address Translation")</span> for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+| `<range-id>` |  The IPv4 range; for example, `<ip-address> to <ip-address>`|
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action dest-nat translate-ip 172.30.58.0 to 172.30.58.80
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action dest-nat translate-port \<port-id\></h>
+
+Configures a port destination <span class="a-tooltip">[NAT](## "Network Address Translation")</span> for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+| `<port-id>` |  The port ID or port range.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action dest-nat translate-port 22
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action erspan dest-ip<</h>
+
+Configures the ERSPAN destination IP address for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action erspan dest-ip 10.10.10.3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action erspan source-ip</h>
+
+Configures the ERSPAN source IP address for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action erspan dest-ip 10.10.10.10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action erspan ttl</h>
+
+Configures the ERSPAN Time to Live (TTL) for the firewall whitelist rule. You can specify a value between 1 and 255.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action erspan ttl 200
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action log</h>
+
+Configures logging for the firewall whitelist rule.
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action log level</h>
+
+Configures the log level for the firewall whitelist rule. You can specify a value between 1 and 7.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action log level 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action log log-prefix \<prefix\></h>
+
+Configures logging for packets with a specific prefix for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+| `<prefix>` |  The prefix with which you want to log matching packets. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action log log-prefix 10.10.10.1/32
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action log rate</h>
+
+Configures the number of logs per minute you want to generate for the firewall whitelist rule. You can set a value between 1 and 50000.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action log rate 30000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action permit </h>
+
+Configures a permit action to permit packets for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action permit
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action police burst</h>
+
+Configures quality of service for traffic for the firewall whitelist rule. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the police burst rate; the number of packets or kilobytes (KB) allowed to arrive sequentially. You can specify a value between 1 and 2147483647.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action police burst 1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action police class</h>
+
+Configures quality of service for traffic for the firewall whitelist rule. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the police action class. You can specify an integer between 0 and 7.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action police class 5
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action police mode</h>
+
+Configures quality of service for traffic for the firewall whitelist rule. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the traffic mode. You can specify packet, kbps, mbps or gbps.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action police mode mbps
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action police rate</h>
+
+Configures quality of service for traffic for the firewall whitelist rule. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the policing rate. You can specify a value between 1 and 2147483647.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action police rate 2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action recent</h>
+
+Configures the firewall whitelist rule to be the most recent.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action recent
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action set class</h>
+
+Modifies the class value for packet classification for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action set class 3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action set cos</h>
+
+Configures the 802.1p CoS value to modify in the packet for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action set cos 6
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action set dscp</h>
+
+Configures the DSCP value to modify in the packet for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action set dscp af12
+```
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action source-nat translate-ip \<range-id\></h>
+
+Configures a dynamic NAT action whitelist rule to translate a source IP address range to a public address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+| `<range-id>` |  The IP address range; for example, `<ip-address> to <ip-address>`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action source-nat translate-ip 172.30.58.0 to 172.30.58.80
+```
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action source-nat translate-port \<port-id\></h>
+
+Configures a NAT action whitelist rule to translate a source IP port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+| `<port-id>` |  The port number or range of ports (separated with a `-`). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action source-nat translate-port 1024-1200
+```
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action span \<interface-id\></h>
+
+Configures the SPAN session for the specified interface for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+| `<interface-id>` |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action span swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system control-plane acl \<acl-id\></h>
 
 Configures a control plane ACL to apply a single rule for all packets forwarded to the CPU regardless of the source interface or destination interface on the switch. Control plane ACLs allow you to regulate traffic forwarded to applications on the switch with more granularity than traps and to configure ACLs to block SSH from specific addresses or subnets.

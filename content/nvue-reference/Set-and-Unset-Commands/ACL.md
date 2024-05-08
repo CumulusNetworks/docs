@@ -642,7 +642,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags ip-ect
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip ecn ip-ect
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -667,12 +667,12 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags tcp-cwr
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip ecn tcp-cwr
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip ecn tcp-ece</h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip ecn flags tcp-ece</h>
 
 Configures the ACL to match on the ECE bit. After an endpoint receives a packet with the CE bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
 
@@ -1918,6 +1918,8 @@ Introduced in Cumulus Linux 5.9.0
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action set dscp af12
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set acl acl-default-whitelist rule \<rule-id\> action source-nat translate-ip \<range-id\></h>
 
 Configures a dynamic NAT action whitelist rule to translate a source IP address range to a public address.
@@ -1938,6 +1940,8 @@ Introduced in Cumulus Linux 5.9.0
 ```
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action source-nat translate-ip 172.30.58.0 to 172.30.58.80
 ```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set acl acl-default-whitelist rule \<rule-id\> action source-nat translate-port \<port-id\></h>
 
@@ -1960,6 +1964,8 @@ Introduced in Cumulus Linux 5.9.0
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action source-nat translate-port 1024-1200
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set acl acl-default-whitelist rule \<rule-id\> action span \<interface-id\></h>
 
 Configures the SPAN session for the specified interface for the firewall whitelist rule.
@@ -1979,6 +1985,846 @@ Introduced in Cumulus Linux 5.9.0
 
 ```
 cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action span swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip connection-state </h>
+
+Configures the connection state you want to match for the firewall whitelist rule. You can set the value to `established`, `related`, `new`, or `invalid`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip connection-state related
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip dest-ip \<ip-address\></h>
+
+Configures the destination IP address you want to match for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+| `<ip-address>` |  The destination IP address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip dest-ip 10.0.15.8/32
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip dscp</h>
+
+Configures the DSCP value you want to match for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip dscp af13
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip ecn ip-ect</h>
+
+Configures the firewall whitelist rule to match on the ECT bit. The ECT codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1.
+
+By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip ecn ip-ect
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip ecn flags tcp-cwr</h>
+
+Configures the firewall whitelist rule to match on the TCP Congestion Window Reduced Flag.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip ecn flags tcp-cwr
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip ecn flags tcp-ece</h>
+
+Configures the firewall whitelist rule to match on the TCP ECN Echo Flag.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip ecn flags tcp-ece
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip fragment</h>
+
+Configures IP fragment packet match for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip fragment
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip hashlimit name</h>
+
+Configures the hashlimit name you want to match for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip hashlimit name SSH
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip hashlimit rate-above</h>
+
+Configures how much above the hashlimit rate you want to match for the firewall whitelist rule. You can specify an `<integer>/second`, `<integer>/min`, or `<integer>/hour`. The maximum rate is `1000000/second`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip hashlimit rate-above 1000/min
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip hashlimit burst</h>
+
+Configures the hashlimit burst rate you want to match for the firewall whitelist rule. You can specify a value between 1 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip hashlimit burst 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip hashlimit source-mask</h>
+
+Configures the hashlimit source mask you want to match for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip hashlimit source-mask 32
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip hashlimit destination-mask</h>
+
+Configures the hashlimit destination mask you want to match for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip hashlimit destination-mask 32
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip hashlimit expire</h>
+
+Configures the hashlimit expire time (in milliseconds) you want to match for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip hashlimit expire 1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip hashlimit mode</h>
+
+Configures the hashlimit mode you want to match for the firewall whitelist rule. You can specify `src-ip` or `dst-ip`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip hashlimit mode dst-ip
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip icmp-type</h>
+
+Configures the IP ICMP type you want to match for the firewall whitelist rule. You can specify: dest-unreachable, echo-reply, echo-request, port-unreachable, time-exceeded, or an integer between 0 and 255.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip icmp-type dest-unreachable
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip icmpv6-type</h>
+
+Configures the IP ICMPv6 type you want to match for the firewall whitelist rule. You can specify `router-solicitation`, `router-advertisement`, `neighbor-solicitation`, `neighbor-advertisement`, or an integer between 0 and 255.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip icmpv6-type router-solicitation
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip protocol</h>
+
+Configures the IP protocol you want to match for the firewall whitelist rule. You can specify `tcp`, `udp`, `ospf`, `pim`, `icmp`, `icmpv6`, or `igmp`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip protocol tcp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip recent-list action</h>
+
+Configures the IP recent list action you want to match for the firewall whitelist rule. You can specify `set` or `update`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip recent-list action update
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip recent-list hit-count</h>
+
+Configures the IP recent list hit count you want to match for the firewall whitelist rule. You can specify a value between 1 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip recent-list hit-count 2000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip recent-list name</h>
+
+Configures the IP recent list name you want to match for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip recent-list name list1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip recent-list update-interval</h>
+
+Configures the IP recent list update interval you want to match for the firewall whitelist rule. You can specify a value between 1 and 4294967295
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip recent-list update-interval 1000 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip source-ip</h>
+
+Configures the source IP address you want to match for the firewall whitelist rule.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip source-ip 10.0.14.2/32
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip tcp all-mss-except</h>
+
+Configures the firewall whitelist rule to match all TCP maximum segment size (MSS) values except for the specified value.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip tcp all-mss-except 536
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip tcp flags</h>
+
+Configures the IP TCP flag you want match in the packet for the firewall whitelist rule. You can specify `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip tcp flags syn
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip tcp mask</h>
+
+Configures the IP TCP mask you want match in the packet for the firewall whitelist rule. You can specify `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip tcp mask ack
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip tcp mss</h>
+
+Configures the TCP maximum segment size (MSS) you want match in the packet for the firewall whitelist rule. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip tcp mss 536
+```
+
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip tcp state established</h>
+
+Configures the firewall whitelist rule to match on the TCP established state. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip tcp state established 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip ttl</h>
+
+Configures the firewall whitelist rule to match on the IP TTL. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip ttl 100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip ttl</h>
+
+Configures the firewall whitelist rule to match on the IP TTL. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip ttl 100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip udp dest-port</h>
+
+Configures the firewall whitelist rule to match on the specified IP UDP destination port. You can specify `ANY`,`bootps`, `http`, `ntp`, `telnet`, `bfd`, `clag`, `https`, `pop3`, `tftp`, `bfd-echo`, `dhcp-client`, `imap2`, `smtp`, `bfd-multihop`, `dhcp-server`, `ldap`, `snmp`, `bgp`, `domain`, `ldaps`, `snmp-trap`, `bootpc`, `ftp`, `msdp`, or `ssh`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip udp dest-port https
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match ip udp source-port</h>
+
+Configures the firewall whitelist rule to match on the specified IP UDP source port. You can specify `ANY`,`bootps`, `http`, `ntp`, `telnet`, `bfd`, `clag`, `https`, `pop3`, `tftp`, `bfd-echo`, `dhcp-client`, `imap2`, `smtp`, `bfd-multihop`, `dhcp-server`, `ldap`, `snmp`, `bgp`, `domain`, `ldaps`, `snmp-trap`, `bootpc`, `ftp`, `msdp`, or `ssh`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match ip udp source-port https
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match mac dest-mac</h>
+
+Configures the firewall whitelist rule to match on the specified destination MAC address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match mac dest-mac any
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match mac dest-mac-mask</h>
+
+Configures the firewall whitelist rule to match on the specified destination MAC address mask.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match mac dest-mac-mask 00:00:00:00:00:12
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match mac protocol</h>
+
+Configures the firewall whitelist rule to match on the specified destination MAC protocol. You can specify `ANY`, `arp`, `ipv4`, `ipv6`, or a value between 0 and 255.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match mac protocol arp
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match mac source-mac</h>
+
+Configures the firewall whitelist rule to match on the specified source MAC address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match mac source-mac any
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match mac source-mac-mask</h>
+
+Configures the firewall whitelist rule to match on the specified source MAC address mask.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match mac source-mac-mask any
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> match vlan</h>
+
+Configures the firewall whitelist rule to match on the specified VLAN ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 match vlan 10
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> remark</h>
+
+Configures a remark (description) about deny or permit conditions in the firewall whitelist rule. You must enclose multiple words in double quotes (").
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 remark "The following line permits TCP packets"
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

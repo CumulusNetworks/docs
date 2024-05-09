@@ -66,6 +66,10 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+If you unset a peer group, make sure that it is not applied to any neighbors. If the peer group is applied to neighbors, configure all parameters, such as the remote AS, directly on the neighbors before removing the peer group.
+{{%/notice%}}
+
 ## BGP Dynamic Neighbors
 
 *BGP dynamic neighbors* provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
@@ -1362,6 +1366,8 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 timers hold 30
 cumulus@leaf01:~$ nv config apply
 ```
 
+To set the timers back to the default values, run the `nv unset vrf <vrf> router bgp neighbor <interface> timers keepalive` and the `nv unset vrf <vrf> router bgp neighbor <interface> timers hold` commands.
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -1563,7 +1569,8 @@ router bgp 65199
 {{< /tabs >}}
 
 {{%notice info%}}
-When you configure BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command.
+- When you configure BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command.
+- You can only configure a BGP node as a route reflector for an iBGP peer.
 {{%/notice%}}
 
 ## Administrative Distance

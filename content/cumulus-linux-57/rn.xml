@@ -19,6 +19,12 @@
 <td>5.9.0</td>
 </tr>
 <tr>
+<td>3854800</td>
+<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
+<td>5.6.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3832116</td>
 <td>When you configure a SPAN session either with the NVUE {{nv set system port-mirror session}} command or in the {{/etc/cumulus/switchd.d/port-mirror.conf}} file and the default route is configured to 0.0.0.0/0, the SPAN session might not work as expected. To work around this issue, remove the default route 0.0.0.0/0 and use alternate routes instead.</td>
 <td>5.7.0-5.8.0</td>

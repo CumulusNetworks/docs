@@ -13,6 +13,12 @@
 <td>5.9.0</td>
 </tr>
 <tr>
+<td>3854800</td>
+<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
+<td>5.6.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3782996</td>
 <td>If you have installed a large number ACLs,  you might see a {{switchd}} memory leak over a period of time that stops the {{switchd}} process because it is out of memory .</td>
 <td>5.6.0-5.8.0</td>

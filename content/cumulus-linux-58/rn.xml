@@ -31,6 +31,12 @@
 <td>5.9.0</td>
 </tr>
 <tr>
+<td>3854800</td>
+<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
+<td>5.6.0-5.9.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3851499</td>
 <td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
 <td>5.8.0-5.9.0</td>

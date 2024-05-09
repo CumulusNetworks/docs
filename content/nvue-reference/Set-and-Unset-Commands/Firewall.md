@@ -14,7 +14,7 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl acl-default-DoS rule \<rule-id\> action deny</h>
+## <h>nv set acl acl-default-dos rule \<rule-id\> action deny</h>
 
 Configures a deny action for the firewall DoS rule to deny packets.
 
@@ -61,7 +61,7 @@ cumulus@switch:~$ nv set acl acl-default-dos rule 10 action dest-nat translate-i
 
 ## <h>nv set acl acl-default-dos rule \<rule-id\> action dest-nat translate-port \<port-id\></h>
 
-Configures a port destination <span class="a-tooltip">[NAT](## "Network Address Translation")</span> for the firewall DoS rule.
+Configures a port destination <span class="a-tooltip">[NAT](## "Network Address Translation")</span> firewall DoS rule.
 
 ### Command Syntax
 
@@ -82,7 +82,7 @@ cumulus@switch:~$ nv set acl acl-default-dos rule 10 action dest-nat translate-p
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl acl-default-dos rule \<rule-id\> action erspan dest-ip<</h>
+## <h>nv set acl acl-default-dos rule \<rule-id\> action erspan dest-ip</h>
 
 Configures the ERSPAN destination IP address for the firewall DoS rule.
 
@@ -126,9 +126,9 @@ cumulus@switch:~$ nv set acl acl-default-dos rule 10 action erspan dest-ip 10.10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl  rule \<rule-id\> action erspan ttl</h>
+## <h>nv set acl acl-default-dos rule \<rule-id\> action erspan ttl</h>
 
-Configures the ERSPAN Time to Live (TTL) for the firewall whitelist rule. You can specify a value between 1 and 255.
+Configures the ERSPAN Time to Live (TTL) for the firewall DoS rule. You can specify a value between 1 and 255.
 
 ### Command Syntax
 
@@ -1374,7 +1374,7 @@ cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action dest-nat trans
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl acl-default-whitelist rule \<rule-id\> action erspan dest-ip<</h>
+## <h>nv set acl acl-default-whitelist rule \<rule-id\> action erspan dest-ip</h>
 
 Configures the ERSPAN destination IP address for the firewall whitelist rule.
 
@@ -1413,7 +1413,7 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action erspan dest-ip 10.10.10.10
+cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action erspan source-ip 10.10.10.10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1581,7 +1581,7 @@ cumulus@switch:~$ nv set acl acl-default-whitelist rule 10 action police class 5
 
 ## <h>nv set acl acl-default-whitelist rule \<rule-id\> action police mode</h>
 
-Configures quality of service for traffic for the firewall whitelist rule. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the traffic mode. You can specify packet, kbps, mbps or gbps.
+Configures quality of service for traffic for the firewall whitelist rule. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the traffic mode. You can specify `packet`, `kbps`, `mbps`, or `gbps`.
 
 ### Command Syntax
 
@@ -2495,6 +2495,7 @@ Configures the firewall whitelist rule to match on the specified destination MAC
 ### Command Syntax
 
 | Syntax |  Description   |
+| ---------  | -------------- |
 | `<rule-id>` |  The ACL rule number. |
 | ---------  | -------------- |
 

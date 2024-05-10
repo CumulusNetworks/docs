@@ -333,7 +333,7 @@ Cumulus Linux does not enforce the MD5 password configured against a BGP listen-
 
 ## Remove Private BGP ASNs
 
-If you use private ASNs in the data center, routes advertised to neighbors contain your private ASNs. You can remove private ASNs from routes advertised to a neighbor.
+If you use private ASNs in the data center, routes advertised to neighbors contain your private ASNs. The examples below show how to remove the private ASNs from routes and how to replace the private ASNs with your public ASN.
 
 The following example command removes private ASNs from routes advertised to the neighbor on swp51 (an unnumbered interface):
 
@@ -356,6 +356,10 @@ To unset the above configuration:
 
 ```
 cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath private-as remove
+cumulus@leaf01:~$ nv config apply
+```
+
+```
 cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
 cumulus@leaf01:~$ nv config apply
 ```

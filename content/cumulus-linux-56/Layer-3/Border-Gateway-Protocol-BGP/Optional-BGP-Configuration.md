@@ -391,9 +391,9 @@ switch# exit
 -->
 ## Remove Private BGP ASNs
 
-If you use private ASNs in the data center, any routes you send out to the internet contain your private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
+If you use private ASNs in the data center, routes advertised to neighbors contain your private ASNs. You can remove private ASNs from routes advertised to a neighbor.
 
-The following example command removes private ASNs from routes sent to the neighbor on swp51 (an unnumbered interface):
+The following example command removes private ASNs from routes advertised to the neighbor on swp51 (an unnumbered interface):
 
 {{< tabs "424 ">}}
 {{< tab "NVUE Commands ">}}
@@ -407,6 +407,14 @@ You can replace the private ASNs with your public ASN with the following command
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
+cumulus@leaf01:~$ nv config apply
+```
+
+To unset the above configuration:
+
+```
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath private-as remove
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
 cumulus@leaf01:~$ nv config apply
 ```
 

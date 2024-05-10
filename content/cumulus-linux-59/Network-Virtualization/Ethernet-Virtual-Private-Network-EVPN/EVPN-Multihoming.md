@@ -152,7 +152,7 @@ To configure bond interfaces for EVPN-MH:
 {{<tabs "bond configuration">}}
 {{<tab "NVUE Commands">}}
 
-With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the Ethernet segment ID manually. You can see both options below.
+With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the 10-byte Ethernet segment ID manually. You can see both options below.
 
 The following example commands configure each bond interface with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
 
@@ -168,7 +168,7 @@ cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preferenc
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique.
+The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. When you configure the 10-byte Ethernet segment ID, ensure that the local ID and MAC address configuration is not present.
 
 {{%notice note%}}
 In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
@@ -187,6 +187,8 @@ cumulus@leaf01:~$ nv config apply
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
+
+The following example commands configure each bond interface with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
 
 1. Configure the ESI on each bond interface with the local Ethernet segment ID and the system MAC address:
 
@@ -258,6 +260,50 @@ cumulus@leaf01:~$ nv config apply
    ```
    cumulus@leaf01:~$ sudo ifreload -a
    ```
+
+The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. When you configure the 10-byte Ethernet segment ID, ensure that the local ID and MAC address configuration is not present.
+
+{{%notice note%}}
+In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
+{{%/notice%}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# interface bond1
+leaf01(config-if)# evpn mh es-df-pref 50000
+leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+leaf01(config-if)# exit
+leaf01(config)# interface bond2
+leaf01(config-if)# evpn mh es-df-pref 50000
+leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+leaf01(config-if)# exit
+leaf01(config)# interface bond3
+leaf01(config-if)# evpn mh es-df-pref 50000
+leaf01(config-if)# evpn mh es-id 00:44:38:39:be:ef:aa:00:00:03
+leaf01(config-if)# exit
+leaf01(config)# write memory
+leaf01(config)# exit
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file.
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+interface bond1
+evpn mh es-df-pref 50000
+evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+interface bond2
+evpn mh es-df-pref 50000
+evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+interface bond3
+evpn mh es-df-pref 50000
+evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:03
+...
+```
 
 {{</tab>}}
 {{</tabs>}}
@@ -472,7 +518,7 @@ You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethern
 {{<tabs "debug">}}
 {{<tab "NVUE Commands">}}
 
-Cumulus Linux does not provide NVUE commands for FRR Debugging.
+Cumulus Linux does not provide NVUE commands for FRR debugging; however, you can create a snippet to enable FRR debugging. Refer to {{<link url="NVUE-Snippets/#etcfrrfrrconf-snippets" text="example-3-evpn-multihoming-frr-debugging">}}.
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
@@ -1058,7 +1104,6 @@ cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
 cumulus@leaf01:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf01:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf01:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf01:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ nv set evpn enable on
 cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
 cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
@@ -1126,7 +1171,6 @@ cumulus@leaf02:~$ nv set nve vxlan source address 10.10.10.2
 cumulus@leaf02:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf02:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf02:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf02:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf02:~$ nv set evpn enable on
 cumulus@leaf02:~$ nv set router bgp autonomous-system 65102
 cumulus@leaf02:~$ nv set router bgp router-id 10.10.10.2
@@ -1194,7 +1238,6 @@ cumulus@leaf03:~$ nv set nve vxlan source address 10.10.10.3
 cumulus@leaf03:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf03:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf03:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf03:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf03:~$ nv set evpn enable on
 cumulus@leaf03:~$ nv set router bgp autonomous-system 65103
 cumulus@leaf03:~$ nv set router bgp router-id 10.10.10.3
@@ -1262,7 +1305,6 @@ cumulus@leaf04:~$ nv set nve vxlan source address 10.10.10.4
 cumulus@leaf04:~$ nv set nve vxlan arp-nd-suppress on 
 cumulus@leaf04:~$ nv set vrf RED evpn vni 4001
 cumulus@leaf04:~$ nv set vrf BLUE evpn vni 4002
-cumulus@leaf04:~$ nv set system global anycast-mac 44:38:39:BE:EF:AA
 cumulus@leaf04:~$ nv set evpn enable on
 cumulus@leaf04:~$ nv set router bgp autonomous-system 65104
 cumulus@leaf04:~$ nv set router bgp router-id 10.10.10.4

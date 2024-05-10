@@ -42,8 +42,8 @@ W: GPG error: http://repo3.cumulusnetworks.com CumulusLinux-3-updates InRelease:
 Download the new repository keys, then upgrade the switch:
 
 ```
-cumulus@switch:~$ wget http://repo3.cumulusnetworks.com/public-key/repo3-2023-key
-cumulus@switch:~$ sudo apt-key add repo3-2023-key
+cumulus@switch:~$ wget https://download.nvidia.com/cumulus/repo3.cumulusnetworks.com/public-key/repo3-2024-key
+cumulus@switch:~$ sudo apt-key add repo3-2024-key
 cumulus@switch:~$ sudo -E apt-get update
 cumulus@switch:~$ sudo -E apt-get upgrade
 ```

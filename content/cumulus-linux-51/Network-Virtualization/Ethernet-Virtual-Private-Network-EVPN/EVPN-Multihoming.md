@@ -140,7 +140,7 @@ To configure bond interfaces for EVPN-MH:
 {{<tabs "bond configuration">}}
 {{<tab "NVUE Commands">}}
 
-With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the Ethernet segment ID manually. Both options are shown below.
+You can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the Ethernet segment ID manually. Both options are shown below.
 
 The following example commands configure bond interfaces with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
 

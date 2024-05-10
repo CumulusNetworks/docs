@@ -139,7 +139,7 @@ To configure bond interfaces for EVPN-MH:
 {{<tabs "bond configuration">}}
 {{<tab "NVUE Commands">}}
 
-With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the ESI manually. Both options are shown below.
+You can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the ESI manually. Both options are shown below.
 
 The following example commands configure each bond interface with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
 
@@ -155,7 +155,7 @@ cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preferenc
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example commands configure each bond interface with an Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique.
+The following example commands configure each bond interface with an Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. If you configure the 10-byte Ethernet segment ID, ensure that the local ID and MAC address configuration is not present.
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
@@ -455,7 +455,7 @@ You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethern
 {{<tabs "debug">}}
 {{<tab "NVUE Commands">}}
 
-Cumulus Linux does not provide NVUE commands for FRR Debugging.
+Cumulus Linux does not provide NVUE commands for FRR Debugging; however, you can create a snippet to enable FRR debugging. Refer to {{<link url="NVUE-Snippets/#example-3-evpn-multihoming-frr-debugging" text="/etc/frr/frr.conf snippets">}}.
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}

@@ -456,7 +456,7 @@ You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethern
 {{<tabs "debug">}}
 {{<tab "NVUE Commands">}}
 
-Cumulus Linux does not provide NVUE commands for FRR Debugging; however, you can create a snippet to enable FRR debugging. Refer to {{<link url="NVUE-Snippets/#example-3-evpn-multihoming-frr-debugging" text="FRR snippets">}}.
+Cumulus Linux does not provide NVUE commands for FRR Debugging; however, you can create a snippet to enable FRR debugging. Refer to {{<link url="NVUE-Snippets/#example-3-evpn-multihoming-frr-debugging" text="/etc/frr/frr.conf snippets">}}.
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}

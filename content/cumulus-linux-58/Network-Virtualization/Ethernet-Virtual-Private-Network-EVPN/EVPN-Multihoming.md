@@ -376,6 +376,26 @@ interface swp4
 {{</tab>}}
 {{</tabs>}}
 
+To show if uplinks are down, run the `nv show interface status` command:
+
+```
+cumulus@leaf01:~$ nv show interface status
+Interface    Admin Status  Oper Status  Protodown  Protodown Reason
+-----------  ------------  -----------  ---------  ----------------
+br_default   up            up           disabled
+br_l3vni     up            up           disabled
+eth0         up            up           disabled
+bond3        up            down         disabled
+bond4        up            down         disabled
+bond5        up            down         disabled
+bond6        up            up           disabled
+lo           up            unknown      disabled
+mgmt         up            up           disabled
+swp5         up            down         enabled    frr   <<<< part of bond3 
+swp6         up            down         enabled    frr
+swp7         up            down         enabled    frr
+```
+
 ## Optional EVPN MH Configuration
 
 ### Global Settings

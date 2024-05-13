@@ -648,7 +648,36 @@ uplink-count         2
 
 ### Show Ethernet Segment Information
 
-To display the Ethernet segments across all VNIs, run the `nv show evpn multihoming esi -o json` command or the vtysh `show evpn es` command. For example:
+To show the Ethernet segments across all VNIs, run the `nv show evpn multihoming esi` command or the vtysh `show evpn es` command. For example:
+
+```
+cumulus@switch:~$ nv show evpn multihoming esi
+SInterface - Local interface, NHG - Nexthop group ID, DFPref - Designated
+forwarder preference, VNICnt - ESI EVPN instances, MacCnt - Mac entries using
+this ES as destination, RemoteVTEPs - Remote tunnel Endpoint
+
+ESI                            ESInterface  NHG        DFPref  VNICnt  MacCnt  Flags   RemoteVTEPs
+-----------------------------  -----------  ---------  ------  ------  ------  ------  -----------
+03:44:38:39:be:ef:aa:00:00:01  bond1        536870913  50000   1       2       local   10.10.10.2
+03:44:38:39:be:ef:aa:00:00:02  bond2        536870914  50000   1       2       local   10.10.10.2
+03:44:38:39:be:ef:aa:00:00:03  bond3        536870915  50000   1       2       local   10.10.10.2
+03:44:38:39:be:ef:bb:00:00:01               536870916  0       0       2       remote  10.10.10.3
+       10.10.10.4
+```
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# show evpn es
+Type: B bypass, L local, R remote, N non-DF
+ESI                            Type ES-IF                 VTEPs
+03:44:38:39:be:ef:aa:00:00:01  LR   bond1                 10.10.10.2
+03:44:38:39:be:ef:aa:00:00:02  LR   bond2                 10.10.10.2
+03:44:38:39:be:ef:aa:00:00:03  LR   bond3                 10.10.10.2
+03:44:38:39:be:ef:bb:00:00:01  R    -                     10.10.10.3,10.10.10.4
+```
+
+You can also show the Ethernet segments across all VNIs with NVUE in json format:
 
 ```
 cumulus@switch:~$ nv show evpn multihoming esi -o json
@@ -743,18 +772,6 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
 }
 ```
 
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# show evpn es
-Type: B bypass, L local, R remote, N non-DF
-ESI                            Type ES-IF                 VTEPs
-03:44:38:39:be:ef:aa:00:00:01  LR   bond1                 10.10.10.2
-03:44:38:39:be:ef:aa:00:00:02  LR   bond2                 10.10.10.2
-03:44:38:39:be:ef:aa:00:00:03  LR   bond3                 10.10.10.2
-03:44:38:39:be:ef:bb:00:00:01  R    -                     10.10.10.3,10.10.10.4
-```
-
 To show information about a specific ESI:
 
 ```
@@ -791,7 +808,7 @@ VNI      ESI                            Type
 10       03:44:38:39:be:ef:aa:00:00:01  L 
 ```
 
-To display the Ethernet segments for a specific VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command. For example:
+To show the Ethernet segments for a specific VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command. For example:
 
 ```
 cumulus@switch:~$ nv show evpn vni 10 multihoming esi
@@ -802,7 +819,38 @@ ESI                            Local  Remote
 
 ### Show BGP Ethernet Segment Information
 
-To display the Ethernet segments across all VNIs learned via type-1 and type-4 routes, run the NVUE `nv show evpn multihoming bgp-info esi -o json` command or the vtysh `show bgp l2vpn evpn es` command. For example:
+To show the Ethernet segments across all VNIs learned through type-1 and type-4 routes, run the NVUE `nv show evpn multihoming bgp-info esi` command or the vtysh `show bgp l2vpn evpn es` command. For example:
+
+```
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi
+SrcIP - Originator IP, VNICnt - VNI Count, VRFCnt - VRF Count, MACIPCnt - MAC IP
+path count, MacGlblCnt - Mac global count, VTEP - Remote VTEP ID, FragID -
+Fragments ID
+ESI                            RD            SrcIP       VNICnt  VRFCnt  MACIPCnt  MacGlblCnt  Local  Remote  VTEP        FragID
+-----------------------------  ------------  ----------  ------  ------  --------  ----------  -----  ------  ----------  ------------
+03:44:38:39:be:ef:aa:00:00:01  10.10.10.1:3  10.10.10.1  1       1       3   6           yes    yes     10.10.10.2  10.10.10.1:3
+03:44:38:39:be:ef:aa:00:00:02  10.10.10.1:4  10.10.10.1  1       1       2   4           yes    yes     10.10.10.2  10.10.10.1:4
+03:44:38:39:be:ef:aa:00:00:03  10.10.10.1:5  10.10.10.1  1       1       2   4           yes    yes     10.10.10.2  10.10.10.1:5
+03:44:38:39:be:ef:bb:00:00:01                0.0.0.0     1       1       0   12                 yes     10.10.10.3
+                              10.10.10.4
+03:44:38:39:be:ef:bb:00:00:02                0.0.0.0     1       1       0   0                  yes
+03:44:38:39:be:ef:bb:00:00:03                0.0.0.0     1       1       0   0                  yes
+```
+
+```
+cumulus@switch:~$ show bgp l2vpn evpn es
+ES Flags: B - bypass, L local, R remote, I inconsistent
+VTEP Flags: E ESR/Type-4, A active nexthop
+ESI                            Flags RD                    #VNIs    VTEPs
+03:44:38:39:be:ef:aa:00:00:01  LR    10.10.10.1:3          1        10.10.10.2(EA)
+03:44:38:39:be:ef:aa:00:00:02  LR    10.10.10.1:4          1        10.10.10.2(EA)
+03:44:38:39:be:ef:aa:00:00:03  LR    10.10.10.1:5          1        10.10.10.2(EA)
+03:44:38:39:be:ef:bb:00:00:01  R     (null)                1        10.10.10.3(A),10.10.10.4(A)
+03:44:38:39:be:ef:bb:00:00:02  R     (null)                1
+03:44:38:39:be:ef:bb:00:00:03  R     (null)                1
+```
+
+You can also show the Ethernet segments across all VNIs learned through type-1 and type-4 routes with NVUE in json format:
 
 ```
 cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
@@ -956,7 +1004,7 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
 
 ### Show BGP Ethernet Segment per VNI Information
 
-To display the Ethernet segments per VNI learned via type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
+To display the Ethernet segments per VNI learned through type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
 
 ```
 cumulus@switch:~$ sudo vtysh

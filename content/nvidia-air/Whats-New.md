@@ -8,10 +8,15 @@ product: NVIDIA Air
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
 <!-- Air:WhatsNew -->
+## May 2024
+### 82.2024.0513-013
+- Fixed an issue where some content types were rejected in API requests
+- Improved dot file parsing performance for larger topologies
+<!-- Air:WhatsNew -->
+
 ## April 2024
 ### 82.2024.0418-011
 - Fixed an issue where node rebuild was improperly handled when a worker was offline
-<!-- Air:WhatsNew -->
 
 ## March 2024
 ### 82.2024.0321-013

@@ -1,27 +1,17 @@
 {{ if .Parent }}
   {{ $simName := .Get "name" }}
   {{ $autoLoad := default "all" (.Get "showNodes") }}
-  <head>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-    <script type="text/javascript" id="sim-script-{{ $simName }}">
-    function launchSim() {
-      const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
-      sim.launch();
-      $('.button').prop("disabled", true);
-    }
-    </script>
-    <script type="text/javascript">
-      function recaptcha_callback(){
-        $('.button').prop("disabled", false);
-        const captchadiv = document.getElementById('captcha');
-        captchadiv.remove();
-        grecaptcha.reset();
-      }
-  </script>
-  </head>
+<head>
+<script type="text/javascript" id="sim-script-{{ $simName }}">
+  function launchSim() {
+    const sim = new Simulation('{{ $simName }}', '{{ $autoLoad }}');
+    sim.launch();
+  }
+</script>
+</head>
 <body>
-  <div id="captcha" class="g-recaptcha" data-callback="recaptcha_callback" data-sitekey="6LerLacfAAAAAKg8VWyDZrhsBK3tIkO41fswN2k_"></div>
-  <button id="button" class="button" onclick="launchSim()" disabled>Launch Simulation</button>
+
+  <button id="button" class="button" onclick="launchSim()">Launch Simulation</button>
   <div id="aircontainers"></div>
   <iframe name="loading-container-{{ $simName }}" class="terminal-iframe loading-container"></iframe>
   <iframe name="console-container-{{ $simName }}" class="terminal-iframe terminal-hidden"></iframe>

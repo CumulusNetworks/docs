@@ -716,7 +716,7 @@ cumulus@switch:~$
 
 ### Match Tag
 
-The following example configures a route map to allow prefixes that match tag 4.
+The following example configures a route map to allow prefixes that match tag 4:
 
 {{< tabs "TabID848 ">}}
 {{< tab "NVUE Commands">}}
@@ -747,7 +747,7 @@ cumulus@switch:~$
 
 ### Match Metric
 
-The following example commands configure a route map to allow prefixes that match metric 10:
+The following example configures a route map to allow prefixes that match metric 10:
 
 {{< tabs "TabID889 ">}}
 {{< tab "NVUE Commands">}}
@@ -807,7 +807,7 @@ cumulus@switch:~$
 -->
 ### Match Source Protocol
 
-The following example commands configure a route map to allow prefixes that match the source protocol BGP:
+The following example configures a route map to allow prefixes that match BGP as the source protocol:
 
 {{< tabs "TabID964 ">}}
 {{< tab "NVUE Commands">}}
@@ -838,7 +838,7 @@ cumulus@switch:~$
 
 ### Match Next Hop
 
-The following example commands configure a route map to allow prefixes that match next hop 10.0.1.1
+The following example configures a route map to allow prefixes that match next hop 10.0.1.1:
 
 {{< tabs "TabID1000 ">}}
 {{< tab "NVUE Commands">}}
@@ -869,7 +869,7 @@ cumulus@switch:~$
 
 <!--### Match Next Hop Length
 
-The following example commands configure a route map to allow prefixes that match next hop length 32.
+The following example configures a route map to allow prefixes that match next hop length 32:
 
 {{< tabs "TabID1036 ">}}
 {{< tab "NVUE Commands">}}
@@ -901,7 +901,7 @@ cumulus@switch:~$
 
 ### Match Next Hop List
 
-The following example commands configure a route map to allow prefixes that match the next hop prefix list LIST2:
+The following example configures a route map to allow prefixes that match the next hop prefix list called LIST2:
 
 {{< tabs "TabID1071 ">}}
 {{< tab "NVUE Commands">}}
@@ -935,7 +935,7 @@ cumulus@switch:~$
 
 ### Match Next Hop Type
 
-The following example commands configure a route map to allow prefixes that match the next hop type blackhole:
+The following example configures a route map to allow prefixes that match blackhole as the next hop type:
 
 {{< tabs "TabID1110 ">}}
 {{< tab "NVUE Commands">}}
@@ -966,7 +966,7 @@ cumulus@switch:~$
 
 ### Match Community List
 
-The following example commands configure a route map to allow prefixes that match community-list 11:
+The following example configures a route map to allow prefixes that match community-list 11:
 
 {{< tabs "TabID939 ">}}
 {{< tab "NVUE Commands">}}

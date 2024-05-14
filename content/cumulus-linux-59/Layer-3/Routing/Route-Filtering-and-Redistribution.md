@@ -675,6 +675,10 @@ leaf01# configure terminal
 leaf01(config)# bgp as-path access-list LIST1 seq 100 permit 65102
 leaf01(config)# route-map MAP1 permit 10
 leaf01(config-route-map)# match as-path LIST1
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -703,6 +707,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map MAP1 permit 10
 leaf01(config-route-map)# match origin igp
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -731,6 +739,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map MAP1 permit 10
 leaf01(config-route-map)# match tag 4
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -758,6 +770,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map MAP1 permit 100
 leaf01(config-route-map)# match metric 10
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -785,6 +801,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map MAP1 permit 100
 leaf01(config-route-map)# match peer 10.0.1.0
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -813,6 +833,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map MAP1 permit 100
 leaf01(config-route-map)# match source-protocol bgp
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -841,6 +865,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map MAP1 permit 100
 leaf01(config-route-map)# match ip next-hop address 10.0.1.0
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -868,6 +896,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map MAP1 permit 100
 leaf01(config-route-map)# match ip next-hop prefix-len 32
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -899,6 +931,10 @@ leaf01# configure terminal
 leaf01(config)# ip prefix-list LIST2 seq 100 permit 10.0.1.0/32
 leaf01(config)# route-map MAP1 permit 100
 leaf01(config-route-map)# match ip next-hop prefix-list LIST2
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -927,6 +963,10 @@ cumulus@leaf01:~$ sudo vtysh
 leaf01# configure terminal
 leaf01(config)# route-map MAP1 permit 100
 leaf01(config-route-map)# match ip next-hop type blackhole
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}
@@ -957,6 +997,10 @@ leaf01# configure terminal
 leaf01(config)# bgp community-list 11 seq 100 permit 400:34
 leaf01(config)# route-map MAP1 permit 10
 leaf01(config-route-map)# match community 11
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
 {{< /tab >}}

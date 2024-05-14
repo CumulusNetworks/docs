@@ -647,125 +647,326 @@ For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only
 
 ## Configuration Examples
 
-This section shows the `/etc/frr/frr.conf` file configuration for example route filters and redistribution.
+This section provides example route map configurations. To apply the route maps, refer to {{<link url="#apply-a-route-map" text="Appy a Route Map">}}.
 
-The following example filters all routes that are not originated in the local AS:
+### Match as-path-list
+
+The following example configures a route map to allow prefixes that pass through AS 65102:
+
+{{< tabs "TabID774 ">}}
+{{< tab "NVUE Commands">}}
 
 ```
+cumulus@leaf01:~$ nv set router policy as-path-list LIST1 rule 100 action permit
+cumulus@leaf01:~$ nv set router policy as-path-list LIST1 rule 100 aspath-exp _65102_
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match as-path-list LIST1
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
 ...
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor underlay interface remote-as external
- !
- address-family ipv4 unicast
-  neighbor underlay route-map my-as out
- exit-address-family
-!
-bgp as-path access-list my-as permit ^$
-!
-route-map my-as permit 10
- match as-path my-as
-!
-route-map my-as deny 20
-!
+leaf01# configure terminal
+leaf01(config)# bgp as-path access-list LIST1 seq 100 permit 65102
+leaf01(config)# route-map MAP1 permit 10
+leaf01(config-route-map)# match as-path LIST1
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
-The following example sets communities based on prefix-lists:
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match Origin
+
+The following example configures a route map to allow prefixes originated using an interior gateway protocol (IGP) such as OSPF:
+
+{{< tabs "TabID813 ">}}
+{{< tab "NVUE Commands">}}
 
 ```
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match origin igp
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
 ...
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor underlay interface remote-as external
- !
- address-family ipv6 unicast
-  neighbor underlay activate
-  neighbor underlay route-map MARK-PREFIXES out
- exit-address-family
-!
-ipv6 prefix-list LOW-PRIO seq 5 permit 2001:db8:dead::/56 le 64
-ipv6 prefix-list MID-PRIO seq 5 permit 2001:db8:beef::/56 le 64
-ipv6 prefix-list HI-PRIO seq 5 permit 2001:db8:cafe::/56 le 64
-!
-route-map MARK-PREFIXES permit 10
- match ipv6 address prefix-list LOW-PRIO
- set community 123:200
-!
-route-map MARK-PREFIXES permit 20
- match ipv6 address prefix-list MID-PRIO
- set community 123:500
-!
-route-map MARK-PREFIXES permit 30
- match ipv6 address prefix-list HI-PRIO
- set community 123:1000
-!
+leaf01# configure terminal
+leaf01(config)# route-map MAP1 permit 10
+leaf01(config-route-map)# match origin igp
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
-The following example filters routes from advertising to the peer:
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match Tag
+
+The following example configures a route map to allow prefixes that match tag 4:
+
+{{< tabs "TabID848 ">}}
+{{< tab "NVUE Commands">}}
 
 ```
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor underlay interface remote-as external
- !
- address-family ipv4 unicast
-  neighbor underlay route-map POLICY-OUT out
- exit-address-family
-!
-ip prefix-list BLOCK-RFC1918 seq 5 permit 10.0.0.0/8 le 24
-ip prefix-list BLOCK-RFC1918 seq 10 permit 172.16.0.0/12 le 24
-ip prefix-list BLOCK-RFC1918 seq 15 permit 192.168.0.0/16 le 24
-ip prefix-list ADD-COMM-OUT seq 5 permit 100.64.0.0/10 le 24
-ip prefix-list ADD-COMM-OUT seq 10 permit 192.0.2.0/24
-!
-route-map POLICY-OUT deny 10
- match ip address prefix-list BLOCK-RFC1918
-!
-route-map POLICY-OUT permit 20
- match ip address prefix-list ADD-COMM-OUT
- set community 123:1000
-!
-route-map POLICY-OUT permit 30
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match tag 4
+cumulus@leaf01:~$ nv config apply
 ```
 
-The following example sets mutual redistribution between OSPF and BGP (filters by route tags):
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
+cumulus@leaf01:~$ sudo vtysh
 ...
-router ospf
-  redistribute bgp route-map BGP-INTO-OSPF
-!
-router bgp 65101
- bgp router-id 10.10.10.1
- neighbor underlay interface remote-as external
- !
- address-family ipv4 unicast
-  redistribute ospf route-map OSPF-INTO-BGP
- exit-address-family
-!
-route-map OSPF-INTO-BGP deny 10
- match tag 4271
-!
-route-map OSPF-INTO-BGP permit 20
- set tag 2328
-!
-route-map BGP-INTO-OSPF deny 10
- match tag 2328
-!
-route-map BGP-INTO-OSPF permit 20
- set tag 4271
+leaf01# configure terminal
+leaf01(config)# route-map MAP1 permit 10
+leaf01(config-route-map)# match tag 4
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
 ```
 
-The following example filters and modifies redistributed routes:
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match Metric
+
+The following example configures a route map to allow prefixes that match metric 10:
+
+{{< tabs "TabID889 ">}}
+{{< tab "NVUE Commands">}}
 
 ```
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match metric 10
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# route-map MAP1 permit 100
+leaf01(config-route-map)# match metric 10
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match Source Protocol
+
+The following example configures a route map to allow prefixes that match BGP as the source protocol:
+
+{{< tabs "TabID964 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match source-protocol bgp
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
 ...
-router ospf
-  redistribute bgp route-map EXTERNAL-2-1K
-!
-route-map EXTERNAL-2-1K permit 10
- set metric 1000
- set metric-type type-1
+leaf01# configure terminal
+leaf01(config)# route-map MAP1 permit 100
+leaf01(config-route-map)# match source-protocol bgp
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match Next Hop
+
+The following example configures a route map to allow prefixes that match next hop 10.0.1.1:
+
+{{< tabs "TabID1000 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match ip-nexthop 10.0.1.1
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# route-map MAP1 permit 100
+leaf01(config-route-map)# match ip next-hop address 10.0.1.1
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match Next Hop List
+
+The following example configures a route map to allow prefixes that match the next hop prefix list called LIST2:
+
+{{< tabs "TabID1071 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set router policy prefix-list LIST2 rule 100 action permit
+cumulus@leaf01:~$ nv set router policy prefix-list LIST2 rule 100 match 10.0.1.0/32
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match ip-nexthop-list LIST2
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# ip prefix-list LIST2 seq 100 permit 10.0.1.0/32
+leaf01(config)# route-map MAP1 permit 100
+leaf01(config-route-map)# match ip next-hop prefix-list LIST2
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match Next Hop Type
+
+The following example configures a route map to allow prefixes that match blackhole as the next hop type:
+
+{{< tabs "TabID1110 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match ip-nexthop-type blackhole
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# route-map MAP1 permit 100
+leaf01(config-route-map)# match ip next-hop type blackhole
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match Community List
+
+The following example configures a route map to allow prefixes that match community-list 11:
+
+{{< tabs "TabID939 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set router policy community-list 11 rule 100 action permit
+cumulus@leaf01:~$ nv set router policy community-list 11 rule 100 community 400:34
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match community-list 11
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp community-list 11 seq 100 permit 400:34
+leaf01(config)# route-map MAP1 permit 10
+leaf01(config-route-map)# match community 11
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Show Route Filtering
+
+To show route filtering results in the BGP routing table after applying inbound policies, run the NVUE `nv show vrf <vrf> router bgp address-family <address-family> loc-rib` command or the vtysh `show ip bgp` command.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4 loc-rib 
+IPV4 Routes
+==============
+                                                                             
+    LocalPref - Local Preference, Best - Best path, Reason - Reason for selection
+                                                                             
+    IPv4 Prefix      Nexthop  Metric  Weight  LocalPref  Aspath  Best  Reason      Flags    
+    ---------------  -------  ------  ------  ---------  ------  ----  ----------  ---------
+    10.1.10.0/24              0       32768                      yes   First path           
+                                                                       received             
+    10.1.20.0/24              0       32768                      yes   First path           
+                                                                       received             
+    10.1.30.0/24              0       32768                      yes   First path           
+                                                                       received             
+    10.1.40.0/24     swp51    0                          65104                     multipath
+                                                         65199                              
+                     swp52    0                          65104   yes   Older Path  multipath
+                                                         65199                              
+    10.1.50.0/24     swp51    0                          65104                     multipath
+                                                         65199                              
+                     swp52    0                          65104   yes   Older Path  multipath
+                                                         65199                              
+    10.1.60.0/24     swp51    0                          65104                     multipath
+                                                         65199                              
+                     swp52    0                          65104   yes   Older Path  multipath
+                                                         65199
 ```
 
 ## Considerations

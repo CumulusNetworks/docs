@@ -327,10 +327,10 @@ The `source-protocol` match statement is supported in {{<link url="FRRouting/#ar
 | <div style="width:250px">Set          | Description|
 | ------------ | ---------- |
 | `aggregator-as` | Sets the aggregator AS. |
-| `ext-community-rt` | Sets the BGP extended community RT.|
+| `ext-community-rt` | Sets the BGP extended community <span class="a-tooltip">[RT](## "route target")</span>. See {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="BGP Community Lists">}}.|
 | `originator-id` | Sets the originator ID so that BGP chooses the preferred path. |
 | `as-path-exclude` | Sets BGP AS path exclude attribute to avoid considering the AS path during best path route selection. |
-| `ext-community-soo` | Sets the BGP extended community Site of Origin (SOO).|
+| `ext-community-soo` | Sets the BGP extended community <span class="a-tooltip">[SOO](## "Site of Origin")</span>. See {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="BGP Community Lists">}}.|
 | `large-community` |Sets the BGP large community. |
 | `source-ip` | Sets the source IP address.|
 | `as-path-prepend` | Sets the BGP AS path prepend attribute.|

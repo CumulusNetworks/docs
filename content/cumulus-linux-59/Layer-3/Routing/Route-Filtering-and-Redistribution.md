@@ -330,7 +330,7 @@ The `source-protocol` match statement is supported in {{<link url="FRRouting/#ar
 | `ext-community-rt` | Sets the BGP extended community RT.|
 | `originator-id` | Sets the originator ID so that BGP chooses the preferred path. |
 | `as-path-exclude` | Sets BGP AS path exclude attribute to avoid considering the AS path during best path route selection. |
-| `ext-community-soo` | Sets the BGP extended community Sight of Origin (SOO).|
+| `ext-community-soo` | Sets the BGP extended community Site of Origin (SOO).|
 | `large-community` |Sets the BGP large community. |
 | `source-ip` | Sets the source IP address.|
 | `as-path-prepend` | Sets the BGP AS path prepend attribute.|
@@ -647,7 +647,7 @@ For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only
 
 ## Configuration Examples
 
-This section provides example route filter configurations.
+This section provides example route map configurations. To apply the route maps, refer to {{<link url="#apply-a-route-map" text="Appy a Route Map">}}.
 
 ### Match as-path-list
 
@@ -661,7 +661,6 @@ cumulus@leaf01:~$ nv set router policy as-path-list LIST1 rule 100 action permit
 cumulus@leaf01:~$ nv set router policy as-path-list LIST1 rule 100 aspath-exp _65102_
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match as-path-list LIST1
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound route-map MAP1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -686,7 +685,7 @@ cumulus@switch:~$
 
 ### Match Origin
 
-The following example configures a route map to allow prefixes originated within the AS using an interior gateway protocol (IGP) such as OSPF:
+The following example configures a route map to allow prefixes originated using an interior gateway protocol (IGP) such as OSPF:
 
 {{< tabs "TabID813 ">}}
 {{< tab "NVUE Commands">}}
@@ -694,7 +693,6 @@ The following example configures a route map to allow prefixes originated within
 ```
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match origin igp
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound route-map MAP1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -726,7 +724,6 @@ The following example configures a route map to allow prefixes that match tag 4.
 ```
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match tag 4
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute static route-map MAP1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -758,7 +755,6 @@ The following example commands configure a route map to allow prefixes that matc
 ```
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match metric 10
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound route-map MAP1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -779,7 +775,7 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-### Match Peer
+<!-- ### Match Peer
 
 The following example commands configure a route map to allow prefixes that match a peer:
 
@@ -789,7 +785,6 @@ The following example commands configure a route map to allow prefixes that matc
 ```
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match peer 10.0.1.0
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound route-map MAP1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -809,7 +804,7 @@ cumulus@switch:~$
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ### Match Source Protocol
 
 The following example commands configure a route map to allow prefixes that match the source protocol BGP:
@@ -820,7 +815,6 @@ The following example commands configure a route map to allow prefixes that matc
 ```
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match source-protocol bgp
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound route-map MAP1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -844,15 +838,14 @@ cumulus@switch:~$
 
 ### Match Next Hop
 
-The following example commands configure a route map to allow prefixes that match next hop 10.0.1.0
+The following example commands configure a route map to allow prefixes that match next hop 10.0.1.1
 
 {{< tabs "TabID1000 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
-cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match ip-nexthop 10.0.1.0
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.0.1.0 address-family ipv4-unicast policy inbound route-map MAP1
+cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match ip-nexthop 10.0.1.1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -864,7 +857,7 @@ cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# configure terminal
 leaf01(config)# route-map MAP1 permit 100
-leaf01(config-route-map)# match ip next-hop address 10.0.1.0
+leaf01(config-route-map)# match ip next-hop address 10.0.1.1
 switch(config-route-map)# end
 switch# write memory
 switch# exit
@@ -874,9 +867,9 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-### Match Next Hop Length
+<!--### Match Next Hop Length
 
-The following example commands configure a route map to allow prefixes that match next hop length 32
+The following example commands configure a route map to allow prefixes that match next hop length 32.
 
 {{< tabs "TabID1036 ">}}
 {{< tab "NVUE Commands">}}
@@ -904,6 +897,7 @@ cumulus@switch:~$
 
 {{< /tab >}}
 {{< /tabs >}}
+-->
 
 ### Match Next Hop List
 
@@ -917,7 +911,6 @@ cumulus@leaf01:~$ nv set router policy prefix-list LIST2 rule 100 action permit
 cumulus@leaf01:~$ nv set router policy prefix-list LIST2 rule 100 match 10.0.1.0/32
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match ip-nexthop-list LIST2
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound route-map MAP1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -950,7 +943,6 @@ The following example commands configure a route map to allow prefixes that matc
 ```
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match ip-nexthop-type blackhole
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound route-map MAP1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -984,7 +976,7 @@ cumulus@leaf01:~$ nv set router policy community-list 11 rule 100 action permit
 cumulus@leaf01:~$ nv set router policy community-list 11 rule 100 community 400:34
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 action permit
 cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 10 match community-list 11
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound route-map MAP1
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -1008,14 +1000,35 @@ cumulus@switch:~$
 
 ### Show Route Filtering
 
-To show route map matches, run the vtysh `show ip bgp` command. For example, the following example shows that the switch allows prefixes with AS65102 from neighbor swp51 but denies other prefixes from swp51:
+To show route filtering results in the BGP routing table after applying inbound policies, run the NVUE `nv show vrf <vrf> router bgp address-family <address-family> loc-rib` command or the vtysh `show ip bgp` command.
 
 ```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# show ip bgp
-*> 10.10.10.2/32    swp51                         0 65201 65102 i
-*> 10.10.10.6/32    swp51                         0 65201 65102 65202 i
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4 loc-rib 
+IPV4 Routes
+==============
+                                                                             
+    LocalPref - Local Preference, Best - Best path, Reason - Reason for selection
+                                                                             
+    IPv4 Prefix      Nexthop  Metric  Weight  LocalPref  Aspath  Best  Reason      Flags    
+    ---------------  -------  ------  ------  ---------  ------  ----  ----------  ---------
+    10.1.10.0/24              0       32768                      yes   First path           
+                                                                       received             
+    10.1.20.0/24              0       32768                      yes   First path           
+                                                                       received             
+    10.1.30.0/24              0       32768                      yes   First path           
+                                                                       received             
+    10.1.40.0/24     swp51    0                          65104                     multipath
+                                                         65199                              
+                     swp52    0                          65104   yes   Older Path  multipath
+                                                         65199                              
+    10.1.50.0/24     swp51    0                          65104                     multipath
+                                                         65199                              
+                     swp52    0                          65104   yes   Older Path  multipath
+                                                         65199                              
+    10.1.60.0/24     swp51    0                          65104                     multipath
+                                                         65199                              
+                     swp52    0                          65104   yes   Older Path  multipath
+                                                         65199
 ```
 
 ## Considerations

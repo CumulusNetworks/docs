@@ -2210,8 +2210,7 @@ cumulus@leaf01:~$ nv config apply
 cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# configure terminal
-leaf01(config)# bgp extcommunity standard EXTCOMM1 permit rt 11:11
-leaf01(config)# bgp extcommunity standard EXTCOMM1 permit rt 22:22
+leaf01(config)# bgp extcommunity standard EXTCOMM1 permit rt 11:11 rt 22:22
 leaf01(config)# route-map ROUTEMAP1 permit 10
 leaf01(config-route-map)# match extcommunity EXTCOMM1
 leaf01(config-route-map)# end
@@ -2273,8 +2272,7 @@ cumulus@leaf01:~$ nv config apply
 cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# configure terminal
-leaf01(config)# bgp extcommunity standard EXTCOMM2 permit soo 66:66
-leaf01(config)# bgp extcommunity standard EXTCOMM2 permit soo 77:77
+leaf01(config)# bgp extcommunity standard EXTCOMM2 permit soo 66:66 soo 77:77
 leaf01(config)# route-map ROUTEMAP1 permit 10
 leaf01(config-route-map)# match extcommunity EXTCOMM2
 leaf01(config)# end

@@ -647,7 +647,7 @@ For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only
 
 ## Configuration Examples
 
-This section provides example route map configurations. The examples do not include commands to apply a route map; For the commands to apply a route map, refer to {{<link url="#apply-a-route-map" text="Appy a Route Map">}}.
+This section provides example route map configurations. The examples do not include commands to apply a route map; for the commands to apply a route map, refer to {{<link url="#apply-a-route-map" text="Appy a Route Map">}}.
 
 ### Match AS Path List
 
@@ -775,36 +775,6 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-<!-- ### Match Peer
-
-The following example commands configure a route map to allow prefixes that match a peer:
-
-{{< tabs "TabID928 ">}}
-{{< tab "NVUE Commands">}}
-
-```
-cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
-cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match peer 10.0.1.0
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-leaf01# configure terminal
-leaf01(config)# route-map MAP1 permit 100
-leaf01(config-route-map)# match peer 10.0.1.0
-switch(config-route-map)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 ### Match Source Protocol
 
 The following example configures a route map to allow prefixes that match BGP as the source protocol.
@@ -866,38 +836,6 @@ cumulus@switch:~$
 
 {{< /tab >}}
 {{< /tabs >}}
-
-<!--### Match Next Hop Length
-
-The following example configures a route map to allow prefixes that match next hop length 32.
-
-{{< tabs "TabID1036 ">}}
-{{< tab "NVUE Commands">}}
-
-```
-cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 action permit
-cumulus@leaf01:~$ nv set router policy route-map MAP1 rule 100 match ip-nexthop-len 32
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# configure terminal
-leaf01(config)# route-map MAP1 permit 100
-leaf01(config-route-map)# match ip next-hop prefix-len 32
-switch(config-route-map)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 
 ### Match Next Hop List
 
@@ -966,7 +904,7 @@ cumulus@switch:~$
 
 ### Match Community List
 
-The following example configures a route map to allow prefixes that match community-list 11.
+The following example configures a route map to allow prefixes that match BGP community-list 11. For information about BGP community lists, refer to {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="BGP Community Lists">}}.
 
 {{< tabs "TabID939 ">}}
 {{< tab "NVUE Commands">}}

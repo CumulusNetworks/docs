@@ -367,7 +367,7 @@ To enable password obfuscation (show encrypted passwords):
 ```
 cumulus@switch:~$ sudo vtysh
 ...
-switch# conf t
+switch# configure terminal
 switch(config)# service password-obfuscation
 switch(config)# end
 switch# write memory
@@ -379,7 +379,7 @@ To disable password obfuscation (show clear text passwords):
 ```
 cumulus@switch:~$ sudo vtysh
 ...
-switch# conf t
+switch# configure terminal
 switch(config)# no service password-obfuscation
 switch(config)# end
 switch# write memory

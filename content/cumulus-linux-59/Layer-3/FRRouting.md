@@ -299,7 +299,7 @@ switch(config)# router ospf
 switch(config-router)# no area 0.0.0.1 range 10.10.10.0/24
 switch(config-router)# exit
 switch(config)# exit
-switch# write mem
+switch# write memory
 switch# exit
 cumulus@switch:~$
 ```

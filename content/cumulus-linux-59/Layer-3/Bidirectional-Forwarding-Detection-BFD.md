@@ -84,7 +84,7 @@ switch(config)# router bgp 65000
 switch(config-router)# neighbor swp1 bfd
 switch(config-router)# exit
 switch(config)# exit
-switch# write mem
+switch# write memory
 switch# exit
 ```
 
@@ -98,7 +98,7 @@ switch(config)# router bgp 65000
 switch(config-router)# neighbor fabric bfd 4 400 400
 switch(config-router)# exit
 switch(config)# exit
-switch# write mem
+switch# write memory
 switch# exit
 ```
 
@@ -157,7 +157,7 @@ switch(config)# interface swp1
 switch(config-if)# ipv6 ospf6 bfd 4 400 400
 switch(config-if)# exit
 switch(config)# exit
-switch# write mem
+switch# write memory
 switch# exit
 ```
 

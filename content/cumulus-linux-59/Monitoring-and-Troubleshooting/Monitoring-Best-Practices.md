@@ -91,9 +91,11 @@ Cumulus Linux monitors CPU, memory, and disk space with `sysmonitor`. The config
 | Process Load | Alarm: 95% Crit: 125% |
 <!--
 {{%notice note%}}
-The Spectrum 1 CPUs can become overloaded at a moderate to high network scale. If your Spectrum 1 switch is not able to process CPU-destined traffic or is running continually at high CPU, either reduce the scale of the network in which you deploy the Spectrum 1 switches or upgrade your switch.
+The Spectrum 1 CPUs can become overloaded at a moderate to high network scale. If your Spectrum 1 switch is not able to process CPU-destined traffic or is running continually at high CPU, either reduce switch configuration to sixty percent capacity at regular operation and reduce fabric scale (the number of MAC addresses and VLAN interfaces, frequency of SNMP polling, and so on), or replace the switch with a newer generation switch that offers stronger compute resources.
 {{%/notice%}}
 -->
+
+Reduce switch config to a point CPU is at 60% capacity at regular operation
 ### Disk Usage
 
 When monitoring disk utilization, you can exclude `tmpfs` from monitoring.

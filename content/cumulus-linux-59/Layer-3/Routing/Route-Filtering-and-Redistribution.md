@@ -327,10 +327,10 @@ The `source-protocol` match statement is supported in {{<link url="FRRouting/#ar
 | <div style="width:250px">Set          | Description|
 | ------------ | ---------- |
 | `aggregator-as` | Sets the aggregator AS. |
-| `ext-community-rt` | Sets the BGP extended community RT.|
+| `ext-community-rt` | Sets the BGP extended community <span class="a-tooltip">[RT](## "route target")</span>. See {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="BGP Community Lists">}}.|
 | `originator-id` | Sets the originator ID so that BGP chooses the preferred path. |
 | `as-path-exclude` | Sets BGP AS path exclude attribute to avoid considering the AS path during best path route selection. |
-| `ext-community-soo` | Sets the BGP extended community Site of Origin (SOO).|
+| `ext-community-soo` | Sets the BGP extended community <span class="a-tooltip">[SOO](## "Site of Origin")</span>. See {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="BGP Community Lists">}}.|
 | `large-community` |Sets the BGP large community. |
 | `source-ip` | Sets the source IP address.|
 | `as-path-prepend` | Sets the BGP AS path prepend attribute.|
@@ -647,11 +647,11 @@ For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only
 
 ## Configuration Examples
 
-This section provides example route map configurations. To apply the route maps, refer to {{<link url="#apply-a-route-map" text="Appy a Route Map">}}.
+This section provides example route map configurations. The examples do not include commands to apply a route map; For the commands to apply a route map, refer to {{<link url="#apply-a-route-map" text="Appy a Route Map">}}.
 
-### Match as-path-list
+### Match AS Path List
 
-The following example configures a route map to allow prefixes that pass through AS 65102:
+The following example configures a route map to allow prefixes that pass through AS 65102.
 
 {{< tabs "TabID774 ">}}
 {{< tab "NVUE Commands">}}
@@ -685,7 +685,7 @@ cumulus@switch:~$
 
 ### Match Origin
 
-The following example configures a route map to allow prefixes originated using an interior gateway protocol (IGP) such as OSPF:
+The following example configures a route map to allow prefixes originated using an interior gateway protocol (IGP) such as OSPF.
 
 {{< tabs "TabID813 ">}}
 {{< tab "NVUE Commands">}}
@@ -716,7 +716,7 @@ cumulus@switch:~$
 
 ### Match Tag
 
-The following example configures a route map to allow prefixes that match tag 4:
+The following example configures a route map to allow prefixes that match tag 4.
 
 {{< tabs "TabID848 ">}}
 {{< tab "NVUE Commands">}}
@@ -747,7 +747,7 @@ cumulus@switch:~$
 
 ### Match Metric
 
-The following example configures a route map to allow prefixes that match metric 10:
+The following example configures a route map to allow prefixes that match metric 10.
 
 {{< tabs "TabID889 ">}}
 {{< tab "NVUE Commands">}}
@@ -807,7 +807,7 @@ cumulus@switch:~$
 -->
 ### Match Source Protocol
 
-The following example configures a route map to allow prefixes that match BGP as the source protocol:
+The following example configures a route map to allow prefixes that match BGP as the source protocol.
 
 {{< tabs "TabID964 ">}}
 {{< tab "NVUE Commands">}}
@@ -838,7 +838,7 @@ cumulus@switch:~$
 
 ### Match Next Hop
 
-The following example configures a route map to allow prefixes that match next hop 10.0.1.1:
+The following example configures a route map to allow prefixes that match next hop 10.0.1.1.
 
 {{< tabs "TabID1000 ">}}
 {{< tab "NVUE Commands">}}
@@ -869,7 +869,7 @@ cumulus@switch:~$
 
 <!--### Match Next Hop Length
 
-The following example configures a route map to allow prefixes that match next hop length 32:
+The following example configures a route map to allow prefixes that match next hop length 32.
 
 {{< tabs "TabID1036 ">}}
 {{< tab "NVUE Commands">}}
@@ -901,7 +901,7 @@ cumulus@switch:~$
 
 ### Match Next Hop List
 
-The following example configures a route map to allow prefixes that match the next hop prefix list called LIST2:
+The following example configures a route map to allow prefixes that match the next hop prefix list called LIST2.
 
 {{< tabs "TabID1071 ">}}
 {{< tab "NVUE Commands">}}
@@ -935,7 +935,7 @@ cumulus@switch:~$
 
 ### Match Next Hop Type
 
-The following example configures a route map to allow prefixes that match blackhole as the next hop type:
+The following example configures a route map to allow prefixes that match blackhole as the next hop type.
 
 {{< tabs "TabID1110 ">}}
 {{< tab "NVUE Commands">}}
@@ -966,7 +966,7 @@ cumulus@switch:~$
 
 ### Match Community List
 
-The following example configures a route map to allow prefixes that match community-list 11:
+The following example configures a route map to allow prefixes that match community-list 11.
 
 {{< tabs "TabID939 ">}}
 {{< tab "NVUE Commands">}}

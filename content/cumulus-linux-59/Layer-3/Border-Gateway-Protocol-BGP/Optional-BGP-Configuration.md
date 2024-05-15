@@ -2124,18 +2124,18 @@ The vtysh `show ip bgp summary json` command shows the last convergence event.
 <!-- vale off -->
 You can use *{{<exlink url="http://docs.frrouting.org/en/latest/bgp.html#community-lists" text="community lists">}}* to define a BGP community to tag one or more routes. You can then use the communities to apply a route policy on either egress or ingress.
 <!-- vale on -->
-The BGP community list can be either *standard* or *expanded*. The standard BGP community list is a pair of values (such as *100:100*) that you can tag on a specific prefix and advertise to other neighbors or you can apply them on route ingress. Or, the standard BGP community list can be one of four BGP default communities:
+The BGP community list can be either *standard* or *extended*. The standard BGP community list is a pair of values (such as *100:100*) that you can tag on a specific prefix and advertise to other neighbors, or you can apply them on route ingress. The standard BGP community list can be one of four BGP default communities:
 
 - *internet*: a BGP community that matches all routes
 - *local-AS*: a BGP community that restricts routes to your confederation's sub-AS
 - *no-advertise*: a BGP community that is not advertised to anyone
 - *no-export*: a BGP community that is not advertised to the eBGP peer
 
-An expanded BGP community list takes a regular expression of communities and matches the listed communities.
+An extended BGP community list takes a regular expression of communities and matches the listed communities.
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 
-Here is an example of a standard community list filter:
+The following example configures a standard community list filter:
 
 {{< tabs "1995 ">}}
 {{< tab "NVUE Commands ">}}
@@ -2145,10 +2145,6 @@ cumulus@leaf01:~$ nv set router policy community-list COMMUNITY1 rule 10 action 
 cumulus@leaf01:~$ nv set router policy community-list COMMUNITY1 rule 10 community 100:100
 cumulus@leaf01:~$ nv config apply
 ```
-
-{{%notice note%}}
-To use a special character, such as a period (.) in the regular expression for an expanded BGP community list, you must escape the character with a backslash (`\`). For example, `nv set router policy community-list COMMUNITY1 rule 10 community "\.*_65000:2002_.*"`.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -2166,7 +2162,7 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-You can apply the community list to a route map to define the routing policy:
+To apply the community list to a route map to define the routing policy:
 
 {{< tabs "2029">}}
 {{< tab "NVUE Commands ">}}
@@ -2193,6 +2189,134 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
+
+The following example configures a BGP extended community <span class="a-tooltip">[RT](## "route target")</span> filter and applies the extended community list to a route map.
+
+{{< tabs "2207">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM1 rule 10 ext-community rt 11:11,22:22
+cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM1 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 10 match ext-community-list EXTCOMM1
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 10 action permit
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp extcommunity standard EXTCOMM1 permit rt 11:11 rt 22:22
+leaf01(config)# route-map ROUTEMAP1 permit 10
+leaf01(config-route-map)# match extcommunity EXTCOMM1
+leaf01(config-route-map)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following example configures a BGP extended community <span class="a-tooltip">[RT](## "route target")</span> filter with a regex match and applies the extended community list to a route map.
+
+{{< tabs "2231">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM2 rule 10 ext-community rt "\.*_65000:2002_.*","\.*_89000:2002_.*"
+cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM2 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP3 rule 10 match ext-community-list EXTCOMM2
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP3 rule 10 action permit
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp extcommunity expanded EXTCOMM2 permit rt "\.*_65000:2002_.*","\.*_89000:2002_.*"
+leaf01(config)# route-map ROUTEMAP3 permit 10
+leaf01(config-route-map)# match extcommunity EXTCOMM2
+leaf01(config-route-map)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following example configures a BGP extended community <span class="a-tooltip">[SOO](## "Site of Origin")</span> filter and applies the extended community list to a route map.
+
+{{< tabs "2247">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM1 rule 10 ext-community soo 66:66,77:77
+cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM1 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 10 match ext-community-list EXTCOMM1
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 10 action permit
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp extcommunity standard EXTCOMM2 permit soo 66:66 soo 77:77
+leaf01(config)# route-map ROUTEMAP1 permit 10
+leaf01(config-route-map)# match extcommunity EXTCOMM2
+leaf01(config)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+The following example configures a BGP extended community <span class="a-tooltip">[SOO](## "Site of Origin")</span> filter with a regex match and applies the extended community list to a route map.
+
+{{< tabs "2267">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM2 rule 10 ext-community soo "\.*_65000:2002_.*","\.*_89000:2002_.*"
+cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM2 rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP20 rule 10 match ext-community-list EXTCOMM2
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP20 rule 10 action permit
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# bgp extcommunity expanded EXTCOMM2 permit soo "\.*_65000:2002_.*","\.*_89000:2002_.*"
+leaf01(config)# route-map ROUTEMAP20 permit 10
+leaf01(config-route-map)# match extcommunity EXTCOMM2
+leaf01(config)# exit
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+To use a special character, such as a period (.) in the regular expression for an extended BGP community list, you must escape the character with a backslash (`\`). For example, `nv set router policy community-list COMMUNITY1 rule 10 community "\.*_65000:2002_.*"`.
+{{%/notice%}}
 
 {{%notice note%}}
 Cumulus Linux considers the full list of communities on a BGP route as a single string to evaluate. If you try to match `$` (ends with), Cumulus Linux matches the last community value in the list of communities, not the individual community values within the list.

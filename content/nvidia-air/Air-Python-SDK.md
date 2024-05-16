@@ -599,18 +599,18 @@ curl --request POST 'https://air.nvidia.com/api/v1/simulation-node/<simulation_n
 To avoid a race condition on Cumulus Linux nodes running a version prior to 5.0.0, schedule the node instructions prior to starting the simulation. If you do not perform the steps in this order, the instructions might fail to complete. 
 {{</notice>}}
 
-### Using Cloud-Init
-Cloud-Init allows users to configure their nodes upon the first boot. One of its features is the ability to run user scripts, which can be used to perform various configuration tasks.
-Detailed information and examples of user-data and meta-data files can be found [HERE](https://cloudinit.readthedocs.io/en/latest/explanation/format.html)
+### Using Cloud-init
+Cloud-init allows users to configure their nodes upon the first boot. One of its features is the ability to run user scripts, which can be used to perform various configuration tasks.
+Detailed information and examples of user data and metadata files can be found in the {{<exlink url="https://cloudinit.readthedocs.io/en/latest/explanation/format.html" text="cloud-init documentation">}}.
 
-After creating (but not starting) a simulation, get the specific simulation nodes to be configured. In this example the nodes are named node-1, node-2: 
+After creating (but not starting) a simulation, get the specific simulation nodes to be configured. In this example the nodes are named node-1 and node-2: 
 
 ```
 >>> sim_node_1 = air.simulation_nodes.list(name='node-1', simulation=simulation).pop()
 >>> sim_node_2 = air.simulation_nodes.list(name='node-2', simulation=simulation).pop()
 ```
 
-Create user-data and meta-data user configs:
+Create user data and metadata user configs:
 
 ```
 >>> USER_DATA = """#cloud-config
@@ -631,7 +631,7 @@ Create user-data and meta-data user configs:
 >>> sim_node_shared_userdata = air.user_configs.create(name='sim-node-shared-userdata', kind='cloud-init-user-data', organization=org, content=USER_DATA)
 ```
 
-Set cloud-init assignment for the simulation nodes:
+Set the cloud-init assignment for the simulation nodes:
 
 ```
 >>> sim_node_1.set_cloud_init_assignment({'user_data': sim_node_shared_userdata, 'meta_data': sim_node_1_metadata})
@@ -648,8 +648,8 @@ Finally, start the simulation:
 
 By default, the SDK implements the following timeouts for all API requests:
 
-* Establishing a connection to the server (`connect_timeout`): 16 seconds
-* Receiving a response to a request (`read_timeout`): 61 seconds
+- Establishing a connection to the server (`connect_timeout`): 16 seconds
+- Receiving a response to a request (`read_timeout`): 61 seconds
 
 These values can be adjusted after instantiating the `AirApi` client:
 
@@ -1937,7 +1937,7 @@ Delete all instructions for a `SimulationNode`
 <a name="air_sdk.simulation_node.simulationNode.set_cloud_init_assignment"></a>
 ### set\_cloud\_init\_assignment
 
-Set assignment of Cloud-Init scripts for specific node
+Set assignment of cloud-init scripts for specific node
 
 **Arguments**:
 
@@ -1973,7 +1973,7 @@ Set assignment of Cloud-Init scripts for specific node
 <a name="air_sdk.simulation_node.simulationNode.get_cloud_init_assignment"></a>
 ### get\_cloud\_init\_assignment
 
-Get Cloud-Init assignment for a specific node
+Get cloud-init assignment for a specific node
 
 
 **Returns**:
@@ -3671,7 +3671,7 @@ High-level interface for the UserConfig API
 <a name="air_sdk.userconfig.UserConfigApi.list"></a>
 ### list
 
-Listing existing userconfig scripts 
+List existing UserConfig scripts 
 
 **Arguments**:
 
@@ -3700,7 +3700,7 @@ Listing existing userconfig scripts
 <a name="air_sdk.userconfig.UserConfigApi.create"></a>
 ### create
 
-Create a new userConfig
+Create a new UserConfig
 
 **Arguments**:
 
@@ -3734,7 +3734,7 @@ Create a new userConfig
 <a name="air_sdk.userconfig.UserConfigApi.get"></a>
 ### get
 
-Get an existing userConfig
+Get an existing UserConfig
 
 **Arguments**:
 
@@ -3763,7 +3763,7 @@ Get an existing userConfig
 <a name="air_sdk.userconfig.UserConfigApi.update"></a>
 ### update
 
-Update specific properties of a userConfig
+Update specific properties of a UserConfig
 
 **Arguments**:
 
@@ -3774,7 +3774,7 @@ Update specific properties of a userConfig
 <a name="air_sdk.userconfig.UserConfigApi.delete"></a>  
 ### delete
 
-Delete existing userconfig script
+Delete existing UserConfig script
 
 **Raises**:
 

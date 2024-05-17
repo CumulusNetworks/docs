@@ -170,7 +170,7 @@ You can configure selective SPAN with ACLs to mirror a subset of traffic accordi
 To match swp1 ingress traffic that has the source IP address 10.10.1.1 and mirror the traffic to swp2 when a match occurs:
 
 ```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip source-ip 10.10.1.1
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action span swp2
 cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 inbound
@@ -458,7 +458,7 @@ You can configure selective ERSPAN with ACLs to mirror a subset of traffic accor
 The following command mirrors inbound ICMP packets from all swp interfaces. The source IP address for ERSPAN encapsulation is 10.10.10.1 and the destination IP address for ERSPAN encapsulation is 10.10.10.234.
 
 ```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 type ipv4
+cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 match ip protocol icmp
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action erspan source-ip 10.10.10.1
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 1 action erspan dest-ip 10.10.10.234

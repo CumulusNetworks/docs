@@ -40,6 +40,43 @@ For brevity and legibility, this section omits the timestamp and hostname from e
 
 ## Hardware
 
+{{< tabs "43 ">}}
+{{< tab "NVUE Commands ">}}
+
+NVUE provides commands to monitor various switch hardware elements.
+
+| Command | Description |
+| ----------- | ----------- |
+|`nv show platform environment fan` | Shows information about the fans on the switch, such as the minimum, maximum and current speed, the fan state, and the fan direction.|
+| `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|
+| `nv show platform environment psu` | Shows information about the PSUs on the switch, such as the PSU name and state.|
+| `nv show platform environment temperature` | Shows information about the sensors on the switch, such as the critical, maximum, minimum and current temperature and the current state of the sensor.|
+| `nv show platform environment voltage` | Shows the list of voltage sensors on the switch.|
+| `nv show platform inventory` | Shows the switch inventory, which includes fan and PSU hardware version, model, serial number, state, and type. For information about a specific fan or PSU, run the `nv show platform inventory <inventory-name>` command.|
+
+The following example shows the `nv show platform environment fan` command output. The airflow direction must be the same for all fans. If Cumulus Linux detects that the fan airflow direction is not uniform, it logs a message in the `var/log/syslog` file.
+
+```
+cumulus@switch:~$ nv show platform environment fan
+Name      Fan State  Current Speed (RPM)  Max Speed  Min Speed  Fan Direction
+--------  ---------  -------------------  ---------  ---------  -------------
+FAN1/1    ok         6000                 29000      2500       F2B         
+FAN1/2    ok         6000                 29000      2500       F2B         
+FAN2/1    ok         6000                 29000      2500       F2B         
+FAN2/2    ok         6000                 29000      2500       F2B         
+FAN3/1    ok         6000                 29000      2500       F2B         
+FAN3/2    ok         6000                 29000      2500       F2B         
+PSU1/FAN  ok         6000                 29000      2500       F2B         
+PSU2/FAN  ok         6000                 29000      2500       F2B   
+```
+
+{{%notice note%}}
+If the airflow direction for all fans is not in the same (front to back or back to front), cooling is suboptimal for the switch, rack, and even the entire data center.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "smond ">}}
+
 The `smond` process provides monitoring for various switch hardware elements. Minimum or maximum values depend on the flags you apply to the basic command. The table below lists the hardware elements and applicable commands and flags.
 
 | Hardware Element | Monitoring Commands | Interval Poll |
@@ -62,6 +99,9 @@ Not all switch models include a sensor for monitoring power consumption and volt
 | Fan speed issues | <pre>/var/log/syslog</pre> | <pre>/usr/sbin/smond : : Fan1(Fan Tray 1, Fan 1): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Fan2(Fan Tray 1, Fan 2): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Fan3(Fan Tray 2, Fan 1): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Fan4(Fan Tray 2, Fan 2): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Fan5(Fan Tray 3, Fan 1): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : Fan6(Fan Tray 3, Fan 2): state changed from UNKNOWN to OK</pre> |
 | Fan direction issue |<pre>/var/log/syslog</pre> |<pre>/usr/sbin/smond : : Fan direction mismatch: 12 fans B2F; 1 fans F2B!</pre> |
 | PSU failure | <pre>/var/log/syslog</pre> | <pre>/usr/sbin/smond : : PSU1Fan1(PSU1 Fan): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : PSU2Fan1(PSU2 Fan): state changed from UNKNOWN to BAD</pre> |
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## System Data
 
@@ -95,7 +135,6 @@ The Spectrum 1 CPUs can become overloaded at a moderate to high network scale. I
 {{%/notice%}}
 -->
 
-Reduce switch config to a point CPU is at 60% capacity at regular operation
 ### Disk Usage
 
 When monitoring disk utilization, you can exclude `tmpfs` from monitoring.

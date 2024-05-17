@@ -435,11 +435,12 @@ Upload and create the image object:
 >>> # Is the air-agent enabled in the Image by default?
 >>> agent_enabled = False
 >>> # Should the image be published and accessible to all users? 
->>> base = False
 >>> default_username = 'admin'
 >>> default_password = 'admin'
 >>> organization = '<organization_uuid>'
->>> image = air.images.create(name=image_name, base=base, filename=filename, agent_enabled=agent_enabled, default_username=default_username, default_password=default_password, organization=organization)
+>>> version = '1.0.0'
+>>> cpu_arch = 'x86'
+>>> image = air.images.create(name=image_name, filename=filename, agent_enabled=agent_enabled, default_username=default_username, default_password=default_password, organization=organization, version=version, cpu_arch=cpu_arch)
 ```
 
 {{< /tab >}}
@@ -459,7 +460,8 @@ curl --request POST 'https://air.nvidia.com/api/v1/image/' \
   "default_username": "admin",
   "organization": "<organization_id>",
   "simx": "false",
-  "provider": "VM"
+  "provider": "VM",
+  "version": "1.0.0"
 }'
 ```
 The response will contain an image upload URL:
@@ -1188,12 +1190,12 @@ Create a new image
 **Example**:
 
 ```
->>> image = air.images.create(name='my_image', filename='/tmp/my_image.qcow2', agent_enabled=False)
+>>> image = air.images.create(name='my_image', filename='/tmp/my_image.qcow2', agent_enabled=False, default_username='user', default_password='password', organization=org, version='1.0.0', cpu_arch='x86')
 >>> image
 <Image my_image 01298e0c-4ef1-43ec-9675-93160eb29d9f>
 >>> image.upload_status
 'COMPLETE'
->>> alt_img = air.images.create(name='my_alt_img', filename='/tmp/alt_img.qcow2', agent_enabled=False)
+>>> alt_img = air.images.create(name='my_alt_img', filename='/tmp/alt_img.qcow2', agent_enabled=False, default_username='user', default_password='password', organization=org, version='1.0.0', cpu_arch='x86')
 >>> alt_img.upload_status
 'FAILED'
 ```

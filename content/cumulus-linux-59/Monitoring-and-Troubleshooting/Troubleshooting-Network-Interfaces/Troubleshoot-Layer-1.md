@@ -30,7 +30,7 @@ The SFF MSA specifications define the memory locations for the fields in the EEP
 - SFP: {{<exlink url="https://members.snia.org/document/dl/25916" text="SFF-8472">}}: *Management Interface for SFP+* (PDF)
 - QSFP: {{<exlink url="https://members.snia.org/document/dl/26418" text="SFF-8636">}} *Management Interface for 4-lane Modules and Cables* (PDF)
 
-Identifiers used in the first byte of the module memory map:
+Identifiers are used in the first byte of the module memory map:
 <!-- vale off -->
 - 0x03: SFP/SFP+/SFP28 - One 10G or 25G lane - Small Form factor Pluggable
 - 0x0d: QSFP+ - Four 10G lanes - Quad SFP (40G total)

@@ -90,12 +90,15 @@ To show information about the version of Cumulus Linux running on the switch, ru
 
 ```
 cumulus@switch:~$ nv show system
-          operational          applied  pending  description
---------  -------------------  -------  -------  ------------------------------
-hostname  leaf01                                 Static hostname for the switch
-build     Cumulus Linux 5.9.0                    system build version
-uptime    6 days, 22:03:49                       system uptime
-timezone  Etc/UTC                                system time zone
+            operational          applied
+-----------  -------------------  -------
+hostname     leaf01                
+build        Cumulus Linux 5.9.0         
+uptime       0:02:50                     
+timezone     Etc/UTC                     
+maintenance                              
+  mode       disabled                    
+  ports      enabled
 ```
 
 To show system memory information in bytes, run the `nv show system memory` command:
@@ -112,30 +115,27 @@ To show system CPU information, run the `nv show system cpu` command:
 
 ```
 cumulus@switch:~$ nv show system cpu
-             operational                    applied  pending  description
------------  -----------------------------  -------  -------  --------------------------------
-core-count   1                                                Core count
-model        QEMU Virtual CPU version 2.5+                    Model name
-utilization  11.8%                                            Utilization over 2 frames of top
+             operational                  
+-----------  -----------------------------
+model        QEMU Virtual CPU version 2.5+
+core-count   1                            
+utilization  0.3%
 ```
 
 To show general information about the switch, run the `nv show platform` command:
 
 ```
 cumulus@switch:~$ nv show platform
-               operational                         
--------------  ------------------------------------
-system-mac     44:38:39:22:01:b1                   
-manufacturer   Cumulus                             
-product-name   VX                                  
-cpu            NA                                  
-memory         1756460 kB                          
-disk-size      n/a                                 
-port-layout    n/a                                 
-part-number    5.9.0                               
-serial-number  44:38:39:22:01:7a                   
-asic-model     n/a                                 
-system-uuid    e928ee83-20f7-4515-bfab-c204db3e604c
+              operational                            
+------------  ---------------------------------------
+system-mac    44:38:39:22:01:b1                      
+manufacturer  Accton                                 
+cpu           x86_64 QEMU Virtual CPU version 2.5+ x1
+memory        1751856 kB                             
+disk-size     n/a                                    
+port-layout   n/a                                    
+asic-model    n/a                                    
+system-uuid   a6bfbd6d-70ac-426f-b46d-3743e16e1f4b
 ```
 <!-- vale off -->
 ## Diagnostics Using cl-support
@@ -366,8 +366,11 @@ rsyslog.service - System Logging Service
     Docs: man:rsyslogd(8)
           http://www.rsyslog.com/doc/
 Main PID: 11751 (rsyslogd)
-  CGroup: /system.slice/rsyslog.service
-          └─11751 /usr/sbin/rsyslogd -n
+   Tasks: 4 (limit: 2032)
+     Memory: 1.1M
+        CPU: 20ms
+     CGroup: /system.slice/rsyslog.service
+             └─8587 /usr/sbin/rsyslogd -n -iNONE
 
 Dec 09 00:48:58 leaf01 systemd[1]: Started System Logging Service.
 ```

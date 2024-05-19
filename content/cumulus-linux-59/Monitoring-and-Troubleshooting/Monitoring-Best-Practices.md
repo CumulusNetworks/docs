@@ -117,7 +117,7 @@ Short bursts of high CPU can occur during `switchd` churn or routing protocol st
 
 | System Element | Monitoring Commands | Interval Poll |
 |--------------- |-------------------- |-------------- |
-|CPU utilization | `sudo cat /proc/stat`<br>`top -b -n 1` | 30 seconds |
+|CPU utilization | NVUE: `nv show system cpu`<br>Linux: `sudo cat /proc/stat`<br>`top -b -n 1` | 30 seconds |
 
 | CPU Logs | Log Location | Log Entries |
 |--------- |------------- |------------ |

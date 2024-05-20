@@ -157,16 +157,16 @@ Link and port state interface transitions log to `/var/log/syslog` and `/var/log
 
 | Interface Element | Monitoring Commands |
 |------------------ |-------------------- |
-| Link state | `sudo cat /sys/class/net/[iface]/operstate`<br>`nv show interface --view=brief` |
-| Link speed | `sudo cat /sys/class/net/[iface]/speed`<br>`nv show interface --view=brief` |
-| Port state | `ip link show`<br>`nv show interface --view=brief` |
-| Bond state | `sudo cat /proc/net/bonding/[bond]`<br>`nv show interface --view=brief` |
+| Link state | NVUE: `nv show interface <interface>`<br><br>Linux: `sudo cat /sys/class/net/<interface>/operstate` |
+| Link speed | NVUE: `nv show interface <inteface>`<br><br>Linux: `sudo cat /sys/class/net/<interface>/speed` |
+| Port state | NVUE: `nv show interface`<br><br>Linux: `ip link show` |
+| Bond state | NVUE: `nv show interface <bond>`<br><br>Linux: `sudo cat /proc/net/bonding/<bond>` |
 
 You obtain interface counters from either querying the hardware or the Linux kernel. The Linux kernel aggregates the output from the hardware.
 
 | Interface Counter Element | Monitoring Commands | Interval Poll|
 |-------------------------- |-------------------- |------------- |
-| Interface counters | `cat /sys/class/net/[iface]/statistics/[stat_name]`<br>`cl-netstat -j`<br>`ethtool -S [ iface]` | 10 seconds |
+| Interface counters | NVUE: `nv show interface <interface> counters`<br><br>Linux: `cat /sys/class/net/<interface>/statistics/<statistic-name>`<br>`cl-netstat -j`<br>`ethtool -S <interface>` | 10 seconds |
 
 | Layer 1 Logs |Log Location | Log Entries |
 |------------- |------------- |------------ |
@@ -193,8 +193,8 @@ Consider tracking peering information through PTM. For more information, refer t
 
 | Neighbor Element | Monitoring Commands | Interval Poll |
 |----------------- |-------------------- |-------------- |
-| LLDP Neighbor | `lldpctl -f json` | 300 seconds |
-| Prescriptive Topology Manager | `ptmctl -j [-d]` | Triggered |
+| LLDP Neighbor | `sudo lldpctl -f json` | 300 seconds |
+| Prescriptive Topology Manager | `ptmctl -j` | Triggered |
 
 ## Layer 2 Protocols
 
@@ -202,9 +202,9 @@ Spanning tree is a protocol that prevents loops in a layer 2 infrastructure. In 
 
 | Interface Counter Element | Monitoring Commands | Interval Poll |
 |-------------------------- |-------------------- |-------------- |
-| STP TCN Transitions | `mstpctl showbridge json`<br>`mstpctl showport json` | 60 seconds |
-| MLAG peer state | `clagctl status`<br>`clagd -j`<br>`sudo cat /var/log/clagd.log` | 60 seconds |
-| MLAG peer MACs | `clagctl dumppeermacs`<br>`clagctl dumpourmacs` |300 seconds |
+| STP TCN Transitions | NVUE: `nv show bridge domain <bridge> stp`<br><br>Linux: `mstpctl showbridge json`<br>`mstpctl showport` | 60 seconds |
+| MLAG peer state | NVUE: `nv show mlag`<br><br>Linux: `clagctl status`<br>`sudo clagd -j`<br>`sudo cat /var/log/clagd.log` | 60 seconds |
+| MLAG peer MACs | NVUE: `nv show mlag`<br><br>Linux: `clagctl dumppeermacs`<br>`clagctl dumpourmacs` |300 seconds |
 
 | Layer 2 Logs | Log Location | Log Entries |
 |------------- |------------- |------------ |
@@ -265,15 +265,7 @@ The table below describes the various log files.
 | syslog | Catch all log file. Identifies memory leaks and CPU spikes. | <pre>/var/log/syslog</pre> |
 | switchd functionality | Hardware Abstraction Layer (HAL). | <pre>/var/log/switchd.log</pre> |
 | Routing daemons | FRR zebra daemon details. | <pre>/var/log/daemon.log</pre> |
-| Routing protocol | The log file is configurable in FRR. When FRR first boots, it uses the non-integrated configuration so each routing protocol has its own log file. After booting up, FRR switches over to using the integrated configuration, so that all logs go to a single place.<br><br>To edit the location of the log files, use the log file <location> command. By default, Cumulus Linux does not send FRR logs to syslog. Use the log syslog <level> command to send logs through `rsyslog` and into `/var/log/syslog`.<br><br>**Note**: To write syslog debug messages to the log file, you must run the log syslog debug command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as `debug bgp neighbor-events`, no output logs to `/var/log/frr/frr.log`.<br><br>However, when you manually define a log target with the log file `/var/log/frr/debug.log` command, FRR automatically defaults to severity 7 (debug) logging and the output logs to `/var/log/frr/frr.log`.|<pre>/var/log/frr/zebra.log<br>/var/log/frr/{protocol}.log<br>/var/log/frr/frr.log</pre> |
-
-## Protocols and Services
-
-Run the following command to confirm that the NTP process is working correctly and that the switch clock is in sync with NTP:
-
-```
-cumulus@switch:~$ /usr/bin/ntpq -p
-```
+| Routing protocol | The log file is configurable in FRR. When FRR first boots, it uses the non-integrated configuration so each routing protocol has its own log file. After booting up, FRR switches over to using the integrated configuration, so that all logs go to a single place.<br><br>To edit the location of the log files, use the log file <location> command. By default, Cumulus Linux does not send FRR logs to syslog. Use the log syslog <level> command to send logs through `rsyslog` and into `/var/log/syslog`.<br><br>**Note**: To write syslog debug messages to the log file, you must run the log syslog debug command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as `debug bgp neighbor-events`, no output logs to `/var/log/frr/frr.log`.<br><br>However, when you manually define a log target with the log file `/var/log/frr/debug.log` command, FRR automatically defaults to severity 7 (debug) logging and the output logs to `/var/log/frr/frr.log`.|<pre>/var/log/frr/zebra.log<br>/var/log/frr/<protocol>.log<br>/var/log/frr/frr.log</pre> |
 
 ## Device Management
 

@@ -2115,7 +2115,7 @@ To set the minor PTP version back to the default, run the `nv unset service ptp 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/ptp4l.conf` file to add `force-version  2.0` to the `Global` section, then restart the `ptp4l` service.
+Edit the `/etc/ptp4l.conf` file to add `ptp_minor_version 0` to the `Global` section, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -2132,14 +2132,14 @@ domainNumber                   0
 twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
-force-version                  2.0
+ptp_minor_version              0
 ```
 
 ```
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
-To set the minor PTP version back to the default, remove `force-version  2.0` from the `Global` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
+To set the minor PTP version back to the default value (1), remove `ptp_minor_version 0` from the `Global` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
 
 {{< /tab >}}
 {{< /tabs >}}

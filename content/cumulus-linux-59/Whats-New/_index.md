@@ -15,8 +15,7 @@ Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, re
 
 Cumulus Linux 5.9.1 replaces Cumulus Linux 5.9.0, which is no longer available.
 
-- Cumulus Linux 5.9.1 provides all the same new features and enhancements as Cumulus Linux 5.9.0, and in addition, includes stability enhancements.
-- Cumulus Linux 5.9.1 includes all the same open and fixed issues listed in {{<link title="Cumulus Linux 5.9 Release Notes" text="Cumulus Linux 5.9 Release Notes">}}.
+Cumulus Linux 5.9.1 provides all the same new features and enhancements as Cumulus Linux 5.9.0, and in addition, includes stability enhancements.
 
 {{%notice info%}}
 - The NVIDIA SN5600 switch supports Cumulus Linux 5.9 and later; do not install Cumulus Linux 5.8 and earlier on this switch.

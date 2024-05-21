@@ -459,7 +459,7 @@ cumulus@switch:~$ nv set acl acl_3 rule 1 action source-nat translate-ip 172.30.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<range-id\> to <ipv4></h>
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<range-id\> to \<ipv4\></h>
 
 Configures a dynamic NAT action rule to translate a source IP address range to a public address.
 
@@ -482,7 +482,7 @@ cumulus@switch:~$ nv set acl acl_1 rule 1 action source-nat translate-ip 172.30.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl <acl-id> rule <rule-id> action source-nat translate-mac <mac></h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> action source-nat translate-mac \<mac\></h>
 
 Configures MAC address translation to translate a source MAC address to a public address. MAC address translation is equivalent to static NAT but operates at layer 2 on Ethernet frames.
 
@@ -642,7 +642,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags ip-ect
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip ecn ip-ect
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -667,12 +667,12 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags tcp-cwr
+cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip ecn tcp-cwr
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip ecn tcp-ece</h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip ecn flags tcp-ece</h>
 
 Configures the ACL to match on the ECE bit. After an endpoint receives a packet with the CE bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
 
@@ -1496,58 +1496,6 @@ cumulus@switch:~$ nv set interface swp1 acl EXAMPLE1 outbound control-plane
 ## <h>nv set system control-plane acl \<acl-id\></h>
 
 Configures a control plane ACL to apply a single rule for all packets forwarded to the CPU regardless of the source interface or destination interface on the switch. Control plane ACLs allow you to regulate traffic forwarded to applications on the switch with more granularity than traps and to configure ACLs to block SSH from specific addresses or subnets.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system control-plane acl acl-default-dos inbound</h>
-
-Enables or disables the Cumulus Linux default Dos firewall rules that protect the switch control plane and CPU from DOS attacks. Cumulus Linux provides firewall DoS rules to:
-- Allow only internal traffic to the loopback interfaces.
-- Accept already established connections and outbound traffic.
-- Set the - allow option to color the packets from a specific interface. Used when different policies - need to be applied for different eth interfaces.
-- Drop packets if the first TCP segment is not SYN.
-- Drop fragmented IP packets.
-- Drop Christmas tree packets; packets with all TCP flags set.
-- Drop NULL packets.
-- Drop invalid packets.
-- Drop strange MSS values.
-- Provide brute-force protection.
-- Drop packets with routing Header Type 0.
-- Drop packets with a hop limit greater than 1.
-- Limit excessive TCP reset packets.
-- Protect against SYN flood.
-- Rate limit new TCP connections for each IP address.
-- Log all remaining packets, then drop them.
-
-In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops packets that are disallowed.
-
-### Version History
-
-Introduced in Cumulus Linux 5.9.0
-
-### Example
-
-```
-cumulus@switch:~$ nv unset system control-plane acl acl-default-dos inbound 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set system control-plane acl acl-default-whitelist inbound</h>
-
-Enables or disables the Cumulus Linux default whitelist firewall rules that specify the services or application ports enabled on the switch. Cumulus Linux provides firewall whitelist rules to enable TCP ports and UDP ports.
-
-In Cumulus Linux 5.8 and earlier, the set of default firewall rules are more open; Cumulus Linux accepts packets from all addresses and protocols. Cumulus Linux 5.9 and later provides a set of default firewall rules that allows only specific addresses and ports, and drops packets that are disallowed.
-
-### Version History
-
-Introduced in Cumulus Linux 5.9.0
-
-### Example
-
-```
-cumulus@switch:~$ nv unset system control-plane acl acl-default-whitelist inbound
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

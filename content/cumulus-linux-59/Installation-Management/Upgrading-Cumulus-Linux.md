@@ -155,7 +155,7 @@ You can upgrade Cumulus Linux in one of two ways:
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="In-Service-System-Upgrade-ISSU">}}.
 
 {{%notice note%}}
-- To upgrade to Cumulus Linux 5.9.0 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with package upgrade.
+- To upgrade to Cumulus Linux 5.9 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with package upgrade.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
@@ -224,12 +224,10 @@ cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 ```
 {{%/notice%}}
-<!--
+
 #### Disk Space Requirements
 
-Make sure you have enough disk space to perform a package upgrade. Cumulus Linux 5.9.0 requires:
-- 0.8GB of free disk space to upgrade from 5.8
-- 1GB of free disk space to upgrade from 5.7
+Make sure you have enough disk space to perform a package upgrade. To upgrade from Cumulus Linux 5.9.0 to Cumulus Linux 5.9.1, you need 0.5GB of free disk space.
 
 Before you upgrade, run the `sudo df -h` command to show how much disk space you are currently using on the switch.
 
@@ -245,7 +243,7 @@ tmpfs           7.7G      0    7.7G     0%    /sys/fs/cgroup
 tmpfs           7.7G    16K    7.7G     1%    /tmp
 overlay          28G   7.9G     18G    31%   
 ```
--->
+
 #### Upgrade the Switch
 
 To upgrade the switch using package upgrade:

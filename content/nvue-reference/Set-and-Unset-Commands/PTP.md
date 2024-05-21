@@ -572,6 +572,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@switch:~$ nv set service ptp 1 ip-dscp 22
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set service ptp \<instance-id\> ipv6-scope</h>
 
 Sets the PTP IPv6 scope. You can specify `admin-local`, `interface-local`, `organization-local`,
@@ -1261,7 +1263,7 @@ Turns PTP on or off in the specified VRF.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf>` |  The VRF name. |
+| `<vrf-id>` |  The VRF name. |
 
 ### Version History
 

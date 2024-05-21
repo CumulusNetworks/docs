@@ -18,8 +18,7 @@ You can run NVUE commands to monitor your system hardware.
 
 | Command | Description |
 | ----------- | ----------- |
-| `nv show platform`| Shows platform hardware information on the switch, such as the model and manufacturer, memory, Cumulus Linux release, serial number and system MAC address. |
-| `nv show platform environment` | Shows the type and state of all the physical sensors, fans, LEDs, and PSUs on the switch.|
+| `nv show platform`| Shows platform hardware information on the switch, such as the model and manufacturer, memory, serial number and system MAC address. |
 |`nv show platform environment fan` | Shows information about the fans on the switch, such as the minimum, maximum and current speed, the fan state, and the fan direction.|
 | `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|
 | `nv show platform environment psu` | Shows information about the PSUs on the switch, such as the PSU name and state.|
@@ -106,9 +105,7 @@ The `decode-syseeprom` command includes the following options:
 | `-m` | Prints the base MAC address for the management interfaces. |
 | `--init` | Clears and initializes the board EEPROM cache. |
 
-Run the `dmidecode` command to retrieve hardware configuration information populated in the BIOS.
-
-Run `apt-get` to install the `lshw` program on the switch, which also retrieves hardware configuration information.
+Run the `sudo dmidecode` command to retrieve hardware configuration information populated in the BIOS.
 
 ## smond
 
@@ -118,20 +115,23 @@ Run the `sudo smonctl` command to display sensor information for the various sys
 
 ```
 cumulus@switch:~$ sudo smonctl
-Board                                             :  OK
-Fan                                               :  OK
+Fan1      (Fan Tray 1, Fan 1                     ):  OK
+Fan2      (Fan Tray 1, Fan 2                     ):  OK
+Fan3      (Fan Tray 2, Fan 1                     ):  OK
+Fan4      (Fan Tray 2, Fan 2                     ):  OK
+Fan5      (Fan Tray 3, Fan 1                     ):  OK
+Fan6      (Fan Tray 3, Fan 2                     ):  OK
 PSU1                                              :  OK
-PSU2                                              :  BAD
-Temp1     (Networking ASIC Die Temp Sensor       ):  OK
-Temp10    (Right side of the board               ):  OK
-Temp2     (Near the CPU (Right)                  ):  OK
-Temp3     (Top right corner                      ):  OK
-Temp4     (Right side of Networking ASIC         ):  OK
-Temp5     (Middle of the board                   ):  OK
-Temp6     (P2020 CPU die sensor                  ):  OK
-Temp7     (Left side of the board                ):  OK
-Temp8     (Left side of the board                ):  OK
-Temp9     (Right side of the board               ):  OK
+PSU2                                              :  OK
+PSU1Fan1  (PSU1 Fan                              ):  OK
+PSU1Temp1 (PSU1 Temp Sensor                      ):  OK
+PSU2Fan1  (PSU2 Fan                              ):  OK
+PSU2Temp1 (PSU2 Temp Sensor                      ):  OK
+Temp1     (Board Sensor near CPU                 ):  OK
+Temp2     (Board Sensor Near Virtual Switch      ):  OK
+Temp3     (Board Sensor at Front Left Corner     ):  OK
+Temp4     (Board Sensor at Front Right Corner    ):  OK
+Temp5     (Board Sensor near Fan                 ):  OK
 ```
 
 {{%notice note%}}
@@ -145,12 +145,11 @@ The `smonctl` command includes the following options:
 | `-s <sensor>`, `--sensor <sensor>` | Displays data for the specified sensor. |
 | `-v`, `--verbose` | Displays detailed hardware sensors data. |
 
-The following command example shows detailed information about FAN6 on the switch. The information includes the fan state, the current, minimum, and maximum speed, the limit variance, and the fan direction.
+The following command example shows information about FAN6 on the switch:
 
 ```
 cumulus@switch:~$ smonctl -s FAN6 -v
-Fan6(Fan Tray 3 Rear):  OK 
-fan:8282 RPM   (max = 25000 RPM, min = 4500 RPM, limit_variance = 15 direction = F2B)
+Fan6      (Fan Tray 3, Fan 2                     ):  OK
 ```
 
 For more information, read `man smond` and `man smonctl`.
@@ -160,7 +159,7 @@ For more information, read `man smond` and `man smonctl`.
 Run the `sensors` command to monitor the health of your switch hardware, such as power, temperature and fan speeds. This command executes `{{<exlink url="https://en.wikipedia.org/wiki/Lm_sensors" text="lm-sensors">}}`.
 
 {{%notice note%}}
-Even though you can use the `sensors` command to monitor the health of your switch hardware, the `smond` daemon is the recommended method for monitoring hardware health. See {{<link url="#smond-daemon" text="smond Daemon">}}
+Even though you can use the `sensors` command to monitor the health of your switch hardware, NVIDIA recommends you use the `smond` daemon to monitor hardware health. See {{<link url="#smond-daemon" text="smond Daemon">}}
 above.
 {{%/notice%}}
 
@@ -168,25 +167,30 @@ For example:
 
 ```
 cumulus@switch:~$ sensors
-tmp75-i2c-6-48
-Adapter: i2c-1-mux (chan_id 0)
-temp1:        +39.0 C  (high = +75.0 C, hyst = +25.0 C)
-
-tmp75-i2c-6-49
-Adapter: i2c-1-mux (chan_id 0)
-temp1:        +35.5 C  (high = +75.0 C, hyst = +25.0 C)
-
-ltc4215-i2c-7-40
-Adapter: i2c-1-mux (chan_id 1)
-in1:         +11.87 V
-in2:         +11.98 V
-power1:       12.98 W
-curr1:        +1.09 A
-
-max6651-i2c-8-48
-Adapter: i2c-1-mux (chan_id 2)
-fan1:        13320 RPM  (div = 1)
-fan2:        13560 RPM
+cumulus_vx_cpld-isa-0000
+Adapter: ISA adapter
+fan1:        6000 RPM  (min = 2500 RPM, max = 29000 RPM)
+fan2:        6000 RPM  (min = 2500 RPM, max = 29000 RPM)
+fan3:        6000 RPM  (min = 2500 RPM, max = 29000 RPM)
+fan4:        6000 RPM  (min = 2500 RPM, max = 29000 RPM)
+fan5:        6000 RPM  (min = 2500 RPM, max = 29000 RPM)
+fan6:        6000 RPM  (min = 2500 RPM, max = 29000 RPM)
+fan7:        6000 RPM  (min = 2500 RPM, max = 29000 RPM)
+fan8:        6000 RPM  (min = 2500 RPM, max = 29000 RPM)
+temp1:        +25.0°C  (low  =  +5.0°C, high = +80.0°C)
+                       (crit low =  +0.0°C, crit = +85.0°C)
+temp2:        +25.0°C  (low  =  +5.0°C, high = +80.0°C)
+                       (crit low =  +0.0°C, crit = +85.0°C)
+temp3:        +25.0°C  (low  =  +5.0°C, high = +80.0°C)
+                       (crit low =  +0.0°C, crit = +85.0°C)
+temp4:        +25.0°C  (low  =  +5.0°C, high = +80.0°C)
+                       (crit low =  +0.0°C, crit = +85.0°C)
+temp5:        +25.0°C  (low  =  +5.0°C, high = +80.0°C)
+                       (crit low =  +0.0°C, crit = +85.0°C)
+temp6:        +25.0°C  (low  =  +5.0°C, high = +80.0°C)
+                       (crit low =  +0.0°C, crit = +85.0°C)
+temp7:        +25.0°C  (low  =  +5.0°C, high = +80.0°C)
+                       (crit low =  +0.0°C, crit = +85.0°C)
 ```
 
 {{%notice note%}}
@@ -219,6 +223,22 @@ cumulus@switch:~$ sudo systemctl disable wd_keepalive ; systemctl stop wd_keepal
 ```
 
 You can modify the settings for the watchdog, such as the timeout and the scheduler priority, in the `/etc/watchdog.conf` configuration file.
+
+```
+cumulus@switch:~$ sudo nano /etc/watchdog.conf
+watchdog-device	= /dev/watchdog
+# Set the hardware watchdog timeout in seconds
+watchdog-timeout = 30
+# Kick the hardware watchdog every 'interval' seconds
+interval = 5
+# Log a status message every (interval * logtick) seconds.  Requires
+# --verbose option to enable.
+logtick = 240
+# Run the daemon using default scheduler SCHED_OTHER with slightly
+# elevated process priority.  See man setpriority(2).
+realtime = no
+priority = -2
+```
 
 ## Related Information
 

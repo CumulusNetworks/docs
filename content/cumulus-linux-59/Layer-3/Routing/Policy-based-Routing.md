@@ -14,9 +14,10 @@ Cumulus Linux applies PBR to incoming packets. All packets received on a PBR-ena
 - You can create a *maximum* of 255 PBR match rules and 256 next hop groups (this is the <span class="a-tooltip">[ECMP](## "Equal Cost Multi Path") limit)</span>.
 - You can apply only one PBR policy per input interface.
 - You can match on *source* and *destination* IP address, or match on <span class="a-tooltip">[DSCP](## "Differentiated Services Code Point")</span> or <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span> values within a packet.
-- PBR is not supported for VXLAN tunneling.
-- PBR is not supported on management interfaces, such as eth0.
+- PBR does not support for VXLAN tunneling.
+- PBR does not support management interfaces, such as eth0.
 - A PBR rule cannot contain both IPv4 and IPv6 addresses.
+- PBR only supports the next hop as a next hop group; PBR does not support individual next hops.
 {{%/notice%}}
 
 ## Configure PBR
@@ -26,7 +27,7 @@ A PBR policy contains one or more policy maps. Each policy map:
 - Has a unique map name and sequence (rule) number. The rule number determines the relative order of the map within the policy.
 - Contains a match source IP rule and (or) a match destination IP rule and a set rule, or a match DSCP or ECN rule and a set rule.
    - To match on a source and destination address, a policy map can contain both match source and match destination IP rules.
-   - A set rule determines the PBR next hop for the policy. <!--The set rule can contain a single next hop IP address or it can contain a next hop group. A next hop group has more than one next hop IP address so that you can use multiple interfaces to forward traffic. To use ECMP, you configure a next hop group.-->
+   - A set rule determines the PBR next hop for the policy. The set rule can only contain a next hop group.
 
 To use PBR in Cumulus Linux, you define a PBR policy and apply it to the ingress interface (the interface must already have an IP address assigned). Cumulus Linux matches traffic against the match rules in sequential order and forwards the traffic according to the set rule in the first match. Traffic that does not match any rule passes on to the normal destination based routing mechanism.
 
@@ -177,15 +178,14 @@ When you configure PBR with NVUE commands, NVUE enables the `pbrd` service and r
     switch(config-pbr-map)# exit
     switch(config)#
     ```
-
-   Instead of a next hop *group*, you can apply a next hop to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `RED` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
+   <!--Instead of a next hop *group*, you can apply a next hop to the policy map. The example command below applies the next hop 192.168.0.31 on the output interface swp2 and VRF `RED` to the `map1` policy map. The next hop must be an IP address. The output interface and VRF are optional, however, you *must* specify the VRF you want to use for resolution if the next hop is *not* in the default VRF.
 
     ```
     switch(config-pbr-map)# set nexthop 192.168.0.31 swp2 nexthop-vrf RED
     switch(config-pbr-map)# exit
     switch(config)#
     ```
-
+   -->
 5. Assign the PBR policy to an ingress interface. The example command below assigns the PBR policy `map1` to interface swp51:
 
     ```
@@ -580,7 +580,33 @@ switch# show pbr map
       Installed: yes Tableid: 10004
 ```
 
-To see information about a policy, its matches, and associated interface, run the vtysh `show pbr map <map-name>` command.
+To see information about a policy, its matches, and associated interface, run the NVUE `nv show router pbr map <map> -o json `command or the vtysh `show pbr map <map-name>` command.
+
+```
+cumulus@switch:~$ nv show router pbr map map1 -o json
+{
+  "rule": {
+    "1": {
+      "action": {
+        "nexthop-group": {
+          "group1": {
+            "installed": "on",
+            "table-id": 10000
+          }
+        }
+      },
+      "installed": "no",
+      "installed-reason": "Valid",
+      "ip-rule-id": 300,
+      "match": {
+        "destination-ip": "10.1.2.0/24",
+        "source-ip": "10.1.4.1/24"
+      }
+    }
+  },
+  "valid": "yes"
+}
+```
 
 To see information about all next hop groups, run the NVUE `nv show router pbr nexthop-group` command or the vtysh `show pbr nexthop-group` command.
 
@@ -590,6 +616,26 @@ Nexthop-groups  installed  valid    Summary
 --------------  ---------  -----    ----------------
 group1          yes         yes     Nexthop-index: 1
                                     Nexthop-index: 2
+```
+
+To show more detailed information about the next hop groups, run the `nv show router pbr nexthop-group -o json` command:
+
+```
+cumulus@switch:~$ nv show router pbr nexthop-group -o json
+{
+  "group1": {
+    "installed": "yes",
+    "nexthop": {
+      "1": {
+        "nexthop": "20.1.1.2",
+        "valid": "yes",
+        "vrf": "swp1s0"
+      }
+    },
+    "valid": "yes"
+  }
+}
+...
 ```
 
 To see information about a specific next hop group, run the NVUE `nv show router pbr nexthop-group <nexthop-group>` command or the vtysh `show pbr nexthop-group <nexthop-group>` command.

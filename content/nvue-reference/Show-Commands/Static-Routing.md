@@ -118,13 +118,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32
-                applied     
---------------  ------------
-tag             none        
-[via]           10.10.10.1  
-address-family  ipv4-unicast
-[distance]      2
+cumulus@switch:~$ nv show vrf default router static 10.10.10.101/32 distance 2 via 10.10.10.1 flag
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

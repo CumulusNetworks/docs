@@ -683,58 +683,7 @@ interface swp1
 {{%notice note%}}
 To remove existing MD5 authentication hashes, run the vtysh `no ip ospf` command (`no ip ospf message-digest-key 1 md5 thisisthekey`).
 {{%/notice%}}
-<!-- asked not to document in 5.6
-#### Password Obfuscation
 
-By default, when you set MD5 authentication for OSPF neighbors, Cumulus Linux shows the keys in clear text in the NVUE `nv config show` command output, vtysh `show running-config output`, and in the `/etc/frr/frr.conf` file. To configure OSPF to obfuscate the keys instead of showing them in clear text:
-
-{{< tabs "340 ">}}
-{{< tab "NVUE Commands ">}}
-
-To enable password obfuscation (show encrypted passwords):
-
-```
-cumulus@leaf01:~$ nv set router password-obfuscation enabled
-cumulus@leaf01:~$ nv config apply
-```
-
-To disable password obfuscation (show clear text passwords):
-
-```
-cumulus@leaf01:~$ nv set router password-obfuscation disabled
-cumulus@leaf01:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-To enable password obfuscation (show encrypted passwords):
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# conf t
-switch(config)# service password-obfuscation
-switch(config)# end
-switch# write memory
-switch# exit
-```
-
-To disable password obfuscation (show clear text passwords):
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# conf t
-switch(config)# no service password-obfuscation
-switch(config)# end
-switch# write memory
-switch# exit
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 ### Summarization and Prefix Range
 
 By default, an <span class="a-tooltip">[ABR](## "Area Border Router")</span> creates a summary (type-3) <span class="a-tooltip">[LSA](## "Link-State Advertisement")</span> for each route in an area and advertises it in adjacent areas. Prefix range configuration optimizes this behavior by creating and advertising one summary LSA for multiple routes. OSPF only allows for route summarization between areas on a ABR.
@@ -753,7 +702,7 @@ These commands create a summary route for all the routes in the range 172.16.1.0
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv shsetow vrf default router ospf area 0 range 172.16.1.0/24
+cumulus@leaf01:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1294,6 +1243,21 @@ The following example command clears all counters for OSPF interface swp51:
 cumulus@leaf01:mgmt:~$ nv action clear vrf default router ospf interface swp51
 ...
 Action succeeded
+```
+
+## Considerations
+
+With NVUE, you cannot run both the `nv set vrf default router ospf area <area> network` command and the `nv set interface <interface> router ospf area` command in the same configuration; for example, if you run the following commands, NVUE shows an invalid configuration error:
+
+```
+cumulus@switch:~$ nv set router ospf enable on
+cumulus@switch:~$ nv set vrf default router ospf area 0 network 10.10.10.101/32
+cumulus@switch:~$ nv set vrf default router ospf enable on
+cumulus@switch:~$ nv set vrf default router ospf router-id 10.10.10.101
+cumulus@switch:~$ nv set interface swp1 router ospf area 10
+cumulus@switch:~$ nv config apply
+Invalid config [rev_id: 3]
+  Please remove all network commands from `vrf.default.router.ospf.area.42` first.
 ```
 
 ## Related Information

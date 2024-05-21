@@ -435,11 +435,12 @@ Upload and create the image object:
 >>> # Is the air-agent enabled in the Image by default?
 >>> agent_enabled = False
 >>> # Should the image be published and accessible to all users? 
->>> base = False
 >>> default_username = 'admin'
 >>> default_password = 'admin'
 >>> organization = '<organization_uuid>'
->>> image = air.images.create(name=image_name, base=base, filename=filename, agent_enabled=agent_enabled, default_username=default_username, default_password=default_password, organization=organization)
+>>> version = '1.0.0'
+>>> cpu_arch = 'x86'
+>>> image = air.images.create(name=image_name, filename=filename, agent_enabled=agent_enabled, default_username=default_username, default_password=default_password, organization=organization, version=version, cpu_arch=cpu_arch)
 ```
 
 {{< /tab >}}
@@ -459,7 +460,8 @@ curl --request POST 'https://air.nvidia.com/api/v1/image/' \
   "default_username": "admin",
   "organization": "<organization_id>",
   "simx": "false",
-  "provider": "VM"
+  "provider": "VM",
+  "version": "1.0.0"
 }'
 ```
 The response will contain an image upload URL:
@@ -599,12 +601,57 @@ curl --request POST 'https://air.nvidia.com/api/v1/simulation-node/<simulation_n
 To avoid a race condition on Cumulus Linux nodes running a version prior to 5.0.0, schedule the node instructions prior to starting the simulation. If you do not perform the steps in this order, the instructions might fail to complete. 
 {{</notice>}}
 
+### Using Cloud-init
+Cloud-init allows users to configure their nodes upon the first boot. One of its features is the ability to run user scripts, which can be used to perform various configuration tasks.
+Detailed information and examples of user data and metadata files can be found in the {{<exlink url="https://cloudinit.readthedocs.io/en/latest/explanation/format.html" text="cloud-init documentation">}}.
+
+After creating (but not starting) a simulation, get the specific simulation nodes to be configured. In this example the nodes are named node-1 and node-2: 
+
+```
+>>> sim_node_1 = air.simulation_nodes.list(name='node-1', simulation=simulation).pop()
+>>> sim_node_2 = air.simulation_nodes.list(name='node-2', simulation=simulation).pop()
+```
+
+Create user data and metadata user configs:
+
+```
+>>> USER_DATA = """#cloud-config
+... 
+... users:
+... - default
+... - name: custom-user
+...   passwd: "$6$kW4vfBM9kGgq4hr$TFtHW7.3jOECR9UCBuw9NrdSMJETzSVoNQGcVv2y.RqRUzWDEtYhYRkGvIpB6ml1fh/fZEVIgKbSXI9L1B6xF." # 'possible'
+...   shell: /bin/bash
+...   lock-passwd: false
+...   ssh_pwauth: True
+...   chpasswd: { expire: False }
+...   sudo: ALL=(ALL) NOPASSWD:ALL
+...   groups: users, admin
+... """
+>>> sim_node_1_metadata = air.user_configs.create(name='sim-node-1-metadata', kind='cloud-init-meta-data', organization=org, content='local-hostname: cloud-init-node-1')
+>>> sim_node_2_metadata = air.user_configs.create(name='sim-node-1-metadata', kind='cloud-init-meta-data', organization=org, content='local-hostname: cloud-init-node-2')
+>>> sim_node_shared_userdata = air.user_configs.create(name='sim-node-shared-userdata', kind='cloud-init-user-data', organization=org, content=USER_DATA)
+```
+
+Set the cloud-init assignment for the simulation nodes:
+
+```
+>>> sim_node_1.set_cloud_init_assignment({'user_data': sim_node_shared_userdata, 'meta_data': sim_node_1_metadata})
+>>> sim_node_2.set_cloud_init_assignment({'user_data': sim_node_shared_userdata, 'meta_data': sim_node_2_metadata})
+```
+
+Finally, start the simulation:
+
+```
+>>> simulation.start()
+```
+
 ### Adjusting Request Timeouts
 
 By default, the SDK implements the following timeouts for all API requests:
 
-* Establishing a connection to the server (`connect_timeout`): 16 seconds
-* Receiving a response to a request (`read_timeout`): 61 seconds
+- Establishing a connection to the server (`connect_timeout`): 16 seconds
+- Receiving a response to a request (`read_timeout`): 61 seconds
 
 These values can be adjusted after instantiating the `AirApi` client:
 
@@ -1143,12 +1190,12 @@ Create a new image
 **Example**:
 
 ```
->>> image = air.images.create(name='my_image', filename='/tmp/my_image.qcow2', agent_enabled=False)
+>>> image = air.images.create(name='my_image', filename='/tmp/my_image.qcow2', agent_enabled=False, default_username='user', default_password='password', organization=org, version='1.0.0', cpu_arch='x86')
 >>> image
 <Image my_image 01298e0c-4ef1-43ec-9675-93160eb29d9f>
 >>> image.upload_status
 'COMPLETE'
->>> alt_img = air.images.create(name='my_alt_img', filename='/tmp/alt_img.qcow2', agent_enabled=False)
+>>> alt_img = air.images.create(name='my_alt_img', filename='/tmp/alt_img.qcow2', agent_enabled=False, default_username='user', default_password='password', organization=org, version='1.0.0', cpu_arch='x86')
 >>> alt_img.upload_status
 'FAILED'
 ```
@@ -1887,6 +1934,66 @@ Delete all instructions for a `SimulationNode`
 
 ```
 >>> simulation_node.delete_instructions()
+```
+
+<a name="air_sdk.simulation_node.simulationNode.set_cloud_init_assignment"></a>
+### set\_cloud\_init\_assignment
+
+Set assignment of cloud-init scripts for specific node
+
+**Arguments**:
+
+- `user_data` _str_ - UserConfig ID. UserConfig must be of kind 'cloud-init-user-data'
+- `meta_data` _str_ - UserConfig ID. UserConfig must be of kind 'cloud-init-meta-data'
+  
+
+**Returns**:
+
+- `dict` - Response JSON
+  
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+  
+
+**Example**:
+
+```
+>>> simulation_node.set_cloud_init_assignment({'user_data': '09b168b8-f9dd-408c-b3c6-bbecf6a43a09', 'meta_data': 'a19a8715-b46b-4599-81e6-379adebe4bb4'})
+{'simulation_node': 'a44894a4-d805-42e2-a07f-7fd5fb0ea154', 'user_data': '09b168b8-f9dd-408c-b3c6-bbecf6a43a09', 'meta_data': 'a19a8715-b46b-4599-81e6-379adebe4bb4', 'user_data_name': 'userdata1', 'meta_data_name': 'metadata1'}
+
+>>> simulation_node.set_cloud_init_assignment({'user_data': userdata, 'meta_data': metadata})
+{'simulation_node': 'a44894a4-d805-42e2-a07f-7fd5fb0ea154', 'user_data': '09b168b8-f9dd-408c-b3c6-bbecf6a43a09', 'meta_data': 'a19a8715-b46b-4599-81e6-379adebe4bb4', 'user_data_name': 'userdata1', 'meta_data_name': 'metadata1'}
+
+>>> simulation_node.set_cloud_init_assignment({'user_data': userdata, 'meta_data': None})
+{'simulation_node': 'a44894a4-d805-42e2-a07f-7fd5fb0ea154', 'user_data': '09b168b8-f9dd-408c-b3c6-bbecf6a43a09', 'meta_data': None, 'user_data_name': 'userdata1', 'meta_data_name': None}
+>>> sim.start()
+```
+
+<a name="air_sdk.simulation_node.simulationNode.get_cloud_init_assignment"></a>
+### get\_cloud\_init\_assignment
+
+Get cloud-init assignment for a specific node
+
+
+**Returns**:
+
+- `dict` - Response JSON
+  
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+  
+
+**Example**:
+
+```
+>>> simulation_node.get_cloud_init_assignment()
+{'simulation_node': 'a44894a4-d805-42e2-a07f-7fd5fb0ea154', 'user_data': 09b168b8-f9dd-408c-b3c6-bbecf6a43a09', 'meta_data': 'a19a8715-b46b-4599-81e6-379adebe4bb4', 'user_data_name': 'userdata1', 'meta_data_name': 'metadata1'}
 ```
 
 <a name="air_sdk.simulation_node.SimulationNode.control"></a>
@@ -3531,3 +3638,154 @@ Create a new worker
 <Worker my_sim 01298e0c-4ef1-43ec-9675-93160eb29d9f>
 ```
 
+## UserConfig
+
+Manage a UserConfig
+
+### delete
+Delete the UserConfig. Once successful, the object should no longer be used and will raise
+[`AirDeletedObject`](#airerror) when referenced.
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Delete failed
+  
+### json
+Returns a JSON string representation of the UserConfig.
+
+### refresh
+Syncs the UserConfig with all values returned by the API
+
+### update
+Update the UserConfig with the provided data
+
+**Arguments**:
+
+- `kwargs` _dict, optional_ - All optional keyword arguments are applied as key/value
+  pairs in the request's JSON payload
+
+
+<a name="air_sdk.userconfig.UserConfigApi"></a>
+## UserConfigApi
+
+High-level interface for the UserConfig API
+
+<a name="air_sdk.userconfig.UserConfigApi.list"></a>
+### list
+
+List existing UserConfig scripts 
+
+**Arguments**:
+
+- `kwargs` _dict, optional_ - All other optional keyword arguments are applied as query
+  parameters/filters
+  
+
+**Returns**:
+
+  list
+  
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+  
+
+**Example**:
+
+```
+>>> air.user_configs.list()
+[<UserConfig userdata1 cloud-init-user-data 84ddf2da-7a09-4a3b-a2b9-09179f4668c8>]
+```
+
+<a name="air_sdk.userconfig.UserConfigApi.create"></a>
+### create
+
+Create a new UserConfig
+
+**Arguments**:
+
+- `name` _str_ - UserConfig name
+- `kind` _str_ - Must be 'cloud-init-user-data' or 'cloud-init-meta-data'
+- `organization` _str_ - Organization ID
+- `content` _str_ - Plaintext content of the data-script or a path to an existing file or an open file handle
+  
+
+**Returns**:
+
+  [`UserConfig`](#UserConfig)
+  
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+  
+
+**Example**:
+
+```
+>>> userdata = air.user_configs.create(name='userdata1', kind='cloud-init-user-data', organization=None, content='/tmp/userConfig-ex1.YML')
+<UserConfig userdata1 cloud-init-user-data 09b168b8-f9dd-408c-b3c6-bbecf6a43a09>
+ 
+>>> metadata = air.user_configs.create(name='metadata1', kind='cloud-init-meta-data', organization='3dadd54d-583c-432e-9383-a2b0b1d7f551', content='local-hostname: cloud-init-node')
+<UserConfig metadata1 cloud-init-meta-data a19a8715-b46b-4599-81e6-379adebe4bb4>
+```
+
+<a name="air_sdk.userconfig.UserConfigApi.get"></a>
+### get
+
+Get an existing UserConfig
+
+**Arguments**:
+
+- `kwargs` _dict, optional_ - All other optional keyword arguments are applied as query
+  parameters/filters
+  
+
+**Returns**:
+
+  [`UserConfig`](#UserConfig)
+  
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
+  or valid response JSON
+  
+
+**Example**:
+
+```
+>>> air.user_configs.get(id='09b168b8-f9dd-408c-b3c6-bbecf6a43a09')
+<UserConfig userdata1 cloud-init-user-data 09b168b8-f9dd-408c-b3c6-bbecf6a43a09>
+```
+
+<a name="air_sdk.userconfig.UserConfigApi.update"></a>
+### update
+
+Update specific properties of a UserConfig
+
+**Arguments**:
+
+- `kwargs` _dict, optional_ - All other optional keyword arguments are applied as key/value
+  pairs in the request's JSON payload. Kind and Organization fields cannot be changed. 
+
+
+<a name="air_sdk.userconfig.UserConfigApi.delete"></a>  
+### delete
+
+Delete existing UserConfig script
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Userconfig delete failed
+  
+
+**Example**:
+
+```
+>>> metadata = air.user_configs.create(name='metadata', kind='cloud-init-meta-data', organization=None, content='local-hostname: cloud-init-node') 
+>>> metadata.delete()
+```

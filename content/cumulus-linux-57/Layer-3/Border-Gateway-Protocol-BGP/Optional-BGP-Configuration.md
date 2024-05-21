@@ -66,6 +66,10 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+If you unset a peer group, make sure that it is not applied to any neighbors. If the peer group is applied to neighbors, configure all parameters, such as the remote AS, directly on the neighbors before removing the peer group.
+{{%/notice%}}
+
 ## BGP Dynamic Neighbors
 
 *BGP dynamic neighbors* provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
@@ -387,9 +391,9 @@ switch# exit
 -->
 ## Remove Private BGP ASNs
 
-If you use private ASNs in the data center, any routes you send out to the internet contain your private ASNs. You can remove all the private ASNs from routes to a specific neighbor.
+If you use private ASNs in the data center, routes advertised to neighbors contain your private ASNs. The examples below show how to remove the private ASNs from routes and how to replace the private ASNs with your public ASN.
 
-The following example command removes private ASNs from routes sent to the neighbor on swp51 (an unnumbered interface):
+The following example command removes private ASNs from routes advertised to the neighbor on swp51 (an unnumbered interface):
 
 {{< tabs "424 ">}}
 {{< tab "NVUE Commands ">}}
@@ -403,6 +407,18 @@ You can replace the private ASNs with your public ASN with the following command
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
+cumulus@leaf01:~$ nv config apply
+```
+
+To unset the above configuration:
+
+```
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath private-as remove
+cumulus@leaf01:~$ nv config apply
+```
+
+```
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath replace-peer-as on
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -591,6 +607,13 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 cumulus@switch:~$ nv config apply
 ```
 
+To disable allowas-in, run the `nv unset` command:
+
+```
+cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn enable on
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -634,6 +657,13 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ip
 cumulus@switch:~$ nv config apply
 ```
 
+To unset the above configuration, run the `nv unset` command:
+
+```
+cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn occurrences 4
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -670,6 +700,13 @@ The following example allows a received AS path containing the ASN of the local 
 
 ```
 cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin on
+cumulus@switch:~$ nv config apply
+```
+
+To unset the above configuration, run the `nv unset` command:
+
+```
+cumulus@switch:~$ nv unset vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn origin on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1362,6 +1399,8 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 timers hold 30
 cumulus@leaf01:~$ nv config apply
 ```
 
+To set the timers back to the default values, run the `nv unset vrf <vrf> router bgp neighbor <interface> timers keepalive` and the `nv unset vrf <vrf> router bgp neighbor <interface> timers hold` commands.
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -1563,7 +1602,8 @@ router bgp 65199
 {{< /tabs >}}
 
 {{%notice info%}}
-When you configure BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command.
+- When you configure BGP for IPv6, you must run the `route-reflector-client` command **after** the `activate` command.
+- You can only configure a BGP node as a route reflector for an iBGP peer.
 {{%/notice%}}
 
 ## Administrative Distance

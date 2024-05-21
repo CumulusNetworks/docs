@@ -956,7 +956,7 @@ cumulus@switch:~$ nv set vrf default router bgp address-family ipv6-unicast mult
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id> router bgp address-family ipv6-unicast multipaths compare-cluster-length</h>
+## <h>nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast multipaths compare-cluster-length</h>
 
 Turns on cluster length comparison for IPv6 for the specified VRF. When `on` and iBGP paths have a cluster list, their lengths must be equal to be selected as multipaths. The default setting is `off`.
 
@@ -5541,7 +5541,7 @@ Provides commands to configure BGP peer timers.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers connection-retry</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers connection-retry</h>
 
 Configures how often the BGP process attempts to connect to a peer after a failure or when starting up. The default value is 10 seconds. 
 
@@ -5564,7 +5564,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 timers connection
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers hold</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers hold</h>
 
 Configures the hold time in seconds. If BGP does not receive a keepalive or update message from the peer within the hold time, it declares the peer down and withdraws all routes received by this peer from the local BGP table. The default value is 9 seconds.
 
@@ -5587,7 +5587,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 timers hold 30.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers keepalive</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers keepalive</h>
 
 Configures the interval during which keepalive messages are exchanged. To decrease CPU load when there are a lot of neighbors, you can increase the values of this timer and the hold timer, or disable the exchange of keepalives. When manually configuring new values, the keepalive interval can be less than or equal to one third of the hold time, but cannot be less than 1 second. Setting the keepalive and hold time values to 0 disables the exchange of keepalive messages. The default value is 3 seconds.
 
@@ -5610,7 +5610,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 timers keepalive 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers route-advertisement</h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers route-advertisement</h>
 
 Configures the delay in seconds before advertising new results to a peer after making a new best path decision for a prefix. This delay rate limits the number of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. The default value is 0 seconds.
 
@@ -5725,7 +5725,7 @@ cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 type unnumbered
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> update-source </h>
+## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> update-source</h>
 
 Configures the BGP source of routing updates. You can specify an interface, or an IPv4 or IPv6 address.
 

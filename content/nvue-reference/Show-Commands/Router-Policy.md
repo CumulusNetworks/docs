@@ -358,7 +358,6 @@ Shows the Route Target Extended Community configuration for the specified extend
 | --------- | -------------- |
 | `<list-id>` |  The extended community list name. |
 | `<rule-id>` |   The rule number. |
-| `<ext-community-id>` | The community number in AA:NN or IP:NN format. |
 
 ### Version History
 
@@ -493,7 +492,6 @@ Shows the rules for the specified large community list.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  The large community list name. |
-| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -726,12 +724,6 @@ min-prefix-len  30
 ## <h>nv show router policy route-map</h>
 
 Shows the route maps configured on the switch. You use a route map for policy configuration.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<route-map-id>` |  The route map name. |
 
 ### Version History
 

@@ -152,7 +152,7 @@ To configure bond interfaces for EVPN-MH:
 {{<tabs "bond configuration">}}
 {{<tab "NVUE Commands">}}
 
-With NVUE commands, you can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the Ethernet segment ID manually. You can see both options below.
+You can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the 10-byte Ethernet segment ID manually. You can see both options below.
 
 The following example commands configure each bond interface with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
 
@@ -168,7 +168,7 @@ cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preferenc
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique.
+The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. When you configure the 10-byte Ethernet segment ID, ensure that the local ID and MAC address configuration is not present.
 
 {{%notice note%}}
 In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
@@ -187,6 +187,8 @@ cumulus@leaf01:~$ nv config apply
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
+
+The following example commands configure each bond interface with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
 
 1. Configure the ESI on each bond interface with the local Ethernet segment ID and the system MAC address:
 
@@ -259,6 +261,50 @@ cumulus@leaf01:~$ nv config apply
    cumulus@leaf01:~$ sudo ifreload -a
    ```
 
+The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. When you configure the 10-byte Ethernet segment ID, ensure that the local ID and MAC address configuration is not present.
+
+{{%notice note%}}
+In Cumulus Linux 5.6 and later, NVUE no longer supports a 10-byte ESI value starting with a non 00 hex value.
+{{%/notice%}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# interface bond1
+leaf01(config-if)# evpn mh es-df-pref 50000
+leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+leaf01(config-if)# exit
+leaf01(config)# interface bond2
+leaf01(config-if)# evpn mh es-df-pref 50000
+leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+leaf01(config-if)# exit
+leaf01(config)# interface bond3
+leaf01(config-if)# evpn mh es-df-pref 50000
+leaf01(config-if)# evpn mh es-id 00:44:38:39:be:ef:aa:00:00:03
+leaf01(config-if)# exit
+leaf01(config)# write memory
+leaf01(config)# exit
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file.
+
+```
+cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+...
+interface bond1
+evpn mh es-df-pref 50000
+evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+interface bond2
+evpn mh es-df-pref 50000
+evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+interface bond3
+evpn mh es-df-pref 50000
+evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:03
+...
+```
+
 {{</tab>}}
 {{</tabs>}}
 
@@ -329,6 +375,26 @@ interface swp4
 
 {{</tab>}}
 {{</tabs>}}
+
+To show if uplinks are down, run the `nv show interface status` command:
+
+```
+cumulus@leaf01:~$ nv show interface status
+Interface    Admin Status  Oper Status  Protodown  Protodown Reason
+-----------  ------------  -----------  ---------  ----------------
+br_default   up            up           disabled
+br_l3vni     up            up           disabled
+eth0         up            up           disabled
+bond3        up            down         disabled
+bond4        up            down         disabled
+bond5        up            down         disabled
+bond6        up            up           disabled
+lo           up            unknown      disabled
+mgmt         up            up           disabled
+swp5         up            down         enabled    frr   <<<< part of bond3 
+swp6         up            down         enabled    frr
+swp7         up            down         enabled    frr
+```
 
 ## Optional EVPN MH Configuration
 
@@ -472,7 +538,7 @@ You can add debug statements to the `/etc/frr/frr.conf` file to debug the Ethern
 {{<tabs "debug">}}
 {{<tab "NVUE Commands">}}
 
-Cumulus Linux does not provide NVUE commands for FRR Debugging.
+Cumulus Linux does not provide NVUE commands for FRR Debugging; however, you can create a snippet to enable FRR debugging. Refer to {{<link url="NVUE-Snippets/#example-3-evpn-multihoming-frr-debugging" text="/etc/frr/frr.conf snippets">}}.
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
@@ -628,7 +694,36 @@ uplink-count         2
 
 ### Show Ethernet Segment Information
 
-To display the Ethernet segments across all VNIs, run the `nv show evpn multihoming esi -o json` command or the vtysh `show evpn es` command. For example:
+To show the Ethernet segments across all VNIs, run the `nv show evpn multihoming esi` command or the vtysh `show evpn es` command. For example:
+
+```
+cumulus@switch:~$ nv show evpn multihoming esi
+SInterface - Local interface, NHG - Nexthop group ID, DFPref - Designated
+forwarder preference, VNICnt - ESI EVPN instances, MacCnt - Mac entries using
+this ES as destination, RemoteVTEPs - Remote tunnel Endpoint
+
+ESI                            ESInterface  NHG        DFPref  VNICnt  MacCnt  Flags   RemoteVTEPs
+-----------------------------  -----------  ---------  ------  ------  ------  ------  -----------
+03:44:38:39:be:ef:aa:00:00:01  bond1        536870913  50000   1       2       local   10.10.10.2
+03:44:38:39:be:ef:aa:00:00:02  bond2        536870914  50000   1       2       local   10.10.10.2
+03:44:38:39:be:ef:aa:00:00:03  bond3        536870915  50000   1       2       local   10.10.10.2
+03:44:38:39:be:ef:bb:00:00:01               536870916  0       0       2       remote  10.10.10.3
+       10.10.10.4
+```
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# show evpn es
+Type: B bypass, L local, R remote, N non-DF
+ESI                            Type ES-IF                 VTEPs
+03:44:38:39:be:ef:aa:00:00:01  LR   bond1                 10.10.10.2
+03:44:38:39:be:ef:aa:00:00:02  LR   bond2                 10.10.10.2
+03:44:38:39:be:ef:aa:00:00:03  LR   bond3                 10.10.10.2
+03:44:38:39:be:ef:bb:00:00:01  R    -                     10.10.10.3,10.10.10.4
+```
+
+You can also show the Ethernet segments across all VNIs with NVUE in json format:
 
 ```
 cumulus@switch:~$ nv show evpn multihoming esi -o json
@@ -723,18 +818,6 @@ cumulus@switch:~$ nv show evpn multihoming esi -o json
 }
 ```
 
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# show evpn es
-Type: B bypass, L local, R remote, N non-DF
-ESI                            Type ES-IF                 VTEPs
-03:44:38:39:be:ef:aa:00:00:01  LR   bond1                 10.10.10.2
-03:44:38:39:be:ef:aa:00:00:02  LR   bond2                 10.10.10.2
-03:44:38:39:be:ef:aa:00:00:03  LR   bond3                 10.10.10.2
-03:44:38:39:be:ef:bb:00:00:01  R    -                     10.10.10.3,10.10.10.4
-```
-
 To show information about a specific ESI:
 
 ```
@@ -771,7 +854,7 @@ VNI      ESI                            Type
 10       03:44:38:39:be:ef:aa:00:00:01  L 
 ```
 
-To display the Ethernet segments for a specific VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command. For example:
+To show the Ethernet segments for a specific VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command. For example:
 
 ```
 cumulus@switch:~$ nv show evpn vni 10 multihoming esi
@@ -782,7 +865,38 @@ ESI                            Local  Remote
 
 ### Show BGP Ethernet Segment Information
 
-To display the Ethernet segments across all VNIs learned via type-1 and type-4 routes, run the NVUE `nv show evpn multihoming bgp-info esi -o json` command or the vtysh `show bgp l2vpn evpn es` command. For example:
+To show the Ethernet segments across all VNIs learned through type-1 and type-4 routes, run the NVUE `nv show evpn multihoming bgp-info esi` command or the vtysh `show bgp l2vpn evpn es` command. For example:
+
+```
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi
+SrcIP - Originator IP, VNICnt - VNI Count, VRFCnt - VRF Count, MACIPCnt - MAC IP
+path count, MacGlblCnt - Mac global count, VTEP - Remote VTEP ID, FragID -
+Fragments ID
+ESI                            RD            SrcIP       VNICnt  VRFCnt  MACIPCnt  MacGlblCnt  Local  Remote  VTEP        FragID
+-----------------------------  ------------  ----------  ------  ------  --------  ----------  -----  ------  ----------  ------------
+03:44:38:39:be:ef:aa:00:00:01  10.10.10.1:3  10.10.10.1  1       1       3   6           yes    yes     10.10.10.2  10.10.10.1:3
+03:44:38:39:be:ef:aa:00:00:02  10.10.10.1:4  10.10.10.1  1       1       2   4           yes    yes     10.10.10.2  10.10.10.1:4
+03:44:38:39:be:ef:aa:00:00:03  10.10.10.1:5  10.10.10.1  1       1       2   4           yes    yes     10.10.10.2  10.10.10.1:5
+03:44:38:39:be:ef:bb:00:00:01                0.0.0.0     1       1       0   12                 yes     10.10.10.3
+                              10.10.10.4
+03:44:38:39:be:ef:bb:00:00:02                0.0.0.0     1       1       0   0                  yes
+03:44:38:39:be:ef:bb:00:00:03                0.0.0.0     1       1       0   0                  yes
+```
+
+```
+cumulus@switch:~$ show bgp l2vpn evpn es
+ES Flags: B - bypass, L local, R remote, I inconsistent
+VTEP Flags: E ESR/Type-4, A active nexthop
+ESI                            Flags RD                    #VNIs    VTEPs
+03:44:38:39:be:ef:aa:00:00:01  LR    10.10.10.1:3          1        10.10.10.2(EA)
+03:44:38:39:be:ef:aa:00:00:02  LR    10.10.10.1:4          1        10.10.10.2(EA)
+03:44:38:39:be:ef:aa:00:00:03  LR    10.10.10.1:5          1        10.10.10.2(EA)
+03:44:38:39:be:ef:bb:00:00:01  R     (null)                1        10.10.10.3(A),10.10.10.4(A)
+03:44:38:39:be:ef:bb:00:00:02  R     (null)                1
+03:44:38:39:be:ef:bb:00:00:03  R     (null)                1
+```
+
+You can also show the Ethernet segments across all VNIs learned through type-1 and type-4 routes with NVUE in json format:
 
 ```
 cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
@@ -936,7 +1050,7 @@ cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
 
 ### Show BGP Ethernet Segment per VNI Information
 
-To display the Ethernet segments per VNI learned via type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
+To display the Ethernet segments per VNI learned through type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es-evi` command.
 
 ```
 cumulus@switch:~$ sudo vtysh

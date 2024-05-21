@@ -40,6 +40,43 @@ For brevity and legibility, this section omits the timestamp and hostname from e
 
 ## Hardware
 
+{{< tabs "43 ">}}
+{{< tab "NVUE Commands ">}}
+
+NVUE provides commands to monitor various switch hardware elements.
+
+| Command | Description |
+| ----------- | ----------- |
+|`nv show platform environment fan` | Shows information about the fans on the switch, such as the minimum, maximum and current speed, the fan state, and the fan direction.|
+| `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|
+| `nv show platform environment psu` | Shows information about the PSUs on the switch, such as the PSU name and state.|
+| `nv show platform environment temperature` | Shows information about the sensors on the switch, such as the critical, maximum, minimum and current temperature and the current state of the sensor.|
+| `nv show platform environment voltage` | Shows the list of voltage sensors on the switch.|
+| `nv show platform inventory` | Shows the switch inventory, which includes fan and PSU hardware version, model, serial number, state, and type. For information about a specific fan or PSU, run the `nv show platform inventory <inventory-name>` command.|
+
+The following example shows the `nv show platform environment fan` command output. The airflow direction must be the same for all fans. If Cumulus Linux detects that the fan airflow direction is not uniform, it logs a message in the `var/log/syslog` file.
+
+```
+cumulus@switch:~$ nv show platform environment fan
+Name      Fan State  Current Speed (RPM)  Max Speed  Min Speed  Fan Direction
+--------  ---------  -------------------  ---------  ---------  -------------
+FAN1/1    ok         6000                 29000      2500       F2B         
+FAN1/2    ok         6000                 29000      2500       F2B         
+FAN2/1    ok         6000                 29000      2500       F2B         
+FAN2/2    ok         6000                 29000      2500       F2B         
+FAN3/1    ok         6000                 29000      2500       F2B         
+FAN3/2    ok         6000                 29000      2500       F2B         
+PSU1/FAN  ok         6000                 29000      2500       F2B         
+PSU2/FAN  ok         6000                 29000      2500       F2B   
+```
+
+{{%notice note%}}
+If the airflow direction for all fans is not in the same (front to back or back to front), cooling is suboptimal for the switch, rack, and even the entire data center.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "smond ">}}
+
 The `smond` process provides monitoring for various switch hardware elements. Minimum or maximum values depend on the flags you apply to the basic command. The table below lists the hardware elements and applicable commands and flags.
 
 | Hardware Element | Monitoring Commands | Interval Poll |
@@ -63,6 +100,9 @@ Not all switch models include a sensor for monitoring power consumption and volt
 | Fan direction issue |<pre>/var/log/syslog</pre> |<pre>/usr/sbin/smond : : Fan direction mismatch: 12 fans B2F; 1 fans F2B!</pre> |
 | PSU failure | <pre>/var/log/syslog</pre> | <pre>/usr/sbin/smond : : PSU1Fan1(PSU1 Fan): state changed from UNKNOWN to OK<br>/usr/sbin/smond : : PSU2Fan1(PSU2 Fan): state changed from UNKNOWN to BAD</pre> |
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ## System Data
 
 Cumulus Linux includes several ways to monitor system data. In addition, you can receive alerts in high risk situations.
@@ -77,7 +117,7 @@ Short bursts of high CPU can occur during `switchd` churn or routing protocol st
 
 | System Element | Monitoring Commands | Interval Poll |
 |--------------- |-------------------- |-------------- |
-|CPU utilization | `sudo cat /proc/stat`<br>`top -b -n 1` | 30 seconds |
+|CPU utilization | NVUE: `nv show system cpu`<br>Linux: `sudo cat /proc/stat`<br>`top -b -n 1` | 30 seconds |
 
 | CPU Logs | Log Location | Log Entries |
 |--------- |------------- |------------ |
@@ -89,6 +129,11 @@ Cumulus Linux monitors CPU, memory, and disk space with `sysmonitor`. The config
 | ------------ | --------------------- |
 | Use          | Alert: 90% Crit: 95%  |
 | Process Load | Alarm: 95% Crit: 125% |
+<!--
+{{%notice note%}}
+The Spectrum 1 CPUs can become overloaded at a moderate to high network scale. If your Spectrum 1 switch is not able to process CPU-destined traffic or is running continually at high CPU, either reduce switch configuration to sixty percent capacity at regular operation and reduce fabric scale (the number of MAC addresses and VLAN interfaces, frequency of SNMP polling, and so on), or replace the switch with a newer generation switch that offers stronger compute resources.
+{{%/notice%}}
+-->
 
 ### Disk Usage
 
@@ -112,16 +157,16 @@ Link and port state interface transitions log to `/var/log/syslog` and `/var/log
 
 | Interface Element | Monitoring Commands |
 |------------------ |-------------------- |
-| Link state | `sudo cat /sys/class/net/[iface]/operstate`<br>`nv show interface --view=brief` |
-| Link speed | `sudo cat /sys/class/net/[iface]/speed`<br>`nv show interface --view=brief` |
-| Port state | `ip link show`<br>`nv show interface --view=brief` |
-| Bond state | `sudo cat /proc/net/bonding/[bond]`<br>`nv show interface --view=brief` |
+| Link state | NVUE: `nv show interface <interface>`<br><br>Linux: `sudo cat /sys/class/net/<interface>/operstate` |
+| Link speed | NVUE: `nv show interface <inteface>`<br><br>Linux: `sudo cat /sys/class/net/<interface>/speed` |
+| Port state | NVUE: `nv show interface`<br><br>Linux: `ip link show` |
+| Bond state | NVUE: `nv show interface <bond>`<br><br>Linux: `sudo cat /proc/net/bonding/<bond>` |
 
 You obtain interface counters from either querying the hardware or the Linux kernel. The Linux kernel aggregates the output from the hardware.
 
 | Interface Counter Element | Monitoring Commands | Interval Poll|
 |-------------------------- |-------------------- |------------- |
-| Interface counters | `cat /sys/class/net/[iface]/statistics/[stat_name]`<br>`cl-netstat -j`<br>`ethtool -S [ iface]` | 10 seconds |
+| Interface counters | NVUE: `nv show interface <interface> counters`<br><br>Linux: `cat /sys/class/net/<interface>/statistics/<statistic-name>`<br>`cl-netstat -j`<br>`ethtool -S <interface>` | 10 seconds |
 
 | Layer 1 Logs |Log Location | Log Entries |
 |------------- |------------- |------------ |
@@ -148,8 +193,8 @@ Consider tracking peering information through PTM. For more information, refer t
 
 | Neighbor Element | Monitoring Commands | Interval Poll |
 |----------------- |-------------------- |-------------- |
-| LLDP Neighbor | `lldpctl -f json` | 300 seconds |
-| Prescriptive Topology Manager | `ptmctl -j [-d]` | Triggered |
+| LLDP Neighbor | `sudo lldpctl -f json` | 300 seconds |
+| Prescriptive Topology Manager | `ptmctl -j` | Triggered |
 
 ## Layer 2 Protocols
 
@@ -157,9 +202,9 @@ Spanning tree is a protocol that prevents loops in a layer 2 infrastructure. In 
 
 | Interface Counter Element | Monitoring Commands | Interval Poll |
 |-------------------------- |-------------------- |-------------- |
-| STP TCN Transitions | `mstpctl showbridge json`<br>`mstpctl showport json` | 60 seconds |
-| MLAG peer state | `clagctl status`<br>`clagd -j`<br>`sudo cat /var/log/clagd.log` | 60 seconds |
-| MLAG peer MACs | `clagctl dumppeermacs`<br>`clagctl dumpourmacs` |300 seconds |
+| STP TCN Transitions | NVUE: `nv show bridge domain <bridge> stp`<br><br>Linux: `mstpctl showbridge json`<br>`mstpctl showport` | 60 seconds |
+| MLAG peer state | NVUE: `nv show mlag`<br><br>Linux: `clagctl status`<br>`sudo clagd -j`<br>`sudo cat /var/log/clagd.log` | 60 seconds |
+| MLAG peer MACs | NVUE: `nv show mlag`<br><br>Linux: `clagctl dumppeermacs`<br>`clagctl dumpourmacs` |300 seconds |
 
 | Layer 2 Logs | Log Location | Log Entries |
 |------------- |------------- |------------ |
@@ -220,15 +265,7 @@ The table below describes the various log files.
 | syslog | Catch all log file. Identifies memory leaks and CPU spikes. | <pre>/var/log/syslog</pre> |
 | switchd functionality | Hardware Abstraction Layer (HAL). | <pre>/var/log/switchd.log</pre> |
 | Routing daemons | FRR zebra daemon details. | <pre>/var/log/daemon.log</pre> |
-| Routing protocol | The log file is configurable in FRR. When FRR first boots, it uses the non-integrated configuration so each routing protocol has its own log file. After booting up, FRR switches over to using the integrated configuration, so that all logs go to a single place.<br><br>To edit the location of the log files, use the log file <location> command. By default, Cumulus Linux does not send FRR logs to syslog. Use the log syslog <level> command to send logs through `rsyslog` and into `/var/log/syslog`.<br><br>**Note**: To write syslog debug messages to the log file, you must run the log syslog debug command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as `debug bgp neighbor-events`, no output logs to `/var/log/frr/frr.log`.<br><br>However, when you manually define a log target with the log file `/var/log/frr/debug.log` command, FRR automatically defaults to severity 7 (debug) logging and the output logs to `/var/log/frr/frr.log`.|<pre>/var/log/frr/zebra.log<br>/var/log/frr/{protocol}.log<br>/var/log/frr/frr.log</pre> |
-
-## Protocols and Services
-
-Run the following command to confirm that the NTP process is working correctly and that the switch clock is in sync with NTP:
-
-```
-cumulus@switch:~$ /usr/bin/ntpq -p
-```
+| Routing protocol | The log file is configurable in FRR. When FRR first boots, it uses the non-integrated configuration so each routing protocol has its own log file. After booting up, FRR switches over to using the integrated configuration, so that all logs go to a single place.<br><br>To edit the location of the log files, use the log file <location> command. By default, Cumulus Linux does not send FRR logs to syslog. Use the log syslog <level> command to send logs through `rsyslog` and into `/var/log/syslog`.<br><br>**Note**: To write syslog debug messages to the log file, you must run the log syslog debug command to configure FRR with syslog severity 7 (debug); otherwise, when you issue a debug command such as `debug bgp neighbor-events`, no output logs to `/var/log/frr/frr.log`.<br><br>However, when you manually define a log target with the log file `/var/log/frr/debug.log` command, FRR automatically defaults to severity 7 (debug) logging and the output logs to `/var/log/frr/frr.log`.|<pre>/var/log/frr/zebra.log<br>/var/log/frr/<protocol>.log<br>/var/log/frr/frr.log</pre> |
 
 ## Device Management
 

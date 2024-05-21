@@ -8,22 +8,20 @@ This document supports the Cumulus Linux 5.9 release, and lists new platforms, f
 - For a list of open and fixed issues in Cumulus Linux 5.9, see the {{<link title="Cumulus Linux 5.9 Release Notes" text="Cumulus Linux 5.9 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.9, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
-## What's New in Cumulus Linux 5.9.1
-
-Cumulus Linux 5.9.1 contains stability improvements.
-
-## What's New in Cumulus Linux 5.9.0
-<!-- vale on -->
 
 Cumulus Linux 5.9 is an Extended-Support Release (ESR). For more information, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" text="this Knowledge base article">}}.
 
+## What's New in Cumulus Linux 5.9.1
+
+Cumulus Linux 5.9.1 replaces Cumulus Linux 5.9.0, which is no longer available.
+
+- Cumulus Linux 5.9.1 provides all the same new features and enhancements as Cumulus Linux 5.9.0, and in addition, includes stability enhancements.
+- Cumulus Linux 5.9.1 includes all the same open and fixed issues listed in {{<link title="Cumulus Linux 5.9 Release Notes" text="Cumulus Linux 5.9 Release Notes">}}.
+
 {{%notice info%}}
-- You can only upgrade to Cumulus 5.9 from a previous release by installing the binary image; package upgrade is not supported.
 - The NVIDIA SN5600 switch supports Cumulus Linux 5.9 and later; do not install Cumulus Linux 5.8 and earlier on this switch.
 - Cumulus Linux 5.9 provides a set of default firewall rules that allows only specific IP addresses and ports, and drops packets that are disallowed. Be sure to review the {{<link url="Firewall-Rules" text="firewall rules">}} before upgrading.
 {{%/notice%}}
-
-Cumulus Linux 5.9.0 contains several new features and improvements, and provides bug fixes.
 
 ### New Features and Enhancements
 - Cumulus Linux upgrade to Debian 12 (bookworm)
@@ -313,11 +311,16 @@ nv action upgrade system packages to latest use-vrf <vrf>
 The repository key stored in Cumulus Linux 5.5.0 and earlier has expired. Before performing a package upgrade to Cumulus Linux 5.9.0 from Cumulus Linux 5.5.0 and earlier, you must install the new key. See [this knowledge base article]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
 {{%/notice%}}
 -->
-{{%notice info%}}
+
+## What's New in Cumulus Linux 5.9.0
+<!-- vale on -->
+Cumulus Linux 5.9.0 is no longer available. Cumulus Linux 5.9.1 replaces Cumulus Linux 5.9.0.
+
+## Release Considerations
+
 Cumulus Linux 5.9 includes the NVUE object model. After you upgrade to Cumulus Linux 5.9, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 - Update your automation tools to use NVUE.
 - {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
 
 Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.
-{{%/notice%}}

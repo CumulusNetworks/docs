@@ -163,7 +163,7 @@ Cumulus Linux also provides ISSU to upgrade an active switch with minimal disrup
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
 
-**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4.3 to 5.9.0).
+**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4.3 to 5.9.1).
 
 Be aware of the following when installing the Cumulus Linux image:
 
@@ -175,7 +175,7 @@ Be aware of the following when installing the Cumulus Linux image:
 - If configuration files do not restore correctly, you cannot ssh to the switch from in-band management. Use out-of-band connectivity (eth0 or console).
 - You *must* reinstall and reconfigure third-party applications after upgrade.
 
-Run **package upgrade** if you are upgrading from Cumulus Linux 5.0.0 to a later 5.x release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
+Run **package upgrade** if you are upgrading from one Cumulus Linux 5.9 release to a later 5.9 release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
 
 Be aware of the following when upgrading packages:
 
@@ -208,22 +208,12 @@ To upgrade the switch:
 {{%notice note%}}
 - NVUE deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier. If you use NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, NVUE automatically updates the configuration during upgrade to Cumulus Linux 5.5 and later to use the new format (2x, 4x, 8x).
 - Cumulus Linux continues to support the old port split format in the `/etc/cumulus/ports.conf` file; however NVIDIA recommends that you use the new format.
+
 {{%/notice%}}
 
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any package upgrades within that release train. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged during the package upgrade.
 
 When you use package upgrade to upgrade your switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.
-
-{{%notice note%}}
-When you upgrade a switch from Cumulus Linux 5.5 or earlier with package upgrade, expired GPG keys prevent you from upgrading. To work around this issue, install the new keys with the following commands, then upgrade the switch.
-
-```
-cumulus@switch:~$ wget https://download.nvidia.com/cumulus/apt.cumulusnetworks.com/repo/pool/cumulus/c/cumulus-archive-keyring/cumulus-archive-keyring_4-cl5.6.0u5_all.deb
-cumulus@switch:~$ sudo apt install ./cumulus-archive-keyring_4-cl5.6.0u5_all.deb
-cumulus@switch:~$ sudo apt update
-cumulus@switch:~$ sudo apt upgrade
-```
-{{%/notice%}}
 
 #### Disk Space Requirements
 

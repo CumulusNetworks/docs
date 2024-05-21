@@ -34,7 +34,7 @@ Identifiers used in the first byte of the module memory map:
 <!-- vale off -->
 - 0x03: SFP/SFP+/SFP28 - One 10G or 25G lane - Small Form factor Pluggable
 - 0x0d: QSFP+ - Four 10G lanes - Quad SFP (40G total)
-- 0x11: QSFP28 - Four 25G or 50G lanes (100G or 200G total) - Quad SFP with 25G or 50G lanes
+- 0x11: QSFP28 - Four 25G or 50G lanes (100G or 200G total) - Quad SFP with 25G or 50G lanes; includes QSFP28,QSFP56, and newer QSFP standards
 - 0x18: QSFP-DD - Eight 50G lanes (400G total) - Quad SFP with a recessed extra card-edge connector to enable 8 lanes of 50G
 <!-- vale on -->
 ### Encoding

@@ -274,19 +274,24 @@ In multi-tenant EVPN symmetric environments with MLAG, enabling RFC 3527 support
 The following example:
 
 - Configures VRF RED with IPv4 address 20.20.20.1/32.
-- Configures VLAN 10 and 20 in VRF RED to service DHCP requests generated from hosts.
-- Configures the layer 3 VNI for this VRF to 4001, which uses SVI vlan4024_l3. 
-- Sets the DHCP server 10.1.10.104.
-- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51, swp52 and vlan4024_l3 to be part of INTF_CMD list.
-- Configures VRF RED to advertise the connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
+- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51-swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
+- Sets the DHCP server to 10.1.10.104.
+- Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
 
 
 {{< tabs "TabID366 ">}}
 {{< tab "NVUE Commands ">}}
 
-{{%notice note%}}
-Configuring IPv4 DHCP relay in a Multi-tenant EVPN symmetric environment using NVUE is not supported.
-{{%/notice%}}
+```
+cumulus@leaf01:~$ nv set vrf RED loopback ip address 20.20.20.1/32
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan20
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan4024_l3
+cumulus@leaf01:~$ nv set service dhcp-relay RED server 10.1.10.104
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
+cumulus@leaf01:~$ nv config apply
+```
 
 {{< /tab >}}
 
@@ -365,19 +370,20 @@ In multi-tenant EVPN symmetric environments without MLAG, the VLAN interface (SV
 
 The following example:
 
-- Configures the layer 3 VNI for VRF RED to 4001, which uses SVI vlan4024_l3. 
-- Configures VLAN 10 and 20 in VRF RED to service DHCP requests generated from hosts.
+- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51-swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
 - Sets the DHCP server IP address to 10.1.10.104.
-- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51, swp52 and vlan4024_l3 to be part of INTF_CMD list.
 
 
 {{< tabs "TabID369 ">}}
 {{< tab "NVUE Commands ">}}
 
-
-{{%notice note%}}
-Configuring IPv4 DHCP relay in a Multi-tenant EVPN symmetric environment using NVUE is not supported.
-{{%/notice%}}
+```
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan20
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan4024_l3
+cumulus@leaf01:~$ nv set service dhcp-relay RED server 10.1.10.104
+cumulus@leaf01:~$ nv config apply
+```
 
 {{< /tab >}}
 
@@ -417,8 +423,9 @@ IPv6 DHCP relay in symmetric routing deployments requires a unique IPv6 address 
 
 The following example:
 - Configures VRF RED with the unique IPv6 address 2001:db8:666::1/128.
-- Configures VLAN 10 and 20 in VRF RED to face hosts that generate DHCP Requests.
-- Sets the DHCP server to 2001:db8:199::2 and the layer 3 VNI for this VRF to 4001, which uses SVI vlan4024_l3.
+- Configures VLAN 10 and 20 in VRF RED to service DHCP requests from downstream hosts.
+- Sets the DHCP server to 2001:db8:199::2.
+- Configures the layer 3 VNI interface for VRF RED vlan4024_l3 to process DHCP packets from the upstream server.
 - Configures VRF RED to advertise the connected routes so that the loopback IPv6 address is reachable.
 
 {{< tabs "TabID367 ">}}

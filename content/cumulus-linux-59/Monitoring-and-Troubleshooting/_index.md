@@ -93,7 +93,7 @@ cumulus@switch:~$ nv show system
             operational          applied
 -----------  -------------------  -------
 hostname     leaf01                
-build        Cumulus Linux 5.9.0         
+build        Cumulus Linux 5.9.1         
 uptime       0:02:50                     
 timezone     Etc/UTC                     
 maintenance                              

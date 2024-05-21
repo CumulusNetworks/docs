@@ -265,19 +265,15 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 {{< /tab >}}
 {{< /tabs >}}
 
-
 ### DHCP Relay for IPv4 in an EVPN Symmetric Environment with MLAG
 
-
-In multi-tenant EVPN symmetric environments with MLAG, enabling RFC 3527 support is required. You can specify an interface such as the loopback or VRF interface for the gateway address. The specified interface must be reachable in the tenant VRF configured for DHCP relay and be assigned a unique IPv4 address. EVPN symmetric routing environments with an anycast gateway that reuses the same SVI IP address on multiple leaf switches require a unique IP address for the VRF interface and must include the layer 3 VNI for this VRF in the DHCP Relay configuration. 
+In a multi-tenant EVPN symmetric routing environment with MLAG, you must enable RFC 3527 support. You can specify an interface, such as the loopback or VRF interface for the gateway address. The interface must be reachable in the tenant VRF that you configure for DHCP relay and must have a unique IPv4 address. For EVPN symmetric routing with an anycast gateway that reuses the same SVI IP address on multiple leaf switches, you must assign a unique IP address for the VRF interface and include the layer 3 VNI for this VRF in the DHCP relay configuration.
 
 The following example:
-
 - Configures VRF RED with IPv4 address 20.20.20.1/32.
-- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51-swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
+- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51 and swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of the `INTF_CMD` list to service DHCP packets.
 - Sets the DHCP server to 10.1.10.104.
 - Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
-
 
 {{< tabs "TabID366 ">}}
 {{< tab "NVUE Commands ">}}
@@ -294,8 +290,6 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
-
-
 {{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/network/interfaces` file to configure VRF RED with IPv4 address 20.20.20.1/32
@@ -344,7 +338,6 @@ cumulus@leaf01:~$ nv config apply
 
 3. Edit the `/etc/default/isc-dhcp-relay-RED` file.
 
-
    ```
    cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-RED
    SERVERS="10.1.10.104"
@@ -360,19 +353,15 @@ cumulus@leaf01:~$ nv config apply
    ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
-
 
 ### DHCP Relay for IPv4 in an EVPN Symmetric Environment without MLAG
 
-In multi-tenant EVPN symmetric environments without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
+In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
 
 The following example:
-
-- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51-swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
+- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51 and swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
 - Sets the DHCP server IP address to 10.1.10.104.
-
 
 {{< tabs "TabID369 ">}}
 {{< tab "NVUE Commands ">}}
@@ -386,12 +375,9 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
-
-
 {{< tab "Linux Commands ">}}
 
 1. Edit the `/etc/default/isc-dhcp-relay-RED` file.
-
 
    ```
    cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-RED
@@ -408,14 +394,11 @@ cumulus@leaf01:~$ nv config apply
    ```
 
 {{< /tab >}}
-
 {{< /tabs >}}
-
 
 ### DHCP Relay for IPv6 in an EVPN Symmetric Environment
 
-IPv6 DHCP relay in symmetric routing deployments requires a unique IPv6 address assigned to the non-default VRF interfaces participating in DHCP relay. Cumulus Linux uses this IPv6 address as the source address when sending packets to the DHCP server and the DHCP server will reply back to this address.
-
+For IPv6 DHCP relay in a symmetric routing environment, you must assign a unique IPv6 address to the non-default VRF interfaces that participate in DHCP relay. Cumulus Linux uses this IPv6 address as the source address when sending packets to the DHCP server and the DHCP server replies to this address.
 
 {{%notice note%}}
 {{<link url="#control-the-gateway-ip-address-with-rfc-3527" text="RFC 3527">}} does not apply to IPv6. IPv6 has the functionality described in RFC 3527 as part of its normal operations.

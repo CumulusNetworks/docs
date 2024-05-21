@@ -8,6 +8,10 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
+{{%notice note%}}
+- Cumulus Linux 5.9.0 is no longer available and is replaced with Cumulus Linux 5.9.1.
+- Cumulus Linux 5.9.1 includes the open and fixed issues listed in 5.9.0.
+{{%/notice%}}
 {{<rn_xls_link dir="cumulus-linux-59" >}}
 ## 5.9.0 Release Notes
 ### Open Issues in 5.9.0

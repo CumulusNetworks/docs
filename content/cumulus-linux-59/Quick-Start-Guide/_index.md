@@ -96,6 +96,8 @@ To change the hostname:
 {{< tabs "TabID131 ">}}
 {{< tab "NVUE Commands ">}}
 
+Run the `nv set system hostname <hostname>` command. The following example sets the hostname to leaf01:
+
 ```
 cumulus@switch:~$ nv set system hostname leaf01
 cumulus@switch:~$ nv config apply
@@ -272,7 +274,7 @@ Cumulus Linux does not put all ports into a bridge by default. To create a bridg
 {{< tabs "TabID367 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following configuration example places the front panel port swp1 into the default bridge called `br_default`.
+The following example places the front panel port swp1 into the default bridge called `br_default`.
 
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default
@@ -394,7 +396,7 @@ Cumulus Linux has a preconfigured loopback interface. When the switch boots up, 
 The loopback interface `lo` must always exist on the switch and must always be up. To check the status of the loopback interface, run the NVUE `nv show interface lo` command or the Linux `ip addr show lo` command.
 {{%/notice%}}
 
-To add an IP address to a loopback interface, configure the `lo` interface:
+The following example sets the loopback IP address to 10.10.10.1/32.
 
 {{< tabs "TabID510 ">}}
 {{< tab "NVUE Commands ">}}

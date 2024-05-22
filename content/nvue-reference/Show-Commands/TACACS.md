@@ -92,6 +92,7 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@switch:~$ nv show system aaa tacacs exclude-user
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system aaa tacacs server</h>
 

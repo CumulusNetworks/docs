@@ -102,7 +102,7 @@ cumulus@switch:~$ nv set router adaptive-routing enable on
 
 ## <h>nv set router adaptive-routing link-utilization-threshold</h>
 
-Turns on link utilization. The default setting is `off`. When link utilization is on, the default link utilization threshold percentage for an adaptive routing interface is 70. YOu can change the threshold percentage with the `nv set interface <interface> router adaptive-routing link-utilization-threshold` command.
+Turns on link utilization. The default setting is `off`. When link utilization is on, the default link utilization threshold percentage for an adaptive routing interface is 70. YOu can change the threshold percentage with the `nv set interface <interface-id> router adaptive-routing link-utilization-threshold` command.
 
 When you enable or disable link utilization, NVUE reloads `switchd`.
 

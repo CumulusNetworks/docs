@@ -575,7 +575,7 @@ cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip connection-state related
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip dest-ip \<ip-address\></h>
+## <h>nv set acl \<acl-id\> rule \<rule-id\> match ip dest-ip \<ip-address-id\></h>
 
 Configures the destination IP address you want to match.
 
@@ -585,7 +585,7 @@ Configures the destination IP address you want to match.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<ip-address>` | The destination IP address. |
+| `<ip-address-id>` | The destination IP address. |
 
 ### Version History
 

@@ -161,7 +161,7 @@ Shows ND prefix configuration for the specified interface, such as the amount of
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
-| `<ipv6-address-id>`  | The IPv6 address and route prefix.|
+| `<ipv6-prefix-id>`  | The IPv6 address and route prefix.|
 
 ### Version History
 

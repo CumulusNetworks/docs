@@ -5,7 +5,24 @@ weight: 640
 toc: 4
 ---
 
-NetQ and network operating system images (Cumulus Linux and SONiC) are managed with LCM. This section explains how to check for missing images, upgrade images, and specify default images.
+NetQ and network operating system images are managed with LCM. This section explains how to check for missing images, upgrade images, and specify default images.
+
+The network OS and NetQ images are available in several variants based on the software version, the CPU architecture, platform, and SHA checksum, in the form of **x.y.z-OS\~TAG\_CPU**
+
+- **x.y.z** indicates the NetQ version
+- **OS** indicates the network operating system:
+    - **cl4** for Cumulus Linux versions 5.8.0 or earlier
+    - **cld12** for Cumulus Linux versions 5.9.0 or later
+    - **deb10** for SONiC 
+    - **ub** for Ubuntu
+- **TAG** represents a timestamp for the release of the version
+- **CPU** represents the architecture:
+    - **armel** for ARM platforms
+    - **amd64** for AMD 64 or x86 platforms
+
+For example, the following *netq-agent* package represent NetQ version 4.10.0, Cumulus Linux version 5.9 or later, and an AMD 64 architecture.
+
+- netq-agent_4.10.0-cld12u46~1713949601.127fb0c1b_amd64.deb
 ## View and Upload Missing Images
 
 You should upload images for each network OS and NetQ version currently installed in your inventory so you can support rolling back to a known good version should an installation or upgrade fail. If you have specified a default network OS and/or NetQ version, the NetQ UI also verifies that the necessary versions of the default image are available based on the known switch inventory, and if not, lists those that are missing.

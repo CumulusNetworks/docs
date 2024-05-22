@@ -157,7 +157,7 @@ cumulus@switch:~$ nv show acl EXAMPLE1 rule 10 action source-nat translate-ip
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<ip-address\></h>
+## <h>nv show acl \<acl-id\> rule \<rule-id\> action source-nat translate-ip \<ip-address-id\></h>
 
 Shows information about the source NAT translate rule for the specified IP address or IP address range.
 
@@ -167,7 +167,7 @@ Shows information about the source NAT translate rule for the specified IP addre
 | --------- | -------------- |
 | `<acl-id>` | The ACL name.|
 | `<rule-id>` | The rule number.|
-| `<ip-address>` | The IP address.|
+| `<ip-address-id>` | The IP address.|
 
 ### Version History
 

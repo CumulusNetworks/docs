@@ -432,7 +432,7 @@ Configures router advertisement for an interface.
 Enables router advertisement (`on`) or disables router advertisement (`off`) for the interface. The default setting is `off`.
 
 {{%notice note%}}
-In Cumulus Linux 5.4 and earlier, the NVUE command to enable router advertisment for an interface is `nv set interface <interface> ip neighbor-discovery router-advertisement enable off` and the NVUE command to disable router advertisment for an interface is `nv set interface <interface> ip neighbor-discovery router-advertisement enable on`.
+In Cumulus Linux 5.4 and earlier, the NVUE command to enable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable off` and the NVUE command to disable router advertisment for an interface is `nv set interface <interface-id> ip neighbor-discovery router-advertisement enable on`.
 {{%/notice%}}
 
 ### Command Syntax

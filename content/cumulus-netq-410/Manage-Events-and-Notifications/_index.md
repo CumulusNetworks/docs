@@ -12,9 +12,4 @@ NetQ captures three types of events:
 - **Threshold-crossing events**: a user-specified set of system-related events based on threshold values
 - **What Just Happened events**: network hardware events for NVIDIA Spectrum&trade; switches
 
-You can track events in the NetQ UI with the Events and What Just Happened cards:
-
-- **Events card**: displays system and threshold-crossing events
-- **What Just Happened card**: displays network hardware events on NVIDIA Spectrum&trade; switches
-
-You can monitor system and threshold-crossing events in the CLI with the {{<link title="show/#netq-show-events" text="netq show events">}} command. The {{<link title="show/#netq-show-wjh-drop" text="netq show wjh-drop">}} command lists all What Just Happened events or those with a selected drop type.
+You can track events in the NetQ UI by selecting the menu and navigating to **Events** or **What Just Happened**. Alternately, use the CLI to monitor events using the {{<link title="show/#netq-show-events" text="netq show events">}} and {{<link title="show/#netq-show-wjh-drop" text="netq show wjh-drop">}} commands.

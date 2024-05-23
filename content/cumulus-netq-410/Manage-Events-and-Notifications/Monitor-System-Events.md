@@ -41,28 +41,30 @@ Events are also generated when streaming {{<link title="Validate Overall Network
 
 You can suppress events for the following types of messages:
 
-- agent: NetQ Agent events
-- bgp: BGP events
-- btrfsinfo: Events related to the BTRFS file system in Cumulus Linux
-- clsupport: Events generated when creating the `cl-support script`
-- configdiff: Events generated when a configuration file has changed
-- evpn: EVPN events
-- lcm: Lifecycle management events
-- link: Events related to links, including state and interface name
-- lldp: LLDP events
-- mlag: MLAG events
-- ntp: NTP events
-- ospf: OSPF events
-- packageinfo:
-- ptm: Prescriptive Topology Manager events
-- ptp: PTP events
-- roceconfig: RoCE configuration events
-- runningconfigdiff: Events related to the difference between two configurations
-- sensor: Sensor events
-- services: Service-related events, including whether a service is active or inactive
-- ssdutil: Events related to the storage on a switch
+- Adaptive routing
+- BGP
+- BTRFS information (events related to the BTRFS file system in Cumulus Linux)
+- CL support (events generated when creating the `cl-support script`)
+- Config diff (events generated when a configuration file has changed)
+- EVPN
+- Installed packages
+- Lifecycle management
+- Link (events related to links, including state and interface name)
+- LLDP
+- MLAG
+- MTU
+- NetQ agent
+- NTP
+- OSPF
+- PTM (prescriptive topology manager)
+- PTP
+- RoCE configuration
+- Running config diff (events related to the difference between two configurations)
+- Sensor
+- Services (including whether a service is active or inactive)
+- SSD utilization (events related to the storage on a switch)
 
-{{<notice info>}} 
+{{<notice note>}} 
 
 NetQ suppresses BGP, EVPN, link, and sensor-related events with a severity level of 'info' by default in the UI. You can {{<link url="#delete-or-disable-an-event-suppression-rule" text="disable this rule">}} if you'd prefer to receive these notifications.
 

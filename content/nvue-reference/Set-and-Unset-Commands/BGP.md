@@ -5756,7 +5756,7 @@ After you configure the dynamic neighbors, a BGP speaker can listen for, and for
 
 ## <h>nv set vrf \<vrf-id\> router bgp dynamic-neighbor limit</h>
 
-Configures the maximum number of dynamic neighbors from which you can accept a connection. You must also set the `nv set vrf <vrf> router bgp dynamic-neighbor listen-range` command. You can specify a value between 1 and 5000. The default value is 100.
+Configures the maximum number of dynamic neighbors from which you can accept a connection. You must also set the `nv set vrf <vrf-id> router bgp dynamic-neighbor listen-range` command. You can specify a value between 1 and 5000. The default value is 100.
 
 ### Command Syntax
 

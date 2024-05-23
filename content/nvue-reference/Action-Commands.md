@@ -2388,7 +2388,7 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action disconnect system aaa user \<user\></h>
+## <h>nv action disconnect system aaa user \<user-id\></h>
 
 Disconnects authenticated and authorized users.
 
@@ -2396,7 +2396,7 @@ Disconnects authenticated and authorized users.
 
 | Syntax   |  Description  |
 | ----------    | ------------  |
-| `<user>` | The user you want to disconnect. |
+| `<user-id>` | The user you want to disconnect. |
 
 ### Version History
 
@@ -2528,11 +2528,11 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action upgrade system packages to latest use-vrf \<vrf\></h>
+## <h>nv action upgrade system packages to latest use-vrf \<vrf-id\></h>
 
 Upgrades all the packages to the latest distribution.
 
-By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
+By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf-id>` option.
 
 ### Command Syntax
 
@@ -2556,7 +2556,7 @@ cumulus@switch:~$ nv action upgrade system packages to latest use-vrf default
 
 Fetches the latest update metadata from the repository so you can review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies).
 
-By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf>` option.
+By default, the NVUE `nv action upgrade system packages` command runs in the management VRF. To run the command in a non-management VRF such as `default`, you must use the `use-vrf <vrf-id>` option.
 
 ### Command Syntax
 

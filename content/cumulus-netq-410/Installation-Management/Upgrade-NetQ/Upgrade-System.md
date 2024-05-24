@@ -9,7 +9,7 @@ This page describes how to upgrade your NetQ virtual machines. Note that the upg
 
 For deployments running:
 
-- 4.9.0, 4.8.0: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.10.0. NetQ 4.8.0 on-premises cluster deployments must incrementally [upgrade to 4.9.0]({{<ref "/cumulus-netq-49/Installation-Management/Upgrade-NetQ/Upgrade-System" >}}) before upgrading to 4.10.0.
+- 4.9.0, 4.8.0: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.10.
 - 4.7.0 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
 
 During the upgrade process, NetQ will be temporarily unavailable.
@@ -124,7 +124,7 @@ If you are upgrading a cluster deployment from NetQ v4.8.0 or earlier, you must 
 {{<tab "Standalone">}}
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.0.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1.tgz
 ```
 
 {{%notice info%}}
@@ -134,13 +134,8 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 
 {{<tab "Cluster">}}
 
-{{%notice note%}}
-If you are upgrading a NetQ 4.8.0 on-premises cluster, you must first incrementally [upgrade to 4.9.0]({{<ref "/cumulus-netq-49/Installation-Management/Upgrade-NetQ/Upgrade-System" >}}) before upgrading to 4.10.0.
-
-{{%/notice%}}
-
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.0.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1.tgz
 ```
 {{%notice info%}}
 If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-cluster-full" text="netq install cluster full">}} command.
@@ -158,7 +153,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 {{<tab "Standalone">}}
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.0-opta.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1-opta.tgz
 ```
 {{%notice info%}}
 If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-opta-standalone-full" text="netq install opta standalone full">}} command.
@@ -174,7 +169,7 @@ Run the `netq upgrade` command, specifying the current version's tarball and you
 - A different IP address than the primary IP assigned to the default interface.
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.0-opta.tgz cluster-vip <vip-ip>
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1-opta.tgz cluster-vip <vip-ip>
 ```
 {{%notice note%}}
 

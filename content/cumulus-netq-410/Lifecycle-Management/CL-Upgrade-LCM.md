@@ -5,13 +5,22 @@ weight: 680
 toc: 4
 ---
 
- Lifecycle management (LCM) lets you upgrade Cumulus Linux on one or more switches in your network with the NetQ UI or the CLI. You do this by scheduling 'upgrade jobs' which upgrade Cumulus Linux on your switches. Each job can upgrade CL on up to 50 switches. NetQ upgrades the switches 5 at a time until all switches in the upgrade job are upgraded. You can schedule up to 5 upgrade jobs to run simultaneously.
+Lifecycle management (LCM) lets you upgrade Cumulus Linux on one or more switches in your network with the NetQ UI or the CLI. You do this by scheduling 'upgrade jobs' which upgrade Cumulus Linux on your switches. Each job can upgrade CL on up to 50 switches. NetQ upgrades the switches 5 at a time until all switches in the upgrade job are upgraded. You can schedule up to 5 upgrade jobs to run simultaneously.
 
-You can upgrade switches running Cumulus Linux 5.0.0 or later that are managed with flat configuration files or with NVUE.
+For deployments running Cumulus Linux versions:
+
+- 5.6.0 to 5.8.0: you can upgrade up to Cumulus Linux version 5.9 if your environment is running NetQ 4.10.1 <!--add "or later" in 4.11 release-->
+- 5.0.1 to 5.7.0: you can upgrade up to Cumulus Linux version 5.8
+
+
+To upgrade to Cumulus Linux 5.9:
+
+1. Ensure your switches are configured with NVUE. 
+2. {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Quick-Start-Guide/#configure-the-hostname" text="Configure the switches' hostnames">}} with NVUE. 
+3. Save all configurations with the `nv config save` command.
 
 {{%notice warning%}}
-- NetQ 4.10.0 does not support upgrading switches to Cumulus Linux version 5.9.0 with LCM. To upgrade switches manually, see {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}}.
-- When you upgrade a switch that has not been configured using NVUE, LCM backs up and restores flat file configurations in Cumulus Linux. After you upgrade a switch that has been managed with flat files and subsequently run NVUE configuration commands, NVUE will overwrite the configuration restored by NetQ LCM. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} for additional information.
+When you upgrade a switch that has not been configured using NVUE (which is only supported for upgrades to Cumulus Linux versions 5.8 and earlier), LCM backs up and restores flat file configurations in Cumulus Linux. After you upgrade a switch that has been managed with flat files and subsequently run NVUE configuration commands, NVUE will overwrite the configuration restored by NetQ LCM. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} and {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-CLI/#" text="System Configuration with the NVUE CLI">}} for additional information.
 {{%/notice%}}
 
 {{<notice note>}}

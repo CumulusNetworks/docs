@@ -95,12 +95,12 @@ You only need this configuration on leafs that are VTEPs. The switch accepts EVP
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
-1. Configure VXLAN Interfaces. The following example creates a single VXLAN interface (vxlan0), maps VLAN 10 to vni10 and VLAN 20 to vni20, adds the VXLAN device to the default bridge `br_default`, and sets the VXLAN local tunnel IP address to 10.10.10.10.
+1. Configure VXLAN Interfaces. The following example creates a single VXLAN interface (vxlan0), maps VLAN 10 to vni10 and VLAN 20 to vni20, adds the VXLAN device to the default bridge `br_default`, and sets the VXLAN local tunnel IP address to 10.10.10.1.
 
    ```
    cumulus@leaf01:~$ nv set bridge domain br_default vlan 10 vni 10
    cumulus@leaf01:~$ nv set bridge domain br_default vlan 20 vni 20
-   cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.10
+   cumulus@leaf01:~$ nv set nve vxlan source address 10.10.10.1
    cumulus@leaf01:~$ nv config apply
    ```
 
@@ -172,7 +172,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
       vxlan:
         enable: on
         source:
-          address: 10.10.10.10
+          address: 10.10.10.1
     router:
       bgp:
         autonomous-system: 65101
@@ -265,7 +265,7 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
    auto lo
    iface lo inet loopback
            address 10.10.10.1/32
-           vxlan-local-tunnelip 10.10.10.10
+           vxlan-local-tunnelip 10.10.10.1
 
    auto vni10
    iface vni10
@@ -352,8 +352,8 @@ leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# neighbor swp51 activate
 leaf01(config-router-af)# advertise-all-vni
 leaf01(config-router-af)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 
@@ -383,8 +383,8 @@ spine01(config-router)# neighbor swp1 interface remote-as external
 spine01(config-router)# address-family l2vpn evpn
 spine01(config-router-af)# neighbor swp1 activate
 spine01(config-router-af)# end
-spine01)# write memory
-spine01)# exit
+spine01# write memory
+spine01# exit
 cumulus@spine01:~$
 ```
 

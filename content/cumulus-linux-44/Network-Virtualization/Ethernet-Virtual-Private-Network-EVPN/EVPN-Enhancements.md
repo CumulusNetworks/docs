@@ -117,8 +117,8 @@ leaf01(config-router-af-vni)# route-target import 65102:10
 leaf01(config-router-af-vni)# exit
 leaf01(config-router-af)# advertise-all-vni
 leaf01(config-router-af)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 
@@ -151,8 +151,8 @@ leaf03(config-router-af-vni)# route-target import 65101:10
 leaf03(config-router-af-vni)# exit
 leaf03(config-router-af)# advertise-all-vni
 leaf03(config-router-af)# end
-leaf03)# write memory
-leaf03)# exit
+leaf03# write memory
+leaf03# exit
 cumulus@leaf03:~$
 ```
 
@@ -282,8 +282,8 @@ leaf01(config-router-af-vni)# exit
 leaf01(config-router-af)# vni 20
 leaf01(config-router-af-vni)# route-target both 65101:10
 leaf01(config-router-af)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 
@@ -317,8 +317,8 @@ leaf03(config-router-af-vni)# exit
 leaf03(config-router-af)# vni 20
 leaf03(config-router-af-vni)# route-target both 65102:10
 leaf03(config-router-af)# end
-leaf03)# write memory
-leaf03)# exit
+leaf03# write memory
+leaf03# exit
 cumulus@leaf03:~$
 ```
 
@@ -576,8 +576,8 @@ leaf01(config)# interface swp52
 leaf01(config-if)# ip ospf area 0.0.0.0
 leaf01(config-if)# ospf network point-to-point
 leaf01(config-if)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 
@@ -953,8 +953,8 @@ leaf01(config)# router bgp 65101
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# advertise-svi-ip
 leaf01(config-router-af)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 
@@ -1010,8 +1010,8 @@ leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# vni 10
 leaf01(config-router-af-vni)# advertise-svi-ip
 leaf01(config-router-af-vni)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 
@@ -1095,8 +1095,8 @@ leaf01(config)# router bgp 65101
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# flooding disable
 leaf01(config-router-af)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 
@@ -1121,8 +1121,8 @@ leaf01(config)# router bgp 65101
 leaf01(config-router)# address-family l2vpn evpn
 leaf01(config-router-af)# flooding head-end-replication
 leaf01(config-router-af)# end
-leaf01)# write memory
-leaf01)# exit
+leaf01# write memory
+leaf01# exit
 cumulus@leaf01:~$
 ```
 

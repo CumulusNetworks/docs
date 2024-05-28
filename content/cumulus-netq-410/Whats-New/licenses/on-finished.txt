@@ -9,7 +9,7 @@ Comment: from module ee-first
 
 Files: debian/*
 Copyright: 2014 Leo Iannacone <l3on@ubuntu.com>
- 2018, Bastien RoucariÃ¨s <rouca@debian.org>
+ 2018, Bastien Roucariès <rouca@debian.org>
 License: Expat
 
 License: Expat

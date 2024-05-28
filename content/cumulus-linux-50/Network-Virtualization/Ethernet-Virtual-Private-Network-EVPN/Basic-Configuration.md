@@ -181,7 +181,7 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
 
-1. Configure VXLAN Interfaces. Edit the `/etc/network/interfaces` file to create the VXLAN interfaces, attach them to a bridge, map the VLANs to the VNIs, and set the VXLAN local tunnel IP address. The example below creates two VXLAN interfaces (vni10 and vni20), maps VLAN 10 to vni10 and VLAN 20 to vni20, and sets the VXLAN local tunnel IP address to 10.10.10.10.
+1. Configure VXLAN Interfaces. Edit the `/etc/network/interfaces` file to create the VXLAN interfaces, attach them to a bridge, map the VLANs to the VNIs, and set the VXLAN local tunnel IP address. The example below creates two VXLAN interfaces (vni10 and vni20), maps VLAN 10 to vni10 and VLAN 20 to vni20, and sets the VXLAN local tunnel IP address to 10.10.10.1.
 
    ```
    cumulus@leaf01:~$ sudo nano /etc/network/interfaces

@@ -265,67 +265,150 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-When enabling RFC 3527 support, you can specify an interface such as the loopback interface or swp interface for the gateway address. The interface you use must be reachable in the tenant VRF that it is servicing and must be unique to the switch. In EVPN symmetric routing, fabrics running an anycast gateway that use the same SVI IP address on multiple leaf switches need a unique IP address for the VRF interface and must include the layer 3 VNI for this VRF in the DHCP Relay configuration. For example:
+### DHCP Relay for IPv4 in an EVPN Symmetric Environment with MLAG
 
-```
-cumulus@leaf01:mgmt:~$ cat /etc/default/isc-dhcp-relay-RED
-SERVERS="10.1.10.104"
-INTF_CMD=" -i vlan10 -i vlan20 -i vlan4001"
-OPTIONS="-U RED"
-```
+In a multi-tenant EVPN symmetric routing environment with MLAG, you must enable RFC 3527 support. You can specify an interface, such as the loopback or VRF interface for the gateway address. The interface must be reachable in the tenant VRF that you configure for DHCP relay and must have a unique IPv4 address. For EVPN symmetric routing with an anycast gateway that reuses the same SVI IP address on multiple leaf switches, you must assign a unique IP address for the VRF interface and include the layer 3 VNI for this VRF in the DHCP relay configuration.
 
-{{%/notice%}}
+The following example:
+- Configures VRF RED with IPv4 address 20.20.20.1/32.
+- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51 and swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of the `INTF_CMD` list to service DHCP packets.
+- Sets the DHCP server to 10.1.10.104.
+- Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
 
-### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
-
-You can configure the `dhcrelay` service to forward IPv4 (only) DHCP packets to a DHCP server and ensure that the source IP address of the relayed packet is the same as the gateway IP address.
-
-{{%notice note%}}
-This option impacts all relayed IPv4 packets globally.
-{{%/notice%}}
-
-To use the gateway IP address as the source IP address:
-
-{{< tabs "TabID319 ">}}
+{{< tabs "TabID366 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay default source-ip gateway
+cumulus@leaf01:~$ nv set vrf RED loopback ip address 20.20.20.1/32
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan20
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan4024_l3
+cumulus@leaf01:~$ nv set service dhcp-relay RED server 10.1.10.104
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
 cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay-default` file to add `--giaddr-src` to the `OPTIONS` line.
+1. Edit the `/etc/network/interfaces` file to configure VRF RED with IPv4 address 20.20.20.1/32
 
    ```
-   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
-   SERVERS="172.16.1.102"
-   INTF_CMD="-i vlan10 -i swp51 -i swp52 -U swp2"
-   OPTIONS="--giaddr-src"
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
+   ...
+   auto RED
+   iface RED
+           address 20.20.20.1/32
+           vrf-table auto
    ```
 
-2. Restart the `dhcrelay` service to apply the configuration change:
+2. Configure VRF RED to advertise the connected routes as type-5 so that the loopback IPv4 address is reachable:
 
    ```
-   cumulus@leaf01:~$ sudo systemctl restart dhcrelay@default.service
+   cumulus@leaf01:mgmt:~$ sudo vtysh 
+   ...
+   leaf01# configure terminal
+   leaf01(config)# router bgp 65101 vrf RED
+   leaf01(config-router)# address-family l2vpn evpn
+   leaf01(config-router-af)# advertise ipv4 unicast 
+   leaf01(config-router-af)# end
+   leaf01# write memory
+   ```
+
+   The `/etc/frr/frr.conf` file now contains the following entries:
+
+   ```
+   ...
+   router bgp 65101 vrf RED
+    bgp router-id 10.10.10.1
+   ..
+    !
+    address-family ipv4 unicast
+     redistribute connected
+     maximum-paths 64
+     maximum-paths ibgp 64
+    exit-address-family
+    !
+    address-family l2vpn evpn
+     advertise ipv4 unicast
+    exit-address-family
+   exit
+   ```
+
+3. Edit the `/etc/default/isc-dhcp-relay-RED` file.
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-RED
+   SERVERS="10.1.10.104"
+   INTF_CMD=" -i vlan10 -i vlan20 -i swp51 -i swp52 -i vlan4024_l3" 
+   OPTIONS="-U RED"
+   ```
+
+4. Start and enable the DHCP service so that it starts automatically the next time the switch boots:
+
+   ```
+   sudo systemctl start dhcrelay@RED.service
+   sudo systemctl enable dhcrelay@RED.service
    ```
 
 {{< /tab >}}
 {{< /tabs >}}
 
-### DHCP Relay for IPv6 in a Non-default VRF
+### DHCP Relay for IPv4 in an EVPN Symmetric Environment without MLAG
 
-For IPv6 DHCP relay in a symmetric routing deployment, you must assign a unique IPv6 address to a non-default VRF. Cumulus Linux uses this IPv6 address as the source IP address when sending packets to the DHCP server so that the DHCP server can send the packet back to this VTEP. If the VRF does not have a unique IPv6 address assigned to the VRF interface, the return packet from the DHCP server might arrive on any of the VTEPs that own the non-unique IP address.
-
-This is also a requirement for IPv4 when you enable {{<link url="#control-the-gateway-ip-address-with-rfc-3527" text="RFC 3527">}}; RFC does not apply to IPv6. IPv6 has the functionality of RFC 3527 in normal functionality.
+In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
 
 The following example:
-- Configures VRF RED with IPv6 address 2001:db8:666::1/128.
-- Configures VLAN 10 and 20 in VRF RED to face hosts that generate DHCP Requests.
-- Sets the DHCP server to 2001:db8:199::2 and the layer 3 VNI for this VRF to 4001, which uses SVI vlan4024_l3.
+- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51 and swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
+- Sets the DHCP server IP address to 10.1.10.104.
+
+{{< tabs "TabID369 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan20
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan4024_l3
+cumulus@leaf01:~$ nv set service dhcp-relay RED server 10.1.10.104
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/default/isc-dhcp-relay-RED` file.
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-RED
+   SERVERS="10.1.10.104"
+   INTF_CMD=" -i vlan10 -i vlan20 -i swp51 -i swp52 -i vlan4024_l3" 
+   OPTIONS=""
+   ```
+
+2. Start the DHCP service and enable it to start automatically when the switch boots:
+
+   ```
+   sudo systemctl start dhcrelay@RED.service
+   sudo systemctl enable dhcrelay@RED.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### DHCP Relay for IPv6 in an EVPN Symmetric Environment
+
+For IPv6 DHCP relay in a symmetric routing environment, you must assign a unique IPv6 address to the non-default VRF interfaces that participate in DHCP relay. Cumulus Linux uses this IPv6 address as the source address when sending packets to the DHCP server and the DHCP server replies to this address.
+
+{{%notice note%}}
+{{<link url="#control-the-gateway-ip-address-with-rfc-3527" text="RFC 3527">}} does not apply to IPv6. IPv6 has the functionality described in RFC 3527 as part of its normal operations.
+{{%/notice%}}
+
+The following example:
+- Configures VRF RED with the unique IPv6 address 2001:db8:666::1/128.
+- Configures VLAN 10 and 20 in VRF RED to service DHCP requests from downstream hosts.
+- Sets the DHCP server to 2001:db8:199::2.
+- Configures the layer 3 VNI interface for VRF RED vlan4024_l3 to process DHCP packets from the upstream server.
 - Configures VRF RED to advertise the connected routes so that the loopback IPv6 address is reachable.
 
 {{< tabs "TabID367 ">}}
@@ -410,6 +493,46 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
+
+You can configure the `dhcrelay` service to forward IPv4 (only) DHCP packets to a DHCP server and ensure that the source IP address of the relayed packet is the same as the gateway IP address.
+
+{{%notice note%}}
+This option impacts all relayed IPv4 packets globally.
+{{%/notice%}}
+
+To use the gateway IP address as the source IP address:
+
+{{< tabs "TabID319 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set service dhcp-relay default source-ip gateway
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/default/isc-dhcp-relay-default` file to add `--giaddr-src` to the `OPTIONS` line.
+
+   ```
+   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
+   SERVERS="172.16.1.102"
+   INTF_CMD="-i vlan10 -i swp51 -i swp52 -U swp2"
+   OPTIONS="--giaddr-src"
+   ```
+
+2. Restart the `dhcrelay` service to apply the configuration change:
+
+   ```
+   cumulus@leaf01:~$ sudo systemctl restart dhcrelay@default.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+
 ### Configure Multiple DHCP Relays
 
 Cumulus Linux supports multiple DHCP relay daemons on a switch to enable relaying of packets from different bridges to different upstream interfaces.
@@ -454,7 +577,7 @@ This section provides troubleshooting tips.
 
 To show the DHCP relay status:
 
-{{< tabs "TabID377 ">}}
+{{< tabs "TabID405 ">}}
 {{< tab "NVUE Commands ">}}
 
 Run the `nv show service dhcp-relay` command for IPv4 or the `nv show service dhcp-relay6` command for IPv6:

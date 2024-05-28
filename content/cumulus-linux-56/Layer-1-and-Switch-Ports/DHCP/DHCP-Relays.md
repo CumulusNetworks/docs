@@ -114,6 +114,28 @@ Cumulus Linux supports DHCP Agent Information Option 82, which allows a DHCP rel
 
 To configure DHCP Agent Information Option 82:
 
+{{< tabs "TabID117 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example enables Option 82 and enables circuit ID:
+
+```
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent use-pif-circuit-id enable on
+cumulus@leaf01:~$ nv config apply
+```
+
+The following example enables Option 82 and sets the remote ID to MAC address 44:38:39:BE:EF:AA:
+
+```
+cumulus@leaf01:~$ nv set service dhcp-relay <vrf-id> agent enable on
+cumulus@leaf01:~$ nv set service dhcp-relay default agent remote-id 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 1. Edit the `/etc/default/isc-dhcp-relay-default` file and add one of the following options:
 
    To inject the ingress *SVI interface* against which DHCP processes the relayed DHCP discover packet, add `-a` to the `OPTIONS` line:
@@ -148,6 +170,9 @@ To configure DHCP Agent Information Option 82:
    ```
    cumulus@leaf01:~$ sudo systemctl restart dhcrelay@default.service
    ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Control the Gateway IP Address with RFC 3527
 
@@ -240,17 +265,233 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 {{< /tab >}}
 {{< /tabs >}}
 
+### DHCP Relay for IPv4 in an EVPN Symmetric Environment with MLAG
+
+In a multi-tenant EVPN symmetric routing environment with MLAG, you must enable RFC 3527 support. You can specify an interface, such as the loopback or VRF interface for the gateway address. The interface must be reachable in the tenant VRF that you configure for DHCP relay and must have a unique IPv4 address. For EVPN symmetric routing with an anycast gateway that reuses the same SVI IP address on multiple leaf switches, you must assign a unique IP address for the VRF interface and include the layer 3 VNI for this VRF in the DHCP relay configuration.
+
+The following example:
+- Configures VRF RED with IPv4 address 20.20.20.1/32.
+- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51 and swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of the `INTF_CMD` list to service DHCP packets.
+- Sets the DHCP server to 10.1.10.104.
+- Configures VRF RED to advertise connected routes as type-5 so that the VRF RED loopback IPv4 address is reachable.
+
+{{< tabs "TabID366 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf RED loopback ip address 20.20.20.1/32
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan20
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan4024_l3
+cumulus@leaf01:~$ nv set service dhcp-relay RED server 10.1.10.104
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast redistribute connected enable on
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn enable on
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/network/interfaces` file to configure VRF RED with IPv4 address 20.20.20.1/32
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
+   ...
+   auto RED
+   iface RED
+           address 20.20.20.1/32
+           vrf-table auto
+   ```
+
+2. Configure VRF RED to advertise the connected routes as type-5 so that the loopback IPv4 address is reachable:
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo vtysh 
+   ...
+   leaf01# configure terminal
+   leaf01(config)# router bgp 65101 vrf RED
+   leaf01(config-router)# address-family l2vpn evpn
+   leaf01(config-router-af)# advertise ipv4 unicast 
+   leaf01(config-router-af)# end
+   leaf01# write memory
+   ```
+
+   The `/etc/frr/frr.conf` file now contains the following entries:
+
+   ```
+   ...
+   router bgp 65101 vrf RED
+    bgp router-id 10.10.10.1
+   ..
+    !
+    address-family ipv4 unicast
+     redistribute connected
+     maximum-paths 64
+     maximum-paths ibgp 64
+    exit-address-family
+    !
+    address-family l2vpn evpn
+     advertise ipv4 unicast
+    exit-address-family
+   exit
+   ```
+
+3. Edit the `/etc/default/isc-dhcp-relay-RED` file.
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-RED
+   SERVERS="10.1.10.104"
+   INTF_CMD=" -i vlan10 -i vlan20 -i swp51 -i swp52 -i vlan4024_l3" 
+   OPTIONS="-U RED"
+   ```
+
+4. Start and enable the DHCP service so that it starts automatically the next time the switch boots:
+
+   ```
+   sudo systemctl start dhcrelay@RED.service
+   sudo systemctl enable dhcrelay@RED.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### DHCP Relay for IPv4 in an EVPN Symmetric Environment without MLAG
+
+In a multi-tenant EVPN symmetric routing environment without MLAG, the VLAN interface (SVI) IPv4 address is typically unique on each leaf switch, which does not require RFC 3527 configuration.
+
+The following example:
+- Configures the SVIs vlan10 and vlan20, the underlay interfaces swp51 and swp52, and the layer 3 VNI VLAN interface for VRF RED vlan4024_l3 to be part of INTF_CMD list to service DHCP packets.
+- Sets the DHCP server IP address to 10.1.10.104.
+
+{{< tabs "TabID369 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan20
+cumulus@leaf01:~$ nv set service dhcp-relay RED interface vlan4024_l3
+cumulus@leaf01:~$ nv set service dhcp-relay RED server 10.1.10.104
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/default/isc-dhcp-relay-RED` file.
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay-RED
+   SERVERS="10.1.10.104"
+   INTF_CMD=" -i vlan10 -i vlan20 -i swp51 -i swp52 -i vlan4024_l3" 
+   OPTIONS=""
+   ```
+
+2. Start the DHCP service and enable it to start automatically when the switch boots:
+
+   ```
+   sudo systemctl start dhcrelay@RED.service
+   sudo systemctl enable dhcrelay@RED.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### DHCP Relay for IPv6 in an EVPN Symmetric Environment
+
+For IPv6 DHCP relay in a symmetric routing environment, you must assign a unique IPv6 address to the non-default VRF interfaces that participate in DHCP relay. Cumulus Linux uses this IPv6 address as the source address when sending packets to the DHCP server and the DHCP server replies to this address.
+
 {{%notice note%}}
-When enabling RFC 3527 support, you can specify an interface such as the loopback interface or swp interface for the gateway address. The interface you use must be reachable in the tenant VRF that it is servicing and must be unique to the switch. In EVPN symmetric routing, fabrics running an anycast gateway that use the same SVI IP address on multiple leaf switches need a unique IP address for the VRF interface and must include the layer 3 VNI for this VRF in the DHCP Relay configuration. For example:
-
-```
-cumulus@leaf01:mgmt:~$ cat /etc/default/isc-dhcp-relay-RED
-SERVERS="10.1.10.104"
-INTF_CMD=" -i vlan10 -i vlan20 -i vlan4001"
-OPTIONS="-U RED"
-```
-
+{{<link url="#control-the-gateway-ip-address-with-rfc-3527" text="RFC 3527">}} does not apply to IPv6. IPv6 has the functionality described in RFC 3527 as part of its normal operations.
 {{%/notice%}}
+
+The following example:
+- Configures VRF RED with the unique IPv6 address 2001:db8:666::1/128.
+- Configures VLAN 10 and 20 in VRF RED to service DHCP requests from downstream hosts.
+- Sets the DHCP server to 2001:db8:199::2.
+- Configures the layer 3 VNI interface for VRF RED vlan4024_l3 to process DHCP packets from the upstream server.
+- Configures VRF RED to advertise the connected routes so that the loopback IPv6 address is reachable.
+
+{{< tabs "TabID367 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf RED loopback ip address 2001:db8:666::1/128
+cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface downstream vlan10
+cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface downstream vlan20
+cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface upstream RED server-address 2001:db8:199::2
+cumulus@leaf01:~$ nv set service dhcp-relay6 RED interface upstream vlan4024_l3
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv6-unicast route-export to-evpn enable on
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/network/interfaces` file to configure VRF RED with IPv6 address 2001:db8:666::1/128:
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
+   ...
+   auto RED
+   iface RED
+           address 2001:db8:666::1/128
+           vrf-table auto
+   ```
+
+2. Configure VRF RED to advertise the connected routes so that the loopback IPv6 address is reachable:
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo vtysh 
+   ...
+   leaf01# configure terminal
+   leaf01(config)# router bgp 65101 vrf RED
+   leaf01(config-router)# address-family l2vpn evpn
+   leaf01(config-router-af)# advertise ipv6 unicast 
+   leaf01(config-router-af)# end
+   leaf01# write memory
+   ```
+
+   The `/etc/frr/frr.conf` file now contains the following entries:
+
+   ```
+   ...
+   router bgp 65101 vrf RED
+    bgp router-id 10.10.10.1
+   ..
+    !
+    address-family ipv6 unicast
+     redistribute connected
+     maximum-paths 64
+     maximum-paths ibgp 64
+    exit-address-family
+    !
+    address-family l2vpn evpn
+     advertise ipv6 unicast
+    exit-address-family
+   exit
+   ```
+
+3. Edit the `/etc/default/isc-dhcp-relay6-RED` file.
+
+   - Set the `-l ` option to the VLANs that receive DHCP requests from hosts.
+   - Set the `<ip-address-dhcp-server>%<interface-facing-dhcp-server>` option to associate the DHCP Server with VRF RED.
+   - Set the `-u` option to indicate where the switch receives replies from the DHCP server (SVI vlan4024_l3).
+
+   ```
+   cumulus@leaf01:mgmt:~$ sudo nano /etc/default/isc-dhcp-relay6-RED
+   INTF_CMD="-l vlan10 -l vlan20"
+   SERVERS="-u 2001:db8:199::2%RED -u vlan4024_l3"
+   ```
+
+4. Start and enable the DHCP service so that it starts automatically the next time the switch boots:
+
+   ```
+   sudo systemctl start dhcrelay6@RED.service
+   sudo systemctl enable dhcrelay6@RED.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Gateway IP Address as Source IP for Relayed DHCP Packets (Advanced)
 
@@ -290,6 +531,7 @@ cumulus@leaf01:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
+
 
 ### Configure Multiple DHCP Relays
 

@@ -166,7 +166,7 @@ cumulus@switch:~$ nv show interface swp1 ip vrrp virtual-router 44 address
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address \<ip-address-id\></h>
+## <h>nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address\<ip-address-id\></h>
 
 Shows information about the IP address of the virtual gateway implemented with VRRP for the specified interface.
 

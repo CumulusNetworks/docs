@@ -50,34 +50,6 @@ timers
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> router ospf timers</h>
-
-Shows <span class="a-tooltip">[SPF](## "Shortest Path First")</span> timer settings for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp51 router ospf timers
-                     applied
--------------------  -------
-dead-interval        60     
-hello-interval       5      
-retransmit-interval  5      
-transmit-delay       1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show interface \<interface-id\> router ospf authentication</h>
 
 Shows the MD5 authentication configuration settings on the specified interface.
@@ -126,6 +98,34 @@ cumulus@switch:~$ nv show interface swp51 router ospf bfd
         applied
 ------  -------
 enable  off
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> router ospf timers</h>
+
+Shows <span class="a-tooltip">[SPF](## "Shortest Path First")</span> timer settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp51 router ospf timers
+                     applied
+-------------------  -------
+dead-interval        60     
+hello-interval       5      
+retransmit-interval  5      
+transmit-delay       1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -8,6 +8,36 @@ type: nojsscroll
 <style>
 h { color: RGB(118,185,0)}
 </style>
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system security</h>
+
+Shows security settings on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.9.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system security
+                           operational  applied
+-------------------------  -----------  -------
+password-hardening                             
+  state                    enabled      enabled
+  reject-user-passw-match  enabled      enabled
+  lower-class              enabled      enabled
+  upper-class              enabled      enabled
+  digits-class             enabled      enabled
+  special-class            enabled      enabled
+  expiration-warning       15           15     
+  expiration               180          180    
+  history-cnt              10           10     
+  len-min                  8            8
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system security ca-certificate</h>

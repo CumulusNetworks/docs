@@ -16,6 +16,40 @@ Resets counters for interfaces, BGP, QoS buffers and pools, removes conflicts fr
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show action</h>
+
+Shows the action jobs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show action
+'1':
+  detail: acl counters cleared.
+  http_status: 200
+  issue: []
+  percentage: ''
+  state: action_success
+  status: acl counters cleared.
+  timeout: 60
+  type: ''
+'2':
+  detail: Local Time is now Wed 2024-05-29 09:47:30 UTC
+  http_status: 200
+  issue: []
+  percentage: ''
+  state: action_success
+  status: Local Time is now Wed 2024-05-29 09:47:30 UTC
+  timeout: 60
+  type: ''
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show action \<action-job-id\></h>
 
 Shows information about the specified action.

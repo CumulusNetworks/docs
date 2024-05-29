@@ -623,35 +623,6 @@ cumulus@switch:~$ nv show bridge domain br_default vlan
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show bridge domain \<domain-id\> vlan-vni-map</h>
-
-Shows the VLAN to VNI mapping for a specific bridge.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<domain-id>` | The name of the bridge domain. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.7.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show bridge domain br_default vlan-vni-map
-br_default  VLAN-VNI-Offset: None 
-
-VLAN  VNI
-----  -----   
-10    10
-20    20   
-30    30   
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show bridge domain \<domain-id\> vlan \<vid\></h>
 
 Shows configuration settings for a specific bridge VLAN.
@@ -815,6 +786,35 @@ cumulus@switch:~$ nv show bridge domain br_default vlan 10 vni
 10  auto                                       off           IP Address: 10.10.10.2
                                                              IP Address: 10.10.10.3
                                                              IP Address: 10.10.10.4
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show bridge domain \<domain-id\> vlan-vni-map</h>
+
+Shows the VLAN to VNI mapping for a specific bridge.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The name of the bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show bridge domain br_default vlan-vni-map
+br_default  VLAN-VNI-Offset: None 
+
+VLAN  VNI
+----  -----   
+10    10
+20    20   
+30    30   
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

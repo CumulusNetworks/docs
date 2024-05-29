@@ -93,7 +93,7 @@ The MLAG validation tests look for misconfigurations, peering status, and bond e
 | :---------: | --------- | ----------- |
 | 0 | Peering | Checks if: <ul><li>MLAG peerlink is up</li><li>MLAG peerlink bond slaves are down (not in full capacity and redundancy)</li><li>Peering <!-- vale off -->is established<!-- vale on --> between two nodes in an MLAG pair</li></ul> |
 | 1 | Backup IP | Checks if: <ul><li>MLAG backup IP configuration is missing on an MLAG node</li><li>MLAG backup IP is correctly pointing to the MLAG peer and its connectivity is available</li></ul> |
-| 2 | CLAG Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in an MLAG pair</li><li>Any duplication of an MLAG sysmac exists within a bridge domain </li></ul> |
+| 2 | MLAG Sysmac | Checks if: <ul><li>MLAG Sysmac is consistently configured on both nodes in an MLAG pair</li><li>Any duplication of an MLAG sysmac exists within a bridge domain </li></ul> |
 | 3 | VXLAN <!-- vale off -->Anycast IP<!-- vale on --> | Checks if the VXLAN anycast IP address is consistently configured on both nodes in an MLAG pair |
 | 4 | Bridge Membership | Checks if the MLAG peerlink is part of bridge |
 | 5 | Spanning Tree | Checks if: <ul><li>STP <!-- vale off -->is enabled<!-- vale on --> and running on the MLAG nodes</li><li>MLAG peerlink role is correct from STP perspective</li><li>The bridge ID is consistent between two nodes of an MLAG pair</li><li>The VNI in the bridge has BPDU guard and BPDU filter enabled</li></ul> |

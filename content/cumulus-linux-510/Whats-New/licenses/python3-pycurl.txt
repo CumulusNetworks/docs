@@ -1,0 +1,42 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: pycurl
+Source: http://pycurl.sourceforge.net
+
+Files: *
+Copyright:
+ Copyright (C) 2001-2008 by Kjetil Jacobsen <kjetilja at gmail.com>
+ Copyright (C) 2001-2008 by Markus F.X.J. Oberhumer <markus at oberhumer.com>
+ Copyright (C) 2013-2014 by Oleg Pudeyev <oleg at bsdpower.com>
+License: LGPL-2.1
+ PycURL is dual licensed under the LGPL (either version 2.1 or later)
+ and an MIT/X derivative license based on the cURL license. You can
+ redistribute and/or modify PycURL according to the terms of either
+ license.
+ .
+ On Debian GNU/Linux systems, the complete text of the GNU Lesser General
+ Public License can be found in '/usr/share/common-licenses/LGPL-2.1'.
+
+License: MIT
+ Permission to use, copy, modify, and distribute this software for any purpose
+ with or without fee is hereby granted, provided that the above copyright
+ notice and this permission notice appear in all copies.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF THIRD PARTY RIGHTS. IN
+ NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+ OR OTHER DEALINGS IN THE SOFTWARE.
+ .
+ Except as contained in this notice, the name of a copyright holder shall not
+ be used in advertising or otherwise to promote the sale, use or other dealings
+ in this Software without prior written authorization of the copyright holder.
+
+Files: tests/ext/test-lib.sh
+Copyright: Copyright (c) 2010 Ryan Tomayko <http://tomayko.com/about>
+License: MIT
+
+Files: debian/*
+Copyright: 2008-2014 Sandro Tosi <morph@debian.org>
+License: MIT

@@ -1,0 +1,29 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Parse::DebianChangelog
+Upstream-Contact: Frank Lichtenheld <frank@lichtenheld.de>
+Source: http://www.djpig.de/software/
+
+Files: *
+Copyright: 1996, Ian Jackson
+ 2005, Frank Lichtenheld <frank@lichtenheld.de>
+License: GPL-2+
+
+Files: lib/Parse/DebianChangelog.pm lib/Parse/DebianChangelog/ChangesFilters.pm
+Copyright: 1996, Ian Jackson
+ 2005, 2011, Frank Lichtenheld <frank@lichtenheld.de>
+License: GPL-2+
+
+Files: lib/Pod/UsageTrans.pm
+Copyright: 1996-2000, Bradford Appleton
+ 2002, SPI, inc.
+ 2005, Frank Lichtenheld <frank@lichtenheld.de>
+License: GPL-2+
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ On Debian systems the full text of the GNU General Public Licence,
+ version 2, can be found at `/usr/share/common-licenses/GPL-2'.

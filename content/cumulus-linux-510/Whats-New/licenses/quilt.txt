@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+This package was debianized by Martin Quinson <mquinson@blaise.ens-lyon.fr> on
+Tue, 29 Oct 2002 09:29:20 +0100.
+
+It was downloaded from:
+
+https://savannah.nongnu.org/projects/quilt/
+
+Upstream Authors:
+  Andrew Morton <akpm@digeo.com>
+  Andreas Gruenbacher <agruen@suse.de>
+
+Copyright:
+  Copyright (C) 2003, 2004, 2005, 2006 Andreas Gruenbacher <agruen@suse.de>, SuSE Labs
+  Copyright (C) 2006 Steve Langasek <vorlon@debian.org>
+
+These scripts are released under the GPL version 2 (or any later version),
+available on any Debian box at: /usr/share/common-licenses/GPL-2

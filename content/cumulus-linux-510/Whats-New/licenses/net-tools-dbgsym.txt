@@ -1,0 +1,1 @@
+net-tools-dbgsym has no copyright file

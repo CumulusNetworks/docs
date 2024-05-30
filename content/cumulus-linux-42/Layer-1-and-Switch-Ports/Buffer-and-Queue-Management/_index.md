@@ -8,7 +8,7 @@ Hardware datapath configuration manages packet buffering, queueing and schedulin
 
 {{%notice note%}}
 
-The `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf` assigns buffer space and egress queues. The default thresholds defined in the `datapath.conf` file are intended for data center environments, but certain workloads may require additional tuning. It is best to make small, incremental changes to validate the changes with your application performance. Be sure to backup the original file before making changes.
+The `/usr/lib/python2.7/dist-packages/cumulus/__chip_config/[bcm|mlx]/datapath.conf` assigns buffer space and egress queues. The default thresholds defined in the `datapath.conf` file are intended for data center environments, but certain workloads may require additional tuning. It is best to make small, incremental changes to validate the changes with your application performance. Be sure to back up the original file before making changes.
 
 {{%/notice%}}
 

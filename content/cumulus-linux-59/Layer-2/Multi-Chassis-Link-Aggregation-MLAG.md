@@ -703,7 +703,7 @@ For BGP, use a configuration like this:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as internal
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor peerlink.4094 remote-as external
 cumulus@leaf01:~$ nv config apply
 ```
 

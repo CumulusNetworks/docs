@@ -95,7 +95,7 @@ The following commands verify which files have changed compared to the previous 
 
 ### Back Up and Restore Configuration with NVUE
 
-You can backup and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
+You can back up and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
 
 To back up and restore the configuration file:
 
@@ -321,7 +321,7 @@ The first time you run the NVUE `nv config apply` command after upgrading to Cum
 Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
 
 - The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 5.7.0, these two files display the release as 5.7.0 after the upgrade.
-- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.4.0, followed by a package upgrade to 5.7.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 5.4.0, which is the originally installed base image.
+- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.5.0, followed by a package upgrade to 5.5.1 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 5.5.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 

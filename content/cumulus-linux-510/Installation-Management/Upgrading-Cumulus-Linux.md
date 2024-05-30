@@ -95,7 +95,7 @@ The following commands verify which files have changed compared to the previous 
 
 ### Back Up and Restore Configuration with NVUE
 
-You can backup and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
+You can back up and restore the configuration file with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
 
 To back up and restore the configuration file:
 
@@ -178,12 +178,12 @@ Be aware of the following when installing the Cumulus Linux image:
 Run **package upgrade** if you are upgrading from one Cumulus Linux 5.10 release to a later 5.10 release, or if you use third-party applications (package upgrade does not replace or remove third-party applications, unlike the Cumulus Linux image install).
 
 Be aware of the following when upgrading packages:
-
 - You cannot upgrade the switch to a new release train. For example, you **cannot** upgrade the switch from 4.x to 5.x.
+- Package upgrade only supports the current version plus two. For example, you can upgrade from Cumulus Linux 5.8 to 5.10 only if you installed the 5.8 binary image.
 - The package upgrade command might restart or stop services as part of the upgrade process.
 - The package upgrade command might disrupt core services by changing core service dependency packages.
 - After you upgrade, account UIDs and GIDs created by packages might be different on different switches, depending on the configuration and package installation history.
-- Cumulus Linux does not support the `sudo -E apt-get dist-upgrade` command.
+- Cumulus Linux does not support the `sudo -E apt-get dist-upgrade` command. Be sure to use `sudo -E apt-get upgrade` when upgrading packages.
 
 ### Cumulus Linux Image Install (ONIE)
 
@@ -351,8 +351,8 @@ To upgrade the switch using package upgrade:
 
 Cumulus Linux is a collection of different Debian Linux packages; be aware of the following:
 
-- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.8.0, these two files display the release as 5.8.0 after the upgrade.
-- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.6.0, followed by a package upgrade to 5.8.0, the `/etc/image-release` file continues to display Cumulus Linux 5.6.0, which is the originally installed base image.
+- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you perform a package upgrade and the latest Cumulus Linux release on the repository is 5.9.1, these two files display the release as 5.9.1 after the upgrade.
+- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.9.0, followed by a package upgrade to 5.9.1, the `/etc/image-release` file continues to display Cumulus Linux 5.9.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 

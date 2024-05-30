@@ -78,6 +78,70 @@ send-records  first-response
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system aaa tacacs authorization</h>
+
+Shows TACACS+ per-command authorization settings on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system aaa tacacs authorization
+Privilege Level  role          command
+---------------  ------------  -------
+0                nvue-monitor  ip     
+                               nv  
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system aaa tacacs authorization /<privilege-level-id/></h>
+
+Shows the TACACS+ per-command authorization configuration for the privilege level.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<privilege-level-id>`    |  The privilege level ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system aaa tacacs authorization 0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system aaa tacacs authorization /<privilege-level-id/> command</h>
+
+Shows TACACS+ per-command authorization command for the privilege level.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<privilege-level-id>`    |  The privilege level ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system aaa tacacs authorization 0 command
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system aaa tacacs exclude-user</h>
 
 Shows the list of users excluded from TACACS+ server authentication.

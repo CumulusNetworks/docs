@@ -306,9 +306,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         br_default:
           untagged: 1
           vlan:
-            '10': {}
-            '20': {}
-            '30': {}
+            10,20,30: {}
     interface:
       bond1:
         bond:
@@ -349,14 +347,16 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             br_default:
               access: 30
         type: bond
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
             10.10.10.1/32: {}
-        router:
-          ospf:
-            area: 0
-            enable: on
         type: loopback
       peerlink:
         bond:
@@ -452,6 +452,7 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       backup:
         10.10.10.2: {}
       enable: on
+      init-delay: 5
       mac-address: 44:38:39:BE:EF:AA
       peer-ip: linklocal
     router:
@@ -464,12 +465,82 @@ cumulus@leaf01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             max-holdtime: 6000
       vrr:
         enable: on
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
     system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$LVtX8JO1GJbiiVfq$Lqn/7MDaxbfgkKbDETAB.2sPuqvXJxGFnldbuJqMUBqczlMM1nNTrV5Kld7KwBvAkky6vJlQziYPqJS/ge88n.
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
+      global:
+        system-mac: 44:38:39:22:01:7a
       hostname: leaf01
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       default:
         router:
           ospf:
+            area:
+              '0':
+                network:
+                  10.10.10.1/32: {}
             enable: on
             router-id: 10.10.10.1
 ```
@@ -485,9 +556,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
         br_default:
           untagged: 1
           vlan:
-            '10': {}
-            '20': {}
-            '30': {}
+            10,20,30: {}
     interface:
       bond1:
         bond:
@@ -528,14 +597,16 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             br_default:
               access: 30
         type: bond
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
             10.10.10.2/32: {}
-        router:
-          ospf:
-            area: 0
-            enable: on
         type: loopback
       peerlink:
         bond:
@@ -631,6 +702,7 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       backup:
         10.10.10.1: {}
       enable: on
+      init-delay: 5
       mac-address: 44:38:39:BE:EF:AA
       peer-ip: linklocal
     router:
@@ -643,12 +715,82 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             max-holdtime: 6000
       vrr:
         enable: on
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
     system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$VYY4ykwe0LrdedRG$MNfa/eX7COUh57bGG2pZJROnvBWDfOQCnowaOiuKumvVyno/4fvWbEMEbaACLqsAQMGw5SYtgtTn.5WU5USFo.
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
+      global:
+        system-mac: 44:38:39:22:01:78
       hostname: leaf02
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       default:
         router:
           ospf:
+            area:
+              '0':
+                network:
+                  10.10.10.2/32: {}
             enable: on
             router-id: 10.10.10.2
 ```
@@ -660,14 +802,16 @@ cumulus@leaf02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
 cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
             10.10.10.101/32: {}
-        router:
-          ospf:
-            area: 0
-            enable: on
         type: loopback
       swp1:
         ip:
@@ -728,12 +872,82 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
           spf:
             holdtime: 100
             max-holdtime: 6000
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
     system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$m.snt3F/unawCsit$8frw1.klD4wdYPMjb/chqYLihsDvjLtoT2913fZ/3p9vZfXRsAkcjV0O2mpOoLrvrM2uZlLIYVgxqoHZH7c6t/
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
+      global:
+        system-mac: 44:38:39:22:01:82
       hostname: spine01
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       default:
         router:
           ospf:
+            area:
+              '0':
+                network:
+                  10.10.10.101/32: {}
             enable: on
             router-id: 10.10.10.101
 ```
@@ -745,14 +959,16 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 cumulus@spine02:~$ sudo cat /etc/nvue.d/startup.yaml
 - set:
     interface:
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
             10.10.10.102/32: {}
-        router:
-          ospf:
-            area: 0
-            enable: on
         type: loopback
       swp1:
         ip:
@@ -813,12 +1029,82 @@ cumulus@spine02:~$ sudo cat /etc/nvue.d/startup.yaml
           spf:
             holdtime: 100
             max-holdtime: 6000
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
     system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$UWQi/FawiF0WBP.8$zlLS2.FiUHsZ37L6v/8MmV9W0CVjdbyn4PSDwm5Cr6Ct02EtvAihYXgUy9owXAx0jQYIm2XbKBunxN6VpEr4X1
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
+      global:
+        system-mac: 44:38:39:22:01:92
       hostname: spine02
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       default:
         router:
           ospf:
+            area:
+              '0':
+                network:
+                  10.10.10.102/32: {}
             enable: on
             router-id: 10.10.10.102
 ```
@@ -833,6 +1119,8 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       domain:
         br_default:
           untagged: 1
+          vlan:
+            '2001': {}
     interface:
       bond1:
         bond:
@@ -860,14 +1148,16 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             br_default:
               access: 2001
         type: bond
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
             10.10.10.63/32: {}
-        router:
-          ospf:
-            area: 0
-            enable: on
         type: loopback
       peerlink:
         bond:
@@ -926,6 +1216,7 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       backup:
         10.10.10.64: {}
       enable: on
+      init-delay: 5
       mac-address: 44:38:39:BE:EF:FF
       peer-ip: linklocal
     router:
@@ -937,12 +1228,82 @@ cumulus@border01:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             max-holdtime: 6000
       vrr:
         enable: on
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
     system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$siKWEoNyDqJpzgTg$kjQ12uQTIHRnsbF0hYbbPfRP6PRuCSk66Q79KHKEJVcx.raueCfL3hiW4FxqgDBOxWxLTC.U8fYeASiKvBS7A0
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
+      global:
+        system-mac: 44:38:39:22:01:74
       hostname: border01
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       default:
         router:
           ospf:
+            area:
+              '0':
+                network:
+                  10.10.10.63/32: {}
             enable: on
             router-id: 10.10.10.63
 ```
@@ -957,6 +1318,8 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       domain:
         br_default:
           untagged: 1
+          vlan:
+            '2001': {}
     interface:
       bond1:
         bond:
@@ -984,14 +1347,16 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             br_default:
               access: 2001
         type: bond
+      eth0:
+        ip:
+          address:
+            dhcp: {}
+          vrf: mgmt
+        type: eth
       lo:
         ip:
           address:
             10.10.10.64/32: {}
-        router:
-          ospf:
-            area: 0
-            enable: on
         type: loopback
       peerlink:
         bond:
@@ -1050,6 +1415,7 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
       backup:
         10.10.10.63: {}
       enable: on
+      init-delay: 5
       mac-address: 44:38:39:BE:EF:FF
       peer-ip: linklocal
     router:
@@ -1061,12 +1427,82 @@ cumulus@border02:mgmt:~$ sudo cat /etc/nvue.d/startup.yaml
             max-holdtime: 6000
       vrr:
         enable: on
+    service:
+      ntp:
+        mgmt:
+          server:
+            0.cumulusnetworks.pool.ntp.org: {}
+            1.cumulusnetworks.pool.ntp.org: {}
+            2.cumulusnetworks.pool.ntp.org: {}
+            3.cumulusnetworks.pool.ntp.org: {}
     system:
+      aaa:
+        class:
+          nvapply:
+            action: allow
+            command-path:
+              /:
+                permission: all
+          nvshow:
+            action: allow
+            command-path:
+              /:
+                permission: ro
+          sudo:
+            action: allow
+            command-path:
+              /:
+                permission: all
+        role:
+          nvue-admin:
+            class:
+              nvapply: {}
+          nvue-monitor:
+            class:
+              nvshow: {}
+          system-admin:
+            class:
+              nvapply: {}
+              sudo: {}
+        user:
+          cumulus:
+            full-name: cumulus,,,
+            hashed-password: $6$tJNymcft48141Lz5$cEJBzLJTIQSgIIPOLRSLFPgVPR0QkBUXY1pVAPraVuatKWGS9s.AdUZCd0ayHqgCfwvYyECf9e93VYkdl4wgM0
+            role: system-admin
+      api:
+        state: enabled
+      config:
+        auto-save:
+          enable: on
+      control-plane:
+        acl:
+          acl-default-dos:
+            inbound: {}
+          acl-default-whitelist:
+            inbound: {}
+      global:
+        system-mac: 44:38:39:22:01:7c
       hostname: border02
+      reboot:
+        mode: cold
+      ssh-server:
+        state: enabled
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2: {}
+              l3: {}
+              tunnel: {}
+        enable: on
     vrf:
       default:
         router:
           ospf:
+            area:
+              '0':
+                network:
+                  10.10.10.64/32: {}
             enable: on
             router-id: 10.10.10.64
 ```
@@ -1722,9 +2158,7 @@ timers throttle spf 0 100 6000
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL58 - OSPFv2" showNodes="leaf01,leaf02,spine01,spine02,border01,border02,server01,server02,server03,server07,server08" >}}
-
-This simulation is running Cumulus Linux 5.8. The Cumulus Linux 5.9 simulation is coming soon.
+    {{< simulation name="Try It CL59 - OSPFv2" showNodes="leaf01,leaf02,spine01,spine02,border01,border02,server01,server02,server03,server07,server08" >}}
 
 This simulation starts with the example OSPF configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

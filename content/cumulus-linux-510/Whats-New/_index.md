@@ -9,11 +9,22 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 - To upgrade to Cumulus Linux 5.10, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
 
-Cumulus Linux 5.10 is an Extended-Support Release (ESR). For more information, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Support-Offerings/Cumulus-Linux-Release-Versioning-and-Support-Policy" text="this Knowledge base article">}}.
-
 ## What's New in Cumulus Linux 5.10
 
-- {{< expand "New NVUE Commands" >}}
+- PPS supported on the NVIDIA SN5400 switch
+- Additional SNMP MIBs
+- ISSU ugrade using A/B type of upgrade
+- High frequency telemetry
+- SSH login notifications for the switch
+- Lossy headroom configuration
+- Allow reserved field in VXLAN header
+- NVUE
+  - AmBER counters and gauges
+  - Interface MAC address configuration
+  - Redesigned BGP show output flags to be similar to vtysh output
+  - EVPN show output updates
+  - LDAP authentication and encryption configuration
+  - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 {{< tabs "TabID108 ">}}
 {{< tab "nv show ">}}

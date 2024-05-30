@@ -767,52 +767,6 @@ cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 inbound control-plane
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> acl \<acl-id\> outbound</h>
-
-Shows information about the ACL applied for outbound traffic on the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface on which the ACL operates. |
-| `<acl-id>` | The ACL name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp2 acl EXAMPLE1 outbound
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show interface \<interface-id\> acl \<acl-id\> outbound control-plane</h>
-
-Shows information about the ACL applied to the control plane for outbound traffic on the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface on which the ACL operates. |
-| `<acl-id>` | The ACL name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 outbound control-plane
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show interface \<interface-id\> acl \<acl-id\> statistics</h>
 
 Shows statistics for a specific ACL on the specified interface.
@@ -868,6 +822,52 @@ match
 outbound                             
   byte           0 Bytes             
   packet         0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> acl \<acl-id\> outbound</h>
+
+Shows information about the ACL applied for outbound traffic on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface on which the ACL operates. |
+| `<acl-id>` | The ACL name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp2 acl EXAMPLE1 outbound
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface \<interface-id\> acl \<acl-id\> outbound control-plane</h>
+
+Shows information about the ACL applied to the control plane for outbound traffic on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface on which the ACL operates. |
+| `<acl-id>` | The ACL name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 outbound control-plane
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

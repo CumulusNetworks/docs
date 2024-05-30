@@ -74,6 +74,27 @@ pager  more
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system counter</h>
+
+Shows the polling interval for the switch counters for both the logical and physical interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system counter
+                      applied
+--------------------  -------
+polling-interval             
+  logical-interface   0:00:05
+  physical-interface  0:00:02
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system counter polling-interval</h>
 
 Shows the polling interval for the switch counters for both the logical and physical interfaces.

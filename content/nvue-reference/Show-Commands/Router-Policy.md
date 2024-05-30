@@ -808,7 +808,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 match
+cumulus@switch:~$ nv show router policy route-map MAP2 rule 10 match
+        applied
+------  -------
+origin  igp
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -831,7 +834,10 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show router policy route-map MYROUTEMAP rule 10 set
+cumulus@switch:~$ nv show router policy route-map MAP1 rule 10 set
+        applied
+------  -------
+metric  50
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

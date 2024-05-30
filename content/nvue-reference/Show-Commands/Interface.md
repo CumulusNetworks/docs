@@ -132,6 +132,28 @@ cumulus@switch:~$ nv show interface swp1 bond
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface \<interface-id\> bond member</h>
+
+Shows the bond members for the specified interface.
+
+### Command Syntax
+
+| Syntax | Description |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 bond member
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> bond member \<member-id\></h>
 
 Shows specific bond member configuration for the specified interface.
@@ -978,6 +1000,27 @@ vlan220_l3  9216   0       0       0       0       2420    0       0       0    
 vlan297_l3  9216   0       0       0       0       2420    0       0       0       BMRU 
 vxlan48     9216   27342   0       0       0       25891   40829   51      0       BMRU 
 vxlan99     9216   0       0       0       0       0       0       4800    0       BMRU
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system link</h>
+
+Show global link configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.7.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system link
+                 applied
+---------------  -------
+flap-protection         
+  threshold      5      
+  interval       10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

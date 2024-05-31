@@ -107,7 +107,7 @@ To back up and restore the configuration on the switch with NVUE, you can either
 - Back up and restore the NVUE configuration file (available when upgrading from 4.4 and later).
 - Back up and restore the NVUE configuration commands (available when upgrading from 5.0 and later).
 
-You can backup and restore the configuration with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
+You can back up and restore the configuration with NVUE only if you used NVUE commands to configure the switch you want to upgrade.
 
 To back up and restore the configuration file:
 
@@ -127,7 +127,7 @@ To back up and restore the configuration file:
    applied
    ```
 
-To backup and restore the configuration commands:
+To back up and restore the configuration commands:
 
 1. Run the `nv config show -o commands > backup.config` command to save the commands to the `backup.config` file:
 

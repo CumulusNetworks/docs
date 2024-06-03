@@ -37,7 +37,7 @@ netq upgrade bundle <text-bundle-url>
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.0.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1.tgz
 ```
 
 ### Related Commands

@@ -99,7 +99,7 @@ If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetw
 Perform the upgrade using the `netq lcm upgrade cl-image` command, providing a name for the upgrade job, the Cumulus Linux and NetQ version, and a comma-separated list of the hostname(s) to be upgraded:
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-490 cl-version 5.8.0 netq-version 4.10.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5.9.1 netq-version 4.10.1 hostnames spine01,spine02
 ```
 
 ### Create a Network Snapshot
@@ -107,7 +107,7 @@ cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-490 cl-version 5.8.
 You can also generate a network snapshot before and after the upgrade by adding the `run-snapshot-before-after` option to the command:
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-490 cl-version 5.8.0 netq-version 4.10.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-snapshot-before-after
+cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-example cl-version 5.9.1 netq-version 4.10.1 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-snapshot-before-after
 ```
 
 ### Restore upon an Upgrade Failure
@@ -115,7 +115,7 @@ cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-490 cl-version 5.8.
 (Recommended) You can restore the previous version of Cumulus Linux if the upgrade job fails by adding the `run-restore-on-failure` option to the command.
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-540 cl-version 5.4.0 netq-version 4.10.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-restore-on-failure
+cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-example cl-version 5.9.1 netq-version 4.10.1 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-restore-on-failure
 ```
 
 {{</tab>}}

@@ -10,8 +10,6 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 4.10.1
 
-NetQ 4.10.1 replaces NetQ 4.10.0, which is no longer available.
-
 NetQ 4.10.1 provides all the same new features and enhancements as NetQ 4.10.0, and in addition, supports {{<link title="Upgrade Cumulus Linux" text="NetQ Lifecycle Management">}} switch upgrades to Cumulus Linux 5.9 for switches configured with NVUE. 
 
 ## What's New in NetQ 4.10.0

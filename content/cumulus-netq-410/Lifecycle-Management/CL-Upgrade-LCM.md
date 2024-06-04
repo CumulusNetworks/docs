@@ -36,6 +36,15 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 1. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 
+{{<notice note>}}
+If you are upgrading to Cumulus Linux 5.9 or later and select the option to roll back to a previous Cumulus Linux version (for unsuccessful upgrade attempts), you must upload a total of four netq-apps and netq-agents packages to NetQ. For example, you must upload the following packages for amd64 architecture:
+
+- netq-agent_4.10.1-cl4u47~1717132738.f08a4a95b_amd64.deb
+- netq-apps_4.10.1-cl4u47~1717132738.f08a4a95b_amd64.deb
+- netq-agent_4.10.1-cld12u47~1717136481.f08a4a95b_amd64.deb
+- netq-apps_4.10.1-cld12u47~1717136481.f08a4a95b_amd64.deb
+{{</notice>}}
+
 2. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
 3. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
@@ -82,7 +91,7 @@ If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetw
 
     By default, NetQ performs a roll back to the original Cumulus Linux version on any server which fails to upgrade. It also takes network snapshots before and after the upgrade.
 
-    You can exclude selected services and protocols from the snapshots by clicking them. Node and services must be included.
+You can exclude selected services and protocols from the snapshots by clicking them. Node and services must be included.
 
     {{<figure src="/images/netq/upgrade-switch-options-450.png" width="500">}}
 

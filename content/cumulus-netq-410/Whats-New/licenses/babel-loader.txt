@@ -1,5 +1,5 @@
 MIT License
-Copyright (c) 2014-2019 LuÃ­s Couto <hello@luiscouto.pt>
+Copyright (c) 2014-2019 Luís Couto <hello@luiscouto.pt>
 
 MIT License
 
@@ -72,7 +72,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 MIT License
-Copyright (c) 2014-2019 LuÃ­s Couto <hello@luiscouto.pt>
+Copyright (c) 2014-2019 Luís Couto <hello@luiscouto.pt>
 
 MIT License
 

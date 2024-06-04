@@ -9,7 +9,7 @@ This page describes how to upgrade your NetQ virtual machines. Note that the upg
 
 For deployments running:
 
-- 4.9.0, 4.8.0: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.10.0. NetQ 4.8.0 on-premises cluster deployments must incrementally [upgrade to 4.9.0]({{<ref "/cumulus-netq-49/Installation-Management/Upgrade-NetQ/Upgrade-System" >}}) before upgrading to 4.10.0.
+- 4.9.0, 4.8.0: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.10
 - 4.7.0 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
 
 During the upgrade process, NetQ will be temporarily unavailable.
@@ -60,11 +60,11 @@ If the output of this command displays errors or returns an empty response, you 
     ...
     Fetched 39.8 MB in 3s (13.5 MB/s)
     ...
-    Unpacking netq-agent (4.10.0-ub20.04u45~1713954968.127fb0c1b) ...
+    Unpacking netq-agent (4.10.1-ub20.04u47~1717138752.f08a4a95b) ...
     ...
-    Unpacking netq-apps (4.10.0-ub20.04u45~1713954968.127fb0c1b) ...
-    Setting up netq-apps (4.10.0-ub20.04u45~1713954968.127fb0c1b) ...
-    Setting up netq-agent (4.10.0-ub20.04u45~1713954968.127fb0c1b) ...
+    Unpacking netq-apps (4.10.1-ub20.04u47~1717138752.f08a4a95b) ...
+    Setting up netq-apps (4.10.1-ub20.04u47~1717138752.f08a4a95b) ...
+    Setting up netq-agent (4.10.1-ub20.04u47~1717138752.f08a4a95b) ...
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
@@ -124,7 +124,7 @@ If you are upgrading a cluster deployment from NetQ v4.8.0 or earlier, you must 
 {{<tab "Standalone">}}
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.0.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1.tgz
 ```
 
 {{%notice info%}}
@@ -134,13 +134,8 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 
 {{<tab "Cluster">}}
 
-{{%notice note%}}
-If you are upgrading a NetQ 4.8.0 on-premises cluster, you must first incrementally [upgrade to 4.9.0]({{<ref "/cumulus-netq-49/Installation-Management/Upgrade-NetQ/Upgrade-System" >}}) before upgrading to 4.10.0.
-
-{{%/notice%}}
-
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.0.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1.tgz
 ```
 {{%notice info%}}
 If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-cluster-full" text="netq install cluster full">}} command.
@@ -158,7 +153,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 {{<tab "Standalone">}}
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.0-opta.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1-opta.tgz
 ```
 {{%notice info%}}
 If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-opta-standalone-full" text="netq install opta standalone full">}} command.
@@ -174,7 +169,7 @@ Run the `netq upgrade` command, specifying the current version's tarball and you
 - A different IP address than the primary IP assigned to the default interface.
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.0-opta.tgz cluster-vip <vip-ip>
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1-opta.tgz cluster-vip <vip-ip>
 ```
 {{%notice note%}}
 
@@ -201,9 +196,9 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.10.0
+    BOOTSTRAP_VERSION=4.10.1
     APPLIANCE_MANIFEST_HASH=c664236fb1d732b3633ab83662575c35f397bc6ac3a9970632523827097c8415
-    APPLIANCE_VERSION=4.10.0
+    APPLIANCE_VERSION=4.10.1
     APPLIANCE_NAME=NetQ On-premises Appliance
     ```
 {{</tab>}}
@@ -213,9 +208,9 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.10.0
+    BOOTSTRAP_VERSION=4.10.1
     APPLIANCE_MANIFEST_HASH=370ffbe3195aa1c4cc969668441b124e7714f7eaa980962ff4cc438fcec31b87
-    APPLIANCE_VERSION=4.10.0
+    APPLIANCE_VERSION=4.10.1
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```
 {{</tab>}}

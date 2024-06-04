@@ -25,14 +25,14 @@ NetQ software installation file names include a version number, in the form of x
     - Feature improvements.
     - Bug fixes and updates.
     - Security updates.
-- **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb10 for SONiC, ub for Ubuntu)
+- **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb for SONiC, ub for Ubuntu)
 - **TAG** represents a timestamp for the release of the version.
 - **CPU** architecture represents architecture.
 
 This number corresponds to the release version of the software. NetQ requires two Debian packages per release. For example:
 
-- netq-apps_<strong>4.10.0</strong>-deb10u<strong>46</strong>~1713949850.127fb0c1b_amd64.deb
-- netq-agent_<strong>4.10.0</strong>-deb10u<strong>46</strong>~1713949850.127fb0c1b_amd64.deb
+- netq-apps_<strong>4.10.1</strong>-deb11u<strong>47</strong>~1716565001.f08a4a95b_amd64.deb
+- netq-agent_<strong>4.10.1</strong>-deb11u<strong>47</strong>~1716565001.f08a4a95b_amd64.deb
 ## Release, Support Lifecycle and Support Policy
 
 NetQ is offered with a per switch subscription that includes support for 1, 3, and 5 years options. The subscription model allows customers to upgrade the software as updates and new versions become available, for the period of the subscription.

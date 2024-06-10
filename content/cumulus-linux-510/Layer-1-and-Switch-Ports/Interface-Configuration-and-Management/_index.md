@@ -403,6 +403,65 @@ cumulus@switch:~$ sudo ip addr del 2001:DB8::1/126 dev swp1
 {{< /tab >}}
 {{< /tabs >}}
 
+## Interface MAC Addresses
+
+You can configure a MAC address for an interface with the `nv set interface <interface> link mac-address <mac-address>` command.
+
+{{< tabs "TabID410 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following command configures swp1 with MAC address 00:02:00:00:00:05:
+
+```
+cumulus@switch:~# nv set interface swp1 link mac-address 00:02:00:00:00:05
+cumulus@switch:~# nv config apply
+```
+
+The following command configures vlan10 with MAC address 00:00:5E:00:01:00:
+
+```
+cumulus@switch:~# nv set interface vlan10 link mac-address 00:00:5E:00:01:00
+cumulus@switch:~# nv config apply
+```
+
+To unset the MAC address for an interface, run the `nv unset interface <interface> link mac-address <mac-address>` command:
+
+```
+cumulus@switch:~# nv unset interface swp1 link mac-address 00:02:00:00:00:05
+cumulus@switch:~# nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `/etc/network/interfaces` file, add a MAC address for the interface in the interface stanza.
+
+The following example configures swp1 with MAC address 00:02:00:00:00:05:
+
+```
+cumulus@switch:~# sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+    address 10.0.0.2/24
+    mac-address 00:02:00:00:00:05
+...
+```
+
+The following example configures vlan10 with MAC address 00:00:5E:00:01:00:
+
+```
+cumulus@switch:~# sudo nano /etc/network/interfaces
+...
+auto vlan10
+iface vlan10
+    address 10.1.10.5/24
+    mac-address 00:00:5E:00:01:00
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Interface Descriptions
 
 You can add a description (alias) to an interface.

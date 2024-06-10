@@ -626,7 +626,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add the MAC address to the bridge stanza.
+Edit the `/etc/network/interfaces` file to add the MAC address (`hwaddress`)to the bridge stanza.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces

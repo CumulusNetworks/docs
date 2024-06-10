@@ -20,7 +20,7 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 - Allow reserved field in VXLAN header
 - NVUE
   - AmBER counters and gauges
-  - Interface MAC address configuration
+  - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
   - Redesigned BGP show output flags to be similar to vtysh output
   - EVPN show output updates
   - LDAP authentication and encryption configuration

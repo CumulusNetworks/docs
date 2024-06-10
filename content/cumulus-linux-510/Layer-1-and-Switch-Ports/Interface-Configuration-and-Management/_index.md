@@ -459,6 +459,8 @@ iface vlan10
     mac-address 00:00:5E:00:01:00
 ```
 
+To unset the MAC address for an interface, remove the mac address from the interface stanza.
+
 {{< /tab >}}
 {{< /tabs >}}
 

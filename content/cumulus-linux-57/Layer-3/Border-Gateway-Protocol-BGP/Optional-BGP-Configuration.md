@@ -2135,6 +2135,10 @@ An expanded BGP community list takes a regular expression of communities and mat
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 
+{{%notice note%}}
+Community list names must start with a letter and can contain letters, digits, underscores and dashes. For example, you can name a community list `COMMUNITY1` or `EXTENDED-COMMUNITY_10` but you cannot name a community list `10` or `10_COMMUNITY`.
+{{%/notice%}}
+
 Here is an example of a standard community list filter:
 
 {{< tabs "1995 ">}}

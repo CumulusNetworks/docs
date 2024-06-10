@@ -2135,6 +2135,10 @@ An extended BGP community list takes a regular expression of communities and mat
 
 When the neighbor receives the prefix, it examines the community value and takes action accordingly, such as permitting or denying the community member in the routing policy.
 
+{{%notice note%}}
+Community list names must start with a letter and can contain letters, digits, underscores and dashes. For example, you can name a community list `COMMUNITY1` or `EXTENDED-COMMUNITY_10` but you cannot name a community list `10` or `10_COMMUNITY`.
+{{%/notice%}}
+
 The following example configures a standard community list filter:
 
 {{< tabs "1995 ">}}
@@ -2229,7 +2233,7 @@ The following example configures a BGP extended community <span class="a-tooltip
 ```
 cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM2 rule 10 ext-community rt "\.*_65000:2002_.*","\.*_89000:2002_.*"
 cumulus@leaf01:~$ nv set router policy ext-community-list EXTCOMM2 rule 10 action permit
-cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP3 rule 10 match ext-community-list EXTCOMM2
+cumulus@leaf01:~$ nv set router policy  ROUTEMAP3 rule 10 match ext-community-list EXTCOMM2
 cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP3 rule 10 action permit
 cumulus@leaf01:~$ nv config apply
 ```

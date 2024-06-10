@@ -158,9 +158,10 @@ For <span class="a-tooltip">[EVPN](## "Ethernet Virtual Private Network")</span>
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 action permit 
-cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 set ext-community-bw multipaths
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy outbound route-map ucmp-route-map 
+cumulus@switch:~$ nv set vrf turtle router bgp autonomous-system 65011
+cumulus@switch:~$ nv set vrf turtle router bgp address-family ipv4-unicast route-export to-evpn route-map ucmp-route-map
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 action permit
+cumulus@switch:~$ nv set router policy route-map ucmp-route-map rule 10 set ext-community-bw cumulative
 cumulus@switch:~$ nv config apply
 ```
 
@@ -185,15 +186,16 @@ The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For e
 
 ```
 ...
+router bgp 65011 vrf turtle
+ !
+ address-family ipv4 unicast
+  maximum-paths 64
+  maximum-paths ibgp 64
+ exit-address-family
+ !
  address-family l2vpn evpn
   advertise ipv4 unicast route-map ucmp-route-map
  exit-address-family
-!
-ip prefix-list anycast-ip permit 192.168.0.0/16 le 32
-route-map ucmp-route-map permit 10
- match ip address prefix-list anycast-ip
- set extcommunity bandwidth num-multipaths
-...
 ```
 
 {{< /tab >}}

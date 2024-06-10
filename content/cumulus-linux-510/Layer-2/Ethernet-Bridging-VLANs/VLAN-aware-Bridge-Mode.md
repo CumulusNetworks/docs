@@ -602,7 +602,7 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 {{< /tab >}}
 {{< /tabs >}}
 
-## Bridge MAC Address
+## MAC Address for a Bridge
 
 To configure a MAC address for a bridge, run the `nv set bridge domain <bridge> mac-address <mac-address>` command.
 
@@ -613,6 +613,13 @@ The following example configures the bridge `bridge1` with MAC address `7a:43:9e
 
 ```
 cumulus@switch:~$ nv set bridge domain bridge1 mac-address 7a:43:9e:c0:e0:42
+cumulus@switch:~$ nv config apply
+```
+
+To unset the MAC address for a bridge, run the `nv unset bridge domain <bridge> mac-address <mac-address>` command.
+
+```
+cumulus@switch:~$ nv unset bridge domain bridge1 mac-address 7a:43:9e:c0:e0:42
 cumulus@switch:~$ nv config apply
 ```
 
@@ -627,10 +634,12 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 auto bridge1
 iface bridge1
     bridge-ports bond1 bond2 bond3 peerlink vxlan48
-    hwaddress 44:38:39:22:01:7a
+    hwaddress 7a:43:9e:c0:e0:42
     bridge-vlan-aware yes
     bridge-vids 10 20 30
 ```
+
+To unset the MAC address for a bridge, remove the MAC address from the bridge stanza.
 
 {{< /tab >}}
 {{< /tabs >}}

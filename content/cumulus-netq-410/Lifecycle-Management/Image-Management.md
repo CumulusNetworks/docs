@@ -20,9 +20,9 @@ The network OS and NetQ images are available in several variants based on the so
     - **armel** for ARM platforms
     - **amd64** for AMD 64 or x86 platforms
 
-For example, the following *netq-agent* package represent NetQ version 4.10.0, Cumulus Linux version 5.9 or later, and an AMD 64 architecture.
+For example, the following *netq-agent* package represent NetQ version 4.10.1, Cumulus Linux version 5.9 or later, and an AMD 64 architecture.
 
-- netq-agent_4.10.0-cld12u46~1713949601.127fb0c1b_amd64.deb
+- netq-agent_4.10.1-cld12u47~1717136481.f08a4a95b_amd64.deb
 ## View and Upload Missing Images
 
 You should upload images for each network OS and NetQ version currently installed in your inventory so you can support rolling back to a known good version should an installation or upgrade fail. If you have specified a default network OS and/or NetQ version, the NetQ UI also verifies that the necessary versions of the default image are available based on the known switch inventory, and if not, lists those that are missing.
@@ -76,10 +76,10 @@ netq lcm show cl-images
 
 2. Download the network OS disk images (*.bin* files) from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support Portal">}}. Log into the portal and from the **Downloads** tab, select **Switches and Gateways**. Under **Switch Software**, click **All downloads** next to **Cumulus Linux for Mellanox Switches**. Select the current version and the target version, then click **Show Downloads Path**. Download the file.
 
-2. Upload the images to the LCM repository. The following example uses a Cumulus Linux 4.2.0 disk image.
+2. Upload the images to the LCM repository. The following example uses a Cumulus Linux 5.9.1 disk image.
 
     ```
-    cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-mlnx-amd64.bin
+    cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-5.9.1-mlnx-amd64.bin
     ```
 
 3. Repeat step 2 for each image you need to upload to the LCM repository.
@@ -136,11 +136,11 @@ netq lcm show netq-images
 
 2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://download.nvidia.com/cumulus/apps3.cumulusnetworks.com/repos/deb/pool/netq-4.10/p/python-netq/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 4.4.0 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
+3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) required for NetQ version 4.10.1 for a NetQ appliance or VM running Ubuntu 20.04 with an AMD 64 architecture.
 
     ```
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.4.0-ub18.04u40~1667493385.97ef4c9_amd64.deb
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.4.0-ub18.04u40~1667493385.97ef4c9_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.10.1-ub20.04u47~1717138752.f08a4a95b_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.10.1-ub20.04u47~1717138752.f08a4a95b_amd64.deb
     ```
 
 {{</tab>}}
@@ -180,14 +180,14 @@ Use the `netq lcm add cl-image <text-cl-image-path>` and `netq lcm add netq-imag
 Network OS images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-4.2.0-mlx-amd64.bin
+cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-5.9.1-mlx-amd64.bin
 ```
 
 NetQ images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.4.0-ub18.04u40~1667493385.97ef4c9_amd64.deb
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.4.0-ub18.04u40~1667493385.97ef4c9_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.10.1-ub20.04u47~1717138752.f08a4a95b_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.10.1-ub20.04u47~1717138752.f08a4a95b_amd64.deb
 ```
 
 {{</tab>}}

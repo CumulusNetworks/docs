@@ -3,11 +3,12 @@ Upstream-Contact: https://github.com/sindresorhus/array-find-index/issues
 Source: https://github.com/sindresorhus/array-find-index
 
 Files: *
-Copyright: 2016 Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
+Copyright: Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
 License: Expat
 
 Files: debian/*
 Copyright: 2016 Thorsten Alteholz <debian@alteholz.de>
+ 2020 Xavier Guimard <yadd@debian.org>
 License: Expat
 
 License: Expat

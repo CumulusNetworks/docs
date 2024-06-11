@@ -24,21 +24,21 @@ NetQ software installation file names include a version number, in the form of x
     - Feature improvements.
     - Bug fixes and updates.
     - Security updates.
-- **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb10 for SONiC, ub for Ubuntu)
+- **OS** indicates the Network Operating System information (cl for Cumulus Linux, deb for SONiC, ub for Ubuntu)
 - **TAG** represents a timestamp for the release of the version.
 - **CPU** architecture represents architecture.
 
 For example:
 
-- netq-apps_<strong>4.10.0</strong>-deb10u<strong>46</strong>~1713949850.127fb0c1b_amd64.deb
-- netq-agent_<strong>4.10.0</strong>-deb10u<strong>46</strong>~1713949850.127fb0c1b_amd64.deb
+- netq-apps_<strong>4.10.1</strong>-deb11u<strong>47</strong>~1716565001.f08a4a95b_amd64.deb
+- netq-agent_<strong>4.10.1</strong>-deb11u<strong>47</strong>~1716565001.f08a4a95b_amd64.deb
 
 ## Release, Support Lifecycle and Support Policy
 
 NetQ is offered with a per switch subscription that includes support for 1, 3, and 5 years options. The subscription model allows customers to upgrade the software as updates and new versions become available, for the period of the subscription.
 
 - Review the NetQ user guide for the supported Network Operating System (NOS) versions. Note that when your Network Operating System is no longer supported, NetQ customer support ends along with it. Access to NetQ is permitted until the end of the subscription period.
-- Use matching versions of NetQ Server and both NetQ Agent and NetQ Apps packages on switches (for example, NetQ 4.2.0 Server with NetQ 4.2.0 Agents and Apps on the switches).
+- Use matching versions of NetQ Server and both NetQ Agent and NetQ Apps packages on switches (for example, NetQ 4.9.0 Server with NetQ 4.9.0 Agents and Apps on the switches).
 - The product is supported for the period of the subscription and bug fixes are received by upgrading to new versions of software.
 - A NetQ version is supported for two years from its release date. After that date, it is necessary to upgrade to a later release to continue receiving support for the period of the subscription.
 

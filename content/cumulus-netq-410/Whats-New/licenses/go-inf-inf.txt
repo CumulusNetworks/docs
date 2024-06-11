@@ -1,5 +1,5 @@
 BSD 3-clause "New" or "Revised" License
-Copyright (c) 2012 P√©ter Sur√°nyi. Portions Copyright (c) 2009 The Go
+Copyright (c) 2012 PÈter Sur·nyi. Portions Copyright (c) 2009 The Go
 Authors. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

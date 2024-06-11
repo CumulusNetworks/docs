@@ -606,40 +606,44 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 
 To configure a MAC address for a bridge, run the `nv set bridge domain <bridge> mac-address <mac-address>` command.
 
-The following example configures the bridge `bridge1` with MAC address `7a:43:9e:c0:e0:42`:
+The following example configures the bridge `br_default` with MAC address `00:00:5E:00:53:00`:
 
 {{< tabs "TabID609 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set bridge domain bridge1 mac-address 7a:43:9e:c0:e0:42
+cumulus@switch:~$ nv set bridge domain br_default mac-address 00:00:5E:00:53:00
 cumulus@switch:~$ nv config apply
 ```
 
 To unset the MAC address for a bridge, run the `nv unset bridge domain <bridge> mac-address <mac-address>` command.
 
 ```
-cumulus@switch:~$ nv unset bridge domain bridge1 mac-address 7a:43:9e:c0:e0:42
+cumulus@switch:~$ nv unset bridge domain br_default mac-address
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add the MAC address (`hwaddress`)to the bridge stanza.
+Edit the `/etc/network/interfaces` file to add the MAC address (`hwaddress`) to the bridge stanza, then run the `sudo ifreload -a` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto bridge1
-iface bridge1
+auto br_default
+iface br_default
     bridge-ports bond1 bond2 bond3 peerlink vxlan48
-    hwaddress 7a:43:9e:c0:e0:42
+    hwaddress 00:00:5E:00:53:00
     bridge-vlan-aware yes
     bridge-vids 10 20 30
 ```
 
-To unset the MAC address for a bridge, remove the MAC address from the bridge stanza.
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+To unset the MAC address for a bridge, remove the MAC address from the bridge stanza and run the `sudo ifreload -a` command.
 
 {{< /tab >}}
 {{< /tabs >}}

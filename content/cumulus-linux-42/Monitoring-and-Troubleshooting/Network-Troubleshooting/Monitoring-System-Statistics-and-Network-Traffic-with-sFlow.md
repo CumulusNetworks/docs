@@ -120,7 +120,8 @@ For information on configuring various sFlow visualization tools, read this [kno
 
 ## Considerations
 
-The {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="EdgeCore AS4610 switch">}} occasionally sends malformed packets and does not send any flow samples; it sends only counters. This is a known limitation on this Helix4 platform.
+- Mellanox switches do not support sFlow egress sampling.
+- The {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="EdgeCore AS4610 switch">}} occasionally sends malformed packets and does not send any flow samples; it sends only counters. This is a known limitation on this Helix4 platform.
 
 ## Related Information
 

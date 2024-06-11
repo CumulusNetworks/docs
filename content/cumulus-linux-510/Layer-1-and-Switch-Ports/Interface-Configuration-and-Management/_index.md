@@ -413,33 +413,33 @@ You can configure a MAC address for an interface with the `nv set interface <int
 The following command configures swp1 with MAC address 00:02:00:00:00:05:
 
 ```
-cumulus@switch:~# nv set interface swp1 link mac-address 00:02:00:00:00:05
-cumulus@switch:~# nv config apply
+cumulus@switch:~$ nv set interface swp1 link mac-address 00:02:00:00:00:05
+cumulus@switch:~$ nv config apply
 ```
 
 The following command configures vlan10 with MAC address 00:00:5E:00:01:00:
 
 ```
-cumulus@switch:~# nv set interface vlan10 link mac-address 00:00:5E:00:01:00
-cumulus@switch:~# nv config apply
+cumulus@switch:~$ nv set interface vlan10 link mac-address 00:00:5E:00:01:00
+cumulus@switch:~$ nv config apply
 ```
 
 To unset the MAC address for an interface, run the `nv unset interface <interface> link mac-address <mac-address>` command:
 
 ```
-cumulus@switch:~# nv unset interface swp1 link mac-address 00:02:00:00:00:05
-cumulus@switch:~# nv config apply
+cumulus@switch:~$ nv unset interface swp1 link mac-address 00:02:00:00:00:05
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the `/etc/network/interfaces` file, add a MAC address for the interface in the interface stanza.
+In the `/etc/network/interfaces` file, add a MAC address for the interface in the interface stanza, then run `ifreload -a`.
 
 The following example configures swp1 with MAC address 00:02:00:00:00:05:
 
 ```
-cumulus@switch:~# sudo nano /etc/network/interfaces
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto swp1
 iface swp1
@@ -448,10 +448,14 @@ iface swp1
 ...
 ```
 
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
 The following example configures vlan10 with MAC address 00:00:5E:00:01:00:
 
 ```
-cumulus@switch:~# sudo nano /etc/network/interfaces
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto vlan10
 iface vlan10
@@ -459,7 +463,11 @@ iface vlan10
     mac-address 00:00:5E:00:01:00
 ```
 
-To unset the MAC address for an interface, remove the mac address from the interface stanza.
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+To unset the MAC address for an interface, remove the mac address from the interface stanza, then run the `sudo ifreload -a` command.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -491,7 +499,7 @@ cumulus@switch:~$ nv config apply
 In the `/etc/network/interfaces` file, add a description using the *alias* keyword:
 
 ```
-cumulus@switch:~# sudo nano /etc/network/interfaces
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 
 auto swp1
 iface swp1
@@ -518,7 +526,7 @@ NVUE does not provide commands to configure this feature.
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~# sudo nano /etc/network/interfaces
+cumulus@switch:~$ sudo nano /etc/network/interfaces
 auto swp1
 iface swp1
     address 12.0.0.1/30

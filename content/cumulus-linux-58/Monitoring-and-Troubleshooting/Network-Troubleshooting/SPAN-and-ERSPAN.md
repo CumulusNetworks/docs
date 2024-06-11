@@ -274,7 +274,7 @@ Cumulus Linux controls how much traffic reaches the CPU so that mirrored traffic
 
 You configure the CPU port as the SPAN destination with ACLs.
 
-To monitor traffic mirrored to the CPU, run the `tcpcdump -i mirror` command.
+To monitor traffic mirrored to the CPU, run the `tcpdump -i mirror` command.
 
 {{%notice note%}}
 - Cumulus Linux does not support egress mirroring for control plane generated traffic to the CPU port.

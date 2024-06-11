@@ -37,14 +37,14 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv set ">}}
 
 ```
-
+nv set interface <interface> link mac-address <mac-address>
 ```
 
 {{< /tab >}}
 {{< tab "nv unset ">}}
 
 ```
-
+nv unset interface <interface> link mac-address <mac-address>
 ```
 
 {{< /tab >}}

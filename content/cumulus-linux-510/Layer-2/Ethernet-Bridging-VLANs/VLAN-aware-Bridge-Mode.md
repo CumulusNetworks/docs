@@ -626,7 +626,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to add the MAC address (`hwaddress`)to the bridge stanza, then run the `sudo ifreload -a` command.
+Edit the `/etc/network/interfaces` file to add the MAC address (`hwaddress`) to the bridge stanza, then run the `sudo ifreload -a` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces

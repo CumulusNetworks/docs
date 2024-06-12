@@ -13,11 +13,12 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 
 - PPS supported on the NVIDIA SN5400 switch
 - Additional SNMP MIBs
-- ISSU ugrade using A/B type of upgrade
 - High frequency telemetry
-- SSH login notifications for the switch
+- {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}
 - Lossy headroom configuration
 - Allow reserved field in VXLAN header
+- DHCP Option 61 on by default when Cumulus Linux boots
+- Graceful shutdown for a peer
 - NVUE
   - AmBER counters and gauges
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}

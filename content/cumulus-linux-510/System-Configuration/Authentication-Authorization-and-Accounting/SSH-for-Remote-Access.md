@@ -466,6 +466,31 @@ MaxStartups 5:22:20
 {{< /tab >}}
 {{< /tabs >}}
 
+### SSH Login Notifications
+
+You can configure Cumulus Linux to show the following SSH login information on the console after authentication:
+- The date and time of the last successful login.
+- The number of unsuccessful logins after the last successful login.  
+- The date and time of the last unsuccessful login.
+- Changes to a user account after the last login (password, role, group, and so on).  
+- The location (terminal or IP) of the last successful or unsuccessful login.
+- The total number of successful logins after a specific date and time.
+
+Cumulus Linux displays login notifications for both SSH and serial connections. The information can help to detect unwanted or malicious activities, such as suspicious logins or password and role changes.
+
+To enable SSH login notifications, run the `nv set system ssh-server login-record-period <days>` command to configure the time period in days during which to record login notifications:
+
+```
+cumulus@switch:~$ nv set system ssh-server login-record-period 20
+cumulus@switch:~$ nv config apply
+```
+
+To disable SSH login notifications, run the `nv unset system ssh-server login-record-period` command or set the number of days to 0 with the `nv set system ssh-server login-record-period 0` command.
+
+To show the configured SSH login notification period, run the `nv show system ssh-server` command. See {{<link url="#troubleshooting" text="Troubleshooting">}} below.
+
+<!--show notification examples
+add option to show command in troubleshooting-->
 ## Generate and Install an SSH Key Pair
 
 This section describes how to generate an SSH key pair on one system and install the key as an authorized key on another system.

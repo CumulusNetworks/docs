@@ -1316,6 +1316,158 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group \<priority-group\> headroom</h>
+
+Configures the lossy headroom for a specified priority group. Lossy headroom is the buffer on top of the reserved buffer that stores packets that ingress the switch. You can configure the lossy headroom to help analyze performance for a specific priority group.
+
+You can specify a value between 0 and 136314880. The switch calculates the default value internally based on the MTU and internal latency.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<priority-group-id>` |  The priority group alias name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 headroom 50000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config default-global egress-mgmt-buffer reserved</h>
+
+Configures the QoS lossy reserved egress management buffer.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer reserved 30000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config default-global egress-mgmt-buffer service-pool</h>
+
+Configures the QoS lossy egress management buffer service pool mapping.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer service-pool ?????
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config default-global egress-mgmt-buffer shared-alpha</h>
+
+Configures the QoS lossy dynamic shared egress management buffer alpha allocation.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer shared-alpha alpha_2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config default-global egress-mgmt-buffer shared-bytes</h>
+
+Configures the QoS lossy static shared egress management buffer allocation in bytes.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer shared-bytes 14000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config default-global ingress-mgmt-buffer headroom</h>
+
+Configures the QoS lossy ingress management buffer headroom in bytes.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer headroom 10000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config default-global ingress-mgmt-buffer service-pool</h>
+
+Configures the QoS lossy ingress management buffer service pool mapping.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer service-pool ?????
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-alpha</h>
+
+Configures the QoS lossy dynamic shared ingress management buffer alpha allocation.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-alpha alpha_2
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-bytes</h>
+
+Configures the QoS lossy static shared ingress management buffer allocation in bytes.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-bytes 14000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set qos congestion-control \<profile-id\></h>
 
 Configures <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span>; an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.

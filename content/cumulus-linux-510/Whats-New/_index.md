@@ -15,7 +15,7 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 - Additional SNMP MIBs
 - High frequency telemetry
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}
-- Lossy headroom configuration
+- {{<link url="Quality-of-Service/#lossy-headroom" text="QoS lossy headroom configuration">}}
 - Allow reserved field in VXLAN header
 - DHCP Option 61 on by default when Cumulus Linux boots
 - Graceful shutdown for a peer
@@ -31,7 +31,8 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
-
+nv show qos advance-buffer-config default-global egress-mgmt-buffer 
+nv show qos advance-buffer-config default-global ingress-mgmt-buffer
 ```
 
 {{< /tab >}}
@@ -39,6 +40,10 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 
 ```
 nv set interface <interface> link mac-address <mac-address>
+nv set system ssh-server login-record-period
+nv set qos advance-buffer-config default-global egress-mgmt-buffer 
+nv set qos advance-buffer-config default-global ingress-mgmt-buffer
+nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group <priority-group> headroom <bytes>
 ```
 
 {{< /tab >}}

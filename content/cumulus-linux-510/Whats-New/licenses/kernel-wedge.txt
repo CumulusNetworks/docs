@@ -1,5 +1,0 @@
-This package is Copyright (c) 2001-2002 Herbert Xu <herbert@debian.org>
-and Copyright 2001-2005 by Joey Hess <joeyh@debian.org>.
-
-It is licensed under the terms of the GNU GPL, see
-/usr/share/common-licenses/GPL

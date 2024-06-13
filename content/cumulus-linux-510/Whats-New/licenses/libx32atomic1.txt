@@ -1,1 +1,0 @@
-libx32atomic1 has no copyright file

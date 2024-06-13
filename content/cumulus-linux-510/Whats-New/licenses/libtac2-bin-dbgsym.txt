@@ -1,1 +1,0 @@
-libtac2-bin-dbgsym has no copyright file

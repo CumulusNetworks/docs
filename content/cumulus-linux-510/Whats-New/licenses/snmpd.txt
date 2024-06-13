@@ -1,1 +1,0 @@
-snmpd has no copyright file

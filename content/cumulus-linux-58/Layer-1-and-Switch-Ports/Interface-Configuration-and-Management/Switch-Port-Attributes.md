@@ -495,6 +495,75 @@ A runtime configuration is non-persistent. The configuration you create does not
 {{< /tab >}}
 {{< /tabs >}}
 
+### DR1 and DR4 Modules
+
+100GBASE-DR1 modules, such as NVIDIA MMS1V70-CM, include internal RS FEC processing, which the software does not control. When using these optics, you must either set the FEC setting to `off` or leave it unset for the link to function.
+
+400GBASE-DR4 modules, such as NVIDIA MMS1V00-WM, require RS FEC. The switch automatically enables FEC if it is set to `off`.
+
+You typically use these optics to interconnect 4x SN2700 uplinks to a single SN4700 breakout downlink. The following configuration shows an explicit FEC example. You can leave the FEC settings unset for autodetection.
+
+SN4700 (400GBASE-DR4 in swp1):
+
+```
+cumulus@SN4700:mgmt:~$ nv set interface swp1 link breakout 4x lanes-per-port 2
+cumulus@SN4700:mgmt:~$ nv set interface swp1s0 link fec rs
+cumulus@SN4700:mgmt:~$ nv set interface swp1s0 link speed 100G
+cumulus@SN4700:mgmt:~$ nv set interface swp1s1 link fec rs
+cumulus@SN4700:mgmt:~$ nv set interface swp1s1 link speed 100G
+cumulus@SN4700:mgmt:~$ nv set interface swp1s2 link fec rs
+cumulus@SN4700:mgmt:~$ nv set interface swp1s2 link speed 100G
+cumulus@SN4700:mgmt:~$ nv set interface swp1s3 link fec rs
+cumulus@SN4700:mgmt:~$ nv set interface swp1s3 link speed 100G
+cumulus@SN4700:mgmt:~$ nv config apply
+```
+
+SN2700 (100GBASE-DR1 in swp11-14):
+
+```
+cumulus@SN2700:mgmt:~$ nv set interface swp11 link fec off
+cumulus@SN2700:mgmt:~$ nv set interface swp11 link speed 100G
+cumulus@SN2700:mgmt:~$ nv set interface swp12 link fec off
+cumulus@SN2700:mgmt:~$ nv set interface swp12 link speed 100G
+cumulus@SN2700:mgmt:~$ nv set interface swp13 link fec off
+cumulus@SN2700:mgmt:~$ nv set interface swp13 link speed 100G
+cumulus@SN2700:mgmt:~$ nv set interface swp14 link fec off
+cumulus@SN2700:mgmt:~$ nv set interface swp14 link speed 100G
+cumulus@SN4700:mgmt:~$ nv config apply
+```
+
+The FEC operational view of this configuration appears incorrect because FEC is operationally enabled only on the SN4700 400G breakout side. This is because the 100G DR1 module side handles FEC internally, which is not visible to Cumulus Linux.
+
+```
+cumulus@SN2700:mgmt:~$ nv show int swp11 link
+                       operational        applied
+---------------------  -----------------  -------
+auto-negotiate         on                 on     
+duplex                 full               full   
+speed                  100G               auto   
+fec                    off                off   
+mtu                    9216               9216   
+fast-linkup            off                       
+[breakout]                                       
+state                  up                 up     
+...
+```
+
+```
+cumulus@SN4700:mgmt:~$ nv show int swp1s1 link
+                       operational        applied
+---------------------  -----------------  -------
+auto-negotiate         on                 on     
+duplex                 full               full   
+speed                  100G               auto   
+fec                    rs                 off    
+mtu                    9216               9216   
+fast-linkup            off                       
+[breakout]                                       
+state                  up                 up     
+...
+```
+
 ## Default Policies for Interface Settings
 
 Instead of configuring settings for each individual interface, you can specify a policy for all interfaces on a switch or tailor custom settings for each interface. Create a file in `/etc/network/ifupdown2/policy.d/` and populate the settings accordingly. The following example shows a file called `address.json.`

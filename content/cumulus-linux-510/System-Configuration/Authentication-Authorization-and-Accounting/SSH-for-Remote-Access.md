@@ -500,6 +500,10 @@ This section describes how to generate an SSH key pair on one system and install
 To generate an SSH key pair, run the `ssh-keygen` command and follow the prompts.
 
 {{%notice note%}}
+Cumulus Linux does not support the sha1 ssh key exchange method.
+{{%/notice%}}
+
+{{%notice note%}}
 To configure the system without a password, do not enter a passphrase when prompted in the following step.
 {{%/notice%}}
 

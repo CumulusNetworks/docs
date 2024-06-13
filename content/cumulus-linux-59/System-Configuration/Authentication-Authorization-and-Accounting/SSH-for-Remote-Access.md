@@ -471,7 +471,7 @@ MaxStartups 5:22:20
 This section describes how to generate an SSH key pair on one system and install the key as an authorized key on another system.
 
 {{%notice note%}}
-Cumulus Linux 5.9.1 and later does not support the sha1 ssh key exchange method.
+Cumulus Linux 5.9.1 and later does not support sha1 ssh key exchange methods.
 {{%/notice%}}
 
 ### Generate an SSH Key Pair

@@ -1652,6 +1652,169 @@ Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
 3                  20    
 ```
 
+### Lossy Headroom
+
+Lossy headroom is the buffer on top of the reserved buffer that stores packets that ingress the switch. You can configure the lossy headroom to help analyze performance for a specific priority group and to isolate management traffic to a separate priority group.
+- Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
+- Priority group `pg[9]` is for management traffic on ingress.
+- Traffic class `tc[16]` is for management traffic in the egress queue, which has a dedicated pool that other traffic cannot share.
+
+To change the lossy headroom for a specified priority group, run the following commands. The switch calculates the default value internally based on the MTU and internal latency. You can specify a value between 0 and 136314880.
+
+{{< tabs "TabID1663 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group <priority-group> headroom <bytes>` command. `<priority-group>` can be `bulk` or `service1` through `service7`.
+
+The following example configures the lossy headroom to 50000 bytes for priority group `service1`:
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 headroom 50000
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to adjust the `priority_group.<priority-group>.ingress_buffer.lossy_headroom` parameter. `<priority-group>` can be `bulk` or `service1` through `service7`.
+
+The following example configures the lossy headroom to 50000 bytes for priority group `service1`:
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
+...
+priority_group.service1.ingress_buffer.lossy_headroom = 50000 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To configure the ingress management buffer:
+
+{{< tabs "TabID1689 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set qos advance-buffer-config default-global ingress-mgmt-buffer <option> <value>` command. You can adjust the following options:
+
+| Option         | Description |
+|----------------|------------ |
+| `headroom`     | The ingress management buffer headroom allocation. |
+| `reserved`     | The reserved ingress management buffer allocation in bytes. |
+| `service-pool` | The ingress management buffer service pool mapping. |
+| `shared-alpha` | The dynamic shared ingress management buffer alpha allocation. |
+| `shared-bytes` | The static shared ingress management buffer allocation in bytes. |
+
+The following example configures the ingress management buffer headroom to 45000 bytes:
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer reserved 45000
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures the static shared ingress management buffer to 14000 bytes:
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-bytes 14000
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to adjust the `management.ingress_service_pool` and the `management.ingress_buffer` parameters.
+
+You can adjust the following `management.ingress_buffer` parameters:
+
+| Parameter        | Description |
+|----------------- |------------ |
+| `lossy_headroom` | The ingress management buffer headroom allocation. |
+| `reserved`       | The reserved ingress management buffer allocation in bytes. |
+| `dynamic_quota`  | The dynamic shared ingress management buffer alpha allocation. |
+| `shared-size`    | The static shared ingress management buffer allocation in bytes. |
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
+...
+management.ingress_service_pool = 1 
+management.ingress_buffer.reserved = 10000 
+management.ingress_buffer.lossy_headroom = 10000 
+management.ingress_buffer.shared_size = 12000 
+management.ingress_buffer.dynamic_quota = alpha 1-2 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To configure the egress management buffer:
+
+{{< tabs "TabID1719 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set qos advance-buffer-config default-global egress-mgmt-buffer <option> <value>` command. You can adjust the following options:
+
+| Option         | Description |
+|----------------|------------ |
+| `reserved`     | The reserved egress management buffer allocation in bytes. |
+| `service-pool` | The egress management buffer service pool mapping. |
+| `shared-alpha` | The dynamic shared egress management buffer alpha allocation. |
+| `shared-bytes` | The static shared egress management buffer allocation in bytes. |
+
+The following example configures the egress management reserved buffer to 30000 bytes:
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer reserved 30000
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures static shared egress management buffer to 20000 bytes:
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer shared_size 20000 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to adjust the `egress_buffer.egr_queue_16.uc.` parameters.
+
+| Parameter      | Description |
+|----------------|------------ |
+| `reserved`     | The reserved egress management buffer allocation in bytes. |
+| `service-pool` | The egress management buffer service pool mapping. |
+| `shared-alpha` | The dynamic shared egress management buffer alpha allocation. |
+| `shared-size` | The static shared egress management buffer allocation in bytes. |
+
+```
+cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
+...
+egress_buffer.egr_queue_16.uc.reserved = 30000 
+egress_buffer.egr_queue_16.uc.shared_size = 20000
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the ingress management buffer configuration, run the `nv show qos advance-buffer-config default-global ingress-mgmt-buffer` command:
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-mgmt-buffer
+              operational       applied
+------------  -----------       ---- 
+headroom       1000 Bytes       1000 Bytes 
+shared-bytes   19.53 KB         19.53 KB 
+```
+
+To show the egress management buffer configuration, run the `nv show qos advance-buffer-config default-global egress-mgmt-buffer` command:
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-mgmt-buffer 
+              operational       applied 
+------------  -----------       ---- 
+reserved       1200 Bytes       1200 Bytes 
+shared-bytes   13.53 KB         13.53 KB 
+```
+
 ## Syntax Checker
 
 Cumulus Linux provides a syntax checker for the `qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.

@@ -7,12 +7,16 @@ product: NVIDIA Air
 <!-- vale off -->
 Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## May 2024
+## June 2024
 <!-- Air:WhatsNew -->
+### 82.2024.0613-012
+- Fixed an issue where specifying an image by name in a dot file could cause an error
+<!-- Air:WhatsNew -->
+
+## May 2024
 ### 82.2024.0523-014
 - Added `cumulus-vx-5.9.1` to the OS dropdown of the builder
 - Updated the Swagger API view
-<!-- Air:WhatsNew -->
 
 ### 82.2024.0516-013
 - Fixed an issue when waking up large simulations

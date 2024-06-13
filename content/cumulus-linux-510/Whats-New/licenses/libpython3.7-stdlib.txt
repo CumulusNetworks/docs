@@ -1,1 +1,0 @@
-libpython3.7-stdlib has no copyright file

@@ -1,1 +1,0 @@
-lib32gcc1 has no copyright file

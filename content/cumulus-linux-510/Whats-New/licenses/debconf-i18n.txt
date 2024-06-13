@@ -1,1 +1,0 @@
-debconf-i18n has no copyright file

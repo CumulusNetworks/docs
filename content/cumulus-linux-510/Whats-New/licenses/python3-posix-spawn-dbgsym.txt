@@ -1,1 +1,0 @@
-python3-posix-spawn-dbgsym has no copyright file

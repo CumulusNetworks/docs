@@ -1,1 +1,0 @@
-lib32gomp1 has no copyright file

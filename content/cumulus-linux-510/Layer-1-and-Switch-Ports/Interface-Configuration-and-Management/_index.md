@@ -366,6 +366,8 @@ cumulus@switch:~$ nv set interface swp1 ip address 2001:DB8::1/126
 cumulus@switch:~$ nv config apply
 ```
 
+To show the MAC address for an interface, run the `nv show interface <interface> link` command.
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -424,10 +426,10 @@ cumulus@switch:~$ nv set interface vlan10 link mac-address 00:00:5E:00:01:00
 cumulus@switch:~$ nv config apply
 ```
 
-To unset the MAC address for an interface, run the `nv unset interface <interface> link mac-address <mac-address>` command:
+To unset the MAC address for an interface, run the `nv unset interface <interface> link mac-address` command:
 
 ```
-cumulus@switch:~$ nv unset interface swp1 link mac-address 00:02:00:00:00:05
+cumulus@switch:~$ nv unset interface swp1 link mac-address
 cumulus@switch:~$ nv config apply
 ```
 

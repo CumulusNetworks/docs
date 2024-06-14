@@ -9,7 +9,8 @@ Use <span class="a-tooltip">[ISSU](## "In Service System Upgrade")</span> to upg
 ISSU includes the following modes:
 - Restart
 - Upgrade
-- Maintenance
+- Maintenance mode
+- Maintenance ports
 
 {{%notice note%}}
 In earlier Cumulus Linux releases, ISSU was Smart System Manager.
@@ -194,28 +195,26 @@ cumulus@switch:~$ sudo csmgrctl -d
 
 ## Maintenance Mode
 
-Maintenance mode isolates the system from the rest of the network so that you can perform intrusive troubleshooting tasks and data collection or perform system changes with minimal disruption, such as split ports and replace optics or cables.
+Maintenance mode globally manages the BGP and MLAG control plane.
+- When you enable maintenance mode, BGP and MLAG shut down gracefully.
+- When you disable maintenance mode, BGP and MLAG are enabled based on the individual parameter settings.
 
-{{%notice note%}}
-- Cumulus Linux supports maintenance mode with BGP and MLAG only.
-- Complete isolation depends on your configuration and network topology.
-{{%/notice%}}
+To enable maintenance mode:
 
-### Enable Maintenance Mode
-
-Run the following command to enable maintenance mode. When maintenance mode is on, ISSU performs a {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown" text="graceful BGP shutdown">}}, redirects traffic over the peerlink and brings down the MLAG port link. `switchd` maintains full capability.
-
-{{< tabs "150 ">}}
+{{< tabs "203 ">}}
 {{< tab "NVUE Command ">}}
 
 ```
 cumulus@switch:~$ nv action enable system maintenance mode
+Action executing ...
 System maintenance mode has been enabled successfully
  Current System Mode: Maintenance, cold  
- Maintenance mode since Sat Nov 18 07:09:25 2023 (Duration: 00:00:00)
- frr             : Maintenance, cold, down, up time: 12:55:51 (1 restart)
- switchd         : Maintenance, cold, down, up time: 13:10:16
- System Services : Maintenance, cold, down, up time: 13:10:35
+ Maintenance mode since Thu Jun 13 23:59:47 2024 (Duration: 00:00:00)
+ Ports shutdown for Maintenance
+ frr             : Maintenance, cold, down, up time: 29:06:27
+ switchd         : Maintenance, cold, down, up time: 29:06:31
+ System Services : Maintenance, cold, down, up time: 29:07:00
+
 Action succeeded
 ```
 
@@ -229,68 +228,14 @@ cumulus@switch:~$ sudo csmgrctl -m1
 {{< /tab >}}
 {{< /tabs >}}
 
-You can run additional commands to bring all the ports down, then up to restore the port admin state.
+To disable maintenance mode:
 
-{{< tabs "176 ">}}
-{{< tab "NVUE Command ">}}
-
-To bring all the ports down:
-
-```
-cumulus@switch:~$ nv action enable system maintenance ports
-System maintenance ports has been enabled successfully
- Current System Mode: Maintenance, cold  
- Maintenance mode since Sat Nov 18 07:09:25 2023 (Duration: 00:00:56)
- frr             : Maintenance, cold, down, up time: 12:56:47 (1 restart)
- switchd         : Maintenance, cold, down, up time: 13:11:12
- System Services : Maintenance, cold, down, up time: 13:11:31
-Action succeeded
-```
-
-To restore the port admin state:
-
-```
-cumulus@switch:~$ nv action disable system maintenance ports
-System maintenance ports has been disabled successfully
- Current System Mode: cold  
- Ports shutdown for Maintenance
- frr             : cold, up, up time: 13:00:57 (1 restart)
- switchd         : cold, up, up time: 13:15:22
- System Services : cold, up, up time: 13:15:41
-Action succeeded
-```
-
-{{< /tab >}}
-{{< tab "csmgrctl Commands ">}}
-
-To bring  all the ports down:
-
-```
-cumulus@switch:~$ sudo csmgrctl -p0
-```
-
-To restore the port admin state:
-
-```
-cumulus@switch:~$ sudo csmgrctl -p1
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice note%}}
-Before you disable maintenance mode, be sure to bring the ports back up.
-{{%/notice%}}
-
-### Disable Maintenance Mode
-
-Run the following command to disable maintenance mode and restore normal operation. When maintenance mode is off, ISSU performs a soft restart, runs a BGP graceful restart, and brings the MLAG port link back up. `switchd` maintains full capability.
-
-{{< tabs "210 ">}}
+{{< tabs "229 ">}}
 {{< tab "NVUE Command ">}}
 
 ```
 cumulus@switch:~$ nv action disable system maintenance mode
+Action executing ...
 System maintenance mode has been disabled successfully
  Current System Mode: cold  
  frr             : cold, up, up time: 12:57:48 (1 restart)
@@ -309,9 +254,11 @@ cumulus@switch:~$ sudo csmgrctl -m0
 {{< /tab >}}
 {{< /tabs >}}
 
-### Show Maintenance Mode Status
+{{%notice note%}}
+Before you disable maintenance mode, be sure to bring the ports back up.
+{{%/notice%}}
 
-To see the status of maintenance mode, run the NVUE `nv show system maintenance` command or the Linux `sudo csmgrctl -s` command. For example:
+To show maintenance mode status either run the NVUE `nv show system maintenance` command or the Linux `sudo csmgrctl -s` command:
 
 ```
 cumulus@switch:~$ nv show system maintenance 
@@ -328,4 +275,75 @@ Current System Mode: cold
  clagd           : cold, up, up time: 00:14:47
  switchd         : cold, up, up time: 01:09:48
  System Services : cold, up, up time: 01:10:07
+```
+
+## Maintenance Ports
+
+Maintenance ports globally disables or enables all configured ports.
+- When you enable maintenance ports, swp interfaces follow individual admin states.
+- When you disable maintenance ports, swp interfaces are globally admin down, overriding the admin state in the configuration.
+
+To enable maintenance ports:
+
+{{< tabs "279 ">}}
+{{< tab "NVUE Command ">}}
+
+```
+cumulus@switch:~$ nv action enable system maintenance ports
+Action executing ...
+System maintenance ports has been enabled successfully
+ Current System Mode: cold  
+ frr             : cold, up, up time: 28:54:36
+ switchd         : cold, up, up time: 28:54:40
+ System Services : cold, up, up time: 28:55:09
+
+Action succeeded
+```
+
+{{< /tab >}}
+{{< tab "csmgrctl Commands ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -p0
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To disable maintenance ports:
+
+{{< tabs "315 ">}}
+{{< tab "NVUE Command ">}}
+
+```
+cumulus@switch:~$ nv action disable system maintenance ports
+Action executing ...
+System maintenance ports has been disabled successfully
+ Current System Mode: cold  
+ Ports shutdown for Maintenance
+ frr             : cold, up, up time: 28:55:49
+ switchd         : cold, up, up time: 28:55:53
+ System Services : cold, up, up time: 28:56:22
+
+Action succeeded
+```
+
+{{< /tab >}}
+{{< tab "csmgrctl Commands ">}}
+
+```
+cumulus@switch:~$ sudo csmgrctl -p1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To see the status of maintenance ports, run the NVUE `nv show system maintenance` command:
+
+```
+cumulus@switch:~$ nv show system maintenance 
+       operational
+-----  -----------
+mode   enabled   
+ports  disabled 
 ```

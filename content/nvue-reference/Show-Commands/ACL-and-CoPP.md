@@ -1,5 +1,5 @@
 ---
-title: ACL
+title: ACL and CoPP
 author: Cumulus Networks
 weight: 110
 
@@ -13,6 +13,10 @@ h { color: RGB(118,185,0)}
 ## <h>nv show acl</h>
 
 Shows the configured ACL rules on the switch.
+
+{{%notice note%}}
+In Cumulus Linux 5.9, you must run the `nv show acl --rev=applied` command to see the output.
+{{%/notice%}}
 
 ### Version History
 
@@ -826,6 +830,25 @@ outbound
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface acl-statistics</h>
+
+Shows ACL statistics for all interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface acl-statistics
+Interface  ACL Name  Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
+---------  --------  -------  ----------  --------  -----------  ---------
+swp1       EXAMPLE1  10       0           0 Bytes
+```
+<!--
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> acl \<acl-id\> outbound</h>
 
 Shows information about the ACL applied for outbound traffic on the specified interface.
@@ -869,7 +892,7 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@switch:~$ nv show interface swp1 acl EXAMPLE1 outbound control-plane
 ```
-
+-->
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show system acl</h>

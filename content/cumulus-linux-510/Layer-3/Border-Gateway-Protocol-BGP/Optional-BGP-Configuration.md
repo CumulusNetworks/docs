@@ -1687,6 +1687,8 @@ To reduce packet loss during planned maintenance of a router or link, you can co
 
 ### Global Graceful BGP Shutdown
 
+When you enable graceful shutdown globally on the switch, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes from all eBGP peers and sets the `local-pref` for that route to `0` (refer to {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8326" text="RFC8326">}}).
+
 {{< tabs "1481 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -1736,7 +1738,7 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-When you enable graceful BGP shutdown globally, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes from eBGP peers and sets the `local-pref` for that route to `0` (refer to {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8326" text="RFC8326">}}). To see the configuration, run the vtysh `show ip bgp <route>` command. For example:
+To show the configuration, run the vtysh `show ip bgp <route>` command. For example:
 
 ```
 cumulus@leaf01:~$ sudo vtysh
@@ -1805,6 +1807,8 @@ Last update: Sun Dec 20 03:04:53 2020
 {{< /expand >}}
 
 ### Graceful BGP Shutdown on a Peer
+
+When you enable graceful shutdown on a peer, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes from that peer and sets the `local-pref` for that route to `0`.
 
 {{< tabs "1807 ">}}
 {{< tab "NVUE Commands ">}}

@@ -57,6 +57,8 @@ You can take this opportunity to reset the password for the *cumulus* account.
        Retype new UNIX password:
        passwd: password updated successfully
 
+In Cumulus Linux 5.9 and later, user passwords must include at least one lowercase character, one uppercase character, one digit, one special character, and cannot be usernames. In addition, passwords must be a minimum of eight characters long, expire in 365 days, and provide a warning 15 days before expiration. For more information about the password security policy, refer to {{<link url="User-Accounts/#password-security" text="Password Security">}}.
+
 {{%/notice%}}
 
 4. Sync the `/etc` directory, then reboot the system:

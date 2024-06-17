@@ -18,8 +18,8 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 - {{<link url="Quality-of-Service/#lossy-headroom" text="QoS lossy headroom configuration">}}
 - Allow reserved field in VXLAN header
 - DHCP Option 61 (pre-provision a switch with its serial number) is enabled by default when Cumulus Linux boots
-- Graceful shutdown for a peer
-- DHCP option 61 enabled by default when Cumulus Linux boots up
+- {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer" text="Graceful shutdown on a peer">}}
+- DHCP option 61 is enabled by default when Cumulus Linux boots up
 - NVUE
   - AmBER counters and gauges
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
@@ -49,7 +49,9 @@ nv set interface <interface> link mac-address <mac-address>
 nv set system ssh-server login-record-period
 nv set qos advance-buffer-config default-global egress-mgmt-buffer 
 nv set qos advance-buffer-config default-global ingress-mgmt-buffer
-nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group <priority-group> headroom <bytes>
+nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group <priority-group> headroom
+<bytes>
+nv set vrf default router bgp neighbor swp51 graceful-shutdown on|off
 ```
 
 {{< /tab >}}
@@ -57,6 +59,7 @@ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-gr
 
 ```
 nv unset interface <interface> link mac-address <mac-address>
+nv unset vrf default router bgp neighbor swp51 graceful-shutdown
 ```
 
 {{< /tab >}}

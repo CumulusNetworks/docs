@@ -1823,7 +1823,7 @@ cumulus@leaf01:~$ nv config apply
 To disable graceful shutdown on a peer:
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-shutdown
+cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 graceful-shutdown
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -1843,7 +1843,7 @@ leaf01# write memory
 leaf01# exit
 ```
 
-To disable graceful shutdownon a peer:
+To disable graceful shutdown on a peer:
 
 ```
 cumulus@leaf01:~$ sudo vtysh

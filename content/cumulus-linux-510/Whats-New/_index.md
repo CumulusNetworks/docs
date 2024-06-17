@@ -26,6 +26,11 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
   - Redesigned BGP show output flags to be similar to vtysh output
   - EVPN show output updates
   - LDAP authentication and encryption configuration
+  - {{< expand "Changed NVUE Commands" >}}
+| New Command| Previous Command |
+| ----------- | ----------------|
+| `nv set system config auto-save enable on`<br>`nv set system config auto-save enable off`| `nv set system config auto-save state enabled`<br>`nv set system config auto-save state disabled` |
+{{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
 {{< tabs "TabID108 ">}}

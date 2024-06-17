@@ -388,14 +388,16 @@ cumulus@switch:~$ nv config apply
 
 By default, when you run the `nv config apply` command to apply a configuration setting, NVUE applies the pending configuration to become the applied configuration and automatically saves the changes to the startup configuration file (`/etc/nvue.d/startup.yaml`).
 
-To disable auto save so that NVUE does not save applied configuration changes, run the `nv set system config auto-save enable off` command:
+To disable auto save so that NVUE does not save applied configuration changes, run the `nv set system config auto-save state disabled` command:
 
 ```
-cumulus@switch:~$ nv set system config auto-save enable off
+cumulus@switch:~$ nv set system config auto-save state disabled
 cumulus@switch:~$ nv config apply
 ```
 
 When you disable auto save, you must run the `nv config save` command to save the applied configuration to the startup configuration so that the changes persist after a reboot.
+
+To renable auto save, run the `nv set system config auto-save state enabled` command.
 
 ## Add Configuration Apply Messages
 

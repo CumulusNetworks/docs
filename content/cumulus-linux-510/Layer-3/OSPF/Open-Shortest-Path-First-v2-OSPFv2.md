@@ -62,6 +62,10 @@ cumulus@spine01:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+When you change the router ID after initial configuration, you must run the `nv action clear vrf <vrf> router ospf database` command.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}
 
@@ -262,6 +266,10 @@ cumulus@spine01:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+When you change the router ID after initial configuration, you must run the `nv action clear vrf <vrf> router ospf database` command.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Linux and vtysh Commands ">}}

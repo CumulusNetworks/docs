@@ -409,6 +409,10 @@ router ospf
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+When you change the router ID after initial configuration, you must run the `nv action clear vrf <vrf> router ospf database` command.
+{{%/notice%}}
+
 ## Optional OSPFv2 Configuration
 
 This section describes optional configuration. The steps provided in this section assume that you already configured basic OSPFv2 as described in {{<link url="#basic-ospfv2-configuration" text="Basic OSPF Configuration">}}, above.

@@ -29,7 +29,7 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
   - {{< expand "Changed NVUE Commands" >}}
 | New Command| Previous Command |
 | ----------- | ----------------|
-| `nv set system config auto-save enable on`<br>`nv set system config auto-save enable off`| `nv set system config auto-save state enabled`<br>`nv set system config auto-save state disabled` |
+| `nv set system config auto-save state enabled`<br>`nv set system config auto-save state disabled` | `nv set system config auto-save enable on`<br>`nv set system config auto-save enable off`|
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.

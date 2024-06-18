@@ -358,7 +358,7 @@ To delete an entry in the ARP table, remove the `post-up ip neigh add` line from
 
 ## Show the ARP Table
 
-To show all the entries in the IP neighbor table, run the `nv show interface neighbor` command or the Linux `ip neighbor` command:
+To show all the entries in the IP neighbor table, run the `nv show interface neighbor` command or the Linux `ip neighbor show` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface neighbor

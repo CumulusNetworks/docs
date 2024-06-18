@@ -19,7 +19,6 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 - Allow reserved field in VXLAN header
 - DHCP Option 61 (pre-provision a switch with its serial number) is enabled by default when Cumulus Linux boots
 - {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer" text="Graceful shutdown on a peer">}}
-- DHCP option 61 is enabled by default when Cumulus Linux boots up
 - NVUE
   - AmBER counters and gauges
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
@@ -29,7 +28,7 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
   - {{< expand "Changed NVUE Commands" >}}
 | New Command| Previous Command |
 | ----------- | ----------------|
-| `nv set system config auto-save enable on`<br>`nv set system config auto-save enable off`| `nv set system config auto-save state enabled`<br>`nv set system config auto-save state disabled` |
+| `nv set system config auto-save state enabled`<br>`nv set system config auto-save state disabled` | `nv set system config auto-save enable on`<br>`nv set system config auto-save enable off`|
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.

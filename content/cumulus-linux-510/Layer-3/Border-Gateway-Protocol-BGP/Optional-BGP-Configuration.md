@@ -1691,7 +1691,7 @@ You can enable graceful BGP shutdown either globally or on a peer but not both.
 
 ### Global Graceful BGP Shutdown
 
-When you enable graceful shutdown globally on the switch, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes from all eBGP peers and sets the `local-pref` for that route to `0` (refer to {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8326" text="RFC8326">}}).
+When you enable graceful shutdown globally on the switch, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes from all eBGP peers and sets the `local-pref` for the routes to `0` (refer to {{<exlink url="https://datatracker.ietf.org/doc/html/rfc8326" text="RFC8326">}}).
 
 {{< tabs "1481 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1812,7 +1812,7 @@ Last update: Sun Dec 20 03:04:53 2020
 
 ### Graceful BGP Shutdown on a Peer
 
-When you enable graceful shutdown on a peer, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes from that peer and sets the `local-pref` for that route to `0`.
+When you enable graceful shutdown on a peer, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes to and from that peer and sets the `local-pref` for the routes to `0`.
 
 {{< tabs "1807 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1840,7 +1840,7 @@ To enable graceful shutdown on a peer:
 cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# configure terminal
-leaf01(config)# router bgp 65101 vrf default
+leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp51 graceful-shutdown
 leaf01(config-router)# end
 leaf01# write memory
@@ -1853,7 +1853,7 @@ To disable graceful shutdown on a peer:
 cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# configure terminal
-leaf01(config)# router bgp 65101 vrf default
+leaf01(config)# router bgp 65101
 leaf01(config-router)# neighbor swp51 no graceful-shutdown
 leaf01(config-router)# end
 leaf01# write memory

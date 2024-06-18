@@ -319,14 +319,15 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To create a static ARP entry for an interface with an IPv4 address associated with a MAC address, add `post-up ip neigh add <neighbor-id>` to the interface stanza of the `/etc/network/interfaces` file, then run the `ifreload -a` command:
+To create a static ARP entry for an interface with an IPv4 address associated with a MAC address, add `post-up ip neigh add <ipv4-address> lladdr <mac-address>` to the interface stanza of the `/etc/network/interfaces` file, then run the `ifreload -a` command:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
 ...
 auto swp51
 iface swp51
-    post-up neigh add 10.5.5.51 lladdr 00:00:5E:00:53:51
+    address 10.5.5.1/24
+    post-up ip neigh add 10.5.5.51 lladdr 00:00:5E:00:53:51 dev swp51
 ...
 ```
 
@@ -341,7 +342,8 @@ cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
 ...
 auto swp51
 iface swp51
-    post-up neigh add 10.5.5.51 lladdr 00:00:5E:00:53:51 nud permanent router
+    address 10.5.5.1/24
+    post-up ip neigh add 10.5.5.51 lladdr 00:00:5E:00:53:51 dev swp51 nud permanent router
 ...
 ```
 
@@ -356,7 +358,7 @@ To delete an entry in the ARP table, remove the `post-up ip neigh add` line from
 
 ## Show the ARP Table
 
-To show all the entries in the IP neighbor table, run the `nv show interface neighbor` command or the Linux `ip neighbor` command:
+To show all the entries in the IP neighbor table, run the `nv show interface neighbor` command or the Linux `ip neighbor show` command:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface neighbor

@@ -501,7 +501,7 @@ cumulus@leaf01:mgmt:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To create a static neighbor entry for an interface with an IPv6 address associated with a MAC address, add `post-up ip neigh add <neighbor-id>` to the interface stanza of the `/etc/network/interfaces` file, then run the `ifreload -a` command:
+To create a static neighbor entry for an interface with an IPv6 address associated with a MAC address, add `post-up ip neigh add <ipv6-address> lladdr <mac-address>` to the interface stanza of the `/etc/network/interfaces` file, then run the `ifreload -a` command:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces

@@ -12,7 +12,7 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 ## What's New in Cumulus Linux 5.10
 
 - PPS supported on the NVIDIA SN5400 switch
-- Additional SNMP MIBs
+- Additional OID support for SNMP MIBs
 - High frequency telemetry
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}
 - {{<link url="Quality-of-Service/#lossy-headroom" text="QoS lossy headroom configuration">}}

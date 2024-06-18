@@ -17,7 +17,7 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}
 - {{<link url="Quality-of-Service/#lossy-headroom" text="QoS lossy headroom configuration">}}
 - Allow reserved field in VXLAN header
-- DHCP Option 61 (pre-provision a switch with its serial number) is enabled by default when Cumulus Linux boots
+- {{<link url="Quick-Start-Guide/#get-started" text="DHCP Option 61">}} (pre-provision a switch with its serial number) is enabled by default when Cumulus Linux boots
 - {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer" text="Graceful shutdown on a peer">}}
 - NVUE
   - AmBER counters and gauges

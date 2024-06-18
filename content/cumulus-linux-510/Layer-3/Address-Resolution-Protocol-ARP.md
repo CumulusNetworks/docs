@@ -326,7 +326,8 @@ cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
 ...
 auto swp51
 iface swp51
-    post-up neigh add 10.5.5.51 lladdr 00:00:5E:00:53:51
+    address 10.5.5.1/24
+    post-up ip neigh add 10.5.5.51 lladdr 00:00:5E:00:53:51 dev swp51
 ...
 ```
 
@@ -341,7 +342,8 @@ cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
 ...
 auto swp51
 iface swp51
-    post-up neigh add 10.5.5.51 lladdr 00:00:5E:00:53:51 nud permanent router
+    address 10.5.5.1/24
+    post-up ip neigh add 10.5.5.51 lladdr 00:00:5E:00:53:51 dev swp51 nud permanent router
 ...
 ```
 

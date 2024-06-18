@@ -21,10 +21,10 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 - {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer" text="Graceful shutdown on a peer">}}
 - NVUE
   - AmBER counters and gauges
+  - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and encryption configuration">}}
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
   - Redesigned BGP show output flags to be similar to vtysh output
   - EVPN show output updates
-  - LDAP authentication and encryption configuration
   - {{< expand "Changed NVUE Commands" >}}
 | New Command| Previous Command |
 | ----------- | ----------------|

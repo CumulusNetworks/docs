@@ -508,7 +508,7 @@ cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
 ...
 auto swp51
 iface swp51
-    post-up neigh add fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51
+    post-up ip neigh add fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 dev swp51
 ...
 ```
 
@@ -523,7 +523,7 @@ cumulus@leaf01:mgmt:~$ sudo nano /etc/network/interfaces
 ...
 auto swp51
 iface swp51
-    post-up neigh add fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 nud permanent router
+    post-up ip neigh add fe80::4ab0:2dff:fea2:4c79 lladdr 00:00:5E:00:53:51 dev swp51 nud permanent router
 ...
 ```
 

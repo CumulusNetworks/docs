@@ -5,7 +5,7 @@ weight: 1170
 toc: 4
 ---
 
-Below are the MIBs that Cumulus Linux supports, as well as suggested uses for them. The `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt` file defines the overall Cumulus Linux MIB.
+The following table lists the relevant Cumulus Linux network monitoring MIBs:
 <!-- vale off -->
 | <div style="width:250px">MIB Name | Suggested Uses |
 | -------- | -------------- |

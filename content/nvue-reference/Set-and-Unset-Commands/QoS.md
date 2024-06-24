@@ -1746,6 +1746,10 @@ cumulus@switch:~$ nv set qos pfc default-global
 
 Configures the cable length in meters for the specified PFC profile. You can specify a value between 1 and 100000.
 
+{{%notice note%}}
+In Cumulus Linux 5.3 and earlier, this command is `nv set qos roce cable-length`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1913,7 +1917,7 @@ cumulus@switch:~$ nv set qos pfc default-global xon-threshold 10000
 
 Configures 802.1p or DSCP traffic marking.
 
-You can use profiles to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value. To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark 802.1p or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
+To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark 802.1p or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1993,22 +1997,6 @@ cumulus@switch:~$ nv set qos remark default-global switch-priority 0 pcp 4
 ## <h>nv set qos roce</h>
 
 Configures RDMA over Converged Ethernet lossless (RoCE).
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set qos roce cable-length</h>
-
-Configures the cable length for RoCE lossless. You can specify a value between 1 and 100000. The default setting is 100 meters.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set qos roce cable-length 1000
-```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 

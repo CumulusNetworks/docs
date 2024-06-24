@@ -12,34 +12,6 @@ h { color: RGB(118,185,0)}
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## <h>nv set interface \<interface-id\> qos</h>
-
-Configures QoS on the specified interface.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> qos congestion-control</h>
-
-Configures QoS congestion control on the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` | The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 qos congestion-control
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> qos congestion-control profile \<profile-name\></h>
 
 Configures the QoS congestion control profile on the specified interface.
@@ -59,29 +31,6 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 qos congestion-control profile MYPROFILE
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> qos egress-scheduler</h>
-
-Configures QoS egress scheduling on the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` | The interface you want to configure. |
-|`<profile-name>` | The profile name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 qos egress-scheduler
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -109,29 +58,6 @@ cumulus@switch:~$ nv set interface swp1 qos egress-scheduler profile MYPROFILE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> qos egress-shaper</h>
-
-Configures QoS egress shaping on the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` | The interface you want to configure. |
-|`<profile-name>` | The profile name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 qos egress-shaper
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> qos egress-shaper profile \<profile-name\></h>
 
 Configures the QoS egress scheduler profile on the specified interface.
@@ -155,28 +81,6 @@ cumulus@switch:~$ nv set interface swp1 qos egress-shaper profile MYPROFILE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> qos link-pause</h>
-
-Configures QoS link pause on the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` | The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 qos link-pause
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> qos link-pause profile \<profile-name\></h>
 
 Configures the QoS link pause profile on the specified interface.
@@ -195,29 +99,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set interface swp1 qos link-pause profile
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> qos mapping</h>
-
-Configures QoS mapping on the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` | The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 qos mapping
+cumulus@switch:~$ nv set interface swp1 qos link-pause profile MYPROFILE
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -245,12 +127,6 @@ cumulus@switch:~$ nv set interface swp1 qos mapping profile MYPROFILE
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> qos pfc</h>
-
-Configures QoS PFC on the specifies interface.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set interface \<interface-id\> qos pfc profile \<profile-name\></h>
 
 Configures the QoS PFC profile on the specified interface.
@@ -270,28 +146,6 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv set interface swp1 qos pfc profile MYPROFILE
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set interface \<interface-id\> qos remark</h>
-
-Configures QoS remarking on the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` | The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set interface swp1 qos remark
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -346,27 +200,13 @@ cumulus@switch:~$ nv set interface swp1 qos qos pfc-watchdog state enable
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos</h>
-
-Configures global Quality of Service (QOS) settings.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set qos advance-buffer-config \<profile-id\></h>
-
-Configures the QoS advanced buffer profile settings. Advanced buffer configuration can override the base traffic-pool profiles configured on the system.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossless-buffer</h>
-
-Configures egress lossless buffer settings.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossless-buffer reserved</h>
 
 Configures the reserved buffer allocation in bytes for the egress lossless buffer. You can set a value between 0 and 4294967295.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -390,6 +230,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossles
 
 Configures the service pool for the egress lossless buffer.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -410,7 +254,11 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossles
 
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossless-buffer shared-alpha</h>
 
-Configures the dynamic shared buffer alpha allocation in bytes for the egress lossless buffer. You can set a value between 0 and 4294967295.
+Configures the dynamic shared buffer alpha allocation for the egress lossless buffer. You can set enum data types such as `alpha_1`, `alpha_2`, and so on.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -425,7 +273,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer shared-alpha 10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer shared-alpha alpha_1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -433,6 +281,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossles
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossless-buffer shared-bytes</h>
 
 Configures the static shared buffer allocation in bytes for the egress lossless buffer. You can set a value between 0 and 4294967295.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -452,37 +304,13 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossles
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer</h>
-
-Configures the egress lossy buffer.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-port</h>
-
-Configures the multicast port for the egress lossy buffer.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<profile-id>` |   The profile name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-port 
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-port reserved</h>
 
 Configures the reserved multicast port buffer allocation in bytes for the egress lossy buffer. You can set a value between 0 and 4294967295.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -506,6 +334,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossles
 
 Configures the multicast port static buffer allocation in bytes for the egress lossy buffer. You can set a value between 0 and 4294967295.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -524,32 +356,13 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossles
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-switch-priority \<qos-sp-id\></h>
-
-Configures the multicast switch priority for the egress lossy buffer.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<profile-id>` |   The profile name. |
-| `<qos-sp-id>` |   The multicast switch priority. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-switch-priority \<qos-sp-id\> reserved</h>
 
 Configures the reserved buffer allocation in bytes for the egress lossy buffer multicast switch priority. You can set a value between 0 and 4294967295.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -574,6 +387,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-b
 
 Configures the service pool ID for the egress lossy buffer multicast switch priority.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -596,6 +413,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-b
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-switch-priority \<qos-sp-id\> shared-alpha</h>
 
 Configures the dynamic shared buffer alpha allocation for the egress lossy buffer multicast switch priority.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -620,6 +441,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-b
 
 Configures the static shared buffer allocation in bytes for the egress lossy buffer multicast switch priority. You can set a value between 0 and 4294967295.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -639,32 +464,13 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-b
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer traffic-class \<traffic-class-id\></h>
-
-Configures the traffic classes for the egress lossy buffer.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<profile-id>` |   The profile name. |
-| `<traffic-class-id>` |   The traffic class ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer traffic-class \<traffic-class-id\> reserved</h>
 
 Configures the reserved buffer allocation in bytes for the egress lossy buffer traffic class. You can set a value between 0 and 4294967295.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -689,6 +495,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-b
 
 Configures the service pool ID for the egress lossy buffer traffic class.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -711,6 +521,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-b
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer traffic-class \<traffic-class-id\> shared-alpha</h>
 
 Configures the dynamic shared buffer alpha allocation for the egress lossy buffer traffic class.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -735,6 +549,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-b
 
 Configures the static shared buffer allocation in bytes for the egress lossy buffer traffic class. You can set a value between 0 and 4294967295.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -754,32 +572,13 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-lossy-b
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\></h>
-
-Configures the QoS egress service pool ID.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<profile-id>` |   The profile name. |
-| `<pool-id>` |   The pool ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\> infinite</h>
 
 Configures the egress service pool flag to infinite. You can specify `true` or `false`. The default setting is `false`.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -804,6 +603,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 
 
 Configures the egress service pool memory percent allocation. You can specify a value between 0 and 100. The sum of `memory-percent` values across all egress pools must be less than or equal to 100 percent.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -826,6 +629,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\> mode</h>
 
 Configures the egress service pool mode. You can specify `static` or `dynamic`.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -850,6 +657,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 
 
 Configures the egress service pool reserved buffer allocation in bytes. You can specify a value between 0 and 4294967295.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -872,6 +683,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 
 ## <h>nv set qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\> shared-alpha</h>
 
 Configures the egress service pool dynamic shared buffer alpha allocation.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -896,6 +711,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 
 
 Configures the egress service pool static shared buffer allocation in bytes. You can specify a value between 0 and 4294967295.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -915,15 +734,13 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-pool 3 
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> ingress-lossless-buffer</h>
-
-Configures the ingress lossless buffer settings.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set qos advance-buffer-config \<profile-id\> ingress-lossless-buffer service-pool \<integer\></h>
 
 Configures the service pool for the ingress lossless buffer.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -947,6 +764,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossle
 
 Configures the dynamic shared buffer alpha allocation for the ingress lossless buffer.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -969,6 +790,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossle
 
 Configures the static shared buffer allocation in bytes for the ingress lossless buffer. You can set a value between 0 and 4294967295.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -987,38 +812,13 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossle
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> ingress-lossy-buffer</h>
-
-Configures the ingress lossy buffer.
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set qos advance-buffer-config \<profile-id\> ingress-lossy-buffer priority-group \<priority-group-id\></h>
-
-Configures the priority group alias name for the ingress lossy buffer.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<profile-id>` |   The profile name. |
-| `<priority-group-id>` |  The priority group alias name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set qos advance-buffer-config \<profile-id\> ingress-lossy-buffer priority-group \<priority-group-id\> name \<value\></h>
 
 Configures an alias name for the ingress lossy buffer priority group.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1043,6 +843,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 
 Configures the reserved buffer allocation in bytes for the ingress lossy buffer priority group. You can set a value between 0 and 4294967295.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1066,6 +870,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 
 Configures the service pool for the ingress lossy buffer priority group.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1087,7 +895,11 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 
 ## <h>nv set qos advance-buffer-config \<profile-id\> ingress-lossy-buffer priority-group \<priority-group-id\> shared-alpha</h>
 
-Configures dynamic shared buffer alpha allocation in bytes for the ingress lossy buffer priority group. You can set a value between 0 and 4294967295.
+Configures dynamic shared buffer alpha allocation in bytes for the ingress lossy buffer priority group.  You can set enum data types such as `alpha_1`, `alpha_2`, and so on.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1103,7 +915,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 shared-alpha  10000
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 shared-alpha alpha_1
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1111,6 +923,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 ## <h>nv set qos advance-buffer-config \<profile-id\> ingress-lossy-buffer priority-group \<priority-group-id\> shared-bytes</h>
 
 Configures the static shared buffer allocation in bytes for the ingress lossy buffer priority group. You can set a value between 0 and 4294967295.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1135,6 +951,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 
 Configures the switch priority for the ingress lossy buffer priority group.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1155,32 +975,13 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\></h>
-
-Configures the QoS ingress service pool name.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<profile-id>` |   The profile name. |
-| `<pool-id>` |   The pool name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\> infinite</h>
 
 Configures the ingress service pool flag to infinite. You can specify `true` or `false`. The default setting is `false`.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1205,6 +1006,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 
 Configures the ingress service pool memory percent allocation. You can specify a value between 0 and 100. The sum of `memory-percent` values across all ingress pools must be less than or equal to 100 percent.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1227,6 +1032,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 ## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\> mode</h>
 
 Configures the ingress service pool mode. You can specify `static` or `dynamic`.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1251,6 +1060,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 
 Configures the ingress service pool reserved buffer allocation in bytes. You can specify a value between 0 and 4294967295.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1274,6 +1087,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 
 Configures the ingress service pool dynamic shared buffer alpha allocation.
 
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1296,6 +1113,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 ## <h>nv set qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\> shared-bytes</h>
 
 Configures the ingress service pool static shared buffer allocation in bytes. You can specify a value between 0 and 4294967295.
+
+{{%notice note%}}
+Only modify this command setting if you are an advanced user.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1473,12 +1294,6 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-b
 Configures <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span>; an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
 
 ECN operates by having a transit switch that marks packets between two end hosts. You use ECN with RDMA over Converged Ethernet (RoCE).
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\></h>
-
-Configures traffic class settings for the specified ECN profile.
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -1814,6 +1629,11 @@ cumulus@switch:~$ nv set qos link-pause my_pause_ports cable-length 50
 
 Configures the port buffer allocation in bytes for the specified link pause profile.
 
+{{%notice note%}}
+- The headroom equals the `port-buffer` setting plus the `xoff-threshold` setting.
+- NVIDIA recommends you do not manually change this setting but let Cumulus Linux configure the setting dynamically.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1994,7 +1814,23 @@ cumulus@switch:~$ nv set qos mapping default-global pcp 0 switch-priority 4
 
 ## <h>nv set qos mapping \<profile-id\> port-default-sp</h>
 
-Assigns all traffic to a specific switch priority regardless of the ingress marking.
+Assigns all the traffic to a specific internal switch priority if the trust configuration on the port is set to `port` or as per the fallback mechanism when incoming traffic does not match the port trust setting.
+
+| Trust Setting | VLAN Tagged? | IP or Non-IP | Result |
+| ------ | ------ | -------- | -------- |
+| Layer 2 | yes | IP | Accept incoming 802.1p marking |
+| Layer 2 | yes | no IP | Accept incoming 802.1p markin |
+| Layer 2 | no | IP | Use the default priority setting |
+| Layer 2 | no | non IP | Use the default priority setting |
+| Layer 3 | yes | IP | Accept incoming DSCP IP header marking |
+| Layer 3 | yes | non IP | Use the default priority setting |
+| Layer 3 | no | IP | Accept incoming DSCP IP header marking |
+| Layer 3 | no | non IP | Use the default priority setting |
+| Both | yes | IP | Accept incoming DSCP IP header marking |
+| Both | yes | non IP | Accept incoming 802.1p marking
+| Both | no | IP | Accept incoming DSCP IP header marking |
+| Both | no | non IP | Use the default priority setting |
+| Port | either | both | Ignore any existing markings and use the default priority setting |
 
 ### Command Syntax
 
@@ -2084,6 +1920,11 @@ cumulus@switch:~$ nv set qos pfc default-global cable-length 50
 
 Configures the port buffer allocation in bytes for the specified PFC profile.
 
+{{%notice note%}}
+- The headroom equals the `port-buffer` setting plus the `xoff-threshold` setting.
+- NVIDIA recommends you do not manually change this setting but let Cumulus Linux configure the setting dynamically.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -2172,6 +2013,10 @@ cumulus@switch:~$ nv set qos pfc default-global tx enable
 
 Configures the frame transmission stop threshold in bytes for the specified PFC profile.
 
+{{%notice note%}}
+NVIDIA recommends you do not manually change this setting but let Cumulus Linux configure the setting dynamically.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -2194,6 +2039,10 @@ cumulus@switch:~$ nv set qos pfc default-global xoff-threshold 1000
 
 Configures the frame transmission start threshold in bytes for the specified PFC profile.
 
+{{%notice note%}}
+NVIDIA recommends you do not manually change this setting but let Cumulus Linux configure the setting dynamically.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -2215,6 +2064,9 @@ cumulus@switch:~$ nv set qos pfc default-global xon-threshold 10000
 ## <h>nv set qos remark \<profile-id\></h>
 
 Configures 802.1p or DSCP traffic marking.
+
+You can use profiles to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value. To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark 802.1p or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
+
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -2344,32 +2196,20 @@ cumulus@switch:~$ nv set qos roce mode lossy
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set qos traffic-pool \<traffic-pool-id\></h>
-
-Configures the Q0S traffic pool ID.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<traffic-pool-id>` | The traffic pool ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv set qos traffic-pool 3
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv set qos traffic-pool \<traffic-pool-id\> memory-percent</h>
 
 Configures the percent of memory allocated to the specified traffic pool.
 
+Cumulus Linux supports adjusting the following traffic pools:
+
+| Traffic Pool | Description |
+| ------------ | ----------- |
+| `default-lossy` | The default traffic pool for all switch priorities.|
+| `default-lossless` | The traffic pool for lossless traffic when you enable flow control.|
+| `mc-lossy` | The traffic pool for multicast traffic.|
+| `roce-lossy` | The traffic pool for RoCE lossy mode.|
+| `roce-lossless` | The traffic pool for RoCE lossless mode.|
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -2383,7 +2223,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos traffic-pool 3 memory percent 80
+cumulus@switch:~$ nv set qos traffic-pool default-lossy memory percent 80
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2392,6 +2232,16 @@ cumulus@switch:~$ nv set qos traffic-pool 3 memory percent 80
 
 Configures the QoS switch priority for the specified traffic pool.
 
+Cumulus Linux supports adjusting the following traffic pools:
+
+| Traffic Pool | Description |
+| ------------ | ----------- |
+| `default-lossy` | The default traffic pool for all switch priorities.|
+| `default-lossless` | The traffic pool for lossless traffic when you enable flow control.|
+| `mc-lossy` | The traffic pool for multicast traffic.|
+| `roce-lossy` | The traffic pool for RoCE lossy mode.|
+| `roce-lossless` | The traffic pool for RoCE lossless mode.|
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -2405,7 +2255,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos traffic-pool 3
+cumulus@switch:~$ nv set qos traffic-pool default-lossy switch-priority 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

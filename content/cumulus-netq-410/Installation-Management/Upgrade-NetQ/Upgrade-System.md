@@ -111,6 +111,8 @@ If you are upgrading a cluster deployment from NetQ v4.8.0 or earlier, you must 
 
 {{%/notice%}}
 
+5. {{<link url="Switch-Management/#decommission-a-switch-with-lcm" text="Decommission devices">}} that display a 'rotten' or unreachable state.
+
 ### Upgrade Using the NetQ CLI
 
 1. Run the appropriate commands for your deployment type:

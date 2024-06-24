@@ -2524,6 +2524,16 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos egress-shaper
+Profile  port-max-rate  Summary                      
+-------  -------------  -----------------------------
+shaper1  200000         Egress Shaper min/max rate: 0
+                        Egress Shaper min/max rate: 1
+                        Egress Shaper min/max rate: 2
+                        Egress Shaper min/max rate: 3
+                        Egress Shaper min/max rate: 4
+                        Egress Shaper min/max rate: 5
+                        Egress Shaper min/max rate: 6
+                        Egress Shaper min/max rate: 7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2546,6 +2556,22 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos egress-shaper shaper1
+               operational  applied
+-------------  -----------  -------
+port-max-rate  200000       200000
+
+Egress Shaper min/max rate
+=============================
+    traffic-class  min-rate(kbps)  max-rate(kbps)
+    -------------  --------------  --------------
+    0              0               0             
+    1              0               0             
+    2              100             500           
+    3              0               0             
+    4              0               0             
+    5              0               0             
+    6              0               0             
+    7              0               0   
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2568,6 +2594,16 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos egress-shaper shaper1 traffic-class
+traffic-class  min-rate(kbps)  max-rate(kbps)
+-------------  --------------  --------------
+0              0               0             
+1              0               0             
+2              100             500           
+3              0               0             
+4              0               0             
+5              0               0             
+6              0               0             
+7              0               0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2591,6 +2627,10 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos egress-shaper shaper1 traffic-class 2
+          operational  applied
+--------  -----------  -------
+min-rate  100          100    
+max-rate  500          500 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2607,6 +2647,9 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos link-pause
+Profile         Cable Length  Port Buffer  Rx       Tx      XOff Th  XOn Th
+--------------  ------------  -----------  -------  ------  -------  ------
+my_pause_ports  50                         disable  enable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2629,6 +2672,11 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos link-pause my_pause_ports
+              operational  applied
+------------  -----------  -------
+cable-length  50           50     
+tx            enable       enable 
+rx            disable      disable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2825,6 +2873,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos pfc
+Profile         Cable Length  Port Buffer  Rx       Tx      XOff Th  XOn Th  Summary           
+--------------  ------------  -----------  -------  ------  -------  ------  ------------------
+default-global  50                         disable  enable                   switch-priority: 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2878,6 +2929,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos pfc default-global switch-priority
+switch-priority
+---------------
+0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2917,6 +2971,16 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos remark
+Profile         Rewrite  Summary                              
+--------------  -------  -------------------------------------
+default-global  l2       SP->PCP/DSCP mapping configuration: 0
+                         SP->PCP/DSCP mapping configuration: 1
+                         SP->PCP/DSCP mapping configuration: 2
+                         SP->PCP/DSCP mapping configuration: 3
+                         SP->PCP/DSCP mapping configuration: 4
+                         SP->PCP/DSCP mapping configuration: 5
+                         SP->PCP/DSCP mapping configuration: 6
+                         SP->PCP/DSCP mapping configuration: 7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2939,6 +3003,22 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos remark default-global
+         operational  applied
+-------  -----------  -------
+rewrite  l2           l2     
+
+SP->PCP/DSCP mapping configuration
+=====================================
+    switch-priority  pcp  dscp
+    ---------------  ---  ----
+    0                4    0   
+    1                1    8   
+    2                2    16  
+    3                3    24  
+    4                4    32  
+    5                5    40  
+    6                6    48  
+    7                7    56  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2960,7 +3040,17 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show qos remark default-global switch-priority
+cumulus@switch:~$ nv show qos remark default-global 
+switch-priority  pcp  dscp
+---------------  ---  ----
+0                4    0   
+1                1    8   
+2                2    16  
+3                3    24  
+4                4    32  
+5                5    40  
+6                6    48  
+7                7    56
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2984,6 +3074,10 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos remark default-global switch-priority 2
+      operational  applied
+----  -----------  -------
+pcp   2            2      
+dscp  16           16
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

@@ -432,10 +432,6 @@ Introduced in Cumulus Linux 5.5.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 counters qos egress-queue-stats
-
-ECN configuration
-====================
 cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos egress-queue-stats
 traffic-class  tx-frames  tx-bytes  tx-uc-buffer-discards  wred-discards
 -------------  ---------  --------  ---------------------  -------------
@@ -868,7 +864,7 @@ tx  disable
 
 ## <h>nv show interface \<interface-id\> qos mapping</h>
 
-Shows QoS mapping configuration settings for the specified interface.
+Shows QoS ingress classification configuration settings for the specified interface.
 
 ### Command Syntax
 
@@ -910,7 +906,7 @@ DSCP->SP mapping configuration
 
 ## <h>nv show interface \<interface-id\> qos mapping dscp</h>
 
-Shows DSCP mapping configuration settings for the specified interface.
+Shows ingress classification configuration settings for DSCP to switch priority mapping for the specified interface.
 
 ### Command Syntax
 
@@ -932,7 +928,7 @@ cumulus@switch:~$ nv show interface swp5 qos mapping dscp
 
 ## <h>nv show interface \<interface-id\> qos mapping dscp \<qos-dscp-id\></h>
 
-Shows specific DSCP mapping configuration settings for the specified interface.
+Shows ingress classification configuration settings for specific DSCP to switch priority mapping for the specified interface.
 
 ### Command Syntax
 
@@ -955,7 +951,7 @@ cumulus@switch:~$ nv show interface swp5 qos qos mapping dscp 22
 
 ## <h>nv show interface \<interface-id\> qos mapping pcp</h>
 
-Shows QoS 802.1p (PCP) mapping configuration settings for the specified interface.
+Shows ingress classification configuration settings for PCP to switch priority mapping for the specified interface.
 
 ### Command Syntax
 
@@ -987,7 +983,7 @@ cumulus@switch:~$ nv show interface swp1 qos mapping pcp
 
 ## <h>nv show interface \<interface-id\> qos mapping pcp \<qos-pcp-id\></h>
 
-Shows specific QoS 802.1p (PCP) mapping configuration settings for the specified interface.
+Shows ingress classification configuration settings for specific PCP to switch priority mapping for the specified interface.
 
 ### Command Syntax
 
@@ -1131,28 +1127,6 @@ pcp   2
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show interface \<interface-id\> qos roce</h>
-
-Shows a summary of RoCE information for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show interface swp5 qos roce
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv show interface \<interface-id\> qos roce counters</h>
 
 Shows RoCE counters for the specified interface.
@@ -1170,7 +1144,52 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp5 qos roce counters
+cumulus@switch:~$ nv show interface swp3 qos roce counters
+                               operational
+-----------------------------  -----------
+rx-stats
+  rx-pfc-stats
+    pause-duration             0
+    pause-packets              0
+  rx-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+    no-buffer-discard          0
+    roce-packets               0
+    roce-bytes                 0 Bytes
+    pg-max-usage               0 Bytes
+    pg-usage                   0 Bytes
+  rx-non-roce-stats
+    pg-usage                   0 Bytes
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+    no-buffer-discard          0
+    non-roce-bytes             0 Bytes
+    pg-max-usage               0 Bytes
+    non-roce-packets           0
+tx-stats
+  tx-pfc-stats
+    pause-duration             0
+    pause-packets              0
+  tx-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+    roce-bytes                 0 Bytes
+    roce-packets               0
+    tc-max-usage               0 Bytes
+    tc-usage                   0 Bytes
+    unicast-no-buffer-discard  0
+  tx-non-roce-stats
+    buffer-max-usage           0 Bytes
+    buffer-usage               0 Bytes
+  tx-cnp-stats
+    cnp-bytes                  0 Bytes
+    tc-max-usage               0 Bytes
+    cnp-packets                0
+    tc-usage                   0 Bytes
+    unicast-no-buffer-discard  0
+  tx-ecn-stats
+    ecn-marked-packets         0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1251,7 +1270,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp5 qos roce pool-map
+cumulus@switch:~$ nv show interface swp5 qos roce status pool-map
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1273,7 +1292,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp5 qos roce prio-map
+cumulus@switch:~$ nv show interface swp5 qos roce status prio-map
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1570,32 +1589,36 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-lossless-buffer
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos advance-buffer-config \<profile-id\> egress-lossy-buffer</h>
+
+Shows egress lossy buffer configuration settings for the specified QoS advanced buffer profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
 cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-lossy-buffer
-                             operational  applied
----------------------------  -----------  -------
-[multicast-switch-priority]  0            0      
-[multicast-switch-priority]  1            1      
-[multicast-switch-priority]  2            2      
-[multicast-switch-priority]  3            3      
-[multicast-switch-priority]  4            4      
-[multicast-switch-priority]  5            5      
-[multicast-switch-priority]  6            6      
-[multicast-switch-priority]  7            7      
-[traffic-class]              0            0      
-[traffic-class]              1            1      
-[traffic-class]              2            2      
-[traffic-class]              3            3      
-[traffic-class]              4            4      
-[traffic-class]              5            5      
-[traffic-class]              6            6      
-[traffic-class]              7            7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-port</h>
 
-Shows egress lossless buffer multicast port configuration settings for the specified QoS advanced buffer profile.
+Shows egress lossy buffer multicast port configuration settings for the specified QoS advanced buffer profile.
 
 ### Command Syntax
 
@@ -1617,7 +1640,7 @@ cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-lossy-
 
 ## <h>nv show qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-switch-priority</h>
 
-Shows egress lossless buffer multicast switch priority configuration settings for the specified QoS advanced buffer profile.
+Shows egress lossy buffer multicast switch priority configuration settings for the specified QoS advanced buffer profile.
 
 ### Command Syntax
 
@@ -1649,7 +1672,7 @@ switch-priority  reserved  service-pool  shared-alpha  shared-bytes
 
 ## <h>nv show qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-switch-priority \<qos-sp-id\></h>
 
-Shows configuration settings for a specific egress lossless buffer multicast switch priority for the specified QoS advanced buffer profile.
+Shows configuration settings for a specific egress lossy buffer multicast switch priority for the specified QoS advanced buffer profile.
 
 ### Command Syntax
 
@@ -1675,7 +1698,7 @@ service-pool  0            0
 
 ## <h>nv show qos advance-buffer-config \<profile-id\> egress-lossy-buffer traffic-class</h>
 
-Shows egress lossless buffer traffic class configuration settings for the specified QoS advanced buffer profile.
+Shows egress lossy buffer traffic class configuration settings for the specified QoS advanced buffer profile.
 
 ### Command Syntax
 
@@ -1707,7 +1730,7 @@ traffic-class  reserved  service-pool  shared-alpha  shared-bytes
 
 ## <h>nv show qos advance-buffer-config \<profile-id\> egress-lossy-buffer traffic-class \<traffic-class-id\></h>
 
-Shows configuration settings for a specific egress lossless buffer traffic class for the specified QoS advanced buffer profile.
+Shows configuration settings for a specific egress lossy buffer traffic class for the specified QoS advanced buffer profile.
 
 ### Command Syntax
 
@@ -2009,7 +2032,7 @@ mode            dynamic      dynamic
 
 ## <h>nv show qos buffer</h>
 
-Shows QoS buffer configuration.
+Shows global QoS buffer configuration.
 
 ### Version History
 
@@ -2053,7 +2076,7 @@ Buffer - Multicast Switch Priority
 
 ## <h>nv show qos buffer pool</h>
 
-Shows QoS buffer traffic pool configuration.
+Shows QoS buffer pool configuration and occupancy.
 
 ### Version History
 
@@ -2483,6 +2506,16 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos egress-shaper
+Profile  port-max-rate  Summary                      
+-------  -------------  -----------------------------
+shaper1  200000         Egress Shaper min/max rate: 0
+                        Egress Shaper min/max rate: 1
+                        Egress Shaper min/max rate: 2
+                        Egress Shaper min/max rate: 3
+                        Egress Shaper min/max rate: 4
+                        Egress Shaper min/max rate: 5
+                        Egress Shaper min/max rate: 6
+                        Egress Shaper min/max rate: 7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2505,6 +2538,22 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos egress-shaper shaper1
+               operational  applied
+-------------  -----------  -------
+port-max-rate  200000       200000
+
+Egress Shaper min/max rate
+=============================
+    traffic-class  min-rate(kbps)  max-rate(kbps)
+    -------------  --------------  --------------
+    0              0               0             
+    1              0               0             
+    2              100             500           
+    3              0               0             
+    4              0               0             
+    5              0               0             
+    6              0               0             
+    7              0               0   
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2527,6 +2576,16 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos egress-shaper shaper1 traffic-class
+traffic-class  min-rate(kbps)  max-rate(kbps)
+-------------  --------------  --------------
+0              0               0             
+1              0               0             
+2              100             500           
+3              0               0             
+4              0               0             
+5              0               0             
+6              0               0             
+7              0               0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2550,6 +2609,10 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos egress-shaper shaper1 traffic-class 2
+          operational  applied
+--------  -----------  -------
+min-rate  100          100    
+max-rate  500          500 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2566,6 +2629,9 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos link-pause
+Profile         Cable Length  Port Buffer  Rx       Tx      XOff Th  XOn Th
+--------------  ------------  -----------  -------  ------  -------  ------
+my_pause_ports  50                         disable  enable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2588,6 +2654,11 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos link-pause my_pause_ports
+              operational  applied
+------------  -----------  -------
+cable-length  50           50     
+tx            enable       enable 
+rx            disable      disable
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2784,6 +2855,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos pfc
+Profile         Cable Length  Port Buffer  Rx       Tx      XOff Th  XOn Th  Summary           
+--------------  ------------  -----------  -------  ------  -------  ------  ------------------
+default-global  50                         disable  enable                   switch-priority: 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2837,6 +2911,9 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show qos pfc default-global switch-priority
+switch-priority
+---------------
+0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2876,6 +2953,16 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos remark
+Profile         Rewrite  Summary                              
+--------------  -------  -------------------------------------
+default-global  l2       SP->PCP/DSCP mapping configuration: 0
+                         SP->PCP/DSCP mapping configuration: 1
+                         SP->PCP/DSCP mapping configuration: 2
+                         SP->PCP/DSCP mapping configuration: 3
+                         SP->PCP/DSCP mapping configuration: 4
+                         SP->PCP/DSCP mapping configuration: 5
+                         SP->PCP/DSCP mapping configuration: 6
+                         SP->PCP/DSCP mapping configuration: 7
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2898,6 +2985,22 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos remark default-global
+         operational  applied
+-------  -----------  -------
+rewrite  l2           l2     
+
+SP->PCP/DSCP mapping configuration
+=====================================
+    switch-priority  pcp  dscp
+    ---------------  ---  ----
+    0                4    0   
+    1                1    8   
+    2                2    16  
+    3                3    24  
+    4                4    32  
+    5                5    40  
+    6                6    48  
+    7                7    56  
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2919,7 +3022,17 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show qos remark default-global switch-priority
+cumulus@switch:~$ nv show qos remark default-global 
+switch-priority  pcp  dscp
+---------------  ---  ----
+0                4    0   
+1                1    8   
+2                2    16  
+3                3    24  
+4                4    32  
+5                5    40  
+6                6    48  
+7                7    56
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -2943,6 +3056,10 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@switch:~$ nv show qos remark default-global switch-priority 2
+      operational  applied
+----  -----------  -------
+pcp   2            2      
+dscp  16           16
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3021,7 +3138,7 @@ Exception List
 
 ## <h>nv show qos roce prio-map</h>
 
-Shows QoS ROCE priority map configuration.
+Shows QoS RoCE classification configuration settings.
 
 ### Version History
 
@@ -3073,7 +3190,7 @@ cumulus@switch:~$ nv show qos roce tc-map
 
 ## <h>nv show qos roce pool-map</h>
 
-Shows QoS ROCE traffic pool map configuration.
+Shows QoS RoCE buffer pool map configuration.
 
 ### Version History
 
@@ -3095,7 +3212,7 @@ cumulus@switch:~$ nv show qos roce pool-map
 
 ## <h>nv show qos roce pool</h>
 
-Shows QoS ROCE traffic pool configuration.
+Shows QoS RoCE buffer pool usage.
 
 ### Version History
 
@@ -3109,22 +3226,6 @@ cumulus@switch:~$ nv show qos roce pool
 -  ---------------------  -------  -------  --------  -------------  ---------
 0  lossy-default-ingress  DYNAMIC  2        14.46 MB  0 Bytes        0 Bytes  
 2  lossy-default-egress   DYNAMIC  13       14.46 MB  0 Bytes        0 Bytes
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
-## <h>nv show qos traffic-pool</h>
-
-Shows QoS traffic pool configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show qos traffic-pool
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -3218,7 +3319,7 @@ Introduced in Cumulus Linux 5.6.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show qos qos pfc-watchdog
+cumulus@switch:~$ nv show qos pfc-watchdog
                   operational  applied       
 ----------------  -----------  --------------
 polling-interval  0:00:00      0:00:00.100000

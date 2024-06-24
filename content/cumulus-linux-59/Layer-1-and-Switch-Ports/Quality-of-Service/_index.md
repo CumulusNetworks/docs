@@ -555,7 +555,7 @@ Cumulus Linux also includes frame transmission start and stop threshold, and por
 cumulus@switch:~$ nv set qos link-pause my_pause_ports tx enable
 cumulus@switch:~$ nv set qos link-pause my_pause_ports rx disable
 cumulus@switch:~$ nv set qos link-pause my_pause_ports cable-length 50
-cumulus@switch:~$ nv set interface swp1-swp4,swp6 qos link-pause profile my_pause_ports
+cumulus@switch:~$ nv set interface swp1-4,swp6 qos link-pause profile my_pause_ports
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1052,7 +1052,7 @@ The following example configuration:
 cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 min-rate 100
 cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 max-rate 500
 cumulus@switch:~$ nv set qos egress-shaper shaper1 port-max-rate 200000
-cumulus@switch:~$ nv set interface swp1-swp3,swp5 qos egress-shaper profile shaper1
+cumulus@switch:~$ nv set interface swp1-3,swp5 qos egress-shaper profile shaper1
 cumulus@switch:~$ nv config apply
 ```
 

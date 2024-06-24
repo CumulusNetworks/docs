@@ -183,7 +183,7 @@ cumulus@switch:~$ nv config apply
 The following example enables the counter histogram on swp1 through swp8 and uses the global settings for the minimum boundary size, histogram size, and the sampling interval. The histogram monitors all received packet counters on ports 1 through 8:
 
 ```
-cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet
+cumulus@switch:~$ nv set interface swp1-8 telemetry histogram counter counter-type rx-packet
 cumulus@switch:~$ nv config apply
 ```
 
@@ -592,16 +592,16 @@ In addition to snapshots, you can configure the switch to send log messages to t
 The following example sends a message to the `/var/log/syslog` file after the ingress queue length for priority group 1 on swp9 through swp16 reaches 5000 bytes:
 
 ```
-cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 threshold action log
-cumulus@switch:~$ nv set interface swp9-swp16 telemetry histogram ingress-buffer priority-group 1 threshold value 5000
+cumulus@switch:~$ nv set interface swp9-16 telemetry histogram ingress-buffer priority-group 1 threshold action log
+cumulus@switch:~$ nv set interface swp9-16 telemetry histogram ingress-buffer priority-group 1 threshold value 5000
 cumulus@switch:~$ nv config apply
 ```
 
 The following example sends a message to the `/var/log/syslog` file after the number of received packets on swp1 through swp8 reaches 500:
 
 ```
-cumulus@switch:~$ nv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet threshold log
-cumulus@switch:~$ nnv set interface swp1-swp8 telemetry histogram counter counter-type rx-packet threshold value 500
+cumulus@switch:~$ nv set interface swp1-8 telemetry histogram counter counter-type rx-packet threshold log
+cumulus@switch:~$ nnv set interface swp1-8 telemetry histogram counter counter-type rx-packet threshold value 500
 cumulus@switch:~$ nv config apply
 ```
 

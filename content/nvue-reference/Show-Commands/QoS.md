@@ -1594,6 +1594,28 @@ cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-lossle
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show qos advance-buffer-config \<profile-id\> egress-lossy-buffer</h>
+
+Shows egress lossy buffer configuration settings for the specified QoS advanced buffer profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-lossy-buffer
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-port</h>
 
 Shows egress lossy buffer multicast port configuration settings for the specified QoS advanced buffer profile.

@@ -1631,7 +1631,7 @@ Configures the port buffer allocation in bytes for the specified link pause prof
 
 {{%notice note%}}
 - The headroom equals the `port-buffer` setting plus the `xoff-threshold` setting.
-- NVIDIA recommends you do not manually change this setting but let Cumulus Linux configure the setting dynamically.
+- NVIDIA recommends you do **not** manually change this setting but let Cumulus Linux configure the setting dynamically.
 {{%/notice%}}
 
 ### Command Syntax
@@ -1814,23 +1814,23 @@ cumulus@switch:~$ nv set qos mapping default-global pcp 0 switch-priority 4
 
 ## <h>nv set qos mapping \<profile-id\> port-default-sp</h>
 
-Assigns all the traffic to a specific internal switch priority if the trust configuration on the port is set to `port` or as per the fallback mechanism when incoming traffic does not match the port trust setting.
+Assigns all the traffic to a specific internal switch priority if the trust configuration on the port is set to `port` or according to the fallback mechanism when incoming traffic does not match the port trust setting.
 
 | Trust Setting | VLAN Tagged? | IP or Non-IP | Result |
 | ------ | ------ | -------- | -------- |
-| Layer 2 | yes | IP | Accept incoming 802.1p marking |
-| Layer 2 | yes | no IP | Accept incoming 802.1p markin |
-| Layer 2 | no | IP | Use the default priority setting |
-| Layer 2 | no | non IP | Use the default priority setting |
-| Layer 3 | yes | IP | Accept incoming DSCP IP header marking |
-| Layer 3 | yes | non IP | Use the default priority setting |
-| Layer 3 | no | IP | Accept incoming DSCP IP header marking |
-| Layer 3 | no | non IP | Use the default priority setting |
-| Both | yes | IP | Accept incoming DSCP IP header marking |
-| Both | yes | non IP | Accept incoming 802.1p marking
-| Both | no | IP | Accept incoming DSCP IP header marking |
-| Both | no | non IP | Use the default priority setting |
-| Port | either | both | Ignore any existing markings and use the default priority setting |
+| Layer 2 | yes | IP | Accept incoming 802.1p marking. |
+| Layer 2 | yes | non IP | Accept incoming 802.1p marking. |
+| Layer 2 | no | IP | Use the default priority setting. |
+| Layer 2 | no | non IP | Use the default priority setting. |
+| Layer 3 | yes | IP | Accept incoming DSCP IP header marking. |
+| Layer 3 | yes | non IP | Use the default priority setting. |
+| Layer 3 | no | IP | Accept incoming DSCP IP header marking. |
+| Layer 3 | no | non IP | Use the default priority setting. |
+| Both | yes | IP | Accept incoming DSCP IP header marking. |
+| Both | yes | non IP | Accept incoming 802.1p marking.
+| Both | no | IP | Accept incoming DSCP IP header marking. |
+| Both | no | non IP | Use the default priority setting. |
+| Port | either | either | Ignore any existing markings and use the default priority setting. |
 
 ### Command Syntax
 
@@ -1922,7 +1922,7 @@ Configures the port buffer allocation in bytes for the specified PFC profile.
 
 {{%notice note%}}
 - The headroom equals the `port-buffer` setting plus the `xoff-threshold` setting.
-- NVIDIA recommends you do not manually change this setting but let Cumulus Linux configure the setting dynamically.
+- NVIDIA recommends you do **not** manually change this setting but let Cumulus Linux configure the setting dynamically.
 {{%/notice%}}
 
 ### Command Syntax
@@ -2014,7 +2014,7 @@ cumulus@switch:~$ nv set qos pfc default-global tx enable
 Configures the frame transmission stop threshold in bytes for the specified PFC profile.
 
 {{%notice note%}}
-NVIDIA recommends you do not manually change this setting but let Cumulus Linux configure the setting dynamically.
+NVIDIA recommends you do **not** manually change this setting but let Cumulus Linux configure the setting dynamically.
 {{%/notice%}}
 
 ### Command Syntax
@@ -2040,7 +2040,7 @@ cumulus@switch:~$ nv set qos pfc default-global xoff-threshold 1000
 Configures the frame transmission start threshold in bytes for the specified PFC profile.
 
 {{%notice note%}}
-NVIDIA recommends you do not manually change this setting but let Cumulus Linux configure the setting dynamically.
+NVIDIA recommends you do **not** manually change this setting but let Cumulus Linux configure the setting dynamically.
 {{%/notice%}}
 
 ### Command Syntax

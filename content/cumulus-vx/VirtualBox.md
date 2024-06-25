@@ -25,9 +25,7 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 ### Create the VMs
 
 {{%notice note%}}
-The Cumulus VX OVA image defines the CPU, memory, and disk requirements. Cumulus VX requires at least 768MB of RAM and 6GB of disk space.
-
-CumulusVX versions 4.3 and later requires 2 vCPUs.
+The Cumulus VX OVA image defines the CPU, memory, and disk requirements. Cumulus VX requires at least 768MB of RAM and 6GB of disk space. CumulusVX versions 4.3 and later require 2 vCPUs.
 
 {{%/notice%}}
 
@@ -136,7 +134,7 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 
 4. Power on the VMs.
 
-## Log into the Switches
+## Log in to the Switches
 
 {{% vx/login %}}
 

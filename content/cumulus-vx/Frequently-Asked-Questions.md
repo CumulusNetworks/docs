@@ -26,22 +26,22 @@ The intent of Cumulus VX is for simulation, testing, and training. Cumulus Linux
 
 ### What is the difference between Cumulus VX and Cumulus AIR?
 
-Cumulus VX is a free virtual appliance with the Cumulus Linux operating system. You can install Cumulus VX on a supported hypervisor and configure the VMs with the reference topology or create your own topology. {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA AIR">}} is a cloud hosted, network simulation platform that behaves exactly like a real world production environment. You use NVIDIA Air to create a digital twin of your IT infrastructure.
+Cumulus VX is a free virtual appliance with the Cumulus Linux operating system. You can install Cumulus VX on a supported hypervisor and configure the VMs with the reference topology or create your own topology. {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA Air">}} is a cloud hosted, network simulation platform that behaves exactly like a real world production environment. You use NVIDIA Air to create a digital twin of your IT infrastructure.
 
 <!-- vale off -->
 ### I have platform and disk limitations for Cumulus VX, how do I try Cumulus Linux?
 <!-- vale on -->
 
-Try {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA AIR">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA Networking technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
+Try {{<exlink url="https://www.nvidia.com/en-us/networking/ethernet-switching/air/" text="NVIDIA Air">}}, which is a free, personal, virtual data center network that provides a low-effort way to see NVIDIA Networking technology in action. This is a good way to try out Cumulus Linux if you have platform or disk limitations.
 
 <!-- vale off -->
-### How do I log into the Cumulus VX switches?
+### How do I log in to the Cumulus VX switches?
 <!-- vale on -->
 
-- For Cumulus VX 4.1.1 and earlier, log into each switch with the `cumulus` account and default password `CumulusLinux!`. You are **not** prompted to change the default password.
-- For Cumulus VX 4.2 and later, log into each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, the OS prompts you to change the default password.
+- For Cumulus VX 4.1.1 and earlier, log in to each switch with the `cumulus` account and default password `CumulusLinux!`. You are **not** prompted to change the default password.
+- For Cumulus VX 4.2 and later, log in to each switch with the `cumulus` account and default password `cumulus`. When you log in for the first time, the OS prompts you to change the default password.
 
-For more information on the required password change, see the [Cumulus Linux documentation]({{<ref "/cumulus-linux-43/Quick-Start-Guide/#login-credentials" >}}).
+For more information on the required password change, see the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Quick-Start-Guide/" text="Cumulus Linux documentation">}}.
 
 <!-- vale off -->
 ### Why do I see the failure: Unable to find storage device for file system with label *ONIE-BOOT*?

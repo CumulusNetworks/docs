@@ -42,9 +42,11 @@ Follow these steps for each VM (leaf01, leaf02, and spine01):
 
    CumulusVX versions 4.3 and later requires 2 vCPUs.
 
+   CumulusVX versions 5.0 and later require 2GB of RAM
+   
    {{% /notice %}}
 
-7. Repeat the previous steps to create two additional VMs: `leaf02` and `spine01`.
+8. Repeat the previous steps to create two additional VMs: `leaf02` and `spine01`.
 
 ### Create Network Connections
 

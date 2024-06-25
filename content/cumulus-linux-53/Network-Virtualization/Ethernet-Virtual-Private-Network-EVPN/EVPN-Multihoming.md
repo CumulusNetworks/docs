@@ -139,9 +139,9 @@ To configure bond interfaces for EVPN-MH:
 {{<tabs "bond configuration">}}
 {{<tab "NVUE Commands">}}
 
-You can either set both the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically or set the ESI manually. Both options are shown below.
+You can either set both the local Ethernet segment ID and the segment MAC address to generate a unique ESI automatically or set the 10-byte Ethernet segment ID manually, then set the segment MAC address. You can see both options below.
 
-The following example commands configure each bond interface with the local Ethernet segment ID and the system MAC address to generate a unique ESI automatically:
+The following example commands configure each bond interface with the local Ethernet segment ID and the segment MAC address to generate a unique ESI automatically:
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
@@ -155,7 +155,7 @@ cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preferenc
 cumulus@leaf01:~$ nv config apply
 ```
 
-The following example commands configure each bond interface with an Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. If you configure the 10-byte Ethernet segment ID, ensure that the local ID and MAC address configuration is not present.
+The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. When you configure the 10-byte Ethernet segment ID, ensure that the local ID is not present. You must also configure the segment MAC address. The example configures a global segment MAC address for use on all the Ethernet segment bonds.
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
@@ -165,13 +165,16 @@ cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment identifier 00:
 cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:02
 cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment identifier 00:44:38:39:BE:EF:AA:00:00:03
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
+cumulus@leaf01:~$ nv set evpn multihoming segment mac-address 44:38:39:ff:ff:01
 cumulus@leaf01:~$ nv config apply
 ```
 
 {{</tab>}}
 {{<tab "vtysh Commands">}}
 
-1. Configure the ESI on each bond interface with the local Ethernet segment ID and the system MAC address:
+The following example commands configure each bond interface with the local Ethernet segment ID and the segment MAC address to generate a unique ESI automatically:
+
+1. Configure the ESI on each bond interface with the local Ethernet segment ID and the segment MAC address:
 
    ```
    cumulus@leaf01:~$ sudo vtysh
@@ -220,10 +223,10 @@ cumulus@leaf01:~$ nv config apply
    !
    ```
 
-2. Add the system MAC address to the bond interfaces in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+2. Add the segment MAC address to the bond interfaces in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
 
    ```
-   cumulus@leaf01:~$ sudo cat /etc/network/interfaces
+   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
    ...
    interface bond1
      bond-slaves swp1
@@ -242,6 +245,66 @@ cumulus@leaf01:~$ nv config apply
    cumulus@leaf01:~$ sudo ifreload -a
    ```
 
+The following example commands configure each bond interface with the Ethernet segment ID manually. The ID must be a 10-byte (80-bit) integer and must be unique. When you configure the 10-byte Ethernet segment ID, ensure that the local ID is not present. You must also configure the segment MAC address separately. The example configures a global segment MAC address for use on all the Ethernet segment bonds.
+
+1. Configure each bond interface with the Ethernet segment ID manually:
+
+   ```
+   cumulus@leaf01:~$ sudo vtysh
+   leaf01# configure terminal
+   leaf01(config)# interface bond1
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+   leaf01(config-if)# exit
+   leaf01(config)# interface bond2
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+   leaf01(config-if)# exit
+   leaf01(config)# interface bond3
+   leaf01(config-if)# evpn mh es-df-pref 50000
+   leaf01(config-if)# evpn mh es-id 00:44:38:39:be:ef:aa:00:00:03
+   leaf01(config-if)# exit
+   leaf01(config)# write memory
+   leaf01(config)# exit
+   leaf01# exit
+   cumulus@leaf01:~$
+   ```
+
+   The vtysh commands create the following configuration in the `/etc/frr/frr.conf` file.
+
+   ```
+   cumulus@leaf01:~$ sudo cat /etc/frr/frr.conf
+   ...
+   interface bond1
+   evpn mh es-df-pref 50000
+   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:01
+   interface bond2
+   evpn mh es-df-pref 50000
+   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:02
+   interface bond3
+   evpn mh es-df-pref 50000
+   evpn mh es-id 00:44:38:39:BE:EF:AA:00:00:03
+   ...
+   ```
+
+2. Add the segment MAC address to the bond interfaces in the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+   ```
+   cumulus@leaf01:~$ sudo nano /etc/network/interfaces
+   ...
+   interface bond1
+     bond-slaves swp1
+     es-sys-mac 44:38:39:BE:EF:AA
+   
+   interface bond2
+     bond-slaves swp2
+     es-sys-mac 44:38:39:BE:EF:AA
+   
+   interface bond3
+     bond-slaves swp3
+     es-sys-mac 44:38:39:BE:EF:AA
+   ```
+  
 {{</tab>}}
 {{</tabs>}}
 

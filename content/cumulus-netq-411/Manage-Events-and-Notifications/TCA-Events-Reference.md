@@ -195,7 +195,7 @@ This reference lists the threshold-based events that NetQ supports. You can view
 | Power supply watts | TCA_SENSOR_POWER_UPPER| Power supply output exceeded user-defined maximum threshold on a switch |
 | Power supply volts | TCA_SENSOR_VOLTAGE_UPPER  | Power supply voltage exceeded user-defined maximum threshold on a switch |
 | Switch temperature | TCA_SENSOR_TEMPERATURE_UPPER  | Temperature (&deg; C) exceeded user-defined maximum threshold on a switch |
-| Sensor state |  | Sensor state changes from good to bad or absent |
+| Sensor state |  | Sensor state changed from good to either bad or absent |
 
 ## What Just Happened
 

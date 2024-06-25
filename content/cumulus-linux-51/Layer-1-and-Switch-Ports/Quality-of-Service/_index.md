@@ -11,7 +11,7 @@ Cumulus Linux supports several different [QoS](## "Quality of Service") features
 - [COS](## "Class of Service") and [DSCP](## "Differentiated Services Code Point") marking and remarking
 - Shaping and policing
 - Egress traffic scheduling (802.1Qaz, Enhanced Transmission Selection (ETS))
-- Flow control with IEEE Pause Frames, [PFC](## "Priority Flow Control"), and [ECN](## "Explicit Congestion Notification")
+- Flow control with IEEE Pause Frames and [PFC](## "Priority Flow Control"), and congestion control with [ECN](## "Explicit Congestion Notification")
 - {{<link title="RDMA over Converged Ethernet - RoCE" text="Lossless and lossy RoCE ">}}
 
 Cumulus Linux uses two configuration files for QoS:
@@ -340,7 +340,7 @@ flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 
 ### Pause Frames
 
-Pause frames are an older congestion control mechanism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames start and stop depending on how congested the buffer is. The value that determines when pause frames start is the `xoff` value (transmit off). When the buffer congestion reaches the `xoff` point, the switch sends a pause frame to one or more neighbors. When congestion drops below the `xon` point (transmit on), the switch sends an updated pause frame so that the neighbor resumes sending traffic.
+Pause frames are an older flow control mechanism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames start and stop depending on how congested the buffer is. The value that determines when pause frames start is the `xoff` value (transmit off). When the buffer congestion reaches the `xoff` point, the switch sends a pause frame to one or more neighbors. When congestion drops below the `xon` point (transmit on), the switch sends an updated pause frame so that the neighbor resumes sending traffic.
 
 {{% notice note %}}
 Use Priority Flow Control (PFC) instead of pause frames.

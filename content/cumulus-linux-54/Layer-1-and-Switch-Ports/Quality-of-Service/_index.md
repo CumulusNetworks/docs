@@ -11,7 +11,7 @@ Cumulus Linux supports several different <span class="a-tooltip">[QoS](## "Quali
 - <span class="a-tooltip">[COS](## "Class of Service")</span> and <span class="a-tooltip">[DSCP](## "Differentiated Services Code Point")</span> marking and remarking
 - Shaping and policing
 - Egress traffic scheduling (802.1Qaz, Enhanced Transmission Selection (ETS))
-- Flow control with IEEE Pause Frames, <span class="a-tooltip">[PFC](## "Priority Flow Control")</span>, and <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span>
+- Flow control with IEEE Pause Frames and <span class="a-tooltip">[PFC](## "Priority Flow Control")</span>, and congestion control with <span class="a-tooltip">[ECN](## "Explicit Congestion Notification")</span>
 - {{<link title="RDMA over Converged Ethernet - RoCE" text="Lossless and lossy RoCE ">}}
 
 Cumulus Linux uses two configuration files for QoS:
@@ -522,7 +522,7 @@ flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 
 ### Pause Frames
 
-Pause frames are an older congestion control mechanism that causes all traffic on a link between two switches, or between a host and switch, to stop transmitting during times of congestion. Pause frames start and stop depending on buffer congestion. You configure pause frames on a per-direction, per-interface basis. You can receive pause frames to stop the switch from transmitting when requested, send pause frames to request neighboring devices to stop transmitting, or both.
+Pause frames are an older flow control mechanism that causes all traffic on a link between two switches, or between a host and switch, to stop transmitting during times of congestion. Pause frames start and stop depending on buffer congestion. You configure pause frames on a per-direction, per-interface basis. You can receive pause frames to stop the switch from transmitting when requested, send pause frames to request neighboring devices to stop transmitting, or both.
 
 {{% notice note %}}
 - NVIDIA recommends that you use Priority Flow Control (PFC) instead of pause frames.

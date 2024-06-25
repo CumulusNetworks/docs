@@ -300,13 +300,11 @@ You can configure additional settings using [Port Groups](#port-groups). {{<cl/q
 
 ## Flow Control
 
-Congestion control prevents traffic loss during times of congestion and helps identify which traffic to keep if you need to drop packets.
+Flow control influences data transmission to manage congestion along a network path.
 
-Cumulus Linux supports the following congestion control mechanisms:
-
+Cumulus Linux supports the following flow control mechanisms:
 - Pause Frames (IEEE 802.3x), sends specialized ethernet frames to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion. Pause frames are generally not recommended due to their scope of impact.
 - Priority Flow Control (PFC), which is an upgrade of Pause Frames that IEEE 802.1bb defines, extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value to pause, while other COS values or queues continue transmitting.
-- Explicit Congestion Notification (ECN). Unlike Pause Frames and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
 
 ### Flow Control Buffers
 
@@ -461,6 +459,12 @@ Unless directed by NVIDIA support or engineering, do not change these values.
 | `pfc.my_pfc_ports.tx_enable` | `pfc.my_pfc_ports.rx_enable = true` | Enable (`true`) or disable (`false`) receiving PFC pause frames. You do not need to define the COS values for `rx_enable`. The switch receives any COS value. The default value is `true`. This example enables receiving PFC pause frames. |
 | `pfc.my_pfc_ports.cable_length` | `pfc.my_pfc_ports.cable_length = 5` | The length, in meters, of the cable that attaches to the port in the port group list. Cumulus Linux uses this value internally to determine the latency between generating a PFC pause frame and receiving the PFC pause frame. The default is `10` meters. In this example, the cable is `5` meters.|
 </details>
+
+## Congestion Control
+
+Cumulus Linux supports the following congestion control mechanisms:
+- Explicit Congestion Notification (ECN). Unlike Pause Frames and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
+- Random Early Detection (RED), where the switch drops packets that are in the queue randomly instead of always dropping the last arriving packet.
 
 ### Explicit Congestion Notification (ECN)
 

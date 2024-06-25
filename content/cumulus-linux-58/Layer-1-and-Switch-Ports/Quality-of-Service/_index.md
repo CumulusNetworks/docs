@@ -464,10 +464,9 @@ To set traffic leaving interface swp11 to DSCP class value `CS6`:
 
 Flow control influences data transmission to manage congestion along a network path.
 
-Cumulus Linux supports the following congestion control mechanisms:
+Cumulus Linux supports the following flow control mechanisms:
 - Link pause (IEEE 802.3x), sends specialized ethernet frames to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion.
 - Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on a per switch priority value basis instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
-- Explicit Congestion Notification (ECN). Unlike link pause and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
 
 {{%notice note%}}
 You can not configure link pause and PFC on the same port.

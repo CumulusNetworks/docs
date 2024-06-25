@@ -55,6 +55,9 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 The following commands define the CPU, memory, and disk requirements for Cumulus VX, which requires at least 768MB of RAM and 6GB of disk space.
 
 CumulusVX versions 4.3 and later requires 2 vCPUs.
+
+CumulusVX versions 5.0 and later require 2GB of RAM
+
 {{%/notice%}}
 
    {{< tabs "TabID01 ">}}

@@ -10,6 +10,11 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 ## What's New in NetQ 4.11
 
+NetQ 4.11.0 includes the following new features and improvements:
+
+- Create a threshold crossing rule that alerts you when a sensor's state changes
+- Performance and security enhancements
+
 
 ## Upgrade Paths
 

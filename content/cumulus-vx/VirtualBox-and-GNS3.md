@@ -73,7 +73,7 @@ Create the network connections between leaf01, leaf02, and spine01, as shown in 
 
 3. Start the VMs.
 
-## Log into the Switches
+## Log in to the Switches
 
 {{% vx/login %}}
 

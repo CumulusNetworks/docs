@@ -462,10 +462,9 @@ To set traffic leaving interface swp11 to DSCP class value `CS6`:
 
 ## Flow Control
 
-Congestion control prevents traffic loss during times of congestion and helps identify which traffic to keep if you need to drop packets.
+Flow control influences data transmission to manage congestion along a network path.
 
 Cumulus Linux supports the following congestion control mechanisms:
-
 - Link pause (IEEE 802.3x), sends specialized ethernet frames to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion.
 - Priority Flow Control (PFC), which is an upgrade of link pause that IEEE 802.1bb defines, extends the pause frame concept to act on a per switch priority value basis instead of an entire link. A PFC pause frame indicates to the peer which specific switch priority value to pause, while other switch priority values or queues continue transmitting.
 - Explicit Congestion Notification (ECN). Unlike link pause and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
@@ -778,9 +777,11 @@ To show PFC watchdog data for a specific traffic class, run the `nv show interfa
 
 To clear the PFC watchdog `deadlock-count` on an interface, run the `nv action clear interface <interface> qos pfc-watchdog deadlock-count` command.
 
-### Explicit Congestion Notification (ECN)
+## Congestion Control (ECN)
 
-Unlike link pause or PFC, ECN is an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
+Explicit Congestion Notification (ECN) is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
+
+Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
 
 You use ECN with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section describes how to deploy PFC and ECN for RoCE environments.
 

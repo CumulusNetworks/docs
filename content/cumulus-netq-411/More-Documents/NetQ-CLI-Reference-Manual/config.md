@@ -236,58 +236,6 @@ cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
 
 
 - - -
-<!--removed from docs; as of 4.9 still in output
-## netq config add agent kubernetes-monitor
-
-Configures the NetQ Agent to monitor Kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds). Note that you must restart the NetQ Agent to enable the configuration.
-
-### Syntax
-
-```
-netq config add agent kubernetes-monitor
-    [poll-period <text-duration-period>]
-```
-
-### Required Arguments
-
-None
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| poll-period | \<text-duration-period\> | Collect statistics about Kubernetes containers at this frequency, in seconds |
-
-### Sample Usage
-
-Configure NetQ Agent to monitor Kubernetes containers:
-
-```
-cumulus@switch:~$ netq config add agent kubernetes-monitor
-Successfully added kubernetes monitor. Please restart netq-agent.
-
-cumulus@switch:~$ netq config restart agent
-Restarting netq-agent... Success!
-```
-
-Configure the polling frequency for Kubernetes container data collection:
-
-```
-cumulus@switch:~$ netq config add agent kubernetes-monitor poll-period 120
-Successfully added kubernetes monitor. Please restart netq-agent.
-
-cumulus@switch:~$ netq config restart agent
-Restarting netq-agent... Success!
-```
-
-### Related Commands
-
-- ```netq config show agent kubernetes-monitor```
-- ```netq config del agent kubernetes-monitor```
-- ```netq config restart agent```
-
-- - -
--->
 ## netq config add agent loglevel
 
 Configures the amount of information to log about the NetQ Agent activity, from only critical issues to every available message. Identified issues get logged to */var/log/netq-agent.log* file. The default log level is *info*.

@@ -31,10 +31,20 @@ NVIDIA SN5400 (400G Spectrum-4)
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
   - Redesigned BGP show output flags to be similar to vtysh output
   - Radius keys are encrypted in the NVUE `startup.yaml` file
+  - {{<link url="NVUE-CLI/#session-based-authentication" text="Session-based authentication">}}
   - {{< expand "Changed NVUE Commands" >}}
 | New Command| Previous Command |
 | ----------- | ----------------|
 | `nv set system config auto-save state enabled`<br>`nv set system config auto-save state disabled` | `nv set system config auto-save enable on`<br>`nv set system config auto-save enable off`|
+
+These commands include additional information in the output.
+
+| Changed Command Output | Additional Information |
+| ----------- | ----------------|
+| `nv show interface <interface>` |  |
+| `nv show interface <interface> link` | Port hardware information such as eyes, grade and troubleshooting information, if available. |
+| `nv show interface <interface> pluggable` | Cable length, date code, revision compliance, temperature, and voltage. |
+
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.
@@ -42,6 +52,8 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 {{< tab "nv show ">}}
 
 ```
+nv show interface <interface> link phy-detail 
+nv show interface <interface> link phy-diag
 nv show qos advance-buffer-config default-global egress-mgmt-buffer 
 nv show qos advance-buffer-config default-global ingress-mgmt-buffer
 ```
@@ -70,7 +82,7 @@ nv unset vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 {{< tab "nv action ">}}
 
 ```
-
+nv action clear system api session user 
 ```
 
 {{< /tab >}}

@@ -50,21 +50,20 @@ nv show qos advance-buffer-config default-global ingress-mgmt-buffer
 {{< tab "nv set ">}}
 
 ```
-nv set interface <interface> link mac-address <mac-address>
+nv set interface <interface> link mac-address
 nv set system ssh-server login-record-period
 nv set qos advance-buffer-config default-global egress-mgmt-buffer 
 nv set qos advance-buffer-config default-global ingress-mgmt-buffer
 nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group <priority-group> headroom
-<bytes>
-nv set vrf default router bgp neighbor swp51 graceful-shutdown on|off
+nv set vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 ```
 
 {{< /tab >}}
 {{< tab "nv unset ">}}
 
 ```
-nv unset interface <interface> link mac-address <mac-address>
-nv unset vrf default router bgp neighbor swp51 graceful-shutdown
+nv unset interface <interface> link mac-address
+nv unset vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 ```
 
 {{< /tab >}}

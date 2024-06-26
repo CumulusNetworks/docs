@@ -1400,6 +1400,68 @@ Maximum 400G ports: 32
 {{< /tab >}}
 
 {{< /tabs >}}
+{{< tab "SN5400">}}
+
+SN5400 64xQSFP-DD (400GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.
+
+For lower speeds, PAM4 is automatically converted to NRZ encoding.
+
+Bonus ports #65 and #66 support 1G, 10G, and 25G but do not support breakouts.
+
+{{< tabs "5400_ports ">}}
+{{< tab "1G ">}}
+
+Maximum 1G ports: 2 (bonus ports)
+
+{{< /tab >}}
+{{< tab "10G ">}}
+
+258x 10G
+
+Maximum 10G ports: 258 (64 ports breakout 4x + 2 bonus ports)
+
+{{< /tab >}}
+{{< tab "25G ">}}
+
+258x 25G
+
+Maximum 25G ports: 258 (64 ports breakout 4x + 2 bonus ports)
+
+{{< /tab >}}
+{{< tab "40G ">}}
+
+Maximum 40G ports: 128
+
+{{< /tab >}}
+{{< tab "50G ">}}
+
+256x 50G
+
+Maximum 50G ports: 256 (32 odd ports breakout into 8x)
+
+{{< /tab >}}
+{{< tab "100G ">}}
+
+256x 100G
+
+Maximum 100G ports: 256 (64 ports breakout into 4x)
+
+{{< /tab >}}
+{{< tab "200G ">}}
+
+128x 200G
+
+Maximum 200G ports: 128 (64 ports breakout into 2x)
+
+{{< /tab >}}
+{{< tab "400G ">}}
+
+Maximum 400G ports: 64
+
+{{< /tab >}}
+{{< /tab >}}
+
+{{< /tabs >}}
 {{< tab "SN5600">}}
 
 SN5600 64xOSFP (800GbE) interfaces support both PAM4 and NRZ encodings with all speeds down to 10G.

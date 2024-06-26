@@ -472,8 +472,7 @@ The following example patches the pending configuration (runs the set or unset c
 ```
 cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 ```
-<!--
+
 {{%notice info%}}
-- When you run the `nv config replace` command and auto save is `on`, NVUE removes the default startup configuration.
+A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed; NVUE does not support both unset and set commands for the same object in a single patch.
 {{%/notice%}}
--->

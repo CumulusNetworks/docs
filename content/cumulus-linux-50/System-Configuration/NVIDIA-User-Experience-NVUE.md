@@ -759,6 +759,10 @@ The following example patches the pending configuration (runs the set or unset c
 cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 ```
 
+{{%notice note%}}
+A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed; NVUE does not support both unset and set commands for the same object in a single patch.
+{{%/notice%}}
+
 ## Flexible Snippet Architecture
 
 If you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model, you can create a snippet in `yaml` format and add the configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file.

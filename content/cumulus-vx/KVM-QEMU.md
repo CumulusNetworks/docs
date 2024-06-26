@@ -52,9 +52,8 @@ The following procedure creates leaf01, leaf02, and spine01 and the network conn
 2. Run the following commands to configure each VM. Make sure you specify the location of the VM at the end of the command. In the example commands below, you install the VMs in `/var/lib/libvirt/images/`.
 
 {{%notice note%}}
-The following commands define the CPU, memory, and disk requirements for Cumulus VX, which requires at least 768MB of RAM and 6GB of disk space.
+The following commands define the CPU, memory, and disk requirements for Cumulus VX, which requires at least 768MB of RAM and 6GB of disk space. CumulusVX versions 4.3 and later require 2 vCPUs. CumulusVX versions 5.0 and later require 2GB of RAM.
 
-CumulusVX versions 4.3 and later requires 2 vCPUs.
 {{%/notice%}}
 
    {{< tabs "TabID01 ">}}
@@ -85,7 +84,7 @@ local@host:~$ sudo /usr/bin/kvm -curses -vga virtio -name spine01 -pidfile spine
 
 {{< /tabs >}}
 
-## Log into the Switches
+## Log in to the Switches
 
 {{% vx/login %}}
 

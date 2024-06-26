@@ -363,7 +363,7 @@ KVM starts all Vagrant defined VMs in parallel. In large topologies, this might 
    ...
    ```
 
-## Log into the Switches
+## Log in to the Switches
 
 {{% vx/login-vagrant %}}
 

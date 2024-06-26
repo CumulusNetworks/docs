@@ -11,6 +11,12 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
 
 ## What's New in Cumulus Linux 5.10
 
+### Platforms
+
+NVIDIA SN5400 (400G Spectrum-4)
+
+### New Features and Enhancements
+
 - PPS supported on the NVIDIA SN5400 switch
 - Additional OID support for SNMP MIBs
 - High frequency telemetry
@@ -24,7 +30,7 @@ This document supports the Cumulus Linux 5.10 release, and lists new platforms, 
   - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and encryption configuration">}}
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
   - Redesigned BGP show output flags to be similar to vtysh output
-  - EVPN show output updates
+  - Radius keys are encrypted in the NVUE `startup.yaml` file
   - {{< expand "Changed NVUE Commands" >}}
 | New Command| Previous Command |
 | ----------- | ----------------|

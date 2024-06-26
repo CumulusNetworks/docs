@@ -1411,7 +1411,7 @@ Bonus ports #65 and #66 support 1G, 10G, and 25G but do not support breakouts.
 {{< tabs "5400_ports ">}}
 {{< tab "1G ">}}
 
-Maximum 1G ports: 2 (bonus port)
+Maximum 1G ports: 2 (bonus ports)
 
 {{< /tab >}}
 {{< tab "10G ">}}

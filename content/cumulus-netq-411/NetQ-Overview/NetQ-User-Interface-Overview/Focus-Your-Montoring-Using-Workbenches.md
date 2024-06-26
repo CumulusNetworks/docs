@@ -61,7 +61,9 @@ You can only delete workbenches that you created. The NVIDIA-supplied NetQ Workb
 
 ## Manage Auto-refresh
 
-You can specify how often to update the data displayed on your workbenches. By default, NetQ updates the data every five minutes. To alternately disable and re-enable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> **Pause** or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/> **Play**. To modify the refresh rate:
+You can specify how often to update the data displayed on your workbenches. By default, NetQ updates the data every five minutes. To alternately disable and re-enable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> **Pause** or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/> **Play**. 
+
+To modify the refresh rate:
 
 1. In the header, select the dropdown next to **Refresh**.
 

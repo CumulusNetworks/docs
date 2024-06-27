@@ -33,6 +33,17 @@ The NVUE REST API supports the following methods:
   - The input payload in a PATCH request can have either a `set` or `unset` json object for the same resource, but not both. The order in which the API executes the `set` and `unset` objects is not deterministic and not supported.  
 - The **DELETE** method deletes a configuration and is equivalent to the `nv unset` commands.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, the REST API PATCH response returns the full state of the NVUE system, which is very inefficient with large scale configurations as the system state grows with the configuration. In Cumulus Linux 5.10 and later, the REST API PATCH response returns the difference of what the PATCH request will change. The response typically equals the request payload; however, in certain instances the response returns additional changes that the NVUE server patches in automatically. For example, when using well-named interface names like swp1, NVUE configures the type automatically:
+
+```
+PATCH request: {'interface': {'swp1': {}}
+PATCH Response: {'interface': {'swp1': {'type': 'swp'}},
+...
+```
+
+{{%/notice%}}
+
 ## Secure the API
 
 The NVUE REST API supports HTTP basic authentication, and the same underlying authentication methods for username and password that the NVUE CLI supports. User accounts work the same on both the API and the CLI.

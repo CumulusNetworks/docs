@@ -4568,6 +4568,10 @@ netq show unit-tests sensors
     [check_filter_id <text-check-filter-id>] 
     [json]
 
+netq show unit-tests topology 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+
 netq show unit-tests vlan 
     [check_filter_id <text-check-filter-id>] 
     [json]
@@ -4581,7 +4585,7 @@ netq show unit-tests vxlan
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| <!-- vale off -->address, agent, bgp, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
+| <!-- vale off -->address, agent, bgp, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
 
 ### Options
 
@@ -4613,7 +4617,7 @@ Configured per test result filters:
 ### Related Commands
 
 - ```netq show events```
-- ```netq check sensors```
+- ```netq check```
 
 - - -
 
@@ -4626,7 +4630,7 @@ Displays one or all scheduled validations, including their name, type, cadence, 
 ```
 netq show validation settings
     [name <text-validation-name>]
-    [type addr|agents|bgp|evpn|interfaces|mlag|mtu|ntp|ospf|roce|sensors|vlan|vxlan]
+    [type addr|agents|bgp|evpn|interfaces|mlag|mtu|ntp|ospf|roce|sensors|topology|vlan|vxlan]
     [json]
 ```
 
@@ -4639,7 +4643,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
+| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
@@ -4695,7 +4699,7 @@ Displays summary status of a scheduled validation for a given protocol or servic
 ```
 netq show validation summary
     [name <text-validation-name>]
-    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan)
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | topology | vlan | vxlan)
     [around <text-time-hr>]
     [json]
 ```
@@ -4704,7 +4708,7 @@ netq show validation summary
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
+| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
 
 ### Options
 

@@ -12,6 +12,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.11.0 includes the following new features and improvements:
 
+- Validate your network's topology. NetQ compares the actual network topology derived from LLDP telemetry data against a topology blueprint that you upload to the UI.
 - {{<link title="Focus Your Monitoring Using Workbenches#manage-auto-refresh" text="Adjust the frequency">}} that NetQ reloads dashboard data to every minute, 2 minutes, or 5 minutes
 - Create threshold crossing rules that alert you when a {{<link title="Threshold-Crossing Events Reference#sensors" text="sensor's state changes">}}
 - Performance and security enhancements

@@ -138,24 +138,18 @@ asic-model    n/a
 system-uuid   a6bfbd6d-70ac-426f-b46d-3743e16e1f4b
 ```
 <!-- vale off -->
-## Diagnostics Using cl-support
+## Diagnostics Using a cl-support File
 <!-- vale on -->
-You can use `cl-support` to generate a single export file that contains various details about switch configuration, and is useful for remote debugging and troubleshooting. For more information about `cl-support`, read {{<link url="Understanding-the-cl-support-Output-File">}}.
+You can generate a single export `cl-support` file that contains various details about switch configuration, and is useful for remote debugging and troubleshooting.
 
-Run `cl-support` to investigate issues before you submit a support request.
+Generate a `cl-support` file to investigate issues before you submit a support request. You can either run the NVUE `nv action generate system tech-support` command or the Linux `sudo cl-support` command:
 
 ```
-cumulus@switch:~$ sudo cl-support -h
-Usage: [-h (help)] [-cDjlMsv] [-d m1,m2,...] [-e m1,m2,...]
-  [-p prefix] [-r reason] [-S dir] [-T Timeout_seconds] [-t tag]
-  -h: Display this help message
-  -c: Run only modules matching any core files, if no -e modules
-  -D: Display debugging information
-  -d: Disable (do not run) modules in this comma separated list
-  -e: Enable (only run) modules in this comma separated list; "-e all" runs
-      all modules and sub-modules, including all optional modules
+cumulus@switch:~$ nv action generate system tech-support
 ...
 ```
+
+For more information, refer to {{<link url="Understanding-the-cl-support-Output-File">}}.
 
 ## Send Log Files to a syslog Server
 

@@ -128,18 +128,18 @@ Before you upgrade Cumulus Linux to a new release, make sure to:
 <!-- vale on -->
 **Before** and **after** you upgrade the switch, run the `cl-support` script to create a `cl-support` archive file. The file is a compressed archive of useful information for troubleshooting. If you experience any issues during upgrade, you can send this archive file to the Cumulus Linux support team to investigate.
 
-1. Create the `cl-support` archive file with the `cl-support` command:
+1. Create the `cl-support` archive file with either the NVUE `nv action generate system tech-support` command or the Linux `sudo cl-support` command:
 
 ```
-cumulus@switch:~$ sudo cl-support
+cumulus@switch:~$ nv action generate system tech-support
 ```
 
 2. Copy the `cl-support` file off the switch to a different location.
 
-3. After upgrade is complete, run the `cl-support` command again to create a new archive file:
+3. After upgrade is complete, create a new archive file:
 
 ```
-cumulus@switch:~$ sudo cl-support
+cumulus@switch:~$ nv action generate system tech-support
 ```
 
 ## Upgrade Cumulus Linux

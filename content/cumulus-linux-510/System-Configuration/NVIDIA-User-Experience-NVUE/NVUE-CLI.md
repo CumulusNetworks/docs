@@ -476,3 +476,20 @@ cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
 {{%notice note%}}
 A patch contains a single request to the NVUE service. Ordering of parameters within a patch is not guaranteed; NVUE does not support both unset and set commands for the same object in a single patch.
 {{%/notice%}}
+
+## Session-Based Authentication
+
+NVUE uses session-based authentication to authenticate and authorize requests. Session-based authentication can verify the identity of the user by storing the session identifier. After authenticating the user with the first request, NVUE stores the session identifier in the `nvued` cache. NVUE authenticates subsequent interactions within the session locally, eliminating the need to repeatedly check with external authentication servers. This process enhances system performance and efficiency, making it ideal for high-traffic environments.
+
+- If you make changes to a user group, password, RADIUS, TACACS, or LDAP server setting locally on the switch, NVUE clears the current session automatically.
+- If you make changes directly on the RADIUS, TACACS, or LDAP server, you must clear the user session with the `nv action clear system api session user <user>` command.
+
+{{%notice note%}}
+If you do not clear a user session after making changes directly on the RADIUS, TACACS, or LDAP server, NVUE uses the existing session for authentication and authorization until the session times out.
+{{%/notice%}}
+
+The following example clears the `admin` user session after you make changes directly on the RADIUS, TACACS, or LDAP server:
+
+```
+cumulus@switch:~$ nv action clear system api session user admin
+```

@@ -41,7 +41,10 @@ PATCH request: {'interface': {'swp1': {}}
 PATCH Response: {'interface': {'swp1': {'type': 'swp'}},
 ...
 ```
+{{%/notice%}}
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and later, DELETE responses return a `204(No Content)` status code. In Cumulus Linux 5.9 and earlier, DELETE responses return `200` with an empty json body `({}`).
 {{%/notice%}}
 
 ## Secure the API

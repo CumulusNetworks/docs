@@ -29,6 +29,7 @@ NVIDIA SN5400 (400G Spectrum-4)
   - AmBER counters and gauges
   - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and encryption configuration">}}
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
+  - {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="Command to generate a cl-support file">}}
   - Redesigned BGP show output flags to be similar to vtysh output
   - Radius keys are encrypted in the NVUE `startup.yaml` file
   - {{<link url="NVUE-CLI/#session-based-authentication" text="Session-based authentication">}}
@@ -82,7 +83,8 @@ nv unset vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 {{< tab "nv action ">}}
 
 ```
-nv action clear system api session user 
+nv action clear system api session user
+nv action generate system tech-support
 ```
 
 {{< /tab >}}

@@ -10,9 +10,113 @@ h { color: RGB(118,185,0)}
 </style>
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show interface lldp</h>
+
+Shows <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> information such as the speed, type, remote host, and remote port for all configured interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface lldp
+Interface  Speed  Type  Remote Host      Remote Port      
+---------  -----  ----  ---------------  -----------------
+eth0       1G     eth   oob-mgmt-switch  swp10            
+swp1       1G     swp   server01         48:b0:2d:76:ee:8e
+swp2       1G     swp   server02         48:b0:2d:86:c1:f8
+swp3       1G     swp   server03         48:b0:2d:08:de:37
+swp49      1G     swp   leaf02           swp49            
+swp50      1G     swp   leaf02           swp50            
+swp51      1G     swp   spine01          swp1             
+swp52      1G     swp   spine02          swp1             
+swp53      1G     swp   spine03          swp1             
+swp54      1G     swp   spine04          swp1
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show interface lldp-detail</h>
+
+Shows detailed <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> information for all configured interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface lldp-detail
+-------------------------------------------------------------------------------
+LLDP neighbors:
+-------------------------------------------------------------------------------
+
+Interface:    eth0
+-------------------------------------------------------------------------------
+  Time:  
+    0 days, 00:02:34
+
+  Chassis:
+    ChassisID:    mac 48:b0:2d:00:00:01
+    SysName:      oob-mgmt-switch
+    SysDescr:     Cumulus Linux version 5.5.1 running on QEMU Standard PC (i440FX + PIIX, 1996)
+    MgmtIP:       192.168.200.251
+    MgmtIface:    ifname
+    MgmtIP:       fe80::4ab0:2dff:fe00:1
+    MgmtIface:    ifname
+    Capability:   Bridge, off
+    Capability:   Router, off
+  Port:
+    PortID:       ifname swp10
+    PortDescr:    swp10
+    TTL:          120
+    Port is aggregated. PortAggregID: -
+    PMD autoneg:  supported: {}, enabled: {}
+      MAU oper type: 1000BaseTFD - Four-pair Category 5 UTP, full duplex mode
+  LLDP-MED:
+    Device Type:  Network Connectivity Device
+    Capability:   capabilities, yes
+    Capability:   inventory, yes
+    Capability:   location, yes
+    Capability:   mdi-pd, yes
+    Capability:   mdi-pse, yes
+    Capability:   policy, yes
+
+Interface:    swp1
+-------------------------------------------------------------------------------
+  Time:  
+    0 days, 00:02:22
+
+  Chassis:
+    ChassisID:    mac 44:38:39:22:01:7e
+    SysName:      server01
+    SysDescr:     Ubuntu 18.04.6 LTS Linux 4.15.0-200-generic #211-Ubuntu SMP Thu Nov 24 18:16:04 UTC 2022 x86_64
+    MgmtIP:       192.168.200.31
+    MgmtIface:    mac
+    MgmtIP:       fe80::4638:39ff:fe22:17e
+    MgmtIface:    mac
+    Capability:   Bridge, off
+    Capability:   Router, off
+  Port:
+    PortID:       ifname 48:b0:2d:76:ee:8e
+    PortDescr:    eth1
+    TTL:          120
+    Port is aggregated. PortAggregID: -
+    PMD autoneg:  supported: {'0': {'flags': {'fd': {}, 'hd': {}}, 'type': '10Base-T'}, '1': {'flags': {'fd': {}, 'hd': {}}, 'type': '100Base-TX'}, '2': {'flags': {'fd': {}}, 'type': '1000Base-T'}}, enabled: {'is-enabled': {}, 'is-supported': {}}
+      MAU oper type: 1000BaseTFD - Four-pair Category 5 UTP, full duplex mode
+  LLDP-MED:
+    Device Type:  
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> lldp</h>
 
-Shows <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> statistics for the specified interface.
+Shows <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span> configuration settings for the specified interface.
 
 ### Command Syntax
 

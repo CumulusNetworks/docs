@@ -34,7 +34,7 @@ The NVUE REST API supports the following methods:
 - The **DELETE** method deletes a configuration and is equivalent to the `nv unset` commands.
 
 {{%notice note%}}
-In Cumulus Linux 5.9 and earlier, the REST API PATCH response returns the full state of the NVUE system, which is very inefficient with large scale configurations as the system state grows with the configuration. In Cumulus Linux 5.10 and later, the REST API PATCH response returns the difference of what the PATCH request will change. The response typically equals the request payload; however, in certain instances the response returns additional changes that the NVUE server patches in automatically. For example, when using well-named interface names like swp1, NVUE configures the type automatically:
+In Cumulus Linux 5.9 and earlier, the REST API PATCH response returns the full state of the NVUE system (your configuration change and all other NVUE configuration on the switch), which can be inefficient with large scale configurations as the system state grows with the configuration. In Cumulus Linux 5.10 and later, the REST API PATCH response returns only the resulting configuration change. The response typically equals the request payload; however, in certain instances the response returns additional changes that the NVUE server patches in automatically. For example, when using well-named interface names like swp1, NVUE configures the `type` automatically:
 
 ```
 PATCH request: {'interface': {'swp1': {}}

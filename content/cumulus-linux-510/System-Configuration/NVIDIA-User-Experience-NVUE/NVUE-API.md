@@ -2567,52 +2567,6 @@ cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"bond0": {"type":"bond","bond":
       }
     },
     "type": "bond"
-  },
-  "bond1": {
-    "bond": {
-      "lacp-bypass": "on",
-      "member": {
-        "swp1": {}
-      },
-      "mlag": {
-        "enable": "on",
-        "id": 1
-      },
-      "mode": "lacp"
-    },
-    "bridge": {
-      "domain": {
-        "br_default": {
-          "access": 10,
-          "stp": {
-            "admin-edge": "on",
-            "auto-edge": "on",
-            "bpdu-guard": "on"
-          }
-        }
-      }
-    },
-    "link": {
-      "mtu": 9000
-    },
-    "type": "bond"
-  },
-  "eth0": {
-    "ip": {
-      "address": {
-        "192.168.200.6/24": {}
-      },
-      "vrf": "mgmt"
-    },
-    "type": "eth"
-  },
-  "lo": {
-    "ip": {
-      "address": {
-        "10.10.10.1/32": {}
-      }
-    },
-    "type": "loopback"
   }
 }
 ```
@@ -2775,8 +2729,27 @@ The following example configures a bridge.
 {{< tab "Curl Command" >}}
 
 ```
-curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=21
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=21
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=8
+{
+  "swp1": {
+    "bridge": {
+      "domain": {
+        "br_default": {}
+      }
+    },
+    "type": "swp"
+  },
+  "swp2": {
+    "bridge": {
+      "domain": {
+        "br_default": {}
+      }
+    },
+    "type": "swp"
+  }
+}
+....
 ```
 
 {{< /tab >}}

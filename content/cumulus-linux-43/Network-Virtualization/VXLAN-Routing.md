@@ -68,7 +68,7 @@ To disable VXLAN routing on a Trident II+ or Trident3 switch, set the `vxlan_rou
 
 {{%notice note%}}
 
-On Broadcom switches, high scale environments configured with VXLAN, MLAG, and bonds configured for LACP bypass mode might experience resource contention when bonds have not negotiated LACP. ARP and other broadcast traffic might experience forwarding problems when bonds remain in bypass mode.  
+On Broadcom switches, high scale environments configured with VXLAN, MLAG, and bonds configured for LACP bypass mode might experience resource contention when bonds do not negotiate LACP. ARP and other broadcast traffic might experience forwarding problems when bonds remain in bypass mode.  
 
 {{%/notice%}}
 

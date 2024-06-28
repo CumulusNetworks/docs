@@ -66,6 +66,12 @@ For any profile you specify, you can allocate a *maximum* of 2K (2048) VXLAN SVI
 
 To disable VXLAN routing on a Trident II+ or Trident3 switch, set the `vxlan_routing_overlay.profile` field to *disable*.
 
+{{%notice note%}}
+
+On Broadcom switches, high scale environments configured with VXLAN, MLAG, and bonds configured for LACP bypass mode might experience resource contention when bonds have not negotiated LACP. ARP and other broadcast traffic might experience forwarding problems when bonds remain in bypass mode.  
+
+{{%/notice%}}
+
 ### Trident II
 
 VXLAN routing is not supported on Trident II switches, and the external hyperloop workaround for RIOT on Trident II switches has been removed in Cumulus Linux 4.0.0. Use native VXLAN routing platforms and EVPN for network virtualization.

@@ -809,7 +809,7 @@ If you use an MLAG pair instead of a single exit/border leaf, add the same tempo
 
 {{%notice note%}}
 
-VXLAN routing from underlay networks to overlay networks is not supported on Trident II+ and Maverick switches. This limitation does not apply to Trident 3 switches.
+Trident II+ and Maverick switches do not support VXLAN routing from underlay networks to overlay networks. This limitation does not apply to Trident 3 switches.
 
 {{%/notice%}}
 

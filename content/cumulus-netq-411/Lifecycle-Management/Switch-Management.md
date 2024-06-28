@@ -144,7 +144,7 @@ Click **Remove** if you decide to use a different file or want to use IP address
 
     If the discovery process does not find any switches for a particular category, then it does not display that category.
 
-After performing a switch discovery, you can install or upgrade Cumulus Linux and NetQ.
+After performing a switch discovery, you can install or upgrade Cumulus Linux and NetQ using the {{<link title="lcm/#netq-lcm-install-netq-image" text="netq lcm install netq-image">}} command. <!--ask Anil about this-->
 
 {{</tab>}}
 

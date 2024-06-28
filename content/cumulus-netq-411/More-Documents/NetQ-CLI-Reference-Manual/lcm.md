@@ -760,11 +760,11 @@ Installs NetQ on switches.
 netq lcm install netq-image 
     job-name <text-job-name> 
     netq-version <text-netq-version> 
-    upgrade-cli [ True | False] 
-    hostname <text-switch-hostname> 
-    ip <text-switch-ip> 
+    upgrade-cli [True | False] 
+    ips <text-ip-range> 
     cpu_arch <text-cpu-arch> 
-    cl_version <text-cumulus-linux-version> 
+    cl_version <text-cumulus-linux-version>
+    profile_id <text-credential-profile-id> 
     [config_profile <text-config-profile>]
 ```
 ### Required Arguments
@@ -773,11 +773,11 @@ netq lcm install netq-image
 | ---- | ---- | ---- |
 | job-name | \<text-job-name\> | Name for the installation |
 | netq-version | \<text-netq-version\> | Install this NetQ version in x.z.y format |
-| upgrade-cli | True, False | Upgrade the NetQ CLI as part of the installation (True) |
-| hostname | \<text-switch-hostname\> | Hostname of the switch |
-| ip | <text-switch-ip\> | IP address of the switch|
+| upgrade-cli | True, False | Upgrade the NetQ CLI as part of the installation (True) or not (False) |
+| ips | <text-ip-range\> | Install NetQ on this range of switch IP addresses |
 | cpu_arch | <text-cpu-arch\> | CPU architecture for the switch|
 | cl-version | \<text-cumulus-linux-version\> | Install this CL version in x.y.z format |
+| profile_id | <text-credential-profile-id\> | Access profile attached to the switches |
 
 ### Options
 
@@ -788,7 +788,7 @@ netq lcm install netq-image
 ### Sample Usage
 
 ```
-netq lcm install netq-image job-name install55 netq-version 4.9.0 upgrade-cli True hostname r-qa-sw-eth-2055 ip 10.209.20.55 cpu_arch x86_64 cl_version 5.8.0
+netq lcm install netq-image job-name install55 netq-version 4.9.0 upgrade-cli True ip 10.209.20.55 cpu_arch x86_64 cl_version 5.8.0 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc12
 ```
 ### Related Commands
 

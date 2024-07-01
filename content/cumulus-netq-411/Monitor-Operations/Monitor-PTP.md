@@ -5,13 +5,13 @@ weight: 930
 toc: 3
 ---
 
+Use the UI or CLI to monitor Precision Time Protocol (PTP), including clock hierarchies and priorities, synchronization thresholds, and accuracy rates.
+
 {{<notice note>}}
 
 PTP monitoring is only supported on Spectrum switches running Cumulus Linux version 5.0.0 and later.
 
 {{</notice>}}
-
-Use the UI or CLI to monitor Precision Time Protocol (PTP), including clock hierarchies and priorities, synchronization thresholds, and accuracy rates.
 
 ## PTP Commands
 
@@ -26,9 +26,7 @@ Monitor PTP with the following commands. See the {{<link title="show/#netq-show-
 ```
 ## Access the PTP Dashboard
 
-1. Select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
-
-2. Under the Network section, select **PTP**.
+From the header or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} menu, select **Spectrum-X**, then **PTP**.
 
 The PTP summary dashboard displays:
 - clock count, type, and distribution
@@ -43,15 +41,15 @@ Navigate to the **Events** tab to view, filter, and sort PTP-related events:
 
 ## View PTP on a Switch
 
-1. Select {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in the workbench header, then click **Open a device card**.
+1. Search for the device’s hostname in the global search field or from the header select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
 
-2. Select a switch from the dropdown and specify the large card.
+2. Select a switch and specify the large card.
 
-3. Hover over the top of the card and select the PTP icon {{<img src="/images/netq/ptp-icon.png" height="18" width="18">}}:
+3. Hover over the top of the card and select the {{<img src="/images/netq/ptp-icon.png" height="18" width="18">}} **PTP** tab:
 
 {{<figure src="/images/netq/updated-ptp-450.png" alt="large switch card with PTP display selected" width="700">}}
 
-4. For more granular data, expand the card to full-size and navigate to PTP:
+4. For more granular data, expand the card to full-size and navigate to {{<img src="/images/netq/ptp-icon.png" height="18" width="18">}} **PTP**:
 
 {{<figure src="/images/netq/updated-ptp-switch-450.png" alt="full screen graph of a switch's average offsest-from-master and average mean-path-delay statistics" width="1200">}}
 

@@ -13,9 +13,11 @@ You must install and configure {{<link title="Install NIC and DPU Agents/#instal
 
 ## View Overall Health of a DPU
 
-For an overview of the current or past health of DPU hardware resources, open the DPU device card. To open a DPU device card:
+For an overview of the current or past health of DPU hardware resources, open the DPU device card. 
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in the header, then click **Open a device card**.
+To open a DPU device card:
+
+1. Search for the device’s hostname in the global search field or from the header select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
 
 2. Select a DPU from the dropdown.
 

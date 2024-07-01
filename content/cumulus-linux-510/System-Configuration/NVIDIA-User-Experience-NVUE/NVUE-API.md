@@ -2730,8 +2730,34 @@ The following example configures a bridge.
 
 ```
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=21
+{
+  "swp1": {
+    "bridge": {
+      "domain": {
+        "br_default": {}
+      }
+    },
+    "type": "swp"
+  },
+  "swp2": {
+    "bridge": {
+      "domain": {
+        "br_default": {}
+      }
+    },
+    "type": "swp"
+  }
+}
+
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=8
 ```
+{
+  "untagged": 1,
+  "vlan": {
+    "10": {},
+    "20": {}
+  }
+}
 
 {{< /tab >}}
 {{< tab "Python Code" >}}

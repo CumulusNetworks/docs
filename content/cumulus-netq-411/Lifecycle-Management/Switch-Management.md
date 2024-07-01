@@ -65,7 +65,7 @@ To discover switches running Cumulus Linux:
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in the workbench header, then click **Manage switches**.
+1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select **Manage switches**:
 
 2. On the Switches card, click **Discover**.
 
@@ -144,7 +144,7 @@ Click **Remove** if you decide to use a different file or want to use IP address
 
     If the discovery process does not find any switches for a particular category, then it does not display that category.
 
-After performing a switch discovery, you can install or upgrade Cumulus Linux and NetQ using the {{<link title="lcm/#netq-lcm-install-netq-image" text="netq lcm install netq-image">}} command. <!--ask Anil about this-->
+After performing a switch discovery, you can install or upgrade Cumulus Linux and NetQ.
 
 {{</tab>}}
 
@@ -191,7 +191,7 @@ NetQ presents the number of Cumulus Linux switches it has found. The output disp
 - **OS not Supported**: Switches found that are running Cumulus Linux version not supported by the LCM upgrade feature
 - **Not Discovered**: IP addresses which did not have an associated Cumulus Linux switch
 
-After performing a switch discovery, you can install or upgrade Cumulus Linux and NetQ.
+After performing a switch discovery, you can install or upgrade Cumulus Linux and NetQ using the appropriate {{<link title="lcm/" text="netq lcm">}} command.
 
 {{</tab>}}
 
@@ -364,7 +364,7 @@ Decommissioning the switch or host removes information about the switch or host 
 
 2. On the Switches card, select **Manage**.
 
-3. Select the devices to decommission, then select **Decommission switch** above the table:
+3. Select the devices to decommission, then select **Decommission device** above the table:
 
 {{<figure src="/images/netq/decom-switch-box-450.png" alt="" width="600" height="175">}}
 

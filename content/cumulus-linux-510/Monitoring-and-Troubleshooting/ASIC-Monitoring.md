@@ -719,7 +719,7 @@ You can either export the collected data automatically to a configured influxDB 
 This collected data is available on the switch until you trigger the next data collection or until you reboot the switch.
 {{%/notice%}}
 
-You can configure high frequency telemetry with NVUE commands, with the Cumulus Linux job management tool (`cl-hft-tool`) or by editing flat files.
+You can configure high frequency telemetry with NVUE commands (the preferred configuration method), with the job management tool (`cl-hft-tool`) or by editing flat files. `cl-hft-tool` simplifies Linux configuration. To show all the `cl-hft-tool` command options, run `cl-hft-tool hlep` help.
 
 ### Configure Data Collection
 

@@ -9,9 +9,12 @@ Check out the latest updates to {{<exlink url="https://air.nvidia.com" text="NVI
 
 ## June 2024
 <!-- Air:WhatsNew -->
+### 82.2024.0627-013
+- Updated the template ZTP script
+<!-- Air:WhatsNew -->
+
 ### 82.2024.0613-012
 - Fixed an issue where specifying an image by name in a dot file could cause an error
-<!-- Air:WhatsNew -->
 
 ## May 2024
 ### 82.2024.0523-014

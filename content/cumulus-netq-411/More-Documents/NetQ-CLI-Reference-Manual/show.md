@@ -2824,14 +2824,14 @@ Three forms of this command are available: the basic command which shows all MAC
 netq show macs
     [<mac>]
     [vlan <1-4096>]
-    [origin]
+    [origin <text-origin>]
     [around <text-time>]
     [json]
 
 netq <hostname> show macs
     [<mac>]
     [vlan <1-4096>]
-    [origin | count]
+    [origin <text-origin> | count]
     [around <text-time>]
     [json]
 
@@ -2839,7 +2839,7 @@ netq <hostname> show macs
     egress-port <egress-port>
     [<mac>]
     [vlan <1-4096>]
-    [origin]
+    [origin <text-origin>]
     [around <text-time>]
     [json]
 ```
@@ -2857,7 +2857,7 @@ netq <hostname> show macs
 | ---- | ---- | ---- |
 | NA | \<mac\> | Display history for this MAC address |
 | vlan | \<1-4096\> | Only display MAC addresses that use the VLAN with this ID |
-| origin | NA | Only display results for addresses owned by the specified switch or switches |
+| origin | \<text-origin\> | Display the MAC addresses that originated with the device (true) or not (false) |
 | count | NA | Display the total number of MAC addresses used by the specified switch; can only use this option when you define the `hostname` option |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format |

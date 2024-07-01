@@ -276,7 +276,7 @@ permanent
 
 ## <h>nv show mlag fdb local</h>
 
-Shows the locally learned MAC addresses in the FDB.
+Shows the locally learned MAC addresses in the forwarding database.
 
 ### Version History
 
@@ -327,7 +327,7 @@ cumulus@switch:~$ nv show mlag fdb peer
 
 ## <h>nv show mlag fdb permanent</h>
 
-Shows the permanent MAC addresses installed in the FDB on the MLAG peer.
+Shows the permanent MAC addresses installed in the forwarding database on the MLAG peer.
 
 ### Version History
 
@@ -685,6 +685,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show mlag vni local
+   interface  local-ip  vlan-id  vni
+-  ---------  --------  -------  ----
+1  vxlan48    27.0.0.3  1000     1000
+2  vxlan48    27.0.0.3  1002     1002
+3  vxlan48    27.0.0.3  1004     1004
+4  vxlan48    27.0.0.3  1006     1006
+5  vxlan48    27.0.0.3  1008     1008
+6  vxlan48    27.0.0.3  4027     4002
+7  vxlan48    27.0.0.3  4036     4003
+8  vxlan48    27.0.0.3  4043     4001
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -701,6 +711,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show mlag vni peer
+   interface  local-ip  vlan-id  vni
+-  ---------  --------  -------  ----
+1  vxlan48    27.0.0.4  1000     1000
+2  vxlan48    27.0.0.4  1002     1002
+3  vxlan48    27.0.0.4  1004     1004
+4  vxlan48    27.0.0.4  1006     1006
+5  vxlan48    27.0.0.4  1008     1008
+6  vxlan48    27.0.0.4  4027     4002
+7  vxlan48    27.0.0.4  4036     4003
+8  vxlan48    27.0.0.4  4043     4001
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -717,7 +737,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show nve vxlan mlag
-operational  applied   pending
+                operational  applied   pending
 --------------  -----------  --------  --------
 shared-address  36.0.0.2     36.0.0.2  36.0.0.2
 ```

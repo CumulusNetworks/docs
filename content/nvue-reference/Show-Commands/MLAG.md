@@ -27,14 +27,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 bond mlag
+cumulus@switch:~$ nv show interface bond1 bond mlag
+                operational  applied
+--------------  -----------  -------
+enable                       on
+id              1            1
+peer-interface  hostbond_3
+status          dual
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv show interface \<interface-id\> bond mlag consistency-checker</h>
 
-Shows MLAG inconsistencies on the bond interface.
+Shows the interface level consistency check parameters.
 
 ### Command Syntax
 
@@ -49,7 +55,19 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show interface swp1 bond mlag consistency-checker
+cumulus@switch:~$ nv show interface bond1 bond mlag consistency-checker
+Parameter         LocalValue                    PeerValue                     Conflict  Summary
+----------------  ----------------------------  ----------------------------  --------  -------
+bpdu-guard        off                           off                           -
+bridge-learning   yes                           yes                           -
+clag-id           1                             1                             -
+lacp-actor-mac    44:38:39:42:42:01             44:38:39:42:42:01             -
+lacp-partner-mac  00:02:00:00:00:01             00:02:00:00:00:01             -
+master            br_default                    NOT-SYNCED                    -
+mtu               9100                          9100                          -
+native-vlan       1000                          1000                          -
+restricted-role   no                            no                            -
+vlan-id           1000, 1002, 1004, 1006, 1008  1000, 1002, 1004, 1006, 1008  -
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -84,6 +102,7 @@ peer-id         48:b0:2d:c4:37:5b
 peer-interface  peerlink.4094                               
 peer-priority   32768                                       
 peer-role       secondary
+anycast-ip      36.0.0.2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -134,7 +153,7 @@ vrf               default  default
 
 ## <h>nv show mlag consistency-checker</h>
 
-Shows any MLAG inconsistencies on the MLAG peers.
+Shows the global consistency check parameters.
 
 ### Version History
 
@@ -147,22 +166,29 @@ cumulus@switch:~$ nv show mlag consistency-checker
 
 Global Consistency-checker
 =============================
-    Parameter              LocalValue                PeerValue                 Conflict  Summary
-    ---------------------  ------------------------  ------------------------  --------  -------
-    anycast-ip             -                         -                         -                
-    bridge-priority        32768                     32768                     -                
-    bridge-stp             on                        on                        -                
-    bridge-type            vlan-aware                vlan-aware                -                
-    clag-pkg-version       1.6.0-cl5.4.0u4           1.6.0-cl5.4.0u4           -                
-    clag-protocol-version  1.6.0                     1.6.0                     -                
-    peer-ip                fe80::4ab0:2dff:fea4:ac9  fe80::4ab0:2dff:fea4:ac9  -                
-    peerlink-master        br_default                NOT-SYNCED                -                
-    peerlink-mtu           9216                      9216                      -                
-    peerlink-native-vlan   1                         1                         -                
-    peerlink-vlans         1, 10, 20, 30             1, 10, 20, 30             -                
-    redirect2-enable       yes                       yes                       -                
-    system-mac             44:38:39:be:ef:aa         44:38:39:be:ef:aa         -                
+    Parameter               LocalValue                                PeerValue                                 Conflict  Summary
+    ----------------------  ----------------------------------------  ----------------------------------------  --------  -------
+    anycast-ip              36.0.0.2                                  36.0.0.2                                  -
+    bridge-priority         32768                                     32768                                     -
+    bridge-stp-mode         rstp                                      rstp                                      -
+    bridge-stp-state        on                                        on                                        -
+    bridge-type             vlan-aware                                vlan-aware                                -
+    clag-pkg-version        1.6.0-cl5.9.0+u7.1718894350.a2a631b98609  1.6.0-cl5.9.0+u7.1718894350.a2a631b98609  -
+    clag-protocol-version   1.7.0                                     1.7.0                                     -
+    peer-ip                 169.254.0.10                              169.254.0.10                              -
+    peerlink-bridge-member  Yes                                       Yes                                       -
+    peerlink-mtu            9100                                      9100                                      -
+    peerlink-native-vlan    1                                         1                                         -
+    peerlink-vlans          1, 1000, 1002, 1004, 1006, 1008           1, 1000, 1002, 1004, 1006, 1008           -
+    redirect2-enable        yes                                       yes                                       -
+    system-mac              44:38:39:42:42:01                         44:38:39:42:42:01               
 ```
+
+{{%notice note%}}
+- In Cumulus Linux 5.5 and earlier, `peerlink-bridge-member` is `Peerlink-master`.
+- In Cumulus Linux 5.6 and earlier, `bridge-stp-state` is `bridge-stp`.
+- Cumulus Linux 5.7 and later includes consistency-checks for `bridge-stp-mode`.
+{{%/notice%}}
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
@@ -199,7 +225,7 @@ system-mac             44:38:39:be:ef:aa         44:38:39:be:ef:aa
 
 ## <h>nv show mlag fdb</h>
 
-Shows the MAC addresses, VLANs, and VLAN IDs in the forwarding database (FDB).
+Shows the dynamic or permanent MAC addresses in the MLAG forwarding database.
 
 ### Version History
 
@@ -250,7 +276,7 @@ permanent
 
 ## <h>nv show mlag fdb local</h>
 
-Shows the locally learned MAC addresses in the FDB.
+Shows the locally learned MAC addresses in the forwarding database.
 
 ### Version History
 
@@ -271,7 +297,7 @@ cumulus@switch:~$ nv show mlag fdb local
 
 ## <h>nv show mlag fdb peer</h>
 
-Shows the MAC addresses synchronized between MLAG peers in the FDB.
+Shows the MAC addresses synchronized from the forwarding database on the MLAG peer.
 
 ### Version History
 
@@ -301,7 +327,7 @@ cumulus@switch:~$ nv show mlag fdb peer
 
 ## <h>nv show mlag fdb permanent</h>
 
-Shows the permanent MAC addresses installed in the FDB on the MLAG peer.
+Shows the permanent MAC addresses installed in the forwarding database on the MLAG peer.
 
 ### Version History
 
@@ -398,7 +424,7 @@ bond3  0            48:b0:2d:a2:03:9d
 
 ## <h>nv show mlag mdb</h>
 
-Shows the multicast database on both MLAG peers.
+Shows the layer 2 multicast database.
 
 ### Version History
 
@@ -414,7 +440,7 @@ cumulus@switch:~$ nv show mlag mdb
 
 ## <h>nv show mlag mdb local</h>
 
-Shows the multicast database on the local switch.
+Shows the layer 2 multicast database on the local switch.
 
 ### Version History
 
@@ -430,7 +456,7 @@ cumulus@switch:~$ nv show mlag mdb local
 
 ## <h>nv show mlag mdb peer</h>
 
-Shows the multicast database on the peer switch.
+Shows the layer 2 multicast database on the peer switch.
 
 ### Version History
 
@@ -618,12 +644,31 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show mlag vni
-
 local
 ========
+       interface  local-ip  vlan-id  vni
+    -  ---------  --------  -------  ----
+    1  vxlan48    27.0.0.3  1000     1000
+    2  vxlan48    27.0.0.3  1002     1002
+    3  vxlan48    27.0.0.3  1004     1004
+    4  vxlan48    27.0.0.3  1006     1006
+    5  vxlan48    27.0.0.3  1008     1008
+    6  vxlan48    27.0.0.3  4027     4002
+    7  vxlan48    27.0.0.3  4036     4003
+    8  vxlan48    27.0.0.3  4043     4001
 
 peer
 =======
+       interface  local-ip  vlan-id  vni
+    -  ---------  --------  -------  ----
+    1  vxlan48    27.0.0.4  1000     1000
+    2  vxlan48    27.0.0.4  1002     1002
+    3  vxlan48    27.0.0.4  1004     1004
+    4  vxlan48    27.0.0.4  1006     1006
+    5  vxlan48    27.0.0.4  1008     1008
+    6  vxlan48    27.0.0.4  4027     4002
+    7  vxlan48    27.0.0.4  4036     4003
+    8  vxlan48    27.0.0.4  4043     4001
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -640,6 +685,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show mlag vni local
+   interface  local-ip  vlan-id  vni
+-  ---------  --------  -------  ----
+1  vxlan48    27.0.0.3  1000     1000
+2  vxlan48    27.0.0.3  1002     1002
+3  vxlan48    27.0.0.3  1004     1004
+4  vxlan48    27.0.0.3  1006     1006
+5  vxlan48    27.0.0.3  1008     1008
+6  vxlan48    27.0.0.3  4027     4002
+7  vxlan48    27.0.0.3  4036     4003
+8  vxlan48    27.0.0.3  4043     4001
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -656,6 +711,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show mlag vni peer
+   interface  local-ip  vlan-id  vni
+-  ---------  --------  -------  ----
+1  vxlan48    27.0.0.4  1000     1000
+2  vxlan48    27.0.0.4  1002     1002
+3  vxlan48    27.0.0.4  1004     1004
+4  vxlan48    27.0.0.4  1006     1006
+5  vxlan48    27.0.0.4  1008     1008
+6  vxlan48    27.0.0.4  4027     4002
+7  vxlan48    27.0.0.4  4036     4003
+8  vxlan48    27.0.0.4  4043     4001
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -672,4 +737,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@switch:~$ nv show nve vxlan mlag
+                operational  applied   pending
+--------------  -----------  --------  --------
+shared-address  36.0.0.2     36.0.0.2  36.0.0.2
 ```

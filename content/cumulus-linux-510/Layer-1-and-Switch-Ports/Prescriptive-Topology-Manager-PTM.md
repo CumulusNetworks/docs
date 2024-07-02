@@ -12,8 +12,7 @@ You can customize the `topology.dot` file to control the PTM service (`ptmd`) at
 
 - Topology verification using <span class="a-tooltip">[LLDP](## "Link Layer Discovery Protocol")</span>. The `ptmd` service creates a client connection to the LLDP service (`lldpd`), and retrieves the neighbor relationship between the nodes or ports in the network and compares them against the prescribed topology specified in the `topology.dot` file.
 - PTM only supports physical interfaces, such as swp1 or eth0. You cannot specify virtual interfaces, such as bonds or subinterfaces in the topology file.
-- Cumulus Linux does not support forwarding path failure detection using {{<exlink url="http://tools.ietf.org/html/rfc5880" text="Bidirectional Forwarding Detection">}} (BFD); however, you can use demand mode. For more information on how BFD operates in Cumulus Linux, refer to {{<link title="Bidirectional Forwarding Detection - BFD">}}.
-- Integration with <span class="a-tooltip">[FRR](## "FRRouting")</span> (PTM to FRR notification).
+- Integration with <span class="a-tooltip">[FRR](## "FRRouting")</span> (PTM to FRR notification for BFD status).
 - Client management; the `ptmd` service creates an abstract named socket `/var/run/ptmd.socket` on startup. Other applications can connect to this socket to receive notifications and send commands.
 - Event notifications.
 - Configuration with a `topology.dot` file; {{<link url="#configure-ptm" text="see below">}}.
@@ -54,7 +53,6 @@ You can configure `ptmd` parameters in the topology file. The parameters are hos
 ```
 graph G {
           hostnametype="hostname"
-          BFD="upMinTx=150,requiredMinRx=250"
           "cumulus":"swp44" -- "switch04.cumulusnetworks.com":"swp20"
           "cumulus":"swp46" -- "switch04.cumulusnetworks.com":"swp22"
 }
@@ -72,12 +70,11 @@ graph G {
 
 ### Global Parameters
 
-*Global parameters* apply to every port in the topology file. There are two global parameters: LLDP and BFD. LLDP is on by default; if no keyword is present, PTM uses the default values for all ports. However, BFD is off if no keyword is present unless a per-port override exists. For example:
+*Global parameters* apply to every port in the topology file. LLDP is on by default; if no keyword is present, PTM uses the default values for all ports.
 
 ```
 graph G {
           LLDP=""
-          BFD="upMinTx=150,requiredMinRx=250,afi=both"
           "cumulus":"swp44" -- "qct-ly2-04":"swp20"
           "cumulus":"swp46" -- "qct-ly2-04":"swp22"
 }
@@ -92,59 +89,34 @@ graph G {
 ```
 graph G {
           LLDP=""
-          BFD="upMinTx=300,requiredMinRx=100"
-          "cumulus":"swp44" -- "qct-ly2-04":"swp20" [BFD="upMinTx=150,requiredMinRx=250,afi=both"]
+          "cumulus":"swp44" -- "qct-ly2-04":"swp20"
           "cumulus":"swp46" -- "qct-ly2-04":"swp22"
 }
 ```
 
 ### Templates
 
-*Templates* provide flexibility so that you can choose different parameter combinations and apply them to a given port. A template instructs `ptmd` to reference a named parameter string instead of a default one. PTM supports two parameter strings:
-
-- `bfdtmpl` specifies a custom parameter tuple for BFD.
-- `lldptmpl` specifies a custom parameter tuple for LLDP.
+*Templates* provide flexibility so that you can choose different parameter combinations and apply them to a given port. A template instructs `ptmd` to reference a named parameter string instead of a default one. In the following configuration, LLDP1 and LLDP2 are templates for LLDP parameters:
 
 For example:
 
 ```
 graph G {
           LLDP=""
-          BFD="upMinTx=300,requiredMinRx=100"
-          BFD1="upMinTx=200,requiredMinRx=200"
-          BFD2="upMinTx=100,requiredMinRx=300"
           LLDP1="match_type=ifname"
           LLDP2="match_type=portdescr"
-          "cumulus":"swp44" -- "qct-ly2-04":"swp20" [BFD="bfdtmpl=BFD1", LLDP="lldptmpl=LLDP1"]
-          "cumulus":"swp46" -- "qct-ly2-04":"swp22" [BFD="bfdtmpl=BFD2", LLDP="lldptmpl=LLDP2"]
+          "cumulus":"swp44" -- "qct-ly2-04":"swp20" [LLDP="lldptmpl=LLDP1"]
+          "cumulus":"swp46" -- "qct-ly2-04":"swp22" [LLDP="lldptmpl=LLDP2"]
           "cumulus":"swp46" -- "qct-ly2-04":"swp22"
 }
 ```
 
-In this template, LLDP1 and LLDP2 are templates for LLDP parameters. BFD1 and BFD2 are templates for BFD parameters.
 
-### Supported BFD and LLDP Parameters
 
-`ptmd` supports the following <span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> parameters:
-
-- `upMinTx` is the minimum transmit interval specified in milliseconds. The default value is 300ms.
-- `requiredMinRx` is the minimum interval between received BFD packets specified in milliseconds. The default value is 300ms.
-- `detectMult` is the detect multiplier. The default value is 3. You set this parameter to any non-zero value.
-- `afi` is the address family for the edge. The address family must be one of the following:
-  - *v4*: BFD sessions build for only IPv4 connected peers. This is the default value.
-  - *v6*: BFD sessions build for only IPv6 connected peers.
-  - *both*: BFD sessions builds for both IPv4 and IPv6 connected peers.
-
-The following is an example of a topology with BFD at the port level:
-
-```
-graph G {
-          "cumulus-1":"swp44" -- "cumulus-2":"swp20" [BFD="upMinTx=300,requiredMinRx=100,afi=v6"]
-          "cumulus-1":"swp46" -- "cumulus-2":"swp22" [BFD="detectMult=4"]
-}
-```
+### Supported LLDP Parameters
 
 `ptmd` supports the following LLDP parameters:
+
 - `match_type`, which defaults to the interface name (`ifname`), but can accept a port description (`portdescr`) instead if you want `lldpd` to compare the topology against the port description instead of the interface name. You can set this parameter globally or at the per-port level.
 - `match_hostname`, which defaults to the hostname (`hostname`), but enables PTM to match the topology using the fully qualified domain name (`fqdn`) supplied by LLDP.
 
@@ -170,7 +142,7 @@ graph G {
 
 ## BFD
 
-<span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD using PTM, see {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
+<span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. PTM provides a unified mechanism for link detection over all media and protocol layers and integrated with FRRouting to enable BFD. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD, see {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
 
 ## Check Link State
 
@@ -285,6 +257,10 @@ The examples below contain the following keywords in the output of the `cbl stat
 | `N/A` | The topology file defines the interface, but the interface does not receive LLDP information. The interface might be down or disconnected, or the neighbor is not sending LLDP packets.<br>The `N/A` and `fail` status might indicate a wiring problem to investigate.<br>The `N/A` status does not show when you use the `-l` option with `ptmctl`; the output shows only interfaces that are receiving LLDP information. |
 
 For basic output, use `ptmctl` without any options:
+
+{{%notice note%}}
+PTM show command output displays BFD status when {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} is configured through the integration with FRRouting. 
+{{%/notice%}}
 
 ```
 cumulus@switch:~$ sudo ptmctl
@@ -427,13 +403,6 @@ graph G {
 {{< img src = "/images/cumulus-linux/ptm-dot.png" >}}
 
 ## Considerations
-
-### ptmd Is in an Incorrect Failure State
-
-When `ptmd` is in an incorrect failure state and you enable the Zebra interface, PIF BGP sessions do not establish the route but the subinterface does establish routes.
-
-If the subinterface is on the physical interface and PTM marks the physical interface in a PTM FAIL state, FRR does not process routes on the physical interface, but the subinterface is working.
-
 ### Commas in Port Descriptions
 
 If an LLDP neighbor advertises a `PortDescr` that contains commas, `ptmctl -d` splits the string on the commas and misplaces its components in other columns. Do not use commas in your port descriptions.

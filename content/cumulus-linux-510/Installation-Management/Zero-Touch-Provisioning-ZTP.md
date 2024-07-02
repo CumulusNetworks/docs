@@ -147,7 +147,6 @@ You can write the script in any language that Cumulus Linux supports, such as:
 
 - Perl
 - Python
-- Ruby
 - Shell
 
 The script must return an exit code of 0 upon success to mark the process as complete in the autoprovisioning configuration file.

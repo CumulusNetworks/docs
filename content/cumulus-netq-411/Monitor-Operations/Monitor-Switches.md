@@ -21,9 +21,11 @@ For switch inventory information (ASIC, platform, CPU, memory, disk, and OS), re
 
 {{<tab "NetQ UI" >}}
 
-To view events, metrics, and attributes per switch, open the Switch card:
+The quickest way to access monitoring information for an individual switch is by searching for its hostname in the global search field. Search for the hostname and select the switch to open a full-screen overview of attributes and performance information.
 
-1. Search for the device’s hostname in the global search field or from the header select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
+Alternately, you can add a device card to your workbench:
+
+1. From the header select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
 
 2. Select a switch from the list:
 
@@ -35,15 +37,15 @@ To view events, metrics, and attributes per switch, open the Switch card:
 
 Attributes are displayed as the default tab on the large Switch card. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces and NetQ Agent on the switch.
 
-{{<figure src="/images/netq/switch-attributes-470.png" alt="large switch card displaying attributes" width="700">}}
+{{<figure src="/images/netq/switch-large-411.png" alt="large switch card displaying attributes" width="700">}}
 
 Hover over the top of the card and select the appropriate icon to view utilization info, interface statistics, digital optics info, RoCE metrics, and PTP clock graphs. This example displays utilization information, including CPU, memory, and disk utilization from the past 24 hours:
 
-{{<figure src="/images/netq/utilization-470.png" alt="large switch card displaying attributes" width="700">}}
+{{<figure src="/images/netq/switch-util-411.png" alt="large switch card displaying attributes" width="700">}}
 
 Expand the Switch card to full-screen to view, filter, or export information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, software packages, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, digital optics, PTP, and process monitoring: 
 
-{{<figure src="/images/netq/switch-full-470.png" width="1200">}}
+{{<figure src="/images/netq/switch-full-411.png" alt="" width="1200">}}
 
 {{</tab>}}
 

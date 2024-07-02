@@ -759,3 +759,9 @@ enable                      on            off
 ```
 
 To show adaptive routing configuration for an interface, run the `nv show interface <interface> router adaptive-routing`.
+
+## Considerations
+
+### IPv6 Next Hop Preference
+
+Cumulus Linux uses IPv6 link-local addresses as BGP next hops when receiving a route with both link-local and global next hops. To configure a BGP peering to prefer global next hop addresses, configure the `ipv6-nexthop-prefer-global` option in an inbound route map applied to the peer. This is required when there are multiple BGP peerings to the same router with adaptive routing enabled, or multiple peerings to the same router on interfaces that share the same MAC address or physical interface. Refer to {{<link url="Route-Filtering-and-Redistribution/#set-ipv6-prefer-global" text="Set IPv6 Prefer Global">}}.

@@ -34,14 +34,17 @@ The NVUE REST API supports the following methods:
 - The **DELETE** method deletes a configuration and is equivalent to the `nv unset` commands.
 
 {{%notice note%}}
-In Cumulus Linux 5.9 and earlier, the REST API PATCH response returns the full state of the NVUE system, which is very inefficient with large scale configurations as the system state grows with the configuration. In Cumulus Linux 5.10 and later, the REST API PATCH response returns the difference of what the PATCH request will change. The response typically equals the request payload; however, in certain instances the response returns additional changes that the NVUE server patches in automatically. For example, when using well-named interface names like swp1, NVUE configures the type automatically:
+In Cumulus Linux 5.9 and earlier, the REST API PATCH response returns the full state of the NVUE system (your configuration change and all other NVUE configuration on the switch), which can be inefficient with large scale configurations as the system state grows with the configuration. In Cumulus Linux 5.10 and later, the REST API PATCH response returns only the resulting configuration change. The response typically equals the request payload; however, in certain instances the response returns additional changes that the NVUE server patches in automatically. For example, when using well-named interface names like swp1, NVUE configures the `type` automatically:
 
 ```
 PATCH request: {'interface': {'swp1': {}}
 PATCH Response: {'interface': {'swp1': {'type': 'swp'}},
 ...
 ```
+{{%/notice%}}
 
+{{%notice note%}}
+In Cumulus Linux 5.10 and later, DELETE responses return a `204(No Content)` status code. In Cumulus Linux 5.9 and earlier, DELETE responses return `200` with an empty json body `({}`).
 {{%/notice%}}
 
 ## Secure the API
@@ -2564,52 +2567,6 @@ cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"bond0": {"type":"bond","bond":
       }
     },
     "type": "bond"
-  },
-  "bond1": {
-    "bond": {
-      "lacp-bypass": "on",
-      "member": {
-        "swp1": {}
-      },
-      "mlag": {
-        "enable": "on",
-        "id": 1
-      },
-      "mode": "lacp"
-    },
-    "bridge": {
-      "domain": {
-        "br_default": {
-          "access": 10,
-          "stp": {
-            "admin-edge": "on",
-            "auto-edge": "on",
-            "bpdu-guard": "on"
-          }
-        }
-      }
-    },
-    "link": {
-      "mtu": 9000
-    },
-    "type": "bond"
-  },
-  "eth0": {
-    "ip": {
-      "address": {
-        "192.168.200.6/24": {}
-      },
-      "vrf": "mgmt"
-    },
-    "type": "eth"
-  },
-  "lo": {
-    "ip": {
-      "address": {
-        "10.10.10.1/32": {}
-      }
-    },
-    "type": "loopback"
   }
 }
 ```
@@ -2772,9 +2729,35 @@ The following example configures a bridge.
 {{< tab "Curl Command" >}}
 
 ```
-curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=21
+cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=21
+{
+  "swp1": {
+    "bridge": {
+      "domain": {
+        "br_default": {}
+      }
+    },
+    "type": "swp"
+  },
+  "swp2": {
+    "bridge": {
+      "domain": {
+        "br_default": {}
+      }
+    },
+    "type": "swp"
+  }
+}
+
 cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=8
 ```
+{
+  "untagged": 1,
+  "vlan": {
+    "10": {},
+    "20": {}
+  }
+}
 
 {{< /tab >}}
 {{< tab "Python Code" >}}

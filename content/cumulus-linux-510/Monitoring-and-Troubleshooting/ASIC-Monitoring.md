@@ -4,8 +4,13 @@ author: NVIDIA
 weight: 1230
 toc: 3
 ---
+Cumulus Linux provides two ASIC monitoring tools that collect and distributes data about the state of the ASIC.
+- Histogram Collection
+- High Frequency Telemetry
 
-Cumulus Linux provides an ASIC monitoring tool that collects and distributes data about the state of the ASIC. The monitoring tool polls for data at specific intervals and takes certain actions so that you can identify and respond to problems, such as:
+## Histogram Collection
+
+The histogram collection monitoring tool polls for data at specific intervals and takes certain actions so that you can identify and respond to problems, such as:
 - Microbursts that result in longer packet latency.
 - Packet buffer congestion that might lead to packet drops.
 - Network problems with a particular switch, port, or traffic class.
@@ -25,7 +30,7 @@ Cumulus Linux supports:
 - The counter histogram (layer 1 received byte counters and layer 1 transmitted byte counters) on Spectrum-4 only.
 {{%/notice%}}
 
-## Histogram Collection Example
+### Histogram Collection Example
 
 The NVIDIA Spectrum ASIC provides a mechanism to measure and report ingress and egress queue lengths, counters and latency in histograms (a graphical representation of data, which it divides into intervals or bins). Each queue reports through a histogram with 10 bins, where each bin represents a range of queue lengths.
 
@@ -54,9 +59,9 @@ The following illustration demonstrates a histogram showing how many times the q
 
 {{< img src = "/images/cumulus-linux/asic-monior-histogram-queue.png" >}}
 
-## Configure ASIC Monitoring
+### Configure Histogram Collection
 
-To configure ASIC monitoring, you specify:
+To configure Histogram Collection, you specify:
 - The type of data to collect.
 - The switch ports to monitor.
   - For the egress queue length and latency histograms, you can specify the traffic class you want to monitor for a port or range of ports.
@@ -64,9 +69,9 @@ To configure ASIC monitoring, you specify:
 - How and when to start reading the ASIC: at a specific queue length, number of packets or bytes received or transmitted, or number of nanoseconds latency.
 - What actions to take: create a snapshot file, send a message to the `/var/log/syslog` file, or both.
 
-### Enable ASIC Monitoring
+### Enable Histogram Collection
 
-To enable ASIC monitoring:
+To enable histogram collection:
 
 {{< tabs "TabID62 ">}}
 {{< tab "NVUE Commands ">}}
@@ -79,7 +84,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The `asic-monitor` service manages the ASIC monitoring tool (`systemd` manages the `asic-monitor` service). The `asic-monitor` service reads the `/etc/cumulus/datapath/monitor.conf` configuration file to determine what statistics to collect and when to trigger. The service always starts; however, if the configuration file is empty, the service exits.
+The `asic-monitor` service manages the histogram collection tool (`systemd` manages the `asic-monitor` service). The `asic-monitor` service reads the `/etc/cumulus/datapath/monitor.conf` configuration file to determine what statistics to collect and when to trigger. The service always starts; however, if the configuration file is empty, the service exits.
 
 {{%notice note%}}
 Restarting the `asic-monitor` service does not disrupt traffic or require you to restart `switchd`.
@@ -103,7 +108,7 @@ Histogram settings include the type of data you want to collect, the ports you w
     - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
     - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
 - You can enable up to two counter histogram counter types per physical interface. The counter histogram does not support bonds or virtual interfaces.
-- The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin. 
+- The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin.
 - The default value for the sampling time is 1024 nanoseconds.
 
 {{%notice note%}}
@@ -665,7 +670,7 @@ The following shows an example syslog message:
 When collecting data, the switch uses both the CPU and SDK process, which can affect `switchd`. Snapshots and logs can occupy a lot of disk space if you do not limit their number.
 {{%/notice%}}
 
-## Show Histogram Information
+### Show Histogram Information
 
 To show a list of the interfaces with enabled histograms, run the `nv show service telemetry histogram interface` command:
 
@@ -697,4 +702,455 @@ Time      0-863     864:2303    2304:3743  3744:5183   5184:6623   6624:8063   8
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 08:56:19  978065        0          0           0           0            0           0           0             0
 08:56:20  978532        0          0           0           0            0           0           0             0
+```
+
+## High Frequency Telemetry
+
+High frequency telemetry enables you to collect counters at very short sampling intervals (single digit milliseconds to microseconds), which is useful for <span class="a-tooltip">[AI](## "Artifical Intelligence")</span> training. The data can help you detect short duration events like microbursts, and provides information about where in time the events happen and for how long. 
+
+High frequency telemetry data provides time series data that traditional histograms cannot provide. The time series data helps you understand the shape of the traffic pattern and identify any spikes or dips, or jitter in the traffic.
+
+{{%notice note%}}
+- Cumulus Linux supports high frequency telemetry on Spectrum-4 switches.
+- To correlate counters from different switches for debugging and profiling, the switches must have the same time (the switch adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP. NVIDIA recommends using PTP because the timestamp is accurate among the switches in the fabric at the microsecond level.
+{{%/notice%}}
+
+You can export the collected data automatically to a configured influxDB service or export a `json` file with the collected data to an external location. You can then process the data, plot it into a time-series graph and see how the network behaves with high precision.
+
+{{%notice note%}}
+This collected data is available on the switch until you trigger the next data collection session or until you reboot the switch.
+{{%/notice%}}
+
+Cumulus Linux provides several options to configure high frequency telemetry; you can run NVUE commands (the preferred configuration method), use the Cumulus Linux job management tool (`cl-hft-tool`), or edit flat files. Using the `cl-hft-tool` command tool is a simplified way to perform Linux configuration; editing flat files provides more complexity. To show all the `cl-hft-tool` command options, run `cl-hft-tool help`.
+
+### Configure Data Collection
+
+High frequency telemetry uses profiles to configure data collection. A profile is a set of configurations. The default profile is `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).
+
+{{%notice note%}}
+You cannot delete or modification a profile if sessions are already running or scheduled.
+{{%/notice%}}
+
+To configure data collection:
+- Set the sampling interval in microseconds. You can specify a value between 100 and 65535. The value must be a multiple of 50. The default value is 100 microseconds.
+- Set the egress queue priorities (traffic class 0-15).
+- Specify the type of data you want to collect (transferred bytes, received bytes, and, or traffic class occupancy).
+
+{{< tabs "TabID26 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the type of data to collect to transferred bytes (`tx-byte`) and traffic class occupancy (`tc-occupancy`):
+
+```
+cumulus@switch:~$ nv set service telemetry hft profile profile1 sample-interval 1000
+cumulus@switch:~$ nv set service telemetry hft profile profile1 traffic-class 0,3,7 
+cumulus@switch:~$ nv set service telemetry hft profile profile1 counter tx-byte,tc-occupancy
+cumulus@switch:~$ nv config apply
+```
+
+The following example configures `profile2` and sets the sampling interval to 1000, the traffic class to 1-9, and the type of data to collect to received bytes (`rx-byte`):
+
+```
+cumulus@switch:~$ nv set service telemetry hft profile profile1 sample-interval 1000
+cumulus@switch:~$ nv set service telemetry hft profile profile1 traffic-class 0-9 
+cumulus@switch:~$ nv set service telemetry hft profile profile1 counter rx-byte
+cumulus@switch:~$ nv config apply
+```
+
+To delete a profile, run the `nv unset service telemetry hft profile <profile-id>` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "750 ">}}
+{{< tab "Job Management Tool ">}}
+
+The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the type of data to collect to transferred bytes (`tx-byte`) and traffic class occupancy (`tc-occupancy`):
+
+```
+cumulus@switch:~$ cl-hft-tool profile-add --profile profile1 --counter tx-byte, tc-occupancy --tc 0-3,7 --interval 1000 
+```
+
+The following example configures `profile2` and sets the sampling interval to 1000, the traffic class to 1-9, and the type of data to collect to received bytes (`rx-byte`):
+
+```
+cumulus@switch:~$ cl-hft-tool profile-add --profile profile2 --counter rx-byte --tc 1-9 --interval 1000 
+```
+
+To delete a profile, run the `cl-hft-tool profile-delete --profile <profile>` command:
+
+```
+cumulus@switch:~$ cl-hft-tool profile-delete --profile profile1 
+```
+
+To delete all profiles, run the `cl-hft-tool profile-delete --profile all` command.
+
+{{< /tab >}}
+{{< tab "File Configuration ">}}
+
+Edit the `/etc/cumulus/telemetry/hft/hft_profile.conf` file to configure the following parameters.
+
+| Parameter | Description |
+| --------- | ----------- |
+| `hft.profile_list` | The name of the profile. |
+| `hft.standard.counters_list` | The type of data you want to collect, which can be transferred bytes (`if_out_octets`), received bytes (`if_in_octets`), and, or traffic class occupancy (`tc_curr_occupancy`). |
+| `hft.standard.sample_interval` | The sampling interval in microseconds. You can specify a value between 100 and 65535. The value must be a multiple of 50. The default value is 100 microseconds.|
+| `hft.standard.tc_list` | The list of egress queue priorities (traffic classes) per port on which you want to collect data. |
+
+The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the list of counters to `if_out_octets` and `tc_curr_occupancy`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_profile.conf
+hft.profile_list = [profile1]
+hft.standard.counters_list = [if_out_octets, tc_curr_occupancy]
+hft.standard.sample_interval = [1000]
+hft.standard.tc_list = [0,3,7]
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Configure the Schedule
+
+To configure the schedule for a data collection profile, set:
+- The start date and time.
+- The session duration in seconds. The default value is 20 seconds.
+- The ports on which you want to collect the data. You can specify a range of ports, multiple comma separated ranges of ports, or `all` for all the ports. The default value is `all`.
+
+You can schedule a maximum of 25 sessions (jobs). The switch can retain data for 25 jobs (completed, cancelled, or failed) in addition to the active jobs.  
+
+{{< tabs "TabID79 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example configures `profile1` to start on 2024-01-21 at 10:00:00, last 30 seconds, collect data on swp1 through swp9.
+
+Specify the date and time in `YYYY-MM-DD HH:MM:SS` format.
+
+``` 
+cumulus@switch:~$ nv action schedule service telemetry hft job 2024-01-01 10:00:00 duration 30 profile profile1 ports swp1-swp9
+```
+
+You can provide a short reason why you are collecting the data (in quotes). A short description is optional.
+
+``` 
+cumulus@switch:~$ nv action schedule service telemetry hft job 2024-01-01 10:00:00 duration 30 profile profile1 ports swp1-swp9 description "bandwidth profiling"
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "803 ">}}
+{{< tab "Job Management Tool ">}}
+
+The following example configures `profile1` to start on 21-01-2024 at 10:00:00, last 30 seconds, collect data on swp1 through swp9.
+
+Specify the date and time in `DD-MM-YYY-HH:MM:SS` format.
+
+```
+cumulus@switch:~$ cl-hft-tool job-schedule --time 21-01-2024-10:00:00 --duration 30 --profile profile1 --ports swp1-swp9  
+```
+
+{{< /tab >}}
+{{< tab "File Configuration ">}}
+
+Edit the `/etc/cumulus/telemetry/hft/hft.conf` file to configure the following parameters.
+
+| Parameter | Description |
+| --------- | ----------- |
+| `hft.action_type` | The action type. `schedule` starts a new data collection session (job). |
+| `hft.schedule.start_time` | The job start date and time in `YYYY-MM-DD HH:MM:SS` format. |
+| `hft.schedule.duration` | The job duration in seconds. The default value is 20 seconds. |
+| `hft.schedule.port_set` | The ports on which you want to collect the data. You can specify a range of ports, multiple comma separated ranges of ports, or `all` for all the ports. The default value is `all`.|
+| `hft.schedule.profile_name` | The profile for this job. |
+| `hft.schedule.description`| A short reason why you are collecting the data. |
+
+The following example configures `profile1` to start on 2024-01-01 at 10:00:00, last 30 seconds, collect the data on swp1 through swp9 and add the session description `bandwidth profiling`.
+
+```
+cumulus@switch:~$  sudo nano /etc/cumulus/telemetry/hft/hft.conf
+hft.action_type = schedule
+hft.schedule.start_time =  2024-01-01 10:00:00
+hft.schedule.duration = 30
+hft.schedule.port_set = swp1-swp9
+hft.schedule.profile_name = profile1
+hft.schedule.description = Bandwidth profiling 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Export Collected Data
+
+After data collection completes, you can either:
+- Export the data automatically to a configured influxDB service.
+- Save the collected data locally to a `json` file in the `/var/run/cumulus/hft` directory, then export the `json` file to an external location with NVUE commands (or the API).
+
+  The `json` format file includes the counter data for each sampling interval and a timestamp showing when the data was collected. You can export the file to an external location with the NVUE `nv action upload service telemetry hft job <hft-job-id> <remote-url>` command. To see the list of jobs, run the `nv show service telemetry hft job` command (see {{<link url="#show-high-frequency-telemetry-session-information" text="Show High Frequency Telemetry Session Information">}} below).
+
+  ```
+  cumulus@switch:~$ nv action upload service telemetry hft job 1 scp://user1:user1-password@host1:~/ 
+  ```
+  
+  {{< expand "example json file" >}}
+```
+  { 
+    "hostname":  "leaf01"
+    "0": {
+        "sample_index": 1, 
+        "metadata": { 
+            "sec": 1715957858, 
+            "nsec": 714503118 
+        }, 
+        "port_data": { 
+            "swp1": { 
+                "if_out_octets": 0, 
+                "if_in_octets": 0, 
+                "tc_data": { 
+                    "0": { 
+                        "tc_curr_occupancy": 0 
+                    }, 
+                    "1": { 
+                        "tc_curr_occupancy": 0 
+                    }, 
+                    "2": { 
+                        "tc_curr_occupancy": 0 
+                    }, 
+                    "3": { 
+                        "tc_curr_occupancy": 0 
+                    }, 
+                    "4": { 
+                        "tc_curr_occupancy": 0 
+                    }, 
+                    "5": { 
+                        "tc_curr_occupancy": 0 
+                    }, 
+                    "6": { 
+                        "tc_curr_occupancy": 0 
+                    }, 
+                    "7": { 
+                        "tc_curr_occupancy": 0 
+                    } 
+                } 
+            } 
+        } 
+    }
+}
+```
+{{< /expand >}}
+
+{{%notice note%}}
+The collected data is available on the switch until you trigger the next data collection or until you reboot the switch.
+{{%/notice%}}
+
+{{< tabs "TabID56 ">}}
+{{< tab "NVUE Commands ">}}
+
+To save the collected data locally to a `json` file, run the `nv set service telemetry hft target local` command:
+
+```
+cumulus@switch:~$ nv set service telemetry hft target local
+cumulus@switch:~$ nv config apply
+```
+
+To export the data to influxDB, configure the following settings:
+- The IP address and TCP port of the influxDB host.
+- The influxDB bucket name where you want to insert the data.
+- The InfluxDB organization name in which the bucket is located.
+- The authentication token that ensures secure interaction between InfluxDB and Cumulus Linux.
+
+{{%notice note%}}
+NVUE takes the authentication token in plain text; however, the show commands do not show the token in plain text.
+{{%/notice%}}
+
+The following example configures the influxDB host IP address to 10.10.1.1, the TCP port to 12345, the bucket to `hft-data`, the organization to `nvidia` and authentication token to `token1`:
+
+``` 
+cumulus@switch:~$ nv set service telemetry hft target influxdb host 10.10.1.1 
+cumulus@switch:~$ nv set service telemetry hft target influxdb port 12345 
+cumulus@switch:~$ nv set service telemetry hft target influxdb bucket hft-data 
+cumulus@switch:~$ nv set service telemetry hft target influxdb org nvidia 
+cumulus@switch:~$ nv set service telemetry hft target influxdb token token1
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "886 ">}}
+{{< tab "Job Management Tool ">}}
+
+The following example saves the collected data locally to a `json` file:
+
+```
+cumulus@switch:~$ cl-hft-tool target-add --target local
+```
+
+The following example configures the influxDB host IP address to 10.10.1.1, the TCP port to 12345, the bucket to `hft-data`, the organization to `nvidia` and authentication token to `token1` (the job management tool encrypts the token):
+
+```
+cumulus@switch:~$ cl-hft-tool  target-add --target influxdb –host “10.10.1.1” –port 12345 –bucket hft-data –org nvidia –token "*****"
+```
+
+To delete a target, run the `cl-hft-tool target-delete --target <target>` command, where target is either `local` or `influxdb`:
+
+```
+cumulus@switch:~$ cl-hft-tool target-delete --target influxdb 
+```
+
+{{< /tab >}}
+{{< tab "File Configuration ">}}
+
+Edit the `/etc/cumulus/telemetry/hft/hft_profile.conf` file to configure the following parameters.
+
+| Parameter | Description |
+| --------- | ----------- |
+| `hft.target` | The external location where you want to export the collected data. Specify `local` save the collected data locally to a `json` file or `influxdb` to export the collected data to influxDB.|
+| `hft.influxdb.host` | The IP address of the influxDB host. |
+| `hft.influxdb.port` | The TCP port of the influxDB host. |
+| `hft.influxdb.bucket` | The influxDB bucket name where you want to insert the data. |
+| `hft.influxdb.org` | The InfluxDB organization name in which the bucket is located.
+| `hft.influxdb.token` | The authentication token that ensures secure interaction between InfluxDB and Cumulus Linux. |
+
+The following example saves the collected data locally to a `json` file:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_profile.conf
+hft.target = [local]
+```
+
+The following example configures the influxDB host IP address to 10.10.1.1, the TCP port to 12345, the bucket to `hft-data`, the organization to `nvidia` and authentication token to `token1`:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_profile.conf
+hft.target = [influxdb]
+hft.influxdb.host = 10.10.1.1 
+hft.influxdb.port = 12345
+hft.influxdb.bucket = hft-data
+hft.influxdb.org = nvidia
+hft.influxdb.token =token1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Cancel Data Collection
+
+You can cancel a specific or all data collection jobs, or a specific or all jobs for a profile.
+
+{{< tabs "TabID102 ">}}
+{{< tab "NVUE Commands ">}}
+
+To cancel a scheduled telemetry job, run the `nv action cancel service telemetry hft job <job-id> profile <profile-id>` command.
+
+The following example cancels all jobs for profile `profile1`:
+
+```
+cumulus@switch:~$ nv action cancel service telemetry hft job all profile profile1
+```
+
+The following example cancels job ID 6:
+
+```
+cumulus@switch:~$ nv action cancel service telemetry hft job 6
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< tabs "852 ">}}
+{{< tab "Job Management Tool ">}}
+
+To cancel a scheduled telemetry job, run the `cl-hft-tool  job-cancel --job <job-id>` command.
+
+The following example cancels job 6:
+
+```
+cumulus@switch:~$ cl-hft-tool  job-cancel --job 6
+```
+
+To cancel all jobs, run the `cl-hft-tool  job-cancel --job all` command.
+
+{{< /tab >}}
+{{< tab "File Configuration ">}}
+
+Edit the `/etc/cumulus/telemetry/hft/hft.conf` file to configure the following parameters.
+
+| Parameter | Description |
+| --------- | ----------- |
+| `hft.action_type`| Specify the action type `cancel` to stop a scheduled job.  |
+| `hft.cancel.job_id` | The ID of job you want to cancel. Every scheduled session has a unique job ID. |
+
+The following example cancels job ID 6 for profile `profile1`:
+
+```
+cumulus@switch:~$  sudo nano /etc/cumulus/telemetry/hft/hft.conf
+hft.action_type = schedule
+hft.schedule.start_time =  2024-01-01 10:00:00
+hft.schedule.duration = 30
+hft.schedule.port_set = swp1-swp9
+hft.schedule.profile_name = profile1
+hft.schedule.description = Bandwidth profiling
+
+hft.action_type cancel
+hft.cancel.job_id = 6
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Show Session Information
+
+To show information for all data collection jobs, such as the start time, duration, status and ports on which the data is collected:
+
+```
+cumulus@switch:~$ nv show service telemetry hft job
+Job Id      Start Time               Duration(s)        Profile     Ports    Status  
+
+---------   --------------           ------------       ---------   -------   ---------  
+
+1           10-05-2024 09:00:00      20                 standard    all       complete 
+2           12-05-2024 09:00:00      20                 standard    all       complete 
+3           15-05-2024 09:00:00      20                 standard    all       complete 
+4           16-05-2024 09:00:00      20                 standard    all       complete 
+5           17-05-2024 09:00:00      20                 standard    all       complete 
+6           19-05-2024 09:00:00      20                 standard    all       complete 
+7           19-05-2024 12:00:00      20                 standard    all       running 
+8           20-05-2024 09:00:00      20                 standard    all       pending
+```
+
+To show the currently running data collection job:
+
+```
+cumulus@switch:~$ nv show service telemetry hft job –filter “status=running” 
+Job Id     Start Time              Duration(s)        Profile     Ports    Status  
+---------  --------------          ------------       ---------   -------  ---------  
+7          19-05-2024 12:00:00     20                 standard    all      running
+```
+
+To show information about a specific data collection job:
+
+```
+cumulus@switch:~$ nv show service telemetry hft job 1 
+                       operational
+---------------------  ----------------- 
+start-time             01-01-2024 12:00:00 
+duration               20 
+traffic-class          3 
+counter                tx-byte,rx-byte,tc-occupancy 
+sample-interval        5000 
+ports                  swp1-swp64 
+status                 pending 
+target                 scp://abc@server1:/hft-data
 ```

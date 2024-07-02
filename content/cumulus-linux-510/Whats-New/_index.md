@@ -19,7 +19,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 
 - PPS supported on the NVIDIA SN5400 switch
 - Additional OID support for SNMP MIBs
-- High frequency telemetry
+- {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="High frequency telemetry">}}
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}
 - {{<link url="Quality-of-Service/#lossy-headroom" text="QoS lossy headroom configuration">}}
 - {{<link url="VXLAN-Devices/#reserved-field-in-vxlan-header" text="Ignore reserved field in VXLAN header">}}
@@ -29,9 +29,10 @@ NVIDIA SN5400 (400G Spectrum-4)
   - AmBER counters and gauges
   - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and encryption configuration">}}
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
-  - Redesigned BGP show output flags to be similar to vtysh output
-  - Radius keys are encrypted in the NVUE `startup.yaml` file
+  - {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="Command to generate a cl-support file">}}
   - {{<link url="NVUE-CLI/#session-based-authentication" text="Session-based authentication">}}
+  - Redesigned BGP show output flags similar to vtysh output
+  - Radius keys are encrypted in the NVUE `startup.yaml` file
   - {{< expand "Changed NVUE Commands" >}}
 | New Command| Previous Command |
 | ----------- | ----------------|
@@ -82,7 +83,8 @@ nv unset vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 {{< tab "nv action ">}}
 
 ```
-nv action clear system api session user 
+nv action clear system api session user
+nv action generate system tech-support
 ```
 
 {{< /tab >}}

@@ -142,7 +142,7 @@ graph G {
 
 ## BFD
 
-<span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. PTM provides a unified mechanism for link detection over all media and protocol layers and integrated with FRRouting to enable BFD. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD, see {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
+<span class="a-tooltip">[BFD](## "Bidirectional Forwarding Detection")</span> provides low overhead and rapid detection of failures in the paths between two network devices. PTM provides a unified mechanism for link detection over all media and protocol layers and integrated with FRR to enable BFD. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD, see {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
 
 ## Check Link State
 
@@ -259,7 +259,7 @@ The examples below contain the following keywords in the output of the `cbl stat
 For basic output, use `ptmctl` without any options:
 
 {{%notice note%}}
-PTM show command output displays BFD status when {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} is configured through the integration with FRRouting. 
+PTM show command output displays BFD status when {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}} is configured through the integration with FRR. 
 {{%/notice%}}
 
 ```

@@ -706,7 +706,7 @@ Time      0-863     864:2303    2304:3743  3744:5183   5184:6623   6624:8063   8
 
 ## High Frequency Telemetry
 
-High frequency telemetry enables you to collect counters at very short sampling intervals (single digit milliseconds to microseconds), which is useful for <span class="a-tooltip">[AI](## "Artifical Intelligence")</span> training. The data can help you detect short duration events like microbursts, and provides information about where in time the events happen and for how long. 
+High frequency telemetry enables you to collect counters at very short sampling intervals (single digit milliseconds to microseconds), which is useful for <span class="a-tooltip">[AI](## "Artifical Intelligence")</span> training. The data can help you detect short duration events like microbursts, and provides information about where in time the events happen and for how long.
 
 High frequency telemetry data provides time series data that traditional histograms cannot provide. The time series data helps you understand the shape of the traffic pattern and identify any spikes or dips, or jitter in the traffic.
 
@@ -732,9 +732,13 @@ You cannot delete or modification a profile if sessions are already running or s
 {{%/notice%}}
 
 To configure data collection:
-- Set the sampling interval in microseconds. You can specify a value between 100 and 65535. The value must be a multiple of 50. The default value is 5000 microseconds.
-- Set the egress queue priorities (traffic class 0-15).
-- Specify the type of data you want to collect (transferred bytes, received bytes, and, or traffic class occupancy).
+- Set the sampling interval in microseconds. You can specify a value between 100 and 12750. The value must be a multiple of 50. The default value is 5000 microseconds (30 seconds).
+- Set the egress queue priorities (traffic class 0-16).
+- Specify the type of data you want to collect (transferred bytes, received bytes, and traffic class occupancy). 
+
+{{%notice note%}}
+Use commas (no spaces) to separate the list of counter types you want to collect and the list of traffic classes. For example, to collect all counter types, specify `tx-byte,rx-byte,tc-occupancy`. To set traffic class 1, 3, and 6, specify `1,3,6`.
+{{%/notice%}}
 
 {{< tabs "TabID26 ">}}
 {{< tab "NVUE Commands ">}}

@@ -23,7 +23,7 @@ For switch inventory information (ASIC, platform, CPU, memory, disk, and OS), re
 
 To view events, metrics, and attributes per switch, open the Switch card:
 
-1. In the header, select {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices**, then click **Open a device card**.
+1. Search for the device’s hostname in the global search field or from the header select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
 
 2. Select a switch from the list:
 

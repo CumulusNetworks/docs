@@ -18,13 +18,24 @@ NVIDIA SN5400 (400G Spectrum-4)
 ### New Features and Enhancements
 
 - PPS supported on the NVIDIA SN5400 switch
-- Additional OID support for SNMP MIBs
 - {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="High frequency telemetry">}}
+- Telemetry export
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}
 - {{<link url="Quality-of-Service/#lossy-headroom" text="QoS lossy headroom configuration">}}
 - {{<link url="VXLAN-Devices/#reserved-field-in-vxlan-header" text="Ignore reserved field in VXLAN header">}}
 - {{<link url="Quick-Start-Guide/#get-started" text="DHCP Option 61">}} (pre-provision a switch with its serial number) is enabled by default when Cumulus Linux boots
 - {{<link url="Optional-BGP-Configuration/#graceful-bgp-shutdown-on-a-peer" text="Graceful shutdown on a peer">}}
+- {{< expand "Additional OID support for SNMP MIBs" >}}
+| <div style="width:250px">MIB | OID | Description |
+| --- | ----| ----------- |
+| CUMULUS-COUNTERS-MIB | .1.3.6.1.4.1.40310.2.2.5.1.4 | The number of times the operational status of the interface link transitions between up and down. |
+| CUMULUS-COUNTERS-MIB | .1.3.6.1.4.1.40310.2.2.6.1.4 | The number of bytes transmitted from the egress queue. |
+| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.28 | The total number of IPv4 routes in the FIB.|
+| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.29 | The total number of IPv4/24 routes in the FIB.|
+| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.30 | The total number of IPv4/32 routes in the FIB.|
+
+{{<link url="Supported-MIBs" text="Supported MIBs">}}
+{{< /expand >}}
 - NVUE
   - AmBER counters and gauges
   - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and encryption configuration">}}
@@ -42,7 +53,7 @@ These commands include additional information in the output.
 
 | Changed Command Output | Additional Information |
 | ----------- | ----------------|
-| `nv show interface <interface>` |  |
+| `nv show interface <interface>` |  Port hardware information such as eyes, grade and troubleshooting information, if available.|
 | `nv show interface <interface> link` | Port hardware information such as eyes, grade and troubleshooting information, if available. |
 | `nv show interface <interface> pluggable` | Cable length, date code, revision compliance, temperature, and voltage. |
 

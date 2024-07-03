@@ -626,6 +626,37 @@ cumulus@switch:~$
 For OSPF, redistribution loads the database unnecessarily with type-5 LSAs. Only use this method to generate real external prefixes (type-5 LSAs).
 {{%/notice%}}
 
+### Set IPv6 Prefer Global
+
+The following example configures a route map to prefer the global IPv6 address when a route contains both link-local and global next hop addresses. This is required when there are multiple BGP peerings to the same router with {{<link url="Equal-Cost-Multipath-Load-Sharing/#adaptive-routing" text="adaptive routing">}} enabled, or with multiple peerings to the same router on interfaces that share the same MAC address or physical interface.
+
+{{< tabs "TabID947 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@leaf01:~$ nv set router policy route-map IPV6-PREFER-GLOBAL rule 10 action permit
+cumulus@leaf01:~$ nv set router policy route-map IPV6-PREFER-GLOBAL rule 10 set ipv6-nexthop-prefer-global on
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# route-map IPV6-PREFER-GLOBAL permit 10
+leaf01(config-route-map)# set ipv6 next-hop prefer-global
+leaf01(config-route-map)# end
+leaf01# write memory
+leaf01# exit
+cumulus@sleaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Configuration Examples
 
 This section shows the `/etc/frr/frr.conf` file configuration for example route filters and redistribution.

@@ -706,7 +706,7 @@ Time      0-863     864:2303    2304:3743  3744:5183   5184:6623   6624:8063   8
 
 ## High Frequency Telemetry
 
-High frequency telemetry enables you to collect counters at very short sampling intervals (single digit milliseconds to microseconds), which is useful for <span class="a-tooltip">[AI](## "Artifical Intelligence")</span> training. The data can help you detect short duration events like microbursts, and provides information about where in time the events happen and for how long. 
+High frequency telemetry enables you to collect counters at very short sampling intervals (single digit milliseconds to microseconds), which is useful for <span class="a-tooltip">[AI](## "Artifical Intelligence")</span> training. The data can help you detect short duration events like microbursts, and provides information about where in time the events happen and for how long.
 
 High frequency telemetry data provides time series data that traditional histograms cannot provide. The time series data helps you understand the shape of the traffic pattern and identify any spikes or dips, or jitter in the traffic.
 
@@ -732,9 +732,13 @@ You cannot delete or modification a profile if sessions are already running or s
 {{%/notice%}}
 
 To configure data collection:
-- Set the sampling interval in microseconds. You can specify a value between 100 and 65535. The value must be a multiple of 50. The default value is 100 microseconds.
-- Set the egress queue priorities (traffic class 0-15).
-- Specify the type of data you want to collect (transferred bytes, received bytes, and, or traffic class occupancy).
+- Set the sampling interval in microseconds. You can specify a value between 100 and 12750. The value must be a multiple of 50. The default value is 5000 microseconds (30 seconds).
+- Set the egress queue priorities (traffic class 0-16).
+- Specify the type of data you want to collect (transferred bytes, received bytes, and traffic class occupancy). 
+
+{{%notice note%}}
+Use commas (no spaces) to separate the list of counter types you want to collect and the list of traffic classes. For example, to collect all counter types, specify `tx-byte,rx-byte,tc-occupancy`. To set traffic class 1, 3, and 6, specify `1,3,6`.
+{{%/notice%}}
 
 {{< tabs "TabID26 ">}}
 {{< tab "NVUE Commands ">}}
@@ -794,7 +798,7 @@ Edit the `/etc/cumulus/telemetry/hft/hft_profile.conf` file to configure the fol
 | --------- | ----------- |
 | `hft.profile_list` | The name of the profile. |
 | `hft.standard.counters_list` | The type of data you want to collect, which can be transferred bytes (`if_out_octets`), received bytes (`if_in_octets`), and, or traffic class occupancy (`tc_curr_occupancy`). |
-| `hft.standard.sample_interval` | The sampling interval in microseconds. You can specify a value between 100 and 65535. The value must be a multiple of 50. The default value is 100 microseconds.|
+| `hft.standard.sample_interval` | The sampling interval in microseconds. You can specify a value between 100 and 65535. The value must be a multiple of 50. The default value is 5000 microseconds.|
 | `hft.standard.tc_list` | The list of egress queue priorities (traffic classes) per port on which you want to collect data. |
 
 The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the list of counters to `if_out_octets` and `tc_curr_occupancy`:
@@ -959,7 +963,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 To export the data to influxDB, configure the following settings:
-- The IP address and TCP port of the influxDB host.
+- The IP address and TCP port of the influxDB host. The default port is 8086.
 - The influxDB bucket name where you want to insert the data.
 - The InfluxDB organization name in which the bucket is located.
 - The authentication token that ensures secure interaction between InfluxDB and Cumulus Linux.
@@ -1012,7 +1016,7 @@ Edit the `/etc/cumulus/telemetry/hft/hft_profile.conf` file to configure the fol
 | --------- | ----------- |
 | `hft.target` | The external location where you want to export the collected data. Specify `local` save the collected data locally to a `json` file or `influxdb` to export the collected data to influxDB.|
 | `hft.influxdb.host` | The IP address of the influxDB host. |
-| `hft.influxdb.port` | The TCP port of the influxDB host. |
+| `hft.influxdb.port` | The TCP port of the influxDB host. The default port is 8086. |
 | `hft.influxdb.bucket` | The influxDB bucket name where you want to insert the data. |
 | `hft.influxdb.org` | The InfluxDB organization name in which the bucket is located.
 | `hft.influxdb.token` | The authentication token that ensures secure interaction between InfluxDB and Cumulus Linux. |

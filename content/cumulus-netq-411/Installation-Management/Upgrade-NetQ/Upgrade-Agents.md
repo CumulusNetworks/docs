@@ -22,7 +22,7 @@ sudo apt-get install -y netq-agent
 
 {{</tab>}}
 
-{{<tab "RHEL or CentOS Hosts">}}
+{{<tab "RHEL Hosts">}}
 
 ```
 sudo yum update
@@ -69,7 +69,7 @@ root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 
 {{</tab>}}
 
-{{<tab "RHEL7 or CentOS">}}
+{{<tab "RHEL7">}}
 
 ```
 root@rhel7:~# rpm -q -netq-agent

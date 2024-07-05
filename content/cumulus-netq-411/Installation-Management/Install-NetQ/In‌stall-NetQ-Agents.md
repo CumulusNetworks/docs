@@ -10,18 +10,17 @@ After installing the NetQ software, you should install the NetQ Agents on each s
 - Cumulus Linux 5.0.0 and later (Spectrum switches)
 - Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
 - SONiC 202012
-- CentOS 7
 - RHEL 7.1
 - Ubuntu 20.04
 
 ## Prepare for NetQ Agent Installation
 
-For switches running Cumulus Linux and SONiC, you need to:
+For switches running Cumulus Linux or SONiC, you need to:
 
 - Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
-For servers running RHEL, CentOS, or Ubuntu, you need to:
+For servers running RHEL or Ubuntu, you need to:
 
 - Verify you installed the minimum package versions
 - Verify the server is running `lldpd`
@@ -137,7 +136,7 @@ synchronised to NTP server (104.194.8.227) at stratum 3
 
 To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the NVIDIA networking repository.
 
-*Note that NetQ has a separate repository from SONiC.*
+*Note that NetQ and SONiC have separate repositories*
 
 To obtain the NetQ Agent package:
 
@@ -168,19 +167,26 @@ Before you install the NetQ Agent on a Red Hat or CentOS server, make sure you i
 - ntp-4.2.6p5-25.el7.centos.2.x86\_64
 - ntpdate-4.2.6p5-25.el7.centos.2.x86\_64
 
-### Verify the Server is Running lldpd and wget
+### Verify Ubuntu is Running lldpd
 
-Make sure you are running lldp**d**, not lldp**ad**. CentOS does not include `lldpd` by default, nor does it include `wget`; however, the installation requires it.
+For Ubuntu, make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default, even though the installation requires it.
 
-To install this package, run the following commands:
+{{<tabs "Configure NetQ CLI">}}
+
+{{<tab "Ubuntu">}}
+
+To install `lldpd`, run the following commands:
 
 ```
-root@rhel7:~# sudo yum -y install epel-release
-root@rhel7:~# sudo yum -y install lldpd
-root@rhel7:~# sudo systemctl enable lldpd.service
-root@rhel7:~# sudo systemctl start lldpd.service
-root@rhel7:~# sudo yum install wget
+root@ubuntu:~# sudo apt-get update
+root@ubuntu:~# sudo apt-get install lldpd
+root@ubuntu:~# sudo systemctl enable lldpd.service
+root@ubuntu:~# sudo systemctl start lldpd.service
 ```
+
+{{</tab>}}
+
+{{</tabs>}}
 
 ### Install and Configure NTP
 
@@ -507,7 +513,7 @@ To install the NetQ Agent (the following example uses Cumulus Linux but the step
 
 {{</tab>}}
 
-{{<tab "RHEL7 or CentOS">}}
+{{<tab "RHEL7">}}
 
 To install the NetQ Agent:
 

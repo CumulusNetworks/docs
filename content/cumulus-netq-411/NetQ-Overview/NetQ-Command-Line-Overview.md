@@ -93,7 +93,7 @@ NetQ code examples use the following prompts:
 - `cumulus@hostname:~$` indicates the user *cumulus* is logged in to a switch, host or appliance to run the example command
 <!-- vale on -->
 
-To use the NetQ CLI, the switches must be running the Cumulus Linux or SONiC operating system, the NetQ software, the NetQ Agent, and the NetQ CLI. The hosts must be running CentOS, RHEL, or Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to {{<link url="Install-NetQ">}} for additional information.
+To use the NetQ CLI, the switches must be running the Cumulus Linux or SONiC operating system, the NetQ software, the NetQ Agent, and the NetQ CLI. The hosts must be running the RHEL or Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to {{<link url="Install-NetQ">}} for additional information.
 
 ### Command Completion
 

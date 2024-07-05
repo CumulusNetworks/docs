@@ -22,7 +22,7 @@ sudo apt-get install -y netq-apps
 
 {{</tab>}}
 
-{{<tab "RHEL or CentOS Hosts">}}
+{{<tab "RHEL Hosts">}}
 
 ```
 sudo yum update

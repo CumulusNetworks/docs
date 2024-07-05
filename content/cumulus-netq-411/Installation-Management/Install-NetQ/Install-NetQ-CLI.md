@@ -12,7 +12,6 @@ After installing the NetQ software and agent on each switch you want to monitor,
 - Cumulus Linux 5.0.0 and later (Spectrum switches)
 - Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
 - SONiC 202012
-- CentOS 7
 - RHEL 7.1
 - Ubuntu 20.04
 
@@ -20,9 +19,9 @@ After installing the NetQ software and agent on each switch you want to monitor,
 If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NetQ repository.
 {{</notice>}}
 
-## Prepare for NetQ CLI Installation on a RHEL, CentOS, or Ubuntu Server
+## Prepare for NetQ CLI Installation on a RHEL or Ubuntu Server
 
-For servers running RHEL 7, CentOS or Ubuntu OS, you need to:
+For servers running the RHEL 7 or Ubuntu OS, you need to:
 
 - Verify you installed the minimum service packages versions
 - Verify the server is running `lldpd`
@@ -59,25 +58,11 @@ Before you install the NetQ CLI on a server, make sure you install and run at le
 
 {{</tabs>}}
 
-### Verify That CentOS and Ubuntu Are Running lldpd
+### Verify Ubuntu is Running lldpd
 
-For CentOS and Ubuntu, make sure you are running lldp**d**, not lldp**ad**. CentOS and Ubuntu do not include `lldpd` by default, even though the installation requires it. You must also install the Wget utility on CentOS distributions.
+For Ubuntu, make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default, even though the installation requires it.
 
 {{<tabs "Configure NetQ CLI">}}
-
-{{<tab "CentOS">}}
-
-To install the packages, run the following commands:
-
-```
-root@centos:~# sudo yum -y install epel-release
-root@centos:~# sudo yum -y install lldpd
-root@centos:~# sudo systemctl enable lldpd.service
-root@centos:~# sudo systemctl start lldpd.service
-root@centos:~# sudo yum install wget
-```
-
-{{</tab>}}
 
 {{<tab "Ubuntu">}}
 
@@ -100,7 +85,7 @@ If NTP is not already installed and configured, follow these steps:
 
 {{<tabs "Install NTP">}}
 
-{{<tab "RHEL7 or CentOS">}}
+{{<tab "RHEL7">}}
 
 1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be synchronized with the NetQ appliance or VM to enable useful statistical analysis.
 
@@ -397,7 +382,7 @@ To obtain the NetQ CLI package:
 
 {{</tab>}}
 
-{{<tab "RHEL7 or CentOS">}}
+{{<tab "RHEL7">}}
 
 1. Reference and update the local `yum` repository and key.
 

@@ -101,6 +101,7 @@ netq install cluster full
     bundle <text-bundle-url>
     [config-key <text-opta-key>]
     [pod-ip-range <text-pod-ip-range>]
+    [service-ip-range <text-service-ip-range>]
     workers <text-worker-01> <text-worker-02>
     [workers-ipv6 <text-worker-ipv6-01> <text-worker-ipv6-02>] 
     cluster-vip <text-cluster-vip> 
@@ -122,6 +123,7 @@ netq install cluster full
 | ---- | ---- | ---- |
 | config-key | \<text-opta-key\> | Use this unique key to install the server cluster |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
+| service-ip-range | \<text-service-ip-range\> | Specify a range of IP addresses for the service |
 | workers-ipv6 | \<text-worker-ipv6-01\> \<text-worker-ipv6-02\> | Install the worker nodes with these IPv6 addresses |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
@@ -129,7 +131,7 @@ netq install cluster full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.10.1.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
+cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.11.1.tgz workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands
@@ -248,6 +250,7 @@ netq install opta cluster full
     bundle <text-bundle-url>
     config-key <text-opta-key>
     [pod-ip-range <text-pod-ip-range>]
+    [service-ip-range <text-service-ip-range>]
     workers <text-worker-01> <text-worker-02>
     cluster-vip <text-cluster-vip>
     [proxy-host <text-proxy-host> proxy-port <text-proxy-port>]
@@ -273,13 +276,14 @@ netq install opta cluster full
 | proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the VM; you must also specify a port |
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the VM; you must also specify a proxy host |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
+| service-ip-range | \<text-service-ip-range\> | Specify a range of IP addresses for the service |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/installables/NetQ-4.9.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
+cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/installables/NetQ-4.11.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD workers 10.20.10.25 10.20.10.45 cluster-vip 10.20.10.254
 ```
 
 ### Related Commands
@@ -330,6 +334,7 @@ netq install opta standalone full
     bundle <text-bundle-url>
     config-key <text-opta-key>
     [pod-ip-range <text-pod-ip-range>]
+    [service-ip-range <text-service-ip-range>]
     [proxy-host <text-proxy-host> proxy-port<text-proxy-port>]
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
@@ -348,6 +353,7 @@ netq install opta standalone full
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
+| service-ip-range | \<text-service-ip-range\> | Specify a range of IP addresses for the service |
 | proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the VM; you must also specify a port |
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the VM; you must also specify a proxy host |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
@@ -356,7 +362,7 @@ netq install opta standalone full
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.10.1.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
+cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.11.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
 ```
 
 ### Related Commands
@@ -452,6 +458,7 @@ netq install standalone full
     [ipv6] 
     [config-key <text-opta-key>]
     [pod-ip-range <text-pod-ip-range>]
+    [service-ip-range <text-service-ip-range>]
     [s3-access-key <text-s3-access-key> s3-secret-key <text-s3-secret-key>]
 ```
 ### Required Arguments
@@ -470,13 +477,14 @@ netq install standalone full
 | ipv6 | NA | Install NetQ using an IPv6 address |
 | config-key | \<text-opta-key\> | Use this unique key to activate the software |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
+| service-ip-range | \<text-service-ip-range\> | Specify a range of IP addresses for the service |
 | s3-access-key | \<text-s3-access-key\> | AWS S3 access key ID |
 | s3-secret-key| \<text-s3-secret-key\>| AWS S3 secret key ID |
 
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.10.1.tgz
+cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.11.0.tgz
 ```
 
 ### Related Commands

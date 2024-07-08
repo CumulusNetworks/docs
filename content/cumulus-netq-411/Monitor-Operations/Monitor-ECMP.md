@@ -26,7 +26,7 @@ netq show ecmp-hash-config
 
 ## View ECMP Resource Utilization in the UI
 
-You can view resource utilization for ECMP next hops in the full-screen switch card.  In the workbench header, select {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices**, then click **Open a device card**. Select a switch from the list. When the card opens on the dashboard, expand it to the largest size.
+You can view resource utilization for ECMP next hops in the full-screen switch card. Search for the device’s hostname in the global search field or from the header select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**. Select a switch from the list. When the card opens on the dashboard, expand it to the largest size.
 
 Select **Forwarding resources** from the side menu. The ECMP next hops column displays the maximum number of hops seen in the forwarding table, the number used, and the percentage of this usage compared to the maximum number.
 
@@ -57,21 +57,19 @@ netq show adaptive-routing config interface
 
 ### Access the Adaptive Routing Dashboard
 
-1. Select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
-
-2. Under the Network section, select **Adaptive routing**.
-
-{{<figure src="/images/netq/ar-dashboard-480.png" alt="adaptive routing dashboard displaying two devices with AR enabled" width="1100">}}
+From the header or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} menu, select **Spectrum-X**, then **Adaptive routing**.
 
 The adaptive routing dashboard displays:
 
 - Devices with adaptive routing configured (enabled or disabled) and their RoCE modes (lossy or lossless).
-- A list of interfaces on the switch and their configurations. In the Interfaces column, select **View details** to view interfaces with adaptive routing configured:
+- A list of interfaces on the switch and their configurations. 
+
+{{<figure src="/images/netq/ar-dashboard-480.png" alt="adaptive routing dashboard displaying two devices with AR enabled" width="1100">}}
+
+In the Interfaces column, select **View details** to view interfaces with adaptive routing configured:
 
 {{<figure src="/images/netq/int-details-490.png" alt="list of interfaces adaptive routing configured" width="600">}}
 
-- A summary of adaptive routing events, including ECMP traffic imbalances:
+The Events tab displays a summary of adaptive routing events, including ECMP traffic imbalances. The table displays up to 10 switches, which can be sorted by highest P95 value, highest standard deviation, or ports with the widest deviation from the P95 value (aggregated over the past 3 minutes). From this panel, you can select **View more** in the View histogram column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.
 
 {{<figure src="/images/netq/ecmp-imbalance-490.png" alt="dashboard displaying ECMP imbalances" width="1000">}}
-
-- A list of up to 10 switches, which can be sorted by highest P95 value, highest standard deviation, or ports with the widest deviation from the P95 value (aggregated over the past 3 minutes). From this panel, you can select **View more** in the View histogram column to display {{<link title="Switches/#view-queue-lengths-in-histograms" text="queue lengths in the form of histograms">}} for any listed switch.

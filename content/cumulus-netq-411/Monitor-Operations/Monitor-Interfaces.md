@@ -108,7 +108,7 @@ netq check interfaces
 ```
 ## View Link Interfaces in the UI 
 
-You can monitor the same information outlined in the section above via the UI by expanding the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then selecting **Interfaces**.
+To view interface information, select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then enter **Interfaces** in the search field.
 
 ## Check for MTU Inconsistencies
 

@@ -29,7 +29,7 @@ netq check mlag
 ```
 ## View MLAG in the UI
 
-To add the MLAG card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All MLAG Sessions card&nbsp;<span aria-label="and then">></span> Open cards**. This example shows the following for the last 24 hours:
+To add the MLAG card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Other card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All MLAG Sessions card&nbsp;<span aria-label="and then">></span> Open cards**.  This example shows the following for the last 24 hours:
 
 - Four nodes have been running the MLAG protocol with no changes in that number
 - Four sessions were established and remained so

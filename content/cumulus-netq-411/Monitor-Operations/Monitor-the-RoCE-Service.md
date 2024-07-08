@@ -27,9 +27,9 @@ netq check roce
 
 ## View RoCE Counters Networkwide in the UI
 
-1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
+1. From the header or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} menu, select **Spectrum-X**, then **RoCE**.
 
-2. Under the RoCE counters heading, select either **RoCE switches** or **RoCE DPUs**.
+2. Select either **RoCE switches** or **RoCE DPUs**.
 
 The **RoCE switches** tab displays transmit (TX) and receive (RX) counters as well as counter pools for all switches running RoCE in your network.
 
@@ -43,7 +43,7 @@ You can view the following RoCE counters for a given switch:
 - Counter pools
 - Port-specific counters
 
-To view RoCE counters on a switch, navigate to the header and select {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices**, then click **Open a device card**. Select a switch that is running RoCE and open the large card on your workbench. Click the RoCE icon {{<img src="/images/netq/roce-icon.svg" width="18px">}} at the top of the card to view RoCE counters and their associated ports:
+To view RoCE counters on a switch, search for the device’s hostname in the global search field or from the header select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**. Select a switch that is running RoCE and open the large card on your workbench. Click the {{<img src="/images/netq/roce-icon.svg" width="18px">}} **RoCE** tab to view RoCE counters and their associated ports:
 
 {{<figure src="/images/netq/roce-l3-card-4.0.0.png" alt="switch card displaying list of ports" width="500">}}
 

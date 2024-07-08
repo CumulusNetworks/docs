@@ -1431,120 +1431,6 @@ Wed Jul 26 02:39:27 2023       1052005  0        0        0        0        0   
 ```
 
 - - -
-<!--removed in 4.9; still in CLI output
-## netq show impact kubernetes
-
-Displays the impact on pods, services, replica sets or deployments when a specific ToR switch becomes unavailable.
-
-{{<notice tip>}}
-You must enable Kubernetes monitoring on NetQ Agents. Refer to the <code>netq config add agent</code> command to enable monitoring.
-{{</notice>}}
-
-Outputs vary according to the component of the Kubernetes cluster you want to view. The output is color coded (not shown in the examples) so you can clearly see the impact: green shows no impact, yellow shows partial impact, and red shows full impact. Use the `netq config add color` command to view the colored output.
-
-### Syntax
-
-```
-netq  <hostname>  show impact kubernetes service
-    [master <kube-master-node>]
-    [name <kube-service-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-service-label>]
-    [service-cluster-ip <kube-service-cluster-ip>]
-    [service-external-ip <kube-service-external-ip>]
-    [around <text-time>]
-    [json]
-
-netq <hostname> show impact kubernetes replica-set
-    [master <kube-master-node>]
-    [name <kube-rs-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-rs-label>]
-    [around <text-time>]
-    [json]
-
-netq <hostname> show impact kubernetes deployment
-    [master <kube-master-node>]
-    [name <kube-deployment-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-deployment-label>]
-    [around <text-time>]
-    [json]
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| deployment | NA | Display results for Kubernetes deployments |
-| replica-set | NA | Display results for Kubernetes replica sets |
-| service | NA | Display results for Kubernetes services |
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| master | \<kube-master-node\> | Only display results for the master node with this name |
-| name | \<kube-deployment-name\>, \<kube-rs-name\>, \<kube-service-name\> | Only display results for the Kubernetes component with this name |
-| cluster | \<kube-cluster-name\> | Only display results for the cluster with this name |
-| namespace | \<namespace\> | Only display results for clusters and nodes within this namespace |
-| label | \<kube-node-label\>, \<kube-ds-label\>, \<kube-deployment-label\>, \<kube-pod-label\>, \<kube-rc-label\>, \<kube-rs-label\>, \<kube-service-label\> | Only display results for components with this label |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON format |
-
-### Sample Usage
-
-Display the impact on service availability based on the loss of particular node:
-
-```
-cumulus@host:~$ netq server11 show impact kubernetes service name calico-etcd
-calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
-                                    -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
-                                    -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
-                                    -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
-```
-
-Display the impact on the Kubernetes deployment if a host or switch becomes unavailable:
-
-```
-cumulus@host:~$ netq torc-21 show impact kubernetes deployment name nginx
-nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
-                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
-                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
-                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
-        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
-                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
-                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
-        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
-                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
-                                -- server24:swp1:swp1 -- swp8:VlanA-1:tor-2
-
-cumulus@server11:~$ netq server12 show impact kubernetes deployment name nginx
-nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
-                                -- server22:swp2:torbond1 -- swp7:hostbond3:torc-22
-                                -- server22:swp3:NetQBond-2 -- swp20:NetQBond-20:edge01
-                                -- server22:swp4:NetQBond-2 -- swp20:NetQBond-20:edge02
-        -- nginx-8586cf59-c82ns -- server12:swp2:NetQBond-1 -- swp23:NetQBond-23:edge01
-                                -- server12:swp3:NetQBond-1 -- swp23:NetQBond-23:edge02
-                                -- server12:swp1:swp1 -- swp6:VlanA-1:tor-1
-        -- nginx-8586cf59-26pj5 -- server24:swp2:NetQBond-1 -- swp29:NetQBond-29:edge01
-                                -- server24:swp3:NetQBond-1 -- swp29:NetQBond-29:edge02
-```
-
-### Related Commands
-
-- ```netq config add agent kubernetes-monitor```
-- ```netq config del agent kubernetes-monitor```
-- ```netq config show agent kubernetes-monitor```
-- ```netq config add color```
-- ```netq show kubernetes```
-
-- - -
--->
 ## netq show interfaces
 
 Displays the health of all interfaces or a single interface on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter by the interface type, state of the interface, or the remote interface. For a given switch or host, you can view the total number of configured interfaces.
@@ -2668,198 +2554,6 @@ Count of matching routes records: 3
 - `netq show ip/ipv6 neighbors`
 
 - - -
-<!--removed form 4.9; still present in output
-## netq show kubernetes
-
-Displays the configuration and health of the non-NetQ Kubernetes components in your container environment. This command lets you:
-
-- Identify and locate pods, deployment, replica-set, and services deployed within the network using IP, name, label, and so forth
-- Track network connectivity of all pods of a service, deployment, and replica set
-- Locate any pods deployed adjacent to a top of rack (ToR) switch
-
-Outputs vary according to the component of the Kubernetes cluster you want to view.
-
-{{<notice tip>}}
-You must enable Kubernetes monitoring on NetQ Agents. Refer to the <code>netq config add agent</code> command to enable monitoring.
-{{</notice>}}
-
-### Syntax
-
-```
-netq [<hostname>] show kubernetes cluster
-    [name <kube-cluster-name>]
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show kubernetes node
-    [components]
-    [name <kube-node-name>]
-    [cluster <kube-cluster-name>]
-    [label <kube-node-label>]
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show kubernetes daemon-set
-    [name <kube-ds-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-ds-label>]
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show kubernetes daemon-set
-    [name <kube-ds-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-ds-label>]
-    connectivity
-    [around <text-time>][json]
-
-netq [<hostname>] show kubernetes deployment
-    [name <kube-deployment-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-deployment-label>]
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show kubernetes deployment
-    [name <kube-deployment-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-deployment-label>]
-    connectivity
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show kubernetes pod
-    [name <kube-pod-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-pod-label>]
-    [pod-ip <kube-pod-ipaddress>]
-    [node <kube-node-name>]
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show kubernetes replication-controller
-    [name <kube-rc-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-rc-label>]
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show kubernetes replica-set
-    [name <kube-rs-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-rs-label>]
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show kubernetes replica-set
-    [name <kube-rs-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-rs-label>]
-    connectivity
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show kubernetes service
-    [name <kube-service-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-service-label>]
-    [service-cluster-ip <kube-service-cluster-ip>]
-    [service-external-ip <kube-service-external-ip>]
-    [around <text-time>]
-    [json]
-
-netq [<hostname>] show kubernetes service
-    [name <kube-service-name>]
-    [cluster <kube-cluster-name>]
-    [namespace <namespace>]
-    [label <kube-service-label>]
-    [service-cluster-ip <kube-service-cluster-ip>]
-    [service-external-ip <kube-service-external-ip>]
-    connectivity
-    [around <text-time>]
-    [json]
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| cluster | NA | Only display Kubernetes cluster information |
-| node | NA | Only display Kubernetes node information |
-| daemon-set | NA |  Only display Kubernetes daemon-set information |
-| deployment | NA | Only display Kubernetes deployment information |
-| pod | NA | Only display Kubernetes pod information |
-| replication-controller | NA | Only display Kubernetes replication controller information |
-| replica-set | NA | Only display Kubernetes replication set information |
-| service | NA | Only display Kubernetes service information |
-| connectivity | NA | Only display connectivity information for the daemon-set, deployment, or service |
-
-### Options
-
-| Option | Value | Description |
-| ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name |
-| name | \<kube-cluster-name\>, \<kube-node-name\>, \<kube-ds-name\>, \<kube-deployment-name\>, \<kube-pod-name\>, \<kube-rc-name\>, \<kube-rs-name\>, \<kube-service-name\> | Only display results for the Kubernetes component with this name |
-| components | NA | Only display results for Kubernetes nodes with this name |
-| cluster | \<kube-cluster-name\> | Only display results for the cluster with this name |
-| label | \<kube-node-label\>, \<kube-ds-label\>, \<kube-deployment-label\>, \<kube-pod-label\>, \<kube-rc-label\>, \<kube-rs-label\>, \<kube-service-label\> | Only display results for components with this label |
-| namespace | \<namespace\> | Only display results for clusters and nodes within this namespace |
-| pod-ip | \<kube-pod-ipaddress\> | Only display results for the pod with this IP address |
-| service-cluster-ip | \<kube-service-cluster-ip\> | Only display results for the service cluster with this IP address |
-| service-external-ip | \<kube-service-external-ip\> | Only display results for the service with this external IP address |
-| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON format |
-### Sample Usage
-
-Show health of clusters:
-
-```
-cumulus@host:~$ netq show kubernetes cluster
-Matching kube_cluster records:
-Master                   Cluster Name     Controller Status    Scheduler Status Nodes
------------------------- ---------------- -------------------- ---------------- --------------------
-server11:3.0.0.68        default          Healthy              Healthy          server11 server13 se
-                                                                                rver22 server11 serv
-                                                                                er12 server23 server
-                                                                                24
-server12:3.0.0.69        default          Healthy              Healthy          server12 server21 se
-                                                                                rver23 server13 serv
-                                                                                er14 server21 server
-                                                                                22
-```
-
-Show connectivity for a service:
-
-```
-cumulus@host:~$ netq show kubernetes service name calico-etcd connectivity
-    calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
-                                     -- server11:swp2:torbond1 -- swp6:hostbond2:torc-12
-                                     -- server11:swp3:NetQBond-2 -- swp16:NetQBond-16:edge01
-                                     -- server11:swp4:NetQBond-2 -- swp16:NetQBond-16:edge02
-    calico-etcd -- calico-etcd-btqgt -- server12:swp1:torbond1 -- swp7:hostbond3:torc-11
-                                     -- server12:swp2:torbond1 -- swp7:hostbond3:torc-12
-                                     -- server12:swp3:NetQBond-2 -- swp17:NetQBond-17:edge01
-                                     -- server12:swp4:NetQBond-2 -- swp17:NetQBond-17:edge02
-```
-
-Refer to {{<link title="Monitor Container Environments Using Kubernetes API Server">}} for additional examples.
-
-### Related Commands
-
-- ```netq config add agent kubernetes-monitor```
-- ```netq config del agent kubernetes-monitor```
-- ```netq config show agent kubernetes-monitor```
-- ```netq show impact kubernetes```
--->
 <!--
 ## netq show line-utilization
 
@@ -3130,14 +2824,14 @@ Three forms of this command are available: the basic command which shows all MAC
 netq show macs
     [<mac>]
     [vlan <1-4096>]
-    [origin]
+    [origin <text-origin>]
     [around <text-time>]
     [json]
 
 netq <hostname> show macs
     [<mac>]
     [vlan <1-4096>]
-    [origin | count]
+    [origin <text-origin> | count]
     [around <text-time>]
     [json]
 
@@ -3145,7 +2839,7 @@ netq <hostname> show macs
     egress-port <egress-port>
     [<mac>]
     [vlan <1-4096>]
-    [origin]
+    [origin <text-origin>]
     [around <text-time>]
     [json]
 ```
@@ -3163,7 +2857,7 @@ netq <hostname> show macs
 | ---- | ---- | ---- |
 | NA | \<mac\> | Display history for this MAC address |
 | vlan | \<1-4096\> | Only display MAC addresses that use the VLAN with this ID |
-| origin | NA | Only display results for addresses owned by the specified switch or switches |
+| origin | \<text-origin\> | Display the MAC addresses that originated with the device (true) or not (false) |
 | count | NA | Display the total number of MAC addresses used by the specified switch; can only use this option when you define the `hostname` option |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format |
@@ -4874,6 +4568,10 @@ netq show unit-tests sensors
     [check_filter_id <text-check-filter-id>] 
     [json]
 
+netq show unit-tests topology 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+
 netq show unit-tests vlan 
     [check_filter_id <text-check-filter-id>] 
     [json]
@@ -4887,7 +4585,7 @@ netq show unit-tests vxlan
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| <!-- vale off -->address, agent, bgp, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
+| <!-- vale off -->address, agent, bgp, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
 
 ### Options
 
@@ -4919,7 +4617,7 @@ Configured per test result filters:
 ### Related Commands
 
 - ```netq show events```
-- ```netq check sensors```
+- ```netq check```
 
 - - -
 
@@ -4932,7 +4630,7 @@ Displays one or all scheduled validations, including their name, type, cadence, 
 ```
 netq show validation settings
     [name <text-validation-name>]
-    [type addr|agents|bgp|evpn|interfaces|mlag|mtu|ntp|ospf|roce|sensors|vlan|vxlan]
+    [type addr|agents|bgp|evpn|interfaces|mlag|mtu|ntp|ospf|roce|sensors|topology|vlan|vxlan]
     [json]
 ```
 
@@ -4945,7 +4643,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
+| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
@@ -5001,7 +4699,7 @@ Displays summary status of a scheduled validation for a given protocol or servic
 ```
 netq show validation summary
     [name <text-validation-name>]
-    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan)
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | topology | vlan | vxlan)
     [around <text-time-hr>]
     [json]
 ```
@@ -5010,7 +4708,7 @@ netq show validation summary
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
+| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
 
 ### Options
 

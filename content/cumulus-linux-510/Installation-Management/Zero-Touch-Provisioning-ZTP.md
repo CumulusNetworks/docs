@@ -147,7 +147,6 @@ You can write the script in any language that Cumulus Linux supports, such as:
 
 - Perl
 - Python
-- Ruby
 - Shell
 
 The script must return an exit code of 0 upon success to mark the process as complete in the autoprovisioning configuration file.
@@ -167,22 +166,9 @@ date "+%FT%T ztp starting script $0"
 
 trap error ERR
 
-#Add Debian Repositories
-echo "deb http://http.us.debian.org/debian buster main" >> /etc/apt/sources.list
-echo "deb http://security.debian.org/ buster/updates main" >> /etc/apt/sources.list
-
-#Update Package Cache
-apt-get update -y
-
-#Load interface config from usb
-cp ${ZTP_USB_MOUNTPOINT}/interfaces /etc/network/interfaces
-
-#Load port config from usb
-#   (if breakout cables are used for certain interfaces)
-cp ${ZTP_USB_MOUNTPOINT}/ports.conf /etc/cumulus/ports.conf
-
-#Reload interfaces to apply loaded config
-ifreload -a
+#Load NVUE startup.yaml from usb
+nv config patch ${ZTP_USB_MOUNTPOINT}/startup.yaml
+nv config apply
 
 # CUMULUS-AUTOPROVISIONING
 exit 0
@@ -199,6 +185,27 @@ ZTP scripts come in different forms and frequently perform the same tasks. As BA
 ### Set the Default Cumulus User Password
 
 The default *cumulus* user account password is `cumulus`. When you log into Cumulus Linux for the first time, you must provide a new password for the *cumulus* account, then log back into the system.
+
+{{< tabs "TabID192 ">}}
+{{< tab "NVUE Commands ">}}
+
+Add the following NVUE commands to your ZTP script to change the default *cumulus* user account password to a clear-text password. The example changes the password `cumulus` to `MyP4$$word`.
+
+```
+nv set system aaa user cumulus password 'MyP4$$word'
+nv config apply
+```
+
+If you have an insecure management network, inclue the following commands in your ZTP script to set the password with an encrypted hash instead of a clear-text password. See {{<link url="User-Accounts#hashed-passwords" text="Hashed Passwords">}} for additional information.
+
+```
+ nv set system aaa user <username> hashed-password <password>
+ nv config apply
+```
+
+{{< /tab >}}
+
+{{< tab "Linux Commands ">}}
 
 Add the following function to your ZTP script to change the default *cumulus* user account password to a clear-text password. The example changes the password `cumulus` to `MyP4$$word`.
 
@@ -233,6 +240,75 @@ If you have an insecure management network, set the password with an encrypted h
    set_password
    ```
 
+{{< /tab >}}
+
+{{< /tabs >}}
+
+### Set the System Hostname
+
+The system hostname is managed with NVUE by default.
+
+{{< tabs "TabID131 ">}}
+{{< tab "NVUE Commands ">}}
+
+To set the system hostname with NVUE, include the following commands in your ZTP script. This example sets the hostname to leaf01:
+
+```
+nv set system hostname leaf01
+nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Change the hostname with the `hostnamectl` command; for example:
+
+   ```
+   cumulus@switch:~$ sudo hostnamectl set-hostname leaf01
+   ```
+
+2. In the `/etc/hosts` file, replace the host for IP address 127.0.1.1 with the new hostname:
+
+    ```
+    cumulus@switch:~$ sudo nano /etc/hosts
+    ...
+    127.0.1.1       leaf01
+    ```
+
+{{%notice note%}}
+If you do not manage your switch with NVUE and want to manage the system hostname through the DHCP host-name option, see this [knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Administration/Hostname-Option-Received-From-DHCP-Ignored" >}})
+{{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Set the Management IP Address
+
+A Cumulus Linux switch always provides at least one dedicated Ethernet management port called eth0. This interface is specifically for out-of-band management use. The management interface uses DHCPv4 for addressing by default. To set a static IP address and gateway for the management interface, include the following commands in your ZTP script:
+
+```
+nv set interface eth0 ip address 192.0.2.42/24
+nv set interface eth0 ip gateway 192.0.2.1
+nv config apply
+```
+
+### Set the System Time Zone
+
+To set the system time zone, include the following commands in your ZTP script. This example sets the time zone to `US/Eastern`.
+
+```
+nv set system timezone US/Eastern
+nv config apply
+```
+
+### Configure NTP
+
+NTP starts at boot by default on the switch and the NTP configuration includes default servers. For additional information, see {{<link url="Network-Time-Protocol-NTP" text="NTP">}}. To configure additional NTP servers, include the following commands in your ZTP script. This example adds the server `4.cumulusnetworks.pool.ntp.org` in the `default` VRF:
+
+```
+nv set service ntp default server 4.cumulusnetworks.pool.ntp.org iburst on
+nv config apply
+```
 ### Test DNS Name Resolution
 
 DNS names are frequently used in ZTP scripts. The `ping_until_reachable` function tests that each DNS name resolves into a reachable IP address. Call this function with each DNS target used in your script before you use the DNS name elsewhere in your script.
@@ -282,10 +358,6 @@ fi
 exit 0
 ```
 
-### Apply Management VRF Configuration
-
-If you apply a management VRF in your script, either apply it last or reboot instead. If you do *not* apply a management VRF last, you need to prepend any commands that require `eth0` to communicate out with `/usr/bin/ip vrf exec mgmt`; for example, `/usr/bin/ip vrf exec mgmt apt-get update -y`.
-
 ### Perform Ansible Provisioning Callbacks
 
 After initially configuring a node with ZTP, use {{<exlink url="http://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html#provisioning-callbacks" text="Provisioning Callbacks">}} to inform Ansible Tower or AWX that the node is ready for more detailed provisioning. The following example demonstrates how to use a provisioning callback:
@@ -293,19 +365,6 @@ After initially configuring a node with ZTP, use {{<exlink url="http://docs.ansi
 ```
 /usr/bin/curl -H "Content-Type:application/json" -k -X POST --data '{"host_config_key":"'somekey'"}' -u username:password http://ansible.example.com/api/v2/job_templates/1111/callback/
 ```
-
-### Disable the DHCP Hostname Override Setting
-
-Make sure to disable the DHCP hostname override setting in your script.
-
-```
-function set_hostname(){
-    # Remove DHCP Setting of Hostname
-    sed s/'SETHOSTNAME="yes"'/'SETHOSTNAME="no"'/g -i /etc/dhcp/dhclient-exit-hooks.d/dhcp-sethostname
-    hostnamectl set-hostname $1
-}
-```
-
 ## Test ZTP Scripts
 
 Use these commands to test and debug your ZTP scripts.

@@ -79,9 +79,9 @@ The cards are placed at the end of the set of cards currently on the workbench. 
 
 ### Add Switch Cards to Your Workbench
 
-You can add switch cards to a workbench by selecting {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in the header or by searching for it in the Global Search field. To add a switch card from the header:
+You can add switch cards to a workbench from the header:
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices**, then select **Open a device card**.
+1. Select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
 
 2. Select the device from the suggestions that appear:
 
@@ -89,15 +89,17 @@ You can add switch cards to a workbench by selecting {{<img src="/images/netq/de
 
 3. Choose the card's size, then select **Add**.
 
+If you want to access a comprehensive overview of performance metrics and data for an individual switch without adding it as a card to your workbench, search for its hostname in the global search field and right-click the switch to open the overview in a new tab. 
+
 ### Remove Cards from Your Workbench
 
 To remove all the cards from your workbench, click the **Clear** icon in the header. To remove an individual card: 
 
-1. Hover over the card you want to remove.
-2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18"/> (*More Actions* menu).
+1. Hover over the top section of the card you want to remove.
+2. Click the three-dot menu.
 3. Select **Remove**.
 
-    {{<figure src="/images/netq/remove-this-card.png" alt="" width="140">}}
+    {{<figure src="/images/netq/remove-card-411.png" alt="" width="250">}}
 
 The card is removed from the workbench, but not from the application.
 
@@ -107,7 +109,7 @@ The card is removed from the workbench, but not from the application.
 
 2. Move your cursor over the box until the desired size option is highlighted.
 
-    {{<figure src="/images/netq/size-picker-450.png" alt="" width="200" >}}
+    {{<figure src="/images/netq/size-picker-411.png" alt="" width="250" >}}
 
     One-quarter width opens a small card. One-half width opens a medium card. Three-quarters width opens a large card. Full width opens a full-screen card.
 
@@ -119,11 +121,11 @@ All cards have a default time period for the data shown on the card, typically t
 
 To change the time period for a card:
 
-1. Hover over the top portion of the card and select the clock icon <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
+1. Hover over the top portion of the card and select the clock <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
 3. Select a time period from the dropdown list.
 
-    {{<figure src="/images/netq/time-clock-450.png" alt="time options" width="300">}}
+    {{<figure src="/images/netq/time-dropdown-411.png" alt="time options" width="300">}}
 
 {{<notice tip>}}
 Changing the time period in this manner only changes the time period for the given card.
@@ -152,5 +154,3 @@ The following icons are common in the full-screen card view:
 | <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. |
 
 When there are many items in a table, NetQ loads up to 25 rows by default and provides the rest in additional table pages, accessible through the pagination controls. Pagination is displayed under the table.
-
-{{<figure src="/images/netq/pagination-controls.png" alt="" width="400">}}

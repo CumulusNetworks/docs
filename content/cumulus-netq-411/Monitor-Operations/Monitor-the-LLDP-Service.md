@@ -18,7 +18,7 @@ netq show events message_type lldp
 
 ## View LLDP in the UI
 
-To add the LLDP card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span>Network services&nbsp;<span aria-label="and then">></span>All LLDP Sessions card&nbsp;<span aria-label="and then">></span> Open cards**. In this example, there are 25 nodes running the LLDP protocol, 184 established sessions, and no LLDP-related events from the past 24 hours:
+To add the LLDP card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Other card&nbsp;<span aria-label="and then">></span> Network services&nbsp;<span aria-label="and then">></span> All LLDP Sessions card&nbsp;<span aria-label="and then">></span> Open cards**. In this example, there are 25 nodes running the LLDP protocol, 184 established sessions, and no LLDP-related events from the past 24 hours:
 
 {{<figure src="/images/netq/lldap-med-460.png" alt="" width="200" >}}
 

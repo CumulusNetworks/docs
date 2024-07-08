@@ -22,15 +22,6 @@ sudo apt-get install -y netq-apps
 
 {{</tab>}}
 
-{{<tab "RHEL Hosts">}}
-
-```
-sudo yum update
-sudo yum install netq-apps
-```
-
-{{</tab>}}
-
 {{</tabs>}}
 
 3. Restart the CLI:

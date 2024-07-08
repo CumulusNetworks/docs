@@ -10,7 +10,6 @@ After installing the NetQ software, you should install the NetQ Agents on each s
 - Cumulus Linux 5.0.0 and later (Spectrum switches)
 - Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
 - SONiC 202012
-- RHEL 7.1
 - Ubuntu 20.04
 
 ## Prepare for NetQ Agent Installation
@@ -20,7 +19,7 @@ For switches running Cumulus Linux or SONiC, you need to:
 - Install and configure NTP or PTP, if needed
 - Obtain NetQ software packages
 
-For servers running RHEL or Ubuntu, you need to:
+For servers running Ubuntu, you need to:
 
 - Verify you installed the minimum package versions
 - Verify the server is running `lldpd`
@@ -153,110 +152,6 @@ To obtain the NetQ Agent package:
 1. Add the SONiC repo key:
 
        admin@switch:~$ sudo wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
-
-{{</tab>}}
-
-{{<tab "RHEL 7 or CentOS">}}
-
-### Verify Service Package Versions
-
-Before you install the NetQ Agent on a Red Hat or CentOS server, make sure you install and run at least the minimum versions of the following packages:
-
-- iproute-3.10.0-54.el7\_2.1.x86\_64
-- lldpd-0.9.7-5.el7.x86\_64
-- ntp-4.2.6p5-25.el7.centos.2.x86\_64
-- ntpdate-4.2.6p5-25.el7.centos.2.x86\_64
-
-### Verify Ubuntu is Running lldpd
-
-For Ubuntu, make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default, even though the installation requires it.
-
-{{<tabs "Configure NetQ CLI">}}
-
-{{<tab "Ubuntu">}}
-
-To install `lldpd`, run the following commands:
-
-```
-root@ubuntu:~# sudo apt-get update
-root@ubuntu:~# sudo apt-get install lldpd
-root@ubuntu:~# sudo systemctl enable lldpd.service
-root@ubuntu:~# sudo systemctl start lldpd.service
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-### Install and Configure NTP
-
-If NTP is not already installed and configured, follow the steps outlined below. Alternatively, you can configure {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Precision Time Protocol-PTP.md" text="PTP">}} for time synchronization.
-
-1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be synchronized with the NetQ appliance to enable useful statistical analysis.
-
-    ```
-    root@rhel7:~# sudo yum install ntp
-    ```
-
-2. Configure the NTP server.
-
-    1.  Open the `/etc/ntp.conf` file in your text editor of choice.
-
-    2.  Under the *Server* section, specify the NTP server IP address or hostname.
-
-3. Enable and start the NTP service.
-
-    ```
-    root@rhel7:~# sudo systemctl enable ntp
-    root@rhel7:~# sudo systemctl start ntp
-    ```
-
-   {{%notice tip%}}
-If you are running NTP in your out-of-band management network with VRF, specify the VRF (`ntp@<vrf-name>` versus just `ntp`) in the above commands.
-   {{%/notice%}}
-
-4.  Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock synchronized with NTP.
-
-    ```
-    root@rhel7:~# ntpq -pn
-    remote           refid            st t when poll reach   delay   offset  jitter
-    ==============================================================================
-    +173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
-    +12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
-    2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
-    \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
-    ```
-
-### Obtain NetQ Agent Software Package
-
-To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the NVIDIA networking repository.
-
-To obtain the NetQ Agent package:
-
-1.  Reference and update the local `yum` repository.
-
-    ```
-    root@rhel7:~# sudo rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
-    root@rhel7:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
-    ```
-
-2.  Edit `/etc/yum.repos.d/cumulus-host-el.repo` to set the `enabled=1` flag for the two NetQ repositories.
-
-    ```
-    root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
-    ...
-    [cumulus-arch-netq-4.10]
-    name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-latest/$basearch
-    gpgcheck=1
-    enabled=1
-    [cumulus-noarch-netq-4.10]
-    name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-latest/noarch
-    gpgcheck=1
-    enabled=1
-    ...
-    ```
 
 {{</tab>}}
 
@@ -507,35 +402,6 @@ To install the NetQ Agent (the following example uses Cumulus Linux but the step
 
     ```
     admin@switch:~$ sudo systemctl restart rsyslog.service
-    ```
-
-4. Configure the NetQ Agent, as described in the next section.
-
-{{</tab>}}
-
-{{<tab "RHEL7">}}
-
-To install the NetQ Agent:
-
-1. Install the Bash completion and NetQ packages on the server.
-
-    ```
-    root@rhel7:~# sudo yum -y install bash-completion
-    root@rhel7:~# sudo yum install netq-agent
-    ```
-
-2. Verify you have the correct version of the Agent.
-
-    ```
-    root@rhel7:~# rpm -qa | grep -i netq
-    ```
-
-    {{<netq-install/agent-version version="4.10.1" opsys="rh">}}
-
-3. Restart `rsyslog` so it sends log files to the correct destination.
-
-    ```
-    root@rhel7:~# sudo systemctl restart rsyslog
     ```
 
 4. Configure the NetQ Agent, as described in the next section.

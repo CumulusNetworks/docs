@@ -33,7 +33,6 @@ The NetQ 4.11 server is compatible with NetQ Agent 4.9 or later. You can install
 - Cumulus Linux 5.0.0 or later (Spectrum switches)
 - Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
 - SONiC 202012
-- RHEL 7.1
 - Ubuntu 20.04
 
 You must upgrade to the latest agent version to enable 4.11 features.

@@ -137,11 +137,12 @@ To actively monitor process-level CPU and memory utilization, you can create {{<
 
 Monitoring queue lengths in your network’s fabric is useful for detecting microbursts which can lead to higher packet latency or buffer congestion. The {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="Cumulus Linux documentation">}} provides a detailed description of ASIC monitoring, including example bin configurations and information on interpreting histogram queue lengths. 
 
-{{<notice note>}}
+{{%notice note%}}
 
-Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 and later. To display queue histogram data, you must set the snapshot file count to at least 120 when you are configuring ASIC monitoring, as described in the Snapshots section in the {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="ASIC monitoring configuration">}} documentation.
+- Queue length monitoring is supported on Spectrum switches running Cumulus Linux 5.1 and later. To display queue histogram data, you must set the snapshot file count to at least 120 when you are configuring ASIC monitoring, as described in the Snapshots section in the {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="ASIC monitoring configuration">}} documentation.
+- If you restart the `asic-monitor` service or edit the `/monitor.conf` configuration file, you must restart the NetQ agent with `netq config restart agent`.
 
-{{</notice>}}
+{{%/notice%}}
 
 The information available in the UI can also be displayed via the CLI with the {{<link title="show/#netq-show-histogram" text="netq show histogram">}} command. To view queue histograms in the UI:
 

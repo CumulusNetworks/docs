@@ -1342,7 +1342,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 
 ## <h>nv set qos advance-buffer-config default-global egress-mgmt-buffer reserved</h>
 
-Configures the QoS lossy reserved egress management buffer.
+Configures the egress management reserved buffer allocation in bytes. You can specify a value between 0 and 4294967295.
 
 ### Version History
 
@@ -1358,7 +1358,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 
 ## <h>nv set qos advance-buffer-config default-global egress-mgmt-buffer service-pool</h>
 
-Configures the QoS lossy egress management buffer service pool mapping.
+Configures the QoS egress management buffer service pool mapping. You can specify a value between 0 and 7.
 
 ### Version History
 
@@ -1374,7 +1374,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 
 ## <h>nv set qos advance-buffer-config default-global egress-mgmt-buffer shared-alpha</h>
 
-Configures the QoS lossy dynamic shared egress management buffer alpha allocation.
+Configures the dynamic egress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`.
 
 ### Version History
 
@@ -1390,7 +1390,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 
 ## <h>nv set qos advance-buffer-config default-global egress-mgmt-buffer shared-bytes</h>
 
-Configures the QoS lossy static shared egress management buffer allocation in bytes.
+Configures the QoS static egress management shared buffer allocation in bytes. You can specify a value between 0 and 4294967295.
 
 ### Version History
 
@@ -1406,7 +1406,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 
 ## <h>nv set qos advance-buffer-config default-global ingress-mgmt-buffer headroom</h>
 
-Configures the QoS lossy ingress management buffer headroom in bytes.
+Configures the QoS ingress management buffer headroom in bytes. You can specify a value between 0 and 4294967295.
 
 ### Version History
 
@@ -1422,7 +1422,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-b
 
 ## <h>nv set qos advance-buffer-config default-global ingress-mgmt-buffer service-pool</h>
 
-Configures the QoS lossy ingress management buffer service pool mapping.
+Configures the QoS ingress management buffer service pool mapping. You can specify a value between 0 and 7.
 
 ### Version History
 
@@ -1431,14 +1431,14 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer service-pool ?????
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer service-pool 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-alpha</h>
 
-Configures the QoS lossy dynamic shared ingress management buffer alpha allocation.
+Configures the QoS dynamic ingress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`.
 
 ### Version History
 
@@ -1447,14 +1447,14 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-alpha alpha_2
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-alpha alpha_0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-bytes</h>
 
-Configures the QoS lossy static shared ingress management buffer allocation in bytes.
+Configures the static ingress management shared buffer allocation in bytes. You can specify a value between 0 and 4294967295.
 
 ### Version History
 

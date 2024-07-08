@@ -13,8 +13,6 @@ NetQ reports switch performance metrics for the following categories:
 - **Physical sensing**: digital optics and switch sensors
 - **RoCE** and **Precision Time Protocol**
 
-For switch inventory information (ASIC, platform, CPU, memory, disk, and OS), refer to {{<link title="Switch Inventory">}}.
-
 ## View Switch Metrics and Attributes
 
 {{<tabs "TabID20" >}}

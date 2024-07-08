@@ -9,7 +9,7 @@ In the UI, you can view your inventory of hosts across the network or individual
 
 ## Access and View Host Inventory Data
 
-The Inventory/Hosts card monitors the hardware- and software-component inventory on hosts running NetQ in your network. To add this card to your workbench, select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card**&nbsp;<span aria-label="and then">></span> **Inventory**&nbsp;<span aria-label="and then">></span> **Inventory/Hosts card**&nbsp;<span aria-label="and then">></span> **Open cards**.
+The Inventory/Hosts card monitors the hardware- and software-component inventory on hosts running NetQ in your network. To add this card to your workbench, search for "Inventory | Hosts" in the global search field.
 
 {{<figure src="/images/netq/inventory-hosts-med-470.png" alt="host inventory card with chart" width="200">}}
 

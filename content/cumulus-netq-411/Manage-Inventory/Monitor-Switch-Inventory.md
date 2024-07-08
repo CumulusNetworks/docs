@@ -6,40 +6,18 @@ toc: 4
 ---
 With the NetQ UI and NetQ CLI, you can monitor your inventory of switches across the network or individually. A user can view operating system, motherboard, ASIC, microprocessor, disk, memory, fan, and power supply information.
 
-For switch performance information, refer to {{<link title="Switches" text="Switch Monitoring">}}.
+You can access {{<link title="Switches" text="switch performance data">}} for a given switch in the UI by right-clicking a switch and opening the dashboard in a new tab.  
 
 ## Switch Inventory Commands
 
-Several forms of this command are available based on the inventory component you'd like to view. See the {{<link title="show/#netq-show-inventory" text="command line reference">}} for additional options, definitions, and examples.
-
-```
-netq show inventory (brief | asic | board | cpu | disk | memory | os)
-```
-To view Cumulus Linux OS versions supported on your switches, run {{<link title="show/#netq-show-cl-manifest" text="netq show cl-manifest">}}:
-
-```
-netq show cl-manifest
-```
-To view all installed software packages on your switches, run {{<link title="show/#netq-show-cl-pkg-info" text="netq show cl-pkg-info">}}:
-
-```
-netq show cl-pkg-info
-```
-To view recommended software package information for a switch, run {{<link title="show/#netq-show-recommended-pkg-version" text="netq show recommended-pkg-version">}}:
-
-```
-netq <hostname> show recommended-pkg-version
-```
-
-Cumulus Linux, SONiC, and NetQ run services to deliver the various features of these products. You can monitor their status using the {{<link title="show/#netq-show-services" text="netq show services">}} command:
-
-```
-netq show services
-```
-
+- To view a comprehensive list of inventory components, run {{<link title="show/#netq-show-inventory" text="netq show inventory">}}. 
+- To view Cumulus Linux OS versions supported on your switches, run {{<link title="show/#netq-show-cl-manifest" text="netq show cl-manifest">}}.
+- To view all installed software packages on your switches, run {{<link title="show/#netq-show-cl-pkg-info" text="netq show cl-pkg-info">}}.
+- To view recommended software package information for a switch, run {{<link title="show/#netq-show-recommended-pkg-version" text="netq show recommended-pkg-version">}}.
+- To view a list of services, run {{<link title="show/#netq-show-services" text="netq show services">}}.
 ## View Switch Inventory in the UI
 
-Add the Inventory/Switches card to your workbench to monitor the hardware and software component inventory on switches running NetQ in your network. To add this card to your workbench, select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card**&nbsp;<span aria-label="and then">></span> **Inventory**&nbsp;<span aria-label="and then">></span> **Inventory/Switches card**&nbsp;<span aria-label="and then">></span> **Open cards**. The card displays the total number of switches in your network, divided into the number of fresh and rotten switches.
+To view the hardware and software component inventory for switches running NetQ in your network, search for the "Inventory | Switches" card in the global search field. The card displays the total number of switches in your network, divided into the number of fresh and rotten switches.
 
 {{<img src="/images/netq/switch-med-490.png" alt="medium switch card displaying 513 fresh switches and 13 rotten switches" width="200">}}
 
@@ -51,8 +29,9 @@ Open the large Inventory/Switches card to display more granular information abou
 
 Expand the Inventory/Switches card to full-screen to view, filter or export information about ASICs, motherboards, CPUs, memory, disks, and operating system.
 
-{{<img src="/images/netq/full-switch-inventory-490.png" alt="" width="1200">}}
+{{<img src="/images/netq/inventory-switches-411.png" alt="" width="1200">}}
 
+You can right-click the hostname of a given switch to open a monitoring dashboard for that switch in a new tab.
 ## Decommission a Switch
 
 Decommissioning a switch or host removes information about the device from the NetQ database. When the NetQ Agent restarts at a later date, it sends a connection request back to the database, so NetQ can monitor the switch or host again.

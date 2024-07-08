@@ -8,11 +8,7 @@ Device groups allow you to create a label for a subset of devices in the invento
 
 ## Create a Device Group
 
-To create a device group, add the Device Groups card to your workbench. In the header, click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Open card**. Select the **Device groups** card:
-
-{{<figure src="/images/netq/device-groups-460.png" alt="" width="500">}}
-
-The Device Groups card will now be displayed on your workbench. Select **Create new group** and follow the instructions in the UI create a new group:
+To create a device group, add the Device Groups card to your workbench by searching for "Device groups" in the global search field. From the card, select **Create new group** and follow the instructions in the UI:
 
 1. Enter a name for the group.
 

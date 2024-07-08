@@ -154,7 +154,7 @@ The agent configuration commands let you:
 
 - Add, disable, and remove a NetQ Agent
 - Start and stop a NetQ Agent
-- Configure a NetQ Agent to collect selected data (CPU usage limit, FRR, Kubernetes, WJH)
+- Configure a NetQ Agent to collect selected data (CPU usage limit, FRR, WJH)
 - Configure a NetQ Agent to send data to a server cluster
 - Troubleshoot the NetQ Agent
 

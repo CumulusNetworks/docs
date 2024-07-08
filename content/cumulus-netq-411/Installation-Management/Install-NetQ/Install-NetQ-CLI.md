@@ -12,17 +12,15 @@ After installing the NetQ software and agent on each switch you want to monitor,
 - Cumulus Linux 5.0.0 and later (Spectrum switches)
 - Cumulus Linux 4.3.1 and 4.3.2 (Broadcom switches)
 - SONiC 202012
-- CentOS 7
-- RHEL 7.1
 - Ubuntu 20.04
 
 {{<notice note>}}
 If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NetQ repository.
 {{</notice>}}
 
-## Prepare for NetQ CLI Installation on a RHEL, CentOS, or Ubuntu Server
+## Prepare for NetQ CLI Installation on an Ubuntu Server
 
-For servers running RHEL 7, CentOS or Ubuntu OS, you need to:
+For servers running the Ubuntu OS, you need to:
 
 - Verify you installed the minimum service packages versions
 - Verify the server is running `lldpd`
@@ -37,15 +35,6 @@ These steps are not required for Cumulus Linux or SONiC.
 
 Before you install the NetQ CLI on a server, make sure you install and run at least the minimum versions of the following packages:
 
-{{<tab "RHEL7 or CentOS">}}
-<!-- vale off -->
-- iproute-3.10.0-54.el7\_2.1.x86\_64
-- lldpd-0.9.7-5.el7.x86\_64
-- ntp-4.2.6p5-25.el7.centos.2.x86\_64
-- ntpdate-4.2.6p5-25.el7.centos.2.x86\_64
-<!-- vale on -->
-{{</tab>}}
-
 {{<tab "Ubuntu">}}
 
 <!-- vale off -->
@@ -59,25 +48,11 @@ Before you install the NetQ CLI on a server, make sure you install and run at le
 
 {{</tabs>}}
 
-### Verify That CentOS and Ubuntu Are Running lldpd
+### Verify Ubuntu is Running lldpd
 
-For CentOS and Ubuntu, make sure you are running lldp**d**, not lldp**ad**. CentOS and Ubuntu do not include `lldpd` by default, even though the installation requires it. You must also install the Wget utility on CentOS distributions.
+For Ubuntu, make sure you are running lldp**d**, not lldp**ad**. Ubuntu does not include `lldpd` by default, even though the installation requires it.
 
 {{<tabs "Configure NetQ CLI">}}
-
-{{<tab "CentOS">}}
-
-To install the packages, run the following commands:
-
-```
-root@centos:~# sudo yum -y install epel-release
-root@centos:~# sudo yum -y install lldpd
-root@centos:~# sudo systemctl enable lldpd.service
-root@centos:~# sudo systemctl start lldpd.service
-root@centos:~# sudo yum install wget
-```
-
-{{</tab>}}
 
 {{<tab "Ubuntu">}}
 
@@ -99,45 +74,6 @@ root@ubuntu:~# sudo systemctl start lldpd.service
 If NTP is not already installed and configured, follow these steps:
 
 {{<tabs "Install NTP">}}
-
-{{<tab "RHEL7 or CentOS">}}
-
-1. Install {{<kb_link latest="cl" url="System-Configuration/Date-and-Time/Network-Time-Protocol-NTP.md" text="NTP">}} on the server. Servers must be synchronized with the NetQ appliance or VM to enable useful statistical analysis.
-
-    ```
-    root@rhel7:~# sudo yum install ntp
-    ```
-
-2. Configure the NTP server.
-
-    1.  Open the `/etc/ntp.conf` file in your text editor of choice.
-
-    2.  Under the *Server* section, specify the NTP server IP address or hostname.
-
-3. Enable and start the NTP service.
-
-    ```
-    root@rhel7:~# sudo systemctl enable ntp
-    root@rhel7:~# sudo systemctl start ntp
-    ```
-
-   {{<notice tip>}}
-If you are running NTP in your out-of-band management network with VRF, specify the VRF (<code>ntp@&lt;vrf-name&gt;</code> versus just <code>ntp</code>) in the above commands.
-   {{</notice>}}
-
-4. Verify NTP is operating correctly. Look for an asterisk (\*) or a plus sign (+) that indicates the clock synchronized with NTP.
-
-    ```
-    root@rhel7:~# ntpq -pn
-    remote           refid            st t when poll reach   delay   offset  jitter
-    ==============================================================================
-    +173.255.206.154 132.163.96.3     2 u   86  128  377   41.354    2.834   0.602
-    +12.167.151.2    198.148.79.209   3 u  103  128  377   13.395   -4.025   0.198
-    2a00:7600::41    .STEP.          16 u    - 1024    0    0.000    0.000   0.000
-    \*129.250.35.250 249.224.99.213   2 u  101  128  377   14.588   -0.299   0.243
-    ```
-
-{{</tab>}}
 
 {{<tab "Ubuntu">}}
 
@@ -397,52 +333,6 @@ To obtain the NetQ CLI package:
 
 {{</tab>}}
 
-{{<tab "RHEL7 or CentOS">}}
-
-1. Reference and update the local `yum` repository and key.
-
-    ```
-    root@rhel7:~# sudo rpm --import https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm.pubkey
-    root@rhel7:~# sudo wget -O- https://apps3.cumulusnetworks.com/setup/cumulus-apps-rpm-el7.repo > /etc/yum.repos.d/cumulus-host-el.repo
-    ```
-
-2.  Edit `/etc/yum.repos.d/cumulus-host-el.repo` to set the `enabled=1` flag for the two NetQ repositories.
-
-    ```
-    root@rhel7:~# vi /etc/yum.repos.d/cumulus-host-el.repo
-    ...
-    [cumulus-arch-netq-latest]
-    name=Cumulus netq packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-latest/$basearch
-    gpgcheck=1
-    enabled=1
-    [cumulus-noarch-netq-latest]
-    name=Cumulus netq architecture-independent packages
-    baseurl=https://apps3.cumulusnetworks.com/repos/rpm/el/7/netq-latest/noarch
-    gpgcheck=1
-    enabled=1
-    ...
-    ```
-
-3.  Install the Bash completion and CLI software on the server.
-
-    ```
-    root@rhel7:~# sudo yum -y install bash-completion
-    root@rhel7:~# sudo yum install netq-apps
-    ```
-
-4. Verify you have the correct version of the CLI.
-
-    ```
-    root@rhel7:~# rpm -q -netq-apps
-    ```
-<!-- vale off -->
-{{<netq-install/cli-version version="4.10" opsys="rh">}}
-<!-- vale on -->
-5. Continue with the next section.
-
-{{</tab>}}
-
 {{<tab "Ubuntu">}}
 
 1.  Install the CLI software on the server.
@@ -488,7 +378,7 @@ To generate AuthKeys:
 
 3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, then select **Management**.
 
-    {{<figure src="/images/netq/menu-management-490.png" alt="" width="300">}}
+    {{<figure src="/images/netq/side-nav-admin-411.png" alt="" width="300">}}
 
 4. On the User Accounts card, select **Manage**.
 
@@ -563,7 +453,7 @@ To generate AuthKeys:
 
 3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, then select **Management**.
 
-    {{<figure src="/images/netq/menu-management-490.png" alt="" width="300">}}
+    {{<figure src="/images/netq/side-nav-admin-411.png" alt="" width="300">}}
 
 4. On the User Accounts card, select **Manage**.
 

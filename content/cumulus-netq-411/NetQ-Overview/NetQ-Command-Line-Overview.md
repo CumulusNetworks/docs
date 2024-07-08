@@ -89,11 +89,11 @@ NetQ code examples use the following prompts:
 <!-- vale off -->
 - `cumulus@switch:~$` indicates the user *cumulus* is logged in to a switch to run the example command
 - `cumulus@host:~$` indicates the user *cumulus* is logged in to a host to run the example command
-- `cumulus@netq-appliance:~$` indicates the user *cumulus* is logged in to either the NetQ Appliance or NetQ Cloud Appliance to run the command
+- `cumulus@netq-appliance:~$` indicates the user *cumulus* is logged in to the NetQ appliance to run the command
 - `cumulus@hostname:~$` indicates the user *cumulus* is logged in to a switch, host or appliance to run the example command
 <!-- vale on -->
 
-To use the NetQ CLI, the switches must be running the Cumulus Linux or SONiC operating system, NetQ Platform or NetQ Collector software, the NetQ Agent, and the NetQ CLI. The hosts must be running CentOS, RHEL, or Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to {{<link url="Install-NetQ">}} for additional information.
+To use the NetQ CLI, the switches must be running the Cumulus Linux or SONiC operating system, the NetQ software, the NetQ Agent, and the NetQ CLI. The hosts must be running the Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to {{<link url="Install-NetQ">}} for additional information.
 
 ### Command Completion
 
@@ -113,6 +113,7 @@ cumulus@switch:~$ netq check <<press Tab>>
     ospf        :  OSPF info
     roce        :  RoCE
     sensors     :  Temperature/Fan/PSU sensors
+    topology    :  Topology
     vlan        :  VLAN
     vxlan       :  VxLAN
 cumulus@switch:~$ netq check
@@ -172,6 +173,7 @@ The {{<link title="check" text="netq check commands">}} validate the current or 
 - **ospf**: OSPF (Open Shortest Path First) operation
 - **roce**: RoCE (RDMA over Converged Ethernet) configurations
 - **sensors**: Temperature/Fan/PSU sensor operation
+- **topology**: Topology configuration
 - **vlan**: VLAN (Virtual Local Area Network) operation
 - **vxlan**: VXLAN (Virtual Extensible LAN) data path operation
 <!-- vale on -->
@@ -365,7 +367,6 @@ server                    127.0.0.1  127.0.0.1
 cpu-limit                 100        100
 agenturl
 wjh                                  Enabled
-asic-monitor                         Enabled
 enable-opta-discovery     False      False
 agentport                 8981       8981
 port                      31980      31980

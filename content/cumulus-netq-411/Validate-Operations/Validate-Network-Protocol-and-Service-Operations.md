@@ -4,8 +4,7 @@ author: NVIDIA
 weight: 850
 toc: 4
 ---
-NetQ lets you validate the operation of the protocols and services running in your network either on demand or according to a schedule. For a general understanding of how well your network is operating, refer to the {{<link title="Validate Overall Network Health">}}.
-
+NetQ lets you validate the operation of the protocols and services running in your network either on-demand or according to a schedule.
 <!-- vale off -->
 ## On-demand Validations
 <!-- vale on -->
@@ -25,7 +24,7 @@ To run on-demand validations with the CLI, use the {{<link title="check" text="n
 
 To create and run a request containing checks on one or more protocols or services within the NetQ UI:
 
-1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**. Choose whether the on-demand validation should run on all devices or on specific {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="device groups">}}.
+1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**. Choose whether the on-demand validation should run on all devices or on specific {{<link title="Device Groups" text="device groups">}}.
 
 2. Select the protocols or services you want to validate, then click **Next**.
 
@@ -50,7 +49,9 @@ To create and run a request containing checks on one or more protocols or servic
 To create a request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation type (ntp | interfaces | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr) [alert-on-failure]
+netq add validation type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | topology | vlan | vxlan)
+    interval <text-time-min>
+    [alert-on-failure]
 ```
 The associated Validation Result card is accessible from the full-screen Validate Network card.
 
@@ -272,21 +273,3 @@ netq show validation summary
 {{</tab>}}
 
 {{</tabs>}}
-
-## Validate Device Groups
-
-Both on-demand and scheduled validations can run on specific {{<link title="Device Groups" text="device groups.">}} To create a validation for a device group rather than all devices:
-
-1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Create a validation**. Choose **Run on group of switches:**
-
-{{<figure src="/images/netq/new-validation-group.png" width="500">}}
-
-2. Select which group to run the validation on:
-
-{{<figure src="/images/netq/validation-select-group.png" width="500">}}
-
-3. Select the protocols or services you want to validate, then click **Next**.
-
-4. Select which individual validations to run for each service. Individual checks can be disabled by clicking {{<img src="/images/netq/check-circle-out.svg" width="14">}}.
-
-5. Choose whether to run the validation now or schedule it for another time, then click **Run**.

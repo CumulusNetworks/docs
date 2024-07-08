@@ -11,7 +11,6 @@ The NetQ Agent monitors the following on Linux hosts:
 - Layer 2: LLDP and VLAN-aware bridge
 - Layer 3: IPv4, IPv6
 - systemctl for services
-- Docker containers (refer to {{<link title="Monitor Container Environments Using Kubernetes API Server">}} for more information)
 
 Using NetQ on a Linux host is the same as using it on a Cumulus Linux switch. For example, if you want to check LLDP neighbor information for a given host, run {{<link title="show/#netq show lldp" text="netq show lldp">}} and specify the hostname:
 

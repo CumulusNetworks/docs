@@ -63,9 +63,9 @@ If the NetQ Agent is already installed on the switches you'd like to upgrade, fo
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in any workbench header, then select **Manage switches**.
+1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select **Manage switches**. 
 
-2. Locate the Switches card and click **Manage**.
+2. From the **Switch management** tab, locate the Switches card and click **Manage**.
 
 3. Select the switches you want to upgrade.
 

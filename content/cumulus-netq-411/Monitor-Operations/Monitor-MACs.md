@@ -8,7 +8,7 @@ A MAC (media access control) address is a layer 2 construct that uses 48 bits to
 
 With NetQ, you can:
 
-- View MAC address across the network and for a given device, VLAN, egress port on a VLAN, and VRR
+- View MAC addresses across the network and for a given device, VLAN, egress port on a VLAN, and VRR
 - View a count of MAC addresses on a given device
 - View where MAC addresses have lived in the network (MAC history)
 - View commentary on changes to MAC addresses (MAC commentary)

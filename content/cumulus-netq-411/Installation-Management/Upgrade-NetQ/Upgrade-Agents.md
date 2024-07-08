@@ -22,15 +22,6 @@ sudo apt-get install -y netq-agent
 
 {{</tab>}}
 
-{{<tab "RHEL or CentOS Hosts">}}
-
-```
-sudo yum update
-sudo yum install netq-agent
-```
-
-{{</tab>}}
-
 {{</tabs>}}
 
 3. Restart the NetQ Agent with the following command. The {{<link title="Install NetQ CLI" text="NetQ CLI">}} must be installed for the command to run successfully. 
@@ -66,16 +57,6 @@ root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
 {{<netq-install/agent-version version="4.10.1" opsys="ub">}}
-
-{{</tab>}}
-
-{{<tab "RHEL7 or CentOS">}}
-
-```
-root@rhel7:~# rpm -q -netq-agent
-```
-
-{{<netq-install/agent-version version="4.10.1" opsys="rh">}}
 
 {{</tab>}}
 

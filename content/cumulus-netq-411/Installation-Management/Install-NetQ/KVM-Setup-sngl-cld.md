@@ -37,6 +37,6 @@ Follow these steps to set up and configure your VM on a single server in a cloud
 
 8. Install and activate the NetQ software using the CLI:
 
-{{<netq-install/install-with-cli version="4.10" deployment="cloud-single">}}
+{{<netq-install/install-with-cli version="4.11" deployment="cloud-single">}}
 
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

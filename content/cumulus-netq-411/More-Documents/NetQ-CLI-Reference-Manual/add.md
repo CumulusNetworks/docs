@@ -604,7 +604,7 @@ Creates a validation for various protocols and services to run on a regular inte
 ```
 netq add validation
     name <text-new-validation-name>
-    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan)
+    type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | topology | vlan | vxlan)
     interval <text-time-min>
     [alert-on-failure]
 ```
@@ -614,7 +614,7 @@ netq add validation
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | name | user defined | Unique name for the validation |
-| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan | Protocol or service to validate |
+| type | addr, agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, topology, vlan, or vxlan | Protocol or service to validate |
 | interval | \<text-time-min\> | Frequency to run the validation, in minutes. Value must include time unit of *m*, minutes. Default scheduled validations per type run every 60 minutes. |
 
 ### Options

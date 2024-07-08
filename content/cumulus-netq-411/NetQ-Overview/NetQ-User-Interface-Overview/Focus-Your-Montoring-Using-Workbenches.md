@@ -51,9 +51,7 @@ You can also change your home workbench (the workbench that loads when you log i
 
 You can only delete workbenches that you created. The NVIDIA-supplied NetQ Workbench cannot be deleted. When you delete a workbench that you have designated as your home workbench, the NetQ Workbench will replace it as the home workbench. To delete a workbench:
 
-1. Select the **User Settings** dropdown menu in the top-right corner.
-
-2. Select **Profile & Preferences**.
+1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> **User Settings** &nbsp;<span aria-label="and then">> **Profile & Preferences**.
 
 3. Locate the Workbenches card.
 
@@ -61,7 +59,7 @@ You can only delete workbenches that you created. The NVIDIA-supplied NetQ Workb
 
 ## Manage Auto-refresh
 
-You can specify how often to update the data displayed on your workbenches. By default, NetQ updates the data every five minutes. To alternately disable and re-enable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> **Pause** or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/> **Play**. 
+You can specify how often to update the data displayed on a workbench. By default, NetQ updates the data every five minutes. To alternately disable and re-enable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> **Pause** or <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/> **Play**. Each workbench refreshes according to its respective refresh interval. 
 
 To modify the refresh rate:
 

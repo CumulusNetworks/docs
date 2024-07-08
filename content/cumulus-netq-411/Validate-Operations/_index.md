@@ -27,6 +27,10 @@ NetQ excludes certain checks from running by default. You can run an {{<link tit
 | VLAN | Yes | Yes | Yes |  60 mins |
 | VXLAN | Yes | Yes | Yes |  60 mins |
 
+{{<notice note>}}
+After logging in, it can take up to an hour for NetQ to display accurate validation data.
+{{</notice>}}
+
 Refer to the {{<link title="Validation Tests Reference" text="Validation Reference">}} for a comprehensive breakdown of each test included in each category.
 ## View and Run Validations in the UI
 

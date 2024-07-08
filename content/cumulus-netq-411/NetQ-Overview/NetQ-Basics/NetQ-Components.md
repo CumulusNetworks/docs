@@ -15,12 +15,14 @@ NetQ contains the following applications and key components:
 - Network services
 - User interfaces
 
+<!--
 While these functions apply to both the on-premises and cloud solutions, they are configured differently, as shown in the following diagrams.
 
 {{<figure src="/images/netq/netq-comps-onpremises-230.png" alt="diagram of NetQ on-premises configuration" width="700">}}
 
 {{<figure src="/images/netq/netq-comps-cloud-230.png" alt="diagram of NetQ cloud configuration" width="450">}}
 
+-->
 ## NetQ Agents
 
 NetQ Agents are installed via software and run on every monitored node in the network&mdash;including Cumulus® Linux® switches, Linux bare metal hosts, and virtual machines. The NetQ Agents push network data regularly and event information immediately to the NetQ Platform.

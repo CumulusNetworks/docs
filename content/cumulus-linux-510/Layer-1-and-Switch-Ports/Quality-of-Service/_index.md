@@ -1656,7 +1656,7 @@ Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
 
 Lossy headroom is the buffer on top of the reserved buffer that stores packets that ingress the switch. You can configure the lossy headroom to help analyze performance for a specific priority group and to isolate management traffic to a separate priority group.
 
-To change the lossy headroom for a specified priority group, run the following commands. The switch calculates the default value internally based on the MTU and internal latency. You can specify a value between 0 and 4294967295.
+To change the lossy headroom for a priority group, run the following commands. The switch calculates the default value internally based on the MTU and internal latency. You can specify a value between 0 and 4294967295.
 
 {{< tabs "TabID1663 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1670,6 +1670,8 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 cumulus@switch:~$ nv config apply
 ```
 
+To unset the lossy headroom for a priority group, run the `nv unset qos advance-buffer-config default-global ingress-lossy-buffer priority-group <priority-group> headroom` command.
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -1682,6 +1684,8 @@ cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
 ...
 priority_group.service1.ingress_buffer.lossy_headroom = 50000 
 ```
+
+To unset the lossy headroom for a priority group, comment out the `priority_group.<priority-group>.ingress_buffer.lossy_headroom` parameter.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1742,6 +1746,13 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-b
 cumulus@switch:~$ nv config apply
 ```
 
+To unset the ingress management buffer settings, run the `nv unset qos advance-buffer-config default-global ingress-mgmt-buffer <option>` command; for example,
+
+```
+cumulus@switch:~$ nv unset qos advance-buffer-config default-global ingress-mgmt-buffer reserved
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -1773,6 +1784,8 @@ management.ingress_buffer.lossy_headroom = 20000
 ...
 management.ingress_buffer.dynamic_quota = alpha_0
 ```
+
+To unset the ingress management buffer settings, delete or comment out the `management.ingress_service_pool` or `management.ingress_buffer` parameters.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1819,6 +1832,13 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 cumulus@switch:~$ nv config apply
 ```
 
+To unset the egress management buffer settings, run the `nv unset qos advance-buffer-config default-global egress-mgmt-buffer <option>` command; for example,
+
+```
+cumulus@switch:~$ nv unset qos advance-buffer-config default-global egress-mgmt-buffer reserved
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -1849,6 +1869,8 @@ management.egress_buffer.reserved = 30000
 ...
 management.egress_buffer.dynamic_quota = alpha_0
 ```
+
+To unset the egress management buffer settings, delete or comment out the `management.egress_service_pool` or `management.egress_buffer` parameters.
 
 {{< /tab >}}
 {{< /tabs >}}

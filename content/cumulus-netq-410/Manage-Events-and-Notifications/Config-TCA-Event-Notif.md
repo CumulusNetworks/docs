@@ -346,25 +346,25 @@ netq add tca event_id <text-event-id-anchor>
 For example, this rule tells NetQ to deliver an event notification to the *tca_slack_ifstats*  pre-configured Slack channel when the CPU utilization exceeds 95% of its capacity on any monitored switch:
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' channel tca_slack_ifstats threshold 95
+cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' threshold 95 channel tca_slack_ifstats 
 ```
 <!-- vale off -->
 This rule tells NetQ to deliver an event notification to the *tca_pd_ifstats* PagerDuty channel when the number of transmit bytes per second (Bps) on the *leaf12* switch exceeds 20,000 Bps on any interface:
 <!-- vale on -->
 ```
-cumulus@switch:~$ netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' channel tca_pd_ifstats threshold 20000
+cumulus@switch:~$ netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' threshold 20000 channel tca_pd_ifstats
 ```
 
 This rule tells NetQ to deliver an event notification to the *syslog-netq* syslog channel when the temperature on sensor *temp1* on the *leaf12* switch exceeds 32 degrees Celcius:
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 channel syslog-netq threshold 32
+cumulus@switch:~$ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf12,temp1 threshold 32 channel syslog-netq
 ```
 
 This rule tells NetQ to deliver an event notification to the *tca-slack* channel when the total number of ACL drops on the *leaf04* switch exceeds 20,000 for any reason, ingress port, or drop type.
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_WJH_ACL_DROP_AGG_UPPER scope leaf04,'*','*','*' channel tca-slack threshold 20000
+cumulus@switch:~$ netq add tca event_id TCA_WJH_ACL_DROP_AGG_UPPER scope leaf04,'*','*','*' threshold 20000 channel tca-slack
 ```
 
 For a Slack channel, the event messages should be similar to this:
@@ -378,13 +378,13 @@ In addition to defining a scope for TCA rule, you can also set a severity of eit
 For example, if you want to add an error severity to the CPU utilization rule you created earlier:
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' severity error channel tca_slack_resources threshold 95
+cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' severity error threshold 95 channel tca_slack_resources
 ```
 
 Or if an event is important, but not an error. Set the `severity` to *info*:
 
 ```
-cumulus@switch:~$ netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' severity info channel tca_pd_ifstats threshold 20000
+cumulus@switch:~$ netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' severity info threshold 20000 channel tca_pd_ifstats 
 ```
 
 ### Set the Threshold for Digital Optics Events

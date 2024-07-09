@@ -750,17 +750,13 @@ spine02         80                      576                             2880    
 - - -
 ## netq show dom
 
-Displays the performance degradation or complete outage of any digital optics modules (DOMs) on one or all devices. You can filter the output by interface for laser and module types, and by channel for laser type.
+Displays the performance degradation or complete outage of any digital optics modules (DOMs) on a given device. Several forms of this command are available: one for laser power and current, one for temperature and voltage, and two for bit error rate (BER). 
 
-The output provides the following information for each device and interface:
-
-- Events and warning thresholds
-- Current value, by channel for laser type
-- When any of these items was last changed
+{{%notice note%}}
+Bit error rate commands can only be run on Spectrum switches running Cumulus Linux version 5.4.0 or later.
+{{%/notice%}}
 
 ### Syntax
-
-Two forms of this command are available: one for laser power and current and one for temperature and voltage.
 
 ```
 netq [<hostname>] show dom type (laser_rx_power|laser_output_power|laser_bias_current)
@@ -773,8 +769,14 @@ netq [<hostname>] show dom type (module_temp|module_voltage)
     [interface <text-dom-port-anchor>]
     [around <text-time>]
     [json]
-```
 
+netq <hostname> show dom ber 
+    [json]
+
+netq <hostname> show dom ber device
+    [json]
+```
+<!--need to check of hostname is optional or required in the BER commands-->
 ### Required Arguments
 
 | Argument | Value | Description |
@@ -820,6 +822,71 @@ spine01           swp53s2    module_temperature   {‘degree_c’: 85,     {‘d
 ...
 ```
 
+Show bit error rate across all interfaces on a given device. If the output of this command is grayed-out, that indicates that the NetQ Agent is in a rotten state.
+```
+cumulus@switch:~$ netq spine01 show dom ber
+
+ifname  speed raw ber   eff. ber  symbol err. active fec fc0 hist  ethernet phy mgr. advanced status timestamp
+        gb/s                                                       protocol state    opcode
+                                                                   active
+------- ----- --------- --------- ----------- ---------- --------- -------- -------- --------------- ---------------
+swp1    400   6e-08     1.5e-254  0           Standard_R 5         400G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp7    200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp8    200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp9    200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp10   200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp11   200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp12   200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp13   25    1.5e-254  1.5e-254  0           No FEC     N/A       25G      Active   0               Tue Jul  9 16:1
+                                                                                                     8:27 2024
+swp14   100   1.5e-254  1.5e-254  0           Standard_R N/A       100G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+```
+```
+cumulus@switch:~$ netq spine01 show dom ber device
+ifname  module type            cable len module sn module pn   module tmp        time last  device id                      device fw ver.  timestamp
+                               .(m)                                              clear(min)
+------- ---------------------- --------- --------- ----------- ----------------- ---------- ------------------------------ --------------- ---------------
+swp1    Optical Module (separa 0         MT2234JT0 MMS1V00-WM  49                299.3      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+        ted)                             0061                                               2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp7    Passive copper cable   1         MT1926VS0 MCP1650-H00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         5127      AE30                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp8    Passive copper cable   2         MT1927VS0 MCP1650-V00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         1221      2E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp9    Passive copper cable   2         MT2047VS0 MCP1650-H00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         5432      2E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp10   Passive copper cable   2         MT2047VS0 MCP1650-H00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         4393      2E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp11   Passive copper cable   2         MT2236VB8 MCP1650-V00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         2266      2E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp12   Passive copper cable   2         MT1927VS0 MCP1650-V00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         1325      2E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp13   Passive copper cable   3         MT2047VS0 MCP1650-V00 0                 1585.8     663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         3757      3E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp14   Passive copper cable   3         MT2047VS0 MCP1650-V00 0                 1585.7     663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+```
 ### Related Commands
 
 None

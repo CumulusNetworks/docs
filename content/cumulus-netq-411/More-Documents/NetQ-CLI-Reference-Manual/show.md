@@ -241,27 +241,16 @@ cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-border01          Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:59 2020  Fri Oct  2 22:24:49 2020  Fri Oct  2 22:24:49 2020   Fri Nov 20 18:49:19 2020
-border02          Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:57 2020  Fri Oct  2 22:24:48 2020  Fri Oct  2 22:24:48 2020   Fri Nov 20 18:49:03 2020
-fw1               Fresh            no       3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:36:33 2020  Mon Nov  2 19:49:21 2020  Mon Nov  2 19:49:21 2020   Fri Nov 20 18:48:53 2020
-fw2               Fresh            no       3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:36:32 2020  Mon Nov  2 19:49:20 2020  Mon Nov  2 19:49:20 2020   Fri Nov 20 18:48:52 2020
-leaf01            Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:56 2020  Fri Oct  2 22:24:45 2020  Fri Oct  2 22:24:45 2020   Fri Nov 20 18:49:27 2020
-leaf02            Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:54 2020  Fri Oct  2 22:24:44 2020  Fri Oct  2 22:24:44 2020   Fri Nov 20 18:49:19 2020
-leaf03            Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:59 2020  Fri Oct  2 22:24:49 2020  Fri Oct  2 22:24:49 2020   Fri Nov 20 18:49:20 2020
-leaf04            Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:57 2020  Fri Oct  2 22:24:47 2020  Fri Oct  2 22:24:47 2020   Fri Nov 20 18:49:20 2020
-oob-mgmt-server   Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 19:54:09 2020  Fri Oct  2 22:26:32 2020  Fri Oct  2 22:26:32 2020   Fri Nov 20 18:49:03 2020
-server01          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:27 2020  Mon Nov  2 19:49:31 2020  Mon Nov  2 19:49:31 2020   Fri Nov 20 18:49:07 2020
-server02          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:26 2020  Mon Nov  2 19:49:32 2020  Mon Nov  2 19:49:32 2020   Fri Nov 20 18:49:22 2020
-server03          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:27 2020  Mon Nov  2 19:49:32 2020  Mon Nov  2 19:49:32 2020   Fri Nov 20 18:49:03 2020
-server04          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:27 2020  Mon Nov  2 19:49:32 2020  Mon Nov  2 19:49:32 2020   Fri Nov 20 18:49:30 2020
-server05          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:26 2020  Mon Nov  2 19:49:33 2020  Mon Nov  2 19:49:33 2020   Fri Nov 20 18:49:15 2020
-server06          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:26 2020  Mon Nov  2 19:49:34 2020  Mon Nov  2 19:49:34 2020   Fri Nov 20 18:49:19 2020
-server07          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 20:47:24 2020  Mon Nov  2 19:49:35 2020  Mon Nov  2 19:49:35 2020   Fri Nov 20 18:49:11 2020
-server08          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 20:47:24 2020  Mon Nov  2 19:49:35 2020  Mon Nov  2 19:49:35 2020   Fri Nov 20 18:49:04 2020
-spine01           Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:29 2020  Fri Oct  2 22:24:20 2020  Fri Oct  2 22:24:20 2020   Fri Nov 20 18:49:02 2020
-spine02           Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:48 2020  Fri Oct  2 22:24:37 2020  Fri Oct  2 22:24:37 2020   Fri Nov 20 18:49:12 2020
-spine03           Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:51 2020  Fri Oct  2 22:24:41 2020  Fri Oct  2 22:24:41 2020   Fri Nov 20 18:49:25 2020
-spine04           Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:49 2020  Fri Oct  2 22:24:40 2020  Fri Oct  2 22:24:40 2020   Fri Nov 20 18:49:22 2020
+exit-1            Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:33 2024  Mon Jul  1 20:11:31 2024  Mon Jul  8 18:33:15 2024   Tue Jul  9 15:13:14 2024
+exit-2            Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:34 2024  Mon Jul  1 20:11:52 2024  Mon Jul  8 18:33:12 2024   Tue Jul  9 15:13:17 2024
+firewall-1        Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:32 2024  Mon Jul  1 20:12:13 2024  Mon Jul  8 18:33:07 2024   Tue Jul  9 15:13:02 2024
+firewall-2        Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:32 2024  Mon Jul  1 20:12:42 2024  Mon Jul  8 18:33:13 2024   Tue Jul  9 15:13:05 2024
+hostd-11          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:01:50 2024  Mon Jul  1 20:12:59 2024  Mon Jul  8 18:33:15 2024   Tue Jul  9 15:13:02 2024
+hostd-21          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:02:50 2024  Mon Jul  1 20:13:15 2024  Mon Jul  8 18:32:52 2024   Tue Jul  9 15:13:11 2024
+hosts-11          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:03:47 2024  Mon Jul  1 20:13:31 2024  Mon Jul  8 18:33:16 2024   Tue Jul  9 15:13:21 2024
+hosts-13          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:04:48 2024  Mon Jul  1 20:13:46 2024  Mon Jul  8 18:33:18 2024   Tue Jul  9 15:13:08 2024
+hosts-21          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:05:54 2024  Mon Jul  1 20:13:59 2024  Mon Jul  8 18:33:21 2024   Tue Jul  9 15:13:20 2024
+...
 ```
 
 Display all devices in a rotten state:

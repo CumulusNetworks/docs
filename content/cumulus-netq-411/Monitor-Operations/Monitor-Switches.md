@@ -41,7 +41,7 @@ Hover over the top of the card and select the appropriate icon to view utilizati
 
 {{<figure src="/images/netq/switch-util-411.png" alt="large switch card displaying attributes" width="700" height="350">}}
 
-Expand the Switch card to full-screen to view, filter, or export information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, software packages, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, digital optics, PTP, and process monitoring: 
+Expand the card to full-screen to view, filter, or export information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, software packages, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, digital optics, PTP, and process monitoring: 
 
 {{<figure src="/images/netq/switch-full-411.png" alt="" width="1200" height="625">}}
 
@@ -142,7 +142,9 @@ Monitoring queue lengths in your network’s fabric is useful for detecting micr
 
 {{%/notice%}}
 
-The information available in the UI can also be displayed via the CLI with the {{<link title="show/#netq-show-histogram" text="netq show histogram">}} command. To view queue histograms in the UI:
+The information available in the UI can also be displayed via the CLI with the {{<link title="show/#netq-show-histogram" text="netq show histogram">}} command. 
+
+To view queue histograms in the UI:
 
 1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**. In the Spectrum-X section, select **Queue histogram**.
 

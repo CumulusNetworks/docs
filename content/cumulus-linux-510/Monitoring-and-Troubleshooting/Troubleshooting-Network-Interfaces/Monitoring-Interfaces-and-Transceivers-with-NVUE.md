@@ -246,9 +246,9 @@ Undersize Errors  0        n/a
 - On NVIDIA Spectrum switches, Cumulus Linux updates physical counters to the kernel every two seconds and virtual interfaces (such as VLAN interfaces) every ten seconds. You cannot change these values. Because the update process takes a lower priority than other `switchd` processes, the interval might be longer when the system is under a heavy load.
 {{%/notice%}}
 
-## PHY Health Management
+## AmBER PHY Health Management
 
-To show PHY details:
+To show physical layer information, such the error counters for each lane on a port, run the `nv show interface <interface> link phy-detail` command:
 
 ```
 cumulus@switch$ nv show interface swp1 link phy-detail 
@@ -296,7 +296,7 @@ rs-num-corr-err-bin14      0
 rs-num-corr-err-bin15      0 
 ```
 
-To show PHY diagnostics:
+To show physical layer diagnostic information for a port, run the `nv show interface <interface> link phy-diag` command:
 
 ```
 cumulus@switch$ nv show interface swp20 link phy-diag 

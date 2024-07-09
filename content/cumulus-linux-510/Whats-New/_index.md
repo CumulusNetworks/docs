@@ -37,7 +37,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 {{<link url="Supported-MIBs" text="Supported MIBs">}}
 {{< /expand >}}
 - NVUE
-  - AmBER counters and gauges
+  - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="AmBER PHY counters">}}
   - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and encryption configuration">}}
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
   - {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="Command to generate a cl-support file">}}

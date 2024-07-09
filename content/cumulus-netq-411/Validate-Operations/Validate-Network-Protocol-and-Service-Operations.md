@@ -50,7 +50,6 @@ To create a request containing checks on a single protocol or service in the Net
 
 ```
 netq add validation type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | topology | vlan | vxlan)
-    interval <text-time-min>
     [alert-on-failure]
 ```
 The associated Validation Result card is accessible from the full-screen Validate Network card.

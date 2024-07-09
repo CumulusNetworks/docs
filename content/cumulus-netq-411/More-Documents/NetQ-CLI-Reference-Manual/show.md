@@ -776,7 +776,6 @@ netq <hostname> show dom ber
 netq <hostname> show dom ber device
     [json]
 ```
-<!--need to check of hostname is optional or required in the BER commands-->
 ### Required Arguments
 
 | Argument | Value | Description |

@@ -15,7 +15,7 @@ You must have {{<link title="Install NIC and DPU Agents" text="DOCA Telemetry Se
 
 To view attributes per NIC, open a NIC device card:
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in the header, then click **Open a device card**.
+1. Search for the device’s hostname in the global search field or from the header select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.
 
 2. Select a NIC from the dropdown.
 

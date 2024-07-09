@@ -146,6 +146,14 @@ The sensor validation tests looks for chassis power supply, fan, and temperature
 | 1 | Fan sensors | Checks for fan sensors that are not in ok state |
 | 2 | Temperature sensors | Checks for temperature sensors that are not in ok state |
 
+## Topology Validation Tests
+
+The topology validation tests look for inconsistencies between a network's topology (as derived from LLDP telemetry data) and the user-provided topology blueprint.
+
+| Test Number | Test Name | Description |
+| :---------: | --------- | ----------- |
+| 0 | LLDP service | Checks that the LLDP service is running |
+| 1 | Topology blueprint | Checks for differences between a network's actual topology and the network's blueprint file  |
 ## VLAN Validation Tests
 
 The VLAN validation tests look for configuration consistency between two nodes.

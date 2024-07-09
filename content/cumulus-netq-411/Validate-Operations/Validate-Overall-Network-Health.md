@@ -17,6 +17,8 @@ Overall network health in the NetQ UI is a calculated average of several key hea
 
 **Interface health** represents the interfaces, VLAN, and link MTU validation checks.
 
+Some validations---such as checks for RoCE configurations, duplicate addresses, and topology inconsistencies---are not included in the validation summary and do not appear in the Validation Summary card. You can run an {{<link title="Validate Network Protocol and Service Operations#on-demand-validations" text="on-demand validation">}} or {{<link title="Validate Network Protocol and Service Operations#schedule-a-validation" text="schedule a validation">}} to view validation results for those protocols and services.
+<!--
 To view network health metrics:
 
 1. Open or locate the Validation Summary card on your workbench.
@@ -26,7 +28,7 @@ To view network health metrics:
    In this example, system health is good, but network services and interface health display validation failures:
 
     {{<figure src="/images/netq/updated-validation-summary-card.png" alt="medium validation summary card displaying high-level health metrics" width="200">}}
-
+-->
 ## View Detailed Network Health
 
 To view details about your network's health, open or locate the large Validation Summary card on your workbench. To view devices with the most issues or recent issues, select the **Most failures** tab or **Recent failures** tab, respectively. You can unselect one or more services on the left side of the card to display devices affected by the selected services on the right side of the card.
@@ -37,17 +39,17 @@ To view details about your network's health, open or locate the large Validation
 
 By default, the **System health tab** is displayed. 
 
-   {{<figure src="/images/netq/validation-summary-l3-sys-health-42.png" width="650">}}
+   {{<figure src="/images/netq/system-health-411.png" width="650">}}
 
    The health of agents and sensors is represented on the left side of the card. Hover over the chart for each type of validation to see detailed results. The right side of the card displays devices with failures related to agents and sensors.
 
 {{</tab>}}
 
-{{<tab "Network Services Health">}}
+{{<tab "Network Service Health">}}
 
 Click the **Network service health** tab.
 
-   {{<figure src="/images/netq/validation-summary-l3-net-health-42.png" width="650">}}
+   {{<figure src="/images/netq/net-service-health-411.png" width="650">}}
 
    The health of each network protocol or service is represented on the left side of the card. Hover over the chart for each type of validation to see detailed results. The right side of the card displays devices with failures related to these protocols and services.
 
@@ -57,7 +59,7 @@ Click the **Network service health** tab.
 
 Click the **Interface health** tab.
 
-   {{<figure src="/images/netq/validation-summary-l3-int-health-42.png" width="650">}}
+   {{<figure src="/images/netq/interface-health-411.png" width="650">}}
 
    The health of interfaces, VLANs, and link MTUs is represented on the left side of the card. Hover over the chart for each type of validation to see detailed results. The right side of the card displays devices with failures related to interfaces, VLANs, and link MTUs.
 
@@ -69,12 +71,12 @@ Click the **Interface health** tab.
 
 From the relevant tab (System Health, Network Service Health, or Interface Health) on the large Validation Summary card, you can select a chart to open a full-screen view of the validation data for that service.
 
-The following example shows the EVPN chart:
+The following example shows the EVPN validation at its most granular level. The *Checks* section displays the individual tests that comprise the EVPN validation, including which tests passed and which failed. The *Results* section displays the devices which failed the EVPN validation, the sessions that failed, and the individual nodes that failed.
 
-{{<figure src="/images/netq/full-screen-evpn-validation.png" alt="EVPN validation data" width="1300">}}
+{{<figure src="/images/netq/evpn-full-411.png" alt="EVPN validation data" width="1300">}}
 
 ## View Default Network Protocol and Service Validation Results
 
-Expand the Validation Summary card to full-screen to view all default validation checks during a designated time period. Some validations, such as RoCE and address, are not included in the default validation checks and will not appear in this view. You can run an {{<link title="Validate Network Protocol and Service Operations#on-demand-validations" text="on-demand validation">}} to view results for those protocols and services. 
+Expand the Validation Summary card to full-screen to view all default validation checks during a designated time period.
 
-{{<figure src="/images/netq/fullscreen-val-460.png" alt="fullscreen validation summary card displaying EVPN metrics" width="1300">}}
+{{<figure src="/images/netq/val-summary-full-411.png" alt="fullscreen validation summary card displaying BGP metrics" width="1300">}}

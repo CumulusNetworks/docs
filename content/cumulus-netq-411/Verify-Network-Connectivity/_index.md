@@ -45,7 +45,7 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 1. Determine the IP addresses of the two devices you want to trace.
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then select **IP addresses**.
+    1. Open the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**. Under **Bulk data**, select **IP addresses**.
 
     2. Select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} **Filter** and enter a hostname.
 

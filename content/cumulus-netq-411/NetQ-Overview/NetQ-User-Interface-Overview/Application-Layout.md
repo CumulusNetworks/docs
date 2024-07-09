@@ -20,26 +20,20 @@ Select the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03
 
 | Description | Menu |
 | ------ | ---- |
-| <ul><li><strong>Search</strong>: searches items listed under the main menu</li><li><strong>Favorites</strong>: lists a user's favorite workbench</li><li><strong>Workbenches</strong>: lists all workbenches</li><li><strong>Network</strong>: lists various network elements which you can select to monitor your network's state</li><li><strong>RoCE counters</strong>: lists performance counters for devices running RoCE</li><li><strong>Traffic histograms</strong>: lists types of network traffic that can be visualized with histograms</li><li><strong>Notifications</strong>: lets you set up notification channels and create rules for threshold-crossing events</li><li><strong>Admin</strong>: lets administrators manage NetQ itself and access lifecycle management</li></ul> | {{<figure src="/images/netq/sidebar-menu-480.png" alt="" width="300">}} |
+| <ul><li><strong>Search</strong>: searches items listed under the main menu</li><li><strong>Inventory</strong>: lists network's inventory of devices </li><li><strong>Fabric</strong>: lists various network elements which you can select to monitor your network's state </li><li><strong>Spectrum-X</strong>: lists network elements and monitoring tools exclusive exclusive to Spectrum switches </li><li><strong>Tools</strong>: lists tools to visualize and validate network operations</li><li><strong>Alerts</strong>: lets you set up notification channels and create rules for threshold-crossing events</li><li><strong>Admin</strong>: lets administrators manage NetQ itself and access lifecycle management</li></ul> | {{<figure src="/images/netq/sidebar-menu-411.png" alt="" width="300">}} |
 ## Search
 
-You can search for devices and cards in the Global Search field in the header. It behaves like most searches and provides suggestions to help you quickly find device information or populate your workbench with sets of cards.
+You can search for devices or cards in the global search field in the header. Right-click the hostname of any switch in your network to open a dashboard in a new tab that displays a comprehensive overview of platform information, events, and interfaces for that switch.
+
+{{<figure src="/images/netq/global-search-exit-411.png" alt="" width="350">}}
 
 ## NVIDIA Logo
 
 Selecting the NVIDIA logo takes you to your favorite workbench. For details about specifying your favorite workbench, refer to {{<link title="Set User Preferences">}}.
 
-## Validation Summary
-
-Found in the header, the validation summary displays the overall health of your network.
-
-{{<notice note>}}
-On initial start up, it can take up to an hour to reach an accurate health indication as some processes only run every 30 minutes.
-{{</notice>}}
-
 ## Workbenches
 
-A workbench comprises a given set of cards. A pre-configured default workbench, NetQ Workbench, is available to get you started. You can customize your workbenches by adding or removing cards. For more detail about managing your data using workbenches, refer to {{<link title="Focus Your Monitoring Using Workbenches">}}.
+A workbench comprises a set of cards. A pre-configured default workbench, NetQ Workbench, is available to get you started. You can create multiple workbenches and customize them by adding or removing cards. For more detail about managing your data using workbenches, refer to {{<link title="Focus Your Monitoring Using Workbenches">}}.
 
 ## Cards
 

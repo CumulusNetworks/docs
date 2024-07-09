@@ -17,19 +17,16 @@ You must enable {{<link title="Lifecycle Management" text="Lifecycle Management"
 <!-- vale on -->
 ## Create a New Flow Analysis
 
-To start a new flow analysis, click the **Flow analysis** icon and select **Create new flow analysis**.
+1. To start a new flow analysis, in the header select **Flow analysis** then **Create new flow analysis**.
 
-{{<figure src="/images/netq/flow-analysis-select-icon-450.png" alt="flow analysis menu with options to create a new flow analysis or view a previous analysis" width="350">}}
-
-In the dialog, enter the application parameters, including the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Select the protocol and VRF for the flow from the dropdown menus.
+2. Enter the flow analysis parameters, including the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Select the protocol and VRF for the flow from the dropdown menus.
 
 {{<figure src="/images/netq/create-new-flow-450.png" alt="flow analysis wizard prompting user to enter application parameters" width="600">}}
 
-After you enter the application parameters, enter the monitor settings, including the sampling rate and time parameters.
+3. After you enter the application parameters, enter the monitor settings, including the sampling rate and time parameters.
 
 {{<figure src="/images/netq/flow-monitor-params.png" alt="flow analysis wizard prompting user to enter sampling and scheduling information" width="600">}}
 
-If you attempt to run a flow analysis that includes switches assigned a default, unmodified access profile, the process will fail. {{<link title="Credentials and Profiles" text="Create a unique access profile">}} (or update the default profile with unique credentials), then {{<link title="Switch Management/#assign-a-profile-to-a-switch" text="assign the profile">}} to the switches you want to include in the flow analysis.
 
 {{<notice warning>}}
 
@@ -37,19 +34,18 @@ Running a flow analysis will affect switch CPU performance. For high-volume flow
 
 {{</notice>}}
 
+{{<notice info>}}
+
+If you attempt to run a flow analysis that includes switches assigned a default, unmodified access profile, the process will fail. {{<link title="Credentials and Profiles" text="Create a unique access profile">}} (or update the default profile with unique credentials), then {{<link title="Switch Management/#assign-a-profile-to-a-switch" text="assign the profile">}} to the switches you want to include in the flow analysis.
+{{</notice>}}
+
+4. After starting the flow analysis, a flow analysis card will appear on the NetQ Workbench.
+
 ## View Flow Analysis Data
 
-After starting the flow analysis, a flow analysis card will appear on the NetQ Workbench.
+1. To view a previous flow analysis, in the header select **Flow analysis** then **View previous flow analysis**. 
 
-{{<figure src="/images/netq/flow-analysis-card.png" alt="flow analysis card showing that a flow analysis is in progress" width="550">}}
-
-View a previous flow analysis by selecting **Flow analysis** and **View previous flow analysis**. 
-
-{{<figure src="/images/netq/flow-analysis-view-previous.png" alt="flow analysis menu with the option to view previous flow analysis highlighted" width="350">}}
-
-Select **View details** next to the name of the flow analysis to display the analysis dashboard. You can use this dashboard to view latency and buffer statistics for the monitored flow. If bi-directional monitoring was enabled, you can view the reverse direction of the flow by selecting the {{<img src="/images/netq/reverse-toggle.svg" height="18" width="18">}} icon. The following example shows flow data across a single path:
-
-{{<figure src="/images/netq/flow-analysis-dashboard.png" alt="flow analysis dashboard displaying flow data across a single path" width="1000">}}
+2. Select **View details** next to the name of the flow analysis to display the analysis dashboard. You can use this dashboard to view latency and buffer statistics for the monitored flow. If bi-directional monitoring was enabled, you can view the reverse direction of the flow by selecting the {{<img src="/images/netq/reverse-toggle.svg" height="18" width="18">}} icon.
 
 The dashboard header shows the monitored flow settings:
 
@@ -128,6 +124,7 @@ An unsupported device is represented in the flow analysis graph as a black bar l
 
 {{<figure src="/images/netq/partial-path-overview-42.png" alt="flow analysis graph showing an unsupported switch" width="900">}}
 
+<!--
 Unsupported devices are also designated in the flow graph panel:
 
 {{<figure src="/images/netq/partial-path-flow-graph-42.png" alt="flow graph panel with an unsupported switch" width="200">}}
@@ -135,7 +132,7 @@ Unsupported devices are also designated in the flow graph panel:
 Selecting the unsupported device displays device statistics in the left panel if they are available to NetQ. Otherwise, the display will indicate why the device is not supported:
 
 {{<figure src="/images/netq/partial-path-device-stats-unsupported-42.png" alt="a panel showing an unsupported device. The device is not supported because the CL version is not supported for flow analysis" width="400">}}
-
+-->
 Path discovery will terminate if multiple consecutive switches do not support flow analysis.  When additional data is available from switches outside of discovered paths, you can view data from those devices from the menu at the top of the page:
 
 {{<figure src="/images/netq/undiscovered-paths-devices-dropdown.png" alt="menu displaying three unsupported devices" width="400">}}

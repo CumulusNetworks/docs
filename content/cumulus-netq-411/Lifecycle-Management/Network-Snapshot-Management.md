@@ -10,7 +10,7 @@ Snapshots capture a network's state---including the services running on the netw
 
 To create a snapshot:
 
-1. From the workbench header, select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} **Snapshot**, then **Create snapshot**.
+1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} **Snapshot**.
 
 2. Next, enter the snapshot's name, time frame, and the elements you'd like included in the snapshot:
 
@@ -32,7 +32,7 @@ You can compare the state of your network before and after an upgrade or other c
 
 To compare network snapshots:
 
-1. From the workbench header, select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} **Snapshot**.
+1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} **Menu**, then select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} **Snapshot**.
 
 2. Select **Compare snapshots**, then select the two snapshots you want to compare.
 

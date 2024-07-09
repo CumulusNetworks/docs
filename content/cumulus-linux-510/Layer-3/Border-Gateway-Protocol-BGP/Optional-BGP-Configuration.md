@@ -1863,6 +1863,24 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
+To show if graceful shutdown is enabled a peer, run the `nv show vrf <vrf> router bgp neighbor <neighbor>` command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51
+                                    operational                     applied   
+----------------------------------  ------------------------------  ----------
+password                                                            *         
+enforce-first-as                                                    off       
+passive-mode                                                        off       
+nexthop-connected-check                                             on        
+description                                                         none      
+bfd                                                                           
+  enable                                                            off       
+...
+graceful-shutdown                                                   on      
+...
+```
+
 ## Graceful BGP Restart
 
 When BGP restarts on a switch, all BGP peers detect that the session goes down and comes back up. This session transition results in a routing flap on BGP peers that causes BGP to recompute routes, generate route updates, and add unnecessary churn to the forwarding tables. The routing flaps can create transient forwarding blackholes and loops, and also consume resources on the switches affected by the flap, which can affect overall network performance.

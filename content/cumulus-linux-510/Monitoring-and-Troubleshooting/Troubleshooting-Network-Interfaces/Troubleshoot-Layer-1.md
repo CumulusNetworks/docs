@@ -280,6 +280,10 @@ Port:  swp43
       Troubleshooting Info: No issue was observed.
 ```
 
+{{%notice note%}}
+On Spectrum-4 switches the `l1-show` command output shows the same values for eyes and grades.
+{{%/notice%}}
+
 The output is in the following sections:
 
 - Module Info: Shows basic information about the module, according to the module EEPROM.

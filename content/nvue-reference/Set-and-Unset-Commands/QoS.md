@@ -1141,7 +1141,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 
 Configures the lossy headroom for a specified priority group. Lossy headroom is the buffer on top of the reserved buffer that stores packets that ingress the switch. You can configure the lossy headroom to help analyze performance for a specific priority group.
 
-You can specify a value between 0 and 136314880. The switch calculates the default value internally based on the MTU and internal latency.
+You can specify a value between 0 and 4294967295. The switch calculates the default value internally based on the MTU and internal latency.
 
 ### Command Syntax
 

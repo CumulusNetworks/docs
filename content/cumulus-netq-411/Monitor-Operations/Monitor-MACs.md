@@ -42,17 +42,17 @@ You can view all MAC addresses across your network with the NetQ UI or the NetQ 
 
 {{<tab "NetQ UI" >}}
 
-1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
+1. Open the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the Network section, select **MACs**.
+2. Search for **MACs**.
 
-    {{<figure src="/images/netq/macs-full-470.png" alt="table listing all devices and their associated MAC addresses" width="1100">}}
+    {{<figure src="/images/netq/macs-411.png" alt="table listing all devices and their associated MAC addresses" width="1100">}}
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-Use the `netq show macs` command to view all MAC addresses.
+Use the {{<link title="show/#netq-show-macs" text="netq show macs">}} command to view all MAC addresses.
 
 This example shows all MAC addresses in the Cumulus Networks reference topology.
 
@@ -89,7 +89,7 @@ yes    ce:93:1d:e3:08:1b  4002   border01          vniBLUE                      
 
 1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the Network section, select **MACs**.
+2. Search for **MACs**.
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} **Filters** and enter a hostname:
 
@@ -166,7 +166,7 @@ no     46:38:39:00:00:40  20     leaf03            bond2                        
 
 1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the Network section, select **MACs**.
+2. Search for **MACs**.
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} **Filters** and enter a VLAN ID.
 
@@ -272,7 +272,7 @@ yes    4a:32:30:8c:13:08  10     leaf02            vni10                        
 
 1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the Network section, select **MACs**.
+2. Search for **MACs**.
 
 3. Locate the **Egress port** column. Hover over the column header and select it to sort A-Z or Z-A order of the egress port used by a MAC address.
 
@@ -557,7 +557,7 @@ To view MAC address commentary:
 
 1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the **Network** heading, select **MACs**.
+2. Search for **MACs**.
 
 3. Select the checkbox next to one of the entries, then select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Open card** above the table.
 

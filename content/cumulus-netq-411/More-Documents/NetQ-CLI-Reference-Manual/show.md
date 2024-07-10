@@ -241,27 +241,16 @@ cumulus@switch:~$ netq show agents
 Matching agents records:
 Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
 ----------------- ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-border01          Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:59 2020  Fri Oct  2 22:24:49 2020  Fri Oct  2 22:24:49 2020   Fri Nov 20 18:49:19 2020
-border02          Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:57 2020  Fri Oct  2 22:24:48 2020  Fri Oct  2 22:24:48 2020   Fri Nov 20 18:49:03 2020
-fw1               Fresh            no       3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:36:33 2020  Mon Nov  2 19:49:21 2020  Mon Nov  2 19:49:21 2020   Fri Nov 20 18:48:53 2020
-fw2               Fresh            no       3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:36:32 2020  Mon Nov  2 19:49:20 2020  Mon Nov  2 19:49:20 2020   Fri Nov 20 18:48:52 2020
-leaf01            Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:56 2020  Fri Oct  2 22:24:45 2020  Fri Oct  2 22:24:45 2020   Fri Nov 20 18:49:27 2020
-leaf02            Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:54 2020  Fri Oct  2 22:24:44 2020  Fri Oct  2 22:24:44 2020   Fri Nov 20 18:49:19 2020
-leaf03            Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:59 2020  Fri Oct  2 22:24:49 2020  Fri Oct  2 22:24:49 2020   Fri Nov 20 18:49:20 2020
-leaf04            Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:57 2020  Fri Oct  2 22:24:47 2020  Fri Oct  2 22:24:47 2020   Fri Nov 20 18:49:20 2020
-oob-mgmt-server   Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 19:54:09 2020  Fri Oct  2 22:26:32 2020  Fri Oct  2 22:26:32 2020   Fri Nov 20 18:49:03 2020
-server01          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:27 2020  Mon Nov  2 19:49:31 2020  Mon Nov  2 19:49:31 2020   Fri Nov 20 18:49:07 2020
-server02          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:26 2020  Mon Nov  2 19:49:32 2020  Mon Nov  2 19:49:32 2020   Fri Nov 20 18:49:22 2020
-server03          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:27 2020  Mon Nov  2 19:49:32 2020  Mon Nov  2 19:49:32 2020   Fri Nov 20 18:49:03 2020
-server04          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:27 2020  Mon Nov  2 19:49:32 2020  Mon Nov  2 19:49:32 2020   Fri Nov 20 18:49:30 2020
-server05          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:26 2020  Mon Nov  2 19:49:33 2020  Mon Nov  2 19:49:33 2020   Fri Nov 20 18:49:15 2020
-server06          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 22:39:26 2020  Mon Nov  2 19:49:34 2020  Mon Nov  2 19:49:34 2020   Fri Nov 20 18:49:19 2020
-server07          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 20:47:24 2020  Mon Nov  2 19:49:35 2020  Mon Nov  2 19:49:35 2020   Fri Nov 20 18:49:11 2020
-server08          Fresh            yes      3.2.0-ub18.04u30~1601400975.104fb9e  Fri Oct  2 20:47:24 2020  Mon Nov  2 19:49:35 2020  Mon Nov  2 19:49:35 2020   Fri Nov 20 18:49:04 2020
-spine01           Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:29 2020  Fri Oct  2 22:24:20 2020  Fri Oct  2 22:24:20 2020   Fri Nov 20 18:49:02 2020
-spine02           Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:48 2020  Fri Oct  2 22:24:37 2020  Fri Oct  2 22:24:37 2020   Fri Nov 20 18:49:12 2020
-spine03           Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:51 2020  Fri Oct  2 22:24:41 2020  Fri Oct  2 22:24:41 2020   Fri Nov 20 18:49:25 2020
-spine04           Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:49 2020  Fri Oct  2 22:24:40 2020  Fri Oct  2 22:24:40 2020   Fri Nov 20 18:49:22 2020
+exit-1            Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:33 2024  Mon Jul  1 20:11:31 2024  Mon Jul  8 18:33:15 2024   Tue Jul  9 15:13:14 2024
+exit-2            Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:34 2024  Mon Jul  1 20:11:52 2024  Mon Jul  8 18:33:12 2024   Tue Jul  9 15:13:17 2024
+firewall-1        Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:32 2024  Mon Jul  1 20:12:13 2024  Mon Jul  8 18:33:07 2024   Tue Jul  9 15:13:02 2024
+firewall-2        Fresh            yes      4.11.0-cl4u48~1719858419.3db6af0a5   Mon Jul  1 19:29:32 2024  Mon Jul  1 20:12:42 2024  Mon Jul  8 18:33:13 2024   Tue Jul  9 15:13:05 2024
+hostd-11          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:01:50 2024  Mon Jul  1 20:12:59 2024  Mon Jul  8 18:33:15 2024   Tue Jul  9 15:13:02 2024
+hostd-21          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:02:50 2024  Mon Jul  1 20:13:15 2024  Mon Jul  8 18:32:52 2024   Tue Jul  9 15:13:11 2024
+hosts-11          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:03:47 2024  Mon Jul  1 20:13:31 2024  Mon Jul  8 18:33:16 2024   Tue Jul  9 15:13:21 2024
+hosts-13          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:04:48 2024  Mon Jul  1 20:13:46 2024  Mon Jul  8 18:33:18 2024   Tue Jul  9 15:13:08 2024
+hosts-21          Fresh            yes      4.11.0-ub18.04u48~1719859179.3db6af0 Mon Jul  1 20:05:54 2024  Mon Jul  1 20:13:59 2024  Mon Jul  8 18:33:21 2024   Tue Jul  9 15:13:20 2024
+...
 ```
 
 Display all devices in a rotten state:
@@ -761,17 +750,13 @@ spine02         80                      576                             2880    
 - - -
 ## netq show dom
 
-Displays the performance degradation or complete outage of any digital optics modules (DOMs) on one or all devices. You can filter the output by interface for laser and module types, and by channel for laser type.
+Displays the performance degradation or complete outage of any digital optics modules (DOMs) on a given device. Several forms of this command are available: one for laser power and current, one for temperature and voltage, and two for bit error rate (BER). 
 
-The output provides the following information for each device and interface:
-
-- Events and warning thresholds
-- Current value, by channel for laser type
-- When any of these items was last changed
+{{%notice note%}}
+Bit error rate commands can only be run on Spectrum switches running Cumulus Linux version 5.4.0 or later.
+{{%/notice%}}
 
 ### Syntax
-
-Two forms of this command are available: one for laser power and current and one for temperature and voltage.
 
 ```
 netq [<hostname>] show dom type (laser_rx_power|laser_output_power|laser_bias_current)
@@ -784,8 +769,13 @@ netq [<hostname>] show dom type (module_temp|module_voltage)
     [interface <text-dom-port-anchor>]
     [around <text-time>]
     [json]
-```
 
+netq <hostname> show dom ber 
+    [json]
+
+netq <hostname> show dom ber device
+    [json]
+```
 ### Required Arguments
 
 | Argument | Value | Description |
@@ -831,6 +821,71 @@ spine01           swp53s2    module_temperature   {‘degree_c’: 85,     {‘d
 ...
 ```
 
+Show bit error rate across all interfaces on a given device. If the output of this command is grayed-out, that indicates that the NetQ Agent is in a rotten state.
+```
+cumulus@switch:~$ netq spine01 show dom ber
+
+ifname  speed raw ber   eff. ber  symbol err. active fec fc0 hist  ethernet phy mgr. advanced status timestamp
+        gb/s                                                       protocol state    opcode
+                                                                   active
+------- ----- --------- --------- ----------- ---------- --------- -------- -------- --------------- ---------------
+swp1    400   6e-08     1.5e-254  0           Standard_R 5         400G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp7    200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp8    200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp9    200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp10   200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp11   200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp12   200   1.5e-254  1.5e-254  0           Standard_R N/A       200G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+                                              44_514)
+swp13   25    1.5e-254  1.5e-254  0           No FEC     N/A       25G      Active   0               Tue Jul  9 16:1
+                                                                                                     8:27 2024
+swp14   100   1.5e-254  1.5e-254  0           Standard_R N/A       100G     Active   0               Tue Jul  9 16:1
+                                              S-FEC - (5                                             8:27 2024
+```
+```
+cumulus@switch:~$ netq spine01 show dom ber device
+ifname  module type            cable len module sn module pn   module tmp        time last  device id                      device fw ver.  timestamp
+                               .(m)                                              clear(min)
+------- ---------------------- --------- --------- ----------- ----------------- ---------- ------------------------------ --------------- ---------------
+swp1    Optical Module (separa 0         MT2234JT0 MMS1V00-WM  49                299.3      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+        ted)                             0061                                               2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp7    Passive copper cable   1         MT1926VS0 MCP1650-H00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         5127      AE30                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp8    Passive copper cable   2         MT1927VS0 MCP1650-V00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         1221      2E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp9    Passive copper cable   2         MT2047VS0 MCP1650-H00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         5432      2E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp10   Passive copper cable   2         MT2047VS0 MCP1650-H00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         4393      2E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp11   Passive copper cable   2         MT2236VB8 MCP1650-V00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         2266      2E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp12   Passive copper cable   2         MT1927VS0 MCP1650-V00 0                 298.5      663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         1325      2E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp13   Passive copper cable   3         MT2047VS0 MCP1650-V00 0                 1585.8     663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+                                         3757      3E26                                     2de8300b4a0264bea2541d6c68c1f9                 9:13 2024
+                                                                                            bec0
+swp14   Passive copper cable   3         MT2047VS0 MCP1650-V00 0                 1585.7     663e9bebb78a3a66f1d5560350351d 34.2014.960     Tue Jul  9 16:4
+```
 ### Related Commands
 
 None
@@ -1386,50 +1441,49 @@ netq <hostname> show histogram interface <text-ifname> queue
 
 ### Sample Usage
 
-Display the past minute of data on *leaf01* for the interface *swp1*:
+Display data on *leaf01* for the interface *swp1*:
 
 ```
-cumulus@switch:~$ netq leaf01 show histogram interface swp1 queue around 1m
+cumulus@switch:~$ netq leaf01 show histogram interface swp1 queue
 
 Matching queue_histograms records:
 Time                           Bin0     Bin1     Bin2     Bin3     Bin4     Bin5     Bin6     Bin7     Bin8     Bin9
 ------------------------------ -------- -------- -------- -------- -------- -------- -------- -------- -------- --------
-Wed Jul 26 02:40:02 2023       1023899  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:40:01 2023       1047648  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:40:00 2023       1051783  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:59 2023       1052589  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:58 2023       1052910  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:57 2023       1050464  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:55 2023       1052236  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:54 2023       1056959  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:53 2023       1051966  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:52 2023       1053585  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:51 2023       1051696  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:50 2023       1019176  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:49 2023       1038337  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:48 2023       1031497  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:47 2023       1031590  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:46 2023       1054147  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:45 2023       1049402  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:44 2023       1059154  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:43 2023       1050751  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:42 2023       1067754  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:40 2023       1050482  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:39 2023       1081382  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:38 2023       1052506  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:37 2023       1082057  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:36 2023       1048727  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:35 2023       1016215  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:34 2023       1052371  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:33 2023       1013239  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:32 2023       1023089  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:31 2023       1011890  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:30 2023       1051966  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:29 2023       1053111  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:28 2023       1050751  0        0        0        0        0        0        0        0        0
-Wed Jul 26 02:39:27 2023       1052005  0        0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:23 2024       992115   3434     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:22 2024       999438   3492     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:21 2024       999782   3337     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:20 2024       998757   3479     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:19 2024       997223   3391     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:18 2024       987939   3346     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:17 2024       999167   3412     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:16 2024       1000553  3401     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:15 2024       1000598  3420     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:14 2024       999258   3420     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:13 2024       1002366  3452     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:12 2024       998212   3467     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:11 2024       1002767  3361     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:10 2024       1002361  3385     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:09 2024       989952   3451     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:08 2024       998360   3474     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:07 2024       1002658  3536     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:06 2024       999199   3450     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:05 2024       999429   3420     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:04 2024       997595   3430     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:03 2024       999888   3454     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:02 2024       1000880  3523     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:01 2024       999824   3502     0        0        0        0        0        0        0        0
+Mon Jul  8 19:41:00 2024       1001447  3413     0        0        0        0        0        0        0        0
+Mon Jul  8 19:40:59 2024       995547   3366     0        0        0        0        0        0        0        0
+Mon Jul  8 19:40:58 2024       986930   3393     0        0        0        0        0        0        0        0
+Mon Jul  8 19:40:57 2024       998351   3417     0        0        0        0        0        0        0        0
+Mon Jul  8 19:40:56 2024       999049   3442     0        0        0        0        0        0        0        0
+Mon Jul  8 19:40:55 2024       988615   3439     0        0        0        0        0        0        0        0
+Mon Jul  8 19:40:54 2024       992414   3298     0        0        0        0        0        0        0        0
+Mon Jul  8 19:40:53 2024       997661   3407     0        0        0        0        0        0        0        0
 ```
+### Related Commands
 
+None
 - - -
 ## netq show interfaces
 

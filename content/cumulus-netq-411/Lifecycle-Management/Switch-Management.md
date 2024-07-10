@@ -366,7 +366,7 @@ Decommissioning the switch or host removes information about the switch or host 
 
 3. Select the devices to decommission, then select **Decommission device** above the table:
 
-{{<figure src="/images/netq/decom-switch-box-450.png" alt="" width="600" height="175">}}
+{{<figure src="/images/netq/decom-switch-411.png" alt="" width="600" height="200">}}
 
 If you attempt to decommission a switch that is assigned a default, unmodified access profile, the process will fail. {{<link title="Credentials and Profiles" text="Create a unique access profile">}} (or update the default with unique credentials), then {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="attach the profile">}} to the switch you want to decommission.
 

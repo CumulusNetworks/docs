@@ -1812,19 +1812,23 @@ Last update: Sun Dec 20 03:04:53 2020
 
 ### Graceful BGP Shutdown on a Peer
 
-When you enable graceful shutdown on a peer, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes to and from that peer and sets the `local-pref` for the routes to `0`.
+When you enable graceful shutdown on a peer, Cumulus Linux marks all routes from the peer as less preferred by adding the `graceful-shutdown` community to all inbound and outbound routes to and from that peer, and setting the `local-pref` for the routes to `0`.
+
+{{%notice note%}}
+Before you enable graceful shutdown on a peer, make sure that *global* graceful shutdown is `off`.
+{{%/notice%}}
 
 {{< tabs "1807 ">}}
 {{< tab "NVUE Commands ">}}
 
-To enable graceful shutdown on a peer:
+To enable graceful shutdown on a peer, run the `nv set vrf <vrf> router bgp neighbor <neighbor> graceful-shutdown on` command:
 
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 graceful-shutdown on
 cumulus@leaf01:~$ nv config apply
 ```
 
-To disable graceful shutdown on a peer:
+To disable graceful shutdown on a peer, run the `nv unset vrf <vrf> router bgp neighbor <neighbor> graceful-shutdown` command:
 
 ```
 cumulus@leaf01:~$ nv unset vrf default router bgp neighbor swp51 graceful-shutdown

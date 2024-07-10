@@ -169,7 +169,11 @@ cumulus@switch:~$ nv set router bgp graceful-restart stale-routes-time 400
 
 ## <h>nv set router bgp graceful-shutdown</h>
 
-Turns BGP graceful shutdown on or off on the switch to reduce packet loss during planned maintenance of a router or link. BGP graceful shutdown forces traffic to route around the BGP node.
+Turns global BGP graceful shutdown on or off on the switch to reduce packet loss during planned maintenance of a router or link. BGP graceful shutdown forces traffic to route around the BGP node.
+
+{{%notice note%}}
+You cannot enable global graceful shutdown if graceful shutdown on a peer is enabled.
+{{%/notice%}}
 
 ### Version History
 
@@ -1527,6 +1531,12 @@ cumulus@switch:~$ nv set vrf default router bgp enable on
 ## <h>nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> graceful-shutdown</h>
 
 Turns BGP graceful shutdown `on` or `off` on the specified peer to reduce packet loss during planned maintenance.
+
+When you enable graceful shutdown on a peer, Cumulus Linux adds the `graceful-shutdown` community to all inbound and outbound routes to and from that peer, and sets the `local-pref` for the routes to 0.
+
+{{%notice note%}}
+You cannot enable graceful shutdown on a peer if global graceful shutdown is enabled.
+{{%/notice%}}
 
 ### Command Syntax
 

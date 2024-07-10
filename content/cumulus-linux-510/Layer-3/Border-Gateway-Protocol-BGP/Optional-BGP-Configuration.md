@@ -1814,6 +1814,10 @@ Last update: Sun Dec 20 03:04:53 2020
 
 When you enable graceful shutdown on a peer, Cumulus Linux marks all routes from the peer as less preferred by adding the `graceful-shutdown` community to all inbound and outbound routes to and from that peer, and setting the `local-pref` for the routes to `0`.
 
+{{%notice note%}}
+Before you enable graceful shutdown on a peer, make sure that *global* graceful shutdown is `off`.
+{{%/notice%}}
+
 {{< tabs "1807 ">}}
 {{< tab "NVUE Commands ">}}
 

@@ -246,6 +246,134 @@ Undersize Errors  0        n/a
 - On NVIDIA Spectrum switches, Cumulus Linux updates physical counters to the kernel every two seconds and virtual interfaces (such as VLAN interfaces) every ten seconds. You cannot change these values. Because the update process takes a lower priority than other `switchd` processes, the interval might be longer when the system is under a heavy load.
 {{%/notice%}}
 
+## AmBER PHY Health Management
+
+To show physical layer information, such the error counters for each lane on a port, run the `nv show interface <interface> link phy-detail` command:
+
+```
+cumulus@switch$ nv show interface swp1 link phy-detail 
+                           operational 
+
+-------------------------  ---------------- 
+time-since-last-clear-min  395 
+phy-received-bits          2373169010065408 
+symbol-errors              0 
+effective-errors           0 
+phy-raw-errors-lane0       0 
+phy-raw-errors-lane1       0 
+phy-raw-errors-lane2       0 
+phy-raw-errors-lane3       0 
+phy-raw-errors-lane4       0 
+phy-raw-errors-lane5       0 
+phy-raw-errors-lane6       0 
+phy-raw-errors-lane7       0 
+raw-ber                    15E-255 
+symbol-ber                 15E-255 
+effective-ber              15E-255 
+raw-ber-lane0              0 
+raw-ber-lane1              0 
+raw-ber-lane2              0 
+raw-ber-lane3              0 
+raw-ber-lane4              0 
+raw-ber-lane5              0 
+raw-ber-lane6              0 
+raw-ber-lane7              0 
+rs-num-corr-err-bin0       463548146626 
+rs-num-corr-err-bin1       0 
+rs-num-corr-err-bin2       0 
+rs-num-corr-err-bin3       0 
+rs-num-corr-err-bin4       0 
+rs-num-corr-err-bin5       0 
+rs-num-corr-err-bin6       0 
+rs-num-corr-err-bin7       0 
+rs-num-corr-err-bin8       0 
+rs-num-corr-err-bin9       0 
+rs-num-corr-err-bin10      0 
+rs-num-corr-err-bin11      0 
+rs-num-corr-err-bin12      0 
+rs-num-corr-err-bin13      0 
+rs-num-corr-err-bin14      0 
+rs-num-corr-err-bin15      0 
+```
+
+To show physical layer diagnostic information for a port, run the `nv show interface <interface> link phy-diag` command:
+
+```
+cumulus@switch$ nv show interface swp20 link phy-diag 
+                                  operational 
+--------------------------------  ----------- 
+pd-fsm-state                      0x8 
+eth-an-fsm-state                  0x6 
+phy-hst-fsm-state                 0x0 
+psi-fsm-state                     0x0 
+phy-manager-link-enabled          0x97f2 
+core-to-phy-link-enabled          0x2f2 
+cable-proto-cap-ext               0x0 
+loopback-mode                     0x0 
+retran-mode-request               0x0 
+retran-mode-active                0x0 
+fec-mode-request                  0x4 
+profile-fec-in-use                0x4 
+pd-link-enabled                   0xff8005 
+phy-hst-link-enabled              0x0 
+eth-an-link-enabled               0x5cf0002 
+phy-manager-state                 0x3 
+eth-proto-admin                   0x0 
+ext-eth-proto-admin               0x0 
+eth-proto-capability              0x0 
+ext-eth-proto-capability          0x0 
+data-rate-oper                    0x0 
+an-status                         0x0 
+an-disable-admin                  0x0 
+proto-mask                        0x2 
+module-info-ext                   0x0 
+ethernet-compliance-code          0x80 
+ext-ethernet-compliance-code      0x18 
+memory-map-rev                    0x7 
+linear-direct-drive               0x0 
+cable-breakout                    0x10 
+cable-rx-amp                      0x0 
+cable-rx-pre-emphasis             0x0 
+cable-rx-post-emphasis            0x0 
+cable-tx-equalization             0x0 
+cable-attenuation-53g             0x0 
+cable-attenuation-25g             0x0 
+cable-attenuation-12g             0x0 
+cable-attenuation-7g              0x0 
+cable-attenuation-5g              0x0 
+tx-input-freq-sync                0x0 
+tx-cdr-state                      0xf 
+rx-cdr-state                      0xf 
+module-fw-version                 0x201e010a 
+module-st                         0x0 
+dp-st-lane0                       0x0 
+dp-st-lane1                       0x0 
+dp-st-lane2                       0x0 
+dp-st-lane3                       0x0 
+dp-st-lane4                       0x0 
+dp-st-lane5                       0x0 
+dp-st-lane6                       0x0 
+dp-st-lane7                       0x0 
+rx-output-valid                   0x0 
+rx-power-type                     0x1 
+active-set-host-compliance-code   0x0 
+active-set-media-compliance-code  0x0 
+error-code-response               0x0 
+temp-flags                        0x0 
+vcc-flags                         0x0 
+mod-fw-fault                      0x0 
+dp-fw-fault                       0x0 
+rx-los-cap                        0x0 
+tx-fault                          0x0 
+tx-los                            0x0 
+tx-cdr-lol                        0x0 
+tx-ad-eq-fault                    0x0 
+rx-los                            0x0 
+rx-cdr-lol                        0x0 
+rx-output-valid-change            0x0 
+flag-in-use                       0x0 
+```
+
 ## Clear Interface Counters
 
 To clear counters (statistics) for all interfaces, run the `nv action clear interface counters` command:

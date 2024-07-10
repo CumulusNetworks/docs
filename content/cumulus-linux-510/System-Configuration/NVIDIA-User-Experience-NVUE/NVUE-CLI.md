@@ -485,7 +485,7 @@ NVUE uses session-based authentication to authenticate and authorize requests. S
 - If you make changes directly on the RADIUS, TACACS, or LDAP server, you must clear the user session with the `nv action clear system api session user <user>` command.
 
 {{%notice note%}}
-If you do not clear a user session after making changes directly on the RADIUS, TACACS, or LDAP server, NVUE uses the existing session for authentication and authorization until the session times out.
+If you do not clear a user session after making changes directly on the RADIUS, TACACS, or LDAP server, NVUE uses the existing session for authentication and authorization until the session times out (up to 60 minutes).
 {{%/notice%}}
 
 The following example clears the `admin` user session after you make changes directly on the RADIUS, TACACS, or LDAP server:

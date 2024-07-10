@@ -192,9 +192,14 @@ To show information about update group events, run the vtysh `show bgp update-gr
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast update-group
-   Time created  LocalAs change  Prepend Flag  Replace AS flag  Minimum advertisement interval  Routemap  Update group  Summary     
--  ------------  --------------  ------------  ---------------  ------------------------------  --------  ------------  ------------
-5  1674253324                                                   0                                         5             sub-group: 5               
+RouteMap - Outbound route map, MinAdvInterval - Minimum route advertisement     
+interval, CreationTime - Time when the update group was created, LocalAsChange -
+LocalAs changes for inbound route, Flags - r - replace-as, x - no-prepend       
+
+UpdateGrp  RouteMap  MinAdvInterval  CreationTime          LocalAsChange  Flags
+---------  --------  --------------  --------------------  -------------  -----
+1                    0               2024-07-08T18:00:57Z                      
+3                    0               2024-07-09T20:48:11Z            
 ```
 
 To show information about a specific update group, such as the number of peer refresh events, prune events, and packet queue length, run the vtysh `show bgp update-group <group-id>` command or run these NVUE commands:
@@ -250,26 +255,27 @@ The above IPv4 and IPv6 command shows the local RIB routes in brief format to im
 ```
 cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib
 IPV4 Routes
-==============                                                                                
-    PathCount - Number of paths present for the prefix, MultipathCount - Number of  
-    paths that are part of the ECMP, LocalPref - Local Preference, Best - Best path,
-    Reason - Reason for selection                                                   
+==============
                                                                                 
-    Prefix           PathCount  MultipathCount  DestFlags        Nexthop  Metric  Weight  LocalPref  Aspath  Best  Reason  Flags
-    ---------------  ---------  --------------  ---------------  -------  ------  ------  ---------  ------  ----  ------  -----
-    10.0.1.12/32     5          1               bestpath-exists                                                                 
-    10.0.1.34/32     5          4               bestpath-exists                                                                 
-    10.0.1.255/32    5          4               bestpath-exists                                                                 
-    10.10.10.1/32    5          1               bestpath-exists                                                                 
-    10.10.10.2/32    1          1               bestpath-exists                                                                 
-    10.10.10.3/32    5          4               bestpath-exists                                                                 
-    10.10.10.4/32    5          4               bestpath-exists                                                                 
-    10.10.10.63/32   5          4               bestpath-exists                                                                 
-    10.10.10.64/32   5          4               bestpath-exists                                                                 
-    10.10.10.101/32  2          1               bestpath-exists                                                                 
-    10.10.10.102/32  2          1               bestpath-exists                                                                 
-    10.10.10.103/32  2          1               bestpath-exists                                                                 
-    10.10.10.104/32  2          1               bestpath-exists 
+    PathCount - Number of paths present for the prefix, MultipathCount - Number of  
+    paths that are part of the ECMP, DestFlags - * - bestpath-exists, w - fib-wait- 
+    for-install, s - fib-suppress, i - fib-installed, x - fib-install-failed,       
+    LocalPref - Local Preference, Best - Best path, Reason - Reason for selection   
+                                                                                
+    Prefix           PathCount  MultipathCount  DestFlags  Nexthop  Metric  Weight  LocalPref  Aspath  Best  Reason
+    ---------------  ---------  --------------  ---------  -------  ------  ------  ---------  ------  ----  ------
+    10.1.10.0/24     3          1               *                                                                  
+    10.1.20.0/24     3          1               *                                                                  
+    10.1.30.0/24     3          1               *                                                                  
+    10.1.40.0/24     3          1               *                                                                  
+    10.1.50.0/24     3          1               *                                                                  
+    10.1.60.0/24     3          1               *                                                                  
+    10.10.10.1/32    2          1               *                                                                  
+    10.10.10.2/32    3          1               *                                                                  
+    10.10.10.3/32    3          1               *                                                                  
+    10.10.10.4/32    3          1               *                                                                  
+    10.10.10.101/32  2          1               *                                                                  
+    10.10.10.102/32  2          1               *
 ```
 
 To show information about a specific local RIB route, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast loc-rib <route>` for IPv4 or `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv6-unicast loc-rib <route>` for IPv6.
@@ -319,28 +325,23 @@ The above IPv4 and IPv6 command shows advertised routes in brief format to impro
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 
-    <route-id>             IPv4 address and route prefix in CIDR notation
-                           (ipv4-prefix)
-brief 
-                                                                             
 PathCount - Number of paths present for the prefix, MultipathCount - Number of  
 paths that are part of the ECMP                                                 
-                                                                                
-IPv4 Prefix      PathCount  MultipathCount  DestFlags      
----------------  ---------  --------------  ---------------
-10.0.1.12/32     5          1               bestpath-exists
-10.0.1.34/32     5          4               bestpath-exists
-10.0.1.255/32    5          4               bestpath-exists
-10.10.10.1/32    5          1               bestpath-exists
-10.10.10.2/32    1          1               bestpath-exists
-10.10.10.3/32    5          4               bestpath-exists
-10.10.10.4/32    5          4               bestpath-exists
-10.10.10.63/32   5          4               bestpath-exists
-10.10.10.64/32   5          4               bestpath-exists
-10.10.10.101/32  2          1               bestpath-exists
-10.10.10.102/32  2          1               bestpath-exists
-10.10.10.103/32  2          1               bestpath-exists
-10.10.10.104/32  2          1               bestpath-exists
+
+IPv4 Prefix      PathCount  MultipathCount
+---------------  ---------  --------------
+10.1.10.0/24     3          1             
+10.1.20.0/24     3          1             
+10.1.30.0/24     3          1             
+10.1.40.0/24     3          1             
+10.1.50.0/24     3          1             
+10.1.60.0/24     3          1             
+10.10.10.1/32    2          1             
+10.10.10.2/32    3          1             
+10.10.10.3/32    3          1             
+10.10.10.4/32    3          1             
+10.10.10.101/32  2          1             
+10.10.10.102/32  2          1
 ```
 
 To show information about a specific advertised route, run the`nv show <vrf> default router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes <route> -o json` for IPv4 or `nv show <vrf> default router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes <route> -o json` for IPv6.

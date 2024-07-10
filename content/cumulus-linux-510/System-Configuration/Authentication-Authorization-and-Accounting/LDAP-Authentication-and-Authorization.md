@@ -212,7 +212,7 @@ cumulus@switch:~$ nv set system aaa ldap scope one-level
 cumulus@switch:~$ nv config apply
 ```
 
-To set the search scope to one level:
+To set the search scope to subtree:
 
 ```
 cumulus@switch:~$ nv set system aaa ldap scope subtree

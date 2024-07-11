@@ -2679,36 +2679,15 @@ cumulus@switch:~$ netq show lldp
 Matching lldp records:
 Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
 ----------------- ------------------------- ----------------- ------------------------- -------------------------
-border01          swp3                      fw1               swp1                      Mon Oct 26 04:13:29 2020
-border01          swp49                     border02          swp49                     Mon Oct 26 04:13:29 2020
-border01          swp51                     spine01           swp5                      Mon Oct 26 04:13:29 2020
-border01          swp52                     spine02           swp5                      Mon Oct 26 04:13:29 2020
-border01          eth0                      oob-mgmt-switch   swp20                     Mon Oct 26 04:13:29 2020
-border01          swp53                     spine03           swp5                      Mon Oct 26 04:13:29 2020
-border01          swp50                     border02          swp50                     Mon Oct 26 04:13:29 2020
-border01          swp54                     spine04           swp5                      Mon Oct 26 04:13:29 2020
-border02          swp49                     border01          swp49                     Mon Oct 26 04:13:11 2020
-border02          swp3                      fw1               swp2                      Mon Oct 26 04:13:11 2020
-border02          swp51                     spine01           swp6                      Mon Oct 26 04:13:11 2020
-border02          swp54                     spine04           swp6                      Mon Oct 26 04:13:11 2020
-border02          swp52                     spine02           swp6                      Mon Oct 26 04:13:11 2020
-border02          eth0                      oob-mgmt-switch   swp21                     Mon Oct 26 04:13:11 2020
-border02          swp53                     spine03           swp6                      Mon Oct 26 04:13:11 2020
-border02          swp50                     border01          swp50                     Mon Oct 26 04:13:11 2020
-fw1               eth0                      oob-mgmt-switch   swp18                     Mon Oct 26 04:38:03 2020
-fw1               swp1                      border01          swp3                      Mon Oct 26 04:38:03 2020
-fw1               swp2                      border02          swp3                      Mon Oct 26 04:38:03 2020
-fw2               eth0                      oob-mgmt-switch   swp19                     Mon Oct 26 04:46:54 2020
-leaf01            swp1                      server01          mac:44:38:39:00:00:32     Mon Oct 26 04:13:57 2020
-leaf01            swp2                      server02          mac:44:38:39:00:00:34     Mon Oct 26 04:13:57 2020
-leaf01            swp52                     spine02           swp1                      Mon Oct 26 04:13:57 2020
-leaf01            swp49                     leaf02            swp49                     Mon Oct 26 04:13:57 2020
-leaf01            eth0                      oob-mgmt-switch   swp10                     Mon Oct 26 04:13:57 2020
-leaf01            swp3                      server03          mac:44:38:39:00:00:36     Mon Oct 26 04:13:57 2020
-leaf01            swp53                     spine03           swp1                      Mon Oct 26 04:13:57 2020
-leaf01            swp50                     leaf02            swp50                     Mon Oct 26 04:13:57 2020
-leaf01            swp54                     spine04           swp1                      Mon Oct 26 04:13:57 2020
-leaf01            swp51                     spine01           swp1                      Mon Oct 26 04:13:57 2020
+exit-1            swp2                      noc-se            swp5                      Wed Jul 10 17:38:18 2024
+exit-1            swp5                      spine-3           swp9                      Wed Jul 10 17:38:18 2024
+exit-1            swp6                      firewall-1        swp3                      Wed Jul 10 17:38:18 2024
+exit-1            swp3                      spine-1           swp9                      Wed Jul 10 17:38:18 2024
+exit-1            swp4                      spine-2           swp9                      Wed Jul 10 17:38:18 2024
+exit-1            swp1                      noc-pr            swp5                      Wed Jul 10 17:38:18 2024
+exit-1            swp7                      firewall-2        swp3                      Wed Jul 10 17:38:18 2024
+exit-2            swp7                      firewall-2        swp4                      Wed Jul 10 16:17:11 2024
+exit-2            swp3                      spine-1           swp10                     Wed Jul 10 16:17:11 2024
 ...
 ```
 
@@ -2773,18 +2752,18 @@ netq [<hostname>] show mac-commentary
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show mac-commentary 44:38:39:be:ef:ff vlan 4002
+cumulus@switch:~$ netq show mac-commentary 33:33:00:00:00:01 vlan 104
+
 Matching mac_commentary records:
 Last Updated              Hostname         VLAN   Commentary
 ------------------------- ---------------- ------ --------------------------------------------------------------------------------
-Thu Oct  1 14:25:18 2020  border01         4002   44:38:39:be:ef:ff configured on interface bridge
-Thu Oct  1 14:25:18 2020  border02         4002   44:38:39:be:ef:ff configured on interface bridge
+Thu Jul 11 19:32:00 2024  hosts-11         104    33:33:00:00:00:01 configured on interface swp1.104
 ```
 
 ### Related Commands
 
-- ```netq show mac-history```
-- ```netq show ip/ipv6 addresses```
+- `netq show mac-history`
+- `netq show ip/ipv6 addresses`
 
 - - -
 
@@ -2847,12 +2826,43 @@ Tue Oct 27 22:28:42 2020  leaf01            30     no     vni30            10.0.
 Tue Oct 27 22:28:51 2020  leaf02            30     no     vni30            10.0.1.2               no     yes
 Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink                                no     yes
 ```
+This example shows only the differences in the changes for a MAC address of *44:38:39:00:00:5d* between now and an hour ago.
 
+```
+cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d diff
+Matching machistory records:
+Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
+------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
+Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink                                no     yes
+```
+
+This example shows only the differences in the changes for a MAC address of *44:38:39:00:00:5d* between now and 30 days ago. The caret (^) notation indicates no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d diff between now and 30d
+Matching machistory records:
+Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
+------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
+Mon Sep 28 00:02:26 2020  leaf04            30     no     peerlink                                no     no
+Tue Oct 27 22:29:07 2020  leaf04            ^      ^      ^                ^                      ^      yes
+```
+This example shows changes for a MAC address of *44:38:39:00:00:5d* and VLAN *10*.
+
+```
+cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d vlan 10
+Matching machistory records:
+Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
+------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
+Tue Oct 27 22:28:24 2020  leaf03            10     yes    bridge                                  no     no
+Tue Oct 27 22:28:42 2020  leaf01            10     no     vni10            10.0.1.2               no     yes
+Tue Oct 27 22:28:51 2020  leaf02            10     no     vni10            10.0.1.2               no     yes
+Tue Oct 27 22:29:07 2020  leaf04            10     no     peerlink                                no     yes
+```
 
 ### Related Commands
 
-- ```netq show mac-commentary```
-- ```netq show ip/ipv6 addresses```
+- `netq show mac-commentary`
+- `netq show ip/ipv6 addresses`
 
 - - -
 
@@ -2924,46 +2934,59 @@ Display count of MAC addresses on a switch:
 cumulus@switch:~$ netq leaf01 show macs count
 Count of matching mac records: 50
 ```
+Display all MAC addresses networkwide:
+
+```
+cumulus@switch:~$ netq show macs
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+true   00:00:00:00:00:00  1001   torc-22           vx-33:tor-2                    no     Wed Jul 10 20:33:21 2024
+true   00:00:00:00:00:00  1003   torc-22           vx-35:tor-2                    no     Wed Jul 10 20:33:21 2024
+true   00:00:00:00:00:00  1005   torc-22           vx-37:tor-2                    no     Wed Jul 10 20:33:21 2024
+true   00:00:00:00:00:00  1007   torc-22           vx-39:tor-2                    no     Wed Jul 10 20:33:21 2024
+true   00:00:00:00:00:00  1009   torc-22           vx-41:tor-2                    no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  0      torc-22           VlanA-1                        no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  100    torc-22           VlanA-1.100                    no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  1001   torc-22           vlan1001                       no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  1003   torc-22           vlan1003                       no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  1005   torc-22           vlan1005                       no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  1007   torc-22           vlan1007                       no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  1009   torc-22           vlan1009                       no     Wed Jul 10 20:33:21 2024
+...
+false  00:02:00:00:00:24  106    torc-22           {hostbond3}:{hostd-22}         no     Wed Jul 10 20:33:21 2024
+false  00:02:00:00:00:30  1001   torc-22           vx-33:tor-2                    yes    Wed Jul 10 20:33:21 2024
+```
 
 Display MAC addresses that use a given egress port on a switch:
 
 ```
-cumulus@switch:~$ netq leaf01 show macs egress-port bond3
+cumulus@switch:~$ netq torc-22 show macs egress-port VlanA-1.100
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
-no     44:38:39:00:00:36  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
-no     46:38:39:00:00:36  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
-no     46:38:39:00:00:3c  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
+true   00:00:5e:00:01:01  100    torc-22           VlanA-1.100                    no     Wed Jul 10 20:33:21 2024
 ```
 
-Display MAC addresses associated with VLAN 10. The command also provides the hostnames of the devices, the egress port for the interface, whether the MAC address originated from the given device, whether it learns the MAC address from the peer (`remote=yes`), and the last time the configuration changed.
+Display MAC addresses associated with a given VLAN. The command also provides the hostnames of the devices, the egress port for the interface, whether the MAC address originated from the given device, whether it learns the MAC address from the peer (`remote=yes`), and the last time the configuration changed.
 
 ```
-cumulus@switch:~$ netq show macs vlan 10
+cumulus@switch:~$ netq show macs vlan 102
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
-yes    00:00:00:00:00:1a  10     leaf04            bridge                         no     Tue Oct 27 22:29:07 2020
-no     44:38:39:00:00:37  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
-no     44:38:39:00:00:59  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
-no     46:38:39:00:00:38  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
-no     44:38:39:00:00:3e  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
-no     46:38:39:00:00:3e  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
-yes    44:38:39:00:00:5e  10     leaf04            bridge                         no     Tue Oct 27 22:29:07 2020
-no     44:38:39:00:00:32  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
-no     44:38:39:00:00:5d  10     leaf04            peerlink                       no     Tue Oct 27 22:29:07 2020
-no     46:38:39:00:00:44  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
-no     46:38:39:00:00:32  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
-yes    36:ae:d2:23:1d:8c  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
-yes    00:00:00:00:00:1a  10     leaf03            bridge                         no     Tue Oct 27 22:28:24 2020
-no     44:38:39:00:00:59  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
-no     44:38:39:00:00:37  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
-no     46:38:39:00:00:38  10     leaf03            vni10                          yes    Tue Oct 27 22:28:24 2020
-yes    36:99:0d:48:51:41  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
-no     44:38:39:00:00:3e  10     leaf03            bond1                          no     Tue Oct 27 22:28:24 2020
-no     44:38:39:00:00:5e  10     leaf03            peerlink                       no     Tue Oct 27 22:28:24 2020
-no     46:38:39:00:00:3e  10     leaf03            bond1                          no     Tue Oct 27 22:28:24 2020
+true   00:00:5e:00:01:01  102    torc-22           VlanA-1.102                    no     Wed Jul 10 20:33:21 2024
+false  00:02:00:00:00:20  102    torc-22           {hostbond2}:{hostd-21}         no     Wed Jul 10 20:33:21 2024
+false  00:02:00:00:00:24  102    torc-22           {hostbond3}:{hostd-22}         no     Wed Jul 10 20:33:21 2024
+false  00:02:00:00:00:b0  102    torc-22           {peerlink-1}:{torc-21}         no     Wed Jul 10 20:33:21 2024
+true   00:02:00:00:00:b8  102    torc-22           VlanA-1                        no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  102    torc-21           VlanA-1.102                    no     Thu Jul 11 18:59:08 2024
+false  00:02:00:00:00:20  102    torc-21           {hostbond2}:{hostd-21}         no     Thu Jul 11 18:59:08 2024
+false  00:02:00:00:00:24  102    torc-21           {hostbond3}:{hostd-22}         no     Thu Jul 11 18:59:08 2024
+true   00:02:00:00:00:b0  102    torc-21           VlanA-1                        no     Thu Jul 11 18:59:08 2024
+false  00:02:00:00:00:b8  102    torc-21           {peerlink-1}:{torc-22}         no     Thu Jul 11 18:59:08 2024
+true   00:00:5e:00:01:01  102    torc-12           VlanA-1.102                    no     Thu Jul 11 19:11:56 2024
+true   00:02:00:00:00:a8  102    torc-12           VlanA-1                        no     Thu Jul 11 19:11:56 2024
 ...
 ```
 
@@ -2974,8 +2997,7 @@ cumulus@netq-ts:~$ netq leaf02 show macs egress-port bridge vlan 10
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
-yes    00:00:00:00:00:1a  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
-yes 
+true    00:00:00:00:00:1a  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020 
 ```
 ### Related Commands
 

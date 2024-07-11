@@ -17,6 +17,10 @@ You can access {{<link title="Switches" text="switch performance data">}} for a 
 - To view a list of services, run {{<link title="show/#netq-show-services" text="netq show services">}}.
 ## View Switch Inventory in the UI
 
+{{<notice tip>}}
+The NetQ header displays the number of switches in your network that are 'fresh' or reachable.
+{{</notice>}}
+
 To view the hardware and software component inventory for switches running NetQ in your network, search for the "Inventory | Switches" card in the global search field. The card displays the total number of switches in your network, divided into the number of fresh and rotten switches.
 
 {{<img src="/images/netq/switch-med-490.png" alt="medium switch card displaying 513 fresh switches and 13 rotten switches" width="200">}}

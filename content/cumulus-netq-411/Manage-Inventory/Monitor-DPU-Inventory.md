@@ -21,6 +21,10 @@ netq show inventory (brief | asic | board | cpu | disk | memory | os)
 
 ## View DPU Inventory in the UI
 
+{{<notice tip>}}
+The NetQ header displays the number of DPUs in your network that are 'fresh' or reachable.
+{{</notice>}}
+
 The Inventory/DPU card displays the hardware- and software-component inventory on DPUs running NetQ in your network, including operating system, ASIC, CPU model, disk, platform, and memory information. 
 
 To add this card to your workbench, search for "Inventory | DPUs" in the global search field.

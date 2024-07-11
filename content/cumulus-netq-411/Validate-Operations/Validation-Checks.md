@@ -38,7 +38,7 @@ The BGP validation tests look for status and configuration anomalies.
 | 2 | Router ID | Checks for BGP router ID conflict in the network |
 | 3 | Hold Time | Checks for mismatch of hold time between peers of a BGP session |
 | 4 | Keep Alive Interval  | Checks for mismatch of keep alive interval between peers of a BGP session |
-| 5 | Ipv4 Stale Path Time | Checks for mismatch of IPv4 stale path timer between peers of a BGP session |
+| 5 | IPv4 Stale Path Time | Checks for mismatch of IPv4 stale path timer between peers of a BGP session |
 | 6 | IPv6 Stale Path Time | Checks for mismatch of IPv6 stale path timer between peers of a BGP session |
 | 7 | Interface MTU | Checks for consistency of interface MTU for BGP peers |
 

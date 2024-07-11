@@ -28,30 +28,9 @@ netq show ipv6 neighbors
 netq show ip routes    
 netq show ipv6 routes
 ```
-The {{<link title="show/#netq show address-history" text="netq show address-history">}} command displays when an IP address configuration changed for an interface. Add options to the command to show:
-
-- Changes made between two points in time.
-- Only the difference between to points in time.
-- The selected output order.
-- Each change made for the IP address on a particular interface.
-
-All changes are listed chronologically.
-
-```
-netq show address-history
-```
-
-The {{<link title="show/#netq show neighbor-history" text="netq show neighbor-history">}} command displays when the neighbor configuration changed for an IP address.
-
-```
-netq show neighbor-history
-```
-
-The {{<link title="check/#netq check addresses" text="netq check addresses">}} command searches for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and checks for duplicate /32 host routes in each VRF.
-
-```
-netq check addresses
-```
+- The {{<link title="show/#netq show address-history" text="netq show address-history">}} command displays when an IP address configuration changed for an interface.
+- The {{<link title="show/#netq show neighbor-history" text="netq show neighbor-history">}} command displays when the neighbor configuration changed for an IP address.
+- The {{<link title="check/#netq check addresses" text="netq check addresses">}} command searches for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and checks for duplicate /32 host routes in each VRF.
 
 ## View IP Addresses in the UI
 

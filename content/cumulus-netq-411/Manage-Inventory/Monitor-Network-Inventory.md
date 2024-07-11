@@ -20,6 +20,10 @@ netq show inventory (brief | asic | board | cpu | disk | memory | os)
 
 {{<tab "NetQ UI">}}
 
+{{<notice tip>}}
+The NetQ header displays the number of devices in your network that are 'fresh' or reachable.
+{{</notice>}}
+
 To view the quantity of devices in your network, search for the "Inventory | Devices" card in the global search field. The medium-sized card displays the total number of devices in the network. Hover your cursor over the chart to view the number and percentage of switches, hosts, NICS, and DPUs that comprise your network.
 
 {{<figure src="/images/netq/inventory-devices-490.png" alt="medium inventory card displaying 8 total devices" width="200" height="315">}}

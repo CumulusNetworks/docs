@@ -7,18 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3908592</td>
-<td>When you upgrade a switch to Cumulus Linux 5.9.0 with NetQ LCM and the switch hostname is not explicitly configured with NVUE, the hostname reverts to {{cumulus}} and the status of the switch changes to rotten in the NetQ UI. To work around this issue, configure the switch hostname with NVUE and save the configuration.</td>
-<td>4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3866340</td>
-<td>When NetQ validates BGP neighbors in your network, numbered BGP neighbors pass validation with mismatched values configured.</td>
-<td>4.10.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3863195</td>
 <td>When you perform an LCM switch discovery on a Cumulus Linux 5.9.0 switch in your network that was already added in the NetQ inventory on a prior Cumulus Linux version, the switch will appear as Rotten in the NetQ UI. To work around this issue, decommission the switch first,and run LCM discovery again after the switch is upgraded.</td>
 <td>4.10.0-4.10.1</td>
@@ -43,12 +31,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3814701</td>
-<td>After you upgrade NetQ, devices that were in a rotten state before the upgrade might not appear in the UI or CLI after the upgrade. To work around this issue, decommission rotten devices before performing the upgrade.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3800434</td>
 <td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
 <td>4.9.0-4.10.1</td>
@@ -57,12 +39,6 @@
 <tr>
 <td>3798677</td>
 <td>In a NetQ cluster environment, if your master node goes offline and is restored, subsequent NetQ validations for MLAG and EVPN might unexpectedly indicate failures. To work around this issue, either restart NetQ agents on devices in the inventory or wait up to 24 hours for the issue to clear.</td>
-<td>4.9.0-4.10.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3787946</td>
-<td>When you install a NetQ cluster deployment on a subnet with other NetQ clusters or other devices using VRRP, there might be connectivity loss to the cluster virtual IP (VIP). The VIP is established using the VRRP protocol, and during cluster installation a virtual router ID (VRID) is selected. If another device on the subnet running VRRP selects the same VRID, connectivity issues may occur. To work around this issue, avoid multiple VRRP speakers on the subnet, or ensure the VRID used on all VRRP devices is unique. To validate the VRID used by NetQ, check the assigned {{virtual_router_id}} value in {{/mnt/keepalived/keepalived.conf}}.</td>
 <td>4.9.0-4.10.1</td>
 <td></td>
 </tr>
@@ -117,8 +93,8 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3866340</td>
-<td>When NetQ validates BGP neighbors in your network, numbered BGP neighbors pass validation with mismatched values configured.</td>
+<td>3876238</td>
+<td>You cannot upgrade a switch to Cumulus Linux 5.9.0 with NetQ LCM.</td>
 <td>4.10.0</td>
 <td></td>
 </tr>
@@ -147,12 +123,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3814701</td>
-<td>After you upgrade NetQ, devices that were in a rotten state before the upgrade might not appear in the UI or CLI after the upgrade. To work around this issue, decommission rotten devices before performing the upgrade.</td>
-<td>4.9.0-4.10.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3800434</td>
 <td>When you upgrade NetQ from a version prior to 4.9.0, What Just Happened data that was collected before the upgrade is no longer present.</td>
 <td>4.9.0-4.10.0</td>
@@ -161,12 +131,6 @@
 <tr>
 <td>3798677</td>
 <td>In a NetQ cluster environment, if your master node goes offline and is restored, subsequent NetQ validations for MLAG and EVPN might unexpectedly indicate failures. To work around this issue, either restart NetQ agents on devices in the inventory or wait up to 24 hours for the issue to clear.</td>
-<td>4.9.0-4.10.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3787946</td>
-<td>When you install a NetQ cluster deployment on a subnet with other NetQ clusters or other devices using VRRP, there might be connectivity loss to the cluster virtual IP (VIP). The VIP is established using the VRRP protocol, and during cluster installation a virtual router ID (VRID) is selected. If another device on the subnet running VRRP selects the same VRID, connectivity issues may occur. To work around this issue, avoid multiple VRRP speakers on the subnet, or ensure the VRID used on all VRRP devices is unique. To validate the VRID used by NetQ, check the assigned {{virtual_router_id}} value in {{/mnt/keepalived/keepalived.conf}}.</td>
 <td>4.9.0-4.10.0</td>
 <td></td>
 </tr>

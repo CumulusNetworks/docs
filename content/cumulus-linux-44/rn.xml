@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3980941</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.6, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3856614</td>
 <td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.3.2-4.4.6</td>
@@ -749,7 +758,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>2710208</td>
-<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.6</td>
 <td></td>
 </tr>
@@ -2133,6 +2142,15 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3980941</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3856614</td>
 <td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.3.2-4.4.5</td>
@@ -2983,7 +3001,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>2710208</td>
-<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
@@ -4259,6 +4277,15 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3980941</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3856614</td>
 <td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.3.2-4.4.5</td>
@@ -5103,7 +5130,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>2710208</td>
-<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
@@ -6514,6 +6541,15 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3980941</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3856614</td>
 <td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.3.2-4.4.5</td>
@@ -7419,7 +7455,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>2710208</td>
-<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
@@ -8733,6 +8769,15 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3980941</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3856614</td>
 <td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.3.2-4.4.5</td>
@@ -9628,7 +9673,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>2710208</td>
-<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
@@ -11134,6 +11179,15 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3980941</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3856614</td>
 <td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.3.2-4.4.5</td>
@@ -12129,7 +12183,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>2710208</td>
-<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
@@ -13406,6 +13460,15 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3980941</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3856614</td>
 <td>When daylight saving time changes, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.3.2-4.4.5</td>
@@ -14401,7 +14464,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>2710208</td>
-<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
 <td></td>
 </tr>

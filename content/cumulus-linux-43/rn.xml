@@ -515,7 +515,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>2710208</td>
-<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
 <td></td>
 </tr>
@@ -2953,7 +2953,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>2710208</td>
-<td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
+<td>The {{net show bgp neighbor}} command output does not reflect the correct BFD status. This is a cosmetic issue. To work around this issue, run the NCLU {{net show bfd}} command to verify the correct state of BFD.</td>
 <td>4.2.1-4.4.5</td>
 <td></td>
 </tr>

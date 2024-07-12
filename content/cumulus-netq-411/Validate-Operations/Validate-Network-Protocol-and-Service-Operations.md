@@ -200,20 +200,24 @@ cumulus@switch:~$ netq del validation Bgp15m
 
 ## Topology Validations
 
-The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint (.dot file) that you upload to the UI. It can only be run on-demand.
+The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint (in {{<exlink url="https://graphviz.org/doc/info/lang.html" text="Graphviz DOT format">}}) that you upload to the UI. It can only be run on-demand.
 ### Configure LLDP
 
-You must configure the LLDP service on switches and hosts that are defined in the topology blueprint to send the port ID subtype that matches the connection defined in the topology .dot file. The {{<exlink url="https://lldpd.github.io/usage.html" text="lldpd service">}} allows you to configure the port ID by specifying either the interface name (`ifname`) or MAC address (`macaddress`) using the `configure lldp portidsubtype [ifname | macaddress]` command.
+You must configure the LLDP service on switches and hosts that are defined in the topology blueprint to send the port ID subtype that matches the connection defined in the topology DOT file. The {{<exlink url="https://lldpd.github.io/usage.html" text="lldpd service">}} allows you to configure the port ID by specifying either the interface name (`ifname`) or MAC address (`macaddress`) using the `configure lldp portidsubtype [ifname | macaddress]` command.
 
-For example, if your host is configured to send the interface name in the LLDP port ID field, define the interface name in the topology .dot file:
+For example, if your host is configured to send the interface name in the LLDP port ID field, define the interface name in the topology DOT file:
 ```
 "switch1":"swp1" -- "host5":"eth1"
 ```
-If your host is configured to send the MAC address in the LLDP port ID field, define the MAC address in the topology .dot file:
+If your host is configured to send the MAC address in the LLDP port ID field, define the MAC address in the topology DOT file:
 ```
 "switch1":"swp1" -- "host5":"mac:48:b0:2d:f5:6b:b5"
 ```
 You can use the `lldpctl` command to validate the current port ID received from a connected device.
+
+{{%notice note%}}
+If you change the LLDP port ID subtype while the NetQ agent is running, restart the NetQ agent with the `netq config restart agent` command
+{{%/notice%}}
 
 ### Create a Topology Validation
 

@@ -12,8 +12,8 @@ enableRobotsTXT: True
 disableKinds: ["RSS", "taxonomy", "term"]
 
 Params:
-  cl_latest: "cumulus-linux-51"
-  netq_latest: "cumulus-netq-42"
+  cl_latest: "cumulus-linux-510"
+  netq_latest: "cumulus-netq-411"
   sonic_latest: "sonic-202012"
 
   #Syntax Highlighting

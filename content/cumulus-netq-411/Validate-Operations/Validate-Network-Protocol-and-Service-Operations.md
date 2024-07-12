@@ -26,11 +26,9 @@ To create and run a request containing checks on one or more protocols or servic
 
 1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**. Choose whether the on-demand validation should run on all devices or on specific {{<link title="Device Groups" text="device groups">}}.
 
-2. Select the protocols or services you want to validate, then click **Next**.
+2. Select the protocols or services you want to include as part of the validation. All tests that comprise the check are included by default, but you can select an individual test to exclude it from the validation check. Hover over an individual test and select **Customize** to configure filters which can exclude individual devices from the validation. Then click **Next**.
 
-   This example has BGP selected and displays the 8 checks that NetQ runs during a BGP validation:
-
-   {{<figure src="/images/netq/validate-network-bgp.png" width="1100">}}
+   {{<figure src="/images/netq/create-val-411.png" width="1100" alt="">}}
 
 3. Select **Now** and specify a workbench:
 
@@ -46,7 +44,7 @@ To create and run a request containing checks on one or more protocols or servic
 
 {{<tab "netq add validation">}}
 
-To create a request containing checks on a single protocol or service in the NetQ CLI, run:
+To create a request containing checks on a single protocol or service run the {{<link title="add/#netq-add-validation-type" text="netq add validation type">}} command.
 
 ```
 netq add validation type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | topology | vlan | vxlan)

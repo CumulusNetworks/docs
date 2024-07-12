@@ -9,6 +9,8 @@ NetQ periodically runs default validations to verify whether devices, hosts, net
 
 NetQ excludes certain checks from running by default. You can run an {{<link title="Validate Network Protocol and Service Operations#on-demand-validations" text="on-demand validation">}} or {{<link title="Validate Network Protocol and Service Operations#schedule-a-validation" text="schedule a validation">}} to view validation results for those protocols and services.
 
+The following table displays the validation categories. Refer to the {{<link title="Validation Tests Reference" text="Validation Reference">}} for a comprehensive breakdown of each test included in each category.
+
 | Item | NetQ UI | NetQ CLI | Run by Default | Frequency |
 | --- | :---: | :---: | :---: |  :---: |
 | Addresses | Yes | Yes | No | N/A |
@@ -23,7 +25,7 @@ NetQ excludes certain checks from running by default. You can run an {{<link tit
 | OSPF | Yes | Yes | Yes |  60 mins |
 | RoCE | Yes | Yes | No | N/A |
 | Sensors | Yes | Yes |  Yes |  60 mins |
-| Topology | Yes | Yes | No | N/A |
+| Topology | Yes | Yes | No | on-demand only |
 | VLAN | Yes | Yes | Yes |  60 mins |
 | VXLAN | Yes | Yes | Yes |  60 mins |
 
@@ -31,14 +33,9 @@ NetQ excludes certain checks from running by default. You can run an {{<link tit
 After logging in, it can take up to an hour for NetQ to display accurate validation data.
 {{</notice>}}
 
-Refer to the {{<link title="Validation Tests Reference" text="Validation Reference">}} for a comprehensive breakdown of each test included in each category.
 ## View and Run Validations in the UI
 
-The Validation Summary card displays a summary of a subset of validation checks from the past 24 hours. Select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation** in the header to create or schedule new validation checks, as well as view previous checks.
-
-{{<figure src="/images/netq/val-summary-460.png" width="200" alt="">}}
-
-
+The {{<link title="Validate Overall Network Health" text="Validation Summary card">}} displays the results from the subset of hourly validation checks that NetQ runs by default. Select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation** in the header to create or schedule new validation checks, as well as view previous checks.
 ## Validation with the NetQ CLI
 
 The NetQ CLI uses the {{<link title="check" text="netq check commands">}} to validate the various elements of your network fabric, looking for inconsistencies in configurations across your fabric, connectivity faults, missing configurations, and so forth. You can run commands from any node in the network.
@@ -48,7 +45,7 @@ To view the list of tests for a given protocol or service, use either {{<link ti
 ### Select Which Tests to Run
 
 <!-- vale off -->
-You can include or exclude one or more of the various tests performed during the validation by including or excluding the test's {{<link title="Validation Tests Reference" text="identification number">}}. The `check` command's `<protocol-number-range-list>` value is used with the `include` and `exclude` options to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
+You can include or exclude one or more of the various tests performed during the validation by including or excluding the {{<link title="Validation Tests Reference" text="test's number">}}. The `check` command's `<protocol-number-range-list>` value is used with the `include` and `exclude` options to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
 <!-- vale on -->
 
 - include 1,3,5

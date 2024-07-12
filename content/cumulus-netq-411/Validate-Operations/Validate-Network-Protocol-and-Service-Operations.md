@@ -32,7 +32,7 @@ To create a validation in the UI:
 
 4. If you chose to run the validation now, the results are displayed on the workbench you specified in the previous step. If you selected more than one protocol or service, a card opens for each selection. To view additional information about the errors reported, hover over a check and click **View details**. To view all data for all on-demand validation results for a given protocol, click **Show all results**.
 
-   {{<figure src="/images/netq/on-demand-bgp-validation.png" width="600">}}
+   {{<figure src="/images/netq/on-demand-bgp-validation.png" width="600" alt="">}}
 
 If you scheduled the validation to run later, NetQ will display a dashboard containing all existing validation checks, including the one you just created. If you want to run a validation you scheduled for later right now, in the header select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Existing validations**. Select one or more validations, then click **View results**. The associated Validation Result cards open on your workbench.
 
@@ -198,4 +198,29 @@ cumulus@switch:~$ netq del validation Bgp15m
 
 {{</tabs>}}
 
+## Topology Validations
 
+The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint (.dot file) that you upload to the UI. It can only be run on-demand.
+### Configure LLDP
+
+You must configure the LLDP service on switches and hosts that are defined in the topology blueprint to send the port ID subtype that matches the connection defined in the topology .dot file. The {{<exlink url="https://lldpd.github.io/usage.html" text="lldpd service">}} allows you to configure the port ID by specifying either the interface name (`ifname`) or MAC address (`macaddress`) using the `configure lldp portidsubtype [ifname | macaddress]` command.
+
+For example, if your host is configured to send the interface name in the LLDP port ID field, define the interface name in the topology .dot file:
+```
+"switch1":"swp1" -- "host5":"eth1"
+```
+If your host is configured to send the MAC address in the LLDP port ID field, define the MAC address in the topology .dot file:
+```
+"switch1":"swp1" -- "host5":"mac:48:b0:2d:f5:6b:b5"
+```
+You can use the `lldpctl` command to validate the current port ID received from a connected device.
+
+### Create a Topology Validation
+
+1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**.
+
+2. Select **Topology** and upload the topology blueprint file. The name of the blueprint file NetQ will use to validate the topology is displayed on the screen. To use a different file, upload it to the UI, then select **Manage blueprint file**. Select **Activate** on the blueprint file you'd like NetQ to use.
+
+3. Upon completion, the dashboard displays which devices failed the topology validation, along with a table listing cabling issues.
+
+{{<figure src="/images/netq/val-failed-topo-411.png" width="1100">}}

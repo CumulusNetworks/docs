@@ -468,7 +468,7 @@ MaxStartups 5:22:20
 
 ### SSH Login Notifications
 
-You can configure Cumulus Linux to show the following SSH login information on the console after authentication:
+Cumulus Linux shows the following SSH login information on the console after authentication:
 - The date and time of the last successful login.
 - The number of unsuccessful logins after the last successful login.  
 - The date and time of the last unsuccessful login.
@@ -478,19 +478,19 @@ You can configure Cumulus Linux to show the following SSH login information on t
 
 Cumulus Linux displays login notifications for both SSH and serial connections. The information can help to detect unwanted or malicious activities, such as suspicious logins or password and role changes.
 
-To enable SSH login notifications, run the `nv set system ssh-server login-record-period <days>` command to configure the time period in days during which to record login notifications:
+To configure the time period in days during which to record login notifications, run the `nv set system ssh-server login-record-period <days>` command. You can specify a value between 1 and 30. The default value is 1.
+
+The following example sets the SSH login notification period to 20 days:
 
 ```
 cumulus@switch:~$ nv set system ssh-server login-record-period 20
 cumulus@switch:~$ nv config apply
 ```
 
-To disable SSH login notifications, run the `nv unset system ssh-server login-record-period` command or set the number of days to 0 with the `nv set system ssh-server login-record-period 0` command.
+To set the SSH login notification period back to the default value (1 day), run the `nv unset system ssh-server login-record-period` command.
 
 To show the configured SSH login notification period, run the `nv show system ssh-server` command. See {{<link url="#troubleshooting" text="Troubleshooting">}} below.
 
-<!--show notification examples
-add option to show command in troubleshooting-->
 ## Generate and Install an SSH Key Pair
 
 This section describes how to generate an SSH key pair on one system and install the key as an authorized key on another system.
@@ -611,17 +611,18 @@ To show all the current SSH server configuration settings, run the NVUE `nv show
 cumulus@switch:~$ nv show system ssh-server
                              applied          
 ---------------------------  -----------------
-authentication-retries       6                  6                
-login-timeout                120                120              
-inactive-timeout             0                  0                
-permit-root-login            prohibit-password  prohibit-password
-max-sessions-per-connection  10                 10               
-state                        enabled            enabled          
-strict                       enabled            enabled          
+authentication-retries       6               
+login-timeout                120            
+inactive-timeout             0           
+permit-root-login            prohibit-password
+max-sessions-per-connection  10 
+state                        enabled       
+strict                       enabled
+login-record-period          20          
 max-unauthenticated                                              
-  session-count              100                100              
-  throttle-percent           30                 30               
-  throttle-start             10                 10 
+  session-count              100         
+  throttle-percent           30            
+  throttle-start             10
 ```
 
 To show the current number of active SSH sessions, run the NVUE `nv show system ssh-server active-sessions` command or the Linux `w` command:

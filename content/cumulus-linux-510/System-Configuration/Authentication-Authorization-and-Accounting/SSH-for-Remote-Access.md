@@ -478,7 +478,7 @@ Cumulus Linux shows the following SSH login information on the console after aut
 
 Cumulus Linux displays login notifications for both SSH and serial connections. The information can help to detect unwanted or malicious activities, such as suspicious logins or password and role changes.
 
-To configure the time period in days during which to record login notifications, run the `nv set system ssh-server login-record-period <days>` command. You can specify a value between 1 and 30. The default value is 1.
+To configure the time period in days during which to show login notifications, run the `nv set system ssh-server login-record-period <days>` command. You can specify a value between 1 and 30. The default value is 1.
 
 The following example sets the SSH login notification period to 20 days:
 

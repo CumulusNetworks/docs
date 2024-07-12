@@ -24,15 +24,15 @@ To create a validation in the UI:
 
 2. Select the protocols or services you want to include as part of the validation. All {{<link title="Validation Tests Reference" text="tests that comprise the validation">}} are included by default, but you can select an individual test to exclude it from the validation check. Hover over an individual test and select **Customize** to configure filters which can exclude individual devices or failure reasons from the validation. Then click **Next**.
 
-   {{<figure src="/images/netq/create-val-411.png" width="1100" alt="">}}
+   {{<figure src="/images/netq/create-val-411.png" width="1100" height="600" alt="">}}
 
 3. Select the time and frequency parameters and specify the workbench where the validation results should appear. Then select **Run** or **Schedule**.
 
-   {{<figure src="/images/netq/create-val-modal-411.png" width="400" alt="">}}
+   {{<figure src="/images/netq/create-val-modal-411.png" width="400" height="450" alt="">}}
 
 4. If you chose to run the validation now, the results are displayed on the workbench you specified in the previous step. If you selected more than one protocol or service, a card opens for each selection. To view additional information about the errors reported, hover over a check and click **View details**. To view all data for all on-demand validation results for a given protocol, click **Show all results**.
 
-   {{<figure src="/images/netq/on-demand-bgp-validation.png" width="600" alt="">}}
+   {{<figure src="/images/netq/on-demand-bgp-validation.png" width="600" height="270" alt="">}}
 
 If you scheduled the validation to run later, NetQ will display a dashboard containing all existing validation checks, including the one you just created. If you want to run a validation you scheduled for later right now, in the header select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Existing validations**. Select one or more validations, then click **View results**. The associated Validation Result cards open on your workbench.
 
@@ -133,7 +133,7 @@ To edit or delete a scheduled validation:
 
 2. Hover over the validation then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> **Edit** or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete**.
 
-    {{<figure src="/images/netq/val-edit-411.png" width="250" alt="">}}
+    {{<figure src="/images/netq/val-edit-411.png" width="250" height="300" alt="">}}
 
 3. If editing, select which checks to add or remove from the validation request, then click **Update**.
 
@@ -227,4 +227,4 @@ If you change the LLDP port ID subtype while the NetQ agent is running, restart 
 
 3. Upon completion, the dashboard displays which devices failed the topology validation, along with a table listing cabling issues.
 
-{{<figure src="/images/netq/val-failed-topo-411.png" width="1200">}}
+{{<figure src="/images/netq/val-failed-topo-411.png" width="1200" height="600">}}

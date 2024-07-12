@@ -446,7 +446,7 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 auto swp1
 iface swp1
     address 10.0.0.2/24
-    mac-address 00:02:00:00:00:05
+    hwaddress 00:02:00:00:00:05
 ...
 ```
 
@@ -462,7 +462,7 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 auto vlan10
 iface vlan10
     address 10.1.10.5/24
-    mac-address 00:00:5E:00:01:00
+    hwaddress 00:00:5E:00:01:00
 ```
 
 ```

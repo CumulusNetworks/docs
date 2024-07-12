@@ -7,6 +7,39 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3982249</td>
+<td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3982231</td>
+<td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
+<td>5.6.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3982229</td>
+<td>With the {{nvidia.nvue}} Ansible module, NVUE honors input from the Ansible module only; if you do not provide the full configuration, NVUE generates an exception. To work around this issue, always provide the full configuration.</td>
+<td>5.6.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3980941</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3917601</td>
+<td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3875696</td>
 <td>The default TX State for 1G Base-X optical modules that are unconfigured or admin down in Cumulus Linux 5.7.0 and later is OFF.  However, on the first boot after upgrade from an earlier release, a module TX power might be ON or OFF depending on the TX State it was before the upgrade. The TX_Disable line is not properly set on first boot. To work around this issue, reboot the switch again, or {{ifup}} or {{ifdown}} the 1G Base-X interface to disable TX Power.</td>
 <td>5.7.0-5.9.1</td>
@@ -28,6 +61,12 @@
 <td>3832116</td>
 <td>When you configure a SPAN session either with the NVUE {{nv set system port-mirror session}} command or in the {{/etc/cumulus/switchd.d/port-mirror.conf}} file and the default route is configured to 0.0.0.0/0, the SPAN session might not work as expected. To work around this issue, remove the default route 0.0.0.0/0 and use alternate routes instead.</td>
 <td>5.7.0-5.8.0</td>
+<td>5.9.0-5.9.1</td>
+</tr>
+<tr>
+<td>3824750</td>
+<td>With the {{nvidia.nvue}} Ansible module, NVUE honors input from the Ansible module only; if you do not provide the full configuration, NVUE generates an exception. To work around this issue, always provide the full configuration.</td>
+<td>5.6.0-5.8.0</td>
 <td>5.9.0-5.9.1</td>
 </tr>
 <tr>
@@ -323,7 +362,8 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3393966</td>
-<td>Configuring the network statement with the NVUE {{nv set vrf &lt;vrf&gt; router ospf area &lt;area-id&gt; network &lt;network-id&gt;}} command might bring down all the OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement.</td>
+<td>- Have a few OSPF neighbor sessions using network commands similar to 10.1.1.1/24 or 156.18.100.21/28 etc. i.e., configure as an actual IP with a subnet mask and not as a subnet prefix via NVUE.
+- Any configuration change (regardless of whether the config is related to OSPF) might toggle the OSPF neighborship. </td>
 <td>5.5.0-5.9.1</td>
 <td></td>
 </tr>
@@ -336,13 +376,6 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 <tr>
 <td>3362113</td>
 <td>If you restore an NVUE {{startup.yaml}} file or run the {{nv config patch}} command after an upgrade that includes breakout ports with QoS configuration, the NVUE configuration fails to apply. Subsequent attempts to run {{nv config apply}} fail with a message similar to {{Invalid config [rev_id: 11] qos config is not supported on the following invalid interface: swp1s0. Supported on swp and bond interface types}}. To work around this issue, run {{nv unset}} on the configured QoS settings, then apply the breakout port configuration before you configure QoS. Alternatively, you can remove the QoS configuration from the {{yaml}} file and patch it separately after applying the breakout configuration.</td>
-<td>5.4.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3350027</td>
-<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see dynamic flow deletion errors in {{switchd.log}}. 
-These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td>5.4.0-5.9.1</td>
 <td></td>
 </tr>

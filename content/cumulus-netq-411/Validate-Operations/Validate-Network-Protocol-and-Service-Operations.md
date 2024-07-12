@@ -223,4 +223,4 @@ You can use the `lldpctl` command to validate the current port ID received from 
 
 3. Upon completion, the dashboard displays which devices failed the topology validation, along with a table listing cabling issues.
 
-{{<figure src="/images/netq/val-failed-topo-411.png" width="1100">}}
+{{<figure src="/images/netq/val-failed-topo-411.png" width="1200">}}

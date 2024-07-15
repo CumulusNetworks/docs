@@ -2458,7 +2458,7 @@ Two sets of IP routes commands are available, one for IPv4 and one for IPv6.
 netq <hostname> show ip routes
     [<ipv4>|<ipv4/prefixlen>]
     [vrf <vrf>]
-    [origin]
+    [origin <text-origin>]
     [edge]
     [around <text-time>]
     [count]
@@ -2467,7 +2467,7 @@ netq <hostname> show ip routes
 netq show ip routes
     [<ipv4>|<ipv4/prefixlen>]
     [vrf <vrf>]
-    [origin]
+    [origin <text-origin>]
     [edge]
     [around <text-time>]
     [json]
@@ -2475,7 +2475,7 @@ netq show ip routes
 netq <hostname> show ipv6 routes
     [<ipv6>|<ipv6/prefixlen>]
     [vrf <vrf>]
-    [origin]
+    [origin <text-origin>]
     [edge]
     [around <text-time>]
     [count]
@@ -2484,7 +2484,7 @@ netq <hostname> show ipv6 routes
 netq show ipv6 routes
     [<ipv6>|<ipv6/prefixlen>]
     [vrf <vrf>]
-    [origin]
+    [origin <text-origin>]
     [edge]
     [around <text-time>]
     [json]
@@ -2508,7 +2508,7 @@ netq show ipv6 routes
 | NA | \<ipv6\> | Only display results for switches and hosts with this IPv6 address |
 | NA | \<ipv6/prefixlen\> | Only display results for switches and hosts with this IPv6 address and prefix |
 | vrf | \<vrf\> | Only display results for switches and hosts using this VRF |
-| origin | NA | Display whether this route originated on the switch or host (yes) or not (no) |
+| origin | \<text-origin\> | Display whether this route originated on the switch or host (true) or not (false) |
 | edge | NA | Display the edge switch that a route is learn from on hosts and network devices that do not run Cumulus Linux |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | count | NA | Display the count of routes for a given switch or host |
@@ -2520,78 +2520,83 @@ Display all IPv4 routes:
 
 ```
 cumulus@switch:~$ netq show ip routes
+
 Matching routes records:
-Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
------- --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
-no     default         10.0.1.2/32                    spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp4
-no     default         10.10.10.4/32                  spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp4
-no     default         10.10.10.3/32                  spine04           169.254.0.1: swp3,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp4
-no     default         10.10.10.2/32                  spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp2
-no     default         10.10.10.1/32                  spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp2
-yes                    192.168.200.0/24               spine04           eth0                                Thu Dec  3 22:29:17 2020
-yes                    192.168.200.24/32              spine04           eth0                                Thu Dec  3 22:29:17 2020
-no     default         10.0.1.1/32                    spine04           169.254.0.1: swp1,                  Thu Dec  3 22:29:17 2020
-                                                                        169.254.0.1: swp2
-yes    default         10.10.10.104/32                spine04           lo                                  Thu Dec  3 22:29:17 2020
+Origin VRF             Prefix                         Hostname          Nexthops                            Protocol     Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- ------------ -------------------------
+false  DataVrf1080     0.0.0.0/0                      torc-22           Blackhole                           boot         Wed Jul 10 20:33:19 2024
+false  DataVrf1080     27.0.0.1/32                    torc-22           fe80::202:ff:fe00:72: swp3.2,       bgp          Wed Jul 10 20:33:19 2024
+                                                                        fe80::202:ff:fe00:7c: swp4.2,
+                                                                        fe80::202:ff:fe00:86: swp5.2
+false  DataVrf1080     27.0.0.19/32                   torc-22           fe80::202:ff:fe00:72: swp3.2,       bgp          Wed Jul 10 20:33:19 2024
+                                                                        fe80::202:ff:fe00:7c: swp4.2,
+                                                                        fe80::202:ff:fe00:86: swp5.2
+false  DataVrf1080     27.0.0.2/32                    torc-22           fe80::202:ff:fe00:72: swp3.2,       bgp          Wed Jul 10 20:33:19 2024
+                                                                        fe80::202:ff:fe00:7c: swp4.2,
+                                                                        fe80::202:ff:fe00:86: swp5.2
+false  DataVrf1080     27.0.0.20/32                   torc-22           fe80::202:ff:fe00:72: swp3.2,       bgp          Wed Jul 10 20:33:19 2024
 ...
 ```
-The following example shows the routes available for an IP address of 10.0.0.12. The result shows nine available routes:
+The following example shows the routes available for a given IP address.
 
 ```
-cumulus@switch:~$ netq show ip routes 10.0.0.12
+cumulus@switch:~$ netq show ip routes 27.0.0.24/32
 Matching routes records:
-Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
------- --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
-no                     0.0.0.0/0                      spine04           Blackhole                           Mon Oct 19 22:28:23 2020
-no                     0.0.0.0/0                      spine03           Blackhole                           Mon Oct 19 22:29:01 2020
-no                     0.0.0.0/0                      spine02           Blackhole                           Mon Oct 19 22:28:46 2020
-no                     0.0.0.0/0                      spine01           Blackhole                           Mon Oct 19 22:28:48 2020
-no     default         0.0.0.0/0                      server08          192.168.200.1: eth0                 Mon Oct 19 22:28:50 2020
-no     default         0.0.0.0/0                      server07          192.168.200.1: eth0                 Mon Oct 19 22:28:43 2020
-no     default         10.0.0.0/8                     server06          10.1.30.1: uplink                   Mon Oct 19 22:40:52 2020
-no     default         10.0.0.0/8                     server05          10.1.20.1: uplink                   Mon Oct 19 22:41:08 2020
-no     default         10.0.0.0/8                     server04          10.1.10.1: uplink                   Mon Oct 19 22:40:45 2020
-no     default         10.0.0.0/8                     server03          10.1.30.1: uplink                   Mon Oct 19 22:41:04 2020
-no     default         10.0.0.0/8                     server02          10.1.20.1: uplink                   Mon Oct 19 22:41:00 2020
-no     default         10.0.0.0/8                     server01          10.1.10.1: uplink                   Mon Oct 19 22:40:36 2020
-no     default         0.0.0.0/0                      oob-mgmt-server   10.255.1.1: vagrant                 Mon Oct 19 22:28:20 2020
-no     BLUE            0.0.0.0/0                      leaf04            Blackhole                           Mon Oct 19 22:28:47 2020
-no                     0.0.0.0/0                      leaf04            Blackhole                           Mon Oct 19 22:28:47 2020
-no     RED             0.0.0.0/0                      leaf04            Blackhole                           Mon Oct 19 22:28:47 2020
-no     BLUE            0.0.0.0/0                      leaf03            Blackhole                           Mon Oct 19 22:28:18 2020
-no                     0.0.0.0/0                      leaf03            Blackhole                           Mon Oct 19 22:28:18 2020
-no     RED             0.0.0.0/0                      leaf03            Blackhole                           Mon Oct 19 22:28:18 2020
-no     BLUE            0.0.0.0/0                      leaf02            Blackhole                           Mon Oct 19 22:28:30 2020
-no                     0.0.0.0/0                      leaf02            Blackhole                           Mon Oct 19 22:28:30 2020
+Origin VRF             Prefix                         Hostname          Nexthops                            Protocol     Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- ------------ -------------------------
+false  default         27.0.0.24/32                   torc-22           fe80::202:ff:fe00:72: swp3,         bgp          Wed Jul 10 20:33:19 2024
+                                                                        fe80::202:ff:fe00:7c: swp4,
+                                                                        fe80::202:ff:fe00:86: swp5
+false  default         27.0.0.24/32                   torc-21           fe80::202:ff:fe00:71: swp3,         bgp          Thu Jul 11 18:59:07 2024
+                                                                        fe80::202:ff:fe00:7b: swp4,
+                                                                        fe80::202:ff:fe00:85: swp5
+false  default         27.0.0.24/32                   torc-12           fe80::202:ff:fe00:70: swp3,         bgp          Thu Jul 11 19:11:55 2024
+                                                                        fe80::202:ff:fe00:7a: swp4,
+                                                                        fe80::202:ff:fe00:84: swp5
+true   default         27.0.0.24/32                   torc-11           lo                                  kernel       Wed Jul 10 21:22:13 2024
+false  default         27.0.0.24/32                   tor-2             fe80::202:ff:fe00:74: swp3,         bgp          Wed Jul 10 21:32:35 2024
+                                                                        fe80::202:ff:fe00:7e: swp4,
+                                                                        fe80::202:ff:fe00:88: swp5
+false  default         27.0.0.24/32                   tor-1             fe80::202:ff:fe00:73: swp3,         bgp          Thu Jul 11 19:38:17 2024
 ...
 ```
 
-Display all IPv6 routes on the leaf03 switch:
+Display all IPv6 routes on a given switch:
 
 ```
-cumulus@switch:~$ netq leaf03 show ipv6 routes
+cumulus@switch:~$ netq torc-22 show ipv6 routes
+
 Matching routes records:
-Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
------- --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
-no     RED             ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
-no                     ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
-no     BLUE            ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
+Origin VRF             Prefix                         Hostname          Nexthops                            Protocol     Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- ------------ -------------------------
+false  DataVrf1080     2001:c15c:d06:f00d::1/128      torc-22           fe80::202:ff:fe00:72: swp3.2,       bgp          Wed Jul 10 20:33:19 2024
+                                                                        fe80::202:ff:fe00:7c: swp4.2,
+                                                                        fe80::202:ff:fe00:86: swp5.2
+false  DataVrf1080     2001:c15c:d06:f00d::2/128      torc-22           fe80::202:ff:fe00:72: swp3.2,       bgp          Wed Jul 10 20:33:19 2024
+                                                                        fe80::202:ff:fe00:7c: swp4.2,
+                                                                        fe80::202:ff:fe00:86: swp5.2
+false  DataVrf1080     2001:c15c:d06:f00d::3/128      torc-22           fe80::202:ff:fe00:72: swp3.2,       bgp          Wed Jul 10 20:33:19 2024
+                                                                        fe80::202:ff:fe00:7c: swp4.2,
+                                                                        fe80::202:ff:fe00:86: swp5.2
+false  DataVrf1080     2001:c15c:d06:f00d::4/128      torc-22           fe80::202:ff:fe00:72: swp3.2,       bgp          Wed Jul 10 20:33:19 2024
+...
 ```
-The following example shows all IPv4 routes owned by spine01 switch:
+The following example shows all IPv4 routes owned by exit-1 switch:
 
 ```
-cumulus@switch:~$ netq spine01 show ip routes origin
+cumulus@switch:~$ netq exit-1 show ip routes origin true
+
 Matching routes records:
-Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
------- --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
-yes                    192.168.200.0/24               spine01           eth0                                Mon Oct 19 22:28:48 2020
-yes                    192.168.200.21/32              spine01           eth0                                Mon Oct 19 22:28:48 2020
-yes    default         10.10.10.101/32                spine01           lo                                  Mon Oct 19 22:28:48 2020
+Origin VRF             Prefix                         Hostname          Nexthops                            Protocol     Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- ------------ -------------------------
+true   DataVrf1080     30.0.0.1/32                    exit-1            DataVrf1080                         kernel       Wed Jul 10 21:03:11 2024
+true   DataVrf1081     30.0.1.1/32                    exit-1            DataVrf1081                         kernel       Wed Jul 10 21:03:11 2024
+true   DataVrf1082     30.0.2.1/32                    exit-1            DataVrf1082                         kernel       Wed Jul 10 21:03:11 2024
+true   default         27.0.0.1/32                    exit-1            lo                                  kernel       Wed Jul 10 21:03:11 2024
+true   mgmt            192.168.0.0/24                 exit-1            eth0                                kernel       Wed Jul 10 21:03:11 2024
+true   mgmt            192.168.0.15/32                exit-1            eth0                                kernel       Wed Jul 10 21:03:11 2024
+true   mgmt            45.0.0.0/26                    exit-1            NetQBond-1                          kernel       Wed Jul 10 21:03:11 2024
+true   mgmt            45.0.0.15/32                   exit-1            NetQBond-1                          kernel       Wed Jul 10 21:03:11 2024
 ```
 This example shows the total number of IPv4 and IPv6 routes for all devices on the leaf01 switch.
 
@@ -2679,36 +2684,15 @@ cumulus@switch:~$ netq show lldp
 Matching lldp records:
 Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
 ----------------- ------------------------- ----------------- ------------------------- -------------------------
-border01          swp3                      fw1               swp1                      Mon Oct 26 04:13:29 2020
-border01          swp49                     border02          swp49                     Mon Oct 26 04:13:29 2020
-border01          swp51                     spine01           swp5                      Mon Oct 26 04:13:29 2020
-border01          swp52                     spine02           swp5                      Mon Oct 26 04:13:29 2020
-border01          eth0                      oob-mgmt-switch   swp20                     Mon Oct 26 04:13:29 2020
-border01          swp53                     spine03           swp5                      Mon Oct 26 04:13:29 2020
-border01          swp50                     border02          swp50                     Mon Oct 26 04:13:29 2020
-border01          swp54                     spine04           swp5                      Mon Oct 26 04:13:29 2020
-border02          swp49                     border01          swp49                     Mon Oct 26 04:13:11 2020
-border02          swp3                      fw1               swp2                      Mon Oct 26 04:13:11 2020
-border02          swp51                     spine01           swp6                      Mon Oct 26 04:13:11 2020
-border02          swp54                     spine04           swp6                      Mon Oct 26 04:13:11 2020
-border02          swp52                     spine02           swp6                      Mon Oct 26 04:13:11 2020
-border02          eth0                      oob-mgmt-switch   swp21                     Mon Oct 26 04:13:11 2020
-border02          swp53                     spine03           swp6                      Mon Oct 26 04:13:11 2020
-border02          swp50                     border01          swp50                     Mon Oct 26 04:13:11 2020
-fw1               eth0                      oob-mgmt-switch   swp18                     Mon Oct 26 04:38:03 2020
-fw1               swp1                      border01          swp3                      Mon Oct 26 04:38:03 2020
-fw1               swp2                      border02          swp3                      Mon Oct 26 04:38:03 2020
-fw2               eth0                      oob-mgmt-switch   swp19                     Mon Oct 26 04:46:54 2020
-leaf01            swp1                      server01          mac:44:38:39:00:00:32     Mon Oct 26 04:13:57 2020
-leaf01            swp2                      server02          mac:44:38:39:00:00:34     Mon Oct 26 04:13:57 2020
-leaf01            swp52                     spine02           swp1                      Mon Oct 26 04:13:57 2020
-leaf01            swp49                     leaf02            swp49                     Mon Oct 26 04:13:57 2020
-leaf01            eth0                      oob-mgmt-switch   swp10                     Mon Oct 26 04:13:57 2020
-leaf01            swp3                      server03          mac:44:38:39:00:00:36     Mon Oct 26 04:13:57 2020
-leaf01            swp53                     spine03           swp1                      Mon Oct 26 04:13:57 2020
-leaf01            swp50                     leaf02            swp50                     Mon Oct 26 04:13:57 2020
-leaf01            swp54                     spine04           swp1                      Mon Oct 26 04:13:57 2020
-leaf01            swp51                     spine01           swp1                      Mon Oct 26 04:13:57 2020
+exit-1            swp2                      noc-se            swp5                      Wed Jul 10 17:38:18 2024
+exit-1            swp5                      spine-3           swp9                      Wed Jul 10 17:38:18 2024
+exit-1            swp6                      firewall-1        swp3                      Wed Jul 10 17:38:18 2024
+exit-1            swp3                      spine-1           swp9                      Wed Jul 10 17:38:18 2024
+exit-1            swp4                      spine-2           swp9                      Wed Jul 10 17:38:18 2024
+exit-1            swp1                      noc-pr            swp5                      Wed Jul 10 17:38:18 2024
+exit-1            swp7                      firewall-2        swp3                      Wed Jul 10 17:38:18 2024
+exit-2            swp7                      firewall-2        swp4                      Wed Jul 10 16:17:11 2024
+exit-2            swp3                      spine-1           swp10                     Wed Jul 10 16:17:11 2024
 ...
 ```
 
@@ -2773,18 +2757,18 @@ netq [<hostname>] show mac-commentary
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show mac-commentary 44:38:39:be:ef:ff vlan 4002
+cumulus@switch:~$ netq show mac-commentary 33:33:00:00:00:01 vlan 104
+
 Matching mac_commentary records:
 Last Updated              Hostname         VLAN   Commentary
 ------------------------- ---------------- ------ --------------------------------------------------------------------------------
-Thu Oct  1 14:25:18 2020  border01         4002   44:38:39:be:ef:ff configured on interface bridge
-Thu Oct  1 14:25:18 2020  border02         4002   44:38:39:be:ef:ff configured on interface bridge
+Thu Jul 11 19:32:00 2024  hosts-11         104    33:33:00:00:00:01 configured on interface swp1.104
 ```
 
 ### Related Commands
 
-- ```netq show mac-history```
-- ```netq show ip/ipv6 addresses```
+- `netq show mac-history`
+- `netq show ip/ipv6 addresses`
 
 - - -
 
@@ -2847,12 +2831,43 @@ Tue Oct 27 22:28:42 2020  leaf01            30     no     vni30            10.0.
 Tue Oct 27 22:28:51 2020  leaf02            30     no     vni30            10.0.1.2               no     yes
 Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink                                no     yes
 ```
+This example shows only the differences in the changes for a MAC address of *44:38:39:00:00:5d* between now and an hour ago.
 
+```
+cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d diff
+Matching machistory records:
+Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
+------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
+Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink                                no     yes
+```
+
+This example shows only the differences in the changes for a MAC address of *44:38:39:00:00:5d* between now and 30 days ago. The caret (^) notation indicates no change in this value from the row above.
+
+```
+cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d diff between now and 30d
+Matching machistory records:
+Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
+------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
+Mon Sep 28 00:02:26 2020  leaf04            30     no     peerlink                                no     no
+Tue Oct 27 22:29:07 2020  leaf04            ^      ^      ^                ^                      ^      yes
+```
+This example shows changes for a MAC address of *44:38:39:00:00:5d* and VLAN *10*.
+
+```
+cumulus@switch:~$ netq show mac-history 44:38:39:00:00:5d vlan 10
+Matching machistory records:
+Last Changed              Hostname          VLAN   Origin Link             Destination            Remote Static
+------------------------- ----------------- ------ ------ ---------------- ---------------------- ------ ------------
+Tue Oct 27 22:28:24 2020  leaf03            10     yes    bridge                                  no     no
+Tue Oct 27 22:28:42 2020  leaf01            10     no     vni10            10.0.1.2               no     yes
+Tue Oct 27 22:28:51 2020  leaf02            10     no     vni10            10.0.1.2               no     yes
+Tue Oct 27 22:29:07 2020  leaf04            10     no     peerlink                                no     yes
+```
 
 ### Related Commands
 
-- ```netq show mac-commentary```
-- ```netq show ip/ipv6 addresses```
+- `netq show mac-commentary`
+- `netq show ip/ipv6 addresses`
 
 - - -
 
@@ -2924,46 +2939,59 @@ Display count of MAC addresses on a switch:
 cumulus@switch:~$ netq leaf01 show macs count
 Count of matching mac records: 50
 ```
+Display all MAC addresses networkwide:
+
+```
+cumulus@switch:~$ netq show macs
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+true   00:00:00:00:00:00  1001   torc-22           vx-33:tor-2                    no     Wed Jul 10 20:33:21 2024
+true   00:00:00:00:00:00  1003   torc-22           vx-35:tor-2                    no     Wed Jul 10 20:33:21 2024
+true   00:00:00:00:00:00  1005   torc-22           vx-37:tor-2                    no     Wed Jul 10 20:33:21 2024
+true   00:00:00:00:00:00  1007   torc-22           vx-39:tor-2                    no     Wed Jul 10 20:33:21 2024
+true   00:00:00:00:00:00  1009   torc-22           vx-41:tor-2                    no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  0      torc-22           VlanA-1                        no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  100    torc-22           VlanA-1.100                    no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  1001   torc-22           vlan1001                       no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  1003   torc-22           vlan1003                       no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  1005   torc-22           vlan1005                       no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  1007   torc-22           vlan1007                       no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  1009   torc-22           vlan1009                       no     Wed Jul 10 20:33:21 2024
+...
+false  00:02:00:00:00:24  106    torc-22           {hostbond3}:{hostd-22}         no     Wed Jul 10 20:33:21 2024
+false  00:02:00:00:00:30  1001   torc-22           vx-33:tor-2                    yes    Wed Jul 10 20:33:21 2024
+```
 
 Display MAC addresses that use a given egress port on a switch:
 
 ```
-cumulus@switch:~$ netq leaf01 show macs egress-port bond3
+cumulus@switch:~$ netq torc-22 show macs egress-port VlanA-1.100
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
-no     44:38:39:00:00:36  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
-no     46:38:39:00:00:36  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
-no     46:38:39:00:00:3c  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
+true   00:00:5e:00:01:01  100    torc-22           VlanA-1.100                    no     Wed Jul 10 20:33:21 2024
 ```
 
-Display MAC addresses associated with VLAN 10. The command also provides the hostnames of the devices, the egress port for the interface, whether the MAC address originated from the given device, whether it learns the MAC address from the peer (`remote=yes`), and the last time the configuration changed.
+Display MAC addresses associated with a given VLAN. The command also provides the hostnames of the devices, the egress port for the interface, whether the MAC address originated from the given device, whether it learns the MAC address from the peer (`remote=yes`), and the last time the configuration changed.
 
 ```
-cumulus@switch:~$ netq show macs vlan 10
+cumulus@switch:~$ netq show macs vlan 102
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
-yes    00:00:00:00:00:1a  10     leaf04            bridge                         no     Tue Oct 27 22:29:07 2020
-no     44:38:39:00:00:37  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
-no     44:38:39:00:00:59  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
-no     46:38:39:00:00:38  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
-no     44:38:39:00:00:3e  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
-no     46:38:39:00:00:3e  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
-yes    44:38:39:00:00:5e  10     leaf04            bridge                         no     Tue Oct 27 22:29:07 2020
-no     44:38:39:00:00:32  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
-no     44:38:39:00:00:5d  10     leaf04            peerlink                       no     Tue Oct 27 22:29:07 2020
-no     46:38:39:00:00:44  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
-no     46:38:39:00:00:32  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
-yes    36:ae:d2:23:1d:8c  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
-yes    00:00:00:00:00:1a  10     leaf03            bridge                         no     Tue Oct 27 22:28:24 2020
-no     44:38:39:00:00:59  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
-no     44:38:39:00:00:37  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
-no     46:38:39:00:00:38  10     leaf03            vni10                          yes    Tue Oct 27 22:28:24 2020
-yes    36:99:0d:48:51:41  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
-no     44:38:39:00:00:3e  10     leaf03            bond1                          no     Tue Oct 27 22:28:24 2020
-no     44:38:39:00:00:5e  10     leaf03            peerlink                       no     Tue Oct 27 22:28:24 2020
-no     46:38:39:00:00:3e  10     leaf03            bond1                          no     Tue Oct 27 22:28:24 2020
+true   00:00:5e:00:01:01  102    torc-22           VlanA-1.102                    no     Wed Jul 10 20:33:21 2024
+false  00:02:00:00:00:20  102    torc-22           {hostbond2}:{hostd-21}         no     Wed Jul 10 20:33:21 2024
+false  00:02:00:00:00:24  102    torc-22           {hostbond3}:{hostd-22}         no     Wed Jul 10 20:33:21 2024
+false  00:02:00:00:00:b0  102    torc-22           {peerlink-1}:{torc-21}         no     Wed Jul 10 20:33:21 2024
+true   00:02:00:00:00:b8  102    torc-22           VlanA-1                        no     Wed Jul 10 20:33:21 2024
+true   00:00:5e:00:01:01  102    torc-21           VlanA-1.102                    no     Thu Jul 11 18:59:08 2024
+false  00:02:00:00:00:20  102    torc-21           {hostbond2}:{hostd-21}         no     Thu Jul 11 18:59:08 2024
+false  00:02:00:00:00:24  102    torc-21           {hostbond3}:{hostd-22}         no     Thu Jul 11 18:59:08 2024
+true   00:02:00:00:00:b0  102    torc-21           VlanA-1                        no     Thu Jul 11 18:59:08 2024
+false  00:02:00:00:00:b8  102    torc-21           {peerlink-1}:{torc-22}         no     Thu Jul 11 18:59:08 2024
+true   00:00:5e:00:01:01  102    torc-12           VlanA-1.102                    no     Thu Jul 11 19:11:56 2024
+true   00:02:00:00:00:a8  102    torc-12           VlanA-1                        no     Thu Jul 11 19:11:56 2024
 ...
 ```
 
@@ -2974,8 +3002,7 @@ cumulus@netq-ts:~$ netq leaf02 show macs egress-port bridge vlan 10
 Matching mac records:
 Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
 ------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
-yes    00:00:00:00:00:1a  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
-yes 
+true    00:00:00:00:00:1a  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020 
 ```
 ### Related Commands
 

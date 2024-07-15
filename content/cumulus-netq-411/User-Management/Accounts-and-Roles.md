@@ -17,7 +17,7 @@ From this dashboard, admins can:
 - Manage switches' lifecycles
 
 The following image displays the management dashboard. Accounts with *user* privileges cannot perform the functions described above and do not have access to the management dashboard.
-{{<figure src="/images/netq/management-dash-490.png" alt="netq management dashboard" width="1100" >}}
+{{<figure src="/images/netq/management-dash-411.png" alt="netq management dashboard" width="1100" >}}
 
 ## Related Information
 

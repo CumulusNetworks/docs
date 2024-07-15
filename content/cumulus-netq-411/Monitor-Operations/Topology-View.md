@@ -73,3 +73,7 @@ You can select between node_name and node_tier to display either a subsection of
 {{<figure src="/images/netq/filter-group-480.png" alt="" width="1100">}}
 
 Select the three-dot menu on a given query to either delete or remove the query.
+
+## Related Information
+
+- {{<link title="Validation Tests Reference#topology-validation-tests" text="Topology Validation">}}

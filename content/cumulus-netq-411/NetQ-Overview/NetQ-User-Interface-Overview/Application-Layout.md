@@ -6,7 +6,7 @@ toc: 4
 ---
 The NetQ UI contains two main areas:
 
-- **Application Header**: Contains the main menu, NetQ version, global search field, device count, premises list, and account information.
+- **Application Header**: Contains the main menu, NetQ version, global search field, count of reachable devices, premises list, and account information.
 {{<figure src="/images/netq/header-layout-411.png" alt="" width="1300">}}
 
 

@@ -9,8 +9,8 @@ This page describes how to upgrade your NetQ virtual machines. Note that the upg
 
 For deployments running:
 
-- 4.9.0, 4.8.0: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.10
-- 4.7.0 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
+- 4.10, 4.9: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.11
+- 4.8 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
 
 During the upgrade process, NetQ will be temporarily unavailable.
 ## Before You Upgrade
@@ -28,11 +28,11 @@ If the output of this command displays errors or returns an empty response, you 
 
 ## Update NetQ Debian Packages
 
-1. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.10:
+1. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.11:
 
     ```
     cat /etc/apt/sources.list.d/cumulus-netq.list
-    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.10
+    deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb focal netq-4.11
     ```
 
 2. Update the NetQ `debian` packages. In cluster deployments, update the packages on the master and all worker nodes:
@@ -41,7 +41,7 @@ If the output of this command displays errors or returns an empty response, you 
     cumulus@<hostname>:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add
     cumulus@<hostname>:~$ sudo apt-get update
     Get:1 https://apps3.cumulusnetworks.com/repos/deb focal InRelease [13.8 kB]
-    Get:2 https://apps3.cumulusnetworks.com/repos/deb focal/netq-4.10 amd64 Packages [758 B]
+    Get:2 https://apps3.cumulusnetworks.com/repos/deb focal/netq-4.11 amd64 Packages [758 B]
     Hit:3 http://archive.ubuntu.com/ubuntu focal InRelease
     Get:4 http://security.ubuntu.com/ubuntu focal-security InRelease [88.7 kB]
     Get:5 http://archive.ubuntu.com/ubuntu focal-updates InRelease [88.7 kB]
@@ -74,7 +74,7 @@ If the output of this command displays errors or returns an empty response, you 
 
 1. Download the upgrade tarball.
 
-    {{<netq-install/upgrade-image version="4.10">}}
+    {{<netq-install/upgrade-image version="4.11">}}
 
 2. Copy the tarball to the `/mnt/installables/` directory on your NetQ VM.
 
@@ -126,7 +126,7 @@ If you are upgrading a cluster deployment from NetQ v4.8.0 or earlier, you must 
 {{<tab "Standalone">}}
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.11.0.tgz
 ```
 
 {{%notice info%}}
@@ -137,7 +137,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 {{<tab "Cluster">}}
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.11.0.tgz
 ```
 {{%notice info%}}
 If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-cluster-full" text="netq install cluster full">}} command.
@@ -155,7 +155,7 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 {{<tab "Standalone">}}
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1-opta.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.11.0-opta.tgz
 ```
 {{%notice info%}}
 If this step fails for any reason, run the <code>netq bootstrap reset keep-db</code> command and perform a fresh installation of the tarball with the {{<link title="install/#netq-install-opta-standalone-full" text="netq install opta standalone full">}} command.
@@ -171,11 +171,11 @@ Run the `netq upgrade` command, specifying the current version's tarball and you
 - A different IP address than the primary IP assigned to the default interface.
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.10.1-opta.tgz cluster-vip <vip-ip>
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.11.0-opta.tgz cluster-vip <vip-ip>
 ```
 {{%notice note%}}
 
-If you are upgrading from a NetQ 4.9 or 4.8 high availability, cloud cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the upgrade command. Specifying a virtual IP address that is different from the virtual IP address used during the installation process will cause the upgrade to fail. 
+If you are upgrading from a NetQ 4.8 or later high availability, cloud cluster with a virtual IP address, you do not need to include the `cluster-vip` option in the upgrade command. Specifying a virtual IP address that is different from the virtual IP address used during the installation process will cause the upgrade to fail. 
 
 {{%/notice%}}
 {{%notice info%}}
@@ -198,9 +198,9 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.10.1
+    BOOTSTRAP_VERSION=4.11.0
     APPLIANCE_MANIFEST_HASH=c664236fb1d732b3633ab83662575c35f397bc6ac3a9970632523827097c8415
-    APPLIANCE_VERSION=4.10.1
+    APPLIANCE_VERSION=4.11.0
     APPLIANCE_NAME=NetQ On-premises Appliance
     ```
 {{</tab>}}
@@ -210,9 +210,9 @@ If this step fails for any reason, run the <code>netq bootstrap reset keep-db</c
 
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
-    BOOTSTRAP_VERSION=4.10.1
+    BOOTSTRAP_VERSION=4.11.0
     APPLIANCE_MANIFEST_HASH=370ffbe3195aa1c4cc969668441b124e7714f7eaa980962ff4cc438fcec31b87
-    APPLIANCE_VERSION=4.10.1
+    APPLIANCE_VERSION=4.11.0
     APPLIANCE_NAME=NetQ Cloud Appliance
     ```
 {{</tab>}}

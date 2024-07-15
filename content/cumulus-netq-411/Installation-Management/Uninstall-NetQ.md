@@ -25,19 +25,7 @@ The following packages will be REMOVED:
 0 upgraded, 0 newly installed, 2 to remove and 0 not upgraded.
 After this operation, 310 MB disk space will be freed.
 Do you want to continue? [Y/n] Y
-Creating pre-apt snapshot... 2 done.
-(Reading database ... 42026 files and directories currently installed.)
-Removing netq-agent (3.0.0-cl3u27~1587646213.c5bc079) ...
-/usr/sbin/policy-rc.d returned 101, not running 'stop netq-agent.service'
-Purging configuration files for netq-agent (3.0.0-cl3u27~1587646213.c5bc079) ...
-dpkg: warning: while removing netq-agent, directory '/etc/netq/config.d' not empty so not removed
-Removing netq-apps (3.0.0-cl3u27~1587646213.c5bc079) ...
-/usr/sbin/policy-rc.d returned 101, not running 'stop netqd.service'
-Purging configuration files for netq-apps (3.0.0-cl3u27~1587646213.c5bc079) ...
-dpkg: warning: while removing netq-apps, directory '/etc/netq' not empty so not removed
-Processing triggers for man-db (2.7.0.2-5) ...
-grep: extra.services.enabled: No such file or directory
-Creating post-apt snapshot... 3 done.
+...
 ```
 
 {{%notice tip%}}

@@ -12,10 +12,12 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 
 NetQ 4.11.0 includes the following new features and improvements:
 
-- Enter a switch's hostname in the global search field and right-click the device to open a dashboard in a new tab that displays comprehensive data for that switch
-- Validate your network's topology. NetQ compares the actual network topology derived from LLDP telemetry data against a topology blueprint that you upload to the UI.
-- {{<link title="Focus Your Monitoring Using Workbenches#manage-auto-refresh" text="Adjust the frequency">}} that NetQ reloads dashboard data to every minute, 2 minutes, or 5 minutes
-- Create threshold crossing rules that alert you when a {{<link title="Threshold-Crossing Events Reference#sensors" text="sensor's state changes">}}
+- Enter a switch's hostname in the global search field and right-click the device to open a dashboard in a new tab that displays an {{<link title="Switches" text="overview of the switch's attributes">}}, events, resource utilization, and interface details.
+- Keep track of your network's devices at a glance and access actions in fewer clicks using the {{<link title="Application Layout" text="redesigned dashboard navigation">}}. 
+- {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="Validate your network's topology">}}. NetQ compares the actual network topology derived from LLDP telemetry data against a topology blueprint that you upload to the UI.
+- Monitor a device's link bit error rates (BER) with the {{<link title="show/#netq show dom" text="netq show dom ber">}} command. Or view BER in the UI by searching for the device in the global search field and filtering for diagnostic info from the digital optics tab.
+- Create threshold crossing rules that alert you when a {{<link title="Threshold-Crossing Events Reference#sensors" text="sensor's state changes">}}.
+- {{<link title="Focus Your Monitoring Using Workbenches#manage-auto-refresh" text="Adjust the frequency">}} that NetQ reloads dashboard data to every minute, 2 minutes, or 5 minutes.
 - Performance and security enhancements
 
 
@@ -23,8 +25,8 @@ NetQ 4.11.0 includes the following new features and improvements:
 
 For deployments running:
 
-- 4.9.0, 4.8.0: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.10.
-- 4.7.0 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}.
+- 4.10, 4.9: {{<link title="Upgrade NetQ Virtual Machines" text="upgrade directly">}} to NetQ 4.11
+- 4.8 or earlier: {{<link title="Back Up and Restore NetQ" text="back up your NetQ data">}} and perform a {{<link title="Install the NetQ System" text="new installation">}}
 
 ## Compatible Agent Versions
 

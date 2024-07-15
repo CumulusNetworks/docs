@@ -23,7 +23,7 @@ netq show inventory brief
 
 The Inventory/NIC card displays the hardware- and software-component inventory on NICs running NetQ in your network, including connection adapters and firmware versions. 
 
-To add this card to your workbench, select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card**&nbsp;<span aria-label="and then">></span> **Inventory**&nbsp;<span aria-label="and then">></span> **Inventory/NICs card**&nbsp;<span aria-label="and then">></span> **Open cards**. Select the dropdown on the card to display either connection adapters or firmware versions.
+To add this card to your workbench, search for "Inventory | NICs" in the global search field.
 
 {{<figure src="/images/netq/invent-nic-470.png" alt="NIC inventory card displaying firmware version" width="200">}}
 

@@ -4,104 +4,106 @@ author: NVIDIA
 weight: 850
 toc: 4
 ---
-NetQ lets you validate the operation of the protocols and services running in your network either on-demand or according to a schedule.
-<!-- vale off -->
-## On-demand Validations
+In addition to the hourly validation checks that run by default, NetQ lets you validate the operation of the protocols and services running in your network either on-demand or according to a schedule. Both types can be customized to include or exclude particular tests or devices.
+
+**On-demand validations** allow you to validate the operation of one or more network protocols and services right now.
+
+**Scheduled validations** allow you to run validations according to a schedule. You can create and schedule up to 15 custom validation checks. The hourly, default validation checks do not count towards this limit.
+
+## Create a Validation
 <!-- vale on -->
-
-When you want to validate the operation of one or more network protocols and services right now, you can create and run on-demand validations using the NetQ UI or the NetQ CLI.
-
-<!-- vale off -->
-### Create an On-demand Validation
-<!-- vale on -->
-Using the NetQ UI, you can create an on-demand validation for multiple protocols or services at the same time. This is handy when the protocols are strongly related regarding a possible issue or if you only want to create one validation request.
-
-To run on-demand validations with the CLI, use the {{<link title="check" text="netq check">}} commands.
+Using the NetQ UI, you can create an on-demand or scheduled validations for multiple protocols or services at the same time. This is handy when the protocols are strongly related regarding a possible issue or if you only want to create one validation request.
 
 {{<tabs "On-demand Validation">}}
 
-{{<tab "Validate Network">}}
-
-To create and run a request containing checks on one or more protocols or services within the NetQ UI:
-
-1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**. Choose whether the on-demand validation should run on all devices or on specific {{<link title="Device Groups" text="device groups">}}.
-
-2. Select the protocols or services you want to validate, then click **Next**.
-
-   This example has BGP selected and displays the 8 checks that NetQ runs during a BGP validation:
-
-   {{<figure src="/images/netq/validate-network-bgp.png" width="1100">}}
-
-3. Select **Now** and specify a workbench:
-
-   {{<figure src="/images/netq/validate-network-schedule-4.0.0.png" width="400">}}
-
-4. Click **Run** to start the validation. It might take a few minutes for results to appear.
-
-   The respective On-demand Validation Result card opens on your workbench. If you selected more than one protocol or service, a card opens for each selection. To view additional information about the errors reported, hover over a check and click **View details**. To view all data for all on-demand validation results for a given protocol, click **Show all results**.
-
-   {{<figure src="/images/netq/on-demand-bgp-validation.png" width="600">}}
-
-{{</tab>}}
-
-{{<tab "netq add validation">}}
-
-To create a request containing checks on a single protocol or service in the NetQ CLI, run:
-
-```
-netq add validation type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | topology | vlan | vxlan)
-    interval <text-time-min>
-    [alert-on-failure]
-```
-The associated Validation Result card is accessible from the full-screen Validate Network card.
-
-{{</tab>}}
-
-{{</tabs>}}
-
-### Run an Existing Scheduled Validation On Demand
-
-To run a scheduled validation now:
-
-1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Existing validations**.
-
-2. Select one or more validations, then click **View results**.
-
-3. The associated Validation Result cards open on your workbench.
-
-## Scheduled Validations
-
-By default, a scheduled validation for each protocol and service runs every hour. You can disable these validation checks in the UI, but you cannot edit them. 
-
-You can create and schedule up to 15 custom validation checks. The hourly, default validation checks do not count towards this limit.
-
-### Schedule a Validation
-
-{{<tabs "New Scheduled Validation">}}
-
 {{<tab "NetQ UI">}}
 
-1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Create a validation**. Choose whether the scheduled validation should run on all devices or on specific {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="device groups">}}.
+To create a validation in the UI:
 
-2. Select the protocols or services you want to validate, then click **Next**.
+1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**. Choose whether the validation should run on all devices or on a {{<link title="Device Groups" text="group of devices">}}.
 
-3. Click **Later** then choose when to start the check and how frequently to repeat the check (every 30 minutes, 1 hour, 3 hours, 6 hours, 12 hours, or 1 day).
+2. Select the protocols or services you want to include as part of the validation. All {{<link title="Validation Tests Reference" text="tests that comprise the validation">}} are included by default, but you can select an individual test to exclude it from the validation check. Hover over an individual test and select **Customize** to configure filters which can exclude individual devices or failure reasons from the validation. Then click **Next**.
 
-4. Click **Schedule**.
+   {{<figure src="/images/netq/create-val-411.png" width="1100" height="600" alt="">}}
 
-   To see the card with the other network validations, click **View**. If you selected more than one protocol or service, a card opens for each selection. To view the card on your workbench, click **Open card**.
-   
-   {{<figure src="/images/netq/agent-validation-test-card.png" width="200">}}
+3. Select the time and frequency parameters and specify the workbench where the validation results should appear. Then select **Run** or **Schedule**.
+
+   {{<figure src="/images/netq/create-val-modal-411.png" width="400" height="450" alt="">}}
+
+4. If you chose to run the validation now, the results are displayed on the workbench you specified in the previous step. If you selected more than one protocol or service, a card opens for each selection. To view additional information about the errors reported, hover over a check and click **View details**. To view all data for all on-demand validation results for a given protocol, click **Show all results**.
+
+   {{<figure src="/images/netq/on-demand-bgp-validation.png" width="600" height="270" alt="">}}
+
+If you scheduled the validation to run later, NetQ will display a dashboard containing all existing validation checks, including the one you just created. If you want to run a validation you scheduled for later right now, in the header select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Existing validations**. Select one or more validations, then click **View results**. The associated Validation Result cards open on your workbench.
 
 {{</tab>}}
 
-{{<tab "netq add validation">}}
+{{<tab "NetQ CLI">}}
 
-To create a scheduled request containing checks on a single protocol or service in the NetQ CLI, run:
+To view the list of tests for a given protocol or service, use either {{<link title="show" text="netq show unit-tests">}}.
+
+To run on-demand validations use the {{<link title="check" text="netq check">}} commands. 
+
+You can include or exclude one or more of the various tests performed during the validation by including or excluding the {{<link title="Validation Tests Reference" text="test's number">}}. The `check` command's `<protocol-number-range-list>` value is used with the `include` and `exclude` options to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
+
+
+- include 1,3,5
+- include 1-5
+- include 1,3-5
+- exclude 6,7
+- exclude 6-7
+- exclude 3,4-7,9
+
+You can create filters that suppress validation failures based on hostnames, failure reason, and other parameters with the {{<link title="add/#netq-add-check-filter" text="netq add check filter">}} command.
+
+The following example displays a list of all the checks included in a BGP validation, along with their respective test numbers and filters, if any: 
 
 ```
-netq add validation name <text-new-validation-name> type (addr | agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan) interval <text-time-min> [alert-on-failure]
+cumulus@switch:~$ netq show unit-tests bgp
+   0 : Session Establishment     - check if BGP session is in established state
+   1 : Address Families          - check if tx and rx address family advertisement is consistent between peers of a BGP session
+   2 : Router ID                 - check for BGP router id conflict in the network
+   3 : Hold Time                 - check for mismatch of hold time between peers of a BGP session
+   4 : Keep Alive Interval       - check for mismatch of keep alive interval between peers of a BGP session
+   5 : Ipv4 Stale Path Time      - check for mismatch of ipv4 stale path timer between peers of a BGP session
+   6 : Ipv6 Stale Path Time      - check for mismatch of ipv6 stale path timer between peers of a BGP session
+   7 : Interface MTU             - check for consistency of Interface MTU for BGP peers
+
+Configured global result filters:
+
+Configured per test result filters:
 ```
+The following BGP validation includes only the session establishment (test number 0) and router ID (test number 2) tests. Note that you can obtain the same results using either of the `include` or `exclude` options and that the tests that are not run are marked *skipped*.
+```
+cumulus@switch:~$ netq check bgp include 0,2
+bgp check result summary:
+
+Total nodes         : 13
+Checked nodes       : 0
+Failed nodes        : 0
+Rotten nodes        : 13
+Warning nodes       : 0
+Skipped nodes       : 0
+
+Additional summary:
+Failed Sessions     : 0
+Total Sessions      : 0
+
+Session Establishment Test   : passed
+Address Families Test        : skipped
+Router ID Test               : passed
+Hold Time Test               : skipped
+Keep Alive Interval Test     : skipped
+Ipv4 Stale Path Time Test    : skipped
+Ipv6 Stale Path Time Test    : skipped
+Interface MTU Test           : skipped
+```
+
+To create a request containing checks on a single protocol or service run the {{<link title="add/#netq-add-validation-type" text="netq add validation type">}} command. Using this command adds validation results that can be accessed in the UI.
+
+<!--need to figure out the difference-->
+
+To create a scheduled validation, run the {{<link title="add/#netq-add-validation" text="netq add validation">}} command.
 
 The following example creates a BGP validation that runs every 15 minutes:
 
@@ -109,113 +111,35 @@ The following example creates a BGP validation that runs every 15 minutes:
 cumulus@switch:~$ netq add validation name Bgp15m type bgp interval 15m
 Successfully added Bgp15m running every 15m
 ```
-
-The associated Validation Result card is accessible from the full-screen Scheduled Validation Result card.
+Re-run this command for each additional scheduled validation.
 
 {{</tab>}}
 
 {{</tabs>}}
 
-### View Scheduled Validation Results
+## Manage Validations
 
-After creating scheduled validations with either the NetQ UI or the NetQ CLI, the results appear in the Scheduled Validation Result card. When a request has completed processing, you can access the Validation Result card from the full-screen Validations card. Each protocol and service has its own validation result card, but the content is similar on each.
+To view a dashboard of all validations that run according to a schedule, in the header select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Scheduled validations**.
+### Edit or Delete a Scheduled Validation
 
-#### Granularity of Data Shown Based on Time Period
-
-On the medium and large Validation Result cards, vertically stacked heat maps represent the status of the runs; one for passing runs, one for runs with warnings, and one for runs with failures. Depending on the time period of data on the card, the number of smaller time blocks indicate that the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results appear by how saturated the color is for each block. If all validations during that time period pass, then the middle block is 100% saturated (white) and the warning and failure blocks are zero % saturated (gray). As warnings and errors increase in saturation, the passing block is proportionally reduced in saturation. The example heat map for a time period of 24 hours shown here uses the most common time periods from the table showing the resulting time blocks and regions.
-
-{{<figure src="/images/netq/sch-valid-result-granularity-230.png" width="300">}}
-
-| Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
-| ----------- | -------------- | ------------------ | ---------------------------- |
-| 6 hours     | 18             | 6                  | 1 hour                       |
-| 12 hours    | 36             | 12                 | 1 hour                       |
-| 24 hours    | 72             | 24                 | 1 hour                       |
-| 1 week      | 504            | 7                  | 1 day                        |
-| 1 month     | 2,086          | 30                 | 1 day                        |
-| 1 quarter   | 7,000          | 13                 | 1 week                       |
-
-#### Access and Analyze the Scheduled Validation Results
-
-After a scheduled validation request has completed, the results are available in the corresponding Validation Result card.
-
-To access the results:
-
-1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Existing validations**.
-
-2. Select the validation results you want to view, then click **View results**.
-
-3. The medium Scheduled Validation Result card(s) for the selected items appear on your workbench.
-
-    {{<figure src="/images/netq/validation-results-existing-medium.png" width="425">}}
-
-To analyze the results:
-
-1. Note the distribution of results. Are there many failures? Are they concentrated together in time? Has the protocol or service recovered after the failures?
-
-2. Hover over the heat maps to view the status numbers and what percentage of the total results that represents for a given region. The tooltip also shows the number of devices included in the validation and the number with warnings and/or failures. This is useful when you see the failures occurring on a small set of devices, as it might point to an issue with the devices rather than the network service.
-
-    {{<figure src="/images/netq/failed-vxlan-scheduled-validation.png" width="200">}}
-
-3. Expand the card to display a chart alongside events metrics. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/53-Resize/expand-horizontal-3.svg" height="18" width="18">}} to expand or collapse the chart.
-
-    {{<figure src="/images/netq/failed-vxlan-validation-large-chart.png" width="500">}}
-
-5. You can view the configuration of the request that produced the results shown on this card, by hovering over the card and selecting the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18">}} **Configuration** tab.
-
-6. To view all data available for all scheduled validation results for the given protocol or service, expand the card to full-screen.
-
-7. In the Checks box, hover over an individual check and select **View details** for additional information:
-
-    {{<figure src="/images/netq/bum-replication-details.png" width="900">}}
-
-### Manage Scheduled Validations
-
-You can edit or delete any scheduled validation that you created. Default validations cannot be edited or deleted, but can be disabled.
-
-#### Edit a Scheduled Validation
-
-At some point you might want to change the schedule or validation types that are specified in a scheduled validation request. This creates a new validation request and the original validation has the *(old)* label applied to the name. The old validation can no longer be edited.
-
-{{%notice info%}}
-
-When you update a scheduled request, the results for all future runs of the validation will be different from the results of previous runs of the validation.
-
-{{%/notice%}}
-
-To edit a scheduled validation:
-
-1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Scheduled validations**.
-
-2. Hover over the validation then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> Edit.
-
-    {{<figure src="/images/netq/validations-edit-4.0.0.png" width="250">}}
-
-3. Select which checks to add or remove from the validation request, then click **Update**.
-
-5. Change the schedule for the validation, then click **Update**.
-
-    You can run the modified validation immediately or wait for it to run according to the schedule you specified.
-
-#### Delete a Scheduled Validation
-
-You can remove a user-defined scheduled validation using the NetQ UI or the NetQ CLI. Default validations cannot be deleted, but they can be disabled.
+You can edit or delete any scheduled validation that you created. This creates a new validation request and the original validation has the *(old)* label applied to the name. The old validation can no longer be edited. Default validations cannot be edited or deleted, but can be disabled.
 
 {{<tabs "Delete Scheduled Validation">}}
 
 {{<tab "NetQ UI">}}
+To edit or delete a scheduled validation:
 
 1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then click **Scheduled validations**.
 
-2. Hover over the validation you want to remove.
+2. Hover over the validation then click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> **Edit** or {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete**.
 
-    {{<figure src="/images/netq/sch-valid-remove-4.0.0.png" width="700">}}
+    {{<figure src="/images/netq/val-edit-411.png" width="250" height="300" alt="">}}
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}}, then click **Yes** to confirm.
+3. If editing, select which checks to add or remove from the validation request, then click **Update**.
 
-4. To disable a default validation, select the {{<img src="/images/netq/navigation-menu-horizontal.svg" height="18" width="18">}} icon on the card for the desired validation and select **Disable validation**. Validation checks can be enabled from the same menu.
+5. Change the schedule for the validation, then click **Update**.
 
-{{<figure src="/images/netq/validation-disable-check.png" alt="validation card presenting option to disable validation" width="250">}}
+    You can run the modified validation immediately or wait for it to run according to the schedule you specified.
 
 {{</tab>}}
 
@@ -231,12 +155,12 @@ netq show validation summary
     [json]
 ```
 
-    This example shows all scheduled validations for BGP.
+This example shows all scheduled validations for BGP:
 
-    ```
-    cumulus@switch:~$ netq show validation summary type bgp
-    Name            Type             Job ID       Checked Nodes              Failed Nodes             Total Nodes            Timestamp
-    --------------- ---------------- ------------ -------------------------- ------------------------ ---------------------- -------------------------
+```
+cumulus@switch:~$ netq show validation summary type bgp
+Name            Type             Job ID       Checked Nodes              Failed Nodes             Total Nodes            Timestamp
+--------------- ---------------- ------------ -------------------------- ------------------------ ---------------------- -------------------------
     Bgp30m          scheduled        4c78cdf3-24a 0                          0                        0                      Thu Nov 12 20:38:20 2020
                                     6-4ecb-a39d-
                                     0c2ec265505f
@@ -253,23 +177,54 @@ netq show validation summary
                                     a-4e89-a692-
                                     3bf5f7c8fd2a
     ...
-    ```
+```
 
 2. To remove the validation, run:
 
-    ```
-    netq del validation <text-validation-name>
-    ```
+```
+netq del validation <text-validation-name>
+```
 
-    This example removes the scheduled validation named *Bgp15m*.
+This example removes the scheduled validation named *Bgp15m*.
 
-    ```
-    cumulus@switch:~$ netq del validation Bgp15m
-    Successfully deleted validation Bgp15m
-    ```
+```
+cumulus@switch:~$ netq del validation Bgp15m
+ Successfully deleted validation Bgp15m
+```
 
 3. Repeat these steps to remove additional scheduled validations.
 
 {{</tab>}}
 
 {{</tabs>}}
+
+## Topology Validations
+
+The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint (in {{<exlink url="https://graphviz.org/doc/info/lang.html" text="Graphviz DOT format">}}) that you upload to the UI. It can only be run on-demand.
+### Configure LLDP
+
+You must configure the LLDP service on switches and hosts that are defined in the topology blueprint to send the port ID subtype that matches the connection defined in the topology DOT file. The {{<exlink url="https://lldpd.github.io/usage.html" text="lldpd service">}} allows you to configure the port ID by specifying either the interface name (`ifname`) or MAC address (`macaddress`) using the `configure lldp portidsubtype [ifname | macaddress]` command.
+
+For example, if your host is configured to send the interface name in the LLDP port ID field, define the interface name in the topology DOT file:
+```
+"switch1":"swp1" -- "host5":"eth1"
+```
+If your host is configured to send the MAC address in the LLDP port ID field, define the MAC address in the topology DOT file:
+```
+"switch1":"swp1" -- "host5":"mac:48:b0:2d:f5:6b:b5"
+```
+You can use the `lldpctl` command to validate the current port ID received from a connected device.
+
+{{%notice note%}}
+If you change the LLDP port ID subtype while the NetQ agent is running, restart the NetQ agent with the `netq config restart agent` command
+{{%/notice%}}
+
+### Create a Topology Validation
+
+1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**.
+
+2. Select **Topology** and upload the topology blueprint file. The name of the blueprint file NetQ will use to validate the topology is displayed on the screen. To use a different file, upload it to the UI, then select **Manage blueprint file**. Select **Activate** on the blueprint file you'd like NetQ to use.
+
+3. Upon completion, the dashboard displays which devices failed the topology validation, along with a table listing cabling issues.
+
+{{<figure src="/images/netq/val-failed-topo-411.png" width="1200" height="600">}}

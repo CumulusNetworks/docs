@@ -9,11 +9,11 @@ Lifecycle management (LCM) lets you upgrade Cumulus Linux on one or more switche
 
 For deployments running Cumulus Linux versions:
 
-- 5.6.0 to 5.8.0: you can upgrade up to Cumulus Linux version 5.9 or later if your environment is running NetQ 4.10.1. If you are running an earlier NetQ version, you must {{<link title="Upgrade NetQ Agent" text="upgrade to 4.10.1">}} before you upgrade Cumulus Linux. <!--add "version 4.10.1 or later" in 4.11 release-->
-- 5.0.1 to 5.7.0: you can upgrade up to Cumulus Linux version 5.8
+- 5.6.0 to 5.8.0: you can upgrade up to Cumulus Linux version 5.9 or later if your environment is running NetQ 4.10.1 or later. If you are running an earlier NetQ version, you must {{<link title="Upgrade NetQ Agent" text="upgrade NetQ">}} before you upgrade Cumulus Linux.
+- 5.0.1 to 5.7.0: you can upgrade up to Cumulus Linux version 5.8.
 
 
-To upgrade to Cumulus Linux 5.9:
+To upgrade to Cumulus Linux 5.9: <!--add or later when 5.10 comes out-->
 
 1. Ensure your switches are configured with NVUE. 
 2. {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Quick-Start-Guide/#configure-the-hostname" text="Configure the switches' hostnames">}} with NVUE. 

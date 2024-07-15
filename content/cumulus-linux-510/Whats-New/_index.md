@@ -48,6 +48,8 @@ NVIDIA SN5400 (400G Spectrum-4)
 | New Command| Previous Command |
 | ----------- | ----------------|
 | `nv set system config auto-save state enabled`<br>`nv set system config auto-save state disabled` | `nv set system config auto-save enable on`<br>`nv set system config auto-save enable off`|
+| `nv set system telemetry` commands | `nv set service telemetry` commands|
+| `nv show system telemetry` commands | `nv show service telemetry` commands |
 
 These commands include additional information in the output.
 

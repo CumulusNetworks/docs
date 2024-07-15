@@ -19,7 +19,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 
 - PPS supported on the NVIDIA SN5400 switch
 - {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="High frequency telemetry">}}
-- Telemetry export
+- Telemetry export with Prometheus and OTLP (SN5600 switch only)
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}
 - {{<link url="Quality-of-Service/#lossy-headroom" text="QoS lossy headroom configuration">}} and {{<link url="Quality-of-Service/#ingress-and-egress-management-buffers" text=" QoS Ingress and Egress Management Buffer Configuration">}}
 - {{<link url="VXLAN-Devices/#reserved-field-in-vxlan-header" text="Ignore reserved field in VXLAN header">}}
@@ -38,7 +38,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 {{< /expand >}}
 - NVUE
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="AmBER PHY counters">}}
-  - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication and encryption configuration">}}
+  - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication">}}
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
   - {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="Command to generate a cl-support file">}}
   - {{<link url="NVUE-CLI/#session-based-authentication" text="Session-based authentication">}}
@@ -76,15 +76,15 @@ nv show service telemetry hft job
 
 ```
 nv set interface <interface> link mac-address
-nv set service telemetry hft profile <profile> counter
-nv set service telemetry hft profile <profile> sample-interval
-nv set service telemetry hft profile <profile> traffic-class
-nv set service telemetry hft target local
-nv set service telemetry hft target influxdb bucket
-nv set service telemetry hft target influxdb host
-nv set service telemetry hft target influxdb org
-nv set service telemetry hft target influxdb port
-nv set service telemetry hft target influxdb token
+nv set system telemetry hft profile <profile> counter
+nv set system telemetry hft profile <profile> sample-interval
+nv set system telemetry hft profile <profile> traffic-class
+nv set system telemetry hft target local
+nv set system telemetry hft target influxdb bucket
+nv set system telemetry hft target influxdb host
+nv set system telemetry hft target influxdb org
+nv set system telemetry hft target influxdb port
+nv set system telemetry hft target influxdb token
 nv set system ssh-server login-record-period
 nv set qos advance-buffer-config default-global egress-mgmt-buffer 
 nv set qos advance-buffer-config default-global ingress-mgmt-buffer
@@ -97,17 +97,17 @@ nv set vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 
 ```
 nv unset interface <interface> link mac-address
-nv unset service telemetry hft profile <profile>
-nv unset service telemetry hft profile <profile> counter
-nv unset service telemetry hft profile <profile> sample-interval
-nv unset service telemetry hft profile <profile> traffic-class
-nv unset service telemetry hft target local
-nv unset service telemetry hft target influxdb
-nv unset service telemetry hft target influxdb bucket
-nv unset service telemetry hft target influxdb host
-nv unset service telemetry hft target influxdb org
-nv unset service telemetry hft target influxdb port
-nv unset service telemetry hft target influxdb token
+nv unset system telemetry hft profile <profile>
+nv unset system telemetry hft profile <profile> counter
+nv unset system telemetry hft profile <profile> sample-interval
+nv unset system telemetry hft profile <profile> traffic-class
+nv unset system telemetry hft target local
+nv unset system telemetry hft target influxdb
+nv unset system telemetry hft target influxdb bucket
+nv unset system telemetry hft target influxdb host
+nv unset system telemetry hft target influxdb org
+nv unset system telemetry hft target influxdb port
+nv unset system telemetry hft target influxdb token
 nv unset system ssh-server login-record-period
 nv unset qos advance-buffer-config default-global egress-mgmt-buffer 
 nv unset qos advance-buffer-config default-global ingress-mgmt-buffer

@@ -743,25 +743,25 @@ Use commas (no spaces) to separate the list of counter types you want to collect
 {{< tabs "TabID26 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the type of data to collect to transferred bytes (`tx-byte`) and traffic class occupancy (`tc-occupancy`):
+The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the type of data to collect to traffic class occupancy (`tc-occupancy`):
 
 ```
-cumulus@switch:~$ nv set service telemetry hft profile profile1 sample-interval 1000
-cumulus@switch:~$ nv set service telemetry hft profile profile1 traffic-class 0,3,7 
-cumulus@switch:~$ nv set service telemetry hft profile profile1 counter tx-byte,tc-occupancy
+cumulus@switch:~$ nv set system telemetry hft profile profile1 sample-interval 1000
+cumulus@switch:~$ nv set system telemetry hft profile profile1 traffic-class 0,3,7 
+cumulus@switch:~$ nv set system telemetry hft profile profile1 counter tc-occupancy
 cumulus@switch:~$ nv config apply
 ```
 
 The following example configures `profile2` and sets the sampling interval to 1000, the traffic class to 1-9, and the type of data to collect to received bytes (`rx-byte`):
 
 ```
-cumulus@switch:~$ nv set service telemetry hft profile profile1 sample-interval 1000
-cumulus@switch:~$ nv set service telemetry hft profile profile1 traffic-class 0-9 
-cumulus@switch:~$ nv set service telemetry hft profile profile1 counter rx-byte
+cumulus@switch:~$ nv set system telemetry hft profile profile1 sample-interval 1000
+cumulus@switch:~$ nv set system telemetry hft profile profile1 traffic-class 0-9 
+cumulus@switch:~$ nv set system telemetry hft profile profile1 counter rx-byte
 cumulus@switch:~$ nv config apply
 ```
 
-To delete a profile, run the `nv unset service telemetry hft profile <profile-id>` command.
+To delete a profile, run the `nv unset system telemetry hft profile <profile-id>` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -834,13 +834,13 @@ The following example configures `profile1` to start on 2024-01-21 at 10:00:00, 
 Specify the date and time in `YYYY-MM-DD HH:MM:SS` format.
 
 ``` 
-cumulus@switch:~$ nv action schedule service telemetry hft job 2024-01-01 10:00:00 duration 30 profile profile1 ports swp1-swp9
+cumulus@switch:~$ nv action schedule system telemetry hft job 2024-01-01 10:00:00 duration 30 profile profile1 ports swp1-swp9
 ```
 
 You can provide a short reason why you are collecting the data (in quotes). A short description is optional.
 
 ``` 
-cumulus@switch:~$ nv action schedule service telemetry hft job 2024-01-01 10:00:00 duration 30 profile profile1 ports swp1-swp9 description "bandwidth profiling"
+cumulus@switch:~$ nv action schedule system telemetry hft job 2024-01-01 10:00:00 duration 30 profile profile1 ports swp1-swp9 description "bandwidth profiling"
 ```
 
 {{< /tab >}}
@@ -895,10 +895,10 @@ After data collection completes, you can either:
 - Export the data automatically to a configured influxDB service.
 - Save the collected data locally to a `json` file in the `/var/run/cumulus/hft` directory, then export the `json` file to an external location with NVUE commands (or the API).
 
-  The `json` format file includes the counter data for each sampling interval and a timestamp showing when the data was collected. You can export the file to an external location with the NVUE `nv action upload service telemetry hft job <hft-job-id> <remote-url>` command. To see the list of jobs, run the `nv show service telemetry hft job` command (see {{<link url="#show-high-frequency-telemetry-session-information" text="Show High Frequency Telemetry Session Information">}} below).
+  The `json` format file includes the counter data for each sampling interval and a timestamp showing when the data was collected. You can export the file to an external location with the NVUE `nv action upload system telemetry hft job <hft-job-id> <remote-url>` command. To see the list of jobs, run the `nv show system telemetry hft job` command (see {{<link url="#show-high-frequency-telemetry-session-information" text="Show High Frequency Telemetry Session Information">}} below).
 
   ```
-  cumulus@switch:~$ nv action upload service telemetry hft job 1 scp://user1:user1-password@host1:~/ 
+  cumulus@switch:~$ nv action upload system telemetry hft job 1 scp://user1:user1-password@host1:~/ 
   ```
   
   {{< expand "example json file" >}}
@@ -955,10 +955,10 @@ The collected data is available on the switch until you trigger the next data co
 {{< tabs "TabID56 ">}}
 {{< tab "NVUE Commands ">}}
 
-To save the collected data locally to a `json` file, run the `nv set service telemetry hft target local` command:
+To save the collected data locally to a `json` file, run the `nv set system telemetry hft target local` command:
 
 ```
-cumulus@switch:~$ nv set service telemetry hft target local
+cumulus@switch:~$ nv set system telemetry hft target local
 cumulus@switch:~$ nv config apply
 ```
 
@@ -975,11 +975,11 @@ NVUE takes the authentication token in plain text; however, the show commands do
 The following example configures the influxDB host IP address to 10.10.1.1, the TCP port to 12345, the bucket to `hft-data`, the organization to `nvidia` and authentication token to `token1`:
 
 ``` 
-cumulus@switch:~$ nv set service telemetry hft target influxdb host 10.10.1.1 
-cumulus@switch:~$ nv set service telemetry hft target influxdb port 12345 
-cumulus@switch:~$ nv set service telemetry hft target influxdb bucket hft-data 
-cumulus@switch:~$ nv set service telemetry hft target influxdb org nvidia 
-cumulus@switch:~$ nv set service telemetry hft target influxdb token token1
+cumulus@switch:~$ nv set system telemetry hft target influxdb host 10.10.1.1 
+cumulus@switch:~$ nv set system telemetry hft target influxdb port 12345 
+cumulus@switch:~$ nv set system telemetry hft target influxdb bucket hft-data 
+cumulus@switch:~$ nv set system telemetry hft target influxdb org nvidia 
+cumulus@switch:~$ nv set system telemetry hft target influxdb token token1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1053,18 +1053,18 @@ You can cancel a specific or all data collection jobs, or a specific or all jobs
 {{< tabs "TabID102 ">}}
 {{< tab "NVUE Commands ">}}
 
-To cancel a scheduled telemetry job, run the `nv action cancel service telemetry hft job <job-id> profile <profile-id>` command.
+To cancel a scheduled telemetry job, run the `nv action cancel system telemetry hft job <job-id> profile <profile-id>` command.
 
 The following example cancels all jobs for profile `profile1`:
 
 ```
-cumulus@switch:~$ nv action cancel service telemetry hft job all profile profile1
+cumulus@switch:~$ nv action cancel system telemetry hft job all profile profile1
 ```
 
 The following example cancels job ID 6:
 
 ```
-cumulus@switch:~$ nv action cancel service telemetry hft job 6
+cumulus@switch:~$ nv action cancel system telemetry hft job 6
 ```
 
 {{< /tab >}}
@@ -1119,7 +1119,7 @@ hft.cancel.job_id = 6
 To show information for all data collection jobs, such as the start time, duration, status and ports on which the data is collected:
 
 ```
-cumulus@switch:~$ nv show service telemetry hft job
+cumulus@switch:~$ nv show system telemetry hft job
 Job Id      Start Time               Duration(s)        Profile     Ports    Status  
 
 ---------   --------------           ------------       ---------   -------   ---------  
@@ -1137,7 +1137,7 @@ Job Id      Start Time               Duration(s)        Profile     Ports    Sta
 To show the currently running data collection job:
 
 ```
-cumulus@switch:~$ nv show service telemetry hft job –filter “status=running” 
+cumulus@switch:~$ nv show system telemetry hft job –filter “status=running” 
 Job Id     Start Time              Duration(s)        Profile     Ports    Status  
 ---------  --------------          ------------       ---------   -------  ---------  
 7          19-05-2024 12:00:00     20                 standard    all      running
@@ -1146,7 +1146,7 @@ Job Id     Start Time              Duration(s)        Profile     Ports    Statu
 To show information about a specific data collection job:
 
 ```
-cumulus@switch:~$ nv show service telemetry hft job 1 
+cumulus@switch:~$ nv show system telemetry hft job 1 
                        operational
 ---------------------  ----------------- 
 start-time             01-01-2024 12:00:00 

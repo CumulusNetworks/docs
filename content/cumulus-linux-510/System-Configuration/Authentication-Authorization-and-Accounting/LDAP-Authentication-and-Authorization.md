@@ -50,16 +50,7 @@ shadow: compat ldap
 Keep `compat` as the first source in NSS for *passwd*, *group*, and *shadow*. This prevents you from getting locked out of the system.
 {{%/notice%}}
 
-Entering incorrect information during the installation process produces configuration errors. You can correct the information after installation by editing certain configuration files.
-
-- Edit the `/etc/nslcd.conf` file to update the LDAP URI and search base DN (see {{<link url="#update-the-nslcdconf-file" text="Update the nslcd.conf File">}}, below).
-- Edit the `/etc/nssswitch.conf` file to update the service selections.
-
-Be sure to restart `nvued.service` after editing the files.
-
-```
-cumulus@switch:~$ sudo systemctl restart nvued.service
-```
+Entering incorrect information during the installation process produces configuration errors. You can correct the information after installation. See {{<link url="#configure-ldap-server-settings" text="Configure LDAP Server Settings">}}
 
 {{< expand "Alternative Installation Method Using debconf-utils "  >}}
 
@@ -124,13 +115,11 @@ Instead of running the installer and following the interactive prompts, as descr
 
 ## Configure LDAP Server Settings
 
-After installation, update the main configuration file (`/etc/nslcd.conf`) to accommodate the expected LDAP server settings.
+You can configure LDAP server settings with NVUE commands or by updating the following configuration files:
+- Edit the `/etc/nslcd.conf` file to update the LDAP URI and search base DN (see Update the nslcd.conf File, below).
+- Edit the `/etc/nssswitch.conf` file to update the service selections.
 
-This section documents some of the more important options that relate to security and queries. For details on all the available configuration options, read the {{<exlink url="http://linux.die.net/man/5/nslcd.conf" text="nslcd.conf man page">}}.
-
-{{%notice note%}}
-After first editing the `/etc/nslcd.conf` file or enabling LDAP in the `/etc/nsswitch.conf` file, you must restart `netd` with the `sudo systemctl restart netd` command. If you disable LDAP, you need to restart the `netd` service.
-{{%/notice%}}
+After editing the `/etc/nslcd.conf` and `/etc/nssswitch.conf`, you must restart `nvued.service` with the `sudo systemctl restart nvued.service` command.
 
 ### Connection
 
@@ -138,7 +127,11 @@ The LDAP client starts a session by connecting to the LDAP server on TCP and UDP
 
 The URI is mandatory and specifies the LDAP server location using the FQDN or IP address. The URI also designates whether to use `ldap://` for clear text transport, or `ldaps://` for SSL/TLS encrypted transport. You can also specify an alternate port in the URI. In production environments, use the LDAPS protocol so that all communications are secure.
 
-After the connection to the server is complete, the BIND operation authenticates the session. The BIND credentials are optional; if you do not specify the credentials, the switch assumes an anonymous bind. Configure authenticated (Simple) BIND by specifying the user (`binddn`) and password (`bindpw`) in the configuration. Another option is to use SASL (Simple Authentication and Security Layer) BIND, which provides authentication services using other mechanisms, like Kerberos. Contact your LDAP server administrator for this information as it depends on the configuration of the LDAP server and the credentials for the client device.
+After the connection to the server is complete, the BIND operation authenticates the session. The BIND credentials are optional; if you do not specify the credentials, the switch assumes an anonymous bind. Configure authenticated (Simple) BIND by specifying the user and password.
+
+To use SASL (Simple Authentication and Security Layer) BIND, which provides authentication services using other mechanisms such as Kerberos, contact your LDAP server administrator for authentication information.
+
+The following example configures the URI for the LDAP server and the BIND credentials.
 
 {{< tabs "TabID145 ">}}
 {{< tab "NVUE Commands ">}}
@@ -170,7 +163,7 @@ bindpw CuMuLuS
 
 ### Search Function
 
-When an LDAP client requests information about a resource, it must connect and bind to the server. Then, it performs one or more resource queries depending on the lookup. All search queries to the LDAP server use the configured search *base*, *filter*, and the desired entry (*uid=myuser*). If the LDAP directory is large, this search takes a long time. Define a more specific search base for the common *maps* (*passwd* and *group*).
+When an LDAP client requests information about a resource, the client must connect and bind to the server, then perform one or more resource queries depending on the lookup. All search queries to the LDAP server use the configured search *base*, *filter*, and the desired entry (*uid=myuser*). If the LDAP directory is large, this search takes a long time. Define a more specific search base for the common *maps* (*passwd* and *group*).
 
 {{< tabs "TabID176 ">}}
 {{< tab "NVUE Commands ">}}
@@ -291,10 +284,10 @@ Cumulus Linux provides two timeout settings:
 - The bind timeout sets the number of seconds before the BIND operation times out.
 - The search timeout sets the number of seconds before the search times out.
 
+The following example sets both the BIND session timeout and the search timeout to 60 seconds.
+
 {{< tabs "TabID295 ">}}
 {{< tab "NVUE Commands ">}}
-
-The following example sets both the BIND session timeout and the search timeout to 60 seconds:
 
 ```
 cumulus@switch:~$ nv set system aaa ldap timeout-bind 60
@@ -319,6 +312,14 @@ timelimit 60
 {{< /tabs >}}
 
 ### SSL Options
+
+You can set the following SSL options:
+- The SSL mode.
+- The SSL port.
+- The SSL certificate checker.
+- The SSL CA certificate list.
+- The SSL cipher suites.
+- The SSL <span class="a-tooltip">[CRL](## "Certificate Revocation List")</span> checker.
 
 {{< tabs "TabID324 ">}}
 {{< tab "NVUE Commands ">}}
@@ -374,7 +375,7 @@ shared object file: No such file or directory
 You can ignore this message. The `libdb` package and resulting log messages from `nslcd` do not cause any issues when you use LDAP as a client for login and authentication.
 {{%/notice%}}
 
-### Example Configuration
+### Example /etc/nslcd.conf Configuration File
 
 Here is an example configuration using Cumulus Linux.
 
@@ -622,31 +623,29 @@ nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_simple_bind_s(NULL,NULL) (uri="lda
 nslcd: [8b4567] <passwd="myuser"> DEBUG: ldap_result(): end of results (0 total)
 ```
 
-### Common Problems
-
-#### SSL/TLS
+### SSL/TLS
 
 - The FQDN of the LDAP server URI does not match the FQDN in the CA-signed server certificate.
-- `nslcd` cannot read the SSL certificate and reports a *Permission denied* error in the debug during server connection negotiation. Check the permission on each directory in the path of the root SSL certificate. Ensure that it is readable by the `nslcd` user.
+- `nslcd` cannot read the SSL certificate and reports a *Permission denied* error during server connection negotiation. Check the permission on each directory in the path of the root SSL certificate. Ensure that it is readable by the `nslcd` user.
 
-#### NSCD
+### NSCD
 
-- If the `nscd cache` daemon is also enabled and you make some changes to the user from LDAP, you can clear the cache using the following commands:
+If you enable the `nscd cache` daemon then make changes to the user from LDAP, you can clear the cache using the following commands:
 
-   ```
-   nscd --invalidate = passwd
-   nscd --invalidate = group
-   ```
+```
+nscd --invalidate = passwd
+nscd --invalidate = group
+```
 
-- The `nscd` package works with `nslcd` to cache name entries returned from the LDAP server. This sometimes causes authentication failures. To work around these issues, disable `nscd`, restart the `nslcd` service, then retry authentication:
+The `nscd` package works with `nslcd` to cache name entries returned from the LDAP server, which can cause authentication failures. To work around these issues, disable `nscd`, restart the `nslcd` service, then retry authentication:
 
-   ```
-   cumulus@switch:~$ sudo nscd -K
-   cumulus@switch:~$ sudo systemctl restart nslcd.service
-   ```
+```
+cumulus@switch:~$ sudo nscd -K
+cumulus@switch:~$ sudo systemctl restart nslcd.service
+```
 
 {{%notice note%}}
-If you are running the `nslcd` service in a management VRF, you need to run the `systemctl restart nslcd@mgmt.service` command instead of the `systemctl restart nslcd.service` command. For example:
+If you are running the `nslcd` service in the management VRF, you must use the `systemctl restart nslcd@mgmt.service` command instead of the `systemctl restart nslcd.service` command; for example:
 
 ```
 cumulus@switch:~$ sudo nscd -K
@@ -654,14 +653,13 @@ cumulus@switch:~$ sudo systemctl restart nslcd@mgmt.service
 ```
 {{%/notice%}}
 
-#### LDAP
+### LDAP
 
-- The search filter returns incorrect results. Check for typos in the search filter. Use `ldapsearch` to test your filter.
-- Optionally, configure the basic LDAP connection and search parameters in `/etc/ldap/ldap.conf`.
+If the search filter returns incorrect results, check for typographical errors in the search filter. Use `ldapsearch` to test your filter or onfigure the basic LDAP connection and search parameters in the `/etc/ldap/ldap.conf` file.
 
-   ```
-   # ldapsearch -D 'cn=CLadmin' -w 'CuMuLuS' "(&(ObjectClass=inetOrgUser)(uid=myuser))"
-   ```
+```
+# ldapsearch -D 'cn=CLadmin' -w 'CuMuLuS' "(&(ObjectClass=inetOrgUser)(uid=myuser))"
+```
 
 ## Related Information
 

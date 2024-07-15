@@ -210,6 +210,8 @@ For example, if your host is configured to send the interface name in the LLDP p
 "switch1":"swp1" -- "host5":"eth1"
 ```
 {{< expand "DOT file example" >}}
+
+Each line in the DOT file should depict the network's physical cabling:
 ```
 graph "Example 2es full" {
     "spine-1":"swp2" -- "noc-se":"swp11"

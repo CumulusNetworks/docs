@@ -10,7 +10,7 @@ type: nojsscroll
 
 ## netq add check-filter
 
-You can add filters to `netq check` commands to suppress validation failures based on hostnames, failure reason, and other parameters. Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for step-by-step instructions. 
+You can add filters to `netq check` commands to suppress validation failures based on hostnames, failure reason, and other parameters.
 
 ### Syntax
 

@@ -17,18 +17,6 @@ Overall network health in the NetQ UI is a calculated average of several key hea
 
 **Interface health** represents the interfaces, VLAN, and link MTU validation checks.
 
-Some validations---such as checks for RoCE configurations, duplicate addresses, and topology inconsistencies---are not included in the validation summary and do not appear in the Validation Summary card. You can run an {{<link title="Validate Network Protocol and Service Operations#on-demand-validations" text="on-demand validation">}} or {{<link title="Validate Network Protocol and Service Operations#schedule-a-validation" text="schedule a validation">}} to view validation results for those protocols and services.
-<!--
-To view network health metrics:
-
-1. Open or locate the Validation Summary card on your workbench.
-
-2. Each metric displays a distribution of the validation results for each category. Hover over the individual categories to view detailed metrics for specific validation checks.  
-
-   In this example, system health is good, but network services and interface health display validation failures:
-
-    {{<figure src="/images/netq/updated-validation-summary-card.png" alt="medium validation summary card displaying high-level health metrics" width="200">}}
--->
 ## View Detailed Network Health
 
 To view details about your network's health, open or locate the large Validation Summary card on your workbench. To view devices with the most issues or recent issues, select the **Most failures** tab or **Recent failures** tab, respectively. You can unselect one or more services on the left side of the card to display devices affected by the selected services on the right side of the card.
@@ -71,9 +59,9 @@ Click the **Interface health** tab.
 
 From the relevant tab (System Health, Network Service Health, or Interface Health) on the large Validation Summary card, you can select a chart to open a full-screen view of the validation data for that service.
 
-The following example shows the EVPN validation at its most granular level. The *Checks* section displays the individual tests that comprise the EVPN validation, including which tests passed and which failed. The *Results* section displays the devices which failed the EVPN validation, the sessions that failed, and the individual nodes that failed.
+The following example shows the MLAG validation at its most granular level. The *Checks* section displays the individual tests that comprise the MLAG validation, including which tests passed and which failed. The *Results* section displays the devices which failed the MLAG validation, the sessions that failed, and the individual nodes that failed.
 
-{{<figure src="/images/netq/evpn-full-411.png" alt="EVPN validation data" width="1300">}}
+{{<figure src="/images/netq/mlag-validation-411.png" alt="EVPN validation data" width="1300">}}
 
 ## View Default Network Protocol and Service Validation Results
 

@@ -18,9 +18,9 @@ NetQ reports switch performance metrics for the following categories:
 {{<tabs "TabID20" >}}
 
 {{<tab "NetQ UI" >}}
-
+{{<notice tip>}}
 The quickest way to access monitoring information for an individual switch is by searching for its hostname in the global search field. Search for the hostname and select the switch to open a full-screen overview of attributes and performance information.
-
+{{</notice>}}
 Alternately, you can add a device card to your workbench:
 
 1. From the header select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card&nbsp;<span aria-label="and then">></span> Device card**.

@@ -70,7 +70,15 @@ nv show interface <interface> link phy-detail
 nv show interface <interface> link phy-diag
 nv show qos advance-buffer-config default-global egress-mgmt-buffer 
 nv show qos advance-buffer-config default-global ingress-mgmt-buffer
-nv show service telemetry hft job
+nv show system telemetry hft
+nv show system telemetry hft profile
+nv show system telemetry hft profile <profile-id>
+nv show system telemetry hft profile <profile-id> traffic-class
+nv show system telemetry hft profile <profile-id> counter
+nv show system telemetry hft target
+nv show system telemetry hft target influxdb
+nv show system telemetry hft job
+nv show system telemetry hft job <hft-job-id>
 ```
 
 {{< /tab >}}
@@ -78,9 +86,9 @@ nv show service telemetry hft job
 
 ```
 nv set interface <interface> link mac-address
-nv set system telemetry hft profile <profile> counter
-nv set system telemetry hft profile <profile> sample-interval
-nv set system telemetry hft profile <profile> traffic-class
+nv set system telemetry hft profile <profile-id> counter
+nv set system telemetry hft profile <profile-id> sample-interval
+nv set system telemetry hft profile <profile-id> traffic-class
 nv set system telemetry hft target local
 nv set system telemetry hft target influxdb bucket
 nv set system telemetry hft target influxdb host
@@ -99,17 +107,14 @@ nv set vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 
 ```
 nv unset interface <interface> link mac-address
-nv unset system telemetry hft profile <profile>
-nv unset system telemetry hft profile <profile> counter
-nv unset system telemetry hft profile <profile> sample-interval
-nv unset system telemetry hft profile <profile> traffic-class
+nv unset system telemetry hft
+nv unset system telemetry hft profile <profile-id>
+nv unset system telemetry hft profile <profile-id> counter
+nv unset system telemetry hft profile <profile-id> sample-interval
+nv unset system telemetry hft profile <profile-id> traffic-class
+nv unset system telemetry hft target
 nv unset system telemetry hft target local
 nv unset system telemetry hft target influxdb
-nv unset system telemetry hft target influxdb bucket
-nv unset system telemetry hft target influxdb host
-nv unset system telemetry hft target influxdb org
-nv unset system telemetry hft target influxdb port
-nv unset system telemetry hft target influxdb token
 nv unset system ssh-server login-record-period
 nv unset qos advance-buffer-config default-global egress-mgmt-buffer 
 nv unset qos advance-buffer-config default-global ingress-mgmt-buffer

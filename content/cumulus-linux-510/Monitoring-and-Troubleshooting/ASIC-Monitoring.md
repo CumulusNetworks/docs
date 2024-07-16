@@ -793,7 +793,7 @@ cumulus@switch:~$ cl-hft-tool profile-add --name profile1 --counter tc-occupancy
 The following example configures `profile2` and sets the sampling interval to 1000, the traffic class to 1-9, and the type of data to collect to received bytes (`rx-byte`) and transferred bytes (`tx-byte`):
 
 ```
-cumulus@switch:~$ cl-hft-tool profile-add --name profile2 --counter rx-byte, tx-byte --tc 1-9 --interval 1000 
+cumulus@switch:~$ cl-hft-tool profile-add --name profile2 --counter rx-byte,tx-byte --tc 1-9 --interval 1000 
 ```
 
 To delete a profile, run the `cl-hft-tool profile-delete --name <profile-id>` command:
@@ -822,7 +822,7 @@ The following example configures `profile1` and sets the sampling interval to 10
 cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_profile.conf
 hft.profile_list = [profile1]
 hft.standard.counters_list = [tc_curr_occupancy]
-hft.standard.sample_interval = [1000]
+hft.standard.sample_interval = 1000
 hft.standard.tc_list = [0,3,7]
 ```
 
@@ -831,7 +831,7 @@ The following example configures `profile2` and sets the sampling interval to 10
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_profile.conf
 hft.profile_list = [profile2]
-hft.standard.counters_list = [if_in_octets, if_out_octets]
+hft.standard.counters_list = [if_in_octets,if_out_octets]
 hft.standard.sample_interval = 1000
 hft.standard.tc_list = [0-9]
 ```
@@ -909,12 +909,15 @@ To configure the schedule for a data collection profile, set:
 - The session duration in seconds. The default value is 20 seconds.
 - The ports on which you want to collect the data. You can specify a range of ports, multiple comma separated ranges of ports, or `all` for all the ports. The default value is `all`.
 
-You can schedule a maximum of 25 sessions (jobs). The switch can retain data for 25 jobs (completed, cancelled, or failed) in addition to the active jobs.  
+{{%notice note%}}
+- You can schedule a maximum of 25 sessions (jobs). The switch can retain data for 25 jobs (completed, cancelled, or failed) in addition to the active jobs.
+- You must configure data export (the target) before configuring the schedule.
+{{%/notice%}}
 
 {{< tabs "TabID79 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example configures `profile1` to start on 2024-07-17 at 10:00:00, last 30 seconds, collect data on swp1 through swp9.
+The following example configures `profile1` to start on 2024-07-17 at 10:00:00, last 30 seconds, and collect data on swp1 through swp9.
 
 Specify the date and time in `YYYY-MM-DD HH:MM:SS` format.
 
@@ -942,7 +945,7 @@ Action succeeded
 {{< tabs "803 ">}}
 {{< tab "Job Management Tool ">}}
 
-The following example configures `profile1` to start on 27-07-2024 at 10:00:00, last 30 seconds, collect data on swp1 through swp9.
+The following example configures `profile1` to start on 27-07-2024 at 10:00:00, last 30 seconds, and collect data on swp1 through swp9.
 
 Specify the date and time in `DD-MM-YYY-HH:MM:SS` format.
 

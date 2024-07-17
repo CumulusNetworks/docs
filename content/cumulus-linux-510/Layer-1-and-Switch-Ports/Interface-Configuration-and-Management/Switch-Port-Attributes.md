@@ -115,12 +115,14 @@ To show the MTU setting for an interface:
 ```
 cumulus@switch:~$ nv show interface swp1
 ...
-link                                                   
-  auto-negotiate           off                on       
-  duplex                   full               full     
-  speed                    1G                 auto     
-  fec                                         auto     
-  mtu                      9216               9216
+link                                                            
+  auto-negotiate          off                           on      
+  duplex                  full                          full    
+  speed                   1G                            auto    
+  mac-address             48:b0:2d:c8:bb:07                     
+  fec                                                   auto    
+  mtu                     9216                          9216    
+...
 ```
 
 {{< /tab >}}
@@ -1961,6 +1963,21 @@ For more information about showing and clearing interface counters, refer to {{<
 ### SFP Port Information
 
 To verify SFP settings, run the NVUE `nv show interface <interface> pluggable` command or the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
+
+```
+cumulus@switch:~$ nv show interface swp1 pluggable
+             operational
+-----------  ----------------------------------
+identifier   OSFP 8X Pluggable Transceiver
+vendor-name  NVIDIA
+vendor-pn    MMS4X00-NS
+vendor-sn    MT2226FT08603
+vendor-rev   A7
+vendor-oui   48:b0:2d
+date-code    220630
+temperature  53.01 degrees C / 127.41 degrees F
+voltage      3.2519 V
+```
 
 ```
 cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'

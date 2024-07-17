@@ -214,9 +214,11 @@ The following example shows the views available for the `nv show interface` comm
 
 ```
 cumulus@switch:~$ nv show interface --view <<TAB>>
-acl-statistics  detail          lldp            mlag-cc         port-security   synce-counters  
-brief           dot1x-counters  lldp-detail     neighbor        qos-profile     
-counters        dot1x-summary   mac             pluggables      small
+acl-statistics  dot1x-summary   neighbor        status
+brief           lldp            pluggables      synce-counters
+counters        lldp-detail     port-security   
+detail          mac             qos-profile     
+dot1x-counters  mlag-cc         small
 ```
 
 **Monitoring Commands and FRR Daemons**

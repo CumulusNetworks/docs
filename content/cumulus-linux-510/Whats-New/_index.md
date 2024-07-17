@@ -55,7 +55,6 @@ These commands include additional information in the output.
 
 | Changed Command Output | Additional Information |
 | ----------- | ----------------|
-| `nv show interface <interface>` |  Port hardware information such as eyes, grade and troubleshooting information, if available.|
 | `nv show interface <interface> link` | Port hardware information such as eyes, grade and troubleshooting information, if available. |
 | `nv show interface <interface> pluggable` | Cable length, date code, revision compliance, temperature, and voltage. |
 

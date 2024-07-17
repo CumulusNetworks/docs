@@ -75,7 +75,6 @@ nv show system telemetry hft profile <profile-id>
 nv show system telemetry hft profile <profile-id> traffic-class
 nv show system telemetry hft profile <profile-id> counter
 nv show system telemetry hft target
-nv show system telemetry hft target influxdb
 nv show system telemetry hft job
 nv show system telemetry hft job <hft-job-id>
 ```
@@ -89,11 +88,6 @@ nv set system telemetry hft profile <profile-id> counter
 nv set system telemetry hft profile <profile-id> sample-interval
 nv set system telemetry hft profile <profile-id> traffic-class
 nv set system telemetry hft target local
-nv set system telemetry hft target influxdb bucket
-nv set system telemetry hft target influxdb host
-nv set system telemetry hft target influxdb org
-nv set system telemetry hft target influxdb port
-nv set system telemetry hft target influxdb token
 nv set system ssh-server login-record-period
 nv set qos advance-buffer-config default-global egress-mgmt-buffer 
 nv set qos advance-buffer-config default-global ingress-mgmt-buffer
@@ -113,7 +107,6 @@ nv unset system telemetry hft profile <profile-id> sample-interval
 nv unset system telemetry hft profile <profile-id> traffic-class
 nv unset system telemetry hft target
 nv unset system telemetry hft target local
-nv unset system telemetry hft target influxdb
 nv unset system ssh-server login-record-period
 nv unset qos advance-buffer-config default-global egress-mgmt-buffer 
 nv unset qos advance-buffer-config default-global ingress-mgmt-buffer

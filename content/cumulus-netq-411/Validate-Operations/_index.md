@@ -13,19 +13,19 @@ The following table displays the validation categories. Refer to the {{<link tit
 
 | Item | NetQ UI | NetQ CLI | Run by Default | Frequency |
 | --- | :---: | :---: | :---: |  :---: |
-| Addresses | Yes | Yes | No | N/A |
+| Addresses | Yes | Yes | No | on-demand, as scheduled |
 | Agents | Yes | Yes |  Yes |  60 mins |
 | BGP | Yes | Yes | Yes |  60 mins |
-| Cumulus Linux version | No | Yes |  No | N/A |
+| Cumulus Linux version | No | Yes |  No | on-demand, as scheduled |
 | EVPN | Yes | Yes |  Yes | 60 mins |
 | Interfaces | Yes | Yes |  Yes |  60 mins |
 | MLAG (CLAG) | Yes | Yes |  Yes |  60 mins |
 | MTU | Yes | Yes | Yes |  60 mins |
 | NTP | Yes | Yes | Yes |  60 mins |
 | OSPF | Yes | Yes | Yes |  60 mins |
-| RoCE | Yes | Yes | No | N/A |
+| RoCE | Yes | Yes | No | on-demand, as scheduled |
 | Sensors | Yes | Yes |  Yes |  60 mins |
-| Topology | Yes | Yes | No | on-demand only |
+| Topology (beta) | Yes | Yes | No | on-demand |
 | VLAN | Yes | Yes | Yes |  60 mins |
 | VXLAN | Yes | Yes | Yes |  60 mins |
 

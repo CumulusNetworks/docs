@@ -76,4 +76,4 @@ Select the three-dot menu on a given query to either delete or remove the query.
 
 ## Related Information
 
-- {{<link title="Validation Tests Reference#topology-validation-tests" text="Topology Validation">}}
+- {{<link title="Validate Network Protocol and Service Operations/#topology-validations" text="Topology Validation">}}

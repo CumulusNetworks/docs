@@ -1048,7 +1048,7 @@ Edit the `/etc/cumulus/telemetry/hft/hft_job.conf` file to configure the followi
 The following example cancels job ID 6 for profile `profile1`:
 
 ```
-cumulus@switch:~$  sudo nano /etc/cumulus/telemetry/hft/hft_job.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_job.conf
 hft.action_type = schedule
 hft.schedule.start_time =  2024-01-01 10:00:00
 hft.schedule.duration = 30

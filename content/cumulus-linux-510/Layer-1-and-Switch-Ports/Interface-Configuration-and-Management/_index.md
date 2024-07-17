@@ -676,6 +676,35 @@ cumulus@switch:~$ ip link
 ...
 ```
 
+```
+cumulus@switch:~$ nv show interface swp1 link
+                       operational                     
+---------------------  ------------------------------
+admin-status           up
+oper-status            up
+protodown              disabled
+auto-negotiate         on
+duplex                 full
+speed                  800G
+mac-address            9c:05:91:9a:e0:b8
+fec                    rs
+mtu                    9216
+fast-linkup            off
+stats
+  in-bytes             145.08 KB
+  in-pkts              756
+  in-drops             8
+  in-errors            0
+  out-bytes            145.42 KB
+  out-pkts             757
+  out-drops            0
+  out-errors           0
+  carrier-transitions  12
+eyes                   65, 62, 70, 65, 80, 82, 81, 82
+grade                  65, 62, 70, 65, 80, 82, 81, 82
+troubleshooting-info   No issue was observed
+```
+
 ### Clear the Interface Protodown State and Reason
 
 To clear the protodown state and the reason:
@@ -883,12 +912,11 @@ To show the administrative and physical (operational) state of an interface:
 
 ```
 cumulus@switch:~$ nv show interface swp1
-                          operational        applied
-------------------------  -----------------  -------
-Interface  Admin Status  Oper Status  Speed  MTU    Type      Remote Host  Remote Port  Summary
-...  
-  oper-status             down                      
-  admin-status            down 
+                         operational        applied
+-----------------------  -----------------  -------
+...
+  oper-status            down                      
+  admin-status           down 
 ```
 
 {{< /tab >}}
@@ -913,7 +941,13 @@ To show the assigned IP address on an interface:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv show interface swp1 ip address
+cumulus@switch:~$ nv show interface lo ip address
+nv show interface lo ip address
+             
+-------------
+10.10.10.1/24
+127.0.0.1/8  
+::1/128
 ```
 
 {{< /tab >}}

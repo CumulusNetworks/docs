@@ -111,8 +111,8 @@ Histogram settings include the type of data you want to collect, the ports you w
     - CRC counters (`crc`)
     - Layer 1 received byte counters (`l1-rx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
     - Layer 1 transmitted byte counters (`l1-tx-byte`). The byte count includes layer 1<span class="a-tooltip">[IPG](## "Interpacket Gap")</span> bytes.
-- You can enable up to two counter histogram counter types per physical interface. The counter histogram does not support bonds or virtual interfaces.
-- The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin.
+- You can enable up to two counter histogram counter types for each physical interface. The counter histogram does not support bonds or virtual interfaces.
+- The default minimum boundary size is 960 bytes. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths for each bin.
 - The default value for the sampling time is 1024 nanoseconds.
 
 {{%notice note%}}
@@ -232,12 +232,12 @@ The following table describes the ASIC monitor settings.
 | `port_group_list` | Specifies the names of the monitors (port groups) you want to use to collect data, such as `histogram_pg`. You can provide any name you want for the port group. You must use the same name for all the port group settings.<br><br>Example:<pre>monitor.port_group_list = [histogram_pg,discards_pg,buffers_pg,all_packets_pg]</pre>**Note**: You must specify at least one port group. If the port group list is empty, `systemd` shuts down the `asic-monitor` service. |
 | `<port_group_name>.port_set` | Specifies the range of ports you want to monitor, such as `swp4,swp8,swp10-swp50`. To specify all ports, use the `all_ports` option.<br><br>Example:<pre>monitor.histogram_pg.port_set = swp1-swp50</pre><pre>monitor.histogram_pg.port_set = all_ports</pre> |
 | `<port_group_name>.stat_type` | Specifies the type of data that the port group collects.<br><br>For egress queue length histograms, specify `histogram_tc`. For example:<pre>monitor.histogram_pg.stat_type = histogram_tc</pre>For ingress queue length histograms, specify `histogram_pg`. For example: <pre>monitor.histogram_pg.stat_type = histogram_pg</pre>For counter histograms, specify `histogram_counter`. For example:<pre>monitor.histogram_pg.stat_type = histogram_counter</pre>. For latency histograms, specify `histogram_latency`. For example:<pre> monitor.histogram_pg.stat_type = histogram_latency</pre>.|
-| `<port_group_name>.cos_list` | For histogram monitoring, each CoS (Class of Service) value in the list has its own histogram on each port. The global limit on the number of histograms is an average of one histogram per port.<br><br>Example:<pre>monitor.histogram_pg.cos_list = [0]</pre> |
+| `<port_group_name>.cos_list` | For histogram monitoring, each CoS (Class of Service) value in the list has its own histogram on each port. The global limit on the number of histograms is an average of one histogram for each port.<br><br>Example:<pre>monitor.histogram_pg.cos_list = [0]</pre> |
 | `<port_group_name>.counter_type` | Specifies the counter type for counter histogram monitoring. The counter types can be `tx-pkt`,`rx-pkt`,`tx-byte`,`rx-byte`.<br><br>Example:<pre>monitor.histogram_pg.counter_type = [rx_byte]</pre> |
 | `<port_group_name>.trigger_type` | Specifies the type of trigger that initiates data collection. The only option is timer. At least one port group must have a configured timer, otherwise no data is ever collected.<br><br>Example:<pre>monitor.histogram_pg.trigger_type = timer</pre> |
-| `<port_group_name>.timer` | Specifies the frequency at which data collects; for example, a setting of 1s indicates that data collects one time per second. You can set the timer to the following:<br>1 to 60 seconds: 1s, 2s, and so on up to 60s<br>1 to 60 minutes: 1m, 2m, and so on up to 60m<br>1 to 24 hours: 1h, 2h, and so on up to 24h<br>1 to 7 days: 1d, 2d and so on up to 7d<br><br>Example:<pre>monitor.histogram_pg.timer = 4s</pre> |
-| `<port_group_name>.histogram.minimum_bytes_boundary` | *For histogram monitoring*.<br><br>The minimum boundary size for the histogram in bytes. On a Spectrum switch, this number must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths per bin.<br><br>Example:<pre>monitor.histogram_pg.histogram.minimum_bytes_boundary = 960</pre> |
-| `<port_group_name>.histogram.histogram_size_bytes` | *For histogram monitoring*.<br><br>The size of the histogram in bytes. Adding this number and the minimum_bytes_boundary value together produces the maximum boundary size. These values represent the range of queue lengths per bin.<br><br>Example:<pre>monitor.histogram_pg.histogram.histogram_size_bytes = 12288</pre> |
+| `<port_group_name>.timer` | Specifies the frequency at which data collects; for example, a setting of 1s indicates that data collects one time each second. You can set the timer to the following:<br>1 to 60 seconds: 1s, 2s, and so on up to 60s<br>1 to 60 minutes: 1m, 2m, and so on up to 60m<br>1 to 24 hours: 1h, 2h, and so on up to 24h<br>1 to 7 days: 1d, 2d and so on up to 7d<br><br>Example:<pre>monitor.histogram_pg.timer = 4s</pre> |
+| `<port_group_name>.histogram.minimum_bytes_boundary` | *For histogram monitoring*.<br><br>The minimum boundary size for the histogram in bytes. On a Spectrum switch, this number must be a multiple of 96. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of queue lengths for each bin.<br><br>Example:<pre>monitor.histogram_pg.histogram.minimum_bytes_boundary = 960</pre> |
+| `<port_group_name>.histogram.histogram_size_bytes` | *For histogram monitoring*.<br><br>The size of the histogram in bytes. Adding this number and the minimum_bytes_boundary value together produces the maximum boundary size. These values represent the range of queue lengths for each bin.<br><br>Example:<pre>monitor.histogram_pg.histogram.histogram_size_bytes = 12288</pre> |
 | `<port_group_name>.histogram.sample_time_ns` | *For histogram monitoring*.<br><br>The sampling time of the histogram in nanoseconds.<br><br>Example:<pre>monitor.histogram_pg.histogram.sample_time_ns = 1024</pre> |
 
 {{< tabs "TabID184 ">}}
@@ -443,8 +443,8 @@ A collect action triggers the collection of additional information. You can dais
 In the following example:
 - Queue length histograms collect for swp1 through swp50 every second.
 - The results write to the `/var/run/cumulus/histogram_stats` snapshot file.
-- When the queue length reaches 500 bytes, the system sends a message to the /var/log/syslog file and collects additional data; buffer occupancy and all packets per port.
-- Buffer occupancy data writes to the `/var/lib/cumulus/buffer_stats` snapshot file and all packets per port data writes to the `/var/lib/cumulus/all_packet_stats` snapshot file.
+- When the queue length reaches 500 bytes, the system sends a message to the /var/log/syslog file and collects additional data; buffer occupancy and all packets for each port.
+- Buffer occupancy data writes to the `/var/lib/cumulus/buffer_stats` snapshot file and all packets for each port data writes to the `/var/lib/cumulus/all_packet_stats` snapshot file.
 - In addition, packet drops on swp1 through swp50 collect every two seconds. If the number of packet drops is greater than 100, the monitor writes the results to the `/var/lib/cumulus/discard_stats` snapshot file and sends a message to the `/var/log/syslog` file.
 
 ```
@@ -712,17 +712,17 @@ Time      0-863     864:2303    2304:3743  3744:5183   5184:6623   6624:8063   8
 
 High frequency telemetry enables you to collect counters at very short sampling intervals (single digit milliseconds to microseconds). The data can help you detect short duration events like microbursts, and provides information about where in time the events happen and for how long.
 
-High frequency telemetry data provides time series data that traditional histograms cannot provide. The time series data helps you understand the shape of the traffic pattern and identify any spikes or dips, or jitter in the traffic.
+High frequency telemetry data provides time-series data that traditional histograms cannot provide. This data can help you understand the shape of the traffic pattern and identify any spikes or dips, or jitter in the traffic.
 
 You can export a `json` file with the collected data to an external location. You can then process the data, plot it into a time-series graph and see how the network behaves with high precision.
 
 {{%notice note%}}
 - Cumulus Linux supports high frequency telemetry on Spectrum-4 switches only.
-- To correlate counters from different switches for debugging and profiling, the switches must have the same time (the switch adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP. NVIDIA recommends using PTP because the timestamp is accurate among the switches in the fabric at the microsecond level.
-- The collected data is available on the switch until you trigger the next data collection session or until you reboot the switch.
+- To correlate counters from different switches, the switches must have the same time (Cumulus Linux adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP; however, NVIDIA recommends using PTP because the timestamp is accurate between switches in the fabric at the microsecond level.
+- The collected data is available on the switch until you trigger the next data collection job or until you reboot the switch.
 {{%/notice%}}
 
-Cumulus Linux provides several options to configure high frequency telemetry; you can run NVUE commands (the preferred configuration method), use the Cumulus Linux job management tool (`cl-hft-tool`), or edit flat files. Using the `cl-hft-tool` command tool provides a more simplified way than editing flat files to perform Linux configuration. To show all the `cl-hft-tool` command options, run `cl-hft-tool help`.
+Cumulus Linux provides several options to configure high frequency telemetry; you can run NVUE commands (the preferred configuration method), use the Cumulus Linux job management tool (`cl-hft-tool`), or edit flat files. The `cl-hft-tool` command tool provides a more simplified way to perform Linux configuration. You can see all the `cl-hft-tool` command options with `cl-hft-tool -h`.
 
 To configure high frequency telemetry:
 1. Enable telemetry with the `nv set system telemetry enable on` command.
@@ -735,13 +735,13 @@ To configure high frequency telemetry:
 High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).
 
 {{%notice note%}}
-You cannot delete or modify a profile if sessions are already running or scheduled.
+You cannot delete or modify a profile if data collectionjobs are already running or scheduled.
 {{%/notice%}}
 
 To configure data collection:
 - Set the sampling interval in microseconds for the profile. You can specify a value between 100 and 12750. The value must be a multiple of 50. The default value is 5000 microseconds (30 seconds).
 - Set the egress queue priorities (traffic class 0-15) for the profile. The `standard` profile setting is 3.
-- Specify the type of data you want to collect for the profile (transferred bytes, received bytes, and traffic class occupancy). The `standard` profile collects transferred bytes, received bytes, and traffic class occupancy.
+- Specify the type of data you want to collect for the profile (transferred bytes, received bytes, traffic class occupancy). The `standard` profile collects all three data types.
 
 {{%notice note%}}
 Use commas (no spaces) to separate the list of traffic classes. For example, to set traffic class 1, 3, and 6, specify `1,3,6`.
@@ -815,9 +815,9 @@ Edit the `/etc/cumulus/telemetry/hft/hft.conf` file to configure the following p
 | Parameter | Description |
 | --------- | ----------- |
 | `hft.profile_list` | The name of the profile. |
-| `hft.<profile-name>.counters_list` | The type of data you want to collect, which can be transferred bytes (`tx-byte`), received bytes (`rx-byte`), and, or traffic class occupancy (`tc-occupancy`). |
+| `hft.<profile-name>.counters_list` | The type of data you want to collect. You can specify transferred bytes (`tx-byte`), received bytes (`rx-byte`), and traffic class occupancy (`tc-occupancy`). |
 | `hft.<profile-name>.sample_interval` | The sampling interval in microseconds. You can specify a value between 100 and 65535. The value must be a multiple of 50. The default value is 5000 microseconds.|
-| `hft.<profile-name>.tc_list` | The list of egress queue priorities (traffic classes) per port on which you want to collect data. |
+| `hft.<profile-name>.tc_list` | The list of egress queue priorities (traffic classes) for each port on which you want to collect data. |
 
 The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the type of data to collect to traffic class occupancy (`tc_occupancy`):
 
@@ -850,7 +850,8 @@ hft.profile2.tc_list = [0-9]
 You can save the collected data locally to a `json` file in the `/var/run/cumulus/hft` directory, then export the `json` file to an external location with NVUE commands (or the API). The `json` format file includes the data for each sampling interval and a timestamp showing when the data was collected.
 
 {{%notice note%}}
-The collected data is available on the switch until you trigger the next data collection or until you reboot the switch.
+- The collected data is available on the switch until you trigger the next data collection or until you reboot the switch.
+- You must configure data export (the target) before you can configure a schedule.
 {{%/notice%}}
 
 {{< tabs "TabID56 ">}}
@@ -890,6 +891,7 @@ The following example saves the collected data locally to a `json` file:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft.conf
+...
 hft.target = [local]
 ```
 
@@ -899,7 +901,7 @@ hft.target = [local]
 {{< /tab >}}
 {{< /tabs >}}
 
-To export a `json` file to an external location, run the NVUE `nv action upload system telemetry hft job <hft-job-id> <remote-url>` command. To see the list of jobs, run the `nv show system telemetry hft job` command.
+To export a `json` file to an external location, run the NVUE `nv action upload system telemetry hft job <hft-job-id> <remote-url>` command. You can see the list of jobs with the `nv show system telemetry hft job` command.
 
 ```
 cumulus@switch:~$ nv action upload system telemetry hft job 1 scp://user1:password@host:~/ 
@@ -914,13 +916,13 @@ To configure the schedule for a data collection profile, set:
 
 {{%notice note%}}
 - You can schedule a maximum of 25 sessions (jobs). The switch can retain data for 25 jobs (completed, cancelled, or failed) in addition to the active jobs.
-- You must configure data export (the target) before configuring the schedule.
+- You must configure data export (the target) before you can configure the schedule.
 {{%/notice%}}
 
 {{< tabs "TabID79 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example configures `profile1` to start on 2024-07-17 at 10:00:00, last 30 seconds, and collect data on swp1 through swp9.
+The following example configures `profile1` to start on 2024-07-17 at 10:00:00, run for 30 seconds, and collect data on swp1 through swp9.
 
 Specify the date and time in `YYYY-MM-DD HH:MM:SS` format.
 
@@ -932,7 +934,7 @@ Job schedule successfull.
 Action succeeded
 ```
 
-You can provide a short reason why you are collecting the data. If the description contains more than one word, you must enclose the description in quotes. A short description is optional.
+You can provide a short reason why you are collecting the data. If the description contains more than one word, you must enclose the description in quotes. A description is optional.
 
 ``` 
 cumulus@switch:~$ nv action schedule system telemetry hft job 2024-07-17 10:00:00 duration 30 profile profile1 ports swp1-swp9 description "bandwidth profiling"
@@ -948,7 +950,7 @@ Action succeeded
 {{< tabs "803 ">}}
 {{< tab "Job Management Tool ">}}
 
-The following example configures `profile1` to start on 27-07-2024 at 10:00:00, last 30 seconds, and collect data on swp1 through swp9.
+The following example configures `profile1` to start on 27-07-2024 at 10:00:00, run for 30 seconds, and collect data on swp1 through swp9.
 
 Specify the date and time in `DD-MM-YYY-HH:MM:SS` format.
 
@@ -956,7 +958,7 @@ Specify the date and time in `DD-MM-YYY-HH:MM:SS` format.
 cumulus@switch:~$ cl-hft-tool job-schedule --time 27-07-2024-10:00:00 --duration 30 --profile profile1 --ports swp1-swp9  
 ```
 
-You can provide a short reason why you are collecting the data (in quotes). A short description is optional.
+You can provide a short reason why you are collecting the data. If the description contains more than one word, you must enclose the description in quotes. A description is optional.
 
 ```
 cumulus@switch:~$ cl-hft-tool job-schedule --time 27-07-2024-10:00:00 --duration 30 --profile profile1 --ports swp1-swp9 --description "bandwidth profiling"
@@ -969,14 +971,14 @@ Edit the `/etc/cumulus/telemetry/hft/hft_job.conf` file to configure the followi
 
 | Parameter | Description |
 | --------- | ----------- |
-| `hft.action_type` | The action type. `schedule` starts a new data collection session (job). |
+| `hft.action_type` | The action type. `schedule` starts a new data collection job. |
 | `hft.schedule.start_time` | The job start date and time in `YYYY-MM-DD HH:MM:SS` format. |
 | `hft.schedule.duration` | The job duration in seconds. The default value is 20 seconds. |
 | `hft.schedule.port_set` | The ports on which you want to collect the data. You can specify a range of ports, multiple comma separated ranges of ports, or `all` for all the ports. The default value is `all`.|
 | `hft.schedule.profile_name` | The profile for this job. |
-| `hft.schedule.description`| A short reason why you are collecting the data. The parameter is optional.|
+| `hft.schedule.description`| A short reason why you are collecting the data. This parameter is optional.|
 
-The following example configures `profile1` to start on 2024-07-27 at 10:00:00, last 30 seconds, collect the data on swp1 through swp9 and add the session description `bandwidth profiling`.
+The following example configures `profile1` to start on 2024-07-27 at 10:00:00, last 30 seconds, collect the data on swp1 through swp9 and add the job description `bandwidth profiling`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_job.conf
@@ -1011,7 +1013,7 @@ Action executing ...
 Action succeeded
 ```
 
-The following example cancels job ID 6:
+The following example cancels job 6:
 
 ```
 cumulus@switch:~$ nv action cancel system telemetry hft job 6
@@ -1045,7 +1047,7 @@ Edit the `/etc/cumulus/telemetry/hft/hft_job.conf` file to configure the followi
 | `hft.action_type`| Specify the action type `cancel` to stop a scheduled job.  |
 | `hft.cancel.job_id` | The ID of job you want to cancel. Every scheduled session has a unique job ID. |
 
-The following example cancels job ID 6 for profile `profile1`:
+The following example cancels job 6 for profile `profile1`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_job.conf

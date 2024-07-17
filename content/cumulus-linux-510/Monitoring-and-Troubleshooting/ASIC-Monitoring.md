@@ -714,18 +714,15 @@ High frequency telemetry enables you to collect counters at very short sampling 
 
 High frequency telemetry data provides time series data that traditional histograms cannot provide. The time series data helps you understand the shape of the traffic pattern and identify any spikes or dips, or jitter in the traffic.
 
-{{%notice note%}}
-- Cumulus Linux supports high frequency telemetry on Spectrum-4 switches only.
-- To correlate counters from different switches for debugging and profiling, the switches must have the same time (the switch adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP. NVIDIA recommends using PTP because the timestamp is accurate among the switches in the fabric at the microsecond level.
-{{%/notice%}}
-
 You can export a `json` file with the collected data to an external location. You can then process the data, plot it into a time-series graph and see how the network behaves with high precision.
 
 {{%notice note%}}
-This collected data is available on the switch until you trigger the next data collection session or until you reboot the switch.
+- Cumulus Linux supports high frequency telemetry on Spectrum-4 switches only.
+- To correlate counters from different switches for debugging and profiling, the switches must have the same time (the switch adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP. NVIDIA recommends using PTP because the timestamp is accurate among the switches in the fabric at the microsecond level.
+- The collected data is available on the switch until you trigger the next data collection session or until you reboot the switch.
 {{%/notice%}}
 
-Cumulus Linux provides several options to configure high frequency telemetry; you can run NVUE commands (the preferred configuration method), use the Cumulus Linux job management tool (`cl-hft-tool`), or edit flat files. Using the `cl-hft-tool` command tool is a simplified way to perform Linux configuration; editing flat files provides more complexity. To show all the `cl-hft-tool` command options, run `cl-hft-tool help`.
+Cumulus Linux provides several options to configure high frequency telemetry; you can run NVUE commands (the preferred configuration method), use the Cumulus Linux job management tool (`cl-hft-tool`), or edit flat files. Using the `cl-hft-tool` command tool provides a more simplified way than editing flat files to perform Linux configuration. To show all the `cl-hft-tool` command options, run `cl-hft-tool help`.
 
 To configure high frequency telemetry:
 1. Enable telemetry with the `nv set system telemetry enable on` command.
@@ -776,6 +773,12 @@ cumulus@switch:~$ nv set system telemetry hft profile profile2 counter tx-byte
 cumulus@switch:~$ nv config apply
 ```
 
+To set the sampling interval back to the default value (5000), run the `nv unset system telemetry hft profile <profile> sample-interval` command.
+
+To set the traffic class back to the default value (3), run the `nv unset telemetry hft profile <profile> traffic-class` command.
+
+To set the collection data type back to the default values (`tc-occupancy`, `rx-byte`, and `tx-byte`), run the `nv unset telemetry hft profile <profile> traffic-class` command.
+
 To delete a profile, run the `nv unset system telemetry hft profile <profile-id>` command.
 
 {{< /tab >}}
@@ -807,33 +810,33 @@ To delete all profiles, run the `cl-hft-tool profile-delete --name all` command.
 {{< /tab >}}
 {{< tab "File Configuration ">}}
 
-Edit the `/etc/cumulus/telemetry/hft/hft_profile.conf` file to configure the following parameters.
+Edit the `/etc/cumulus/telemetry/hft/hft.conf` file to configure the following parameters.
 
 | Parameter | Description |
 | --------- | ----------- |
 | `hft.profile_list` | The name of the profile. |
-| `hft.standard.counters_list` | The type of data you want to collect, which can be transferred bytes (`if_out_octets`), received bytes (`if_in_octets`), and, or traffic class occupancy (`tc_curr_occupancy`). |
-| `hft.standard.sample_interval` | The sampling interval in microseconds. You can specify a value between 100 and 65535. The value must be a multiple of 50. The default value is 5000 microseconds.|
-| `hft.standard.tc_list` | The list of egress queue priorities (traffic classes) per port on which you want to collect data. |
+| `hft.<profile-name>.counters_list` | The type of data you want to collect, which can be transferred bytes (`tx-byte`), received bytes (`rx-byte`), and, or traffic class occupancy (`tc-occupancy`). |
+| `hft.<profile-name>.sample_interval` | The sampling interval in microseconds. You can specify a value between 100 and 65535. The value must be a multiple of 50. The default value is 5000 microseconds.|
+| `hft.<profile-name>.tc_list` | The list of egress queue priorities (traffic classes) per port on which you want to collect data. |
 
-The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the list of counters to `tc_curr_occupancy`:
+The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the type of data to collect to traffic class occupancy (`tc_occupancy`):
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_profile.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft.conf
 hft.profile_list = [profile1]
-hft.standard.counters_list = [tc_curr_occupancy]
-hft.standard.sample_interval = 1000
-hft.standard.tc_list = [0,3,7]
+hft.profile1.counters_list = [tc_occupancy]
+hft.profile1.sample_interval = 1000
+hft.profile1.tc_list = [0,3,7]
 ```
 
-The following example configures `profile2` and sets the sampling interval to 1000, the traffic class to 1-9, and the type of data to collect to received bytes (`if_in_octets`) and transferred bytes (`if_out_octets`):
+The following example configures `profile2` and sets the sampling interval to 1000, the traffic class to 1-9, and the type of data to collect to received bytes (`rx-byte`) and transferred bytes (`tx-byte`):
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_profile.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft.conf
 hft.profile_list = [profile2]
-hft.standard.counters_list = [if_in_octets,if_out_octets]
-hft.standard.sample_interval = 1000
-hft.standard.tc_list = [0-9]
+hft.profile2.counters_list = [tx-byte,rx-byte]
+hft.profile2.sample_interval = 1000
+hft.profile2.tc_list = [0-9]
 ```
 
 {{< /tab >}}
@@ -881,12 +884,12 @@ cumulus@switch:~$ cl-hft-tool target-delete --target local
 {{< /tab >}}
 {{< tab "File Configuration ">}}
 
-Edit the `/etc/cumulus/telemetry/hft/hft_profile.conf` file to configure the `hft.target` parameter.
+Edit the `/etc/cumulus/telemetry/hft/hft.conf` file to configure the `hft.target` parameter.
 
 The following example saves the collected data locally to a `json` file:
 
 ```
-cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_profile.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft.conf
 hft.target = [local]
 ```
 
@@ -896,10 +899,10 @@ hft.target = [local]
 {{< /tab >}}
 {{< /tabs >}}
 
-If you save the collected data locally to a `json` file, you can export the file to an external location with the NVUE `nv action upload system telemetry hft job <hft-job-id> <remote-url>` command. To see the list of jobs, run the `nv show system telemetry hft job` command.
+To export a `json` file to an external location, run the NVUE `nv action upload system telemetry hft job <hft-job-id> <remote-url>` command. To see the list of jobs, run the `nv show system telemetry hft job` command.
 
 ```
-cumulus@switch:~$ nv action upload system telemetry hft job 1 scp://user1:user1-password@host1:~/ 
+cumulus@switch:~$ nv action upload system telemetry hft job 1 scp://user1:password@host:~/ 
 ```
 
 ### Configure the Schedule
@@ -907,7 +910,7 @@ cumulus@switch:~$ nv action upload system telemetry hft job 1 scp://user1:user1-
 To configure the schedule for a data collection profile, set:
 - The start date and time.
 - The session duration in seconds. The default value is 20 seconds.
-- The ports on which you want to collect the data. You can specify a range of ports, multiple comma separated ranges of ports, or `all` for all the ports. The default value is `all`.
+- The ports on which you want to collect the data. You can specify a range of ports, multiple comma separated ports, or `all` for all the ports. The default value is `all`.
 
 {{%notice note%}}
 - You can schedule a maximum of 25 sessions (jobs). The switch can retain data for 25 jobs (completed, cancelled, or failed) in addition to the active jobs.
@@ -929,7 +932,7 @@ Job schedule successfull.
 Action succeeded
 ```
 
-You can provide a short reason why you are collecting the data (in quotes). A short description is optional.
+You can provide a short reason why you are collecting the data. If the description contains more than one word, you must enclose the description in quotes. A short description is optional.
 
 ``` 
 cumulus@switch:~$ nv action schedule system telemetry hft job 2024-07-17 10:00:00 duration 30 profile profile1 ports swp1-swp9 description "bandwidth profiling"
@@ -976,7 +979,7 @@ Edit the `/etc/cumulus/telemetry/hft/hft_job.conf` file to configure the followi
 The following example configures `profile1` to start on 2024-07-27 at 10:00:00, last 30 seconds, collect the data on swp1 through swp9 and add the session description `bandwidth profiling`.
 
 ```
-cumulus@switch:~$  sudo nano /etc/cumulus/telemetry/hft/hft.conf
+cumulus@switch:~$ sudo nano /etc/cumulus/telemetry/hft/hft_job.conf
 hft.action_type = schedule
 hft.schedule.start_time =  2024-07-27 10:00:00
 hft.schedule.duration = 30
@@ -998,7 +1001,7 @@ You can cancel a specific or all data collection jobs, or a specific or all jobs
 {{< tabs "TabID102 ">}}
 {{< tab "NVUE Commands ">}}
 
-To cancel a scheduled telemetry job, run the `nv action cancel system telemetry hft job <job-id> profile <profile-id>` command.
+To cancel a scheduled telemetry job, run the `nv action cancel system telemetry hft job <job-id> profile <profile-id>` command. Run the `nv show system telemetry hft job` command to see the list of job IDs.
 
 The following example cancels all jobs for profile `profile1`:
 
@@ -1035,7 +1038,7 @@ To cancel all jobs, run the `cl-hft-tool  job-cancel --job all` command.
 {{< /tab >}}
 {{< tab "File Configuration ">}}
 
-Edit the `/etc/cumulus/telemetry/hft/hft.conf` file to configure the following parameters.
+Edit the `/etc/cumulus/telemetry/hft/hft_job.conf` file to configure the following parameters.
 
 | Parameter | Description |
 | --------- | ----------- |
@@ -1045,7 +1048,7 @@ Edit the `/etc/cumulus/telemetry/hft/hft.conf` file to configure the following p
 The following example cancels job ID 6 for profile `profile1`:
 
 ```
-cumulus@switch:~$  sudo nano /etc/cumulus/telemetry/hft/hft.conf
+cumulus@switch:~$  sudo nano /etc/cumulus/telemetry/hft/hft_job.conf
 hft.action_type = schedule
 hft.schedule.start_time =  2024-01-01 10:00:00
 hft.schedule.duration = 30
@@ -1147,16 +1150,16 @@ Job Id      Start Time               Duration(s)        Profile     Ports    Sta
 7           19-05-2024 12:00:00      20                 standard    all       running 
 8           20-05-2024 09:00:00      20                 standard    all       pending
 ```
-
+<!--IN DESIGN DOC BUT NOT SUPPORTED IN 5.10
 To show the currently running data collection job:
 
 ```
-cumulus@switch:~$ nv show system telemetry hft job  -–filter "status=running" 
+cumulus@switch:~$ nv show system telemetry hft job -–filter "status=running" 
 Job Id     Start Time              Duration(s)        Profile     Ports    Status  
 ---------  --------------          ------------       ---------   -------  ---------  
 7          19-05-2024 12:00:00     20                 standard    all      running
 ```
-
+-->
 To show information about a specific data collection job:
 
 ```

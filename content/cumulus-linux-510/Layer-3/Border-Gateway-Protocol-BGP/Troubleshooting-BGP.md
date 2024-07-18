@@ -248,9 +248,31 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast upd
 
 You can run NVUE commands to show route statistics for a BGP neighbor, such as the number of routes, and information about advertised and received routes.
 
-To show the local RIB routes, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast loc-rib` command for IPv4 or the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv6-unicast loc-rib` for IPv6.
+To show the RIB table for IPv4 routes, run the `nv show vrf <vrf> router rib ipv4 route` command. To show the RIB table for IPv6 routes, run the `nv show vrf <vrf> router rib ipv6 route` command.
 
-The above IPv4 and IPv6 command shows the local RIB routes in brief format to improve performance in high scale environments. You can also run the command with `--view=detail` to see more detailed information or with `-o json` to show the received routes in json format.
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route
+                                                                                
+Flags - * - selected, q - queued, o - offloaded, i - installed, S - fib-        
+selected, x - failed                                                            
+                                                                                
+Route            Protocol   Distance  Uptime                NHGId  Metric  Flags
+---------------  ---------  --------  --------------------  -----  ------  -----
+10.1.10.0/24     connected  0         2024-07-18T21:57:29Z  46     0       *Sio 
+10.1.20.0/24     connected  0         2024-07-18T21:57:29Z  47     0       *Sio 
+10.1.30.0/24     connected  0         2024-07-18T21:57:29Z  48     0       *Sio 
+10.1.40.0/24     bgp        20        2024-07-18T22:02:22Z  57     0       *Si  
+10.1.50.0/24     bgp        20        2024-07-18T22:02:22Z  57     0       *Si  
+10.1.60.0/24     bgp        20        2024-07-18T22:02:22Z  57     0       *Si  
+10.10.10.1/32    connected  0         2024-07-18T21:55:54Z  7      0       *Sio 
+10.10.10.2/32    bgp        20        2024-07-18T21:57:29Z  34     0       *Si  
+10.10.10.3/32    bgp        20        2024-07-18T22:02:22Z  57     0       *Si  
+10.10.10.4/32    bgp        20        2024-07-18T22:02:27Z  57     0       *Si  
+10.10.10.101/32  bgp        20        2024-07-18T22:01:14Z  50     0       *Si  
+10.10.10.102/32  bgp        20        2024-07-18T22:02:22Z  58     0       *Si
+```
+
+To show the local RIB routes, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast loc-rib` command for IPv4 or the `nv show vrf <vrf> router bgp address-family ipv6-unicast loc-rib` for IPv6. These commands show the local RIB routes in brief format to improve performance in high scale environments. You can also run the command with `--view=detail` to see more detailed information or with `-o json` to show the received routes in json format.
 
 ```
 cumulus@leaf02:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib
@@ -278,7 +300,7 @@ IPV4 Routes
     10.10.10.102/32  2          1               *
 ```
 
-To show information about a specific local RIB route, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast loc-rib <route>` for IPv4 or `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv6-unicast loc-rib <route>` for IPv6.
+To show information about a specific local RIB route, run the `nv show vrf <vrf> router bgp address-family ipv4-unicast loc-rib <route>` for IPv4 or `nv show vrf <vrf> router bgp address-family ipv6-unicast loc-rib <route>` for IPv6.
 
 The above IPv4 and IPv6 command shows the local RIB route information in brief format to improve performance for high scale environments. You can also run the command with `--view=detail` to see more detailed information or with `-o json` to show the received routes in json format.
 
@@ -327,239 +349,48 @@ The above IPv4 and IPv6 command shows advertised routes in brief format to impro
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes 
 PathCount - Number of paths present for the prefix, MultipathCount - Number of  
 paths that are part of the ECMP                                                 
-
-IPv4 Prefix      PathCount  MultipathCount
----------------  ---------  --------------
-10.1.10.0/24     3          1             
-10.1.20.0/24     3          1             
-10.1.30.0/24     3          1             
-10.1.40.0/24     3          1             
-10.1.50.0/24     3          1             
-10.1.60.0/24     3          1             
-10.10.10.1/32    2          1             
-10.10.10.2/32    3          1             
-10.10.10.3/32    3          1             
-10.10.10.4/32    3          1             
-10.10.10.101/32  2          1             
-10.10.10.102/32  2          1
+                                                                                
+IPv4 Prefix      PathCount  MultipathCount  DestFlags      
+---------------  ---------  --------------  ---------------
+10.1.10.0/24     3          1               bestpath-exists
+10.1.20.0/24     3          1               bestpath-exists
+10.1.30.0/24     3          1               bestpath-exists
+10.1.40.0/24     3          2               bestpath-exists
+10.1.50.0/24     3          2               bestpath-exists
+10.1.60.0/24     3          2               bestpath-exists
+10.10.10.1/32    2          1               bestpath-exists
+10.10.10.2/32    3          1               bestpath-exists
+10.10.10.3/32    3          2               bestpath-exists
+10.10.10.4/32    3          2               bestpath-exists
+10.10.10.101/32  2          1               bestpath-exists
+10.10.10.102/32  2          1               bestpath-exists
 ```
 
-To show information about a specific advertised route, run the`nv show <vrf> default router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes <route> -o json` for IPv4 or `nv show <vrf> default router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes <route> -o json` for IPv6.
+To show information about a specific advertised route, run the`nv show <vrf> default router bgp neighbor <neighbor> address-family ipv4-unicast advertised-routes <route>` for IPv4 or `nv show <vrf> default router bgp neighbor <neighbor> address-family ipv6-unicast advertised-routes <route>` for IPv6.
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-route 10.10.10.4/32 -o json
-{
-  "flags": {
-    "bestpath-exists": {}
-  },
-  "multipath-count": 4,
-  "path": {
-    "1": {
-      "aspath": {
-        "65104": {},
-        "65199": {}
-      },
-      "bestpath": {
-        "from-as": 65199,
-        "overall": "yes",
-        "selection-reason": "AS Path"
-      },
-      "flags": {
-        "bestpath": {},
-        "multipath": {},
-        "valid": {}
-      },
-      "last-update": "2024-04-23T15:23:09Z",
-      "nexthop": {
-        "1": {
-          "accessible": "on",
-          "afi": "ipv6",
-          "ip": "fe80::4ab0:2dff:fe00:b23f",
-          "metric": 0,
-          "scope": "global"
-        },
-        "2": {
-          "accessible": "on",
-          "afi": "ipv6",
-          "ip": "fe80::4ab0:2dff:fe00:b23f",
-          "scope": "link-local",
-          "used": "on"
-        }
-      },
-      "nexthop-count": 2,
-      "origin": "incomplete",
-      "path-from": "external",
-      "peer": {
-        "hostname": "spine02",
-        "id": "fe80::4ab0:2dff:fe00:b23f",
-        "interface": "swp52",
-        "router-id": "10.10.10.102",
-        "type": "external"
-      },
-      "valid": "on"
-    },
-    "2": {
-      "aspath": {
-        "65104": {},
-        "65199": {}
-      },
-      "flags": {
-        "multipath": {}
-      },
-      "last-update": "2024-04-23T15:23:11Z",
-      "nexthop": {
-        "1": {
-          "accessible": "on",
-          "afi": "ipv6",
-          "ip": "fe80::4ab0:2dff:feca:64b2",
-          "metric": 0,
-          "scope": "global"
-        },
-        "2": {
-          "accessible": "on",
-          "afi": "ipv6",
-          "ip": "fe80::4ab0:2dff:feca:64b2",
-          "scope": "link-local",
-          "used": "on"
-        }
-      },
-      "nexthop-count": 2,
-      "origin": "incomplete",
-      "path-from": "external",
-      "peer": {
-        "hostname": "spine01",
-        "id": "fe80::4ab0:2dff:feca:64b2",
-        "interface": "swp51",
-        "router-id": "10.10.10.101",
-        "type": "external"
-      },
-      "valid": "on"
-    },
-    "3": {
-      "aspath": {
-        "65104": {},
-        "65199": {}
-      },
-      "flags": {
-        "multipath": {}
-      },
-      "last-update": "2024-04-23T15:23:09Z",
-      "nexthop": {
-        "1": {
-          "accessible": "on",
-          "afi": "ipv6",
-          "ip": "fe80::4ab0:2dff:fe3b:dcb4",
-          "metric": 0,
-          "scope": "global"
-        },
-        "2": {
-          "accessible": "on",
-          "afi": "ipv6",
-          "ip": "fe80::4ab0:2dff:fe3b:dcb4",
-          "scope": "link-local",
-          "used": "on"
-        }
-      },
-      "nexthop-count": 2,
-      "origin": "incomplete",
-      "path-from": "external",
-      "peer": {
-        "hostname": "spine03",
-        "id": "fe80::4ab0:2dff:fe3b:dcb4",
-        "interface": "swp53",
-        "router-id": "10.10.10.103",
-        "type": "external"
-      },
-      "valid": "on"
-    },
-    "4": {
-      "aspath": {
-        "65104": {},
-        "65199": {}
-      },
-      "flags": {
-        "multipath": {}
-      },
-      "last-update": "2024-04-23T15:23:10Z",
-      "nexthop": {
-        "1": {
-          "accessible": "on",
-          "afi": "ipv6",
-          "ip": "fe80::4ab0:2dff:fe07:5323",
-          "metric": 0,
-          "scope": "global"
-        },
-        "2": {
-          "accessible": "on",
-          "afi": "ipv6",
-          "ip": "fe80::4ab0:2dff:fe07:5323",
-          "scope": "link-local",
-          "used": "on"
-        }
-      },
-      "nexthop-count": 2,
-      "origin": "incomplete",
-      "path-from": "external",
-      "peer": {
-        "hostname": "spine04",
-        "id": "fe80::4ab0:2dff:fe07:5323",
-        "interface": "swp54",
-        "router-id": "10.10.10.104",
-        "type": "external"
-      },
-      "valid": "on"
-    },
-    "5": {
-      "aspath": {
-        "65101": {},
-        "65104": {},
-        "65199": {}
-      },
-      "bestpath": {
-        "from-as": 65101
-      },
-      "flags": {
-        "bestpath": {},
-        "valid": {}
-      },
-      "last-update": "2024-04-23T15:23:18Z",
-      "nexthop": {
-        "1": {
-          "accessible": "on",
-          "afi": "ipv6",
-          "ip": "fe80::4ab0:2dff:fe18:eaec",
-          "metric": 0,
-          "scope": "global"
-        },
-        "2": {
-          "accessible": "on",
-          "afi": "ipv6",
-          "ip": "fe80::4ab0:2dff:fe18:eaec",
-          "scope": "link-local",
-          "used": "on"
-        }
-      },
-      "nexthop-count": 2,
-      "origin": "incomplete",
-      "path-from": "external",
-      "peer": {
-        "hostname": "leaf01",
-        "id": "fe80::4ab0:2dff:fe18:eaec",
-        "interface": "peerlink.4094",
-        "router-id": "10.10.10.1",
-        "type": "external"
-      },
-      "valid": "on"
-    }
-  },
-  "path-count": 5
-}
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-route 10.10.10.1/32
+                 operational
+---------------  -----------
+path-count       2          
+multipath-count  1
+path
+=======
+                                                                                
+    Origin - Route origin, Local - Locally originated route, Sourced - Sourced      
+    route, Weight - Route weight, Metric - Route metric, LocalPref - Route local    
+    preference, PathFrom - Route path origin, LastUpdate - Route last update,       
+    NexthopCnt - Number of nexthops, Flags - = - multipath, * - bestpath, v - valid,
+    s - suppressed, R - removed, S - stale                                          
+                                                                                
+    Path  Origin      Local  Sourced  Weight  Metric  LocalPref  PathFrom  LastUpdate            NexthopCnt  Flags
+    ----  ----------  -----  -------  ------  ------  ---------  --------  --------------------  ----------  -----
+    1     IGP         on     on       32768   0                            2024-07-18T21:55:54Z  1           *v   
+    2     incomplete         on       32768   0                            2024-07-18T21:55:54Z  1           v 
 ...
 ```
 
-To show all the received routes, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast received-routes` command for IPv4 or `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv6-unicast received-routes` command for IPv6.
-
-The above IPv4 and IPv6 command shows received routes in brief format to improve performance for high scale environments. You can also run the command with `--view=detail` to see more detailed information or with `-o json` to show the received routes in json format.
+To show all the received routes, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast received-routes` command for IPv4 or `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv6-unicast received-routes` command for IPv6. These commands show received routes in brief format to improve performance for high scale environments. You can also run the command with `--view=detail` to see more detailed information or with `-o json` to show the received routes in json format.
 
 To show information about a specific received route, run the `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv4-unicast received-routes <route> -o json` for IPv4 or `nv show vrf <vrf> router bgp neighbor <neighbor> address-family ipv6-unicast received-routes <route> -o json` for IPv6.
 

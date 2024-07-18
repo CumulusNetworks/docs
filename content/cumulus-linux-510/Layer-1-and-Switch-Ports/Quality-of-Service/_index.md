@@ -1656,7 +1656,7 @@ Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
 
 Lossy headroom is the buffer on top of the reserved buffer that stores packets that ingress the switch. You can configure the lossy headroom to help analyze performance for a specific priority group and to isolate management traffic to a separate priority group.
 
-To change the lossy headroom for a priority group, run the following commands. The switch calculates the default value internally based on the MTU and internal latency. You can specify a value between 0 and 4294967295.
+To change the lossy headroom for a priority group, run the following commands. The switch calculates the default value internally based on the MTU and internal latency.
 
 {{< tabs "TabID1663 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1693,8 +1693,6 @@ To unset the lossy headroom for a priority group, comment out the `priority_grou
 ### Ingress and Egress Management Buffers
 
 Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU.
-- Priority group `pg[9]` is for management traffic on ingress.
-- Traffic class `tc[16]` is for management traffic in the egress queue, which has a dedicated pool that other traffic cannot share.
 
 To configure the ingress management buffer:
 
@@ -1705,11 +1703,15 @@ Run the `nv set qos advance-buffer-config default-global ingress-mgmt-buffer <op
 
 | Option         | Description |
 |----------------|------------ |
-| `headroom`     | The ingress management buffer headroom allocation in bytes. You can specify a value between 0 and 4294967295.|
-| `reserved`     | The ingress management reserved buffer allocation in bytes. You can specify a value between 0 and 4294967295.|
+| `headroom`     | The ingress management buffer headroom allocation in bytes.|
+| `reserved`     | The ingress management reserved buffer allocation in bytes.|
 | `service-pool` | The ingress management buffer service pool mapping. You can specify a value between 0 and 7. |
 | `shared-alpha` | The dynamic ingress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`.|
-| `shared-bytes` | The static ingress management shared buffer allocation in bytes. You can specify a value between 0 and 4294967295.|
+| `shared-bytes` | The static ingress management shared buffer allocation in bytes. |
+
+{{%notice note%}}
+If the `service-pool` to which the ingress management buffer maps is dynamic, use the `shared-alpha` value. If the mapped `service-pool` is static, use the `shared-bytes` value.
+{{%/notice%}}
 
 The following example configures the ingress management buffer headroom to 20000 bytes:
 
@@ -1739,10 +1741,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-b
 cumulus@switch:~$ nv config apply
 ```
 
-The following example configures the dynamic shared ingress management buffer alpha allocation to alpha_0:
+The following example configures the dynamic shared ingress management buffer alpha allocation to alpha_2:
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-alpha alpha_0
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-alpha alpha_2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1761,10 +1763,14 @@ Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to add the following parame
 | Parameter        | Description |
 |----------------- |------------ |
 | `management.ingress_service_pool`   | The ingress management buffer service pool mapping. You can specify a value between 0 and 7. |
-| `management.ingress_buffer.lossy_headroom` | The ingress management buffer headroom allocation in bytes. You can specify a value between 0 and 4294967295. |
-| `management.ingress_buffer.reserved`       | The ingress management reserved buffer allocation in bytes. You can specify a value between 0 and 4294967295.|
+| `management.ingress_buffer.lossy_headroom` | The ingress management buffer headroom allocation in bytes.  |
+| `management.ingress_buffer.reserved`       | The ingress management reserved buffer allocation in bytes. |
 | `management.ingress_buffer.shared-size`    | The static ingress management shared buffer allocation in bytes. You can specify a value between 0 and 4294967295.|
 | `management.ingress_buffer.dynamic_quota`  | The dynamic ingress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`.|
+
+{{%notice note%}}
+If the `service-pool` to which the ingress management buffer maps is dynamic, use the `shared-alpha` value. If the mapped `service-pool` is static, use the `shared-bytes` value.
+{{%/notice%}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
@@ -1782,7 +1788,7 @@ management.ingress_buffer.lossy_headroom = 20000
 ...
 # Ingress buffer per-PG dynamic buffering alpha (Default: ALPHA_8)
 ...
-management.ingress_buffer.dynamic_quota = alpha_0
+management.ingress_buffer.dynamic_quota = alpha_2
 ```
 
 To unset the ingress management buffer settings, delete or comment out the `management.ingress_service_pool` or `management.ingress_buffer` parameters.
@@ -1799,10 +1805,14 @@ Run the `nv set qos advance-buffer-config default-global egress-mgmt-buffer <opt
 
 | Option         | Description |
 |----------------|------------ |
-| `reserved`     | The egress management reserved buffer allocation in bytes. You can specify a value between 0 and 4294967295.|
+| `reserved`     | The egress management reserved buffer allocation in bytes.|
 | `service-pool` | The egress management buffer service pool mapping. You can specify a value between 0 and 7.|
 | `shared-alpha` | The dynamic egress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`. |
 | `shared-bytes` | The static egress management shared buffer allocation in bytes. You can specify a value between 0 and 4294967295. |
+
+{{%notice note%}}
+If the `service-pool` to which the egress management buffer maps is dynamic, use the `shared-alpha` value. If the mapped `service-pool` is static, use the `shared-bytes` value.
+{{%/notice%}}
 
 The following example configures the egress management reserved buffer to 30000 bytes:
 
@@ -1818,10 +1828,10 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 cumulus@switch:~$ nv config apply
 ```
 
-The following example configures the dynamic egress management shared buffer alpha allocation to alpha_0:
+The following example configures the dynamic egress management shared buffer alpha allocation to alpha_2:
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer shared-alpha alpha_0
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer shared-alpha alpha_2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1847,9 +1857,13 @@ Edit the `/etc/mlx/datapath/qos/qos_infra.conf` file to add the following parame
 | Parameter      | Description |
 |----------------|------------ |
 |` management.egress_service_pool` | The egress management buffer service pool mapping. You can specify a value between 0 and 7.|
-| `management.egress_buffer.reserved`     | The egress management reserved buffer allocation in bytes. You can specify a value between 0 and 4294967295.|
+| `management.egress_buffer.reserved`     | The egress management reserved buffer allocation in bytes.|
 | `management.egress_buffer.shared-alpha` | The dynamic egress management shared buffer alpha allocation. You can specify one of these values: `alpha_0`, `alpha_1_128`, `alpha_1_64`, `alpha_1_32`, `alpha_1_16`, `alpha_1_8`, `alpha_1_4`, `alpha_1_2`, `alpha_1`, `alpha_2`, `alpha_4`, `alpha_8`, `alpha_16`, `alpha_32`, `alpha_64`, or `alpha_infinity`.|
-| `management.egress_buffer.shared-size` | The static egress management shared buffer allocation in bytes. You can specify a value between 0 and 4294967295.|
+| `management.egress_buffer.shared-size` | The static egress management shared buffer allocation in bytes.|
+
+{{%notice note%}}
+If the `service-pool` to which the egress management buffer maps is dynamic, use the `shared-alpha` value. If the mapped `service-pool` is static, use the `shared-bytes` value.
+{{%/notice%}}
 
 ```
 cumulus@switch:~$ sudo nano /etc/mlx/datapath/qos/qos_infra.conf
@@ -1867,7 +1881,7 @@ management.egress_buffer.reserved = 30000
 ...
 # Egress buffer per-egress-queue dynamic buffering quota (alpha) for multicast (Default: ALPHA_INFINITY)
 ...
-management.egress_buffer.dynamic_quota = alpha_0
+management.egress_buffer.dynamic_quota = alpha_2
 ```
 
 To unset the egress management buffer settings, delete or comment out the `management.egress_service_pool` or `management.egress_buffer` parameters.

@@ -774,7 +774,7 @@ netq lcm install netq-image
 | job-name | \<text-job-name\> | Name for the installation |
 | netq-version | \<text-netq-version\> | Install this NetQ version in x.z.y format |
 | upgrade-cli | True, False | Upgrade the NetQ CLI as part of the installation (True) or not (False) |
-| ips | <text-ip-range\> | Install NetQ on this range of switch IP addresses |
+| ips | <text-ip-range\> | Install NetQ on switches within this address range. Ranges can be contiguous, for example 192.168.0.24-64, or non-contiguous, for example 192.168.0.24-64,128-190,225, but they must reside within a single subnet. You can include a maximum of 50 addresses in an address range. |
 | cpu_arch | <text-cpu-arch\> | CPU architecture for the switch|
 | cl-version | \<text-cumulus-linux-version\> | Install this CL version in x.y.z format |
 | profile_id | <text-credential-profile-id\> | Access profile attached to the switches |

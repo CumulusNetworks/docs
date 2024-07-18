@@ -672,7 +672,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm discover ip-range 10.0.1.12 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
+cumulus@switch:~$ netq lcm discover ip-range 192.168.0.24-64 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
 NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556db
 ```
 
@@ -761,7 +761,6 @@ netq lcm install netq-image
     job-name <text-job-name> 
     netq-version <text-netq-version> 
     upgrade-cli [True | False] 
-    hostnames <text-switch-hostnames>
     ips <text-ip-range> 
     cpu_arch <text-cpu-arch> 
     cl_version <text-cumulus-linux-version>
@@ -775,7 +774,6 @@ netq lcm install netq-image
 | job-name | \<text-job-name\> | Name for the installation |
 | netq-version | \<text-netq-version\> | Install this NetQ version in x.z.y format |
 | upgrade-cli | True, False | Upgrade the NetQ CLI as part of the installation (True) or not (False) |
-| hostnames | <text-switch-hostnames\> | Install NetQ on these switch hostnames |
 | ips | <text-ip-range\> | Install NetQ on this range of switch IP addresses |
 | cpu_arch | <text-cpu-arch\> | CPU architecture for the switch|
 | cl-version | \<text-cumulus-linux-version\> | Install this CL version in x.y.z format |
@@ -790,7 +788,7 @@ netq lcm install netq-image
 ### Sample Usage
 
 ```
-netq lcm install netq-image job-name install55 netq-version 4.9.0 upgrade-cli True hostnames leaf01 ip 10.209.20.55 cpu_arch x86_64 cl_version 5.8.0 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc12
+netq lcm install netq-image job-name install55 netq-version 4.9.0 upgrade-cli True ips 192.168.0.24-64 cpu_arch x86_64 cl_version 5.8.0 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc12
 ```
 ### Related Commands
 

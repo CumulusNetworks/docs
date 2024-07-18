@@ -120,7 +120,7 @@ When you configure minimum boundary and histogram sizes, Cumulus Linux rounds do
 
 - Spectrum-1: 96 bytes
 - Spectrum-2 and Spectrum-3: 144 bytes
-- Spectrum-4: 192 bytes 
+- Spectrum-4: 192 bytes
 {{%/notice%}}
 
 {{< tabs "TabID81 ">}}
@@ -810,7 +810,7 @@ To delete all profiles, run the `cl-hft-tool profile-delete --name all` command.
 {{< /tab >}}
 {{< tab "File Configuration ">}}
 
-Edit the `/etc/cumulus/telemetry/hft/hft.conf` file to configure the following parameters.
+Edit the `/etc/cumulus/telemetry/hft/hft.conf` file to configure the following parameters, then restart the `asic-monitor` service with the `systemctl restart asic-monitor.service` command.
 
 | Parameter | Description |
 | --------- | ----------- |
@@ -885,7 +885,7 @@ cumulus@switch:~$ cl-hft-tool target-delete --target local
 {{< /tab >}}
 {{< tab "File Configuration ">}}
 
-Edit the `/etc/cumulus/telemetry/hft/hft.conf` file to configure the `hft.target` parameter.
+Edit the `/etc/cumulus/telemetry/hft/hft.conf` file to configure the `hft.target` parameter, then restart the `asic-monitor` service with the `systemctl restart asic-monitor.service` command.
 
 The following example saves the collected data locally to a `json` file:
 
@@ -967,7 +967,7 @@ cumulus@switch:~$ cl-hft-tool job-schedule --time 27-07-2024-10:00:00 --duration
 {{< /tab >}}
 {{< tab "File Configuration ">}}
 
-Edit the `/etc/cumulus/telemetry/hft/hft_job.conf` file to configure the following parameters.
+Edit the `/etc/cumulus/telemetry/hft/hft_job.conf` file to configure the following parameters, then restart the `asic-monitor` service with the `systemctl restart asic-monitor.service` command.
 
 | Parameter | Description |
 | --------- | ----------- |
@@ -1040,7 +1040,7 @@ To cancel all jobs, run the `cl-hft-tool  job-cancel --job all` command.
 {{< /tab >}}
 {{< tab "File Configuration ">}}
 
-Edit the `/etc/cumulus/telemetry/hft/hft_job.conf` file to configure the following parameters.
+Edit the `/etc/cumulus/telemetry/hft/hft_job.conf` file to configure the following parameters, then restart the `asic-monitor` service with the `systemctl restart asic-monitor.service` command.
 
 | Parameter | Description |
 | --------- | ----------- |

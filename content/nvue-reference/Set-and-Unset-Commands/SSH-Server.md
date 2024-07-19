@@ -158,6 +158,32 @@ cumulus@switch:~$ nv set system ssh-server authentication-retries 10
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system ssh-server login-record-period</h>
+
+Configures and enables SSH login notifications for both SSH and serial connections to help you detect unwanted or malicious activities, such as suspicious logins or password and role changes.
+
+This command sets the time period in days during which to record login notifications. After you set the time period, you see the following SSH login information on the console after authentication:
+- The date and time of the last successful login.
+- The number of unsuccessful logins after the last successful login.
+- The date and time of the last unsuccessful login.
+- Changes to a user account after the last login (password, role, group, and so on).
+- The location (terminal or IP address) of the last successful or unsuccessful login.
+- The total number of successful logins after a specific date and time.
+
+A value of 0 disables SSH login notifications.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system ssh-server login-record-period 20
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system ssh-server login-timeout</h>
 
 Configures the number of seconds allowed before login times out. You can set a value between 1 and 600.

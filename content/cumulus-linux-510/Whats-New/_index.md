@@ -28,11 +28,11 @@ NVIDIA SN5400 (400G Spectrum-4)
 - {{< expand "Additional OID support for SNMP MIBs" >}}
 | <div style="width:250px">MIB | OID | Description |
 | --- | ----| ----------- |
-| CUMULUS-COUNTERS-MIB | .1.3.6.1.4.1.40310.2.2.5.1.4 | The number of times the operational status of the interface link transitions between up and down. |
-| CUMULUS-COUNTERS-MIB | .1.3.6.1.4.1.40310.2.2.6.1.4 | The number of bytes transmitted from the egress queue. |
-| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.28 | The total number of IPv4 routes in the FIB.|
-| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.29 | The total number of IPv4/24 routes in the FIB.|
-| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.30 | The total number of IPv4/32 routes in the FIB.|
+| CUMULUS-COUNTERS-MIB | .1.3.6.1.4.1.40310.2.2.5.1.4<br>clCarrierChangesCount | The number of times the operational status of the interface link transitions between up and down. |
+| CUMULUS-COUNTERS-MIB | .1.3.6.1.4.1.40310.2.2.6.1.4<br>clIntOutBytes | The number of bytes transmitted from the egress queue. |
+| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.28<br>l3RoutingTableCurrentIpv4Entries | The total number of IPv4 routes in the FIB.|
+| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.29<br>l3RoutingTableCurrentIpv4EntriesForPrefixLen24 | The total number of IPv4/24 routes in the FIB.|
+| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.30<br>l3RoutingTableCurrentIpv4EntriesForPrefixLen32 | The total number of IPv4/32 routes in the FIB.|
 
 {{<link url="Supported-MIBs" text="Supported MIBs">}}
 {{< /expand >}}

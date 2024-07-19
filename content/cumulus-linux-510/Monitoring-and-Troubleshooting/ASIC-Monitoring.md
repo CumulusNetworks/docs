@@ -1177,3 +1177,84 @@ ports                  swp1-swp64
 status                 pending 
 target                 scp://abc@server1:/hft-data
 ```
+
+## Open Telemetry Export
+
+Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export on the SN5600 switch.  You can use the open telemetry protocol (OTLP) to export interface counters and histogram collection data to an external collector. 
+
+To enable open telemetry export:
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp state enabled 
+cumulus@switch:~$ nv config apply
+```
+
+You can enable open telemetry export for interface statistics, histogram collection, or both:
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+```
+cumulus@switch:~$ nv set system telemetry histogram export state enabled
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+- When you enable open telemetry export for interface statistics, counters on all interfaces are exported.
+- When you enable open telemetry export for histogram data, your [histogram collection configuration](#histogram-collection) defines the data that is exported.
+{{%/notice%}}
+
+### gRPC OTLP Export
+
+You can configure open telemetry export to use gRPC to communicate with the collector and define the port used for communication:
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 port 4317
+cumulus@switch:~$ nv config apply
+```
+
+Optionally, you can configure an X.509 certificate to secure the gRPC connection:
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <certificate>
+cumulus@switch:~$ nv config apply
+```
+
+For connections without a certificate configured, enable `allow-insecure` mode:
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp grpc allow-insecure enabled
+cumulus@switch:~$ nv config apply
+```
+
+### HTTP OTLP Export
+
+You can configure open telemetry export to use HTTP to communicate with the collector and define the port used for communication:
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp http port 9443
+cumulus@switch:~$ nv config apply
+```
+
+Optionally, you can configure an X.509 certificate to secure the HTTP connection:
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp http cert-id <certificate>
+cumulus@switch:~$ nv config apply
+```
+
+For connections without a certificate configured, enable `allow-insecure` mode:
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp http allow-insecure enabled
+cumulus@switch:~$ nv config apply
+```
+
+The default encoding format for HTTP export is binary protocol buffer (`proto`), but you can configure it to use JSON format:
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp http encoding json
+cumulus@switch:~$ nv config apply
+```

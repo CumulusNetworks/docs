@@ -14,7 +14,7 @@ h { color: RGB(118,185,0)}
 
 In Cumulus Linux 5.8 and earlier, the `nv config apply` command applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. To save the startup configuration automatically when you run `nv config apply` without having to run the `nv config save` command, run the `nv set system config auto-save enable on` command.
 
-In Cumulus Linux 5.9 and later, auto save is `on` by default; the `nv config apply` command automatically saves the configuration and the configuration persists after a reboot.
+In Cumulus Linux 5.9 and later, auto save is `on` by default; the `nv config apply` command automatically saves the configuration and the configuration persists after a reboot. To disable auto save, run the `nv set system config auto-save state disabled` command.
 
 You can specify the following options with the `nv config apply` command:
 

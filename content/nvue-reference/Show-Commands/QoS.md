@@ -2030,6 +2030,46 @@ mode            dynamic      dynamic
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show qos advance-buffer-config default-global egress-mgmt-buffer</h>
+
+Shows the lossy egress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU. Cumulus Linux uses traffic class `tc[16]` for egress management buffer traffic, which has a dedicated pool that other traffic cannot share.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global egress-mgmt-buffer 
+              operational       applied 
+------------  -----------       ---- 
+reserved       1200 Bytes       1200 Bytes 
+shared-bytes   13.53 KB         13.53 KB 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show qos advance-buffer-config default-global ingress-mgmt-buffer</h>
+
+Shows the lossy ingress management buffer settings that you can configure to isolate management traffic to a different priority group. Management traffic consists of OSPF and BGP hello and update packets, and BFD packets that ingress and egress the CPU. Cumulus Linux uses priority group `pg[9]` for ingress management buffer traffic.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-mgmt-buffer
+              operational       applied
+------------  -----------       ---- 
+headroom       1000 Bytes       1000 Bytes 
+shared-bytes   19.53 KB         19.53 KB 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show qos buffer</h>
 
 Shows global QoS buffer configuration.

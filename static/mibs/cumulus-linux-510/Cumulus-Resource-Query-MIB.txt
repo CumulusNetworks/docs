@@ -1,0 +1,1396 @@
+CUMULUS-RESOURCES-MIB DEFINITIONS ::= BEGIN
+
+--
+-- Top-level infrastructure of the Cumulus enterprise MIB tree
+--
+
+IMPORTS
+    OBJECT-TYPE, NOTIFICATION-TYPE, MODULE-IDENTITY,
+    Integer32, enterprises              FROM SNMPv2-SMI
+    InterfaceIndex, ifIndex	        FROM IF-MIB
+    cumulusMib                          FROM CUMULUS-SNMP-MIB
+    DateAndTime, DisplayString,
+    TEXTUAL-CONVENTION 			FROM SNMPv2-TC;
+
+resourceUtilization MODULE-IDENTITY
+    LAST-UPDATED "201606060000Z"
+    ORGANIZATION "Cumulus Networks"
+    CONTACT-INFO
+         "postal:   Cumulus Networks
+                    185 E. Dana Street,
+                    Mountain View, CA 94041
+
+          web:      http://www.cumulusnetworks.com"
+    DESCRIPTION
+        "Cumulus Resource Query Table of the Cumulus enterprise MIB tree.
+         These table values come from the cl-resources-query command and contain
+         routing table, ECMP, and ACL counters"
+    REVISION     "201606060000Z"
+    DESCRIPTION
+        "Minor fix in the IMPORTS."
+    REVISION     "201510260000Z"
+    DESCRIPTION
+        "Second version with the Ingress and Egress entries, counters, meters,
+         and slices"
+    REVISION     "201207230000Z"
+    DESCRIPTION
+        "Initial version containing the routes, host entries, and ECMP nexthops."
+    ::= { cumulusMib 1 }
+
+-- Resource groups in cumulusMib
+-- The resourceUtilization group lists the current utilization
+-- of various tables and buffers in the system.
+
+-- the l3 tables group
+
+l3Tables                  OBJECT IDENTIFIER ::= {resourceUtilization 1}
+
+l3HostTableCurrentEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The number of L3 Host table entries currently in use"
+    ::= { l3Tables 1 }
+
+l3HostTableMaxEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible entries in the L3 Host table. The
+	Host table is defined as the table holding the ARP/ND cache."
+    ::= {l3Tables 2 }
+
+l3RoutingTableCurrentEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The number of L3 Routing table entries currently in use."
+    ::= { l3Tables 3 }
+
+l3RoutingTableMaxEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible entries in the L3 Routing table.
+	L3 Routing table is defined as the table holding the
+	longest prefix match (LPM) entries."
+    ::= { l3Tables 4 }
+
+l3NextHopTableCurrentEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The number of L3 Next Hop table entries currently in use."
+    ::= { l3Tables 5 }
+
+l3NextHopTableMaxEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible entries in the L3 Next Hop table.
+	The L3 Next Hop table holds information about the next hop(s)
+	associated with a routing table entry."
+    ::= { l3Tables 6 }
+
+l3EcmpGroupTableCurrentEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"Number of ECMP Group table entries currently in use."
+    ::= { l3Tables 7 }
+
+l3EcmpGroupTableMaxEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible entries in the ECMP Group table.
+	The ECMP Group table holds information about "
+    ::= { l3Tables 8 }
+
+l3EcmpNextHopTableCurrentEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The number of ECMP Next Hop table entries currently in use."
+    ::= { l3Tables 9 }
+
+l3EcmpNextHopTableMaxEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible entries in the ECMP Next Hop
+	table. ECMP Next Hop table stores information about the next
+	hop associated with a routing table entry that has multiple equal
+	cost next hop neighbors."
+    ::= { l3Tables 10 }
+
+ingressAclCurrentEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The current number of Ingress entries in the Network Access Control
+	List table."
+    ::= { l3Tables 11 }
+
+ingressAclMaxEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible Ingress entries in the Network Access Control
+	table."
+    ::= { l3Tables 12 }
+
+ingressAclCurrentCounters OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The current number of Ingress counters in the Network Access Control
+	List table."
+    ::= { l3Tables 13 }
+
+ingressAclMaxCounters OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible Ingress counters in the Network Access Control
+	table."
+    ::= { l3Tables 14 }
+
+ingressAclCurrentMeters OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The current number of Ingress meters in the Network Access Control
+	List table."
+    ::= { l3Tables 15 }
+
+ingressAclMaxMeters OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible Ingress meters in the Network Access Control
+	table."
+    ::= { l3Tables 16 }
+
+ingressAclCurrentSlices OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The current number of Ingress slices in the Network Access Control
+	List table."
+    ::= { l3Tables 17 }
+
+ingressAclMaxSlices OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible Ingress slices in the Network Access Control
+	table."
+    ::= { l3Tables 18 }
+
+egressAclCurrentEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The current number of Egress entries in the Network Access Control
+	List table."
+    ::= { l3Tables 19 }
+
+egressAclMaxEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible Egress entries in the Network Access Control
+	table."
+    ::= { l3Tables 20 }
+
+egressAclCurrentCounters OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The current number of Egress counters in the Network Access Control
+	List table."
+    ::= { l3Tables 21 }
+
+egressAclMaxCounters OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible Egress counters in the Network Access Control
+	table."
+    ::= { l3Tables 22 }
+
+egressAclCurrentMeters OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The current number of Egress meters in the Network Access Control
+	List table."
+    ::= { l3Tables 23 }
+
+egressAclMaxMeters OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible Egress meters in the Network Access Control
+	table."
+    ::= { l3Tables 24 }
+
+egressAclCurrentSlices OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The current number of Egress slices in the Network Access Control
+	List table."
+    ::= { l3Tables 25 }
+
+egressAclMaxSlices OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible Egress slices in the Network Access Control
+	table."
+    ::= { l3Tables 26 }
+
+forwardingProfile OBJECT-TYPE
+    SYNTAX      DisplayString
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+    "Forwarding profile"
+    ::= { l3Tables 27}
+
+l3RoutingTableCurrentIpv4Entries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The number of L3 IPv4 Routing table entries currently in use."
+    ::= { l3Tables 28 }
+
+l3RoutingTableCurrentIpv4EntriesForPrefixLen24 OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The number of L3 IPv4/24 Routing table entries currently in use."
+    ::= { l3Tables 29 }
+
+l3RoutingTableCurrentIpv4EntriesForPrefixLen32 OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The number of L3 IPv4/32 Routing table entries currently in use."
+    ::= { l3Tables 30 }
+
+-- the l2 tables group
+
+l2Tables                  OBJECT IDENTIFIER ::= {resourceUtilization 2}
+
+l2MacTableCurrentEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The number of L2 Mac table entries currently in use."
+    ::= { l2Tables 1 }
+
+l2MacTableMaxEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible entries in the L2 Mac table."
+    ::= { l2Tables 2 }
+
+l2CacheTableCurrentEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The number of Cache table currently entries in use"
+    ::= { l2Tables 3 }
+
+l2CacheTableMaxEntries OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The maximum possible entries in the Cache table. The Cache table
+	holds entries that are to be redirected to the CPU because they are
+	control packets, specifically L2 protocol control packets. Examples
+	are STP BPDUs, LLDP BPDUs etc."
+    ::= { l2Tables 4 }
+
+-- the buffer utilization group
+
+bufferUtilizn             OBJECT IDENTIFIER ::= {resourceUtilization 3}
+
+bufUtiliznComputeTime OBJECT-TYPE
+    SYNTAX      DisplayString
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The time when the buffer utilization statistic was computed."
+    DEFVAL { "0" }
+    ::= { bufferUtilizn 1 }
+
+bufUtiliznPollInterval OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The periodicity at which the buffer utilization data
+	is pulled from the hardware. This is specified in milliseconds."
+    ::= { bufferUtilizn 2 }
+
+
+bufUtiliznMeasureInterval OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The time interval over which the buffer utilization
+	statistics is computed. This is specified in minutes."
+    ::= { bufferUtilizn 3 }
+
+bufUtiliznTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF BufUtiliznEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	"Table describes the buffer utilization per service pool"
+    ::= { bufferUtilizn 4 }
+
+bufUtiliznEntry OBJECT-TYPE
+    SYNTAX      BufUtiliznEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    INDEX { bufServicePoolID }
+    ::= { bufUtiliznTable 1 }
+
+BufUtiliznEntry ::=
+	SEQUENCE {
+		bufServicePoolID	INTEGER,
+		bufMin			INTEGER,
+		bufMax			INTEGER,
+		bufAvg			DisplayString,
+		bufVariance		DisplayString,
+		bufStdDev		DisplayString
+		bufCurr			INTEGER,
+	}
+
+	bufServicePoolID OBJECT-TYPE
+	    SYNTAX      INTEGER
+	    MAX-ACCESS  read-only
+	    STATUS      current
+	    DESCRIPTION
+		"The service pool number."
+	    ::= { bufUtiliznEntry 1 }
+
+	bufMin OBJECT-TYPE
+	    SYNTAX      INTEGER
+	    MAX-ACCESS  read-only
+	    STATUS      current
+	    DESCRIPTION
+		"The minimum number of cells used in this service pool."
+	    ::= { bufUtiliznEntry 2 }
+
+	bufMax OBJECT-TYPE
+	    SYNTAX      INTEGER
+	    MAX-ACCESS  read-only
+	    STATUS      current
+	    DESCRIPTION
+		"The maximum number of cells used in this service pool"
+	    ::= { bufUtiliznEntry 3 }
+
+	bufAvg OBJECT-TYPE
+	    SYNTAX	DisplayString
+	    MAX-ACCESS  read-only
+	    STATUS      current
+	    DESCRIPTION
+		"The average number of cells used in this service pool"
+	    ::= { bufUtiliznEntry 4 }
+
+	bufVariance OBJECT-TYPE
+	    SYNTAX      DisplayString
+	    MAX-ACCESS  read-only
+	    STATUS      current
+	    DESCRIPTION
+		"The variance of the buffer pool utilization for this service pool
+		over the last measured interval."
+	    ::= { bufUtiliznEntry 5 }
+
+	bufStdDev OBJECT-TYPE
+	    SYNTAX      DisplayString
+	    MAX-ACCESS  read-only
+	    STATUS      current
+	    DESCRIPTION
+		"The Standard Deviation of the buffer pool utilization for this
+		service pool over the last measured interval."
+	    ::= { bufUtiliznEntry 6 }
+
+	bufCurr OBJECT-TYPE
+	    SYNTAX      INTEGER
+	    MAX-ACCESS  read-only
+	    STATUS      current
+	    DESCRIPTION
+		"The current number of cells used in this service pool."
+	    ::= { bufUtiliznEntry 7 }
+
+portPGBufUtiliznTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF PortPGBufUtiliznEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	"Table describes the iPort.PG buffer utilization per port"
+    ::= { bufferUtilizn 5 }
+
+portPGBufUtiliznEntry OBJECT-TYPE
+    SYNTAX      PortPGBufUtiliznEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    INDEX { ifIndex }
+    ::= { portPGBufUtiliznTable 1 }
+
+PortPGBufUtiliznEntry ::=
+	SEQUENCE {
+		portName        DisplayString,
+		pg0BufCurrUsage Counter64,
+		pg0BufMaxUsage Counter64,
+		pg1BufCurrUsage Counter64,
+		pg1BufMaxUsage Counter64,
+		pg2BufCurrUsage Counter64,
+		pg2BufMaxUsage Counter64,
+		pg3BufCurrUsage Counter64,
+		pg3BufMaxUsage Counter64,
+		pg4BufCurrUsage Counter64,
+		pg4BufMaxUsage Counter64,
+		pg5BufCurrUsage Counter64,
+		pg5BufMaxUsage Counter64,
+		pg6BufCurrUsage Counter64,
+		pg6BufMaxUsage Counter64,
+		pg7BufCurrUsage Counter64,
+		pg7BufMaxUsage Counter64,
+		pg9BufCurrUsage Counter64,
+		pg9BufMaxUsage Counter64,
+	}
+
+	portName OBJECT-TYPE
+	    SYNTAX      DisplayString
+	    MAX-ACCESS  read-only
+	    STATUS      deprecated
+	    DESCRIPTION
+		"Port name"
+	    ::= { portPGBufUtiliznEntry 1 }
+
+    pg0BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.PG[0] buffer "
+        ::= { portPGBufUtiliznEntry 2 }
+
+    pg0BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.PG[0] buffer "
+        ::= { portPGBufUtiliznEntry 3 }
+
+    pg1BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.PG[1] buffer "
+        ::= { portPGBufUtiliznEntry 4 }
+
+    pg1BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.PG[1] buffer "
+        ::= { portPGBufUtiliznEntry 5 }
+
+    pg2BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.PG[2] buffer "
+        ::= { portPGBufUtiliznEntry 6 }
+
+    pg2BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.PG[2] buffer "
+        ::= { portPGBufUtiliznEntry 7 }
+
+    pg3BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.PG[3] buffer "
+        ::= { portPGBufUtiliznEntry 8 }
+
+    pg3BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.PG[3] buffer "
+        ::= { portPGBufUtiliznEntry 9 }
+
+    pg4BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.PG[4] buffer "
+        ::= { portPGBufUtiliznEntry 10 }
+
+    pg4BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.PG[4] buffer "
+        ::= { portPGBufUtiliznEntry 11 }
+
+    pg5BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.PG[5] buffer "
+        ::= { portPGBufUtiliznEntry 12 }
+
+    pg5BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.PG[5] buffer "
+        ::= { portPGBufUtiliznEntry 13 }
+
+    pg6BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.PG[6] buffer "
+        ::= { portPGBufUtiliznEntry 14 }
+
+    pg6BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.PG[6] buffer "
+        ::= { portPGBufUtiliznEntry 15 }
+
+    pg7BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.PG[7] buffer "
+        ::= { portPGBufUtiliznEntry 16 }
+
+    pg7BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.PG[7] buffer "
+        ::= { portPGBufUtiliznEntry 17 }
+
+    pg9BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.PG[9] buffer "
+        ::= { portPGBufUtiliznEntry 20 }
+
+    pg9BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.PG[9] buffer "
+        ::= { portPGBufUtiliznEntry 21 }
+
+portPoolBufUtiliznTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF PortPoolBufUtiliznEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	"Table describes the iPort.Pool and ePort.Pool buffer utilization per port"
+    ::= { bufferUtilizn 6 }
+
+portPoolBufUtiliznEntry OBJECT-TYPE
+    SYNTAX      PortPoolBufUtiliznEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    INDEX { ifIndex }
+    ::= { portPoolBufUtiliznTable 1 }
+
+PortPoolBufUtiliznEntry ::=
+	SEQUENCE {
+		portName        DisplayString,
+        iPool0BufCurrUsage Counter64,
+		iPool0BufMaxUsage Counter64,
+		iPool1BufCurrUsage Counter64,
+		iPool1BufMaxUsage Counter64,
+		iPool2BufCurrUsage Counter64,
+		iPool2BufMaxUsage Counter64,
+		iPool3BufCurrUsage Counter64,
+		iPool3BufMaxUsage Counter64,
+		iPool4BufCurrUsage Counter64,
+		iPool4BufMaxUsage Counter64,
+		iPool5BufCurrUsage Counter64,
+		iPool5BufMaxUsage Counter64,
+		iPool6BufCurrUsage Counter64,
+		iPool6BufMaxUsage Counter64,
+		iPool7BufCurrUsage Counter64,
+		iPool7BufMaxUsage Counter64,
+		iPool8BufCurrUsage Counter64,
+		iPool8BufMaxUsage Counter64,
+		iPool9BufCurrUsage Counter64,
+		iPool9BufMaxUsage Counter64,
+		ePool11BufCurrUsage Counter64,
+		ePool11BufMaxUsage Counter64,
+		ePool12BufCurrUsage Counter64,
+		ePool12BufMaxUsage Counter64,
+		ePool13BufCurrUsage Counter64,
+		ePool13BufMaxUsage Counter64,
+		ePool14BufCurrUsage Counter64,
+		ePool14BufMaxUsage Counter64,
+		ePool15BufCurrUsage Counter64,
+		ePool15BufMaxUsage Counter64,
+		ePool16BufCurrUsage Counter64,
+		ePool16BufMaxUsage Counter64,
+		ePool17BufCurrUsage Counter64,
+		ePool17BufMaxUsage Counter64,
+		ePool18BufCurrUsage Counter64,
+		ePool18BufMaxUsage Counter64,
+		ePool19BufCurrUsage Counter64,
+		ePool19BufMaxUsage Counter64,
+		ePool20BufCurrUsage Counter64,
+		ePool20BufMaxUsage Counter64,
+	}
+
+	portName OBJECT-TYPE
+	    SYNTAX      DisplayString
+	    MAX-ACCESS  read-only
+	    STATUS      deprecated
+	    DESCRIPTION
+		"Port name"
+	    ::= { portPoolBufUtiliznEntry 1 }
+
+    iPool0BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.Pool[0] buffer "
+        ::= { portPoolBufUtiliznEntry 2 }
+
+    iPool0BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.Pool[0] buffer "
+        ::= { portPoolBufUtiliznEntry 3 }
+
+    iPool1BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.Pool[1] buffer "
+        ::= { portPoolBufUtiliznEntry 4 }
+
+    iPool1BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.Pool[1] buffer "
+        ::= { portPoolBufUtiliznEntry 5 }
+
+    iPool2BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.Pool[2] buffer "
+        ::= { portPoolBufUtiliznEntry 6 }
+
+    iPool2BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.Pool[2] buffer "
+        ::= { portPoolBufUtiliznEntry 7 }
+
+    iPool3BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.Pool[3] buffer "
+        ::= { portPoolBufUtiliznEntry 8 }
+
+    iPool3BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.Pool[3] buffer "
+        ::= { portPoolBufUtiliznEntry 9 }
+
+    iPool4BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.Pool[4] buffer "
+        ::= { portPoolBufUtiliznEntry 10 }
+
+    iPool4BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.Pool[4] buffer "
+        ::= { portPoolBufUtiliznEntry 11 }
+
+    iPool5BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.Pool[5] buffer "
+        ::= { portPoolBufUtiliznEntry 12 }
+
+    iPool5BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.Pool[5] buffer "
+        ::= { portPoolBufUtiliznEntry 13 }
+
+    iPool6BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.Pool[6] buffer "
+        ::= { portPoolBufUtiliznEntry 14 }
+
+    iPool6BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.Pool[6] buffer "
+        ::= { portPoolBufUtiliznEntry 15 }
+
+    iPool7BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.Pool[7] buffer "
+        ::= { portPoolBufUtiliznEntry 16 }
+
+    iPool7BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.Pool[7] buffer "
+        ::= { portPoolBufUtiliznEntry 17 }
+
+    iPool8BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.Pool[8] buffer "
+        ::= { portPoolBufUtiliznEntry 18 }
+
+    iPool8BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.Pool[8] buffer "
+        ::= { portPoolBufUtiliznEntry 19 }
+
+    iPool9BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of iPort.Pool[9] buffer "
+        ::= { portPoolBufUtiliznEntry 20 }
+
+    iPool9BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of iPort.Pool[9] buffer "
+        ::= { portPoolBufUtiliznEntry 21 }
+
+    ePool11BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.Pool[11] buffer "
+        ::= { portPoolBufUtiliznEntry 22 }
+
+    ePool11BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.Pool[11] buffer "
+        ::= { portPoolBufUtiliznEntry 23 }
+
+    ePool12BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.Pool[12] buffer "
+        ::= { portPoolBufUtiliznEntry 24 }
+
+    ePool12BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.Pool[12] buffer "
+        ::= { portPoolBufUtiliznEntry 25 }
+
+    ePool13BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.Pool[13] buffer "
+        ::= { portPoolBufUtiliznEntry 26 }
+
+    ePool13BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.Pool[13] buffer "
+        ::= { portPoolBufUtiliznEntry 27 }
+
+    ePool14BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.Pool[14] buffer "
+        ::= { portPoolBufUtiliznEntry 28 }
+
+    ePool14BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.Pool[14] buffer "
+        ::= { portPoolBufUtiliznEntry 29 }
+
+    ePool15BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.Pool[15] buffer "
+        ::= { portPoolBufUtiliznEntry 30 }
+
+    ePool15BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.Pool[15] buffer "
+        ::= { portPoolBufUtiliznEntry 31 }
+
+    ePool16BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.Pool[16] buffer "
+        ::= { portPoolBufUtiliznEntry 32 }
+
+    ePool16BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.Pool[16] buffer "
+        ::= { portPoolBufUtiliznEntry 33 }
+
+    ePool17BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.Pool[17] buffer "
+        ::= { portPoolBufUtiliznEntry 34 }
+
+    ePool17BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.Pool[17] buffer "
+        ::= { portPoolBufUtiliznEntry 35 }
+
+    ePool18BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.Pool[18] buffer "
+        ::= { portPoolBufUtiliznEntry 36 }
+
+    ePool18BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.Pool[18] buffer "
+        ::= { portPoolBufUtiliznEntry 37 }
+
+    ePool19BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.Pool[19] buffer "
+        ::= { portPoolBufUtiliznEntry 38 }
+
+    ePool19BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.Pool[19] buffer "
+        ::= { portPoolBufUtiliznEntry 39 }
+
+    ePool20BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.Pool20] buffer "
+        ::= { portPoolBufUtiliznEntry 40 }
+
+    ePool20BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.Pool[20] buffer "
+        ::= { portPoolBufUtiliznEntry 41 }
+
+portTCBufUtiliznTable OBJECT-TYPE
+    SYNTAX      SEQUENCE OF PortTCBufUtiliznEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	"Table describes the ePort.TC buffer utilization per port"
+    ::= { bufferUtilizn 7 }
+
+portTCBufUtiliznEntry OBJECT-TYPE
+    SYNTAX      PortTCBufUtiliznEntry
+    MAX-ACCESS  not-accessible
+    STATUS      current
+    DESCRIPTION
+	""
+    INDEX { ifIndex }
+    ::= { portTCBufUtiliznTable 1 }
+
+PortTCBufUtiliznEntry ::=
+	SEQUENCE {
+		portName        DisplayString,
+        tc0BufCurrUsage Counter64,
+        tc0BufMaxUsage  Counter64,
+        tc1BufCurrUsage Counter64,
+        tc1BufMaxUsage  Counter64,
+        tc2BufCurrUsage Counter64,
+        tc2BufMaxUsage  Counter64,
+        tc3BufCurrUsage Counter64,
+        tc3BufMaxUsage  Counter64,
+        tc4BufCurrUsage Counter64,
+        tc4BufMaxUsage  Counter64,
+        tc5BufCurrUsage Counter64,
+        tc5BufMaxUsage  Counter64,
+        tc6BufCurrUsage Counter64,
+        tc6BufMaxUsage  Counter64,
+        tc7BufCurrUsage Counter64,
+        tc7BufMaxUsage  Counter64,
+        tc8BufCurrUsage Counter64,
+        tc8BufMaxUsage  Counter64,
+        tc9BufCurrUsage Counter64,
+        tc9BufMaxUsage  Counter64,
+        tc10BufCurrUsage Counter64,
+        tc10BufMaxUsage  Counter64,
+        tc11BufCurrUsage Counter64,
+        tc11BufMaxUsage  Counter64,
+        tc12BufCurrUsage Counter64,
+        tc12BufMaxUsage  Counter64,
+        tc13BufCurrUsage Counter64,
+        tc13BufMaxUsage  Counter64,
+        tc14BufCurrUsage Counter64,
+        tc14BufMaxUsage  Counter64,
+        tc15BufCurrUsage Counter64,
+        tc15BufMaxUsage  Counter64,
+        tc16BufCurrUsage Counter64,
+        tc16BufMaxUsage  Counter64,
+    }
+
+	portName OBJECT-TYPE
+	    SYNTAX      DisplayString
+	    MAX-ACCESS  read-only
+	    STATUS      deprecated
+	    DESCRIPTION
+		"Port name"
+	    ::= { portTCBufUtiliznEntry 1 }
+
+    tc0BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[0] buffer "
+        ::= { portTCBufUtiliznEntry 2 }
+
+    tc0BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[0] buffer "
+        ::= { portTCBufUtiliznEntry 3 }
+
+    tc1BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[1] buffer "
+        ::= { portTCBufUtiliznEntry 4 }
+
+    tc1BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[1] buffer "
+        ::= { portTCBufUtiliznEntry 5 }
+
+    tc2BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[2] buffer "
+        ::= { portTCBufUtiliznEntry 6 }
+
+    tc2BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[2] buffer "
+        ::= { portTCBufUtiliznEntry 7 }
+
+    tc3BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[3] buffer "
+        ::= { portTCBufUtiliznEntry 8 }
+
+    tc3BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[3] buffer "
+        ::= { portTCBufUtiliznEntry 9 }
+
+    tc4BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[4] buffer "
+        ::= { portTCBufUtiliznEntry 10 }
+
+    tc4BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[4] buffer "
+        ::= { portTCBufUtiliznEntry 11 }
+
+    tc5BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[5] buffer "
+        ::= { portTCBufUtiliznEntry 12 }
+
+    tc5BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[5] buffer "
+        ::= { portTCBufUtiliznEntry 13 }
+
+    tc6BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[6] buffer "
+        ::= { portTCBufUtiliznEntry 14 }
+
+    tc6BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[6] buffer "
+        ::= { portTCBufUtiliznEntry 15 }
+
+    tc7BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[7] buffer "
+        ::= { portTCBufUtiliznEntry 16 }
+
+    tc7BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[7] buffer "
+        ::= { portTCBufUtiliznEntry 17 }
+
+    tc8BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[8] buffer "
+        ::= { portTCBufUtiliznEntry 18 }
+
+    tc8BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[8] buffer "
+        ::= { portTCBufUtiliznEntry 19 }
+
+    tc9BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[9] buffer "
+        ::= { portTCBufUtiliznEntry 20 }
+
+    tc9BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[9] buffer "
+        ::= { portTCBufUtiliznEntry 21 }
+
+    tc10BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[10] buffer "
+        ::= { portTCBufUtiliznEntry 22 }
+
+    tc10BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[10] buffer "
+        ::= { portTCBufUtiliznEntry 23 }
+
+    tc11BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[11] buffer "
+        ::= { portTCBufUtiliznEntry 24 }
+
+    tc11BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[11] buffer "
+        ::= { portTCBufUtiliznEntry 25 }
+
+    tc12BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[12] buffer "
+        ::= { portTCBufUtiliznEntry 26 }
+
+    tc12BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[12] buffer "
+        ::= { portTCBufUtiliznEntry 27 }
+
+    tc13BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[13] buffer "
+        ::= { portTCBufUtiliznEntry 28 }
+
+    tc13BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[13] buffer "
+        ::= { portTCBufUtiliznEntry 29 }
+
+    tc14BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[14] buffer "
+        ::= { portTCBufUtiliznEntry 30 }
+
+    tc14BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[14] buffer "
+        ::= { portTCBufUtiliznEntry 31 }
+
+    tc15BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[15] buffer "
+        ::= { portTCBufUtiliznEntry 32 }
+
+    tc15BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[15] buffer "
+        ::= { portTCBufUtiliznEntry 33 }
+
+    tc16BufCurrUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Current Usage(in cells) of ePort.TC[16] buffer "
+        ::= { portTCBufUtiliznEntry 34 }
+
+    tc16BufMaxUsage OBJECT-TYPE
+        SYNTAX      Counter64
+        MAX-ACCESS  read-only
+        STATUS      current
+        DESCRIPTION
+        "Max Usage(in cells) of ePort.TC[16] buffer "
+        ::= { portTCBufUtiliznEntry 35 }
+
+bufUtiliznCellSize OBJECT-TYPE
+    SYNTAX      INTEGER
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+	"The buffer cell size in bytes"
+    ::= { bufferUtilizn 8 }
+
+END

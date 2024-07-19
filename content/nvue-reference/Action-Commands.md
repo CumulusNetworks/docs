@@ -2490,32 +2490,6 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv action generate system tech-support</h>
-
-Generates a compressed archive file of useful information for troubleshooting. 
-
-You can also provide these options:
-- `--no-timeout` generates the file with no module timeouts.
-- `--with-secure` includes secure information in the file.
-
-## Version History
-
-Introduced in Cumulus Linux 5.10.0
-
-### Example
-
-```
-cumulus@switch:~$ nv action generate system tech-support
-Action executing ...
-Generating system tech-support file, it might take a few minutes...
-
-Action executing ...
-Generated tech-support
-Action succeeded
-```
-
-<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
-
 ## <h>nv action import system security ca-certificate \<cert-id\></h>
 
 Imports a CA certificate.

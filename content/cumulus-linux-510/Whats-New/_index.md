@@ -19,7 +19,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 
 - PPS supported on the NVIDIA SN5400 switch
 - {{<link url="ASIC-Monitoring/#high-frequency-telemetry" text="High frequency telemetry">}}
-- Telemetry export with Prometheus and OTLP (SN5600 switch only)
+- {{<link url="ASIC-Monitoring/#open-telemetry-export" text="Telemetry export with OTLP">}} (SN5600 switch only)
 - {{<link url="SSH-for-Remote-Access/#ssh-login-notifications" text="SSH login notifications">}}
 - {{<link url="Quality-of-Service/#lossy-headroom" text="QoS lossy headroom configuration">}} and {{<link url="Quality-of-Service/#ingress-and-egress-management-buffers" text=" QoS Ingress and Egress Management Buffer Configuration">}}
 - {{<link url="VXLAN-Devices/#reserved-field-in-vxlan-header" text="Ignore reserved field in VXLAN header">}}
@@ -28,11 +28,11 @@ NVIDIA SN5400 (400G Spectrum-4)
 - {{< expand "Additional OID support for SNMP MIBs" >}}
 | <div style="width:250px">MIB | OID | Description |
 | --- | ----| ----------- |
-| CUMULUS-COUNTERS-MIB | .1.3.6.1.4.1.40310.2.2.5.1.4 | The number of times the operational status of the interface link transitions between up and down. |
-| CUMULUS-COUNTERS-MIB | .1.3.6.1.4.1.40310.2.2.6.1.4 | The number of bytes transmitted from the egress queue. |
-| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.28 | The total number of IPv4 routes in the FIB.|
-| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.29 | The total number of IPv4/24 routes in the FIB.|
-| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.30 | The total number of IPv4/32 routes in the FIB.|
+| CUMULUS-COUNTERS-MIB | .1.3.6.1.4.1.40310.2.2.5.1.4<br>clCarrierChangesCount | The number of times the operational status of the interface link transitions between up and down. |
+| CUMULUS-COUNTERS-MIB | .1.3.6.1.4.1.40310.2.2.6.1.4<br>clIntOutBytes | The number of bytes transmitted from the egress queue. |
+| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.28<br>l3RoutingTableCurrentIpv4Entries | The total number of IPv4 routes in the FIB.|
+| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.29<br>l3RoutingTableCurrentIpv4EntriesForPrefixLen24 | The total number of IPv4/24 routes in the FIB.|
+| CUMULUS-RESOURCE-QUERY-MIB | .1.3.6.1.4.1.40310.1.1.30<br>l3RoutingTableCurrentIpv4EntriesForPrefixLen32 | The total number of IPv4/32 routes in the FIB.|
 
 {{<link url="Supported-MIBs" text="Supported MIBs">}}
 {{< /expand >}}
@@ -42,7 +42,7 @@ NVIDIA SN5400 (400G Spectrum-4)
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
   - {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="Command to generate a cl-support file">}}
   - {{<link url="NVUE-CLI/#session-based-authentication" text="Session-based authentication">}}
-  - Redesigned BGP show output flags similar to vtysh output
+  - Redesigned {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="BGP show output flags">}} now similar to vtysh output
   - Radius keys are encrypted in the NVUE `startup.yaml` file
   - {{< expand "Changed NVUE Commands" >}}
 | New Command| Previous Command |
@@ -84,10 +84,20 @@ nv show system telemetry hft job <hft-job-id>
 
 ```
 nv set interface <interface> link mac-address
+nv set system telemetry export otlp grpc allow-insecure
+nv set system telemetry export otlp grpc cert-id <certificate>
+nv set system telemetry export otlp grpc destination <destination> port <port>
+nv set system telemetry export otlp http allow-insecure
+nv set system telemetry export otlp http cert-id <certificate>
+nv set system telemetry export otlp http encoding json
+nv set system telemetry export otlp http port <port>
+nv set system telemetry export otlp state
 nv set system telemetry hft profile <profile-id> counter
 nv set system telemetry hft profile <profile-id> sample-interval
 nv set system telemetry hft profile <profile-id> traffic-class
 nv set system telemetry hft target local
+nv set system telemetry histogram export state
+nv set system telemetry interface-stats export state
 nv set system ssh-server login-record-period
 nv set qos advance-buffer-config default-global egress-mgmt-buffer 
 nv set qos advance-buffer-config default-global ingress-mgmt-buffer
@@ -100,6 +110,14 @@ nv set vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 
 ```
 nv unset interface <interface> link mac-address
+nv unset system telemetry export otlp grpc allow-insecure
+nv unset system telemetry export otlp grpc cert-id
+nv unset system telemetry export otlp grpc destination
+nv unset system telemetry export otlp http allow-insecure
+nv unset system telemetry export otlp http cert-id
+nv unset system telemetry export otlp http encoding json
+nv unset system telemetry export otlp http port
+nv unset system telemetry export otlp state
 nv unset system telemetry hft
 nv unset system telemetry hft profile <profile-id>
 nv unset system telemetry hft profile <profile-id> counter
@@ -107,6 +125,8 @@ nv unset system telemetry hft profile <profile-id> sample-interval
 nv unset system telemetry hft profile <profile-id> traffic-class
 nv unset system telemetry hft target
 nv unset system telemetry hft target local
+nv unset system telemetry histogram export state
+nv unset system telemetry interface-stats export state
 nv unset system ssh-server login-record-period
 nv unset qos advance-buffer-config default-global egress-mgmt-buffer 
 nv unset qos advance-buffer-config default-global ingress-mgmt-buffer

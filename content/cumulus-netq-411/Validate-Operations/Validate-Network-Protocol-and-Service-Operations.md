@@ -200,7 +200,11 @@ cumulus@switch:~$ netq del validation Bgp15m
 
 ## Topology Validations
 
-The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint (in {{<exlink url="https://graphviz.org/doc/info/lang.html" text="Graphviz DOT format">}}) that you upload to the UI. It can only be run on-demand.
+The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint (in {{<exlink url="https://graphviz.org/doc/info/lang.html" text="Graphviz DOT format">}}) that you upload to the UI.
+
+{{%notice note%}}
+This feature is in beta. Topology validations can only be run on-demand.
+{{%/notice%}}
 ### Configure LLDP
 
 You must configure the LLDP service on switches and hosts that are defined in the topology blueprint to send the port ID subtype that matches the connection defined in the topology DOT file. The {{<exlink url="https://lldpd.github.io/usage.html" text="lldpd service">}} allows you to configure the port ID by specifying either the interface name (`ifname`) or MAC address (`macaddress`) using the `configure lldp portidsubtype [ifname | macaddress]` command.
@@ -289,6 +293,10 @@ If you change the LLDP port ID subtype while the NetQ agent is running, restart 
 
 ### Create a Topology Validation
 
+{{<tabs "Topo Validation">}}
+
+{{<tab "NetQ UI">}}
+
 1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**.
 
 2. Select **Topology** and upload the topology blueprint file. The name of the blueprint file NetQ will use to validate the topology is displayed on the screen. To use a different file, upload it to the UI, then select **Manage blueprint file**. Select **Activate** on the blueprint file you'd like NetQ to use.
@@ -296,3 +304,15 @@ If you change the LLDP port ID subtype while the NetQ agent is running, restart 
 3. Upon completion, the dashboard displays which devices failed the topology validation, along with a table listing cabling issues.
 
 {{<figure src="/images/netq/val-failed-topo-411.png" width="1200" height="600">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
+1. Upload the topology blueprint file to the UI.
+
+2. Run the {{<link title="check/#netq-check-topology" text="netq check topology">}} command.
+
+{{</tab>}}
+
+{{</tabs>}}

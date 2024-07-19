@@ -299,9 +299,9 @@ If you change the LLDP port ID subtype while the NetQ agent is running, restart 
 
 1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**.
 
-2. Select **Topology** and upload the topology blueprint file. The name of the blueprint file NetQ will use to validate the topology is displayed on the screen. To use a different file, upload it to the UI, then select **Manage blueprint file**. Select **Activate** on the blueprint file you'd like NetQ to use.
+2. Select **Topology** and upload the topology blueprint file. The name of the blueprint file NetQ will use to validate the topology is displayed on the screen. To use a different file, upload it to the UI, then select **Manage blueprint file**. Select **Activate** to indicate the blueprint file you'd like NetQ to use.
 
-3. Upon completion, the dashboard displays which devices failed the topology validation, along with a table listing cabling issues.
+3. Upon completion, the dashboard displays the devices that failed the topology validation, along with a table listing cabling issues. NetQ only displays the network links that were defined in the topology blueprint.
 
 {{<figure src="/images/netq/val-failed-topo-411.png" width="1200" height="600">}}
 

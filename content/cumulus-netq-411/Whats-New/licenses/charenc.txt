@@ -1,6 +1,6 @@
 BSD 3-clause "New" or "Revised" License
-Copyright © 2011, Paul Vorbach. All rights reserved.
-Copyright © 2009, Jeff Mott. All rights reserved.
+Copyright Â© 2011, Paul Vorbach. All rights reserved.
+Copyright Â© 2009, Jeff Mott. All rights reserved.
 
 All rights reserved.
 

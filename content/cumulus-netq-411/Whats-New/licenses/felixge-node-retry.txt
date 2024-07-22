@@ -1,7 +1,7 @@
 MIT License
 Copyright (c) 2011:
-Tim Koschützki (tim@debuggable.com)
-Felix Geisendörfer (felix@debuggable.com)
+Tim KoschÃ¼tzki (tim@debuggable.com)
+Felix GeisendÃ¶rfer (felix@debuggable.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal

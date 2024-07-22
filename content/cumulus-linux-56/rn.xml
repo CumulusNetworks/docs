@@ -19,18 +19,15 @@
 <td></td>
 </tr>
 <tr>
-<td>3982229</td>
-<td>With the {{nvidia.nvue}} Ansible module, NVUE honors input from the Ansible module only; if you do not provide the full configuration, NVUE generates an exception. To work around this issue, always provide the full configuration.</td>
+<td>3955615</td>
+<td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
 <td>5.6.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>
-<td>3980941</td>
-<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
-  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
-This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
-  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
-<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -40,10 +37,25 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td></td>
 </tr>
 <tr>
+<td>3895042</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3863858</td>
 <td>VRR interfaces might show {{dadfailed}} on their IPv6 link-local address.</td>
 <td>5.6.0-5.8.0</td>
 <td>5.9.0-5.9.1</td>
+</tr>
+<tr>
+<td>3854807</td>
+<td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
+<td>5.6.0-5.9.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3854800</td>
@@ -575,6 +587,12 @@ cumulus@switch:~$ nv config patch frr_policy.yaml
 <td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}}) is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
 <td>5.0.0-5.6.0</td>
 <td>5.7.0-5.9.1</td>
+</tr>
+<tr>
+<td>3442569</td>
+<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3433577</td>

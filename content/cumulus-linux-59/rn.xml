@@ -7,9 +7,9 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3982260</td>
-<td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
-<td>5.8.0-5.9.1</td>
+<td>3982256</td>
+<td>After {{switchd}} restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting.</td>
+<td>5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -49,12 +49,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3982230</td>
-<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
-<td>5.8.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3980957</td>
 <td>The password on NVIDIA Cumulus VX is not getting reset to the default value of {{cumulus}}.</td>
 <td>5.9.0-5.9.1</td>
@@ -79,18 +73,75 @@
 <td></td>
 </tr>
 <tr>
-<td>3980941</td>
-<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
-  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
-This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
-  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
-<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3980938</td>
 <td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
 <td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3972715</td>
+<td>The fans on the NVIDIA SN2410 switch (Part Number SSG7A80800) might spin at high speed. </td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3970626</td>
+<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with core dump.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3966673</td>
+<td>In an EVPN multihoming configuration, if you enable multihoming without any local ESI configuration, {{arp-nd-redirect}} remains disabled unless you restart FRR with the {{sudo systemctl restart frr.service}} command.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3965021</td>
+<td>The {{ethtool -m}} command shows incorrect optical DOM information for SFP modules. To work around this issue, run the {{l1-show}} command to show optical power values for SFP optical transceivers..</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3956091</td>
+<td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3955615</td>
+<td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
+<td>5.6.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3954026</td>
+<td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3951643</td>
+<td>The NVUE unset and set command for the same object in a patch file {{nv config patch &lt;file&gt;.yaml}} causes a python exception.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3950322</td>
+<td>After {{switchd}} restarts,  the sFlow sampling rate set in the hardware might not match with the configured values for about 3 minutes. This issue occurs because interfaces are not yet up during  the initial sampling rate setting.</td>
+<td>5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3947432</td>
+<td>In an EVPN multihoming configuration, if a host bond enters the protodown state due to a link flap, when you try to clear the protodown state, FRR reprograms it.</td>
+<td>5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -118,6 +169,12 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td></td>
 </tr>
 <tr>
+<td>3929440</td>
+<td>When you enable or disable MLAG configuration on an interface, Cumulus Linux logs LACP partner MAC address and BPDU guard mismatches incorrectly. This issue does not impact functionality.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3926523</td>
 <td>When there are multiple interface flaps with sFlow on 100G interfaces, sFlow might use a different value than the one configured.</td>
 <td>5.9.1</td>
@@ -136,9 +193,37 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td></td>
 </tr>
 <tr>
+<td>3917528</td>
+<td>With LACP bypass enabled, Cumulus Linux does not program the MAC address in the bridge FDB for VLAN unaware tagged ports.  With EVPN, the address is not advertised and the remote side might flood the packet instead of unicast.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3915842</td>
+<td>A kernel crash due to memory corruption might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
+kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3904516</td>
 <td>With Optimized Multicast Flooding (OMF), when you unset multiple multicast router ports in a single commit, multicast traffic still floods one of the ports. To work around this issue, unset multicast router ports one by one instead of in a single commit.</td>
 <td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3896967</td>
+<td>PTP doesn't come up with IPv6 over a trunk port due to the IPv6 VLAN tag not being sent.  PTP over an IPv4 trunk works fine.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3895042</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -176,7 +261,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3875589</td>
-<td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
+<td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
 <td>5.9.0-5.9.1</td>
 <td></td>
 </tr>
@@ -187,9 +272,21 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td></td>
 </tr>
 <tr>
+<td>3854807</td>
+<td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
+<td>5.6.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3854800</td>
 <td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
 <td>5.6.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3851499</td>
+<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
+<td>5.8.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -253,6 +350,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3610591</td>
+<td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
+<td>5.7.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3587393</td>
 <td>If you use the NVIDIA SN5600 (Spectrum-4) switch with Ixia test equipment, you might experience delayed link up due to intermittent link flaps. 
 To work around this issue when using copper cables:
@@ -281,6 +384,12 @@ To work around this issue when using fiber cables:
 <tr>
 <td>3452681</td>
 <td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see an error message similar to {{Error: GET /nvue_v1/system/aaa/tacacs/authorization/1?rev=operational responded with 404 NOT FOUND}}.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3442569</td>
+<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
 <td>5.5.0-5.9.1</td>
 <td></td>
 </tr>
@@ -553,12 +662,6 @@ You can safely ignore this warning.</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3982260</td>
-<td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
-<td>5.8.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3982250</td>
 <td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
 <td>5.9.0-5.9.1</td>
@@ -589,18 +692,6 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
-<td>3982230</td>
-<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
-<td>5.8.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3982229</td>
-<td>With the {{nvidia.nvue}} Ansible module, NVUE honors input from the Ansible module only; if you do not provide the full configuration, NVUE generates an exception. To work around this issue, always provide the full configuration.</td>
-<td>5.6.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3980957</td>
 <td>The password on NVIDIA Cumulus VX is not getting reset to the default value of {{cumulus}}.</td>
 <td>5.9.0-5.9.1</td>
@@ -619,18 +710,39 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
-<td>3980941</td>
-<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
-  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
-This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
-  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
-<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3980938</td>
 <td>When ARP suppression is off, remote EVPN VTEPs duplicate ARP packets from local hosts and each remote host receives two copies of the ARP packets. The issue also applies to IPv6 ND packets.</td>
 <td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3970626</td>
+<td>When you configure the {{bridge.kernel_mac_refresh_interval}} parameter in the {{switchd.conf}} file, a {{switchd}} restart fails with core dump.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3956091</td>
+<td>When you modify the default QoS configuration on top of the base RoCE configuration, NVUE reports an {{Invalid}} exception in the {{nv show qos roce}} command output even when the configuration is valid.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3955615</td>
+<td>Cumulus Linux does not recognize QSFP_CMIS optical modules correctly.</td>
+<td>5.6.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3954026</td>
+<td>Static ARP configured with NVUE commands is deleted when the relevant layer 3 interface flaps.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -652,6 +764,12 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td></td>
 </tr>
 <tr>
+<td>3929440</td>
+<td>When you enable or disable MLAG configuration on an interface, Cumulus Linux logs LACP partner MAC address and BPDU guard mismatches incorrectly. This issue does not impact functionality.</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3925259</td>
 <td>When you start Cumulus VX in Vagrant with libvirt, VM provisioning might fail with errors that indicate a missing {{ifup@eth0.service}} systemd service.</td>
 <td>5.9.0-5.9.1</td>
@@ -664,6 +782,19 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td></td>
 </tr>
 <tr>
+<td>3917528</td>
+<td>With LACP bypass enabled, Cumulus Linux does not program the MAC address in the bridge FDB for VLAN unaware tagged ports.  With EVPN, the address is not advertised and the remote side might flood the packet instead of unicast.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3915842</td>
+<td>A kernel crash due to memory corruption might occur due to a {{netfilter}} error. The log message from {{netfilter}} might contain a warning similar to the following:kernel: WARNING: CPU: 1 PID: 0 at net/netfilter/nf_conntrack_core.c:1210 __nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]
+kernel: RIP: 0010:__nf_conntrack_confirm+0x5c7/0x6b0 [nf_conntrack]</td>
+<td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3915829</td>
 <td>General improvements to overall software stability.</td>
 <td>5.9.0</td>
@@ -673,6 +804,21 @@ This issue occurs because {{poectl}} is called on non-PoE switches. To work arou
 <td>3904516</td>
 <td>With Optimized Multicast Flooding (OMF), when you unset multiple multicast router ports in a single commit, multicast traffic still floods one of the ports. To work around this issue, unset multicast router ports one by one instead of in a single commit.</td>
 <td>5.9.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3896967</td>
+<td>PTP doesn't come up with IPv6 over a trunk port due to the IPv6 VLAN tag not being sent.  PTP over an IPv4 trunk works fine.</td>
+<td>5.8.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3895042</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -710,7 +856,7 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 </tr>
 <tr>
 <td>3875589</td>
-<td>MLAG bonds might report an incorrect DOWN reason of {{lacp partner mac mismatch}} when the bond is out of service for another reason.</td>
+<td>MLAG bonds might report an LACP partner MAC mismatch unexpectedly during LACP negotation and MLAG convergence until the bond reaches a dual connected state. There is no impact to bonds when this mismatch is reported.</td>
 <td>5.9.0-5.9.1</td>
 <td></td>
 </tr>
@@ -721,9 +867,21 @@ To work around this issue, use the {{-q}} option with {{wget}}.</td>
 <td></td>
 </tr>
 <tr>
+<td>3854807</td>
+<td>When you enable Optimized Multicast Flooding (OMF) and change VLAN configuration, a few ports might carry multicast traffic even when they are not in the MDB or they are not router ports.</td>
+<td>5.6.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3854800</td>
 <td>The switch forwards multicast traffic to the CPU when PIM is enabled globally, regardless of the interface configuration.</td>
 <td>5.6.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3851499</td>
+<td>On the Spectrum A1 switch, when you enable the {{ip-acl-heavy}} TCAM profile, VXLAN tunnel initialization might fail.</td>
+<td>5.8.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -787,6 +945,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3610591</td>
+<td>After configuring the system level pre-login and post-login banner messages, the messages do not return to their default settings when you run the {{nv unset system}} command or the {{nv config apply empty}} command.</td>
+<td>5.7.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3587393</td>
 <td>If you use the NVIDIA SN5600 (Spectrum-4) switch with Ixia test equipment, you might experience delayed link up due to intermittent link flaps. 
 To work around this issue when using copper cables:
@@ -815,6 +979,12 @@ To work around this issue when using fiber cables:
 <tr>
 <td>3452681</td>
 <td>When you run the NVUE {{nv show system aaa tacacs authorization}} commands to show per command authorization for a specific TACACS+ user privilege level, you see an error message similar to {{Error: GET /nvue_v1/system/aaa/tacacs/authorization/1?rev=operational responded with 404 NOT FOUND}}.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3442569</td>
+<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
 <td>5.5.0-5.9.1</td>
 <td></td>
 </tr>

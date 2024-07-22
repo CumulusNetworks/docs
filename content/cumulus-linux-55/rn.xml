@@ -13,18 +13,24 @@
 <td></td>
 </tr>
 <tr>
-<td>3980941</td>
-<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
-  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
-This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
-  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
-<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3917601</td>
 <td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
 <td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3895042</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -502,6 +508,12 @@ These messages do not affect the functionality of the switch.</td>
 <td>5.7.0-5.9.1</td>
 </tr>
 <tr>
+<td>3442569</td>
+<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3436595</td>
 <td>When using WJH, if you export dropped packets to a file in PCAP format, the file contains custom WJH header data. As a result, certain tools, such as Wireshark, cannot decode the data. To work around this issue, use the {{--no_metadata}} option with the export command:
 
@@ -941,18 +953,24 @@ You can safely ignore this warning.</td>
 <td></td>
 </tr>
 <tr>
-<td>3980941</td>
-<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
-  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
-This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
-  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
-<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
+<td>3949367</td>
+<td>If you use NVUE to create an SNMP user with a password, then delete and recreate the user with additional encryption passwords (such as DES or AES), SNMP authorization fails for that user.</td>
+<td>5.3.1-5.9.1</td>
 <td></td>
 </tr>
 <tr>
 <td>3917601</td>
 <td>If a packet containing an all zero source MAC address (00:00:00:00:00:00) is learned on the ASIC, {{switchd}} sends the learn notification to the kernel but the kernel rejects the MAC address as invalid. The ASIC continuously sends the mac-learn notifications, which wastes CPU resources. To work around this issue, configure ACLs to match on the all-zero source MAC address and drop the invalid packets.</td>
 <td>5.5.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3895042</td>
+<td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
+  snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
+This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
+  #snmp ALL = NOPASSWD: /usr/cumulus/bin/poectl -j -a </td>
+<td>4.4.0-4.4.5, 5.0.0-5.9.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1350,6 +1368,12 @@ These messages do not affect the functionality of the switch.</td>
 <td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}}) is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
 <td>5.0.0-5.6.0</td>
 <td>5.7.0-5.9.1</td>
+</tr>
+<tr>
+<td>3442569</td>
+<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
+<td>5.5.0-5.9.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3436595</td>

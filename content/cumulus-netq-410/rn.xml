@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3993243</td>
+<td>When you upgrade your NetQ VM, RoCE validation data might not contain all RoCE-enabled switches in your network. This condition will clear within 24 hours of the NetQ upgrade. </td>
+<td>4.10.0-4.10.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3948198</td>
+<td>When you upgrade a Cumulus Linux switch configured with NVUE using NetQ LCM, the upgrade might fail due to NVUE configuration validation if the NVUE object model was changed between the current and new Cumulus Linux version. When this failure occurs, NetQ is unable to rollback to the prior configuration and the switch remains running the default Cumulus Linux configuration. </td>
+<td>4.10.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3863195</td>
 <td>When you perform an LCM switch discovery on a Cumulus Linux 5.9.0 switch in your network that was already added in the NetQ inventory on a prior Cumulus Linux version, the switch will appear as Rotten in the NetQ UI. To work around this issue, decommission the switch first,and run LCM discovery again after the switch is upgraded.</td>
 <td>4.10.0-4.10.1</td>
@@ -14,7 +26,7 @@
 </tr>
 <tr>
 <td>3854467</td>
-<td>When the NetQ master node in a cluster is down, the NetQ kafka-connect pods might crash on other cluster nodes, preventing data collection. To work around this issue, bring the master node back into service.</td>
+<td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
 <td>4.10.0-4.10.1</td>
 <td></td>
 </tr>
@@ -93,6 +105,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3993243</td>
+<td>When you upgrade your NetQ VM, RoCE validation data might not contain all RoCE-enabled switches in your network. This condition will clear within 24 hours of the NetQ upgrade. </td>
+<td>4.10.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3876238</td>
 <td>You cannot upgrade a switch to Cumulus Linux 5.9.0 with NetQ LCM.</td>
 <td>4.10.0</td>
@@ -106,7 +124,7 @@
 </tr>
 <tr>
 <td>3854467</td>
-<td>When the NetQ master node in a cluster is down, the NetQ kafka-connect pods might crash on other cluster nodes, preventing data collection. To work around this issue, bring the master node back into service.</td>
+<td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
 <td>4.10.0</td>
 <td></td>
 </tr>

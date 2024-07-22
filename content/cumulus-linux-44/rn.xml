@@ -34,6 +34,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3759932</td>
+<td>When you migrate virtual machines from one rack to another rack, there might be occasional problems reaching the server after Vmotion.</td>
+<td>4.3.1-4.4.6</td>
+<td></td>
+</tr>
+<tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
@@ -2169,6 +2175,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3759932</td>
+<td>When you migrate virtual machines from one rack to another rack, there might be occasional problems reaching the server after Vmotion.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
@@ -4301,6 +4313,12 @@ cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 </td>
 <td>4.0.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3759932</td>
+<td>When you migrate virtual machines from one rack to another rack, there might be occasional problems reaching the server after Vmotion.</td>
+<td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -6568,6 +6586,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3759932</td>
+<td>When you migrate virtual machines from one rack to another rack, there might be occasional problems reaching the server after Vmotion.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
@@ -8793,6 +8817,12 @@ cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 </td>
 <td>4.0.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3759932</td>
+<td>When you migrate virtual machines from one rack to another rack, there might be occasional problems reaching the server after Vmotion.</td>
+<td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -11206,6 +11236,12 @@ cumulus@switch:~$ sudo apt upgrade
 <td></td>
 </tr>
 <tr>
+<td>3759932</td>
+<td>When you migrate virtual machines from one rack to another rack, there might be occasional problems reaching the server after Vmotion.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3684998</td>
 <td>DHCP lease information is not collected in the {{cl-support}} file.</td>
 <td>4.3.0-5.6.0</td>
@@ -13484,6 +13520,12 @@ cumulus@switch:~$ sudo apt update
 cumulus@switch:~$ sudo apt upgrade
 </td>
 <td>4.0.0-4.4.5, 5.0.0-5.9.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3759932</td>
+<td>When you migrate virtual machines from one rack to another rack, there might be occasional problems reaching the server after Vmotion.</td>
+<td>4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>

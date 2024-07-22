@@ -7,7 +7,7 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3980941</td>
+<td>3895042</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.
@@ -967,7 +967,7 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3980941</td>
+<td>3895042</td>
 <td>After an NMS station does a full SNMP walk on the switch, you see the following message every 5 minutes:
   snmp : command not allowed ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/cumulus/bin/poectl -j -a 
 This issue occurs because {{poectl}} is called on non-PoE switches. To work around this issue, remove or comment out the {{poetcl}} call from the {{/etc/snmpd.conf}} file, then restart the {{snmpd}} process with the {{sudo systemctl snmpd restart}} command.

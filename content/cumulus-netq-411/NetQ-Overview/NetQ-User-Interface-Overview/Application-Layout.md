@@ -12,7 +12,7 @@ The NetQ UI contains two main areas:
 
 - **Workbench**: Contains a task bar and cards that display operative status and network configuration information.
 
-{{<figure src="/images/netq/workbench-full-411.png" alt="workbench displaying task bar and dashboard" width="1200">}}
+{{<figure src="/images/netq/dash-isl-411.png" alt="workbench displaying task bar and dashboard" width="1200">}}
 
 ## Main Menu
 

@@ -200,7 +200,11 @@ cumulus@switch:~$ netq del validation Bgp15m
 
 ## Topology Validations
 
-The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint (in {{<exlink url="https://graphviz.org/doc/info/lang.html" text="Graphviz DOT format">}}) that you upload to the UI. It can only be run on-demand.
+The topology validation compares your actual network topology derived from LLDP telemetry data against a topology blueprint (in {{<exlink url="https://graphviz.org/doc/info/lang.html" text="Graphviz DOT format">}}) that you upload to the UI.
+
+{{%notice note%}}
+This feature is in beta. Topology validations can only be run on-demand.
+{{%/notice%}}
 ### Configure LLDP
 
 You must configure the LLDP service on switches and hosts that are defined in the topology blueprint to send the port ID subtype that matches the connection defined in the topology DOT file. The {{<exlink url="https://lldpd.github.io/usage.html" text="lldpd service">}} allows you to configure the port ID by specifying either the interface name (`ifname`) or MAC address (`macaddress`) using the `configure lldp portidsubtype [ifname | macaddress]` command.
@@ -209,6 +213,74 @@ For example, if your host is configured to send the interface name in the LLDP p
 ```
 "switch1":"swp1" -- "host5":"eth1"
 ```
+{{< expand "DOT file example" >}}
+
+Each line in the DOT file should depict the network's physical cabling:
+```
+graph "Example 2es full" {
+    "spine-1":"swp2" -- "noc-se":"swp11"
+    "spine-1":"swp3" -- "torc-11":"swp3"
+    "spine-1":"swp4" -- "torc-12":"swp3"
+    "spine-1":"swp5" -- "torc-21":"swp3"
+    "spine-1":"swp6" -- "torc-22":"swp3"
+    "spine-1":"swp7" -- "tor-1":"swp3"
+    "spine-1":"swp8" -- "tor-2":"swp3"
+    "spine-1":"swp10" -- "exit-2":"swp3"
+    "spine-1":"swp9" -- "exit-1":"swp3"
+    "exit-2":"swp1" -- "noc-pr":"swp6"
+    "exit-2":"swp2" -- "noc-se":"swp6"
+    "exit-2":"swp4" -- "spine-2":"swp10"
+    "exit-2":"swp5" -- "spine-3":"swp10"
+    "exit-2":"swp6" -- "firewall-1":"swp4"
+    "exit-2":"swp7" -- "firewall-2":"swp4"
+    "spine-3":"swp9" -- "exit-1":"swp5"
+    "spine-3":"swp1" -- "noc-pr":"swp13"
+    "spine-3":"swp2" -- "noc-se":"swp13"
+    "spine-3":"swp4" -- "torc-12":"swp5"
+    "spine-3":"swp5" -- "torc-21":"swp5"
+    "spine-3":"swp6" -- "torc-22":"swp5"
+    "spine-3":"swp7" -- "tor-1":"swp5"
+    "spine-3":"swp3" -- "torc-11":"swp5"
+    "noc-pr":"swp11" -- "spine-1":"swp1"
+    "spine-2":"swp1" -- "noc-pr":"swp12"
+    "spine-2":"swp2" -- "noc-se":"swp12"
+    "spine-2":"swp3" -- "torc-11":"swp4"
+    "spine-2":"swp4" -- "torc-12":"swp4"
+    "spine-2":"swp5" -- "torc-21":"swp4"
+    "spine-2":"swp6" -- "torc-22":"swp4"
+    "spine-2":"swp7" -- "tor-1":"swp4"
+    "spine-2":"swp8" -- "tor-2":"swp5"
+    "spine-2":"swp9" -- "tor-2":"swp4"
+    "exit-1":"swp1" -- "noc-pr":"swp5"
+    "exit-1":"swp11" -- "noc-pr":"swp11"
+    "exit-1":"swp2" -- "noc-se":"swp5"
+    "exit-1":"swp6" -- "firewall-1":"swp3"
+    "exit-1":"swp7" -- "firewall-2":"swp3"
+    "firewall-2":"swp1" -- "noc-pr":"swp15"
+    "firewall-2":"swp2" -- "noc-se":"swp15"
+    "firewall-1":"swp1" -- "noc-pr":"swp14"
+    "firewall-1":"swp2" -- "noc-se":"swp14"
+    "tor-2":"swp1" -- "noc-pr":"swp4"
+    "tor-2":"swp2" -- "noc-se":"swp4"
+    "torc-22":"swp1" -- "noc-pr":"swp10"
+    "torc-12":"swp1" -- "noc-pr":"swp8"
+    "torc-12":"swp2" -- "noc-se":"swp8"
+    "torc-12":"swp6" -- "torc-11":"swp6"
+    "tor-1":"swp1" -- "noc-pr":"swp3"
+    "tor-1":"swp2" -- "noc-se":"swp3"
+    "torc-11":"swp1" -- "noc-pr":"swp7"
+    "torc-11":"swp2" -- "noc-se":"swp7"
+    "torc-21":"swp1" -- "noc-pr":"swp9"
+    "torc-21":"swp2" -- "noc-se":"swp9"
+    "noc-pr":"swp1" -- "noc-se":"swp1"
+    "tor-2":"swp5" -- "spine-3":"swp8"
+    "torc-21":"swp6" -- "torc-22":"swp6"
+    "torc-202":"swp2" -- "noc-se":"swp10"
+    "tor-1":"swp6" -- "hosts-11":"swp2"
+}
+```
+{{< /expand >}}
+<br> 
 If your host is configured to send the MAC address in the LLDP port ID field, define the MAC address in the topology DOT file:
 ```
 "switch1":"swp1" -- "host5":"mac:48:b0:2d:f5:6b:b5"
@@ -221,10 +293,26 @@ If you change the LLDP port ID subtype while the NetQ agent is running, restart 
 
 ### Create a Topology Validation
 
+{{<tabs "Topo Validation">}}
+
+{{<tab "NetQ UI">}}
+
 1. In the workbench header, select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation**, then **Create a validation**.
 
-2. Select **Topology** and upload the topology blueprint file. The name of the blueprint file NetQ will use to validate the topology is displayed on the screen. To use a different file, upload it to the UI, then select **Manage blueprint file**. Select **Activate** on the blueprint file you'd like NetQ to use.
+2. Select **Topology** and upload the topology blueprint file. The name of the blueprint file NetQ will use to validate the topology is displayed on the screen. To use a different file, upload it to the UI, then select **Manage blueprint file**. Select **Activate** to indicate the blueprint file you'd like NetQ to use.
 
-3. Upon completion, the dashboard displays which devices failed the topology validation, along with a table listing cabling issues.
+3. Upon completion, the dashboard displays the devices that failed the topology validation, along with a table listing cabling issues. NetQ only displays the network links that were defined in the topology blueprint.
 
 {{<figure src="/images/netq/val-failed-topo-411.png" width="1200" height="600">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI">}}
+
+1. Upload the topology blueprint file to the UI.
+
+2. Run the {{<link title="check/#netq-check-topology" text="netq check topology">}} command.
+
+{{</tab>}}
+
+{{</tabs>}}

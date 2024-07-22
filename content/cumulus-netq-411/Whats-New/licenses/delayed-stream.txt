@@ -7,7 +7,7 @@ Copyright: 2011, Debuggable Limited <felix@debuggable.com>
 License: Expat
 
 Files: debian/*
-Copyright: 2013, Jérémy Lal <kapouer@melix.org>
+Copyright: 2013, JÃ©rÃ©my Lal <kapouer@melix.org>
  2020, Xavier Guimard <yadd@debian.org>
 License: Expat
 

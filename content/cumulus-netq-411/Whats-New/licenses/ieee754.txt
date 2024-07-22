@@ -8,7 +8,7 @@ License: BSD-3-Clause
 
 Files: debian/*
 Copyright: 2017 Siddhesh Rane <kingsid911@gmail.com>
- 2018 Bastien Roucariès <rouca@debian.org>
+ 2018 Bastien RoucariÃ¨s <rouca@debian.org>
  2020 Yadd <yadd@debian.org>
 License: BSD-3-Clause
 

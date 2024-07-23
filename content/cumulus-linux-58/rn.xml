@@ -444,8 +444,7 @@ The ADVA 5401 SFP module with hardware revision 5.01 does not come up at layer 1
 </tr>
 <tr>
 <td>3393966</td>
-<td>- Have a few OSPF neighbor sessions using network commands similar to 10.1.1.1/24 or 156.18.100.21/28 etc. i.e., configure as an actual IP with a subnet mask and not as a subnet prefix via NVUE.
-- Any configuration change (regardless of whether the config is related to OSPF) might toggle the OSPF neighborship. </td>
+<td>When you configure OSPF network statements using NVUE with the {{nv set vrf &lt;vrf&gt; router ospf area &lt;area&gt; network &lt;subnet&gt;}} command, subsequent configuration changes with NVUE might bring down all OSPF neighbors. To work around this issue, create an NVUE snippet to configure the network statement, or use the {{nv set interface &lt;interface&gt; router ospf area &lt;area&gt;}} command to enable OSPF on interfaces instead of using a network statement.</td>
 <td>5.5.0-5.9.1</td>
 <td></td>
 </tr>

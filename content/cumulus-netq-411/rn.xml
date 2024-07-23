@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3876238</td>
-<td>You cannot upgrade a switch to Cumulus Linux 5.9.0 with NetQ LCM.</td>
-<td>4.10.0-4.11.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3854467</td>
 <td>When a single NetQ cluster VM is offline, the NetQ kafka-connect pods are brought down on other cluster nodes, preventing NetQ data from collecting data. To work around this issue, bring all cluster nodes back into service.</td>
 <td>4.10.0-4.11.0</td>
@@ -94,22 +88,22 @@
 <tr>
 <td>3948198</td>
 <td>When you upgrade a Cumulus Linux switch configured with NVUE using NetQ LCM, the upgrade might fail due to NVUE configuration validation if the NVUE object model was changed between the current and new Cumulus Linux version. When this failure occurs, NetQ is unable to rollback to the prior configuration and the switch remains running the default Cumulus Linux configuration. </td>
-<td></td>
+<td>4.10.1</td>
 </tr>
 <tr>
 <td>3863195</td>
 <td>When you perform an LCM switch discovery on a Cumulus Linux 5.9.0 switch in your network that was already added in the NetQ inventory on a prior Cumulus Linux version, the switch will appear as Rotten in the NetQ UI. To work around this issue, decommission the switch first,and run LCM discovery again after the switch is upgraded.</td>
-<td>4.10.0</td>
+<td>4.10.0-4.10.1</td>
 </tr>
 <tr>
 <td>3851922</td>
 <td>After you run an LCM switch discovery in a NetQ cluster environment, NetQ CLI commands on switches might fail with the message {{Failed to process command}}.</td>
-<td>4.10.0</td>
+<td>4.10.0-4.10.1</td>
 </tr>
 <tr>
 <td>3721754</td>
 <td>After you decommission a switch, the switch's interfaces are still displayed in the NetQ UI in the Interfaces view.</td>
-<td>4.9.0-4.10.0</td>
+<td>4.9.0-4.10.1</td>
 </tr>
 </table>
 </tables>

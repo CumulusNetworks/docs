@@ -79,6 +79,31 @@ type: ''
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action cancel system telemetry hft job \<job-id\> profile \<profile-id\></h>
+
+Cancels a specific or all high frequency telemetry data collection jobs, or a specific or all jobs for a high frequency telemetry profile. You can specify a job ID or `all` to cancel all jobs.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<job-id>`| The high frequency telemetry data collection job ID or `all`. To see the list of job IDs, run the `nv show system telemetry hft job` command. |
+| `<profile-id>` |  The name of the profile. High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action cancel system telemetry hft job 6 profile profile1
+Action executing ...
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action change system date-time</h>
 
 Configures the Cumulus Linux software clock. The switch contains a battery backed hardware clock that maintains the time while the switch powers off and between reboots. When the switch is running, the Cumulus Linux operating system maintains its own software clock.
@@ -2583,6 +2608,41 @@ Introduced in Cumulus Linux 5.5.0
 cumulus@switch:~$ nv action reboot system
 Rebooting System in cold mode
 True
+Action succeeded
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv action schedule system telemetry hft job \<date-time\> duration \<duration\> profile \<profile\> ports \<port-id\> description \<text\></h>
+
+Configures the schedule for a high frequency telemetry data collection.
+
+{{%notice note%}}
+- You can schedule a maximum of 25 sessions (jobs). The switch can retain data for 25 jobs (completed, cancelled, or failed) in addition to the active jobs.
+- You must configure data export (the target) before you can configure the schedule.
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<date-time>` |  The start date and time for high frequency telemetry data collection in `YYYY-MM-DD HH:MM:SS` format. |
+| `duration` | The session duration in seconds. The default value is 20 seconds. |
+| `profile-id` | The high frequency telemetry data collection profile name. |
+| `port-id` | The ports on which you want to collect the data. You can specify a range of ports, multiple comma separated ports, or `all` for all the ports. The default value is `all`. |
+| `<text>` | A short reason why you are collecting the data. If the description contains more than one word, you must enclose the description in quotes. A description is optional.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action schedule system telemetry hft job 2024-07-17 10:00:00 duration 30 profile profile1 ports swp1-swp9 description "bandwidth profiling"
+Action executing ...
+Job schedule successfull.
+
 Action succeeded
 ```
 

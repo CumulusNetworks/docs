@@ -592,6 +592,177 @@ swp1       4          4
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry hft</h>
+
+Shows a summary of high frequency telemetry configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft
+profile
+==========
+    Profile   sample-interval  Summary              
+    --------  ---------------  ---------------------
+    profile1  1000             counter:      rx-byte
+                               counter: tc-occupancy
+                               traffic-class:      0
+                               traffic-class:      3
+                               traffic-class:      7
+                               traffic-class:      1
+                               traffic-class:      2
+                               traffic-class:      4
+                               traffic-class:      5
+                               traffic-class:      6
+                               traffic-class:      8
+                               traffic-class:      9
+    standard  5000             counter:      tx-byte
+                               counter:      rx-byte
+                               counter: tc-occupancy
+                               traffic-class:      3
+...
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft profile</h>
+
+Shows the high frequency telemetry profiles configured on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft profile
+Profile   sample-interval  Summary              
+--------  ---------------  ---------------------
+profile1  1000             counter: tc-occupancy
+                           traffic-class:      0
+                           traffic-class:      3
+                           traffic-class:      7
+standard  5000             counter:      tx-byte
+                           counter:      rx-byte
+                           counter: tc-occupancy
+                           traffic-class:      3
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft profile \<profile-id\></h>
+
+Shows the configuration settings for a specific profile:
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The name of the profile. High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft profile profile1
+                operational   applied     
+---------------  ------------  ------------
+sample-interval  1000          1000        
+[traffic-class]  0             0           
+[traffic-class]  3             3           
+[traffic-class]  7             7           
+[counter]        tc-occupancy  tc-occupancy
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft target</h>
+
+Shows the high frequency telemetry configured targets.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft target
+applied
+-------
+local
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft job</h>
+
+Shows information for all data collection jobs, such as the start time, duration, status, and ports on which the data is collected.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft job
+Job Id      Start Time               Duration(s)        Profile     Ports    Status  
+
+---------   --------------           ------------       ---------   -------   ---------  
+
+1           10-05-2024 09:00:00      20                 standard    all       complete 
+2           12-05-2024 09:00:00      20                 standard    all       complete 
+3           15-05-2024 09:00:00      20                 standard    all       complete 
+4           16-05-2024 09:00:00      20                 standard    all       complete 
+5           17-05-2024 09:00:00      20                 standard    all       complete 
+6           19-05-2024 09:00:00      20                 standard    all       complete 
+7           19-05-2024 12:00:00      20                 standard    all       running 
+8           20-05-2024 09:00:00      20                 standard    all       pending
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry hft job \<job-id\></h>
+
+Shows information about a specific high frequency telemetry data collection job.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<job-id>`| The high frequency telemetry data collection job ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry hft job 1 
+                       operational
+---------------------  ----------------- 
+start-time             01-01-2024 12:00:00 
+duration               20 
+traffic-class          3 
+counter                tx-byte,rx-byte,tc-occupancy 
+sample-interval        5000 
+ports                  swp1-swp64 
+status                 pending 
+target                 scp://abc@server1:/hft-data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry histogram</h>
 
 Shows telemetry histogram configuration settings and operational data.

@@ -1685,6 +1685,8 @@ To bring BGP sessions with the neighbor back up, run the `no neighbor swp51 shut
 
 To reduce packet loss during planned maintenance of a router or link, you can configure graceful BGP shutdown globally on the switch or on a specific peer.
 
+When you enable BGP graceful shutdown globally or on a peer, Cumulus Linux attaches a `graceful-shutdown` community to the relevant routes. Neighbors receiving the `graceful-shutdown` community mark these routes as less preferred if alternative routes exist. If no other routes are available, neighbors continue to use the routes with the `graceful-shutdown` community. If you enable graceful shutdown (maintenance) in multiple parts of the network or where there are no additional routes, traffic does not stop on the routes that have the attached `graceful-shutdown` community.
+
 {{%notice note%}}
 You can enable graceful BGP shutdown either globally or on a peer but not both.
 {{%/notice%}}

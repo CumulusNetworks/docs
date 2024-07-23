@@ -375,15 +375,12 @@ cumulus@switch:mgmt:~$ nv set nve vxlan port 1024
 By default, Cumulus Linux drops VXLAN packets at ingress that have reserved bits set in the header. You can change the forwarding behavior to ignore the reserved bits on ingress instead of dropping the packet.
 
 {{%notice note%}}
-NVUE does not provide command to configure the switch to ignore the reserved bits in a VXLAN packet.
+NVUE does not provide commands to configure the switch to ignore the reserved bits in a VXLAN packet.
 {{%/notice%}}
-
-{{< tabs "TabID380 ">}}
-{{< tab "Persistent Configuration ">}}
 
 To configure the switch to ignore the reserved bits on ingress:
 
-1. Create the `/etc/cumulus/switchd.d/vxlan.conf` file and add `vxlan_reserved_fields_ignore=True` parameter. This parameter configures the switch ASIC to ignore reserved fields at ingress.
+1. Create the `/etc/cumulus/switchd.d/vxlan.conf` file and add the `vxlan_reserved_fields_ignore=True` parameter. This parameter configures the switch ASIC to ignore reserved fields at ingress.
 
    ```
    cumulus@switch:mgmt:~$ sudo nano /etc/cumulus/switchd.d/vxlan.conf
@@ -399,11 +396,11 @@ To configure the switch to ignore the reserved bits on ingress:
    options vxlan reserved_fields_ignore=1
    ```
 
-4. Reboot the switch for the kernel change to take effect.
+4. Reboot the switch for the kernel change to take effect or run the `echo 1 > /sys/module/vxlan/parameters/reserved_fields_ignore` command to enable the setting in real time.
 
 To configure the switch back to the default behavior (drop VXLAN packets at ingress that have reserved bits set in the header):
 
-1. Edit the `/etc/cumulus/switchd.d/vxlan.conf` file to change the `vxlan_reserved_fields_ignore` option to `False`.
+1. Edit the `/etc/cumulus/switchd.d/vxlan.conf` file to change the `vxlan_reserved_fields_ignore` parameter to `False`.
 
    ```
    cumulus@switch:mgmt:~$ sudo nano /etc/cumulus/switchd.d/vxlan.conf
@@ -412,38 +409,14 @@ To configure the switch back to the default behavior (drop VXLAN packets at ingr
 
 2. Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
-3. Edit the `/etc/modprobe.d/vxlan.conf` file to change `options vxlan reserved_fields_ignore` to 0.
+3. Edit the `/etc/modprobe.d/vxlan.conf` file to change the `options vxlan reserved_fields_ignore` parameter to 0.
 
    ```
    cumulus@switch:mgmt:~$ sudo nano /etc/modprobe.d/vxlan.conf
    options vxlan reserved_fields_ignore=0
    ```
 
-4. Reboot the switch for the kernel change to take effect.
-
-{{< /tab >}}
-{{< tab "Runtime Configuration ">}}
-
-To configure the switch to ignore the reserved bits on ingress:
-
-```
-cumulus@switch:mgmt:~$ echo "vxlan_reserved_fields_ignore=True" > \	 /etc/cumulus/switchd.d/vxlan.conf 
-cumulus@switch:mgmt:~$ echo "options vxlan reserved_fields_ignore=1" > \  /etc/modprobe.d/vxlan.conf 
-cumulus@switch:mgmt:~$ echo 1 > /sys/module/vxlan/parameters/reserved_fields_ignore 
-cumulus@switch:mgmt:~$ systemctl reload switchd
-```
-
-To configure the switch back to the default behavior (drop VXLAN packets at ingress that have reserved bits set in the header):
-
-```
-cumulus@switch:mgmt:~$ echo "vxlan_reserved_fields_ignore=False" > \  /etc/cumulus/switchd.d/vxlan.conf
-cumulus@switch:mgmt:~$ echo "options vxlan reserved_fields_ignore=0" > \  /etc/modprobe.d/vxlan.conf  
-cumulus@switch:mgmt:~$ echo 0 > /sys/module/vxlan/parameters/reserved_fields_ignore 
-cumulus@switch:mgmt:~$ systemctl reload switchd
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+4. Reboot the switch for the kernel change to take effect or run the `echo 0 > /sys/module/vxlan/parameters/reserved_fields_ignore` command to disable the setting in real time.
 
 ## Related Information
 

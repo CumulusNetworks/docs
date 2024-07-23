@@ -30,23 +30,8 @@ Generated tech-support
 Action succeeded
 ```
 
-You can use the following options with the `nv action generate system tech-support` command:
-- `--no-timeout` generates the file with no module timeouts.
-- `--with-secure` includes security sensitive information in the file.
-
-The following example generates the `cl-support` archive file and includes security sensitive information:
-
-```
-cumulus@switch:~$ nv action generate system tech-support --with-secure
-Action executing ...
-Generating system tech-support file, it might take a few minutes...
-Action executing ...
-Generated tech-support
-Action succeeded
-```
-
 {{%notice note%}}
-The Linux command to generate the `cl-support` file includes more options; for example, you can display debugging information, only run certain modules, and provide a reason for running the script in the file.
+The Linux command to generate the `cl-support` file includes more options; for example, you can include security sensitive information, include debugging information, only run certain modules, and provide a reason for running the script in the file.
 {{%/notice%}}
 
 {{< /tab >}}

@@ -443,6 +443,42 @@ dnsmasq
 - `netq config del agent services`
 
 - - -
+## netq config add agent spice
+
+Configures the NetQ Agent to collect and send Spice statistics. This command can only be run on Spectrum switches running Cumulus Linux.
+
+### Syntax
+
+```
+netq config add agent spice
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| spice | NA | Collect and send Spice data |
+
+### Options
+
+None
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config add agent spice
+Successfully added spice for netq-agent. Please restart netq-agent (netq config restart agent)
+
+cumulus@switch:~$ netq config restart agent
+Restarting netq-agent... Success!
+```
+
+
+### Related Commands
+
+- `netq config del agent spice`
+- `netq conifg show agent spice`
+- - -
 
 ## netq config add agent stats
 
@@ -954,7 +990,7 @@ Disables or removes NetQ Agent configurations on a switch.
 
 ```
 netq config del agent 
-    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|loglevel|server|ssl|stats|wjh] 
+    [asic-monitor|cluster-servers|cpu-limit|frr-monitor|loglevel|server|spice|ssl|stats|wjh] 
     [json]
 ```
 ### Required Arguments
@@ -971,6 +1007,7 @@ None
 | frr-monitor | NA | Stop the NetQ Agent from monitoring FRR when running in a container |
 | loglevel | NA | Stop the NetQ Agent from logging events about the agent |
 | server | NA | Delete the current destination of NetQ Agent data and API requests |
+| spice | NA | Stop the NetQ Agent from collecting Spice data |
 | ssl | NA | Delete SSL configuration |
 | stats | NA | Stop the NetQ Agent from collecting interface statistics |
 | wjh | NA | Stop the NetQ Agent from collecting WJH information |
@@ -1330,13 +1367,13 @@ Resets the UUID for a given premises. In cloud deployments, this command can be 
 ### Syntax
 
 ```
-netq config reset premise <premise-name>
+netq config reset premise <test-premises-name>
 ```
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| premise | \<text-premise\> | Resets the premises with this name |
+| premise | \<text-premises-name\> | Resets the premises with this name |
 
 ### Options
 

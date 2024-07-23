@@ -576,10 +576,14 @@ cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-c
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram counter bin-min-boundary</h>
+## <h>nv set system telemetry histogram counter bin-min-boundary</h>
 
 Configures the minimum boundary size of the counter histograms. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the number of counters per bin. You can specify a value, which must be a multiple of 96, between 1 and 4294967295. The default minimum boundary size is 960 bytes.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry histogram counter bin-min-boundary`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -587,15 +591,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram counter bin-min-boundary 5000
+cumulus@switch:~$ nv set system telemetry histogram counter bin-min-boundary 5000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram counter histogram-size</h>
+## <h>nv set system telemetry histogram counter histogram-size</h>
 
 Configures the size of the counter buffer histogram for the specified traffic class and interface. Adding this number to the minimum boundary size of the histogram produces the maximum boundary size. These values represent the number of counters per bin. You can specify a value, which must be a multiple of 96, between 1 and 4294967295.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry histogram counter histogram-size`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -603,15 +611,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram counter histogram-size 12288
+cumulus@switch:~$ nv set system telemetry histogram counter histogram-size 12288
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram counter sample-interval</h>
+## <h>nv set system telemetry histogram counter sample-interval</h>
 
 Configures the counter histogram sampling interval. You can specify a value between 128 and 1000000000. The default value is 1024 nanoseconds.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry histogram counter sample-interval`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -619,15 +631,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram counter sample-interval 1024
+cumulus@switch:~$ nv set system telemetry histogram counter sample-interval 1024
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram egress-buffer bin-min-boundary</h>
+## <h>nv set system telemetry histogram egress-buffer bin-min-boundary</h>
 
 Configures the minimum boundary size of the egress queue histograms. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of egress queues per bin. You can specify a value, which must be a multiple of 96, between 96 and 4294967295. The default minimum boundary size is 960 bytes.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry histogram egress-buffer bin-min-boundary`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -635,15 +651,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram egress-buffer  bin-min-boundary
+cumulus@switch:~$ nv set system telemetry histogram egress-buffer  bin-min-boundary
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram egress-buffer histogram-size 96-4294967295
+## <h>nv set system telemetry histogram egress-buffer histogram-size</h>
 
 Configures the size of the egress queue histogram. Adding this number to the minimum boundary size of the histogram produces the maximum boundary size. These values represent the range of egress queues per bin. You can specify a value, which must be a multiple of 96, between 96 and 4294967295.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry histogram egress-buffer histogram-size`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -651,15 +671,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram egress-buffer histogram-size 12288
+cumulus@switch:~$ nv set system telemetry histogram egress-buffer histogram-size 12288
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram egress-buffer sample-interval</h>
+## <h>nv set system telemetry histogram egress-buffer sample-interval</h>
 
 Configures the egress queue histogram sampling interval. You can specify a value between 128 and 1000000000. The default value is 1024 nanoseconds.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry histogram egress-buffer sample-interval`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -667,15 +691,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram egress-buffer sample-interval 1024
+cumulus@switch:~$ nv set system telemetry histogram egress-buffer sample-interval 1024
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram ingress-buffer bin-min-boundary</h>
+## <h>nv set system telemetry histogram ingress-buffer bin-min-boundary</h>
 
 Configures the minimum boundary size of the ingress queue histograms. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of ingress queues per bin. You can specify a value, which must be a multiple of 96, between 96 and 4294967295. The default minimum boundary size is 960 bytes.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry histogram ingress-buffer bin-min-boundary`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -683,15 +711,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram ingress-buffer bin-min-boundary 5000
+cumulus@switch:~$ nv set system telemetry histogram ingress-buffer bin-min-boundary 5000
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram ingress-buffer histogram-size</h>
+## <h>nv set system telemetry histogram ingress-buffer histogram-size</h>
 
 Configures the size of the ingress queue histogram. Adding this number to the minimum boundary size of the histogram produces the maximum boundary size. These values represent the range of ingress queues per bin. You can specify a value, which must be a multiple of 96, between 96 and 4294967295.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry histogram ingress-buffer histogram-size`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -699,15 +731,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram ingress-buffer histogram-size 12288
+cumulus@switch:~$ nv set system telemetry histogram ingress-buffer histogram-size 12288
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram ingress-buffer sample-interval</h>
+## <h>nv set system telemetry histogram ingress-buffer sample-interval</h>
 
 Configures the ingress queue histogram sampling interval. You can specify a value between 128 and 1000000000. The default value is 1024 nanoseconds.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry histogram ingress-buffer sample-interval`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -715,15 +751,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram ingress-buffer sample-interval 1024
+cumulus@switch:~$ nv set system telemetry histogram ingress-buffer sample-interval 1024
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram latency bin-min-boundary</h>
+## <h>nv set system telemetry histogram latency bin-min-boundary</h>
 
 Configures the global minimum boundary size of the latency histogram. Adding this number to the size of the histogram produces the maximum boundary size. You can specify a value, which must be a multiple of 96, between 96 and 4294967295. The default minimum boundary size is 960 bytes.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry histogram latency bin-min-boundary`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.9.0
@@ -731,15 +771,19 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram latency bin-min-boundary 960 
+cumulus@switch:~$ nv set system telemetry histogram latency bin-min-boundary 960 
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry histogram latency histogram-size</h>
+## <h>nv set system telemetry histogram latency histogram-size</h>
 
 Configures the global latency histogram size. Adding this number to the minimum boundary size of the histogram produces the maximum boundary size. You can specify a value, which must be a multiple of 96, between 96 and 4294967295.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry histogram latency histogram-size`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.9.0
@@ -747,14 +791,18 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry histogram latency histogram-size 12288
+cumulus@switch:~$ nv set system telemetry histogram latency histogram-size 12288
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry snapshot-file count</h>
+## <h>nv set system telemetry snapshot-file count</h>
 
 Configures the number of snapshots you can create before Cumulus Linux overwrites the first snapshot file. For example, if you set the snapshot file count to 30, the first snapshot file is `histogram_stats_0` and the thirtieth snapshot is `histogram_stats_30`. After the thirtieth snapshot, Cumulus Linux overwrites the original snapshot file (`histogram_stats_0`) and the sequence restarts. The default value is 64.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry snapshot-file count`.
+{{%/notice%}}
 
 You can specify a value between 3 and 100.
 
@@ -769,15 +817,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry snapshot-file count 10
+cumulus@switch:~$ nv set system telemetry snapshot-file count 10
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry snapshot-file name \<value\></h>
+## <h>nv set system telemetry snapshot-file name \<value\></h>
 
 Configures the snapshot file name and location. The default location and file name is `/var/lib/cumulus/histogram_stats`.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry snapshot-file name`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -785,14 +837,18 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry snapshot-file name /var/lib/cumulus/histogram_stats
+cumulus@switch:~$ nv set system telemetry snapshot-file name /var/lib/cumulus/histogram_stats
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set service telemetry snapshot-interval</h>
+## <h>nv set system telemetry snapshot-interval</h>
 
 Configures how often to write to a snapshot file. You can specify a value between 1 and 604800. The default value is 1 second.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv set service telemetry snapshot-interval`.
+{{%/notice%}}
 
 ### Version History
 
@@ -801,5 +857,5 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set service telemetry snapshot-interval 5
+cumulus@switch:~$ nv set system telemetry snapshot-interval 5
 ```

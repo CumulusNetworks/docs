@@ -549,9 +549,13 @@ cumulus@switch:~$ nv show interface swp1 telemetry histogram latency traffic-cla
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry bw-gauge</h>
+## <h>nv show system telemetry bw-gauge</h>
 
 Shows a summary of the bandwidth gauge for all interfaces.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry bw-gauge`.
+{{%/notice%}}
 
 ### Version History
 
@@ -560,14 +564,18 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry bw-gauge
+cumulus@switch:~$ nv show system telemetry bw-gauge
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry bw-gauge interface</h>
+## <h>nv show system telemetry bw-gauge interface</h>
 
 Shows a summary of the bandwidth for all interfaces with bandwidth gauge enabled.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry bw-gauge interface`.
+{{%/notice%}}
 
 ### Version History
 
@@ -576,7 +584,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry bw-gauge interface
+cumulus@switch:~$ nv show system telemetry bw-gauge interface
 Interface  Tx (Mbps)  Rx (Mbps)
 ---------  ---------  ---------
 swp1       4          4
@@ -584,10 +592,14 @@ swp1       4          4
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry histogram</h>
+## <h>nv show system telemetry histogram</h>
 
 Shows telemetry histogram configuration settings and operational data.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -595,15 +607,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram
+cumulus@switch:~$ nv show system telemetry histogram
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry histogram ingress-buffer</h>
+## <h>nv show system telemetry histogram ingress-buffer</h>
 
 Shows ingress queue length histogram configuration settings and operational data.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram ingress-buffer`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -611,15 +627,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram ingress-buffer
+cumulus@switch:~$ nv show system telemetry histogram ingress-buffer
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry histogram egress-buffer</h>
+## <h>nv show system telemetry histogram egress-buffer</h>
 
 Shows egress queue length histogram configuration settings and operational data.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram egress-buffer`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -627,15 +647,19 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram egress-buffer
+cumulus@switch:~$ nv show system telemetry histogram egress-buffer
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry histogram counter</h>
+## <h>nv show system telemetry histogram counter</h>
 
 Shows counter histogram configuration settings and operational data.
 
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram counter`.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.7.0
@@ -643,14 +667,18 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram counter
+cumulus@switch:~$ nv show system telemetry histogram counter
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry histogram interface</h>
+## <h>nv show system telemetry histogram interface</h>
 
 Shows a list of the interfaces with enabled histograms.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram interface`.
+{{%/notice%}}
 
 ### Version History
 
@@ -659,7 +687,7 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram interface
+cumulus@switch:~$ nv show system telemetry histogram interface
 Interface         ingress-buffer          egress-buffer            counter 
 --------------------------------------------------------------------------------------- 
 swp1              0,1,2                   -                        tx-byte,rx-byte 
@@ -668,9 +696,13 @@ swp2              -                       0,1,8                    tx-byte,tx-by
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry histogram latency</h>
+## <h>nv show system telemetry histogram latency</h>
 
 Shows latency Histogram configuration and operational data.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry histogram latency`.
+{{%/notice%}}
 
 ### Version History
 
@@ -679,14 +711,18 @@ Introduced in Cumulus Linux 5.9.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry histogram latency
+cumulus@switch:~$ nv show system telemetry histogram latency
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv show service telemetry snapshot-file</h>
+## <h>nv show system telemetry snapshot-file</h>
 
 Shows histogram snapshot file configuration and operational data.
+
+{{%notice note%}}
+In Cumulus Linux 5.9 and earlier, this command is `nv show service telemetry snapshot-file`.
+{{%/notice%}}
 
 ### Version History
 
@@ -695,5 +731,5 @@ Introduced in Cumulus Linux 5.7.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service telemetry snapshot-file
+cumulus@switch:~$ nv show system telemetry snapshot-file
 ```

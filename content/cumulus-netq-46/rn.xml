@@ -10,19 +10,19 @@
 <td>3739222</td>
 <td>The {{opta-check}} command does not properly validate if the required 16 CPU cores are present on the system for NetQ. The command only presents an error if there are fewer than 8 CPU cores detected.</td>
 <td>4.2.0-4.8.0</td>
-<td>4.9.0-4.10.0</td>
+<td>4.9.0-4.10.1</td>
 </tr>
 <tr>
 <td>3549877</td>
 <td>NetQ cloud deployments might unexpectedly display validation results for checks that did not run on any nodes.</td>
 <td>4.6.0-4.8.0</td>
-<td>4.9.0-4.10.0</td>
+<td>4.9.0-4.10.1</td>
 </tr>
 <tr>
 <td>3491935</td>
 <td>NetQ might generate continuous TCA events for the NetQ VM squashfs mounts when disk utilization TCA rules are configured for all hosts.  </td>
 <td>4.5.0-4.6.0</td>
-<td>4.7.0-4.10.0</td>
+<td>4.7.0-4.10.1</td>
 </tr>
 <tr>
 <td>3454057</td>
@@ -30,13 +30,13 @@
 
 Failed to add/update TCA http status_code: 409</td>
 <td>4.5.0-4.6.0</td>
-<td>4.7.0-4.10.0</td>
+<td>4.7.0-4.10.1</td>
 </tr>
 <tr>
 <td>3448057</td>
 <td>NetQ NTP validations will report time syncronization failures for switches running the NTP service in the default VRF.</td>
 <td>4.5.0-4.6.0</td>
-<td>4.7.0-4.10.0</td>
+<td>4.7.0-4.10.1</td>
 </tr>
 <tr>
 <td>3446351</td>
@@ -60,19 +60,19 @@ E: Sub-process /usr/bin/dpkg returned an error code (1)
 
 To work around this issue, run the {{sudo apt remove -y shim-signed grub-efi-amd64-bin --allow-remove-essential}} command and rerun the {{sudo apt upgrade}} command.</td>
 <td>4.5.0-4.6.0</td>
-<td>4.7.0-4.10.0</td>
+<td>4.7.0-4.10.1</td>
 </tr>
 <tr>
 <td>3442456</td>
 <td>When an event notification is resolved or acknowledged, the NetQ UI might display a duplicate event with the original notification content and timestamp.</td>
 <td>4.2.0-4.6.0</td>
-<td>4.7.0-4.10.0</td>
+<td>4.7.0-4.10.1</td>
 </tr>
 <tr>
 <td>3436299</td>
 <td>RoCE validations might not display data in the NetQ UI and CLI for Cumulus Linux switches when the NVUE service is not running. This issue will resolve itself within 24 hours after the next full status update from the NetQ agent. </td>
 <td>4.6.0</td>
-<td>4.7.0-4.10.0</td>
+<td>4.7.0-4.10.1</td>
 </tr>
 <tr>
 <td>3431386</td>
@@ -101,13 +101,13 @@ sudo kubectl get pods -n default|grep -i fluend-aggregator-opta|awk '{print $1}'
 
 </td>
 <td>4.5.0-4.6.0</td>
-<td>4.7.0-4.10.0</td>
+<td>4.7.0-4.10.1</td>
 </tr>
 <tr>
 <td>3429528</td>
 <td>EVPN and RoCE validation cards in the NetQ UI might not display data when Cumulus Linux switches are configured with high VNI scale.</td>
 <td>4.6.0-4.8.0</td>
-<td>4.9.0-4.10.0</td>
+<td>4.9.0-4.10.1</td>
 </tr>
 </table>
 <table name="Fixed Issues in 4.6.0">

@@ -574,6 +574,95 @@ Introduced in Cumulus Linux 5.9.0
 cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-class 1 histogram-size 9600
 ```
 
+## <h>nv set system telemetry hft profile \<profile-id\> counter</h>
+
+Configures the type of data you want to collect for the high frequency telemetry profile. You can specify `tx-byte`, `rx-byte`, or `tc-occupancy`. The standard profile collects all three data types.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The name of the profile. High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft profile profile1 counter tc-occupancy 
+```
+
+{{%notice note%}}
+You must specify the `nv set system telemetry hft profile <profile-id> counter` command for each data type you want to collect; For example:
+
+```
+cumulus@switch:~$ nv set system telemetry hft profile profile1 counter tx-byte
+cumulus@switch:~$ nv set system telemetry hft profile profile1 counter rx-byte
+```
+{{%/notice%}}
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry hft profile \<profile-id\> sample-interval</h>
+
+Configures the high frequency telemetry sampling interval in microseconds for the profile. You can specify a value between 100 and 12750. The value must be a multiple of 50. The default value is 5000 microseconds (30 seconds).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The name of the profile. High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft profile profile1 sample-interval 1000
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry hft target local</h>
+
+Configures the switch to save the collected data locally to a json file in the `/var/run/cumulus/hft` directory. You can then export the json file to an external location with NVUE commands (or the API). The json format file includes the data for each sampling interval and a timestamp showing when the data was collected.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft target local
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry hft profile \<profile-id\> traffic-class</h>
+
+Configures the egress queue priorities (traffic class 0 through 15) for the high frequency telemetry profile. The standard profile setting is 3.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |  The name of the profile. High frequency telemetry uses profiles for data collection. A profile is a set of configurations. Cumulus Linux provides a default profile called `standard`. You can create a maximum of four new profiles (four profiles in addition to the default profile).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry hft profile profile1 traffic-class 0,3,7
+```
+
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set system telemetry histogram counter bin-min-boundary</h>

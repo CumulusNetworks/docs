@@ -809,6 +809,36 @@ Action succeeded
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv action clear system api session user \<user-id\></h>
+
+Clears an NVUE user session.
+
+NVUE uses sessions to authenticate and authorize requests. After authenticating the user with the first request, NVUE stores the session in the nvued cache. NVUE authenticates subsequent interactions within the session locally, eliminating the need to repeatedly check with external authentication servers. This process enhances system performance and efficiency, making it ideal for high-traffic environments.
+- If you make changes to a user group, password, RADIUS, TACACS, or LDAP server setting locally on the switch, NVUE clears the current session automatically.
+- If you make changes directly on the RADIUS, TACACS, or LDAP server, you must clear the user session with the `nv action clear system api session user <user>` command or clear all sessions with the `nv action clear system api session` command.
+
+   {{%notice note%}}
+If you do not clear a user session after making changes directly on the RADIUS, TACACS, or LDAP server, NVUE uses the existing session for authentication and authorization until the session times out (up to 60 minutes).
+{{%/notice%}}
+
+### Command Syntax
+
+| Syntax   |  Description  |
+| ----------    | ------------  |
+| `<user-id>` |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv action clear system api session user admin
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv action clear system link flap-protection violation</h>
 
 Clears the `protodown` links on the switch.

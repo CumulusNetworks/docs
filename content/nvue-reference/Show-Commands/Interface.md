@@ -786,6 +786,161 @@ cumulus@switch:~$ nv show interface swp1 link flag
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set interface \<interface-id\> link phy-detail</h>
+
+Shows physical layer information, such the error counters for each lane on a port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp1 link phy-detail 
+                          operational
+-------------------------  -----------------
+time-since-last-clear-min  324
+phy-received-bits          15561574400000000
+symbol-errors              0
+effective-errors           0
+phy-raw-errors-lane0       747567424
+phy-raw-errors-lane1       215603747
+phy-raw-errors-lane2       158456437
+phy-raw-errors-lane3       30578923
+phy-raw-errors-lane4       121708834
+phy-raw-errors-lane5       29244642
+phy-raw-errors-lane6       79102523
+phy-raw-errors-lane7       96656135
+raw-ber                    1E-7
+symbol-ber                 15E-255
+effective-ber              15E-255
+raw-ber-lane0              3E-6
+raw-ber-lane1              9E-7
+raw-ber-lane2              6E-7
+raw-ber-lane3              1E-7
+raw-ber-lane4              5E-7
+raw-ber-lane5              1E-7
+raw-ber-lane6              3E-7
+raw-ber-lane7              4E-7
+rs-num-corr-err-bin0       757956054591
+rs-num-corr-err-bin1       598244758
+rs-num-corr-err-bin2       807002
+rs-num-corr-err-bin3       3371
+rs-num-corr-err-bin4       180
+rs-num-corr-err-bin5       1
+rs-num-corr-err-bin6       0
+rs-num-corr-err-bin7       0
+rs-num-corr-err-bin8       1
+rs-num-corr-err-bin9       0
+rs-num-corr-err-bin10      0
+rs-num-corr-err-bin11      0
+rs-num-corr-err-bin12      0
+rs-num-corr-err-bin13      0
+rs-num-corr-err-bin14      0
+rs-num-corr-err-bin15      0
+```
+
+## <h>nv set interface \<interface-id\> link phy-diag</h>
+
+Shows physical layer diagnostic information for a port.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show interface swp20 link phy-diag 
+                                  operational
+--------------------------------  -----------
+pd-fsm-state                      0x7
+eth-an-fsm-state                  0x6
+phy-hst-fsm-state                 0x8
+psi-fsm-state                     0x0
+phy-manager-link-enabled          0x9bff0
+core-to-phy-link-enabled          0x9b800
+cable-proto-cap-ext               0x0
+loopback-mode                     0x0
+retran-mode-request               0x0
+retran-mode-active                0x0
+fec-mode-request                  0x1
+profile-fec-in-use                0x4
+pd-link-enabled                   0x80000
+phy-hst-link-enabled              0x80000
+eth-an-link-enabled               0x0
+phy-manager-state                 0x3
+eth-proto-admin                   0x0
+ext-eth-proto-admin               0x0
+eth-proto-capability              0x0
+ext-eth-proto-capability          0x0
+data-rate-oper                    0x0
+an-status                         0x0
+an-disable-admin                  0x0
+proto-mask                        0x2
+module-info-ext                   0x0
+ethernet-compliance-code          0x1c
+ext-ethernet-compliance-code      0x32
+memory-map-rev                    0x40
+linear-direct-drive               0x0
+cable-breakout                    0x0
+cable-rx-amp                      0x1
+cable-rx-pre-emphasis             0x0
+cable-rx-post-emphasis            0x0
+cable-tx-equalization             0x0
+cable-attenuation-53g             0x0
+cable-attenuation-25g             0x0
+cable-attenuation-12g             0x0
+cable-attenuation-7g              0x0
+cable-attenuation-5g              0x0
+tx-input-freq-sync                0x0
+tx-cdr-state                      0xff
+rx-cdr-state                      0xff
+module-fw-version                 0x2e820043
+module-st                         0x3
+dp-st-lane0                       0x4
+dp-st-lane1                       0x4
+dp-st-lane2                       0x4
+dp-st-lane3                       0x4
+dp-st-lane4                       0x4
+dp-st-lane5                       0x4
+dp-st-lane6                       0x4
+dp-st-lane7                       0x4
+rx-output-valid                   0x0
+rx-power-type                     0x1
+active-set-host-compliance-code   0x52
+active-set-media-compliance-code  0x1c
+error-code-response               0x0
+temp-flags                        0x0
+vcc-flags                         0x0
+mod-fw-fault                      0x0
+dp-fw-fault                       0x0
+rx-los-cap                        0x0
+tx-fault                          0x0
+tx-los                            0x0
+tx-cdr-lol                        0x0
+tx-ad-eq-fault                    0x0
+rx-los                            0x0
+rx-cdr-lol                        0x0
+rx-output-valid-change            0x0
+flag-in-use                       0x0
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show interface \<interface-id\> link protodown-reason</h>
 
 Shows the link protodown reason details for an interface.

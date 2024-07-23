@@ -1141,7 +1141,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3
 
 Configures the lossy headroom for a specified priority group. Lossy headroom is the buffer on top of the reserved buffer that stores packets that ingress the switch. You can configure the lossy headroom to help analyze performance for a specific priority group.
 
-You can specify a value between 0 and 4294967295. The switch calculates the default value internally based on the MTU and internal latency.
+The switch calculates the default value internally based on the MTU and internal latency.
 
 ### Command Syntax
 
@@ -1163,7 +1163,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossy-
 
 ## <h>nv set qos advance-buffer-config default-global egress-mgmt-buffer reserved</h>
 
-Configures the egress management reserved buffer allocation in bytes. You can specify a value between 0 and 4294967295.
+Configures the egress management reserved buffer allocation in bytes.
 
 ### Version History
 
@@ -1188,7 +1188,7 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer service-pool ?????
+cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-buffer service-pool 0
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -1211,7 +1211,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 
 ## <h>nv set qos advance-buffer-config default-global egress-mgmt-buffer shared-bytes</h>
 
-Configures the QoS static egress management shared buffer allocation in bytes. You can specify a value between 0 and 4294967295.
+Configures the QoS static egress management shared buffer allocation in bytes.
 
 ### Version History
 
@@ -1227,7 +1227,7 @@ cumulus@switch:~$ nv set qos advance-buffer-config default-global egress-mgmt-bu
 
 ## <h>nv set qos advance-buffer-config default-global ingress-mgmt-buffer headroom</h>
 
-Configures the QoS ingress management buffer headroom in bytes. You can specify a value between 0 and 4294967295.
+Configures the QoS ingress management buffer headroom in bytes.
 
 ### Version History
 
@@ -1268,14 +1268,14 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-alpha alpha_0
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-alpha alpha_2
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
 ## <h>nv set qos advance-buffer-config default-global ingress-mgmt-buffer shared-bytes</h>
 
-Configures the static ingress management shared buffer allocation in bytes. You can specify a value between 0 and 4294967295.
+Configures the static ingress management shared buffer allocation in bytes.
 
 ### Version History
 

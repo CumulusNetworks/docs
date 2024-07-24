@@ -2549,10 +2549,6 @@ Action succeeded
 
 Generates a compressed archive file of useful information for troubleshooting. 
 
-You can also provide these options:
-- `--no-timeout` generates the file with no module timeouts.
-- `--with-secure` includes secure information in the file.
-
 ## Version History
 
 Introduced in Cumulus Linux 5.10.0

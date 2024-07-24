@@ -68,6 +68,10 @@ nv show interface <interface> link phy-detail
 nv show interface <interface> link phy-diag
 nv show qos advance-buffer-config default-global egress-mgmt-buffer 
 nv show qos advance-buffer-config default-global ingress-mgmt-buffer
+nv show system telemetry export
+nv show system telemetry export otlp gRPC
+nv show system telemetry export otlp gRPC destination
+nv show system telemetry export 
 nv show system telemetry hft
 nv show system telemetry hft profile
 nv show system telemetry hft profile <profile-id>
@@ -86,10 +90,6 @@ nv set interface <interface> link mac-address
 nv set system telemetry export otlp grpc allow-insecure
 nv set system telemetry export otlp grpc cert-id <certificate>
 nv set system telemetry export otlp grpc destination <destination> port <port>
-nv set system telemetry export otlp http allow-insecure
-nv set system telemetry export otlp http cert-id <certificate>
-nv set system telemetry export otlp http encoding json
-nv set system telemetry export otlp http port <port>
 nv set system telemetry export otlp state
 nv set system telemetry hft profile <profile-id> counter
 nv set system telemetry hft profile <profile-id> sample-interval
@@ -112,10 +112,6 @@ nv unset interface <interface> link mac-address
 nv unset system telemetry export otlp grpc allow-insecure
 nv unset system telemetry export otlp grpc cert-id
 nv unset system telemetry export otlp grpc destination
-nv unset system telemetry export otlp http allow-insecure
-nv unset system telemetry export otlp http cert-id
-nv unset system telemetry export otlp http encoding json
-nv unset system telemetry export otlp http port
 nv unset system telemetry export otlp state
 nv unset system telemetry hft
 nv unset system telemetry hft profile <profile-id>

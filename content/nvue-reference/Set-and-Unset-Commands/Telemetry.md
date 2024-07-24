@@ -574,6 +574,26 @@ Introduced in Cumulus Linux 5.9.0
 cumulus@switch:~$ nv set interface swp9-16 telemetry histogram latency traffic-class 1 histogram-size 9600
 ```
 
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export otlp state</h>
+
+Enables and disables open telemetry export. You can specify `enabled` or `disabled`.
+
+Cumulus Linux supports open telemetry (OTEL) export on the SN5600 switch. You can use OTLP to export interface counters and histogram collection data to an external collector.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry hft profile \<profile-id\> counter</h>
 
 Configures the type of data you want to collect for the high frequency telemetry profile. You can specify `tx-byte`, `rx-byte`, or `tc-occupancy`. The standard profile collects all three data types.
@@ -785,6 +805,87 @@ cumulus@switch:~$ nv set system telemetry histogram egress-buffer sample-interva
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv set system telemetry export otlp grpc allow-insecure</h>
+
+Enables and disables `allow-insecure` mode for <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> connections for telemetry export without a configured certificate. You can specify `enabled` or `disabled`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp grpc allow-insecure enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export otlp grpc cert-id \<certificate\></h>
+
+Configures an X.509 certificate to secure the <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> connection for telemetry export.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<certificate>` | The X.509 certificate. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <certificate>
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry export otlp grpc destination \<destination\> port \<port-id\></h>
+
+Configures open telemetry export to use <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> to communicate with the collector and define the port to use for communication.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<destination>` | The IP address of the collector. |
+| `<port-id>` |  The port number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 port 4317
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry histogram export state enabled</h>
+
+Enables or disables open telemetry export for histogram collection. You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+When you enable open telemetry export for histogram data, your histogram collection configuration defines the data that the switch exports.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry histogram export state enabled
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv set system telemetry histogram ingress-buffer bin-min-boundary</h>
 
 Configures the minimum boundary size of the ingress queue histograms. Adding this number to the size of the histogram produces the maximum boundary size. These values represent the range of ingress queues per bin. You can specify a value, which must be a multiple of 96, between 96 and 4294967295. The default minimum boundary size is 960 bytes.
@@ -841,6 +942,26 @@ Introduced in Cumulus Linux 5.7.0
 
 ```
 cumulus@switch:~$ nv set system telemetry histogram ingress-buffer sample-interval 1024
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv set system telemetry interface-stats export state</h>
+
+Enables and disables open telemetry export for interface statistics. You can specify `enabled` or `disabled`.
+
+{{%notice note%}}
+When you enable open telemetry export for interface statistics, the switch exports counters on all interfaces.
+{{%/notice%}}
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv set system telemetry interface-stats export state enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>

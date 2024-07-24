@@ -2452,3 +2452,4 @@ To validate the configuration, run the PIM show commands listed in the troublesh
 
 - Cumulus Linux does not support non-native forwarding (register decapsulation). Expect initial packet loss while the PIM \*,G tree is building from the RP to the FHR to trigger native forwarding.
 - Cumulus Linux does not build an S,G mroute when forwarding over an \*,G tree.
+- On Spectrum-4 switches, multicast flows with packets smaller than 512 bytes might not reach full line rate. Cumulus Linux supports 512 byte and larger multicast packets.

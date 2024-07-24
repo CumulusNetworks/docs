@@ -516,7 +516,7 @@ cumulus@switch:~$ nv set interface swp1 link lanes 1
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
-## <h>nv set interface \<interface-id\> link mac-address \<mac-address\</h>
+## <h>nv set interface \<interface-id\> link mac-address \<mac-address\></h>
 
 Configures a MAC address for the specified interface.
 

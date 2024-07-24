@@ -38,7 +38,6 @@ NVIDIA SN5400 (400G Spectrum-4)
 {{< /expand >}}
 - NVUE
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="AmBER PHY counters">}}
-  - {{<link url="LDAP-Authentication-and-Authorization" text="LDAP authentication">}}
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
   - {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="Command to generate a cl-support file">}}
   - {{<link url="NVUE-CLI/#session-based-authentication" text="Session-based authentication">}}

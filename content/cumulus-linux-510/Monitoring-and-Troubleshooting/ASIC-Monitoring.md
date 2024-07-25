@@ -1229,6 +1229,7 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc allow-insecure enable
 cumulus@switch:~$ nv config apply
 ```
 
+<!-- Commenting out HTTP export for phase 1
 ### HTTP OTLP Export
 
 You can configure open telemetry export to use HTTP to communicate with the collector and define the port to use for communication:
@@ -1258,3 +1259,4 @@ The default encoding format for HTTP export is binary protocol buffer (`proto`);
 cumulus@switch:~$ nv set system telemetry export otlp http encoding json
 cumulus@switch:~$ nv config apply
 ```
+-->

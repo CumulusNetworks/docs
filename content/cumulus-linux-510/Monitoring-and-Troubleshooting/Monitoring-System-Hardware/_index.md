@@ -18,6 +18,7 @@ You can run NVUE commands to monitor your system hardware.
 
 | Command | Description |
 | ----------- | ----------- |
+| `nv show system health`| Shows information about the health of the switch and describes any issues. |
 | `nv show platform`| Shows platform hardware information on the switch, such as the model and manufacturer, memory, serial number and system MAC address. |
 |`nv show platform environment fan` | Shows information about the fans on the switch, such as the minimum, maximum and current speed, the fan state, and the fan direction.|
 | `nv show platform environment led` | Shows information about the LEDs on the switch, such as the LED name and color.|

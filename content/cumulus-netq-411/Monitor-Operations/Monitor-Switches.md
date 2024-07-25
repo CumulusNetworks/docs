@@ -131,7 +131,7 @@ To stop the agent from monitoring a service run {{<link title="config/#netq-conf
 
 To actively monitor process-level CPU and memory utilization, you can create {{<link title="Configure and Monitor Threshold-Crossing Events" text="threshold-crossing rules">}}. These rules generate events when a process or service exceeds the utilization limit you defined when creating the rule. Refer to the {{<link title="Threshold-Crossing Events Reference/#resource-utilization" text="resource utilization table in the TCA Events Reference">}} for service memory and service CPU utilization event IDs.
 
-## View Queue Lengths in Histograms
+## View Queue Lengths as Histograms
 
 Monitoring queue lengths in your network’s fabric is useful for detecting microbursts which can lead to higher packet latency or buffer congestion. The {{<kb_link latest="cl" url="Monitoring-and-Troubleshooting/ASIC-Monitoring.md" text="Cumulus Linux documentation">}} provides a detailed description of ASIC monitoring, including example bin configurations and information on interpreting histogram queue lengths. 
 
@@ -150,7 +150,7 @@ To view queue histograms in the UI:
 
 Devices are {{<link title="Switch Management/#role-management" text="grouped according to their roles">}}: superspine, leaf, spine, or exit. If you haven't assigned roles to your devices, they appear as 'unassigned.'
 
-{{<figure src="/images/netq/queue-hist-un-470.png" alt="dashboard displaying 6 devices with egress queue lengths as histograms" width="1100" height="300">}}
+{{<figure src="/images/netq/queue-hist-411.png" alt="dashboard displaying 6 devices with egress queue lengths as histograms" width="1200" height="350">}}
 
 Each device is represented by a card that displays its hostname, the port with the longest queue length (displayed horizontally, divided into bins), standard deviation, P95 value across all ports (with an ASIC monitoring configuration), and average queue length. The data updates when you change the time parameters using the controls at the top of the screen. The values reflected in the bins are color-coded, with higher values displayed in darker colors and lower values in lighter colors. Hover over a bin to view its corresponding queue length count.
 

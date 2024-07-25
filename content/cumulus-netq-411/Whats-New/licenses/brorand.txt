@@ -8,7 +8,7 @@ License: Expat
 
 Files: debian/*
 Copyright: 2017 Tushar Agey <agey.tushar3@gmail.com>
- 2018 Bastien Roucariès <rouca@debian.org>
+ 2018 Bastien RoucariÃ¨s <rouca@debian.org>
 License: Expat
 
 License: Expat

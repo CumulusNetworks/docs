@@ -39,7 +39,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 - NVUE
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="AmBER PHY counters">}}
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
-  - {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="Command to generate a cl-support file">}}
+  - {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="Commands to generate amd delete a cl-support file">}}
   - {{<link url="NVUE-CLI/#session-based-authentication" text="Session-based authentication">}}
   - Redesigned {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="BGP show output flags">}} now similar to vtysh output
   - Radius keys are encrypted in the NVUE `startup.yaml` file
@@ -49,6 +49,7 @@ NVIDIA SN5400 (400G Spectrum-4)
 | `nv set system config auto-save state enabled`<br>`nv set system config auto-save state disabled` | `nv set system config auto-save enable on`<br>`nv set system config auto-save enable off`|
 | `nv set system telemetry` commands | `nv set service telemetry` commands|
 | `nv show system telemetry` commands | `nv show service telemetry` commands |
+| `nv action change system time`| `nv action change system date-time`|
 
 These commands include additional information in the output.
 
@@ -66,12 +67,19 @@ For descriptions and examples of all NVUE commands, refer to the [NVUE Command R
 ```
 nv show interface <interface> link phy-detail 
 nv show interface <interface> link phy-diag
-nv show qos advance-buffer-config default-global egress-mgmt-buffer 
-nv show qos advance-buffer-config default-global ingress-mgmt-buffer
+nv show qos advance-buffer-config <profile-id> egress-mgmt-buffer 
+nv show qos advance-buffer-config <profile-id> ingress-mgmt-buffer
+nv show system health
+nv show system version
+nv show system security encryption
+nv show system security encryption db
+nv show system tech-support
+nv show system tech-support files
+nv show system telemetry
 nv show system telemetry export
 nv show system telemetry export otlp gRPC
 nv show system telemetry export otlp gRPC destination
-nv show system telemetry export 
+nv show system telemetry export otlp grpc destination <destination-id>
 nv show system telemetry hft
 nv show system telemetry hft profile
 nv show system telemetry hft profile <profile-id>
@@ -80,6 +88,10 @@ nv show system telemetry hft profile <profile-id> counter
 nv show system telemetry hft target
 nv show system telemetry hft job
 nv show system telemetry hft job <hft-job-id>
+nv show system telemetry interface-stats
+nv show system telemetry interface-stats export
+nv show system telemetry interface-stats ingress-buffer
+nv show system telemetry interface-stats egress-buffer
 ```
 
 {{< /tab >}}
@@ -133,10 +145,15 @@ nv unset vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 {{< tab "nv action ">}}
 
 ```
-nv action cancel service telemetry hft job
+nv action cancel system telemetry hft job
 nv action clear system api session user
+nv action clear vrf <vrf>> router ospf database
+nv action delete system tech-support files <file-name>
 nv action generate system tech-support
+nv action rotate system log
 nv action schedule service telemetry hft job
+nv action upload system tech-support files <file-name> <remote-url-upload>
+nv action upload system telemetry hft job <hft-job-id> <remote-url-upload>
 ```
 
 {{< /tab >}}

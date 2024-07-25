@@ -1,7 +1,7 @@
 MIT License
 # The MIT License (MIT)
 
-# © Copyright 2015 Hewlett Packard Enterprise Development LP
+# Â© Copyright 2015 Hewlett Packard Enterprise Development LP
 Copyright (c) 2014 ActiveState
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

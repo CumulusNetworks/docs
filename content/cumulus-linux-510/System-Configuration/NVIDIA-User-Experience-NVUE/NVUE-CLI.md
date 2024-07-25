@@ -143,6 +143,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
 | `nv show service` | Shows DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
 | `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs. You can also see system login messages and switch reboot history. |
+| `nv show system version` | Shows the Cumulus Linux release running on the switch.|
 | `nv show vrf` | Shows VRF configuration.|
 
 The following example shows the `nv show router` commands after pressing the tab key, then shows the output of the `nv show router bgp` command.

@@ -30,6 +30,8 @@ Generated tech-support
 Action succeeded
 ```
 
+Cumulus Linux saves cl-support files in the `/var/support` directory. The file name starts with `cl_support` and end with the date and time.
+
 {{%notice note%}}
 The Linux command to generate the `cl-support` file includes more options; for example, you can include security sensitive information, include debugging information, only run certain modules, and provide a reason for running the script in the file.
 {{%/notice%}}
@@ -125,6 +127,30 @@ Please send /var/support/cl_support_leaf01_20240214_184806.txz to Cumulus suppor
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Delete cl-support Files
+
+To delete a cl-support file from the switch, run the NVUE `nv action delete system tech-support files <file-name>` command. You can also use the Linux `sudo rm /var/support/<file-name>` command.
+
+```
+cumulus@switch:~$ nv action delete system tech-support files /var/support/cl_support_leaf01_20240725_221237.txz
+Action executing ...
+File Delete Succeeded
+Action succeeded
+```
+
+## Show cl-support Files
+
+To show the cl-support files on the switch, run the `nv show system tech-support files` command. You can also run the Linux `ls` command on the `/var/support` directory (`ls /var/support`).
+
+```
+cumulus@switch:~$ nv show system tech-support files
+File name                              File path                                         
+-------------------------------------  --------------------------------------------------
+cl_support_leaf01_20240725_225811.txz  /var/support/cl_support_leaf01_20240725_225811.txz
+```
+
+## Related Information
 
 For information on the directories included in the `cl-support` archive, see:
 - {{<link url="Troubleshooting-the-etc-Directory">}}. The `/etc` directory contains the largest number of files.

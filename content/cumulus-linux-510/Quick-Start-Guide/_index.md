@@ -429,6 +429,7 @@ You can add multiple loopback addresses. For more information, see {{<link url="
 ## Show Platform and System Settings
 
 - To show the hostname of the switch, the time zone, and the version of Cumulus Linux running on the switch, run the NVUE `nv show system` command.
+- To show the Cumulus Linux release on the switch, run the `nv show system version` command.
 - To show switch platform information, such as the system MAC address, manufacturer, ASIC model, CPU, hard disk drive size, RAM size, and port layout, run the NVUE `nv show platform` command.
 
 ## Next Steps

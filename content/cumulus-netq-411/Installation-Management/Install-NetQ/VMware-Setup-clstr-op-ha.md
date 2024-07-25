@@ -17,9 +17,9 @@ Follow these steps to set up and configure your VM cluster for an on-premises de
 
     {{<netq-install/port-reqs server="cluster">}}
 
-3. Download the NetQ Platform image.
+3. Download the NetQ image.
 
-    {{<netq-install/vmw-platform-image deployment="onprem" version="4.10">}}
+    {{<netq-install/vmw-platform-image deployment="onprem" version="4.11">}}
 
 4. Set up and configure your VM.
 

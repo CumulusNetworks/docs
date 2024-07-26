@@ -1222,10 +1222,10 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <certificate>
 cumulus@switch:~$ nv config apply
 ```
 
-For connections without a configured certificate, enable `allow-insecure` mode:
+For connections without a configured certificate, enable `insecure` mode:
 
 ```
-cumulus@switch:~$ nv set system telemetry export otlp grpc allow-insecure enabled
+cumulus@switch:~$ nv set system telemetry export otlp grpc insecure enabled
 cumulus@switch:~$ nv config apply
 ```
 
@@ -1241,7 +1241,7 @@ vrf                 default   default
 otlp                                  
   state             disabled  disabled
   grpc                                
-    allow-insecure  disabled  disabled
+    insecure  disabled  disabled
     port            8443      8443    
     [destination]             
 ```
@@ -1263,10 +1263,10 @@ cumulus@switch:~$ nv set system telemetry export otlp http cert-id <certificate>
 cumulus@switch:~$ nv config apply
 ```
 
-For connections without a configured certificate, enable `allow-insecure` mode:
+For connections without a configured certificate, enable `insecure` mode:
 
 ```
-cumulus@switch:~$ nv set system telemetry export otlp http allow-insecure enabled
+cumulus@switch:~$ nv set system telemetry export otlp http insecure enabled
 cumulus@switch:~$ nv config apply
 ```
 

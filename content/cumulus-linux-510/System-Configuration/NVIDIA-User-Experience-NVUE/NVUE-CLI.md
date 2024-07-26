@@ -328,6 +328,25 @@ NVUE provides a default `/etc/nvue.d/startup.yaml` file that includes configurat
 - You cannot delete a user account that is logged into the switch.
 {{%/notice%}}
 
+### Encrypted Passwords
+
+By default, NVUE encrypts passwords, such as the RADIUS secret, TACACS secret, BGP peer password, OSPF MD5 key, and SNMP strings in the `startup.yaml` file. You can disable password encryption with the `nv set system security encryption db state disabled` command:
+
+```
+cumulus@switch:~$ nv set system security encryption db state disabled
+cumulus@switch:~$ nv config apply
+```
+
+To show if password encryption is enabled, run the `nv show system security encryption` command:
+
+```
+cumulus@switch:~$ nv show system security encryption
+         operational  applied
+-------  -----------  -------
+db                           
+  state               enabled
+```
+
 ## Configuration Files that NVUE Manages
 
 NVUE manages the following configuration files:

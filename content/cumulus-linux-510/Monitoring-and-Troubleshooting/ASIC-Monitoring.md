@@ -901,16 +901,16 @@ hft.target = [local]
 {{< /tab >}}
 {{< /tabs >}}
 
-To export a `json` file to an external location, run the NVUE `nv action upload system telemetry hft job <hft-job-id> <remote-url>` command. You can see the list of jobs with the `nv show system telemetry hft job` command.
+To export a `json` file to an external location, run the NVUE `nv action upload system telemetry hft job <job-id> <remote-url>` command. Cumulus Linux supports <span class="a-tooltip">[FTP](## "File Transfer Protocol")</span>, <span class="a-tooltip">[SCP](## "Secure Copy Protocol")</span>, and <span class="a-tooltip">[SFTP](## "Secure File Transfer Protocol")</span>. You can see the list of jobs with the `nv show system telemetry hft job` command.
 
 ```
-cumulus@switch:~$ nv action upload system telemetry hft job 1 scp://user1:password@host:~/ 
+cumulus@switch:~$ nv action upload system telemetry hft job 1 scp://root@host1/home/telemetry/hft-file.json
 ```
 
 ### Configure the Schedule
 
 To configure the schedule for a data collection profile, set:
-- The start date and time.
+- The start date and time. You can also start data collection immediately with the `now` option.
 - The session duration in seconds. The default value is 20 seconds.
 - The ports on which you want to collect the data. You can specify a range of ports, multiple comma separated ports, or `all` for all the ports. The default value is `all`.
 
@@ -936,8 +936,18 @@ Action succeeded
 
 You can provide a short reason why you are collecting the data. If the description contains more than one word, you must enclose the description in quotes. A description is optional.
 
-``` 
+```
 cumulus@switch:~$ nv action schedule system telemetry hft job 2024-07-17 10:00:00 duration 30 profile profile1 ports swp1-swp9 description "bandwidth profiling"
+Action executing ...
+Job schedule successfull.
+
+Action succeeded
+```
+
+The following example configures `profile2` to start immediately, run for 30 seconds, and collect data on swp2.
+
+``` 
+cumulus@switch:~$ nv action schedule system telemetry hft job now now duration 30 profile profile1 ports swp2
 Action executing ...
 Job schedule successfull.
 

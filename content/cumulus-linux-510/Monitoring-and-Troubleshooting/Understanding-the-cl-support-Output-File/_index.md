@@ -149,6 +149,10 @@ File name                              File path
 cl_support_leaf01_20240725_225811.txz  /var/support/cl_support_leaf01_20240725_225811.txz
 ```
 
+## Upload cl-support Files
+
+To upload a `cl-support` file off the switch to an external location, run the `nv action upload system tech-support files <file-name> <remote-url>` command.
+
 ## Related Information
 
 For information on the directories included in the `cl-support` archive, see:

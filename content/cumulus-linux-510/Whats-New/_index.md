@@ -99,7 +99,7 @@ nv show system telemetry interface-stats egress-buffer
 
 ```
 nv set interface <interface> link mac-address
-nv set system telemetry export otlp grpc allow-insecure
+nv set system telemetry export otlp grpc insecure
 nv set system telemetry export otlp grpc cert-id <certificate>
 nv set system telemetry export otlp grpc destination <destination> port <port>
 nv set system telemetry export otlp state
@@ -121,7 +121,7 @@ nv set vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 
 ```
 nv unset interface <interface> link mac-address
-nv unset system telemetry export otlp grpc allow-insecure
+nv unset system telemetry export otlp grpc insecure
 nv unset system telemetry export otlp grpc cert-id
 nv unset system telemetry export otlp grpc destination
 nv unset system telemetry export otlp state

@@ -4,12 +4,11 @@ author: NVIDIA
 weight: 1050
 toc: 3
 ---
-The `cl-support` script generates a compressed archive file of useful information for troubleshooting. The system either creates the archive file automatically or you can create the archive file manually.
+The `cl-support` script generates a compressed archive file of useful information for troubleshooting. The system either creates the file automatically or you can create the file manually.
 <!-- vale off -->
 ## Automatic cl-support File
 <!-- vale on -->
-The system creates the `cl-support` archive file automatically for the following reasons:
-
+The system creates the `cl-support` file automatically:
 - When there is a {{<exlink url="http://linux.die.net/man/5/core" text="core dump file">}} for any application (not specific to Cumulus Linux, but something all Linux distributions support), located in `/var/support/core`.
 - When one of the monitored services fails for the first time after you reboot or power cycle the switch.
 <!-- vale off -->
@@ -19,7 +18,7 @@ The system creates the `cl-support` archive file automatically for the following
 {{< tabs "TabID19 ">}}
 {{< tab "NVUE Commands ">}}
 
-To create the `cl-support` archive file manually, run the `nv action generate system tech-support` command:
+To create the `cl-support` file manually, run the `nv action generate system tech-support` command:
 
 ```
 cumulus@switch:~$ nv action generate system tech-support
@@ -30,7 +29,7 @@ Generated tech-support
 Action succeeded
 ```
 
-Cumulus Linux saves cl-support files in the `/var/support` directory. The file name starts with `cl_support` and end with the date and time.
+Cumulus Linux saves the `cl-support` file in the `/var/support` directory. The file name starts with `cl_support` and ends with the date and time of creation.
 
 {{%notice note%}}
 The Linux command to generate the `cl-support` file includes more options; for example, you can include security sensitive information, include debugging information, only run certain modules, and provide a reason for running the script in the file.
@@ -39,7 +38,7 @@ The Linux command to generate the `cl-support` file includes more options; for e
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To create the `cl-support` archive file manually, run the `cl-support` command:
+To create the `cl-support` file manually, run the `cl-support` command:
 
 ```
 cumulus@switch:~$ sudo cl-support
@@ -55,22 +54,22 @@ cumulus@switch:~$ sudo cl-support -s
 
 | Option | Description |
 |------- |------------ |
-| `-h`: | Display the available `cl-support` script options with a description. |
-| `-c`: | Run only modules matching core files (if no `-e` modules). |
-| `-D`: | Display debugging information. |
-| `-d`: | Do not run modules in the provided comma separated list. |
-| `-e`: | Only run modules in the provided comma separated list. `-e all` runs all modules and submodules, including all optional modules. |
-| `-j`: | Create `json` output files for modules, where supported. |
-| `-l`: | List the available modules, then exit. |
-| `-M`: | Do not set a timeout for modules. Use this option with `-T`. |
-| `-m`: | Run modules serially and set the module memory limit in MB; `-m 0` runs serially without limits. |
-| `-p`: | Add a prefix to the `cl-support` archive file name. |
-| `-r`: | Provide the reason for running the `cl-support` script. You must enclose the reason in quotes. |
-| `-S`: | Use a different output directory than the default `/var/support`. |
-| `-s`: | Include security sensitive information, such as the `sudoers` file. |
-| `-T`: | Set the timeout in seconds for creating the `cl-support` archive file.  0 disables the timeout. |
-| `-t`: | Provide a tag string as part of the `cl-support` archive file name. |
-| `-v`: | Run in verbose mode to display status messages. |
+| `-h`: | Displays the available `cl-support` script options with a description. |
+| `-c`: | Runs only modules matching core files (if no `-e` modules). |
+| `-D`: | Displays debugging information. |
+| `-d`: | Does not run modules in the provided comma separated list. |
+| `-e`: | Only runs modules in the provided comma separated list. `-e all` runs all modules and submodules, including all optional modules. |
+| `-j`: | Creates `json` output files for modules, where supported. |
+| `-l`: | Lists the available modules, then exits. |
+| `-M`: | Does not set a timeout for modules. Use this option with `-T`. |
+| `-m`: | Runs modules serially and sets the module memory limit in MB; `-m 0` runs serially without limits. |
+| `-p`: | Adds a prefix to the `cl-support` archive file name. |
+| `-r`: | Provides the reason for running the `cl-support` script. You must enclose the reason in quotes. |
+| `-S`: | Uses a different output directory than the default `/var/support`. |
+| `-s`: | Includes security sensitive information, such as the `sudoers` file. |
+| `-T`: | Sets the timeout in seconds for creating the `cl-support` file.  0 disables the timeout. |
+| `-t`: | Provides a tag string as part of the `cl-support` file name. |
+| `-v`: | Runs in verbose mode to display status messages. |
 
 ### cl-support Examples
 
@@ -111,7 +110,7 @@ Optional modules: switchd.verbose clag.clagkerneldB system.pkgverify
    frr.ospftable frr.ospf6table frr.evpntable frr.bgptable nclu.config
 ```
 
-The following example adds a prefix to the generated `cl-support` archive file name:
+The following example adds a prefix to the generated `cl-support` file name:
 
 ```
 cumulus@switch:~$ sudo cl-support -p myprefix
@@ -130,7 +129,7 @@ Please send /var/support/cl_support_leaf01_20240214_184806.txz to Cumulus suppor
 
 ## Delete cl-support Files
 
-To delete a cl-support file from the switch, run the NVUE `nv action delete system tech-support files <file-name>` command. You can also use the Linux `sudo rm /var/support/<file-name>` command.
+To delete a `cl-support` file from the switch, run the NVUE `nv action delete system tech-support files <file-name>` command. You can also use the Linux `sudo rm /var/support/<file-name>` command.
 
 ```
 cumulus@switch:~$ nv action delete system tech-support files /var/support/cl_support_leaf01_20240725_221237.txz
@@ -141,7 +140,7 @@ Action succeeded
 
 ## Show cl-support Files
 
-To show the cl-support files on the switch, run the `nv show system tech-support files` command. You can also run the Linux `ls` command on the `/var/support` directory (`ls /var/support`).
+To show the `cl-support` files on the switch, run the `nv show system tech-support files` command. You can also run the Linux `ls` command on the `/var/support` directory (`ls /var/support`).
 
 ```
 cumulus@switch:~$ nv show system tech-support files

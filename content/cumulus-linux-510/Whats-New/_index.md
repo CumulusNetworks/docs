@@ -175,7 +175,7 @@ nv unset vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 ```
 nv action cancel system telemetry hft job
 nv action clear system api session user
-nv action clear vrf <vrf>> router ospf database
+nv action clear vrf <vrf> router ospf database
 nv action delete system tech-support files <file-name>
 nv action generate system tech-support
 nv action rotate system log

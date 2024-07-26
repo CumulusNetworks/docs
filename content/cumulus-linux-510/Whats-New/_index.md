@@ -39,10 +39,10 @@ NVIDIA SN5400 (400G Spectrum-4)
 - NVUE
   - {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE/#amber-phy-health-management" text="AmBER PHY counters">}}
   - {{<link url="Interface-Configuration-and-Management/#interface-mac-addresses" text="Interface MAC address configuration">}}
-  - {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="Commands to generate amd delete a cl-support file">}}
+  - {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="Commands to generate and delete a cl-support file">}}
   - {{<link url="NVUE-CLI/#session-based-authentication" text="Session-based authentication">}}
   - Redesigned {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="BGP show output flags">}} now similar to vtysh output
-  - Radius keys are encrypted in the NVUE `startup.yaml` file
+  - {{<link url="NVUE-CLI/#encrypted-passwords" text="Passwords encrypted">}} by default in the NVUE `startup.yaml` file
   - {{< expand "Changed NVUE Commands" >}}
 | New Command| Previous Command |
 | ----------- | ----------------|
@@ -70,7 +70,6 @@ nv show interface <interface> link phy-diag
 nv show qos advance-buffer-config <profile-id> egress-mgmt-buffer 
 nv show qos advance-buffer-config <profile-id> ingress-mgmt-buffer
 nv show system health
-nv show system version
 nv show system security encryption
 nv show system security encryption db
 nv show system tech-support
@@ -81,17 +80,18 @@ nv show system telemetry export otlp gRPC
 nv show system telemetry export otlp gRPC destination
 nv show system telemetry export otlp grpc destination <destination-id>
 nv show system telemetry hft
-nv show system telemetry hft profile
-nv show system telemetry hft profile <profile-id>
-nv show system telemetry hft profile <profile-id> traffic-class
-nv show system telemetry hft profile <profile-id> counter
-nv show system telemetry hft target
 nv show system telemetry hft job
 nv show system telemetry hft job <hft-job-id>
+nv show system telemetry hft profile
+nv show system telemetry hft profile <profile-id>
+nv show system telemetry hft profile <profile-id> counter
+nv show system telemetry hft profile <profile-id> traffic-class
+nv show system telemetry hft target
 nv show system telemetry interface-stats
+nv show system telemetry interface-stats egress-buffer
 nv show system telemetry interface-stats export
 nv show system telemetry interface-stats ingress-buffer
-nv show system telemetry interface-stats egress-buffer
+nv show system version
 ```
 
 {{< /tab >}}
@@ -99,20 +99,33 @@ nv show system telemetry interface-stats egress-buffer
 
 ```
 nv set interface <interface> link mac-address
-nv set system telemetry export otlp grpc insecure
+nv set system security encryption db state
 nv set system telemetry export otlp grpc cert-id <certificate>
 nv set system telemetry export otlp grpc destination <destination> port <port>
+nv set system telemetry export otlp grpc insecure
 nv set system telemetry export otlp state
 nv set system telemetry hft profile <profile-id> counter
 nv set system telemetry hft profile <profile-id> sample-interval
 nv set system telemetry hft profile <profile-id> traffic-class
 nv set system telemetry hft target local
 nv set system telemetry histogram export state
+nv set system telemetry interface-stats egress-buffer traffic-class
 nv set system telemetry interface-stats export state
+nv set system telemetry interface-stats ingress-buffer priority-group
+nv set system telemetry interface-stats sample-interval
 nv set system ssh-server login-record-period
-nv set qos advance-buffer-config default-global egress-mgmt-buffer 
-nv set qos advance-buffer-config default-global ingress-mgmt-buffer
-nv set qos advance-buffer-config default-global ingress-lossy-buffer priority-group <priority-group> headroom
+nv set qos advance-buffer-config <profile-id> egress-mgmt-buffer
+nv set qos advance-buffer-config <profile-id> egress-mgmt-buffer reserved
+nv set qos advance-buffer-config <profile-id> egress-mgmt-buffer service-pool
+nv set qos advance-buffer-config <profile-id> egress-mgmt-buffer shared-alpha
+nv set qos advance-buffer-config <profile-id> egress-mgmt-buffer shared-bytes
+nv set qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group> headroom
+nv set qos advance-buffer-config <profile-id> ingress-mgmt-buffer
+nv set qos advance-buffer-config <profile-id> ingress-mgmt-buffer headroom
+nv set qos advance-buffer-config <profile-id> ingress-mgmt-buffer reserved
+nv set qos advance-buffer-config <profile-id> ingress-mgmt-buffer service-pool
+nv set qos advance-buffer-config <profile-id> ingress-mgmt-buffer shared-alpha
+nv set qos advance-buffer-config <profile-id> ingress-mgmt-buffer shared-bytes
 nv set vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 ```
 
@@ -121,9 +134,10 @@ nv set vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 
 ```
 nv unset interface <interface> link mac-address
-nv unset system telemetry export otlp grpc insecure
+nv unset system security encryption db state
 nv unset system telemetry export otlp grpc cert-id
 nv unset system telemetry export otlp grpc destination
+nv unset system telemetry export otlp grpc insecure
 nv unset system telemetry export otlp state
 nv unset system telemetry hft
 nv unset system telemetry hft profile <profile-id>
@@ -133,11 +147,25 @@ nv unset system telemetry hft profile <profile-id> traffic-class
 nv unset system telemetry hft target
 nv unset system telemetry hft target local
 nv unset system telemetry histogram export state
+nv unset system telemetry interface-stats
+nv unset system telemetry interface-stats export
 nv unset system telemetry interface-stats export state
+nv unset system telemetry interface-stats ingress-buffer
+nv unset system telemetry interface-stats egress-buffer
+nv unset system telemetry interface-stats sample-interval
 nv unset system ssh-server login-record-period
-nv unset qos advance-buffer-config default-global egress-mgmt-buffer 
-nv unset qos advance-buffer-config default-global ingress-mgmt-buffer
-nv unset qos advance-buffer-config default-global ingress-lossy-buffer priority-group <priority-group> headroom
+nv unset qos advance-buffer-config <profile-id> egress-mgmt-buffer
+nv unset qos advance-buffer-config <profile-id> egress-mgmt-buffer reserved
+nv unset qos advance-buffer-config <profile-id> egress-mgmt-buffer service-pool
+nv unset qos advance-buffer-config <profile-id> egress-mgmt-buffer shared-alpha
+nv unset qos advance-buffer-config <profile-id> egress-mgmt-buffer shared-bytes
+nv unset qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group> headroom
+nv unset qos advance-buffer-config <profile-id> ingress-mgmt-buffer
+nv unset qos advance-buffer-config <profile-id> ingress-mgmt-buffer headroom
+nv unset qos advance-buffer-config <profile-id> ingress-mgmt-buffer reserved
+nv unset qos advance-buffer-config <profile-id> ingress-mgmt-buffer service-pool
+nv unset qos advance-buffer-config <profile-id> ingress-mgmt-buffer shared-alpha
+nv unset qos advance-buffer-config <profile-id> ingress-mgmt-buffer shared-bytes
 nv unset vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 ```
 

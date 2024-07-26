@@ -105,12 +105,6 @@ NVIDIA recommends proceeding with the installation only if the `Use%` is less th
 
 4. Ensure that the necessary ports are open {{<link title="Install the NetQ System" text="according to your deployment model">}}.
 
-{{%notice note%}}
-
-If you are upgrading a cluster deployment from NetQ v4.8.0 or earlier, you must open TCP port 36443 for Kubernetes control plane operations.
-
-{{%/notice%}}
-
 ### Upgrade Using the NetQ CLI
 
 1. Run the appropriate commands for your deployment type:

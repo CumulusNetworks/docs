@@ -21,7 +21,7 @@ Follow these steps to set up and configure your VM on a single server in a cloud
 
 4. Set up and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="4.10">}}
+    {{<netq-install/vm-setup hypervisor="kvm" deployment="cloud" version="4.11">}}
 
 5. Log in to the VM and change the password.
 

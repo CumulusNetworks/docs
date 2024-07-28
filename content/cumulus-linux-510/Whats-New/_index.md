@@ -42,7 +42,7 @@ NVIDIA SN5400 (400G Spectrum-4)
   - {{<link url="Understanding-the-cl-support-Output-File/#manual-cl-support-file" text="Commands to generate and delete a cl-support file">}}
   - {{<link url="NVUE-CLI/#session-based-authentication" text="Session-based authentication">}}
   - Redesigned {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="BGP show output flags">}} now similar to vtysh output
-  - {{<link url="NVUE-CLI/#encrypted-passwords" text="Passwords encrypted">}} by default in the NVUE `startup.yaml` file
+  - {{<link url="NVUE-CLI/#encrypted-passwords" text="NVUE encrypts passwords by default">}} in the NVUE `startup.yaml` file
   - {{< expand "Changed NVUE Commands" >}}
 | New Command| Previous Command |
 | ----------- | ----------------|
@@ -175,7 +175,7 @@ nv unset vrf <vrf>> router bgp neighbor <neighbor-id>> graceful-shutdown
 ```
 nv action cancel system telemetry hft job
 nv action clear system api session user
-nv action clear vrf <vrf>> router ospf database
+nv action clear vrf <vrf> router ospf database
 nv action delete system tech-support files <file-name>
 nv action generate system tech-support
 nv action rotate system log

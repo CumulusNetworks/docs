@@ -337,6 +337,8 @@ cumulus@switch:~$ nv set system security encryption db state disabled
 cumulus@switch:~$ nv config apply
 ```
 
+To re-enable password encryption, run the `nv set system security encryption db state enabled` command.
+
 To show if password encryption is enabled, run the `nv show system security encryption` command:
 
 ```

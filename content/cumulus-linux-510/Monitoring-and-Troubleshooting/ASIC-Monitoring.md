@@ -5,8 +5,8 @@ weight: 1230
 toc: 3
 ---
 Cumulus Linux provides two ASIC monitoring tools that collect and distribute data about the state of the ASIC.
-- Histogram Collection
-- High Frequency Telemetry
+- {{<link url="#histogram-collection" text="Histogram Collection">}}
+- {{<link url="#high-frequency-telemetry" text="High frequency telemetry">}}
 
 ## Enable ASIC Monitoring
 
@@ -1087,24 +1087,21 @@ To show a summary of high frequency telemetry configuration and data:
 cumulus@switch:~$ nv show system telemetry hft
 profile
 ==========
-    Profile   sample-interval  Summary              
-    --------  ---------------  ---------------------
-    profile1  1000             counter:      rx-byte
-                               counter: tc-occupancy
-                               traffic-class:      0
-                               traffic-class:      3
-                               traffic-class:      7
-                               traffic-class:      1
-                               traffic-class:      2
-                               traffic-class:      4
-                               traffic-class:      5
-                               traffic-class:      6
-                               traffic-class:      8
-                               traffic-class:      9
-    standard  5000             counter:      tx-byte
-                               counter:      rx-byte
-                               counter: tc-occupancy
-                               traffic-class:      3
+    Profile   traffic-class  counter       sample-interval
+    --------  -------------  ------------  ---------------
+    profile2  0              rx-byte       1000           
+              1              tx-byte                      
+              2                                           
+              3                                           
+              4                                           
+              5                                           
+              6                                           
+              7                                           
+              8                                           
+              9                                           
+    standard  3              rx-byte       5000           
+                             tc-occupancy                 
+                             tx-byte
 ...
 ```
 
@@ -1112,29 +1109,42 @@ To show the high frequency telemetry profiles configured on the switch:
 
 ```
 cumulus@switch:~$ nv show system telemetry hft profile
-Profile   sample-interval  Summary              
---------  ---------------  ---------------------
-profile1  1000             counter: tc-occupancy
-                           traffic-class:      0
-                           traffic-class:      3
-                           traffic-class:      7
-standard  5000             counter:      tx-byte
-                           counter:      rx-byte
-                           counter: tc-occupancy
-                           traffic-class:      3
+Profile   traffic-class  counter       sample-interval
+--------  -------------  ------------  ---------------
+profile2  0              rx-byte       1000           
+          1              tx-byte                      
+          2                                           
+          3                                           
+          4                                           
+          5                                           
+          6                                           
+          7                                           
+          8                                           
+          9                                           
+standard  3              rx-byte       5000           
+                         tc-occupancy                 
+                         tx-byte
 ```
 
 To show the settings for a specific profile:
 
 ```
 cumulus@switch:~$ nv show system telemetry hft profile profile1
-                operational   applied     
----------------  ------------  ------------
-sample-interval  1000          1000        
-[traffic-class]  0             0           
-[traffic-class]  3             3           
-[traffic-class]  7             7           
-[counter]        tc-occupancy  tc-occupancy
+                 operational  applied
+---------------  -----------  -------
+sample-interval  1000         1000   
+[traffic-class]  0            0      
+[traffic-class]  1            1      
+[traffic-class]  2            2      
+[traffic-class]  3            3      
+[traffic-class]  4            4      
+[traffic-class]  5            5      
+[traffic-class]  6            6      
+[traffic-class]  7            7      
+[traffic-class]  8            8      
+[traffic-class]  9            9      
+[counter]        rx-byte      rx-byte
+[counter]        tx-byte      tx-byte
 ```
 
 To show configured targets:
@@ -1146,7 +1156,7 @@ applied
 local  
 ```
 
-To show information for all data collection jobs, such as the start time, duration, status and ports on which the data is collected:
+To show information for all data collection jobs:
 
 ```
 cumulus@switch:~$ nv show system telemetry hft job
@@ -1188,103 +1198,3 @@ ports                  swp1-swp64
 status                 pending 
 target                 scp://abc@server1:/hft-data
 ```
-
-## Open Telemetry Export
-
-Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export on the SN5600 switch. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export interface counters and histogram collection data to an external collector.
-
-To enable open telemetry export:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp state enabled 
-cumulus@switch:~$ nv config apply
-```
-
-You can enable open telemetry export for interface statistics, histogram collection, or both:
-
-```
-cumulus@switch:~$ nv set system telemetry interface-stats export state enabled
-cumulus@switch:~$ nv config apply
-```
-
-```
-cumulus@switch:~$ nv set system telemetry histogram export state enabled
-cumulus@switch:~$ nv config apply
-```
-
-{{%notice note%}}
-- When you enable open telemetry export for interface statistics, the switch exports counters on all interfaces.
-- When you enable open telemetry export for histogram data, your [histogram collection configuration](#histogram-collection) defines the data that the switch exports.
-{{%/notice%}}
-
-### gRPC OTLP Export
-
-You can configure open telemetry export to use <span class="a-tooltip">[gRPC](## "Remote Procedure Call")</span> to communicate with the collector and define the port to use for communication:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp grpc destination 10.1.1.100 port 4317
-cumulus@switch:~$ nv config apply
-```
-
-Optionally, you can configure an X.509 certificate to secure the gRPC connection:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <certificate>
-cumulus@switch:~$ nv config apply
-```
-
-For connections without a configured certificate, enable `insecure` mode:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp grpc insecure enabled
-cumulus@switch:~$ nv config apply
-```
-
-### Show Telemetry Export Configuration
-
-To show the telemetry export configuration, run the `nv show telemetry export` command:
-
-```
-cumulus@switch:~$ nv show system telemetry export
-                    applied   pending 
-------------------  --------  --------
-vrf                 default   default 
-otlp                                  
-  state             disabled  disabled
-  grpc                                
-    insecure  disabled  disabled
-    port            8443      8443    
-    [destination]             
-```
-
-<!-- Commenting out HTTP export for phase 1
-### HTTP OTLP Export
-
-You can configure open telemetry export to use HTTP to communicate with the collector and define the port to use for communication:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp http port 9443
-cumulus@switch:~$ nv config apply
-```
-
-Optionally, you can configure an X.509 certificate to secure the HTTP connection:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp http cert-id <certificate>
-cumulus@switch:~$ nv config apply
-```
-
-For connections without a configured certificate, enable `insecure` mode:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp http insecure enabled
-cumulus@switch:~$ nv config apply
-```
-
-The default encoding format for HTTP export is binary protocol buffer (`proto`); You can configure the encoding format to JSON:
-
-```
-cumulus@switch:~$ nv set system telemetry export otlp http encoding json
-cumulus@switch:~$ nv config apply
-```
--->

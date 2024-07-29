@@ -2644,7 +2644,7 @@ Action succeeded
 Configures the schedule for a high frequency telemetry data collection.
 
 {{%notice note%}}
-- You can schedule a maximum of 25 sessions (jobs). The switch can retain data for 25 jobs (completed, cancelled, or failed) in addition to the active jobs.
+- You can schedule a maximum of 10 sessions (jobs). The switch can retain data for 10 jobs (completed, cancelled, or failed) in addition to the active jobs.
 - You must configure data export (the target) before you can configure the schedule.
 {{%/notice%}}
 

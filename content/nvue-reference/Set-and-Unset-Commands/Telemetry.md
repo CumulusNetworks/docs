@@ -598,6 +598,13 @@ cumulus@switch:~$ nv set system telemetry export otlp state enabled
 
 Configures the type of data you want to collect for the high frequency telemetry profile. You can specify `tx-byte`, `rx-byte`, or `tc-occupancy`. The standard profile collects all three data types.
 
+{{%notice note%}}
+- Cumulus Linux supports high frequency telemetry on Spectrum-4 switches only.
+- Cumulus Linux does not support high frequency telemetry on ports using 8 lanes. On the Spectrum-4 switch, swp1 through swp64 use all 8 lanes; to run high frequency telemetry, you must break out these ports.
+- To correlate counters from different switches, the switches must have the same time (Cumulus Linux adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP; however, NVIDIA recommends using PTP because the timestamp is accurate between switches in the fabric at the microsecond level.
+- The collected data is available on the switch until you trigger the next data collection job or until you reboot the switch.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -629,6 +636,13 @@ cumulus@switch:~$ nv set system telemetry hft profile profile1 counter rx-byte
 
 Configures the high frequency telemetry sampling interval in microseconds for the profile. You can specify a value between 100 and 12750. The value must be a multiple of 50. The default value is 5000 microseconds (30 seconds).
 
+{{%notice note%}}
+- Cumulus Linux supports high frequency telemetry on Spectrum-4 switches only.
+- Cumulus Linux does not support high frequency telemetry on ports using 8 lanes. On the Spectrum-4 switch, swp1 through swp64 use all 8 lanes; to run high frequency telemetry, you must break out these ports.
+- To correlate counters from different switches, the switches must have the same time (Cumulus Linux adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP; however, NVIDIA recommends using PTP because the timestamp is accurate between switches in the fabric at the microsecond level.
+- The collected data is available on the switch until you trigger the next data collection job or until you reboot the switch.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -651,6 +665,13 @@ cumulus@switch:~$ nv set system telemetry hft profile profile1 sample-interval 1
 
 Configures the switch to save the collected data locally to a json file in the `/var/run/cumulus/hft` directory. You can then export the json file to an external location with NVUE commands (or the API). The json format file includes the data for each sampling interval and a timestamp showing when the data was collected.
 
+{{%notice note%}}
+- Cumulus Linux supports high frequency telemetry on Spectrum-4 switches only.
+- Cumulus Linux does not support high frequency telemetry on ports using 8 lanes. On the Spectrum-4 switch, swp1 through swp64 use all 8 lanes; to run high frequency telemetry, you must break out these ports.
+- To correlate counters from different switches, the switches must have the same time (Cumulus Linux adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP; however, NVIDIA recommends using PTP because the timestamp is accurate between switches in the fabric at the microsecond level.
+- The collected data is available on the switch until you trigger the next data collection job or until you reboot the switch.
+{{%/notice%}}
+
 ### Version History
 
 Introduced in Cumulus Linux 5.10.0
@@ -666,6 +687,13 @@ cumulus@switch:~$ nv set system telemetry hft target local
 ## <h>nv set system telemetry hft profile \<profile-id\> traffic-class</h>
 
 Configures the egress queue priorities (traffic class 0 through 15) for the high frequency telemetry profile. The standard profile setting is 3.
+
+{{%notice note%}}
+- Cumulus Linux supports high frequency telemetry on Spectrum-4 switches only.
+- Cumulus Linux does not support high frequency telemetry on ports using 8 lanes. On the Spectrum-4 switch, swp1 through swp64 use all 8 lanes; to run high frequency telemetry, you must break out these ports.
+- To correlate counters from different switches, the switches must have the same time (Cumulus Linux adds timestamps in the metadata of the counters it collects). You can use either NTP or PTP; however, NVIDIA recommends using PTP because the timestamp is accurate between switches in the fabric at the microsecond level.
+- The collected data is available on the switch until you trigger the next data collection job or until you reboot the switch.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -807,7 +835,7 @@ cumulus@switch:~$ nv set system telemetry histogram egress-buffer sample-interva
 
 ## <h>nv set system telemetry export otlp grpc allow-insecure</h>
 
-Enables and disables `allow-insecure` mode for <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> connections for telemetry export without a configured certificate. You can specify `enabled` or `disabled`.
+Enables and disables `insecure` mode for <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> connections for telemetry. By default, OTLP export is in **secure mode** that requires a certificate. For connections without a configured certificate, you must enable `insecure` mode. You can specify `enabled` or `disabled`.
 
 ### Version History
 
@@ -816,7 +844,7 @@ Introduced in Cumulus Linux 5.10.0
 ### Example
 
 ```
-cumulus@switch:~$ nv set system telemetry export otlp grpc allow-insecure enabled
+cumulus@switch:~$ nv set system telemetry export otlp grpc insecure enabled
 ```
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
@@ -845,14 +873,13 @@ cumulus@switch:~$ nv set system telemetry export otlp grpc cert-id <certificate>
 
 ## <h>nv set system telemetry export otlp grpc destination \<destination\> port \<port-id\></h>
 
-Configures open telemetry export to use <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> to communicate with the collector and define the port to use for communication.
-
+Configures open telemetry export to use <span class="a-tooltip">[gRPC ](## "Remote Procedure Call")</span> to communicate with the collector. You must provide the collector destination IP address or hostname. Specify the port to use for communication if it is different from the default port 8443.
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<destination>` | The IP address of the collector. |
-| `<port-id>` |  The port number. |
+| `<port-id>` |  The port number (if different from the default port 8443). |
 
 ### Version History
 

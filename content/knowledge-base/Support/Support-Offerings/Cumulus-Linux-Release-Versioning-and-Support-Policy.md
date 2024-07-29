@@ -26,6 +26,10 @@ The Cumulus Linux installation file name includes the version number, in the for
     - Bug fixes and updates.
     - Security updates.
 
+{{%notice note%}}
+NVIDIA occasionally provides private four digit releases, such as 3.7.16.1. These releases are not official. You can only upgrade to a private release with a binary image.
+{{%/notice%}}
+
 ## Release, Support Lifecycle and Support Policy
 
 NVIDIA supports both mainline and Extended Support Releases (ESRs). This support mechanism allows NVIDIA to maintain its desire to innovate, while providing stable releases as soon as it meets the architectural needs.

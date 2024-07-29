@@ -71,6 +71,8 @@ otlp
     [destination]             
 ```
 
+To show the OTLP gRPC destination configuration, run the `nv show system telemetry export otlp grpc destination` command.
+
 <!-- Commenting out HTTP export for phase 1
 ### HTTP OTLP Export
 

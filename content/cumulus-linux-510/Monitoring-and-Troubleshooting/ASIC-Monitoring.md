@@ -1087,24 +1087,21 @@ To show a summary of high frequency telemetry configuration and data:
 cumulus@switch:~$ nv show system telemetry hft
 profile
 ==========
-    Profile   sample-interval  Summary              
-    --------  ---------------  ---------------------
-    profile1  1000             counter:      rx-byte
-                               counter: tc-occupancy
-                               traffic-class:      0
-                               traffic-class:      3
-                               traffic-class:      7
-                               traffic-class:      1
-                               traffic-class:      2
-                               traffic-class:      4
-                               traffic-class:      5
-                               traffic-class:      6
-                               traffic-class:      8
-                               traffic-class:      9
-    standard  5000             counter:      tx-byte
-                               counter:      rx-byte
-                               counter: tc-occupancy
-                               traffic-class:      3
+    Profile   traffic-class  counter       sample-interval
+    --------  -------------  ------------  ---------------
+    profile2  0              rx-byte       1000           
+              1              tx-byte                      
+              2                                           
+              3                                           
+              4                                           
+              5                                           
+              6                                           
+              7                                           
+              8                                           
+              9                                           
+    standard  3              rx-byte       5000           
+                             tc-occupancy                 
+                             tx-byte
 ...
 ```
 
@@ -1112,29 +1109,42 @@ To show the high frequency telemetry profiles configured on the switch:
 
 ```
 cumulus@switch:~$ nv show system telemetry hft profile
-Profile   sample-interval  Summary              
---------  ---------------  ---------------------
-profile1  1000             counter: tc-occupancy
-                           traffic-class:      0
-                           traffic-class:      3
-                           traffic-class:      7
-standard  5000             counter:      tx-byte
-                           counter:      rx-byte
-                           counter: tc-occupancy
-                           traffic-class:      3
+Profile   traffic-class  counter       sample-interval
+--------  -------------  ------------  ---------------
+profile2  0              rx-byte       1000           
+          1              tx-byte                      
+          2                                           
+          3                                           
+          4                                           
+          5                                           
+          6                                           
+          7                                           
+          8                                           
+          9                                           
+standard  3              rx-byte       5000           
+                         tc-occupancy                 
+                         tx-byte
 ```
 
 To show the settings for a specific profile:
 
 ```
 cumulus@switch:~$ nv show system telemetry hft profile profile1
-                operational   applied     
----------------  ------------  ------------
-sample-interval  1000          1000        
-[traffic-class]  0             0           
-[traffic-class]  3             3           
-[traffic-class]  7             7           
-[counter]        tc-occupancy  tc-occupancy
+                 operational  applied
+---------------  -----------  -------
+sample-interval  1000         1000   
+[traffic-class]  0            0      
+[traffic-class]  1            1      
+[traffic-class]  2            2      
+[traffic-class]  3            3      
+[traffic-class]  4            4      
+[traffic-class]  5            5      
+[traffic-class]  6            6      
+[traffic-class]  7            7      
+[traffic-class]  8            8      
+[traffic-class]  9            9      
+[counter]        rx-byte      rx-byte
+[counter]        tx-byte      tx-byte
 ```
 
 To show configured targets:
@@ -1146,7 +1156,7 @@ applied
 local  
 ```
 
-To show information for all data collection jobs, such as the start time, duration, status and ports on which the data is collected:
+To show information for all data collection jobs:
 
 ```
 cumulus@switch:~$ nv show system telemetry hft job

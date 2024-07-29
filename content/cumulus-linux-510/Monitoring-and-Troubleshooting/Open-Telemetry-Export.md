@@ -4,9 +4,13 @@ author: NVIDIA
 weight: 1232
 toc: 3
 ---
-You use telemetry to collect, send, and analyze large amounts of data, such as traffic statistics, port status, device health and configuration, and events. This data helps you monitor switch performance, health and behavior, traffic patterns, and quality of service (QoS).
+Telemetry enables you to collect, send, and analyze large amounts of data, such as traffic statistics, port status, device health and configuration, and events. This data helps you monitor switch performance, health and behavior, traffic patterns, and <span class="a-tooltip">[QoS](## "Quality of Service")</span>.
 
-Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export on the SN5600 switch. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters and histogram collection data to an external collector for analysis and visualization.
+Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export. You can use <span class="a-tooltip">[OTLP](## "open telemetry protocol")</span> to export metrics, such as interface counters and histogram collection data to an external collector for analysis and visualization.
+
+{{%notice note%}}
+Cumulus Linux supports {{<exlink url="https://github.com/open-telemetry/" text="open telemetry (OTEL)">}} export for the SN5600 switch only.
+{{%/notice%}}
 
 ## Enable Open Telemetry Export
 
@@ -52,7 +56,7 @@ To configure open telemetry export:
    cumulus@switch:~$ nv config apply
    ```
 
-By default, OTLP export is in **secure** mode and requires a certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
+By default, OTLP export is in **secure** mode that requires a certificate. For connections without a configured certificate, you must enable `insecure` mode with the `nv set system telemetry export otlp grpc insecure enabled` command.
 
 ### Show Telemetry Export Configuration
 

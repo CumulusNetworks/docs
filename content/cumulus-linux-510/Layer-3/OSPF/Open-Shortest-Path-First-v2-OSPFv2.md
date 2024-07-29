@@ -1253,6 +1253,17 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router ospf interface swp51
 Action succeeded
 ```
 
+## Clear the OSPF Database
+
+To clear the OSPF database, reestablish neighborships, and reoriginate LSAs, run the `nv action clear vrf <vrf>> router ospf database` command:
+
+```
+cumulus@leaf01:mgmt:~$ nv action clear vrf default router ospf database 
+Action executing ...
+Cleared vrf default ospf database
+Action succeeded
+```
+
 ## Considerations
 
 With NVUE, you cannot run both the `nv set vrf default router ospf area <area> network` command and the `nv set interface <interface> router ospf area` command in the same configuration; for example, if you run the following commands, NVUE shows an invalid configuration error:

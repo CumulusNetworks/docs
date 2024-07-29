@@ -143,6 +143,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | `nv show router` | Shows router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
 | `nv show service` | Shows DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
 | `nv show system` | Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs. You can also see system login messages and switch reboot history. |
+| `nv show system version` | Shows the Cumulus Linux release running on the switch.|
 | `nv show vrf` | Shows VRF configuration.|
 
 The following example shows the `nv show router` commands after pressing the tab key, then shows the output of the `nv show router bgp` command.
@@ -326,6 +327,27 @@ NVUE provides a default `/etc/nvue.d/startup.yaml` file that includes configurat
 - The default NVUE `startup.yaml` file includes the `cumulus` user account, which is the default account for the system. Modifying the NVUE configuration to not include the `cumulus` user account, replacing the configuration or applying a startup configuration, deletes the `cumulus` account. To merge in configuration changes or to restore a backup `startup.yaml` file, use the `nv config patch` command.
 - You cannot delete a user account that is logged into the switch.
 {{%/notice%}}
+
+### Encrypted Passwords
+
+By default, NVUE encrypts passwords, such as the RADIUS secret, TACACS secret, BGP peer password, OSPF MD5 key, and SNMP strings in the `startup.yaml` file. You can disable password encryption with the `nv set system security encryption db state disabled` command:
+
+```
+cumulus@switch:~$ nv set system security encryption db state disabled
+cumulus@switch:~$ nv config apply
+```
+
+To re-enable password encryption, run the `nv set system security encryption db state enabled` command.
+
+To show if password encryption is enabled, run the `nv show system security encryption` command:
+
+```
+cumulus@switch:~$ nv show system security encryption
+         operational  applied
+-------  -----------  -------
+db                           
+  state               enabled
+```
 
 ## Configuration Files that NVUE Manages
 

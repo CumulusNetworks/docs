@@ -79,3 +79,7 @@ IP-FORWARD-MIB.txt                   SNMP-FRAMEWORK-MIB.txt
 ```
 {{</expand>}}
 <!-- vale on -->
+
+## Considerations
+
+The `snmpd` service might cache SNMP MIB object values for performance reasons and update the values periodically. When you poll SNMP objects, the values returned might not reflect real time status changes for some period of time.

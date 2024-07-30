@@ -20,8 +20,9 @@ The following specifications are useful in understanding and troubleshooting lay
 
 Modern Ethernet modules come in one of two form factors:
 
-- Small Form factor Pluggables (SFP)
-- Quad Small Form factor Pluggables (QSFP)
+- Small Form Factor Pluggables (SFP)
+- Quad Small Form Factor Pluggables (QSFP)
+- Octal Small Form Factor pluggable (OSFP)
 
 Each form factor contains an EEPROM with information about the capabilities of the module and various groups of required or optional registers to query or control aspects of the module. The output from the `ethtool -m <swp>` command decodes the main values.
 
@@ -62,12 +63,14 @@ The relationship between lane speed and encoding methods is described in this ta
 | 10G | Uses 64B/66B framing then encoded in NRZ &mdash; actually 10.3125 Gbps on the wire. |
 | 25G | Uses 64B/66B framing then encoded in NRZ &mdash; actually 25.78125 Gbps on the wire. Can also use RS-FEC (528,514) or Base-R FEC. |
 | 50G | Uses PAM4 encoding and RS-FEC (544,514). |
+| 100G | Uses PAM4 encoding and NRZ encoding. |
 
 The SerDes (Serial/Deserializer) is the component in the port that converts byte data to and from a set of bit streams (lanes), where:
 
 - SFP ports use 1 lane
 - QSFP ports use 4 lanes
 - QSFP-DD ports use 8 lanes
+- OSFP ports use eight lanes
 
 On the ASIC, the 40G, 100G and 200G SerDes devices are 4 lanes; 400G SerDes uses 8 lanes. So an SFP port is actually one lane on a four lane SerDes. Depending on the platform design, this sometimes affects how you can configure and break out SFP ports.
 
@@ -80,9 +83,10 @@ Port speeds are created using the following formulas:
 | 25G | One 25G lane. |
 | 40G | Four 10G lanes. |
 | 50G | Two 25G lanes (NRZ) or one 50G lane (PAM4). |
-| 100G | Four 25G lanes (100G-SR4/CR4 NRZ) or two 50G lanes (100G-CR2 PAM4). |
-| 200G | Four 50G lanes. |
-| 400G | Eight 50G lanes. |
+| 100G | Four 25G lanes (100G-SR4/CR4 NRZ), two 50G lanes (100G-CR2 PAM4), or one 100G lane. |
+| 200G | Four 50G lanes or two 100G lanes. |
+| 400G | Eight 50G lanes or four 100G lanes. |
+| 800G | Eight 100G lanes.|
 
 ### Active and Passive Modules and Cables
 

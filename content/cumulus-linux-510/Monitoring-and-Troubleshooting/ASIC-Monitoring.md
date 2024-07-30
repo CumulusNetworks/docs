@@ -741,8 +741,8 @@ You cannot delete or modify a profile if data collection jobs are already runnin
 
 To configure data collection:
 - Set the sampling interval in microseconds for the profile. You can specify a value between 100 and 12750. The value must be a multiple of 50. The default value is 5000 microseconds.
-- Specify the type of data you want to collect for the profile. You can collect transmitted bytes, received bytes, and traffic class occupancy. The `standard` profile collects all three data types.
-- Set the egress queue priorities (traffic class 0-15) for the profile if the data types you want to collect include traffic class occupancy. The `standard` profile setting is 3.
+- Specify the type of data you want to collect for the profile. You can collect transmitted bytes, received bytes, and current traffic class buffer occupancy. The `standard` profile collects all three data types.
+- Set the egress queue priorities (traffic class 0-15) for the profile if the data types you want to collect include current traffic class buffer occupancy. The `standard` profile setting is 3.
 
 {{%notice note%}}
 Use commas (no spaces) to separate the list of traffic classes. For example, to set traffic class 1, 3, and 6, specify `1,3,6`.
@@ -751,7 +751,7 @@ Use commas (no spaces) to separate the list of traffic classes. For example, to 
 {{< tabs "TabID26 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the type of data to collect to traffic class occupancy (`tc-occupancy`):
+The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the type of data to collect to traffic class buffer occupancy (`tc-occupancy`):
 
 ```
 cumulus@switch:~$ nv set system telemetry hft profile profile1 sample-interval 1000
@@ -778,7 +778,7 @@ To delete a profile, run the `nv unset system telemetry hft profile <profile-id>
 {{< /tab >}}
 {{< tab "Job Management Tool ">}}
 
-The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the type of data to collect to traffic class occupancy (`tc_curr_occupancy`):
+The following example configures `profile1` and sets the sampling interval to 1000, the traffic class to 0, 3, and 7, and the type of data to collect to traffic class buffer occupancy (`tc_curr_occupancy`):
 
 ```
 cumulus@switch:~$ cl-hft-tool profile-add --name profile1 --counter tc_curr_occupancy --tc 0,3,7 --interval 1000 
@@ -855,7 +855,7 @@ To configure the schedule for a data collection profile, set:
 - You can schedule a maximum of 25 sessions (jobs). These 25 jobs are active jobs whose states are either `running` (collecting counters now) or `pending` (scheduled to collect data in a future date and time). The switch can retain data for 10 jobs (in a `completed`, `cancelled`, or `failed` state) in addition to the 25 maximum active jobs.
 - You must configure data export (the target) before you can configure the schedule.
 - The switch ASIC can only run one high frequency telemetry job at a time; You cannot schedule two jobs to run at the same time.
-- There can be a delay of approximately two or three seconds between the scheduled time and the actual data sampling start time in the ASIC.
+- There might be a delay of approximately two to three seconds between the scheduled time and the actual data sampling start time in the ASIC.
 
 {{%/notice%}}
 

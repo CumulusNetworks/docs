@@ -755,8 +755,8 @@ The following example configures `profile1` and sets the sampling interval to 10
 
 ```
 cumulus@switch:~$ nv set system telemetry hft profile profile1 sample-interval 1000
-cumulus@switch:~$ nv set system telemetry hft profile profile1 traffic-class 0,3,7 
 cumulus@switch:~$ nv set system telemetry hft profile profile1 counter tc-occupancy
+cumulus@switch:~$ nv set system telemetry hft profile profile1 traffic-class 0,3,7 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -870,6 +870,7 @@ Specify the date and time in `YYYY-MM-DD HH:MM:SS` format.
 cumulus@switch:~$ nv action schedule system telemetry hft job 2024–07-17-10:00:00 duration 30 profile profile1 ports swp1s0-swp9s0
 Action executing ...
 Job schedule successfull.
+HFT job schedule successful: job-id 1
 
 Action succeeded
 ```
@@ -880,6 +881,7 @@ You can provide a short reason why you are collecting the data. If the descripti
 cumulus@switch:~$ nv action schedule system telemetry hft job 2024-07-17 10:00:00 duration 30 profile profile1 ports swp1s0-swp9s0 description "bandwidth profiling"
 Action executing ...
 Job schedule successfull.
+HFT job schedule successful: job-id 1
 
 Action succeeded
 ```
@@ -890,7 +892,7 @@ The following example configures `profile2` to start immediately, run for 30 sec
 cumulus@switch:~$ nv action schedule system telemetry hft job now now duration 30 profile profile2 ports swp2s0
 Action executing ...
 Job schedule successfull.
-HFT job schedule successful: job-id 1
+HFT job schedule successful: job-id 2
 
 Action succeeded
 ```

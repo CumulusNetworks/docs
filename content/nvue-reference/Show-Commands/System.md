@@ -346,6 +346,30 @@ enable  on           on
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system health</h>
+
+Shows system health information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system health 
+            operational  applied
+----------  -----------  -------
+status      OK                  
+status-led  green               
+
+Health issues
+================
+No Data
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system maintenance</h>
 
 Show the current system maintenance mode.

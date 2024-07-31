@@ -951,7 +951,9 @@ iface bond1.30
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL59 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
 
-This simulation is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
+This simulation is running Cumulus Linux 5.9. The Cumulus Linux 5.10 simulation is coming soon.
+
+The simulation is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
 To validate the configuration, run the `nv show interface <vlan> ip vrr` command:
 

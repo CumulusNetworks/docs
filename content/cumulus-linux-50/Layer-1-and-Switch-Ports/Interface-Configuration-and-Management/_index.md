@@ -208,7 +208,7 @@ iface lo inet loopback
 - You can configure multiple IP addresses for the loopback interface.
 {{%/notice%}}
 
-## Child Interfaces
+<!--## Child Interfaces
 
 By default, `ifupdown2` recognizes and uses any interface present on the system that is a dependent (child) of an interface (for example, a VLAN, bond, or physical interface). You do not need to list interfaces in the `/etc/network/interfaces` file unless the interfaces need specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `/etc/network/interfaces` file.
 
@@ -381,20 +381,48 @@ cumulus@switch:~$ sudo ifquery --print-dependency=dot -a >interfaces_all.dot
 ```
 
 {{< img src = "/images/cumulus-linux/layer1-interfaces-all.png" >}}
-
+-->
 ## Subinterfaces
 
 On Linux, an *interface* is a network device that can be either physical, (for example, swp1) or virtual (for example, vlan100). A *VLAN subinterface* is a VLAN device on an interface, and the VLAN ID appends to the parent interface using dot (.) VLAN notation. For example, a VLAN with ID 100 that is a subinterface of swp1 is swp1.100. The dot VLAN notation for a VLAN device name is a standard way to specify a VLAN device on Linux.
 
 A VLAN subinterface only receives traffic tagged for that VLAN; therefore, swp1.100 only receives packets that have a VLAN 100 tag on switch port swp1. Any packets that transmit from swp1.100 have a VLAN 100 tag.
 
-In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094. The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
+The following example configures a routed subinterface on swp1 in VLAN 100:
+
+{{< tabs "TabID316 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1.100 ip address 192.168.100.1/24
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file, then run `ifreload -a`:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1.100
+iface swp1.100
+ address 192.168.100.1/24
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 If you are using a VLAN subinterface, do not add that VLAN under the bridge stanza.
 {{%/notice%}}
 
-## Parent Interfaces
+<!--## Parent Interfaces
 
 When you run `ifup` on a logical interface (like a bridge, bond, or VLAN interface), if the `ifup` creates the logical interface, it also tries to execute on the upper (or parent) interfaces of the interface.
 
@@ -421,7 +449,7 @@ With `skip_upperifaces=1`, you have to execute `ifup` on the upper interfaces. I
 {{%notice note%}}
 If you specify a subinterface, such as swp1.100, then run `ifup swp1.100`, Cumulus Linux creates the swp1 interface automatically in the kernel. Consider also specifying the parent interface swp1. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`. If you create only swp1.100 and not swp1, you cannot run `ifup swp1`.
 {{%/notice%}}
-
+-->
 ## Interface IP Addresses
 
 You can specify both IPv4 and IPv6 addresses for the same interface.

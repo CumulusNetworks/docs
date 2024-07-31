@@ -311,6 +311,36 @@ On Linux, an *interface* is a network device that can be either physical, (for e
 
 A VLAN subinterface only receives traffic tagged for that VLAN; therefore, swp1.100 only receives packets that have a VLAN 100 tag on switch port swp1. Any packets that transmit from swp1.100 have a VLAN 100 tag.
 
+The following example configures a routed subinterface on swp1 in VLAN 100:
+
+{{< tabs "TabID316 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1.100 ip address 192.168.100.1/24
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file, then run `ifreload -a`:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1.100
+iface swp1.100
+ address 192.168.100.1/24
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
 - If you are using a VLAN subinterface, do not add that VLAN under the bridge stanza.
 - You cannot use NVUE commands to create a routed subinterface for VLAN 1.

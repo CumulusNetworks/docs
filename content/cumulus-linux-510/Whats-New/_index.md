@@ -58,6 +58,12 @@ These commands include additional information in the output.
 | `nv show interface <interface> link` | Port hardware information such as eyes, grade and troubleshooting information, if available. |
 | `nv show interface <interface> pluggable` | Cable length, date code, revision compliance, temperature, and voltage. |
 
+The minimum and maximum values for the `nv set system forwarding ecmp-weight-normalisation max-hw-weight` command have changed.
+
+| New Values | Previous Values |
+| ----------- | ----------------|
+| minimum: 8<br> maximum: 4096 | minimum: 10<br> maximum: 255|
+
 {{< /expand >}}
   - {{< expand "New NVUE Commands" >}}
 For descriptions and examples of all NVUE commands, refer to the [NVUE Command Reference]({{<ref "/nvue-reference" >}}) for Cumulus Linux.

@@ -592,6 +592,83 @@ swp1       4          4
 
 <HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
 
+## <h>nv show system telemetry export</h>
+
+Shows telemetry export configuration on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry export
+                    applied   pending 
+------------------  --------  --------
+vrf                 default   default 
+otlp                                  
+  state             disabled  disabled
+  grpc                                
+    insecure  disabled  disabled
+    port            8443      8443    
+    [destination]
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry export otlp gRPC</h>
+
+Shows OTLP gRPC export configuration on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry export otlp gRPC
+          applied 
+--------  --------
+insecure  disabled
+port      8443 
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry export otlp gRPC destination</h>
+
+Shows OTLP gRPC destination configuration on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry export otlp gRPC destination
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
+## <h>nv show system telemetry export otlp gRPC destination \<destination\></h>
+
+Shows specific OTLP gRPC destination configuration on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.10.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show system telemetry export otlp gRPC destination 10.1.1.100
+```
+
+<HR STYLE="BORDER: DASHED RGB(118,185,0) 0.5PX;BACKGROUND-COLOR: RGB(118,185,0);HEIGHT: 4.0PX;"/>
+
 ## <h>nv show system telemetry hft</h>
 
 Shows the high frequency telemetry configuration.

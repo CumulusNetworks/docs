@@ -29,6 +29,7 @@ The SFF MSA specifications define the memory locations for the fields in the EEP
 
 - SFP: {{<exlink url="https://members.snia.org/document/dl/25916" text="SFF-8472">}}: *Management Interface for SFP+* (PDF)
 - QSFP: {{<exlink url="https://members.snia.org/document/dl/26418" text="SFF-8636">}} *Management Interface for 4-lane Modules and Cables* (PDF)
+- OSFP: {{<exlink url="https://osfpmsa.org/assets/pdf/OSFP_Module_Specification_Rev5_0.pdf" text="OSFP MSA Rev 5.0">}}
 
 Identifiers are used in the first byte of the module memory map:
 <!-- vale off -->
@@ -36,6 +37,7 @@ Identifiers are used in the first byte of the module memory map:
 - 0x0d: QSFP+ - Four 10G lanes - Quad SFP (40G total)
 - 0x11: QSFP28 - Four 25G or 50G lanes (100G or 200G total) - Quad SFP with 25G or 50G lanes; includes QSFP28, QSFP56, and newer QSFP standards
 - 0x18: QSFP-DD - Eight 50G lanes (400G total) - Quad SFP with a recessed extra card-edge connector to enable 8 lanes of 50G
+- 0x19: OSFP - Eight 100G lanes (800G total)
 <!-- vale on -->
 ### Encoding
 
@@ -62,12 +64,14 @@ The relationship between lane speed and encoding methods is described in this ta
 | 10G | Uses 64B/66B framing then encoded in NRZ &mdash; actually 10.3125 Gbps on the wire. |
 | 25G | Uses 64B/66B framing then encoded in NRZ &mdash; actually 25.78125 Gbps on the wire. Can also use RS-FEC (528,514) or Base-R FEC. |
 | 50G | Uses PAM4 encoding and RS-FEC (544,514). |
+| 100G| Uses PAM4 encoding and NRZ encoding. |
 
 The SerDes (Serial/Deserializer) is the component in the port that converts byte data to and from a set of bit streams (lanes), where:
 
 - SFP ports use 1 lane
 - QSFP ports use 4 lanes
 - QSFP-DD ports use 8 lanes
+- OSFP ports use 8 lanes
 
 On the ASIC, the 40G, 100G and 200G SerDes devices are 4 lanes; 400G SerDes uses 8 lanes. So an SFP port is actually one lane on a four lane SerDes. Depending on the platform design, this sometimes affects how you can configure and break out SFP ports.
 
@@ -80,9 +84,10 @@ Port speeds are created using the following formulas:
 | 25G | One 25G lane. |
 | 40G | Four 10G lanes. |
 | 50G | Two 25G lanes (NRZ) or one 50G lane (PAM4). |
-| 100G | Four 25G lanes (100G-SR4/CR4 NRZ) or two 50G lanes (100G-CR2 PAM4). |
-| 200G | Four 50G lanes. |
-| 400G | Eight 50G lanes. |
+| 100G | Four 25G lanes (100G-SR4/CR4 NRZ), two 50G lanes (100G-CR2 PAM4), or one 100G lane. |
+| 200G | Four 50G lanes or two 100G lanes. |
+| 400G | Eight 50G lanes or four 100G lanes. |
+| 800G | Eight 100G lanes.|
 
 ### Active and Passive Modules and Cables
 

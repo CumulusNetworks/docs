@@ -130,7 +130,7 @@ iface lo inet loopback
 - If the IP address has no subnet mask, it automatically becomes a /32 IP address. For example, 10.10.10.1 is 10.10.10.1/32.
 - You can configure multiple IP addresses for the loopback interface.
 {{%/notice%}}
-
+<!--
 ## Child Interfaces
 
 By default, `ifupdown2` recognizes and uses any interface present on the system that is a dependent (child) of an interface (for example, a VLAN, bond, or physical interface). You do not need to list interfaces in the `/etc/network/interfaces` file unless the interfaces need specific configuration for {{<link url="Switch-Port-Attributes" text="MTU, link speed, and so on">}}. If you need to delete a child interface, delete all references to that interface from the `/etc/network/interfaces` file.
@@ -304,7 +304,7 @@ cumulus@switch:~$ sudo ifquery --print-dependency=dot -a >interfaces_all.dot
 ```
 
 {{< img src = "/images/cumulus-linux/layer1-interfaces-all.png" >}}
-
+-->
 ## Subinterfaces
 
 On Linux, an *interface* is a network device that can be either physical, (for example, swp1) or virtual (for example, vlan100). A *VLAN subinterface* is a VLAN device on an interface, and the VLAN ID appends to the parent interface using dot (.) VLAN notation. For example, a VLAN with ID 100 that is a subinterface of swp1 is swp1.100. The dot VLAN notation for a VLAN device name is a standard way to specify a VLAN device on Linux.

@@ -311,39 +311,9 @@ On Linux, an *interface* is a network device that can be either physical, (for e
 
 A VLAN subinterface only receives traffic tagged for that VLAN; therefore, swp1.100 only receives packets that have a VLAN 100 tag on switch port swp1. Any packets that transmit from swp1.100 have a VLAN 100 tag.
 
-In an {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} configuration, the peer link interface that connects the two switches in the MLAG pair has a VLAN subinterface named 4094. The peerlink.4094 subinterface only receives traffic tagged for VLAN 4094.
-
 {{%notice note%}}
 - If you are using a VLAN subinterface, do not add that VLAN under the bridge stanza.
 - You cannot use NVUE commands to create a routed subinterface for VLAN 1.
-{{%/notice%}}
-
-## Parent Interfaces
-
-When you run `ifup` on a logical interface (like a bridge, bond, or VLAN interface), if the `ifup` creates the logical interface, it also tries to execute on the upper (or parent) interfaces of the interface.
-
-Consider this example configuration:
-
-```
-auto br100
-iface br100
-    bridge-ports bond1.100 bond2.100
-
-auto bond1
-iface bond1
-    bond-slaves swp1 swp2
-```
-
-If you run `ifdown bond1`, `ifdown` deletes bond1 and the VLAN interface on bond1 (bond1.100); it also removes bond1 from the bridge br100. Next, when you run `ifup bond1`, it creates bond1 and the VLAN interface on bond1 (bond1.100); it also executes `ifup br100` to add the bond VLAN interface (bond1.100) to the bridge br100.
-
-There can be cases where an upper interface (like br100) is not in the right state, which can result in warnings. The warnings are harmless.
-
-If you want to disable these warnings, set `skip_upperifaces=1` in the `/etc/network/ifupdown2/ifupdown2.conf` file.
-
-With `skip_upperifaces=1`, you have to execute `ifup` on the upper interfaces. In this case, you must run `ifup br100` after an `ifup bond1` to add bond1 back to bridge br100.
-
-{{%notice note%}}
-If you specify a subinterface, such as swp1.100, then run `ifup swp1.100`, Cumulus Linux creates the swp1 interface automatically in the kernel. Consider also specifying the parent interface swp1. A parent interface is one where any physical layer configuration can reside, such as `link-speed 1000` or `link-duplex full`. If you create only swp1.100 and not swp1, you cannot run `ifup swp1`.
 {{%/notice%}}
 
 ## Interface IP Addresses

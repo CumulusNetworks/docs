@@ -22,7 +22,7 @@ Modern Ethernet modules come in one of two form factors:
 
 - Small Form Factor Pluggables (SFP)
 - Quad Small Form Factor Pluggables (QSFP)
-- Octal Small Form Factor pluggable (OSFP)
+- Octal Small Form Factor Pluggables (OSFP)
 
 Each form factor contains an EEPROM with information about the capabilities of the module and various groups of required or optional registers to query or control aspects of the module. The output from the `ethtool -m <swp>` command decodes the main values.
 

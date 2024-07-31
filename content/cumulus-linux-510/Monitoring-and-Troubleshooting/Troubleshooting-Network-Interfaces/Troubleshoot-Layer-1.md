@@ -30,6 +30,7 @@ The SFF MSA specifications define the memory locations for the fields in the EEP
 
 - SFP: {{<exlink url="https://members.snia.org/document/dl/25916" text="SFF-8472">}}: *Management Interface for SFP+* (PDF)
 - QSFP: {{<exlink url="https://members.snia.org/document/dl/26418" text="SFF-8636">}} *Management Interface for 4-lane Modules and Cables* (PDF)
+- OSFP: {{<exlink url="https://osfpmsa.org/assets/pdf/OSFP_Module_Specification_Rev5_0.pdf" text="OSFP MSA Rev 5.0">}}
 
 Identifiers are used in the first byte of the module memory map:
 <!-- vale off -->
@@ -37,6 +38,7 @@ Identifiers are used in the first byte of the module memory map:
 - 0x0d: QSFP+ - Four 10G lanes - Quad SFP (40G total)
 - 0x11: QSFP28 - Four 25G or 50G lanes (100G or 200G total) - Quad SFP with 25G or 50G lanes; includes QSFP28, QSFP56, and newer QSFP standards
 - 0x18: QSFP-DD - Eight 50G lanes (400G total) - Quad SFP with a recessed extra card-edge connector to enable 8 lanes of 50G
+- 0x19: OSFP - Eight 100G lanes (800G total)
 <!-- vale on -->
 ### Encoding
 
@@ -70,7 +72,7 @@ The SerDes (Serial/Deserializer) is the component in the port that converts byte
 - SFP ports use 1 lane
 - QSFP ports use 4 lanes
 - QSFP-DD ports use 8 lanes
-- OSFP ports use eight lanes
+- OSFP ports use 8 lanes
 
 On the ASIC, the 40G, 100G and 200G SerDes devices are 4 lanes; 400G SerDes uses 8 lanes. So an SFP port is actually one lane on a four lane SerDes. Depending on the platform design, this sometimes affects how you can configure and break out SFP ports.
 

@@ -185,7 +185,7 @@ nv action clear vrf <vrf> router ospf database
 nv action delete system tech-support files <file-name>
 nv action generate system tech-support
 nv action rotate system log
-nv action schedule service telemetry hft job
+nv action schedule system telemetry hft job
 nv action upload system tech-support files <file-name> <remote-url-upload>
 nv action upload system telemetry hft job <hft-job-id> <remote-url-upload>
 ```
